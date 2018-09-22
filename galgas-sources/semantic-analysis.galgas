@@ -18,6 +18,10 @@ abstract class @propertyGeneration {
 
 #·······················································································································
 
+getter @propertyGeneration prefKeyDefinitionCode -> @string { result = "" }
+
+#·······················································································································
+
 abstract getter @propertyGeneration declarationCode -> @string
 
 #·······················································································································
@@ -229,7 +233,7 @@ proc semanticAnalysisEX
       !?ioGeneration
     ]  
   end
-  [inAstDeclarationStruct.mPreferences semanticAnalysis
+  [inAstDeclarationStruct.mPreferences semanticAnalysisEX
     !inAstDeclarationStruct.mPreferences.mExternSwiftFunctionList
     !semanticContext
     !?ioGeneration

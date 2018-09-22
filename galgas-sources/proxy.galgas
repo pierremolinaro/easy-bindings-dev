@@ -99,15 +99,6 @@ override method @proxyDeclarationAST classAndPropertySemanticAnalysis
   end
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SECOND ANALYSIS PHASE
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @proxyDeclarationAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-}
 
 
 

@@ -147,7 +147,6 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @outletBindingModelList {
-#  @typeKind mModelType
   @propertyKind mKind
   @location mErrorLocation
 }
@@ -169,6 +168,203 @@ list @ebViewGraphicControllerBindingGenerationList {
 #·······················································································································
 
 proc analyzeOutlets
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @string unused inRootEntityName
+  ?let @semanticContext inSemanticContext
+  ?let @outletDeclarationList inOutletDeclarationList
+  ?let @propertyMap inObservablePropertyMap
+  ?let @actionMap inActionMap
+  ?let @string inReceiverSwiftTypeName
+  ?!@generationStruct ioGeneration
+  !@regularBindingsGenerationList outRegularBindingsGenerationList
+  !@multipleBindingGenerationList outMultipleBindingGenerationList
+  !@actionBindingListForGeneration outTargetActionList
+  !@decoratedOutletMap outletMap
+  !@tableViewBindingGenerationList outTableViewBindingGenerationList
+  !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList
+{
+  outRegularBindingsGenerationList = {}
+  outTargetActionList = {}
+  outMultipleBindingGenerationList = {}
+  outletMap = {}
+  outTableViewBindingGenerationList = {}
+  outEBViewGraphicControllerBindingGenerationList = {}
+  for () outlet_ in inOutletDeclarationList do
+    [!?outletMap insertKey !outlet_mOutletName !outlet_mOutletTypeName.string]
+    [inSemanticContext.mOutletClassMap searchKey
+      !outlet_mOutletTypeName
+      ?*
+      ?let @bool handlesRunAction
+      ?let @bool handlesTableViewBinding
+      ?let @bool handlesEnabledBinding
+      ?let @bool handlesHiddenBinding
+      ?let @bool handleGraphicControllerBinding
+      ?let @bool outletClassIsUserDefined
+    ]
+    if not outletClassIsUserDefined then
+      ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
+    end
+  #--- $graphicController
+    switch outlet_mGraphicController
+    case none :
+    case defined (@lstring controllerName @lstring propertyName) :
+      if not handleGraphicControllerBinding then
+        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding"
+      else
+        [inObservablePropertyMap searchKey
+          !controllerName
+          ?let @propertyKind kind
+          ?*
+        ]
+        switch kind 
+        case property (2*) :
+          error controllerName : "the bound model should be an array controller"
+        case toMany (4*) :
+          error controllerName : "the bound model should be an array controller"
+        case toOne (3*) :
+          error controllerName : "the bound model should be an array controller"
+        case arrayController (entityName graphic *) :
+          if propertyName.string == "" then
+            if not graphic then
+              error controllerName : "the controlled entity (" + entityName + ") should be a graphic entity"
+            end
+          else
+            [inSemanticContext.mClassMap searchKey
+              !entityName
+              ?*
+              ?let observablePropertyMap
+              ?2*
+            ]
+            [observablePropertyMap searchKey !propertyName ?let propertyKind ?*]
+            switch propertyKind 
+            case property (2*) :
+              error controllerName : "the bound model should be a toMany property"
+            case toMany (kEntityName * isGraphic *) :
+              if not isGraphic then
+                error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
+              end
+            case toOne (3*) :
+              error controllerName : "the bound model should be a toMany property"
+            case arrayController (3*) :
+              error controllerName : "the bound model should be a toMany property"
+            case selectionController (*) :
+              error controllerName : "the bound model should be a toMany property"
+            end
+         end
+        case selectionController (*) :
+          error controllerName : "the bound model should be an array controller"
+        end
+        outEBViewGraphicControllerBindingGenerationList += !outlet_mOutletName.string !controllerName.string
+      end
+    end
+  #--- $tableView
+    switch outlet_mTableValueBindingDescriptor
+    case noTableValueBinding :
+    case tableValueBinding (@lstring controllerName) :
+      if not handlesTableViewBinding then
+        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $tableView binding"
+      else
+        [inObservablePropertyMap searchKey
+          !controllerName
+          ?let @propertyKind unused kind
+          ?*
+        ]
+        if not [kind isArrayController] then
+          error controllerName : "the bound model should be an array controller"
+        end
+        outTableViewBindingGenerationList += !outlet_mOutletName.string !controllerName.string
+      end
+    end
+  #--- $run
+    switch outlet_mRunDescriptor
+    case noAction :
+    case action (@lstring target @lstring action) :
+      if not handlesRunAction then
+        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action"
+      elsif target.string == "self" then
+        [inActionMap searchKey !action]
+        outTargetActionList +=
+          !outlet_mOutletName.string
+          !"self"
+          !action.string
+          !inReceiverSwiftTypeName
+      else # It is a controller
+        [inObservablePropertyMap searchKey
+          !target
+          ?*
+          ?let @actionMap controllerActionMap
+        ]
+        [controllerActionMap searchKey !action]
+        outTargetActionList +=
+          !outlet_mOutletName.string
+          !target.string
+          !action.string
+          !"ArrayController_" + inReceiverSwiftTypeName + "_" + target
+      end
+    end
+  #--- Enabled
+    switch outlet_mEnabledBindingDescriptor
+    case noBinding :
+    case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+      [expression analyzeExpressionForMultipleBinding
+        !inRootObservablePropertyMap
+        !inSemanticContext
+        !inObservablePropertyMap
+        ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
+        ?let @typeKind type
+        ?let @location errorLocation
+      ]
+      if not handlesEnabledBinding then
+        error errorLocation : "cet outlet n'accepte pas le binding $enabled"
+      end
+      if not [type isBoolType] then
+        error errorLocation : "expression is not boolean"
+      end
+      outMultipleBindingGenerationList +=
+        !outlet_mOutletName.string
+        !"enabled"
+        !enableExpression
+    end
+  #--- Hidden
+    switch outlet_mHiddenBindingDescriptor
+    case noBinding :
+    case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+      [expression analyzeExpressionForMultipleBinding
+        !inRootObservablePropertyMap
+        !inSemanticContext
+        !inObservablePropertyMap
+        ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+        ?let @typeKind type
+        ?let @location errorLocation
+      ]
+      if not [type isBoolType] then
+        error errorLocation : "expression is not boolean"
+      end
+      if not handlesHiddenBinding then
+        error errorLocation : "cet outlet n'accepte pas le binding $hidden"
+      end
+      outMultipleBindingGenerationList +=
+        !outlet_mOutletName.string
+        !"hidden"
+        !hiddenExpression
+    end
+  #---------------------------------- Regular bindings
+    analyzeRegularBinding (
+      !inRootObservablePropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      !outlet_mOutletTypeName
+      !outlet_mOutletName.string
+      !outlet_mRegularBindingList
+      !"self"
+      !?outRegularBindingsGenerationList
+    )
+  end
+}
+
+#·······················································································································
+
+proc analyzeOutletsEX
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @string unused inRootEntityName
   ?let @semanticContextEX inSemanticContext
@@ -310,7 +506,7 @@ proc analyzeOutlets
     switch outlet_mEnabledBindingDescriptor
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
-      [expression analyzeExpressionForMultipleBinding
+      [expression analyzeExpressionForMultipleBindingEX
         !inRootObservablePropertyMap
         !inSemanticContext
         !inObservablePropertyMap
@@ -333,7 +529,7 @@ proc analyzeOutlets
     switch outlet_mHiddenBindingDescriptor
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
-      [expression analyzeExpressionForMultipleBinding
+      [expression analyzeExpressionForMultipleBindingEX
         !inRootObservablePropertyMap
         !inSemanticContext
         !inObservablePropertyMap

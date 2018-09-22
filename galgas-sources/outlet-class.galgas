@@ -128,16 +128,6 @@ override method @outletClassDeclarationAST classAndPropertySemanticAnalysis
   ]
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SECOND ANALYSIS PHASE
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @outletClassDeclarationAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-}
-
 
 
 

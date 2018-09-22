@@ -1004,6 +1004,107 @@ class GALGAS_string extensionGetter_generateRemoveObserverCall (const class GALG
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                           @atomicPropertyGeneration class                                           *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
+//--- Constructor
+  public : GALGAS_atomicPropertyGeneration (void) ;
+
+//---
+  public : inline const class cPtr_atomicPropertyGeneration * ptr (void) const { return (const cPtr_atomicPropertyGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_atomicPropertyGeneration (const cPtr_atomicPropertyGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_atomicPropertyGeneration extractObject (const GALGAS_object & inObject,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_atomicPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                         const class GALGAS_bool & inOperand1,
+                                                                         const class GALGAS_typeKind & inOperand2,
+                                                                         const class GALGAS_bool & inOperand3,
+                                                                         const class GALGAS_string & inOperand4
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_atomicPropertyGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mDefaultValueInSwift (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsProxy (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_atomicPropertyGeneration class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGeneration ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                  Pointer class for @atomicPropertyGeneration class                                  *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
+//--- Attributes
+  public : GALGAS_bool mProperty_mNeedsValidation ;
+  public : GALGAS_typeKind mProperty_mType ;
+  public : GALGAS_bool mProperty_mIsProxy ;
+  public : GALGAS_string mProperty_mDefaultValueInSwift ;
+
+//--- Constructor
+  public : cPtr_atomicPropertyGeneration (const GALGAS_string & in_mPropertyName,
+                                          const GALGAS_bool & in_mNeedsValidation,
+                                          const GALGAS_typeKind & in_mType,
+                                          const GALGAS_bool & in_mIsProxy,
+                                          const GALGAS_string & in_mDefaultValueInSwift
+                                          COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsProxy (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mDefaultValueInSwift (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                             Extension method '@simpleStoredPropertyList typeInventory'                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2689,14 +2790,47 @@ class cPtr_comparisonMultipleBindingExpressionForGeneration : public cPtr_abstra
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//   Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX'    *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBindingEX) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                                                                                            const class GALGAS_observablePropertyMap constinArgument0,
+                                                                                                                            const class GALGAS_semanticContextEX constinArgument1,
+                                                                                                                            const class GALGAS_observablePropertyMap constinArgument2,
+                                                                                                                            class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument3,
+                                                                                                                            class GALGAS_typeKind & outArgument4,
+                                                                                                                            class GALGAS_location & outArgument5,
+                                                                                                                            class C_Compiler * inCompiler
+                                                                                                                            COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_analyzeExpressionForMultipleBindingEX (const int32_t inClassIndex,
+                                                                 extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBindingEX inMethod) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_analyzeExpressionForMultipleBindingEX (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                                const GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
+                                                                const GALGAS_semanticContextEX constin_inSemanticContext,
+                                                                const GALGAS_observablePropertyMap constin_inCurrentObservablePropertyMap,
+                                                                GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
+                                                                GALGAS_typeKind & out_outType,
+                                                                GALGAS_location & out_outErrorLocation,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //    Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                                          const class GALGAS_observablePropertyMap constinArgument0,
-                                                                                                                          const class GALGAS_semanticContextEX constinArgument1,
-                                                                                                                          const class GALGAS_observablePropertyMap constinArgument2,
+                                                                                                                          const class GALGAS_propertyMap constinArgument0,
+                                                                                                                          const class GALGAS_semanticContext constinArgument1,
+                                                                                                                          const class GALGAS_propertyMap constinArgument2,
                                                                                                                           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument3,
                                                                                                                           class GALGAS_typeKind & outArgument4,
                                                                                                                           class GALGAS_location & outArgument5,
@@ -2711,9 +2845,9 @@ void enterExtensionMethod_analyzeExpressionForMultipleBinding (const int32_t inC
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void callExtensionMethod_analyzeExpressionForMultipleBinding (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
-                                                              const GALGAS_semanticContextEX constin_inSemanticContext,
-                                                              const GALGAS_observablePropertyMap constin_inCurrentObservablePropertyMap,
+                                                              const GALGAS_propertyMap constin_inRootObservablePropertyMap,
+                                                              const GALGAS_semanticContext constin_inSemanticContext,
+                                                              const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
                                                               GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
                                                               GALGAS_typeKind & out_outType,
                                                               GALGAS_location & out_outErrorLocation,

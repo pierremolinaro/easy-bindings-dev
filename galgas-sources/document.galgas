@@ -119,16 +119,6 @@ override method @documentDeclarationAST classAndPropertySemanticAnalysis
   ]
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SECOND ANALYSIS PHASE
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @documentDeclarationAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-}
-
 
 
 
@@ -261,7 +251,7 @@ override method @documentDeclarationEX semanticAnalysis
       !lkey.string
   end
 #--- Analyze outlets and bindings
-  analyzeOutlets (
+  analyzeOutletsEX (
     !rootObservablePropertyMap
     !mRootEntityName.string
     !inSemanticContext

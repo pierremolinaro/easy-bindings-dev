@@ -46,23 +46,6 @@ void routine_buildBindingSpecificationMap (class GALGAS_semanticContext & ioArgu
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          Routine 'analyzeRegularBindingEX'                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_analyzeRegularBindingEX (const class GALGAS_observablePropertyMap constinArgument0,
-                                      const class GALGAS_semanticContextEX constinArgument1,
-                                      const class GALGAS_observablePropertyMap constinArgument2,
-                                      const class GALGAS_lstring constinArgument3,
-                                      const class GALGAS_string constinArgument4,
-                                      const class GALGAS_regularBindingList constinArgument5,
-                                      const class GALGAS_string constinArgument6,
-                                      class GALGAS_regularBindingsGenerationList & ioArgument7,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                           Routine 'analyzeRegularBinding'                                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -77,6 +60,23 @@ void routine_analyzeRegularBinding (const class GALGAS_propertyMap constinArgume
                                     class GALGAS_regularBindingsGenerationList & ioArgument7,
                                     class C_Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                          Routine 'analyzeRegularBindingEX'                                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_analyzeRegularBindingEX (const class GALGAS_observablePropertyMap constinArgument0,
+                                      const class GALGAS_semanticContextEX constinArgument1,
+                                      const class GALGAS_observablePropertyMap constinArgument2,
+                                      const class GALGAS_lstring constinArgument3,
+                                      const class GALGAS_string constinArgument4,
+                                      const class GALGAS_regularBindingList constinArgument5,
+                                      const class GALGAS_string constinArgument6,
+                                      class GALGAS_regularBindingsGenerationList & ioArgument7,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -307,34 +307,4 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
                                                                                                            const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
                                                                                                            const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Routine 'generateSelectionControllers'                                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateSelectionControllers (const class GALGAS_selectionControllerForGeneration constinArgument0,
-                                           const class GALGAS_string constinArgument1,
-                                           class GALGAS_stringset & ioArgument2,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Function 'predefinedDates'                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Function 'predefinedColors'                                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
 

@@ -134,15 +134,6 @@ override method @toManyRelationshipAST classAndPropertySemanticAnalysis
   end
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SECOND ANALYSIS PHASE
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @toManyRelationshipAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-}
 
 
 

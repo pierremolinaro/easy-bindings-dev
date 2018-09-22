@@ -157,10 +157,131 @@ override method @transientDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @transientDeclarationAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration
 {
+#--- Property type
+  [ioSemanticContext.mClassMap searchKey !mTransientTypeName ?let classKind ?3*]
+#--- Check type
+  @typeKind typeKind
+  switch classKind
+  case prefs, simpleClass :
+    error mTransientTypeName: "an atomic class is required here" : typeKind
+  case atomic (@typeKind kind) :
+    typeKind = kind
+  case document (*) :
+    error mTransientTypeName: "an atomic class is required here" : typeKind
+  case entity (*) :
+    error mTransientTypeName: "an atomic class is required here" : typeKind
+  end
+#--- Root properties
+  @propertyMap rootProperties
+  if mRootEntityName.string == "" then
+    rootProperties = {}
+  else
+    [ioSemanticContext.mClassMap searchKey !mRootEntityName ?* ?rootProperties ?2*]
+  end
+#--- Current class properties
+  [ioSemanticContext.mClassMap searchKey !mClassName ?* ?let properties ?2*]
+#--- Analyse master properties
+  @transientDependencyListForGeneration dependencies = {}
+  for () in mDependencyList do
+    [mObservableProperty analyzeObservableProperty
+      !rootProperties
+      !ioSemanticContext
+      !properties
+      ?let @propertyKind dependencyKind
+      ?let @string swiftTypeStringForTransientFunctionArgument
+    ]
+    switch dependencyKind
+    case property (* *) :
+    case toMany (4*) :
+      error [mObservableProperty location] : "only an atomic property can be observed"
+    case toOne (3*) :
+      error [mObservableProperty location] : "only an atomic property can be observed"
+    case arrayController (3*) :
+      error [mObservableProperty location] : "only an atomic property can be observed"
+    case selectionController (*) :
+      error [mObservableProperty location] : "only an atomic property can be observed"
+    end
+    dependencies +=
+      !mObservableProperty
+      ![mObservableProperty modelStringFunctionArgument]
+      !swiftTypeStringForTransientFunctionArgument
+  end
+#--- Code generation
+  ioGeneration.mTransientListForGeneration +=
+    !mClassName
+    !mTransientName.string
+    !typeKind
+    !dependencies
+    !mExternFunctionName.string
+  with mClassName in !?ioSemanticContext.mClassMap 
+    error message searchKey
+  do
+    mPropertyGenerationList += !@transientPropertyGeneration.new {
+      !mTransientName.string
+      !mClassName.string
+      !typeKind
+      !dependencies
+      !mExternFunctionName.string
+    }
+  end
 }
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   CODE GENERATION                       
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @transientPropertyGeneration : @propertyGeneration {
+  @string mClassName
+  @typeKind mType
+  @transientDependencyListForGeneration mDependencyList
+  @string mExternFunctionName
+}
+
+#·······················································································································
+
+override getter @transientPropertyGeneration declarationCode -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+  result += "  //   Transient property: " + mPropertyName + "\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
+  result += "    get {\n"
+  result += "      return self." + mPropertyName + "_property.prop\n"
+  result += "    }\n"
+  result += "  }\n\n"
+}
+
+#·······················································································································
+
+override getter @transientPropertyGeneration configurationCode -> @string {
+  result  = "  //--- Atomic property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.readModelFunction = { [weak self] in\n"
+  result += "      if let unwSelf = self {\n"
+  result += [mDependencyList transientComputeFunctionCall !mClassName !mPropertyName !mExternFunctionName]
+  result += "      }else{\n"
+  result += "        return .empty\n"
+  result += "      }\n"
+  result += "  }\n"
+  for () in mDependencyList do
+    result += "    " + [mDependency generateAddObserverCall] + " (self." + mPropertyName + "_property)\n"
+  end
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

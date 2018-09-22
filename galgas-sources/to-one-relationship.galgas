@@ -125,26 +125,16 @@ override method @toOneRelationshipAST classAndPropertySemanticAnalysis
     case document (*) :
       error mDestinationEntityName : "an entity is required here"
     case entity (graphic) :
-      let kind = @propertyKind.toMany {
+      let kind = @propertyKind.toOne {
         !typeName: mDestinationEntityName
         !accessibility: .stored
         !graphic: graphic
-        !isEntity: true
       }
       [!?mPropertyMap insertKey !mToOneRelationshipName !kind !{}]
     end
   end
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SECOND ANALYSIS PHASE
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @toOneRelationshipAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-}
 
 
 

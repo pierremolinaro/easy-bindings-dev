@@ -4453,6 +4453,85 @@ GALGAS_classKind GALGAS_classKind::extractObject (const GALGAS_object & inObject
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                            Extension getter '@propertyGeneration prefKeyDefinitionCode'                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_prefKeyDefinitionCode> gExtensionGetterTable_propertyGeneration_prefKeyDefinitionCode ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_prefKeyDefinitionCode (const int32_t inClassIndex,
+                                                 enterExtensionGetter_propertyGeneration_prefKeyDefinitionCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_prefKeyDefinitionCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string callExtensionGetter_prefKeyDefinitionCode (const cPtr_propertyGeneration * inObject,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_prefKeyDefinitionCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_prefKeyDefinitionCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_prefKeyDefinitionCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_prefKeyDefinitionCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_prefKeyDefinitionCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_prefKeyDefinitionCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static GALGAS_string extensionGetter_propertyGeneration_prefKeyDefinitionCode (const cPtr_propertyGeneration * /* inObject */,
+                                                                               C_Compiler * /* inCompiler */
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_result ; // Returned variable
+  result_result = GALGAS_string::makeEmptyString () ;
+//---
+  return result_result ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionGetter_propertyGeneration_prefKeyDefinitionCode (void) {
+  enterExtensionGetter_prefKeyDefinitionCode (kTypeDescriptor_GALGAS_propertyGeneration.mSlotID,
+                                              extensionGetter_propertyGeneration_prefKeyDefinitionCode) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionGetter_propertyGeneration_prefKeyDefinitionCode (void) {
+  gExtensionGetterTable_propertyGeneration_prefKeyDefinitionCode.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_propertyGeneration_prefKeyDefinitionCode (defineExtensionGetter_propertyGeneration_prefKeyDefinitionCode,
+                                                                     freeExtensionGetter_propertyGeneration_prefKeyDefinitionCode) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                           Abstract extension getter '@propertyGeneration declarationCode'                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

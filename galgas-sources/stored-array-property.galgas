@@ -97,21 +97,17 @@ override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SECOND ANALYSIS PHASE
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @propertyArrayDeclarationAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   CODE GENERATION                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @atomicArrayGeneration : @propertyGeneration {
   @string mElementTypeName
+}
+
+#·······················································································································
+
+override getter @atomicArrayGeneration prefKeyDefinitionCode -> @string {
+  result = "let Preferences_" + mPropertyName + " = \"Preferences:" + mPropertyName + "\"\n"
 }
 
 #·······················································································································

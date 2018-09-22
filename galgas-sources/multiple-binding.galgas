@@ -224,7 +224,7 @@ class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultip
 #   SEMANTIC                              
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
@@ -234,7 +234,7 @@ abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionFo
 
 #·······················································································································
 
-override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX
   ?let @observablePropertyMap unused inRootObservablePropertyMap
   ?let @semanticContextEX unused inSemanticContext
   ?let @observablePropertyMap unused inCurrentObservablePropertyMap
@@ -249,7 +249,7 @@ override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMult
 
 #·······················································································································
 
-override method @observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+override method @observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
@@ -284,10 +284,248 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
 
 #·······················································································································
 
-override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX
   ?let @observablePropertyMap inRootObservablePropertyMap
   ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+{
+  [mBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration expression
+    ?outType
+    ?outErrorLocation
+  ]
+  if not [outType isBoolType] then
+    error outErrorLocation : "cannot apply negation: operand is not boolean"
+  end
+  outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration.new {!expression}
+}
+
+#·······················································································································
+
+override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContextEX inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+{
+  [mLeftBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  if not [outLeftType isBoolType] then
+    error outLeftLocation : "cannot apply 'or': left operand is not boolean"
+  end
+  [mRightBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not [outRightType isBoolType] then
+    error outRightLocation : "cannot apply 'or': right operand is not boolean"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
+}
+
+#·······················································································································
+
+override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContextEX inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+{
+  [mLeftBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  if not [outLeftType isBoolType] then
+    error outLeftLocation : "cannot apply 'or': left operand is not boolean"
+  end
+  [mRightBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not [outRightType isBoolType] then
+    error outRightLocation : "cannot apply 'or': right operand is not boolean"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
+}
+
+#·······················································································································
+
+override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContextEX inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+{
+  [mLeftBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  if not [outLeftType isBoolType] then
+    error outLeftLocation : "cannot apply 'and': left operand is not boolean"
+  end
+  [mRightBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not [outRightType isBoolType] then
+    error outRightLocation : "cannot apply 'and': right operand is not boolean"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration. new {!leftExpression !rightExpression}
+}
+
+#·······················································································································
+
+override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX
+  ?let @observablePropertyMap inRootObservablePropertyMap
+  ?let @semanticContextEX inSemanticContext
+  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+{
+  [mLeftBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  [mRightBinding analyzeExpressionForMultipleBindingEX
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not ([outLeftType isBoolType] || [outLeftType isIntegerType]) then
+    error outLeftLocation : "cannot compare: left operand is neither boolean nor integer"
+  end
+  if outRightType != outLeftType then
+    error outRightLocation : "cannot compare: right operand type is different than left operand type"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @comparisonMultipleBindingExpressionForGeneration. new {
+    !leftExpression
+    !mOperator
+    !rightExpression
+  }
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC                              
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+
+#·······················································································································
+
+override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @propertyMap unused inRootObservablePropertyMap
+  ?let @semanticContext unused inSemanticContext
+  ?let @propertyMap unused inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+{
+  outEnableExpression = @booleanMultipleBindingLiteralIntForGeneration.new {!mValue.uint}
+  outType = .integerType
+  outErrorLocation = mValue.location
+}
+
+#·······················································································································
+
+override method @observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation
+{
+  [mProperty analyzeObservableProperty
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    ?let @propertyKind kind
+    ?let @string unused swiftTypeStringForTransientFunctionArgument
+  ]
+  switch kind
+  case property (type *) :
+    outType = type
+  case toMany (4*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
+  case toOne (3*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
+  case arrayController (3*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
+  case selectionController (*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
+  end
+  outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new {
+    ![mProperty modelStringForSelf !"self"]
+  }
+  outErrorLocation = [mProperty location]
+}
+
+#·······················································································································
+
+override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
   !@location outErrorLocation
@@ -309,9 +547,9 @@ override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForM
 #·······················································································································
 
 override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
-  ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContextEX inSemanticContext
-  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
   !@location outErrorLocation
@@ -346,9 +584,9 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMulti
 #·······················································································································
 
 override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
-  ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContextEX inSemanticContext
-  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
   !@location outErrorLocation
@@ -383,9 +621,9 @@ override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMult
 #·······················································································································
 
 override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
-  ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContextEX inSemanticContext
-  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
   !@location outErrorLocation
@@ -420,9 +658,9 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMult
 #·······················································································································
 
 override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
-  ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContextEX inSemanticContext
-  ?let @observablePropertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
   !@location outErrorLocation

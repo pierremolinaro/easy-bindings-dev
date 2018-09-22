@@ -2809,9 +2809,9 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
                                                                                                  GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.galgas", 53)) ;
-  GALGAS_lstring var_prefs_2126 = GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 54)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 54))  COMMA_SOURCE_FILE ("preferences.galgas", 54)) ;
+  GALGAS_lstring var_prefs_2109 = GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 54)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 54))  COMMA_SOURCE_FILE ("preferences.galgas", 54)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.galgas", 55)) ;
-  GALGAS_stringset var_signatureList_2207 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("preferences.galgas", 56)) ;
+  GALGAS_stringset var_signatureList_2190 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("preferences.galgas", 56)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
@@ -2819,37 +2819,37 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
       nt_action_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mActionDeclarationList, inCompiler) ;
     } break ;
     case 3: {
-      GALGAS_simpleStoredPropertyList var_simpleStoredPropertyList_2382 = GALGAS_simpleStoredPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 61)) ;
-      nt_simple_5F_stored_5F_declaration_ (var_prefs_2126, var_simpleStoredPropertyList_2382, var_signatureList_2207, ioArgument_ioDeclarationAST, inCompiler) ;
-      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSimpleStoredAttributeList.plusAssign_operation(var_simpleStoredPropertyList_2382, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 67)) ;
+      GALGAS_simpleStoredPropertyList var_simpleStoredPropertyList_2365 = GALGAS_simpleStoredPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 61)) ;
+      nt_simple_5F_stored_5F_declaration_ (var_prefs_2109, var_simpleStoredPropertyList_2365, var_signatureList_2190, ioArgument_ioDeclarationAST, inCompiler) ;
+      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSimpleStoredAttributeList.plusAssign_operation(var_simpleStoredPropertyList_2365, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 67)) ;
     } break ;
     case 4: {
       nt_outlet_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mOutletDeclarationList, inCompiler) ;
     } break ;
     case 5: {
-      GALGAS_secondaryPropertyList var_secondaryPropertyList_2765 = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 71)) ;
-      nt_transient_5F_declaration_ (var_prefs_2126, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.galgas", 72)), var_secondaryPropertyList_2765, ioArgument_ioDeclarationAST, inCompiler) ;
-      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSecondaryPropertyList.plusAssign_operation(var_secondaryPropertyList_2765, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 73)) ;
+      GALGAS_secondaryPropertyList var_secondaryPropertyList_2748 = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 71)) ;
+      nt_transient_5F_declaration_ (var_prefs_2109, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.galgas", 72)), var_secondaryPropertyList_2748, ioArgument_ioDeclarationAST, inCompiler) ;
+      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSecondaryPropertyList.plusAssign_operation(var_secondaryPropertyList_2748, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 73)) ;
     } break ;
     case 6: {
       nt_extern_5F_swift_5F_func_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mExternSwiftFunctionList, inCompiler) ;
     } break ;
     case 7: {
-      GALGAS_storedArrayPropertyListAST var_storedArrayList_3101 = GALGAS_storedArrayPropertyListAST::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 77)) ;
-      nt_stored_5F_array_5F_declaration_ (var_prefs_2126, var_storedArrayList_3101, ioArgument_ioDeclarationAST, inCompiler) ;
-      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mStoredArrayList.plusAssign_operation(var_storedArrayList_3101, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 79)) ;
+      GALGAS_storedArrayPropertyListAST var_storedArrayList_3084 = GALGAS_storedArrayPropertyListAST::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 77)) ;
+      nt_stored_5F_array_5F_declaration_ (var_prefs_2109, var_storedArrayList_3084, ioArgument_ioDeclarationAST, inCompiler) ;
+      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mStoredArrayList.plusAssign_operation(var_storedArrayList_3084, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 79)) ;
     } break ;
     case 8: {
-      GALGAS_secondaryPropertyList var_secondaryPropertyList_3315 = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 81)) ;
-      nt_controller_5F_declaration_ (var_prefs_2126, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.galgas", 82)), var_secondaryPropertyList_3315, ioArgument_ioDeclarationAST, inCompiler) ;
-      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSecondaryPropertyList.plusAssign_operation(var_secondaryPropertyList_3315, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 83)) ;
+      GALGAS_secondaryPropertyList var_secondaryPropertyList_3298 = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 81)) ;
+      nt_controller_5F_declaration_ (var_prefs_2109, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.galgas", 82)), var_secondaryPropertyList_3298, ioArgument_ioDeclarationAST, inCompiler) ;
+      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSecondaryPropertyList.plusAssign_operation(var_secondaryPropertyList_3298, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 83)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSignatureList.plusAssign_operation(var_signatureList_2207, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 85)) ;
+  ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSignatureList.plusAssign_operation(var_signatureList_2190, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 85)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.galgas", 86)) ;
 }
 

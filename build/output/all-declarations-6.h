@@ -10,6 +10,29 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                              Routine 'analyzeOutlets'                                               *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_analyzeOutlets (const class GALGAS_propertyMap constinArgument0,
+                             const class GALGAS_string constinArgument1,
+                             const class GALGAS_semanticContext constinArgument2,
+                             const class GALGAS_outletDeclarationList constinArgument3,
+                             const class GALGAS_propertyMap constinArgument4,
+                             const class GALGAS_actionMap constinArgument5,
+                             const class GALGAS_string constinArgument6,
+                             class GALGAS_generationStruct & ioArgument7,
+                             class GALGAS_regularBindingsGenerationList & outArgument8,
+                             class GALGAS_multipleBindingGenerationList & outArgument9,
+                             class GALGAS_actionBindingListForGeneration & outArgument10,
+                             class GALGAS_decoratedOutletMap & outArgument11,
+                             class GALGAS_tableViewBindingGenerationList & outArgument12,
+                             class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument13,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                        Filewrapper 'prefsGenerationTemplate'                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

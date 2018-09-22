@@ -22,9 +22,19 @@ abstract method @abstractDeclarationAST classAndPropertySemanticAnalysis
 
 #·······················································································································
 
-abstract method @abstractDeclarationAST secondAnalysisPhase
-    ?!@semanticContext ioSemanticContext
-    ?!@generationStruct ioGeneration
+method @abstractDeclarationAST secondAnalysisPhase
+    ?!@semanticContext unused ioSemanticContext
+    ?!@generationStruct unused ioGeneration
+{
+}
+
+#·······················································································································
+
+method @abstractDeclarationAST thirdAnalysisPhase
+    ?!@semanticContext unused ioSemanticContext
+    ?!@generationStruct unusedioGeneration
+{
+}
 
 #·······················································································································
 
@@ -45,13 +55,9 @@ proc sortProperties
       ?let @declarationListAST inDeclarationListAST
       !@declarationListAST outSortedDeclarationListAST
 {
-#------------------------ Add prefs declaration
-  let prefsDeclaration = @prefsDeclarationAST.new {!.new{!preferencesName () !.nowhere}}
-  var declarationListAST = inDeclarationListAST
-  declarationListAST += !prefsDeclaration
 #--- Enter declarations in graph
   @declarationPrecedenceGraph declarationPrecedenceGraph = .emptyGraph
-  for (declaration) in declarationListAST do
+  for (declaration) in inDeclarationListAST do
     [declaration enterInPrecedenceGraph !?declarationPrecedenceGraph]
   end
 #------------------------ dot files

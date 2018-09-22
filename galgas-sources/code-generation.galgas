@@ -30,11 +30,10 @@ struct @generationStruct {
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @fileGenerationList mFileGenerationList
   @stringset mNeededOutletClasses
-
-
   @transientDefinitionListForGeneration mTransientListForGeneration
+
+
   @actionListForGeneration mActionListForGeneration
-#  @preferencesForGenerationEX mPreferencesForGeneration
   @documentListForGeneration mDocumentListForGeneration
   @entityListForGeneration mEntityListForGeneration
   @classListForGeneration mClassListForGeneration

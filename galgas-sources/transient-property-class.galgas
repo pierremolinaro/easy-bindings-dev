@@ -81,15 +81,12 @@ override method @transientClassDeclarationAST classAndPropertySemanticAnalysis
   ]
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SECOND ANALYSIS PHASE
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @transientClassDeclarationAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-}
+
+
+
+
+
 
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

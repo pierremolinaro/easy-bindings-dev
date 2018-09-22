@@ -11,7 +11,7 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 %for () in PROPERTY_LIST_FOR_GENERATION do
-  %let Preferences_%![[mProperty mPropertyName] identifierRepresentation]% = "Preferences:%![mProperty mPropertyName]%"\n%
+  ![mProperty prefKeyDefinitionCode]
 end
 %
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

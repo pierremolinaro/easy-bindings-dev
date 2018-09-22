@@ -6,11 +6,6 @@ struct @semanticContext {
   @classMap mClassMap
   @outletClassMap mOutletClassMap
   @bindingSpecificationMap mBindingSpecificationMap
-
-#  @unifiedTypeMap mUnifiedTypeMap
-#  @observablePropertyMap mPreferencesObservablePropertyMap
-#  @documentObservablePropertyMap mDocumentObservablePropertyMap
-#  @entityObservablePropertyMap mEntityObservablePropertyMap
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -31,6 +26,11 @@ case . "eb"
     !userDefined:true
     !?declarationStruct
     ?var @location endOfSourceFile
+#------------------------ Add prefs declaration
+  declarationStruct.mUnifiedDeclarationList += !@prefsDeclarationAST.new {
+    !.new{!preferencesName () !.nowhere}
+    !declarationStruct.mPreferences
+  }
 #----------------------------------------- Add Atomic type declarations
   enterAtomicClassesIn (!?declarationList: declarationStruct.mUnifiedDeclarationList)
 #----------------------------------------- Sort properties
@@ -51,6 +51,10 @@ case . "eb"
 #----------------------------------------- Semantic Analysis, second phase
   for (declaration) in sortedDeclarationListAST do
     [declaration secondAnalysisPhase !?semanticContext !?generation]
+  end
+#----------------------------------------- Semantic Analysis, third phase
+  for (declaration) in sortedDeclarationListAST do
+    [declaration thirdAnalysisPhase !?semanticContext !?generation]
   end
 
 

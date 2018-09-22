@@ -139,16 +139,6 @@ override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SECOND ANALYSIS PHASE
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @atomicPropertyDeclarationAST secondAnalysisPhase
-       ?!@semanticContext unused ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   CODE GENERATION                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -157,6 +147,12 @@ class @atomicPropertyGeneration : @propertyGeneration {
   @typeKind mType
   @bool mIsProxy
   @string mDefaultValueInSwift
+}
+
+#·······················································································································
+
+override getter @atomicPropertyGeneration prefKeyDefinitionCode -> @string {
+  result = "let Preferences_" + mPropertyName + " = \"Preferences:" + mPropertyName + "\"\n"
 }
 
 #·······················································································································
