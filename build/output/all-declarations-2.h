@@ -10,6 +10,74 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                        @bindingOptionList_2D_element struct                                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_bindingOptionList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_lstring mProperty_mOptionName ;
+
+  public : GALGAS_abstractDefaultValue mProperty_mOptionValue ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_bindingOptionList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : virtual ~ GALGAS_bindingOptionList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_bindingOptionList_2D_element (const GALGAS_lstring & in_mOptionName,
+                                                const GALGAS_abstractDefaultValue & in_mOptionValue) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_bindingOptionList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_bindingOptionList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                             const class GALGAS_abstractDefaultValue & inOperand1
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_bindingOptionList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOptionName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mOptionValue (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_bindingOptionList_2D_element class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingOptionList_2D_element ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                        @regularBindingList_2D_element struct                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1004,19 +1072,19 @@ class GALGAS_string extensionGetter_generateRemoveObserverCall (const class GALG
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @atomicPropertyGeneration class                                           *
+//                                         @ptransientRoutineGeneration class                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
+class GALGAS_ptransientRoutineGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
-  public : GALGAS_atomicPropertyGeneration (void) ;
+  public : GALGAS_ptransientRoutineGeneration (void) ;
 
 //---
-  public : inline const class cPtr_atomicPropertyGeneration * ptr (void) const { return (const cPtr_atomicPropertyGeneration *) mObjectPtr ; }
+  public : inline const class cPtr_ptransientRoutineGeneration * ptr (void) const { return (const cPtr_ptransientRoutineGeneration *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_atomicPropertyGeneration (const cPtr_atomicPropertyGeneration * inSourcePtr) ;
+  public : GALGAS_ptransientRoutineGeneration (const cPtr_ptransientRoutineGeneration * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -1024,20 +1092,20 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_atomicPropertyGeneration extractObject (const GALGAS_object & inObject,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_ptransientRoutineGeneration extractObject (const GALGAS_object & inObject,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_atomicPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                         const class GALGAS_bool & inOperand1,
-                                                                         const class GALGAS_typeKind & inOperand2,
-                                                                         const class GALGAS_bool & inOperand3,
-                                                                         const class GALGAS_string & inOperand4
-                                                                         COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_ptransientRoutineGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                            const class GALGAS_string & inOperand1,
+                                                                            const class GALGAS_typeKind & inOperand2,
+                                                                            const class GALGAS_transientDependencyListForGeneration & inOperand3,
+                                                                            const class GALGAS_string & inOperand4
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_atomicPropertyGeneration & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_ptransientRoutineGeneration & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1045,54 +1113,58 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mDefaultValueInSwift (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_transientDependencyListForGeneration getter_mDependencyList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsProxy (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mExternFunctionName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mTransientName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mTransientType (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_atomicPropertyGeneration class
+} ; // End of GALGAS_ptransientRoutineGeneration class
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGeneration ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ptransientRoutineGeneration ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Pointer class for @atomicPropertyGeneration class                                  *
+//                                Pointer class for @ptransientRoutineGeneration class                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
+class cPtr_ptransientRoutineGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
-  public : GALGAS_bool mProperty_mNeedsValidation ;
-  public : GALGAS_typeKind mProperty_mType ;
-  public : GALGAS_bool mProperty_mIsProxy ;
-  public : GALGAS_string mProperty_mDefaultValueInSwift ;
+  public : GALGAS_string mProperty_mOwnerName ;
+  public : GALGAS_string mProperty_mTransientName ;
+  public : GALGAS_typeKind mProperty_mTransientType ;
+  public : GALGAS_transientDependencyListForGeneration mProperty_mDependencyList ;
+  public : GALGAS_string mProperty_mExternFunctionName ;
 
 //--- Constructor
-  public : cPtr_atomicPropertyGeneration (const GALGAS_string & in_mPropertyName,
-                                          const GALGAS_bool & in_mNeedsValidation,
-                                          const GALGAS_typeKind & in_mType,
-                                          const GALGAS_bool & in_mIsProxy,
-                                          const GALGAS_string & in_mDefaultValueInSwift
-                                          COMMA_LOCATION_ARGS) ;
+  public : cPtr_ptransientRoutineGeneration (const GALGAS_string & in_mOwnerName,
+                                             const GALGAS_string & in_mTransientName,
+                                             const GALGAS_typeKind & in_mTransientType,
+                                             const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
+                                             const GALGAS_string & in_mExternFunctionName
+                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsProxy (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mDefaultValueInSwift (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mTransientName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_typeKind getter_mTransientType (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_transientDependencyListForGeneration getter_mDependencyList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mExternFunctionName (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2787,192 +2859,4 @@ class cPtr_comparisonMultipleBindingExpressionForGeneration : public cPtr_abstra
   public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
 
 } ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//   Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBindingEX'    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBindingEX) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                                            const class GALGAS_observablePropertyMap constinArgument0,
-                                                                                                                            const class GALGAS_semanticContextEX constinArgument1,
-                                                                                                                            const class GALGAS_observablePropertyMap constinArgument2,
-                                                                                                                            class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument3,
-                                                                                                                            class GALGAS_typeKind & outArgument4,
-                                                                                                                            class GALGAS_location & outArgument5,
-                                                                                                                            class C_Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_analyzeExpressionForMultipleBindingEX (const int32_t inClassIndex,
-                                                                 extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBindingEX inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_analyzeExpressionForMultipleBindingEX (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                const GALGAS_observablePropertyMap constin_inRootObservablePropertyMap,
-                                                                const GALGAS_semanticContextEX constin_inSemanticContext,
-                                                                const GALGAS_observablePropertyMap constin_inCurrentObservablePropertyMap,
-                                                                GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                                GALGAS_typeKind & out_outType,
-                                                                GALGAS_location & out_outErrorLocation,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//    Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                                          const class GALGAS_propertyMap constinArgument0,
-                                                                                                                          const class GALGAS_semanticContext constinArgument1,
-                                                                                                                          const class GALGAS_propertyMap constinArgument2,
-                                                                                                                          class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument3,
-                                                                                                                          class GALGAS_typeKind & outArgument4,
-                                                                                                                          class GALGAS_location & outArgument5,
-                                                                                                                          class C_Compiler * inCompiler
-                                                                                                                          COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_analyzeExpressionForMultipleBinding (const int32_t inClassIndex,
-                                                               extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_analyzeExpressionForMultipleBinding (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const GALGAS_semanticContext constin_inSemanticContext,
-                                                              const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              GALGAS_typeKind & out_outType,
-                                                              GALGAS_location & out_outErrorLocation,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//         Abstract extension getter '@abstractBooleanMultipleBindingExpressionForGeneration observedModelSet'         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef class GALGAS_stringset (*enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                               class C_Compiler * inCompiler
-                                                                                                                               COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionGetter_observedModelSet (const int32_t inClassIndex,
-                                            enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_stringset callExtensionGetter_observedModelSet (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//         Abstract extension getter '@abstractBooleanMultipleBindingExpressionForGeneration expressionString'         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef class GALGAS_string (*enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_expressionString) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                            class C_Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionGetter_expressionString (const int32_t inClassIndex,
-                                            enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_expressionString inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_string callExtensionGetter_expressionString (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                @arrayControllerBoundColumnListAST_2D_element struct                                 *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_arrayControllerBoundColumnListAST_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_mColumnName ;
-
-  public : GALGAS_lstring mProperty_mColumnOutletTypeName ;
-
-  public : GALGAS_columnBindingAST mProperty_mColumnBindingAST ;
-
-  public : GALGAS_lstring mProperty_mSortPropertyName ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_arrayControllerBoundColumnListAST_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_arrayControllerBoundColumnListAST_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_arrayControllerBoundColumnListAST_2D_element (const GALGAS_lstring & in_mColumnName,
-                                                                const GALGAS_lstring & in_mColumnOutletTypeName,
-                                                                const GALGAS_columnBindingAST & in_mColumnBindingAST,
-                                                                const GALGAS_lstring & in_mSortPropertyName) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_arrayControllerBoundColumnListAST_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_arrayControllerBoundColumnListAST_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                             const class GALGAS_lstring & inOperand1,
-                                                                                             const class GALGAS_columnBindingAST & inOperand2,
-                                                                                             const class GALGAS_lstring & inOperand3
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerBoundColumnListAST_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_columnBindingAST getter_mColumnBindingAST (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnOutletTypeName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSortPropertyName (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_arrayControllerBoundColumnListAST_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoundColumnListAST_2D_element ;
 

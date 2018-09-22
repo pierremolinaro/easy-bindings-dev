@@ -37,7 +37,7 @@ proc enterAtomicClassesIn ?!declarationList: @declarationListAST ioDeclarationLi
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @atomicClassDeclarationAST classAndPropertySemanticAnalysis
+override method @atomicClassDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {

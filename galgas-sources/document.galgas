@@ -105,7 +105,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @documentDeclarationAST classAndPropertySemanticAnalysis
+override method @documentDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -210,7 +210,7 @@ override method @documentDeclarationEX solveSecondaryProperty
 
 #·······················································································································
 
-override method @documentDeclarationEX semanticAnalysis
+override method @documentDeclarationEX semanticAnalysisEX
   ?let @semanticContextEX inSemanticContext
   ?!@generationStruct ioGeneration
 {
@@ -224,7 +224,7 @@ override method @documentDeclarationEX semanticAnalysis
     ?*
   ]
 #--- Analyze secondary
-  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
+  @transientDefinitionListForGenerationEX transientDefinitionListForGeneration = {}
   @arrayControllerForGenerationEX documentArrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
@@ -289,7 +289,7 @@ override method @documentDeclarationEX semanticAnalysis
 list @documentListForGeneration {
   @string mDocumentName
   @string mRootEntityName
-  @transientDefinitionListForGeneration mTransientListForGeneration
+  @transientDefinitionListForGenerationEX mTransientListForGeneration
   @decoratedOutletMap mOutletMap
   @actionBindingListForGeneration mTargetActionList 
   @regularBindingsGenerationList mRegularBindingsGenerationList 
@@ -308,7 +308,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
   template documentImplementation "document.swift.galgasTemplate"
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
-    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@transientDefinitionListForGenerationEX TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
     ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
     ?@actionBindingListForGeneration TARGET_ACTION_LIST

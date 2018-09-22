@@ -80,18 +80,6 @@ void routine_analyzeRegularBindingEX (const class GALGAS_observablePropertyMap c
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            Routine 'generateTransients'                                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateTransients (const class GALGAS_string constinArgument0,
-                                 const class GALGAS_transientDefinitionListForGeneration constinArgument1,
-                                 class GALGAS_stringset & ioArgument2,
-                                 class C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                           Filewrapper 'transientManager'                                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -124,6 +112,18 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
                                                                                      const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
                                                                                      const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                      COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                            Routine 'generateTransients'                                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_generateTransients (const class GALGAS_string constinArgument0,
+                                 const class GALGAS_transientDefinitionListForGenerationEX constinArgument1,
+                                 class GALGAS_stringset & ioArgument2,
+                                 class C_Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

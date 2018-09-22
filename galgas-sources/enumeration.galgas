@@ -66,7 +66,7 @@ map @enumConstantMap {
 
 #·······················································································································
 
-override method @enumerationDeclarationAST classAndPropertySemanticAnalysis
+override method @enumerationDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -124,14 +124,6 @@ override method @enumDeclarationEX buildObservablePropertyMapsFromStoredProperti
 
 #·······················································································································
 
-override method @enumDeclarationEX buildInitialSecondaryPropertyListMap
-  ?!@secondaryDeclarationListWorkingList unused ioSecondaryDeclarationListWorkingList
-  ?!@uint unused ioSecondaryDeclarationCount 
-{
-}
-
-#·······················································································································
-
 override method @enumDeclarationEX solveSecondaryProperty
   ?!@semanticContextEX unused ioSemanticContext
   ?let @unifiedTypeMap unused mUnifiedTypeMap
@@ -144,7 +136,7 @@ override method @enumDeclarationEX solveSecondaryProperty
 
 #·······················································································································
 
-override method @enumDeclarationEX semanticAnalysis
+override method @enumDeclarationEX semanticAnalysisEX
   ?let @semanticContextEX unused inSemanticContext
   ?!@generationStruct ioGeneration
 {

@@ -20,11 +20,11 @@ static void extensionMethod_preferencesForGeneration_generateCode (const cPtr_ab
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_preferencesForGeneration * object = (const cPtr_preferencesForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_preferencesForGeneration) ;
-  GALGAS_string var_s_10957 = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferences (inCompiler, object->mProperty_mPropertyListForGeneration, object->mProperty_mOutletMap, object->mProperty_mRegularBindingsGenerationList, object->mProperty_mActionBindingListForGeneration, object->mProperty_mMultipleBindingGenerationList, object->mProperty_mExternSwiftFunctionList, object->mProperty_mTableViewBindingGenerationList, object->mProperty_mEBViewBindingGenerationList COMMA_SOURCE_FILE ("preferences.galgas", 271))) ;
-  GALGAS_string var_fileName_11329 = function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 282)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 282)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_11329  COMMA_SOURCE_FILE ("preferences.galgas", 283)) ;
+  GALGAS_string var_s_9696 = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferences (inCompiler, object->mProperty_mPropertyListForGeneration, object->mProperty_mOutletMap, object->mProperty_mRegularBindingsGenerationList, object->mProperty_mActionBindingListForGeneration, object->mProperty_mMultipleBindingGenerationList, object->mProperty_mExternSwiftFunctionList, object->mProperty_mTableViewBindingGenerationList, object->mProperty_mEBViewBindingGenerationList COMMA_SOURCE_FILE ("preferences.galgas", 244))) ;
+  GALGAS_string var_fileName_10024 = function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 254)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 254)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_10024  COMMA_SOURCE_FILE ("preferences.galgas", 255)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11329, var_s_10957, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 284)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_10024, var_s_9696, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 256)) ;
   }
 }
 
@@ -105,15 +105,15 @@ C_PrologueEpilogue gGetter_outletClassDeclarationAST_lkey (defineExtensionGetter
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//              Overriding extension method '@outletClassDeclarationAST classAndPropertySemanticAnalysis'              *
+//                     Overriding extension method '@outletClassDeclarationAST firstAnalysisPhase'                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void extensionMethod_outletClassDeclarationAST_classAndPropertySemanticAnalysis (const cPtr_abstractDeclarationAST * inObject,
-                                                                                        GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                                                                        GALGAS_generationStruct & /* ioArgument_ioGeneration */,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+static void extensionMethod_outletClassDeclarationAST_firstAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
+                                                                          GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                                          GALGAS_generationStruct & /* ioArgument_ioGeneration */,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_outletClassDeclarationAST * object = (const cPtr_outletClassDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_outletClassDeclarationAST) ;
   {
@@ -123,14 +123,14 @@ static void extensionMethod_outletClassDeclarationAST_classAndPropertySemanticAn
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void defineExtensionMethod_outletClassDeclarationAST_classAndPropertySemanticAnalysis (void) {
-  enterExtensionMethod_classAndPropertySemanticAnalysis (kTypeDescriptor_GALGAS_outletClassDeclarationAST.mSlotID,
-                                                         extensionMethod_outletClassDeclarationAST_classAndPropertySemanticAnalysis) ;
+static void defineExtensionMethod_outletClassDeclarationAST_firstAnalysisPhase (void) {
+  enterExtensionMethod_firstAnalysisPhase (kTypeDescriptor_GALGAS_outletClassDeclarationAST.mSlotID,
+                                           extensionMethod_outletClassDeclarationAST_firstAnalysisPhase) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-C_PrologueEpilogue gMethod_outletClassDeclarationAST_classAndPropertySemanticAnalysis (defineExtensionMethod_outletClassDeclarationAST_classAndPropertySemanticAnalysis, NULL) ;
+C_PrologueEpilogue gMethod_outletClassDeclarationAST_firstAnalysisPhase (defineExtensionMethod_outletClassDeclarationAST_firstAnalysisPhase, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

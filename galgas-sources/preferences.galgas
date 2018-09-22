@@ -94,7 +94,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @prefsDeclarationAST classAndPropertySemanticAnalysis
+override method @prefsDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -182,29 +182,6 @@ method @prefDeclaration typeInventory
   end
 }
 
-#·······················································································································
-
-method @prefDeclaration solveSecondaryProperty
-  ?!@semanticContextEX ioSemanticContext
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?let @secondaryPropertyList inPropertiesToSolve
-  !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
-{
-  outUnsolvedProperties = {}
-  var preferencesObservablePropertyMap = ioSemanticContext.mPreferencesObservablePropertyMap
-  for (property) in inPropertiesToSolve do
-    [property tryToDefineSecondaryProperty
-      !?ioSemanticContext
-      !{} # No root entity
-      !?preferencesObservablePropertyMap
-      !?outUnsolvedProperties
-      !?ioSimpleStoredPropertyListForGeneration
-    ]
-  end
-  ioSemanticContext.mPreferencesObservablePropertyMap = preferencesObservablePropertyMap
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SEMANTIC ANALYSIS                     
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -226,13 +203,12 @@ method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION TYPES                      
+#   GENERATION                            
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @preferencesForGeneration : @abstractFileGeneration {
   @propertyGenerationList mPropertyListForGeneration
 
-#  @transientDefinitionListForGeneration mTransientDefinitionListForGeneration
   @regularBindingsGenerationList mRegularBindingsGenerationList
   @multipleBindingGenerationList mMultipleBindingGenerationList
   @actionBindingListForGeneration mActionBindingListForGeneration
@@ -250,7 +226,6 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
   template preferences "preferences.swift.galgasTemplate"
     ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
 
-#    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
@@ -260,9 +235,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION                            
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#·······················································································································
 
 override method @preferencesForGeneration generateCode
     ?let @string inOutputDirectory
@@ -270,7 +243,6 @@ override method @preferencesForGeneration generateCode
 {
   let s = [filewrapper prefsGenerationTemplate.preferences
     !mPropertyListForGeneration
-#    !mTransientDefinitionListForGeneration
     !mOutletMap
     !mRegularBindingsGenerationList
     !mActionBindingListForGeneration

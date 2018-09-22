@@ -100,9 +100,11 @@ abstract method @astDeclaration buildObservablePropertyMapsFromStoredProperties
 
 #·······················································································································
 
-abstract method @astDeclaration semanticAnalysis
-  ?let @semanticContextEX inSemanticContext
-  ?!@generationStruct ioGeneration
+method @astDeclaration semanticAnalysisEX
+  ?let @semanticContextEX unused inSemanticContext
+  ?!@generationStruct unused ioGeneration
+{
+}
 
 #·······················································································································
 
@@ -113,9 +115,11 @@ list @secondaryDeclarationListWorkingList {
 
 #·······················································································································
 
-abstract method @astDeclaration buildInitialSecondaryPropertyListMap
-  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
-  ?!@uint ioSecondaryDeclarationCount
+method @astDeclaration buildInitialSecondaryPropertyListMap
+  ?!@secondaryDeclarationListWorkingList unused ioSecondaryDeclarationListWorkingList
+  ?!@uint unused ioSecondaryDeclarationCount
+{
+}
 
 #·······················································································································
 
@@ -201,13 +205,6 @@ proc semanticAnalysisEX
   @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration = {}
   @bool continue = true
   loop (secondaryDeclarationCount) while continue do
-    [inAstDeclarationStruct.mPreferences solveSecondaryProperty
-      !?semanticContext
-      !inUnifiedTypeMap
-      !preferencesSecondaryPropertyList
-      ?let @secondaryPropertyList newPreferencesSecondaryPropertyList
-      !?simpleStoredPropertyListForGeneration
-    ]
     @secondaryDeclarationListWorkingList newSecondaryDeclarationListWorkingList = {}
     for (declaration aList) in secondaryDeclarationListWorkingList do
       [declaration solveSecondaryProperty
@@ -221,14 +218,11 @@ proc semanticAnalysisEX
     end
     continue = 
       (newSecondaryDeclarationListWorkingList != secondaryDeclarationListWorkingList)
-    ||
-      (preferencesSecondaryPropertyList != newPreferencesSecondaryPropertyList)
     secondaryDeclarationListWorkingList = newSecondaryDeclarationListWorkingList
-    preferencesSecondaryPropertyList = newPreferencesSecondaryPropertyList
   end
 #--- Semantic analysis of declarations
   for () in inAstDeclarationStruct.mDeclarationList do
-    [mDeclaration semanticAnalysis
+    [mDeclaration semanticAnalysisEX
       !semanticContext
       !?ioGeneration
     ]  

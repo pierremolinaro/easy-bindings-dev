@@ -98,7 +98,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
+override method @atomicPropertyDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -122,6 +122,7 @@ override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
         !kind
         !false
         !swiftDefaultValueAsString
+        !mClassName.string == preferencesName ()
       }
     #--- Needs validation ?
       if mNeedsValidation then
@@ -147,6 +148,7 @@ class @atomicPropertyGeneration : @propertyGeneration {
   @typeKind mType
   @bool mIsProxy
   @string mDefaultValueInSwift
+  @bool mInPreferences
 }
 
 #·······················································································································
@@ -162,8 +164,11 @@ override getter @atomicPropertyGeneration declarationCode -> @string {
   result += "  //   Atomic property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
-         + "(" + mDefaultValueInSwift + ", prefKey: Preferences_"
-         + [mPropertyName identifierRepresentation] + ")\n\n"
+         + " (" + mDefaultValueInSwift
+  if mInPreferences then
+    result += ", prefKey: Preferences_" + [mPropertyName identifierRepresentation]
+  end
+  result += ")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
   result += "    get {\n"
@@ -191,7 +196,7 @@ override getter @atomicPropertyGeneration declarationCode -> @string {
 
 override getter @atomicPropertyGeneration configurationCode -> @string {
   result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.undoManager = self.mUndoManager\n"
+  result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
   if mNeedsValidation then
     result += "    self." + mPropertyName + "_property.validationFunction = self.validate_" + mPropertyName + "\n"
   end
@@ -291,12 +296,6 @@ method @simpleStoredPropertyList simpleStoredPropertySemanticAnalysis
       !false
       !swiftDefaultValueAsString
       !mNeedsValidation
-#    if mNeedsValidation then
-#      ioValidationStubRoutineListForGeneration +=
-#        !inSwiftClassName
-#        !mPropertyName.string
-#        ![type swiftTypeName]
-#    end
   end
 }
 

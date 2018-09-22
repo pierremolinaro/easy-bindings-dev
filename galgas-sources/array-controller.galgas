@@ -227,7 +227,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerDeclarationAST classAndPropertySemanticAnalysis 
+override method @arrayControllerDeclarationAST firstAnalysisPhase 
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -553,7 +553,7 @@ override method @arrayControllerDeclarationEX secondaryPropertySemanticAnalysisE
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inObservableProperties
-  ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
+  ?!@transientDefinitionListForGenerationEX unused ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGenerationEX ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@stringset ioNeededOutletClasses

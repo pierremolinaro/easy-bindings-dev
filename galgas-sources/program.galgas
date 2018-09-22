@@ -41,7 +41,7 @@ case . "eb"
 #----------------------------------------- Semantic Analysis, first phase
   @generationStruct generation = .default
   for (declaration) in sortedDeclarationListAST do
-    [declaration classAndPropertySemanticAnalysis !?semanticContext !?generation]
+    [declaration firstAnalysisPhase !?semanticContext !?generation]
   end
 #----------------------------------------- Build binding specification map
   buildBindingSpecificationMap (

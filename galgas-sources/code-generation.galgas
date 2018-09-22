@@ -30,13 +30,12 @@ struct @generationStruct {
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @fileGenerationList mFileGenerationList
   @stringset mNeededOutletClasses
-  @transientDefinitionListForGeneration mTransientListForGeneration
+  @transientDefinitionListForGenerationEX mTransientListForGeneration
 
 
   @actionListForGeneration mActionListForGeneration
   @documentListForGeneration mDocumentListForGeneration
   @entityListForGeneration mEntityListForGeneration
-  @classListForGeneration mClassListForGeneration
   @enumListForGeneration mEnumListForGeneration
   @arrayControllerForGenerationEX mArrayControllerListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
@@ -72,11 +71,6 @@ proc generateCode
   )
   generateOutletClasses (
     !inGeneration.mNeededOutletClasses
-    !fileOutputDirectory
-    !?generatedFileSet
-  )
-  generateClasses (
-    !inGeneration.mClassListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )

@@ -42,13 +42,13 @@ end
   //    Undo Manager
   //····················································································································
 
-  private var mUndoManager = EBUndoManager ()
+  private var undoManager = EBUndoManager ()
 
   //····················································································································
   // The preferences window should register this object as delegate (do it in Interface Builder)
 
   @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager? {
-    return self.mUndoManager
+    return self.undoManager
   }
 
   //····················································································································

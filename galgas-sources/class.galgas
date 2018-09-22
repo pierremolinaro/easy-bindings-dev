@@ -98,7 +98,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @classDeclarationAST classAndPropertySemanticAnalysis
+override method @classDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -110,6 +110,43 @@ override method @classDeclarationAST classAndPropertySemanticAnalysis
     !actionMap
     !{}
   ]
+}
+
+#·······················································································································
+
+override method @classDeclarationAST thirdAnalysisPhase
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration
+{
+  [ioSemanticContext.mClassMap searchKey
+    !mClassName
+    ?3*
+    ?let @propertyGenerationList propertyGenerationList
+  ]
+#--- Check extern declarations
+  for () in mExternSwiftFunctionList do
+    if not [externSwiftFunctionCallerSet () hasKey !mCallerName.string] then
+      var m = "allowed here:"
+      for s in externSwiftFunctionCallerSet ()
+        do m += " '" + s + "'"
+        between m += ","
+      end
+      error mCallerName : m
+    end
+  end
+#--- Check declared actions are unique
+  @actionMap actionMap = {}
+  for (actionName) in mActionDeclarationList do
+    [!?actionMap insertKey !actionName]
+    ioGeneration.mActionListForGeneration += !mClassName.string !actionName.string
+  end
+#--- Generation
+  ioGeneration.mFileGenerationList += !@classForGeneration.new {
+    !mClassName.string
+    !propertyGenerationList
+    !mExternSwiftFunctionList
+    !mExternSwiftDelegateList
+  }
 }
 
 
@@ -207,75 +244,48 @@ func %once externSwiftFunctionCallerSet -> @stringset outResult {
   outResult = {!"setUpWithDictionary", !"init", !"saveIntoDictionary"}
 }
 
-#·······················································································································
-
-override method @classDeclarationEX semanticAnalysis
-  ?let @semanticContextEX inSemanticContext
-  ?!@generationStruct ioGeneration
-{
-  [inSemanticContext.mEntityObservablePropertyMap searchKey
-    !mClassName
-    ?let @observablePropertyMap observablePropertyMap
-    ?*
-  ]
-#--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
-#--- Analyze simple stored properties
-  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
-    !inSemanticContext.mUnifiedTypeMap
-    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
-  ]
-#--- Analyze transients
-  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  for (item) in mSecondaryPropertyList do
-    [item secondaryPropertySemanticAnalysisEX
-      !mClassName.string
-      !"" # No root entity name
-      !{} # No root entity
-      !inSemanticContext
-      !observablePropertyMap
-      !?transientDefinitionListForGeneration
-      !?* # no array controller
-      !?* # No selection controller
-      !?ioGeneration.mNeededOutletClasses
-    ]
-  end
-  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-#--- Check extern declarations
-  for () in mExternSwiftFunctionList do
-    if not [externSwiftFunctionCallerSet () hasKey !mCallerName.string] then
-      var m = "allowed here:"
-      for s in externSwiftFunctionCallerSet ()
-        do m += " '" + s + "'"
-        between m += ","
-      end
-      error mCallerName : m
-    end
-  end
-#--- Check declared actions are unique
-  @actionMap actionMap = {}
-  for (actionName) in mActionDeclarationList do
-    [!?actionMap insertKey !actionName]
-    ioGeneration.mActionListForGeneration += !mClassName.string !actionName.string
-  end
-#--- Generation
-  ioGeneration.mClassListForGeneration +=
-    !mClassName.string
-    !simpleStoredPropertyListForGeneration
-    !transientDefinitionListForGeneration
-    !mExternSwiftFunctionList
-    !mExternSwiftDelegateList
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION TYPES
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @classListForGeneration {
+class @classForGeneration : @abstractFileGeneration {
   @string mClassName
-  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
-  @transientDefinitionListForGeneration mTransientListForGeneration
+  @propertyGenerationList mPropertyGenerationList
   @externSwiftFunctionList mExternSwiftFunctionList
   @externSwiftDelegateList mExternSwiftDelegateList
+}
+
+list @atomicPropertyGenerationList {
+  @atomicPropertyGeneration mProperty
+}
+
+#·······················································································································
+
+override method @classForGeneration generateCode
+    ?let @string inOutputDirectory
+    ?!@stringset ioGeneratedFileSet
+{
+  @atomicPropertyGenerationList atomicPropertyGenerationList = {}
+  for (property) in mPropertyGenerationList do
+    if property is == @atomicPropertyGeneration then
+      atomicPropertyGenerationList += !(property as @atomicPropertyGeneration)
+    end
+  end
+  let s = [filewrapper classGenerationTemplate.classImplementationInSwift
+    !mClassName
+    !mPropertyGenerationList
+    !atomicPropertyGenerationList
+    !mExternSwiftFunctionList
+    !mExternSwiftDelegateList
+    !"<< not handled>>"
+  ]
+  let fileName = mClassName + ".swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !s
+  ]
 }
 
 #·······················································································································
@@ -285,39 +295,11 @@ private filewrapper classGenerationTemplate in "../generation-templates" {
 }{
   template classImplementationInSwift "class.swift.galgasTemplate"
     ?@string CLASS_NAME
-    ?@simpleStoredPropertyListForGenerationEX SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
-    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
+    ?@atomicPropertyGenerationList ATOMIC_PROPERTY_LIST_FOR_GENERATION
     ?@externSwiftFunctionList EXTERN_FUNCTION_LIST_FOR_IMPLEMENTATION
     ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
     ?@string EXPLORER_ACCESS
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-proc generateClasses
-  ?let @classListForGeneration inClassListForGeneration
-  ?let @string inOutputDirectory
-  ?!@stringset ioGeneratedFileSet
-{
-  for () in inClassListForGeneration do
-    let s = [filewrapper classGenerationTemplate.classImplementationInSwift
-      !mClassName
-      !mSimpleStoredPropertyListForGeneration
-      !mTransientListForGeneration
-      !mExternSwiftFunctionList
-      !mExternSwiftDelegateList
-      !"<< not handled>>"
-    ]
-    let fileName = mClassName + ".swift"
-    ioGeneratedFileSet += !fileName
-    [@string generateFile
-      !inOutputDirectory
-      !fileName
-      !s
-    ]
-  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

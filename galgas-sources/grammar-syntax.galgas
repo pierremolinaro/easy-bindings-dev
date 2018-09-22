@@ -115,7 +115,7 @@ abstract method @abstractSecondaryProperty secondaryPropertySemanticAnalysisEX
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inObservableProperties
-  ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
+  ?!@transientDefinitionListForGenerationEX ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGenerationEX ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
   ?!@stringset ioNeededOutletClasses

@@ -129,7 +129,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @transientDeclarationAST classAndPropertySemanticAnalysis
+override method @transientDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -210,12 +210,19 @@ override method @transientDeclarationAST secondAnalysisPhase
       !swiftTypeStringForTransientFunctionArgument
   end
 #--- Code generation
-  ioGeneration.mTransientListForGeneration +=
+#  ioGeneration.mTransientListForGeneration +=
+#    !mClassName
+#    !mTransientName.string
+#    !typeKind
+#    !dependencies
+#    !mExternFunctionName.string
+  ioGeneration.mFileGenerationList += !@ptransientRoutineGeneration.new {
     !mClassName
     !mTransientName.string
     !typeKind
     !dependencies
     !mExternFunctionName.string
+  }
   with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
@@ -265,7 +272,7 @@ override getter @transientPropertyGeneration configurationCode -> @string {
   result += "      }else{\n"
   result += "        return .empty\n"
   result += "      }\n"
-  result += "  }\n"
+  result += "    }\n"
   for () in mDependencyList do
     result += "    " + [mDependency generateAddObserverCall] + " (self." + mPropertyName + "_property)\n"
   end
@@ -349,7 +356,7 @@ override method @transientAST secondaryPropertySemanticAnalysisEX
   ?let @observablePropertyMap inRootObservableProperties
   ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inObservableProperties
-  ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
+  ?!@transientDefinitionListForGenerationEX ioTransientDefinitionListForGeneration
   ?!@arrayControllerForGenerationEX unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@stringset unused ioNeededOutletClasses
@@ -409,7 +416,7 @@ override method @transientAST secondaryPropertySemanticAnalysisEX
 #   GENERATION TYPE                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @transientDefinitionListForGeneration {
+list @transientDefinitionListForGenerationEX {
   @string mOwnerName
   @string mTransientName
   @typeKind mTransientType
@@ -577,9 +584,48 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
 #    TRANSIENT ROUTINE GENERATION         
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+class @ptransientRoutineGeneration : @abstractFileGeneration {
+  @string mOwnerName
+  @string mTransientName
+  @typeKind mTransientType
+  @transientDependencyListForGeneration mDependencyList
+  @string mExternFunctionName
+}
+
+#·······················································································································
+
+override method @ptransientRoutineGeneration generateCode
+    ?let @string inOutputDirectory
+    ?!@stringset ioGeneratedFileSet
+{
+  if ([mDependencyList length] > 0) & (mExternFunctionName == "") then
+    let s = [filewrapper transientManager.transientComputationFunctionFile
+      !mOwnerName
+      !mTransientName
+      !mDependencyList
+      !mTransientType 
+    ]
+    let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFileWithPattern
+      !startPath:inOutputDirectory
+      !fileName:fileName
+      !lineComment:"//"
+      !header:""
+      !defaultUserZone1:"\n\n" # Defaut user zone1
+      !generatedZone2:s
+      !defaultUserZone2:"\n" # Defaut user zone2
+      !generatedZone3:"}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n"
+      !makeExecutable:false
+    ]
+  end
+}
+
+#·······················································································································
+
 proc generateTransients
   ?let @string inOutputDirectory
-  ?let @transientDefinitionListForGeneration inTransientListForGeneration
+  ?let @transientDefinitionListForGenerationEX inTransientListForGeneration
   ?!@stringset ioGeneratedFileSet
 {
 #--------------------------- Generate transient routines

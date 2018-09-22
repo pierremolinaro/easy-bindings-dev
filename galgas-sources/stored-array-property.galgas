@@ -62,7 +62,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis
+override method @propertyArrayDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -128,7 +128,7 @@ override getter @atomicArrayGeneration declarationCode -> @string {
 
 override getter @atomicArrayGeneration configurationCode -> @string {
   result  = "  //--- Property array: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.undoManager = self.mUndoManager\n"
+  result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
 }
 
 

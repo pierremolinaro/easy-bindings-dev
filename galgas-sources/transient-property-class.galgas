@@ -68,9 +68,9 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @transientClassDeclarationAST classAndPropertySemanticAnalysis
+override method @transientClassDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration
+       ?!@generationStruct ioGeneration
 {
   [!?ioSemanticContext.mClassMap insertKey
     !mClassName
@@ -79,6 +79,7 @@ override method @transientClassDeclarationAST classAndPropertySemanticAnalysis
     !{}
     !{}
   ]
+  ioGeneration.mTransientPropertyTypeList += !mClassName.string !mIsClass
 }
 
 
@@ -116,14 +117,6 @@ override method @transientPropertyTypeDeclarationEX buildObservablePropertyMapsF
 
 #·······················································································································
 
-override method @transientPropertyTypeDeclarationEX buildInitialSecondaryPropertyListMap
-  ?!@secondaryDeclarationListWorkingList unused ioSecondaryDeclarationListWorkingList
-  ?!@uint unused ioSecondaryDeclarationCount
-{
-}
-
-#·······················································································································
-
 override method @transientPropertyTypeDeclarationEX solveSecondaryProperty
   ?!@semanticContextEX unused ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
@@ -132,15 +125,6 @@ override method @transientPropertyTypeDeclarationEX solveSecondaryProperty
   ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
 {
   outUnsolvedProperties = {}
-}
-
-#·······················································································································
-
-override method @transientPropertyTypeDeclarationEX semanticAnalysis
-  ?let @semanticContextEX unused inSemanticContext
-  ?!@generationStruct ioGeneration
-{
-  ioGeneration.mTransientPropertyTypeList += !mPropertyTypeName.string !mIsClass
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
