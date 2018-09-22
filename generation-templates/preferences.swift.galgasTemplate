@@ -30,29 +30,6 @@ for () in OUTLET_MAP do
 %  @IBOutlet var %!lkey.string% : %!mOutletTypeName%? = nil\n%
 end
 %
-%
-
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %  //····················································································································\n%
-  %  //   Accessing %!mTransientName% transient property\n%
-  %  //····················································································································\n\n%
-  %  var %!mTransientName%_property_selection : EBSelection <%![mTransientType swiftTypeName]%> {\n%
-  %    get {\n%
-  %      return self.%!mTransientName%_property.prop\n%
-  %    }\n%
-  %  }\n\n%
-end
-%
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-%
-
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%  var %!mTransientName%_property = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
-end
-%
   //····················································································································
   //    Multiple bindings controllers
   //····················································································································
@@ -121,24 +98,6 @@ for () in OUTLET_MAP do
                           errorMessage: "the '%!lkey.string%' outlet is nil") ;
     }
 %end
-%  //--------------------------- Install compute functions for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
-  %      if let unwSelf = self {\n%
-  ![mDependencyList transientComputeFunctionCall !preferencesName () !mTransientName !mExternFunctionName]
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-end
-%  //--------------------------- Install property observers for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency generateAddObserverCall]% (self.%!mTransientName%_property)\n%
-  end
-end
 %  //--------------------------- Install bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do

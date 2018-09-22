@@ -130,34 +130,13 @@ override method @prefsDeclarationAST thirdAnalysisPhase
     end
   end
 #--- Get preference property map
-  [ioSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?* ?let propertyMap ?let actionMap ?let propertyGenerationList]
-#--- Analyze transients
-  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-#  @arrayControllerForGenerationEX arrayControllerListForGeneration = {}
-#  @selectionControllerForGeneration selectionControllerListForGeneration = {}
-#  for (item) in mDeclaration.mSecondaryPropertyList do
-#    [item secondaryPropertySemanticAnalysis
-#      !preferencesName ()
-#      !"" # No root entity name
-#      !{} # No root entity
-#      !ioSemanticContext
-#      !ioSemanticContext.mPreferencesObservablePropertyMap
-#      !?transientDefinitionListForGeneration
-#      !?arrayControllerListForGeneration
-#      !?selectionControllerListForGeneration
-#      !?ioGeneration.mNeededOutletClasses
-#    ]
-#  end
-#  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-#  ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
-#  ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
-#--- Build action map
-#  buildActionMap (!mDeclaration.mActionDeclarationList ?let @actionMap actionMap)
-#  for () in actionMap do
-#    ioGeneration.mActionListForGeneration +=
-#      !preferencesName ()
-#      !lkey.string
-#  end
+  [ioSemanticContext.mClassMap searchKey
+    !.new {!preferencesName () !.nowhere}
+    ?*
+    ?let propertyMap
+    ?let actionMap
+    ?let propertyGenerationList
+  ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
     !{} # No root entity
@@ -178,7 +157,6 @@ override method @prefsDeclarationAST thirdAnalysisPhase
 #--- Code generation
   ioGeneration.mFileGenerationList += !@preferencesForGeneration.new {
     !propertyGenerationList
-    !transientDefinitionListForGeneration
     !regularBindingsGenerationList
     !multipleBindingGenerationList
     !actionBindingListForGeneration
@@ -247,86 +225,6 @@ method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
   ]
 }
 
-#·······················································································································
-
-method @prefDeclaration semanticAnalysisEX
-  ?let @externSwiftFunctionList inExternSwiftFunctionList
-  ?let @semanticContextEX inSemanticContext
-  ?!@generationStruct ioGeneration
-{
-#--- Analyze extern functions
-  let @stringset availableCallers = {!"awakeFromNib", !"init"}
-  @externFunctionMap externFunctionMap = {}
-  for () in inExternSwiftFunctionList do
-    [!?externFunctionMap insertKey !mExternSwiftFunctionName]
-    if not [availableCallers hasKey !mCallerName.string] then
-      var s = "invalid caller; available callers:"
-      for (str) in availableCallers do
-        s += "\n  - " + str
-      end
-      error mCallerName : s
-    end
-  end
-#--- Get preference property map
-  [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?3* ?let propertyGenerationList]
-#--- Analyze transients
-  @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  @arrayControllerForGenerationEX arrayControllerListForGeneration = {}
-  @selectionControllerForGeneration selectionControllerListForGeneration = {}
-  for (item) in mSecondaryPropertyList do
-    [item secondaryPropertySemanticAnalysisEX
-      !preferencesName ()
-      !"" # No root entity name
-      !{} # No root entity
-      !inSemanticContext
-      !inSemanticContext.mPreferencesObservablePropertyMap
-      !?transientDefinitionListForGeneration
-      !?arrayControllerListForGeneration
-      !?selectionControllerListForGeneration
-      !?ioGeneration.mNeededOutletClasses
-    ]
-  end
-  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-  ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
-  ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
-#--- Build action map
-  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
-  for () in actionMap do
-    ioGeneration.mActionListForGeneration +=
-      !preferencesName ()
-      !lkey.string
-  end
-#--- Analyze outlets and bindings
-  analyzeOutletsEX (
-    !{} # No root entity
-    !"" # No root entity
-    !inSemanticContext
-    !mOutletDeclarationList
-    !inSemanticContext.mPreferencesObservablePropertyMap
-    !actionMap
-    !preferencesName ()
-    !?ioGeneration
-    ?let @regularBindingsGenerationList regularBindingsGenerationList
-    ?let @multipleBindingGenerationList multipleBindingGenerationList
-    ?let @actionBindingListForGeneration actionBindingListForGeneration
-    ?let @decoratedOutletMap outletMap
-    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
-    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
-  )
-#--- Code generation
-#  ioGeneration.mFileGenerationList += !@preferencesForGeneration.new {
-#    !propertyGenerationList
-#    !transientDefinitionListForGeneration
-#    !regularBindingsGenerationList
-#    !multipleBindingGenerationList
-#    !actionBindingListForGeneration
-#    !outletMap
-#    !inExternSwiftFunctionList
-#    !tableViewBindingGenerationList
-#    !ebViewGraphicControllerBindingGenerationList
-#  }
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION TYPES                      
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -334,7 +232,7 @@ method @prefDeclaration semanticAnalysisEX
 class @preferencesForGeneration : @abstractFileGeneration {
   @propertyGenerationList mPropertyListForGeneration
 
-  @transientDefinitionListForGeneration mTransientDefinitionListForGeneration
+#  @transientDefinitionListForGeneration mTransientDefinitionListForGeneration
   @regularBindingsGenerationList mRegularBindingsGenerationList
   @multipleBindingGenerationList mMultipleBindingGenerationList
   @actionBindingListForGeneration mActionBindingListForGeneration
@@ -352,7 +250,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
   template preferences "preferences.swift.galgasTemplate"
     ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
 
-    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
+#    ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_MAP
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
@@ -372,7 +270,7 @@ override method @preferencesForGeneration generateCode
 {
   let s = [filewrapper prefsGenerationTemplate.preferences
     !mPropertyListForGeneration
-    !mTransientDefinitionListForGeneration
+#    !mTransientDefinitionListForGeneration
     !mOutletMap
     !mRegularBindingsGenerationList
     !mActionBindingListForGeneration

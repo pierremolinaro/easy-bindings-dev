@@ -260,7 +260,7 @@ void enterExtensionMethod_thirdAnalysisPhase (const int32_t inClassIndex,
 
 void callExtensionMethod_thirdAnalysisPhase (const class cPtr_abstractDeclarationAST * inObject,
                                              GALGAS_semanticContext & io_ioSemanticContext,
-                                             GALGAS_generationStruct & io_unusedioGeneration,
+                                             GALGAS_generationStruct & io_ioGeneration,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
@@ -473,53 +473,6 @@ void extensionMethod_buildObservablePropertyMapsFromStoredProperties (const clas
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               Extension method '@prefDeclaration semanticAnalysisEX'                                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void extensionMethod_semanticAnalysisEX (const class GALGAS_prefDeclaration inObject,
-                                         const class GALGAS_externSwiftFunctionList constin_inExternSwiftFunctionList,
-                                         const class GALGAS_semanticContextEX constin_inSemanticContext,
-                                         class GALGAS_generationStruct & io_ioGeneration,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Routine 'analyzeOutletsEX'                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_analyzeOutletsEX (const class GALGAS_observablePropertyMap constinArgument0,
-                               const class GALGAS_string constinArgument1,
-                               const class GALGAS_semanticContextEX constinArgument2,
-                               const class GALGAS_outletDeclarationList constinArgument3,
-                               const class GALGAS_observablePropertyMap constinArgument4,
-                               const class GALGAS_actionMap constinArgument5,
-                               const class GALGAS_string constinArgument6,
-                               class GALGAS_generationStruct & ioArgument7,
-                               class GALGAS_regularBindingsGenerationList & outArgument8,
-                               class GALGAS_multipleBindingGenerationList & outArgument9,
-                               class GALGAS_actionBindingListForGeneration & outArgument10,
-                               class GALGAS_decoratedOutletMap & outArgument11,
-                               class GALGAS_tableViewBindingGenerationList & outArgument12,
-                               class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument13,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                              Routine 'buildActionMap'                                               *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_buildActionMap (const class GALGAS_lstringlist constinArgument0,
-                             class GALGAS_actionMap & outArgument1,
-                             class C_Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                           @preferencesForGeneration class                                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -549,14 +502,13 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_preferencesForGeneration constructor_new (const class GALGAS_propertyGenerationList & inOperand0,
-                                                                         const class GALGAS_transientDefinitionListForGeneration & inOperand1,
-                                                                         const class GALGAS_regularBindingsGenerationList & inOperand2,
-                                                                         const class GALGAS_multipleBindingGenerationList & inOperand3,
-                                                                         const class GALGAS_actionBindingListForGeneration & inOperand4,
-                                                                         const class GALGAS_decoratedOutletMap & inOperand5,
-                                                                         const class GALGAS_externSwiftFunctionList & inOperand6,
-                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand7,
-                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand8
+                                                                         const class GALGAS_regularBindingsGenerationList & inOperand1,
+                                                                         const class GALGAS_multipleBindingGenerationList & inOperand2,
+                                                                         const class GALGAS_actionBindingListForGeneration & inOperand3,
+                                                                         const class GALGAS_decoratedOutletMap & inOperand4,
+                                                                         const class GALGAS_externSwiftFunctionList & inOperand5,
+                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand6,
+                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand7
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -584,8 +536,6 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGeneration getter_mTransientDefinitionListForGeneration (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -606,7 +556,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_preferencesForGener
 class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
   public : GALGAS_propertyGenerationList mProperty_mPropertyListForGeneration ;
-  public : GALGAS_transientDefinitionListForGeneration mProperty_mTransientDefinitionListForGeneration ;
   public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
   public : GALGAS_multipleBindingGenerationList mProperty_mMultipleBindingGenerationList ;
   public : GALGAS_actionBindingListForGeneration mProperty_mActionBindingListForGeneration ;
@@ -617,7 +566,6 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
 
 //--- Constructor
   public : cPtr_preferencesForGeneration (const GALGAS_propertyGenerationList & in_mPropertyListForGeneration,
-                                          const GALGAS_transientDefinitionListForGeneration & in_mTransientDefinitionListForGeneration,
                                           const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                           const GALGAS_multipleBindingGenerationList & in_mMultipleBindingGenerationList,
                                           const GALGAS_actionBindingListForGeneration & in_mActionBindingListForGeneration,
@@ -632,7 +580,6 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mPropertyListForGeneration (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_transientDefinitionListForGeneration getter_mTransientDefinitionListForGeneration (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_multipleBindingGenerationList getter_mMultipleBindingGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_actionBindingListForGeneration getter_mActionBindingListForGeneration (LOCATION_ARGS) const ;

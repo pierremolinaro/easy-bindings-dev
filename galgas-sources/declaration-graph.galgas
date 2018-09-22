@@ -32,7 +32,7 @@ method @abstractDeclarationAST secondAnalysisPhase
 
 method @abstractDeclarationAST thirdAnalysisPhase
     ?!@semanticContext unused ioSemanticContext
-    ?!@generationStruct unusedioGeneration
+    ?!@generationStruct unused ioGeneration
 {
 }
 
