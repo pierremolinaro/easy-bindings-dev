@@ -9293,7 +9293,7 @@ GALGAS_identifierAsDefaultValue GALGAS_identifierAsDefaultValue::extractObject (
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                              Abstract extension method '@astDeclaration typeInventory'                              *
+//                                  Extension method '@astDeclaration typeInventory'                                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9308,23 +9308,10 @@ void enterExtensionMethod_typeInventory (const int32_t inClassIndex,
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void freeExtensionMethod_astDeclaration_typeInventory (void) {
-  gExtensionMethodTable_astDeclaration_typeInventory.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_astDeclaration_typeInventory (NULL,
-                                                         freeExtensionMethod_astDeclaration_typeInventory) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 void callExtensionMethod_typeInventory (const cPtr_astDeclaration * inObject,
                                         GALGAS_unifiedTypeMap & io_ioUnifiedTypeMap,
                                         C_Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-//--- Find method
   if (NULL != inObject) {
     macroValidSharedObject (inObject, cPtr_astDeclaration) ;
     const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
@@ -9334,14 +9321,14 @@ void callExtensionMethod_typeInventory (const cPtr_astDeclaration * inObject,
       f = gExtensionMethodTable_astDeclaration_typeInventory (classIndex COMMA_HERE) ;
     }
     if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_astDeclaration_typeInventory.count ()) {
-          f = gExtensionMethodTable_astDeclaration_typeInventory (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_astDeclaration_typeInventory.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionMethodTable_astDeclaration_typeInventory.count ()) {
+           f = gExtensionMethodTable_astDeclaration_typeInventory (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionMethodTable_astDeclaration_typeInventory.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
     }
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
@@ -9352,8 +9339,33 @@ void callExtensionMethod_typeInventory (const cPtr_astDeclaration * inObject,
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_astDeclaration_typeInventory (const cPtr_astDeclaration * /* inObject */,
+                                                          GALGAS_unifiedTypeMap & /* ioArgument_ioUnifiedTypeMap */,
+                                                          C_Compiler * /* inCompiler */
+                                                          COMMA_UNUSED_LOCATION_ARGS) {
+}
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_astDeclaration_typeInventory (void) {
+  enterExtensionMethod_typeInventory (kTypeDescriptor_GALGAS_astDeclaration.mSlotID,
+                                      extensionMethod_astDeclaration_typeInventory) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionMethod_astDeclaration_typeInventory (void) {
+  gExtensionMethodTable_astDeclaration_typeInventory.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_astDeclaration_typeInventory (defineExtensionMethod_astDeclaration_typeInventory,
+                                                         freeExtensionMethod_astDeclaration_typeInventory) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//             Abstract extension method '@astDeclaration buildObservablePropertyMapsFromStoredProperties'             *
+//                 Extension method '@astDeclaration buildObservablePropertyMapsFromStoredProperties'                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9368,24 +9380,11 @@ void enterExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void freeExtensionMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
-  gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties (NULL,
-                                                                                           freeExtensionMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
 void callExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const cPtr_astDeclaration * inObject,
                                                                           const GALGAS_unifiedTypeMap constin_inUnifiedTypeMap,
                                                                           GALGAS_semanticContextEX & io_ioSemanticContext,
                                                                           C_Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-//--- Find method
   if (NULL != inObject) {
     macroValidSharedObject (inObject, cPtr_astDeclaration) ;
     const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
@@ -9395,14 +9394,14 @@ void callExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const 
       f = gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties (classIndex COMMA_HERE) ;
     }
     if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties.count ()) {
-          f = gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties.count ()) {
+           f = gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
     }
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
@@ -9411,6 +9410,32 @@ void callExtensionMethod_buildObservablePropertyMapsFromStoredProperties (const 
     }
   }
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties (const cPtr_astDeclaration * /* inObject */,
+                                                                                            const GALGAS_unifiedTypeMap /* constinArgument_inUnifiedTypeMap */,
+                                                                                            GALGAS_semanticContextEX & /* ioArgument_ioSemanticContext */,
+                                                                                            C_Compiler * /* inCompiler */
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+}
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
+  enterExtensionMethod_buildObservablePropertyMapsFromStoredProperties (kTypeDescriptor_GALGAS_astDeclaration.mSlotID,
+                                                                        extensionMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties (void) {
+  gExtensionMethodTable_astDeclaration_buildObservablePropertyMapsFromStoredProperties.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties (defineExtensionMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties,
+                                                                                           freeExtensionMethod_astDeclaration_buildObservablePropertyMapsFromStoredProperties) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -14797,152 +14822,6 @@ GALGAS_classMap_2D_element GALGAS_classMap_2D_element::extractObject (const GALG
       result = *p ;
     }else{
       inCompiler->castError ("classMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap_2D_element::GALGAS_propertyMap_2D_element (void) :
-mProperty_lkey (),
-mProperty_mKind (),
-mProperty_mActionMap () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap_2D_element::~ GALGAS_propertyMap_2D_element (void) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap_2D_element::GALGAS_propertyMap_2D_element (const GALGAS_lstring & inOperand0,
-                                                              const GALGAS_propertyKind & inOperand1,
-                                                              const GALGAS_actionMap & inOperand2) :
-mProperty_lkey (inOperand0),
-mProperty_mKind (inOperand1),
-mProperty_mActionMap (inOperand2) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap_2D_element GALGAS_propertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                              const GALGAS_propertyKind & inOperand1,
-                                                                              const GALGAS_actionMap & inOperand2 
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_propertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_propertyMap_2D_element (inOperand0, inOperand1, inOperand2) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult GALGAS_propertyMap_2D_element::objectCompare (const GALGAS_propertyMap_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mProperty_lkey.objectCompare (inOperand.mProperty_lkey) ;
-  }
-  if (result == kOperandEqual) {
-    result = mProperty_mKind.objectCompare (inOperand.mProperty_mKind) ;
-  }
-  if (result == kOperandEqual) {
-    result = mProperty_mActionMap.objectCompare (inOperand.mProperty_mActionMap) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-bool GALGAS_propertyMap_2D_element::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mKind.isValid () && mProperty_mActionMap.isValid () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyMap_2D_element::drop (void) {
-  mProperty_lkey.drop () ;
-  mProperty_mKind.drop () ;
-  mProperty_mActionMap.drop () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyMap_2D_element::description (C_String & ioString,
-                                                 const int32_t inIndentation) const {
-  ioString << "<struct @propertyMap-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mProperty_lkey.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mProperty_mKind.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mProperty_mActionMap.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_propertyMap_2D_element::getter_lkey (UNUSED_LOCATION_ARGS) const {
-  return mProperty_lkey ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyKind GALGAS_propertyMap_2D_element::getter_mKind (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mKind ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_actionMap GALGAS_propertyMap_2D_element::getter_mActionMap (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mActionMap ;
-}
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                              @propertyMap-element type                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_propertyMap_2D_element ("propertyMap-element",
-                                               NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_propertyMap_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyMap_2D_element ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_propertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_propertyMap_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap_2D_element GALGAS_propertyMap_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_propertyMap_2D_element result ;
-  const GALGAS_propertyMap_2D_element * p = (const GALGAS_propertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_propertyMap_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("propertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

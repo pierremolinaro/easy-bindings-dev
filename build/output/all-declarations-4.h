@@ -880,7 +880,7 @@ class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                              Abstract extension method '@astDeclaration typeInventory'                              *
+//                                  Extension method '@astDeclaration typeInventory'                                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -903,7 +903,7 @@ void callExtensionMethod_typeInventory (const class cPtr_astDeclaration * inObje
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//             Abstract extension method '@astDeclaration buildObservablePropertyMapsFromStoredProperties'             *
+//                 Extension method '@astDeclaration buildObservablePropertyMapsFromStoredProperties'                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

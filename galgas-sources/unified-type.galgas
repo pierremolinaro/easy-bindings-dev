@@ -55,8 +55,7 @@ list @typeKindList {
 
 #·······················································································································
 
-abstract method @astDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
+method @astDeclaration typeInventory ?!@unifiedTypeMap unused ioUnifiedTypeMap {}
 
 #·······················································································································
 

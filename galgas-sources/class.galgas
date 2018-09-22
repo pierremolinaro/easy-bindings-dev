@@ -95,7 +95,7 @@ syntax extension easyBindings_syntax {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#   SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @classDeclarationAST firstAnalysisPhase

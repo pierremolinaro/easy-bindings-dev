@@ -94,9 +94,11 @@ map @propertyMap {
 
 #·······················································································································
 
-abstract method @astDeclaration buildObservablePropertyMapsFromStoredProperties
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@semanticContextEX ioSemanticContext
+method @astDeclaration buildObservablePropertyMapsFromStoredProperties
+  ?let @unifiedTypeMap unused inUnifiedTypeMap
+  ?!@semanticContextEX unused ioSemanticContext
+{
+}
 
 #·······················································································································
 
