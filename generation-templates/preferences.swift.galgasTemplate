@@ -101,23 +101,13 @@ end
   end
 %  }
 
-%
-if [MAIN_XIB_DESCRIPTOR_LIST length] > 0 then
-%  //····················································································································
-
-  @IBOutlet private var window : NSWindow?
-  let OUTLET_WIDTH = 200.0
-  let OUTLET_HEIGHT = 22.0
-
-%
-end
-%  //····················································································································
+  //····················································································································
   //    awakeFromNib
   //····················································································································
 
   override func awakeFromNib () {
 %
-![MAIN_XIB_DESCRIPTOR_LIST generateCode]
+# ![MAIN_XIB_DESCRIPTOR_LIST generateCode]
 for () in OUTLET_MAP do
 %    if let outlet : Any = self.%!lkey.string% {
       if !(outlet is %!mOutletTypeName%) {

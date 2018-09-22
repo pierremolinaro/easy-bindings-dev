@@ -34,7 +34,7 @@ struct @generationStruct {
 
   @transientDefinitionListForGeneration mTransientListForGeneration
   @actionListForGeneration mActionListForGeneration
-  @preferencesForGeneration mPreferencesForGeneration
+#  @preferencesForGenerationEX mPreferencesForGeneration
   @documentListForGeneration mDocumentListForGeneration
   @entityListForGeneration mEntityListForGeneration
   @classListForGeneration mClassListForGeneration
@@ -50,7 +50,7 @@ struct @generationStruct {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc generateCode
-  ?let @string inXcodeProjectString
+  ?let @string unused inXcodeProjectString
   ?let @generationStruct inGeneration
   ?let @string inSourceFile
 {
@@ -69,11 +69,6 @@ proc generateCode
   generateActions (
     !fileOutputDirectory
     !inGeneration.mActionListForGeneration
-    !?generatedFileSet
-  )
-  generatePreferences (
-    !inGeneration.mPreferencesForGeneration
-    !fileOutputDirectory
     !?generatedFileSet
   )
   generateOutletClasses (
@@ -127,18 +122,18 @@ proc generateCode
     !inGeneration.mTransientPropertyTypeList
     !?generatedFileSet
   )
-  generateXcodeProject (
-    !outputDirectory
-    !inXcodeProjectString
-    !generatedFileSet
-    !projectName
-  )
-  generateTestFile (
-    !inXcodeProjectString
-    !projectName
-    !inGeneration.mPreferencesForGeneration.mMainXibDescriptorList
-    !outputDirectory
-  )
+#  generateXcodeProject (
+#    !outputDirectory
+#    !inXcodeProjectString
+#    !generatedFileSet
+#    !projectName
+#  )
+#  generateTestFile (
+#    !inXcodeProjectString
+#    !projectName
+#    !inGeneration.mPreferencesForGeneration.mMainXibDescriptorList # §§§§§
+#    !outputDirectory
+#  )
 }
 
 #·······················································································································
