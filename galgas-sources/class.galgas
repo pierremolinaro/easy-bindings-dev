@@ -2,17 +2,6 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @classDeclarationEX : @astDeclaration {
-  @lstring mClassName
-  @simpleStoredPropertyList mSimpleStoredAttributeList
-  @secondaryPropertyList mSecondaryPropertyList
-  @externSwiftFunctionList mExternSwiftFunctionList
-  @externSwiftDelegateList mExternSwiftDelegateList
-  @lstringlist mActionDeclarationList
-}
-
-#·······················································································································
-
 class @classDeclarationAST : @abstractDeclarationAST {
   @bool mIsUserDefined
   @simpleStoredPropertyList mSimpleStoredAttributeList
@@ -70,15 +59,6 @@ syntax extension easyBindings_syntax {
       <action_declaration> !?actionDeclarationList
     end
     $}$
-    ioDeclarationAST.mDeclarationList += !@classDeclarationEX.new {
-      !inIsUserDefined
-      !entityName
-      !simpleStoredAttributeList
-      !secondaryPropertyList
-      !externSwiftFunctionList
-      !externSwiftDelegateList
-      !actionDeclarationList
-    }
     ioDeclarationAST.mUnifiedDeclarationList += !@classDeclarationAST.new {
       !entityName
       !inIsUserDefined
@@ -149,98 +129,9 @@ override method @classDeclarationAST thirdAnalysisPhase
   }
 }
 
-
-
-
-
-
-
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @classDeclarationEX typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  for (item) in mSecondaryPropertyList do
-    [item typeInventory !?ioUnifiedTypeMap]
-  end
-  @actionMap actionMap = {}
-  for (act) in mActionDeclarationList do
-    [!?actionMap insertKey !act]
-  end
-  [!?ioUnifiedTypeMap insertKey !mClassName !.classType {!className:mClassName.string} !actionMap]
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-# Only get current entity observable properties, do not collect in super entities
-override method @classDeclarationEX buildObservablePropertyMapsFromStoredProperties
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@semanticContextEX ioSemanticContext
-{
-  @observablePropertyMap observablePropertyMap = {}
-#--- Analyze simple stored properties
-  [mSimpleStoredAttributeList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
-#--- Enter in semantics context  
-  [!?ioSemanticContext.mEntityObservablePropertyMap insertKey
-    !mClassName
-    !observablePropertyMap
-    !.classObject
-  ]
-}
-
 #·······················································································································
 
-override method @classDeclarationEX buildInitialSecondaryPropertyListMap
-  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
-  ?!@uint ioSecondaryDeclarationCount
-{
-  ioSecondaryDeclarationCount = ioSecondaryDeclarationCount + [mSecondaryPropertyList length]
-  ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
-}
-
-#·······················································································································
-
-override method @classDeclarationEX solveSecondaryProperty
-  ?!@semanticContextEX ioSemanticContext
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?let @secondaryPropertyList inPropertiesToSolve
-  !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
-{
-  outUnsolvedProperties = {}
-  [ioSemanticContext.mEntityObservablePropertyMap searchKey
-    !mClassName
-    ?@observablePropertyMap observablePropertyMap
-    ?*
-  ]
-  for (property) in inPropertiesToSolve do
-    [property tryToDefineSecondaryProperty
-      !?ioSemanticContext
-      !{} # No root entity
-      !?observablePropertyMap
-      !?outUnsolvedProperties
-      !?ioSimpleStoredPropertyListForGeneration
-    ]
-  end
-  [!?ioSemanticContext.mEntityObservablePropertyMap setMObservablePropertyMapForKey
-    !observablePropertyMap
-    !mClassName.string
-  ]
-}
-
-#·······················································································································
-
-func %once externSwiftFunctionCallerSet -> @stringset outResult {
+private func %once externSwiftFunctionCallerSet -> @stringset outResult {
   outResult = {!"setUpWithDictionary", !"init", !"saveIntoDictionary"}
 }
 

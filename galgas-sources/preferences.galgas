@@ -196,10 +196,10 @@ method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
     !?ioSemanticContext.mPreferencesObservablePropertyMap
   ]
 #--- Analyze stored array properties
-  [mStoredArrayList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?ioSemanticContext.mPreferencesObservablePropertyMap
-  ]
+#  [mStoredArrayList buildObservablePropertyMap
+#    !inUnifiedTypeMap
+#    !?ioSemanticContext.mPreferencesObservablePropertyMap
+#  ]
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

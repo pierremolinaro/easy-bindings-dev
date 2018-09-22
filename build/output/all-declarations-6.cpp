@@ -20,11 +20,11 @@ static void extensionMethod_preferencesForGeneration_generateCode (const cPtr_ab
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_preferencesForGeneration * object = (const cPtr_preferencesForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_preferencesForGeneration) ;
-  GALGAS_string var_s_9696 = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferences (inCompiler, object->mProperty_mPropertyListForGeneration, object->mProperty_mOutletMap, object->mProperty_mRegularBindingsGenerationList, object->mProperty_mActionBindingListForGeneration, object->mProperty_mMultipleBindingGenerationList, object->mProperty_mExternSwiftFunctionList, object->mProperty_mTableViewBindingGenerationList, object->mProperty_mEBViewBindingGenerationList COMMA_SOURCE_FILE ("preferences.galgas", 244))) ;
-  GALGAS_string var_fileName_10024 = function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 254)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 254)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_10024  COMMA_SOURCE_FILE ("preferences.galgas", 255)) ;
+  GALGAS_string var_s_9700 = GALGAS_string (filewrapperTemplate_prefsGenerationTemplate_preferences (inCompiler, object->mProperty_mPropertyListForGeneration, object->mProperty_mOutletMap, object->mProperty_mRegularBindingsGenerationList, object->mProperty_mActionBindingListForGeneration, object->mProperty_mMultipleBindingGenerationList, object->mProperty_mExternSwiftFunctionList, object->mProperty_mTableViewBindingGenerationList, object->mProperty_mEBViewBindingGenerationList COMMA_SOURCE_FILE ("preferences.galgas", 244))) ;
+  GALGAS_string var_fileName_10028 = function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 254)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 254)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_10028  COMMA_SOURCE_FILE ("preferences.galgas", 255)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_10024, var_s_9696, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 256)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_10028, var_s_9700, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 256)) ;
   }
 }
 
