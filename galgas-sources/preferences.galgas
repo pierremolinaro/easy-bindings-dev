@@ -9,7 +9,6 @@ struct @prefDeclaration {
   @secondaryPropertyList mSecondaryPropertyList
   @externSwiftFunctionList mExternSwiftFunctionList
   @storedArrayPropertyListAST mStoredArrayList
-  @arrayControllerForGenerationEX mArrayControllerForGeneration
   @stringset mSignatureList
 }
 
@@ -30,7 +29,6 @@ override method @prefsDeclarationAST enterInPrecedenceGraph ?!@declarationPreced
 override getter @prefsDeclarationAST lkey -> @lstring {
   result = mClassName
 }
-
 
 #·······················································································································
 

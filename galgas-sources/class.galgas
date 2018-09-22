@@ -4,8 +4,6 @@
 
 class @classDeclarationAST : @abstractDeclarationAST {
   @bool mIsUserDefined
-  @simpleStoredPropertyList mSimpleStoredAttributeList
-  @secondaryPropertyList mSecondaryPropertyList
   @externSwiftFunctionList mExternSwiftFunctionList
   @externSwiftDelegateList mExternSwiftDelegateList
   @lstringlist mActionDeclarationList
@@ -38,19 +36,14 @@ syntax extension easyBindings_syntax {
     $class$
     $Identifier$ ?let @lstring entityName
     ${$
-    @secondaryPropertyList secondaryPropertyList = {}
-    @simpleStoredPropertyList simpleStoredAttributeList = {}
-    @toOneRelationshipListEX toOneRelationshipList = {}
-    @toManyRelationshipListEX toManyRelationshipList = {}
-    @stringset signatureList = {}
     @externSwiftFunctionList externSwiftFunctionList = {}
     @externSwiftDelegateList externSwiftDelegateList = {}
     @lstringlist actionDeclarationList = {}
     repeat
     while
-      <simple_stored_declaration> !entityName !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
+      <simple_stored_declaration> !entityName !?* !?* !?ioDeclarationAST
     while
-      <transient_declaration> !entityName !["" nowhere] !?secondaryPropertyList !?ioDeclarationAST
+      <transient_declaration> !entityName !["" nowhere] !?* !?ioDeclarationAST
     while
       <extern_swift_func> !?externSwiftFunctionList
     while
@@ -62,8 +55,6 @@ syntax extension easyBindings_syntax {
     ioDeclarationAST.mUnifiedDeclarationList += !@classDeclarationAST.new {
       !entityName
       !inIsUserDefined
-      !simpleStoredAttributeList
-      !secondaryPropertyList
       !externSwiftFunctionList
       !externSwiftDelegateList
       !actionDeclarationList

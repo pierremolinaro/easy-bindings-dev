@@ -123,7 +123,6 @@ mProperty_mActionDeclarationList (),
 mProperty_mSecondaryPropertyList (),
 mProperty_mExternSwiftFunctionList (),
 mProperty_mStoredArrayList (),
-mProperty_mArrayControllerForGeneration (),
 mProperty_mSignatureList () {
 }
 
@@ -140,16 +139,14 @@ GALGAS_prefDeclaration::GALGAS_prefDeclaration (const GALGAS_outletDeclarationLi
                                                 const GALGAS_secondaryPropertyList & inOperand3,
                                                 const GALGAS_externSwiftFunctionList & inOperand4,
                                                 const GALGAS_storedArrayPropertyListAST & inOperand5,
-                                                const GALGAS_arrayControllerForGenerationEX & inOperand6,
-                                                const GALGAS_stringset & inOperand7) :
+                                                const GALGAS_stringset & inOperand6) :
 mProperty_mOutletDeclarationList (inOperand0),
 mProperty_mSimpleStoredAttributeList (inOperand1),
 mProperty_mActionDeclarationList (inOperand2),
 mProperty_mSecondaryPropertyList (inOperand3),
 mProperty_mExternSwiftFunctionList (inOperand4),
 mProperty_mStoredArrayList (inOperand5),
-mProperty_mArrayControllerForGeneration (inOperand6),
-mProperty_mSignatureList (inOperand7) {
+mProperty_mSignatureList (inOperand6) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -161,7 +158,6 @@ GALGAS_prefDeclaration GALGAS_prefDeclaration::constructor_default (UNUSED_LOCAT
                                  GALGAS_secondaryPropertyList::constructor_emptyList (HERE),
                                  GALGAS_externSwiftFunctionList::constructor_emptyList (HERE),
                                  GALGAS_storedArrayPropertyListAST::constructor_emptyList (HERE),
-                                 GALGAS_arrayControllerForGenerationEX::constructor_emptyList (HERE),
                                  GALGAS_stringset::constructor_emptySet (HERE)) ;
 }
 
@@ -173,12 +169,11 @@ GALGAS_prefDeclaration GALGAS_prefDeclaration::constructor_new (const GALGAS_out
                                                                 const GALGAS_secondaryPropertyList & inOperand3,
                                                                 const GALGAS_externSwiftFunctionList & inOperand4,
                                                                 const GALGAS_storedArrayPropertyListAST & inOperand5,
-                                                                const GALGAS_arrayControllerForGenerationEX & inOperand6,
-                                                                const GALGAS_stringset & inOperand7 
+                                                                const GALGAS_stringset & inOperand6 
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_prefDeclaration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
-    result = GALGAS_prefDeclaration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result = GALGAS_prefDeclaration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
   }
   return result ;
 }
@@ -206,9 +201,6 @@ typeComparisonResult GALGAS_prefDeclaration::objectCompare (const GALGAS_prefDec
     result = mProperty_mStoredArrayList.objectCompare (inOperand.mProperty_mStoredArrayList) ;
   }
   if (result == kOperandEqual) {
-    result = mProperty_mArrayControllerForGeneration.objectCompare (inOperand.mProperty_mArrayControllerForGeneration) ;
-  }
-  if (result == kOperandEqual) {
     result = mProperty_mSignatureList.objectCompare (inOperand.mProperty_mSignatureList) ;
   }
   return result ;
@@ -217,7 +209,7 @@ typeComparisonResult GALGAS_prefDeclaration::objectCompare (const GALGAS_prefDec
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_prefDeclaration::isValid (void) const {
-  return mProperty_mOutletDeclarationList.isValid () && mProperty_mSimpleStoredAttributeList.isValid () && mProperty_mActionDeclarationList.isValid () && mProperty_mSecondaryPropertyList.isValid () && mProperty_mExternSwiftFunctionList.isValid () && mProperty_mStoredArrayList.isValid () && mProperty_mArrayControllerForGeneration.isValid () && mProperty_mSignatureList.isValid () ;
+  return mProperty_mOutletDeclarationList.isValid () && mProperty_mSimpleStoredAttributeList.isValid () && mProperty_mActionDeclarationList.isValid () && mProperty_mSecondaryPropertyList.isValid () && mProperty_mExternSwiftFunctionList.isValid () && mProperty_mStoredArrayList.isValid () && mProperty_mSignatureList.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -229,7 +221,6 @@ void GALGAS_prefDeclaration::drop (void) {
   mProperty_mSecondaryPropertyList.drop () ;
   mProperty_mExternSwiftFunctionList.drop () ;
   mProperty_mStoredArrayList.drop () ;
-  mProperty_mArrayControllerForGeneration.drop () ;
   mProperty_mSignatureList.drop () ;
 }
 
@@ -252,8 +243,6 @@ void GALGAS_prefDeclaration::description (C_String & ioString,
     mProperty_mExternSwiftFunctionList.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mStoredArrayList.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mProperty_mArrayControllerForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mSignatureList.description (ioString, inIndentation+1) ;
   }
@@ -294,12 +283,6 @@ GALGAS_externSwiftFunctionList GALGAS_prefDeclaration::getter_mExternSwiftFuncti
 
 GALGAS_storedArrayPropertyListAST GALGAS_prefDeclaration::getter_mStoredArrayList (UNUSED_LOCATION_ARGS) const {
   return mProperty_mStoredArrayList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_arrayControllerForGenerationEX GALGAS_prefDeclaration::getter_mArrayControllerForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mArrayControllerForGeneration ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1829,12 +1812,6 @@ typeComparisonResult cPtr_classDeclarationAST::dynamicObjectCompare (const acPtr
     result = mProperty_mIsUserDefined.objectCompare (p->mProperty_mIsUserDefined) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mSimpleStoredAttributeList.objectCompare (p->mProperty_mSimpleStoredAttributeList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mSecondaryPropertyList.objectCompare (p->mProperty_mSecondaryPropertyList) ;
-  }
-  if (kOperandEqual == result) {
     result = mProperty_mExternSwiftFunctionList.objectCompare (p->mProperty_mExternSwiftFunctionList) ;
   }
   if (kOperandEqual == result) {
@@ -1876,8 +1853,6 @@ GALGAS_abstractDeclarationAST () {
 GALGAS_classDeclarationAST GALGAS_classDeclarationAST::constructor_default (LOCATION_ARGS) {
   return GALGAS_classDeclarationAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
                                                       GALGAS_bool::constructor_default (HERE),
-                                                      GALGAS_simpleStoredPropertyList::constructor_emptyList (HERE),
-                                                      GALGAS_secondaryPropertyList::constructor_emptyList (HERE),
                                                       GALGAS_externSwiftFunctionList::constructor_emptyList (HERE),
                                                       GALGAS_externSwiftDelegateList::constructor_emptyList (HERE),
                                                       GALGAS_lstringlist::constructor_emptyList (HERE)
@@ -1895,15 +1870,13 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 
 GALGAS_classDeclarationAST GALGAS_classDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
                                                                         const GALGAS_bool & inAttribute_mIsUserDefined,
-                                                                        const GALGAS_simpleStoredPropertyList & inAttribute_mSimpleStoredAttributeList,
-                                                                        const GALGAS_secondaryPropertyList & inAttribute_mSecondaryPropertyList,
                                                                         const GALGAS_externSwiftFunctionList & inAttribute_mExternSwiftFunctionList,
                                                                         const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList,
                                                                         const GALGAS_lstringlist & inAttribute_mActionDeclarationList
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_classDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mIsUserDefined.isValid () && inAttribute_mSimpleStoredAttributeList.isValid () && inAttribute_mSecondaryPropertyList.isValid () && inAttribute_mExternSwiftFunctionList.isValid () && inAttribute_mExternSwiftDelegateList.isValid () && inAttribute_mActionDeclarationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_classDeclarationAST (inAttribute_mClassName, inAttribute_mIsUserDefined, inAttribute_mSimpleStoredAttributeList, inAttribute_mSecondaryPropertyList, inAttribute_mExternSwiftFunctionList, inAttribute_mExternSwiftDelegateList, inAttribute_mActionDeclarationList COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mIsUserDefined.isValid () && inAttribute_mExternSwiftFunctionList.isValid () && inAttribute_mExternSwiftDelegateList.isValid () && inAttribute_mActionDeclarationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_classDeclarationAST (inAttribute_mClassName, inAttribute_mIsUserDefined, inAttribute_mExternSwiftFunctionList, inAttribute_mExternSwiftDelegateList, inAttribute_mActionDeclarationList COMMA_THERE)) ;
   }
   return result ;
 }
@@ -1924,42 +1897,6 @@ GALGAS_bool GALGAS_classDeclarationAST::getter_mIsUserDefined (UNUSED_LOCATION_A
 
 GALGAS_bool cPtr_classDeclarationAST::getter_mIsUserDefined (UNUSED_LOCATION_ARGS) const {
   return mProperty_mIsUserDefined ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_simpleStoredPropertyList GALGAS_classDeclarationAST::getter_mSimpleStoredAttributeList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_simpleStoredPropertyList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_classDeclarationAST * p = (const cPtr_classDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_classDeclarationAST) ;
-    result = p->mProperty_mSimpleStoredAttributeList ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_simpleStoredPropertyList cPtr_classDeclarationAST::getter_mSimpleStoredAttributeList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mSimpleStoredAttributeList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_secondaryPropertyList GALGAS_classDeclarationAST::getter_mSecondaryPropertyList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_secondaryPropertyList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_classDeclarationAST * p = (const cPtr_classDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_classDeclarationAST) ;
-    result = p->mProperty_mSecondaryPropertyList ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_secondaryPropertyList cPtr_classDeclarationAST::getter_mSecondaryPropertyList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mSecondaryPropertyList ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2022,16 +1959,12 @@ GALGAS_lstringlist cPtr_classDeclarationAST::getter_mActionDeclarationList (UNUS
 
 cPtr_classDeclarationAST::cPtr_classDeclarationAST (const GALGAS_lstring & in_mClassName,
                                                     const GALGAS_bool & in_mIsUserDefined,
-                                                    const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
-                                                    const GALGAS_secondaryPropertyList & in_mSecondaryPropertyList,
                                                     const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
                                                     const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
                                                     const GALGAS_lstringlist & in_mActionDeclarationList
                                                     COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
 mProperty_mIsUserDefined (in_mIsUserDefined),
-mProperty_mSimpleStoredAttributeList (in_mSimpleStoredAttributeList),
-mProperty_mSecondaryPropertyList (in_mSecondaryPropertyList),
 mProperty_mExternSwiftFunctionList (in_mExternSwiftFunctionList),
 mProperty_mExternSwiftDelegateList (in_mExternSwiftDelegateList),
 mProperty_mActionDeclarationList (in_mActionDeclarationList) {
@@ -2050,10 +1983,6 @@ void cPtr_classDeclarationAST::description (C_String & ioString,
   ioString << ", " ;
   mProperty_mIsUserDefined.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mSimpleStoredAttributeList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mSecondaryPropertyList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
   mProperty_mExternSwiftFunctionList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mExternSwiftDelegateList.description (ioString, inIndentation+1) ;
@@ -2066,7 +1995,7 @@ void cPtr_classDeclarationAST::description (C_String & ioString,
 
 acPtr_class * cPtr_classDeclarationAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_classDeclarationAST (mProperty_mClassName, mProperty_mIsUserDefined, mProperty_mSimpleStoredAttributeList, mProperty_mSecondaryPropertyList, mProperty_mExternSwiftFunctionList, mProperty_mExternSwiftDelegateList, mProperty_mActionDeclarationList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_classDeclarationAST (mProperty_mClassName, mProperty_mIsUserDefined, mProperty_mExternSwiftFunctionList, mProperty_mExternSwiftDelegateList, mProperty_mActionDeclarationList COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -4123,11 +4052,11 @@ void extensionMethod_typeInventory (const GALGAS_prefDeclaration inObject,
                                     GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
                                     C_Compiler * inCompiler
                                     COMMA_UNUSED_LOCATION_ARGS) {
-  extensionMethod_typeInventory (inObject.mProperty_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 177)) ;
-  cEnumerator_secondaryPropertyList enumerator_6969 (inObject.mProperty_mSecondaryPropertyList, kENUMERATION_UP) ;
-  while (enumerator_6969.hasCurrentObject ()) {
-    callExtensionMethod_typeInventory ((const cPtr_abstractSecondaryProperty *) enumerator_6969.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 179)) ;
-    enumerator_6969.gotoNextObject () ;
+  extensionMethod_typeInventory (inObject.mProperty_mSimpleStoredAttributeList, ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 175)) ;
+  cEnumerator_secondaryPropertyList enumerator_6904 (inObject.mProperty_mSecondaryPropertyList, kENUMERATION_UP) ;
+  while (enumerator_6904.hasCurrentObject ()) {
+    callExtensionMethod_typeInventory ((const cPtr_abstractSecondaryProperty *) enumerator_6904.current_mSecondaryProperty (HERE).ptr (), ioArgument_ioUnifiedTypeMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 177)) ;
+    enumerator_6904.gotoNextObject () ;
   }
 }
 
@@ -4143,7 +4072,7 @@ void extensionMethod_buildObservablePropertyMapsFromStoredProperties (const GALG
                                                                       GALGAS_semanticContextEX & ioArgument_ioSemanticContext,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  extensionMethod_buildObservablePropertyMap (inObject.mProperty_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, ioArgument_ioSemanticContext.mProperty_mPreferencesObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 194)) ;
+  extensionMethod_buildObservablePropertyMap (inObject.mProperty_mSimpleStoredAttributeList, constinArgument_inUnifiedTypeMap, ioArgument_ioSemanticContext.mProperty_mPreferencesObservablePropertyMap, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 192)) ;
 }
 
 
