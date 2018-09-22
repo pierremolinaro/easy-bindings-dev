@@ -69,12 +69,13 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @transientClassDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  [!?ioClassMap insertKey
+  [!?ioSemanticContext.mClassMap insertKey
     !mClassName
     !.atomic {!kind: .transientPropertyExternType {!externTypeName: mClassName}}
+    !{}
     !{}
     !{}
   ]
@@ -85,7 +86,7 @@ override method @transientClassDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @transientClassDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
@@ -112,7 +113,7 @@ override method @transientPropertyTypeDeclarationEX typeInventory
 # Only get current entity observable properties, do not collect in super entities
 override method @transientPropertyTypeDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?!@semanticContext unused ioSemanticContext
+  ?!@semanticContextEX unused ioSemanticContext
 {
 }
 
@@ -127,7 +128,7 @@ override method @transientPropertyTypeDeclarationEX buildInitialSecondaryPropert
 #·······················································································································
 
 override method @transientPropertyTypeDeclarationEX solveSecondaryProperty
-  ?!@semanticContext unused ioSemanticContext
+  ?!@semanticContextEX unused ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList unused inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
@@ -139,7 +140,7 @@ override method @transientPropertyTypeDeclarationEX solveSecondaryProperty
 #·······················································································································
 
 override method @transientPropertyTypeDeclarationEX semanticAnalysis
-  ?let @semanticContext unused inSemanticContext
+  ?let @semanticContextEX unused inSemanticContext
   ?!@generationStruct ioGeneration
 {
   ioGeneration.mTransientPropertyTypeList += !mPropertyTypeName.string !mIsClass

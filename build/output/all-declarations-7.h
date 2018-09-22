@@ -22,16 +22,44 @@ void routine_generateOutletClasses (const class GALGAS_stringset constinArgument
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                      Routine 'buildBindingSpecificationMapEX'                                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_buildBindingSpecificationMapEX (const class GALGAS_unifiedTypeMap constinArgument0,
+                                             const class GALGAS_outletClassMap constinArgument1,
+                                             const class GALGAS_outletClassBindingSpecificationList constinArgument2,
+                                             class GALGAS_bindingSpecificationMap & ioArgument3,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                       Routine 'buildBindingSpecificationMap'                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void routine_buildBindingSpecificationMap (const class GALGAS_unifiedTypeMap constinArgument0,
-                                           const class GALGAS_outletClassMap constinArgument1,
-                                           const class GALGAS_outletClassBindingSpecificationList constinArgument2,
-                                           class GALGAS_bindingSpecificationMap & outArgument3,
+void routine_buildBindingSpecificationMap (class GALGAS_semanticContext & ioArgument0,
+                                           const class GALGAS_outletClassBindingSpecificationList constinArgument1,
                                            class C_Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                          Routine 'analyzeRegularBindingEX'                                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_analyzeRegularBindingEX (const class GALGAS_observablePropertyMap constinArgument0,
+                                      const class GALGAS_semanticContextEX constinArgument1,
+                                      const class GALGAS_observablePropertyMap constinArgument2,
+                                      const class GALGAS_lstring constinArgument3,
+                                      const class GALGAS_string constinArgument4,
+                                      const class GALGAS_regularBindingList constinArgument5,
+                                      const class GALGAS_string constinArgument6,
+                                      class GALGAS_regularBindingsGenerationList & ioArgument7,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -39,9 +67,9 @@ void routine_buildBindingSpecificationMap (const class GALGAS_unifiedTypeMap con
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void routine_analyzeRegularBinding (const class GALGAS_observablePropertyMap constinArgument0,
+void routine_analyzeRegularBinding (const class GALGAS_propertyMap constinArgument0,
                                     const class GALGAS_semanticContext constinArgument1,
-                                    const class GALGAS_observablePropertyMap constinArgument2,
+                                    const class GALGAS_propertyMap constinArgument2,
                                     const class GALGAS_lstring constinArgument3,
                                     const class GALGAS_string constinArgument4,
                                     const class GALGAS_regularBindingList constinArgument5,
@@ -240,15 +268,15 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         Routine 'generateArrayControllers'                                          *
+//                                        Routine 'generateArrayControllersEX'                                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void routine_generateArrayControllers (const class GALGAS_arrayControllerForGeneration constinArgument0,
-                                       const class GALGAS_string constinArgument1,
-                                       class GALGAS_stringset & ioArgument2,
-                                       class C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+void routine_generateArrayControllersEX (const class GALGAS_arrayControllerForGenerationEX constinArgument0,
+                                         const class GALGAS_string constinArgument1,
+                                         class GALGAS_stringset & ioArgument2,
+                                         class C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -309,92 +337,4 @@ class GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
 
 class GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                               Routine 'typeInventory'                                               *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_typeInventory (const class GALGAS_astDeclarationList constinArgument0,
-                            class GALGAS_unifiedTypeMap & outArgument1,
-                            class C_Compiler * inCompiler
-                            COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Routine 'semanticAnalysis'                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_semanticAnalysis (const class GALGAS_classMap constinArgument0,
-                               const class GALGAS_unifiedTypeMap constinArgument1,
-                               const class GALGAS_string constinArgument2,
-                               const class GALGAS_astDeclarationStruct constinArgument3,
-                               class GALGAS_generationStruct & ioArgument4,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                               Routine 'generateCode'                                                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateCode (const class GALGAS_string constinArgument0,
-                           const class GALGAS_generationStruct constinArgument1,
-                           const class GALGAS_string constinArgument2,
-                           class C_Compiler * inCompiler
-                           COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        Routine 'generateStandardProperties'                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateStandardProperties (const class GALGAS_string constinArgument0,
-                                         const class GALGAS_stringlist constinArgument1,
-                                         const class GALGAS_transientExternTypeList constinArgument2,
-                                         class GALGAS_stringset & ioArgument3,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Routine 'generateSwiftApplicationFiles'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateSwiftApplicationFiles (const class GALGAS_string constinArgument0,
-                                            const class GALGAS_bool constinArgument1,
-                                            class GALGAS_stringset & ioArgument2,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Routine 'generateTestFile'                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateTestFile (const class GALGAS_string constinArgument0,
-                               const class GALGAS_string constinArgument1,
-                               const class GALGAS_mainXibDescriptorList constinArgument2,
-                               const class GALGAS_string constinArgument3,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                           Routine 'generateXcodeProject'                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateXcodeProject (const class GALGAS_string constinArgument0,
-                                   const class GALGAS_string constinArgument1,
-                                   const class GALGAS_stringset constinArgument2,
-                                   const class GALGAS_string constinArgument3,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
 

@@ -2,7 +2,7 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @outletClassDeclarationList {
+list @outletClassDeclarationListEX {
   @bool mUserDefined
   @lstring mOutletClassName
   @lstring mSuperClassName
@@ -13,6 +13,33 @@ list @outletClassDeclarationList {
   @bool mHasHidden
 }
 
+#·······················································································································
+
+class @outletClassDeclarationAST : @abstractDeclarationAST {
+  @bool mUserDefined
+  @lstring mSuperClassName
+  @bool mHasRunAction
+  @bool mHasEnabled
+  @bool mHandlesTableValueBinding
+  @bool mHandlesGraphicControllerBinding
+  @bool mHasHidden
+}
+
+#·······················································································································
+
+override method @outletClassDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+  if mSuperClassName.string != "" then
+    [!?ioGraph addEdge !mClassName !mSuperClassName]
+  end
+}
+
+#·······················································································································
+
+override getter @outletClassDeclarationAST lkey -> @lstring {
+  result = mClassName
+}
+
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SYNTAX
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -21,7 +48,10 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <outlet_class_declaration> ?let @bool inIsUserDefined ?!@outletClassDeclarationList ioOutletClassDeclarationList {
+  rule <outlet_class_declaration>
+      ?let @bool inIsUserDefined
+      ?!@astDeclarationStruct ioDeclarationAST
+  {
     $extern$
     $outlet$
     $class$
@@ -56,7 +86,7 @@ syntax extension easyBindings_syntax {
       handlesGraphicControllerBinding = true
     end
     $;$
-    ioOutletClassDeclarationList +=
+    ioDeclarationAST.mOutletClassDeclarationList +=
       !inIsUserDefined
       !outletClassName
       !superClassName
@@ -65,11 +95,61 @@ syntax extension easyBindings_syntax {
       !handlesTableViewBinding
       !handlesGraphicControllerBinding
       !hasHidden
+    ioDeclarationAST.mUnifiedDeclarationList += !@outletClassDeclarationAST.new {
+      !outletClassName
+      !inIsUserDefined
+      !superClassName
+      !hasRunAction
+      !hasEnabled
+      !handlesTableViewBinding
+      !handlesGraphicControllerBinding
+      !hasHidden
+    }
   }
 
   #·····················································································································
 
 }
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @outletClassDeclarationAST classAndPropertySemanticAnalysis
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct unused ioGeneration
+{
+  [!?ioSemanticContext.mClassMap insertKey
+    !mClassName
+    !.atomic {!kind: .transientPropertyExternType {!externTypeName: mClassName}}
+    !{}
+    !{}
+    !{}
+  ]
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SECOND ANALYSIS PHASE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @outletClassDeclarationAST secondAnalysisPhase
+       ?!@semanticContext unused ioSemanticContext
+       ?!@generationStruct unused ioGeneration
+{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #  SEMANTIC TYPE                          
@@ -91,13 +171,12 @@ map @outletClassMap {
 #  SEMANTICS                              
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-method @outletClassDeclarationList buildOutletClassMap !@outletClassMap outOutletClassMap {
-  outOutletClassMap = {}
+method @outletClassDeclarationListEX buildOutletClassMap ?!@outletClassMap ioOutletClassMap {
 #--- First, enter classes without any superclass
-  @outletClassDeclarationList remainingList = {}
+  @outletClassDeclarationListEX remainingList = {}
   for () in self do
     if mSuperClassName.string == "" then
-      [!?outOutletClassMap insertKey
+      [!?ioOutletClassMap insertKey
         !mOutletClassName
         !["" nowhere]  # No super class
         !mHasRunAction
@@ -126,8 +205,8 @@ method @outletClassDeclarationList buildOutletClassMap !@outletClassMap outOutle
     remainingList = {}
     continue = false
     for () in currentList do
-      if [outOutletClassMap hasKey !mSuperClassName.string] then
-        [outOutletClassMap searchKey
+      if [ioOutletClassMap hasKey !mSuperClassName.string] then
+        [ioOutletClassMap searchKey
           !mSuperClassName
           ?*
           ?let hasRunAction
@@ -152,7 +231,7 @@ method @outletClassDeclarationList buildOutletClassMap !@outletClassMap outOutle
         if mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
           error mOutletClassName : "$graphicControler binding already defined in superclass"
         end
-        [!?outOutletClassMap insertKey
+        [!?ioOutletClassMap insertKey
           !mOutletClassName
           !mSuperClassName
           !mHasRunAction | hasRunAction

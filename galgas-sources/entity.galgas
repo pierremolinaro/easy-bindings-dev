@@ -141,13 +141,15 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @entityDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  [!?ioClassMap insertKey
+  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  [!?ioSemanticContext.mClassMap insertKey
     !mClassName
     !.entity {!isGraphic: mIsGraphicEntity}
     !{}
+    !actionMap
     !{}
   ]
 }
@@ -157,7 +159,7 @@ override method @entityDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @entityDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
@@ -227,7 +229,7 @@ map @entityObservablePropertyMap {
 # Only get current entity observable properties, do not collect in super entities
 override method @entityDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
 {
   @observablePropertyMap observablePropertyMap = {}
 #--- Analyze simple stored properties
@@ -265,7 +267,7 @@ override method @entityDeclarationEX buildInitialSecondaryPropertyListMap
 #·······················································································································
 
 override method @entityDeclarationEX solveSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
@@ -295,7 +297,7 @@ override method @entityDeclarationEX solveSecondaryProperty
 #·······················································································································
 
 override method @entityDeclarationEX semanticAnalysis
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?!@generationStruct ioGeneration
 {
   [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -311,10 +313,10 @@ override method @entityDeclarationEX semanticAnalysis
   ]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  @arrayControllerForGeneration arrayControllerListForGeneration = {}
+  @arrayControllerForGenerationEX arrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerForGeneration = {}
   for (item) in mSecondaryPropertyList do
-    [item secondaryPropertySemanticAnalysis
+    [item secondaryPropertySemanticAnalysisEX
       !mEntityName.string
       !"" # No root entity name
       !{} # No root entity
@@ -430,7 +432,7 @@ list @entityListForGeneration {
   @lstringlist mObsoleteEntityNames
   @bool mIsGraphicEntity
   @stringset mTransientsDeclaredInSuperEntity
-  @arrayControllerForGeneration mArrayControllerForGeneration
+  @arrayControllerForGenerationEX mArrayControllerForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
 }
 
@@ -449,7 +451,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@stringset SIGNATURE_SET
     ?@bool IS_GRAPHIC_ENTITY
     ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
-    ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
+    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
     ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"

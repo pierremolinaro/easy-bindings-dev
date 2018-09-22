@@ -76,13 +76,13 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @proxyDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  with mClassName in !?ioClassMap 
+  with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [mPropertyMap searchKey !mControllerName ?let classKind]
+    [mPropertyMap searchKey !mControllerName ?let classKind ?*]
     switch classKind
     case property (2*) :
       error mControllerName : "an array controller is required here"
@@ -91,8 +91,8 @@ override method @proxyDeclarationAST classAndPropertySemanticAnalysis
     case toOne (3*) :
       error mControllerName : "an array controller is required here"
     case arrayController (typeName 2*) :
-      [ioClassMap searchKey !typeName ?* ?let propertyMap ?*]
-      [propertyMap searchKey !mPropertyName ?let unused propertyKind]
+      [ioSemanticContext.mClassMap searchKey !typeName ?* ?let propertyMap ?2*]
+      [propertyMap searchKey !mPropertyName ?2*]
     case selectionController (*) :
       error mControllerName : "an array controller is required here"
     end
@@ -104,7 +104,7 @@ override method @proxyDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @proxyDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
@@ -126,7 +126,7 @@ override method @proxyDeclarationEX typeInventory
 #·······················································································································
 
 override method @proxyDeclarationEX tryToDefineSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
   ?let @observablePropertyMap unused inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
@@ -197,14 +197,14 @@ override method @proxyDeclarationEX tryToDefineSecondaryProperty
 
 #·······················································································································
 
-override method @proxyDeclarationEX secondaryPropertySemanticAnalysis
+override method @proxyDeclarationEX secondaryPropertySemanticAnalysisEX
   ?let @string unused inOwnerName
   ?let @string unused inRootEntityName
   ?let @observablePropertyMap unused inRootObservableProperties
-  ?let @semanticContext unused inSemanticContext
+  ?let @semanticContextEX unused inSemanticContext
   ?let @observablePropertyMap unused inObservableProperties
   ?!@transientDefinitionListForGeneration unused ioTransientDefinitionListForGeneration
-  ?!@arrayControllerForGeneration unused ioArrayControllerForGeneration
+  ?!@arrayControllerForGenerationEX unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@stringset unused ioNeededOutletClasses
 {

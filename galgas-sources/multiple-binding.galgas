@@ -226,7 +226,7 @@ class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultip
 
 abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
@@ -236,7 +236,7 @@ abstract method @abstractBooleanMultipleBindingExpressionAST analyzeExpressionFo
 
 override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap unused inRootObservablePropertyMap
-  ?let @semanticContext unused inSemanticContext
+  ?let @semanticContextEX unused inSemanticContext
   ?let @observablePropertyMap unused inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
@@ -251,13 +251,13 @@ override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMult
 
 override method @observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
   !@location outErrorLocation
 {
-  [mProperty analyzeObservableProperty
+  [mProperty analyzeObservablePropertyEX
     !inRootObservablePropertyMap
     !inSemanticContext
     !inCurrentObservablePropertyMap
@@ -286,7 +286,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
 
 override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
@@ -310,7 +310,7 @@ override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForM
 
 override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
@@ -347,7 +347,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMulti
 
 override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
@@ -384,7 +384,7 @@ override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMult
 
 override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType
@@ -421,7 +421,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMult
 
 override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inCurrentObservablePropertyMap
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
   !@typeKind outType

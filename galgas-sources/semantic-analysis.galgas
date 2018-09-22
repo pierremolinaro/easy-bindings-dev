@@ -39,6 +39,7 @@ list @propertyGenerationList {
 map @classMap {
   @classKind mClassKind
   @propertyMap mPropertyMap
+  @actionMap mActionMap
   @propertyGenerationList mPropertyGenerationList
   insert insertKey error message "the '%K' class is already declared in %L"
   search searchKey error message "there is no '%K' class"
@@ -82,6 +83,7 @@ enum @propertyKind {
 
 map @propertyMap {
   @propertyKind mKind
+  @actionMap mActionMap
   insert insertKey error message "the '%K' property is already declared in %L"
   search searchKey error message "there is no '%K' property"
 }
@@ -90,12 +92,12 @@ map @propertyMap {
 
 abstract method @astDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
 
 #·······················································································································
 
 abstract method @astDeclaration semanticAnalysis
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?!@generationStruct ioGeneration
 
 #·······················································································································
@@ -114,7 +116,7 @@ abstract method @astDeclaration buildInitialSecondaryPropertyListMap
 #·······················································································································
 
 abstract method @astDeclaration solveSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
@@ -123,7 +125,7 @@ abstract method @astDeclaration solveSecondaryProperty
 #·······················································································································
 
 abstract method @abstractSecondaryProperty tryToDefineSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
   ?let @observablePropertyMap inRootObservableProperties
   ?!@observablePropertyMap ioObservableProperties
   ?!@secondaryPropertyList ioUnsolvedProperties
@@ -131,7 +133,7 @@ abstract method @abstractSecondaryProperty tryToDefineSecondaryProperty
 
 #·······················································································································
 
-struct @semanticContext {
+struct @semanticContextEX {
   @classMap mClassMap
   @unifiedTypeMap mUnifiedTypeMap
   @outletClassMap mOutletClassMap
@@ -145,7 +147,7 @@ struct @semanticContext {
 #   SEMANTIC ANALYSIS
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-proc semanticAnalysis
+proc semanticAnalysisEX
   ?let @classMap inClassMap
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @string inSourceFile
@@ -153,16 +155,18 @@ proc semanticAnalysis
   ?!@generationStruct ioGeneration
 {
 #--- Build outlet class map
-  [inAstDeclarationStruct.mOutletClassDeclarationList buildOutletClassMap ?let @outletClassMap outletClassMap]
+  @outletClassMap outletClassMap = {}
+  [inAstDeclarationStruct.mOutletClassDeclarationList buildOutletClassMap !?outletClassMap]
 #--- Build binding specification map
-  buildBindingSpecificationMap (
+  @bindingSpecificationMap bindingSpecificationMap = {}
+  buildBindingSpecificationMapEX (
     !inUnifiedTypeMap
     !outletClassMap
     !inAstDeclarationStruct.mBindingSpecificationListMap
-    ?let @bindingSpecificationMap bindingSpecificationMap
+    !?bindingSpecificationMap
   )
 #--- Semantic context
-  @semanticContext semanticContext = .new {
+  @semanticContextEX semanticContext = .new {
     !inClassMap
     !inUnifiedTypeMap
     !outletClassMap

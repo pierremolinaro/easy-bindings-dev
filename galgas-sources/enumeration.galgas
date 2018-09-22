@@ -67,16 +67,17 @@ map @enumConstantMap {
 #·······················································································································
 
 override method @enumerationDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
   @enumConstantMap enumConstantMap = {}
   for (s) in mEnumConstantNameList do
     [!?enumConstantMap insertKey !s]
   end
-  [!?ioClassMap insertKey
+  [!?ioSemanticContext.mClassMap insertKey
     !mClassName
     !.atomic {!kind: .enumType {!enumTypeName:mClassName !constantMap: enumConstantMap}}
+    !{}
     !{}
     !{}
   ]
@@ -87,7 +88,7 @@ override method @enumerationDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @enumerationDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
@@ -126,7 +127,7 @@ override method @enumDeclarationEX typeInventory
 
 override method @enumDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?!@semanticContext unused ioSemanticContext
+  ?!@semanticContextEX unused ioSemanticContext
 {
 }
 
@@ -141,7 +142,7 @@ override method @enumDeclarationEX buildInitialSecondaryPropertyListMap
 #·······················································································································
 
 override method @enumDeclarationEX solveSecondaryProperty
-  ?!@semanticContext unused ioSemanticContext
+  ?!@semanticContextEX unused ioSemanticContext
   ?let @unifiedTypeMap unused mUnifiedTypeMap
   ?let @secondaryPropertyList unused inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
@@ -153,7 +154,7 @@ override method @enumDeclarationEX solveSecondaryProperty
 #·······················································································································
 
 override method @enumDeclarationEX semanticAnalysis
-  ?let @semanticContext unused inSemanticContext
+  ?let @semanticContextEX unused inSemanticContext
   ?!@generationStruct ioGeneration
 {
   ioGeneration.mEnumListForGeneration +=

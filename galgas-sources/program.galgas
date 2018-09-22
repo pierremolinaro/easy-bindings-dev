@@ -2,6 +2,19 @@
 #   PROGRAM                               
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+struct @semanticContext {
+  @classMap mClassMap
+  @outletClassMap mOutletClassMap
+  @bindingSpecificationMap mBindingSpecificationMap
+
+#  @unifiedTypeMap mUnifiedTypeMap
+#  @observablePropertyMap mPreferencesObservablePropertyMap
+#  @documentObservablePropertyMap mDocumentObservablePropertyMap
+#  @entityObservablePropertyMap mEntityObservablePropertyMap
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
 case . "eb"
   message "a source text file with the .easyBindings extension"
   grammar easyBindings_grammar
@@ -22,14 +35,22 @@ case . "eb"
   enterAtomicClassesIn (!?declarationList: declarationStruct.mUnifiedDeclarationList)
 #----------------------------------------- Sort properties
   sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let sortedDeclarationListAST)
-#----------------------------------------- Semantic Analysis
-  @classMap classMap = {}
+#----------------------------------------- Build outlet class map
+  @semanticContext semanticContext = .default
+  [declarationStruct.mOutletClassDeclarationList buildOutletClassMap !?semanticContext.mOutletClassMap]
+#----------------------------------------- Semantic Analysis, first phase
   @generationStruct generation = .default
   for (declaration) in sortedDeclarationListAST do
-    [declaration classAndPropertySemanticAnalysis !?classMap !?generation]
+    [declaration classAndPropertySemanticAnalysis !?semanticContext !?generation]
   end
+#----------------------------------------- Build binding specification map
+  buildBindingSpecificationMap (
+    !?semanticContext
+    !declarationStruct.mBindingSpecificationListMap
+  )
+#----------------------------------------- Semantic Analysis, second phase
   for (declaration) in sortedDeclarationListAST do
-    [declaration secondAnalysisPhase !?classMap !?generation]
+    [declaration secondAnalysisPhase !?semanticContext !?generation]
   end
 
 
@@ -55,8 +76,8 @@ case . "eb"
       end
       error @location.here : s
     else
-     semanticAnalysis (
-        !classMap
+     semanticAnalysisEX (
+        !semanticContext.mClassMap
         !unifiedTypeMap
         !inSourceFile.string
         !declarationStruct

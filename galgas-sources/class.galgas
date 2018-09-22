@@ -99,13 +99,15 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @classDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  [!?ioClassMap insertKey
+  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  [!?ioSemanticContext.mClassMap insertKey
     !mClassName
     !.simpleClass
     !{}
+    !actionMap
     !{}
   ]
 }
@@ -115,7 +117,7 @@ override method @classDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @classDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
@@ -153,7 +155,7 @@ override method @classDeclarationEX typeInventory
 # Only get current entity observable properties, do not collect in super entities
 override method @classDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
 {
   @observablePropertyMap observablePropertyMap = {}
 #--- Analyze simple stored properties
@@ -182,7 +184,7 @@ override method @classDeclarationEX buildInitialSecondaryPropertyListMap
 #·······················································································································
 
 override method @classDeclarationEX solveSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
@@ -218,7 +220,7 @@ func %once externSwiftFunctionCallerSet -> @stringset outResult {
 #·······················································································································
 
 override method @classDeclarationEX semanticAnalysis
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?!@generationStruct ioGeneration
 {
   [inSemanticContext.mEntityObservablePropertyMap searchKey
@@ -235,7 +237,7 @@ override method @classDeclarationEX semanticAnalysis
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
   for (item) in mSecondaryPropertyList do
-    [item secondaryPropertySemanticAnalysis
+    [item secondaryPropertySemanticAnalysisEX
       !mClassName.string
       !"" # No root entity name
       !{} # No root entity

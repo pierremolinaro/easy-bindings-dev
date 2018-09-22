@@ -16,11 +16,15 @@ abstract getter @abstractDeclarationAST lkey -> @lstring
 
 #·······················································································································
 
-abstract method @abstractDeclarationAST classAndPropertySemanticAnalysis ?!@classMap ioClassMap ?!@generationStruct ioGeneration
+abstract method @abstractDeclarationAST classAndPropertySemanticAnalysis
+    ?!@semanticContext ioSemanticContext
+    ?!@generationStruct ioGeneration
 
 #·······················································································································
 
-abstract method @abstractDeclarationAST secondAnalysisPhase ?!@classMap ioClassMap ?!@generationStruct ioGeneration
+abstract method @abstractDeclarationAST secondAnalysisPhase
+    ?!@semanticContext ioSemanticContext
+    ?!@generationStruct ioGeneration
 
 #·······················································································································
 

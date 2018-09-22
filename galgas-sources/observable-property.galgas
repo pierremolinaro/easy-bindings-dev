@@ -249,7 +249,7 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
 #·······················································································································
 
 getter @observablePropertyAST isPropertyDefined
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inRootObservableProperties
   ?let @observablePropertyMap inObservableProperties
   -> @bool outResult
@@ -333,9 +333,9 @@ getter @observablePropertyAST location -> @location outResult {
 #   SEMANTIC ANALYSIS                     
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-method @observablePropertyAST analyzeObservableProperty
+method @observablePropertyAST analyzeObservablePropertyEX
   ?let @observablePropertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inObservablePropertyMap
   !@propertyKind outKind
   !@string outSwiftTypeStringForTransientFunctionArgument
@@ -628,6 +628,330 @@ method @observablePropertyAST analyzeObservableProperty
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     [inObservablePropertyMap searchKey !controllerName ?4*]
+    if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
+      outKind = .property {!type: .integerType !accessibility: .transient}
+    elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
+      outKind = .property {!type: .integerType !accessibility: .transient}
+    else
+      error propertyName : "unknown option" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  end  
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+method @observablePropertyAST analyzeObservableProperty
+  ?let @propertyMap inRootPropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inBoundModelPropertyMap
+  !@propertyKind outKind
+  !@string outSwiftTypeStringForTransientFunctionArgument
+{
+  switch self
+  case versionShouldChangeProperty (*) :
+    let type = @typeKind.boolType
+    outKind = .property {!type: type !accessibility: .transient}
+    outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
+  case versionProperty (*) :
+    let type = @typeKind.integerType
+    outKind = .property {!type: type !accessibility: .transient}
+    outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
+  case signatureProperty (*) :
+    let type = @typeKind.integerType
+    outKind = .property {!type: type !accessibility: .transient}
+    outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
+  case rootProperty (@lstring propertyName) :
+    [inRootPropertyMap searchKey
+      !propertyName
+      ?outKind
+      ?*
+    ]
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case rootPropertyNone (@lstring propertyName) :
+    [inRootPropertyMap searchKey
+      !propertyName
+      ?let kind
+      ?*
+    ]
+    switch kind
+    case property (2*) :
+      error propertyName : "a property cannot accept 'none'" : outKind
+    case toMany (4*) :
+      error propertyName : "an array property cannot accept 'none'" : outKind
+    case toOne (3*) : # Ok
+      outKind = .property {!type: .boolType !accessibility: .transient}
+    case arrayController (3*) :
+      error propertyName : "an array controller cannot accept 'none'" : outKind
+    case selectionController (*) :
+      error propertyName : "a selection controller cannot accept 'none'" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+    [inRootPropertyMap searchKey
+      !propertyName
+      ?let kind
+      ?*
+    ]
+    switch kind
+    case property (2*) :
+      error propertyName : "a property cannot accept any option" : outKind
+    case toMany (4*) :
+      if optionName.string == "count" then
+        outKind = .property {!type: .integerType !accessibility: .transient}
+      else
+        error optionName : "unknown option (accepted : 'count')" : outKind
+      end
+    case toOne (3*) :
+      error propertyName : "a toOne property cannot accept any option" : outKind
+    case arrayController (3*) :
+      if optionName.string == "count" then
+        outKind = .property {!type: .integerType !accessibility: .transient}
+      elsif optionName.string == "empty" then
+        outKind = .property {!type: .boolType !accessibility: .transient}
+      else
+        error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
+      end
+    case selectionController (*) :
+      error propertyName : "a selection controller cannot accept any option" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) : # root.xxx.all.xxx
+    [inRootPropertyMap searchKey
+      !relationshipName
+      ?let kind
+      ?*
+    ]
+    switch kind
+    case property (2*) :
+      error relationshipName : "a property cannot accept 'all'" : outKind
+    case toMany (typeName 3*) : # Ok
+      [inSemanticContext.mClassMap searchKey !.new {!typeName !relationshipName.location} ?* ?let observablePropertyMap ?2*]
+#      [inSemanticContext.mEntityObservablePropertyMap searchKey
+#        !.new {!typeName !relationshipName.location}
+#        ?let observablePropertyMap
+#        ?*
+#      ]
+      [observablePropertyMap searchKey
+        !propertyName
+        ?outKind
+        ?*
+      ]
+    case toOne (3*) :
+      error relationshipName : "a toOne property cannot accept 'all'" : outKind
+    case arrayController (3*) :
+      error relationshipName : "an array controller cannot accept 'all'" : outKind
+    case selectionController (*) :
+      error relationshipName : "an array controller cannot accept 'all'" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = "[" + [kind swiftTypeName] + "_" + propertyName + "]"
+  case selfProperty (@lstring propertyName) :
+    [inBoundModelPropertyMap searchKey
+      !propertyName
+      ?outKind
+      ?*
+    ]
+    switch outKind
+    case property (2*) :
+      outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+    case toMany (4*) :
+      error propertyName : "a toMany property cannot accept be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case toOne (3*) :
+      error propertyName : "a toOne property cannot accept be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case arrayController (3*) :
+      error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case selectionController (*) :
+      error propertyName : "a selection controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+    end
+  case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+    [inBoundModelPropertyMap searchKey
+      !propertyName
+      ?let kind
+      ?*
+    ]
+    switch kind
+    case property (2*) :
+      error propertyName : "an atomic property accepts no option" : outKind
+    case toMany (4*) :
+      if optionName.string == "count" then
+        outKind = .property {!type: .integerType !accessibility: .transient}
+      else
+        error optionName : "unknown option (accepted : 'count')" : outKind
+      end
+    case toOne (3*) :
+      error propertyName : "a toOne property accepts no option" : outKind
+    case arrayController (3*) :
+      if optionName.string == "count" then
+        outKind = .property {!type: .integerType !accessibility: .transient}
+      elsif optionName.string == "empty" then
+        outKind = .property {!type: .boolType !accessibility: .transient}
+      else
+        error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
+      end
+    case selectionController (*) :
+      error propertyName : "a selection controller accepts no option" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) : # self.xxx.all.xxx
+    [inBoundModelPropertyMap searchKey
+      !propertyName
+      ?let kind
+      ?*
+    ]
+    switch kind
+    case property (2*) :
+      error propertyName : "an atomic property accepts no option" : outKind
+    case toMany (typeName 3*) :
+      [inSemanticContext.mClassMap searchKey !typeName ?* ?let observablePropertyMap ?2*]
+#     [inSemanticContext.mEntityObservablePropertyMap searchKey
+#        !typeName
+#        ?let @observablePropertyMap entityObservablePropertyMap
+#        ?*
+#      ]
+      [observablePropertyMap searchKey
+        !elementPropertyName
+        ?outKind
+        ?*
+      ]
+    case toOne (3*) :
+      error propertyName : "a toOne property accepts no option" : outKind
+    case arrayController (3*) :
+      error propertyName : "an array controller accepts no option" : outKind
+    case selectionController (*) :
+      error propertyName : "a selection controller accepts no option" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = "[" + [kind swiftTypeName]
+       + "_" + elementPropertyName + "]"
+  case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) : # self.xxx.one.xxx
+    [inBoundModelPropertyMap searchKey
+      !propertyName
+      ?let kind
+      ?*
+    ]
+    switch kind
+    case property (2*) :
+      error propertyName : "an atomic property does not accept 'one'" : outKind
+    case toMany (4*) :
+      error propertyName : "a toOne property does not accept 'one'" : outKind
+    case toOne (typeName 2*) :
+      [inSemanticContext.mClassMap searchKey !typeName ?* ?let observablePropertyMap ?2*]
+#     [inSemanticContext.mEntityObservablePropertyMap searchKey
+#        !typeName
+#        ?let @observablePropertyMap entityObservablePropertyMap
+#        ?*
+#      ]
+      [observablePropertyMap searchKey
+        !elementPropertyName
+        ?outKind
+        ?*
+      ]
+    case arrayController (3*) :
+      error propertyName : "an array controller does not accept 'one'" : outKind
+    case selectionController (*) :
+      error propertyName : "a selection controller does not accept 'one'" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName] + "?"
+  case selfPropertyNone (@lstring propertyName) : # self.xxx.none
+    [inBoundModelPropertyMap searchKey
+      !propertyName
+      ?let kind
+      ?*
+    ]
+    switch kind
+    case property (2*) :
+      error propertyName : "an atomic property does not accept 'none'" : outKind
+    case toMany (4*) :
+      error propertyName : "a toOne property does not accept 'none'" : outKind
+    case toOne (3*) :
+      outKind = .property {!type: .boolType !accessibility: .transient}
+    case arrayController (3*) :
+      error propertyName : "an array controller does not accept 'none'" : outKind
+    case selectionController (*) :
+      error propertyName : "a selection controller does not accept 'none'" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case prefsProperty (@lstring propertyName) :
+    [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?* ?let observablePropertyMap ?2*]
+    [observablePropertyMap searchKey
+      !propertyName
+      ?outKind
+      ?*
+    ]
+#    [inSemanticContext.mPreferencesObservablePropertyMap searchKey
+#      !propertyName
+#      ?outKind
+#      ?3*
+#    ]
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+    [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?* ?let observablePropertyMap ?2*]
+    [observablePropertyMap searchKey
+      !propertyName
+      ?let kind
+      ?*
+    ]
+#    [inSemanticContext.mPreferencesObservablePropertyMap searchKey
+#      !propertyName
+#      ?let kind
+#      ?3*
+#    ]
+    switch kind
+    case property (2*) :
+      error propertyName : "a property cannot accept any option" : outKind
+    case toMany (4*) :
+      error propertyName : "a toMany property cannot accept any option" : outKind
+    case toOne (3*) :
+      error propertyName : "a toOne property cannot accept any option" : outKind
+    case arrayController (3*) :
+      if optionName.string == "count" then
+        outKind = .property {!type: .integerType !accessibility: .transient}
+      elsif optionName.string == "empty" then
+        outKind = .property {!type: .boolType !accessibility: .transient}
+      else
+        error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
+      end
+    case selectionController (*) :
+      error propertyName : "a selection controller cannot accept any option" : outKind
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case selfControllerProperty (@lstring controllerName @lstring propertyName) :
+    [inBoundModelPropertyMap searchKey
+      !controllerName
+      ?let @propertyKind propertyKind
+      ?*
+    ]
+    switch propertyKind
+    case property (2*) :
+      error propertyName : "a property cannot accept any option" : outKind
+    case toMany (4*) :
+      error propertyName : "a toMany property cannot accept any option" : outKind
+    case toOne (3*) :
+      error propertyName : "a toOne property cannot accept any option" : outKind
+    case arrayController (typeName graphic isEntity) :
+      if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
+        outKind = .toMany {
+          !typeName: typeName
+          !accessibility: .transient
+          !graphic: graphic
+          !isEntity: isEntity
+        }
+      else
+        error propertyName
+          : "unknown option (accepted : 'sortedArray' or 'selectedArray')"
+          : outKind
+      end
+    case selectionController (entityName) :
+      [inSemanticContext.mClassMap searchKey !.new {!entityName !controllerName.location} ?* ?let observablePropertyMap ?2*]
+#      [inSemanticContext.mEntityObservablePropertyMap searchKey
+#        !.new {!entityName !controllerName.location}
+#        ?let observablePropertyMap
+#        ?*
+#      ]
+      [observablePropertyMap searchKey !propertyName ?outKind ?*]
+    end
+    outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    [inBoundModelPropertyMap searchKey !controllerName ?2*]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
       outKind = .property {!type: .integerType !accessibility: .transient}
     elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then

@@ -106,13 +106,13 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @toManyRelationshipAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  with mClassName in !?ioClassMap 
+  with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioClassMap searchKey !mDestinationEntityName ?let classKind ?2*]
+    [ioSemanticContext.mClassMap searchKey !mDestinationEntityName ?let classKind ?3*]
     switch classKind
     case prefs :
       error mDestinationEntityName : "an entity is required here"
@@ -124,12 +124,12 @@ override method @toManyRelationshipAST classAndPropertySemanticAnalysis
       error mDestinationEntityName : "an entity is required here"
     case entity (graphic) :
       let kind = @propertyKind.toMany {
-        !typeName: mClassName
+        !typeName: mDestinationEntityName
         !accessibility: .stored
         !graphic: graphic
         !isEntity: true
       }
-      [!?mPropertyMap insertKey !mToManyRelationshipName !kind]
+      [!?mPropertyMap insertKey !mToManyRelationshipName !kind !{}]
     end
   end
 }
@@ -139,7 +139,7 @@ override method @toManyRelationshipAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @toManyRelationshipAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
@@ -208,7 +208,7 @@ method @toManyRelationshipListEX buildObservablePropertyMap
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 method @toManyRelationshipListEX semanticAnalysis
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   !@toManyEntityRelationshipListForGeneration outToManyEntityRelationshipListForGeneration
 {
   outToManyEntityRelationshipListForGeneration = {}

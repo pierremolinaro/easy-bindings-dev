@@ -126,13 +126,12 @@ map @outletBindingSpecificationMap {
 
 #·······················································································································
 
-proc buildBindingSpecificationMap
+proc buildBindingSpecificationMapEX
   ?let @unifiedTypeMap inUnifiedTypeMap
   ?let @outletClassMap inOutletClassMap
   ?let @outletClassBindingSpecificationList inBindingSpecificationListMap
-  !@bindingSpecificationMap outBindingSpecificationMap
+  ?!@bindingSpecificationMap ioBindingSpecificationMap
 {
-  outBindingSpecificationMap = {}
   for () in inBindingSpecificationListMap do
     @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
     for () in mOutletClassBindingSpecificationModelList do
@@ -147,8 +146,8 @@ proc buildBindingSpecificationMap
   #--- Insert in binding map
     @outletBindingSpecificationMap bindingMap
     @lstring outletSuperClassName
-    if [outBindingSpecificationMap hasKey !mOutletClassName.string] then
-      [!?outBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
+    if [ioBindingSpecificationMap hasKey !mOutletClassName.string] then
+      [!?ioBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
     else
       bindingMap = {}
       [inOutletClassMap searchKey !mOutletClassName ?outletSuperClassName ?6*]
@@ -158,7 +157,64 @@ proc buildBindingSpecificationMap
       !outletBindingSpecificationModelList
       !controllerBindingOptionDecoratedList
     ]
-    [!?outBindingSpecificationMap insertKey !mOutletClassName !outletSuperClassName !bindingMap]
+    [!?ioBindingSpecificationMap insertKey !mOutletClassName !outletSuperClassName !bindingMap]
+  end
+}
+
+#·······················································································································
+
+proc buildBindingSpecificationMap
+  ?!@semanticContext ioSemanticContext
+  ?let @outletClassBindingSpecificationList inBindingSpecificationListMap
+{
+  for () in inBindingSpecificationListMap do
+    @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    for () in mOutletClassBindingSpecificationModelList do
+      [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]
+      @typeKind typeKind
+      switch classKind
+      case prefs, simpleClass :
+        error mModelTypeName : "an atomic class is required here" : typeKind
+      case atomic (@typeKind kind) :
+        typeKind = kind
+      case document (*) :
+        error mModelTypeName : "an atomic class is required here" : typeKind
+      case entity (*) :
+        error mModelTypeName : "an atomic class is required here" : typeKind
+      end
+      outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
+    end
+    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    for () in mBindingOptionList do
+      [ioSemanticContext.mClassMap searchKey !mOptionTypeName ?let @classKind classKind ?3*]
+      @typeKind typeKind
+      switch classKind
+      case prefs, simpleClass :
+        error mOptionTypeName : "an atomic class is required here" : typeKind
+      case atomic (@typeKind kind) :
+        typeKind = kind
+      case document (*) :
+        error mOptionTypeName : "an atomic class is required here" : typeKind
+      case entity (*) :
+        error mOptionTypeName : "an atomic class is required here" : typeKind
+      end
+      controllerBindingOptionDecoratedList += !typeKind !mOptionName
+    end
+  #--- Insert in binding map
+    @outletBindingSpecificationMap bindingMap
+    @lstring outletSuperClassName
+    if [ioSemanticContext.mBindingSpecificationMap hasKey !mOutletClassName.string] then
+      [!?ioSemanticContext.mBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
+    else
+      bindingMap = {}
+      [ioSemanticContext.mOutletClassMap searchKey !mOutletClassName ?outletSuperClassName ?6*]
+    end
+    [!?bindingMap insertKey
+      !mBindingName
+      !outletBindingSpecificationModelList
+      !controllerBindingOptionDecoratedList
+    ]
+    [!?ioSemanticContext.mBindingSpecificationMap insertKey !mOutletClassName !outletSuperClassName !bindingMap]
   end
 }
 

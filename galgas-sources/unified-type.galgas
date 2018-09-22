@@ -60,18 +60,6 @@ abstract method @astDeclaration typeInventory
 
 #·······················································································································
 
-#getter @propertyKind propertyType -> @typeKind {
-#  switch self
-#  case property (type *) : result = type
-#  case toMany (4*) : result = .boolType # §§§§§
-#  case toOne (3*) : result = .boolType
-#  case arrayController (3*) : result = .boolType
-#  case selectionController (*) : result = .boolType
-#  end
-#}
-
-#·······················································································································
-
 getter @propertyKind swiftTypeName -> @string {
   switch self
   case property (type *) :
@@ -177,7 +165,7 @@ map @observablePropertyMap {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc typeInventory
-  ?let @astDeclarationList inDeclarationList
+  ?let @astDeclarationListEX inDeclarationList
   !@unifiedTypeMap outUnifiedTypeMap
 {
   outUnifiedTypeMap = .emptyMap

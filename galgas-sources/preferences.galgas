@@ -10,7 +10,7 @@ struct @prefDeclaration {
   @mainXibDescriptorList mMainXibDescriptorList
   @externSwiftFunctionList mExternSwiftFunctionList
   @storedArrayPropertyListAST mStoredArrayList
-  @arrayControllerForGeneration mArrayControllerForGeneration
+  @arrayControllerForGenerationEX mArrayControllerForGeneration
   @stringset mSignatureList
 }
 
@@ -95,12 +95,14 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @prefsDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  [!?ioClassMap insertKey
+#  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  [!?ioSemanticContext.mClassMap insertKey
     !.new {!preferencesName () !.here}
     !.prefs
+    !{}
     !{}
     !{}
   ]
@@ -111,7 +113,7 @@ override method @prefsDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @prefsDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
@@ -134,7 +136,7 @@ method @prefDeclaration typeInventory
 #·······················································································································
 
 method @prefDeclaration solveSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
@@ -160,7 +162,7 @@ method @prefDeclaration solveSecondaryProperty
 
 method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
 {
 #--- Analyze simple stored properties
   [mSimpleStoredAttributeList buildObservablePropertyMap
@@ -178,7 +180,7 @@ method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
 
 method @prefDeclaration semanticAnalysis
   ?let @externSwiftFunctionList inExternSwiftFunctionList
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?!@generationStruct ioGeneration
 {
 #--- Analyze extern functions
@@ -195,13 +197,13 @@ method @prefDeclaration semanticAnalysis
     end
   end
 #--- Get preference property map
-  [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?2* ?let propertyGenerationList]
+  [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?3* ?let propertyGenerationList]
 #--- Analyze transients
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  @arrayControllerForGeneration arrayControllerListForGeneration = {}
+  @arrayControllerForGenerationEX arrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
-    [item secondaryPropertySemanticAnalysis
+    [item secondaryPropertySemanticAnalysisEX
       !preferencesName ()
       !"" # No root entity name
       !{} # No root entity

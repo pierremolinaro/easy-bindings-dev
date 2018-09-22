@@ -106,13 +106,15 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @documentDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  [!?ioClassMap insertKey
+  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  [!?ioSemanticContext.mClassMap insertKey
     !mClassName
     !.document {!rootEntityName: mRootEntityName}
     !{}
+    !actionMap
     !{}
   ]
 }
@@ -122,7 +124,7 @@ override method @documentDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @documentDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
@@ -174,7 +176,7 @@ override method @documentDeclarationEX buildInitialSecondaryPropertyListMap
 
 override method @documentDeclarationEX buildObservablePropertyMapsFromStoredProperties
   ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
 {
   [!?ioSemanticContext.mDocumentObservablePropertyMap insertKey
     !mDocumentName
@@ -185,7 +187,7 @@ override method @documentDeclarationEX buildObservablePropertyMapsFromStoredProp
 #·······················································································································
 
 override method @documentDeclarationEX solveSecondaryProperty
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContextEX ioSemanticContext
   ?let @unifiedTypeMap unused inUnifiedTypeMap
   ?let @secondaryPropertyList inPropertiesToSolve
   !@secondaryPropertyList outUnsolvedProperties
@@ -219,7 +221,7 @@ override method @documentDeclarationEX solveSecondaryProperty
 #·······················································································································
 
 override method @documentDeclarationEX semanticAnalysis
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?!@generationStruct ioGeneration
 {
   [inSemanticContext.mDocumentObservablePropertyMap searchKey
@@ -233,10 +235,10 @@ override method @documentDeclarationEX semanticAnalysis
   ]
 #--- Analyze secondary
   @transientDefinitionListForGeneration transientDefinitionListForGeneration = {}
-  @arrayControllerForGeneration documentArrayControllerListForGeneration = {}
+  @arrayControllerForGenerationEX documentArrayControllerListForGeneration = {}
   @selectionControllerForGeneration selectionControllerListForGeneration = {}
   for (item) in mSecondaryPropertyList do
-    [item secondaryPropertySemanticAnalysis
+    [item secondaryPropertySemanticAnalysisEX
       !mDocumentName.string
       !mRootEntityName.string
       !rootObservablePropertyMap
@@ -302,7 +304,7 @@ list @documentListForGeneration {
   @actionBindingListForGeneration mTargetActionList 
   @regularBindingsGenerationList mRegularBindingsGenerationList 
   @multipleBindingGenerationList multipleBindingGenerationList
-  @arrayControllerForGeneration mArrayControllerForGeneration
+  @arrayControllerForGenerationEX mArrayControllerForGeneration
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
   @selectionControllerForGeneration mSelectionControllerListForGeneration
@@ -318,7 +320,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@string ROOT_ENTITY_NAME
     ?@transientDefinitionListForGeneration TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
-    ?@arrayControllerForGeneration ARRAY_CONTROLLER_LIST
+    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST

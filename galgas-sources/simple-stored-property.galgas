@@ -99,20 +99,20 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  with mClassName in !?ioClassMap 
+  with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioClassMap searchKey !mPropertyTypeName ?let classKind ?2*]
+    [ioSemanticContext.mClassMap searchKey !mPropertyTypeName ?let classKind ?3*]
     switch classKind
     case prefs :
       error mPropertyTypeName : "an atomic class is required here"
     case simpleClass :
       error mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
-      [!?mPropertyMap insertKey !mPropertyName !.property {!type: kind !accessibility: .stored}]
+      [!?mPropertyMap insertKey !mPropertyName !.property {!type: kind !accessibility: .stored} !{}]
     #--- Analyze default value
       [mDefaultValue analyzeDefaultValueType !{!kind} ?let @string swiftDefaultValueAsString]
     #--- Code Generation
@@ -143,7 +143,7 @@ override method @atomicPropertyDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @atomicPropertyDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }

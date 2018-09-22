@@ -7,11 +7,29 @@ list @transientExternTypeList {
   @bool mIsClass
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#·······················································································································
+
+abstract class @abstractFileGeneration {
+}
+
+#·······················································································································
+
+abstract method @abstractFileGeneration generateCode
+    ?let @string inOutputDirectory
+    ?!@stringset ioGeneratedFileSet
+
+#·······················································································································
+
+list @fileGenerationList {
+  @abstractFileGeneration mFileGeneration
+}
+
+#·······················································································································
 
 struct @generationStruct {
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
-
+  @fileGenerationList mFileGenerationList
+  @stringset mNeededOutletClasses
 
 
   @transientDefinitionListForGeneration mTransientListForGeneration
@@ -21,8 +39,7 @@ struct @generationStruct {
   @entityListForGeneration mEntityListForGeneration
   @classListForGeneration mClassListForGeneration
   @enumListForGeneration mEnumListForGeneration
-  @stringset mNeededOutletClasses
-  @arrayControllerForGeneration mArrayControllerListForGeneration
+  @arrayControllerForGenerationEX mArrayControllerListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
   @stringlist mPropertyClassList
   @transientExternTypeList mTransientPropertyTypeList
@@ -41,6 +58,9 @@ proc generateCode
   let projectName = [[inSourceFile lastPathComponent] stringByDeletingPathExtension]
   let fileOutputDirectory = outputDirectory + "/" + projectName
   @stringset generatedFileSet = {}
+  for (fileGeneration) in inGeneration.mFileGenerationList do
+    [fileGeneration generateCode !outputDirectory !?generatedFileSet]
+  end
   generateTransients (
     !fileOutputDirectory
     !inGeneration.mTransientListForGeneration
@@ -81,7 +101,7 @@ proc generateCode
     !fileOutputDirectory
     !?generatedFileSet
   )
-  generateArrayControllers (
+  generateArrayControllersEX (
     !inGeneration.mArrayControllerListForGeneration
     !fileOutputDirectory
     !?generatedFileSet

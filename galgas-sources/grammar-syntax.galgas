@@ -20,7 +20,7 @@ abstract class @astDeclaration {
 
 #·······················································································································
 
-list @astDeclarationList {
+list @astDeclarationListEX {
   @astDeclaration mDeclaration
 }
 
@@ -28,8 +28,8 @@ list @astDeclarationList {
 
 struct @astDeclarationStruct {
   @declarationListAST mUnifiedDeclarationList
-  @astDeclarationList mDeclarationList
-  @outletClassDeclarationList mOutletClassDeclarationList
+  @astDeclarationListEX mDeclarationList
+  @outletClassDeclarationListEX mOutletClassDeclarationList
   @outletClassBindingSpecificationList mBindingSpecificationListMap
   @prefDeclaration mPreferences
   @lstring mXcodeProject
@@ -83,7 +83,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
     while
       <document_declaration> !inIsUserDefined !?ioDeclarationAST
     while
-      <outlet_class_declaration> !inIsUserDefined !?ioDeclarationAST.mOutletClassDeclarationList
+      <outlet_class_declaration> !inIsUserDefined !?ioDeclarationAST
     while
       <binding_specification> !inIsUserDefined !?ioDeclarationAST.mBindingSpecificationListMap
     while
@@ -109,14 +109,14 @@ abstract method @abstractSecondaryProperty typeInventory
 #    SEMANTIC ANALYSIS                    
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract method @abstractSecondaryProperty secondaryPropertySemanticAnalysis
+abstract method @abstractSecondaryProperty secondaryPropertySemanticAnalysisEX
   ?let @string inOwnerName
   ?let @string inRootEntityName
   ?let @observablePropertyMap inRootObservableProperties
-  ?let @semanticContext inSemanticContext
+  ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inObservableProperties
   ?!@transientDefinitionListForGeneration ioTransientDefinitionListForGeneration
-  ?!@arrayControllerForGeneration ioArrayControllerForGeneration
+  ?!@arrayControllerForGenerationEX ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
   ?!@stringset ioNeededOutletClasses
 

@@ -63,13 +63,13 @@ syntax extension easyBindings_syntax {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis
-       ?!@classMap ioClassMap
+       ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  with mClassName in !?ioClassMap 
+  with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioClassMap searchKey !mElementClassName ?let classKind ?2*]
+    [ioSemanticContext.mClassMap searchKey !mElementClassName ?let classKind ?3*]
     switch classKind
     case prefs :
       error mElementClassName : "a simple class is required here"
@@ -80,7 +80,7 @@ override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis
         !graphic: false
         !isEntity: false
       }
-      [!?mPropertyMap insertKey !mStoredArrayPropertyName !kind]
+      [!?mPropertyMap insertKey !mStoredArrayPropertyName !kind !{}]
     #--- Code Generation
       mPropertyGenerationList += !@atomicArrayGeneration.new {
         !mStoredArrayPropertyName
@@ -101,7 +101,7 @@ override method @propertyArrayDeclarationAST classAndPropertySemanticAnalysis
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @propertyArrayDeclarationAST secondAnalysisPhase
-       ?!@classMap unused ioClassMap
+       ?!@semanticContext unused ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
 }
