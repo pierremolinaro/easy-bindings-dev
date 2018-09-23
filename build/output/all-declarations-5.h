@@ -117,18 +117,6 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               Routine 'generateEnums'                                               *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateEnums (const class GALGAS_enumListForGeneration constinArgument0,
-                            const class GALGAS_string constinArgument1,
-                            class GALGAS_stringset & ioArgument2,
-                            class C_Compiler * inCompiler
-                            COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                           Routine 'enterAtomicClassesIn'                                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

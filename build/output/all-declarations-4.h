@@ -99,8 +99,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 
   public : GALGAS_entityListForGeneration mProperty_mEntityListForGeneration ;
 
-  public : GALGAS_enumListForGeneration mProperty_mEnumListForGeneration ;
-
   public : GALGAS_arrayControllerForGenerationEX mProperty_mArrayControllerListForGeneration ;
 
   public : GALGAS_selectionControllerForGeneration mProperty_mSelectionControllerListForGeneration ;
@@ -130,7 +128,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                     const GALGAS_actionListForGeneration & in_mActionListForGeneration,
                                     const GALGAS_documentListForGeneration & in_mDocumentListForGeneration,
                                     const GALGAS_entityListForGeneration & in_mEntityListForGeneration,
-                                    const GALGAS_enumListForGeneration & in_mEnumListForGeneration,
                                     const GALGAS_arrayControllerForGenerationEX & in_mArrayControllerListForGeneration,
                                     const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
                                     const GALGAS_stringlist & in_mPropertyClassList,
@@ -154,11 +151,10 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                                                  const class GALGAS_actionListForGeneration & inOperand4,
                                                                  const class GALGAS_documentListForGeneration & inOperand5,
                                                                  const class GALGAS_entityListForGeneration & inOperand6,
-                                                                 const class GALGAS_enumListForGeneration & inOperand7,
-                                                                 const class GALGAS_arrayControllerForGenerationEX & inOperand8,
-                                                                 const class GALGAS_selectionControllerForGeneration & inOperand9,
-                                                                 const class GALGAS_stringlist & inOperand10,
-                                                                 const class GALGAS_transientExternTypeList & inOperand11
+                                                                 const class GALGAS_arrayControllerForGenerationEX & inOperand7,
+                                                                 const class GALGAS_selectionControllerForGeneration & inOperand8,
+                                                                 const class GALGAS_stringlist & inOperand9,
+                                                                 const class GALGAS_transientExternTypeList & inOperand10
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -180,8 +176,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_documentListForGeneration getter_mDocumentListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration getter_mEntityListForGeneration (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_enumListForGeneration getter_mEnumListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_fileGenerationList getter_mFileGenerationList (LOCATION_ARGS) const ;
 
@@ -257,6 +251,96 @@ void callExtensionMethod_thirdAnalysisPhase (const class cPtr_abstractDeclaratio
                                              GALGAS_generationStruct & io_ioGeneration,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                              @enumForGeneration class                                               *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
+//--- Constructor
+  public : GALGAS_enumForGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_enumForGeneration constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_enumForGeneration * ptr (void) const { return (const cPtr_enumForGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_enumForGeneration (const cPtr_enumForGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_enumForGeneration extractObject (const GALGAS_object & inObject,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_enumForGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                  const class GALGAS_lstringlist & inOperand1
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_enumForGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mEnumConstantList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEnumName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_enumForGeneration class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumForGeneration ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                     Pointer class for @enumForGeneration class                                      *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
+//--- Attributes
+  public : GALGAS_string mProperty_mEnumName ;
+  public : GALGAS_lstringlist mProperty_mEnumConstantList ;
+
+//--- Constructor
+  public : cPtr_enumForGeneration (const GALGAS_string & in_mEnumName,
+                                   const GALGAS_lstringlist & in_mEnumConstantList
+                                   COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mEnumName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mEnumConstantList (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

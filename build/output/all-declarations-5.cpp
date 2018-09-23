@@ -8,6 +8,211 @@
 #include "all-declarations-5.h"
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (void) :
+mProperty_mUnifiedDeclarationList (),
+mProperty_mDeclarationList (),
+mProperty_mOutletClassDeclarationList (),
+mProperty_mBindingSpecificationListMap (),
+mProperty_mPreferences (),
+mProperty_mXcodeProject () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_astDeclarationStruct::~ GALGAS_astDeclarationStruct (void) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (const GALGAS_declarationListAST & inOperand0,
+                                                          const GALGAS_astDeclarationListEX & inOperand1,
+                                                          const GALGAS_outletClassDeclarationListEX & inOperand2,
+                                                          const GALGAS_outletClassBindingSpecificationList & inOperand3,
+                                                          const GALGAS_prefDeclaration & inOperand4,
+                                                          const GALGAS_lstring & inOperand5) :
+mProperty_mUnifiedDeclarationList (inOperand0),
+mProperty_mDeclarationList (inOperand1),
+mProperty_mOutletClassDeclarationList (inOperand2),
+mProperty_mBindingSpecificationListMap (inOperand3),
+mProperty_mPreferences (inOperand4),
+mProperty_mXcodeProject (inOperand5) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_default (UNUSED_LOCATION_ARGS) {
+  return GALGAS_astDeclarationStruct (GALGAS_declarationListAST::constructor_emptyList (HERE),
+                                      GALGAS_astDeclarationListEX::constructor_emptyList (HERE),
+                                      GALGAS_outletClassDeclarationListEX::constructor_emptyList (HERE),
+                                      GALGAS_outletClassBindingSpecificationList::constructor_emptyList (HERE),
+                                      GALGAS_prefDeclaration::constructor_default (HERE),
+                                      GALGAS_lstring::constructor_default (HERE)) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_new (const GALGAS_declarationListAST & inOperand0,
+                                                                          const GALGAS_astDeclarationListEX & inOperand1,
+                                                                          const GALGAS_outletClassDeclarationListEX & inOperand2,
+                                                                          const GALGAS_outletClassBindingSpecificationList & inOperand3,
+                                                                          const GALGAS_prefDeclaration & inOperand4,
+                                                                          const GALGAS_lstring & inOperand5 
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_astDeclarationStruct result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+    result = GALGAS_astDeclarationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult GALGAS_astDeclarationStruct::objectCompare (const GALGAS_astDeclarationStruct & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mProperty_mUnifiedDeclarationList.objectCompare (inOperand.mProperty_mUnifiedDeclarationList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mDeclarationList.objectCompare (inOperand.mProperty_mDeclarationList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mOutletClassDeclarationList.objectCompare (inOperand.mProperty_mOutletClassDeclarationList) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mBindingSpecificationListMap.objectCompare (inOperand.mProperty_mBindingSpecificationListMap) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mPreferences.objectCompare (inOperand.mProperty_mPreferences) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mXcodeProject.objectCompare (inOperand.mProperty_mXcodeProject) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool GALGAS_astDeclarationStruct::isValid (void) const {
+  return mProperty_mUnifiedDeclarationList.isValid () && mProperty_mDeclarationList.isValid () && mProperty_mOutletClassDeclarationList.isValid () && mProperty_mBindingSpecificationListMap.isValid () && mProperty_mPreferences.isValid () && mProperty_mXcodeProject.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_astDeclarationStruct::drop (void) {
+  mProperty_mUnifiedDeclarationList.drop () ;
+  mProperty_mDeclarationList.drop () ;
+  mProperty_mOutletClassDeclarationList.drop () ;
+  mProperty_mBindingSpecificationListMap.drop () ;
+  mProperty_mPreferences.drop () ;
+  mProperty_mXcodeProject.drop () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_astDeclarationStruct::description (C_String & ioString,
+                                               const int32_t inIndentation) const {
+  ioString << "<struct @astDeclarationStruct:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mProperty_mUnifiedDeclarationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mDeclarationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mOutletClassDeclarationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mBindingSpecificationListMap.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mPreferences.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mXcodeProject.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_declarationListAST GALGAS_astDeclarationStruct::getter_mUnifiedDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mUnifiedDeclarationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_astDeclarationListEX GALGAS_astDeclarationStruct::getter_mDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mDeclarationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_outletClassDeclarationListEX GALGAS_astDeclarationStruct::getter_mOutletClassDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOutletClassDeclarationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_outletClassBindingSpecificationList GALGAS_astDeclarationStruct::getter_mBindingSpecificationListMap (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mBindingSpecificationListMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_prefDeclaration GALGAS_astDeclarationStruct::getter_mPreferences (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mPreferences ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_astDeclarationStruct::getter_mXcodeProject (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mXcodeProject ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                             @astDeclarationStruct type                                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_astDeclarationStruct ("astDeclarationStruct",
+                                             NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_astDeclarationStruct::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astDeclarationStruct ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_astDeclarationStruct::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_astDeclarationStruct (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::extractObject (const GALGAS_object & inObject,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_astDeclarationStruct result ;
+  const GALGAS_astDeclarationStruct * p = (const GALGAS_astDeclarationStruct *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_astDeclarationStruct *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astDeclarationStruct", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Object comparison                                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -920,22 +1125,23 @@ C_PrologueEpilogue gGetter_enumerationDeclarationAST_lkey (defineExtensionGetter
 
 static void extensionMethod_enumerationDeclarationAST_firstAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
                                                                           GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                                                          GALGAS_generationStruct & /* ioArgument_ioGeneration */,
+                                                                          GALGAS_generationStruct & ioArgument_ioGeneration,
                                                                           C_Compiler * inCompiler
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_enumerationDeclarationAST * object = (const cPtr_enumerationDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_enumerationDeclarationAST) ;
-  GALGAS_enumConstantMap var_enumConstantMap_2953 = GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 73)) ;
-  cEnumerator_lstringlist enumerator_2993 (object->mProperty_mEnumConstantNameList, kENUMERATION_UP) ;
-  while (enumerator_2993.hasCurrentObject ()) {
+  GALGAS_enumConstantMap var_enumConstantMap_2946 = GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 73)) ;
+  cEnumerator_lstringlist enumerator_2986 (object->mProperty_mEnumConstantNameList, kENUMERATION_UP) ;
+  while (enumerator_2986.hasCurrentObject ()) {
     {
-    var_enumConstantMap_2953.setter_insertKey (enumerator_2993.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 75)) ;
+    var_enumConstantMap_2946.setter_insertKey (enumerator_2986.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 75)) ;
     }
-    enumerator_2993.gotoNextObject () ;
+    enumerator_2986.gotoNextObject () ;
   }
   {
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (object->mProperty_mClassName, GALGAS_classKind::constructor_atomic (GALGAS_typeKind::constructor_enumType (object->mProperty_mClassName.getter_string (SOURCE_FILE ("enumeration.galgas", 79)), var_enumConstantMap_2953  COMMA_SOURCE_FILE ("enumeration.galgas", 79))  COMMA_SOURCE_FILE ("enumeration.galgas", 79)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 80)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 81)), GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("enumeration.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 77)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (object->mProperty_mClassName, GALGAS_classKind::constructor_atomic (GALGAS_typeKind::constructor_enumType (object->mProperty_mClassName.getter_string (SOURCE_FILE ("enumeration.galgas", 79)), var_enumConstantMap_2946  COMMA_SOURCE_FILE ("enumeration.galgas", 79))  COMMA_SOURCE_FILE ("enumeration.galgas", 79)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 80)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 81)), GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("enumeration.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 77)) ;
   }
+  ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_enumForGeneration::constructor_new (object->mProperty_mClassName.getter_string (SOURCE_FILE ("enumeration.galgas", 86)), object->mProperty_mEnumConstantNameList  COMMA_SOURCE_FILE ("enumeration.galgas", 85))  COMMA_SOURCE_FILE ("enumeration.galgas", 85)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -948,121 +1154,6 @@ static void defineExtensionMethod_enumerationDeclarationAST_firstAnalysisPhase (
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 C_PrologueEpilogue gMethod_enumerationDeclarationAST_firstAnalysisPhase (defineExtensionMethod_enumerationDeclarationAST_firstAnalysisPhase, NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                           Overriding extension method '@enumDeclarationEX typeInventory'                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void extensionMethod_enumDeclarationEX_typeInventory (const cPtr_astDeclaration * inObject,
-                                                             GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_enumDeclarationEX * object = (const cPtr_enumDeclarationEX *) inObject ;
-  macroValidSharedObject (object, cPtr_enumDeclarationEX) ;
-  GALGAS_enumConstantMap var_enumConstantMap_3800 = GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 104)) ;
-  cEnumerator_lstringlist enumerator_3840 (object->mProperty_mEnumConstantNameList, kENUMERATION_UP) ;
-  while (enumerator_3840.hasCurrentObject ()) {
-    {
-    var_enumConstantMap_3800.setter_insertKey (enumerator_3840.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 106)) ;
-    }
-    enumerator_3840.gotoNextObject () ;
-  }
-  {
-  ioArgument_ioUnifiedTypeMap.setter_insertKey (object->mProperty_mEnumTypeName, GALGAS_typeKind::constructor_enumType (object->mProperty_mEnumTypeName.getter_string (HERE), var_enumConstantMap_3800  COMMA_SOURCE_FILE ("enumeration.galgas", 110)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 108)) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void defineExtensionMethod_enumDeclarationEX_typeInventory (void) {
-  enterExtensionMethod_typeInventory (kTypeDescriptor_GALGAS_enumDeclarationEX.mSlotID,
-                                      extensionMethod_enumDeclarationEX_typeInventory) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_enumDeclarationEX_typeInventory (defineExtensionMethod_enumDeclarationEX_typeInventory, NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//          Overriding extension method '@enumDeclarationEX buildObservablePropertyMapsFromStoredProperties'           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void extensionMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties (const cPtr_astDeclaration * /* inObject */,
-                                                                                               const GALGAS_unifiedTypeMap /* constinArgument_inUnifiedTypeMap */,
-                                                                                               GALGAS_semanticContextEX & /* ioArgument_ioSemanticContext */,
-                                                                                               C_Compiler * /* inCompiler */
-                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void defineExtensionMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties (void) {
-  enterExtensionMethod_buildObservablePropertyMapsFromStoredProperties (kTypeDescriptor_GALGAS_enumDeclarationEX.mSlotID,
-                                                                        extensionMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties (defineExtensionMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties, NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                       Overriding extension method '@enumDeclarationEX solveSecondaryProperty'                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void extensionMethod_enumDeclarationEX_solveSecondaryProperty (const cPtr_astDeclaration * /* inObject */,
-                                                                      GALGAS_semanticContextEX & /* ioArgument_ioSemanticContext */,
-                                                                      const GALGAS_unifiedTypeMap /* constinArgument_mUnifiedTypeMap */,
-                                                                      const GALGAS_secondaryPropertyList /* constinArgument_inPropertiesToSolve */,
-                                                                      GALGAS_secondaryPropertyList & outArgument_outUnsolvedProperties,
-                                                                      GALGAS_simpleStoredPropertyListForGenerationEX & /* ioArgument_ioSimpleStoredPropertyListForGeneration */,
-                                                                      C_Compiler * /* inCompiler */
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("enumeration.galgas", 134)) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void defineExtensionMethod_enumDeclarationEX_solveSecondaryProperty (void) {
-  enterExtensionMethod_solveSecondaryProperty (kTypeDescriptor_GALGAS_enumDeclarationEX.mSlotID,
-                                               extensionMethod_enumDeclarationEX_solveSecondaryProperty) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_enumDeclarationEX_solveSecondaryProperty (defineExtensionMethod_enumDeclarationEX_solveSecondaryProperty, NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                         Overriding extension method '@enumDeclarationEX semanticAnalysisEX'                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void extensionMethod_enumDeclarationEX_semanticAnalysisEX (const cPtr_astDeclaration * inObject,
-                                                                  const GALGAS_semanticContextEX /* constinArgument_inSemanticContext */,
-                                                                  GALGAS_generationStruct & ioArgument_ioGeneration,
-                                                                  C_Compiler * /* inCompiler */
-                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_enumDeclarationEX * object = (const cPtr_enumDeclarationEX *) inObject ;
-  macroValidSharedObject (object, cPtr_enumDeclarationEX) ;
-  ioArgument_ioGeneration.mProperty_mEnumListForGeneration.addAssign_operation (object->mProperty_mEnumTypeName.getter_string (HERE), object->mProperty_mEnumConstantNameList  COMMA_SOURCE_FILE ("enumeration.galgas", 143)) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void defineExtensionMethod_enumDeclarationEX_semanticAnalysisEX (void) {
-  enterExtensionMethod_semanticAnalysisEX (kTypeDescriptor_GALGAS_enumDeclarationEX.mSlotID,
-                                           extensionMethod_enumDeclarationEX_semanticAnalysisEX) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_enumDeclarationEX_semanticAnalysisEX (defineExtensionMethod_enumDeclarationEX_semanticAnalysisEX, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -1350,30 +1441,126 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               Routine 'generateEnums'                                               *
+//                            Overriding extension method '@enumForGeneration generateCode'                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void routine_generateEnums (const GALGAS_enumListForGeneration constinArgument_inEnumListForGeneration,
-                            const GALGAS_string constinArgument_inOutputDirectory,
-                            GALGAS_stringset & ioArgument_ioGeneratedFileSet,
-                            C_Compiler * inCompiler
-                            COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_enumListForGeneration enumerator_6547 (constinArgument_inEnumListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_6547.hasCurrentObject ()) {
-    const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_6547.current_mEnumConstantList (HERE).getter_length (SOURCE_FILE ("enumeration.galgas", 177)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-    if (kBoolTrue == test_0) {
-      GALGAS_string var_s_6645 = GALGAS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, enumerator_6547.current_mEnumName (HERE), enumerator_6547.current_mEnumConstantList (HERE) COMMA_SOURCE_FILE ("enumeration.galgas", 178))) ;
-      GALGAS_string var_fileName_6778 = GALGAS_string ("entity-").add_operation (enumerator_6547.current_mEnumName (HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 182)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 182)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_6778  COMMA_SOURCE_FILE ("enumeration.galgas", 183)) ;
-      {
-      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6778, var_s_6645, inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 184)) ;
-      }
+static void extensionMethod_enumForGeneration_generateCode (const cPtr_abstractFileGeneration * inObject,
+                                                            const GALGAS_string constinArgument_inOutputDirectory,
+                                                            GALGAS_stringset & ioArgument_ioGeneratedFileSet,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_enumForGeneration * object = (const cPtr_enumForGeneration *) inObject ;
+  macroValidSharedObject (object, cPtr_enumForGeneration) ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, object->mProperty_mEnumConstantList.getter_length (SOURCE_FILE ("enumeration.galgas", 116)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  if (kBoolTrue == test_0) {
+    GALGAS_string var_s_4373 = GALGAS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, object->mProperty_mEnumName, object->mProperty_mEnumConstantList COMMA_SOURCE_FILE ("enumeration.galgas", 117))) ;
+    GALGAS_string var_fileName_4498 = GALGAS_string ("enum-").add_operation (object->mProperty_mEnumName, inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 121)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 121)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_4498  COMMA_SOURCE_FILE ("enumeration.galgas", 122)) ;
+    {
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_4498, var_s_4373, inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 123)) ;
     }
-    enumerator_6547.gotoNextObject () ;
   }
 }
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_enumForGeneration_generateCode (void) {
+  enterExtensionMethod_generateCode (kTypeDescriptor_GALGAS_enumForGeneration.mSlotID,
+                                     extensionMethod_enumForGeneration_generateCode) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_enumForGeneration_generateCode (defineExtensionMethod_enumForGeneration_generateCode, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                           Overriding extension method '@enumDeclarationEX typeInventory'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_enumDeclarationEX_typeInventory (const cPtr_astDeclaration * inObject,
+                                                             GALGAS_unifiedTypeMap & ioArgument_ioUnifiedTypeMap,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_enumDeclarationEX * object = (const cPtr_enumDeclarationEX *) inObject ;
+  macroValidSharedObject (object, cPtr_enumDeclarationEX) ;
+  GALGAS_enumConstantMap var_enumConstantMap_5240 = GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 149)) ;
+  cEnumerator_lstringlist enumerator_5280 (object->mProperty_mEnumConstantNameList, kENUMERATION_UP) ;
+  while (enumerator_5280.hasCurrentObject ()) {
+    {
+    var_enumConstantMap_5240.setter_insertKey (enumerator_5280.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 151)) ;
+    }
+    enumerator_5280.gotoNextObject () ;
+  }
+  {
+  ioArgument_ioUnifiedTypeMap.setter_insertKey (object->mProperty_mEnumTypeName, GALGAS_typeKind::constructor_enumType (object->mProperty_mEnumTypeName.getter_string (HERE), var_enumConstantMap_5240  COMMA_SOURCE_FILE ("enumeration.galgas", 155)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("enumeration.galgas", 156)), inCompiler COMMA_SOURCE_FILE ("enumeration.galgas", 153)) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_enumDeclarationEX_typeInventory (void) {
+  enterExtensionMethod_typeInventory (kTypeDescriptor_GALGAS_enumDeclarationEX.mSlotID,
+                                      extensionMethod_enumDeclarationEX_typeInventory) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_enumDeclarationEX_typeInventory (defineExtensionMethod_enumDeclarationEX_typeInventory, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//          Overriding extension method '@enumDeclarationEX buildObservablePropertyMapsFromStoredProperties'           *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties (const cPtr_astDeclaration * /* inObject */,
+                                                                                               const GALGAS_unifiedTypeMap /* constinArgument_inUnifiedTypeMap */,
+                                                                                               GALGAS_semanticContextEX & /* ioArgument_ioSemanticContext */,
+                                                                                               C_Compiler * /* inCompiler */
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties (void) {
+  enterExtensionMethod_buildObservablePropertyMapsFromStoredProperties (kTypeDescriptor_GALGAS_enumDeclarationEX.mSlotID,
+                                                                        extensionMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties (defineExtensionMethod_enumDeclarationEX_buildObservablePropertyMapsFromStoredProperties, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                       Overriding extension method '@enumDeclarationEX solveSecondaryProperty'                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_enumDeclarationEX_solveSecondaryProperty (const cPtr_astDeclaration * /* inObject */,
+                                                                      GALGAS_semanticContextEX & /* ioArgument_ioSemanticContext */,
+                                                                      const GALGAS_unifiedTypeMap /* constinArgument_mUnifiedTypeMap */,
+                                                                      const GALGAS_secondaryPropertyList /* constinArgument_inPropertiesToSolve */,
+                                                                      GALGAS_secondaryPropertyList & outArgument_outUnsolvedProperties,
+                                                                      GALGAS_simpleStoredPropertyListForGenerationEX & /* ioArgument_ioSimpleStoredPropertyListForGeneration */,
+                                                                      C_Compiler * /* inCompiler */
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outUnsolvedProperties = GALGAS_secondaryPropertyList::constructor_emptyList (SOURCE_FILE ("enumeration.galgas", 179)) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_enumDeclarationEX_solveSecondaryProperty (void) {
+  enterExtensionMethod_solveSecondaryProperty (kTypeDescriptor_GALGAS_enumDeclarationEX.mSlotID,
+                                               extensionMethod_enumDeclarationEX_solveSecondaryProperty) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_enumDeclarationEX_solveSecondaryProperty (defineExtensionMethod_enumDeclarationEX_solveSecondaryProperty, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -1718,28 +1905,28 @@ static void extensionMethod_classForGeneration_generateCode (const cPtr_abstract
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_classForGeneration * object = (const cPtr_classForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_classForGeneration) ;
-  GALGAS_atomicPropertyGenerationList var_atomicPropertyGenerationList_5354 = GALGAS_atomicPropertyGenerationList::constructor_emptyList (SOURCE_FILE ("class.galgas", 150)) ;
-  cEnumerator_propertyGenerationList enumerator_5403 (object->mProperty_mPropertyGenerationList, kENUMERATION_UP) ;
-  while (enumerator_5403.hasCurrentObject ()) {
-    const enumGalgasBool test_0 = GALGAS_bool (enumerator_5403.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).boolEnum () ;
+  GALGAS_atomicPropertyGenerationList var_atomicPropertyGenerationList_5348 = GALGAS_atomicPropertyGenerationList::constructor_emptyList (SOURCE_FILE ("class.galgas", 150)) ;
+  cEnumerator_propertyGenerationList enumerator_5397 (object->mProperty_mPropertyGenerationList, kENUMERATION_UP) ;
+  while (enumerator_5397.hasCurrentObject ()) {
+    const enumGalgasBool test_0 = GALGAS_bool (enumerator_5397.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_atomicPropertyGeneration temp_1 ;
-      if (enumerator_5403.current_mProperty (HERE).isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_atomicPropertyGeneration *> (enumerator_5403.current_mProperty (HERE).ptr ())) {
-          temp_1 = (cPtr_atomicPropertyGeneration *) enumerator_5403.current_mProperty (HERE).ptr () ;
+      if (enumerator_5397.current_mProperty (HERE).isValid ()) {
+        if (NULL != dynamic_cast <const cPtr_atomicPropertyGeneration *> (enumerator_5397.current_mProperty (HERE).ptr ())) {
+          temp_1 = (cPtr_atomicPropertyGeneration *) enumerator_5397.current_mProperty (HERE).ptr () ;
         }else{
-          inCompiler->castError ("atomicPropertyGeneration", enumerator_5403.current_mProperty (HERE).ptr ()->classDescriptor () COMMA_SOURCE_FILE ("class.galgas", 153)) ;
+          inCompiler->castError ("atomicPropertyGeneration", enumerator_5397.current_mProperty (HERE).ptr ()->classDescriptor () COMMA_SOURCE_FILE ("class.galgas", 153)) ;
         }
       }
-      var_atomicPropertyGenerationList_5354.addAssign_operation (temp_1  COMMA_SOURCE_FILE ("class.galgas", 153)) ;
+      var_atomicPropertyGenerationList_5348.addAssign_operation (temp_1  COMMA_SOURCE_FILE ("class.galgas", 153)) ;
     }
-    enumerator_5403.gotoNextObject () ;
+    enumerator_5397.gotoNextObject () ;
   }
-  GALGAS_string var_s_5560 = GALGAS_string (filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (inCompiler, object->mProperty_mClassName, object->mProperty_mPropertyGenerationList, var_atomicPropertyGenerationList_5354, object->mProperty_mExternSwiftFunctionList, object->mProperty_mExternSwiftDelegateList, GALGAS_string ("<< not handled>>") COMMA_SOURCE_FILE ("class.galgas", 156))) ;
-  GALGAS_string var_fileName_5808 = object->mProperty_mClassName.add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("class.galgas", 164)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_5808  COMMA_SOURCE_FILE ("class.galgas", 165)) ;
+  GALGAS_string var_s_5554 = GALGAS_string (filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (inCompiler, object->mProperty_mClassName, object->mProperty_mPropertyGenerationList, var_atomicPropertyGenerationList_5348, object->mProperty_mExternSwiftFunctionList, object->mProperty_mExternSwiftDelegateList, GALGAS_string ("<< not handled>>") COMMA_SOURCE_FILE ("class.galgas", 156))) ;
+  GALGAS_string var_fileName_5802 = object->mProperty_mClassName.add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("class.galgas", 164)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_5802  COMMA_SOURCE_FILE ("class.galgas", 165)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_5808, var_s_5560, inCompiler COMMA_SOURCE_FILE ("class.galgas", 166)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_5802, var_s_5554, inCompiler COMMA_SOURCE_FILE ("class.galgas", 166)) ;
   }
 }
 

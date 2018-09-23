@@ -36,7 +36,6 @@ struct @generationStruct {
   @actionListForGeneration mActionListForGeneration
   @documentListForGeneration mDocumentListForGeneration
   @entityListForGeneration mEntityListForGeneration
-  @enumListForGeneration mEnumListForGeneration
   @arrayControllerForGenerationEX mArrayControllerListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
   @stringlist mPropertyClassList
@@ -76,11 +75,6 @@ proc generateCode
   )
   generateEntities (
     !inGeneration.mEntityListForGeneration
-    !fileOutputDirectory
-    !?generatedFileSet
-  )
-  generateEnums (
-    !inGeneration.mEnumListForGeneration
     !fileOutputDirectory
     !?generatedFileSet
   )

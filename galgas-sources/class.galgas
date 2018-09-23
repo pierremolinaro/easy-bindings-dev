@@ -127,7 +127,7 @@ private func %once externSwiftFunctionCallerSet -> @stringset outResult {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION TYPES
+#   GENERATION
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @classForGeneration : @abstractFileGeneration {

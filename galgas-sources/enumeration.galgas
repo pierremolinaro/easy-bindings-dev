@@ -47,7 +47,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $}$
-    ioDeclarationAST.mDeclarationList += !@enumDeclarationEX. new { !inIsUserDefined !enumName !enumConstants}
+    ioDeclarationAST.mDeclarationList += !@enumDeclarationEX.new { !inIsUserDefined !enumName !enumConstants}
     ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST.new {!enumName !enumConstants}
   }
 
@@ -68,7 +68,7 @@ map @enumConstantMap {
 
 override method @enumerationDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration
+       ?!@generationStruct ioGeneration
 {
   @enumConstantMap enumConstantMap = {}
   for (s) in mEnumConstantNameList do
@@ -81,6 +81,51 @@ override method @enumerationDeclarationAST firstAnalysisPhase
     !{}
     !{}
   ]
+#--- Generation
+  ioGeneration.mFileGenerationList += !@enumForGeneration.new {
+    !mClassName
+    !mEnumConstantNameList
+  }
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @enumForGeneration : @abstractFileGeneration {
+  @string mEnumName
+  @lstringlist mEnumConstantList
+}
+
+#·······················································································································
+
+private filewrapper enumGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template enumGenerationInSwift "enum.swift.galgasTemplate"
+    ?@string ENUM_TYPE_NAME
+    ?@lstringlist CONSTANT_ORDERED_LIST
+}
+
+#·······················································································································
+
+override method @enumForGeneration generateCode
+    ?let @string inOutputDirectory
+    ?!@stringset ioGeneratedFileSet
+{
+  if [mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
+    let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift
+      !mEnumName
+      !mEnumConstantList
+    ]
+    let fileName = "enum-" + mEnumName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFile
+      !inOutputDirectory
+      !fileName
+      !s
+    ]
+  end
 }
 
 
@@ -134,60 +179,6 @@ override method @enumDeclarationEX solveSecondaryProperty
   outUnsolvedProperties = {}
 }
 
-#·······················································································································
-
-override method @enumDeclarationEX semanticAnalysisEX
-  ?let @semanticContextEX unused inSemanticContext
-  ?!@generationStruct ioGeneration
-{
-  ioGeneration.mEnumListForGeneration +=
-    !mEnumTypeName.string
-    !mEnumConstantNameList
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION TYPE                       
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-list @enumListForGeneration {
-  @string mEnumName
-  @lstringlist mEnumConstantList
-}
-
-#·······················································································································
-
-private filewrapper enumGenerationTemplate in "../generation-templates" {
-}{
-}{
-  template enumGenerationInSwift "enum.swift.galgasTemplate"
-    ?@string ENUM_TYPE_NAME
-    ?@lstringlist CONSTANT_ORDERED_LIST
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION CODE                       
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-proc generateEnums
-  ?let @enumListForGeneration inEnumListForGeneration
-  ?let @string inOutputDirectory
-  ?!@stringset ioGeneratedFileSet
-{
-  for () in inEnumListForGeneration do
-    if [mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
-      let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift
-        !mEnumName
-        !mEnumConstantList
-      ]
-      let fileName = "entity-" + mEnumName + ".swift"
-      ioGeneratedFileSet += !fileName
-      [@string generateFile
-        !inOutputDirectory
-        !fileName
-        !s
-      ]
-    end
-  end
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
