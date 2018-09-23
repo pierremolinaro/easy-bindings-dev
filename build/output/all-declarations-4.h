@@ -93,11 +93,11 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 
   public : GALGAS_transientDefinitionListForGenerationEX mProperty_mTransientListForGeneration ;
 
+  public : GALGAS_entityListForGeneratingEBManagedObjectContext mProperty_mEntityListForGeneration ;
+
   public : GALGAS_actionListForGeneration mProperty_mActionListForGeneration ;
 
   public : GALGAS_documentListForGeneration mProperty_mDocumentListForGeneration ;
-
-  public : GALGAS_entityListForGeneration mProperty_mEntityListForGeneration ;
 
   public : GALGAS_arrayControllerForGenerationEX mProperty_mArrayControllerListForGeneration ;
 
@@ -125,9 +125,9 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                     const GALGAS_fileGenerationList & in_mFileGenerationList,
                                     const GALGAS_stringset & in_mNeededOutletClasses,
                                     const GALGAS_transientDefinitionListForGenerationEX & in_mTransientListForGeneration,
+                                    const GALGAS_entityListForGeneratingEBManagedObjectContext & in_mEntityListForGeneration,
                                     const GALGAS_actionListForGeneration & in_mActionListForGeneration,
                                     const GALGAS_documentListForGeneration & in_mDocumentListForGeneration,
-                                    const GALGAS_entityListForGeneration & in_mEntityListForGeneration,
                                     const GALGAS_arrayControllerForGenerationEX & in_mArrayControllerListForGeneration,
                                     const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
                                     const GALGAS_stringlist & in_mPropertyClassList,
@@ -148,9 +148,9 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                                                  const class GALGAS_fileGenerationList & inOperand1,
                                                                  const class GALGAS_stringset & inOperand2,
                                                                  const class GALGAS_transientDefinitionListForGenerationEX & inOperand3,
-                                                                 const class GALGAS_actionListForGeneration & inOperand4,
-                                                                 const class GALGAS_documentListForGeneration & inOperand5,
-                                                                 const class GALGAS_entityListForGeneration & inOperand6,
+                                                                 const class GALGAS_entityListForGeneratingEBManagedObjectContext & inOperand4,
+                                                                 const class GALGAS_actionListForGeneration & inOperand5,
+                                                                 const class GALGAS_documentListForGeneration & inOperand6,
                                                                  const class GALGAS_arrayControllerForGenerationEX & inOperand7,
                                                                  const class GALGAS_selectionControllerForGeneration & inOperand8,
                                                                  const class GALGAS_stringlist & inOperand9,
@@ -175,7 +175,7 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_documentListForGeneration getter_mDocumentListForGeneration (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneration getter_mEntityListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_entityListForGeneratingEBManagedObjectContext getter_mEntityListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_fileGenerationList getter_mFileGenerationList (LOCATION_ARGS) const ;
 
@@ -517,6 +517,156 @@ class cPtr_classForGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                             @entityForGeneration class                                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
+//--- Constructor
+  public : GALGAS_entityForGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_entityForGeneration constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_entityForGeneration * ptr (void) const { return (const cPtr_entityForGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_entityForGeneration (const cPtr_entityForGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_entityForGeneration extractObject (const GALGAS_object & inObject,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_entityForGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                    const class GALGAS_string & inOperand1,
+                                                                    const class GALGAS_observablePropertyMap & inOperand2,
+                                                                    const class GALGAS_simpleStoredPropertyListForGenerationEX & inOperand3,
+                                                                    const class GALGAS_transientDefinitionListForGenerationEX & inOperand4,
+                                                                    const class GALGAS_toOneEntityRelationshipListForGeneration & inOperand5,
+                                                                    const class GALGAS_toManyEntityRelationshipListForGeneration & inOperand6,
+                                                                    const class GALGAS_stringset & inOperand7,
+                                                                    const class GALGAS_bool & inOperand8,
+                                                                    const class GALGAS_stringset & inOperand9,
+                                                                    const class GALGAS_arrayControllerForGenerationEX & inOperand10,
+                                                                    const class GALGAS_selectionControllerForGeneration & inOperand11
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_entityForGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGenerationEX getter_mArrayControllerForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGenerationEX getter_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyMap getter_mObservablePropertyMap (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_selectionControllerForGeneration getter_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyListForGenerationEX getter_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toManyEntityRelationshipListForGeneration getter_mToManyEntityRelationshipList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toOneEntityRelationshipListForGeneration getter_mToOneEntityRelationshipList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mTransientsDeclaredInSuperEntity (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_entityForGeneration class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                    Pointer class for @entityForGeneration class                                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
+//--- Attributes
+  public : GALGAS_string mProperty_mEntityName ;
+  public : GALGAS_string mProperty_mSuperEntityName ;
+  public : GALGAS_observablePropertyMap mProperty_mObservablePropertyMap ;
+  public : GALGAS_simpleStoredPropertyListForGenerationEX mProperty_mSimpleStoredPropertyListForGeneration ;
+  public : GALGAS_transientDefinitionListForGenerationEX mProperty_mDecoratedTransientListForGeneration ;
+  public : GALGAS_toOneEntityRelationshipListForGeneration mProperty_mToOneEntityRelationshipList ;
+  public : GALGAS_toManyEntityRelationshipListForGeneration mProperty_mToManyEntityRelationshipList ;
+  public : GALGAS_stringset mProperty_mSignatureSet ;
+  public : GALGAS_bool mProperty_mIsGraphicEntity ;
+  public : GALGAS_stringset mProperty_mTransientsDeclaredInSuperEntity ;
+  public : GALGAS_arrayControllerForGenerationEX mProperty_mArrayControllerForGeneration ;
+  public : GALGAS_selectionControllerForGeneration mProperty_mSelectionControllerListForGeneration ;
+
+//--- Constructor
+  public : cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
+                                     const GALGAS_string & in_mSuperEntityName,
+                                     const GALGAS_observablePropertyMap & in_mObservablePropertyMap,
+                                     const GALGAS_simpleStoredPropertyListForGenerationEX & in_mSimpleStoredPropertyListForGeneration,
+                                     const GALGAS_transientDefinitionListForGenerationEX & in_mDecoratedTransientListForGeneration,
+                                     const GALGAS_toOneEntityRelationshipListForGeneration & in_mToOneEntityRelationshipList,
+                                     const GALGAS_toManyEntityRelationshipListForGeneration & in_mToManyEntityRelationshipList,
+                                     const GALGAS_stringset & in_mSignatureSet,
+                                     const GALGAS_bool & in_mIsGraphicEntity,
+                                     const GALGAS_stringset & in_mTransientsDeclaredInSuperEntity,
+                                     const GALGAS_arrayControllerForGenerationEX & in_mArrayControllerForGeneration,
+                                     const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration
+                                     COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_observablePropertyMap getter_mObservablePropertyMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_simpleStoredPropertyListForGenerationEX getter_mSimpleStoredPropertyListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_transientDefinitionListForGenerationEX getter_mDecoratedTransientListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_toOneEntityRelationshipListForGeneration getter_mToOneEntityRelationshipList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_toManyEntityRelationshipListForGeneration getter_mToManyEntityRelationshipList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mTransientsDeclaredInSuperEntity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerForGenerationEX getter_mArrayControllerForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_selectionControllerForGeneration getter_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

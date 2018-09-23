@@ -231,20 +231,20 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext (class C_Compiler * inCompiler,
-                                                                                 const class GALGAS_entityListForGeneration & in_ENTITY_5F_LIST
+                                                                                 const class GALGAS_entityListForGeneratingEBManagedObjectContext & in_ENTITY_5F_LIST
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             Routine 'generateEntities'                                              *
+//                                      Routine 'generateEBManagedObjectContext'                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void routine_generateEntities (const class GALGAS_entityListForGeneration constinArgument0,
-                               const class GALGAS_string constinArgument1,
-                               class GALGAS_stringset & ioArgument2,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
+void routine_generateEBManagedObjectContext (const class GALGAS_entityListForGeneratingEBManagedObjectContext constinArgument0,
+                                             const class GALGAS_string constinArgument1,
+                                             class GALGAS_stringset & ioArgument2,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

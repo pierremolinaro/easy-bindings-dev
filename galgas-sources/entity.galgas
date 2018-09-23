@@ -154,6 +154,106 @@ override method @entityDeclarationAST firstAnalysisPhase
   ]
 }
 
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   GENERATION
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @entityForGeneration : @abstractFileGeneration {
+  @string mEntityName
+  @string mSuperEntityName
+  @observablePropertyMap mObservablePropertyMap
+  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
+  @transientDefinitionListForGenerationEX mDecoratedTransientListForGeneration
+  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
+  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
+  @stringset mSignatureSet
+  @bool mIsGraphicEntity
+  @stringset mTransientsDeclaredInSuperEntity
+  @arrayControllerForGenerationEX mArrayControllerForGeneration
+  @selectionControllerForGeneration mSelectionControllerListForGeneration
+}
+
+#·······················································································································
+
+list @entityListForGeneratingEBManagedObjectContext {
+  @string mEntityName
+  @lstringlist mObsoleteEntityNames
+}
+
+#·······················································································································
+
+override method @entityForGeneration generateCode
+    ?let @string inOutputDirectory
+    ?!@stringset ioGeneratedFileSet
+{
+  let s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
+    !mEntityName
+    !mObservablePropertyMap
+    !mSimpleStoredPropertyListForGeneration
+    !mDecoratedTransientListForGeneration
+    !mToOneEntityRelationshipList
+    !mToManyEntityRelationshipList
+    !mSignatureSet
+    !mIsGraphicEntity
+    !mTransientsDeclaredInSuperEntity
+    !mArrayControllerForGeneration
+    !mSelectionControllerListForGeneration
+  ]
+  let fileName = "entity-" + mEntityName + ".swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !s
+  ]
+}
+
+#·······················································································································
+
+proc generateEBManagedObjectContext
+  ?let @entityListForGeneratingEBManagedObjectContext inEntityListForGeneration
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
+  if [inEntityListForGeneration length] > 0 then
+    let fileName = "EBManagedObjectContext.swift"
+    ioGeneratedFileSet += !fileName
+    let s = [filewrapper entityGenerationTemplate.managedObjectContext
+      !inEntityListForGeneration
+    ]
+    [@string generateFile
+      !inOutputDirectory
+      !fileName
+      !s
+    ]
+  end
+}
+
+#·······················································································································
+
+private filewrapper entityGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template entityImplementationInSwift "entity.swift.galgasTemplate"
+    ?@string ENTITY_NAME
+    ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
+    ?@simpleStoredPropertyListForGenerationEX SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
+    ?@transientDefinitionListForGenerationEX TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
+    ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
+    ?@stringset SIGNATURE_SET
+    ?@bool IS_GRAPHIC_ENTITY
+    ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
+    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
+    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
+
+  template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
+    ?@entityListForGeneratingEBManagedObjectContext ENTITY_LIST
+}
+
+
+
+
 
 
 
@@ -390,8 +490,11 @@ override method @entityDeclarationEX semanticAnalysisEX
     !inSemanticContext
     ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
   ]
-#--- Generation
+#--- Generation    
   ioGeneration.mEntityListForGeneration +=
+    !mEntityName.string
+    !mObsoleteEntityNames
+  ioGeneration.mFileGenerationList += !@entityForGeneration.new {
     !mEntityName.string
     !mSuperEntityName.string
     !observablePropertyMap
@@ -400,99 +503,11 @@ override method @entityDeclarationEX semanticAnalysisEX
     !toOneEntityRelationshipListForGeneration
     !toManyEntityRelationshipListForGeneration
     !mSignatureList
-    !mObsoleteEntityNames
     !mIsGraphicEntity
     !transientsDeclaredInSuperEntity
     !arrayControllerListForGeneration
     !selectionControllerForGeneration
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION TYPES                      
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-list @entityListForGeneration {
-  @string mEntityName
-  @string mSuperEntityName
-  @observablePropertyMap mObservablePropertyMap
-  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
-  @transientDefinitionListForGenerationEX mDecoratedTransientListForGeneration
-  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
-  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
-  @stringset mSignatureSet
-  @lstringlist mObsoleteEntityNames
-  @bool mIsGraphicEntity
-  @stringset mTransientsDeclaredInSuperEntity
-  @arrayControllerForGenerationEX mArrayControllerForGeneration
-  @selectionControllerForGeneration mSelectionControllerListForGeneration
-}
-
-#·······················································································································
-
-private filewrapper entityGenerationTemplate in "../generation-templates" {
-}{
-}{
-  template entityImplementationInSwift "entity.swift.galgasTemplate"
-    ?@string ENTITY_NAME
-    ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
-    ?@simpleStoredPropertyListForGenerationEX SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
-    ?@transientDefinitionListForGenerationEX TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
-    ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
-    ?@stringset SIGNATURE_SET
-    ?@bool IS_GRAPHIC_ENTITY
-    ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
-    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
-    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
-
-  template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
-    ?@entityListForGeneration ENTITY_LIST
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION                            
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-proc generateEntities
-  ?let @entityListForGeneration inEntityListForGeneration
-  ?let @string inOutputDirectory
-  ?!@stringset ioGeneratedFileSet
-{
-  for () in inEntityListForGeneration do
-    let s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
-      !mEntityName
-      !mObservablePropertyMap
-      !mSimpleStoredPropertyListForGeneration
-      !mDecoratedTransientListForGeneration
-      !mToOneEntityRelationshipList
-      !mToManyEntityRelationshipList
-      !mSignatureSet
-      !mIsGraphicEntity
-      !mTransientsDeclaredInSuperEntity
-      !mArrayControllerForGeneration
-      !mSelectionControllerListForGeneration
-    ]
-    let fileName = "entity-" + mEntityName + ".swift"
-    ioGeneratedFileSet += !fileName
-    [@string generateFile
-      !inOutputDirectory
-      !fileName
-      !s
-    ]
-  end
-#----- 
-  if [inEntityListForGeneration length] > 0 then
-    let fileName = "EBManagedObjectContext.swift"
-    ioGeneratedFileSet += !fileName
-    let s = [filewrapper entityGenerationTemplate.managedObjectContext
-      !inEntityListForGeneration
-    ]
-    [@string generateFile
-      !inOutputDirectory
-      !fileName
-      !s
-    ]
-  end
+  }
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
