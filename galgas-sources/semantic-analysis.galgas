@@ -34,6 +34,21 @@ getter @propertyGeneration terminationCode -> @string { result = "" }
 
 #·······················································································································
 
+getter @propertyGeneration setupFromDictionaryCode -> @string { result = "" }
+
+#·······················································································································
+
+getter @propertyGeneration saveIntoDictionaryCode -> @string { result = "" }
+
+#·······················································································································
+
+getter @propertyGeneration objectAccessibilityCode -> @string { result = "" }
+#·······················································································································
+
+getter @propertyGeneration clearObjectExplorerCode -> @string { result = "" }
+
+#·······················································································································
+
 list @propertyGenerationList {
   @propertyGeneration mProperty
 }

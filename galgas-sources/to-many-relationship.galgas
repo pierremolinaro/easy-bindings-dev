@@ -6,7 +6,7 @@ list @toManyRelationshipListEX {
   @lstring mCurrentEntityName
   @lstring mDestinationEntityName
   @lstring mToManyRelationshipName
-  @lstring mInverseRelationshipName
+  @lstring mOppositeRelationshipName
   @bool mCascading
 }
 
@@ -15,7 +15,7 @@ list @toManyRelationshipListEX {
 class @toManyRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToManyRelationshipName
-  @lstring mInverseRelationshipName
+  @lstring mOppositeRelationshipName
   @bool mCascading
 }
 
@@ -130,9 +130,94 @@ override method @toManyRelationshipAST firstAnalysisPhase
         !isEntity: true
       }
       [!?mPropertyMap insertKey !mToManyRelationshipName !kind !{}]
+    #--- Code Generation
+      mPropertyGenerationList += !@toManyPropertyGeneration.new {
+        !mToManyRelationshipName.string
+        !kind
+        !mOppositeRelationshipName
+#        !mCascading
+      }
     end
   end
 }
+
+#·······················································································································
+
+class @toManyPropertyGeneration : @propertyGeneration {
+  @propertyKind mRelationshipType
+  @string mOppositeRelationshipName
+#  @bool mCascading
+}
+
+#·······················································································································
+
+override getter @toManyPropertyGeneration declarationCode -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+  result += "  //   To many property: " + mPropertyName + "\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+  result += "  var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
+  result += "      return self." + mPropertyName + "_property.prop\n"
+  result += "  }\n\n"
+}
+
+#·······················································································································
+
+override getter @toManyPropertyGeneration configurationCode -> @string {
+  result  = "  //--- To many property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
+  if mOppositeRelationshipName != "" then
+    result += "    self." + mPropertyName + "_property.setOppositeRelationship ="
+            + " { [weak self] (_ inManagedObject :" + [mRelationshipType swiftTypeName] + "?) in\n"
+    result += "      inManagedObject?." + mOppositeRelationshipName + "_property.setProp (self)\n"
+    result += "    }\n"
+  end
+}
+
+#·······················································································································
+
+override getter @toManyPropertyGeneration setupFromDictionaryCode -> @string {
+  result  = "  //--- To many property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
+  result += "      inRelationshipName: \"" + mPropertyName + "\",\n"
+  result += "      inDictionary: inDictionary,\n"
+  result += "      managedObjectArray: &managedObjectArray\n"
+  result += "    ) as! [" + [mRelationshipType swiftTypeName] + "])\n"
+}
+
+#·······················································································································
+
+override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
+  result  = "  //--- To many property: " + mPropertyName + "\n"
+  result += "    self.store (\n"
+  result += "      managedObjectArray: " + mPropertyName + "_property.propval as NSArray,\n"
+  result += "      relationshipName: \"" + mPropertyName + "\",\n"
+  result += "      intoDictionary: ioDictionary\n"
+  result += "    )\n"
+}
+
+#·······················································································································
+
+override getter @toManyPropertyGeneration objectAccessibilityCode -> @string {
+  result  = "  //--- To many property: " + mPropertyName + "\n"
+  result += "    for managedObject : EBManagedObject in self." + mPropertyName + "_property.propval {\n"
+  result += "      objects.append (managedObject)\n"
+  result += "    }\n"
+}
+
+#·······················································································································
+
+override getter @toManyPropertyGeneration clearObjectExplorerCode -> @string {
+  result  = "  //--- To many property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
+}
+
+
+
+
+
+
 
 
 
@@ -179,7 +264,7 @@ method @toManyRelationshipListEX buildObservablePropertyMap
     case classType (*) :
       error mDestinationEntityName: "a class type cannot be used as entitytype" : graphic
     case transientPropertyExternType (*) :
-      error mInverseRelationshipName: "the opposite type cannot be used as entity type" : graphic
+      error mOppositeRelationshipName: "the opposite type cannot be used as entity type" : graphic
     case entityType (* isGraphic) : # Ok
       graphic = isGraphic
     end
@@ -187,7 +272,7 @@ method @toManyRelationshipListEX buildObservablePropertyMap
     [!?ioObservableProperties insertKey
       !mToManyRelationshipName
       !.toMany {!typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic !isEntity: true}
-      !mInverseRelationshipName.string
+      !mOppositeRelationshipName.string
       !actionMap
       !mCascading
     ]
@@ -213,40 +298,40 @@ method @toManyRelationshipListEX semanticAnalysis
     outToManyEntityRelationshipListForGeneration +=
       !mToManyRelationshipName.string
       !type
-      !mInverseRelationshipName.string
+      !mOppositeRelationshipName.string
       !destinationEntityObservablePropertyMap
       !mCascading
   #--- Check inverse relationship
-    if mInverseRelationshipName.string != "" then
+    if mOppositeRelationshipName.string != "" then
       [destinationEntityObservablePropertyMap searchForInverseRelationship
-         !mInverseRelationshipName
+         !mOppositeRelationshipName
          ?let @propertyKind oppositeKind
          ?let @string oppositeOfOpposite
          ?2*
       ]
       if [oppositeKind swiftTypeName] != mCurrentEntityName.string then
-        error mInverseRelationshipName
-        : "the type of the opposite property '" + mInverseRelationshipName
+        error mOppositeRelationshipName
+        : "the type of the opposite property '" + mOppositeRelationshipName
           + "' should be '" + mCurrentEntityName + "' (found '" + [oppositeKind swiftTypeName] + "')"
       end
       switch oppositeKind 
       case property (2*) :
-        error mInverseRelationshipName : "a property cannot be an opposite of a relationship"
+        error mOppositeRelationshipName : "a property cannot be an opposite of a relationship"
       case toMany (* accessibility 2*) :
         if [accessibility isTransient] then
-          error mInverseRelationshipName : "this relationship is transient, should be stored"
+          error mOppositeRelationshipName : "this relationship is transient, should be stored"
         end
       case toOne (* accessibility *) :
         if [accessibility isTransient] then
-          error mInverseRelationshipName : "this relationship is transient, should be stored"
+          error mOppositeRelationshipName : "this relationship is transient, should be stored"
         end
       case arrayController (3*) :
-         error mInverseRelationshipName : "an array controller cannot be an opposite of a relationship"
+         error mOppositeRelationshipName : "an array controller cannot be an opposite of a relationship"
       case selectionController (*) :
-         error mInverseRelationshipName : "a selection controller cannot be an opposite of a relationship"
+         error mOppositeRelationshipName : "a selection controller cannot be an opposite of a relationship"
       end
       if oppositeOfOpposite != mToManyRelationshipName.string then
-        error mInverseRelationshipName : "inverse relationship does not name '"
+        error mOppositeRelationshipName : "inverse relationship does not name '"
            + mToManyRelationshipName + "' as opposite"
       end
     end

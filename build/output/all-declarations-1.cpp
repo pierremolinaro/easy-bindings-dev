@@ -9,585 +9,6 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                         Class for element of '@transientDefinitionListForGenerationEX' list                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cCollectionElement_transientDefinitionListForGenerationEX : public cCollectionElement {
-  public : GALGAS_transientDefinitionListForGenerationEX_2D_element mObject ;
-
-//--- Constructors
-  public : cCollectionElement_transientDefinitionListForGenerationEX (const GALGAS_string & in_mOwnerName,
-                                                                      const GALGAS_string & in_mTransientName,
-                                                                      const GALGAS_typeKind & in_mTransientType,
-                                                                      const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
-                                                                      const GALGAS_string & in_mExternFunctionName
-                                                                      COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_transientDefinitionListForGenerationEX (const GALGAS_transientDefinitionListForGenerationEX_2D_element & inElement COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
-
-//--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement_transientDefinitionListForGenerationEX::cCollectionElement_transientDefinitionListForGenerationEX (const GALGAS_string & in_mOwnerName,
-                                                                                                                      const GALGAS_string & in_mTransientName,
-                                                                                                                      const GALGAS_typeKind & in_mTransientType,
-                                                                                                                      const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
-                                                                                                                      const GALGAS_string & in_mExternFunctionName
-                                                                                                                      COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mOwnerName, in_mTransientName, in_mTransientType, in_mDependencyList, in_mExternFunctionName) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement_transientDefinitionListForGenerationEX::cCollectionElement_transientDefinitionListForGenerationEX (const GALGAS_transientDefinitionListForGenerationEX_2D_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (inElement.mProperty_mOwnerName, inElement.mProperty_mTransientName, inElement.mProperty_mTransientType, inElement.mProperty_mDependencyList, inElement.mProperty_mExternFunctionName) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-bool cCollectionElement_transientDefinitionListForGenerationEX::isValid (void) const {
-  return mObject.isValid () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement * cCollectionElement_transientDefinitionListForGenerationEX::copy (void) {
-  cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_transientDefinitionListForGenerationEX (mObject.mProperty_mOwnerName, mObject.mProperty_mTransientName, mObject.mProperty_mTransientType, mObject.mProperty_mDependencyList, mObject.mProperty_mExternFunctionName COMMA_HERE)) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cCollectionElement_transientDefinitionListForGenerationEX::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mOwnerName" ":" ;
-  mObject.mProperty_mOwnerName.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mTransientName" ":" ;
-  mObject.mProperty_mTransientName.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mTransientType" ":" ;
-  mObject.mProperty_mTransientType.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mDependencyList" ":" ;
-  mObject.mProperty_mDependencyList.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mExternFunctionName" ":" ;
-  mObject.mProperty_mExternFunctionName.description (ioString, inIndentation) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cCollectionElement_transientDefinitionListForGenerationEX::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_transientDefinitionListForGenerationEX * operand = (cCollectionElement_transientDefinitionListForGenerationEX *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_transientDefinitionListForGenerationEX) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX::GALGAS_transientDefinitionListForGenerationEX (void) :
-AC_GALGAS_list () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX::GALGAS_transientDefinitionListForGenerationEX (const capCollectionElementArray & inSharedArray) :
-AC_GALGAS_list (inSharedArray) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX GALGAS_transientDefinitionListForGenerationEX::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_transientDefinitionListForGenerationEX  (capCollectionElementArray ()) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX GALGAS_transientDefinitionListForGenerationEX::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                                        const GALGAS_string & inOperand1,
-                                                                                                                        const GALGAS_typeKind & inOperand2,
-                                                                                                                        const GALGAS_transientDependencyListForGeneration & inOperand3,
-                                                                                                                        const GALGAS_string & inOperand4
-                                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_transientDefinitionListForGenerationEX result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_transientDefinitionListForGenerationEX (capCollectionElementArray ()) ;
-    capCollectionElement attributes ;
-    GALGAS_transientDefinitionListForGenerationEX::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE) ;
-    result.appendObject (attributes) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                               const GALGAS_string & in_mOwnerName,
-                                                                               const GALGAS_string & in_mTransientName,
-                                                                               const GALGAS_typeKind & in_mTransientType,
-                                                                               const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
-                                                                               const GALGAS_string & in_mExternFunctionName
-                                                                               COMMA_LOCATION_ARGS) {
-  cCollectionElement_transientDefinitionListForGenerationEX * p = NULL ;
-  macroMyNew (p, cCollectionElement_transientDefinitionListForGenerationEX (in_mOwnerName,
-                                                                            in_mTransientName,
-                                                                            in_mTransientType,
-                                                                            in_mDependencyList,
-                                                                            in_mExternFunctionName COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::addAssign_operation (const GALGAS_string & inOperand0,
-                                                                         const GALGAS_string & inOperand1,
-                                                                         const GALGAS_typeKind & inOperand2,
-                                                                         const GALGAS_transientDependencyListForGeneration & inOperand3,
-                                                                         const GALGAS_string & inOperand4
-                                                                         COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientDefinitionListForGenerationEX (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::setter_append (GALGAS_transientDefinitionListForGenerationEX_2D_element inElement,
-                                                                   C_Compiler * /* inCompiler */
-                                                                   COMMA_LOCATION_ARGS) {
-  if (isValid () && inElement.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientDefinitionListForGenerationEX (inElement COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::setter_insertAtIndex (const GALGAS_string inOperand0,
-                                                                          const GALGAS_string inOperand1,
-                                                                          const GALGAS_typeKind inOperand2,
-                                                                          const GALGAS_transientDependencyListForGeneration inOperand3,
-                                                                          const GALGAS_string inOperand4,
-                                                                          const GALGAS_uint inInsertionIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_transientDefinitionListForGenerationEX (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::setter_removeAtIndex (GALGAS_string & outOperand0,
-                                                                          GALGAS_string & outOperand1,
-                                                                          GALGAS_typeKind & outOperand2,
-                                                                          GALGAS_transientDependencyListForGeneration & outOperand3,
-                                                                          GALGAS_string & outOperand4,
-                                                                          const GALGAS_uint inRemoveIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-    if (NULL == p) {
-      outOperand0.drop () ;
-      outOperand1.drop () ;
-      outOperand2.drop () ;
-      outOperand3.drop () ;
-      outOperand4.drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-      outOperand0 = p->mObject.mProperty_mOwnerName ;
-      outOperand1 = p->mObject.mProperty_mTransientName ;
-      outOperand2 = p->mObject.mProperty_mTransientType ;
-      outOperand3 = p->mObject.mProperty_mDependencyList ;
-      outOperand4 = p->mObject.mProperty_mExternFunctionName ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::setter_popFirst (GALGAS_string & outOperand0,
-                                                                     GALGAS_string & outOperand1,
-                                                                     GALGAS_typeKind & outOperand2,
-                                                                     GALGAS_transientDependencyListForGeneration & outOperand3,
-                                                                     GALGAS_string & outOperand4,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-    outOperand4.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    outOperand0 = p->mObject.mProperty_mOwnerName ;
-    outOperand1 = p->mObject.mProperty_mTransientName ;
-    outOperand2 = p->mObject.mProperty_mTransientType ;
-    outOperand3 = p->mObject.mProperty_mDependencyList ;
-    outOperand4 = p->mObject.mProperty_mExternFunctionName ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::setter_popLast (GALGAS_string & outOperand0,
-                                                                    GALGAS_string & outOperand1,
-                                                                    GALGAS_typeKind & outOperand2,
-                                                                    GALGAS_transientDependencyListForGeneration & outOperand3,
-                                                                    GALGAS_string & outOperand4,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-    outOperand4.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    outOperand0 = p->mObject.mProperty_mOwnerName ;
-    outOperand1 = p->mObject.mProperty_mTransientName ;
-    outOperand2 = p->mObject.mProperty_mTransientType ;
-    outOperand3 = p->mObject.mProperty_mDependencyList ;
-    outOperand4 = p->mObject.mProperty_mExternFunctionName ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::method_first (GALGAS_string & outOperand0,
-                                                                  GALGAS_string & outOperand1,
-                                                                  GALGAS_typeKind & outOperand2,
-                                                                  GALGAS_transientDependencyListForGeneration & outOperand3,
-                                                                  GALGAS_string & outOperand4,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-    outOperand4.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    outOperand0 = p->mObject.mProperty_mOwnerName ;
-    outOperand1 = p->mObject.mProperty_mTransientName ;
-    outOperand2 = p->mObject.mProperty_mTransientType ;
-    outOperand3 = p->mObject.mProperty_mDependencyList ;
-    outOperand4 = p->mObject.mProperty_mExternFunctionName ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::method_last (GALGAS_string & outOperand0,
-                                                                 GALGAS_string & outOperand1,
-                                                                 GALGAS_typeKind & outOperand2,
-                                                                 GALGAS_transientDependencyListForGeneration & outOperand3,
-                                                                 GALGAS_string & outOperand4,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-    outOperand4.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    outOperand0 = p->mObject.mProperty_mOwnerName ;
-    outOperand1 = p->mObject.mProperty_mTransientName ;
-    outOperand2 = p->mObject.mProperty_mTransientType ;
-    outOperand3 = p->mObject.mProperty_mDependencyList ;
-    outOperand4 = p->mObject.mProperty_mExternFunctionName ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX GALGAS_transientDefinitionListForGenerationEX::add_operation (const GALGAS_transientDefinitionListForGenerationEX & inOperand,
-                                                                                                            C_Compiler * /* inCompiler */
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_transientDefinitionListForGenerationEX result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX GALGAS_transientDefinitionListForGenerationEX::getter_subListWithRange (const GALGAS_range & inRange,
-                                                                                                                      C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) const {
-  GALGAS_transientDefinitionListForGenerationEX result = GALGAS_transientDefinitionListForGenerationEX::constructor_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX GALGAS_transientDefinitionListForGenerationEX::getter_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                                                                      C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) const {
-  GALGAS_transientDefinitionListForGenerationEX result = GALGAS_transientDefinitionListForGenerationEX::constructor_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX GALGAS_transientDefinitionListForGenerationEX::getter_subListToIndex (const GALGAS_uint & inIndex,
-                                                                                                                    C_Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) const {
-  GALGAS_transientDefinitionListForGenerationEX result = GALGAS_transientDefinitionListForGenerationEX::constructor_emptyList (THERE) ;
-  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_transientDefinitionListForGenerationEX::plusAssign_operation (const GALGAS_transientDefinitionListForGenerationEX inOperand,
-                                                                          C_Compiler * /* inCompiler */
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_transientDefinitionListForGenerationEX::getter_mOwnerNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                       C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  GALGAS_string result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    result = p->mObject.mProperty_mOwnerName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_transientDefinitionListForGenerationEX::getter_mTransientNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                           C_Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  GALGAS_string result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    result = p->mObject.mProperty_mTransientName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_typeKind GALGAS_transientDefinitionListForGenerationEX::getter_mTransientTypeAtIndex (const GALGAS_uint & inIndex,
-                                                                                             C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  GALGAS_typeKind result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    result = p->mObject.mProperty_mTransientType ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDependencyListForGeneration GALGAS_transientDefinitionListForGenerationEX::getter_mDependencyListAtIndex (const GALGAS_uint & inIndex,
-                                                                                                                          C_Compiler * inCompiler
-                                                                                                                          COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  GALGAS_transientDependencyListForGeneration result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    result = p->mObject.mProperty_mDependencyList ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_transientDefinitionListForGenerationEX::getter_mExternFunctionNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_transientDefinitionListForGenerationEX * p = (cCollectionElement_transientDefinitionListForGenerationEX *) attributes.ptr () ;
-  GALGAS_string result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-    result = p->mObject.mProperty_mExternFunctionName ;
-  }
-  return result ;
-}
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumerator_transientDefinitionListForGenerationEX::cEnumerator_transientDefinitionListForGenerationEX (const GALGAS_transientDefinitionListForGenerationEX & inEnumeratedObject,
-                                                                                                        const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX_2D_element cEnumerator_transientDefinitionListForGenerationEX::current (LOCATION_ARGS) const {
-  const cCollectionElement_transientDefinitionListForGenerationEX * p = (const cCollectionElement_transientDefinitionListForGenerationEX *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-  return p->mObject ;
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cEnumerator_transientDefinitionListForGenerationEX::current_mOwnerName (LOCATION_ARGS) const {
-  const cCollectionElement_transientDefinitionListForGenerationEX * p = (const cCollectionElement_transientDefinitionListForGenerationEX *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-  return p->mObject.mProperty_mOwnerName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cEnumerator_transientDefinitionListForGenerationEX::current_mTransientName (LOCATION_ARGS) const {
-  const cCollectionElement_transientDefinitionListForGenerationEX * p = (const cCollectionElement_transientDefinitionListForGenerationEX *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-  return p->mObject.mProperty_mTransientName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_typeKind cEnumerator_transientDefinitionListForGenerationEX::current_mTransientType (LOCATION_ARGS) const {
-  const cCollectionElement_transientDefinitionListForGenerationEX * p = (const cCollectionElement_transientDefinitionListForGenerationEX *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-  return p->mObject.mProperty_mTransientType ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDependencyListForGeneration cEnumerator_transientDefinitionListForGenerationEX::current_mDependencyList (LOCATION_ARGS) const {
-  const cCollectionElement_transientDefinitionListForGenerationEX * p = (const cCollectionElement_transientDefinitionListForGenerationEX *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-  return p->mObject.mProperty_mDependencyList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cEnumerator_transientDefinitionListForGenerationEX::current_mExternFunctionName (LOCATION_ARGS) const {
-  const cCollectionElement_transientDefinitionListForGenerationEX * p = (const cCollectionElement_transientDefinitionListForGenerationEX *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_transientDefinitionListForGenerationEX) ;
-  return p->mObject.mProperty_mExternFunctionName ;
-}
-
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                    @transientDefinitionListForGenerationEX type                                     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientDefinitionListForGenerationEX ("transientDefinitionListForGenerationEX",
-                                                               NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_transientDefinitionListForGenerationEX::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientDefinitionListForGenerationEX ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_transientDefinitionListForGenerationEX::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_transientDefinitionListForGenerationEX (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDefinitionListForGenerationEX GALGAS_transientDefinitionListForGenerationEX::extractObject (const GALGAS_object & inObject,
-                                                                                                            C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_transientDefinitionListForGenerationEX result ;
-  const GALGAS_transientDefinitionListForGenerationEX * p = (const GALGAS_transientDefinitionListForGenerationEX *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientDefinitionListForGenerationEX *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientDefinitionListForGenerationEX", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                        Class for element of '@toOneEntityRelationshipListForGeneration' list                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4154,6 +3575,448 @@ GALGAS_entityObservablePropertyMap GALGAS_entityObservablePropertyMap::extractOb
       result = *p ;
     }else{
       inCompiler->castError ("entityObservablePropertyMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement_observablePropertyMap::cMapElement_observablePropertyMap (const GALGAS_lstring & inKey,
+                                                                      const GALGAS_propertyKind & in_mKind,
+                                                                      const GALGAS_string & in_mInverseRelationshipName,
+                                                                      const GALGAS_actionMap & in_mActionMap,
+                                                                      const GALGAS_bool & in_mCascade
+                                                                      COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mKind (in_mKind),
+mProperty_mInverseRelationshipName (in_mInverseRelationshipName),
+mProperty_mActionMap (in_mActionMap),
+mProperty_mCascade (in_mCascade) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool cMapElement_observablePropertyMap::isValid (void) const {
+  return mProperty_lkey.isValid () && mProperty_mKind.isValid () && mProperty_mInverseRelationshipName.isValid () && mProperty_mActionMap.isValid () && mProperty_mCascade.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement * cMapElement_observablePropertyMap::copy (void) {
+  cMapElement * result = NULL ;
+  macroMyNew (result, cMapElement_observablePropertyMap (mProperty_lkey, mProperty_mKind, mProperty_mInverseRelationshipName, mProperty_mActionMap, mProperty_mCascade COMMA_HERE)) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cMapElement_observablePropertyMap::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mKind" ":" ;
+  mProperty_mKind.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mInverseRelationshipName" ":" ;
+  mProperty_mInverseRelationshipName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mActionMap" ":" ;
+  mProperty_mActionMap.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mCascade" ":" ;
+  mProperty_mCascade.description (ioString, inIndentation) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cMapElement_observablePropertyMap::compare (const cCollectionElement * inOperand) const {
+  cMapElement_observablePropertyMap * operand = (cMapElement_observablePropertyMap *) inOperand ;
+  typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mKind.objectCompare (operand->mProperty_mKind) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mInverseRelationshipName.objectCompare (operand->mProperty_mInverseRelationshipName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mActionMap.objectCompare (operand->mProperty_mActionMap) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mCascade.objectCompare (operand->mProperty_mCascade) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap::GALGAS_observablePropertyMap (void) :
+AC_GALGAS_map () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap::GALGAS_observablePropertyMap (const GALGAS_observablePropertyMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap & GALGAS_observablePropertyMap::operator = (const GALGAS_observablePropertyMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap GALGAS_observablePropertyMap::constructor_emptyMap (LOCATION_ARGS) {
+  GALGAS_observablePropertyMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap GALGAS_observablePropertyMap::constructor_mapWithMapToOverride (const GALGAS_observablePropertyMap & inMapToOverride
+                                                                                             COMMA_LOCATION_ARGS) {
+  GALGAS_observablePropertyMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap GALGAS_observablePropertyMap::getter_overriddenMap (C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const {
+  GALGAS_observablePropertyMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_observablePropertyMap::addAssign_operation (const GALGAS_lstring & inKey,
+                                                        const GALGAS_propertyKind & inArgument0,
+                                                        const GALGAS_string & inArgument1,
+                                                        const GALGAS_actionMap & inArgument2,
+                                                        const GALGAS_bool & inArgument3,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
+  cMapElement_observablePropertyMap * p = NULL ;
+  macroMyNew (p, cMapElement_observablePropertyMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@observablePropertyMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_observablePropertyMap::setter_insertKey (GALGAS_lstring inKey,
+                                                     GALGAS_propertyKind inArgument0,
+                                                     GALGAS_string inArgument1,
+                                                     GALGAS_actionMap inArgument2,
+                                                     GALGAS_bool inArgument3,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
+  cMapElement_observablePropertyMap * p = NULL ;
+  macroMyNew (p, cMapElement_observablePropertyMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' property is already declared" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const char * kSearchErrorMessage_observablePropertyMap_searchKey = "the '%K' property is not declared" ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_observablePropertyMap::method_searchKey (GALGAS_lstring inKey,
+                                                     GALGAS_propertyKind & outArgument0,
+                                                     GALGAS_string & outArgument1,
+                                                     GALGAS_actionMap & outArgument2,
+                                                     GALGAS_bool & outArgument3,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) const {
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) performSearch (inKey,
+                                                                                                           inCompiler,
+                                                                                                           kSearchErrorMessage_observablePropertyMap_searchKey
+                                                                                                           COMMA_THERE) ;
+  if (NULL == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+    outArgument2.drop () ;
+    outArgument3.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    outArgument0 = p->mProperty_mKind ;
+    outArgument1 = p->mProperty_mInverseRelationshipName ;
+    outArgument2 = p->mProperty_mActionMap ;
+    outArgument3 = p->mProperty_mCascade ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const char * kSearchErrorMessage_observablePropertyMap_searchForInverseRelationship = "the destination entity does not define the '%K' relationship" ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_observablePropertyMap::method_searchForInverseRelationship (GALGAS_lstring inKey,
+                                                                        GALGAS_propertyKind & outArgument0,
+                                                                        GALGAS_string & outArgument1,
+                                                                        GALGAS_actionMap & outArgument2,
+                                                                        GALGAS_bool & outArgument3,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const {
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) performSearch (inKey,
+                                                                                                           inCompiler,
+                                                                                                           kSearchErrorMessage_observablePropertyMap_searchForInverseRelationship
+                                                                                                           COMMA_THERE) ;
+  if (NULL == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+    outArgument2.drop () ;
+    outArgument3.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    outArgument0 = p->mProperty_mKind ;
+    outArgument1 = p->mProperty_mInverseRelationshipName ;
+    outArgument2 = p->mProperty_mActionMap ;
+    outArgument3 = p->mProperty_mCascade ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyKind GALGAS_observablePropertyMap::getter_mKindForKey (const GALGAS_string & inKey,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) attributes ;
+  GALGAS_propertyKind result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    result = p->mProperty_mKind ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_observablePropertyMap::getter_mInverseRelationshipNameForKey (const GALGAS_string & inKey,
+                                                                                   C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) attributes ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    result = p->mProperty_mInverseRelationshipName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_actionMap GALGAS_observablePropertyMap::getter_mActionMapForKey (const GALGAS_string & inKey,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) attributes ;
+  GALGAS_actionMap result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    result = p->mProperty_mActionMap ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_observablePropertyMap::getter_mCascadeForKey (const GALGAS_string & inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) attributes ;
+  GALGAS_bool result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    result = p->mProperty_mCascade ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_observablePropertyMap::setter_setMKindForKey (GALGAS_propertyKind inAttributeValue,
+                                                          GALGAS_string inKey,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    p->mProperty_mKind = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_observablePropertyMap::setter_setMInverseRelationshipNameForKey (GALGAS_string inAttributeValue,
+                                                                             GALGAS_string inKey,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    p->mProperty_mInverseRelationshipName = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_observablePropertyMap::setter_setMActionMapForKey (GALGAS_actionMap inAttributeValue,
+                                                               GALGAS_string inKey,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    p->mProperty_mActionMap = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_observablePropertyMap::setter_setMCascadeForKey (GALGAS_bool inAttributeValue,
+                                                             GALGAS_string inKey,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_observablePropertyMap * p = (cMapElement_observablePropertyMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+    p->mProperty_mCascade = inAttributeValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cMapElement_observablePropertyMap * GALGAS_observablePropertyMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+                                                                                                     const GALGAS_string & inKey
+                                                                                                     COMMA_LOCATION_ARGS) {
+  cMapElement_observablePropertyMap * result = (cMapElement_observablePropertyMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_observablePropertyMap) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumerator_observablePropertyMap::cEnumerator_observablePropertyMap (const GALGAS_observablePropertyMap & inEnumeratedObject,
+                                                                      const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap_2D_element cEnumerator_observablePropertyMap::current (LOCATION_ARGS) const {
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+  return GALGAS_observablePropertyMap_2D_element (p->mProperty_lkey, p->mProperty_mKind, p->mProperty_mInverseRelationshipName, p->mProperty_mActionMap, p->mProperty_mCascade) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cEnumerator_observablePropertyMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyKind cEnumerator_observablePropertyMap::current_mKind (LOCATION_ARGS) const {
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+  return p->mProperty_mKind ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_observablePropertyMap::current_mInverseRelationshipName (LOCATION_ARGS) const {
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+  return p->mProperty_mInverseRelationshipName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_actionMap cEnumerator_observablePropertyMap::current_mActionMap (LOCATION_ARGS) const {
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+  return p->mProperty_mActionMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cEnumerator_observablePropertyMap::current_mCascade (LOCATION_ARGS) const {
+  const cMapElement_observablePropertyMap * p = (const cMapElement_observablePropertyMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_observablePropertyMap) ;
+  return p->mProperty_mCascade ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                             @observablePropertyMap type                                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_observablePropertyMap ("observablePropertyMap",
+                                              NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_observablePropertyMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_observablePropertyMap::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_observablePropertyMap (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_observablePropertyMap GALGAS_observablePropertyMap::extractObject (const GALGAS_object & inObject,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_observablePropertyMap result ;
+  const GALGAS_observablePropertyMap * p = (const GALGAS_observablePropertyMap *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_observablePropertyMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

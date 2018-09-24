@@ -137,7 +137,7 @@ syntax extension easyBindings_syntax {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#   SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @entityDeclarationAST firstAnalysisPhase
@@ -154,6 +154,132 @@ override method @entityDeclarationAST firstAnalysisPhase
   ]
 }
 
+#·······················································································································
+
+override method @entityDeclarationAST thirdAnalysisPhase
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration
+{
+  [ioSemanticContext.mClassMap searchKey
+    !mClassName
+    ?*
+    ?let @propertyMap propertyMap
+    ?*
+    ?let @propertyGenerationList propertyGenerationList
+  ]
+#--- Analyze simple stored properties
+#  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
+#    !ioSemanticContext.mUnifiedTypeMap
+#    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
+#  ]
+#--- Analyze transients
+#  @transientDefinitionListForGenerationEX transientDefinitionListForGeneration = {}
+#  @arrayControllerForGenerationEX arrayControllerListForGeneration = {}
+#  @selectionControllerForGeneration selectionControllerForGeneration = {}
+#  for (item) in mSecondaryPropertyList do
+#    [item secondaryPropertySemanticAnalysisEX
+#      !mEntityName.string
+#      !"" # No root entity name
+#      !{} # No root entity
+#      !inSemanticContext
+#      !observablePropertyMap
+#      !?transientDefinitionListForGeneration
+#      !?arrayControllerListForGeneration
+#      !?selectionControllerForGeneration
+#      !?ioGeneration.mNeededOutletClasses
+#    ]
+#  end
+#  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
+#  ioGeneration.mSelectionControllerListForGeneration += selectionControllerForGeneration
+#  ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
+#--- Check required transients are implemented
+  @stringset transientsDeclaredInSuperEntity = {}
+  if mIsGraphicEntity then
+    transientsDeclaredInSuperEntity += !"selectionDisplay"
+    if [propertyMap hasKey !"selectionDisplay"] then
+      [propertyMap searchKey
+        !["selectionDisplay" here]
+        ?let @propertyKind kind
+        ?*
+      ]
+      let errorLocation = [propertyMap locationForKey !"selectionDisplay"]
+      switch kind
+      case property (type accessibility) :
+        if not [accessibility isTransient] then
+          error errorLocation : "the 'selectionDisplay' property should be a transient"
+        elsif [type swiftTypeName] != "EBShape" then
+          error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+        end
+      case toMany (4*) :
+        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      case toOne (3*) :
+        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      case arrayController (3*) :
+        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      case selectionController (*) :
+        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      end
+    else
+      error mClassName : "a graphic entity should declare the 'selectionDisplay' transient, with 'EBShape' type"
+    end
+    transientsDeclaredInSuperEntity += !"objectDisplay"
+    if [propertyMap hasKey !"objectDisplay"] then
+      [propertyMap searchKey
+        !["objectDisplay" here]
+        ?let @propertyKind kind
+        ?*
+      ]
+      let errorLocation = [propertyMap locationForKey !"objectDisplay"]
+      switch kind
+      case property (type accessibility) :
+        if not [accessibility isTransient] then
+          error errorLocation : "the 'selectionDisplay' property should be a transient"
+        elsif [type swiftTypeName] != "EBShape" then
+          error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+        end
+      case toMany (4*) :
+        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      case toOne (3*) :
+        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      case arrayController (3*) :
+        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      case selectionController (*) :
+        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      end
+    else
+      error mClassName : "a graphic entity should declare the 'objectDisplay' transient, with 'EBShape' type"
+    end
+  end
+#--- Analyze toOne relationships
+#  [mToOneRelationshipList semanticAnalysis
+#    !ioSemanticContext
+#    ?let @toOneEntityRelationshipListForGeneration toOneEntityRelationshipListForGeneration
+#  ]
+##--- Analyze toMany relationships
+#  [mToManyRelationshipList semanticAnalysis
+#    !ioSemanticContext
+#    ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
+#  ]
+#--- Generation    
+  ioGeneration.mEntityListForGeneration +=
+    !mClassName.string
+    !mObsoleteEntityNames
+  ioGeneration.mFileGenerationList += !@entityForGeneration.new {
+    !mClassName.string
+    !mSuperEntityName.string
+    !propertyGenerationList
+    !{} # simpleStoredPropertyListForGeneration
+    !{} # transientDefinitionListForGeneration
+    !{} # toOneEntityRelationshipListForGeneration
+    !{} # toManyEntityRelationshipListForGeneration
+    !mSignatureList
+    !mIsGraphicEntity
+    !transientsDeclaredInSuperEntity
+    !{} # arrayControllerListForGeneration
+    !{} # selectionControllerForGeneration
+  }
+}
+
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -161,7 +287,7 @@ override method @entityDeclarationAST firstAnalysisPhase
 class @entityForGeneration : @abstractFileGeneration {
   @string mEntityName
   @string mSuperEntityName
-  @observablePropertyMap mObservablePropertyMap
+  @propertyGenerationList mPropertyGenerationList
   @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
   @transientDefinitionListForGenerationEX mDecoratedTransientListForGeneration
   @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
@@ -186,12 +312,24 @@ override method @entityForGeneration generateCode
     ?let @string inOutputDirectory
     ?!@stringset ioGeneratedFileSet
 {
+  @atomicPropertyGenerationList atomicPropertyGenerationList = {}
+  @transientPropertyGenerationList transientPropertyGenerationList = {}
+  @toOnePropertyGenerationList toOnePropertyGenerationList = {}
+  for (property) in mPropertyGenerationList do
+    if property is == @atomicPropertyGeneration then
+      atomicPropertyGenerationList += !(property as @atomicPropertyGeneration)
+    elsif property is == @transientPropertyGeneration then
+      transientPropertyGenerationList += !(property as @transientPropertyGeneration)
+    elsif property is == @toOnePropertyGeneration then
+      toOnePropertyGenerationList += !(property as @toOnePropertyGeneration)
+    end
+  end
   let s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
     !mEntityName
-    !mObservablePropertyMap
-    !mSimpleStoredPropertyListForGeneration
-    !mDecoratedTransientListForGeneration
-    !mToOneEntityRelationshipList
+    !mPropertyGenerationList
+    !atomicPropertyGenerationList
+    !transientPropertyGenerationList
+    !toOnePropertyGenerationList
     !mToManyEntityRelationshipList
     !mSignatureSet
     !mIsGraphicEntity
@@ -236,10 +374,10 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
 }{
   template entityImplementationInSwift "entity.swift.galgasTemplate"
     ?@string ENTITY_NAME
-    ?@observablePropertyMap OBSERVABLE_PROPERTY_MAP
-    ?@simpleStoredPropertyListForGenerationEX SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
-    ?@transientDefinitionListForGenerationEX TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@toOneEntityRelationshipListForGeneration TO_ONE_RELATIONSHIP_LIST
+    ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
+    ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
+    ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST
     ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
     ?@stringset SIGNATURE_SET
     ?@bool IS_GRAPHIC_ENTITY
@@ -398,10 +536,10 @@ override method @entityDeclarationEX semanticAnalysisEX
   ]
 #--- TO DO : GET OBSERVABLE PROPERTIES FROM SUPER ENTITY
 #--- Analyze simple stored properties
-  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
-    !inSemanticContext.mUnifiedTypeMap
-    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
-  ]
+#  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
+#    !inSemanticContext.mUnifiedTypeMap
+#    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
+#  ]
 #--- Analyze transients
   @transientDefinitionListForGenerationEX transientDefinitionListForGeneration = {}
   @arrayControllerForGenerationEX arrayControllerListForGeneration = {}
@@ -481,33 +619,33 @@ override method @entityDeclarationEX semanticAnalysisEX
     end
   end
 #--- Analyze toOne relationships
-  [mToOneRelationshipList semanticAnalysis
-    !inSemanticContext
-    ?let @toOneEntityRelationshipListForGeneration toOneEntityRelationshipListForGeneration
-  ]
+#  [mToOneRelationshipList semanticAnalysis
+#    !inSemanticContext
+#    ?let @toOneEntityRelationshipListForGeneration toOneEntityRelationshipListForGeneration
+#  ]
 #--- Analyze toMany relationships
-  [mToManyRelationshipList semanticAnalysis
-    !inSemanticContext
-    ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
-  ]
+#  [mToManyRelationshipList semanticAnalysis
+#    !inSemanticContext
+#    ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
+#  ]
 #--- Generation    
-  ioGeneration.mEntityListForGeneration +=
-    !mEntityName.string
-    !mObsoleteEntityNames
-  ioGeneration.mFileGenerationList += !@entityForGeneration.new {
-    !mEntityName.string
-    !mSuperEntityName.string
-    !observablePropertyMap
-    !simpleStoredPropertyListForGeneration
-    !transientDefinitionListForGeneration
-    !toOneEntityRelationshipListForGeneration
-    !toManyEntityRelationshipListForGeneration
-    !mSignatureList
-    !mIsGraphicEntity
-    !transientsDeclaredInSuperEntity
-    !arrayControllerListForGeneration
-    !selectionControllerForGeneration
-  }
+#  ioGeneration.mEntityListForGeneration +=
+#    !mEntityName.string
+#    !mObsoleteEntityNames
+#  ioGeneration.mFileGenerationList += !@entityForGeneration.new {
+#    !mEntityName.string
+#    !mSuperEntityName.string
+#    !observablePropertyMap
+#    !simpleStoredPropertyListForGeneration
+#    !transientDefinitionListForGeneration
+#    !toOneEntityRelationshipListForGeneration
+#    !toManyEntityRelationshipListForGeneration
+#    !mSignatureList
+#    !mIsGraphicEntity
+#    !transientsDeclaredInSuperEntity
+#    !arrayControllerListForGeneration
+#    !selectionControllerForGeneration
+#  }
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

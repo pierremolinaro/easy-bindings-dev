@@ -182,7 +182,7 @@ override method @transientDeclarationAST secondAnalysisPhase
     [ioSemanticContext.mClassMap searchKey !mRootEntityName ?* ?rootProperties ?2*]
   end
 #--- Current class properties
-  [ioSemanticContext.mClassMap searchKey !mClassName ?* ?let properties ?2*]
+  [ioSemanticContext.mClassMap searchKey !mClassName ?let currentClassKind ?let properties ?2*]
 #--- Analyse master properties
   @transientDependencyListForGeneration dependencies = {}
   for () in mDependencyList do
@@ -209,13 +209,6 @@ override method @transientDeclarationAST secondAnalysisPhase
       ![mObservableProperty modelStringFunctionArgument]
       !swiftTypeStringForTransientFunctionArgument
   end
-#--- Code generation
-#  ioGeneration.mTransientListForGeneration +=
-#    !mClassName
-#    !mTransientName.string
-#    !typeKind
-#    !dependencies
-#    !mExternFunctionName.string
   ioGeneration.mFileGenerationList += !@ptransientRoutineGeneration.new {
     !mClassName
     !mTransientName.string
@@ -226,12 +219,28 @@ override method @transientDeclarationAST secondAnalysisPhase
   with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
+    @bool generate
+    switch currentClassKind
+    case prefs, simpleClass :
+      generate = true
+    case document (*) :
+      generate = true
+    case atomic (*) :
+      generate = true
+    case entity (graphic):
+      if graphic then
+        generate = (mTransientName.string != "selectionDisplay") & (mTransientName.string != "objectDisplay")
+      else
+        generate = true
+      end
+    end
     mPropertyGenerationList += !@transientPropertyGeneration.new {
       !mTransientName.string
       !mClassName.string
       !typeKind
       !dependencies
       !mExternFunctionName.string
+      !generate
     }
   end
 }
@@ -245,21 +254,38 @@ class @transientPropertyGeneration : @propertyGeneration {
   @typeKind mType
   @transientDependencyListForGeneration mDependencyList
   @string mExternFunctionName
+  @bool mGenerate
+}
+
+#·······················································································································
+
+list @transientPropertyGenerationList {
+  @transientPropertyGeneration mProperty
 }
 
 #·······················································································································
 
 override getter @transientPropertyGeneration declarationCode -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Transient property: " + mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-  result += "    get {\n"
-  result += "      return self." + mPropertyName + "_property.prop\n"
-  result += "    }\n"
-  result += "  }\n\n"
+  result  = ""
+  if mGenerate then
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "  //   Transient property: " + mPropertyName + "\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var " + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
+    result += "    return self." + mPropertyName + "_property.prop\n"
+    result += "  }\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "    var " + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
+    result += "    switch self." + mPropertyName + "_property_selection {\n"
+    result += "    case .empty, .multiple :\n"
+    result += "      return nil\n"
+    result += "    case .single (let v) :\n"
+    result += "      return v\n"
+    result += "    }\n"
+    result += "  }\n\n"
+  end
 }
 
 #·······················································································································
@@ -278,6 +304,14 @@ override getter @transientPropertyGeneration configurationCode -> @string {
   end
 }
 
+#·······················································································································
+
+override getter @transientPropertyGeneration terminationCode -> @string {
+  result = ""
+  for () in mDependencyList do
+    result += "    " + [mDependency generateRemoveObserverCall] + " (self." + mPropertyName + "_property)\n"
+  end
+}
 
 
 
@@ -623,36 +657,36 @@ override method @ptransientRoutineGeneration generateCode
 
 #·······················································································································
 
-proc generateTransients
-  ?let @string inOutputDirectory
-  ?let @transientDefinitionListForGenerationEX inTransientListForGeneration
-  ?!@stringset ioGeneratedFileSet
-{
-#--------------------------- Generate transient routines
-  for () in inTransientListForGeneration do
-    if ([mDependencyList length] > 0) & (mExternFunctionName == "") then
-      let s = [filewrapper transientManager.transientComputationFunctionFile
-        !mOwnerName
-        !mTransientName
-        !mDependencyList
-        !mTransientType 
-      ]
-      let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
-      ioGeneratedFileSet += !fileName
-      [@string generateFileWithPattern
-        !startPath:inOutputDirectory
-        !fileName:fileName
-        !lineComment:"//"
-        !header:""
-        !defaultUserZone1:"\n\n" # Defaut user zone1
-        !generatedZone2:s
-        !defaultUserZone2:"\n" # Defaut user zone2
-        !generatedZone3:"}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n"
-        !makeExecutable:false
-      ]
-    end
-  end
-}
+#proc generateTransients
+#  ?let @string inOutputDirectory
+#  ?let @transientDefinitionListForGenerationEX inTransientListForGeneration
+#  ?!@stringset ioGeneratedFileSet
+#{
+##--------------------------- Generate transient routines
+#  for () in inTransientListForGeneration do
+#    if ([mDependencyList length] > 0) & (mExternFunctionName == "") then
+#      let s = [filewrapper transientManager.transientComputationFunctionFile
+#        !mOwnerName
+#        !mTransientName
+#        !mDependencyList
+#        !mTransientType 
+#      ]
+#      let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
+#      ioGeneratedFileSet += !fileName
+#      [@string generateFileWithPattern
+#        !startPath:inOutputDirectory
+#        !fileName:fileName
+#        !lineComment:"//"
+#        !header:""
+#        !defaultUserZone1:"\n\n" # Defaut user zone1
+#        !generatedZone2:s
+#        !defaultUserZone2:"\n" # Defaut user zone2
+#        !generatedZone3:"}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n"
+#        !makeExecutable:false
+#      ]
+#    end
+#  end
+#}
 
 #·······················································································································
 

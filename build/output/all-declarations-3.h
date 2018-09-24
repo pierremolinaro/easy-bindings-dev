@@ -10,6 +10,317 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                  @arrayControllerAttributListAST_2D_element struct                                  *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_arrayControllerAttributListAST_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_lstring mProperty_mAttributeName ;
+
+  public : GALGAS_abstractDefaultValue mProperty_mAttributeValue ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerAttributListAST_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : virtual ~ GALGAS_arrayControllerAttributListAST_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_arrayControllerAttributListAST_2D_element (const GALGAS_lstring & in_mAttributeName,
+                                                             const GALGAS_abstractDefaultValue & in_mAttributeValue) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerAttributListAST_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_arrayControllerAttributListAST_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                          const class GALGAS_abstractDefaultValue & inOperand1
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerAttributListAST_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mAttributeName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mAttributeValue (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerAttributListAST_2D_element class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerAttributListAST_2D_element ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                      @arrayControllerPropertyGeneration class                                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_arrayControllerPropertyGeneration : public GALGAS_propertyGeneration {
+//--- Constructor
+  public : GALGAS_arrayControllerPropertyGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_arrayControllerPropertyGeneration constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_arrayControllerPropertyGeneration * ptr (void) const { return (const cPtr_arrayControllerPropertyGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_arrayControllerPropertyGeneration (const cPtr_arrayControllerPropertyGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerPropertyGeneration extractObject (const GALGAS_object & inObject,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_arrayControllerPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                                  const class GALGAS_string & inOperand1,
+                                                                                  const class GALGAS_string & inOperand2
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerPropertyGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelString (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerPropertyGeneration class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerPropertyGeneration ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                             Pointer class for @arrayControllerPropertyGeneration class                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_arrayControllerPropertyGeneration : public cPtr_propertyGeneration {
+//--- Attributes
+  public : GALGAS_string mProperty_mModelString ;
+  public : GALGAS_string mProperty_mOwnerName ;
+
+//--- Constructor
+  public : cPtr_arrayControllerPropertyGeneration (const GALGAS_string & in_mPropertyName,
+                                                   const GALGAS_string & in_mModelString,
+                                                   const GALGAS_string & in_mOwnerName
+                                                   COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mModelString (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                              @arrayControllerFilterListForGeneration_2D_element struct                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_arrayControllerFilterListForGeneration_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_string mProperty_mFilterPropertyName ;
+
+  public : GALGAS_propertyKind mProperty_mFilterPropertyKind ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerFilterListForGeneration_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : virtual ~ GALGAS_arrayControllerFilterListForGeneration_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_arrayControllerFilterListForGeneration_2D_element (const GALGAS_string & in_mFilterPropertyName,
+                                                                     const GALGAS_propertyKind & in_mFilterPropertyKind) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerFilterListForGeneration_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_arrayControllerFilterListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
+                                                                                                  const class GALGAS_propertyKind & inOperand1
+                                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerFilterListForGeneration_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mFilterPropertyKind (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mFilterPropertyName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerFilterListForGeneration_2D_element class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerFilterListForGeneration_2D_element ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                           @arrayControllerBoundColumnListForGeneration_2D_element struct                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_string mProperty_mColumnName ;
+
+  public : GALGAS_string mProperty_mColumnOutletTypeName ;
+
+  public : GALGAS_string mProperty_mRunAction ;
+
+  public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_arrayControllerBoundColumnListForGeneration_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_arrayControllerBoundColumnListForGeneration_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : virtual ~ GALGAS_arrayControllerBoundColumnListForGeneration_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_arrayControllerBoundColumnListForGeneration_2D_element (const GALGAS_string & in_mColumnName,
+                                                                          const GALGAS_string & in_mColumnOutletTypeName,
+                                                                          const GALGAS_string & in_mRunAction,
+                                                                          const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_arrayControllerBoundColumnListForGeneration_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_arrayControllerBoundColumnListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
+                                                                                                       const class GALGAS_string & inOperand1,
+                                                                                                       const class GALGAS_string & inOperand2,
+                                                                                                       const class GALGAS_regularBindingsGenerationList & inOperand3
+                                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_arrayControllerBoundColumnListForGeneration_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnOutletTypeName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mRunAction (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_arrayControllerBoundColumnListForGeneration_2D_element class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoundColumnListForGeneration_2D_element ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                           @arrayControllerSortedColumnListForGeneration_2D_element struct                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -363,77 +674,87 @@ class GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGene
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @propertyMap_2D_element struct                                            *
+//                           Extension getter '@propertyGeneration setupFromDictionaryCode'                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_lkey ;
-
-  public : GALGAS_propertyKind mProperty_mKind ;
-
-  public : GALGAS_actionMap mProperty_mActionMap ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_propertyMap_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_propertyMap_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_propertyMap_2D_element (const GALGAS_lstring & in_lkey,
-                                          const GALGAS_propertyKind & in_mKind,
-                                          const GALGAS_actionMap & in_mActionMap) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_propertyMap_2D_element extractObject (const GALGAS_object & inObject,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_propertyMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                       const class GALGAS_propertyKind & inOperand1,
-                                                                       const class GALGAS_actionMap & inOperand2
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_propertyMap_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_actionMap getter_mActionMap (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mKind (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_propertyMap_2D_element class
-
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_setupFromDictionaryCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyMap_2D_element ;
+void enterExtensionGetter_setupFromDictionaryCode (const int32_t inClassIndex,
+                                                   enterExtensionGetter_propertyGeneration_setupFromDictionaryCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_setupFromDictionaryCode (const cPtr_propertyGeneration * inObject,
+                                                                 class C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                            Extension getter '@propertyGeneration saveIntoDictionaryCode'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_saveIntoDictionaryCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_saveIntoDictionaryCode (const int32_t inClassIndex,
+                                                  enterExtensionGetter_propertyGeneration_saveIntoDictionaryCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_saveIntoDictionaryCode (const cPtr_propertyGeneration * inObject,
+                                                                class C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                           Extension getter '@propertyGeneration objectAccessibilityCode'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_objectAccessibilityCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_objectAccessibilityCode (const int32_t inClassIndex,
+                                                   enterExtensionGetter_propertyGeneration_objectAccessibilityCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_objectAccessibilityCode (const cPtr_propertyGeneration * inObject,
+                                                                 class C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                           Extension getter '@propertyGeneration clearObjectExplorerCode'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_clearObjectExplorerCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_clearObjectExplorerCode (const int32_t inClassIndex,
+                                                   enterExtensionGetter_propertyGeneration_clearObjectExplorerCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_clearObjectExplorerCode (const cPtr_propertyGeneration * inObject,
+                                                                 class C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

@@ -212,10 +212,10 @@ extern const cDirectoryWrapper gWrapperDirectory_5_entityGenerationTemplate ;
 
 GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (class C_Compiler * inCompiler,
                                                                                         const class GALGAS_string & in_ENTITY_5F_NAME,
-                                                                                        const class GALGAS_observablePropertyMap & in_OBSERVABLE_5F_PROPERTY_5F_MAP,
-                                                                                        const class GALGAS_simpleStoredPropertyListForGenerationEX & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                        const class GALGAS_transientDefinitionListForGenerationEX & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                        const class GALGAS_toOneEntityRelationshipListForGeneration & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
+                                                                                        const class GALGAS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                        const class GALGAS_atomicPropertyGenerationList & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                        const class GALGAS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                        const class GALGAS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
                                                                                         const class GALGAS_toManyEntityRelationshipListForGeneration & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
                                                                                         const class GALGAS_stringset & in_SIGNATURE_5F_SET,
                                                                                         const class GALGAS_bool & in_IS_5F_GRAPHIC_5F_ENTITY,
@@ -340,6 +340,7 @@ extern const char * gWrapperFileContent_7_swift_5F_sources ;
 extern const char * gWrapperFileContent_8_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
 extern const char * gWrapperFileContent_10_swift_5F_sources ;
+extern const char * gWrapperFileContent_11_swift_5F_sources ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -357,6 +358,7 @@ extern const cRegularFileWrapper gWrapperFile_7_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_8_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_9_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_10_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_11_swift_5F_sources ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

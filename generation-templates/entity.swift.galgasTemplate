@@ -4,7 +4,26 @@
 
 import Cocoa
 
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : class {
+  var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]% { get }
+}
+
+%
+end
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : class {
+  var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]%? { get }
+}
+
+%
+end
+%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"Entity: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -14,105 +33,16 @@ if IS_GRAPHIC_ENTITY then
 else
   %EBManagedObject%
 end
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %,\n  %!ENTITY_NAME%_%!mStoredOrProxyPropertyName
-end
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %,\n  %!ENTITY_NAME%_%!mTransientName
+for () in PROPERTY_LIST_FOR_GENERATION do
+  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
+    %,\n         %!ENTITY_NAME%_%![mProperty mPropertyName]
+  end
 end
 % {
 
 %
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %  //····················································································································\n%
-  %  //   Accessing %!mStoredOrProxyPropertyName% stored property\n%
-  %  //····················································································································\n\n%
-  %  var %!mStoredOrProxyPropertyName% : %![mType swiftTypeName]% {\n%
-  %    get {\n%
-  %      return self.%!mStoredOrProxyPropertyName%_property.propval\n%
-  %    }\n%
-  %    set {\n%
-  %      self.%!mStoredOrProxyPropertyName%_property.setProp (newValue)\n%
-  %    }\n%
-  %  }\n\n%
-  %  var %!mStoredOrProxyPropertyName%_property_selection : EBSelection <%![mType swiftTypeName]%> {\n%
-  %    get {\n%
-  %      return self.%!mStoredOrProxyPropertyName%_property.prop\n%
-  %    }\n%
-  %  }\n%
-  if mNeedsValidation then
-    %  func %!mStoredOrProxyPropertyName%_validateAndSetProp (_ inCandidateValue : %![mType swiftTypeName]%, windowForSheet inWindow:NSWindow?) -> Bool {\n%
-    %    return self.%!mStoredOrProxyPropertyName%_property.validateAndSetProp (inCandidateValue, windowForSheet:inWindow)\n%
-    %  }\n%
-  end
-  %\n%
-end
-
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %  //····················································································································\n%
-  %  //   Accessing %!mTransientName% transient property\n%
-  %  //····················································································································\n\n%
-  %  var %!mTransientName%_property_selection : EBSelection <%![mTransientType swiftTypeName]%> {\n%
-  %    get {\n%
-  %      return self.%!mTransientName%_property.prop\n%
-  %    }\n%
-  %  }\n\n%
-  %  var %!mTransientName% : %![mTransientType swiftTypeName]%? {\n%
-  %    switch %!mTransientName%_property_selection {\n%
-  %    case .empty, .multiple :\n%
-  %      return nil\n%
-  %    case .single (let v) :\n%
-  %      return v\n%
-  %    }\n%
-  %  }\n\n%
-end
-for () in TO_MANY_RELATIONSHIP_LIST do
-  %  //····················································································································\n%
-  %  //   Accessing %!mToManyRelationshipName% toMany relationship\n%
-  %  //····················································································································\n\n%
-  %  var %!mToManyRelationshipName%_property_selection : EBSelection < [%![mRelationshipType swiftTypeName]%] > {\n%
-  %    get {\n%
-  %      return self.%!mToManyRelationshipName%_property.prop\n%
-  %    }\n%
-  %  }\n\n%
-end
-%  //····················································································································
-  //    Stored Properties
-  //····················································································································
-
-%
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %  var %!mStoredOrProxyPropertyName%_property = EBStoredProperty_%![mType swiftTypeName]% (%!mDefaultValueInSwift%)\n%
-end
-%
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-%
-
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  if [TRANSIENTS_DECLARED_IN_SUPER_ENTITY hasKey !mTransientName] then
-    %  // %!mTransientName%_property is declared in super entity\n%
-  else
-    %  var %!mTransientName%_property = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
-  end
-end
-
-%
-  //····················································································································
-  //    Relationships
-  //····················································································································
-
-%
-for () in TO_MANY_RELATIONSHIP_LIST do
-  %  var %!mToManyRelationshipName%_property = StoredArrayOf_%![mRelationshipType swiftTypeName]% ()\n%
-  % // var %!mToManyRelationshipName%_property = StoredArrayOf_%!ENTITY_NAME%_%!mToManyRelationshipName% ()\n%
-end
-for () in TO_ONE_RELATIONSHIP_LIST do
-  %  var %!mToOneRelationshipName%_property = ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% ()\n%
-  %  var %!mToOneRelationshipName%_property_selection : EBSelection <Bool> { return .single (self.%!mToOneRelationshipName%_property.propval == nil) }\n%
-
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty declarationCode]
 end
 %
   //····················································································································
@@ -140,45 +70,11 @@ end
   override init (managedObjectContext : EBManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
 %
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  if mNeedsValidation then
-%    self.%!mStoredOrProxyPropertyName%_property.setValidationFunction (self.validate_%!mStoredOrProxyPropertyName%)\n%
-  end
-end
-%  //--- Install compute functions for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  if [mDependencyList needs_unwSelf] then
-    %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
-    %      if let unwSelf = self {\n%
-    ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName !mExternFunctionName]
-    %      }else{\n%
-    %        return .empty\n%
-    %      }\n%
-    %    }\n%
-  else
-    %    self.%!mTransientName%_property.readModelFunction = {\n%
-    ![mDependencyList transientComputeFunctionCall !ENTITY_NAME !mTransientName !mExternFunctionName]
-    %    }\n%
-  end
-end
-%  //--- Install property observers for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency generateAddObserverCall]% (self.%!mTransientName%_property)\n%
-  end
-end
-%  //--- Install undoers for properties
-%
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    self.%!mStoredOrProxyPropertyName%_property.undoManager = self.undoManager ()\n%
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty configurationCode]
 end
 %  //--- Install undoers and opposite setter for relationships
 %
-for () in TO_ONE_RELATIONSHIP_LIST do
-  %    self.%!mToOneRelationshipName%_property.owner = self\n%
-end
 for () in TO_MANY_RELATIONSHIP_LIST do
   %    self.%!mToManyRelationshipName%_property.undoManager = self.undoManager ()\n%
   if mOppositeRelationshipName != "" then
@@ -199,10 +95,8 @@ end
   deinit {
   //--- Remove observers
 %
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  for () in mDependencyList do
-    %    %![mDependency generateRemoveObserverCall]% (self.%!mTransientName%_property)\n%
-  end
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty terminationCode]
 end
 %  }
 
@@ -214,23 +108,23 @@ end
     super.populateExplorerWindow (&y, view:view)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
-  %      "%!mStoredOrProxyPropertyName%",\n%
-  %      idx:self.%!mStoredOrProxyPropertyName%_property.mEasyBindingsObjectIndex,\n%
+  %      "%![mProperty mPropertyName]%",\n%
+  %      idx:self.%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
-  %      observerExplorer:&self.%!mStoredOrProxyPropertyName%_property.mObserverExplorer,\n%
-  %      valueExplorer:&self.%!mStoredOrProxyPropertyName%_property.mValueExplorer\n%
+  %      observerExplorer:&self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
+  %      valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
   %    )\n%
 end
 %    createEntryForTitle ("Properties", y:&y, view:view)\n%
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    createEntryForPropertyNamed (\n%
-  %      "%!mTransientName%",\n%
-  %      idx:self.%!mTransientName%_property.mEasyBindingsObjectIndex,\n%
+  %      "%![mProperty mPropertyName]%",\n%
+  %      idx:self.%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
-  %      observerExplorer:&self.%!mTransientName%_property.mObserverExplorer,\n%
-  %      valueExplorer:&self.%!mTransientName%_property.mValueExplorer\n%
+  %      observerExplorer:&self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
+  %      valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
   %    )\n%
 end
 %    createEntryForTitle ("Transients", y:&y, view:view)\n%
@@ -246,11 +140,11 @@ end
 %    createEntryForTitle ("ToMany Relationships", y:&y, view:view)\n%
 for () in TO_ONE_RELATIONSHIP_LIST do
   %    createEntryForToOneRelationshipNamed (\n%
-  %      "%!mToOneRelationshipName%",\n%
-  %      idx:self.%!mToOneRelationshipName%_property.mEasyBindingsObjectIndex,\n%
+  %      "%![mProperty mPropertyName]%",\n%
+  %      idx:self.%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
   %      y: &y,\n%
   %      view: view,\n%
-  %      valueExplorer:&self.%!mToOneRelationshipName%_property.mValueExplorer\n%
+  %      valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
   %    )\n%
 end%    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
 %
@@ -267,16 +161,20 @@ end
   //····················································································································
 
   override func clearObjectExplorer () {
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    self.%!mStoredOrProxyPropertyName%_property.mObserverExplorer = nil\n%
-%    self.%!mStoredOrProxyPropertyName%_property.mValueExplorer = nil\n%
+%
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty clearObjectExplorerCode]
+end
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+% //   self.%![mProperty mPropertyName]%_property.mObserverExplorer = nil\n%
+% //   self.%![mProperty mPropertyName]%_property.mValueExplorer = nil\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
-%    self.%!mToOneRelationshipName%_property.mObserverExplorer = nil\n%
-%    self.%!mToOneRelationshipName%_property.mValueExplorer = nil\n%
+% //   self.%![mProperty mPropertyName]%_property.mObserverExplorer = nil\n%
+% //   self.%![mProperty mPropertyName]%_property.mValueExplorer = nil\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    self.%!mToManyRelationshipName%_property.mValueExplorer = nil\n%
+%  //  self.%!mToManyRelationshipName%_property.mValueExplorer = nil\n%
 end
 %    super.clearObjectExplorer ()
   }
@@ -287,15 +185,20 @@ end
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    self.%!mStoredOrProxyPropertyName%_property.storeIn (dictionary: ioDictionary, forKey: "%!mStoredOrProxyPropertyName%")\n%
+%
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty saveIntoDictionaryCode]
+end
+
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+% //   self.%![mProperty mPropertyName]%_property.storeIn (dictionary: ioDictionary, forKey: "%![mProperty mPropertyName]%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    store (managedObjectArray: %!mToManyRelationshipName%_property.propval as NSArray, relationshipName:"%!mToManyRelationshipName%", intoDictionary: ioDictionary) ;\n%
+% //   store (managedObjectArray: %!mToManyRelationshipName%_property.propval as NSArray, relationshipName:"%!mToManyRelationshipName%", intoDictionary: ioDictionary) ;\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
-  if [mInverseRelationMultiplicity isSingle] then
-%    store (managedObject:self.%!mToOneRelationshipName%_property.propval, relationshipName:"%!mToOneRelationshipName%", intoDictionary: ioDictionary) ;\n%
+  if [[mProperty mInverseRelationMultiplicity] isSingle] then
+% //   store (managedObject:self.%![mProperty mPropertyName]%_property.propval, relationshipName:"%![mProperty mPropertyName]%", intoDictionary: ioDictionary) ;\n%
 end
 end
 %  }
@@ -307,24 +210,31 @@ end
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%    self.%!mStoredOrProxyPropertyName%_property.readFrom (dictionary: inDictionary, forKey:"%!mStoredOrProxyPropertyName%")\n%
+%
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty setupFromDictionaryCode]
+end
+
+
+
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%//    self.%![mProperty mPropertyName]%_property.readFrom (dictionary: inDictionary, forKey:"%![mProperty mPropertyName]%")\n%
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    self.%!mToManyRelationshipName%_property.setProp (readEntityArrayFromDictionary (
+% /*   self.%!mToManyRelationshipName%_property.setProp (readEntityArrayFromDictionary (
       inRelationshipName: "%!mToManyRelationshipName%",
       inDictionary: inDictionary,
       managedObjectArray: &managedObjectArray
-    ) as! [%![mRelationshipType swiftTypeName]%])\n%
+    ) as! [%![mRelationshipType swiftTypeName]%]) */\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
-  if [mInverseRelationMultiplicity isSingle] then
-%    self.%!mToOneRelationshipName%_property.setProp (readEntityFromDictionary (
-        inRelationshipName: "%!mToOneRelationshipName%",
+  if [[mProperty mInverseRelationMultiplicity] isSingle] then
+% /*   self.%![mProperty mPropertyName]%_property.setProp (readEntityFromDictionary (
+        inRelationshipName: "%![mProperty mPropertyName]%",
         inDictionary: inDictionary,
         managedObjectArray: &managedObjectArray
-      ) as? %![mRelationshipType swiftTypeName]%
-    )\n%
+      ) as? %![[mProperty mRelationshipType] swiftTypeName]%
+    ) */\n%
   end
 end
 %  //--------------------------- Array controllers
@@ -362,13 +272,13 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   end
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
-  if mCascading then
-    %    if let object = self.%!mToOneRelationshipName%_property.propval {\n%
-    %      self.%!mToOneRelationshipName%_property.setProp (nil)\n%
+  if [mProperty mCascading] then
+    %    if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
+    %      self.%![mProperty mPropertyName]%_property.setProp (nil)\n%
     %      self.managedObjectContext ()?.internalRemoveManagedObject (object, &ioObjectsToRemove) // Cascade removing from moc\n%
     %    }\n%
   else
-    %    self.%!mToOneRelationshipName%_property.setProp (nil) // Set relationship to nil\n%
+    %    self.%![mProperty mPropertyName]%_property.setProp (nil) // Set relationship to nil\n%
   end
 end
 %    super.cascadeObjectRemoving (&ioObjectsToRemove)
@@ -391,7 +301,6 @@ end
 %  }
 
 %end
-if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
 %  //····················································································································
   //   resetToManyRelationships
   //····················································································································
@@ -399,43 +308,46 @@ if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
   override func resetToManyRelationships () {
     super.resetToManyRelationships ()
 %
-for () in TO_MANY_RELATIONSHIP_LIST do
-%    self.%!mToManyRelationshipName%_property.setProp ([])\n%
+for () in PROPERTY_LIST_FOR_GENERATION do
+  if mProperty is == @toManyPropertyGeneration then
+    %    self.%![mProperty mPropertyName]%_property.setProp ([])\n%
+  end
 end
 %  }
 
-%end
-
-if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
-%  //····················································································································
+  //····················································································································
   //   resetToOneRelationships
   //····················································································································
 
   override func resetToOneRelationships () {
     super.resetToOneRelationships ()
 %
-for () in TO_ONE_RELATIONSHIP_LIST do
-%    self.%!mToOneRelationshipName%_property.setProp (nil)\n%
+for () in PROPERTY_LIST_FOR_GENERATION do
+  if mProperty is == @toOnePropertyGeneration then
+    %    self.%![mProperty mPropertyName]%_property.setProp (nil)\n%
+  end
 end
 %  }
 
-%end
-%  //····················································································································
+  //····················································································································
   //   accessibleObjects
   //····················································································································
 
   override func accessibleObjects (objects : inout [EBManagedObject]) {
     super.accessibleObjects (objects: &objects)
 %
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty objectAccessibilityCode]
+end
 for () in TO_MANY_RELATIONSHIP_LIST do
-%    for managedObject : EBManagedObject in self.%!mToManyRelationshipName%_property.propval {
+% /*   for managedObject : EBManagedObject in self.%!mToManyRelationshipName%_property.propval {
       objects.append (managedObject)
-    }\n%
+    } */\n%
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
-%    if let object = self.%!mToOneRelationshipName%_property.propval {\n%
+% /*   if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
 %      objects.append (object)\n%
-%    }\n%
+%    } */\n%
 end
 %  }
 
@@ -477,58 +389,58 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_N
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //····················································································································
-  //   Observers of '%!mStoredOrProxyPropertyName%' stored property
+  //   Observers of '%![mProperty mPropertyName]%' stored property
   //····················································································································
 
-  private var mObserversOf_%!mStoredOrProxyPropertyName% = EBWeakEventSet ()
+  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
-  final func addEBObserverOf_%!mStoredOrProxyPropertyName% (_ inObserver : EBEvent) {
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
-    mObserversOf_%!mStoredOrProxyPropertyName%.insert (inObserver)
+    mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mStoredOrProxyPropertyName%_property.addEBObserver (inObserver)
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mStoredOrProxyPropertyName% (_ inObserver : EBEvent) {
+  final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
-    mObserversOf_%!mStoredOrProxyPropertyName%.remove (inObserver)
+    mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
     switch prop {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mStoredOrProxyPropertyName%_property.removeEBObserver (inObserver)
+        managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func addEBObserversOf_%!mStoredOrProxyPropertyName%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      for observer in mObserversOf_%!mStoredOrProxyPropertyName% {
-        managedObject.%!mStoredOrProxyPropertyName%_property.addEBObserver (observer)
+      for observer in mObserversOf_%![mProperty mPropertyName]% {
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mStoredOrProxyPropertyName%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
-    for observer in mObserversOf_%!mStoredOrProxyPropertyName% {
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+    for observer in mObserversOf_%![mProperty mPropertyName]% {
       observer.postEvent ()
       for managedObject in inSet {
-        managedObject.%!mStoredOrProxyPropertyName%_property.removeEBObserver (observer)
+        managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
       }
     }
   }
@@ -537,57 +449,57 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //····················································································································
-  //   Observers of '%!mTransientName%' transient property
+  //   Observers of '%![mProperty mPropertyName]%' transient property
   //····················································································································
 
-  private var mObserversOf_%!mTransientName% = EBWeakEventSet ()
+  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
-  final func addEBObserverOf_%!mTransientName% (_ inObserver : EBEvent) {
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
-    mObserversOf_%!mTransientName%.insert (inObserver)
+    mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mTransientName%_property.addEBObserver (inObserver)
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mTransientName% (_ inObserver : EBEvent) {
+  final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
-    mObserversOf_%!mTransientName%.remove (inObserver)
+    mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
     switch prop {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mTransientName%_property.removeEBObserver (inObserver)
+        managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func addEBObserversOf_%!mTransientName%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      for observer in mObserversOf_%!mTransientName% {
-        managedObject.%!mTransientName%_property.addEBObserver (observer)
+      for observer in mObserversOf_%![mProperty mPropertyName]% {
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mTransientName%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      for observer in mObserversOf_%!mTransientName% {
-        managedObject.%!mTransientName%_property.removeEBObserver (observer)
+      for observer in mObserversOf_%![mProperty mPropertyName]% {
+        managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
       }
     }
   }
@@ -652,21 +564,21 @@ if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
         let removedSet = mSet.subtracting (newSet)
       //--- Remove observers of stored properties
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %        removeEBObserversOf_%!mStoredOrProxyPropertyName%_fromElementsOfSet (removedSet)\n%
+  %        removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
 end
 %      //--- Remove observers of transient properties
 %for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %        removeEBObserversOf_%!mTransientName%_fromElementsOfSet (removedSet)\n%
+  %        removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
 end
 %      //--- Added object set
         let addedSet = newSet.subtracting (mSet)
        //--- Add observers of stored properties
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %        addEBObserversOf_%!mStoredOrProxyPropertyName%_toElementsOfSet (addedSet)\n%
+  %        addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
 end
 %       //--- Add observers of transient properties
 %for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %        addEBObserversOf_%!mTransientName%_toElementsOfSet (addedSet)\n%
+  %        addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
 end
 end
 %      //--- Update object set
@@ -779,9 +691,9 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
           managedObject.setSignatureObserver (observer: nil)
           self.setOppositeRelationship? (nil)
         }
-%for () in OBSERVABLE_PROPERTY_MAP do
-  if [mKind isProperty] then # (not [mMultiplicity isCollection]) & not [mType isEntityType] then
-    %        removeEBObserversOf_%!lkey.string%_fromElementsOfSet (removedObjectSet)\n%
+%for () in PROPERTY_LIST_FOR_GENERATION do
+  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then # [mKind isProperty] then
+    %        removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
   end
 end
 %      //--- Added object set
@@ -790,9 +702,9 @@ end
           managedObject.setSignatureObserver (observer: self)
           self.setOppositeRelationship? (managedObject)
         }
-%for () in OBSERVABLE_PROPERTY_MAP do
-  if [mKind isProperty] then #(not [mMultiplicity isCollection]) & not [mType isEntityType] then
-    %        addEBObserversOf_%!lkey.string%_toElementsOfSet (addedObjectSet)\n%
+%for () in PROPERTY_LIST_FOR_GENERATION do
+  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then # [mKind isProperty] then
+    %        addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
   end
 end
 %      //--- Notify observers
@@ -885,34 +797,15 @@ end
   //····················································································································
  
 }
-
 %
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-protocol %!ENTITY_NAME%_%!mStoredOrProxyPropertyName% : class {
-  var %!mStoredOrProxyPropertyName% : %![mType swiftTypeName]% { get }
-}
-
-%
-end
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-protocol %!ENTITY_NAME%_%!mTransientName% : class {
-  var %!mTransientName% : %![mTransientType swiftTypeName]%? { get }
-}
-
-%
-end
-
 for () in TO_ONE_RELATIONSHIP_LIST do
 %
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"To one relationship: " + mToOneRelationshipName%
+//    %!"To one relationship: " + [mProperty mPropertyName]%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstractProperty {
+final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAbstractProperty {
+
   //····················································································································
   //   Value explorer
   //····················································································································
@@ -938,40 +831,40 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
     }
   }
  
-  weak private var mValue : %![mRelationshipType swiftTypeName]%? {
+  weak private var mValue : %![[mProperty mRelationshipType] swiftTypeName]%? {
     didSet {
       if let unwrappedOwner = owner, oldValue !== mValue {
       //--- Register old value in undo manager
-        unwrappedOwner.undoManager()?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object:oldValue)
+        unwrappedOwner.undoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer
         if let unwrappedExplorer = mValueExplorer {
           updateManagedObjectToOneRelationshipDisplay (object: mValue, button:unwrappedExplorer)
         }
-%   if mOppositeRelationshipName != "" then
-      if [mInverseRelationMultiplicity isCollection] then
+%   if [mProperty mOppositeRelationshipName] != "" then
+      if [[mProperty mInverseRelationMultiplicity] isCollection] then
 %      //--- Reset old opposite relation ship
         if let unwrappedOldValue = oldValue {
-          unwrappedOldValue.%!mOppositeRelationshipName%_property.remove (unwrappedOwner)
+          unwrappedOldValue.%![mProperty mOppositeRelationshipName]%_property.remove (unwrappedOwner)
         }
       //--- Set new opposite relation ship
         if let unwrappedValue = mValue {
-          unwrappedValue.%!mOppositeRelationshipName%_property.add (unwrappedOwner)
+          unwrappedValue.%![mProperty mOppositeRelationshipName]%_property.add (unwrappedOwner)
         }
 %      else
 %     //--- Reset old opposite relation ship
-        oldValue?.%!mOppositeRelationshipName% = nil
+        oldValue?.%![mProperty mOppositeRelationshipName]% = nil
       //--- Set new opposite relation ship
-        %!mToOneRelationshipName%?.%!mOppositeRelationshipName% = self
+        %![mProperty mPropertyName]%?.%![mProperty mOppositeRelationshipName]% = self
 %      end
      end
 %      //--- Remove property observers of old object
-%    for () in mDestinationEntityObservablePropertyMap do
+%    for () in [mProperty mDestinationEntityObservablePropertyMap] do
        if [mKind isProperty] then # not [mType isEntityType] then
        %        oldValue?.%!lkey.string%_property.removeEBObserversFrom (mObserversOf_%!lkey.string%)\n%
        end
      end
 %      //--- Add property observers to new object
-%    for () in mDestinationEntityObservablePropertyMap do
+%    for () in [mProperty mDestinationEntityObservablePropertyMap] do
        if [mKind isProperty] then # not [mType isEntityType] then
        %        mValue?.%!lkey.string%_property.addEBObserversFrom (mObserversOf_%!lkey.string%)\n%
        end
@@ -982,21 +875,21 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
     }
   }
 
-  var propval : %![mRelationshipType swiftTypeName]%? { get { return mValue } }
+  var propval : %![[mProperty mRelationshipType] swiftTypeName]%? { get { return mValue } }
 
-  var prop : EBSelection <%![mRelationshipType swiftTypeName]%?> { get { return .single (mValue) } }
+  var prop : EBSelection <%![[mProperty mRelationshipType] swiftTypeName]%?> { get { return .single (mValue) } }
 
-  func setProp (_ value : %![mRelationshipType swiftTypeName]%?) { mValue = value }
+  func setProp (_ value : %![[mProperty mRelationshipType] swiftTypeName]%?) { mValue = value }
 
   //····················································································································
 
-  @objc func performUndo (_ oldValue : %![mRelationshipType swiftTypeName]%?) {
+  @objc func performUndo (_ oldValue : %![[mProperty mRelationshipType] swiftTypeName]%?) {
     mValue = oldValue
   }
 
   //····················································································································
 
-  func remove (_ object : %![mRelationshipType swiftTypeName]%) {
+  func remove (_ object : %![[mProperty mRelationshipType] swiftTypeName]%) {
     if mValue === object {
       mValue = nil
     }
@@ -1004,12 +897,12 @@ final class ToOneRelationship_%!ENTITY_NAME%_%!mToOneRelationshipName% : EBAbstr
   
   //····················································································································
 
-  func add (_ object : %![mRelationshipType swiftTypeName]%) {
+  func add (_ object : %![[mProperty mRelationshipType] swiftTypeName]%) {
     mValue = object
   }
 
 %
-for () in mDestinationEntityObservablePropertyMap do
+for () in [mProperty mDestinationEntityObservablePropertyMap] do
   if [mKind isProperty] then
   %  //····················································································································\n%
   %  //   Observable property: %!lkey.string%\n%

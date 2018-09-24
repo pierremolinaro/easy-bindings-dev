@@ -58,11 +58,6 @@ proc generateCode
   for (fileGeneration) in inGeneration.mFileGenerationList do
     [fileGeneration generateCode !outputDirectory !?generatedFileSet]
   end
-  generateTransients (
-    !fileOutputDirectory
-    !inGeneration.mTransientListForGeneration
-    !?generatedFileSet
-  )
   generateActions (
     !fileOutputDirectory
     !inGeneration.mActionListForGeneration
@@ -150,7 +145,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBUndoManager"
     swiftFiles += !"EBDataScanner"
     swiftFiles += !"graphic-classes-and-utilities"
-#    swiftFiles += !"EBView"
+    swiftFiles += !"EBView"
   end
   @stringlist xibFiles = {!"EBAllocationDebug"}
   var fw = [filewrapper swift_sources]

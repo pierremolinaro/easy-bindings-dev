@@ -153,6 +153,12 @@ class @atomicPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
+list @atomicPropertyGenerationList {
+  @atomicPropertyGeneration mProperty
+}
+
+#·······················································································································
+
 override getter @atomicPropertyGeneration prefKeyDefinitionCode -> @string {
   result = "let Preferences_" + mPropertyName + " = \"Preferences:" + mPropertyName + "\"\n"
 }
@@ -180,9 +186,7 @@ override getter @atomicPropertyGeneration declarationCode -> @string {
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-  result += "    get {\n"
-  result += "      return self." + mPropertyName + "_property.prop\n"
-  result += "    }\n"
+  result += "    return self." + mPropertyName + "_property.prop\n"
   result += "  }\n\n"
   if mNeedsValidation then
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
@@ -202,9 +206,27 @@ override getter @atomicPropertyGeneration configurationCode -> @string {
   end
 }
 
+#·······················································································································
 
+override getter @atomicPropertyGeneration setupFromDictionaryCode -> @string {
+  result  = "  //--- Atomic property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey:\"" + mPropertyName + "\")\n"
+}
 
+#·······················································································································
 
+override getter @atomicPropertyGeneration saveIntoDictionaryCode -> @string {
+  result  = "  //--- Atomic property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey:\"" + mPropertyName + "\")\n"
+}
+
+#·······················································································································
+
+override getter @atomicPropertyGeneration clearObjectExplorerCode -> @string {
+  result  = "  //--- Atomic property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + "_property.mObserverExplorer = nil\n"
+  result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
+}
 
 
 

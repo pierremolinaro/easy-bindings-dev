@@ -115,18 +115,6 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            Routine 'generateTransients'                                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateTransients (const class GALGAS_string constinArgument0,
-                                 const class GALGAS_transientDefinitionListForGenerationEX constinArgument1,
-                                 class GALGAS_stringset & ioArgument2,
-                                 class C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                        Filewrapper 'validationStubExtension'                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -277,34 +265,4 @@ void routine_generateArrayControllersEX (const class GALGAS_arrayControllerForGe
                                          class GALGAS_stringset & ioArgument2,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                 Filewrapper 'selectionControllerGenerationTemplate'                                 *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplate ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//           Filewrapper template 'selectionControllerGenerationTemplate selectionControllerImplementation'            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (class C_Compiler * inCompiler,
-                                                                                                           const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                                           const class GALGAS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
-                                                                                                           const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                           const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
-                                                                                                           COMMA_LOCATION_ARGS) ;
 

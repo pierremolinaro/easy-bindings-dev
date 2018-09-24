@@ -137,10 +137,6 @@ class @classForGeneration : @abstractFileGeneration {
   @externSwiftDelegateList mExternSwiftDelegateList
 }
 
-list @atomicPropertyGenerationList {
-  @atomicPropertyGeneration mProperty
-}
-
 #·······················································································································
 
 override method @classForGeneration generateCode
