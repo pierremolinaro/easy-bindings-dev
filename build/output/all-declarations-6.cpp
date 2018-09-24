@@ -55,10 +55,13 @@ static void extensionMethod_outletClassDeclarationAST_enterInPrecedenceGraph (co
   const GALGAS_outletClassDeclarationAST temp_0 = object ;
   ioArgument_ioGraph.setter_addNode (object->mProperty_mClassName, temp_0, inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 31)) ;
   }
-  const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, object->mProperty_mSuperClassName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+  enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    {
-    ioArgument_ioGraph.setter_addEdge (object->mProperty_mClassName, object->mProperty_mSuperClassName COMMA_SOURCE_FILE ("outlet-class.galgas", 33)) ;
+    test_1 = GALGAS_bool (kIsNotEqual, object->mProperty_mSuperClassName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      {
+      ioArgument_ioGraph.setter_addEdge (object->mProperty_mClassName, object->mProperty_mSuperClassName COMMA_SOURCE_FILE ("outlet-class.galgas", 33)) ;
+      }
     }
   }
 }

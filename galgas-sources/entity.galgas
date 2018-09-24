@@ -316,12 +316,12 @@ override method @entityForGeneration generateCode
   @transientPropertyGenerationList transientPropertyGenerationList = {}
   @toOnePropertyGenerationList toOnePropertyGenerationList = {}
   for (property) in mPropertyGenerationList do
-    if property is == @atomicPropertyGeneration then
-      atomicPropertyGenerationList += !(property as @atomicPropertyGeneration)
-    elsif property is == @transientPropertyGeneration then
-      transientPropertyGenerationList += !(property as @transientPropertyGeneration)
-    elsif property is == @toOnePropertyGeneration then
-      toOnePropertyGenerationList += !(property as @toOnePropertyGeneration)
+    if let atomicProperty = property as @atomicPropertyGeneration then
+      atomicPropertyGenerationList += !atomicProperty
+    elsif let transientProperty = property as @transientPropertyGeneration then
+      transientPropertyGenerationList += !transientProperty
+    elsif let toOneProperty = property as @toOnePropertyGeneration then
+      toOnePropertyGenerationList += !toOneProperty
     end
   end
   let s = [filewrapper entityGenerationTemplate.entityImplementationInSwift

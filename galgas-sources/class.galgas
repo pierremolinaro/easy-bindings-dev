@@ -145,8 +145,8 @@ override method @classForGeneration generateCode
 {
   @atomicPropertyGenerationList atomicPropertyGenerationList = {}
   for (property) in mPropertyGenerationList do
-    if property is == @atomicPropertyGeneration then
-      atomicPropertyGenerationList += !(property as @atomicPropertyGeneration)
+    if let atomicProperty = property as @atomicPropertyGeneration then
+      atomicPropertyGenerationList += !atomicProperty
     end
   end
   let s = [filewrapper classGenerationTemplate.classImplementationInSwift

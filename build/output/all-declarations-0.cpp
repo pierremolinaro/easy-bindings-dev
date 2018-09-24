@@ -3161,10 +3161,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
     switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-declaration.galgas", 57)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_tableValueBinding_1880.objectCompare (GALGAS_tableValueBinding::constructor_noTableValueBinding (SOURCE_FILE ("outlet-declaration.galgas", 58)))).boolEnum () ;
+      enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 59)), GALGAS_string ("duplicated $tableValue binding"), fixItArray2  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 59)) ;
+        test_1 = GALGAS_bool (kIsNotEqual, var_tableValueBinding_1880.objectCompare (GALGAS_tableValueBinding::constructor_noTableValueBinding (SOURCE_FILE ("outlet-declaration.galgas", 58)))).boolEnum () ;
+        if (kBoolTrue == test_1) {
+          TC_Array <C_FixItDescription> fixItArray2 ;
+          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 59)), GALGAS_string ("duplicated $tableValue binding"), fixItArray2  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 59)) ;
+        }
       }
       GALGAS_lstring var_controllerName_2435 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-declaration.galgas", 61)) ;
@@ -3172,10 +3175,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
     } break ;
     case 3: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-declaration.galgas", 64)) ;
-      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor_1950.objectCompare (GALGAS_runActionDescriptor::constructor_noAction (SOURCE_FILE ("outlet-declaration.galgas", 65)))).boolEnum () ;
+      enumGalgasBool test_3 = kBoolTrue ;
       if (kBoolTrue == test_3) {
-        TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 66)), GALGAS_string ("duplicated $run binding"), fixItArray4  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 66)) ;
+        test_3 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor_1950.objectCompare (GALGAS_runActionDescriptor::constructor_noAction (SOURCE_FILE ("outlet-declaration.galgas", 65)))).boolEnum () ;
+        if (kBoolTrue == test_3) {
+          TC_Array <C_FixItDescription> fixItArray4 ;
+          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 66)), GALGAS_string ("duplicated $run binding"), fixItArray4  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 66)) ;
+        }
       }
       GALGAS_lstring var_runTargetName_2669 ;
       switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
@@ -3197,10 +3203,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
     } break ;
     case 4: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-declaration.galgas", 80)) ;
-      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor_2016.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 81)))).boolEnum () ;
+      enumGalgasBool test_5 = kBoolTrue ;
       if (kBoolTrue == test_5) {
-        TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 82)), GALGAS_string ("duplicated $enabled binding"), fixItArray6  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 82)) ;
+        test_5 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor_2016.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 81)))).boolEnum () ;
+        if (kBoolTrue == test_5) {
+          TC_Array <C_FixItDescription> fixItArray6 ;
+          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 82)), GALGAS_string ("duplicated $enabled binding"), fixItArray6  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 82)) ;
+        }
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_3210 ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression_3210, inCompiler) ;
@@ -3208,10 +3217,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
     } break ;
     case 5: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("outlet-declaration.galgas", 88)) ;
-      const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor_2087.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 89)))).boolEnum () ;
+      enumGalgasBool test_7 = kBoolTrue ;
       if (kBoolTrue == test_7) {
-        TC_Array <C_FixItDescription> fixItArray8 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 90)), GALGAS_string ("duplicated $hidden binding"), fixItArray8  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 90)) ;
+        test_7 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor_2087.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("outlet-declaration.galgas", 89)))).boolEnum () ;
+        if (kBoolTrue == test_7) {
+          TC_Array <C_FixItDescription> fixItArray8 ;
+          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 90)), GALGAS_string ("duplicated $hidden binding"), fixItArray8  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 90)) ;
+        }
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_3545 ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression_3545, inCompiler) ;
@@ -3258,10 +3270,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
       default:
         break ;
       }
-      const enumGalgasBool test_10 = var_graphicController_2152.getter_isNone (SOURCE_FILE ("outlet-declaration.galgas", 122)).boolEnum () ;
+      enumGalgasBool test_10 = kBoolTrue ;
       if (kBoolTrue == test_10) {
-        var_graphicController_2152 = GALGAS_graphicController::constructor_defined (var_graphicControllerName_4234, var_propertyName_4262  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 123)) ;
-      }else if (kBoolFalse == test_10) {
+        test_10 = var_graphicController_2152.getter_isNone (SOURCE_FILE ("outlet-declaration.galgas", 122)).boolEnum () ;
+        if (kBoolTrue == test_10) {
+          var_graphicController_2152 = GALGAS_graphicController::constructor_defined (var_graphicControllerName_4234, var_propertyName_4262  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 123)) ;
+        }
+      }
+      if (kBoolFalse == test_10) {
         TC_Array <C_FixItDescription> fixItArray11 ;
         inCompiler->emitSemanticError (var_graphicControllerName_4234.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 125)), GALGAS_string ("binding already defined"), fixItArray11  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 125)) ;
       }
@@ -3700,26 +3716,40 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
     case 2: {
       GALGAS_lstring var_attributeName_2196 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.galgas", 55)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_attributeName_2196.getter_string (HERE).objectCompare (GALGAS_string ("signature"))).boolEnum () ;
+      enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        const enumGalgasBool test_2 = var_needsValidation_2129.boolEnum () ;
-        if (kBoolTrue == test_2) {
-          TC_Array <C_FixItDescription> fixItArray3 ;
-          fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-          inCompiler->emitSemanticError (var_attributeName_2196.getter_location (SOURCE_FILE ("simple-stored-property.galgas", 58)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 58)) ;
-        }
-        var_usedForSignature_2095 = GALGAS_bool (true) ;
-      }else if (kBoolFalse == test_1) {
-        const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_attributeName_2196.getter_string (HERE).objectCompare (GALGAS_string ("validation"))).boolEnum () ;
-        if (kBoolTrue == test_4) {
-          const enumGalgasBool test_5 = var_needsValidation_2129.boolEnum () ;
-          if (kBoolTrue == test_5) {
-            TC_Array <C_FixItDescription> fixItArray6 ;
-            fixItArray6.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-            inCompiler->emitSemanticError (var_attributeName_2196.getter_location (SOURCE_FILE ("simple-stored-property.galgas", 63)), GALGAS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 63)) ;
+        test_1 = GALGAS_bool (kIsEqual, var_attributeName_2196.getter_string (HERE).objectCompare (GALGAS_string ("signature"))).boolEnum () ;
+        if (kBoolTrue == test_1) {
+          enumGalgasBool test_2 = kBoolTrue ;
+          if (kBoolTrue == test_2) {
+            test_2 = var_needsValidation_2129.boolEnum () ;
+            if (kBoolTrue == test_2) {
+              TC_Array <C_FixItDescription> fixItArray3 ;
+              fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
+              inCompiler->emitSemanticError (var_attributeName_2196.getter_location (SOURCE_FILE ("simple-stored-property.galgas", 58)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 58)) ;
+            }
           }
-          var_needsValidation_2129 = GALGAS_bool (true) ;
-        }else if (kBoolFalse == test_4) {
+          var_usedForSignature_2095 = GALGAS_bool (true) ;
+        }
+      }
+      if (kBoolFalse == test_1) {
+        enumGalgasBool test_4 = kBoolTrue ;
+        if (kBoolTrue == test_4) {
+          test_4 = GALGAS_bool (kIsEqual, var_attributeName_2196.getter_string (HERE).objectCompare (GALGAS_string ("validation"))).boolEnum () ;
+          if (kBoolTrue == test_4) {
+            enumGalgasBool test_5 = kBoolTrue ;
+            if (kBoolTrue == test_5) {
+              test_5 = var_needsValidation_2129.boolEnum () ;
+              if (kBoolTrue == test_5) {
+                TC_Array <C_FixItDescription> fixItArray6 ;
+                fixItArray6.appendObject (C_FixItDescription (kFixItRemove, "")) ;
+                inCompiler->emitSemanticError (var_attributeName_2196.getter_location (SOURCE_FILE ("simple-stored-property.galgas", 63)), GALGAS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 63)) ;
+              }
+            }
+            var_needsValidation_2129 = GALGAS_bool (true) ;
+          }
+        }
+        if (kBoolFalse == test_4) {
           TC_Array <C_FixItDescription> fixItArray7 ;
           appendFixItActions (fixItArray7, kFixItReplace, GALGAS_string ("@signature")) ;
           appendFixItActions (fixItArray7, kFixItReplace, GALGAS_string ("@validation")) ;
@@ -3736,9 +3766,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("simple-stored-property.galgas", 70)) ;
   GALGAS_lstring var_attributeName_2820 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("simple-stored-property.galgas", 71)) ;
-  const enumGalgasBool test_8 = var_usedForSignature_2095.boolEnum () ;
+  enumGalgasBool test_8 = kBoolTrue ;
   if (kBoolTrue == test_8) {
-    ioArgument_ioSignatureList.addAssign_operation (var_attributeName_2820.getter_string (HERE)  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 73)) ;
+    test_8 = var_usedForSignature_2095.boolEnum () ;
+    if (kBoolTrue == test_8) {
+      ioArgument_ioSignatureList.addAssign_operation (var_attributeName_2820.getter_string (HERE)  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 73)) ;
+    }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_default COMMA_SOURCE_FILE ("simple-stored-property.galgas", 75)) ;
   GALGAS_abstractDefaultValue var_defaultValue_2979 ;
@@ -3785,16 +3818,23 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
     case 2: {
       GALGAS_lstring var_attributeName_2399 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-one-relationship.galgas", 56)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_attributeName_2399.getter_string (HERE).objectCompare (GALGAS_string ("cascading"))).boolEnum () ;
+      enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        const enumGalgasBool test_2 = var_cascading_2332.boolEnum () ;
-        if (kBoolTrue == test_2) {
-          TC_Array <C_FixItDescription> fixItArray3 ;
-          fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-          inCompiler->emitSemanticError (var_attributeName_2399.getter_location (SOURCE_FILE ("to-one-relationship.galgas", 59)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 59)) ;
+        test_1 = GALGAS_bool (kIsEqual, var_attributeName_2399.getter_string (HERE).objectCompare (GALGAS_string ("cascading"))).boolEnum () ;
+        if (kBoolTrue == test_1) {
+          enumGalgasBool test_2 = kBoolTrue ;
+          if (kBoolTrue == test_2) {
+            test_2 = var_cascading_2332.boolEnum () ;
+            if (kBoolTrue == test_2) {
+              TC_Array <C_FixItDescription> fixItArray3 ;
+              fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
+              inCompiler->emitSemanticError (var_attributeName_2399.getter_location (SOURCE_FILE ("to-one-relationship.galgas", 59)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 59)) ;
+            }
+          }
+          var_cascading_2332 = GALGAS_bool (true) ;
         }
-        var_cascading_2332 = GALGAS_bool (true) ;
-      }else if (kBoolFalse == test_1) {
+      }
+      if (kBoolFalse == test_1) {
         TC_Array <C_FixItDescription> fixItArray4 ;
         appendFixItActions (fixItArray4, kFixItReplace, GALGAS_string ("@cascading")) ;
         inCompiler->emitSemanticError (var_attributeName_2399.getter_location (SOURCE_FILE ("to-one-relationship.galgas", 63)), GALGAS_string ("unknow attribute"), fixItArray4  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 63)) ;
@@ -3898,26 +3938,40 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
     case 2: {
       GALGAS_lstring var_attributeName_2297 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-many-relationship.galgas", 56)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_attributeName_2297.getter_string (HERE).objectCompare (GALGAS_string ("signature"))).boolEnum () ;
+      enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        const enumGalgasBool test_2 = var_usedForSignature_2202.boolEnum () ;
-        if (kBoolTrue == test_2) {
-          TC_Array <C_FixItDescription> fixItArray3 ;
-          fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-          inCompiler->emitSemanticError (var_attributeName_2297.getter_location (SOURCE_FILE ("to-many-relationship.galgas", 59)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 59)) ;
-        }
-        var_usedForSignature_2202 = GALGAS_bool (true) ;
-      }else if (kBoolFalse == test_1) {
-        const enumGalgasBool test_4 = GALGAS_bool (kIsEqual, var_attributeName_2297.getter_string (HERE).objectCompare (GALGAS_string ("cascading"))).boolEnum () ;
-        if (kBoolTrue == test_4) {
-          const enumGalgasBool test_5 = var_cascading_2230.boolEnum () ;
-          if (kBoolTrue == test_5) {
-            TC_Array <C_FixItDescription> fixItArray6 ;
-            fixItArray6.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-            inCompiler->emitSemanticError (var_attributeName_2297.getter_location (SOURCE_FILE ("to-many-relationship.galgas", 64)), GALGAS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 64)) ;
+        test_1 = GALGAS_bool (kIsEqual, var_attributeName_2297.getter_string (HERE).objectCompare (GALGAS_string ("signature"))).boolEnum () ;
+        if (kBoolTrue == test_1) {
+          enumGalgasBool test_2 = kBoolTrue ;
+          if (kBoolTrue == test_2) {
+            test_2 = var_usedForSignature_2202.boolEnum () ;
+            if (kBoolTrue == test_2) {
+              TC_Array <C_FixItDescription> fixItArray3 ;
+              fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
+              inCompiler->emitSemanticError (var_attributeName_2297.getter_location (SOURCE_FILE ("to-many-relationship.galgas", 59)), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 59)) ;
+            }
           }
-          var_cascading_2230 = GALGAS_bool (true) ;
-        }else if (kBoolFalse == test_4) {
+          var_usedForSignature_2202 = GALGAS_bool (true) ;
+        }
+      }
+      if (kBoolFalse == test_1) {
+        enumGalgasBool test_4 = kBoolTrue ;
+        if (kBoolTrue == test_4) {
+          test_4 = GALGAS_bool (kIsEqual, var_attributeName_2297.getter_string (HERE).objectCompare (GALGAS_string ("cascading"))).boolEnum () ;
+          if (kBoolTrue == test_4) {
+            enumGalgasBool test_5 = kBoolTrue ;
+            if (kBoolTrue == test_5) {
+              test_5 = var_cascading_2230.boolEnum () ;
+              if (kBoolTrue == test_5) {
+                TC_Array <C_FixItDescription> fixItArray6 ;
+                fixItArray6.appendObject (C_FixItDescription (kFixItRemove, "")) ;
+                inCompiler->emitSemanticError (var_attributeName_2297.getter_location (SOURCE_FILE ("to-many-relationship.galgas", 64)), GALGAS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 64)) ;
+              }
+            }
+            var_cascading_2230 = GALGAS_bool (true) ;
+          }
+        }
+        if (kBoolFalse == test_4) {
           TC_Array <C_FixItDescription> fixItArray7 ;
           appendFixItActions (fixItArray7, kFixItReplace, GALGAS_string ("@signature")) ;
           appendFixItActions (fixItArray7, kFixItReplace, GALGAS_string ("@cascading")) ;
@@ -3934,9 +3988,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-many-relationship.galgas", 71)) ;
   GALGAS_lstring var_relationshipName_2897 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.galgas", 72)) ;
-  const enumGalgasBool test_8 = var_usedForSignature_2202.boolEnum () ;
+  enumGalgasBool test_8 = kBoolTrue ;
   if (kBoolTrue == test_8) {
-    ioArgument_ioSignatureList.addAssign_operation (var_relationshipName_2897.getter_string (HERE)  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 74)) ;
+    test_8 = var_usedForSignature_2202.boolEnum () ;
+    if (kBoolTrue == test_8) {
+      ioArgument_ioSignatureList.addAssign_operation (var_relationshipName_2897.getter_string (HERE)  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 74)) ;
+    }
   }
   GALGAS_lstring var_inserseRelationshipName_3021 ;
   switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
@@ -4574,10 +4631,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
     switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("array-controller.galgas", 174)) ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor_5770.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 176)), GALGAS_string ("duplicated $run binding"), fixItArray2  COMMA_SOURCE_FILE ("array-controller.galgas", 176)) ;
+        test_1 = GALGAS_bool (kIsNotEqual, var_runActionDescriptor_5770.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        if (kBoolTrue == test_1) {
+          TC_Array <C_FixItDescription> fixItArray2 ;
+          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 176)), GALGAS_string ("duplicated $run binding"), fixItArray2  COMMA_SOURCE_FILE ("array-controller.galgas", 176)) ;
+        }
       }
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("array-controller.galgas", 178)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("array-controller.galgas", 179)) ;
@@ -4586,10 +4646,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
     } break ;
     case 3: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("array-controller.galgas", 183)) ;
-      const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor_5818.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("array-controller.galgas", 184)))).boolEnum () ;
+      enumGalgasBool test_3 = kBoolTrue ;
       if (kBoolTrue == test_3) {
-        TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 185)), GALGAS_string ("duplicated $enabled binding"), fixItArray4  COMMA_SOURCE_FILE ("array-controller.galgas", 185)) ;
+        test_3 = GALGAS_bool (kIsNotEqual, var_enabledBindingDescriptor_5818.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("array-controller.galgas", 184)))).boolEnum () ;
+        if (kBoolTrue == test_3) {
+          TC_Array <C_FixItDescription> fixItArray4 ;
+          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 185)), GALGAS_string ("duplicated $enabled binding"), fixItArray4  COMMA_SOURCE_FILE ("array-controller.galgas", 185)) ;
+        }
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_6442 ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression_6442, inCompiler) ;
@@ -4597,10 +4660,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
     } break ;
     case 4: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("array-controller.galgas", 191)) ;
-      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor_5889.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("array-controller.galgas", 192)))).boolEnum () ;
+      enumGalgasBool test_5 = kBoolTrue ;
       if (kBoolTrue == test_5) {
-        TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 193)), GALGAS_string ("duplicated $hidden binding"), fixItArray6  COMMA_SOURCE_FILE ("array-controller.galgas", 193)) ;
+        test_5 = GALGAS_bool (kIsNotEqual, var_hiddenBindingDescriptor_5889.objectCompare (GALGAS_multipleBindingDescriptor::constructor_noBinding (SOURCE_FILE ("array-controller.galgas", 192)))).boolEnum () ;
+        if (kBoolTrue == test_5) {
+          TC_Array <C_FixItDescription> fixItArray6 ;
+          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 193)), GALGAS_string ("duplicated $hidden binding"), fixItArray6  COMMA_SOURCE_FILE ("array-controller.galgas", 193)) ;
+        }
       }
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_6777 ;
       nt_booleanMultipleBindingExpression_ (var_bindingExpression_6777, inCompiler) ;
