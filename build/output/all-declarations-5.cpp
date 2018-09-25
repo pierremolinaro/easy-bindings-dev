@@ -2449,7 +2449,7 @@ static void extensionMethod_classDeclarationAST_thirdAnalysisPhase (const cPtr_a
     {
     var_actionMap_3824.setter_insertKey (enumerator_3874.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("class.galgas", 111)) ;
     }
-    ioArgument_ioGeneration.mProperty_mActionListForGeneration.addAssign_operation (object->mProperty_mClassName.getter_string (HERE), enumerator_3874.current_mValue (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("class.galgas", 112)) ;
+    ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_actionFileGeneration::constructor_new (object->mProperty_mClassName.getter_string (HERE), enumerator_3874.current_mValue (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("class.galgas", 112))  COMMA_SOURCE_FILE ("class.galgas", 112)) ;
     enumerator_3874.gotoNextObject () ;
   }
   ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_classForGeneration::constructor_new (object->mProperty_mClassName.getter_string (HERE), var_propertyGenerationList_3425, object->mProperty_mExternSwiftFunctionList, object->mProperty_mExternSwiftDelegateList  COMMA_SOURCE_FILE ("class.galgas", 115))  COMMA_SOURCE_FILE ("class.galgas", 115)) ;
@@ -2553,26 +2553,26 @@ static void extensionMethod_classForGeneration_generateCode (const cPtr_abstract
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_classForGeneration * object = (const cPtr_classForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_classForGeneration) ;
-  GALGAS_atomicPropertyGenerationList var_atomicPropertyGenerationList_5270 = GALGAS_atomicPropertyGenerationList::constructor_emptyList (SOURCE_FILE ("class.galgas", 146)) ;
-  cEnumerator_propertyGenerationList enumerator_5319 (object->mProperty_mPropertyGenerationList, kENUMERATION_UP) ;
-  while (enumerator_5319.hasCurrentObject ()) {
+  GALGAS_atomicPropertyGenerationList var_atomicPropertyGenerationList_5294 = GALGAS_atomicPropertyGenerationList::constructor_emptyList (SOURCE_FILE ("class.galgas", 146)) ;
+  cEnumerator_propertyGenerationList enumerator_5343 (object->mProperty_mPropertyGenerationList, kENUMERATION_UP) ;
+  while (enumerator_5343.hasCurrentObject ()) {
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      GALGAS_atomicPropertyGeneration var_atomicProperty_5348 (dynamic_cast <const cPtr_atomicPropertyGeneration *> (enumerator_5319.current_mProperty (HERE).ptr ())) ;
-      if (NULL == var_atomicProperty_5348.ptr ()) {
+      GALGAS_atomicPropertyGeneration var_atomicProperty_5372 (dynamic_cast <const cPtr_atomicPropertyGeneration *> (enumerator_5343.current_mProperty (HERE).ptr ())) ;
+      if (NULL == var_atomicProperty_5372.ptr ()) {
         test_0 = kBoolFalse ;
       }
       if (kBoolTrue == test_0) {
-        var_atomicPropertyGenerationList_5270.addAssign_operation (var_atomicProperty_5348  COMMA_SOURCE_FILE ("class.galgas", 149)) ;
+        var_atomicPropertyGenerationList_5294.addAssign_operation (var_atomicProperty_5372  COMMA_SOURCE_FILE ("class.galgas", 149)) ;
       }
     }
-    enumerator_5319.gotoNextObject () ;
+    enumerator_5343.gotoNextObject () ;
   }
-  GALGAS_string var_s_5469 = GALGAS_string (filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (inCompiler, object->mProperty_mClassName, object->mProperty_mPropertyGenerationList, var_atomicPropertyGenerationList_5270, object->mProperty_mExternSwiftFunctionList, object->mProperty_mExternSwiftDelegateList, GALGAS_string ("<< not handled>>") COMMA_SOURCE_FILE ("class.galgas", 152))) ;
-  GALGAS_string var_fileName_5717 = object->mProperty_mClassName.add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("class.galgas", 160)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_5717  COMMA_SOURCE_FILE ("class.galgas", 161)) ;
+  GALGAS_string var_s_5493 = GALGAS_string (filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (inCompiler, object->mProperty_mClassName, object->mProperty_mPropertyGenerationList, var_atomicPropertyGenerationList_5294, object->mProperty_mExternSwiftFunctionList, object->mProperty_mExternSwiftDelegateList, GALGAS_string ("<< not handled>>") COMMA_SOURCE_FILE ("class.galgas", 152))) ;
+  GALGAS_string var_fileName_5741 = object->mProperty_mClassName.add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("class.galgas", 160)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_5741  COMMA_SOURCE_FILE ("class.galgas", 161)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_5717, var_s_5469, inCompiler COMMA_SOURCE_FILE ("class.galgas", 162)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_5741, var_s_5493, inCompiler COMMA_SOURCE_FILE ("class.galgas", 162)) ;
   }
 }
 
@@ -6659,19 +6659,19 @@ static void extensionMethod_documentDeclarationEX_semanticAnalysisEX (const cPtr
   }
   cEnumerator_actionMap enumerator_9180 (var_actionMap_9157, kENUMERATION_UP) ;
   while (enumerator_9180.hasCurrentObject ()) {
-    ioArgument_ioGeneration.mProperty_mActionListForGeneration.addAssign_operation (object->mProperty_mDocumentName.getter_string (HERE), enumerator_9180.current_lkey (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("document.galgas", 249)) ;
+    ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_actionFileGeneration::constructor_new (object->mProperty_mDocumentName.getter_string (HERE), enumerator_9180.current_lkey (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("document.galgas", 249))  COMMA_SOURCE_FILE ("document.galgas", 249)) ;
     enumerator_9180.gotoNextObject () ;
   }
-  GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList_9603 ;
-  GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList_9673 ;
-  GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration_9745 ;
-  GALGAS_decoratedOutletMap var_outletMap_9784 ;
-  GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList_9856 ;
-  GALGAS_ebViewGraphicControllerBindingGenerationList var_ebViewBindingGenerationList_9939 ;
+  GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList_9633 ;
+  GALGAS_multipleBindingGenerationList var_multipleBindingGenerationList_9703 ;
+  GALGAS_actionBindingListForGeneration var_actionBindingListForGeneration_9775 ;
+  GALGAS_decoratedOutletMap var_outletMap_9814 ;
+  GALGAS_tableViewBindingGenerationList var_tableViewBindingGenerationList_9886 ;
+  GALGAS_ebViewGraphicControllerBindingGenerationList var_ebViewBindingGenerationList_9969 ;
   {
-  routine_analyzeOutletsEX (var_rootObservablePropertyMap_8096, object->mProperty_mRootEntityName.getter_string (HERE), constinArgument_inSemanticContext, object->mProperty_mOutletDeclarationList, var_observablePropertyMap_7953, var_actionMap_9157, object->mProperty_mDocumentName.getter_string (HERE), ioArgument_ioGeneration, var_regularBindingsGenerationList_9603, var_multipleBindingGenerationList_9673, var_actionBindingListForGeneration_9745, var_outletMap_9784, var_tableViewBindingGenerationList_9856, var_ebViewBindingGenerationList_9939, inCompiler  COMMA_SOURCE_FILE ("document.galgas", 254)) ;
+  routine_analyzeOutletsEX (var_rootObservablePropertyMap_8096, object->mProperty_mRootEntityName.getter_string (HERE), constinArgument_inSemanticContext, object->mProperty_mOutletDeclarationList, var_observablePropertyMap_7953, var_actionMap_9157, object->mProperty_mDocumentName.getter_string (HERE), ioArgument_ioGeneration, var_regularBindingsGenerationList_9633, var_multipleBindingGenerationList_9703, var_actionBindingListForGeneration_9775, var_outletMap_9814, var_tableViewBindingGenerationList_9886, var_ebViewBindingGenerationList_9969, inCompiler  COMMA_SOURCE_FILE ("document.galgas", 255)) ;
   }
-  ioArgument_ioGeneration.mProperty_mDocumentListForGeneration.addAssign_operation (object->mProperty_mDocumentName.getter_string (HERE), object->mProperty_mRootEntityName.getter_string (HERE), var_transientDefinitionListForGeneration_8209, var_outletMap_9784, var_actionBindingListForGeneration_9745, var_regularBindingsGenerationList_9603, var_multipleBindingGenerationList_9673, var_documentArrayControllerListForGeneration_8289, var_tableViewBindingGenerationList_9856, var_ebViewBindingGenerationList_9939, var_selectionControllerListForGeneration_8367  COMMA_SOURCE_FILE ("document.galgas", 271)) ;
+  ioArgument_ioGeneration.mProperty_mDocumentListForGeneration.addAssign_operation (object->mProperty_mDocumentName.getter_string (HERE), object->mProperty_mRootEntityName.getter_string (HERE), var_transientDefinitionListForGeneration_8209, var_outletMap_9814, var_actionBindingListForGeneration_9775, var_regularBindingsGenerationList_9633, var_multipleBindingGenerationList_9703, var_documentArrayControllerListForGeneration_8289, var_tableViewBindingGenerationList_9886, var_ebViewBindingGenerationList_9969, var_selectionControllerListForGeneration_8367  COMMA_SOURCE_FILE ("document.galgas", 272)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7485,26 +7485,26 @@ void routine_generateDocuments (const GALGAS_documentListForGeneration constinAr
                                 COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inDocumentListForGeneration.getter_length (SOURCE_FILE ("document.galgas", 331)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inDocumentListForGeneration.getter_length (SOURCE_FILE ("document.galgas", 332)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_fileName_12784 = GALGAS_string ("EBManagedDocument.swift") ;
-      GALGAS_filewrapper var_fw_12823 = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-      GALGAS_string var_contents_12870 = var_fw_12823.getter_textFileContentsAtPath (var_fileName_12784, inCompiler COMMA_SOURCE_FILE ("document.galgas", 334)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_12784  COMMA_SOURCE_FILE ("document.galgas", 335)) ;
+      GALGAS_string var_fileName_12814 = GALGAS_string ("EBManagedDocument.swift") ;
+      GALGAS_filewrapper var_fw_12853 = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
+      GALGAS_string var_contents_12900 = var_fw_12853.getter_textFileContentsAtPath (var_fileName_12814, inCompiler COMMA_SOURCE_FILE ("document.galgas", 335)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_12814  COMMA_SOURCE_FILE ("document.galgas", 336)) ;
       {
-      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12784, var_contents_12870, inCompiler COMMA_SOURCE_FILE ("document.galgas", 336)) ;
+      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12814, var_contents_12900, inCompiler COMMA_SOURCE_FILE ("document.galgas", 337)) ;
       }
     }
   }
-  cEnumerator_documentListForGeneration enumerator_13081 (constinArgument_inDocumentListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_13081.hasCurrentObject ()) {
-    GALGAS_string var_s_13094 = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_13081.current_mDocumentName (HERE), enumerator_13081.current_mRootEntityName (HERE), enumerator_13081.current_mTransientListForGeneration (HERE), enumerator_13081.current_mOutletMap (HERE), enumerator_13081.current_mArrayControllerForGeneration (HERE), enumerator_13081.current_mTargetActionList (HERE), enumerator_13081.current_mRegularBindingsGenerationList (HERE), enumerator_13081.current_multipleBindingGenerationList (HERE), enumerator_13081.current_mTableViewBindingGenerationList (HERE), enumerator_13081.current_mEBViewBindingGenerationList (HERE), enumerator_13081.current_mSelectionControllerListForGeneration (HERE) COMMA_SOURCE_FILE ("document.galgas", 343))) ;
-    GALGAS_string var_fileName_13536 = enumerator_13081.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 356)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_13536  COMMA_SOURCE_FILE ("document.galgas", 357)) ;
+  cEnumerator_documentListForGeneration enumerator_13111 (constinArgument_inDocumentListForGeneration, kENUMERATION_UP) ;
+  while (enumerator_13111.hasCurrentObject ()) {
+    GALGAS_string var_s_13124 = GALGAS_string (filewrapperTemplate_documentGenerationTemplate_documentImplementation (inCompiler, enumerator_13111.current_mDocumentName (HERE), enumerator_13111.current_mRootEntityName (HERE), enumerator_13111.current_mTransientListForGeneration (HERE), enumerator_13111.current_mOutletMap (HERE), enumerator_13111.current_mArrayControllerForGeneration (HERE), enumerator_13111.current_mTargetActionList (HERE), enumerator_13111.current_mRegularBindingsGenerationList (HERE), enumerator_13111.current_multipleBindingGenerationList (HERE), enumerator_13111.current_mTableViewBindingGenerationList (HERE), enumerator_13111.current_mEBViewBindingGenerationList (HERE), enumerator_13111.current_mSelectionControllerListForGeneration (HERE) COMMA_SOURCE_FILE ("document.galgas", 344))) ;
+    GALGAS_string var_fileName_13566 = enumerator_13111.current_mDocumentName (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("document.galgas", 357)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_13566  COMMA_SOURCE_FILE ("document.galgas", 358)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_13536, var_s_13094, inCompiler COMMA_SOURCE_FILE ("document.galgas", 358)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_13566, var_s_13124, inCompiler COMMA_SOURCE_FILE ("document.galgas", 359)) ;
     }
-    enumerator_13081.gotoNextObject () ;
+    enumerator_13111.gotoNextObject () ;
   }
 }
 

@@ -246,9 +246,10 @@ override method @documentDeclarationEX semanticAnalysisEX
 #--- Build action map
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   for () in actionMap do
-    ioGeneration.mActionListForGeneration +=
+    ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
       !mDocumentName.string
       !lkey.string
+    }
   end
 #--- Analyze outlets and bindings
   analyzeOutletsEX (

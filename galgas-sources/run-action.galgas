@@ -54,39 +54,34 @@ proc buildActionMap
 #   GENERATION TYPES                      
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @actionListForGeneration {
+class @actionFileGeneration : @abstractFileGeneration {
   @string mClassName
   @string mActionName
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   CODE GENERATION                       
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#·······················································································································
 
-proc generateActions
-  ?let @string inOutputDirectory
-  ?let @actionListForGeneration inActionListForGeneration
-  ?!@stringset ioGeneratedFileSet
+override method @actionFileGeneration generateCode
+    ?let @string inOutputDirectory
+    ?!@stringset ioGeneratedFileSet
 {
-  for () in inActionListForGeneration do
-    let s = [filewrapper actionGenerationTemplate.actionGeneration
-      !mClassName
-      !mActionName
-    ]
-    let fileName = "action-" + mClassName + "-" + mActionName + ".swift"
-    ioGeneratedFileSet += !fileName
-    [@string generateFileWithPattern
-      !startPath:inOutputDirectory
-      !fileName:fileName
-      !lineComment:"//"
-      !header:""
-      !defaultUserZone1:"\n\n" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"    ENTER USER CODE HERE\n" # Defaut user zone2
-      !generatedZone3:"  }\n}\n\n//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*\n"
-      !makeExecutable:false
-    ]
-  end
+ let s = [filewrapper actionGenerationTemplate.actionGeneration
+    !mClassName
+    !mActionName
+  ]
+  let fileName = "action-" + mClassName + "-" + mActionName + ".swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFileWithPattern
+    !startPath:inOutputDirectory
+    !fileName:fileName
+    !lineComment:"//"
+    !header:""
+    !defaultUserZone1:"\n\n" # Defaut user zone1
+    !generatedZone2:s
+    !defaultUserZone2:"    ENTER USER CODE HERE\n" # Defaut user zone2
+    !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters  {!'—' !118} + "\n"
+    !makeExecutable:false
+  ]
 }
 
 #·······················································································································

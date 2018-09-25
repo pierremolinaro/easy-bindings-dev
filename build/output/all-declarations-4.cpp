@@ -9976,7 +9976,6 @@ mProperty_mFileGenerationList (),
 mProperty_mNeededOutletClasses (),
 mProperty_mTransientListForGeneration (),
 mProperty_mEntityListForGeneration (),
-mProperty_mActionListForGeneration (),
 mProperty_mDocumentListForGeneration (),
 mProperty_mArrayControllerListForGeneration (),
 mProperty_mSelectionControllerListForGeneration (),
@@ -9996,23 +9995,21 @@ GALGAS_generationStruct::GALGAS_generationStruct (const GALGAS_validationStubRou
                                                   const GALGAS_stringset & inOperand2,
                                                   const GALGAS_transientDefinitionListForGenerationEX & inOperand3,
                                                   const GALGAS_entityListForGeneratingEBManagedObjectContext & inOperand4,
-                                                  const GALGAS_actionListForGeneration & inOperand5,
-                                                  const GALGAS_documentListForGeneration & inOperand6,
-                                                  const GALGAS_arrayControllerForGenerationEX & inOperand7,
-                                                  const GALGAS_selectionControllerForGeneration & inOperand8,
-                                                  const GALGAS_stringlist & inOperand9,
-                                                  const GALGAS_transientExternTypeList & inOperand10) :
+                                                  const GALGAS_documentListForGeneration & inOperand5,
+                                                  const GALGAS_arrayControllerForGenerationEX & inOperand6,
+                                                  const GALGAS_selectionControllerForGeneration & inOperand7,
+                                                  const GALGAS_stringlist & inOperand8,
+                                                  const GALGAS_transientExternTypeList & inOperand9) :
 mProperty_mValidationStubRoutineListForGeneration (inOperand0),
 mProperty_mFileGenerationList (inOperand1),
 mProperty_mNeededOutletClasses (inOperand2),
 mProperty_mTransientListForGeneration (inOperand3),
 mProperty_mEntityListForGeneration (inOperand4),
-mProperty_mActionListForGeneration (inOperand5),
-mProperty_mDocumentListForGeneration (inOperand6),
-mProperty_mArrayControllerListForGeneration (inOperand7),
-mProperty_mSelectionControllerListForGeneration (inOperand8),
-mProperty_mPropertyClassList (inOperand9),
-mProperty_mTransientPropertyTypeList (inOperand10) {
+mProperty_mDocumentListForGeneration (inOperand5),
+mProperty_mArrayControllerListForGeneration (inOperand6),
+mProperty_mSelectionControllerListForGeneration (inOperand7),
+mProperty_mPropertyClassList (inOperand8),
+mProperty_mTransientPropertyTypeList (inOperand9) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10023,7 +10020,6 @@ GALGAS_generationStruct GALGAS_generationStruct::constructor_default (UNUSED_LOC
                                   GALGAS_stringset::constructor_emptySet (HERE),
                                   GALGAS_transientDefinitionListForGenerationEX::constructor_emptyList (HERE),
                                   GALGAS_entityListForGeneratingEBManagedObjectContext::constructor_emptyList (HERE),
-                                  GALGAS_actionListForGeneration::constructor_emptyList (HERE),
                                   GALGAS_documentListForGeneration::constructor_emptyList (HERE),
                                   GALGAS_arrayControllerForGenerationEX::constructor_emptyList (HERE),
                                   GALGAS_selectionControllerForGeneration::constructor_emptyList (HERE),
@@ -10038,16 +10034,15 @@ GALGAS_generationStruct GALGAS_generationStruct::constructor_new (const GALGAS_v
                                                                   const GALGAS_stringset & inOperand2,
                                                                   const GALGAS_transientDefinitionListForGenerationEX & inOperand3,
                                                                   const GALGAS_entityListForGeneratingEBManagedObjectContext & inOperand4,
-                                                                  const GALGAS_actionListForGeneration & inOperand5,
-                                                                  const GALGAS_documentListForGeneration & inOperand6,
-                                                                  const GALGAS_arrayControllerForGenerationEX & inOperand7,
-                                                                  const GALGAS_selectionControllerForGeneration & inOperand8,
-                                                                  const GALGAS_stringlist & inOperand9,
-                                                                  const GALGAS_transientExternTypeList & inOperand10 
+                                                                  const GALGAS_documentListForGeneration & inOperand5,
+                                                                  const GALGAS_arrayControllerForGenerationEX & inOperand6,
+                                                                  const GALGAS_selectionControllerForGeneration & inOperand7,
+                                                                  const GALGAS_stringlist & inOperand8,
+                                                                  const GALGAS_transientExternTypeList & inOperand9 
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_generationStruct result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
-    result = GALGAS_generationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
+    result = GALGAS_generationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9) ;
   }
   return result ;
 }
@@ -10072,9 +10067,6 @@ typeComparisonResult GALGAS_generationStruct::objectCompare (const GALGAS_genera
     result = mProperty_mEntityListForGeneration.objectCompare (inOperand.mProperty_mEntityListForGeneration) ;
   }
   if (result == kOperandEqual) {
-    result = mProperty_mActionListForGeneration.objectCompare (inOperand.mProperty_mActionListForGeneration) ;
-  }
-  if (result == kOperandEqual) {
     result = mProperty_mDocumentListForGeneration.objectCompare (inOperand.mProperty_mDocumentListForGeneration) ;
   }
   if (result == kOperandEqual) {
@@ -10095,7 +10087,7 @@ typeComparisonResult GALGAS_generationStruct::objectCompare (const GALGAS_genera
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_generationStruct::isValid (void) const {
-  return mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mFileGenerationList.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mTransientListForGeneration.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mActionListForGeneration.isValid () && mProperty_mDocumentListForGeneration.isValid () && mProperty_mArrayControllerListForGeneration.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
+  return mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mFileGenerationList.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mTransientListForGeneration.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mDocumentListForGeneration.isValid () && mProperty_mArrayControllerListForGeneration.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10106,7 +10098,6 @@ void GALGAS_generationStruct::drop (void) {
   mProperty_mNeededOutletClasses.drop () ;
   mProperty_mTransientListForGeneration.drop () ;
   mProperty_mEntityListForGeneration.drop () ;
-  mProperty_mActionListForGeneration.drop () ;
   mProperty_mDocumentListForGeneration.drop () ;
   mProperty_mArrayControllerListForGeneration.drop () ;
   mProperty_mSelectionControllerListForGeneration.drop () ;
@@ -10131,8 +10122,6 @@ void GALGAS_generationStruct::description (C_String & ioString,
     mProperty_mTransientListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mEntityListForGeneration.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mProperty_mActionListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mDocumentListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -10175,12 +10164,6 @@ GALGAS_transientDefinitionListForGenerationEX GALGAS_generationStruct::getter_mT
 
 GALGAS_entityListForGeneratingEBManagedObjectContext GALGAS_generationStruct::getter_mEntityListForGeneration (UNUSED_LOCATION_ARGS) const {
   return mProperty_mEntityListForGeneration ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_actionListForGeneration GALGAS_generationStruct::getter_mActionListForGeneration (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mActionListForGeneration ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

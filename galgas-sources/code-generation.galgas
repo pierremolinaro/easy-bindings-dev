@@ -34,7 +34,7 @@ struct @generationStruct {
   @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
 
 
-  @actionListForGeneration mActionListForGeneration
+#  @actionListForGenerationEX mActionListForGeneration
   @documentListForGeneration mDocumentListForGeneration
   @arrayControllerForGenerationEX mArrayControllerListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
@@ -58,11 +58,6 @@ proc generateCode
   for (fileGeneration) in inGeneration.mFileGenerationList do
     [fileGeneration generateCode !outputDirectory !?generatedFileSet]
   end
-  generateActions (
-    !fileOutputDirectory
-    !inGeneration.mActionListForGeneration
-    !?generatedFileSet
-  )
   generateOutletClasses (
     !inGeneration.mNeededOutletClasses
     !fileOutputDirectory

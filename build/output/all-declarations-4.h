@@ -95,8 +95,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 
   public : GALGAS_entityListForGeneratingEBManagedObjectContext mProperty_mEntityListForGeneration ;
 
-  public : GALGAS_actionListForGeneration mProperty_mActionListForGeneration ;
-
   public : GALGAS_documentListForGeneration mProperty_mDocumentListForGeneration ;
 
   public : GALGAS_arrayControllerForGenerationEX mProperty_mArrayControllerListForGeneration ;
@@ -126,7 +124,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                     const GALGAS_stringset & in_mNeededOutletClasses,
                                     const GALGAS_transientDefinitionListForGenerationEX & in_mTransientListForGeneration,
                                     const GALGAS_entityListForGeneratingEBManagedObjectContext & in_mEntityListForGeneration,
-                                    const GALGAS_actionListForGeneration & in_mActionListForGeneration,
                                     const GALGAS_documentListForGeneration & in_mDocumentListForGeneration,
                                     const GALGAS_arrayControllerForGenerationEX & in_mArrayControllerListForGeneration,
                                     const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
@@ -149,12 +146,11 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                                                  const class GALGAS_stringset & inOperand2,
                                                                  const class GALGAS_transientDefinitionListForGenerationEX & inOperand3,
                                                                  const class GALGAS_entityListForGeneratingEBManagedObjectContext & inOperand4,
-                                                                 const class GALGAS_actionListForGeneration & inOperand5,
-                                                                 const class GALGAS_documentListForGeneration & inOperand6,
-                                                                 const class GALGAS_arrayControllerForGenerationEX & inOperand7,
-                                                                 const class GALGAS_selectionControllerForGeneration & inOperand8,
-                                                                 const class GALGAS_stringlist & inOperand9,
-                                                                 const class GALGAS_transientExternTypeList & inOperand10
+                                                                 const class GALGAS_documentListForGeneration & inOperand5,
+                                                                 const class GALGAS_arrayControllerForGenerationEX & inOperand6,
+                                                                 const class GALGAS_selectionControllerForGeneration & inOperand7,
+                                                                 const class GALGAS_stringlist & inOperand8,
+                                                                 const class GALGAS_transientExternTypeList & inOperand9
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -169,8 +165,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_actionListForGeneration getter_mActionListForGeneration (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGenerationEX getter_mArrayControllerListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_documentListForGeneration getter_mDocumentListForGeneration (LOCATION_ARGS) const ;

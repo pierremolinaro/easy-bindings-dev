@@ -109,7 +109,7 @@ override method @classDeclarationAST thirdAnalysisPhase
   @actionMap actionMap = {}
   for (actionName) in mActionDeclarationList do
     [!?actionMap insertKey !actionName]
-    ioGeneration.mActionListForGeneration += !mClassName.string !actionName.string
+    ioGeneration.mFileGenerationList += !@actionFileGeneration.new {!mClassName.string !actionName.string}
   end
 #--- Generation
   ioGeneration.mFileGenerationList += !@classForGeneration.new {
