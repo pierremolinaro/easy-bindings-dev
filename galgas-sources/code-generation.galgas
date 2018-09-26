@@ -32,10 +32,9 @@ struct @generationStruct {
   @stringset mNeededOutletClasses
   @transientDefinitionListForGenerationEX mTransientListForGeneration
   @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
+  @bool mGenerateEBManagedDocumentSwift
 
 
-#  @actionListForGenerationEX mActionListForGeneration
-  @documentListForGeneration mDocumentListForGeneration
   @arrayControllerForGenerationEX mArrayControllerListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
   @stringlist mPropertyClassList
@@ -68,11 +67,9 @@ proc generateCode
     !fileOutputDirectory
     !?generatedFileSet
   )
-  generateDocuments (
-    !inGeneration.mDocumentListForGeneration
-    !fileOutputDirectory
-    !?generatedFileSet
-  )
+  if inGeneration.mGenerateEBManagedDocumentSwift then
+    generateEBManagedDocumentSwift (!fileOutputDirectory !?generatedFileSet)
+  end
   generateArrayControllersEX (
     !inGeneration.mArrayControllerListForGeneration
     !fileOutputDirectory

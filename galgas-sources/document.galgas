@@ -131,7 +131,6 @@ override method @documentDeclarationAST firstAnalysisPhase
 override method @documentDeclarationEX typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
-#  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
   for (item) in mSecondaryPropertyList do
     [item typeInventory
       !?ioUnifiedTypeMap
@@ -269,7 +268,9 @@ override method @documentDeclarationEX semanticAnalysisEX
     ?let @ebViewGraphicControllerBindingGenerationList ebViewBindingGenerationList
   )
 #--- Code generation
-  ioGeneration.mDocumentListForGeneration +=
+  ioGeneration.mGenerateEBManagedDocumentSwift = true
+#--
+  ioGeneration.mFileGenerationList += !@documentFileGeneration.new {
     !mDocumentName.string
     !mRootEntityName.string
     !transientDefinitionListForGeneration
@@ -281,13 +282,14 @@ override method @documentDeclarationEX semanticAnalysisEX
     !tableViewBindingGenerationList
     !ebViewBindingGenerationList
     !selectionControllerListForGeneration
+  }
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION TYPES                      
+#   GENERATION                            
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @documentListForGeneration {
+class @documentFileGeneration : @abstractFileGeneration {
   @string mDocumentName
   @string mRootEntityName
   @transientDefinitionListForGenerationEX mTransientListForGeneration
@@ -299,6 +301,34 @@ list @documentListForGeneration {
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
   @selectionControllerForGeneration mSelectionControllerListForGeneration
+}
+
+#·······················································································································
+
+override method @documentFileGeneration generateCode
+    ?let @string inOutputDirectory
+    ?!@stringset ioGeneratedFileSet
+{
+  let s = [filewrapper documentGenerationTemplate.documentImplementation
+    !mDocumentName
+    !mRootEntityName
+    !mTransientListForGeneration
+    !mOutletMap
+    !mArrayControllerForGeneration
+    !mTargetActionList
+    !mRegularBindingsGenerationList
+    !multipleBindingGenerationList
+    !mTableViewBindingGenerationList
+    !mEBViewBindingGenerationList
+    !mSelectionControllerListForGeneration
+  ]
+  let fileName = mDocumentName + ".swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !s
+  ]
 }
 
 #·······················································································································
@@ -321,47 +351,20 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION                            
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-proc generateDocuments
-  ?let @documentListForGeneration inDocumentListForGeneration
+proc generateEBManagedDocumentSwift
   ?let @string inOutputDirectory
   ?!@stringset ioGeneratedFileSet
 {
-  if [inDocumentListForGeneration length] > 0 then
-    let fileName = "EBManagedDocument.swift"
-    var fw = [filewrapper swift_sources]
-    let contents = [fw textFileContentsAtPath !fileName]
-    ioGeneratedFileSet += !fileName
-    [@string generateFile
-      !inOutputDirectory
-      !fileName
-      !contents
-    ]
-  end
-  for () in inDocumentListForGeneration do
-    let s = [filewrapper documentGenerationTemplate.documentImplementation
-      !mDocumentName
-      !mRootEntityName
-      !mTransientListForGeneration
-      !mOutletMap
-      !mArrayControllerForGeneration
-      !mTargetActionList
-      !mRegularBindingsGenerationList
-      !multipleBindingGenerationList
-      !mTableViewBindingGenerationList
-      !mEBViewBindingGenerationList
-      !mSelectionControllerListForGeneration
-    ]
-    let fileName = mDocumentName + ".swift"
-    ioGeneratedFileSet += !fileName
-    [@string generateFile
-      !inOutputDirectory
-      !fileName
-      !s
-    ]
-  end
+  let fileName = "EBManagedDocument.swift"
+  var fw = [filewrapper swift_sources]
+  let contents = [fw textFileContentsAtPath !fileName]
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !contents
+  ]
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
