@@ -153,15 +153,15 @@ override method @documentDeclarationAST thirdAnalysisPhase
     !mClassName.string
     !mRootEntityName.string
     !documentPropertyGenerationList
-    !{} # transientDefinitionListForGeneration
+#    !{} # transientDefinitionListForGeneration
     !outletMap
     !actionBindingListForGeneration
     !regularBindingsGenerationList
     !multipleBindingGenerationList
-    !{} # documentArrayControllerListForGeneration
+#    !{} # documentArrayControllerListForGeneration
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGenerationList # ebViewBindingGenerationList
-    !{} # selectionControllerListForGeneration
+#    !{} # selectionControllerListForGeneration
   }
 }
 
@@ -185,15 +185,15 @@ class @documentFileGeneration : @abstractFileGeneration {
   @string mDocumentName
   @string mRootEntityName
   @propertyGenerationList mDocumentPropertyGenearionList
-  @transientDefinitionListForGenerationEX mTransientListForGeneration
+#  @transientDefinitionListForGenerationEX mTransientListForGeneration
   @decoratedOutletMap mOutletMap
   @actionBindingListForGeneration mTargetActionList 
   @regularBindingsGenerationList mRegularBindingsGenerationList 
   @multipleBindingGenerationList multipleBindingGenerationList
-  @arrayControllerForGenerationEX mArrayControllerForGeneration
+#  @arrayControllerForGenerationEX mArrayControllerForGeneration
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
-  @selectionControllerForGeneration mSelectionControllerListForGeneration
+#  @selectionControllerForGeneration mSelectionControllerListForGeneration
 }
 
 #·······················································································································
@@ -206,15 +206,15 @@ override method @documentFileGeneration generateCode
     !mDocumentName
     !mRootEntityName
     !mDocumentPropertyGenearionList
-    !mTransientListForGeneration
+#    !mTransientListForGeneration
     !mOutletMap
-    !mArrayControllerForGeneration
+#    !mArrayControllerForGeneration
     !mTargetActionList
     !mRegularBindingsGenerationList
     !multipleBindingGenerationList
     !mTableViewBindingGenerationList
     !mEBViewBindingGenerationList
-    !mSelectionControllerListForGeneration
+#    !mSelectionControllerListForGeneration
   ]
   let fileName = mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -234,15 +234,15 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
     ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
-    ?@transientDefinitionListForGenerationEX TRANSIENT_LIST_FOR_IMPLEMENTATION
+#    ?@transientDefinitionListForGenerationEX TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
-    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
+#    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
-    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
+#    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

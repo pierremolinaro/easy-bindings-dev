@@ -657,39 +657,6 @@ override method @ptransientRoutineGeneration generateCode
 
 #·······················································································································
 
-#proc generateTransients
-#  ?let @string inOutputDirectory
-#  ?let @transientDefinitionListForGenerationEX inTransientListForGeneration
-#  ?!@stringset ioGeneratedFileSet
-#{
-##--------------------------- Generate transient routines
-#  for () in inTransientListForGeneration do
-#    if ([mDependencyList length] > 0) & (mExternFunctionName == "") then
-#      let s = [filewrapper transientManager.transientComputationFunctionFile
-#        !mOwnerName
-#        !mTransientName
-#        !mDependencyList
-#        !mTransientType 
-#      ]
-#      let fileName = "transient-" + mOwnerName + "-" + mTransientName + ".swift"
-#      ioGeneratedFileSet += !fileName
-#      [@string generateFileWithPattern
-#        !startPath:inOutputDirectory
-#        !fileName:fileName
-#        !lineComment:"//"
-#        !header:""
-#        !defaultUserZone1:"\n\n" # Defaut user zone1
-#        !generatedZone2:s
-#        !defaultUserZone2:"\n" # Defaut user zone2
-#        !generatedZone3:"}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n"
-#        !makeExecutable:false
-#      ]
-#    end
-#  end
-#}
-
-#·······················································································································
-
 private filewrapper transientManager in "../generation-templates" {
 }{
 }{

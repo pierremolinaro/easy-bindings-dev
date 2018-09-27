@@ -704,15 +704,12 @@ class GALGAS_documentFileGeneration : public GALGAS_abstractFileGeneration {
   public : static class GALGAS_documentFileGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                        const class GALGAS_string & inOperand1,
                                                                        const class GALGAS_propertyGenerationList & inOperand2,
-                                                                       const class GALGAS_transientDefinitionListForGenerationEX & inOperand3,
-                                                                       const class GALGAS_decoratedOutletMap & inOperand4,
-                                                                       const class GALGAS_actionBindingListForGeneration & inOperand5,
-                                                                       const class GALGAS_regularBindingsGenerationList & inOperand6,
-                                                                       const class GALGAS_multipleBindingGenerationList & inOperand7,
-                                                                       const class GALGAS_arrayControllerForGenerationEX & inOperand8,
-                                                                       const class GALGAS_tableViewBindingGenerationList & inOperand9,
-                                                                       const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand10,
-                                                                       const class GALGAS_selectionControllerForGeneration & inOperand11
+                                                                       const class GALGAS_decoratedOutletMap & inOperand3,
+                                                                       const class GALGAS_actionBindingListForGeneration & inOperand4,
+                                                                       const class GALGAS_regularBindingsGenerationList & inOperand5,
+                                                                       const class GALGAS_multipleBindingGenerationList & inOperand6,
+                                                                       const class GALGAS_tableViewBindingGenerationList & inOperand7,
+                                                                       const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand8
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -724,8 +721,6 @@ class GALGAS_documentFileGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGenerationEX getter_mArrayControllerForGeneration (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
@@ -738,13 +733,9 @@ class GALGAS_documentFileGeneration : public GALGAS_abstractFileGeneration {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mRootEntityName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_selectionControllerForGeneration getter_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration getter_mTargetActionList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_transientDefinitionListForGenerationEX getter_mTransientListForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingGenerationList getter_multipleBindingGenerationList (LOCATION_ARGS) const ;
 
@@ -770,29 +761,23 @@ class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
   public : GALGAS_string mProperty_mDocumentName ;
   public : GALGAS_string mProperty_mRootEntityName ;
   public : GALGAS_propertyGenerationList mProperty_mDocumentPropertyGenearionList ;
-  public : GALGAS_transientDefinitionListForGenerationEX mProperty_mTransientListForGeneration ;
   public : GALGAS_decoratedOutletMap mProperty_mOutletMap ;
   public : GALGAS_actionBindingListForGeneration mProperty_mTargetActionList ;
   public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
   public : GALGAS_multipleBindingGenerationList mProperty_multipleBindingGenerationList ;
-  public : GALGAS_arrayControllerForGenerationEX mProperty_mArrayControllerForGeneration ;
   public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
   public : GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
-  public : GALGAS_selectionControllerForGeneration mProperty_mSelectionControllerListForGeneration ;
 
 //--- Constructor
   public : cPtr_documentFileGeneration (const GALGAS_string & in_mDocumentName,
                                         const GALGAS_string & in_mRootEntityName,
                                         const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
-                                        const GALGAS_transientDefinitionListForGenerationEX & in_mTransientListForGeneration,
                                         const GALGAS_decoratedOutletMap & in_mOutletMap,
                                         const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
                                         const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                         const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
-                                        const GALGAS_arrayControllerForGenerationEX & in_mArrayControllerForGeneration,
                                         const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
-                                        const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                        const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration
+                                        const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList
                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -802,15 +787,12 @@ class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mRootEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_transientDefinitionListForGenerationEX getter_mTransientListForGeneration (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_decoratedOutletMap getter_mOutletMap (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_actionBindingListForGeneration getter_mTargetActionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_multipleBindingGenerationList getter_multipleBindingGenerationList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerForGenerationEX getter_mArrayControllerForGeneration (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_selectionControllerForGeneration getter_mSelectionControllerListForGeneration (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

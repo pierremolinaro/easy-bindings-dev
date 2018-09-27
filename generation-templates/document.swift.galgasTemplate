@@ -23,37 +23,6 @@ for () in OUTLET_GENERATION_MAP do
 end
 %
   //····················································································································
-  //    Transient properties
-  //····················································································································
-
-%
-
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-    %  var %!mTransientName%_property = EBTransientProperty_%![mTransientType swiftTypeName]% ()\n%
-    %  var %!mTransientName%_property_selection : EBSelection <%![mTransientType swiftTypeName]%> {\n%
-    %    return self.%!mTransientName%_property.prop\n%
-    %  }\n\n%
-end
-%
-  //····················································································································
-  //    Array Controllers
-  //····················································································································
-
-%
-for () in ARRAY_CONTROLLER_LIST do
-%  var %!mControllerName.string% = ArrayController_%!mOwnerName%_%!mControllerName.string% ()\n%
-end
-%
-  //····················································································································
-  //    Selection Controllers
-  //····················································································································
-
-%
-for () in SELECTION_CONTROLLER_LIST do
-%  var %!mSelectionControllerName% = SelectionController_%!mOwnerName%_%!mSelectionControllerName% ()\n%
-end
-%
-  //····················································································································
   //    Multiple bindings controllers
   //····················································································································
 
@@ -94,12 +63,6 @@ end
 %
 for () in DOCUMENT_PROPERTY_LIST do
   ![mProperty populateExplorerWindowCode]
-end
-for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName.string%.addExplorer (name: "%!mControllerName.string%", y:&y, view:view)\n%
-end
-for () in SELECTION_CONTROLLER_LIST do
-%    %!mSelectionControllerName%.addExplorer (name: "%!mSelectionControllerName%", y:&y, view:view)\n%
 end
 %  //---
     super.populateExplorerWindow (&y, view:view)
@@ -156,48 +119,11 @@ end
 for () in DOCUMENT_PROPERTY_LIST do
   ![mProperty configurationCode]
 end
-%  //--------------------------- Array controllers
-%
-for () in ARRAY_CONTROLLER_LIST do
-%    self.%!mControllerName.string%.setManagedObjectContext (self.managedObjectContext ())\n%
-%    self.%!mControllerName.string%.bind_model (%!mModelString%)\n%
-end
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
   %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
 end
 for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    self.%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
-end
-%  //--------------------------- Selection controllers
-%
-for () in SELECTION_CONTROLLER_LIST do
-%    %!mSelectionControllerName%.bind_selection (
-      model: %!mBoundControllerName%.%!mBoundControllerPropertyName%_property,
-      file: #file,
-      line: #line
-    )\n%
-end
-%  //--------------------------- Transient compute functions
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  if [mDependencyList length] == 0 then
-    %    self.%!mTransientName%_property.readModelFunction = { return .single (self.computeTransient_%!mTransientName% ()) }\n%
-  else
-    %    self.%!mTransientName%_property.readModelFunction = { [weak self] in\n%
-    %      if let unwSelf = self {\n%
-    ![mDependencyList transientComputeFunctionCall !DOCUMENT_NAME !mTransientName !mExternFunctionName]
-    %      }else{\n%
-    %        return .empty\n%
-    %      }\n%
-    %    }\n%
-  end
-end
-%  //--------------------------- Install property observers for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-for () in mDependencyList do
-%    %![mDependency generateAddObserverCall]% (self.%!mTransientName%_property)\n%
-end
 end
 %  //--------------------------- Install regular bindings
 %
@@ -252,11 +178,6 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   end
   %    mController_%!mOutletName%_%!mBindingName% = nil\n%
 end
-%  //--------------------------- Uninstall compute functions for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    self.%!mTransientName%_property.readModelFunction = nil\n%
-end
 %  //--------------------------- Unbind array controllers
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
@@ -265,23 +186,8 @@ end
 for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
 end
-for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName.string%.unbind_model ()\n%
-end
 for () in DOCUMENT_PROPERTY_LIST do
   ![mProperty terminationCode]
-end
-%  //--------------------------- Unbind selection controllers
-%
-for () in SELECTION_CONTROLLER_LIST do
-%    %!mSelectionControllerName%.unbind_selection ()\n%
-end
-%  //--------------------------- Uninstall property observers for transients
-%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-for () in mDependencyList do
-%    %![mDependency generateRemoveObserverCall]% (self.%!mTransientName%_property)\n%
-end
 end
 %  //--------------------------- Remove targets / actions
 %for () in TARGET_ACTION_LIST do
