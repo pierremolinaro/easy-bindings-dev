@@ -2,15 +2,6 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @transientAST : @abstractSecondaryProperty {
-  @lstring mTransientTypeName
-  @lstring mTransientName
-  @observablePropertyList mDependencyList
-  @lstring mExternFunctionName
-}
-
-#·······················································································································
-
 class @transientDeclarationAST : @abstractDeclarationAST {
   @lstring mRootEntityName
   @lstring mTransientTypeName
@@ -108,12 +99,6 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $;$
-    ioSecondaryPropertyList += !@transientAST.new {
-      !transientTypeName
-      !transientName
-      !dependanceList
-      !externFunctionName
-    }
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
       !inCurrentEntity
       !inRootEntity
@@ -329,122 +314,6 @@ override getter @transientPropertyGeneration terminationCode -> @string {
 
 
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY                        
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @transientAST typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  [@unifiedTypeMap-proxy makeProxy
-    !?ioUnifiedTypeMap
-    !mTransientTypeName
-    ?*
-  ]
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS                     
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @transientAST tryToDefineSecondaryProperty
-  ?!@semanticContextEX ioSemanticContext
-  ?let @observablePropertyMap inRootObservableProperties
-  ?!@observablePropertyMap ioObservableProperties
-  ?!@secondaryPropertyList ioUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
-{
-  @bool solved = true
-  for () in mDependencyList while solved do
-    solved = [mObservableProperty isPropertyDefined
-      !ioSemanticContext
-      !inRootObservableProperties
-      !ioObservableProperties
-    ]
-  end
-  if solved then
-    [ioSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type ?let actionMap]
-    @propertyKind kind
-    if [type isEntityType] then
-      kind = .toOne {!typeName: mTransientTypeName !accessibility: .transient !graphic:[type isGraphic]}
-    else
-      kind = .property {!type:type !accessibility: .transient}
-    end
-    [!?ioObservableProperties insertKey
-      !mTransientName
-      !kind
-      !""
-      !actionMap
-      !false
-    ]
-  else
-    ioUnsolvedProperties += !self
-  end
-}
-
-#·······················································································································
-
-override method @transientAST secondaryPropertySemanticAnalysisEX
-  ?let @string inOwnerName
-  ?let @string unused inRootEntityName
-  ?let @observablePropertyMap inRootObservableProperties
-  ?let @semanticContextEX inSemanticContext
-  ?let @observablePropertyMap inObservableProperties
-  ?!@transientDefinitionListForGenerationEX ioTransientDefinitionListForGeneration
-  ?!@arrayControllerForGenerationEX unused ioArrayControllerForGeneration
-  ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
-  ?!@stringset unused ioNeededOutletClasses
-{
-#--- Property type
-  [inSemanticContext.mUnifiedTypeMap searchKey !mTransientTypeName ?let type ?*]
-#--- Check type
-  @typeKindList typeList
-  switch type
-  case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
-    typeList = {!type}
-  case enumType (* *) :
-    typeList = {!type}
-  case entityType (2*) :
-    error mTransientName: "an entity cannot be used as simple property type" : typeList
-  case classType (*) :
-    typeList = {!type}
-  case transientPropertyExternType (*) :
-    typeList = {!type}
-  end
-#--- Analyse master properties
-  @transientDependencyListForGeneration dependencies = {}
-  for () in mDependencyList do
-    [mObservableProperty analyzeObservablePropertyEX
-      !inRootObservableProperties
-      !inSemanticContext
-      !inObservableProperties
-      ?let @propertyKind dependencyKind
-      ?let @string swiftTypeStringForTransientFunctionArgument
-    ]
-    switch dependencyKind
-    case property (* *) :
-    case toMany (4*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
-    case toOne (3*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
-    case arrayController (3*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
-    case selectionController (*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
-    end
-    dependencies +=
-      !mObservableProperty
-      ![mObservableProperty modelStringFunctionArgument]
-      !swiftTypeStringForTransientFunctionArgument
-  end
-#--- Code generation
-  ioTransientDefinitionListForGeneration +=
-    !inOwnerName
-    !mTransientName.string
-    !type
-    !dependencies
-    !mExternFunctionName.string
-}
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION TYPE                       
