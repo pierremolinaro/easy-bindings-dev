@@ -46,24 +46,6 @@ for () in PROPERTY_LIST_FOR_GENERATION do
 end
 %
   //····················································································································
-  //    Array Controllers
-  //····················································································································
-
-%
-for () in ARRAY_CONTROLLER_LIST do
-%  var %!mControllerName.string% = ArrayController_%!mOwnerName%_%!mControllerName.string% ()\n%
-end
-%
-  //····················································································································
-  //    Selection Controllers
-  //····················································································································
-
-%
-for () in SELECTION_CONTROLLER_LIST do
-%  var %!mSelectionControllerName% = SelectionController_%!mOwnerName%_%!mSelectionControllerName% ()\n%
-end
-%
-  //····················································································································
   //    init
   //····················································································································
 
@@ -147,14 +129,7 @@ for () in TO_ONE_RELATIONSHIP_LIST do
   %      valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
   %    )\n%
 end%    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
-%
-for () in ARRAY_CONTROLLER_LIST do
-%    %!mControllerName.string%.addExplorer (name: "%!mControllerName.string%", y:&y, view:view)\n%
-end
-for () in SELECTION_CONTROLLER_LIST do
-%    %!mSelectionControllerName%.addExplorer (name: "%!mSelectionControllerName%", y:&y, view:view)\n%
-end
-%  }
+  }
 
   //····················································································································
   //    clearObjectExplorer
@@ -237,21 +212,6 @@ for () in TO_ONE_RELATIONSHIP_LIST do
     ) */\n%
   end
 end
-%  //--------------------------- Array controllers
-%
-for () in ARRAY_CONTROLLER_LIST do
-%    self.%!mControllerName.string%.setManagedObjectContext (self.managedObjectContext ())\n%
-%    self.%!mControllerName.string%.bind_model (%!mModelString%)\n%
-end
-%  //--------------------------- Selection controllers
-%
-for () in SELECTION_CONTROLLER_LIST do
-%    %!mSelectionControllerName%.bind_selection (
-      model: %!mBoundControllerName%.%!mBoundControllerPropertyName%_property,
-      file: #file,
-      line: #line
-    )\n%
-end
 %  }
 
   //····················································································································
@@ -284,24 +244,15 @@ end
 %    super.cascadeObjectRemoving (&ioObjectsToRemove)
   }
 
-%if ([ARRAY_CONTROLLER_LIST length] + [SELECTION_CONTROLLER_LIST length]) > 0 then
-%  //····················································································································
+  //····················································································································
   //   resetControllers
   //····················································································································
 
   override func resetControllers () {
     super.resetControllers ()
-%
-for () in SELECTION_CONTROLLER_LIST do
-%    self.%!mSelectionControllerName%.unbind_selection ()\n%
-end
-for () in ARRAY_CONTROLLER_LIST do
-%    self.%!mControllerName.string%.unbind_model ()\n%
-end
-%  }
+  }
 
-%end
-%  //····················································································································
+  //····················································································································
   //   resetToManyRelationships
   //····················································································································
 

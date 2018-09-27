@@ -2,21 +2,6 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @entityDeclarationEX : @astDeclaration {
-  @lstring mEntityName
-  @lstring mSuperEntityName
-  @simpleStoredPropertyList mSimpleStoredAttributeList
-  @toOneRelationshipListEX mToOneRelationshipList
-  @toManyRelationshipListEX mToManyRelationshipList
-  @secondaryPropertyList mSecondaryPropertyList
-  @stringset mSignatureList
-  @lstringlist mActionDeclarationList
-  @lstringlist mObsoleteEntityNames
-  @bool mIsGraphicEntity
-}
-
-#·······················································································································
-
 class @entityDeclarationAST : @abstractDeclarationAST {
   @bool mIsUserDefined
   @lstring mSuperEntityName
@@ -104,19 +89,6 @@ syntax extension easyBindings_syntax {
       <controller_declaration> !entityName !["" nowhere] !?secondaryPropertyList  !?ioDeclarationAST
     end
     $}$
-    ioDeclarationAST.mDeclarationList += !@entityDeclarationEX.new {
-      !inIsUserDefined
-      !entityName
-      !superEntityName
-      !simpleStoredAttributeList
-      !toOneRelationshipList
-      !toManyRelationshipList
-      !secondaryPropertyList
-      !signatureList
-      !actionDeclarationList
-      !obsoleteEntityNames
-      !graphicEntity
-    }
     ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST.new {
       !entityName
       !inIsUserDefined
@@ -167,31 +139,6 @@ override method @entityDeclarationAST thirdAnalysisPhase
     ?*
     ?let @propertyGenerationList propertyGenerationList
   ]
-#--- Analyze simple stored properties
-#  [mSimpleStoredAttributeList simpleStoredPropertySemanticAnalysis
-#    !ioSemanticContext.mUnifiedTypeMap
-#    ?let @simpleStoredPropertyListForGenerationEX simpleStoredPropertyListForGeneration
-#  ]
-#--- Analyze transients
-#  @transientDefinitionListForGenerationEX transientDefinitionListForGeneration = {}
-#  @arrayControllerForGenerationEX arrayControllerListForGeneration = {}
-#  @selectionControllerForGeneration selectionControllerForGeneration = {}
-#  for (item) in mSecondaryPropertyList do
-#    [item secondaryPropertySemanticAnalysisEX
-#      !mEntityName.string
-#      !"" # No root entity name
-#      !{} # No root entity
-#      !inSemanticContext
-#      !observablePropertyMap
-#      !?transientDefinitionListForGeneration
-#      !?arrayControllerListForGeneration
-#      !?selectionControllerForGeneration
-#      !?ioGeneration.mNeededOutletClasses
-#    ]
-#  end
-#  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-#  ioGeneration.mSelectionControllerListForGeneration += selectionControllerForGeneration
-#  ioGeneration.mArrayControllerListForGeneration += arrayControllerListForGeneration
 #--- Check required transients are implemented
   @stringset transientsDeclaredInSuperEntity = {}
   if mIsGraphicEntity then
@@ -250,16 +197,6 @@ override method @entityDeclarationAST thirdAnalysisPhase
       error mClassName : "a graphic entity should declare the 'objectDisplay' transient, with 'EBShape' type"
     end
   end
-#--- Analyze toOne relationships
-#  [mToOneRelationshipList semanticAnalysis
-#    !ioSemanticContext
-#    ?let @toOneEntityRelationshipListForGeneration toOneEntityRelationshipListForGeneration
-#  ]
-##--- Analyze toMany relationships
-#  [mToManyRelationshipList semanticAnalysis
-#    !ioSemanticContext
-#    ?let @toManyEntityRelationshipListForGeneration toManyEntityRelationshipListForGeneration
-#  ]
 #--- Generation    
   ioGeneration.mEntityListForGeneration +=
     !mClassName.string
@@ -268,15 +205,15 @@ override method @entityDeclarationAST thirdAnalysisPhase
     !mClassName.string
     !mSuperEntityName.string
     !propertyGenerationList
-    !{} # simpleStoredPropertyListForGeneration
-    !{} # transientDefinitionListForGeneration
-    !{} # toOneEntityRelationshipListForGeneration
-    !{} # toManyEntityRelationshipListForGeneration
+#    !{} # simpleStoredPropertyListForGeneration
+#    !{} # transientDefinitionListForGeneration
+#    !{} # toOneEntityRelationshipListForGeneration
+#    !{} # toManyEntityRelationshipListForGeneration
     !mSignatureList
     !mIsGraphicEntity
     !transientsDeclaredInSuperEntity
-    !{} # arrayControllerListForGeneration
-    !{} # selectionControllerForGeneration
+#    !{} # arrayControllerListForGeneration
+#    !{} # selectionControllerForGeneration
   }
 }
 
@@ -288,15 +225,15 @@ class @entityForGeneration : @abstractFileGeneration {
   @string mEntityName
   @string mSuperEntityName
   @propertyGenerationList mPropertyGenerationList
-  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
-  @transientDefinitionListForGenerationEX mDecoratedTransientListForGeneration
-  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
-  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
+#  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
+#  @transientDefinitionListForGenerationEX mDecoratedTransientListForGeneration
+#  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
+#  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
   @stringset mSignatureSet
   @bool mIsGraphicEntity
   @stringset mTransientsDeclaredInSuperEntity
-  @arrayControllerForGenerationEX mArrayControllerForGeneration
-  @selectionControllerForGeneration mSelectionControllerListForGeneration
+#  @arrayControllerForGenerationEX mArrayControllerForGeneration
+#  @selectionControllerForGeneration mSelectionControllerListForGeneration
 }
 
 #·······················································································································
@@ -330,12 +267,12 @@ override method @entityForGeneration generateCode
     !atomicPropertyGenerationList
     !transientPropertyGenerationList
     !toOnePropertyGenerationList
-    !mToManyEntityRelationshipList
+    ! {} # mToManyEntityRelationshipList
     !mSignatureSet
     !mIsGraphicEntity
     !mTransientsDeclaredInSuperEntity
-    !mArrayControllerForGeneration
-    !mSelectionControllerListForGeneration
+#    !mArrayControllerForGeneration
+#    !mSelectionControllerListForGeneration
   ]
   let fileName = "entity-" + mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -382,54 +319,11 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@stringset SIGNATURE_SET
     ?@bool IS_GRAPHIC_ENTITY
     ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
-    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
-    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
+#    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
+#    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
     ?@entityListForGeneratingEBManagedObjectContext ENTITY_LIST
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY                        
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @entityDeclarationEX typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  for (item) in mSecondaryPropertyList do
-    [item typeInventory
-      !?ioUnifiedTypeMap
-    ]
-  end
-  @actionMap actionMap = {}
-  for (act) in mActionDeclarationList do
-    [!?actionMap insertKey !act]
-  end
-  [mToOneRelationshipList typeInventory !?ioUnifiedTypeMap]
-  [mToManyRelationshipList typeInventory !?ioUnifiedTypeMap]
-  [!?ioUnifiedTypeMap insertKey
-    !mEntityName
-    !.entityType {!entityName:mEntityName.string !graphic:mIsGraphicEntity}
-    !actionMap
-  ]
-  if mSuperEntityName.string != "" then
-    [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mSuperEntityName ?*]
-  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -449,78 +343,6 @@ map @entityObservablePropertyMap {
   @objectKind mObjectKind
   insert insertKey error message "the '%K' document is already declared in %L"
   search searchKey error message "there is no '%K' document"
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS                     
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-# Only get current entity observable properties, do not collect in super entities
-override method @entityDeclarationEX buildObservablePropertyMapsFromStoredProperties
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@semanticContextEX ioSemanticContext
-{
-  @observablePropertyMap observablePropertyMap = {}
-#--- Analyze simple stored properties
-  [mSimpleStoredAttributeList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
-#--- Analyze relationships
-  [mToOneRelationshipList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
-  [mToManyRelationshipList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?observablePropertyMap
-  ]
-#--- Enter in semantics context  
-  [!?ioSemanticContext.mEntityObservablePropertyMap insertKey
-    !mEntityName
-    !observablePropertyMap
-    !if mIsGraphicEntity then .graphicEntityObject else .entityObject end
-  ]
-}
-
-#·······················································································································
-
-override method @entityDeclarationEX buildInitialSecondaryPropertyListMap
-  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
-  ?!@uint ioSecondaryDeclarationCount
-{
-  ioSecondaryDeclarationCount = ioSecondaryDeclarationCount + [mSecondaryPropertyList length]
-  ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
-}
-
-#·······················································································································
-
-override method @entityDeclarationEX solveSecondaryProperty
-  ?!@semanticContextEX ioSemanticContext
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?let @secondaryPropertyList inPropertiesToSolve
-  !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
-{
-  outUnsolvedProperties = {}
-  [ioSemanticContext.mEntityObservablePropertyMap searchKey
-    !mEntityName
-    ?@observablePropertyMap observablePropertyMap
-    ?*
-  ]
-  for (property) in inPropertiesToSolve do
-    [property tryToDefineSecondaryProperty
-      !?ioSemanticContext
-      !{} # No root entity
-      !?observablePropertyMap
-      !?outUnsolvedProperties
-      !?ioSimpleStoredPropertyListForGeneration
-    ]
-  end
-  [!?ioSemanticContext.mEntityObservablePropertyMap setMObservablePropertyMapForKey
-    !observablePropertyMap
-    !mEntityName.string
-  ]
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
