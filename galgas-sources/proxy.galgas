@@ -2,14 +2,6 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @proxyDeclarationEX : @abstractSecondaryProperty {
-  @lstring mProxyName
-  @lstring mControllerName
-  @lstring mPropertyName
-}
-
-#·······················································································································
-
 class @proxyDeclarationAST : @abstractDeclarationAST {
   @lstring mProxyName
   @lstring mControllerName
@@ -41,7 +33,6 @@ syntax extension easyBindings_syntax {
   rule <controller_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring unused inRootEntity
-            ?!@secondaryPropertyList ioSecondaryPropertyList
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $proxy$
@@ -54,11 +45,6 @@ syntax extension easyBindings_syntax {
     $.$
     $identifier$ ?let @lstring propertyName
     $;$
-    ioSecondaryPropertyList += !@proxyDeclarationEX.new {
-      !proxyName
-      !controllerName
-      !propertyName
-    }
     ioDeclarationAST.mUnifiedDeclarationList += !@proxyDeclarationAST.new {
       !inCurrentEntity
       !proxyName
@@ -97,106 +83,6 @@ override method @proxyDeclarationAST firstAnalysisPhase
       error mControllerName : "an array controller is required here"
     end
   end
-}
-
-
-
-
-
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @proxyDeclarationEX typeInventory
-  ?!@unifiedTypeMap unused ioUnifiedTypeMap
-{
-}
-
-#·······················································································································
-
-override method @proxyDeclarationEX tryToDefineSecondaryProperty
-  ?!@semanticContextEX ioSemanticContext
-  ?let @observablePropertyMap unused inRootObservableProperties
-  ?!@observablePropertyMap ioObservableProperties
-  ?!@secondaryPropertyList ioUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
-{
-  if [ioObservableProperties hasKey !mControllerName] then
-    [ioObservableProperties searchKey
-      !mControllerName
-      ?let kind
-      ?3*
-    ]
-    switch kind 
-    case property (2*) :
-      error mControllerName : "an array controller is required here"
-    case toMany (4*) :
-      error mControllerName : "an array controller is required here"
-    case toOne (3*) :
-      error mControllerName : "an array controller is required here"
-    case arrayController (entityName 2*) :
-      [ioSemanticContext.mEntityObservablePropertyMap searchKey
-        !entityName
-        ?let observablePropertyMap
-        ?*
-      ]
-      [observablePropertyMap searchKey
-        !mPropertyName
-        ?let kind
-        ?3*
-      ]
-      switch kind 
-      case property (type *) :
-        [!?ioObservableProperties insertKey
-          !mProxyName
-          !.property {!type: type !accessibility: .proxy}
-          !""
-          !{}
-          !false
-        ]
-      #--- Code Generation
-        ioSimpleStoredPropertyListForGeneration +=
-          !type
-          !mPropertyName.string
-          !true
-          !""
-          !false
-      case toMany (typeName * graphic isEntity) :
-        [!?ioObservableProperties insertKey
-          !mProxyName
-          !.toMany {!typeName: typeName !accessibility: .proxy !graphic: graphic !isEntity: isEntity}
-          !""
-          !{}
-          !false
-        ]
-      case toOne (3*) :
-        error mPropertyName : "<<toOne property>>" 
-      case arrayController (3*) :
-        error mPropertyName : "a property is required here"
-      case selectionController (*) :
-        error mPropertyName : "a property is required here"
-      end
-    case selectionController (*) :
-      error mControllerName : "an array controller is required here"
-    end  
-  else
-    ioUnsolvedProperties += !self
-  end
-}
-
-#·······················································································································
-
-override method @proxyDeclarationEX secondaryPropertySemanticAnalysisEX
-  ?let @string unused inOwnerName
-  ?let @string unused inRootEntityName
-  ?let @observablePropertyMap unused inRootObservableProperties
-  ?let @semanticContextEX unused inSemanticContext
-  ?let @observablePropertyMap unused inObservableProperties
-  ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
-  ?!@stringset unused ioNeededOutletClasses
-{
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

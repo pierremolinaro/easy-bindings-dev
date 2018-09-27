@@ -8,7 +8,6 @@ class @entityDeclarationAST : @abstractDeclarationAST {
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @toOneRelationshipListEX mToOneRelationshipList
   @toManyRelationshipListEX mToManyRelationshipList
-  @secondaryPropertyList mSecondaryPropertyList
   @stringset mSignatureList
   @lstringlist mActionDeclarationList
   @lstringlist mObsoleteEntityNames
@@ -68,7 +67,6 @@ syntax extension easyBindings_syntax {
       $Identifier$ ? superEntityName
     end
     ${$
-    @secondaryPropertyList secondaryPropertyList = {}
     @simpleStoredPropertyList simpleStoredAttributeList = {}
     @toOneRelationshipListEX toOneRelationshipList = {}
     @toManyRelationshipListEX toManyRelationshipList = {}
@@ -78,7 +76,7 @@ syntax extension easyBindings_syntax {
     while
       <simple_stored_declaration> !entityName !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
     while
-      <transient_declaration> !entityName !["" nowhere] !?secondaryPropertyList !?ioDeclarationAST
+      <transient_declaration> !entityName !["" nowhere] !?ioDeclarationAST
     while
       <toMany_relationship> !entityName !?toManyRelationshipList !?signatureList !?ioDeclarationAST
     while
@@ -86,7 +84,7 @@ syntax extension easyBindings_syntax {
     while
       <action_declaration> !?actionDeclarationList
     while
-      <controller_declaration> !entityName !["" nowhere] !?secondaryPropertyList  !?ioDeclarationAST
+      <controller_declaration> !entityName !["" nowhere]  !?ioDeclarationAST
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST.new {
@@ -96,7 +94,6 @@ syntax extension easyBindings_syntax {
       !simpleStoredAttributeList
       !toOneRelationshipList
       !toManyRelationshipList
-      !secondaryPropertyList
       !signatureList
       !actionDeclarationList
       !obsoleteEntityNames

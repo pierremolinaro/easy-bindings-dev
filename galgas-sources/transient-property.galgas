@@ -77,7 +77,6 @@ syntax extension easyBindings_syntax {
   rule <transient_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring inRootEntity
-            ?!@secondaryPropertyList unused ioSecondaryPropertyList
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $transient$

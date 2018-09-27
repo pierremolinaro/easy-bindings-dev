@@ -67,7 +67,6 @@ syntax extension easyBindings_syntax {
   rule <controller_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring inRootEntity
-            ?!@secondaryPropertyList unused ioSecondaryPropertyList
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $arrayController$

@@ -6,7 +6,6 @@ class @documentDeclarationAST : @abstractDeclarationAST {
   @lstring mRootEntityName
   @outletDeclarationList mOutletDeclarationList
   @lstringlist mActionDeclarationList
-  @secondaryPropertyList mSecondaryPropertyList
 }
 
 #·······················································································································
@@ -39,7 +38,6 @@ syntax extension easyBindings_syntax {
     $root$
     $Identifier$ ?let @lstring rootEntityName
     ${$
-    @secondaryPropertyList secondaryPropertyList = {}
     @outletDeclarationList outletDeclarationList = {}
     @regularBindingList bindingList = {}
     @lstringlist actionDeclarationList = {}
@@ -48,26 +46,18 @@ syntax extension easyBindings_syntax {
     while
       <action_declaration> !?actionDeclarationList
     while
-      <transient_declaration> !documentName !rootEntityName !?secondaryPropertyList !?ioDeclarationAST
+      <transient_declaration> !documentName !rootEntityName !?ioDeclarationAST
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <controller_declaration> !documentName !rootEntityName !?secondaryPropertyList !?ioDeclarationAST
+      <controller_declaration> !documentName !rootEntityName !?ioDeclarationAST
     end
     $}$
-  #--- Add documentFilePath transient property
-#    secondaryPropertyList += !@transientAST.new {
-#      !["String" here]
-#      !["documentFilePath" here]
-#      !{}
-#      !["" here]
-#    }
     ioDeclarationAST.mUnifiedDeclarationList += !@documentDeclarationAST.new {
       !documentName
       !rootEntityName
       !outletDeclarationList
       !actionDeclarationList
-      !secondaryPropertyList
     }
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
       !documentName

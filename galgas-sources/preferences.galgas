@@ -6,7 +6,6 @@ struct @prefDeclaration {
   @outletDeclarationList mOutletDeclarationList
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @lstringlist mActionDeclarationList
-  @secondaryPropertyList mSecondaryPropertyList
   @externSwiftFunctionList mExternSwiftFunctionList
   @storedArrayPropertyListAST mStoredArrayList
   @stringset mSignatureList
@@ -66,9 +65,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?ioDeclarationAST.mPreferences.mOutletDeclarationList
     while
-     @secondaryPropertyList secondaryPropertyList = {}
-      <transient_declaration> !prefs !["" nowhere] !?secondaryPropertyList !?ioDeclarationAST
-      ioDeclarationAST.mPreferences.mSecondaryPropertyList += secondaryPropertyList
+      <transient_declaration> !prefs !["" nowhere] !?ioDeclarationAST
     while
       <extern_swift_func> !?ioDeclarationAST.mPreferences.mExternSwiftFunctionList
     while
@@ -76,9 +73,7 @@ syntax extension easyBindings_syntax {
       <stored_array_declaration> !prefs !?storedArrayList !?ioDeclarationAST
       ioDeclarationAST.mPreferences.mStoredArrayList += storedArrayList
     while
-     @secondaryPropertyList secondaryPropertyList = {}
-      <controller_declaration> !prefs !["" nowhere] !?secondaryPropertyList !?ioDeclarationAST
-      ioDeclarationAST.mPreferences.mSecondaryPropertyList += secondaryPropertyList
+      <controller_declaration> !prefs !["" nowhere] !?ioDeclarationAST
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
@@ -175,11 +170,6 @@ method @prefDeclaration typeInventory
   ?!@unifiedTypeMap ioUnifiedTypeMap
 {
   [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-  for (item) in mSecondaryPropertyList do
-    [item typeInventory
-      !?ioUnifiedTypeMap
-    ]
-  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

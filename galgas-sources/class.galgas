@@ -43,7 +43,7 @@ syntax extension easyBindings_syntax {
     while
       <simple_stored_declaration> !entityName !?* !?* !?ioDeclarationAST
     while
-      <transient_declaration> !entityName !["" nowhere] !?* !?ioDeclarationAST
+      <transient_declaration> !entityName !["" nowhere] !?ioDeclarationAST
     while
       <extern_swift_func> !?externSwiftFunctionList
     while
