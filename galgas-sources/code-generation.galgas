@@ -29,12 +29,11 @@ list @fileGenerationList {
 struct @generationStruct {
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @fileGenerationList mFileGenerationList
-  @stringset mNeededOutletClasses
   @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
   @bool mGenerateEBManagedDocumentSwift
+  @stringset mNeededOutletClasses
 
 
-#  @arrayControllerForGenerationEX mArrayControllerListForGeneration
   @selectionControllerForGeneration mSelectionControllerListForGeneration
   @stringlist mPropertyClassList
   @transientExternTypeList mTransientPropertyTypeList
@@ -69,11 +68,6 @@ proc generateCode
   if inGeneration.mGenerateEBManagedDocumentSwift then
     generateEBManagedDocumentSwift (!fileOutputDirectory !?generatedFileSet)
   end
-#  generateArrayControllersEX (
-#    !inGeneration.mArrayControllerListForGeneration
-#    !fileOutputDirectory
-#    !?generatedFileSet
-#  )
   generateSelectionControllers (
     !inGeneration.mSelectionControllerListForGeneration
     !fileOutputDirectory

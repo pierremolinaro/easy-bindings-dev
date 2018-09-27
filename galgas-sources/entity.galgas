@@ -6,8 +6,6 @@ class @entityDeclarationAST : @abstractDeclarationAST {
   @bool mIsUserDefined
   @lstring mSuperEntityName
   @simpleStoredPropertyList mSimpleStoredAttributeList
-  @toOneRelationshipListEX mToOneRelationshipList
-  @toManyRelationshipListEX mToManyRelationshipList
   @stringset mSignatureList
   @lstringlist mActionDeclarationList
   @lstringlist mObsoleteEntityNames
@@ -68,8 +66,6 @@ syntax extension easyBindings_syntax {
     end
     ${$
     @simpleStoredPropertyList simpleStoredAttributeList = {}
-    @toOneRelationshipListEX toOneRelationshipList = {}
-    @toManyRelationshipListEX toManyRelationshipList = {}
     @stringset signatureList = {}
     @lstringlist actionDeclarationList = {}
     repeat
@@ -78,9 +74,9 @@ syntax extension easyBindings_syntax {
     while
       <transient_declaration> !entityName !["" nowhere] !?ioDeclarationAST
     while
-      <toMany_relationship> !entityName !?toManyRelationshipList !?signatureList !?ioDeclarationAST
+      <toMany_relationship> !entityName !?signatureList !?ioDeclarationAST
     while
-      <toOne_relationship> !entityName !?toOneRelationshipList !?ioDeclarationAST
+      <toOne_relationship> !entityName !?ioDeclarationAST
     while
       <action_declaration> !?actionDeclarationList
     while
@@ -92,8 +88,6 @@ syntax extension easyBindings_syntax {
       !inIsUserDefined
       !superEntityName
       !simpleStoredAttributeList
-      !toOneRelationshipList
-      !toManyRelationshipList
       !signatureList
       !actionDeclarationList
       !obsoleteEntityNames
@@ -222,15 +216,9 @@ class @entityForGeneration : @abstractFileGeneration {
   @string mEntityName
   @string mSuperEntityName
   @propertyGenerationList mPropertyGenerationList
-#  @simpleStoredPropertyListForGenerationEX mSimpleStoredPropertyListForGeneration
-#  @transientDefinitionListForGenerationEX mDecoratedTransientListForGeneration
-#  @toOneEntityRelationshipListForGeneration mToOneEntityRelationshipList
-#  @toManyEntityRelationshipListForGeneration mToManyEntityRelationshipList
   @stringset mSignatureSet
   @bool mIsGraphicEntity
   @stringset mTransientsDeclaredInSuperEntity
-#  @arrayControllerForGenerationEX mArrayControllerForGeneration
-#  @selectionControllerForGeneration mSelectionControllerListForGeneration
 }
 
 #·······················································································································
@@ -316,30 +304,9 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@stringset SIGNATURE_SET
     ?@bool IS_GRAPHIC_ENTITY
     ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
-#    ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST
-#    ?@selectionControllerForGeneration SELECTION_CONTROLLER_LIST
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
     ?@entityListForGeneratingEBManagedObjectContext ENTITY_LIST
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC TYPES
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-enum @objectKind {
-  case classObject
-  case entityObject
-  case graphicEntityObject
-}
-
-#·······················································································································
-
-map @entityObservablePropertyMap {
-  @observablePropertyMap mObservablePropertyMap
-  @objectKind mObjectKind
-  insert insertKey error message "the '%K' document is already declared in %L"
-  search searchKey error message "there is no '%K' document"
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

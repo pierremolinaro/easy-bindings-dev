@@ -38,15 +38,15 @@ getter @typeKind isGraphic -> @bool outResult {
   end
 }
 
-#·······················································································································
-
-shared map @unifiedTypeMap {
-  insert insertKey error message "the '%K' type is already declared"
-  search searchKey error message "the '%K' type is not declared"
-  @typeKind mTypeKind
-  @actionMap mActionMap
-}
-
+##·······················································································································
+#
+#shared map @unifiedTypeMap {
+#  insert insertKey error message "the '%K' type is already declared"
+#  search searchKey error message "the '%K' type is not declared"
+#  @typeKind mTypeKind
+#  @actionMap mActionMap
+#}
+#
 #·······················································································································
 
 list @typeKindList {
@@ -55,7 +55,7 @@ list @typeKindList {
 
 #·······················································································································
 
-method @astDeclaration typeInventory ?!@unifiedTypeMap unused ioUnifiedTypeMap {}
+#method @astDeclaration typeInventory ?!@unifiedTypeMap unused ioUnifiedTypeMap {}
 
 #·······················································································································
 
@@ -157,32 +157,6 @@ map @observablePropertyMap {
   insert insertKey error message "the '%K' property is already declared"
   search searchKey error message "the '%K' property is not declared"
   search searchForInverseRelationship error message "the destination entity does not define the '%K' relationship"
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY                        
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-proc typeInventory
-  ?let @astDeclarationListEX inDeclarationList
-  !@unifiedTypeMap outUnifiedTypeMap
-{
-  outUnifiedTypeMap = .emptyMap
-#------------------------ Add predefined types
-  [!?outUnifiedTypeMap insertKey !["Double" nowhere] !.doubleType !{}]
-  [!?outUnifiedTypeMap insertKey !["String" nowhere] !.stringType !{}]
-  [!?outUnifiedTypeMap insertKey !["Int" nowhere]    !.integerType !{}]
-  [!?outUnifiedTypeMap insertKey !["Bool" nowhere]   !.boolType !{}]
-
-  [!?outUnifiedTypeMap insertKey !["NSColor" nowhere]   !.colorType !{}]
-  [!?outUnifiedTypeMap insertKey !["NSFont" nowhere]   !.fontType !{}]
-  [!?outUnifiedTypeMap insertKey !["Date" nowhere]   !.dateType !{}]
-
-  [!?outUnifiedTypeMap insertKey !["enum" nowhere]   !.enumType {!enumTypeName:"" !constantMap:{}} !{}]
-#------------------------ Add user defined types and compute transient dependancy graph
-  for () in inDeclarationList do
-    [mDeclaration typeInventory !?outUnifiedTypeMap]
-  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

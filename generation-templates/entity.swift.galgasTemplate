@@ -290,11 +290,6 @@ end
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty objectAccessibilityCode]
 end
-for () in TO_MANY_RELATIONSHIP_LIST do
-% /*   for managedObject : EBManagedObject in self.%!mToManyRelationshipName%_property.propval {
-      objects.append (managedObject)
-    } */\n%
-end
 for () in TO_ONE_RELATIONSHIP_LIST do
 % /*   if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
 %      objects.append (object)\n%

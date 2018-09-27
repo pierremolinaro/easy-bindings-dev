@@ -2,17 +2,6 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @toOneRelationshipListEX {
-  @lstring mCurrentEntityName
-  @lstring mDestinationEntityName
-  @lstring mToOneRelationshipName
-  @lstring mOppositeRelationshipName # Empty string if not inverse relation ship
-  @propertyMultiplicity mInverseRelationMultiplicity
-  @bool mCascading
-}
-
-#·······················································································································
-
 class @toOneRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToOneRelationshipName
@@ -46,7 +35,6 @@ syntax extension easyBindings_syntax {
 
   rule <toOne_relationship>
             ?let @lstring inCurrentEntity
-            ?!@toOneRelationshipListEX ioToOneRelationshipList
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $toOne$
@@ -82,13 +70,6 @@ syntax extension easyBindings_syntax {
       $identifier$ ?inverseRelationshipName
       end
     $;$
-    ioToOneRelationshipList +=
-      !inCurrentEntity
-      !destinationEntityName
-      !relationshipName
-      !inverseRelationshipName
-      !inverseRelationMultiplicity
-      !cascading
     ioDeclarationAST.mUnifiedDeclarationList += !@toOneRelationshipAST.new {
       !inCurrentEntity
       !destinationEntityName
@@ -226,147 +207,6 @@ override getter @toOnePropertyGeneration clearObjectExplorerCode -> @string {
   result  = "  //--- To one property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + "_property.mObserverExplorer = nil\n"
   result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
-}
-
-
-
-
-
-
-
-
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY                        
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-method @toOneRelationshipListEX typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  for () in self do
-    [@unifiedTypeMap-proxy makeProxy
-      !?ioUnifiedTypeMap
-      !mDestinationEntityName
-      ?*
-    ]
-  end
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   OBSERVABLE PROPERTY MAP               
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-method @toOneRelationshipListEX buildObservablePropertyMap
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@observablePropertyMap ioObservableProperties
-{
-  for () in self do
-  #--- Property type
-    [inUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?let actionMap]
-  #--- Check type
-    @bool graphic
-    switch type
-    case boolType, integerType, stringType, dateType, doubleType, fontType, colorType :
-      error mDestinationEntityName: "a simple type cannot be used as entitytype" : graphic
-    case enumType (* *) :
-      error mDestinationEntityName: "an enumeration type cannot be used as entitytype" : graphic
-    case classType (*) :
-      error mDestinationEntityName: "a class type cannot be used as entitytype" : graphic
-    case transientPropertyExternType (*) :
-      error mOppositeRelationshipName: "the opposite type cannot be used as entity type" : graphic
-    case entityType (* isGraphic) : # Ok
-      graphic = isGraphic
-    end
-  #--- Enter in property map
-    [!?ioObservableProperties insertKey
-      !mToOneRelationshipName
-      !.toOne {!typeName: mDestinationEntityName !accessibility: .stored !graphic: graphic}
-      !mOppositeRelationshipName.string
-      !actionMap
-      !mCascading
-    ]
-  end
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS                     
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-method @toOneRelationshipListEX semanticAnalysis
-  ?let @semanticContextEX inSemanticContext
-  !@toOneEntityRelationshipListForGeneration outToOneEntityRelationshipListForGeneration
-{
-  outToOneEntityRelationshipListForGeneration = {}
-  for () in self do
-    [inSemanticContext.mUnifiedTypeMap searchKey !mDestinationEntityName ?let type ?*]
-    [inSemanticContext.mEntityObservablePropertyMap searchKey
-      !mDestinationEntityName
-      ?@observablePropertyMap destinationEntityObservablePropertyMap
-      ?*
-    ]
-    outToOneEntityRelationshipListForGeneration +=
-      !mToOneRelationshipName.string
-      !type
-      !mOppositeRelationshipName.string
-      !mInverseRelationMultiplicity
-      !destinationEntityObservablePropertyMap
-      !mCascading
-  #--- Check inverse relationship
-    if mOppositeRelationshipName.string != "" then
-      [destinationEntityObservablePropertyMap searchForInverseRelationship
-         !mOppositeRelationshipName
-         ?let @propertyKind oppositeKind
-         ?let @string oppositeOfOpposite
-         ?2*
-       ]
-     #--- Check opposite type
-      if [oppositeKind swiftTypeName] != mCurrentEntityName.string then
-        error mOppositeRelationshipName
-        : "the type of the opposite property '" + mOppositeRelationshipName
-          + "' should be '" + mCurrentEntityName + "' (found '" + [oppositeKind swiftTypeName] + "')"
-      end
-      switch oppositeKind 
-      case property (2*) :
-        error mOppositeRelationshipName : "a property cannot be an opposite of a relationship"
-      case toMany (* accessibility 2*) :
-        if [accessibility isTransient] then
-          error mOppositeRelationshipName : "this relationship is transient, should be stored"
-        end
-        if mInverseRelationMultiplicity != .collection then
-          error mOppositeRelationshipName : "inverse relationship multiplicity error (toMany <-> toOne)"
-        end
-      case toOne (* accessibility *) :
-        if [accessibility isTransient] then
-          error mOppositeRelationshipName : "this relationship is transient, should be stored"
-        end
-        if mInverseRelationMultiplicity != .single then
-          error mOppositeRelationshipName : "inverse relationship multiplicity error (toMany <-> toOne)"
-        end
-      case arrayController (3*) :
-         error mOppositeRelationshipName : "an array controller cannot be an opposite of a relationship"
-      case selectionController (*) :
-         error mOppositeRelationshipName : "a selection controller cannot be an opposite of a relationship"
-      end
-      if oppositeOfOpposite != mToOneRelationshipName.string then
-        error mOppositeRelationshipName : "inverse relationship does not name '"
-           + mToOneRelationshipName + "' as opposite"
-      end
-    end
-  end
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION TYPES                      
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-list @toOneEntityRelationshipListForGeneration {
-  @string mToOneRelationshipName
-  @typeKind mRelationshipType
-  @string mOppositeRelationshipName
-  @propertyMultiplicity mInverseRelationMultiplicity
-  @observablePropertyMap mDestinationEntityObservablePropertyMap
-  @bool mCascading
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

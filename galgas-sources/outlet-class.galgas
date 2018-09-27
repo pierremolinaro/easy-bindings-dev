@@ -2,19 +2,6 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @outletClassDeclarationListEX {
-  @bool mUserDefined
-  @lstring mOutletClassName
-  @lstring mSuperClassName
-  @bool mHasRunAction
-  @bool mHasEnabled
-  @bool mHandlesTableValueBinding
-  @bool mHandlesGraphicControllerBinding
-  @bool mHasHidden
-}
-
-#·······················································································································
-
 class @outletClassDeclarationAST : @abstractDeclarationAST {
   @bool mUserDefined
   @lstring mSuperClassName
@@ -86,15 +73,6 @@ syntax extension easyBindings_syntax {
       handlesGraphicControllerBinding = true
     end
     $;$
-    ioDeclarationAST.mOutletClassDeclarationList +=
-      !inIsUserDefined
-      !outletClassName
-      !superClassName
-      !hasRunAction
-      !hasEnabled
-      !handlesTableViewBinding
-      !handlesGraphicControllerBinding
-      !hasHidden
     ioDeclarationAST.mUnifiedDeclarationList += !@outletClassDeclarationAST.new {
       !outletClassName
       !inIsUserDefined
@@ -112,34 +90,62 @@ syntax extension easyBindings_syntax {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#   SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @outletClassDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  [!?ioSemanticContext.mClassMap insertKey
-    !mClassName
-    !.atomic {!kind: .transientPropertyExternType {!externTypeName: mClassName}}
-    !{}
-    !{}
-    !{}
-  ]
+  if mSuperClassName.string == "" then
+    [!?ioSemanticContext.mOutletClassMap insertKey
+      !mClassName
+      !["" nowhere]  # No super class
+      !mHasRunAction
+      !mHandlesTableValueBinding
+      !mHasEnabled
+      !mHasHidden
+      !mHandlesGraphicControllerBinding
+      !mUserDefined
+    ]
+  else
+    [ioSemanticContext.mOutletClassMap searchKey
+      !mSuperClassName
+      ?*
+      ?let hasRunAction
+      ?let handlesTableValueBinding
+      ?let hasEnabled
+      ?let hasHidden
+      ?let handlesGraphicControllerBinding
+      ?*
+    ]  
+    if mHasRunAction & hasRunAction then
+      error mClassName : "$run binding already defined in superclass"
+    end
+    if mHandlesTableValueBinding & handlesTableValueBinding then
+      error mClassName : "$tableview binding already defined in superclass"
+    end
+    if mHasEnabled & hasEnabled then
+      error mClassName : "$enabled binding already defined in superclass"
+    end
+    if mHasHidden & hasHidden then
+      error mClassName : "$hidden binding already defined in superclass"
+    end
+    if mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
+      error mClassName : "$graphicControler binding already defined in superclass"
+    end
+    [!?ioSemanticContext.mOutletClassMap insertKey
+      !mClassName
+      !mSuperClassName
+      !mHasRunAction | hasRunAction
+      !mHandlesTableValueBinding | handlesTableValueBinding
+      !mHasEnabled | hasEnabled
+      !mHasHidden | hasHidden
+      !mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
+      !mUserDefined
+    ]
+  end
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #  SEMANTIC TYPE                          
@@ -155,100 +161,6 @@ map @outletClassMap {
   @bool mUserDefined
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#  SEMANTICS                              
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-method @outletClassDeclarationListEX buildOutletClassMap ?!@outletClassMap ioOutletClassMap {
-#--- First, enter classes without any superclass
-  @outletClassDeclarationListEX remainingList = {}
-  for () in self do
-    if mSuperClassName.string == "" then
-      [!?ioOutletClassMap insertKey
-        !mOutletClassName
-        !["" nowhere]  # No super class
-        !mHasRunAction
-        !mHandlesTableValueBinding
-        !mHasEnabled
-        !mHasHidden
-        !mHandlesGraphicControllerBinding
-        !mUserDefined
-      ]
-    else
-      remainingList +=
-        !mUserDefined
-        !mOutletClassName
-        !mSuperClassName
-        !mHasRunAction
-        !mHasEnabled
-        !mHandlesTableValueBinding
-        !mHandlesGraphicControllerBinding
-        !mHasHidden
-    end
-  end
-#--- Then, enter classes that have their superclass defined
-  var continue = true
-  loop ([remainingList length] + 1) while ([remainingList length] > 0) & continue do
-    let currentList = remainingList
-    remainingList = {}
-    continue = false
-    for () in currentList do
-      if [ioOutletClassMap hasKey !mSuperClassName.string] then
-        [ioOutletClassMap searchKey
-          !mSuperClassName
-          ?*
-          ?let hasRunAction
-          ?let handlesTableValueBinding
-          ?let hasEnabled
-          ?let hasHidden
-          ?let handlesGraphicControllerBinding
-          ?*
-        ]  
-        if mHasRunAction & hasRunAction then
-          error mOutletClassName : "$run binding already defined in superclass"
-        end
-        if mHandlesTableValueBinding & handlesTableValueBinding then
-          error mOutletClassName : "$tableview binding already defined in superclass"
-        end
-        if mHasEnabled & hasEnabled then
-          error mOutletClassName : "$enabled binding already defined in superclass"
-        end
-        if mHasHidden & hasHidden then
-          error mOutletClassName : "$hidden binding already defined in superclass"
-        end
-        if mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
-          error mOutletClassName : "$graphicControler binding already defined in superclass"
-        end
-        [!?ioOutletClassMap insertKey
-          !mOutletClassName
-          !mSuperClassName
-          !mHasRunAction | hasRunAction
-          !mHandlesTableValueBinding | handlesTableValueBinding
-          !mHasEnabled | hasEnabled
-          !mHasHidden | hasHidden
-          !mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
-          !mUserDefined
-        ]
-      else
-        continue = true
-        remainingList +=
-          !mUserDefined
-          !mOutletClassName
-          !mSuperClassName
-          !mHasRunAction
-          !mHasEnabled
-          !mHandlesTableValueBinding
-          !mHandlesGraphicControllerBinding
-          !mHasHidden
-      end
-    end
-  end
-#--- Remaining classes have their superclass undefined, or there is a circularity in inheritance graph
-  for () in remainingList do
-    error mSuperClassName : "undefined outlet class"
-  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

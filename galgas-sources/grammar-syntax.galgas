@@ -29,17 +29,10 @@ list @astDeclarationListEX {
 struct @astDeclarationStruct {
   @declarationListAST mUnifiedDeclarationList
   @astDeclarationListEX mDeclarationList
-  @outletClassDeclarationListEX mOutletClassDeclarationList
   @outletClassBindingSpecificationList mBindingSpecificationListMap
   @prefDeclaration mPreferences
   @lstring mXcodeProject
 }
-
-#·······················································································································
-
-#list @secondaryPropertyList {
-#  @abstractSecondaryProperty mSecondaryProperty
-#}
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SYNTAX
@@ -92,5 +85,6 @@ syntax easyBindings_syntax (easyBindings_lexique) {
   #·····················································································································
 
 }
+
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

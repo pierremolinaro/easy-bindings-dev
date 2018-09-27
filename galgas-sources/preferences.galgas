@@ -160,33 +160,6 @@ override method @prefsDeclarationAST thirdAnalysisPhase
   }
 }
 
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY                        
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-method @prefDeclaration typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  [mSimpleStoredAttributeList typeInventory !?ioUnifiedTypeMap]
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS                     
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-method @prefDeclaration buildObservablePropertyMapsFromStoredProperties
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?!@semanticContextEX ioSemanticContext
-{
-#--- Analyze simple stored properties
-  [mSimpleStoredAttributeList buildObservablePropertyMap
-    !inUnifiedTypeMap
-    !?ioSemanticContext.mPreferencesObservablePropertyMap
-  ]
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION                            
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

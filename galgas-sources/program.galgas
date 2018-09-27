@@ -35,10 +35,8 @@ case . "eb"
   enterAtomicClassesIn (!?declarationList: declarationStruct.mUnifiedDeclarationList)
 #----------------------------------------- Sort properties
   sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let sortedDeclarationListAST)
-#----------------------------------------- Build outlet class map
-  @semanticContext semanticContext = .default
-  [declarationStruct.mOutletClassDeclarationList buildOutletClassMap !?semanticContext.mOutletClassMap]
 #----------------------------------------- Semantic Analysis, first phase
+  @semanticContext semanticContext = .default
   @generationStruct generation = .default
   for (declaration) in sortedDeclarationListAST do
     [declaration firstAnalysisPhase !?semanticContext !?generation]
@@ -56,38 +54,12 @@ case . "eb"
   for (declaration) in sortedDeclarationListAST do
     [declaration thirdAnalysisPhase !?semanticContext !?generation]
   end
-
-
-
-
-#----------------------------------------- Type inventory
-  typeInventory (!declarationStruct.mDeclarationList ?@unifiedTypeMap unifiedTypeMap)
-#----------------------------------------- Check all types are defined
-  let unsolvedProxyList = [unifiedTypeMap unsolvedProxyList]
-  for () in  unsolvedProxyList do
-    error mValue :"type " + mValue + " is undefined"
-  end
-#----------------------------------------- Topological sort types and continue
-  if [unsolvedProxyList length] == 0 then
-    [unifiedTypeMap topologicalSort
-      ?var @lstringlist sortedTypeNames
-      ?var @lstringlist unsortedTypeNames
-    ]
-    if [unsortedTypeNames length] > 0 then
-      var s = "cannot sort types ; the following types are involved in circular dependence:"
-      for () in  unsortedTypeNames do
-        s += "\n-- " + mValue
-      end
-      error @location.here : s
-    else
-      if @uint.errorCount == 0 then
-        generateCode (
-          !declarationStruct.mXcodeProject.string
-          !generation
-          !inSourceFile.string
-        )
-      end
-    end
+  if @uint.errorCount == 0 then
+    generateCode (
+      !declarationStruct.mXcodeProject.string
+      !generation
+      !inSourceFile.string
+    )
   end
 }
 

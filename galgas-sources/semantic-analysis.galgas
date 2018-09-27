@@ -112,15 +112,4 @@ map @propertyMap {
   search searchKey error message "there is no '%K' property"
 }
 
-#·······················································································································
-
-struct @semanticContextEX {
-  @classMap mClassMap
-  @unifiedTypeMap mUnifiedTypeMap
-  @outletClassMap mOutletClassMap
-  @bindingSpecificationMap mBindingSpecificationMap
-  @observablePropertyMap mPreferencesObservablePropertyMap
-  @entityObservablePropertyMap mEntityObservablePropertyMap
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
