@@ -43,6 +43,11 @@ getter @propertyGeneration saveIntoDictionaryCode -> @string { result = "" }
 #·······················································································································
 
 getter @propertyGeneration objectAccessibilityCode -> @string { result = "" }
+
+#·······················································································································
+
+getter @propertyGeneration populateExplorerWindowCode -> @string { result = "" }
+
 #·······················································································································
 
 getter @propertyGeneration clearObjectExplorerCode -> @string { result = "" }

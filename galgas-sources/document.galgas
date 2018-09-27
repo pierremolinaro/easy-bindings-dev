@@ -23,6 +23,7 @@ class @documentDeclarationAST : @abstractDeclarationAST {
 
 override method @documentDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
   [!?ioGraph addNode !mClassName !self]
+  [!?ioGraph addEdge !mClassName !mRootEntityName]
 }
 
 #·······················································································································
@@ -107,7 +108,7 @@ syntax extension easyBindings_syntax {
 
 override method @documentDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration
+       ?!@generationStruct ioGeneration
 {
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
@@ -117,9 +118,71 @@ override method @documentDeclarationAST firstAnalysisPhase
     !actionMap
     !{}
   ]
+  for () in actionMap do
+    ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
+      !mClassName.string
+      !lkey.string
+    }
+  end
 }
 
+#·······················································································································
 
+override method @documentDeclarationAST thirdAnalysisPhase
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration
+{
+#--- Get document property map
+  [ioSemanticContext.mClassMap searchKey
+    !.new {!mClassName !.nowhere}
+    ?*
+    ?let documentPropertyMap
+    ?let documentActionMap
+    ?let documentPropertyGenerationList
+  ]
+#--- Get root entity property map
+  [ioSemanticContext.mClassMap searchKey
+    !mRootEntityName
+    ?*
+    ?let rootPropertyMap
+    ?let unused rootActionMap
+    ?let unused rootPropertyGenerationList
+  ]
+#--- Analyze outlets and bindings
+  analyzeOutlets (
+    !rootPropertyMap
+    !mRootEntityName.string
+    !ioSemanticContext
+    !mOutletDeclarationList
+    !documentPropertyMap
+    !documentActionMap
+    !mClassName
+    !?ioGeneration
+    ?let @regularBindingsGenerationList regularBindingsGenerationList
+    ?let @multipleBindingGenerationList multipleBindingGenerationList
+    ?let @actionBindingListForGeneration actionBindingListForGeneration
+    ?let @decoratedOutletMap outletMap
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
+  )
+#--- Code generation
+  ioGeneration.mGenerateEBManagedDocumentSwift = true
+#---
+  ioGeneration.mFileGenerationList += !@documentFileGeneration.new {
+    !mClassName.string
+    !mRootEntityName.string
+    !documentPropertyGenerationList
+    !{} # transientDefinitionListForGeneration
+    !outletMap
+    !actionBindingListForGeneration
+    !regularBindingsGenerationList
+    !multipleBindingGenerationList
+    !{} # documentArrayControllerListForGeneration
+    !tableViewBindingGenerationList
+    !ebViewGraphicControllerBindingGenerationList # ebViewBindingGenerationList
+    !{} # selectionControllerListForGeneration
+  }
+}
 
 
 
@@ -209,81 +272,81 @@ override method @documentDeclarationEX solveSecondaryProperty
 
 #·······················································································································
 
-override method @documentDeclarationEX semanticAnalysisEX
-  ?let @semanticContextEX inSemanticContext
-  ?!@generationStruct ioGeneration
-{
-  [inSemanticContext.mDocumentObservablePropertyMap searchKey
-    !mDocumentName
-    ?let @observablePropertyMap observablePropertyMap
-  ]
-  [inSemanticContext.mEntityObservablePropertyMap searchKey
-    !mRootEntityName
-    ?let @observablePropertyMap rootObservablePropertyMap
-    ?*
-  ]
+#override method @documentDeclarationEX semanticAnalysisEX
+#  ?let @semanticContextEX inSemanticContext
+#  ?!@generationStruct ioGeneration
+#{
+#  [inSemanticContext.mDocumentObservablePropertyMap searchKey
+#    !mDocumentName
+#    ?let @observablePropertyMap observablePropertyMap
+#  ]
+#  [inSemanticContext.mEntityObservablePropertyMap searchKey
+#    !mRootEntityName
+#    ?let @observablePropertyMap rootObservablePropertyMap
+#    ?*
+#  ]
 #--- Analyze secondary
-  @transientDefinitionListForGenerationEX transientDefinitionListForGeneration = {}
-  @arrayControllerForGenerationEX documentArrayControllerListForGeneration = {}
-  @selectionControllerForGeneration selectionControllerListForGeneration = {}
-  for (item) in mSecondaryPropertyList do
-    [item secondaryPropertySemanticAnalysisEX
-      !mDocumentName.string
-      !mRootEntityName.string
-      !rootObservablePropertyMap
-      !inSemanticContext
-      !observablePropertyMap
-      !?transientDefinitionListForGeneration
-      !?documentArrayControllerListForGeneration
-      !?selectionControllerListForGeneration
-      !?ioGeneration.mNeededOutletClasses
-    ]
-  end
-  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-  ioGeneration.mArrayControllerListForGeneration += documentArrayControllerListForGeneration
-  ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
+#  @transientDefinitionListForGenerationEX transientDefinitionListForGeneration = {}
+#  @arrayControllerForGenerationEX documentArrayControllerListForGeneration = {}
+#  @selectionControllerForGeneration selectionControllerListForGeneration = {}
+#  for (item) in mSecondaryPropertyList do
+#    [item secondaryPropertySemanticAnalysisEX
+#      !mDocumentName.string
+#      !mRootEntityName.string
+#      !rootObservablePropertyMap
+#      !inSemanticContext
+#      !observablePropertyMap
+#      !?transientDefinitionListForGeneration
+#      !?documentArrayControllerListForGeneration
+#      !?selectionControllerListForGeneration
+#      !?ioGeneration.mNeededOutletClasses
+#    ]
+#  end
+#  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
+#  ioGeneration.mArrayControllerListForGeneration += documentArrayControllerListForGeneration
+#  ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
 #--- Build action map
-  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
-  for () in actionMap do
-    ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
-      !mDocumentName.string
-      !lkey.string
-    }
-  end
+#  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+#  for () in actionMap do
+#    ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
+#      !mDocumentName.string
+#      !lkey.string
+#    }
+#  end
 #--- Analyze outlets and bindings
-  analyzeOutletsEX (
-    !rootObservablePropertyMap
-    !mRootEntityName.string
-    !inSemanticContext
-    !mOutletDeclarationList
-    !observablePropertyMap
-    !actionMap
-    !mDocumentName.string
-    !?ioGeneration
-    ?let @regularBindingsGenerationList regularBindingsGenerationList
-    ?let @multipleBindingGenerationList multipleBindingGenerationList
-    ?let @actionBindingListForGeneration actionBindingListForGeneration
-    ?let @decoratedOutletMap outletMap
-    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
-    ?let @ebViewGraphicControllerBindingGenerationList ebViewBindingGenerationList
-  )
+#  analyzeOutletsEX (
+#    !rootObservablePropertyMap
+#    !mRootEntityName.string
+#    !inSemanticContext
+#    !mOutletDeclarationList
+#    !observablePropertyMap
+#    !actionMap
+#    !mDocumentName.string
+#    !?ioGeneration
+#    ?let @regularBindingsGenerationList regularBindingsGenerationList
+#    ?let @multipleBindingGenerationList multipleBindingGenerationList
+#    ?let @actionBindingListForGeneration actionBindingListForGeneration
+#    ?let @decoratedOutletMap outletMap
+#    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+#    ?let @ebViewGraphicControllerBindingGenerationList ebViewBindingGenerationList
+#  )
 #--- Code generation
-  ioGeneration.mGenerateEBManagedDocumentSwift = true
-#--
-  ioGeneration.mFileGenerationList += !@documentFileGeneration.new {
-    !mDocumentName.string
-    !mRootEntityName.string
-    !transientDefinitionListForGeneration
-    !outletMap
-    !actionBindingListForGeneration
-    !regularBindingsGenerationList
-    !multipleBindingGenerationList
-    !documentArrayControllerListForGeneration
-    !tableViewBindingGenerationList
-    !ebViewBindingGenerationList
-    !selectionControllerListForGeneration
-  }
-}
+#  ioGeneration.mGenerateEBManagedDocumentSwift = true
+##---
+#  ioGeneration.mFileGenerationList += !@documentFileGeneration.new {
+#    !mDocumentName.string
+#    !mRootEntityName.string
+#    !transientDefinitionListForGeneration
+#    !outletMap
+#    !actionBindingListForGeneration
+#    !regularBindingsGenerationList
+#    !multipleBindingGenerationList
+#    !documentArrayControllerListForGeneration
+#    !tableViewBindingGenerationList
+#    !ebViewBindingGenerationList
+#    !selectionControllerListForGeneration
+#  }
+#}
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION                            
@@ -292,6 +355,7 @@ override method @documentDeclarationEX semanticAnalysisEX
 class @documentFileGeneration : @abstractFileGeneration {
   @string mDocumentName
   @string mRootEntityName
+  @propertyGenerationList mDocumentPropertyGenearionList
   @transientDefinitionListForGenerationEX mTransientListForGeneration
   @decoratedOutletMap mOutletMap
   @actionBindingListForGeneration mTargetActionList 
@@ -312,6 +376,7 @@ override method @documentFileGeneration generateCode
   let s = [filewrapper documentGenerationTemplate.documentImplementation
     !mDocumentName
     !mRootEntityName
+    !mDocumentPropertyGenearionList
     !mTransientListForGeneration
     !mOutletMap
     !mArrayControllerForGeneration
@@ -339,6 +404,7 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
   template documentImplementation "document.swift.galgasTemplate"
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
+    ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
     ?@transientDefinitionListForGenerationEX TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
     ?@arrayControllerForGenerationEX ARRAY_CONTROLLER_LIST

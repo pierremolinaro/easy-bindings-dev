@@ -248,26 +248,26 @@ void routine_generateEBManagedObjectContext (const class GALGAS_entityListForGen
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             Routine 'analyzeOutletsEX'                                              *
+//                                              Routine 'analyzeOutlets'                                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void routine_analyzeOutletsEX (const class GALGAS_observablePropertyMap constinArgument0,
-                               const class GALGAS_string constinArgument1,
-                               const class GALGAS_semanticContextEX constinArgument2,
-                               const class GALGAS_outletDeclarationList constinArgument3,
-                               const class GALGAS_observablePropertyMap constinArgument4,
-                               const class GALGAS_actionMap constinArgument5,
-                               const class GALGAS_string constinArgument6,
-                               class GALGAS_generationStruct & ioArgument7,
-                               class GALGAS_regularBindingsGenerationList & outArgument8,
-                               class GALGAS_multipleBindingGenerationList & outArgument9,
-                               class GALGAS_actionBindingListForGeneration & outArgument10,
-                               class GALGAS_decoratedOutletMap & outArgument11,
-                               class GALGAS_tableViewBindingGenerationList & outArgument12,
-                               class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument13,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
+void routine_analyzeOutlets (const class GALGAS_propertyMap constinArgument0,
+                             const class GALGAS_string constinArgument1,
+                             const class GALGAS_semanticContext constinArgument2,
+                             const class GALGAS_outletDeclarationList constinArgument3,
+                             const class GALGAS_propertyMap constinArgument4,
+                             const class GALGAS_actionMap constinArgument5,
+                             const class GALGAS_string constinArgument6,
+                             class GALGAS_generationStruct & ioArgument7,
+                             class GALGAS_regularBindingsGenerationList & outArgument8,
+                             class GALGAS_multipleBindingGenerationList & outArgument9,
+                             class GALGAS_actionBindingListForGeneration & outArgument10,
+                             class GALGAS_decoratedOutletMap & outArgument11,
+                             class GALGAS_tableViewBindingGenerationList & outArgument12,
+                             class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument13,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -300,6 +300,7 @@ extern const cDirectoryWrapper gWrapperDirectory_5_documentGenerationTemplate ;
 GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementation (class C_Compiler * inCompiler,
                                                                                      const class GALGAS_string & in_DOCUMENT_5F_NAME,
                                                                                      const class GALGAS_string & in_ROOT_5F_ENTITY_5F_NAME,
+                                                                                     const class GALGAS_propertyGenerationList & in_DOCUMENT_5F_PROPERTY_5F_LIST,
                                                                                      const class GALGAS_transientDefinitionListForGenerationEX & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                      const class GALGAS_decoratedOutletMap & in_OUTLET_5F_GENERATION_5F_MAP,
                                                                                      const class GALGAS_arrayControllerForGenerationEX & in_ARRAY_5F_CONTROLLER_5F_LIST,
@@ -362,27 +363,4 @@ extern const cRegularFileWrapper gWrapperFile_11_swift_5F_sources ;
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_swift_5F_sources ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                              Routine 'analyzeOutlets'                                               *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_analyzeOutlets (const class GALGAS_propertyMap constinArgument0,
-                             const class GALGAS_string constinArgument1,
-                             const class GALGAS_semanticContext constinArgument2,
-                             const class GALGAS_outletDeclarationList constinArgument3,
-                             const class GALGAS_propertyMap constinArgument4,
-                             const class GALGAS_actionMap constinArgument5,
-                             const class GALGAS_string constinArgument6,
-                             class GALGAS_generationStruct & ioArgument7,
-                             class GALGAS_regularBindingsGenerationList & outArgument8,
-                             class GALGAS_multipleBindingGenerationList & outArgument9,
-                             class GALGAS_actionBindingListForGeneration & outArgument10,
-                             class GALGAS_decoratedOutletMap & outArgument11,
-                             class GALGAS_tableViewBindingGenerationList & outArgument12,
-                             class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument13,
-                             class C_Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) ;
 

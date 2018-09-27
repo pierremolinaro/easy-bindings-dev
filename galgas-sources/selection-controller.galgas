@@ -71,7 +71,7 @@ syntax extension easyBindings_syntax {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#   SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 override method @selectionControllerDeclarationAST firstAnalysisPhase
@@ -97,11 +97,84 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
         !typeName: typeName
       }
       [!?mPropertyMap insertKey !mSelectionControllerName !kind !{}]
+      mPropertyGenerationList += !@selectionControllerPropertyGeneration.new {
+        !mSelectionControllerName.string
+        !mClassName
+        !mModelControllerName.string
+        !mModelControllerPropertyName.string
+      }
     case selectionController (*) :
       error mModelControllerName : "an array controller is required here"
     end
   end
 }
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+#override method @selectionControllerDeclarationAST secondAnalysisPhase
+#       ?!@semanticContext ioSemanticContext
+#       ?!@generationStruct unused ioGeneration
+#{
+#
+#}
+#
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   CODE GENERATION                       
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @selectionControllerPropertyGeneration : @propertyGeneration {
+  @string mOwnerName
+  @string mModelControllerName
+  @string mModelControllerPropertyName
+}
+
+#·······················································································································
+
+override getter @selectionControllerPropertyGeneration declarationCode -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+  result += "  //   Selection controller: " + mPropertyName + "\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + " = SelectionController_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+}
+
+#·······················································································································
+
+override getter @selectionControllerPropertyGeneration configurationCode -> @string {
+  result  = "  //--- Selection controller property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + ".bind_selection (model: self." + mModelControllerName
+    + "." + mModelControllerPropertyName + "_property, file: #file, line: #line)\n"
+}
+
+#·······················································································································
+
+override getter @selectionControllerPropertyGeneration populateExplorerWindowCode -> @string {
+  result  = "  //--- Selection controller property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + ".addExplorer (name: \"" + mPropertyName + "\", y:&y, view:view)\n"
+}
+
+#·······················································································································
+
+override getter @selectionControllerPropertyGeneration terminationCode -> @string {
+  result  = "  //--- Selection controller property: " + mPropertyName + "\n"
+  result += "    self." + mPropertyName + ".unbind_selection ()\n"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

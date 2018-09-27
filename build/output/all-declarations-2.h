@@ -3242,7 +3242,8 @@ class GALGAS_arrayControllerPropertyGeneration : public GALGAS_propertyGeneratio
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_arrayControllerPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                                   const class GALGAS_string & inOperand1,
-                                                                                  const class GALGAS_string & inOperand2
+                                                                                  const class GALGAS_string & inOperand2,
+                                                                                  const class GALGAS_bool & inOperand3
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3257,6 +3258,8 @@ class GALGAS_arrayControllerPropertyGeneration : public GALGAS_propertyGeneratio
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelString (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mUsesManagedObjectContext (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -3279,11 +3282,13 @@ class cPtr_arrayControllerPropertyGeneration : public cPtr_propertyGeneration {
 //--- Attributes
   public : GALGAS_string mProperty_mModelString ;
   public : GALGAS_string mProperty_mOwnerName ;
+  public : GALGAS_bool mProperty_mUsesManagedObjectContext ;
 
 //--- Constructor
   public : cPtr_arrayControllerPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                                    const GALGAS_string & in_mModelString,
-                                                   const GALGAS_string & in_mOwnerName
+                                                   const GALGAS_string & in_mOwnerName,
+                                                   const GALGAS_bool & in_mUsesManagedObjectContext
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3292,6 +3297,7 @@ class cPtr_arrayControllerPropertyGeneration : public cPtr_propertyGeneration {
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mModelString (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mUsesManagedObjectContext (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

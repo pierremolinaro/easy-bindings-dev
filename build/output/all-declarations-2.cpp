@@ -12252,6 +12252,9 @@ typeComparisonResult cPtr_arrayControllerPropertyGeneration::dynamicObjectCompar
   if (kOperandEqual == result) {
     result = mProperty_mOwnerName.objectCompare (p->mProperty_mOwnerName) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mUsesManagedObjectContext.objectCompare (p->mProperty_mUsesManagedObjectContext) ;
+  }
   return result ;
 }
 
@@ -12285,7 +12288,8 @@ GALGAS_propertyGeneration () {
 GALGAS_arrayControllerPropertyGeneration GALGAS_arrayControllerPropertyGeneration::constructor_default (LOCATION_ARGS) {
   return GALGAS_arrayControllerPropertyGeneration::constructor_new (GALGAS_string::constructor_default (HERE),
                                                                     GALGAS_string::constructor_default (HERE),
-                                                                    GALGAS_string::constructor_default (HERE)
+                                                                    GALGAS_string::constructor_default (HERE),
+                                                                    GALGAS_bool::constructor_default (HERE)
                                                                     COMMA_THERE) ;
 }
 
@@ -12300,11 +12304,12 @@ GALGAS_propertyGeneration (inSourcePtr) {
 
 GALGAS_arrayControllerPropertyGeneration GALGAS_arrayControllerPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
                                                                                                     const GALGAS_string & inAttribute_mModelString,
-                                                                                                    const GALGAS_string & inAttribute_mOwnerName
+                                                                                                    const GALGAS_string & inAttribute_mOwnerName,
+                                                                                                    const GALGAS_bool & inAttribute_mUsesManagedObjectContext
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerPropertyGeneration result ;
-  if (inAttribute_mPropertyName.isValid () && inAttribute_mModelString.isValid () && inAttribute_mOwnerName.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_arrayControllerPropertyGeneration (inAttribute_mPropertyName, inAttribute_mModelString, inAttribute_mOwnerName COMMA_THERE)) ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mModelString.isValid () && inAttribute_mOwnerName.isValid () && inAttribute_mUsesManagedObjectContext.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_arrayControllerPropertyGeneration (inAttribute_mPropertyName, inAttribute_mModelString, inAttribute_mOwnerName, inAttribute_mUsesManagedObjectContext COMMA_THERE)) ;
   }
   return result ;
 }
@@ -12346,16 +12351,36 @@ GALGAS_string cPtr_arrayControllerPropertyGeneration::getter_mOwnerName (UNUSED_
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_arrayControllerPropertyGeneration::getter_mUsesManagedObjectContext (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_arrayControllerPropertyGeneration * p = (const cPtr_arrayControllerPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_arrayControllerPropertyGeneration) ;
+    result = p->mProperty_mUsesManagedObjectContext ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cPtr_arrayControllerPropertyGeneration::getter_mUsesManagedObjectContext (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mUsesManagedObjectContext ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                             Pointer class for @arrayControllerPropertyGeneration class                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 cPtr_arrayControllerPropertyGeneration::cPtr_arrayControllerPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                                                                 const GALGAS_string & in_mModelString,
-                                                                                const GALGAS_string & in_mOwnerName
+                                                                                const GALGAS_string & in_mOwnerName,
+                                                                                const GALGAS_bool & in_mUsesManagedObjectContext
                                                                                 COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
 mProperty_mModelString (in_mModelString),
-mProperty_mOwnerName (in_mOwnerName) {
+mProperty_mOwnerName (in_mOwnerName),
+mProperty_mUsesManagedObjectContext (in_mUsesManagedObjectContext) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -12372,6 +12397,8 @@ void cPtr_arrayControllerPropertyGeneration::description (C_String & ioString,
   mProperty_mModelString.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mOwnerName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mUsesManagedObjectContext.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -12379,7 +12406,7 @@ void cPtr_arrayControllerPropertyGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_arrayControllerPropertyGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_arrayControllerPropertyGeneration (mProperty_mPropertyName, mProperty_mModelString, mProperty_mOwnerName COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_arrayControllerPropertyGeneration (mProperty_mPropertyName, mProperty_mModelString, mProperty_mOwnerName, mProperty_mUsesManagedObjectContext COMMA_THERE)) ;
   return ptr ;
 }
 

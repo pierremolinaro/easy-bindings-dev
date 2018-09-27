@@ -703,15 +703,16 @@ class GALGAS_documentFileGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_documentFileGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                        const class GALGAS_string & inOperand1,
-                                                                       const class GALGAS_transientDefinitionListForGenerationEX & inOperand2,
-                                                                       const class GALGAS_decoratedOutletMap & inOperand3,
-                                                                       const class GALGAS_actionBindingListForGeneration & inOperand4,
-                                                                       const class GALGAS_regularBindingsGenerationList & inOperand5,
-                                                                       const class GALGAS_multipleBindingGenerationList & inOperand6,
-                                                                       const class GALGAS_arrayControllerForGenerationEX & inOperand7,
-                                                                       const class GALGAS_tableViewBindingGenerationList & inOperand8,
-                                                                       const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand9,
-                                                                       const class GALGAS_selectionControllerForGeneration & inOperand10
+                                                                       const class GALGAS_propertyGenerationList & inOperand2,
+                                                                       const class GALGAS_transientDefinitionListForGenerationEX & inOperand3,
+                                                                       const class GALGAS_decoratedOutletMap & inOperand4,
+                                                                       const class GALGAS_actionBindingListForGeneration & inOperand5,
+                                                                       const class GALGAS_regularBindingsGenerationList & inOperand6,
+                                                                       const class GALGAS_multipleBindingGenerationList & inOperand7,
+                                                                       const class GALGAS_arrayControllerForGenerationEX & inOperand8,
+                                                                       const class GALGAS_tableViewBindingGenerationList & inOperand9,
+                                                                       const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand10,
+                                                                       const class GALGAS_selectionControllerForGeneration & inOperand11
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -726,6 +727,8 @@ class GALGAS_documentFileGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerForGenerationEX getter_mArrayControllerForGeneration (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
 
@@ -766,6 +769,7 @@ class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
   public : GALGAS_string mProperty_mDocumentName ;
   public : GALGAS_string mProperty_mRootEntityName ;
+  public : GALGAS_propertyGenerationList mProperty_mDocumentPropertyGenearionList ;
   public : GALGAS_transientDefinitionListForGenerationEX mProperty_mTransientListForGeneration ;
   public : GALGAS_decoratedOutletMap mProperty_mOutletMap ;
   public : GALGAS_actionBindingListForGeneration mProperty_mTargetActionList ;
@@ -779,6 +783,7 @@ class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
 //--- Constructor
   public : cPtr_documentFileGeneration (const GALGAS_string & in_mDocumentName,
                                         const GALGAS_string & in_mRootEntityName,
+                                        const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
                                         const GALGAS_transientDefinitionListForGenerationEX & in_mTransientListForGeneration,
                                         const GALGAS_decoratedOutletMap & in_mOutletMap,
                                         const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
@@ -796,6 +801,7 @@ class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mRootEntityName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_transientDefinitionListForGenerationEX getter_mTransientListForGeneration (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_decoratedOutletMap getter_mOutletMap (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_actionBindingListForGeneration getter_mTargetActionList (LOCATION_ARGS) const ;

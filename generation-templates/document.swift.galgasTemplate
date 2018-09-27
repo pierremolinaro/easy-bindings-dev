@@ -8,6 +8,11 @@ import Cocoa
 
 @objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : EBManagedDocument {
 
+%
+for () in DOCUMENT_PROPERTY_LIST do
+  ![mProperty declarationCode]
+end
+%
   //····················································································································
   //    Outlets
   //····················································································································
@@ -87,13 +92,17 @@ end
 
   override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
 %
+for () in DOCUMENT_PROPERTY_LIST do
+  ![mProperty populateExplorerWindowCode]
+end
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName.string%.addExplorer (name: "%!mControllerName.string%", y:&y, view:view)\n%
 end
 for () in SELECTION_CONTROLLER_LIST do
 %    %!mSelectionControllerName%.addExplorer (name: "%!mSelectionControllerName%", y:&y, view:view)\n%
 end
-%    super.populateExplorerWindow (&y, view:view)
+%  //---
+    super.populateExplorerWindow (&y, view:view)
   }
 
   //····················································································································
@@ -143,6 +152,9 @@ end
                           errorMessage: "the '%!lkey.string%' outlet is nil") ;
     }
 %
+end
+for () in DOCUMENT_PROPERTY_LIST do
+  ![mProperty configurationCode]
 end
 %  //--------------------------- Array controllers
 %
@@ -255,6 +267,9 @@ for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
 end
 for () in ARRAY_CONTROLLER_LIST do
 %    %!mControllerName.string%.unbind_model ()\n%
+end
+for () in DOCUMENT_PROPERTY_LIST do
+  ![mProperty terminationCode]
 end
 %  //--------------------------- Unbind selection controllers
 %
