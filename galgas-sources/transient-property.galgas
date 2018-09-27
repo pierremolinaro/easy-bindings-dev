@@ -275,16 +275,19 @@ override getter @transientPropertyGeneration declarationCode -> @string {
 #·······················································································································
 
 override getter @transientPropertyGeneration configurationCode -> @string {
-  result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.readModelFunction = { [weak self] in\n"
-  result += "      if let unwSelf = self {\n"
-  result += [mDependencyList transientComputeFunctionCall !mClassName !mPropertyName !mExternFunctionName]
-  result += "      }else{\n"
-  result += "        return .empty\n"
-  result += "      }\n"
-  result += "    }\n"
-  for () in mDependencyList do
-    result += "    " + [mDependency generateAddObserverCall] + " (self." + mPropertyName + "_property)\n"
+  result  = ""
+  if [mDependencyList length] > 0 then
+    result += "  //--- Atomic property: " + mPropertyName + "\n"
+    result += "    self." + mPropertyName + "_property.readModelFunction = { [weak self] in\n"
+    result += "      if let unwSelf = self {\n"
+    result += [mDependencyList transientComputeFunctionCall !mClassName !mPropertyName !mExternFunctionName]
+    result += "      }else{\n"
+    result += "        return .empty\n"
+    result += "      }\n"
+    result += "    }\n"
+    for () in mDependencyList do
+      result += "    " + [mDependency generateAddObserverCall] + " (self." + mPropertyName + "_property)\n"
+    end
   end
 }
 
@@ -332,53 +335,55 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   ?let @string inExternFunctionName
   -> @string outResult
 {
-  @string ident = "        "
   outResult = ""
-  if [self length] == 1 then
-    [self first ?let @observablePropertyAST first ?2*]
-    outResult += ident + "let kind = " + [first modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
-  else
-    var dependencies = self
-    [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
-    outResult += ident + "var kind = " + [first modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
-    for () in dependencies do
-      outResult += ident + "kind &= " + [mDependency modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
+#  if [self length] > 0 then
+    var ident = "        "
+    if [self length] == 1 then
+      [self first ?let @observablePropertyAST first ?2*]
+      outResult += ident + "let kind = " + [first modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
+    else
+      var dependencies = self
+      [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
+      outResult += ident + "var kind = " + [first modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
+      for () in dependencies do
+        outResult += ident + "kind &= " + [mDependency modelStringForSelf !"unwSelf"] + "_selection.kind ()\n"
+      end
     end
-  end
-  outResult += ident + "switch kind {\n"
-  outResult += ident + "case .noSelectionKind :\n"
-  outResult += ident + "  return .empty\n"
-  outResult += ident + "case .multipleSelectionKind :\n"
-  outResult += ident + "  return .multiple\n"
-  outResult += ident + "case .singleSelectionKind :\n"
-  outResult += ident + "  switch ("
-  for () in self
-  do outResult += [mDependency modelStringForSelf !"unwSelf"] + "_selection"
-  between outResult += ", "
-  end
-  outResult += ") {\n"
-  outResult += ident + "  case ("
-  for () in self
-  do (idx) outResult += ".single (let v" + idx + ")"
-  between outResult += ", "
-  end
-  outResult += ") :\n"
-  outResult += ident + "    return .single ("
-  if inExternFunctionName == "" then
-    outResult += "transient_" + inOwnerName + "_" + inTransientName
-  else
-    outResult += "transient_" + inExternFunctionName
-  end
-  outResult += " ("
-  for () in self
-  do (idx) outResult += "v" + idx
-  between outResult += ", "
-  end
-  outResult += "))\n"
-  outResult += ident + "  default :\n"
-  outResult += ident + "    return .empty\n"
-  outResult += ident + "  }\n"
-  outResult += ident + "}\n"
+    outResult += ident + "switch kind {\n"
+    outResult += ident + "case .noSelectionKind :\n"
+    outResult += ident + "  return .empty\n"
+    outResult += ident + "case .multipleSelectionKind :\n"
+    outResult += ident + "  return .multiple\n"
+    outResult += ident + "case .singleSelectionKind :\n"
+    outResult += ident + "  switch ("
+    for () in self
+    do outResult += [mDependency modelStringForSelf !"unwSelf"] + "_selection"
+    between outResult += ", "
+    end
+    outResult += ") {\n"
+    outResult += ident + "  case ("
+    for () in self
+    do (idx) outResult += ".single (let v" + idx + ")"
+    between outResult += ", "
+    end
+    outResult += ") :\n"
+    outResult += ident + "    return .single ("
+    if inExternFunctionName == "" then
+      outResult += "transient_" + inOwnerName + "_" + inTransientName
+    else
+      outResult += "transient_" + inExternFunctionName
+    end
+    outResult += " ("
+    for () in self
+    do (idx) outResult += "v" + idx
+    between outResult += ", "
+    end
+    outResult += "))\n"
+    outResult += ident + "  default :\n"
+    outResult += ident + "    return .empty\n"
+    outResult += ident + "  }\n"
+    outResult += ident + "}\n"
+#  end
 }
 
 #·······················································································································
