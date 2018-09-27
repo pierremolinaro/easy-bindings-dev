@@ -56,12 +56,12 @@ syntax extension easyBindings_syntax {
     end
     $}$
   #--- Add documentFilePath transient property
-    secondaryPropertyList += !@transientAST.new {
-      !["String" here]
-      !["documentFilePath" here]
-      !{}
-      !["" here]
-    }
+#    secondaryPropertyList += !@transientAST.new {
+#      !["String" here]
+#      !["documentFilePath" here]
+#      !{}
+#      !["" here]
+#    }
     ioDeclarationAST.mUnifiedDeclarationList += !@documentDeclarationAST.new {
       !documentName
       !rootEntityName

@@ -109,15 +109,17 @@ abstract method @abstractSecondaryProperty typeInventory
 #    SEMANTIC ANALYSIS                    
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract method @abstractSecondaryProperty secondaryPropertySemanticAnalysisEX
-  ?let @string inOwnerName
-  ?let @string inRootEntityName
-  ?let @observablePropertyMap inRootObservableProperties
-  ?let @semanticContextEX inSemanticContext
-  ?let @observablePropertyMap inObservableProperties
-  ?!@transientDefinitionListForGenerationEX ioTransientDefinitionListForGeneration
-  ?!@arrayControllerForGenerationEX ioArrayControllerForGeneration
-  ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
-  ?!@stringset ioNeededOutletClasses
+method @abstractSecondaryProperty secondaryPropertySemanticAnalysisEX
+  ?let @string unused inOwnerName
+  ?let @string unused inRootEntityName
+  ?let @observablePropertyMap unused inRootObservableProperties
+  ?let @semanticContextEX unused inSemanticContext
+  ?let @observablePropertyMap unused inObservableProperties
+  ?!@transientDefinitionListForGenerationEX unused ioTransientDefinitionListForGeneration
+  ?!@arrayControllerForGenerationEX unused ioArrayControllerForGeneration
+  ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
+  ?!@stringset unused ioNeededOutletClasses
+{
+}
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

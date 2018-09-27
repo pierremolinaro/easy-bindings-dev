@@ -9946,7 +9946,7 @@ class cMapElement_unifiedTypeMap : public cMapElement {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//             Abstract extension method '@abstractSecondaryProperty secondaryPropertySemanticAnalysisEX'              *
+//                  Extension method '@abstractSecondaryProperty secondaryPropertySemanticAnalysisEX'                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

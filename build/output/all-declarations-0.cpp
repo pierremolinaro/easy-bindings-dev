@@ -2762,7 +2762,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document.galgas", 57)) ;
-  var_secondaryPropertyList_1704.addAssign_operation (GALGAS_transientAST::constructor_new (GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 60)), GALGAS_string ("documentFilePath").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 61)), GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("document.galgas", 62)), GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 63))  COMMA_SOURCE_FILE ("document.galgas", 59))  COMMA_SOURCE_FILE ("document.galgas", 59)) ;
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_documentDeclarationAST::constructor_new (var_documentName_1590, var_rootEntityName_1647, var_outletDeclarationList_1758, var_actionDeclarationList_1843, var_secondaryPropertyList_1704  COMMA_SOURCE_FILE ("document.galgas", 65))  COMMA_SOURCE_FILE ("document.galgas", 65)) ;
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientDeclarationAST::constructor_new (var_documentName_1590, var_rootEntityName_1647, GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 75)), GALGAS_string ("documentFilePath").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 76)), GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("document.galgas", 77)), GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 78))  COMMA_SOURCE_FILE ("document.galgas", 72))  COMMA_SOURCE_FILE ("document.galgas", 72)) ;
 }
@@ -7529,7 +7528,7 @@ void callExtensionMethod_typeInventory (const cPtr_abstractSecondaryProperty * i
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//             Abstract extension method '@abstractSecondaryProperty secondaryPropertySemanticAnalysisEX'              *
+//                  Extension method '@abstractSecondaryProperty secondaryPropertySemanticAnalysisEX'                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7541,17 +7540,6 @@ void enterExtensionMethod_secondaryPropertySemanticAnalysisEX (const int32_t inC
                                                                extensionMethodSignature_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX inMethod) {
   gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void freeExtensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (void) {
-  gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (NULL,
-                                                                                          freeExtensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7567,8 +7555,6 @@ void callExtensionMethod_secondaryPropertySemanticAnalysisEX (const cPtr_abstrac
                                                               GALGAS_stringset & io_ioNeededOutletClasses,
                                                               C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-//--- Find method
   if (NULL != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractSecondaryProperty) ;
     const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
@@ -7578,14 +7564,14 @@ void callExtensionMethod_secondaryPropertySemanticAnalysisEX (const cPtr_abstrac
       f = gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (classIndex COMMA_HERE) ;
     }
     if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX.count ()) {
-          f = gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX.count ()) {
+           f = gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
     }
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
@@ -7594,6 +7580,39 @@ void callExtensionMethod_secondaryPropertySemanticAnalysisEX (const cPtr_abstrac
     }
   }
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (const cPtr_abstractSecondaryProperty * /* inObject */,
+                                                                                           const GALGAS_string /* constinArgument_inOwnerName */,
+                                                                                           const GALGAS_string /* constinArgument_inRootEntityName */,
+                                                                                           const GALGAS_observablePropertyMap /* constinArgument_inRootObservableProperties */,
+                                                                                           const GALGAS_semanticContextEX /* constinArgument_inSemanticContext */,
+                                                                                           const GALGAS_observablePropertyMap /* constinArgument_inObservableProperties */,
+                                                                                           GALGAS_transientDefinitionListForGenerationEX & /* ioArgument_ioTransientDefinitionListForGeneration */,
+                                                                                           GALGAS_arrayControllerForGenerationEX & /* ioArgument_ioArrayControllerForGeneration */,
+                                                                                           GALGAS_selectionControllerForGeneration & /* ioArgument_ioSelectionControllerForGeneration */,
+                                                                                           GALGAS_stringset & /* ioArgument_ioNeededOutletClasses */,
+                                                                                           C_Compiler * /* inCompiler */
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+}
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (void) {
+  enterExtensionMethod_secondaryPropertySemanticAnalysisEX (kTypeDescriptor_GALGAS_abstractSecondaryProperty.mSlotID,
+                                                            extensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (void) {
+  gExtensionMethodTable_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX (defineExtensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX,
+                                                                                          freeExtensionMethod_abstractSecondaryProperty_secondaryPropertySemanticAnalysisEX) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
