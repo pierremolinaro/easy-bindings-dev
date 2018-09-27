@@ -3626,30 +3626,30 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
                                                                                                 GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                 C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.galgas", 83)) ;
-  GALGAS_lstring var_transientTypeName_4471 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientTypeName_4478 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.galgas", 84)) ;
-  GALGAS_lstring var_transientName_4516 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientName_4523 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.galgas", 85)) ;
-  GALGAS_lstring var_externFunctionName_4548 ;
+  GALGAS_lstring var_externFunctionName_4555 ;
   switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
   case 1: {
-    var_externFunctionName_4548 = GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 88)) ;
+    var_externFunctionName_4555 = GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 88)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_externFunc COMMA_SOURCE_FILE ("transient-property.galgas", 90)) ;
-    var_externFunctionName_4548 = inCompiler->synthetizedAttribute_tokenString () ;
+    var_externFunctionName_4555 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.galgas", 91)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("transient-property.galgas", 93)) ;
-  GALGAS_observablePropertyList var_dependanceList_4750 = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("transient-property.galgas", 94)) ;
+  GALGAS_observablePropertyList var_dependanceList_4757 = GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("transient-property.galgas", 94)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    GALGAS_observablePropertyAST var_observablePropertyAST_4844 ;
-    nt_observable_5F_property_ (var_observablePropertyAST_4844, inCompiler) ;
-    var_dependanceList_4750.addAssign_operation (var_observablePropertyAST_4844  COMMA_SOURCE_FILE ("transient-property.galgas", 97)) ;
+    GALGAS_observablePropertyAST var_observablePropertyAST_4851 ;
+    nt_observable_5F_property_ (var_observablePropertyAST_4851, inCompiler) ;
+    var_dependanceList_4757.addAssign_operation (var_observablePropertyAST_4851  COMMA_SOURCE_FILE ("transient-property.galgas", 97)) ;
     switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.galgas", 99)) ;
@@ -3660,7 +3660,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.galgas", 101)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientDeclarationAST::constructor_new (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_4471, var_transientName_4516, var_dependanceList_4750, var_externFunctionName_4548  COMMA_SOURCE_FILE ("transient-property.galgas", 102))  COMMA_SOURCE_FILE ("transient-property.galgas", 102)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientDeclarationAST::constructor_new (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_4478, var_transientName_4523, var_dependanceList_4757, var_externFunctionName_4555  COMMA_SOURCE_FILE ("transient-property.galgas", 102))  COMMA_SOURCE_FILE ("transient-property.galgas", 102)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7547,8 +7547,6 @@ void callExtensionMethod_secondaryPropertySemanticAnalysisEX (const cPtr_abstrac
                                                               const GALGAS_observablePropertyMap constin_inRootObservableProperties,
                                                               const GALGAS_semanticContextEX constin_inSemanticContext,
                                                               const GALGAS_observablePropertyMap constin_inObservableProperties,
-                                                              GALGAS_transientDefinitionListForGenerationEX & io_ioTransientDefinitionListForGeneration,
-                                                              GALGAS_arrayControllerForGenerationEX & io_ioArrayControllerForGeneration,
                                                               GALGAS_selectionControllerForGeneration & io_ioSelectionControllerForGeneration,
                                                               GALGAS_stringset & io_ioNeededOutletClasses,
                                                               C_Compiler * inCompiler
@@ -7574,7 +7572,7 @@ void callExtensionMethod_secondaryPropertySemanticAnalysisEX (const cPtr_abstrac
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inOwnerName, constin_inRootEntityName, constin_inRootObservableProperties, constin_inSemanticContext, constin_inObservableProperties, io_ioTransientDefinitionListForGeneration, io_ioArrayControllerForGeneration, io_ioSelectionControllerForGeneration, io_ioNeededOutletClasses, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inOwnerName, constin_inRootEntityName, constin_inRootObservableProperties, constin_inSemanticContext, constin_inObservableProperties, io_ioSelectionControllerForGeneration, io_ioNeededOutletClasses, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -7587,8 +7585,6 @@ static void extensionMethod_abstractSecondaryProperty_secondaryPropertySemanticA
                                                                                            const GALGAS_observablePropertyMap /* constinArgument_inRootObservableProperties */,
                                                                                            const GALGAS_semanticContextEX /* constinArgument_inSemanticContext */,
                                                                                            const GALGAS_observablePropertyMap /* constinArgument_inObservableProperties */,
-                                                                                           GALGAS_transientDefinitionListForGenerationEX & /* ioArgument_ioTransientDefinitionListForGeneration */,
-                                                                                           GALGAS_arrayControllerForGenerationEX & /* ioArgument_ioArrayControllerForGeneration */,
                                                                                            GALGAS_selectionControllerForGeneration & /* ioArgument_ioSelectionControllerForGeneration */,
                                                                                            GALGAS_stringset & /* ioArgument_ioNeededOutletClasses */,
                                                                                            C_Compiler * /* inCompiler */

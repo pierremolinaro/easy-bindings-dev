@@ -63,23 +63,6 @@ void routine_analyzeRegularBinding (const class GALGAS_propertyMap constinArgume
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          Routine 'analyzeRegularBindingEX'                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_analyzeRegularBindingEX (const class GALGAS_observablePropertyMap constinArgument0,
-                                      const class GALGAS_semanticContextEX constinArgument1,
-                                      const class GALGAS_observablePropertyMap constinArgument2,
-                                      const class GALGAS_lstring constinArgument3,
-                                      const class GALGAS_string constinArgument4,
-                                      const class GALGAS_regularBindingList constinArgument5,
-                                      const class GALGAS_string constinArgument6,
-                                      class GALGAS_regularBindingsGenerationList & ioArgument7,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                           Filewrapper 'transientManager'                                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -241,18 +224,6 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
                                                                                          const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
                                                                                          const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
                                                                                          COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        Routine 'generateArrayControllersEX'                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateArrayControllersEX (const class GALGAS_arrayControllerForGenerationEX constinArgument0,
-                                         const class GALGAS_string constinArgument1,
-                                         class GALGAS_stringset & ioArgument2,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

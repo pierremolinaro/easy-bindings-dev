@@ -115,8 +115,8 @@ method @abstractSecondaryProperty secondaryPropertySemanticAnalysisEX
   ?let @observablePropertyMap unused inRootObservableProperties
   ?let @semanticContextEX unused inSemanticContext
   ?let @observablePropertyMap unused inObservableProperties
-  ?!@transientDefinitionListForGenerationEX unused ioTransientDefinitionListForGeneration
-  ?!@arrayControllerForGenerationEX unused ioArrayControllerForGeneration
+#  ?!@transientDefinitionListForGenerationEX unused ioTransientDefinitionListForGeneration
+#  ?!@arrayControllerForGenerationEX unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
   ?!@stringset unused ioNeededOutletClasses
 {

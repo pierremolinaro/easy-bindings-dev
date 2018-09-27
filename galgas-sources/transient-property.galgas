@@ -77,7 +77,7 @@ syntax extension easyBindings_syntax {
   rule <transient_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring inRootEntity
-            ?!@secondaryPropertyList ioSecondaryPropertyList
+            ?!@secondaryPropertyList unused ioSecondaryPropertyList
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $transient$
@@ -318,16 +318,6 @@ override getter @transientPropertyGeneration terminationCode -> @string {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION TYPE                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-list @transientDefinitionListForGenerationEX {
-  @string mOwnerName
-  @string mTransientName
-  @typeKind mTransientType
-  @transientDependencyListForGeneration mDependencyList
-  @string mExternFunctionName
-}
-
-#·······················································································································
 
 list @transientDependencyListForGeneration {
   @observablePropertyAST mDependency

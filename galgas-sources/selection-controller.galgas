@@ -267,8 +267,6 @@ override method @selectionControllerDeclarationEX secondaryPropertySemanticAnaly
   ?let @observablePropertyMap unused inRootObservableProperties
   ?let @semanticContextEX inSemanticContext
   ?let @observablePropertyMap inObservableProperties
-  ?!@transientDefinitionListForGenerationEX unused ioTransientDefinitionListForGeneration
-  ?!@arrayControllerForGenerationEX unused ioArrayControllerForGeneration
   ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
   ?!@stringset unused ioNeededOutletClasses
 {
