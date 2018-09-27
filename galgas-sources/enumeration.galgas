@@ -2,13 +2,6 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @enumDeclarationEX : @astDeclaration {
-  @lstring mEnumTypeName
-  @lstringlist mEnumConstantNameList
-}
-
-#·······················································································································
-
 class @enumerationDeclarationAST : @abstractDeclarationAST {
   @lstringlist mEnumConstantNameList
 }
@@ -34,7 +27,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <enum_declaration>
-    ?let @bool inIsUserDefined
+    ?let @bool unused inIsUserDefined
     ?!@astDeclarationStruct ioDeclarationAST {
     $enum$
     $Identifier$ ?let @lstring enumName
@@ -47,7 +40,6 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $}$
-    ioDeclarationAST.mDeclarationList += !@enumDeclarationEX.new { !inIsUserDefined !enumName !enumConstants}
     ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST.new {!enumName !enumConstants}
   }
 
@@ -128,57 +120,4 @@ override method @enumForGeneration generateCode
   end
 }
 
-
-
-
-
-
-
-
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTICS                             
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY                        
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @enumDeclarationEX typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  @enumConstantMap enumConstantMap = {}
-  for (s) in mEnumConstantNameList do
-    [!?enumConstantMap insertKey !s]
-  end
-  [!?ioUnifiedTypeMap insertKey
-    !mEnumTypeName
-    !@typeKind.enumType {!enumTypeName:mEnumTypeName.string !constantMap:enumConstantMap}
-    !{}
-  ]
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS                     
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @enumDeclarationEX buildObservablePropertyMapsFromStoredProperties
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?!@semanticContextEX unused ioSemanticContext
-{
-}
-
-#·······················································································································
-
-override method @enumDeclarationEX solveSecondaryProperty
-  ?!@semanticContextEX unused ioSemanticContext
-  ?let @unifiedTypeMap unused mUnifiedTypeMap
-  ?let @secondaryPropertyList unused inPropertiesToSolve
-  !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
-{
-  outUnsolvedProperties = {}
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION TYPE                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

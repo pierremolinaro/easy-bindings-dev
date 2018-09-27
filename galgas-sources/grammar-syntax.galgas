@@ -37,14 +37,9 @@ struct @astDeclarationStruct {
 
 #·······················································································································
 
-abstract class @abstractSecondaryProperty {
-}
-
-#·······················································································································
-
-list @secondaryPropertyList {
-  @abstractSecondaryProperty mSecondaryProperty
-}
+#list @secondaryPropertyList {
+#  @abstractSecondaryProperty mSecondaryProperty
+#}
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SYNTAX
@@ -96,30 +91,6 @@ syntax easyBindings_syntax (easyBindings_lexique) {
 
   #·····················································································································
 
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#    TYPE INVENTORY                       
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-abstract method @abstractSecondaryProperty typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#    SEMANTIC ANALYSIS                    
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-method @abstractSecondaryProperty secondaryPropertySemanticAnalysisEX
-  ?let @string unused inOwnerName
-  ?let @string unused inRootEntityName
-  ?let @observablePropertyMap unused inRootObservableProperties
-  ?let @semanticContextEX unused inSemanticContext
-  ?let @observablePropertyMap unused inObservableProperties
-#  ?!@transientDefinitionListForGenerationEX unused ioTransientDefinitionListForGeneration
-#  ?!@arrayControllerForGenerationEX unused ioArrayControllerForGeneration
-  ?!@selectionControllerForGeneration unused ioSelectionControllerForGeneration
-  ?!@stringset unused ioNeededOutletClasses
-{
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

@@ -126,43 +126,6 @@ map @outletBindingSpecificationMap {
 
 #·······················································································································
 
-proc buildBindingSpecificationMapEX
-  ?let @unifiedTypeMap inUnifiedTypeMap
-  ?let @outletClassMap inOutletClassMap
-  ?let @outletClassBindingSpecificationList inBindingSpecificationListMap
-  ?!@bindingSpecificationMap ioBindingSpecificationMap
-{
-  for () in inBindingSpecificationListMap do
-    @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
-    for () in mOutletClassBindingSpecificationModelList do
-      [inUnifiedTypeMap searchKey !mModelTypeName ?let @typeKind type ?*]
-      outletBindingSpecificationModelList += !type !mModelShouldBeWritableProperty
-    end
-    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
-    for () in mBindingOptionList do
-      [inUnifiedTypeMap searchKey !mOptionTypeName ?let @typeKind type ?*]
-      controllerBindingOptionDecoratedList += !type !mOptionName
-    end
-  #--- Insert in binding map
-    @outletBindingSpecificationMap bindingMap
-    @lstring outletSuperClassName
-    if [ioBindingSpecificationMap hasKey !mOutletClassName.string] then
-      [!?ioBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
-    else
-      bindingMap = {}
-      [inOutletClassMap searchKey !mOutletClassName ?outletSuperClassName ?6*]
-    end
-    [!?bindingMap insertKey
-      !mBindingName
-      !outletBindingSpecificationModelList
-      !controllerBindingOptionDecoratedList
-    ]
-    [!?ioBindingSpecificationMap insertKey !mOutletClassName !outletSuperClassName !bindingMap]
-  end
-}
-
-#·······················································································································
-
 proc buildBindingSpecificationMap
   ?!@semanticContext ioSemanticContext
   ?let @outletClassBindingSpecificationList inBindingSpecificationListMap

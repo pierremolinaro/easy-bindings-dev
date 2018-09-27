@@ -2,13 +2,6 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @transientPropertyTypeDeclarationEX : @astDeclaration {
-  @lstring mPropertyTypeName
-  @bool mIsClass # Is false, struct
-}
-
-#·······················································································································
-
 class @transientClassDeclarationAST : @abstractDeclarationAST {
   @bool mIsClass # Is false, struct
 }
@@ -34,7 +27,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <class_declaration>
-    ?let @bool inIsUserDefined
+    ?let @bool unused inIsUserDefined
     ?!@astDeclarationStruct ioDeclarationAST
   {
     $transient$
@@ -49,11 +42,6 @@ syntax extension easyBindings_syntax {
     end
     $Identifier$ ?let @lstring propertyTypeName
     $;$
-    ioDeclarationAST.mDeclarationList += !@transientPropertyTypeDeclarationEX.new {
-      !inIsUserDefined
-      !propertyTypeName
-      !isClass
-    }
     ioDeclarationAST.mUnifiedDeclarationList += !@transientClassDeclarationAST.new {
       !propertyTypeName
       !isClass
@@ -80,51 +68,6 @@ override method @transientClassDeclarationAST firstAnalysisPhase
     !{}
   ]
   ioGeneration.mTransientPropertyTypeList += !mClassName.string !mIsClass
-}
-
-
-
-
-
-
-
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY                        
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @transientPropertyTypeDeclarationEX typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  [!?ioUnifiedTypeMap insertKey
-    !mPropertyTypeName
-    !.transientPropertyExternType {!externTypeName:mPropertyTypeName.string}
-    !{}
-  ]
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS                     
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-# Only get current entity observable properties, do not collect in super entities
-override method @transientPropertyTypeDeclarationEX buildObservablePropertyMapsFromStoredProperties
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?!@semanticContextEX unused ioSemanticContext
-{
-}
-
-#·······················································································································
-
-override method @transientPropertyTypeDeclarationEX solveSecondaryProperty
-  ?!@semanticContextEX unused ioSemanticContext
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?let @secondaryPropertyList unused inPropertiesToSolve
-  !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
-{
-  outUnsolvedProperties = {}
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

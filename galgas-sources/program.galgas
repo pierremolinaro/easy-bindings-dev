@@ -80,13 +80,6 @@ case . "eb"
       end
       error @location.here : s
     else
-     semanticAnalysisEX (
-        !semanticContext.mClassMap
-        !unifiedTypeMap
-        !inSourceFile.string
-        !declarationStruct
-        !?generation
-      )
       if @uint.errorCount == 0 then
         generateCode (
           !declarationStruct.mXcodeProject.string

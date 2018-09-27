@@ -16,15 +16,6 @@ void enterOptionsFor_easyBindings_5F_options (NSMutableArray * ioBoolOptionArray
   OC_GGS_CommandLineOption * option ;
   option = [[OC_GGS_CommandLineOption alloc]
     initWithDomainName:@"easyBindings_options"
-    identifier:@"latexBindingDescription"
-    commandChar:98
-    commandString:@"output-binding-description"
-    comment:@"Output binding description in Latex"
-    defaultValue:@""
-  ] ;
-  [ioBoolOptionArray addObject:option] ;
-  option = [[OC_GGS_CommandLineOption alloc]
-    initWithDomainName:@"easyBindings_options"
     identifier:@"outputDeclarationDependencyGraph"
     commandChar:103
     commandString:@"output-declaration-graph"

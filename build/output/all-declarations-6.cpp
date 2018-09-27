@@ -34,70 +34,6 @@ void routine_generateOutletClasses (const GALGAS_stringset constinArgument_inNee
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      Routine 'buildBindingSpecificationMapEX'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_buildBindingSpecificationMapEX (const GALGAS_unifiedTypeMap constinArgument_inUnifiedTypeMap,
-                                             const GALGAS_outletClassMap constinArgument_inOutletClassMap,
-                                             const GALGAS_outletClassBindingSpecificationList constinArgument_inBindingSpecificationListMap,
-                                             GALGAS_bindingSpecificationMap & ioArgument_ioBindingSpecificationMap,
-                                             C_Compiler * inCompiler
-                                             COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_outletClassBindingSpecificationList enumerator_4696 (constinArgument_inBindingSpecificationListMap, kENUMERATION_UP) ;
-  while (enumerator_4696.hasCurrentObject ()) {
-    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_4776 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 136)) ;
-    cEnumerator_outletClassBindingSpecificationModelList enumerator_4837 (enumerator_4696.current_mOutletClassBindingSpecificationModelList (HERE), kENUMERATION_UP) ;
-    while (enumerator_4837.hasCurrentObject ()) {
-      GALGAS_typeKind var_type_4910 ;
-      GALGAS_actionMap joker_4912 ; // Joker input parameter
-      constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_4837.current_mModelTypeName (HERE), var_type_4910, joker_4912, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 138)) ;
-      var_outletBindingSpecificationModelList_4776.addAssign_operation (var_type_4910, enumerator_4837.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 139)) ;
-      enumerator_4837.gotoNextObject () ;
-    }
-    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_5084 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 141)) ;
-    cEnumerator_controllerBindingOptionList enumerator_5122 (enumerator_4696.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
-    while (enumerator_5122.hasCurrentObject ()) {
-      GALGAS_typeKind var_type_5196 ;
-      GALGAS_actionMap joker_5198 ; // Joker input parameter
-      constinArgument_inUnifiedTypeMap.method_searchKey (enumerator_5122.current_mOptionTypeName (HERE), var_type_5196, joker_5198, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 143)) ;
-      var_controllerBindingOptionDecoratedList_5084.addAssign_operation (var_type_5196, enumerator_5122.current_mOptionName (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 144)) ;
-      enumerator_5122.gotoNextObject () ;
-    }
-    GALGAS_outletBindingSpecificationMap var_bindingMap_5348 ;
-    GALGAS_lstring var_outletSuperClassName_5382 ;
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
-      test_0 = ioArgument_ioBindingSpecificationMap.getter_hasKey (enumerator_4696.current_mOutletClassName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("binding-specification.galgas", 149)).boolEnum () ;
-      if (kBoolTrue == test_0) {
-        {
-        ioArgument_ioBindingSpecificationMap.setter_removeKey (enumerator_4696.current_mOutletClassName (HERE), var_outletSuperClassName_5382, var_bindingMap_5348, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 150)) ;
-        }
-      }
-    }
-    if (kBoolFalse == test_0) {
-      var_bindingMap_5348 = GALGAS_outletBindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("binding-specification.galgas", 152)) ;
-      GALGAS_bool joker_5659_6 ; // Joker input parameter
-      GALGAS_bool joker_5659_5 ; // Joker input parameter
-      GALGAS_bool joker_5659_4 ; // Joker input parameter
-      GALGAS_bool joker_5659_3 ; // Joker input parameter
-      GALGAS_bool joker_5659_2 ; // Joker input parameter
-      GALGAS_bool joker_5659_1 ; // Joker input parameter
-      constinArgument_inOutletClassMap.method_searchKey (enumerator_4696.current_mOutletClassName (HERE), var_outletSuperClassName_5382, joker_5659_6, joker_5659_5, joker_5659_4, joker_5659_3, joker_5659_2, joker_5659_1, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 153)) ;
-    }
-    {
-    var_bindingMap_5348.setter_insertKey (enumerator_4696.current_mBindingName (HERE), var_outletBindingSpecificationModelList_4776, var_controllerBindingOptionDecoratedList_5084, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 155)) ;
-    }
-    {
-    ioArgument_ioBindingSpecificationMap.setter_insertKey (enumerator_4696.current_mOutletClassName (HERE), var_outletSuperClassName_5382, var_bindingMap_5348, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 160)) ;
-    }
-    enumerator_4696.gotoNextObject () ;
-  }
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                       Routine 'buildBindingSpecificationMap'                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -106,126 +42,126 @@ void routine_buildBindingSpecificationMap (GALGAS_semanticContext & ioArgument_i
                                            const GALGAS_outletClassBindingSpecificationList constinArgument_inBindingSpecificationListMap,
                                            C_Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_outletClassBindingSpecificationList enumerator_6229 (constinArgument_inBindingSpecificationListMap, kENUMERATION_UP) ;
-  while (enumerator_6229.hasCurrentObject ()) {
-    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_6309 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 171)) ;
-    cEnumerator_outletClassBindingSpecificationModelList enumerator_6370 (enumerator_6229.current_mOutletClassBindingSpecificationModelList (HERE), kENUMERATION_UP) ;
-    while (enumerator_6370.hasCurrentObject ()) {
-      GALGAS_classKind var_classKind_6460 ;
-      GALGAS_propertyMap joker_6462_3 ; // Joker input parameter
-      GALGAS_actionMap joker_6462_2 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_6462_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (enumerator_6370.current_mModelTypeName (HERE), var_classKind_6460, joker_6462_3, joker_6462_2, joker_6462_1, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 173)) ;
-      GALGAS_typeKind var_typeKind_6490 ;
-      switch (var_classKind_6460.enumValue ()) {
+  cEnumerator_outletClassBindingSpecificationList enumerator_4598 (constinArgument_inBindingSpecificationListMap, kENUMERATION_UP) ;
+  while (enumerator_4598.hasCurrentObject ()) {
+    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_4678 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 134)) ;
+    cEnumerator_outletClassBindingSpecificationModelList enumerator_4739 (enumerator_4598.current_mOutletClassBindingSpecificationModelList (HERE), kENUMERATION_UP) ;
+    while (enumerator_4739.hasCurrentObject ()) {
+      GALGAS_classKind var_classKind_4829 ;
+      GALGAS_propertyMap joker_4831_3 ; // Joker input parameter
+      GALGAS_actionMap joker_4831_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_4831_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (enumerator_4739.current_mModelTypeName (HERE), var_classKind_4829, joker_4831_3, joker_4831_2, joker_4831_1, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 136)) ;
+      GALGAS_typeKind var_typeKind_4859 ;
+      switch (var_classKind_4829.enumValue ()) {
       case GALGAS_classKind::kNotBuilt:
         break ;
       case GALGAS_classKind::kEnum_prefs:
       case GALGAS_classKind::kEnum_simpleClass:
         {
           TC_Array <C_FixItDescription> fixItArray0 ;
-          inCompiler->emitSemanticError (enumerator_6370.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 177)), GALGAS_string ("an atomic class is required here"), fixItArray0  COMMA_SOURCE_FILE ("binding-specification.galgas", 177)) ;
-          var_typeKind_6490.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_4739.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 140)), GALGAS_string ("an atomic class is required here"), fixItArray0  COMMA_SOURCE_FILE ("binding-specification.galgas", 140)) ;
+          var_typeKind_4859.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_classKind::kEnum_atomic:
         {
-          const cEnumAssociatedValues_classKind_atomic * extractPtr_6683 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_6460.unsafePointer ()) ;
-          const GALGAS_typeKind extractedValue_kind = extractPtr_6683->mAssociatedValue0 ;
-          var_typeKind_6490 = extractedValue_kind ;
+          const cEnumAssociatedValues_classKind_atomic * extractPtr_5052 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_4829.unsafePointer ()) ;
+          const GALGAS_typeKind extractedValue_kind = extractPtr_5052->mAssociatedValue0 ;
+          var_typeKind_4859 = extractedValue_kind ;
         }
         break ;
       case GALGAS_classKind::kEnum_document:
         {
           TC_Array <C_FixItDescription> fixItArray1 ;
-          inCompiler->emitSemanticError (enumerator_6370.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 181)), GALGAS_string ("an atomic class is required here"), fixItArray1  COMMA_SOURCE_FILE ("binding-specification.galgas", 181)) ;
-          var_typeKind_6490.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_4739.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 144)), GALGAS_string ("an atomic class is required here"), fixItArray1  COMMA_SOURCE_FILE ("binding-specification.galgas", 144)) ;
+          var_typeKind_4859.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_classKind::kEnum_entity:
         {
           TC_Array <C_FixItDescription> fixItArray2 ;
-          inCompiler->emitSemanticError (enumerator_6370.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 183)), GALGAS_string ("an atomic class is required here"), fixItArray2  COMMA_SOURCE_FILE ("binding-specification.galgas", 183)) ;
-          var_typeKind_6490.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_4739.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 146)), GALGAS_string ("an atomic class is required here"), fixItArray2  COMMA_SOURCE_FILE ("binding-specification.galgas", 146)) ;
+          var_typeKind_4859.drop () ; // Release error dropped variable
         }
         break ;
       }
-      var_outletBindingSpecificationModelList_6309.addAssign_operation (var_typeKind_6490, enumerator_6370.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 185)) ;
-      enumerator_6370.gotoNextObject () ;
+      var_outletBindingSpecificationModelList_4678.addAssign_operation (var_typeKind_4859, enumerator_4739.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 148)) ;
+      enumerator_4739.gotoNextObject () ;
     }
-    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_7071 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 187)) ;
-    cEnumerator_controllerBindingOptionList enumerator_7109 (enumerator_6229.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
-    while (enumerator_7109.hasCurrentObject ()) {
-      GALGAS_classKind var_classKind_7200 ;
-      GALGAS_propertyMap joker_7202_3 ; // Joker input parameter
-      GALGAS_actionMap joker_7202_2 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_7202_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (enumerator_7109.current_mOptionTypeName (HERE), var_classKind_7200, joker_7202_3, joker_7202_2, joker_7202_1, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 189)) ;
-      GALGAS_typeKind var_typeKind_7230 ;
-      switch (var_classKind_7200.enumValue ()) {
+    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_5440 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("binding-specification.galgas", 150)) ;
+    cEnumerator_controllerBindingOptionList enumerator_5478 (enumerator_4598.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
+    while (enumerator_5478.hasCurrentObject ()) {
+      GALGAS_classKind var_classKind_5569 ;
+      GALGAS_propertyMap joker_5571_3 ; // Joker input parameter
+      GALGAS_actionMap joker_5571_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_5571_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (enumerator_5478.current_mOptionTypeName (HERE), var_classKind_5569, joker_5571_3, joker_5571_2, joker_5571_1, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 152)) ;
+      GALGAS_typeKind var_typeKind_5599 ;
+      switch (var_classKind_5569.enumValue ()) {
       case GALGAS_classKind::kNotBuilt:
         break ;
       case GALGAS_classKind::kEnum_prefs:
       case GALGAS_classKind::kEnum_simpleClass:
         {
           TC_Array <C_FixItDescription> fixItArray3 ;
-          inCompiler->emitSemanticError (enumerator_7109.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 193)), GALGAS_string ("an atomic class is required here"), fixItArray3  COMMA_SOURCE_FILE ("binding-specification.galgas", 193)) ;
-          var_typeKind_7230.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_5478.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 156)), GALGAS_string ("an atomic class is required here"), fixItArray3  COMMA_SOURCE_FILE ("binding-specification.galgas", 156)) ;
+          var_typeKind_5599.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_classKind::kEnum_atomic:
         {
-          const cEnumAssociatedValues_classKind_atomic * extractPtr_7424 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_7200.unsafePointer ()) ;
-          const GALGAS_typeKind extractedValue_kind = extractPtr_7424->mAssociatedValue0 ;
-          var_typeKind_7230 = extractedValue_kind ;
+          const cEnumAssociatedValues_classKind_atomic * extractPtr_5793 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_5569.unsafePointer ()) ;
+          const GALGAS_typeKind extractedValue_kind = extractPtr_5793->mAssociatedValue0 ;
+          var_typeKind_5599 = extractedValue_kind ;
         }
         break ;
       case GALGAS_classKind::kEnum_document:
         {
           TC_Array <C_FixItDescription> fixItArray4 ;
-          inCompiler->emitSemanticError (enumerator_7109.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 197)), GALGAS_string ("an atomic class is required here"), fixItArray4  COMMA_SOURCE_FILE ("binding-specification.galgas", 197)) ;
-          var_typeKind_7230.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_5478.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 160)), GALGAS_string ("an atomic class is required here"), fixItArray4  COMMA_SOURCE_FILE ("binding-specification.galgas", 160)) ;
+          var_typeKind_5599.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_classKind::kEnum_entity:
         {
           TC_Array <C_FixItDescription> fixItArray5 ;
-          inCompiler->emitSemanticError (enumerator_7109.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 199)), GALGAS_string ("an atomic class is required here"), fixItArray5  COMMA_SOURCE_FILE ("binding-specification.galgas", 199)) ;
-          var_typeKind_7230.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_5478.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("binding-specification.galgas", 162)), GALGAS_string ("an atomic class is required here"), fixItArray5  COMMA_SOURCE_FILE ("binding-specification.galgas", 162)) ;
+          var_typeKind_5599.drop () ; // Release error dropped variable
         }
         break ;
       }
-      var_controllerBindingOptionDecoratedList_7071.addAssign_operation (var_typeKind_7230, enumerator_7109.current_mOptionName (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 201)) ;
-      enumerator_7109.gotoNextObject () ;
+      var_controllerBindingOptionDecoratedList_5440.addAssign_operation (var_typeKind_5599, enumerator_5478.current_mOptionName (HERE)  COMMA_SOURCE_FILE ("binding-specification.galgas", 164)) ;
+      enumerator_5478.gotoNextObject () ;
     }
-    GALGAS_outletBindingSpecificationMap var_bindingMap_7792 ;
-    GALGAS_lstring var_outletSuperClassName_7826 ;
+    GALGAS_outletBindingSpecificationMap var_bindingMap_6161 ;
+    GALGAS_lstring var_outletSuperClassName_6195 ;
     enumGalgasBool test_6 = kBoolTrue ;
     if (kBoolTrue == test_6) {
-      test_6 = ioArgument_ioSemanticContext.getter_mBindingSpecificationMap (HERE).getter_hasKey (enumerator_6229.current_mOutletClassName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("binding-specification.galgas", 206)).boolEnum () ;
+      test_6 = ioArgument_ioSemanticContext.getter_mBindingSpecificationMap (HERE).getter_hasKey (enumerator_4598.current_mOutletClassName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("binding-specification.galgas", 169)).boolEnum () ;
       if (kBoolTrue == test_6) {
         {
-        ioArgument_ioSemanticContext.mProperty_mBindingSpecificationMap.setter_removeKey (enumerator_6229.current_mOutletClassName (HERE), var_outletSuperClassName_7826, var_bindingMap_7792, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 207)) ;
+        ioArgument_ioSemanticContext.mProperty_mBindingSpecificationMap.setter_removeKey (enumerator_4598.current_mOutletClassName (HERE), var_outletSuperClassName_6195, var_bindingMap_6161, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 170)) ;
         }
       }
     }
     if (kBoolFalse == test_6) {
-      var_bindingMap_7792 = GALGAS_outletBindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("binding-specification.galgas", 209)) ;
-      GALGAS_bool joker_8154_6 ; // Joker input parameter
-      GALGAS_bool joker_8154_5 ; // Joker input parameter
-      GALGAS_bool joker_8154_4 ; // Joker input parameter
-      GALGAS_bool joker_8154_3 ; // Joker input parameter
-      GALGAS_bool joker_8154_2 ; // Joker input parameter
-      GALGAS_bool joker_8154_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mOutletClassMap (HERE).method_searchKey (enumerator_6229.current_mOutletClassName (HERE), var_outletSuperClassName_7826, joker_8154_6, joker_8154_5, joker_8154_4, joker_8154_3, joker_8154_2, joker_8154_1, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 210)) ;
+      var_bindingMap_6161 = GALGAS_outletBindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("binding-specification.galgas", 172)) ;
+      GALGAS_bool joker_6523_6 ; // Joker input parameter
+      GALGAS_bool joker_6523_5 ; // Joker input parameter
+      GALGAS_bool joker_6523_4 ; // Joker input parameter
+      GALGAS_bool joker_6523_3 ; // Joker input parameter
+      GALGAS_bool joker_6523_2 ; // Joker input parameter
+      GALGAS_bool joker_6523_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mOutletClassMap (HERE).method_searchKey (enumerator_4598.current_mOutletClassName (HERE), var_outletSuperClassName_6195, joker_6523_6, joker_6523_5, joker_6523_4, joker_6523_3, joker_6523_2, joker_6523_1, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 173)) ;
     }
     {
-    var_bindingMap_7792.setter_insertKey (enumerator_6229.current_mBindingName (HERE), var_outletBindingSpecificationModelList_6309, var_controllerBindingOptionDecoratedList_7071, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 212)) ;
+    var_bindingMap_6161.setter_insertKey (enumerator_4598.current_mBindingName (HERE), var_outletBindingSpecificationModelList_4678, var_controllerBindingOptionDecoratedList_5440, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 175)) ;
     }
     {
-    ioArgument_ioSemanticContext.mProperty_mBindingSpecificationMap.setter_insertKey (enumerator_6229.current_mOutletClassName (HERE), var_outletSuperClassName_7826, var_bindingMap_7792, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 217)) ;
+    ioArgument_ioSemanticContext.mProperty_mBindingSpecificationMap.setter_insertKey (enumerator_4598.current_mOutletClassName (HERE), var_outletSuperClassName_6195, var_bindingMap_6161, inCompiler COMMA_SOURCE_FILE ("binding-specification.galgas", 180)) ;
     }
-    enumerator_6229.gotoNextObject () ;
+    enumerator_4598.gotoNextObject () ;
   }
 }
 
@@ -7792,4 +7728,85 @@ static void defineExtensionMethod_doubleAsDefaultValue_analyzeDefaultValueType (
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 C_PrologueEpilogue gMethod_doubleAsDefaultValue_analyzeDefaultValueType (defineExtensionMethod_doubleAsDefaultValue_analyzeDefaultValueType, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                     Overriding extension method '@stringAsDefaultValue analyzeDefaultValueType'                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_stringAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
+                                                                          const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
+                                                                          GALGAS_string & outArgument_outSwiftDefaultValueAsString,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_stringAsDefaultValue * object = (const cPtr_stringAsDefaultValue *) inObject ;
+  macroValidSharedObject (object, cPtr_stringAsDefaultValue) ;
+  outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
+  GALGAS_bool var_found_6783 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_6830 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_6783.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 194)).isValidAndTrue () ;
+  if (enumerator_6830.hasCurrentObject () && bool_0) {
+    while (enumerator_6830.hasCurrentObject () && bool_0) {
+      switch (enumerator_6830.current_mType (HERE).enumValue ()) {
+      case GALGAS_typeKind::kNotBuilt:
+        break ;
+      case GALGAS_typeKind::kEnum_stringType:
+        {
+          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("\"").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 197)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 197)) ;
+          var_found_6783 = GALGAS_bool (true) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_boolType:
+      case GALGAS_typeKind::kEnum_dateType:
+      case GALGAS_typeKind::kEnum_integerType:
+      case GALGAS_typeKind::kEnum_doubleType:
+      case GALGAS_typeKind::kEnum_fontType:
+      case GALGAS_typeKind::kEnum_colorType:
+        {
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_entityType:
+        {
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_enumType:
+        {
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_classType:
+        {
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_transientPropertyExternType:
+        {
+        }
+        break ;
+      }
+      enumerator_6830.gotoNextObject () ;
+      if (enumerator_6830.hasCurrentObject ()) {
+        bool_0 = var_found_6783.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 194)).isValidAndTrue () ;
+      }
+    }
+  }
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    test_1 = var_found_6783.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 206)).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      TC_Array <C_FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 207)), GALGAS_string ("only a string attribute can be initialized by a string constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 207)) ;
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_stringAsDefaultValue_analyzeDefaultValueType (void) {
+  enterExtensionMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_stringAsDefaultValue.mSlotID,
+                                                extensionMethod_stringAsDefaultValue_analyzeDefaultValueType) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_stringAsDefaultValue_analyzeDefaultValueType (defineExtensionMethod_stringAsDefaultValue_analyzeDefaultValueType, NULL) ;
 

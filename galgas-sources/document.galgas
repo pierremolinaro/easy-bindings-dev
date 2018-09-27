@@ -161,11 +161,11 @@ override method @documentDeclarationAST thirdAnalysisPhase
 #   SEMANTIC TYPES                        
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-map @documentObservablePropertyMap {
-  @observablePropertyMap mObservablePropertyMap
-  insert insertKey error message "the '%K' document is already declared in %L"
-  search searchKey error message "there is no '%K' document"
-}
+#map @documentObservablePropertyMap {
+#  @observablePropertyMap mObservablePropertyMap
+#  insert insertKey error message "the '%K' document is already declared in %L"
+#  search searchKey error message "there is no '%K' document"
+#}
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION                            

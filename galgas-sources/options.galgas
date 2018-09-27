@@ -2,6 +2,6 @@ option easyBindings_options {
 
   @bool outputDeclarationDependencyGraph: 'g', "output-declaration-graph" -> "Output a declaration dependancy graph graphviz file"
 
-  @bool latexBindingDescription: 'b', "output-binding-description" -> "Output binding description in Latex"
+#  @bool latexBindingDescription: 'b', "output-binding-description" -> "Output binding description in Latex"
 
 }

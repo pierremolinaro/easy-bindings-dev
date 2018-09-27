@@ -22,19 +22,6 @@ void routine_generateOutletClasses (const class GALGAS_stringset constinArgument
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      Routine 'buildBindingSpecificationMapEX'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_buildBindingSpecificationMapEX (const class GALGAS_unifiedTypeMap constinArgument0,
-                                             const class GALGAS_outletClassMap constinArgument1,
-                                             const class GALGAS_outletClassBindingSpecificationList constinArgument2,
-                                             class GALGAS_bindingSpecificationMap & ioArgument3,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                       Routine 'buildBindingSpecificationMap'                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
