@@ -255,3 +255,15 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectio
                                                                                                            const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
                                                                                                            COMMA_LOCATION_ARGS) ;
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                       Routine 'generateSelectionControllers'                                        *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_generateSelectionControllers (const class GALGAS_selectionControllerForGeneration constinArgument0,
+                                           const class GALGAS_string constinArgument1,
+                                           class GALGAS_stringset & ioArgument2,
+                                           class C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+

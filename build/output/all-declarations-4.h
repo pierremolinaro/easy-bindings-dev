@@ -985,3 +985,33 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
                                                                                 const class GALGAS_lstringlist & in_CONSTANT_5F_ORDERED_5F_LIST
                                                                                 COMMA_LOCATION_ARGS) ;
 
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                           Routine 'enterAtomicClassesIn'                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_enterAtomicClassesIn (class GALGAS_declarationListAST & ioArgument0,
+                                   class C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                              Routine 'buildActionMap'                                               *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_buildActionMap (const class GALGAS_lstringlist constinArgument0,
+                             class GALGAS_actionMap & outArgument1,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                       Function 'externSwiftFunctionCallerSet'                                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_stringset function_externSwiftFunctionCallerSet (class C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+

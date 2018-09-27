@@ -27,17 +27,6 @@ list @arrayControllerAttributListAST {
 
 #·······················································································································
 
-class @arrayControllerDeclarationEX : @abstractSecondaryProperty {
-  @lstring mControllerName
-  @bool mIsRoot
-  @lstring mToManyPropertyName
-  @lstringlist mFilterProperties
-  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
-  @arrayControllerAttributListAST mArrayControllerAttributListAST
-}
-
-#·······················································································································
-
 class @arrayControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
   @bool mIsRoot
@@ -78,7 +67,7 @@ syntax extension easyBindings_syntax {
   rule <controller_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring inRootEntity
-            ?!@secondaryPropertyList ioSecondaryPropertyList
+            ?!@secondaryPropertyList unused ioSecondaryPropertyList
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $arrayController$
@@ -142,14 +131,6 @@ syntax extension easyBindings_syntax {
       end
       $}$
     end
-    ioSecondaryPropertyList += !@arrayControllerDeclarationEX.new {
-      !controllerName
-      !isRoot
-      !relationshipName
-      !filterProperties
-      !arrayControllerBoundColumnListAST
-      !arrayControllerAttributListAST
-    }
     ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST.new {
       !inCurrentEntity
       !controllerName
@@ -489,73 +470,6 @@ override getter @arrayControllerPropertyGeneration populateExplorerWindowCode ->
 override getter @arrayControllerPropertyGeneration terminationCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".unbind_model ()\n"
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @arrayControllerDeclarationEX typeInventory
-  ?!@unifiedTypeMap unused ioUnifiedTypeMap
-{
-}
-
-#·······················································································································
-
-override method @arrayControllerDeclarationEX tryToDefineSecondaryProperty
-  ?!@semanticContextEX unused ioSemanticContext
-  ?let @observablePropertyMap inRootObservableProperties
-  ?!@observablePropertyMap ioObservableProperties
-  ?!@secondaryPropertyList ioUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
-{
-  let observablePropertyMap = if mIsRoot then inRootObservableProperties else ioObservableProperties end
-  if [observablePropertyMap hasKey !mToManyPropertyName.string] then
-    [observablePropertyMap searchKey
-      !mToManyPropertyName
-      ?let kind
-      ?3*
-    ]
-    @actionMap controllerActions = {}
-    @propertyKind arrayControllerKind
-    switch kind 
-    case property (2*) :
-      error mToManyPropertyName : "an atomic property is not a collection" : arrayControllerKind
-    case toMany (typeName * graphic isEntity) :
-      arrayControllerKind = .arrayController {!typeName: typeName !graphic: graphic !isEntity: isEntity}
-      [!?controllerActions insertKey !["add" nowhere]]
-      [!?controllerActions insertKey !["remove" nowhere]]
-    case toOne (3*) :
-      error mToManyPropertyName : "a toOne property is not a collection" : arrayControllerKind
-    case arrayController (3*) :
-      error mToManyPropertyName : "Array Controller ????" : arrayControllerKind
-    case selectionController (*) :
-      error mToManyPropertyName : "Selection Controller ????" : arrayControllerKind
-     end
-    [!?ioObservableProperties insertKey
-      !mControllerName
-      !arrayControllerKind
-      !""
-      !controllerActions
-      !false
-    ]
-  else
-    ioUnsolvedProperties += !self
-  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

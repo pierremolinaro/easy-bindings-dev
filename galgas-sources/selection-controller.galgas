@@ -2,14 +2,6 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @selectionControllerDeclarationEX : @abstractSecondaryProperty {
-  @lstring mSelectionControllerName
-  @lstring mModelControllerName
-  @lstring mModelControllerPropertyName
-}
-
-#·······················································································································
-
 class @selectionControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mSelectionControllerName
   @lstring mModelControllerName
@@ -41,7 +33,7 @@ syntax extension easyBindings_syntax {
   rule <controller_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring unused inRootEntity
-            ?!@secondaryPropertyList ioSecondaryPropertyList
+            ?!@secondaryPropertyList unused ioSecondaryPropertyList
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $selectionController$
@@ -53,11 +45,6 @@ syntax extension easyBindings_syntax {
     $.$
     $identifier$ ?let @lstring propertyName
     $;$
-    ioSecondaryPropertyList += !@selectionControllerDeclarationEX.new {
-      !selectionControllerName
-      !modelControllerName
-      !propertyName
-    }
     ioDeclarationAST.mUnifiedDeclarationList += !@selectionControllerDeclarationAST.new {
       !inCurrentEntity
       !selectionControllerName
@@ -158,180 +145,6 @@ override getter @selectionControllerPropertyGeneration terminationCode -> @strin
   result  = "  //--- Selection controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".unbind_selection ()\n"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS                     
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @selectionControllerDeclarationEX typeInventory
-  ?!@unifiedTypeMap unused ioUnifiedTypeMap
-{
-}
-
-#·······················································································································
-
-override method @selectionControllerDeclarationEX tryToDefineSecondaryProperty
-  ?!@semanticContextEX unused ioSemanticContext
-  ?let @observablePropertyMap unused inRootObservableProperties
-  ?!@observablePropertyMap ioObservableProperties
-  ?!@secondaryPropertyList ioUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX unused ioSimpleStoredPropertyListForGeneration
-{
-  if mModelControllerName.string == "self" then
-    [ioObservableProperties searchKey
-      !mModelControllerPropertyName
-      ?let kind
-      ?3*
-    ]
-  #--- Check type
-    @string entityName
-    switch kind
-    case property (2*) :
-      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-    case toMany (typeName 3*) :
-      entityName = typeName
-    case toOne (3*) :
-      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-    case arrayController (3*) :
-      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-    case selectionController (*) :
-      error mModelControllerPropertyName : "the model should be a collection of entities" : entityName
-    end
-  #--- Store selection controller
-    [!?ioObservableProperties insertKey
-      !mSelectionControllerName
-      !.selectionController {!typeName:entityName}
-      !"" # No inverse relationship
-      !{} # No action
-      !false
-    ]
-  elsif [ioObservableProperties hasKey !mModelControllerName.string] then
-  #--- Get model controller
-    [ioObservableProperties searchKey
-      !mModelControllerName
-      ?let kind
-      ?3*
-    ]
-    @string entityName
-    switch kind
-    case property (2*) :
-      error mModelControllerName : "the model should be an array controller" : entityName
-    case toMany (4*) :
-      error mModelControllerName : "the model should be an array controller" : entityName
-    case toOne (3*) :
-      error mModelControllerName : "the model should be an array controller" : entityName
-    case arrayController (typeName 2*) :
-      entityName = typeName
-    case selectionController (*) :
-      error mModelControllerName : "the model should be an array controller" : entityName
-    end
-  #--- Store selection controller
-    [!?ioObservableProperties insertKey
-      !mSelectionControllerName
-      !.selectionController {!typeName:entityName}
-      !"" # No inverse relationship
-      !{} # No action
-      !false
-    ]  
-  else
-    ioUnsolvedProperties += !self
-  end
-}
-
-#·······················································································································
-
-override method @selectionControllerDeclarationEX secondaryPropertySemanticAnalysisEX
-  ?let @string inOwnerName
-  ?let @string unused inRootEntityName
-  ?let @observablePropertyMap unused inRootObservableProperties
-  ?let @semanticContextEX inSemanticContext
-  ?let @observablePropertyMap inObservableProperties
-  ?!@selectionControllerForGeneration ioSelectionControllerForGeneration
-  ?!@stringset unused ioNeededOutletClasses
-{
-#--- Get model controller
-  @string selectionEntityName
-  @observablePropertyMap selectionObservablePropertyMap
-  if mModelControllerName.string == "self" then
-    [inObservableProperties searchKey
-      !mModelControllerPropertyName
-      ?let kind
-      ?3*
-    ]
-    switch kind
-    case property (2*) :
-      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-    case toMany (typeName 3*) :
-      selectionEntityName = typeName
-    case toOne (3*) :
-      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-    case arrayController (3*) :
-      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-    case selectionController (*) :
-      error mModelControllerPropertyName : "the property should be a collection of entities" : selectionEntityName
-    end
-  #--- Find root entity observable properties
-    [inSemanticContext.mEntityObservablePropertyMap searchKey
-      !.new {!selectionEntityName !mSelectionControllerName.location}
-      ?selectionObservablePropertyMap
-      ?*
-    ]
-  else
-    [inObservableProperties searchKey
-      !mModelControllerName
-      ?let kind
-      ?3*
-    ]
-    switch kind
-    case property (2*) :
-      error mModelControllerName : "the model should be an array controller" : selectionEntityName
-    case toMany (4*) :
-      error mModelControllerName : "the model should be an array controller" : selectionEntityName
-    case toOne (3*) :
-      error mModelControllerName : "the model should be an array controller" : selectionEntityName
-    case arrayController (typeName 2*) :
-      selectionEntityName = typeName
-    case selectionController (*) :
-      error mModelControllerName : "the model should be an array controller" : selectionEntityName
-    end
-  #--- Find root entity observable properties
-    [inSemanticContext.mEntityObservablePropertyMap searchKey
-      !.new {!selectionEntityName !mSelectionControllerName.location}
-      ?selectionObservablePropertyMap
-      ?*
-    ]
-  end
-#--- Generation
-  ioSelectionControllerForGeneration +=
-    !inOwnerName
-    !mSelectionControllerName.string
-    !mModelControllerName.string
-    !mModelControllerPropertyName.string
-    !selectionEntityName
-    !selectionObservablePropertyMap
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION TYPES                      
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
