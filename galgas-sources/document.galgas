@@ -2,16 +2,6 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @documentDeclarationEX : @astDeclaration {
-  @lstring mDocumentName
-  @lstring mRootEntityName
-  @outletDeclarationList mOutletDeclarationList
-  @lstringlist mActionDeclarationList
-  @secondaryPropertyList mSecondaryPropertyList
-}
-
-#·······················································································································
-
 class @documentDeclarationAST : @abstractDeclarationAST {
   @lstring mRootEntityName
   @outletDeclarationList mOutletDeclarationList
@@ -41,7 +31,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <document_declaration>
-    ?let @bool inIsUserDefined
+    ?let @bool unused inIsUserDefined
     ?!@astDeclarationStruct ioDeclarationAST
   {
     $document$
@@ -71,15 +61,6 @@ syntax extension easyBindings_syntax {
       !["documentFilePath" here]
       !{}
       !["" here]
-    }
-  #---
-    ioDeclarationAST.mDeclarationList += !@documentDeclarationEX.new {
-      !inIsUserDefined
-      !documentName
-      !rootEntityName
-      !outletDeclarationList
-      !actionDeclarationList
-      !secondaryPropertyList
     }
     ioDeclarationAST.mUnifiedDeclarationList += !@documentDeclarationAST.new {
       !documentName
@@ -186,22 +167,6 @@ override method @documentDeclarationAST thirdAnalysisPhase
 
 
 
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   TYPE INVENTORY
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @documentDeclarationEX typeInventory
-  ?!@unifiedTypeMap ioUnifiedTypeMap
-{
-  for (item) in mSecondaryPropertyList do
-    [item typeInventory
-      !?ioUnifiedTypeMap
-    ]
-  end
-  [@unifiedTypeMap-proxy makeProxy !?ioUnifiedTypeMap !mRootEntityName ?*]
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   SEMANTIC TYPES                        
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -211,142 +176,6 @@ map @documentObservablePropertyMap {
   insert insertKey error message "the '%K' document is already declared in %L"
   search searchKey error message "there is no '%K' document"
 }
-
-#·······················································································································
-
-override method @documentDeclarationEX buildInitialSecondaryPropertyListMap
-  ?!@secondaryDeclarationListWorkingList ioSecondaryDeclarationListWorkingList
-  ?!@uint ioSecondaryDeclarationCount
-{
-  ioSecondaryDeclarationCount = ioSecondaryDeclarationCount + [mSecondaryPropertyList length]
-  ioSecondaryDeclarationListWorkingList += !self !mSecondaryPropertyList
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SEMANTIC ANALYSIS                     
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @documentDeclarationEX buildObservablePropertyMapsFromStoredProperties
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?!@semanticContextEX ioSemanticContext
-{
-  [!?ioSemanticContext.mDocumentObservablePropertyMap insertKey
-    !mDocumentName
-    !{}
-  ]
-}
-
-#·······················································································································
-
-override method @documentDeclarationEX solveSecondaryProperty
-  ?!@semanticContextEX ioSemanticContext
-  ?let @unifiedTypeMap unused inUnifiedTypeMap
-  ?let @secondaryPropertyList inPropertiesToSolve
-  !@secondaryPropertyList outUnsolvedProperties
-  ?!@simpleStoredPropertyListForGenerationEX ioSimpleStoredPropertyListForGeneration
-{
-  outUnsolvedProperties = {}
-  [ioSemanticContext.mDocumentObservablePropertyMap searchKey
-    !mDocumentName
-    ?@observablePropertyMap observablePropertyMap
-  ]
-  [ioSemanticContext.mEntityObservablePropertyMap searchKey
-    !mRootEntityName
-    ?@observablePropertyMap rootObservablePropertyMap
-    ?*
-  ]
-  for (property) in inPropertiesToSolve do
-    [property tryToDefineSecondaryProperty
-      !?ioSemanticContext
-      !rootObservablePropertyMap
-      !?observablePropertyMap
-      !?outUnsolvedProperties
-      !?ioSimpleStoredPropertyListForGeneration
-    ]
-  end
-  [!?ioSemanticContext.mDocumentObservablePropertyMap setMObservablePropertyMapForKey
-    !observablePropertyMap
-    !mDocumentName.string
-  ]
-}
-
-#·······················································································································
-
-#override method @documentDeclarationEX semanticAnalysisEX
-#  ?let @semanticContextEX inSemanticContext
-#  ?!@generationStruct ioGeneration
-#{
-#  [inSemanticContext.mDocumentObservablePropertyMap searchKey
-#    !mDocumentName
-#    ?let @observablePropertyMap observablePropertyMap
-#  ]
-#  [inSemanticContext.mEntityObservablePropertyMap searchKey
-#    !mRootEntityName
-#    ?let @observablePropertyMap rootObservablePropertyMap
-#    ?*
-#  ]
-#--- Analyze secondary
-#  @transientDefinitionListForGenerationEX transientDefinitionListForGeneration = {}
-#  @arrayControllerForGenerationEX documentArrayControllerListForGeneration = {}
-#  @selectionControllerForGeneration selectionControllerListForGeneration = {}
-#  for (item) in mSecondaryPropertyList do
-#    [item secondaryPropertySemanticAnalysisEX
-#      !mDocumentName.string
-#      !mRootEntityName.string
-#      !rootObservablePropertyMap
-#      !inSemanticContext
-#      !observablePropertyMap
-#      !?transientDefinitionListForGeneration
-#      !?documentArrayControllerListForGeneration
-#      !?selectionControllerListForGeneration
-#      !?ioGeneration.mNeededOutletClasses
-#    ]
-#  end
-#  ioGeneration.mTransientListForGeneration += transientDefinitionListForGeneration
-#  ioGeneration.mArrayControllerListForGeneration += documentArrayControllerListForGeneration
-#  ioGeneration.mSelectionControllerListForGeneration += selectionControllerListForGeneration
-#--- Build action map
-#  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
-#  for () in actionMap do
-#    ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
-#      !mDocumentName.string
-#      !lkey.string
-#    }
-#  end
-#--- Analyze outlets and bindings
-#  analyzeOutletsEX (
-#    !rootObservablePropertyMap
-#    !mRootEntityName.string
-#    !inSemanticContext
-#    !mOutletDeclarationList
-#    !observablePropertyMap
-#    !actionMap
-#    !mDocumentName.string
-#    !?ioGeneration
-#    ?let @regularBindingsGenerationList regularBindingsGenerationList
-#    ?let @multipleBindingGenerationList multipleBindingGenerationList
-#    ?let @actionBindingListForGeneration actionBindingListForGeneration
-#    ?let @decoratedOutletMap outletMap
-#    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
-#    ?let @ebViewGraphicControllerBindingGenerationList ebViewBindingGenerationList
-#  )
-#--- Code generation
-#  ioGeneration.mGenerateEBManagedDocumentSwift = true
-##---
-#  ioGeneration.mFileGenerationList += !@documentFileGeneration.new {
-#    !mDocumentName.string
-#    !mRootEntityName.string
-#    !transientDefinitionListForGeneration
-#    !outletMap
-#    !actionBindingListForGeneration
-#    !regularBindingsGenerationList
-#    !multipleBindingGenerationList
-#    !documentArrayControllerListForGeneration
-#    !tableViewBindingGenerationList
-#    !ebViewBindingGenerationList
-#    !selectionControllerListForGeneration
-#  }
-#}
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION                            
