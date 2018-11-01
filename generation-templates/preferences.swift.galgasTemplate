@@ -66,7 +66,7 @@ end
 %  //--- Notify application will terminate
     NotificationCenter.default.addObserver (self,
       selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-      name:NSNotification.Name.NSApplicationWillTerminate,
+      name:NSApplication.willTerminateNotification,
       object:nil
     )
   //--- Extern functions
@@ -149,7 +149,7 @@ end
   //    applicationWillTerminateAction
   //····················································································································
 
-  func applicationWillTerminateAction (_ : NSNotification) {
+  @objc func applicationWillTerminateAction (_ : NSNotification) {
   //--------------------------- Array controller
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do

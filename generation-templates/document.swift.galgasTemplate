@@ -72,15 +72,9 @@ end
   //    windowNibName
   //····················································································································
 
-  #if swift(>=4)
-    override var windowNibName : NSNib.Name {
-      return NSNib.Name ("%!DOCUMENT_NAME%")
-    }
-  #else
-    override var windowNibName : String {
-      return "%!DOCUMENT_NAME%"
-    }
-  #endif
+  override var windowNibName : NSNib.Name {
+    return NSNib.Name ("%!DOCUMENT_NAME%")
+  }
   
   //····················································································································
   //    rootEntityClassName

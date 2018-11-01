@@ -150,18 +150,18 @@ void routine_generateEBManagedDocumentSwift (const class GALGAS_string constinAr
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const char * gWrapperFileContent_0_swift_5F_sources ;
-extern const char * gWrapperFileContent_1_swift_5F_sources ;
-extern const char * gWrapperFileContent_2_swift_5F_sources ;
 extern const char * gWrapperFileContent_3_swift_5F_sources ;
 extern const char * gWrapperFileContent_4_swift_5F_sources ;
-extern const char * gWrapperFileContent_5_swift_5F_sources ;
-extern const char * gWrapperFileContent_6_swift_5F_sources ;
-extern const char * gWrapperFileContent_7_swift_5F_sources ;
-extern const char * gWrapperFileContent_8_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
-extern const char * gWrapperFileContent_10_swift_5F_sources ;
 extern const char * gWrapperFileContent_11_swift_5F_sources ;
+extern const char * gWrapperFileContent_10_swift_5F_sources ;
+extern const char * gWrapperFileContent_5_swift_5F_sources ;
+extern const char * gWrapperFileContent_0_swift_5F_sources ;
+extern const char * gWrapperFileContent_6_swift_5F_sources ;
+extern const char * gWrapperFileContent_1_swift_5F_sources ;
+extern const char * gWrapperFileContent_8_swift_5F_sources ;
+extern const char * gWrapperFileContent_2_swift_5F_sources ;
+extern const char * gWrapperFileContent_7_swift_5F_sources ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -230,35 +230,36 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_C
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const char * gWrapperFileContent_0_outletClassGeneration ;
-extern const char * gWrapperFileContent_1_outletClassGeneration ;
-extern const char * gWrapperFileContent_2_outletClassGeneration ;
-extern const char * gWrapperFileContent_3_outletClassGeneration ;
-extern const char * gWrapperFileContent_4_outletClassGeneration ;
+extern const char * gWrapperFileContent_22_outletClassGeneration ;
+extern const char * gWrapperFileContent_27_outletClassGeneration ;
 extern const char * gWrapperFileContent_5_outletClassGeneration ;
-extern const char * gWrapperFileContent_6_outletClassGeneration ;
 extern const char * gWrapperFileContent_7_outletClassGeneration ;
-extern const char * gWrapperFileContent_8_outletClassGeneration ;
-extern const char * gWrapperFileContent_9_outletClassGeneration ;
-extern const char * gWrapperFileContent_10_outletClassGeneration ;
+extern const char * gWrapperFileContent_18_outletClassGeneration ;
+extern const char * gWrapperFileContent_6_outletClassGeneration ;
+extern const char * gWrapperFileContent_26_outletClassGeneration ;
 extern const char * gWrapperFileContent_11_outletClassGeneration ;
-extern const char * gWrapperFileContent_12_outletClassGeneration ;
+extern const char * gWrapperFileContent_21_outletClassGeneration ;
+extern const char * gWrapperFileContent_0_outletClassGeneration ;
+extern const char * gWrapperFileContent_2_outletClassGeneration ;
+extern const char * gWrapperFileContent_28_outletClassGeneration ;
+extern const char * gWrapperFileContent_25_outletClassGeneration ;
 extern const char * gWrapperFileContent_13_outletClassGeneration ;
+extern const char * gWrapperFileContent_20_outletClassGeneration ;
+extern const char * gWrapperFileContent_17_outletClassGeneration ;
+extern const char * gWrapperFileContent_10_outletClassGeneration ;
+extern const char * gWrapperFileContent_4_outletClassGeneration ;
+extern const char * gWrapperFileContent_19_outletClassGeneration ;
+extern const char * gWrapperFileContent_29_outletClassGeneration ;
+extern const char * gWrapperFileContent_9_outletClassGeneration ;
+extern const char * gWrapperFileContent_23_outletClassGeneration ;
+extern const char * gWrapperFileContent_12_outletClassGeneration ;
+extern const char * gWrapperFileContent_3_outletClassGeneration ;
 extern const char * gWrapperFileContent_14_outletClassGeneration ;
 extern const char * gWrapperFileContent_15_outletClassGeneration ;
 extern const char * gWrapperFileContent_16_outletClassGeneration ;
-extern const char * gWrapperFileContent_17_outletClassGeneration ;
-extern const char * gWrapperFileContent_18_outletClassGeneration ;
-extern const char * gWrapperFileContent_19_outletClassGeneration ;
-extern const char * gWrapperFileContent_20_outletClassGeneration ;
-extern const char * gWrapperFileContent_21_outletClassGeneration ;
-extern const char * gWrapperFileContent_22_outletClassGeneration ;
-extern const char * gWrapperFileContent_23_outletClassGeneration ;
+extern const char * gWrapperFileContent_1_outletClassGeneration ;
 extern const char * gWrapperFileContent_24_outletClassGeneration ;
-extern const char * gWrapperFileContent_25_outletClassGeneration ;
-extern const char * gWrapperFileContent_26_outletClassGeneration ;
-extern const char * gWrapperFileContent_27_outletClassGeneration ;
-extern const char * gWrapperFileContent_28_outletClassGeneration ;
+extern const char * gWrapperFileContent_8_outletClassGeneration ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -294,6 +295,7 @@ extern const cRegularFileWrapper gWrapperFile_25_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_26_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_27_outletClassGeneration ;
 extern const cRegularFileWrapper gWrapperFile_28_outletClassGeneration ;
+extern const cRegularFileWrapper gWrapperFile_29_outletClassGeneration ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

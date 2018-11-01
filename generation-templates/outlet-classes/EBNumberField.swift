@@ -74,7 +74,7 @@ import Cocoa
       alert.beginSheetModalForWindow (
         window,
         completionHandler:{ (response : NSApplication.ModalResponse) -> Void in
-          if response == sw34_AlertSecondButtonReturn { // Discard Change
+          if response == NSApplication.ModalResponse.alertSecondButtonReturn { // Discard Change
        //   self.integerValue = self.integerValue
           }
         }
