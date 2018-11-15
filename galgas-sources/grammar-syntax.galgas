@@ -76,8 +76,8 @@ syntax easyBindings_syntax (easyBindings_lexique) {
       <binding_specification> !inIsUserDefined !?ioDeclarationAST.mBindingSpecificationListMap
     while
       <xcode_project> !?ioDeclarationAST.mXcodeProject
-#    while
-#      <main_xib> !?ioDeclarationAST.mPreferences.mMainXibDescriptorList
+    while
+      <main_xib> !?ioDeclarationAST.mPreferences.mMainXibDescriptorList
     end
     outEndOfFile = .here
   }

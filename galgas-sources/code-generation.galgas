@@ -32,6 +32,7 @@ struct @generationStruct {
   @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
   @bool mGenerateEBManagedDocumentSwift
   @stringset mNeededOutletClasses
+  @mainXibDescriptorList mMainXibDescriptorList
 
 
   @selectionControllerForGeneration mSelectionControllerListForGeneration
@@ -95,12 +96,12 @@ proc generateCode
     !generatedFileSet
     !projectName
   )
-#  generateTestFile (
-#    !inXcodeProjectString
-#    !projectName
-#    !inGeneration.mPreferencesForGeneration.mMainXibDescriptorList # §§§§§
-#    !outputDirectory
-#  )
+  generateTestFile (
+    !inXcodeProjectString
+    !projectName
+    !inGeneration.mMainXibDescriptorList # §§§§§
+    !outputDirectory
+  )
 }
 
 #·······················································································································

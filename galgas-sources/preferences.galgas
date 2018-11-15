@@ -9,6 +9,7 @@ struct @prefDeclaration {
   @externSwiftFunctionList mExternSwiftFunctionList
   @storedArrayPropertyListAST mStoredArrayList
   @stringset mSignatureList
+  @mainXibDescriptorList mMainXibDescriptorList
 }
 
 #·······················································································································
@@ -105,6 +106,7 @@ override method @prefsDeclarationAST firstAnalysisPhase
       !lkey.string
     }
   end
+  ioGeneration.mMainXibDescriptorList = mDeclaration.mMainXibDescriptorList
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
