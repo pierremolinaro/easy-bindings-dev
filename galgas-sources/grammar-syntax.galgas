@@ -74,8 +74,8 @@ syntax easyBindings_syntax (easyBindings_lexique) {
       <outlet_class_declaration> !inIsUserDefined !?ioDeclarationAST
     while
       <binding_specification> !inIsUserDefined !?ioDeclarationAST.mBindingSpecificationListMap
-#    while
-#      <xcode_project> !?ioDeclarationAST.mXcodeProject
+    while
+      <xcode_project> !?ioDeclarationAST.mXcodeProject
 #    while
 #      <main_xib> !?ioDeclarationAST.mPreferences.mMainXibDescriptorList
     end

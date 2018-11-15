@@ -89,7 +89,7 @@ syntax extension easyBindings_syntax {
 
 override method @prefsDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration
+       ?!@generationStruct ioGeneration
 {
   buildActionMap (!mDeclaration.mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
@@ -99,6 +99,12 @@ override method @prefsDeclarationAST firstAnalysisPhase
     !actionMap
     !{}
   ]
+  for () in actionMap do
+    ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
+      !mClassName.string
+      !lkey.string
+    }
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

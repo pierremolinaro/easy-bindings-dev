@@ -44,7 +44,7 @@ struct @generationStruct {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 proc generateCode
-  ?let @string unused inXcodeProjectString
+  ?let @string inXcodeProjectString
   ?let @generationStruct inGeneration
   ?let @string inSourceFile
 {
@@ -89,12 +89,12 @@ proc generateCode
     !inGeneration.mTransientPropertyTypeList
     !?generatedFileSet
   )
-#  generateXcodeProject (
-#    !outputDirectory
-#    !inXcodeProjectString
-#    !generatedFileSet
-#    !projectName
-#  )
+  generateXcodeProject (
+    !outputDirectory
+    !inXcodeProjectString
+    !generatedFileSet
+    !projectName
+  )
 #  generateTestFile (
 #    !inXcodeProjectString
 #    !projectName
@@ -121,13 +121,13 @@ private proc generateSwiftApplicationFiles
   @stringlist swiftFiles = {
     !"main",
     !"EBAllocationDebug",
+    !"EBUndoManager",
     !"easy-bindings-utilities",
     !"generic-bindings",
     !"application"
   }
   if inHasEntities then
     swiftFiles += !"EBManagedObject"
-    swiftFiles += !"EBUndoManager"
     swiftFiles += !"EBDataScanner"
     swiftFiles += !"graphic-classes-and-utilities"
     swiftFiles += !"EBView"

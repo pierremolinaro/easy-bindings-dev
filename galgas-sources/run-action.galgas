@@ -15,8 +15,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <action_declaration>
-    ?!@lstringlist ioActionDeclarationList {
+  rule <action_declaration> ?!@lstringlist ioActionDeclarationList {
     $action$
     $identifier$ ?let @lstring actionName
     $;$
