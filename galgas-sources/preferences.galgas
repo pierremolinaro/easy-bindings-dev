@@ -158,6 +158,7 @@ override method @prefsDeclarationAST thirdAnalysisPhase
 #--- Code generation
   ioGeneration.mFileGenerationList += !@preferencesForGeneration.new {
     !propertyGenerationList
+    !ioGeneration.mMainXibDescriptorList
     !regularBindingsGenerationList
     !multipleBindingGenerationList
     !actionBindingListForGeneration
@@ -174,7 +175,7 @@ override method @prefsDeclarationAST thirdAnalysisPhase
 
 class @preferencesForGeneration : @abstractFileGeneration {
   @propertyGenerationList mPropertyListForGeneration
-
+  @mainXibDescriptorList mMainXibDescriptorList
   @regularBindingsGenerationList mRegularBindingsGenerationList
   @multipleBindingGenerationList mMultipleBindingGenerationList
   @actionBindingListForGeneration mActionBindingListForGeneration
@@ -191,7 +192,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
 }{
   template preferences "preferences.swift.galgasTemplate"
     ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
-
+    ?@mainXibDescriptorList MAIN_XIB_DESCRIPTOR_LIST
     ?@decoratedOutletMap OUTLET_MAP
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
@@ -209,6 +210,7 @@ override method @preferencesForGeneration generateCode
 {
   let s = [filewrapper prefsGenerationTemplate.preferences
     !mPropertyListForGeneration
+    !mMainXibDescriptorList
     !mOutletMap
     !mRegularBindingsGenerationList
     !mActionBindingListForGeneration

@@ -153,6 +153,7 @@ extern const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate ;
 
 GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_Compiler * inCompiler,
                                                                        const class GALGAS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                       const class GALGAS_mainXibDescriptorList & in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST,
                                                                        const class GALGAS_decoratedOutletMap & in_OUTLET_5F_MAP,
                                                                        const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
                                                                        const class GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST,

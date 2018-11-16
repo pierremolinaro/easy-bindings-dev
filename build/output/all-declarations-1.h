@@ -387,13 +387,14 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_preferencesForGeneration constructor_new (const class GALGAS_propertyGenerationList & inOperand0,
-                                                                         const class GALGAS_regularBindingsGenerationList & inOperand1,
-                                                                         const class GALGAS_multipleBindingGenerationList & inOperand2,
-                                                                         const class GALGAS_actionBindingListForGeneration & inOperand3,
-                                                                         const class GALGAS_decoratedOutletMap & inOperand4,
-                                                                         const class GALGAS_externSwiftFunctionList & inOperand5,
-                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand6,
-                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand7
+                                                                         const class GALGAS_mainXibDescriptorList & inOperand1,
+                                                                         const class GALGAS_regularBindingsGenerationList & inOperand2,
+                                                                         const class GALGAS_multipleBindingGenerationList & inOperand3,
+                                                                         const class GALGAS_actionBindingListForGeneration & inOperand4,
+                                                                         const class GALGAS_decoratedOutletMap & inOperand5,
+                                                                         const class GALGAS_externSwiftFunctionList & inOperand6,
+                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand7,
+                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand8
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -410,6 +411,8 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_mainXibDescriptorList getter_mMainXibDescriptorList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingGenerationList getter_mMultipleBindingGenerationList (LOCATION_ARGS) const ;
 
@@ -441,6 +444,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_preferencesForGener
 class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
   public : GALGAS_propertyGenerationList mProperty_mPropertyListForGeneration ;
+  public : GALGAS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
   public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
   public : GALGAS_multipleBindingGenerationList mProperty_mMultipleBindingGenerationList ;
   public : GALGAS_actionBindingListForGeneration mProperty_mActionBindingListForGeneration ;
@@ -451,6 +455,7 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
 
 //--- Constructor
   public : cPtr_preferencesForGeneration (const GALGAS_propertyGenerationList & in_mPropertyListForGeneration,
+                                          const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
                                           const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                           const GALGAS_multipleBindingGenerationList & in_mMultipleBindingGenerationList,
                                           const GALGAS_actionBindingListForGeneration & in_mActionBindingListForGeneration,
@@ -465,6 +470,7 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mPropertyListForGeneration (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_mainXibDescriptorList getter_mMainXibDescriptorList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_multipleBindingGenerationList getter_mMultipleBindingGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_actionBindingListForGeneration getter_mActionBindingListForGeneration (LOCATION_ARGS) const ;
