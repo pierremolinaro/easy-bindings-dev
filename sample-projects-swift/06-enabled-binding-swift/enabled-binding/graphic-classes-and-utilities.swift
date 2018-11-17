@@ -5,10 +5,6 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-// http://www.knowstack.com/swift-3-1-calayer/
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBGraphicManagedObject
 //  dynamic before func is required in order to make functions overriden in extensions
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -16,24 +12,69 @@ import Cocoa
 class EBGraphicManagedObject : EBManagedObject {
 
   //····················································································································
+  //   Transient property: selectionDisplay
+  //····················································································································
 
-  var selectionLayer_property = EBTransientProperty_CALayer ()
+  var selectionDisplay_property = EBTransientProperty_EBShape ()
 
   //····················································································································
 
-  dynamic func acceptedTranslation (by inValue: CGPoint) -> CGPoint {
+  var selectionDisplay_property_selection : EBSelection <EBShape> {
+    return self.selectionDisplay_property.prop
+  }
+
+  //····················································································································
+
+  var selectionDisplay : EBShape? {
+    switch self.selectionDisplay_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
+    }
+  }
+
+  //····················································································································
+  //   Transient property: objectDisplay
+  //····················································································································
+
+  var objectDisplay_property = EBTransientProperty_EBShape ()
+
+  //····················································································································
+
+  var objectDisplay_property_selection : EBSelection <EBShape> {
+    return self.objectDisplay_property.prop
+  }
+
+  //····················································································································
+
+  var objectDisplay : EBShape? {
+    switch self.objectDisplay_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
+    }
+  }
+
+  //····················································································································
+  //   Translation
+  //····················································································································
+
+
+  @objc dynamic func acceptedTranslation (by inValue: CGPoint) -> CGPoint {
     return inValue
   }
 
   //····················································································································
 
-  dynamic func acceptToTranslate (xBy inDx: CGFloat, yBy inDy: CGFloat) -> Bool {
+  @objc dynamic func acceptToTranslate (xBy inDx: CGFloat, yBy inDy: CGFloat) -> Bool {
     return false
   }
 
   //····················································································································
 
-  dynamic func translate (xBy inDx: CGFloat, yBy inDy: CGFloat) {
+  @objc dynamic func translate (xBy inDx: CGFloat, yBy inDy: CGFloat) {
   }
 
   //····················································································································
@@ -41,62 +82,74 @@ class EBGraphicManagedObject : EBManagedObject {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EXTENSION CALayer: findLayer (at inPoint : CGPoint) -> CALayer?
+//   Build PDF image
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension CALayer {
+func buildPDFimage (frame inFrame: CGRect,
+                    shapes inShapes: EBShape,
+                    backgroundColor inBackColor : NSColor? = nil) -> Data {
+  let view = EBOffscreenView (frame: inFrame)
+  view.setBackColor (inBackColor)
+  view.setPaths (inShapes)
+  return view.dataWithPDF (inside: inFrame)
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBOffscreenView
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+fileprivate final class EBOffscreenView : NSView, EBUserClassNameProtocol {
+
+  private var mShape = EBShape ()
+  private var mBackColor : NSColor? = nil
 
   //····················································································································
 
-  func findLayer (at inPoint : CGPoint) -> CALayer? {
-    if self.isOpaque && self.frame.contains (inPoint) {
-      return self
-    }else{
-      for layer in (self.sublayers ?? []).reversed () {
-        let possibleResult = layer.findLayer (at: inPoint)
-        if let result = possibleResult {
-          if (result.name == nil) && (self.name != nil) {
-            return self
-          }else{
-            return result
-          }
-        }
-      }
-      return nil
+  override init (frame frameRect: NSRect) {
+    super.init (frame: frameRect)
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  required init? (coder: NSCoder) {
+    super.init (coder: coder)
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  deinit {
+    noteObjectDeallocation (self)
+  }
+
+  //····················································································································
+  //  Set paths
+  //····················································································································
+
+  func setPaths (_ inShapes : EBShape) {
+    self.mShape = inShapes
+  }
+
+  //····················································································································
+  //  Set back color
+  //····················································································································
+
+  func setBackColor (_ inColor : NSColor?) {
+    self.mBackColor = inColor
+  }
+
+  //····················································································································
+  //  Draw Rect
+  //····················································································································
+
+  override func draw (_ inDirtyRect: NSRect) {
+    if let backColor = mBackColor {
+      backColor.setFill ()
+      __NSRectFill (inDirtyRect)
     }
-  }
-
-  //····················································································································
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension CAShapeLayer {
-
-  //····················································································································
-
-  override func findLayer (at inPoint : CGPoint) -> CALayer? {
-    var r = super.findLayer (at: inPoint)
-  //--- Test in filled path
-    if let path = self.path, r == nil, self.fillColor != nil, path.contains (inPoint) {
-      r = self
-    }
-  //--- Test in stroke path
-    if let path = self.path, r == nil, self.strokeColor != nil, self.lineWidth > 0.0 {
-      let possibleStrokePath = CGPath (
-        __byStroking: path,
-        transform:nil,
-        lineWidth: self.lineWidth,
-        lineCap: .round,
-        lineJoin: .round,
-        miterLimit: self.miterLimit
-      )
-      if let strokePath = possibleStrokePath, strokePath.contains (inPoint) {
-        r = self
-      }
-    }
-  //---
-    return r
+  //--- Bezier paths
+    self.mShape.draw (inDirtyRect)
   }
 
   //····················································································································
@@ -104,64 +157,3 @@ extension CAShapeLayer {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EXTENSION CALayer: findIndexesOfObjects (intersecting inRect : CGRect)
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension CALayer {
-
-  //····················································································································
-
-  func findIndexesOfObjects (intersecting inRect : CGRect) -> Set <Int> {
-     var result = Set <Int> ()
-     if let name = self.name, let idx = Int (name) {
-       var intersect = self.intersects (inRect)
-       if !intersect {
-         for layer in self.sublayers ?? [] {
-           if layer.intersects (inRect) {
-             intersect = true
-             break
-           }
-         }
-       }
-       if intersect {
-         result.insert (idx)
-       }
-     }else{
-       for layer in self.sublayers ?? [] {
-         let r = layer.findIndexesOfObjects (intersecting: inRect)
-         result.formUnion (r)
-       }
-     }
-     return result
-  }
-
-  //····················································································································
-
-  func intersects (_ inRect : CGRect) -> Bool {
-    return self.isOpaque && self.frame.intersects (inRect)
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-extension CAShapeLayer {
-
-  //····················································································································
-
-  override func intersects (_ inRect : CGRect) -> Bool {
-    if let boundingBox = self.path?.boundingBox {
-      return inRect.intersects (boundingBox)
-    }else{
-      return super.intersects (inRect)
-    }
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-

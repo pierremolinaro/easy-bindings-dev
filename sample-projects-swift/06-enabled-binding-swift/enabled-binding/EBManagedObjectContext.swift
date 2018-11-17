@@ -4,9 +4,9 @@
 
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBManagedObjectContext
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBManagedObjectContext : EBObject {
   private var mUndoManager : EBUndoManager?
@@ -33,10 +33,10 @@ class EBManagedObjectContext : EBObject {
   //    insertManagedObject
   //····················································································································
   
-  func insertManagedObject (_ object : EBManagedObject) {
+  @objc func insertManagedObject (_ object : EBManagedObject) {
     if !mManagedObjectSet.contains(object) {
       mManagedObjectSet.insert (object)
-      mUndoManager?.registerUndo (withTarget: self, selector: #selector(removeManagedObject(_:)), object: object)
+      mUndoManager?.registerUndo (withTarget: self, selector: #selector(EBManagedObjectContext.removeManagedObject(_:)), object: object)
     }
   }
 
@@ -44,7 +44,7 @@ class EBManagedObjectContext : EBObject {
   //    removeManagedObject
   //····················································································································
   
-  func removeManagedObject (_ inObject : EBManagedObject) {
+  @objc func removeManagedObject (_ inObject : EBManagedObject) {
     var objectsToRemove = Set <EBManagedObject> ()
     internalRemoveManagedObject (inObject, &objectsToRemove)
     mManagedObjectSet.subtract (objectsToRemove)
@@ -55,7 +55,7 @@ class EBManagedObjectContext : EBObject {
   final func internalRemoveManagedObject (_ inObject : EBManagedObject, _ ioObjectsToRemove : inout Set <EBManagedObject>) {
     if inObject.managedObjectContext () != nil && !ioObjectsToRemove.contains(inObject) {
       ioObjectsToRemove.insert (inObject)
-      mUndoManager?.registerUndo (withTarget: self, selector: #selector(insertManagedObject(_:)), object:inObject)
+      mUndoManager?.registerUndo (withTarget: self, selector: #selector(EBManagedObjectContext.insertManagedObject(_:)), object:inObject)
       inObject.cascadeObjectRemoving (&ioObjectsToRemove)
    }
   }
@@ -85,6 +85,9 @@ class EBManagedObjectContext : EBObject {
   func reset () {
     mUndoManager?.removeAllActions ()
     mUndoManager = nil
+    for object in mManagedObjectSet {
+      object.resetControllers ()
+    }
     for object in mManagedObjectSet {
       object.resetToManyRelationships ()
     }
@@ -140,8 +143,8 @@ class EBManagedObjectContext : EBObject {
       alert.addButton (withTitle: "Ignore Error")
       alert.addButton (withTitle: "Perform Correction")
       alert.beginSheetModal (for: windowForSheet,
-        completionHandler: {(response : Int) in
-          if response == 1001 { // Perform correction
+        completionHandler: {(response : NSApplication.ModalResponse) in
+          if response == NSApplication.ModalResponse.alertSecondButtonReturn /* 1001 */ { // Perform correction
             self.mManagedObjectSet.subtract (unreachableObjectSet)
             self.mManagedObjectSet.formUnion (unregisteredObjectSet)
           }
@@ -193,9 +196,9 @@ class EBManagedObjectContext : EBObject {
     if inEntityTypeName == "MyRootEntity" {
       result = MyRootEntity (managedObjectContext:self)
     }else{
-       let dictionary : [NSObject : Any] = [
-        NSLocalizedDescriptionKey as NSObject : "Cannot read document",
-        NSLocalizedRecoverySuggestionErrorKey as NSObject : "Cannot create object of \(inEntityTypeName) class",
+       let dictionary : [String : Any] = [
+        NSLocalizedDescriptionKey : "Cannot read document",
+        NSLocalizedRecoverySuggestionErrorKey : "Cannot create object of \(inEntityTypeName) class",
       ]
       throw NSError (
         domain:Bundle.main.bundleIdentifier!,
@@ -330,5 +333,5 @@ class EBManagedObjectContext : EBObject {
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

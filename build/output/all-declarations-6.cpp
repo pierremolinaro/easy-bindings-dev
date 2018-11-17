@@ -1759,7 +1759,7 @@ static GALGAS_string extensionGetter_atomicPropertyGeneration_declarationCode (c
   if (kBoolTrue == test_0) {
     test_0 = object->mProperty_mInPreferences.boolEnum () ;
     if (kBoolTrue == test_0) {
-      result_result.plusAssign_operation(GALGAS_string (", prefKey: Preferences_").add_operation (object->mProperty_mPropertyName.getter_identifierRepresentation (SOURCE_FILE ("simple-stored-property.galgas", 175)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 175)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 175)) ;
+      result_result.plusAssign_operation(GALGAS_string (", prefKey: Preferences_").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 175)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 175)) ;
     }
   }
   result_result.plusAssign_operation(GALGAS_string (")\n"
@@ -7819,7 +7819,7 @@ void routine_generateCode (const GALGAS_string constinArgument_inXcodeProjectStr
   GALGAS_stringset var_generatedFileSet_2211 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.galgas", 55)) ;
   cEnumerator_fileGenerationList enumerator_2275 (constinArgument_inGeneration.getter_mFileGenerationList (HERE), kENUMERATION_UP) ;
   while (enumerator_2275.hasCurrentObject ()) {
-    callExtensionMethod_generateCode ((const cPtr_abstractFileGeneration *) enumerator_2275.current_mFileGeneration (HERE).ptr (), var_outputDirectory_1981, var_generatedFileSet_2211, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 57)) ;
+    callExtensionMethod_generateCode ((const cPtr_abstractFileGeneration *) enumerator_2275.current_mFileGeneration (HERE).ptr (), var_fileOutputDirectory_2143, var_generatedFileSet_2211, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 57)) ;
     enumerator_2275.gotoNextObject () ;
   }
   {
@@ -7944,10 +7944,10 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "@objc(EBAllocationItemDisplay) class EBAllocationItemDisplay : NSObject {\n"
-  "  var mClassname : String\n"
-  "  var mAllCount : Int\n"
-  "  var mLive : Int\n"
-  "  var mSnapshot : Int\n"
+  "  @objc dynamic var mClassname : String\n"
+  "  @objc dynamic var mAllCount : Int\n"
+  "  @objc dynamic var mLive : Int\n"
+  "  @objc dynamic var mSnapshot : Int\n"
   "\n"
   "  init (classname : String, allCount : Int, live : Int, snapshot : Int) {\n"
   "    mClassname = classname\n"
@@ -8306,7 +8306,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBAllocationDebug.swift",
   "swift",
   true, // Text file
-  18822, // Text length
+  18878, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 

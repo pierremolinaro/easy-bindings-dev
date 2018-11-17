@@ -275,7 +275,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //--- Set content size
     mExplorerWindow?.setContentSize (NSSize (width:EXPLORER_ROW_WIDTH + 16.0, height:fmin (600.0, y)))
   //--- Set close button as 'remove window' button
-    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindowButton.closeButton)
+    let closeButton : NSButton? = mExplorerWindow?.standardWindowButton (NSWindow.ButtonType.closeButton)
     closeButton?.target = self
     closeButton?.action = #selector(EBManagedDocument.deleteDocumentWindowAction(_:))
   //--- Set window title
@@ -292,7 +292,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //   deleteDocumentWindowAction
   //····················································································································
 
-  func deleteDocumentWindowAction (_ : Any) {
+  @objc func deleteDocumentWindowAction (_ : Any) {
     clearObjectExplorer ()
   }
 
@@ -301,7 +301,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   //····················································································································
 
   func clearObjectExplorer () {
-    let closeButton = mExplorerWindow?.standardWindowButton (NSWindowButton.closeButton)
+    let closeButton = mExplorerWindow?.standardWindowButton (NSWindow.ButtonType.closeButton)
     closeButton!.target = nil
     mExplorerWindow?.orderOut (nil)
     mExplorerWindow = nil
@@ -461,7 +461,7 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   
   //····················································································································
 
-  func performUndoVersionNumber (_ oldValue : NSNumber) {
+  @objc func performUndoVersionNumber (_ oldValue : NSNumber) {
     let undoManager = self.mManagedObjectContext.undoManager()
     undoManager?.registerUndo (
       withTarget: self,
@@ -469,6 +469,35 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
       object: NSNumber (value: mVersion.propval)
     )
     mVersion.setProp (oldValue.intValue)
+  }
+
+  //····················································································································
+  // Menu Events
+  //····················································································································
+
+  override func validateMenuItem (_ inMenuItem : NSMenuItem) -> Bool {
+    let validate : Bool
+    let action = inMenuItem.action
+    if action == #selector (EBManagedDocument.printDocument(_:)) {
+      validate = self.windowForSheet?.firstResponder is EBView
+    }else{
+      validate = super.validateMenuItem (inMenuItem)
+    }
+    // NSLog ("VALIDATE \(action) -> \(validate)")
+    return validate
+  }
+
+  //····················································································································
+  //   PRINT
+  //····················································································································
+
+  @objc override func printDocument (_ inSender : Any?) {
+    if let view = self.windowForSheet?.firstResponder as? EBView {
+      let printOperation = NSPrintOperation (view: view, printInfo: self.printInfo)
+      let printPanel = printOperation.printPanel
+      printPanel.options = [printPanel.options, .showsPaperSize, .showsOrientation, .showsScaling]
+      self.runModalPrintOperation (printOperation, delegate:nil, didRun:nil, contextInfo:nil)
+    }
   }
 
   //····················································································································
@@ -599,7 +628,7 @@ class EBVersionShouldChangeObserver : EBTransientProperty_Bool, EBSignatureObser
 
   //····················································································································
 
-  func performUndo (_ oldValue : NSNumber) {
+  @objc func performUndo (_ oldValue : NSNumber) {
     mUndoManager?.registerUndo (withTarget: self, selector:#selector (performUndo(_:)), object:NSNumber (value: mSignatureAtStartUp))
     mSignatureAtStartUp = oldValue.uint32Value
     postEvent ()

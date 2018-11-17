@@ -172,7 +172,7 @@ override getter @atomicPropertyGeneration declarationCode -> @string {
   result += "  var " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
          + " (" + mDefaultValueInSwift
   if mInPreferences then
-    result += ", prefKey: Preferences_" + [mPropertyName identifierRepresentation]
+    result += ", prefKey: Preferences_" + mPropertyName
   end
   result += ")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"

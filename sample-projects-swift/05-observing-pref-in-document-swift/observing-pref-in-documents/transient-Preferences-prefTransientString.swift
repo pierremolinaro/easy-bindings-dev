@@ -11,7 +11,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_Preferences_prefTransientString (
+func transient_Preferences_prefTransientString (
        _ self_myPrefString : String
 ) -> String {
 //--- START OF USER ZONE 2

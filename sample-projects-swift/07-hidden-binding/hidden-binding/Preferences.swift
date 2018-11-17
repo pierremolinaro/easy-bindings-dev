@@ -10,37 +10,19 @@ var g_Preferences : Preferences? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Preferences) class Preferences : EBObject {
+let Preferences_myHidden2 = "Preferences:myHidden2"
+let Preferences_myHidden1 = "Preferences:myHidden1"
+
+//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Preferences) class Preferences : EBObject, NSWindowDelegate {
 
   //····················································································································
-  //    Outlets
+  //   Atomic property: myHidden2
   //····················································································································
 
-  @IBOutlet var mButton : EBButton? = nil
-  @IBOutlet var myHidden1Switch : EBSwitch? = nil
-  @IBOutlet var myHidden2Switch : EBSwitch? = nil
+  var myHidden2_property = EBStoredProperty_Bool (false, prefKey: Preferences_myHidden2)
 
-  //····················································································································
-  //   Accessing myHidden1 stored property
-  //····················································································································
-
-  var myHidden1 : Bool {
-    get {
-      return self.myHidden1_property.propval
-    }
-    set {
-      self.myHidden1_property.setProp (newValue)
-    }
-  }
-
-  var myHidden1_property_selection : EBSelection <Bool> {
-    get {
-      return self.myHidden1_property.prop
-    }
-  }
-
-  //····················································································································
-  //   Accessing myHidden2 stored property
   //····················································································································
 
   var myHidden2 : Bool {
@@ -52,35 +34,61 @@ var g_Preferences : Preferences? = nil
     }
   }
 
+  //····················································································································
+
   var myHidden2_property_selection : EBSelection <Bool> {
+    return self.myHidden2_property.prop
+  }
+
+  //····················································································································
+  //   Atomic property: myHidden1
+  //····················································································································
+
+  var myHidden1_property = EBStoredProperty_Bool (false, prefKey: Preferences_myHidden1)
+
+  //····················································································································
+
+  var myHidden1 : Bool {
     get {
-      return self.myHidden2_property.prop
+      return self.myHidden1_property.propval
+    }
+    set {
+      self.myHidden1_property.setProp (newValue)
     }
   }
 
   //····················································································································
-  //    Simple Stored Properties
-  //····················································································································
 
-  var myHidden1_property = EBStoredProperty_Bool (false)
-  var myHidden2_property = EBStoredProperty_Bool (false)
-
-  //····················································································································
-  //    Stored Array Properties
-  //····················································································································
-
+  var myHidden1_property_selection : EBSelection <Bool> {
+    return self.myHidden1_property.prop
+  }
 
   //····················································································································
-  //    Transient properties
+  //    Outlets
   //····················································································································
 
-
+  @IBOutlet var mButton : EBButton? = nil
+  @IBOutlet var myHidden1Switch : EBSwitch? = nil
+  @IBOutlet var myHidden2Switch : EBSwitch? = nil
 
   //····················································································································
-  //    Array Controllers
+  //    Multiple bindings controllers
   //····················································································································
 
+  private var mController_mButton_hidden : MultipleBindingController_hidden?
 
+  //····················································································································
+  //    Undo Manager
+  //····················································································································
+
+  private var undoManager = EBUndoManager ()
+
+  //····················································································································
+  // The preferences window should register this object as delegate (do it in Interface Builder)
+
+  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager? {
+    return self.undoManager
+  }
 
   //····················································································································
   //    Init
@@ -90,14 +98,15 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    self.myHidden1_property.readInPreferencesWithKey (inKey:"Preferences:myHidden1")
-    self.myHidden2_property.readInPreferencesWithKey (inKey:"Preferences:myHidden2")
-  //--- Property validation function
-  //---
+  //--- Atomic property: myHidden2
+    self.myHidden2_property.undoManager = self.undoManager
+  //--- Atomic property: myHidden1
+    self.myHidden1_property.undoManager = self.undoManager
+  //--- Notify application will terminate
     NotificationCenter.default.addObserver (self,
-     selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSNotification.Name.NSApplicationWillTerminate,
-     object:nil
+      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
+      name:NSApplication.willTerminateNotification,
+      object:nil
     )
   //--- Extern functions
   }
@@ -160,20 +169,39 @@ var g_Preferences : Preferences? = nil
   //--- Set pref window content view
     window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * 2.0, height:OUTLET_HEIGHT * (1.5 * 3.0 + 0.5)))
     window?.contentView = view
-  //--------------------------- Check mButton' outlet not nil
-    if nil == mButton {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mButton' outlet is nil")
+    if let outlet : Any = self.mButton {
+      if !(outlet is EBButton) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'mButton' outlet is not an instance of 'EBButton'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'mButton' outlet is nil") ;
     }
-  //--------------------------- Check myHidden1Switch' outlet not nil
-    if nil == myHidden1Switch {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myHidden1Switch' outlet is nil")
+    if let outlet : Any = self.myHidden1Switch {
+      if !(outlet is EBSwitch) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myHidden1Switch' outlet is not an instance of 'EBSwitch'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'myHidden1Switch' outlet is nil") ;
     }
-  //--------------------------- Check myHidden2Switch' outlet not nil
-    if nil == myHidden2Switch {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myHidden2Switch' outlet is nil")
+    if let outlet : Any = self.myHidden2Switch {
+      if !(outlet is EBSwitch) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myHidden2Switch' outlet is not an instance of 'EBSwitch'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'myHidden2Switch' outlet is nil") ;
     }
-  //--------------------------- Install compute functions for transients
-  //--------------------------- Install property observers for transients
   //--------------------------- Install bindings
     myHidden1Switch?.bind_value (self.myHidden1_property, file: #file, line: #line)
     myHidden2Switch?.bind_value (self.myHidden2_property, file: #file, line: #line)
@@ -195,23 +223,16 @@ var g_Preferences : Preferences? = nil
   }
 
   //····················································································································
-  //    Multiple bindings controller
-  //····················································································································
-
-  fileprivate var mController_mButton_hidden : MultipleBindingController_hidden?
-
-  //····················································································································
   //    applicationWillTerminateAction
   //····················································································································
 
-  func applicationWillTerminateAction (_ : NSNotification) {
-    self.myHidden1_property.storeInPreferencesWithKey (inKey:"Preferences:myHidden1")
-    self.myHidden2_property.storeInPreferencesWithKey (inKey:"Preferences:myHidden2")
+  @objc func applicationWillTerminateAction (_ : NSNotification) {
+  //--------------------------- Array controller
   }
 
   //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

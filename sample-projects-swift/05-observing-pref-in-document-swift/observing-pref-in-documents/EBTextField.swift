@@ -55,7 +55,7 @@ import Cocoa
 
   //····················································································································
 
-  override func controlTextDidChange (_ inNotification : Notification) {
+  func controlTextDidChange (_ inNotification : Notification) {
     if mSendContinously {
       NSApp.sendAction (self.action!, to: self.target, from: self)
     }
@@ -85,6 +85,7 @@ import Cocoa
     if mOutlet.formatter != nil {
       presentErrorWindow (file: file, line:line, errorMessage:"the EBTextField outlet has a formatter")
     }
+    self.eventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //····················································································································
@@ -97,7 +98,7 @@ import Cocoa
 
   //····················································································································
 
-  override func sendUpdateEvent () {
+  private func updateOutlet () {
     switch mObject.prop {
     case .empty :
       mOutlet.stringValue = "—"
@@ -113,7 +114,7 @@ import Cocoa
 
   //····················································································································
 
-  func action (_ sender : EBTextField) {
+  @objc func action (_ sender : EBTextField) {
     _ = mObject.validateAndSetProp (mOutlet.stringValue, windowForSheet:sender.window)
   }
 }

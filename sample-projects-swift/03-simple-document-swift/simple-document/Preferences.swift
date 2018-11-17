@@ -10,7 +10,10 @@ var g_Preferences : Preferences? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Preferences) class Preferences : EBObject {
+
+//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Preferences) class Preferences : EBObject, NSWindowDelegate {
 
   //····················································································································
   //    Outlets
@@ -18,26 +21,22 @@ var g_Preferences : Preferences? = nil
 
 
   //····················································································································
-  //    Simple Stored Properties
+  //    Multiple bindings controllers
   //····················································································································
 
 
   //····················································································································
-  //    Stored Array Properties
+  //    Undo Manager
   //····················································································································
 
+  private var undoManager = EBUndoManager ()
 
   //····················································································································
-  //    Transient properties
-  //····················································································································
+  // The preferences window should register this object as delegate (do it in Interface Builder)
 
-
-
-  //····················································································································
-  //    Array Controllers
-  //····················································································································
-
-
+  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager? {
+    return self.undoManager
+  }
 
   //····················································································································
   //    Init
@@ -47,12 +46,11 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-  //--- Property validation function
-  //---
+  //--- Notify application will terminate
     NotificationCenter.default.addObserver (self,
-     selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSNotification.Name.NSApplicationWillTerminate,
-     object:nil
+      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
+      name:NSApplication.willTerminateNotification,
+      object:nil
     )
   //--- Extern functions
   }
@@ -62,8 +60,6 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   override func awakeFromNib () {
-  //--------------------------- Install compute functions for transients
-  //--------------------------- Install property observers for transients
   //--------------------------- Install bindings
   //--------------------------- Install multiple bindings
   //--------------------------- Array controller
@@ -72,20 +68,16 @@ var g_Preferences : Preferences? = nil
   }
 
   //····················································································································
-  //    Multiple bindings controller
-  //····················································································································
-
-
-  //····················································································································
   //    applicationWillTerminateAction
   //····················································································································
 
-  func applicationWillTerminateAction (_ : NSNotification) {
+  @objc func applicationWillTerminateAction (_ : NSNotification) {
+  //--------------------------- Array controller
   }
 
   //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

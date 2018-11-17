@@ -27,7 +27,7 @@ document PMDocument root MyRootEntity {
   }
 
   outlet EBTableView mSelectionTableView $tableValue selController ;
-  arrayController selController {allowsEmptySelection:no, allowsMultipleSelection:yes} nameController.selectedArray {
+  arrayController selController {allowsEmptySelection:no, allowsMultipleSelection:yes} self.nameController {
      column "name" sort name EBTextField $value self.name { sendContinously : no}
      column "int" sort aValue EBIntField $value self.aValue {sendContinously:no, autoFormatter:yes}
   }
@@ -60,7 +60,7 @@ document PMDocument root MyRootEntity {
   action decrement ;
   outlet EBButton decrementButton $run self.decrement $enabled root.mNames.count > 0 ;
   
-  selectionController detailController : nameController.selectedArray ;
+  selectionController detailController : self.nameController.selectedArray ;
   outlet EBTextField nameDetailTextField $value detailController.name { sendContinously : yes} ;
   outlet EBIntField valueDetailTextField $value detailController.aValue { sendContinously : yes, autoFormatter:no} ;
 }

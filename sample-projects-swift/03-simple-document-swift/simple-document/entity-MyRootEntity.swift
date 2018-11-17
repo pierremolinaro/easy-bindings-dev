@@ -5,18 +5,52 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol MyRootEntity_myString : class {
+  var myString : String { get }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol MyRootEntity_myColor : class {
+  var myColor : NSColor { get }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol MyRootEntity_myStringMaj : class {
+  var myStringMaj : String? { get }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol MyRootEntity_myStringMin : class {
+  var myStringMin : String? { get }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol MyRootEntity_myStringConcat : class {
+  var myStringConcat : String? { get }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class MyRootEntity : EBManagedObject,
-  MyRootEntity_myString,
-  MyRootEntity_myColor,
-  MyRootEntity_myStringMaj,
-  MyRootEntity_myStringMin,
-  MyRootEntity_myStringConcat {
+         MyRootEntity_myString,
+         MyRootEntity_myColor,
+         MyRootEntity_myStringMaj,
+         MyRootEntity_myStringMin,
+         MyRootEntity_myStringConcat {
 
   //····················································································································
-  //   Accessing myString stored property
+  //   Atomic property: myString
+  //····················································································································
+
+  var myString_property = EBStoredProperty_String ("Hello")
+
   //····················································································································
 
   var myString : String {
@@ -28,14 +62,18 @@ class MyRootEntity : EBManagedObject,
     }
   }
 
+  //····················································································································
+
   var myString_property_selection : EBSelection <String> {
-    get {
-      return self.myString_property.prop
-    }
+    return self.myString_property.prop
   }
 
   //····················································································································
-  //   Accessing myColor stored property
+  //   Atomic property: myColor
+  //····················································································································
+
+  var myColor_property = EBStoredProperty_NSColor (NSColor.yellow)
+
   //····················································································································
 
   var myColor : NSColor {
@@ -47,87 +85,80 @@ class MyRootEntity : EBManagedObject,
     }
   }
 
+  //····················································································································
+
   var myColor_property_selection : EBSelection <NSColor> {
-    get {
-      return self.myColor_property.prop
-    }
+    return self.myColor_property.prop
   }
 
   //····················································································································
-  //   Accessing myStringMaj transient property
-  //····················································································································
-
-  var myStringMaj_property_selection : EBSelection <String> {
-    get {
-      return self.myStringMaj_property.prop
-    }
-  }
-
-  var myStringMaj : String? {
-    switch myStringMaj_property_selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      return v
-    }
-  }
-
-  //····················································································································
-  //   Accessing myStringMin transient property
-  //····················································································································
-
-  var myStringMin_property_selection : EBSelection <String> {
-    get {
-      return self.myStringMin_property.prop
-    }
-  }
-
-  var myStringMin : String? {
-    switch myStringMin_property_selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      return v
-    }
-  }
-
-  //····················································································································
-  //   Accessing myStringConcat transient property
-  //····················································································································
-
-  var myStringConcat_property_selection : EBSelection <String> {
-    get {
-      return self.myStringConcat_property.prop
-    }
-  }
-
-  var myStringConcat : String? {
-    switch myStringConcat_property_selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      return v
-    }
-  }
-
-  //····················································································································
-  //    Stored Properties
-  //····················································································································
-
-  var myString_property = EBStoredProperty_String ("Hello")
-  var myColor_property = EBStoredProperty_NSColor (NSColor.yellow)
-
-  //····················································································································
-  //    Transient properties
+  //   Transient property: myStringMaj
   //····················································································································
 
   var myStringMaj_property = EBTransientProperty_String ()
+
+  //····················································································································
+
+  var myStringMaj_property_selection : EBSelection <String> {
+    return self.myStringMaj_property.prop
+  }
+
+  //····················································································································
+
+    var myStringMaj : String? {
+    switch self.myStringMaj_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
+    }
+  }
+
+  //····················································································································
+  //   Transient property: myStringMin
+  //····················································································································
+
   var myStringMin_property = EBTransientProperty_String ()
+
+  //····················································································································
+
+  var myStringMin_property_selection : EBSelection <String> {
+    return self.myStringMin_property.prop
+  }
+
+  //····················································································································
+
+    var myStringMin : String? {
+    switch self.myStringMin_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
+    }
+  }
+
+  //····················································································································
+  //   Transient property: myStringConcat
+  //····················································································································
+
   var myStringConcat_property = EBTransientProperty_String ()
 
   //····················································································································
-  //    Relationships
+
+  var myStringConcat_property_selection : EBSelection <String> {
+    return self.myStringConcat_property.prop
+  }
+
   //····················································································································
+
+    var myStringConcat : String? {
+    switch self.myStringConcat_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
+    }
+  }
 
 
   //····················································································································
@@ -136,7 +167,11 @@ class MyRootEntity : EBManagedObject,
 
   override init (managedObjectContext : EBManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
-  //--- Install compute functions for transients
+  //--- Atomic property: myString
+    self.myString_property.undoManager = self.undoManager
+  //--- Atomic property: myColor
+    self.myColor_property.undoManager = self.undoManager
+  //--- Atomic property: myStringMaj
     self.myStringMaj_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
         let kind = unwSelf.myString_property_selection.kind ()
@@ -157,6 +192,8 @@ class MyRootEntity : EBManagedObject,
         return .empty
       }
     }
+    self.myString_property.addEBObserver (self.myStringMaj_property)
+  //--- Atomic property: myStringMin
     self.myStringMin_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
         let kind = unwSelf.myString_property_selection.kind ()
@@ -177,6 +214,8 @@ class MyRootEntity : EBManagedObject,
         return .empty
       }
     }
+    self.myString_property.addEBObserver (self.myStringMin_property)
+  //--- Atomic property: myStringConcat
     self.myStringConcat_property.readModelFunction = { [weak self] in
       if let unwSelf = self {
         var kind = unwSelf.myStringMaj_property_selection.kind ()
@@ -198,15 +237,9 @@ class MyRootEntity : EBManagedObject,
         return .empty
       }
     }
-  //--- Install property observers for transients
-    self.myString_property.addEBObserver (self.myStringMaj_property)
-    self.myString_property.addEBObserver (self.myStringMin_property)
     self.myStringMaj_property.addEBObserver (self.myStringConcat_property)
     self.myStringMin_property.addEBObserver (self.myStringConcat_property)
-  //--- Install undoers for properties
-    self.myString_property.undoManager = undoManager ()
-    self.myColor_property.undoManager = undoManager ()
-  //--- Install owner for relationships
+  //--- Install undoers and opposite setter for relationships
   //--- register properties for handling signature
   }
 
@@ -277,10 +310,16 @@ class MyRootEntity : EBManagedObject,
   //····················································································································
 
   override func clearObjectExplorer () {
+  //--- Atomic property: myString
     self.myString_property.mObserverExplorer = nil
     self.myString_property.mValueExplorer = nil
+  //--- Atomic property: myColor
     self.myColor_property.mObserverExplorer = nil
     self.myColor_property.mValueExplorer = nil
+ //   self.myString_property.mObserverExplorer = nil
+ //   self.myString_property.mValueExplorer = nil
+ //   self.myColor_property.mObserverExplorer = nil
+ //   self.myColor_property.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -290,8 +329,12 @@ class MyRootEntity : EBManagedObject,
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    self.myString_property.storeIn (dictionary: ioDictionary, forKey: "myString")
-    self.myColor_property.storeIn (dictionary: ioDictionary, forKey: "myColor")
+  //--- Atomic property: myString
+    self.myString_property.storeIn (dictionary: ioDictionary, forKey:"myString")
+  //--- Atomic property: myColor
+    self.myColor_property.storeIn (dictionary: ioDictionary, forKey:"myColor")
+ //   self.myString_property.storeIn (dictionary: ioDictionary, forKey: "myString")
+ //   self.myColor_property.storeIn (dictionary: ioDictionary, forKey: "myColor")
   }
 
   //····················································································································
@@ -301,8 +344,12 @@ class MyRootEntity : EBManagedObject,
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
+  //--- Atomic property: myString
     self.myString_property.readFrom (dictionary: inDictionary, forKey:"myString")
+  //--- Atomic property: myColor
     self.myColor_property.readFrom (dictionary: inDictionary, forKey:"myColor")
+//    self.myString_property.readFrom (dictionary: inDictionary, forKey:"myString")
+//    self.myColor_property.readFrom (dictionary: inDictionary, forKey:"myColor")
   }
 
   //····················································································································
@@ -311,6 +358,30 @@ class MyRootEntity : EBManagedObject,
 
   override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
     super.cascadeObjectRemoving (&ioObjectsToRemove)
+  }
+
+  //····················································································································
+  //   resetControllers
+  //····················································································································
+
+  override func resetControllers () {
+    super.resetControllers ()
+  }
+
+  //····················································································································
+  //   resetToManyRelationships
+  //····················································································································
+
+  override func resetToManyRelationships () {
+    super.resetToManyRelationships ()
+  }
+
+  //····················································································································
+  //   resetToOneRelationships
+  //····················································································································
+
+  override func resetToOneRelationships () {
+    super.resetToOneRelationships ()
   }
 
   //····················································································································
@@ -330,6 +401,14 @@ class MyRootEntity : EBManagedObject,
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity> {
+
+  //····················································································································
+
+  var undoManager : EBUndoManager?
+
+  //····················································································································
+
+  var propval : [MyRootEntity] { return [] } // Abstract method
 
   //····················································································································
   //   Observers of 'myString' stored property
@@ -625,7 +704,24 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   var readModelFunction : Optional<() -> EBSelection < [MyRootEntity] > >
 
-  private var prop_cache : EBSelection < [MyRootEntity] >? 
+  //····················································································································
+
+   private var prop_cache : EBSelection < [MyRootEntity] >? 
+
+  //····················································································································
+
+  override var propval : [MyRootEntity] {
+    if let value = prop_cache {
+      switch value {
+      case .empty, .multiple :
+        return []
+      case .single (let v) :
+        return v
+      }
+    }else{
+      return []
+    }
+  }
 
   //····················································································································
 
@@ -695,33 +791,192 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    To many relationship read write: MyRootEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_myString : class {
-  var myString : String { get }
+class ReadWriteArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
+
+  //····················································································································
+ 
+  func setProp (_ value :  [MyRootEntity]) { } // Abstract method
+ 
+  // var propval : [MyRootEntity] { return [] } // Abstract method
+ 
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    To many relationship: MyRootEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_myColor : class {
-  var myColor : NSColor { get }
+final class StoredArrayOf_MyRootEntity : ReadWriteArrayOf_MyRootEntity, EBSignatureObserverProtocol {
+
+  //····················································································································
+
+  var setOppositeRelationship : Optional < (_ inManagedObject : MyRootEntity?) -> Void > = nil
+
+  //····················································································································
+
+  var mValueExplorer : NSPopUpButton? {
+    didSet {
+      if let unwrappedExplorer = mValueExplorer {
+        switch prop {
+        case .empty, .multiple :
+          break ;
+        case .single (let v) :
+          updateManagedObjectToManyRelationshipDisplay (objectArray: v, popUpButton:unwrappedExplorer)
+        }
+      }
+    }
+  }
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+    self.count_property.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.prop {
+        case .empty :
+          return .empty
+        case .multiple :
+          return .multiple
+        case .single (let v) :
+          return .single (v.count)
+        }
+      }else{
+        return .empty
+      }
+    }
+  }
+
+  //····················································································································
+
+  private var mSet = Set <MyRootEntity> ()
+  private var mValue = [MyRootEntity] () {
+    didSet {
+      postEvent ()
+      if oldValue != mValue {
+        let oldSet = mSet
+        mSet = Set (mValue)
+      //--- Register old value in undo manager
+        self.undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
+      //--- Update explorer
+        if let valueExplorer = mValueExplorer {
+          updateManagedObjectToManyRelationshipDisplay (objectArray: mValue, popUpButton: valueExplorer)
+        }
+      //--- Removed object set
+        let removedObjectSet = oldSet.subtracting (mSet)
+        for managedObject in removedObjectSet {
+          managedObject.setSignatureObserver (observer: nil)
+          self.setOppositeRelationship? (nil)
+        }
+        removeEBObserversOf_myString_fromElementsOfSet (removedObjectSet)
+        removeEBObserversOf_myColor_fromElementsOfSet (removedObjectSet)
+        removeEBObserversOf_myStringMaj_fromElementsOfSet (removedObjectSet)
+        removeEBObserversOf_myStringMin_fromElementsOfSet (removedObjectSet)
+        removeEBObserversOf_myStringConcat_fromElementsOfSet (removedObjectSet)
+      //--- Added object set
+        let addedObjectSet = mSet.subtracting (oldSet)
+        for managedObject : MyRootEntity in addedObjectSet {
+          managedObject.setSignatureObserver (observer: self)
+          self.setOppositeRelationship? (managedObject)
+        }
+        addEBObserversOf_myString_toElementsOfSet (addedObjectSet)
+        addEBObserversOf_myColor_toElementsOfSet (addedObjectSet)
+        addEBObserversOf_myStringMaj_toElementsOfSet (addedObjectSet)
+        addEBObserversOf_myStringMin_toElementsOfSet (addedObjectSet)
+        addEBObserversOf_myStringConcat_toElementsOfSet (addedObjectSet)
+      //--- Notify observers
+        clearSignatureCache ()
+      }
+    }
+  }
+
+  override var prop : EBSelection < [MyRootEntity] > { return .single (mValue) }
+
+  override func setProp (_ inValue : [MyRootEntity]) { mValue = inValue }
+
+  override var propval : [MyRootEntity] { return mValue }
+
+  //····················································································································
+
+  @objc func performUndo (_ oldValue : [MyRootEntity]) {
+    mValue = oldValue
+  }
+
+  //····················································································································
+
+  func remove (_ object : MyRootEntity) {
+    if mSet.contains (object) {
+      var array = mValue
+      let idx = array.index (of: object)
+      array.remove (at: idx!)
+      mValue = array
+    }
+  }
+  
+  //····················································································································
+
+  func add (_ object : MyRootEntity) {
+    if !mSet.contains (object) {
+      var array = mValue
+      array.append (object)
+      mValue = array
+    }
+  }
+  
+  //····················································································································
+  //   signature
+  //····················································································································
+
+  private weak var mSignatureObserver : EBSignatureObserverProtocol?
+  private var mSignatureCache : UInt32?
+
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
+    mSignatureObserver = observer
+    for object in mValue {
+      object.setSignatureObserver (observer: self)
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = computeSignature ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
+  //····················································································································
+
+  final func computeSignature () -> UInt32 {
+    var crc : UInt32 = 0
+    for object in mValue {
+      crc.accumulateUInt32 (object.signature ())
+    }
+    return crc
+  }
+
+  //····················································································································
+
+  final func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+ 
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-protocol MyRootEntity_myStringMaj : class {
-  var myStringMaj : String? { get }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-protocol MyRootEntity_myStringMin : class {
-  var myStringMin : String? { get }
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-protocol MyRootEntity_myStringConcat : class {
-  var myStringConcat : String? { get }
-}
-
-

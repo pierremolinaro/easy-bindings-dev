@@ -11,7 +11,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_MyRootEntity_otherTransientConcatString (
+func transient_MyRootEntity_otherTransientConcatString (
        _ prefs_myPrefString : String
 ) -> String {
 //--- START OF USER ZONE 2

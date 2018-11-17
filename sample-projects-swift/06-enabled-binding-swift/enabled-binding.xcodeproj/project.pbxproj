@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF62950821A0462C00779BB5 /* graphic-classes-and-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62950621A0462C00779BB5 /* graphic-classes-and-utilities.swift */; };
+		CF62950921A0462C00779BB5 /* EBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62950721A0462C00779BB5 /* EBView.swift */; };
 		CF71F9CB1B3EA72400FB5049 /* EBAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9C41B3EA72400FB5049 /* EBAllocationDebug.swift */; };
 		CF71F9CC1B3EA72400FB5049 /* EBAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF71F9C51B3EA72400FB5049 /* EBAllocationDebug.xib */; };
 		CF71F9CD1B3EA72400FB5049 /* EBDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9C61B3EA72400FB5049 /* EBDataScanner.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF62950621A0462C00779BB5 /* graphic-classes-and-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "graphic-classes-and-utilities.swift"; path = "enabled-binding/graphic-classes-and-utilities.swift"; sourceTree = "<group>"; };
+		CF62950721A0462C00779BB5 /* EBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBView.swift; path = "enabled-binding/EBView.swift"; sourceTree = "<group>"; };
 		CF71F9C41B3EA72400FB5049 /* EBAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBAllocationDebug.swift; path = "enabled-binding/EBAllocationDebug.swift"; sourceTree = "<group>"; };
 		CF71F9C51B3EA72400FB5049 /* EBAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EBAllocationDebug.xib; path = "enabled-binding/EBAllocationDebug.xib"; sourceTree = "<group>"; };
 		CF71F9C61B3EA72400FB5049 /* EBDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBDataScanner.swift; path = "enabled-binding/EBDataScanner.swift"; sourceTree = "<group>"; };
@@ -92,12 +96,14 @@
 				CF71F9C91B3EA72400FB5049 /* EBManagedObjectContext.swift */,
 				CF8E79F31B3E9F2D000E28CC /* EBSwitch.swift */,
 				CF71F9CA1B3EA72400FB5049 /* EBUndoManager.swift */,
+				CF62950721A0462C00779BB5 /* EBView.swift */,
+				CFA9573C1AC8678900CA6D6D /* entity-MyRootEntity.swift */,
 				CFA957371AC8678900CA6D6D /* generic-bindings.swift */,
+				CF62950621A0462C00779BB5 /* graphic-classes-and-utilities.swift */,
 				CFA957381AC8678900CA6D6D /* main.swift */,
 				CFA957391AC8678900CA6D6D /* MainMenu.xib */,
 				CFA9573A1AC8678900CA6D6D /* MyDocument.swift */,
 				CFA9573B1AC8678900CA6D6D /* MyDocument.xib */,
-				CFA9573C1AC8678900CA6D6D /* entity-MyRootEntity.swift */,
 				CFA957461AC8678900CA6D6D /* Preferences.swift */,
 				CFA957471AC8678900CA6D6D /* standard-properties.swift */,
 			);
@@ -175,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA9574F1AC8678900CA6D6D /* entity-MyRootEntity.swift in Sources */,
+				CF62950821A0462C00779BB5 /* graphic-classes-and-utilities.swift in Sources */,
 				CF8E79F51B3E9F2D000E28CC /* EBSwitch.swift in Sources */,
 				CFA957591AC8678900CA6D6D /* Preferences.swift in Sources */,
 				CF71F9D01B3EA72400FB5049 /* EBManagedObjectContext.swift in Sources */,
@@ -188,6 +195,7 @@
 				CFA957481AC8678900CA6D6D /* application.swift in Sources */,
 				CF71F9CE1B3EA72400FB5049 /* EBManagedDocument.swift in Sources */,
 				CF71F9CB1B3EA72400FB5049 /* EBAllocationDebug.swift in Sources */,
+				CF62950921A0462C00779BB5 /* EBView.swift in Sources */,
 				CFA9574D1AC8678900CA6D6D /* MyDocument.swift in Sources */,
 				CFA9575A1AC8678900CA6D6D /* standard-properties.swift in Sources */,
 			);
@@ -231,7 +239,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -262,7 +270,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -274,7 +282,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.irccyn.molinaro.enabledBinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -288,7 +295,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.irccyn.molinaro.enabledBinding;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

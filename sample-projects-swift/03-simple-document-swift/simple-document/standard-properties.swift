@@ -134,6 +134,7 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
 
 final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValueProperty <T> {
   weak var undoManager : UndoManager?
+  fileprivate var mPreferenceKey : String?
 
   //····················································································································
 
@@ -147,7 +148,21 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   init (_ inValue : T) {
     mValue = inValue
+    mPreferenceKey = nil
     super.init ()
+  }
+
+  //····················································································································
+
+  init (_ inValue : T, prefKey inPreferenceKey : String) {
+    mValue = inValue
+    mPreferenceKey = inPreferenceKey
+    super.init ()
+  //--- Read from preferences
+    let value : Any? = UserDefaults.standard.object (forKey: inPreferenceKey)
+    if let unwValue : NSObject = value as? NSObject {
+      setProp (T.convertFromNSObject (object:unwValue))
+    }
   }
 
   //····················································································································
@@ -155,6 +170,9 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
   private var mValue : T {
     didSet {
       if mValue != oldValue {
+        if let prefKey = self.mPreferenceKey {
+          UserDefaults.standard.set (mValue.convertToNSObject (), forKey:prefKey)
+        }
         mValueExplorer?.stringValue = "\(mValue)"
         undoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object: oldValue.convertToNSObject ())
         if logEvents () {
@@ -168,7 +186,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   //····················································································································
 
-  func performUndo (_ oldValue : NSNumber) {
+  @objc func performUndo (_ oldValue : NSNumber) {
     mValue = T.convertFromNSObject (object:oldValue)
   }
 
@@ -193,7 +211,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
       setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
-      NSBeep ()
+      __NSBeep ()
     case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
@@ -202,33 +220,19 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
       alert.addButton (withTitle:"Ok")
       alert.addButton (withTitle:"Discard Change")
       if let window = inWindow {
-        alert.beginSheetModal (for:window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
+        alert.beginSheetModal (
+          for:window,
+          completionHandler:{ (response : NSApplication.ModalResponse) in
+            if response == NSApplication.ModalResponse.alertSecondButtonReturn { // Discard Change
+              self.postEvent ()
+            }
           }
-        })
+        )
       }else{
         alert.runModal ()
       }
     }
     return result
-  }
-
-  //····················································································································
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard
-    let value : Any? = ud.object (forKey:inKey)
-    if let unwValue : NSObject = value as? NSObject {
-      setProp (T.convertFromNSObject (object:unwValue))
-    }
-  }
-
-  //····················································································································
-
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard
-    ud.set (mValue.convertToNSObject (), forKey:inKey)
   }
 
   //····················································································································
@@ -738,6 +742,7 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
 
 final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClassProperty <T> {
   weak var undoManager : UndoManager?
+  fileprivate var mPreferenceKey : String?
 
   //····················································································································
 
@@ -751,7 +756,21 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
   init (_ inValue : T) {
     mValue = inValue
+    mPreferenceKey = nil
     super.init ()
+  }
+
+  //····················································································································
+
+  init (_ inValue : T, prefKey inPreferenceKey : String) {
+    mValue = inValue
+    mPreferenceKey = inPreferenceKey
+    super.init ()
+  //--- Read value from preferences
+    let value : Any? = UserDefaults.standard.object (forKey:inPreferenceKey)
+    if let unwValue : Data = value as? Data {
+      setProp (T.unarchiveFromNSData (data:unwValue) as! T)
+    }
   }
 
   //····················································································································
@@ -759,6 +778,9 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
   private var mValue : T {
     didSet {
       if mValue != oldValue {
+        if let prefKey = self.mPreferenceKey {
+          UserDefaults.standard.set (mValue.archiveToNSData (), forKey:prefKey)
+        }
         mValueExplorer?.stringValue = "\(mValue)"
         undoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object: oldValue)
         if logEvents () {
@@ -772,7 +794,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
   //····················································································································
 
-  func performUndo (_ oldValue : NSObject) {
+  @objc func performUndo (_ oldValue : NSObject) {
     mValue = oldValue as! T
   }
 
@@ -797,7 +819,7 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
       setProp (validatedValue)
     case EBValidationResult.rejectWithBeep :
       result = false
-      NSBeep ()
+      __NSBeep ()
     case EBValidationResult.rejectWithAlert (let informativeText) :
       result = false
       let alert = NSAlert ()
@@ -806,33 +828,19 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
       alert.addButton (withTitle:"Ok")
       alert.addButton (withTitle:"Discard Change")
       if let window = inWindow {
-        alert.beginSheetModal (for:window, completionHandler:{(response : NSModalResponse) in
-          if response == NSAlertSecondButtonReturn { // Discard Change
-            self.postEvent ()
+        alert.beginSheetModal (
+          for:window,
+          completionHandler:{ (response : NSApplication.ModalResponse) in
+            if response == NSApplication.ModalResponse.alertSecondButtonReturn { // Discard Change
+              self.postEvent ()
+            }
           }
-        })
+        )
       }else{
         alert.runModal ()
       }
     }
     return result
-  }
-
-  //····················································································································
-
-  func readInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard
-    let value : Any? = ud.object (forKey:inKey)
-    if let unwValue : Data = value as? Data {
-      setProp (T.unarchiveFromNSData (data:unwValue) as! T)
-    }
-  }
-
-  //····················································································································
-
-  func storeInPreferencesWithKey (inKey : String) {
-    let ud = UserDefaults.standard
-    ud.set (mValue.archiveToNSData (), forKey:inKey)
   }
 
   //····················································································································
@@ -1137,25 +1145,6 @@ func compare_String (left : EBReadOnlyProperty_String, right : EBReadOnlyPropert
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Property class NSColor
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-typealias EBReadOnlyProperty_NSColor  = EBReadOnlyClassProperty <NSColor>
-typealias EBTransientProperty_NSColor = EBTransientClassProperty <NSColor>
-typealias EBReadWriteProperty_NSColor = EBReadWriteClassProperty <NSColor>
-typealias EBPropertyProxy_NSColor     = EBPropertyClassProxy <NSColor>
-typealias EBStoredProperty_NSColor    = EBStoredClassProperty <NSColor>
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Transient property class CALayer
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-typealias EBReadOnlyProperty_CALayer  = EBReadOnlyClassProperty <CALayer>
-typealias EBTransientProperty_CALayer = EBTransientClassProperty <CALayer>
-typealias EBReadOnlyPropertyArray_CALayer  = EBReadOnlyClassProperty <[CALayer]>
-typealias EBTransientPropertyArray_CALayer = EBTransientClassProperty <[CALayer]>
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Property CGFloat
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -1169,6 +1158,15 @@ typealias EBReadOnlyProperty_NSImage  = EBReadOnlyClassProperty <NSImage>
 typealias EBTransientProperty_NSImage = EBTransientClassProperty <NSImage>
 typealias EBReadOnlyPropertyArray_NSImage  = EBReadOnlyClassProperty <[NSImage]>
 typealias EBTransientPropertyArray_NSImage = EBTransientClassProperty <[NSImage]>
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Transient property class EBShape
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+typealias EBReadOnlyProperty_EBShape  = EBReadOnlyClassProperty <EBShape>
+typealias EBTransientProperty_EBShape = EBTransientClassProperty <EBShape>
+typealias EBReadOnlyPropertyArray_EBShape  = EBReadOnlyClassProperty <[EBShape]>
+typealias EBTransientPropertyArray_EBShape = EBTransientClassProperty <[EBShape]>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Property Date
@@ -1225,4 +1223,14 @@ typealias EBTransientProperty_NSFont = EBTransientClassProperty <NSFont>
 typealias EBReadWriteProperty_NSFont = EBReadWriteClassProperty <NSFont>
 typealias EBPropertyProxy_NSFont     = EBPropertyClassProxy <NSFont>
 typealias EBStoredProperty_NSFont    = EBStoredClassProperty <NSFont>
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   Property class NSColor
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+typealias EBReadOnlyProperty_NSColor  = EBReadOnlyClassProperty <NSColor>
+typealias EBTransientProperty_NSColor = EBTransientClassProperty <NSColor>
+typealias EBReadWriteProperty_NSColor = EBReadWriteClassProperty <NSColor>
+typealias EBPropertyProxy_NSColor     = EBPropertyClassProxy <NSColor>
+typealias EBStoredProperty_NSColor    = EBStoredClassProperty <NSColor>
 

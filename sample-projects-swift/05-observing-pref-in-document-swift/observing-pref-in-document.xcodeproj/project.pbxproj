@@ -10,6 +10,8 @@
 		CF1AE0C1168F0CBE0031840E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0C0168F0CBE0031840E /* libz.dylib */; };
 		CF1AE0C3168F0CC70031840E /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1AE0C2168F0CC70031840E /* libbz2.dylib */; };
 		CF4627A71595B53B00BF70CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4627A61595B53B00BF70CD /* Cocoa.framework */; };
+		CF62950421A045E300779BB5 /* EBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62950221A045E300779BB5 /* EBView.swift */; };
+		CF62950521A045E300779BB5 /* graphic-classes-and-utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF62950321A045E300779BB5 /* graphic-classes-and-utilities.swift */; };
 		CF71F9BD1B3EA6EE00FB5049 /* EBAllocationDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9B61B3EA6EE00FB5049 /* EBAllocationDebug.swift */; };
 		CF71F9BE1B3EA6EE00FB5049 /* EBAllocationDebug.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF71F9B71B3EA6EE00FB5049 /* EBAllocationDebug.xib */; };
 		CF71F9BF1B3EA6EE00FB5049 /* EBDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71F9B81B3EA6EE00FB5049 /* EBDataScanner.swift */; };
@@ -42,6 +44,8 @@
 		CF4627A91595B53B00BF70CD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		CF4627AA1595B53B00BF70CD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CF4627AB1595B53B00BF70CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF62950221A045E300779BB5 /* EBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBView.swift; sourceTree = "<group>"; };
+		CF62950321A045E300779BB5 /* graphic-classes-and-utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "graphic-classes-and-utilities.swift"; sourceTree = "<group>"; };
 		CF71F9B61B3EA6EE00FB5049 /* EBAllocationDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBAllocationDebug.swift; sourceTree = "<group>"; };
 		CF71F9B71B3EA6EE00FB5049 /* EBAllocationDebug.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EBAllocationDebug.xib; sourceTree = "<group>"; };
 		CF71F9B81B3EA6EE00FB5049 /* EBDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDataScanner.swift; sourceTree = "<group>"; };
@@ -132,12 +136,14 @@
 				CF8E79EE1B3E9EF3000E28CC /* EBTextField.swift */,
 				CFC7AEC71BF221140076C604 /* EBTextObserverField.swift */,
 				CF71F9BC1B3EA6EE00FB5049 /* EBUndoManager.swift */,
+				CF62950221A045E300779BB5 /* EBView.swift */,
+				CFA9570D1AC8631B00CA6D6D /* entity-MyRootEntity.swift */,
 				CFA9570A1AC8631B00CA6D6D /* generic-bindings.swift */,
+				CF62950321A045E300779BB5 /* graphic-classes-and-utilities.swift */,
 				CFA9570B1AC8631B00CA6D6D /* main.swift */,
 				CFA957321AC8644A00CA6D6D /* MainMenu.xib */,
 				CFA9570C1AC8631B00CA6D6D /* MyDocument.swift */,
 				CFA957301AC8642C00CA6D6D /* MyDocument.xib */,
-				CFA9570D1AC8631B00CA6D6D /* entity-MyRootEntity.swift */,
 				CFA957191AC8631B00CA6D6D /* Preferences.swift */,
 				CFA9571B1AC8631B00CA6D6D /* standard-properties.swift */,
 				CFA9570E1AC8631B00CA6D6D /* transient-MyRootEntity-otherTransientConcatString.swift */,
@@ -224,6 +230,7 @@
 				CFA957231AC8631B00CA6D6D /* transient-MyRootEntity-transientConcatString.swift in Sources */,
 				CFA9572F1AC8631B00CA6D6D /* standard-properties.swift in Sources */,
 				CF71F9C01B3EA6EE00FB5049 /* EBManagedDocument.swift in Sources */,
+				CF62950521A045E300779BB5 /* graphic-classes-and-utilities.swift in Sources */,
 				CFA9571D1AC8631B00CA6D6D /* easy-bindings-utilities.swift in Sources */,
 				CF71F9C31B3EA6EE00FB5049 /* EBUndoManager.swift in Sources */,
 				CFC7AEC81BF221140076C604 /* EBTextObserverField.swift in Sources */,
@@ -235,6 +242,7 @@
 				CF71F9C11B3EA6EE00FB5049 /* EBManagedObject.swift in Sources */,
 				CFA9571C1AC8631B00CA6D6D /* application.swift in Sources */,
 				CFA9572E1AC8631B00CA6D6D /* transient-Preferences-prefTransientString.swift in Sources */,
+				CF62950421A045E300779BB5 /* EBView.swift in Sources */,
 				CFA957201AC8631B00CA6D6D /* MyDocument.swift in Sources */,
 				CFA957221AC8631B00CA6D6D /* transient-MyRootEntity-otherTransientConcatString.swift in Sources */,
 			);
@@ -281,7 +289,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -295,7 +303,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.irccyn.molinaro.observingPrefsInDocument;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

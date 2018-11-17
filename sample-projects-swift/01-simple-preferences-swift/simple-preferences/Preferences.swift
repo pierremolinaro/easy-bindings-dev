@@ -10,7 +10,112 @@ var g_Preferences : Preferences? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Preferences) class Preferences : EBObject {
+let Preferences_myString = "Preferences:myString"
+let Preferences_mColor = "Preferences:mColor"
+let Preferences_mDate = "Preferences:mDate"
+let Preferences_mIntegerValue = "Preferences:mIntegerValue"
+
+//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Preferences) class Preferences : EBObject, NSWindowDelegate {
+
+  //····················································································································
+  //   Atomic property: myString
+  //····················································································································
+
+  var myString_property = EBStoredProperty_String ("hello", prefKey: Preferences_myString)
+
+  //····················································································································
+
+  var myString : String {
+    get {
+      return self.myString_property.propval
+    }
+    set {
+      self.myString_property.setProp (newValue)
+    }
+  }
+
+  //····················································································································
+
+  var myString_property_selection : EBSelection <String> {
+    return self.myString_property.prop
+  }
+
+  //····················································································································
+  //   Atomic property: mColor
+  //····················································································································
+
+  var mColor_property = EBStoredProperty_NSColor (NSColor.yellow, prefKey: Preferences_mColor)
+
+  //····················································································································
+
+  var mColor : NSColor {
+    get {
+      return self.mColor_property.propval
+    }
+    set {
+      self.mColor_property.setProp (newValue)
+    }
+  }
+
+  //····················································································································
+
+  var mColor_property_selection : EBSelection <NSColor> {
+    return self.mColor_property.prop
+  }
+
+  //····················································································································
+  //   Atomic property: mDate
+  //····················································································································
+
+  var mDate_property = EBStoredProperty_Date (Date (), prefKey: Preferences_mDate)
+
+  //····················································································································
+
+  var mDate : Date {
+    get {
+      return self.mDate_property.propval
+    }
+    set {
+      self.mDate_property.setProp (newValue)
+    }
+  }
+
+  //····················································································································
+
+  var mDate_property_selection : EBSelection <Date> {
+    return self.mDate_property.prop
+  }
+
+  //····················································································································
+  //   Atomic property: mIntegerValue
+  //····················································································································
+
+  var mIntegerValue_property = EBStoredProperty_Int (12, prefKey: Preferences_mIntegerValue)
+
+  //····················································································································
+
+  var mIntegerValue : Int {
+    get {
+      return self.mIntegerValue_property.propval
+    }
+    set {
+      self.mIntegerValue_property.setProp (newValue)
+    }
+  }
+
+  //····················································································································
+
+  var mIntegerValue_property_selection : EBSelection <Int> {
+    return self.mIntegerValue_property.prop
+  }
+
+  //····················································································································
+
+  func mIntegerValue_validateAndSetProp (_ inCandidateValue : Int, windowForSheet inWindow:NSWindow?) -> Bool {
+    return self.mIntegerValue_property.validateAndSetProp (inCandidateValue, windowForSheet:inWindow)
+  }
 
   //····················································································································
   //    Outlets
@@ -27,109 +132,22 @@ var g_Preferences : Preferences? = nil
   @IBOutlet var myTextField : EBTextField? = nil
 
   //····················································································································
-  //   Accessing myString stored property
+  //    Multiple bindings controllers
   //····················································································································
 
-  var myString : String {
-    get {
-      return self.myString_property.propval
-    }
-    set {
-      self.myString_property.setProp (newValue)
-    }
+
+  //····················································································································
+  //    Undo Manager
+  //····················································································································
+
+  private var undoManager = EBUndoManager ()
+
+  //····················································································································
+  // The preferences window should register this object as delegate (do it in Interface Builder)
+
+  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager? {
+    return self.undoManager
   }
-
-  var myString_property_selection : EBSelection <String> {
-    get {
-      return self.myString_property.prop
-    }
-  }
-
-  //····················································································································
-  //   Accessing mColor stored property
-  //····················································································································
-
-  var mColor : NSColor {
-    get {
-      return self.mColor_property.propval
-    }
-    set {
-      self.mColor_property.setProp (newValue)
-    }
-  }
-
-  var mColor_property_selection : EBSelection <NSColor> {
-    get {
-      return self.mColor_property.prop
-    }
-  }
-
-  //····················································································································
-  //   Accessing mDate stored property
-  //····················································································································
-
-  var mDate : Date {
-    get {
-      return self.mDate_property.propval
-    }
-    set {
-      self.mDate_property.setProp (newValue)
-    }
-  }
-
-  var mDate_property_selection : EBSelection <Date> {
-    get {
-      return self.mDate_property.prop
-    }
-  }
-
-  //····················································································································
-  //   Accessing mIntegerValue stored property
-  //····················································································································
-
-  var mIntegerValue : Int {
-    get {
-      return self.mIntegerValue_property.propval
-    }
-    set {
-      self.mIntegerValue_property.setProp (newValue)
-    }
-  }
-
-  var mIntegerValue_property_selection : EBSelection <Int> {
-    get {
-      return self.mIntegerValue_property.prop
-    }
-  }
-  func mIntegerValue_validateAndSetProp (_ inCandidateValue : Int, windowForSheet inWindow:NSWindow?) -> Bool {
-    return self.mIntegerValue_property.validateAndSetProp (inCandidateValue, windowForSheet:inWindow)
-  }
-
-  //····················································································································
-  //    Simple Stored Properties
-  //····················································································································
-
-  var myString_property = EBStoredProperty_String ("hello")
-  var mColor_property = EBStoredProperty_NSColor (NSColor.yellow)
-  var mDate_property = EBStoredProperty_Date (Date ())
-  var mIntegerValue_property = EBStoredProperty_Int (12)
-
-  //····················································································································
-  //    Stored Array Properties
-  //····················································································································
-
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-
-
-  //····················································································································
-  //    Array Controllers
-  //····················································································································
-
-
 
   //····················································································································
   //    Init
@@ -139,17 +157,20 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    self.myString_property.readInPreferencesWithKey (inKey:"Preferences:myString")
-    self.mColor_property.readInPreferencesWithKey (inKey:"Preferences:mColor")
-    self.mDate_property.readInPreferencesWithKey (inKey:"Preferences:mDate")
-    self.mIntegerValue_property.readInPreferencesWithKey (inKey:"Preferences:mIntegerValue")
-  //--- Property validation function
+  //--- Atomic property: myString
+    self.myString_property.undoManager = self.undoManager
+  //--- Atomic property: mColor
+    self.mColor_property.undoManager = self.undoManager
+  //--- Atomic property: mDate
+    self.mDate_property.undoManager = self.undoManager
+  //--- Atomic property: mIntegerValue
+    self.mIntegerValue_property.undoManager = self.undoManager
     self.mIntegerValue_property.validationFunction = self.validate_mIntegerValue
-  //---
+  //--- Notify application will terminate
     NotificationCenter.default.addObserver (self,
-     selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSNotification.Name.NSApplicationWillTerminate,
-     object:nil
+      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
+      name:NSApplication.willTerminateNotification,
+      object:nil
     )
   //--- Extern functions
   }
@@ -296,44 +317,105 @@ var g_Preferences : Preferences? = nil
   //--- Set pref window content view
     window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * 2.0, height:OUTLET_HEIGHT * (1.5 * 9.0 + 0.5)))
     window?.contentView = view
-  //--------------------------- Check mColorWell' outlet not nil
-    if nil == mColorWell {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mColorWell' outlet is nil")
+    if let outlet : Any = self.mColorWell {
+      if !(outlet is EBColorWell) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'mColorWell' outlet is not an instance of 'EBColorWell'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'mColorWell' outlet is nil") ;
     }
-  //--------------------------- Check mContinuousColorWell' outlet not nil
-    if nil == mContinuousColorWell {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mContinuousColorWell' outlet is nil")
+    if let outlet : Any = self.mContinuousColorWell {
+      if !(outlet is EBColorWell) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'mContinuousColorWell' outlet is not an instance of 'EBColorWell'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'mContinuousColorWell' outlet is nil") ;
     }
-  //--------------------------- Check mDatePicker' outlet not nil
-    if nil == mDatePicker {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mDatePicker' outlet is nil")
+    if let outlet : Any = self.mDatePicker {
+      if !(outlet is EBDatePicker) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'mDatePicker' outlet is not an instance of 'EBDatePicker'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'mDatePicker' outlet is nil") ;
     }
-  //--------------------------- Check mIntegerObserverTextField' outlet not nil
-    if nil == mIntegerObserverTextField {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mIntegerObserverTextField' outlet is nil")
+    if let outlet : Any = self.mIntegerObserverTextField {
+      if !(outlet is EBIntObserverField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'mIntegerObserverTextField' outlet is not an instance of 'EBIntObserverField'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'mIntegerObserverTextField' outlet is nil") ;
     }
-  //--------------------------- Check mIntegerTextField' outlet not nil
-    if nil == mIntegerTextField {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mIntegerTextField' outlet is nil")
+    if let outlet : Any = self.mIntegerTextField {
+      if !(outlet is EBIntField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'mIntegerTextField' outlet is not an instance of 'EBIntField'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'mIntegerTextField' outlet is nil") ;
     }
-  //--------------------------- Check mObserverColorWell' outlet not nil
-    if nil == mObserverColorWell {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'mObserverColorWell' outlet is nil")
+    if let outlet : Any = self.mObserverColorWell {
+      if !(outlet is EBColorObserverWell) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'mObserverColorWell' outlet is not an instance of 'EBColorObserverWell'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'mObserverColorWell' outlet is nil") ;
     }
-  //--------------------------- Check myObserverTextField' outlet not nil
-    if nil == myObserverTextField {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myObserverTextField' outlet is nil")
+    if let outlet : Any = self.myObserverTextField {
+      if !(outlet is EBTextObserverField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myObserverTextField' outlet is not an instance of 'EBTextObserverField'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'myObserverTextField' outlet is nil") ;
     }
-  //--------------------------- Check myOtherTextField' outlet not nil
-    if nil == myOtherTextField {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myOtherTextField' outlet is nil")
+    if let outlet : Any = self.myOtherTextField {
+      if !(outlet is EBTextField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myOtherTextField' outlet is not an instance of 'EBTextField'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'myOtherTextField' outlet is nil") ;
     }
-  //--------------------------- Check myTextField' outlet not nil
-    if nil == myTextField {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'myTextField' outlet is nil")
+    if let outlet : Any = self.myTextField {
+      if !(outlet is EBTextField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myTextField' outlet is not an instance of 'EBTextField'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'myTextField' outlet is nil") ;
     }
-  //--------------------------- Install compute functions for transients
-  //--------------------------- Install property observers for transients
   //--------------------------- Install bindings
     myTextField?.bind_value (self.myString_property, file: #file, line: #line, sendContinously:false)
     myOtherTextField?.bind_value (self.myString_property, file: #file, line: #line, sendContinously:true)
@@ -351,24 +433,16 @@ var g_Preferences : Preferences? = nil
   }
 
   //····················································································································
-  //    Multiple bindings controller
-  //····················································································································
-
-
-  //····················································································································
   //    applicationWillTerminateAction
   //····················································································································
 
-  func applicationWillTerminateAction (_ : NSNotification) {
-    self.myString_property.storeInPreferencesWithKey (inKey:"Preferences:myString")
-    self.mColor_property.storeInPreferencesWithKey (inKey:"Preferences:mColor")
-    self.mDate_property.storeInPreferencesWithKey (inKey:"Preferences:mDate")
-    self.mIntegerValue_property.storeInPreferencesWithKey (inKey:"Preferences:mIntegerValue")
+  @objc func applicationWillTerminateAction (_ : NSNotification) {
+  //--------------------------- Array controller
   }
 
   //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

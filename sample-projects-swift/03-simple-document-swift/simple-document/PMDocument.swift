@@ -4,9 +4,33 @@
 
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(PMDocument) class PMDocument : EBManagedDocument {
+
+  //····················································································································
+  //   Transient property: documentFilePath
+  //····················································································································
+
+  var documentFilePath_property = EBTransientProperty_String ()
+
+  //····················································································································
+
+  var documentFilePath_property_selection : EBSelection <String> {
+    return self.documentFilePath_property.prop
+  }
+
+  //····················································································································
+
+    var documentFilePath : String? {
+    switch self.documentFilePath_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
+    }
+  }
+
 
   //····················································································································
   //    Outlets
@@ -19,37 +43,7 @@ import Cocoa
   @IBOutlet var myTextMinField : EBTextObserverField?
 
   //····················································································································
-  //    Properties
-  //····················································································································
-
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-  var documentFilePath_property = EBTransientProperty_String ()
-  var documentFilePath_property_selection : EBSelection <String> {
-    return self.documentFilePath_property.prop
-  }
-
-
-  //····················································································································
-  //    Transient arraies
-  //····················································································································
-
-
-  //····················································································································
-  //    Array Controllers
-  //····················································································································
-
-
-  //····················································································································
-  //    Selection Controllers
-  //····················································································································
-
-
-  //····················································································································
-  //    Custom object Controllers
+  //    Multiple bindings controllers
   //····················································································································
 
 
@@ -83,6 +77,7 @@ import Cocoa
   //····················································································································
 
   override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+  //---
     super.populateExplorerWindow (&y, view:view)
   }
 
@@ -90,10 +85,10 @@ import Cocoa
   //    windowNibName
   //····················································································································
 
-  override var windowNibName: String {
-    return "PMDocument"
+  override var windowNibName : NSNib.Name {
+    return NSNib.Name ("PMDocument")
   }
-
+  
   //····················································································································
   //    rootEntityClassName
   //····················································································································
@@ -114,57 +109,61 @@ import Cocoa
 
   override func windowControllerDidLoadNib (_ aController: NSWindowController) {
   //--------------------------- Outlet checking
-    if nil == myColorWell {
+    if let outlet : Any = self.myColorWell {
+      if !(outlet is EBColorWell) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myColorWell' outlet is not an instance of 'EBColorWell'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'myColorWell' outlet is nil") ;
-//    }else if !myColorWell!.isKindOfClass (EBColorWell) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'myColorWell' outlet is not an instance of 'EBColorWell'") ;
+                          line: #line,
+                          errorMessage: "the 'myColorWell' outlet is nil") ;
     }
-    if nil == myTextConcatField {
+    if let outlet : Any = self.myTextConcatField {
+      if !(outlet is EBTextObserverField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myTextConcatField' outlet is not an instance of 'EBTextObserverField'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'myTextConcatField' outlet is nil") ;
-//    }else if !myTextConcatField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'myTextConcatField' outlet is not an instance of 'EBTextObserverField'") ;
+                          line: #line,
+                          errorMessage: "the 'myTextConcatField' outlet is nil") ;
     }
-    if nil == myTextField {
+    if let outlet : Any = self.myTextField {
+      if !(outlet is EBTextField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myTextField' outlet is not an instance of 'EBTextField'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'myTextField' outlet is nil") ;
-//    }else if !myTextField!.isKindOfClass (EBTextField) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'myTextField' outlet is not an instance of 'EBTextField'") ;
+                          line: #line,
+                          errorMessage: "the 'myTextField' outlet is nil") ;
     }
-    if nil == myTextMajField {
+    if let outlet : Any = self.myTextMajField {
+      if !(outlet is EBTextObserverField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myTextMajField' outlet is not an instance of 'EBTextObserverField'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'myTextMajField' outlet is nil") ;
-//    }else if !myTextMajField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'myTextMajField' outlet is not an instance of 'EBTextObserverField'") ;
+                          line: #line,
+                          errorMessage: "the 'myTextMajField' outlet is nil") ;
     }
-    if nil == myTextMinField {
+    if let outlet : Any = self.myTextMinField {
+      if !(outlet is EBTextObserverField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myTextMinField' outlet is not an instance of 'EBTextObserverField'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'myTextMinField' outlet is nil") ;
-//    }else if !myTextMinField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'myTextMinField' outlet is not an instance of 'EBTextObserverField'") ;
+                          line: #line,
+                          errorMessage: "the 'myTextMinField' outlet is nil") ;
     }
-  //--------------------------- Array controllers
-  //--------------------------- Selection controllers
-  //--------------------------- Custom object controllers
-  //--------------------------- Transient compute functions
-    self.documentFilePath_property.readModelFunction = { return .single (self.computeTransient_documentFilePath ()) }
-  //--------------------------- Install property observers for transients
   //--------------------------- Install regular bindings
     myTextField?.bind_value (self.rootObject.myString_property, file: #file, line: #line, sendContinously:true)
     myTextMajField?.bind_valueObserver (self.rootObject.myStringMaj_property, file: #file, line: #line)
@@ -190,11 +189,7 @@ import Cocoa
     myTextConcatField?.unbind_valueObserver ()
     myColorWell?.unbind_color ()
   //--------------------------- Unbind multiple bindings
-  //--------------------------- Uninstall compute functions for transients
-    self.documentFilePath_property.readModelFunction = nil
   //--------------------------- Unbind array controllers
-  //--------------------------- Unbind selection controllers
-  //--------------------------- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
   //--------------------------- Clean up outlets
     self.myColorWell?.ebCleanUp ()
@@ -205,13 +200,8 @@ import Cocoa
   }
 
   //····················································································································
-  //    Multiple bindings controllers
-  //····················································································································
-
-
-  //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

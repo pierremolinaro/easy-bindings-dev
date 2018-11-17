@@ -5,14 +5,24 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol MyRootEntity_docBool : class {
+  var docBool : Bool { get }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Entity: MyRootEntity
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class MyRootEntity : EBManagedObject,
-  MyRootEntity_docBool {
+         MyRootEntity_docBool {
 
   //····················································································································
-  //   Accessing docBool stored property
+  //   Atomic property: docBool
+  //····················································································································
+
+  var docBool_property = EBStoredProperty_Bool (true)
+
   //····················································································································
 
   var docBool : Bool {
@@ -24,26 +34,11 @@ class MyRootEntity : EBManagedObject,
     }
   }
 
+  //····················································································································
+
   var docBool_property_selection : EBSelection <Bool> {
-    get {
-      return self.docBool_property.prop
-    }
+    return self.docBool_property.prop
   }
-
-  //····················································································································
-  //    Stored Properties
-  //····················································································································
-
-  var docBool_property = EBStoredProperty_Bool (true)
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-
-  //····················································································································
-  //    Relationships
-  //····················································································································
 
 
   //····················································································································
@@ -52,11 +47,9 @@ class MyRootEntity : EBManagedObject,
 
   override init (managedObjectContext : EBManagedObjectContext) {
     super.init (managedObjectContext:managedObjectContext)
-  //--- Install compute functions for transients
-  //--- Install property observers for transients
-  //--- Install undoers for properties
-    self.docBool_property.undoManager = undoManager ()
-  //--- Install owner for relationships
+  //--- Atomic property: docBool
+    self.docBool_property.undoManager = self.undoManager
+  //--- Install undoers and opposite setter for relationships
   //--- register properties for handling signature
   }
 
@@ -91,8 +84,11 @@ class MyRootEntity : EBManagedObject,
   //····················································································································
 
   override func clearObjectExplorer () {
+  //--- Atomic property: docBool
     self.docBool_property.mObserverExplorer = nil
     self.docBool_property.mValueExplorer = nil
+ //   self.docBool_property.mObserverExplorer = nil
+ //   self.docBool_property.mValueExplorer = nil
     super.clearObjectExplorer ()
   }
 
@@ -102,7 +98,9 @@ class MyRootEntity : EBManagedObject,
 
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
-    self.docBool_property.storeIn (dictionary: ioDictionary, forKey: "docBool")
+  //--- Atomic property: docBool
+    self.docBool_property.storeIn (dictionary: ioDictionary, forKey:"docBool")
+ //   self.docBool_property.storeIn (dictionary: ioDictionary, forKey: "docBool")
   }
 
   //····················································································································
@@ -112,7 +110,9 @@ class MyRootEntity : EBManagedObject,
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
+  //--- Atomic property: docBool
     self.docBool_property.readFrom (dictionary: inDictionary, forKey:"docBool")
+//    self.docBool_property.readFrom (dictionary: inDictionary, forKey:"docBool")
   }
 
   //····················································································································
@@ -121,6 +121,30 @@ class MyRootEntity : EBManagedObject,
 
   override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
     super.cascadeObjectRemoving (&ioObjectsToRemove)
+  }
+
+  //····················································································································
+  //   resetControllers
+  //····················································································································
+
+  override func resetControllers () {
+    super.resetControllers ()
+  }
+
+  //····················································································································
+  //   resetToManyRelationships
+  //····················································································································
+
+  override func resetToManyRelationships () {
+    super.resetToManyRelationships ()
+  }
+
+  //····················································································································
+  //   resetToOneRelationships
+  //····················································································································
+
+  override func resetToOneRelationships () {
+    super.resetToOneRelationships ()
   }
 
   //····················································································································
@@ -140,6 +164,14 @@ class MyRootEntity : EBManagedObject,
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class ReadOnlyArrayOf_MyRootEntity : ReadOnlyAbstractArrayProperty <MyRootEntity> {
+
+  //····················································································································
+
+  var undoManager : EBUndoManager?
+
+  //····················································································································
+
+  var propval : [MyRootEntity] { return [] } // Abstract method
 
   //····················································································································
   //   Observers of 'docBool' stored property
@@ -210,7 +242,24 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 
   var readModelFunction : Optional<() -> EBSelection < [MyRootEntity] > >
 
-  private var prop_cache : EBSelection < [MyRootEntity] >? 
+  //····················································································································
+
+   private var prop_cache : EBSelection < [MyRootEntity] >? 
+
+  //····················································································································
+
+  override var propval : [MyRootEntity] {
+    if let value = prop_cache {
+      switch value {
+      case .empty, .multiple :
+        return []
+      case .single (let v) :
+        return v
+      }
+    }else{
+      return []
+    }
+  }
 
   //····················································································································
 
@@ -272,9 +321,184 @@ class TransientArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    To many relationship read write: MyRootEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_docBool : class {
-  var docBool : Bool { get }
+class ReadWriteArrayOf_MyRootEntity : ReadOnlyArrayOf_MyRootEntity {
+
+  //····················································································································
+ 
+  func setProp (_ value :  [MyRootEntity]) { } // Abstract method
+ 
+  // var propval : [MyRootEntity] { return [] } // Abstract method
+ 
+  //····················································································································
+
 }
 
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    To many relationship: MyRootEntity
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+final class StoredArrayOf_MyRootEntity : ReadWriteArrayOf_MyRootEntity, EBSignatureObserverProtocol {
+
+  //····················································································································
+
+  var setOppositeRelationship : Optional < (_ inManagedObject : MyRootEntity?) -> Void > = nil
+
+  //····················································································································
+
+  var mValueExplorer : NSPopUpButton? {
+    didSet {
+      if let unwrappedExplorer = mValueExplorer {
+        switch prop {
+        case .empty, .multiple :
+          break ;
+        case .single (let v) :
+          updateManagedObjectToManyRelationshipDisplay (objectArray: v, popUpButton:unwrappedExplorer)
+        }
+      }
+    }
+  }
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+    self.count_property.readModelFunction = { [weak self] in
+      if let unwSelf = self {
+        switch unwSelf.prop {
+        case .empty :
+          return .empty
+        case .multiple :
+          return .multiple
+        case .single (let v) :
+          return .single (v.count)
+        }
+      }else{
+        return .empty
+      }
+    }
+  }
+
+  //····················································································································
+
+  private var mSet = Set <MyRootEntity> ()
+  private var mValue = [MyRootEntity] () {
+    didSet {
+      postEvent ()
+      if oldValue != mValue {
+        let oldSet = mSet
+        mSet = Set (mValue)
+      //--- Register old value in undo manager
+        self.undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
+      //--- Update explorer
+        if let valueExplorer = mValueExplorer {
+          updateManagedObjectToManyRelationshipDisplay (objectArray: mValue, popUpButton: valueExplorer)
+        }
+      //--- Removed object set
+        let removedObjectSet = oldSet.subtracting (mSet)
+        for managedObject in removedObjectSet {
+          managedObject.setSignatureObserver (observer: nil)
+          self.setOppositeRelationship? (nil)
+        }
+        removeEBObserversOf_docBool_fromElementsOfSet (removedObjectSet)
+      //--- Added object set
+        let addedObjectSet = mSet.subtracting (oldSet)
+        for managedObject : MyRootEntity in addedObjectSet {
+          managedObject.setSignatureObserver (observer: self)
+          self.setOppositeRelationship? (managedObject)
+        }
+        addEBObserversOf_docBool_toElementsOfSet (addedObjectSet)
+      //--- Notify observers
+        clearSignatureCache ()
+      }
+    }
+  }
+
+  override var prop : EBSelection < [MyRootEntity] > { return .single (mValue) }
+
+  override func setProp (_ inValue : [MyRootEntity]) { mValue = inValue }
+
+  override var propval : [MyRootEntity] { return mValue }
+
+  //····················································································································
+
+  @objc func performUndo (_ oldValue : [MyRootEntity]) {
+    mValue = oldValue
+  }
+
+  //····················································································································
+
+  func remove (_ object : MyRootEntity) {
+    if mSet.contains (object) {
+      var array = mValue
+      let idx = array.index (of: object)
+      array.remove (at: idx!)
+      mValue = array
+    }
+  }
+  
+  //····················································································································
+
+  func add (_ object : MyRootEntity) {
+    if !mSet.contains (object) {
+      var array = mValue
+      array.append (object)
+      mValue = array
+    }
+  }
+  
+  //····················································································································
+  //   signature
+  //····················································································································
+
+  private weak var mSignatureObserver : EBSignatureObserverProtocol?
+  private var mSignatureCache : UInt32?
+
+  //····················································································································
+
+  final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
+    mSignatureObserver = observer
+    for object in mValue {
+      object.setSignatureObserver (observer: self)
+    }
+  }
+
+  //····················································································································
+
+  final func signature () -> UInt32 {
+    let computedSignature : UInt32
+    if let s = mSignatureCache {
+      computedSignature = s
+    }else{
+      computedSignature = computeSignature ()
+      mSignatureCache = computedSignature
+    }
+    return computedSignature
+  }
+  
+  //····················································································································
+
+  final func computeSignature () -> UInt32 {
+    var crc : UInt32 = 0
+    for object in mValue {
+      crc.accumulateUInt32 (object.signature ())
+    }
+    return crc
+  }
+
+  //····················································································································
+
+  final func clearSignatureCache () {
+    if mSignatureCache != nil {
+      mSignatureCache = nil
+      mSignatureObserver?.clearSignatureCache ()
+    }
+  }
+
+  //····················································································································
+ 
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

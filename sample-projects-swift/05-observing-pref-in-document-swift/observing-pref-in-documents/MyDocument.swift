@@ -4,9 +4,33 @@
 
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(MyDocument) class MyDocument : EBManagedDocument {
+
+  //····················································································································
+  //   Transient property: documentFilePath
+  //····················································································································
+
+  var documentFilePath_property = EBTransientProperty_String ()
+
+  //····················································································································
+
+  var documentFilePath_property_selection : EBSelection <String> {
+    return self.documentFilePath_property.prop
+  }
+
+  //····················································································································
+
+    var documentFilePath : String? {
+    switch self.documentFilePath_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
+    }
+  }
+
 
   //····················································································································
   //    Outlets
@@ -18,33 +42,7 @@ import Cocoa
   @IBOutlet var transientConcatStringTextField : EBTextObserverField?
 
   //····················································································································
-  //    Properties
-  //····················································································································
-
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-  var documentFilePath_property = EBTransientProperty_String ()
-
-  //····················································································································
-  //    Transient arraies
-  //····················································································································
-
-
-  //····················································································································
-  //    Array Controllers
-  //····················································································································
-
-
-  //····················································································································
-  //    Selection Controllers
-  //····················································································································
-
-
-  //····················································································································
-  //    Custom object Controllers
+  //    Multiple bindings controllers
   //····················································································································
 
 
@@ -78,6 +76,7 @@ import Cocoa
   //····················································································································
 
   override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+  //---
     super.populateExplorerWindow (&y, view:view)
   }
 
@@ -85,10 +84,10 @@ import Cocoa
   //    windowNibName
   //····················································································································
 
-  override var windowNibName: String {
-    return "MyDocument"
+  override var windowNibName : NSNib.Name {
+    return NSNib.Name ("MyDocument")
   }
-
+  
   //····················································································································
   //    rootEntityClassName
   //····················································································································
@@ -109,48 +108,50 @@ import Cocoa
 
   override func windowControllerDidLoadNib (_ aController: NSWindowController) {
   //--------------------------- Outlet checking
-    if nil == docStringTextField {
+    if let outlet : Any = self.docStringTextField {
+      if !(outlet is EBTextField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'docStringTextField' outlet is not an instance of 'EBTextField'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'docStringTextField' outlet is nil") ;
-//    }else if !docStringTextField!.isKindOfClass (EBTextField) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'docStringTextField' outlet is not an instance of 'EBTextField'") ;
+                          line: #line,
+                          errorMessage: "the 'docStringTextField' outlet is nil") ;
     }
-    if nil == prefStringTextField {
+    if let outlet : Any = self.prefStringTextField {
+      if !(outlet is EBTextObserverField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'prefStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'prefStringTextField' outlet is nil") ;
-//    }else if !prefStringTextField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'prefStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
+                          line: #line,
+                          errorMessage: "the 'prefStringTextField' outlet is nil") ;
     }
-    if nil == prefTransientStringTextField {
+    if let outlet : Any = self.prefTransientStringTextField {
+      if !(outlet is EBTextObserverField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'prefTransientStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'prefTransientStringTextField' outlet is nil") ;
-//    }else if !prefTransientStringTextField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'prefTransientStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
+                          line: #line,
+                          errorMessage: "the 'prefTransientStringTextField' outlet is nil") ;
     }
-    if nil == transientConcatStringTextField {
+    if let outlet : Any = self.transientConcatStringTextField {
+      if !(outlet is EBTextObserverField) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'transientConcatStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'transientConcatStringTextField' outlet is nil") ;
-//    }else if !transientConcatStringTextField!.isKindOfClass (EBTextObserverField) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'transientConcatStringTextField' outlet is not an instance of 'EBTextObserverField'") ;
+                          line: #line,
+                          errorMessage: "the 'transientConcatStringTextField' outlet is nil") ;
     }
-  //--------------------------- Array controllers
-  //--------------------------- Selection controllers
-  //--------------------------- Custom object controllers
-  //--------------------------- Transient compute functions
-    self.documentFilePath_property.readModelFunction = { return .single (self.computeTransient_documentFilePath ()) }
-  //--------------------------- Install property observers for transients
   //--------------------------- Install regular bindings
     docStringTextField?.bind_value (self.rootObject.docString_property, file: #file, line: #line, sendContinously:true)
     prefStringTextField?.bind_valueObserver (g_Preferences!.myPrefString_property, file: #file, line: #line)
@@ -174,11 +175,7 @@ import Cocoa
     prefTransientStringTextField?.unbind_valueObserver ()
     transientConcatStringTextField?.unbind_valueObserver ()
   //--------------------------- Unbind multiple bindings
-  //--------------------------- Uninstall compute functions for transients
-    self.documentFilePath_property.readModelFunction = nil
   //--------------------------- Unbind array controllers
-  //--------------------------- Unbind selection controllers
-  //--------------------------- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
   //--------------------------- Clean up outlets
     self.docStringTextField?.ebCleanUp ()
@@ -188,13 +185,8 @@ import Cocoa
   }
 
   //····················································································································
-  //    Multiple bindings controller
-  //····················································································································
-
-
-  //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

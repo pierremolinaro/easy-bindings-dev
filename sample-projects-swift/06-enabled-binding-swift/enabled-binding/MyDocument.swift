@@ -4,9 +4,33 @@
 
 import Cocoa
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(MyDocument) class MyDocument : EBManagedDocument {
+
+  //····················································································································
+  //   Transient property: documentFilePath
+  //····················································································································
+
+  var documentFilePath_property = EBTransientProperty_String ()
+
+  //····················································································································
+
+  var documentFilePath_property_selection : EBSelection <String> {
+    return self.documentFilePath_property.prop
+  }
+
+  //····················································································································
+
+    var documentFilePath : String? {
+    switch self.documentFilePath_property_selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v
+    }
+  }
+
 
   //····················································································································
   //    Outlets
@@ -16,39 +40,10 @@ import Cocoa
   @IBOutlet var myButton : EBButton?
 
   //····················································································································
-  //    Properties
+  //    Multiple bindings controllers
   //····················································································································
 
-
-  //····················································································································
-  //    Transient properties
-  //····················································································································
-
-  var documentFilePath_property = EBTransientProperty_String ()
-  var documentFilePath_property_selection : EBSelection <String> {
-    return self.documentFilePath_property.prop
-  }
-
-
-  //····················································································································
-  //    Transient arraies
-  //····················································································································
-
-
-  //····················································································································
-  //    Array Controllers
-  //····················································································································
-
-
-  //····················································································································
-  //    Selection Controllers
-  //····················································································································
-
-
-  //····················································································································
-  //    Custom object Controllers
-  //····················································································································
-
+  var mController_myButton_enabled : MultipleBindingController_enabled? = nil
 
   //····················································································································
   //    Document file path
@@ -80,6 +75,7 @@ import Cocoa
   //····················································································································
 
   override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+  //---
     super.populateExplorerWindow (&y, view:view)
   }
 
@@ -87,10 +83,10 @@ import Cocoa
   //    windowNibName
   //····················································································································
 
-  override var windowNibName: String {
-    return "MyDocument"
+  override var windowNibName : NSNib.Name {
+    return NSNib.Name ("MyDocument")
   }
-
+  
   //····················································································································
   //    rootEntityClassName
   //····················································································································
@@ -111,30 +107,28 @@ import Cocoa
 
   override func windowControllerDidLoadNib (_ aController: NSWindowController) {
   //--------------------------- Outlet checking
-    if nil == docBoolCheckBox {
+    if let outlet : Any = self.docBoolCheckBox {
+      if !(outlet is EBSwitch) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'docBoolCheckBox' outlet is not an instance of 'EBSwitch'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'docBoolCheckBox' outlet is nil") ;
-//    }else if !docBoolCheckBox!.isKindOfClass (EBSwitch) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'docBoolCheckBox' outlet is not an instance of 'EBSwitch'") ;
+                          line: #line,
+                          errorMessage: "the 'docBoolCheckBox' outlet is nil") ;
     }
-    if nil == myButton {
+    if let outlet : Any = self.myButton {
+      if !(outlet is EBButton) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'myButton' outlet is not an instance of 'EBButton'") ;
+      }
+    }else{
       presentErrorWindow (file: #file,
-                              line: #line,
-                              errorMessage: "the 'myButton' outlet is nil") ;
-//    }else if !myButton!.isKindOfClass (EBButton) {
-//      presentErrorWindow (file: #file,
-//                              line: #line,
-//                              errorMessage: "the 'myButton' outlet is not an instance of 'EBButton'") ;
+                          line: #line,
+                          errorMessage: "the 'myButton' outlet is nil") ;
     }
-  //--------------------------- Array controllers
-  //--------------------------- Selection controllers
-  //--------------------------- Custom object controllers
-  //--------------------------- Transient compute functions
-    self.documentFilePath_property.readModelFunction = { return .single (self.computeTransient_documentFilePath ()) }
-  //--------------------------- Install property observers for transients
   //--------------------------- Install regular bindings
     docBoolCheckBox?.bind_value (self.rootObject.docBool_property, file: #file, line: #line)
   //--------------------------- Install multiple bindings
@@ -166,11 +160,7 @@ import Cocoa
     g_Preferences!.prefBoolean_property.removeEBObserver (mController_myButton_enabled!)
     self.rootObject.docBool_property.removeEBObserver (mController_myButton_enabled!)
     mController_myButton_enabled = nil
-  //--------------------------- Uninstall compute functions for transients
-    self.documentFilePath_property.readModelFunction = nil
   //--------------------------- Unbind array controllers
-  //--------------------------- Unbind selection controllers
-  //--------------------------- Uninstall property observers for transients
   //--------------------------- Remove targets / actions
   //--------------------------- Clean up outlets
     self.docBoolCheckBox?.ebCleanUp ()
@@ -178,14 +168,8 @@ import Cocoa
   }
 
   //····················································································································
-  //    Multiple bindings controllers
-  //····················································································································
-
-  private var mController_myButton_enabled : MultipleBindingController_enabled? = nil
-
-  //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

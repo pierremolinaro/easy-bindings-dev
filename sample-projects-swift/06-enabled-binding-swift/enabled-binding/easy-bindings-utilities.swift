@@ -5,6 +5,61 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//  Extension NSBezierPath
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension NSBezierPath {
+
+  //····················································································································
+  // https://stackoverflow.com/questions/1815568/how-can-i-convert-nsbezierpath-to-cgpath
+
+  public var cgPath: CGPath {
+    let path = CGMutablePath ()
+    var points = [CGPoint] (repeating: .zero, count: 3)
+    for idx in 0 ..< self.elementCount {
+      let type = self.element (at: idx, associatedPoints: &points)
+      switch type {
+      case .moveTo:
+        path.move (to: points[0])
+      case .lineTo:
+        path.addLine (to: points[0])
+      case .curveTo:
+        path.addCurve (to: points[2], control1: points[0], control2: points[1])
+      case .closePath:
+        path.closeSubpath ()
+      }
+    }
+    return path
+  }
+
+  //····················································································································
+
+  public var pathByStroking : CGPath {
+    let lineCap : CGLineCap
+    switch self.lineCapStyle {
+    case .butt : lineCap = .butt
+    case .round : lineCap = .round
+    case .square : lineCap = .square
+    }
+    let lineJoin : CGLineJoin
+    switch self.lineJoinStyle {
+    case .bevel : lineJoin = .bevel
+    case .miter : lineJoin = .miter
+    case .round : lineJoin = .round
+    }
+    return self.cgPath.copy (
+      strokingWithWidth: self.lineWidth,
+      lineCap: lineCap,
+      lineJoin: lineJoin,
+      miterLimit: self.miterLimit
+    )
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  String path utilities
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -12,27 +67,19 @@ extension String {
 
   //····················································································································
   
-  var lastPathComponent : String {
-    get {
-      return (self as NSString).lastPathComponent
-    }
-  }
+  var lastPathComponent : String { return (self as NSString).lastPathComponent }
 
   //····················································································································
   
-  var deletingPathExtension : String {
-    get {
-      return (self as NSString).deletingPathExtension
-    }
-  }
+  var deletingPathExtension : String { return (self as NSString).deletingPathExtension }
 
   //····················································································································
   
-  var pathExtension : String {
-    get {
-      return (self as NSString).pathExtension
-    }
-  }
+  var pathExtension : String { return (self as NSString).pathExtension }
+
+  //····················································································································
+
+  var deletingLastPathComponent : String { return (self as NSString).deletingLastPathComponent }
 
   //····················································································································
 
@@ -144,6 +191,570 @@ class EBWeakEventSet : EBObject, Sequence {
     get {
       return mDictionary.count
     }
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    Extension Int : rotateLeft
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension Int {
+  mutating func rotateLeft () {
+    let b0 = self >> 31
+    let bl = self << 1
+    self = b0 | bl
+  }
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    EBShape
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBShape : Hashable, EBUserClassNameProtocol {
+
+  //····················································································································
+  //  Properties
+  //····················································································································
+
+  private var mShapes : [EBShape]
+  private var mCachedBoundingBox : NSRect?
+
+  //····················································································································
+  //  init
+  //····················································································································
+
+  init () {
+    mShapes = []
+    mCachedBoundingBox = nil
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  init (shape inShape : EBShape) {
+    mShapes = [inShape]
+    mCachedBoundingBox = nil
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  init (shapes inShapes : [EBShape]) {
+    mShapes = inShapes
+    mCachedBoundingBox = nil
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+  //  deinit
+  //····················································································································
+
+  deinit {
+    noteObjectDeallocation (self)
+  }
+
+  //····················································································································
+  //  append
+  //····················································································································
+
+  func append (shape inShape : EBShape) {
+    self.mShapes.append (inShape)
+    self.mCachedBoundingBox = nil
+  }
+
+  //····················································································································
+
+  func append (shapes inShapes : [EBShape]) {
+    self.mShapes += inShapes
+    self.mCachedBoundingBox = nil
+  }
+
+  //····················································································································
+  //  Transformed shape using NSAffineTransform object
+  //····················································································································
+
+  func transformedBy (_ inAffineTransform : NSAffineTransform) -> EBShape {
+    let result = EBShape ()
+    self.internalTransform (result, by: inAffineTransform)
+    return result
+  }
+
+  //····················································································································
+
+  fileprivate final func internalTransform (_ result : EBShape, by inAffineTransform : NSAffineTransform) {
+    for shape in self.mShapes {
+      result.append (shape: shape.transformedBy (inAffineTransform))
+    }
+  }
+
+  //····················································································································
+  //  Draw Rect
+  //····················································································································
+
+  func draw (_ inDirtyRect: NSRect) {
+    for shape in self.mShapes {
+      shape.draw (inDirtyRect)
+    }
+  }
+
+  //····················································································································
+  // boundingBox
+  //····················································································································
+
+  var boundingBox : NSRect {
+    if let cbb = mCachedBoundingBox {
+      return cbb
+    }else{
+      var r = NSZeroRect
+      for shape in self.mShapes {
+        r = r.union (shape.boundingBox)
+      }
+      self.mCachedBoundingBox = r
+      return r
+    }
+  }
+
+  //····················································································································
+  //   intersects
+  //····················································································································
+
+  func intersects (rect inRect : NSRect) -> Bool {
+    var result = false
+    var idx = 0
+    while (idx < self.mShapes.count) && !result {
+      let shape = self.mShapes [idx]
+      idx += 1
+      result = shape.intersects (rect: inRect)
+    }
+    return result
+  }
+
+  //····················································································································
+  //   Contains point
+  //····················································································································
+
+  func contains (point inPoint : NSPoint) -> Bool {
+    for shape in self.mShapes {
+      if shape.contains (point: inPoint) {
+        return true
+      }
+    }
+    return false
+  }
+
+  //····················································································································
+  /// Returns a Boolean value indicating whether two values are equal.
+  ///
+  /// Equality is the inverse of inequality. For any values `a` and `b`,
+  /// `a == b` implies that `a != b` is `false`.
+  ///
+  /// - Parameters:
+  ///   - lhs: A value to compare.
+  ///   - rhs: Another value to compare.
+  //····················································································································
+
+  public static func == (lhs: EBShape, rhs: EBShape) -> Bool {
+    return (lhs === rhs) || lhs.isEqualTo (rhs)
+  }
+
+  //····················································································································
+
+  func isEqualTo (_ inOperand : EBShape) -> Bool {
+    var equal = self.mShapes.count == inOperand.mShapes.count
+    var idx = 0
+    while (idx < self.mShapes.count) && equal {
+      equal = self.mShapes [idx] == inOperand.mShapes [idx]
+      idx += 1
+    }
+    return equal
+  }
+
+  //····················································································································
+  /// The hash value.
+  ///
+  /// Hash values are not guaranteed to be equal across different executions of
+  /// your program. Do not save hash values to use during a future execution.
+  //····················································································································
+
+  public var hashValue : Int {
+    var h = 0
+    for shape in self.mShapes {
+      h.rotateLeft ()
+      h ^= shape.hashValue
+    }
+    return h
+  }
+
+  //····················································································································
+
+  func computeInvalidRect (_ inObjects : EBShape) -> NSRect {
+    var invalidRect = NSZeroRect
+    let commonCount = min (self.mShapes.count, inObjects.mShapes.count)
+    var idx = 0
+    while idx < commonCount {
+      let currentObjet = self.mShapes [idx]
+      let newObject = inObjects.mShapes [idx]
+      if newObject != currentObjet {
+        invalidRect = invalidRect.union (currentObjet.boundingBox)
+        invalidRect = invalidRect.union (newObject.boundingBox)
+      }
+      idx += 1
+    }
+  //--- Enter in invalid rect removed objects
+    while idx < self.mShapes.count {
+      invalidRect = invalidRect.union (self.mShapes [idx].boundingBox)
+      idx += 1
+    }
+  //--- Enter in invalid rect new objects
+    idx = commonCount
+    while idx < inObjects.mShapes.count {
+      invalidRect = invalidRect.union (inObjects.mShapes [idx].boundingBox)
+      idx += 1
+    }
+    return invalidRect
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    EBStrokeBezierPathShape
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBStrokeBezierPathShape : EBShape {
+  private var mPaths : [NSBezierPath]
+  private var mCGPaths : [CGPath?] // Computed lazily by contains (point:)
+  private let mColor : NSColor
+  private var mCachedBoundingBox : NSRect?
+
+  //····················································································································
+  //  Init
+  //····················································································································
+
+  init (_ inPaths: [NSBezierPath], _ inColor: NSColor) {
+    mPaths = inPaths
+    mCGPaths = [CGPath?](repeating: nil, count: inPaths.count)
+    mColor = inColor
+    super.init ()
+  }
+
+  //····················································································································
+  //  append
+  //····················································································································
+
+  func append (path inBezierPath : NSBezierPath) {
+    self.mPaths.append (inBezierPath)
+    self.mCGPaths.append (nil)
+    self.mCachedBoundingBox = nil
+  }
+
+  //····················································································································
+  //  transformedBy
+  //····················································································································
+
+  override func transformedBy (_ inAffineTransform : NSAffineTransform) -> EBShape {
+    var paths = [NSBezierPath] ()
+    for path in self.mPaths {
+      let bp = inAffineTransform.transform (path)
+      paths.append (bp)
+    }
+    let result = EBStrokeBezierPathShape (paths, self.mColor)
+    self.internalTransform (result, by: inAffineTransform)
+    return result
+  }
+
+  //····················································································································
+  //  Draw Rect
+  //····················································································································
+
+  override func draw (_ inDirtyRect: NSRect) {
+    self.mColor.setStroke ()
+    for bp in self.mPaths {
+      bp.stroke ()
+    }
+  }
+
+  //····················································································································
+  // boundingBox
+  //····················································································································
+
+  override var boundingBox : NSRect {
+    if let cbb = mCachedBoundingBox {
+      return cbb
+    }else{
+      var r = super.boundingBox
+      for bp in self.mPaths {
+        let lineWidth = max (bp.lineWidth, 1.0)
+        r = r.union (bp.bounds.insetBy (dx: -lineWidth, dy: -lineWidth))
+      }
+      self.mCachedBoundingBox = r
+      return r
+    }
+  }
+
+  //····················································································································
+  //   Contains point
+  //····················································································································
+
+  override func contains (point inPoint : NSPoint) -> Bool {
+    var result = super.contains (point: inPoint)
+    var idx = 0
+    while (idx < self.mPaths.count) && !result {
+      let cgPath : CGPath
+      if let p = self.mCGPaths [idx] {
+        cgPath = p
+      }else{
+        cgPath = self.mPaths [idx].pathByStroking
+        self.mCGPaths [idx] = cgPath
+      }
+      result = cgPath.contains (inPoint, using: .winding)
+      idx += 1
+    }
+    return result
+  }
+
+  //····················································································································
+  //   intersects
+  //····················································································································
+
+  override func intersects (rect inRect : NSRect) -> Bool {
+    var result = super.intersects (rect: inRect)
+    var idx = 0
+    while (idx < self.mPaths.count) && !result {
+      let cgPath : CGPath
+      if let p = self.mCGPaths [idx] {
+        cgPath = p
+      }else{
+        cgPath = self.mPaths [idx].pathByStroking
+        self.mCGPaths [idx] = cgPath
+      }
+      idx += 1
+      result = cgPath.boundingBoxOfPath.intersects (inRect)
+//      let r = cgPath.boundingBoxOfPath.intersection (inRect)
+//      var p = CGPoint (x:r.minX, y:0.0)
+//      while (p.x <= r.maxX) && !result {
+//        p.y = r.minY
+//        while (p.y <= r.maxY) && !result {
+//          result = cgPath.contains (p)
+//          p.y += 1.0
+//        }
+//        p.x += 1.0
+//      }
+    }
+    return result
+  }
+
+  //····················································································································
+  //   isEqualTo
+  //····················································································································
+
+  override func isEqualTo (_ inOperand : EBShape) -> Bool {
+    var equal = false
+    if let operand = inOperand as? EBStrokeBezierPathShape {
+      equal = self.mPaths.count == operand.mPaths.count
+      if equal {
+        equal = super.isEqualTo (inOperand)
+      }
+      var idx = 0
+      while (idx < self.mPaths.count) && equal {
+        equal = self.mPaths [idx] == operand.mPaths [idx]
+        idx += 1
+      }
+    }
+    return equal
+  }
+
+  //····················································································································
+  /// The hash value.
+  ///
+  /// Hash values are not guaranteed to be equal across different executions of
+  /// your program. Do not save hash values to use during a future execution.
+  //····················································································································
+
+  override public var hashValue : Int {
+    var h = super.hashValue
+    h.rotateLeft ()
+    h ^= mColor.hashValue
+    for path in self.mPaths {
+      h.rotateLeft ()
+      h ^= path.hashValue
+    }
+    return h
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    EBFilledBezierPathShape
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBFilledBezierPathShape : EBShape {
+  private var mPaths : [NSBezierPath]
+  private var mCGPaths : [CGPath?] // Computed lazily by contains (point:)
+  private let mColor : NSColor
+  private var mCachedBoundingBox : NSRect?
+
+  //····················································································································
+  //  Init
+  //····················································································································
+
+  init (_ inPaths: [NSBezierPath], _ inColor: NSColor) {
+    mPaths = inPaths
+    mColor = inColor
+    mCGPaths = [CGPath?] (repeating: nil, count: inPaths.count)
+    super.init ()
+  }
+
+  //····················································································································
+  //  append
+  //····················································································································
+
+  func append (_ inBezierPath : NSBezierPath) {
+    self.mPaths.append (inBezierPath)
+    self.mCGPaths.append (nil)
+    self.mCachedBoundingBox = nil
+  }
+
+  //····················································································································
+  //  transformedBy
+  //····················································································································
+
+  override func transformedBy (_ inAffineTransform : NSAffineTransform) -> EBShape {
+    var paths = [NSBezierPath] ()
+    for path in self.mPaths {
+      let bp = inAffineTransform.transform (path)
+      paths.append (bp)
+    }
+    let result = EBFilledBezierPathShape (paths, self.mColor)
+    self.internalTransform (result, by: inAffineTransform)
+    return result
+  }
+
+  //····················································································································
+  //  Draw Rect
+  //····················································································································
+
+  override func draw (_ inDirtyRect: NSRect) {
+    self.mColor.setFill ()
+    for bp in self.mPaths {
+      bp.fill ()
+    }
+  }
+
+  //····················································································································
+  // boundingBox
+  //····················································································································
+
+  override var boundingBox : NSRect {
+    if let cbb = mCachedBoundingBox {
+      return cbb
+    }else{
+      var r = super.boundingBox
+      for bp in self.mPaths {
+        r = r.union (bp.bounds)
+      }
+      self.mCachedBoundingBox = r
+      return r
+    }
+  }
+
+  //····················································································································
+  //   Contains point
+  //····················································································································
+
+  override func contains (point inPoint : NSPoint) -> Bool {
+    var result = super.contains (point: inPoint)
+    var idx = 0
+    while (idx < self.mPaths.count) && !result {
+      let cgPath : CGPath
+      if let p = self.mCGPaths [idx] {
+        cgPath = p
+      }else{
+        let bp = self.mPaths [idx]
+        cgPath = bp.cgPath
+        self.mCGPaths [idx] = cgPath
+      }
+      result = cgPath.contains (inPoint, using: .winding) // §§§ .winding à revoir
+      idx += 1
+    }
+    return result
+  }
+
+  //····················································································································
+  //   intersects
+  //····················································································································
+
+  override func intersects (rect inRect : NSRect) -> Bool {
+    var result = super.intersects (rect: inRect)
+    var idx = 0
+    while (idx < self.mPaths.count) && !result {
+      let cgPath : CGPath
+      if let p = self.mCGPaths [idx] {
+        cgPath = p
+      }else{
+        let bp = self.mPaths [idx]
+        cgPath = bp.cgPath
+        self.mCGPaths [idx] = cgPath
+      }
+      idx += 1
+      result = cgPath.boundingBoxOfPath.intersects (inRect)
+//      let r = cgPath.boundingBoxOfPath.intersection (inRect)
+//      var p = CGPoint (x:r.minX, y:0.0)
+//      while (p.x <= r.maxX) && !result {
+//        p.y = r.minY
+//        while (p.y <= r.maxY) && !result {
+//          result = cgPath.contains (p)
+//          p.y += 1.0
+//        }
+//        p.x += 1.0
+//      }
+    }
+    return result
+  }
+
+  //····················································································································
+  /// The hash value.
+  ///
+  /// Hash values are not guaranteed to be equal across different executions of
+  /// your program. Do not save hash values to use during a future execution.
+  //····················································································································
+
+  override public var hashValue : Int {
+    var h = super.hashValue
+    h.rotateLeft ()
+    h ^= mColor.hashValue
+    for path in self.mPaths {
+      h.rotateLeft ()
+      h ^= path.hashValue
+    }
+    return h
+  }
+
+  //····················································································································
+  //   isEqualTo
+  //····················································································································
+
+  override func isEqualTo (_ inOperand : EBShape) -> Bool {
+    var equal = false
+    if let operand = inOperand as? EBFilledBezierPathShape {
+      equal = self.mPaths.count == operand.mPaths.count
+      if equal {
+        equal = super.isEqualTo (inOperand)
+      }
+      var idx = 0
+      while (idx < self.mPaths.count) && equal {
+        equal = self.mPaths [idx] == operand.mPaths [idx]
+        idx += 1
+      }
+    }
+    return equal
   }
 
   //····················································································································
@@ -338,7 +949,7 @@ func presentErrorWindow (file : String!,
   let window = NSWindow.init (
     contentRect:r,
     styleMask:[.titled, .closable],
-    backing:NSBackingStoreType.buffered,
+    backing:NSWindow.BackingStoreType.buffered,
     defer:true
   )
   window.title = "Outlet Error"
@@ -351,7 +962,7 @@ func presentErrorWindow (file : String!,
   tf.textColor = NSColor.red
   tf.stringValue = message
   contentView.addSubview (tf)
-  NSBeep () ;
+  __NSBeep ()
   window.makeKeyAndOrderFront (nil)
   //---
   gErrorWindows.append (window)
@@ -593,7 +1204,7 @@ func createEntryForPropertyNamed (_ attributeName : String,
                                   view : NSView,
                                   observerExplorer : inout NSPopUpButton?,
                                   valueExplorer : inout NSTextField?) {
-  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)
 //--- Explorer popup button
   observerExplorer = NSPopUpButton (frame:firstColumn (y), pullsDown:true)
   observerExplorer?.font = font
@@ -620,7 +1231,7 @@ func createEntryForPropertyNamed (_ attributeName : String,
 func createEntryForTitle (_ title : String,
                           y : inout CGFloat,
                           view : NSView) {
-  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)
 //--- Title textfield
   let tf = NSTextField (frame:titleColumn (y))
   tf.isEnabled = true
@@ -643,7 +1254,7 @@ func createEntryForObjectNamed (_ name : String,
                                 object : EBObject,
                                 y : inout CGFloat,
                                 view : NSView) {
-  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)
 //--- Property textfield
   let tf = NSTextField (frame:secondColumn (y))
   tf.isEnabled = true
@@ -671,7 +1282,7 @@ func createEntryForToOneRelationshipNamed (_ relationshipName : String,
                                            y : inout CGFloat,
                                            view : NSView,
                                            valueExplorer : inout NSButton?) {
-  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)
   let tf = NSTextField (frame:secondColumn (y))
   tf.isEnabled = true
   tf.isEditable = false
@@ -693,7 +1304,7 @@ func createEntryForToManyRelationshipNamed (_ relationshipName : String,
                                             y : inout CGFloat,
                                             view : NSView,
                                             valueExplorer : inout NSPopUpButton?) {
-  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ())
+  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)
   let tf = NSTextField (frame:secondColumn (y))
   tf.isEnabled = true
   tf.isEditable = false
@@ -749,9 +1360,9 @@ extension NSTextView {
   //····················································································································
 
   func appendMessageString (_ inString : String) {
-    let attributes : [String : NSObject] = [
-      NSFontAttributeName : NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ()),
-      NSForegroundColorAttributeName : NSColor.black
+    let attributes : [NSAttributedString.Key : NSObject] = [
+      NSAttributedString.Key.font : NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize),
+      NSAttributedString.Key.foregroundColor : NSColor.black
     ]
     let str = NSAttributedString (string:inString, attributes:attributes)
     if let unwrappedLayoutManager = layoutManager {
@@ -765,11 +1376,11 @@ extension NSTextView {
   //····················································································································
 
   func appendMessageString (_ inString : String, color:NSColor) {
-    let attributes : [String : NSObject] = [
-      NSFontAttributeName : NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize ()),
-      NSForegroundColorAttributeName : color
+    let attributes : [NSAttributedString.Key : NSObject] = [
+      NSAttributedString.Key.font : NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize),
+      NSAttributedString.Key.foregroundColor : color
     ]
-    let str = NSAttributedString (string:inString, attributes:attributes)
+    let str = NSAttributedString (string:inString, attributes: attributes)
     if let unwrappedLayoutManager = layoutManager {
       if let ts = unwrappedLayoutManager.textStorage {
         ts.append (str)

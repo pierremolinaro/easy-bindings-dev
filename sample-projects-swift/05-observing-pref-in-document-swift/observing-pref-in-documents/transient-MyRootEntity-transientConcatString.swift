@@ -12,9 +12,9 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compute_MyRootEntity_transientConcatString (
-       _ self_docString : String,                
-       _ prefs_myPrefString : String,            
+func transient_MyRootEntity_transientConcatString (
+       _ self_docString : String,                  
+       _ prefs_myPrefString : String,              
        _ prefs_prefTransientString : String
 ) -> String {
 //--- START OF USER ZONE 2

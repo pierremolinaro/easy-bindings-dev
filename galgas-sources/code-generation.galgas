@@ -54,7 +54,7 @@ proc generateCode
   let fileOutputDirectory = outputDirectory + "/" + projectName
   @stringset generatedFileSet = {}
   for (fileGeneration) in inGeneration.mFileGenerationList do
-    [fileGeneration generateCode !outputDirectory !?generatedFileSet]
+    [fileGeneration generateCode !fileOutputDirectory !?generatedFileSet]
   end
   generateOutletClasses (
     !inGeneration.mNeededOutletClasses
@@ -99,7 +99,7 @@ proc generateCode
   generateTestFile (
     !inXcodeProjectString
     !projectName
-    !inGeneration.mMainXibDescriptorList # §§§§§
+    !inGeneration.mMainXibDescriptorList
     !outputDirectory
   )
 }

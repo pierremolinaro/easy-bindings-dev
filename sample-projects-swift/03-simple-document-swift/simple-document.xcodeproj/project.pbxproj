@@ -251,7 +251,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.molinaro.simple-document";
 				PRODUCT_NAME = "simple-document";
 				SWIFT_DISABLE_SAFETY_CHECKS = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Default;
 		};
@@ -303,6 +302,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
 				VALID_ARCHS = x86_64;
 			};
 			name = Default;

@@ -55,7 +55,7 @@ import Cocoa
 
   //····················································································································
 
-  override func controlTextDidChange (_ inNotification : Notification) {
+  func controlTextDidChange (_ inNotification : Notification) {
     if mSendContinously {
       NSApp.sendAction (self.action!, to: self.target, from: self)
     }
@@ -114,7 +114,7 @@ import Cocoa
 
   //····················································································································
 
-  func action (_ sender : EBTextField) {
+  @objc func action (_ sender : EBTextField) {
     _ = mObject.validateAndSetProp (mOutlet.stringValue, windowForSheet:sender.window)
   }
 }

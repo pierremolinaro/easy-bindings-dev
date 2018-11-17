@@ -10,16 +10,18 @@ var g_Preferences : Preferences? = nil
 
 //————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-@objc(Preferences) class Preferences : EBObject {
+let Preferences_prefBoolean = "Preferences:prefBoolean"
+
+//————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+@objc(Preferences) class Preferences : EBObject, NSWindowDelegate {
 
   //····················································································································
-  //    Outlets
+  //   Atomic property: prefBoolean
   //····················································································································
 
-  @IBOutlet var prefBoolCheckBox : EBSwitch? = nil
+  var prefBoolean_property = EBStoredProperty_Bool (true, prefKey: Preferences_prefBoolean)
 
-  //····················································································································
-  //   Accessing prefBoolean stored property
   //····················································································································
 
   var prefBoolean : Bool {
@@ -31,34 +33,35 @@ var g_Preferences : Preferences? = nil
     }
   }
 
+  //····················································································································
+
   var prefBoolean_property_selection : EBSelection <Bool> {
-    get {
-      return self.prefBoolean_property.prop
-    }
+    return self.prefBoolean_property.prop
   }
 
   //····················································································································
-  //    Simple Stored Properties
+  //    Outlets
   //····················································································································
 
-  var prefBoolean_property = EBStoredProperty_Bool (true)
+  @IBOutlet var prefBoolCheckBox : EBSwitch? = nil
 
   //····················································································································
-  //    Stored Array Properties
-  //····················································································································
-
-
-  //····················································································································
-  //    Transient properties
+  //    Multiple bindings controllers
   //····················································································································
 
 
+  //····················································································································
+  //    Undo Manager
+  //····················································································································
+
+  private var undoManager = EBUndoManager ()
 
   //····················································································································
-  //    Array Controllers
-  //····················································································································
+  // The preferences window should register this object as delegate (do it in Interface Builder)
 
-
+  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager? {
+    return self.undoManager
+  }
 
   //····················································································································
   //    Init
@@ -68,13 +71,13 @@ var g_Preferences : Preferences? = nil
     super.init ()
     g_Preferences = self ;
   //--- Read from preferences
-    self.prefBoolean_property.readInPreferencesWithKey (inKey:"Preferences:prefBoolean")
-  //--- Property validation function
-  //---
+  //--- Atomic property: prefBoolean
+    self.prefBoolean_property.undoManager = self.undoManager
+  //--- Notify application will terminate
     NotificationCenter.default.addObserver (self,
-     selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-     name:NSNotification.Name.NSApplicationWillTerminate,
-     object:nil
+      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
+      name:NSApplication.willTerminateNotification,
+      object:nil
     )
   //--- Extern functions
   }
@@ -84,12 +87,17 @@ var g_Preferences : Preferences? = nil
   //····················································································································
 
   override func awakeFromNib () {
-  //--------------------------- Check prefBoolCheckBox' outlet not nil
-    if nil == prefBoolCheckBox {
-      presentErrorWindow (file: #file, line: #line, errorMessage: "the 'prefBoolCheckBox' outlet is nil")
+    if let outlet : Any = self.prefBoolCheckBox {
+      if !(outlet is EBSwitch) {
+        presentErrorWindow (file: #file,
+                            line: #line,
+                            errorMessage: "the 'prefBoolCheckBox' outlet is not an instance of 'EBSwitch'") ;
+      }
+    }else{
+      presentErrorWindow (file: #file,
+                          line: #line,
+                          errorMessage: "the 'prefBoolCheckBox' outlet is nil") ;
     }
-  //--------------------------- Install compute functions for transients
-  //--------------------------- Install property observers for transients
   //--------------------------- Install bindings
     prefBoolCheckBox?.bind_value (self.prefBoolean_property, file: #file, line: #line)
   //--------------------------- Install multiple bindings
@@ -99,21 +107,16 @@ var g_Preferences : Preferences? = nil
   }
 
   //····················································································································
-  //    Multiple bindings controller
-  //····················································································································
-
-
-  //····················································································································
   //    applicationWillTerminateAction
   //····················································································································
 
-  func applicationWillTerminateAction (_ : NSNotification) {
-    self.prefBoolean_property.storeInPreferencesWithKey (inKey:"Preferences:prefBoolean")
+  @objc func applicationWillTerminateAction (_ : NSNotification) {
+  //--------------------------- Array controller
   }
 
   //····················································································································
 
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
