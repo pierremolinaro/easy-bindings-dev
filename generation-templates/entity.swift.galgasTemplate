@@ -140,18 +140,8 @@ end%    createEntryForTitle ("ToOne Relationships", y:&y, view:view)
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty clearObjectExplorerCode]
 end
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-% //   self.%![mProperty mPropertyName]%_property.mObserverExplorer = nil\n%
-% //   self.%![mProperty mPropertyName]%_property.mValueExplorer = nil\n%
-end
-for () in TO_ONE_RELATIONSHIP_LIST do
-% //   self.%![mProperty mPropertyName]%_property.mObserverExplorer = nil\n%
-% //   self.%![mProperty mPropertyName]%_property.mValueExplorer = nil\n%
-end
-for () in TO_MANY_RELATIONSHIP_LIST do
-%  //  self.%!mToManyRelationshipName%_property.mValueExplorer = nil\n%
-end
-%    super.clearObjectExplorer ()
+%  //---
+    super.clearObjectExplorer ()
   }
 
   //····················································································································
