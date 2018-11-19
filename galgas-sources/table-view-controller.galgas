@@ -2,16 +2,16 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @arrayControllerBoundColumnListAST {
+list @tableViewControllerBoundColumnListAST {
   @lstring mColumnName
   @lstring mColumnOutletTypeName
-  @arrayControllerColumnBindingAST mColumnBindingAST
+  @tableViewColumnBindingAST mColumnBindingAST
   @lstring mSortPropertyName
 }
 
 #·······················································································································
 
-struct @arrayControllerColumnBindingAST {
+struct @tableViewColumnBindingAST {
   @lstring mRunActionName # Empty string if no run binding
   @multipleBindingDescriptor mEnabledBindingDescriptor
   @multipleBindingDescriptor mHiddenBindingDescriptor
@@ -20,26 +20,26 @@ struct @arrayControllerColumnBindingAST {
 
 #·······················································································································
 
-list @arrayControllerAttributListAST {
+list @tableViewControllerAttributListAST {
   @lstring mAttributeName
   @abstractDefaultValue mAttributeValue
 }
 
 #·······················································································································
 
-class @arrayControllerDeclarationAST : @abstractDeclarationAST {
+class @tableViewControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
   @bool mIsRoot
   @lstring mRootEntityName
   @lstring mToManyPropertyName
   @lstringlist mFilterProperties
-  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
-  @arrayControllerAttributListAST mArrayControllerAttributListAST
+  @tableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
+  @tableViewControllerAttributListAST mTableViewControllerAttributListAST
 }
 
 #·······················································································································
 
-override method @arrayControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+override method @tableViewControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
   let node = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !mClassName]
@@ -52,7 +52,7 @@ override method @arrayControllerDeclarationAST enterInPrecedenceGraph ?!@declara
 
 #·······················································································································
 
-override getter @arrayControllerDeclarationAST lkey -> @lstring {
+override getter @tableViewControllerDeclarationAST lkey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
 }
 
@@ -69,9 +69,9 @@ syntax extension easyBindings_syntax {
             ?let @lstring inRootEntity
             ?!@astDeclarationStruct ioDeclarationAST
   {
-    $arrayController$
+    $tableViewController$
     $identifier$ ?let @lstring controllerName
-    @arrayControllerAttributListAST arrayControllerAttributListAST = {}
+    @tableViewControllerAttributListAST arrayControllerAttributListAST = {}
     ${$
     repeat
       $identifier$ ?let @lstring attributeName
@@ -94,9 +94,43 @@ syntax extension easyBindings_syntax {
     $.$
     $identifier$ ?let @lstring relationshipName
     @lstringlist filterProperties = {}
-    $;$
-    @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
-    ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST.new {
+    select
+    or
+      $filter$
+      repeat
+        $identifier$ ?let @lstring filterProperty
+        filterProperties += !filterProperty
+      while
+        $,$
+      end
+    end
+    @tableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
+    select
+      $;$
+    or
+      ${$
+      repeat
+      while
+        $column$
+        $literal_string$ ?let columnName
+        @lstring sortPropertyName
+        select
+          sortPropertyName = ["" nowhere]
+        or
+          $sort$
+          $identifier$ ?sortPropertyName
+        end
+        $Identifier$ ?let columnOutletTypeName
+        <column_bindings> ?let @tableViewColumnBindingAST columnBindingAST
+        arrayControllerBoundColumnListAST +=
+          !columnName
+          !columnOutletTypeName
+          !columnBindingAST
+          !sortPropertyName
+      end
+      $}$
+    end
+    ioDeclarationAST.mUnifiedDeclarationList += !@tableViewControllerDeclarationAST.new {
       !inCurrentEntity
       !controllerName
       !isRoot
@@ -105,6 +139,63 @@ syntax extension easyBindings_syntax {
       !filterProperties
       !arrayControllerBoundColumnListAST
       !arrayControllerAttributListAST
+    }
+  }
+
+#·······················································································································
+
+  rule <column_bindings> !@tableViewColumnBindingAST outColumnBindingAST {
+    @lstring runActionDescriptor = ["" nowhere]
+    var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
+    var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
+    @regularBindingList regularBindingList = {}
+    repeat
+    while
+      $run$
+      if runActionDescriptor.string != "" then
+        error .here : "duplicated $run binding"
+      end
+      $self$
+      $.$
+      $identifier$ ?runActionDescriptor
+  #--- Enabled
+    while
+      $enabled$
+      if enabledBindingDescriptor != .noBinding then
+        error .here : "duplicated $enabled binding"
+      end
+      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      enabledBindingDescriptor = .binding {!expression:bindingExpression}
+  #--- Hidden
+    while
+      $hidden$
+      if hiddenBindingDescriptor != .noBinding then
+        error .here : "duplicated $hidden binding"
+      end
+      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      hiddenBindingDescriptor = .binding {!expression:bindingExpression}
+  #--- Regular binding
+    while
+      $bindingName$ ?let @lstring bindingName
+      @observablePropertyList observablePropertyList = {}
+      repeat
+        <observable_property> ?let @observablePropertyAST observableProperty
+        observablePropertyList += !observableProperty
+      while
+        $,$
+      end
+      <binding_option_list> ?let bindingOptions
+      regularBindingList +=
+        !bindingName
+        !observablePropertyList
+        !bindingOptions
+    end
+  #---
+    outColumnBindingAST = @tableViewColumnBindingAST.new {
+      !runActionDescriptor
+      !enabledBindingDescriptor
+      !hiddenBindingDescriptor
+      !regularBindingList
     }
   }
   
@@ -116,7 +207,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerDeclarationAST firstAnalysisPhase 
+override method @tableViewControllerDeclarationAST firstAnalysisPhase 
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -138,7 +229,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         }
         [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
     #--- Code Generation
-      mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
+      mPropertyGenerationList += !@tableViewControllerPropertyGeneration.new {
         !mControllerName.string
         !"rootObject." + mToManyPropertyName
         !mClassName
@@ -164,7 +255,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         }
         [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
     #--- Code Generation
-      mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
+      mPropertyGenerationList += !@tableViewControllerPropertyGeneration.new {
         !mControllerName.string
         !mToManyPropertyName
         !mClassName
@@ -185,7 +276,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
 #   SECOND ANALYSIS PHASE
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerDeclarationAST secondAnalysisPhase
+override method @tableViewControllerDeclarationAST secondAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -194,7 +285,7 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
   let allowedTypes = @typeKindList {!.boolType}
   @stringset definedAttributes = {}
   @2stringlist attributeListForGeneration = {}
-  for (name value) in mArrayControllerAttributListAST do
+  for (name value) in mTableViewControllerAttributListAST do
     if not [attributes hasKey !name.string] then
       error name : "unknown attribute"
     elsif [definedAttributes hasKey !name.string] then
@@ -235,7 +326,7 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
 #------------------------------------------------------------ Check colum bound models
   @actionMap actionMap
   @propertyMap propertyMap
-  @arrayControllerModelKind arrayControllerModelKind
+  @tableViewControllerModelKind arrayControllerModelKind
   @bool graphic
   @string elementTypeName
   switch boundModelClassKind
@@ -264,9 +355,9 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
       : "a tomany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
-  @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
-  @arrayControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
-  for () in mArrayControllerBoundColumnListAST do
+  @tableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
+  @tableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
+  for () in mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
     if mColumnBindingAST.mRunActionName.string != "" then
       [actionMap searchKey !mColumnBindingAST.mRunActionName]
@@ -307,7 +398,7 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
     ioGeneration.mNeededOutletClasses += !mColumnOutletTypeName.string
   end
 #------------------------------------------------------------ Check filter properties
-  @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
+  @tableViewControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
   for (filterPropertyName) in mFilterProperties do
     [propertyMap searchKey
       !filterPropertyName
@@ -321,7 +412,7 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
     else "self." + mToManyPropertyName + "_property"
   end
 #---
-  ioGeneration.mFileGenerationList += !@arrayControllerGeneration.new {
+  ioGeneration.mFileGenerationList += !@tableViewControllerGeneration.new {
     !mClassName
     !mControllerName
     !arrayControllerFilterListForGeneration
@@ -341,7 +432,7 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
 #   CODE GENERATION                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @arrayControllerPropertyGeneration : @propertyGeneration {
+class @tableViewControllerPropertyGeneration : @propertyGeneration {
   @string mModelString
   @string mOwnerName
   @bool mUsesManagedObjectContext
@@ -349,7 +440,7 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration declarationCode -> @string {
+override getter @tableViewControllerPropertyGeneration declarationCode -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Array controller: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
@@ -358,7 +449,7 @@ override getter @arrayControllerPropertyGeneration declarationCode -> @string {
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration configurationCode -> @string {
+override getter @tableViewControllerPropertyGeneration configurationCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
   if mUsesManagedObjectContext then
     result += "    self." + mPropertyName + ".setManagedObjectContext (self.managedObjectContext ())\n"
@@ -368,14 +459,14 @@ override getter @arrayControllerPropertyGeneration configurationCode -> @string 
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration populateExplorerWindowCode -> @string {
+override getter @tableViewControllerPropertyGeneration populateExplorerWindowCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".addExplorer (name: \"" + mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration terminationCode -> @string {
+override getter @tableViewControllerPropertyGeneration terminationCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".unbind_model ()\n"
 }
@@ -384,7 +475,7 @@ override getter @arrayControllerPropertyGeneration terminationCode -> @string {
 #   GENERATION TYPES
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum @arrayControllerModelKind {
+enum @tableViewControllerModelKind {
   case entityArray
   case classArray
   case transientArray
@@ -392,15 +483,15 @@ enum @arrayControllerModelKind {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @arrayControllerGeneration : @abstractFileGeneration {
+class @tableViewControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
-  @arrayControllerFilterListForGeneration mArrayControllerFilterListForGeneration
+  @tableViewControllerFilterListForGeneration mTableViewControllerFilterListForGeneration
   @string mModelString
-  @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
-  @arrayControllerSortedColumnListForGeneration mArrayControllerSortedColumnListForGeneration
+  @tableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
+  @tableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
   @string mModelTypeName
-  @arrayControllerModelKind mArrayControllerModelKind
+  @tableViewControllerModelKind mTableViewControllerModelKind
   @string mElementTypeName
   @bool mElementTypeIsGraphic
   @2stringlist mAttributeListForGeneration
@@ -408,14 +499,14 @@ class @arrayControllerGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-list @arrayControllerFilterListForGeneration {
+list @tableViewControllerFilterListForGeneration {
   @string mFilterPropertyName
   @propertyKind mFilterPropertyKind
 }
 
 #·······················································································································
 
-list @arrayControllerBoundColumnListForGeneration {
+list @tableViewControllerBoundColumnListForGeneration {
   @string mColumnName
   @string mColumnOutletTypeName
   @string mRunAction # Empty string if no action
@@ -424,7 +515,7 @@ list @arrayControllerBoundColumnListForGeneration {
 
 #·······················································································································
 
-list @arrayControllerSortedColumnListForGeneration {
+list @tableViewControllerSortedColumnListForGeneration {
   @string mColumnName
   @propertyKind mSortPropertyKind
   @string mObservablePropertyForSorting
@@ -432,7 +523,7 @@ list @arrayControllerSortedColumnListForGeneration {
 
 #·······················································································································
 
-getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterFunction -> @string outResult {
+getter @tableViewControllerFilterListForGeneration filterCode ?let @string inFilterFunction -> @string outResult {
   var filterProperties = self
   [!?filterProperties popFirst ?let firstFilterProperty ?*]
   @string indent = "            "
@@ -466,54 +557,54 @@ getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterF
 
 #·······················································································································
 
-private filewrapper arrayControllerGenerationTemplate in "../generation-templates/controllers" {
+private filewrapper tableViewControllerGenerationTemplate in "../generation-templates/controllers" {
 }{
 }{
-  template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
+  template tableViewControllerImplementationInSwift "table-view-controller.swift.galgasTemplate"
     ?@string OWNER_NAME
-    ?@string ARRAY_CONTROLLER_NAME
-    ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
+    ?@string TABLE_VIEW_CONTROLLER_NAME
+    ?@tableViewControllerFilterListForGeneration FILTER_PROPERTIES
     ?@string MODEL_STRING
-    ?@arrayControllerModelKind MODEL_KIND
+    ?@tableViewControllerModelKind MODEL_KIND
     ?@string MODEL_TYPE_NAME
-    ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
-    ?@arrayControllerSortedColumnListForGeneration SORTED_COLUMNS
+    ?@tableViewControllerBoundColumnListForGeneration BOUND_COLUMNS
+    ?@tableViewControllerSortedColumnListForGeneration SORTED_COLUMNS
     ?@string ELEMENT_TYPE_NAME
     ?@bool ELEMENT_TYPE_IS_GRAPHIC
     ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
     ?@2stringlist ATTRIBUTE_VALUES
 
-  template filterFunction "array-controller-filter-function.swift.galgasTemplate"
+  template filterFunction "table-view-controller-filter-function.swift.galgasTemplate"
     ?@string OWNER_NAME
-    ?@string ARRAY_CONTROLLER_NAME
-    ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
+    ?@string TABLE_VIEW_CONTROLLER_NAME
+    ?@tableViewControllerFilterListForGeneration FILTER_PROPERTIES
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerGeneration generateCode
+override method @tableViewControllerGeneration generateCode
     ?let @string inOutputDirectory
     ?!@stringset ioGeneratedFileSet
 {
 #--- Build observed property set (for sorting and filtering)
   @stringset observedProperties = {}
-  for () in mArrayControllerSortedColumnListForGeneration do
+  for () in mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end
-  for () in mArrayControllerFilterListForGeneration do
+  for () in mTableViewControllerFilterListForGeneration do
     observedProperties += !mFilterPropertyName
   end
-  let s = [filewrapper arrayControllerGenerationTemplate.arrayControllerImplementationInSwift
+  let s = [filewrapper tableViewControllerGenerationTemplate.tableViewControllerImplementationInSwift
     !mOwnerName
     !mControllerName
-    !mArrayControllerFilterListForGeneration
+    !mTableViewControllerFilterListForGeneration
     !mModelString
-    !mArrayControllerModelKind
+    !mTableViewControllerModelKind
     !mModelTypeName
-    !mArrayControllerBoundColumnListForGeneration
-    !mArrayControllerSortedColumnListForGeneration
+    !mTableViewControllerBoundColumnListForGeneration
+    !mTableViewControllerSortedColumnListForGeneration
     !mElementTypeName
     !mElementTypeIsGraphic
     !observedProperties
@@ -524,11 +615,11 @@ override method @arrayControllerGeneration generateCode
     !"arrayController-" + mOwnerName + "-" +  mControllerName + ".swift"
     !s
   ]
-  if [mArrayControllerFilterListForGeneration length] > 0 then
-    let s = [filewrapper arrayControllerGenerationTemplate.filterFunction
+  if [mTableViewControllerFilterListForGeneration length] > 0 then
+    let s = [filewrapper tableViewControllerGenerationTemplate.filterFunction
       !mOwnerName
       !mControllerName
-      !mArrayControllerFilterListForGeneration
+      !mTableViewControllerFilterListForGeneration
     ]
     let fileName = "arrayControllerFilter-" + mOwnerName + "-" +  mControllerName + ".swift"
     ioGeneratedFileSet += !fileName

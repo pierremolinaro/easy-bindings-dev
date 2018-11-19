@@ -37,7 +37,7 @@ syntax extension easyBindings_syntax {
   {
     $proxy$
     $identifier$ ?let @lstring proxyName
-    @arrayControllerAttributListAST arrayControllerAttributListAST = {}
+    @tableViewControllerAttributListAST arrayControllerAttributListAST = {}
     $:$
     $self$
     $.$

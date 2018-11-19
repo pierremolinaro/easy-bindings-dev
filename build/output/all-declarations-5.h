@@ -10,6 +10,180 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                              Routine 'sortProperties'                                               *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_sortProperties (const class GALGAS_string constinArgument0,
+                             const class GALGAS_declarationListAST constinArgument1,
+                             class GALGAS_declarationListAST & outArgument2,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                        Filewrapper 'enumGenerationTemplate'                                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_enumGenerationTemplate ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                         Filewrapper template 'enumGenerationTemplate enumGenerationInSwift'                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (class C_Compiler * inCompiler,
+                                                                                const class GALGAS_string & in_ENUM_5F_TYPE_5F_NAME,
+                                                                                const class GALGAS_lstringlist & in_CONSTANT_5F_ORDERED_5F_LIST
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                           Routine 'enterAtomicClassesIn'                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_enterAtomicClassesIn (class GALGAS_declarationListAST & ioArgument0,
+                                   class C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                              Routine 'buildActionMap'                                               *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_buildActionMap (const class GALGAS_lstringlist constinArgument0,
+                             class GALGAS_actionMap & outArgument1,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                       Function 'externSwiftFunctionCallerSet'                                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_stringset function_externSwiftFunctionCallerSet (class C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                        Filewrapper 'classGenerationTemplate'                                        *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_classGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_classGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_classGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_classGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_classGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_classGenerationTemplate ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                      Filewrapper template 'classGenerationTemplate classImplementationInSwift'                      *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (class C_Compiler * inCompiler,
+                                                                                      const class GALGAS_string & in_CLASS_5F_NAME,
+                                                                                      const class GALGAS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                      const class GALGAS_atomicPropertyGenerationList & in_ATOMIC_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                      const class GALGAS_externSwiftFunctionList & in_EXTERN_5F_FUNCTION_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                      const class GALGAS_externSwiftDelegateList & in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                      const class GALGAS_string & in_EXPLORER_5F_ACCESS
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                       Filewrapper 'entityGenerationTemplate'                                        *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const cDirectoryWrapper gWrapperDirectory_0_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_entityGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_entityGenerationTemplate ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                     Filewrapper template 'entityGenerationTemplate entityImplementationInSwift'                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSwift (class C_Compiler * inCompiler,
+                                                                                        const class GALGAS_string & in_ENTITY_5F_NAME,
+                                                                                        const class GALGAS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                        const class GALGAS_atomicPropertyGenerationList & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                        const class GALGAS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                        const class GALGAS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
+                                                                                        const class GALGAS_toManyEntityRelationshipListForGeneration & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
+                                                                                        const class GALGAS_stringset & in_SIGNATURE_5F_SET,
+                                                                                        const class GALGAS_bool & in_IS_5F_GRAPHIC_5F_ENTITY,
+                                                                                        const class GALGAS_stringset & in_TRANSIENTS_5F_DECLARED_5F_IN_5F_SUPER_5F_ENTITY
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                        Filewrapper template 'entityGenerationTemplate managedObjectContext'                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext (class C_Compiler * inCompiler,
+                                                                                 const class GALGAS_entityListForGeneratingEBManagedObjectContext & in_ENTITY_5F_LIST
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                      Routine 'generateEBManagedObjectContext'                                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_generateEBManagedObjectContext (const class GALGAS_entityListForGeneratingEBManagedObjectContext constinArgument0,
+                                             const class GALGAS_string constinArgument1,
+                                             class GALGAS_stringset & ioArgument2,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                              Routine 'analyzeOutlets'                                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

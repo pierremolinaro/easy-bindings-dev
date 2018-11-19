@@ -164,7 +164,7 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (cla
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                Filewrapper 'collectionControllerGenerationTemplate'                                 *
+//                                   Filewrapper 'arrayControllerGenerationTemplate'                                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -177,44 +177,44 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (cla
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const cDirectoryWrapper gWrapperDirectory_0_collectionControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_0_arrayControllerGenerationTemplate ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//         Filewrapper template 'collectionControllerGenerationTemplate arrayControllerImplementationInSwift'          *
+//            Filewrapper template 'arrayControllerGenerationTemplate arrayControllerImplementationInSwift'            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
-                                                                                                               const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                                               const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                                               const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
-                                                                                                               const class GALGAS_string & in_MODEL_5F_STRING,
-                                                                                                               const class GALGAS_arrayControllerModelKind & in_MODEL_5F_KIND,
-                                                                                                               const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
-                                                                                                               const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
-                                                                                                               const class GALGAS_arrayControllerSortedColumnListForGeneration & in_SORTED_5F_COLUMNS,
-                                                                                                               const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                               const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC,
-                                                                                                               const class GALGAS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING,
-                                                                                                               const class GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
-                                                                                                               COMMA_LOCATION_ARGS) ;
+GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
+                                                                                                          const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                          const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                                          const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
+                                                                                                          const class GALGAS_string & in_MODEL_5F_STRING,
+                                                                                                          const class GALGAS_arrayControllerModelKind & in_MODEL_5F_KIND,
+                                                                                                          const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
+                                                                                                          const class GALGAS_arrayControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
+                                                                                                          const class GALGAS_arrayControllerSortedColumnListForGeneration & in_SORTED_5F_COLUMNS,
+                                                                                                          const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                          const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC,
+                                                                                                          const class GALGAS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING,
+                                                                                                          const class GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
+                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                    Filewrapper template 'collectionControllerGenerationTemplate filterFunction'                     *
+//                       Filewrapper template 'arrayControllerGenerationTemplate filterFunction'                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterFunction (class C_Compiler * inCompiler,
-                                                                                         const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                         const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                         const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
-                                                                                         COMMA_LOCATION_ARGS) ;
+GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_filterFunction (class C_Compiler * inCompiler,
+                                                                                    const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                    const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                    const class GALGAS_arrayControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 Filewrapper 'selectionControllerGenerationTemplate'                                 *
+//                                 Filewrapper 'tableViewControllerGenerationTemplate'                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -227,111 +227,38 @@ GALGAS_string filewrapperTemplate_collectionControllerGenerationTemplate_filterF
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_0_tableViewControllerGenerationTemplate ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//           Filewrapper template 'selectionControllerGenerationTemplate selectionControllerImplementation'            *
+//        Filewrapper template 'tableViewControllerGenerationTemplate tableViewControllerImplementationInSwift'        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_selectionControllerImplementation (class C_Compiler * inCompiler,
-                                                                                                           const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                                           const class GALGAS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
-                                                                                                           const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                           const class GALGAS_observablePropertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
-                                                                                                           COMMA_LOCATION_ARGS) ;
+GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableViewControllerImplementationInSwift (class C_Compiler * inCompiler,
+                                                                                                                  const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                                  const class GALGAS_string & in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME,
+                                                                                                                  const class GALGAS_tableViewControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES,
+                                                                                                                  const class GALGAS_string & in_MODEL_5F_STRING,
+                                                                                                                  const class GALGAS_tableViewControllerModelKind & in_MODEL_5F_KIND,
+                                                                                                                  const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
+                                                                                                                  const class GALGAS_tableViewControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
+                                                                                                                  const class GALGAS_tableViewControllerSortedColumnListForGeneration & in_SORTED_5F_COLUMNS,
+                                                                                                                  const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                                  const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC,
+                                                                                                                  const class GALGAS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING,
+                                                                                                                  const class GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
+                                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                       Routine 'generateSelectionControllers'                                        *
+//                     Filewrapper template 'tableViewControllerGenerationTemplate filterFunction'                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void routine_generateSelectionControllers (const class GALGAS_selectionControllerForGeneration constinArgument0,
-                                           const class GALGAS_string constinArgument1,
-                                           class GALGAS_stringset & ioArgument2,
-                                           class C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Function 'predefinedDates'                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Function 'predefinedColors'                                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                               Routine 'generateCode'                                                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateCode (const class GALGAS_string constinArgument0,
-                           const class GALGAS_generationStruct constinArgument1,
-                           const class GALGAS_string constinArgument2,
-                           class C_Compiler * inCompiler
-                           COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        Routine 'generateStandardProperties'                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateStandardProperties (const class GALGAS_string constinArgument0,
-                                         const class GALGAS_stringlist constinArgument1,
-                                         const class GALGAS_transientExternTypeList constinArgument2,
-                                         class GALGAS_stringset & ioArgument3,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Routine 'generateSwiftApplicationFiles'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateSwiftApplicationFiles (const class GALGAS_string constinArgument0,
-                                            const class GALGAS_bool constinArgument1,
-                                            class GALGAS_stringset & ioArgument2,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Routine 'generateTestFile'                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateTestFile (const class GALGAS_string constinArgument0,
-                               const class GALGAS_string constinArgument1,
-                               const class GALGAS_mainXibDescriptorList constinArgument2,
-                               const class GALGAS_string constinArgument3,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                           Routine 'generateXcodeProject'                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_generateXcodeProject (const class GALGAS_string constinArgument0,
-                                   const class GALGAS_string constinArgument1,
-                                   const class GALGAS_stringset constinArgument2,
-                                   const class GALGAS_string constinArgument3,
-                                   class C_Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_filterFunction (class C_Compiler * inCompiler,
+                                                                                        const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                        const class GALGAS_string & in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME,
+                                                                                        const class GALGAS_tableViewControllerFilterListForGeneration & in_FILTER_5F_PROPERTIES
+                                                                                        COMMA_LOCATION_ARGS) ;
 

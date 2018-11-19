@@ -84,7 +84,7 @@
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [43] = {
+static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [44] = {
   {"no", easyBindings_lexique_1_no},
   {"to", easyBindings_lexique_1_to},
   {"all", easyBindings_lexique_1_all},
@@ -127,11 +127,12 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
   {"arrayController", easyBindings_lexique_1_arrayController},
   {"objectController", easyBindings_lexique_1_objectController},
   {"selectionController", easyBindings_lexique_1_selectionController},
+  {"tableViewController", easyBindings_lexique_1_tableViewController},
   {"versionShouldChange", easyBindings_lexique_1_versionShouldChange}
 } ;
 
 static NSInteger search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (NSString * inSearchedString) {
-  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 43) ;
+  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 44) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -335,7 +336,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 - (NSUInteger) terminalVocabularyCount {
-  return 76 ;
+  return 77 ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -365,7 +366,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [77] = {0,
+  static const NSUInteger kTerminalSymbolStyles [78] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
@@ -377,6 +378,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     1 /* easyBindings_lexique_1_action */,
     1 /* easyBindings_lexique_1_all */,
     1 /* easyBindings_lexique_1_arrayController */,
+    1 /* easyBindings_lexique_1_tableViewController */,
     1 /* easyBindings_lexique_1_binding */,
     1 /* easyBindings_lexique_1_calledBy */,
     1 /* easyBindings_lexique_1_class */,
@@ -453,7 +455,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [77] = {NO,
+  static const BOOL kTerminalAtomicSelection [78] = {NO,
     YES /* easyBindings_lexique_1_identifier */,
     YES /* easyBindings_lexique_1_Identifier */,
     YES /* easyBindings_lexique_1__40_attribute */,
@@ -465,6 +467,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     YES /* easyBindings_lexique_1_action */,
     YES /* easyBindings_lexique_1_all */,
     YES /* easyBindings_lexique_1_arrayController */,
+    YES /* easyBindings_lexique_1_tableViewController */,
     YES /* easyBindings_lexique_1_binding */,
     YES /* easyBindings_lexique_1_calledBy */,
     YES /* easyBindings_lexique_1_class */,
