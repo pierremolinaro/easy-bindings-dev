@@ -11,6 +11,7 @@ import Cocoa
 protocol EBViewControllerProtocol : class {
 
   var objectCount : Int { get }
+  var objectArray : [EBGraphicManagedObject] { get }
 
   var undoManager : EBUndoManager? { get }
 
@@ -191,7 +192,7 @@ protocol EBViewControllerProtocol : class {
     }else if action == #selector (EBView.sendBackward(_:)) {
       validate = mViewController?.canSendBackward ?? false
     }else{
-      validate = false // super.validateMenuItem (inMenuItem)
+      validate = false
     }
     // NSLog ("VALIDATE \(action) -> \(validate)")
     return validate
@@ -203,7 +204,7 @@ protocol EBViewControllerProtocol : class {
 
 
   private var arrowKeyMagnitude : CGFloat = 10.0
-  private var mArrowKeyMagnitudeController : Controller_EBView_arrowKeyMagnitude?
+  private var mArrowKeyMagnitudeController : Controller_EBView_arrowKeyMagnitude? = nil
 
   func bind_arrowKeyMagnitude (_ property:EBReadOnlyProperty_CGFloat, file:String, line:Int) {
     mArrowKeyMagnitudeController = Controller_EBView_arrowKeyMagnitude (property, outlet:self)
@@ -225,7 +226,7 @@ protocol EBViewControllerProtocol : class {
   //····················································································································
 
   private var shiftArrowKeyMagnitude : CGFloat = 10.0
-  private var mShiftArrowKeyMagnitudeController : Controller_EBView_shiftArrowKeyMagnitude?
+  private var mShiftArrowKeyMagnitudeController : Controller_EBView_shiftArrowKeyMagnitude? = nil
 
   func bind_shiftArrowKeyMagnitude (_ property:EBReadOnlyProperty_CGFloat, file:String, line:Int) {
     mShiftArrowKeyMagnitudeController = Controller_EBView_shiftArrowKeyMagnitude (property, outlet:self)
@@ -279,16 +280,26 @@ protocol EBViewControllerProtocol : class {
   // Mouse Events
   //····················································································································
 
-   private func indexOfFrontmostObject (at inLocation : NSPoint) -> Int? {
+   private func indexOfFrontmostObject (at inLocation : NSPoint) -> (Int?, Int?) {
     var possibleObjectIndex : Int? = nil
-    var idx = self.mObjectDisplayArray.count
+    var possibleKnobIndex : Int? = nil
+    var idx = self.mSelectionShapes.count
+    while (idx > 0) && (possibleObjectIndex == nil) {
+      idx -= 1
+      possibleKnobIndex = self.mSelectionShapes [idx].knobIndex (at: inLocation)
+      if possibleKnobIndex != nil {
+        possibleObjectIndex = idx
+      }
+    }
+    idx = self.mObjectDisplayArray.count
     while (idx > 0) && (possibleObjectIndex == nil) {
       idx -= 1
       if self.mObjectDisplayArray [idx].contains (point: inLocation) {
         possibleObjectIndex = idx
       }
     }
-    return possibleObjectIndex
+    //Swift.print ("possibleObjectIndex \(possibleObjectIndex), possibleKnobIndex \(possibleKnobIndex)")
+    return (possibleObjectIndex, possibleKnobIndex)
   }
 
   //····················································································································
@@ -309,7 +320,9 @@ protocol EBViewControllerProtocol : class {
 
   private var mLastMouseDraggedLocation : NSPoint? = nil
   private var mSelectionRectangleOrigin : NSPoint? = nil
+  private var mPossibleKnob : (Int, Int)? = nil // Object index, knob index
   private var mPerformEndUndoGroupingOnMouseUp = false
+  var mDraggingObjectsIsAlignedOnArrowKeyMagnitude = false
 
   //····················································································································
 
@@ -319,7 +332,7 @@ protocol EBViewControllerProtocol : class {
     mLastMouseDraggedLocation = mouseDownLocation
     if let viewController = self.mViewController {
     //--- Find index of object under mouse down
-      let possibleObjectIndex : Int? = self.indexOfFrontmostObject (at: mouseDownLocation)
+      let (possibleObjectIndex, possibleKnobIndex) = self.indexOfFrontmostObject (at: mouseDownLocation)
       let controlKey = inEvent.modifierFlags.contains (.control)
       if !controlKey {
         let shiftKey = inEvent.modifierFlags.contains (.shift)
@@ -337,6 +350,9 @@ protocol EBViewControllerProtocol : class {
             }
           }
         }else if let objectIndex = possibleObjectIndex {
+          if let knobIndex = possibleKnobIndex {
+            mPossibleKnob = (objectIndex, knobIndex)
+          }
           if !viewController.selectedIndexesSet.contains (objectIndex) {
             viewController.setSelection (objectsWithIndexes: [objectIndex])
           }
@@ -354,35 +370,81 @@ protocol EBViewControllerProtocol : class {
     super.mouseDragged (with: inEvent)
     let mouseDraggedLocation = self.convert (inEvent.locationInWindow, from:nil)
     if let selectionRectangleOrigin = mSelectionRectangleOrigin {
-      // NSLog ("Dragged")
-      let xMin = min (selectionRectangleOrigin.x, mouseDraggedLocation.x)
-      let yMin = min (selectionRectangleOrigin.y, mouseDraggedLocation.y)
-      let xMax = max (selectionRectangleOrigin.x, mouseDraggedLocation.x)
-      let yMax = max (selectionRectangleOrigin.y, mouseDraggedLocation.y)
-
-      let r = NSRect (x:xMin, y:yMin, width:xMax-xMin, height:yMax-yMin)
-      var shapes = [EBShape] ()
-      let bp = NSBezierPath (rect: r)
-      bp.lineWidth = 0.0
-      shapes.append (EBFilledBezierPathShape ([bp], NSColor.lightGray.withAlphaComponent (0.2)))
-      shapes.append (EBStrokeBezierPathShape ([bp], NSColor.lightGray))
-      self.selectionRectangleLayer = EBShape (shapes: shapes)
-      let indexSet = self.indexesOfObjects (intersecting:r)
-      mViewController?.setSelection (objectsWithIndexes: Array (indexSet))
+      self.handleSelectionRectangle (from: selectionRectangleOrigin, to: mouseDraggedLocation)
     }else if let lastMouseDraggedLocation = mLastMouseDraggedLocation {
-      var translation = CGPoint (x: mouseDraggedLocation.x - lastMouseDraggedLocation.x, y:mouseDraggedLocation.y - lastMouseDraggedLocation.y)
-      for object in self.mViewController?.selectedGraphicObjectSet ?? [] {
-        let p = object.acceptedTranslation (by:translation)
-        translation = p
+      var proposedTranslation = CGPoint (
+        x: mouseDraggedLocation.x - lastMouseDraggedLocation.x,
+        y:mouseDraggedLocation.y - lastMouseDraggedLocation.y
+      )
+      if mDraggingObjectsIsAlignedOnArrowKeyMagnitude {
+        let stepX = proposedTranslation.x / self.arrowKeyMagnitude
+        proposedTranslation.x = stepX.rounded (.towardZero) * self.arrowKeyMagnitude ;
+        let stepY = proposedTranslation.y / self.arrowKeyMagnitude
+        proposedTranslation.y = stepY.rounded (.towardZero) * self.arrowKeyMagnitude ;
       }
-      if (translation.x != 0.0) || (translation.y != 0.0) {
-        if !self.mPerformEndUndoGroupingOnMouseUp {
-          self.mPerformEndUndoGroupingOnMouseUp = true
-          mViewController?.undoManager?.beginUndoGrouping ()
-        }
-        for object in mViewController?.selectedGraphicObjectSet ?? [] {
-          object.translate (xBy: translation.x, yBy:translation.y)
-        }
+      if let (objectIndex, knobIndex) = self.mPossibleKnob {
+        self.drag (knob: knobIndex, objectIndex: objectIndex,proposedTranslation, lastMouseDraggedLocation)
+      }else{
+        self.dragSelection (proposedTranslation, lastMouseDraggedLocation)
+      }
+    }
+  }
+
+  //····················································································································
+
+  fileprivate func handleSelectionRectangle (from inSelectionRectangleOrigin : NSPoint,
+                                             to inMouseDraggedLocation : NSPoint) {
+    let xMin = min (inSelectionRectangleOrigin.x, inMouseDraggedLocation.x)
+    let yMin = min (inSelectionRectangleOrigin.y, inMouseDraggedLocation.y)
+    let xMax = max (inSelectionRectangleOrigin.x, inMouseDraggedLocation.x)
+    let yMax = max (inSelectionRectangleOrigin.y, inMouseDraggedLocation.y)
+    let r = NSRect (x:xMin, y:yMin, width:xMax-xMin, height:yMax-yMin)
+    var shapes = [EBShape] ()
+    let bp = NSBezierPath (rect: r)
+    bp.lineWidth = 0.0
+    shapes.append (EBFilledBezierPathShape ([bp], NSColor.lightGray.withAlphaComponent (0.2)))
+    shapes.append (EBStrokeBezierPathShape ([bp], NSColor.lightGray))
+    self.selectionRectangleLayer = EBShape (shapes: shapes)
+    let indexSet = self.indexesOfObjects (intersecting:r)
+    self.mViewController?.setSelection (objectsWithIndexes: Array (indexSet))
+  }
+
+  //····················································································································
+
+  fileprivate func drag (knob knobIndex : Int,
+                         objectIndex : Int,
+                         _ inProposedTranslation: CGPoint,
+                         _ inLastMouseDraggedLocation : CGPoint) {
+    let objects = self.mViewController?.objectArray ?? []
+    if objects [objectIndex].canMove (knob: knobIndex, by: inProposedTranslation) {
+      if !self.mPerformEndUndoGroupingOnMouseUp {
+        self.mPerformEndUndoGroupingOnMouseUp = true
+        mViewController?.undoManager?.beginUndoGrouping ()
+      }
+      objects [objectIndex].move (knob: knobIndex, by: inProposedTranslation)
+      let mouseDraggedLocation = CGPoint (
+        x: inProposedTranslation.x + inLastMouseDraggedLocation.x,
+        y: inProposedTranslation.y + inLastMouseDraggedLocation.y
+      )
+      mLastMouseDraggedLocation = mouseDraggedLocation
+    }
+  }
+
+  //····················································································································
+
+  fileprivate func dragSelection (_ proposedTranslation: CGPoint, _ lastMouseDraggedLocation : CGPoint) {
+    var translation = proposedTranslation
+    for object in self.mViewController?.selectedGraphicObjectSet ?? [] {
+      let p = object.acceptedTranslation (by: translation)
+      translation = p
+    }
+    if (translation.x != 0.0) || (translation.y != 0.0) {
+      if !self.mPerformEndUndoGroupingOnMouseUp {
+        self.mPerformEndUndoGroupingOnMouseUp = true
+        mViewController?.undoManager?.beginUndoGrouping ()
+      }
+      for object in mViewController?.selectedGraphicObjectSet ?? [] {
+        object.translate (xBy: translation.x, yBy:translation.y)
       }
       let mouseDraggedLocation = CGPoint (x: translation.x + lastMouseDraggedLocation.x, y: translation.y + lastMouseDraggedLocation.y)
       mLastMouseDraggedLocation = mouseDraggedLocation
@@ -397,9 +459,10 @@ protocol EBViewControllerProtocol : class {
       self.mPerformEndUndoGroupingOnMouseUp = false
       mViewController?.undoManager?.endUndoGrouping ()
     }
-    mLastMouseDraggedLocation = nil
-    mSelectionRectangleOrigin = nil
+    self.mLastMouseDraggedLocation = nil
+    self.mSelectionRectangleOrigin = nil
     self.selectionRectangleLayer = nil
+    self.mPossibleKnob = nil
   }
 
 

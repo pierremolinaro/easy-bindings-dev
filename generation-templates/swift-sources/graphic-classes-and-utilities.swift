@@ -6,7 +6,6 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //  EBGraphicManagedObject
-//  dynamic before func is required in order to make functions overriden in extensions
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBGraphicManagedObject : EBManagedObject {
@@ -59,8 +58,8 @@ class EBGraphicManagedObject : EBManagedObject {
 
   //····················································································································
   //   Translation
+  //  @objc dynamic before func is required in order to allow function overriding in extensions
   //····················································································································
-
 
   @objc dynamic func acceptedTranslation (by inValue: CGPoint) -> CGPoint {
     return inValue
@@ -75,6 +74,20 @@ class EBGraphicManagedObject : EBManagedObject {
   //····················································································································
 
   @objc dynamic func translate (xBy inDx: CGFloat, yBy inDy: CGFloat) {
+  }
+
+  //····················································································································
+  //  Knob
+  //  @objc dynamic before func is required in order to allow function overriding in extensions
+  //····················································································································
+
+  @objc dynamic func canMove (knob inKnobIndex : Int, by inValue: CGPoint) -> Bool {
+    return true
+  }
+
+  //····················································································································
+
+  @objc dynamic func move (knob inKnobIndex : Int, by inTranslation: CGPoint) {
   }
 
   //····················································································································
