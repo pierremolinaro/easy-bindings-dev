@@ -152,18 +152,20 @@ if not [mKind isEntityType] then
 %        case .multiple :\n%
 %          return .multiple\n%
 %        case .single (let v) :\n%
-%          var s = Set<%![mKind swiftTypeName]%> ()\n%
+%          var s = Set <%![mKind swiftTypeName]%> ()\n%
 %          var isMultipleSelection = false\n%
-%          for object in v {\n%
-%            switch object.%!lkey.string%_property_selection {\n%
-%            case .empty :\n%
-%              return .empty\n%
-%            case .multiple :\n%
-%              isMultipleSelection = true\n%
-%            case .single (let vProp) :\n%
-%              s.insert (vProp)\n%
+%          for baseObject in v {\n%
+%//            if let object = baseObject as? %!ELEMENT_TYPE_NAME% {\n%
+%              switch baseObject.%!lkey.string%_property_selection {\n%
+%              case .empty :\n%
+%                return .empty\n%
+%              case .multiple :\n%
+%                isMultipleSelection = true\n%
+%              case .single (let vProp) :\n%
+%                s.insert (vProp)\n%
+%              }\n%
 %            }\n%
-%          }\n%
+%//          }\n%
 %          if isMultipleSelection {\n%
 %            return .multiple\n%
 %          }else if s.count == 0 {\n%

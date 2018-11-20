@@ -6,6 +6,7 @@ class @selectionControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mSelectionControllerName
   @lstring mModelControllerName
   @lstring mModelControllerPropertyName
+  @lstring mSelectionEntityName
 }
 
 #·······················································································································
@@ -36,6 +37,7 @@ syntax extension easyBindings_syntax {
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $selectionController$
+    $Identifier$ ?let @lstring selectionEntityName
     $identifier$ ?let @lstring selectionControllerName
     $:$
     $self$
@@ -49,6 +51,7 @@ syntax extension easyBindings_syntax {
       !selectionControllerName
       !modelControllerName
       !propertyName
+      !selectionEntityName
     }
   }
 
@@ -78,6 +81,9 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
     case selectionController (*) :
       error mModelControllerName : "an array controller is required here"
     case arrayController (typeName 2*) :
+      if typeName.string != mSelectionEntityName.string then
+        error mSelectionEntityName : "Required: " + typeName
+      end
       if mModelControllerPropertyName.string != "selectedArray" then
         error mModelControllerPropertyName : "'selectedArray' is required here"
       end

@@ -4205,7 +4205,8 @@ class GALGAS_selectionControllerDeclarationAST : public GALGAS_abstractDeclarati
   public : static class GALGAS_selectionControllerDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                                   const class GALGAS_lstring & inOperand1,
                                                                                   const class GALGAS_lstring & inOperand2,
-                                                                                  const class GALGAS_lstring & inOperand3
+                                                                                  const class GALGAS_lstring & inOperand3,
+                                                                                  const class GALGAS_lstring & inOperand4
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4222,6 +4223,8 @@ class GALGAS_selectionControllerDeclarationAST : public GALGAS_abstractDeclarati
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mModelControllerPropertyName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSelectionControllerName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSelectionEntityName (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -4245,12 +4248,14 @@ class cPtr_selectionControllerDeclarationAST : public cPtr_abstractDeclarationAS
   public : GALGAS_lstring mProperty_mSelectionControllerName ;
   public : GALGAS_lstring mProperty_mModelControllerName ;
   public : GALGAS_lstring mProperty_mModelControllerPropertyName ;
+  public : GALGAS_lstring mProperty_mSelectionEntityName ;
 
 //--- Constructor
   public : cPtr_selectionControllerDeclarationAST (const GALGAS_lstring & in_mClassName,
                                                    const GALGAS_lstring & in_mSelectionControllerName,
                                                    const GALGAS_lstring & in_mModelControllerName,
-                                                   const GALGAS_lstring & in_mModelControllerPropertyName
+                                                   const GALGAS_lstring & in_mModelControllerPropertyName,
+                                                   const GALGAS_lstring & in_mSelectionEntityName
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -4260,6 +4265,7 @@ class cPtr_selectionControllerDeclarationAST : public cPtr_abstractDeclarationAS
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mSelectionControllerName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mModelControllerName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mModelControllerPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mSelectionEntityName (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

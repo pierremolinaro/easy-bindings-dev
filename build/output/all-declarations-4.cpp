@@ -3117,6 +3117,9 @@ typeComparisonResult cPtr_selectionControllerDeclarationAST::dynamicObjectCompar
   if (kOperandEqual == result) {
     result = mProperty_mModelControllerPropertyName.objectCompare (p->mProperty_mModelControllerPropertyName) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mSelectionEntityName.objectCompare (p->mProperty_mSelectionEntityName) ;
+  }
   return result ;
 }
 
@@ -3151,6 +3154,7 @@ GALGAS_selectionControllerDeclarationAST GALGAS_selectionControllerDeclarationAS
   return GALGAS_selectionControllerDeclarationAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
                                                                     GALGAS_lstring::constructor_default (HERE),
                                                                     GALGAS_lstring::constructor_default (HERE),
+                                                                    GALGAS_lstring::constructor_default (HERE),
                                                                     GALGAS_lstring::constructor_default (HERE)
                                                                     COMMA_THERE) ;
 }
@@ -3167,11 +3171,12 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 GALGAS_selectionControllerDeclarationAST GALGAS_selectionControllerDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
                                                                                                     const GALGAS_lstring & inAttribute_mSelectionControllerName,
                                                                                                     const GALGAS_lstring & inAttribute_mModelControllerName,
-                                                                                                    const GALGAS_lstring & inAttribute_mModelControllerPropertyName
+                                                                                                    const GALGAS_lstring & inAttribute_mModelControllerPropertyName,
+                                                                                                    const GALGAS_lstring & inAttribute_mSelectionEntityName
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_selectionControllerDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mSelectionControllerName.isValid () && inAttribute_mModelControllerName.isValid () && inAttribute_mModelControllerPropertyName.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_selectionControllerDeclarationAST (inAttribute_mClassName, inAttribute_mSelectionControllerName, inAttribute_mModelControllerName, inAttribute_mModelControllerPropertyName COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mSelectionControllerName.isValid () && inAttribute_mModelControllerName.isValid () && inAttribute_mModelControllerPropertyName.isValid () && inAttribute_mSelectionEntityName.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_selectionControllerDeclarationAST (inAttribute_mClassName, inAttribute_mSelectionControllerName, inAttribute_mModelControllerName, inAttribute_mModelControllerPropertyName, inAttribute_mSelectionEntityName COMMA_THERE)) ;
   }
   return result ;
 }
@@ -3231,18 +3236,38 @@ GALGAS_lstring cPtr_selectionControllerDeclarationAST::getter_mModelControllerPr
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_selectionControllerDeclarationAST::getter_mSelectionEntityName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_selectionControllerDeclarationAST * p = (const cPtr_selectionControllerDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_selectionControllerDeclarationAST) ;
+    result = p->mProperty_mSelectionEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_selectionControllerDeclarationAST::getter_mSelectionEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSelectionEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                             Pointer class for @selectionControllerDeclarationAST class                              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 cPtr_selectionControllerDeclarationAST::cPtr_selectionControllerDeclarationAST (const GALGAS_lstring & in_mClassName,
                                                                                 const GALGAS_lstring & in_mSelectionControllerName,
                                                                                 const GALGAS_lstring & in_mModelControllerName,
-                                                                                const GALGAS_lstring & in_mModelControllerPropertyName
+                                                                                const GALGAS_lstring & in_mModelControllerPropertyName,
+                                                                                const GALGAS_lstring & in_mSelectionEntityName
                                                                                 COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
 mProperty_mSelectionControllerName (in_mSelectionControllerName),
 mProperty_mModelControllerName (in_mModelControllerName),
-mProperty_mModelControllerPropertyName (in_mModelControllerPropertyName) {
+mProperty_mModelControllerPropertyName (in_mModelControllerPropertyName),
+mProperty_mSelectionEntityName (in_mSelectionEntityName) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -3261,6 +3286,8 @@ void cPtr_selectionControllerDeclarationAST::description (C_String & ioString,
   mProperty_mModelControllerName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mModelControllerPropertyName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSelectionEntityName.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -3268,7 +3295,7 @@ void cPtr_selectionControllerDeclarationAST::description (C_String & ioString,
 
 acPtr_class * cPtr_selectionControllerDeclarationAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_selectionControllerDeclarationAST (mProperty_mClassName, mProperty_mSelectionControllerName, mProperty_mModelControllerName, mProperty_mModelControllerPropertyName COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_selectionControllerDeclarationAST (mProperty_mClassName, mProperty_mSelectionControllerName, mProperty_mModelControllerName, mProperty_mModelControllerPropertyName, mProperty_mSelectionEntityName COMMA_THERE)) ;
   return ptr ;
 }
 
