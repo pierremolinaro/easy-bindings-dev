@@ -192,8 +192,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
                                                                                                           const class GALGAS_arrayControllerModelKind & in_MODEL_5F_KIND,
                                                                                                           const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
                                                                                                           const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                          const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC,
-                                                                                                          const class GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
+                                                                                                          const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC
                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

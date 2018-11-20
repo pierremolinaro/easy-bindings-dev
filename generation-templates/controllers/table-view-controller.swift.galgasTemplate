@@ -65,9 +65,9 @@ end
   %    }\n%
   %    self.mSelectedSet.addEBObserver (self.canSendToBack_property)\n%
 end%  //--- Set selected array compute function
-    setSelectedArrayComputeFunction ()
+    self.setSelectedArrayComputeFunction ()
   //--- Set sorted array compute function
-    setFilterAndSortFunction ()
+    self.setFilterAndSortFunction ()
   }
 
   //····················································································································

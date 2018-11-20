@@ -2,19 +2,11 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @arrayControllerAttributListAST {
-  @lstring mAttributeName
-  @abstractDefaultValue mAttributeValue
-}
-
-#·······················································································································
-
 class @arrayControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
   @bool mIsRoot
   @lstring mRootEntityName
   @lstring mToManyPropertyName
-  @arrayControllerAttributListAST mArrayControllerAttributListAST
 }
 
 #·······················································································································
@@ -51,18 +43,8 @@ syntax extension easyBindings_syntax {
   {
     $arrayController$
     $identifier$ ?let @lstring controllerName
-    @arrayControllerAttributListAST arrayControllerAttributListAST = {}
-    ${$
-    repeat
-      $identifier$ ?let @lstring attributeName
-      $:$
-      <explicit_value> ?let @abstractDefaultValue attributeValue
-      arrayControllerAttributListAST += !attributeName !attributeValue
-    while
-      $,$
-    end
-    $}$
   #--- Model
+    $:$
     @bool isRoot
     select
       $root$
@@ -80,7 +62,6 @@ syntax extension easyBindings_syntax {
       !isRoot
       !inRootEntity
       !relationshipName
-      !arrayControllerAttributListAST
     }
   }
   
@@ -165,28 +146,6 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-#------------------------------------------------------------ Check array controller attributes
-  let attributes = @stringset {!"allowsEmptySelection", !"allowsMultipleSelection"}
-  let allowedTypes = @typeKindList {!.boolType}
-  @stringset definedAttributes = {}
-  @2stringlist attributeListForGeneration = {}
-  for (name value) in mArrayControllerAttributListAST do
-    if not [attributes hasKey !name.string] then
-      error name : "unknown attribute"
-    elsif [definedAttributes hasKey !name.string] then
-      error name : "attribute multiply defined"
-    else
-      definedAttributes += !name.string
-    end
-    [value analyzeDefaultValueType !allowedTypes ?let valueAsString]
-    attributeListForGeneration += !name.string !valueAsString
-  end
-  for s in attributes do
-    if not [definedAttributes hasKey !s] then
-      error mControllerName : "attribute '" + s + "' not defined"
-    end
-  end
-#------
   @propertyMap boundModelPropertyMap
   if mIsRoot then
     [ioSemanticContext.mClassMap searchKey
@@ -240,16 +199,6 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
       : "a tomany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
-#------------------------------------------------------------ Check filter properties
-#  @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
-#  for (filterPropertyName) in mFilterProperties do
-#    [propertyMap searchKey
-#      !filterPropertyName
-#      ?let @propertyKind columnKind
-#      ?*
-#    ]
-#    arrayControllerFilterListForGeneration += !filterPropertyName.string !columnKind
-#  end
   let modelString = if mIsRoot
     then "self.rootObject." + mToManyPropertyName + "_property"
     else "self." + mToManyPropertyName + "_property"
@@ -258,13 +207,11 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
   ioGeneration.mFileGenerationList += !@arrayControllerGeneration.new {
     !mClassName
     !mControllerName
-#    !arrayControllerFilterListForGeneration
     !modelString
-    !"ReadWriteArrayOf_" + elementTypeName # [kind swiftTypeName]
-    !arrayControllerModelKind # boundModelClassKind
-    !elementTypeName # [kind swiftTypeName]
+    !"ReadWriteArrayOf_" + elementTypeName
+    !arrayControllerModelKind
+    !elementTypeName
     !graphic
-    !attributeListForGeneration
   }
 }
 
@@ -332,7 +279,7 @@ class @arrayControllerGeneration : @abstractFileGeneration {
   @arrayControllerModelKind mArrayControllerModelKind
   @string mElementTypeName
   @bool mElementTypeIsGraphic
-  @2stringlist mAttributeListForGeneration
+#  @2stringlist mAttributeListForGeneration
 }
 
 #·······················································································································
@@ -348,7 +295,6 @@ private filewrapper arrayControllerGenerationTemplate in "../generation-template
     ?@string MODEL_TYPE_NAME
     ?@string ELEMENT_TYPE_NAME
     ?@bool ELEMENT_TYPE_IS_GRAPHIC
-    ?@2stringlist ATTRIBUTE_VALUES
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -368,7 +314,6 @@ override method @arrayControllerGeneration generateCode
     !mModelTypeName
     !mElementTypeName
     !mElementTypeIsGraphic
-    !mAttributeListForGeneration
   ]
   [@string generateFile
     !inOutputDirectory

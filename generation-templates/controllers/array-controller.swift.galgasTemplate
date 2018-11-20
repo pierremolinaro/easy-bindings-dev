@@ -24,9 +24,9 @@ end
 
   override init () {
     mSelectedSet = SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (
-      allowsEmptySelection:allowsEmptySelection,
-      allowsMultipleSelection:allowsMultipleSelection,
-      sortedArray:self.objectArray_property
+      allowsEmptySelection: true,
+      allowsMultipleSelection: true,
+      sortedArray: self.objectArray_property
     )
     super.init ()
 %if ELEMENT_TYPE_IS_GRAPHIC then
@@ -65,7 +65,7 @@ end
   %    }\n%
   %    self.mSelectedSet.addEBObserver (self.canSendToBack_property)\n%
 end%  //--- Set selected array compute function
-    setSelectedArrayComputeFunction ()
+    self.setSelectedArrayComputeFunction ()
   }
 
   //····················································································································
@@ -74,15 +74,6 @@ end%  //--- Set selected array compute function
 
   let objectArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
 
-  //····················································································································
-  //    Attributes
-  //····················································································································
-
-%
-for () in ATTRIBUTE_VALUES do
-%  private let %!mValue0% = %!mValue1%\n%
-end
-%  
   //····················································································································
   //    Model
   //····················································································································
