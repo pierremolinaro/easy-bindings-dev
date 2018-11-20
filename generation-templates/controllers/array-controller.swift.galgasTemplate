@@ -12,7 +12,7 @@ private let DEBUG_EVENT = false
 //    %!"ArrayController_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject, EBTableViewDelegate, EBTableViewDataSource%
+final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject%
 if ELEMENT_TYPE_IS_GRAPHIC then
  %, EBViewControllerProtocol%
 end
@@ -26,7 +26,7 @@ end
     mSelectedSet = SelectedSet_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% (
       allowsEmptySelection:allowsEmptySelection,
       allowsMultipleSelection:allowsMultipleSelection,
-      sortedArray:self.sortedArray_property
+      sortedArray:self.objectArray_property
     )
     super.init ()
 %if ELEMENT_TYPE_IS_GRAPHIC then
@@ -66,35 +66,13 @@ end
   %    self.mSelectedSet.addEBObserver (self.canSendToBack_property)\n%
 end%  //--- Set selected array compute function
     setSelectedArrayComputeFunction ()
-  //--- Set sorted array compute function
-    setFilterAndSortFunction ()
   }
 
   //····················································································································
-  //    Sort Array
+  //    Object Array
   //····················································································································
 
-  let sortedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
-
-  //····················································································································
-
-  private var mSortDescriptorArray = [(String, Bool)] () { // Key, ascending
-    didSet {
-      self.sortedArray_property.postEvent ()
-      for tableView in mTableViewArray {
-        var first = true
-        for (key, ascending) in mSortDescriptorArray {
-          if let column = tableView.tableColumn (withIdentifier: NSUserInterfaceItemIdentifier (rawValue: key)) {
-            tableView.setIndicatorImage (
-              first ? (ascending ? NSImage (named: NSImage.Name ("NSAscendingSortIndicator"))! : NSImage (named: NSImage.Name ("NSDescendingSortIndicator"))!) : nil,
-              in:column
-            )
-            first = false
-          }
-        }
-      }
-    }
-  }
+  let objectArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
 
   //····················································································································
   //    Attributes
@@ -122,15 +100,10 @@ end
 
   func bind_model (_ inModel:%!MODEL_TYPE_NAME%) {
     self.mModel = inModel
-    inModel.addEBObserver (self.sortedArray_property)
-    self.sortedArray_property.addEBObserver (mSelectedSet)
+    inModel.addEBObserver (self.objectArray_property)
+    self.objectArray_property.addEBObserver (mSelectedSet)
     mSelectedSet.addEBObserver (self.selectedArray_property)
-  //--- Add observed properties (for filtering and sorting)
-%
-for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
-  %    inModel.addEBObserverOf_%!key% (self.sortedArray_property)\n%
-end
-if ELEMENT_TYPE_IS_GRAPHIC then
+%if ELEMENT_TYPE_IS_GRAPHIC then
  %    inModel.addEBObserverOf_objectDisplay (self.mObjectDisplayObserver)\n%
  %    self.mObjectDisplayObserver.eventCallBack = { [weak self] in self?.updateObjectDisplay () }\n%
 end%  }
@@ -141,20 +114,9 @@ end%  }
 %if ELEMENT_TYPE_IS_GRAPHIC then
  %    self.mModel?.removeEBObserverOf_objectDisplay (self.mObjectDisplayObserver)\n%
 end
-%    self.mModel?.removeEBObserver (self.sortedArray_property)
-    self.sortedArray_property.removeEBObserver (mSelectedSet)
+%    self.mModel?.removeEBObserver (self.objectArray_property)
+    self.objectArray_property.removeEBObserver (mSelectedSet)
     self.mSelectedSet.removeEBObserver (self.selectedArray_property)
-  //--- Remove observed properties (for filtering and sorting)
-%
-for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
-  %//    mModel?.removeEBObserverOf_%!key% (self.sortedArray_property)\n%
-end
-%    for tvc in mTableViewDataSourceControllerArray {
-      self.sortedArray_property.removeEBObserver (tvc)
-    }
-    for tvc in mTableViewSelectionControllerArray {
-      mSelectedSet.removeEBObserver (tvc)
-    }
   //---
     mSelectedSet.mSet = Set ()
     mModel = nil
@@ -291,7 +253,7 @@ end
   private final func setSelectedArrayComputeFunction () {
     self.selectedArray_property.readModelFunction = { [weak self] in
       if let me = self {
-        switch me.sortedArray_property.prop {
+        switch me.objectArray_property.prop {
         case .empty :
           return .empty
         case .multiple :
@@ -311,82 +273,6 @@ end
     }
   }
 
-%
-if [SORTED_COLUMNS length] > 0 then
-%  //····················································································································
-
-  func isOrderedBefore (left : %!ELEMENT_TYPE_NAME%, right : %!ELEMENT_TYPE_NAME%) -> Bool {
-    var order = ComparisonResult.orderedSame
-    for (column, ascending) in mSortDescriptorArray {\n%
-for () in SORTED_COLUMNS
-  before
-  %      %
-  do
-  %if column == "%!mColumnName%" {\n%
-  %        order = compare_%![mSortPropertyKind swiftTypeName]% (left: left.%!mObservablePropertyForSorting%_property, right:right.%!mObservablePropertyForSorting%_property)\n%
-  between
-  %      }else %
-  after
-  %      }\n%
-end
-%      if !ascending {
-        switch order {
-        case .orderedAscending : order = .orderedDescending
-        case .orderedDescending : order = .orderedAscending
-        case .orderedSame : break // Exit from switch
-        }
-      }
-      if order != .orderedSame {
-        break // Exit from for
-      }
-    }
-    return order == .orderedAscending
-  }
-
-%
-end
-%  //····················································································································
-
-  private final func setFilterAndSortFunction () {
-    self.sortedArray_property.readModelFunction = { [weak self] in
-      if let me = self, let model = me.mModel {
-        switch model.prop {
-        case .empty :
-          return .empty
-        case .multiple :
-          return .multiple
-        case .single (let modelArray) :
-%if [FILTER_PROPERTIES length] == 0 then
-  if [SORTED_COLUMNS length] == 0 then
-    %          return .single (modelArray)\n%
-  else
-    %          let sortedArray = modelArray.sorted (by: {me.isOrderedBefore (left: $0, right: $1)})\n%
-    %          return .single (sortedArray)\n%
-  end
-else
-  %          var filteredArray = [%!ELEMENT_TYPE_NAME%] ()\n%
-  %          var isMultiple = false\n%
-  %          for object in modelArray {\n%
-  ![FILTER_PROPERTIES filterCode !"arrayControllerFilter_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME]
-  %          }\n%
-  %          if isMultiple {\n%
-  %            return .multiple\n%
-  %          }else{\n%
-  if [SORTED_COLUMNS length] == 0 then
-    %            return .single (filteredArray)\n%
-  else
-    %            let sortedFilteredArray = filteredArray.sorted (by: {me.isOrderedBefore (left: $0, right: $1)})\n%
-    %            return .single (sortedFilteredArray)\n%
-  end
-  %          }\n%
-end
-%        }
-      }else{
-        return .empty
-      }
-    }
-  }
-
   //····················································································································
   //    Explorer
   //····················································································································
@@ -395,70 +281,9 @@ end
   }
 
   //····················································································································
-  //    bind_tableView
-  //····················································································································
-
-  private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
-  private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
-  private var mTableViewArray = [EBTableView] ()
-
-  //····················································································································
-
-  func bind_tableView (_ inTableView : EBTableView?, file : String, line : Int) {
-    if DEBUG_EVENT {
-      print ("\(#function)")
-    }
-    if let tableView = inTableView {
-      tableView.allowsEmptySelection = allowsEmptySelection
-      tableView.allowsMultipleSelection = allowsMultipleSelection
-      tableView.dataSource = self
-      tableView.delegate = self
-    //--- Set table view data source controller
-      let dataSourceTableViewController = DataSource_EBTableView_controller (delegate:self, tableView:tableView)
-      self.sortedArray_property.addEBObserver (dataSourceTableViewController)
-      mTableViewDataSourceControllerArray.append (dataSourceTableViewController)
-    //--- Set table view selection controller
-      let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)
-       mSelectedSet.addEBObserver (selectionTableViewController)
-      mTableViewSelectionControllerArray.append (selectionTableViewController)
-%for () in BOUND_COLUMNS do
-%    //--- Check '%!mColumnName%' column
-      if let column : NSTableColumn = tableView.tableColumn (withIdentifier: NSUserInterfaceItemIdentifier (rawValue: "%!mColumnName%")) {
-        column.sortDescriptorPrototype = nil
-      }else{
-        presentErrorWindow (file: file, line: line, errorMessage:"\"%!mColumnName%\" column view unknown")
-      }
-%
-end
-%    //--- Set descriptors from first column of table view
-      var newSortDescriptorArray = [(String, Bool)] ()
-      for column in tableView.tableColumns {
-        newSortDescriptorArray.append ((column.identifier.rawValue, true)) // Ascending
-      }
-      mSortDescriptorArray = newSortDescriptorArray
-      mTableViewArray.append (tableView)
-    }
-  }
-
-  //····················································································································
- 
-  func unbind_tableView (_ inTableView : EBTableView?) {
-    if DEBUG_EVENT {
-      print ("\(#function)")
-    }
-    if let tableView = inTableView, let idx = self.mTableViewArray.index (of:tableView) {
-      self.sortedArray_property.removeEBObserver (self.mTableViewDataSourceControllerArray [idx])
-      self.mSelectedSet.removeEBObserver (self.mTableViewSelectionControllerArray [idx])
-      self.mTableViewArray.remove (at: idx)
-      self.mTableViewDataSourceControllerArray.remove (at: idx)
-      self.mTableViewSelectionControllerArray.remove (at: idx)
-    }
-  }
-
- //····················································································································
 
   func selectedObjectIndexSet () -> NSIndexSet {
-    switch self.sortedArray_property.prop {
+    switch self.objectArray_property.prop {
     case .empty, .multiple :
        return NSIndexSet ()
     case .single (let v) :
@@ -477,122 +302,6 @@ end
     }
   }
 
-  //····················································································································
-  //    T A B L E V I E W    D A T A S O U R C E : numberOfRows (in:)
-  //····················································································································
-
-  func numberOfRows (in _ : NSTableView) -> Int {
-    if DEBUG_EVENT {
-      print ("\(#function)")
-    }
-    switch self.sortedArray_property.prop {
-    case .empty, .multiple :
-      return 0
-    case .single (let v) :
-      return v.count
-    }
-  }
-
-  //····················································································································
-  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:
-  //····················································································································
-
-  func tableViewSelectionDidChange (_ notification : Notification) {
-    if DEBUG_EVENT {
-      print ("\(#function)")
-    }
-    switch self.sortedArray_property.prop {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      let tableView = notification.object as! EBTableView
-      var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
-      for index in tableView.selectedRowIndexes {
-        newSelectedObjectSet.insert (v.objectAtIndex (index, file: #file, line: #line))
-      }
-      mSelectedSet.mSet = newSelectedObjectSet
-    }
-  }
-
-  //····················································································································
-  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:mouseDownInHeaderOfTableColumn:
-  //····················································································································
-
-  func tableView (_ tableView: NSTableView, mouseDownInHeaderOf inTableColumn: NSTableColumn) {
-    var newSortDescriptorArray = [(String, Bool)] ()
-    for (columnName, ascending) in mSortDescriptorArray {
-      if inTableColumn.identifier == NSUserInterfaceItemIdentifier (columnName) {
-        newSortDescriptorArray.insert ((columnName, !ascending), at:0)
-      }else{
-        newSortDescriptorArray.append ((columnName, !ascending))
-      }
-    }
-    mSortDescriptorArray = newSortDescriptorArray
-  }
-
-  //····················································································································
-  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:
-  //····················································································································
-
-  func tableView (_ tableView : NSTableView,
-                  viewFor inTableColumn: NSTableColumn?,
-                  row inRowIndex: Int) -> NSView? {
-    if DEBUG_EVENT {
-      print ("\(#function)")
-    }
-%if [BOUND_COLUMNS length] == 0 then
-  %    return nil \n%
-else
-%    switch self.sortedArray_property.prop {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      let result : NSTableCellView = tableView.makeView (withIdentifier: (inTableColumn?.identifier)!, owner:self) as! NSTableCellView
-      if !reuseTableViewCells () {
-        result.identifier = nil // So result cannot be reused, will be freed
-      }
-      let object = v.objectAtIndex (inRowIndex, file: #file, line: #line)
-      %
-for () in BOUND_COLUMNS
-  do
-    %if inTableColumn?.identifier == NSUserInterfaceItemIdentifier ("%!mColumnName%") {\n%
-    %        if let cell : %!mColumnOutletTypeName%_TableViewCell = result as? %!mColumnOutletTypeName%_TableViewCell {\n%
-    %          cell.mUnbindFunction = { [weak cell] in\n%
-    if mRunAction != "" then
-    %            cell?.mCellOutlet?.target = nil\n%
-    %            cell?.mCellOutlet?.action = nil\n%
-    end
-    for () in mRegularBindingsGenerationList do
-    %            cell?.mCellOutlet?.unbind_%!mBindingName% ()\n%
-    end
-    %          }\n%
-    %          cell.mUnbindFunction? ()\n%
-    if mRunAction != "" then
-    %          cell.mCellOutlet?.target = object\n%
-    %          cell.mCellOutlet?.action = #selector (%!ELEMENT_TYPE_NAME%.%!mRunAction%(_:))\n%
-    end
-    for () in mRegularBindingsGenerationList do
-    %          cell.mCellOutlet?.bind_%!mBindingName% (%
-      for () in mBoundObjectList do
-        !mBoundObjectString%, %
-      end
-      %file: #file, line: #line%!mBindingOptionsString%)\n%
-    end
-    %        }\n%
-    %      %
-  between
-    %}else %
-  after
-   %}else{\n%
-   %        NSLog ("Unknown column '\(String (describing: inTableColumn?.identifier))'")\n%
-   %      }\n% 
-end
-%      return result
-    } 
-%
-end
-%  }
- 
 %switch MODEL_KIND
 case transientArray :
 case classArray :
@@ -653,7 +362,7 @@ case classArray :
       case .empty, .multiple :
         break
       case .single (let model_prop) :
-        switch self.sortedArray_property.prop {
+        switch self.objectArray_property.prop {
         case .empty, .multiple :
           break
         case .single (let sortedArray_prop) :
@@ -777,7 +486,7 @@ case entityArray :
       case .empty, .multiple :
         break
       case .single (let model_prop) :
-        switch self.sortedArray_property.prop {
+        switch self.objectArray_property.prop {
         case .empty, .multiple :
           break
         case .single (let sortedArray_prop) :

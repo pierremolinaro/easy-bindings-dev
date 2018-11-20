@@ -2,24 +2,6 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-list @arrayControllerBoundColumnListAST {
-  @lstring mColumnName
-  @lstring mColumnOutletTypeName
-  @arrayControllerColumnBindingAST mColumnBindingAST
-  @lstring mSortPropertyName
-}
-
-#·······················································································································
-
-struct @arrayControllerColumnBindingAST {
-  @lstring mRunActionName # Empty string if no run binding
-  @multipleBindingDescriptor mEnabledBindingDescriptor
-  @multipleBindingDescriptor mHiddenBindingDescriptor
-  @regularBindingList mRegularBindingList
-}
-
-#·······················································································································
-
 list @arrayControllerAttributListAST {
   @lstring mAttributeName
   @abstractDefaultValue mAttributeValue
@@ -32,8 +14,6 @@ class @arrayControllerDeclarationAST : @abstractDeclarationAST {
   @bool mIsRoot
   @lstring mRootEntityName
   @lstring mToManyPropertyName
-  @lstringlist mFilterProperties
-  @arrayControllerBoundColumnListAST mArrayControllerBoundColumnListAST
   @arrayControllerAttributListAST mArrayControllerAttributListAST
 }
 
@@ -93,17 +73,13 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ ?let @lstring relationshipName
-    @lstringlist filterProperties = {}
     $;$
-    @arrayControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST.new {
       !inCurrentEntity
       !controllerName
       !isRoot
       !inRootEntity
       !relationshipName
-      !filterProperties
-      !arrayControllerBoundColumnListAST
       !arrayControllerAttributListAST
     }
   }
@@ -264,58 +240,16 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
       : "a tomany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
-  @arrayControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
-  @arrayControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
-  for () in mArrayControllerBoundColumnListAST do
-  #-------- Run action ? Check action is declared
-    if mColumnBindingAST.mRunActionName.string != "" then
-      [actionMap searchKey !mColumnBindingAST.mRunActionName]
-    end
-  #-------- Simple bindings
-    @regularBindingsGenerationList regularBindingsGenerationList = {}
-    analyzeRegularBinding (
-      !{} # No root observable property map
-      !ioSemanticContext
-      !propertyMap
-      !mColumnOutletTypeName
-      !"<<not used>>"
-      !mColumnBindingAST.mRegularBindingList
-      !"object"
-      !?regularBindingsGenerationList
-    )
-  #-------- Sort property
-    if mSortPropertyName.string != "" then
-      [propertyMap searchKey
-        !mSortPropertyName
-        ?let sortPropertyKind
-        ?*
-      ]
-      if not [sortPropertyKind isComparable] then
-        error mSortPropertyName : "this property is not comparable"
-      end 
-      arrayControllerSortedColumnListForGeneration +=    
-        !mColumnName.string
-        !sortPropertyKind
-        !mSortPropertyName.string
-    end
-  #-------- Binding generation
-    arrayControllerBoundColumnListForGeneration +=
-      !mColumnName.string
-      !mColumnOutletTypeName.string
-      !mColumnBindingAST.mRunActionName.string
-      !regularBindingsGenerationList
-    ioGeneration.mNeededOutletClasses += !mColumnOutletTypeName.string
-  end
 #------------------------------------------------------------ Check filter properties
-  @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
-  for (filterPropertyName) in mFilterProperties do
-    [propertyMap searchKey
-      !filterPropertyName
-      ?let @propertyKind columnKind
-      ?*
-    ]
-    arrayControllerFilterListForGeneration += !filterPropertyName.string !columnKind
-  end
+#  @arrayControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
+#  for (filterPropertyName) in mFilterProperties do
+#    [propertyMap searchKey
+#      !filterPropertyName
+#      ?let @propertyKind columnKind
+#      ?*
+#    ]
+#    arrayControllerFilterListForGeneration += !filterPropertyName.string !columnKind
+#  end
   let modelString = if mIsRoot
     then "self.rootObject." + mToManyPropertyName + "_property"
     else "self." + mToManyPropertyName + "_property"
@@ -324,10 +258,8 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
   ioGeneration.mFileGenerationList += !@arrayControllerGeneration.new {
     !mClassName
     !mControllerName
-    !arrayControllerFilterListForGeneration
+#    !arrayControllerFilterListForGeneration
     !modelString
-    !arrayControllerBoundColumnListForGeneration
-    !arrayControllerSortedColumnListForGeneration
     !"ReadWriteArrayOf_" + elementTypeName # [kind swiftTypeName]
     !arrayControllerModelKind # boundModelClassKind
     !elementTypeName # [kind swiftTypeName]
@@ -395,73 +327,12 @@ enum @arrayControllerModelKind {
 class @arrayControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
-  @arrayControllerFilterListForGeneration mArrayControllerFilterListForGeneration
   @string mModelString
-  @arrayControllerBoundColumnListForGeneration mArrayControllerBoundColumnListForGeneration
-  @arrayControllerSortedColumnListForGeneration mArrayControllerSortedColumnListForGeneration
   @string mModelTypeName
   @arrayControllerModelKind mArrayControllerModelKind
   @string mElementTypeName
   @bool mElementTypeIsGraphic
   @2stringlist mAttributeListForGeneration
-}
-
-#·······················································································································
-
-list @arrayControllerFilterListForGeneration {
-  @string mFilterPropertyName
-  @propertyKind mFilterPropertyKind
-}
-
-#·······················································································································
-
-list @arrayControllerBoundColumnListForGeneration {
-  @string mColumnName
-  @string mColumnOutletTypeName
-  @string mRunAction # Empty string if no action
-  @regularBindingsGenerationList mRegularBindingsGenerationList
-}
-
-#·······················································································································
-
-list @arrayControllerSortedColumnListForGeneration {
-  @string mColumnName
-  @propertyKind mSortPropertyKind
-  @string mObservablePropertyForSorting
-}
-
-#·······················································································································
-
-getter @arrayControllerFilterListForGeneration filterCode ?let @string inFilterFunction -> @string outResult {
-  var filterProperties = self
-  [!?filterProperties popFirst ?let firstFilterProperty ?*]
-  @string indent = "            "
-  outResult  = indent + "switch object." + firstFilterProperty + "_property_selection {\n"
-  outResult += indent + "case .empty :\n"
-  outResult += indent + "  return .empty\n"
-  outResult += indent + "case .multiple :\n"
-  outResult += indent + "  isMultiple = true\n"
-  outResult += indent + "case .single (let v1) :\n"
-  @uint idx = 2
-  @string args = ""
-  @string blockEnd = indent + "}\n"
-  for () in filterProperties do
-    indent += "  "
-    outResult += indent + "switch object." + mFilterPropertyName + "_property_selection {\n"
-    outResult += indent + "case .empty :\n"
-    outResult += indent + "  return .empty\n"
-    outResult += indent + "case .multiple :\n"
-    outResult += indent + "  isMultiple = true\n"
-    outResult += indent + "case .single (let v" + idx + ") :\n"
-    blockEnd = indent + "}\n" + blockEnd
-    args += ", v" + idx
-    idx ++
-  end
-  indent += "  "
-  outResult += indent + "if " + inFilterFunction + " (v1" + args + ") {\n"
-  outResult += indent + "  filteredArray.append (object)\n"
-  outResult += indent + "}\n"
-  outResult += blockEnd
 }
 
 #·······················································································································
@@ -472,21 +343,12 @@ private filewrapper arrayControllerGenerationTemplate in "../generation-template
   template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string ARRAY_CONTROLLER_NAME
-    ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
     ?@string MODEL_STRING
     ?@arrayControllerModelKind MODEL_KIND
     ?@string MODEL_TYPE_NAME
-    ?@arrayControllerBoundColumnListForGeneration BOUND_COLUMNS
-    ?@arrayControllerSortedColumnListForGeneration SORTED_COLUMNS
     ?@string ELEMENT_TYPE_NAME
     ?@bool ELEMENT_TYPE_IS_GRAPHIC
-    ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
     ?@2stringlist ATTRIBUTE_VALUES
-
-  template filterFunction "array-controller-filter-function.swift.galgasTemplate"
-    ?@string OWNER_NAME
-    ?@string ARRAY_CONTROLLER_NAME
-    ?@arrayControllerFilterListForGeneration FILTER_PROPERTIES
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -495,28 +357,17 @@ private filewrapper arrayControllerGenerationTemplate in "../generation-template
 
 override method @arrayControllerGeneration generateCode
     ?let @string inOutputDirectory
-    ?!@stringset ioGeneratedFileSet
+    ?!@stringset unused ioGeneratedFileSet
 {
 #--- Build observed property set (for sorting and filtering)
-  @stringset observedProperties = {}
-  for () in mArrayControllerSortedColumnListForGeneration do
-    observedProperties += !mObservablePropertyForSorting
-  end
-  for () in mArrayControllerFilterListForGeneration do
-    observedProperties += !mFilterPropertyName
-  end
   let s = [filewrapper arrayControllerGenerationTemplate.arrayControllerImplementationInSwift
     !mOwnerName
     !mControllerName
-    !mArrayControllerFilterListForGeneration
     !mModelString
     !mArrayControllerModelKind
     !mModelTypeName
-    !mArrayControllerBoundColumnListForGeneration
-    !mArrayControllerSortedColumnListForGeneration
     !mElementTypeName
     !mElementTypeIsGraphic
-    !observedProperties
     !mAttributeListForGeneration
   ]
   [@string generateFile
@@ -524,26 +375,6 @@ override method @arrayControllerGeneration generateCode
     !"arrayController-" + mOwnerName + "-" +  mControllerName + ".swift"
     !s
   ]
-  if [mArrayControllerFilterListForGeneration length] > 0 then
-    let s = [filewrapper arrayControllerGenerationTemplate.filterFunction
-      !mOwnerName
-      !mControllerName
-      !mArrayControllerFilterListForGeneration
-    ]
-    let fileName = "arrayControllerFilter-" + mOwnerName + "-" +  mControllerName + ".swift"
-    ioGeneratedFileSet += !fileName
-    [@string generateFileWithPattern
-      !startPath:inOutputDirectory
-      !fileName:fileName
-      !lineComment:"//"
-      !header:""
-      !defaultUserZone1:"\n\n" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"  return WHAT ?\n" # Defaut user zone2
-      !generatedZone3:"}\n\n//" + ["" stringByRightPadding !117 !'—'] + "\n"
-      !makeExecutable:false
-    ]
-  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
