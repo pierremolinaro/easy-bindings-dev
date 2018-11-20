@@ -12,11 +12,10 @@ import Cocoa
 final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBObject {
   private var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
 
-  //····················································································································
-  //   SELECTION OBSERVABLE PROPERTIES
-  //····················································································································
-
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+%  //····················································································································\n%
+%  //   Selection observable property: %!lkey.string%\n%
+%  //····················································································································\n\n%
   if not [mKind isEntityType] then
     if [mKind isTransient] then
       %  var %!lkey.string%_property = EBTransientProperty_%![mKind swiftTypeName]% ()\n\n%
@@ -27,10 +26,9 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
       %    get {\n%
       %      return self.%!lkey.string%_property.prop\n%
       %    }\n%
-      %  }\n%
+      %  }\n\n%
   end
-end%
-  //····················································································································
+end%  //····················································································································
   //   BIND SELECTION
   //····················································································································
 
@@ -52,7 +50,7 @@ end%  }
   //····················································································································
 
   final func addExplorer (name : String, y : inout CGFloat, view : NSView) {
-    let font = NSFont.boldSystemFont (ofSize: sw34_smallSystemFontSize)
+    let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)
     let tf = NSTextField (frame:secondColumn (y))
     tf.isEnabled = true
     tf.isEditable = false

@@ -67,21 +67,21 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
   with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [mPropertyMap searchKey !mModelControllerName ?let classKind ?*]
-    switch classKind
+    [mPropertyMap searchKey !mModelControllerName ?let propertyKind ?*]
+    switch propertyKind
     case property (2*) :
       error mModelControllerName : "an array controller is required here"
     case toMany (4*) :
       error mModelControllerName : "an array controller is required here"
     case toOne (3*) :
       error mModelControllerName : "an array controller is required here"
+    case selectionController (*) :
+      error mModelControllerName : "an array controller is required here"
     case arrayController (typeName 2*) :
       if mModelControllerPropertyName.string != "selectedArray" then
         error mModelControllerPropertyName : "'selectedArray' is required here"
       end
-      let kind = @propertyKind.selectionController {
-        !typeName: typeName
-      }
+      let kind = @propertyKind.selectionController {!typeName: typeName}
       [!?mPropertyMap insertKey !mSelectionControllerName !kind !{}]
       mPropertyGenerationList += !@selectionControllerPropertyGeneration.new {
         !mSelectionControllerName.string
@@ -89,21 +89,35 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
         !mModelControllerName.string
         !mModelControllerPropertyName.string
       }
-    case selectionController (*) :
-      error mModelControllerName : "an array controller is required here"
     end
   end
 }
 
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#·······················································································································
 
-#override method @selectionControllerDeclarationAST secondAnalysisPhase
-#       ?!@semanticContext ioSemanticContext
-#       ?!@generationStruct unused ioGeneration
-#{
-#
-#}
-#
+override method @selectionControllerDeclarationAST thirdAnalysisPhase
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration
+{
+  [ioSemanticContext.mClassMap  searchKey !mClassName ?* ?let propertyMap ?2*]
+  [propertyMap searchKey !mModelControllerName ?let propertyKind ?*]
+    switch propertyKind
+    case property (2*) :
+    case toMany (4*) :
+    case toOne (3*) :
+    case selectionController (*) :
+    case arrayController (typeName 2*) :
+      [ioSemanticContext.mClassMap  searchKey !typeName ?* ?let selectionObservablePropertyMap ?2*]
+      ioGeneration.mSelectionControllerListForGeneration +=
+        !mClassName
+        !mSelectionControllerName.string
+        !mModelControllerName.string
+        !mModelControllerPropertyName.string
+        !typeName
+        !selectionObservablePropertyMap # {} # @observablePropertyMap selectionObservablePropertyMap
+   end
+}
+
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   CODE GENERATION                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -144,6 +158,7 @@ override getter @selectionControllerPropertyGeneration terminationCode -> @strin
   result  = "  //--- Selection controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".unbind_selection ()\n"
 }
+
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION TYPES                      
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -154,7 +169,7 @@ list @selectionControllerForGeneration {
   @string mBoundControllerName
   @string mBoundControllerPropertyName
   @string mSelectionTypeName
-  @observablePropertyMap mSelectionObservablePropertyMap
+  @propertyMap mSelectionObservablePropertyMap
 }
 
 #·······················································································································
@@ -166,7 +181,7 @@ private filewrapper selectionControllerGenerationTemplate in "../generation-temp
     ?@string OWNER_NAME
     ?@string SELECTION_CONTROLLER_NAME
     ?@string ELEMENT_TYPE_NAME
-    ?@observablePropertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
+    ?@propertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

@@ -3164,7 +3164,7 @@ GALGAS_selectionControllerForGeneration_2D_element::GALGAS_selectionControllerFo
                                                                                                         const GALGAS_string & inOperand2,
                                                                                                         const GALGAS_string & inOperand3,
                                                                                                         const GALGAS_string & inOperand4,
-                                                                                                        const GALGAS_observablePropertyMap & inOperand5) :
+                                                                                                        const GALGAS_propertyMap & inOperand5) :
 mProperty_mOwnerName (inOperand0),
 mProperty_mSelectionControllerName (inOperand1),
 mProperty_mBoundControllerName (inOperand2),
@@ -3181,7 +3181,7 @@ GALGAS_selectionControllerForGeneration_2D_element GALGAS_selectionControllerFor
                                                              GALGAS_string::constructor_default (HERE),
                                                              GALGAS_string::constructor_default (HERE),
                                                              GALGAS_string::constructor_default (HERE),
-                                                             GALGAS_observablePropertyMap::constructor_emptyMap (HERE)) ;
+                                                             GALGAS_propertyMap::constructor_emptyMap (HERE)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -3191,7 +3191,7 @@ GALGAS_selectionControllerForGeneration_2D_element GALGAS_selectionControllerFor
                                                                                                                         const GALGAS_string & inOperand2,
                                                                                                                         const GALGAS_string & inOperand3,
                                                                                                                         const GALGAS_string & inOperand4,
-                                                                                                                        const GALGAS_observablePropertyMap & inOperand5 
+                                                                                                                        const GALGAS_propertyMap & inOperand5 
                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_selectionControllerForGeneration_2D_element result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
@@ -3297,7 +3297,7 @@ GALGAS_string GALGAS_selectionControllerForGeneration_2D_element::getter_mSelect
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_observablePropertyMap GALGAS_selectionControllerForGeneration_2D_element::getter_mSelectionObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+GALGAS_propertyMap GALGAS_selectionControllerForGeneration_2D_element::getter_mSelectionObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
   return mProperty_mSelectionObservablePropertyMap ;
 }
 

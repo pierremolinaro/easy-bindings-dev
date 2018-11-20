@@ -449,11 +449,6 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "an atomic property accepts no option" : outKind
     case toMany (typeName 3*) :
       [inSemanticContext.mClassMap searchKey !typeName ?* ?let observablePropertyMap ?2*]
-#     [inSemanticContext.mEntityObservablePropertyMap searchKey
-#        !typeName
-#        ?let @observablePropertyMap entityObservablePropertyMap
-#        ?*
-#      ]
       [observablePropertyMap searchKey
         !elementPropertyName
         ?outKind

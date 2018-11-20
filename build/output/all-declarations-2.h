@@ -2382,7 +2382,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                   const class GALGAS_string & in_mBoundControllerName,
                                                   const class GALGAS_string & in_mBoundControllerPropertyName,
                                                   const class GALGAS_string & in_mSelectionTypeName,
-                                                  const class GALGAS_observablePropertyMap & in_mSelectionObservablePropertyMap
+                                                  const class GALGAS_propertyMap & in_mSelectionObservablePropertyMap
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -2403,7 +2403,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                                                            const class GALGAS_string & inOperand2,
                                                                                            const class GALGAS_string & inOperand3,
                                                                                            const class GALGAS_string & inOperand4,
-                                                                                           const class GALGAS_observablePropertyMap & inOperand5
+                                                                                           const class GALGAS_propertyMap & inOperand5
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -2417,7 +2417,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                       const class GALGAS_string & inOperand2,
                                                       const class GALGAS_string & inOperand3,
                                                       const class GALGAS_string & inOperand4,
-                                                      const class GALGAS_observablePropertyMap & inOperand5
+                                                      const class GALGAS_propertyMap & inOperand5
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_selectionControllerForGeneration add_operation (const GALGAS_selectionControllerForGeneration & inOperand,
@@ -2435,7 +2435,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                        class GALGAS_string constinArgument2,
                                                        class GALGAS_string constinArgument3,
                                                        class GALGAS_string constinArgument4,
-                                                       class GALGAS_observablePropertyMap constinArgument5,
+                                                       class GALGAS_propertyMap constinArgument5,
                                                        class GALGAS_uint constinArgument6,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
@@ -2445,7 +2445,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                   class GALGAS_string & outArgument2,
                                                   class GALGAS_string & outArgument3,
                                                   class GALGAS_string & outArgument4,
-                                                  class GALGAS_observablePropertyMap & outArgument5,
+                                                  class GALGAS_propertyMap & outArgument5,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -2454,7 +2454,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                  class GALGAS_string & outArgument2,
                                                  class GALGAS_string & outArgument3,
                                                  class GALGAS_string & outArgument4,
-                                                 class GALGAS_observablePropertyMap & outArgument5,
+                                                 class GALGAS_propertyMap & outArgument5,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -2463,7 +2463,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                        class GALGAS_string & outArgument2,
                                                        class GALGAS_string & outArgument3,
                                                        class GALGAS_string & outArgument4,
-                                                       class GALGAS_observablePropertyMap & outArgument5,
+                                                       class GALGAS_propertyMap & outArgument5,
                                                        class GALGAS_uint constinArgument6,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
@@ -2475,7 +2475,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                class GALGAS_string & outArgument2,
                                                class GALGAS_string & outArgument3,
                                                class GALGAS_string & outArgument4,
-                                               class GALGAS_observablePropertyMap & outArgument5,
+                                               class GALGAS_propertyMap & outArgument5,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -2484,7 +2484,7 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                               class GALGAS_string & outArgument2,
                                               class GALGAS_string & outArgument3,
                                               class GALGAS_string & outArgument4,
-                                              class GALGAS_observablePropertyMap & outArgument5,
+                                              class GALGAS_propertyMap & outArgument5,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -2507,9 +2507,9 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
                                                                                         C_Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyMap getter_mSelectionObservablePropertyMapAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                              C_Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyMap getter_mSelectionObservablePropertyMapAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSelectionTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                   C_Compiler * inCompiler
@@ -2550,7 +2550,7 @@ class cEnumerator_selectionControllerForGeneration : public cGenericAbstractEnum
   public : class GALGAS_string current_mBoundControllerName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mBoundControllerPropertyName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mSelectionTypeName (LOCATION_ARGS) const ;
-  public : class GALGAS_observablePropertyMap current_mSelectionObservablePropertyMap (LOCATION_ARGS) const ;
+  public : class GALGAS_propertyMap current_mSelectionObservablePropertyMap (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_selectionControllerForGeneration_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -2577,7 +2577,7 @@ class GALGAS_selectionControllerForGeneration_2D_element : public AC_GALGAS_root
 
   public : GALGAS_string mProperty_mSelectionTypeName ;
 
-  public : GALGAS_observablePropertyMap mProperty_mSelectionObservablePropertyMap ;
+  public : GALGAS_propertyMap mProperty_mSelectionObservablePropertyMap ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2598,7 +2598,7 @@ class GALGAS_selectionControllerForGeneration_2D_element : public AC_GALGAS_root
                                                                const GALGAS_string & in_mBoundControllerName,
                                                                const GALGAS_string & in_mBoundControllerPropertyName,
                                                                const GALGAS_string & in_mSelectionTypeName,
-                                                               const GALGAS_observablePropertyMap & in_mSelectionObservablePropertyMap) ;
+                                                               const GALGAS_propertyMap & in_mSelectionObservablePropertyMap) ;
 
 //-- Start of generic part --*
 
@@ -2616,7 +2616,7 @@ class GALGAS_selectionControllerForGeneration_2D_element : public AC_GALGAS_root
                                                                                             const class GALGAS_string & inOperand2,
                                                                                             const class GALGAS_string & inOperand3,
                                                                                             const class GALGAS_string & inOperand4,
-                                                                                            const class GALGAS_observablePropertyMap & inOperand5
+                                                                                            const class GALGAS_propertyMap & inOperand5
                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -2639,7 +2639,7 @@ class GALGAS_selectionControllerForGeneration_2D_element : public AC_GALGAS_root
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSelectionControllerName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyMap getter_mSelectionObservablePropertyMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyMap getter_mSelectionObservablePropertyMap (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSelectionTypeName (LOCATION_ARGS) const ;
 

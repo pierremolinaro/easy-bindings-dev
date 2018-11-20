@@ -7021,7 +7021,7 @@ class cCollectionElement_selectionControllerForGeneration : public cCollectionEl
                                                                 const GALGAS_string & in_mBoundControllerName,
                                                                 const GALGAS_string & in_mBoundControllerPropertyName,
                                                                 const GALGAS_string & in_mSelectionTypeName,
-                                                                const GALGAS_observablePropertyMap & in_mSelectionObservablePropertyMap
+                                                                const GALGAS_propertyMap & in_mSelectionObservablePropertyMap
                                                                 COMMA_LOCATION_ARGS) ;
   public : cCollectionElement_selectionControllerForGeneration (const GALGAS_selectionControllerForGeneration_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
@@ -7045,7 +7045,7 @@ cCollectionElement_selectionControllerForGeneration::cCollectionElement_selectio
                                                                                                           const GALGAS_string & in_mBoundControllerName,
                                                                                                           const GALGAS_string & in_mBoundControllerPropertyName,
                                                                                                           const GALGAS_string & in_mSelectionTypeName,
-                                                                                                          const GALGAS_observablePropertyMap & in_mSelectionObservablePropertyMap
+                                                                                                          const GALGAS_propertyMap & in_mSelectionObservablePropertyMap
                                                                                                           COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mOwnerName, in_mSelectionControllerName, in_mBoundControllerName, in_mBoundControllerPropertyName, in_mSelectionTypeName, in_mSelectionObservablePropertyMap) {
@@ -7134,7 +7134,7 @@ GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration:
                                                                                                             const GALGAS_string & inOperand2,
                                                                                                             const GALGAS_string & inOperand3,
                                                                                                             const GALGAS_string & inOperand4,
-                                                                                                            const GALGAS_observablePropertyMap & inOperand5
+                                                                                                            const GALGAS_propertyMap & inOperand5
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_selectionControllerForGeneration result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
@@ -7154,7 +7154,7 @@ void GALGAS_selectionControllerForGeneration::makeAttributesFromObjects (capColl
                                                                          const GALGAS_string & in_mBoundControllerName,
                                                                          const GALGAS_string & in_mBoundControllerPropertyName,
                                                                          const GALGAS_string & in_mSelectionTypeName,
-                                                                         const GALGAS_observablePropertyMap & in_mSelectionObservablePropertyMap
+                                                                         const GALGAS_propertyMap & in_mSelectionObservablePropertyMap
                                                                          COMMA_LOCATION_ARGS) {
   cCollectionElement_selectionControllerForGeneration * p = NULL ;
   macroMyNew (p, cCollectionElement_selectionControllerForGeneration (in_mOwnerName,
@@ -7174,7 +7174,7 @@ void GALGAS_selectionControllerForGeneration::addAssign_operation (const GALGAS_
                                                                    const GALGAS_string & inOperand2,
                                                                    const GALGAS_string & inOperand3,
                                                                    const GALGAS_string & inOperand4,
-                                                                   const GALGAS_observablePropertyMap & inOperand5
+                                                                   const GALGAS_propertyMap & inOperand5
                                                                    COMMA_LOCATION_ARGS) {
   if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
     cCollectionElement * p = NULL ;
@@ -7208,7 +7208,7 @@ void GALGAS_selectionControllerForGeneration::setter_insertAtIndex (const GALGAS
                                                                     const GALGAS_string inOperand2,
                                                                     const GALGAS_string inOperand3,
                                                                     const GALGAS_string inOperand4,
-                                                                    const GALGAS_observablePropertyMap inOperand5,
+                                                                    const GALGAS_propertyMap inOperand5,
                                                                     const GALGAS_uint inInsertionIndex,
                                                                     C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) {
@@ -7229,7 +7229,7 @@ void GALGAS_selectionControllerForGeneration::setter_removeAtIndex (GALGAS_strin
                                                                     GALGAS_string & outOperand2,
                                                                     GALGAS_string & outOperand3,
                                                                     GALGAS_string & outOperand4,
-                                                                    GALGAS_observablePropertyMap & outOperand5,
+                                                                    GALGAS_propertyMap & outOperand5,
                                                                     const GALGAS_uint inRemoveIndex,
                                                                     C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) {
@@ -7263,7 +7263,7 @@ void GALGAS_selectionControllerForGeneration::setter_popFirst (GALGAS_string & o
                                                                GALGAS_string & outOperand2,
                                                                GALGAS_string & outOperand3,
                                                                GALGAS_string & outOperand4,
-                                                               GALGAS_observablePropertyMap & outOperand5,
+                                                               GALGAS_propertyMap & outOperand5,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -7294,7 +7294,7 @@ void GALGAS_selectionControllerForGeneration::setter_popLast (GALGAS_string & ou
                                                               GALGAS_string & outOperand2,
                                                               GALGAS_string & outOperand3,
                                                               GALGAS_string & outOperand4,
-                                                              GALGAS_observablePropertyMap & outOperand5,
+                                                              GALGAS_propertyMap & outOperand5,
                                                               C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -7325,7 +7325,7 @@ void GALGAS_selectionControllerForGeneration::method_first (GALGAS_string & outO
                                                             GALGAS_string & outOperand2,
                                                             GALGAS_string & outOperand3,
                                                             GALGAS_string & outOperand4,
-                                                            GALGAS_observablePropertyMap & outOperand5,
+                                                            GALGAS_propertyMap & outOperand5,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -7356,7 +7356,7 @@ void GALGAS_selectionControllerForGeneration::method_last (GALGAS_string & outOp
                                                            GALGAS_string & outOperand2,
                                                            GALGAS_string & outOperand3,
                                                            GALGAS_string & outOperand4,
-                                                           GALGAS_observablePropertyMap & outOperand5,
+                                                           GALGAS_propertyMap & outOperand5,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -7508,12 +7508,12 @@ GALGAS_string GALGAS_selectionControllerForGeneration::getter_mSelectionTypeName
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_observablePropertyMap GALGAS_selectionControllerForGeneration::getter_mSelectionObservablePropertyMapAtIndex (const GALGAS_uint & inIndex,
-                                                                                                                     C_Compiler * inCompiler
-                                                                                                                     COMMA_LOCATION_ARGS) const {
+GALGAS_propertyMap GALGAS_selectionControllerForGeneration::getter_mSelectionObservablePropertyMapAtIndex (const GALGAS_uint & inIndex,
+                                                                                                           C_Compiler * inCompiler
+                                                                                                           COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_selectionControllerForGeneration * p = (cCollectionElement_selectionControllerForGeneration *) attributes.ptr () ;
-  GALGAS_observablePropertyMap result ;
+  GALGAS_propertyMap result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_selectionControllerForGeneration) ;
     result = p->mObject.mProperty_mSelectionObservablePropertyMap ;
@@ -7582,7 +7582,7 @@ GALGAS_string cEnumerator_selectionControllerForGeneration::current_mSelectionTy
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_observablePropertyMap cEnumerator_selectionControllerForGeneration::current_mSelectionObservablePropertyMap (LOCATION_ARGS) const {
+GALGAS_propertyMap cEnumerator_selectionControllerForGeneration::current_mSelectionObservablePropertyMap (LOCATION_ARGS) const {
   const cCollectionElement_selectionControllerForGeneration * p = (const cCollectionElement_selectionControllerForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_selectionControllerForGeneration) ;
   return p->mObject.mProperty_mSelectionObservablePropertyMap ;
