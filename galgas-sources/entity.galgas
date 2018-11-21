@@ -3,6 +3,7 @@
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @entityDeclarationAST : @abstractDeclarationAST {
+  @bool mIsAbstract
   @bool mIsUserDefined
   @lstring mSuperEntityName
   @simpleStoredPropertyList mSimpleStoredAttributeList
@@ -36,6 +37,13 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <entity_declaration> ?let @bool inIsUserDefined ?!@astDeclarationStruct ioDeclarationAST {
+    @bool isAbstract
+    select
+      isAbstract = false
+    or
+      $abstract$
+      isAbstract = true
+    end
     @bool graphicEntity
     select
       graphicEntity = false
@@ -85,6 +93,7 @@ syntax extension easyBindings_syntax {
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST.new {
       !entityName
+      !isAbstract
       !inIsUserDefined
       !superEntityName
       !simpleStoredAttributeList
@@ -93,7 +102,25 @@ syntax extension easyBindings_syntax {
       !obsoleteEntityNames
       !graphicEntity
     }
-  }
+    if isAbstract && graphicEntity then
+      ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
+        !entityName
+        !["" here]
+        !["EBShape" here]
+        !["selectionDisplay" here]
+        !{}
+        !["" here]
+      }
+      ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
+        !entityName
+        !["" here]
+        !["EBShape" here]
+        !["objectDisplay" here]
+        !{}
+        !["" here]
+      }
+    end
+ }
  
   #·····················································································································
 
@@ -134,12 +161,11 @@ override method @entityDeclarationAST thirdAnalysisPhase
   @stringset transientsDeclaredInSuperEntity = {}
   if mIsGraphicEntity then
     transientsDeclaredInSuperEntity += !"selectionDisplay"
+    transientsDeclaredInSuperEntity += !"objectDisplay"
+  end
+  if mIsGraphicEntity & not mIsAbstract then
     if [propertyMap hasKey !"selectionDisplay"] then
-      [propertyMap searchKey
-        !["selectionDisplay" here]
-        ?let @propertyKind kind
-        ?*
-      ]
+      [propertyMap searchKey !["selectionDisplay" here] ?let kind ?*]
       let errorLocation = [propertyMap locationForKey !"selectionDisplay"]
       switch kind
       case property (type accessibility) :
@@ -160,13 +186,8 @@ override method @entityDeclarationAST thirdAnalysisPhase
     else
       error mClassName : "a graphic entity should declare the 'selectionDisplay' transient, with 'EBShape' type"
     end
-    transientsDeclaredInSuperEntity += !"objectDisplay"
     if [propertyMap hasKey !"objectDisplay"] then
-      [propertyMap searchKey
-        !["objectDisplay" here]
-        ?let @propertyKind kind
-        ?*
-      ]
+      [propertyMap searchKey !["objectDisplay" here] ?let @propertyKind kind ?*]
       let errorLocation = [propertyMap locationForKey !"objectDisplay"]
       switch kind
       case property (type accessibility) :
@@ -196,15 +217,10 @@ override method @entityDeclarationAST thirdAnalysisPhase
     !mClassName.string
     !mSuperEntityName.string
     !propertyGenerationList
-#    !{} # simpleStoredPropertyListForGeneration
-#    !{} # transientDefinitionListForGeneration
-#    !{} # toOneEntityRelationshipListForGeneration
-#    !{} # toManyEntityRelationshipListForGeneration
     !mSignatureList
     !mIsGraphicEntity
+    !mIsAbstract
     !transientsDeclaredInSuperEntity
-#    !{} # arrayControllerListForGeneration
-#    !{} # selectionControllerForGeneration
   }
 }
 
@@ -218,6 +234,7 @@ class @entityForGeneration : @abstractFileGeneration {
   @propertyGenerationList mPropertyGenerationList
   @stringset mSignatureSet
   @bool mIsGraphicEntity
+  @bool mIsAbstract
   @stringset mTransientsDeclaredInSuperEntity
 }
 
@@ -246,8 +263,17 @@ override method @entityForGeneration generateCode
       toOnePropertyGenerationList += !toOneProperty
     end
   end
+  var superEntityName = ""
+  if mSuperEntityName != "" then
+    superEntityName = mSuperEntityName
+  elsif mIsGraphicEntity then
+    superEntityName = "EBGraphicManagedObject"
+  else
+    superEntityName = "EBManagedObject"
+  end
   let s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
     !mEntityName
+    !superEntityName
     !mPropertyGenerationList
     !atomicPropertyGenerationList
     !transientPropertyGenerationList
@@ -255,9 +281,8 @@ override method @entityForGeneration generateCode
     ! {} # mToManyEntityRelationshipList
     !mSignatureSet
     !mIsGraphicEntity
+    !mIsAbstract
     !mTransientsDeclaredInSuperEntity
-#    !mArrayControllerForGeneration
-#    !mSelectionControllerListForGeneration
   ]
   let fileName = "entity-" + mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -296,6 +321,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
 }{
   template entityImplementationInSwift "entity.swift.galgasTemplate"
     ?@string ENTITY_NAME
+    ?@string SUPER_CLASS_NAME
     ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
     ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
@@ -303,6 +329,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@toManyEntityRelationshipListForGeneration TO_MANY_RELATIONSHIP_LIST
     ?@stringset SIGNATURE_SET
     ?@bool IS_GRAPHIC_ENTITY
+    ?@bool IS_ABSTRACT
     ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"

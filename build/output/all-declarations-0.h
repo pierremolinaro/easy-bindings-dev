@@ -72,6 +72,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_literal_5F_double,
    kToken_literal_5F_string,
    kToken_comment,
+   kToken_abstract,
    kToken_action,
    kToken_all,
    kToken_arrayController,
@@ -178,7 +179,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 77 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 78 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -696,6 +697,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_56 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -2279,12 +2282,13 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_entityDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                      const class GALGAS_bool & inOperand1,
-                                                                     const class GALGAS_lstring & inOperand2,
-                                                                     const class GALGAS_simpleStoredPropertyList & inOperand3,
-                                                                     const class GALGAS_stringset & inOperand4,
-                                                                     const class GALGAS_lstringlist & inOperand5,
+                                                                     const class GALGAS_bool & inOperand2,
+                                                                     const class GALGAS_lstring & inOperand3,
+                                                                     const class GALGAS_simpleStoredPropertyList & inOperand4,
+                                                                     const class GALGAS_stringset & inOperand5,
                                                                      const class GALGAS_lstringlist & inOperand6,
-                                                                     const class GALGAS_bool & inOperand7
+                                                                     const class GALGAS_lstringlist & inOperand7,
+                                                                     const class GALGAS_bool & inOperand8
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2297,6 +2301,8 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
 
@@ -2498,6 +2504,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 
 class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
+  public : GALGAS_bool mProperty_mIsAbstract ;
   public : GALGAS_bool mProperty_mIsUserDefined ;
   public : GALGAS_lstring mProperty_mSuperEntityName ;
   public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
@@ -2508,6 +2515,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //--- Constructor
   public : cPtr_entityDeclarationAST (const GALGAS_lstring & in_mClassName,
+                                      const GALGAS_bool & in_mIsAbstract,
                                       const GALGAS_bool & in_mIsUserDefined,
                                       const GALGAS_lstring & in_mSuperEntityName,
                                       const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
@@ -2521,6 +2529,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsUserDefined (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mSuperEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_simpleStoredPropertyList getter_mSimpleStoredAttributeList (LOCATION_ARGS) const ;
@@ -6408,6 +6417,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_56 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10863,7 +10874,8 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
                                                                     const class GALGAS_propertyGenerationList & inOperand2,
                                                                     const class GALGAS_stringset & inOperand3,
                                                                     const class GALGAS_bool & inOperand4,
-                                                                    const class GALGAS_stringset & inOperand5
+                                                                    const class GALGAS_bool & inOperand5,
+                                                                    const class GALGAS_stringset & inOperand6
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10876,6 +10888,8 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
 
@@ -10911,6 +10925,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public : GALGAS_propertyGenerationList mProperty_mPropertyGenerationList ;
   public : GALGAS_stringset mProperty_mSignatureSet ;
   public : GALGAS_bool mProperty_mIsGraphicEntity ;
+  public : GALGAS_bool mProperty_mIsAbstract ;
   public : GALGAS_stringset mProperty_mTransientsDeclaredInSuperEntity ;
 
 //--- Constructor
@@ -10919,6 +10934,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
                                      const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
                                      const GALGAS_stringset & in_mSignatureSet,
                                      const GALGAS_bool & in_mIsGraphicEntity,
+                                     const GALGAS_bool & in_mIsAbstract,
                                      const GALGAS_stringset & in_mTransientsDeclaredInSuperEntity
                                      COMMA_LOCATION_ARGS) ;
 
@@ -10931,6 +10947,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mTransientsDeclaredInSuperEntity (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,

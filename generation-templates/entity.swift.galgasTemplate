@@ -27,12 +27,7 @@ end
 //    %!"Entity: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class %!ENTITY_NAME% : %
-if IS_GRAPHIC_ENTITY then
-  %EBGraphicManagedObject%
-else
-  %EBManagedObject%
-end
+class %!ENTITY_NAME% : %!SUPER_CLASS_NAME
 for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
     %,\n         %!ENTITY_NAME%_%![mProperty mPropertyName]
@@ -154,18 +149,6 @@ end
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty saveIntoDictionaryCode]
 end
-
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-% //   self.%![mProperty mPropertyName]%_property.storeIn (dictionary: ioDictionary, forKey: "%![mProperty mPropertyName]%")\n%
-end
-for () in TO_MANY_RELATIONSHIP_LIST do
-% //   store (managedObjectArray: %!mToManyRelationshipName%_property.propval as NSArray, relationshipName:"%!mToManyRelationshipName%", intoDictionary: ioDictionary) ;\n%
-end
-for () in TO_ONE_RELATIONSHIP_LIST do
-  if [[mProperty mInverseRelationMultiplicity] isSingle] then
-% //   store (managedObject:self.%![mProperty mPropertyName]%_property.propval, relationshipName:"%![mProperty mPropertyName]%", intoDictionary: ioDictionary) ;\n%
-end
-end
 %  }
 
   //····················································································································
@@ -178,29 +161,6 @@ end
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty setupFromDictionaryCode]
-end
-
-
-
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-%//    self.%![mProperty mPropertyName]%_property.readFrom (dictionary: inDictionary, forKey:"%![mProperty mPropertyName]%")\n%
-end
-for () in TO_MANY_RELATIONSHIP_LIST do
-% /*   self.%!mToManyRelationshipName%_property.setProp (readEntityArrayFromDictionary (
-      inRelationshipName: "%!mToManyRelationshipName%",
-      inDictionary: inDictionary,
-      managedObjectArray: &managedObjectArray
-    ) as! [%![mRelationshipType swiftTypeName]%]) */\n%
-end
-for () in TO_ONE_RELATIONSHIP_LIST do
-  if [[mProperty mInverseRelationMultiplicity] isSingle] then
-% /*   self.%![mProperty mPropertyName]%_property.setProp (readEntityFromDictionary (
-        inRelationshipName: "%![mProperty mPropertyName]%",
-        inDictionary: inDictionary,
-        managedObjectArray: &managedObjectArray
-      ) as? %![[mProperty mRelationshipType] swiftTypeName]%
-    ) */\n%
-  end
 end
 %  }
 

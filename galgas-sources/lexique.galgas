@@ -14,6 +14,7 @@ $identifier$ ! tokenString  style idfStyle error message "an identifier (beginni
 $Identifier$ ! tokenString  style IdfStyle error message "an identifier (beginning with a upper-case letter)"
 
 list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
+  "abstract",
   "action",
   "all",
   "arrayController",
