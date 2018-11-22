@@ -49,6 +49,7 @@ binding EBFontButton $fontValue : property NSFont ;
 
 extern outlet class EBPopUpButton : NSControl ;
 binding EBPopUpButton $selectedTag : property Int ;
+binding EBPopUpButton $selectedIndex : property enum ;
 
 
 extern outlet class EBGroupButton : NSControl ;

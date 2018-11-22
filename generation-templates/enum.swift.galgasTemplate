@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum %!ENUM_TYPE_NAME% : Int, ValuePropertyProtocol {
+enum %!ENUM_TYPE_NAME% : Int, EnumPropertyProtocol {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
    %  case %!mValue.string% = %![idx string]%\n%
@@ -22,6 +22,18 @@ for () in CONSTANT_ORDERED_LIST do index idx
    %      case .%!mValue.string% : return "%!mValue.string%" // %![idx string]%\n%
 end
 %    }
+  }
+
+  //····················································································································
+  //  Enum generic bindings utility functions
+  //····················································································································
+
+  static func buildfromRawValue (rawValue : Int) -> %!ENUM_TYPE_NAME%? {
+    if let v = %!ENUM_TYPE_NAME% (rawValue:rawValue) {
+      return v
+    }else{
+      return nil
+    }
   }
 
   //····················································································································
@@ -61,10 +73,10 @@ end
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-typealias EBReadOnlyProperty_%!ENUM_TYPE_NAME% = EBReadOnlyValueProperty <%!ENUM_TYPE_NAME%>
-typealias EBTransientProperty_%!ENUM_TYPE_NAME% = EBTransientValueProperty <%!ENUM_TYPE_NAME%>
-typealias EBReadWriteProperty_%!ENUM_TYPE_NAME% = EBReadWriteValueProperty <%!ENUM_TYPE_NAME%>
-typealias EBStoredProperty_%!ENUM_TYPE_NAME% = EBStoredValueProperty <%!ENUM_TYPE_NAME%>
-typealias EBPropertyProxy_%!ENUM_TYPE_NAME% = EBPropertyValueProxy <%!ENUM_TYPE_NAME%>
+typealias EBReadOnlyProperty_%!ENUM_TYPE_NAME% = EBReadOnlyEnumProperty <%!ENUM_TYPE_NAME%>
+typealias EBTransientProperty_%!ENUM_TYPE_NAME% = EBTransientEnumProperty <%!ENUM_TYPE_NAME%>
+typealias EBReadWriteProperty_%!ENUM_TYPE_NAME% = EBReadWriteEnumProperty <%!ENUM_TYPE_NAME%>
+typealias EBStoredProperty_%!ENUM_TYPE_NAME% = EBStoredEnumProperty <%!ENUM_TYPE_NAME%>
+typealias EBPropertyProxy_%!ENUM_TYPE_NAME% = EBPropertyEnumProxy <%!ENUM_TYPE_NAME%>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

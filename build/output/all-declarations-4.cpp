@@ -10322,6 +10322,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "\n"
     "extern outlet class EBPopUpButton : NSControl ;\n"
     "binding EBPopUpButton $selectedTag : property Int ;\n"
+    "binding EBPopUpButton $selectedIndex : property enum ;\n"
     "\n"
     "\n"
     "extern outlet class EBGroupButton : NSControl ;\n"
@@ -10804,18 +10805,18 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "\n"
     "enum " ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << " : Int, ValuePropertyProtocol {\n" ;
-  GALGAS_uint index_540_idx (0) ;
+  result << " : Int, EnumPropertyProtocol {\n" ;
+  GALGAS_uint index_539_idx (0) ;
   if (in_CONSTANT_5F_ORDERED_5F_LIST.isValid ()) {
-    cEnumerator_lstringlist enumerator_540 (in_CONSTANT_5F_ORDERED_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_540.hasCurrentObject ()) {
+    cEnumerator_lstringlist enumerator_539 (in_CONSTANT_5F_ORDERED_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_539.hasCurrentObject ()) {
       result << "  case " ;
-      result << enumerator_540.current_mValue (HERE).getter_string (HERE).stringValue () ;
+      result << enumerator_539.current_mValue (HERE).getter_string (HERE).stringValue () ;
       result << " = " ;
-      result << index_540_idx.getter_string (SOURCE_FILE ("enum.swift.galgasTemplate", 12)).stringValue () ;
+      result << index_539_idx.getter_string (SOURCE_FILE ("enum.swift.galgasTemplate", 12)).stringValue () ;
       result << "\n" ;
-      index_540_idx.increment () ;
-      enumerator_540.gotoNextObject () ;
+      index_539_idx.increment () ;
+      enumerator_539.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -10824,22 +10825,38 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "\n"
     "  func descriptionForExplorer () -> String {\n"
     "    switch self {\n" ;
-  GALGAS_uint index_828_idx (0) ;
+  GALGAS_uint index_827_idx (0) ;
   if (in_CONSTANT_5F_ORDERED_5F_LIST.isValid ()) {
-    cEnumerator_lstringlist enumerator_828 (in_CONSTANT_5F_ORDERED_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_828.hasCurrentObject ()) {
+    cEnumerator_lstringlist enumerator_827 (in_CONSTANT_5F_ORDERED_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_827.hasCurrentObject ()) {
       result << "      case ." ;
-      result << enumerator_828.current_mValue (HERE).getter_string (HERE).stringValue () ;
+      result << enumerator_827.current_mValue (HERE).getter_string (HERE).stringValue () ;
       result << " : return \"" ;
-      result << enumerator_828.current_mValue (HERE).getter_string (HERE).stringValue () ;
+      result << enumerator_827.current_mValue (HERE).getter_string (HERE).stringValue () ;
       result << "\" // " ;
-      result << index_828_idx.getter_string (SOURCE_FILE ("enum.swift.galgasTemplate", 22)).stringValue () ;
+      result << index_827_idx.getter_string (SOURCE_FILE ("enum.swift.galgasTemplate", 22)).stringValue () ;
       result << "\n" ;
-      index_828_idx.increment () ;
-      enumerator_828.gotoNextObject () ;
+      index_827_idx.increment () ;
+      enumerator_827.gotoNextObject () ;
     }
   }
   result << "    }\n"
+    "  }\n"
+    "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "  //  Enum generic bindings utility functions\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
+    "  static func buildfromRawValue (rawValue : Int) -> " ;
+  result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
+  result << "\? {\n"
+    "    if let v = " ;
+  result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
+  result << " (rawValue:rawValue) {\n"
+    "      return v\n"
+    "    }else{\n"
+    "      return nil\n"
+    "    }\n"
     "  }\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -10877,7 +10894,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "    var result = " ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << "." ;
-  result << in_CONSTANT_5F_ORDERED_5F_LIST.getter_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("enum.swift.galgasTemplate", 51)).getter_string (HERE).stringValue () ;
+  result << in_CONSTANT_5F_ORDERED_5F_LIST.getter_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("enum.swift.galgasTemplate", 63)).getter_string (HERE).stringValue () ;
   result << "\n"
     "    if let number = object as\? NSNumber, let v = " ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
@@ -10895,27 +10912,27 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "\n"
     "typealias EBReadOnlyProperty_" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << " = EBReadOnlyValueProperty <" ;
+  result << " = EBReadOnlyEnumProperty <" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << ">\n"
     "typealias EBTransientProperty_" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << " = EBTransientValueProperty <" ;
+  result << " = EBTransientEnumProperty <" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << ">\n"
     "typealias EBReadWriteProperty_" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << " = EBReadWriteValueProperty <" ;
+  result << " = EBReadWriteEnumProperty <" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << ">\n"
     "typealias EBStoredProperty_" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << " = EBStoredValueProperty <" ;
+  result << " = EBStoredEnumProperty <" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << ">\n"
     "typealias EBPropertyProxy_" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
-  result << " = EBPropertyValueProxy <" ;
+  result << " = EBPropertyEnumProxy <" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << ">\n"
     "\n"

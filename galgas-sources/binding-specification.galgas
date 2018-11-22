@@ -133,19 +133,25 @@ proc buildBindingSpecificationMap
   for () in inBindingSpecificationListMap do
     @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
     for () in mOutletClassBindingSpecificationModelList do
-      [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]
-      @typeKind typeKind
-      switch classKind
-      case prefs, simpleClass :
-        error mModelTypeName : "an atomic class is required here" : typeKind
-      case atomic (@typeKind kind) :
-        typeKind = kind
-      case document (*) :
-        error mModelTypeName : "an atomic class is required here" : typeKind
-      case entity (2*) :
-        error mModelTypeName : "an atomic class is required here" : typeKind
+      if mModelTypeName.string == "enum" then
+        outletBindingSpecificationModelList +=
+          !.enumType {!enumTypeName: "" !constantMap: {}} # Any enum type
+          !mModelShouldBeWritableProperty
+      else
+        [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]
+        @typeKind typeKind
+        switch classKind
+        case prefs, simpleClass :
+          error mModelTypeName : "an atomic class is required here" : typeKind
+        case atomic (@typeKind kind) :
+          typeKind = kind
+        case document (*) :
+          error mModelTypeName : "an atomic class is required here" : typeKind
+        case entity (2*) :
+          error mModelTypeName : "an atomic class is required here" : typeKind
+        end
+        outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
       end
-      outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
     end
     @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
     for () in mBindingOptionList do
