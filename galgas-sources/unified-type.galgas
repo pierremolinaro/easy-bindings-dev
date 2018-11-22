@@ -2,6 +2,33 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+getter @typeKind typeName -> @string {
+  switch self
+  case boolType :
+    result = "Bool"
+  case integerType :
+    result = "Int"
+  case doubleType :
+    result = "Double"
+  case stringType :
+    result = "String"
+  case dateType :
+    result = "Date"
+  case fontType :
+    result = "NSFont"
+  case colorType :
+    result = "NSColor"
+  case enumType (typeName *) :
+    result = typeName
+  case entityType (typeName *) :
+    result = typeName
+  case classType (typeName) :
+    result = typeName
+  case transientPropertyExternType (typeName) :
+    result = typeName
+  end
+}
+
 getter @typeKind isComparable -> @bool outResult {
   switch self
   case boolType, integerType, doubleType, stringType, dateType :
@@ -38,15 +65,6 @@ getter @typeKind isGraphic -> @bool outResult {
   end
 }
 
-##·······················································································································
-#
-#shared map @unifiedTypeMap {
-#  insert insertKey error message "the '%K' type is already declared"
-#  search searchKey error message "the '%K' type is not declared"
-#  @typeKind mTypeKind
-#  @actionMap mActionMap
-#}
-#
 #·······················································································································
 
 list @typeKindList {
@@ -55,7 +73,20 @@ list @typeKindList {
 
 #·······················································································································
 
-#method @astDeclaration typeInventory ?!@unifiedTypeMap unused ioUnifiedTypeMap {}
+getter @propertyKind typeName -> @string {
+  switch self
+  case property (type *) :
+    result = [type typeName]
+  case toMany (typeName 3*) :
+    result = typeName
+  case toOne (typeName 2*) :
+    result = typeName
+  case arrayController (typeName 2*) :
+    result = typeName
+  case selectionController (typeName) :
+    result = typeName
+  end
+}
 
 #·······················································································································
 

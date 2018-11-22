@@ -1460,6 +1460,11 @@ class GALGAS_propertyAccessibility : public AC_GALGAS_root {
   } enumeration ;
   
 //--------------------------------- Private data member
+  private : AC_GALGAS_enumAssociatedValues mAssociatedValues ;
+  public : VIRTUAL_IN_DEBUG const cEnumAssociatedValues * unsafePointer (void) const {
+    return mAssociatedValues.unsafePointer () ;
+  }
+
   private : enumeration mEnum ;
 
 //--------------------------------- Accessors
@@ -1482,7 +1487,8 @@ class GALGAS_propertyAccessibility : public AC_GALGAS_root {
 
   public : static class GALGAS_propertyAccessibility constructor_stored (LOCATION_ARGS) ;
 
-  public : static class GALGAS_propertyAccessibility constructor_transient (LOCATION_ARGS) ;
+  public : static class GALGAS_propertyAccessibility constructor_transient (const class GALGAS_bool & inOperand0
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -1493,6 +1499,10 @@ class GALGAS_propertyAccessibility : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_transient (class GALGAS_bool & outArgument0,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const ;
+
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
@@ -1512,6 +1522,26 @@ class GALGAS_propertyAccessibility : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyAccessibility ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                   @propertyAccessibility enum, associated values                                    *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_propertyAccessibility_transient : public cEnumAssociatedValues {
+  public : const GALGAS_bool mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_propertyAccessibility_transient (const GALGAS_bool & inAssociatedValue0
+                                                                  COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_propertyAccessibility_transient (void) {}
+} ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -2035,9 +2065,11 @@ class cEnumAssociatedValues_classKind_document : public cEnumAssociatedValues {
 
 class cEnumAssociatedValues_classKind_entity : public cEnumAssociatedValues {
   public : const GALGAS_bool mAssociatedValue0 ;
+  public : const GALGAS_bool mAssociatedValue1 ;
 
 //--- Constructor
-  public : cEnumAssociatedValues_classKind_entity (const GALGAS_bool & inAssociatedValue0
+  public : cEnumAssociatedValues_classKind_entity (const GALGAS_bool & inAssociatedValue0,
+                                                   const GALGAS_bool & inAssociatedValue1
                                                    COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,

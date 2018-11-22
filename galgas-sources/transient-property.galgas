@@ -79,6 +79,28 @@ syntax extension easyBindings_syntax {
             ?let @lstring inRootEntity
             ?!@astDeclarationStruct ioDeclarationAST
   {
+    $abstract$
+    $transient$
+    $Identifier$ ?let transientTypeName
+    $identifier$ ?let @lstring transientName
+    $;$
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
+      !inCurrentEntity
+      !inRootEntity
+      !transientTypeName
+      !transientName
+      !{}
+      !["" here]
+    }
+  }
+
+  #·····················································································································
+  
+  rule <transient_declaration>
+            ?let @lstring inCurrentEntity
+            ?let @lstring inRootEntity
+            ?!@astDeclarationStruct ioDeclarationAST
+  {
     $transient$
     $Identifier$ ?let transientTypeName
     $identifier$ ?let @lstring transientName
@@ -127,10 +149,14 @@ override method @transientDeclarationAST firstAnalysisPhase
     case simpleClass :
       error mTransientTypeName : "an atomic class is required here"
     case atomic (kind) :
-      [!?mPropertyMap insertKey !mTransientName !.property {!type: kind !accessibility: .transient} !{}]
+      [!?mPropertyMap insertKey
+        !mTransientName
+        !.property {!type: kind !accessibility: .transient {!isAbstract:[mDependencyList length] == 0}}
+        !{}
+      ]
     case document (*) :
       error mTransientTypeName : "an atomic class is required here"
-    case entity (*) :
+    case entity (2*) :
       error mTransientTypeName : "an atomic class is required here"
     end
   end
@@ -155,7 +181,7 @@ override method @transientDeclarationAST secondAnalysisPhase
     typeKind = kind
   case document (*) :
     error mTransientTypeName: "an atomic class is required here" : typeKind
-  case entity (*) :
+  case entity (2*) :
     error mTransientTypeName: "an atomic class is required here" : typeKind
   end
 #--- Root properties
@@ -211,7 +237,7 @@ override method @transientDeclarationAST secondAnalysisPhase
       generate = true
     case atomic (*) :
       generate = true
-    case entity (graphic):
+    case entity (graphic *):
       if graphic then
         generate = (mTransientName.string != "selectionDisplay") & (mTransientName.string != "objectDisplay")
       else

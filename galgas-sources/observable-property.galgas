@@ -297,15 +297,15 @@ method @observablePropertyAST analyzeObservableProperty
   switch self
   case versionShouldChangeProperty (*) :
     let type = @typeKind.boolType
-    outKind = .property {!type: type !accessibility: .transient}
+    outKind = .property {!type: type !accessibility: .transient {!isAbstract: false}}
     outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case versionProperty (*) :
     let type = @typeKind.integerType
-    outKind = .property {!type: type !accessibility: .transient}
+    outKind = .property {!type: type !accessibility: .transient {!isAbstract: false}}
     outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case signatureProperty (*) :
     let type = @typeKind.integerType
-    outKind = .property {!type: type !accessibility: .transient}
+    outKind = .property {!type: type !accessibility: .transient {!isAbstract: false}}
     outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case rootProperty (@lstring propertyName) :
     [inRootPropertyMap searchKey
@@ -326,7 +326,7 @@ method @observablePropertyAST analyzeObservableProperty
     case toMany (4*) :
       error propertyName : "an array property cannot accept 'none'" : outKind
     case toOne (3*) : # Ok
-      outKind = .property {!type: .boolType !accessibility: .transient}
+      outKind = .property {!type: .boolType !accessibility: .transient {!isAbstract: false}}
     case arrayController (3*) :
       error propertyName : "an array controller cannot accept 'none'" : outKind
     case selectionController (*) :
@@ -344,7 +344,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a property cannot accept any option" : outKind
     case toMany (4*) :
       if optionName.string == "count" then
-        outKind = .property {!type: .integerType !accessibility: .transient}
+        outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
       else
         error optionName : "unknown option (accepted : 'count')" : outKind
       end
@@ -352,9 +352,9 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a toOne property cannot accept any option" : outKind
     case arrayController (3*) :
       if optionName.string == "count" then
-        outKind = .property {!type: .integerType !accessibility: .transient}
+        outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
       elsif optionName.string == "empty" then
-        outKind = .property {!type: .boolType !accessibility: .transient}
+        outKind = .property {!type: .boolType !accessibility: .transient {!isAbstract: false}}
       else
         error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
       end
@@ -420,7 +420,7 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "an atomic property accepts no option" : outKind
     case toMany (4*) :
       if optionName.string == "count" then
-        outKind = .property {!type: .integerType !accessibility: .transient}
+        outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
       else
         error optionName : "unknown option (accepted : 'count')" : outKind
       end
@@ -428,9 +428,9 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a toOne property accepts no option" : outKind
     case arrayController (3*) :
       if optionName.string == "count" then
-        outKind = .property {!type: .integerType !accessibility: .transient}
+        outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
       elsif optionName.string == "empty" then
-        outKind = .property {!type: .boolType !accessibility: .transient}
+        outKind = .property {!type: .boolType !accessibility: .transient {!isAbstract: false}}
       else
         error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
       end
@@ -504,7 +504,7 @@ method @observablePropertyAST analyzeObservableProperty
     case toMany (4*) :
       error propertyName : "a toOne property does not accept 'none'" : outKind
     case toOne (3*) :
-      outKind = .property {!type: .boolType !accessibility: .transient}
+      outKind = .property {!type: .boolType !accessibility: .transient {!isAbstract: false}}
     case arrayController (3*) :
       error propertyName : "an array controller does not accept 'none'" : outKind
     case selectionController (*) :
@@ -545,9 +545,9 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a toOne property cannot accept any option" : outKind
     case arrayController (3*) :
       if optionName.string == "count" then
-        outKind = .property {!type: .integerType !accessibility: .transient}
+        outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
       elsif optionName.string == "empty" then
-        outKind = .property {!type: .boolType !accessibility: .transient}
+        outKind = .property {!type: .boolType !accessibility: .transient {!isAbstract: false}}
       else
         error optionName : "unknown option (accepted : 'count', 'empty')" : outKind
       end
@@ -572,7 +572,7 @@ method @observablePropertyAST analyzeObservableProperty
       if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
         outKind = .toMany {
           !typeName: typeName
-          !accessibility: .transient
+          !accessibility: .transient {!isAbstract: false}
           !graphic: graphic
           !isEntity: isEntity
         }
@@ -594,9 +594,9 @@ method @observablePropertyAST analyzeObservableProperty
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     [inBoundModelPropertyMap searchKey !controllerName ?2*]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
-      outKind = .property {!type: .integerType !accessibility: .transient}
+      outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
     elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
-      outKind = .property {!type: .integerType !accessibility: .transient}
+      outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
     else
       error propertyName : "unknown option" : outKind
     end

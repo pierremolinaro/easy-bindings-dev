@@ -137,7 +137,7 @@ override method @entityDeclarationAST firstAnalysisPhase
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
     !mClassName
-    !.entity {!isGraphic: mIsGraphicEntity}
+    !.entity {!isGraphic: mIsGraphicEntity !isAbstract: mIsAbstract}
     !{}
     !actionMap
     !{}
@@ -157,57 +157,46 @@ override method @entityDeclarationAST thirdAnalysisPhase
     ?*
     ?let @propertyGenerationList propertyGenerationList
   ]
-#--- Check required transients are implemented
-  @stringset transientsDeclaredInSuperEntity = {}
-  if mIsGraphicEntity then
-    transientsDeclaredInSuperEntity += !"selectionDisplay"
-    transientsDeclaredInSuperEntity += !"objectDisplay"
-  end
-  if mIsGraphicEntity & not mIsAbstract then
-    if [propertyMap hasKey !"selectionDisplay"] then
-      [propertyMap searchKey !["selectionDisplay" here] ?let kind ?*]
-      let errorLocation = [propertyMap locationForKey !"selectionDisplay"]
-      switch kind
-      case property (type accessibility) :
-        if not [accessibility isTransient] then
-          error errorLocation : "the 'selectionDisplay' property should be a transient"
-        elsif [type swiftTypeName] != "EBShape" then
-          error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-        end
-      case toMany (4*) :
-        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case toOne (3*) :
-        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case arrayController (3*) :
-        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case selectionController (*) :
-        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+#--- If super entity is abstract, and current is not, check all transient properties are implemented
+  if (mSuperEntityName.string != "") & not mIsAbstract then
+    [ioSemanticContext.mClassMap searchKey
+      !mSuperEntityName
+      ?let @classKind superClassKind
+      ?let @propertyMap superPropertyMap
+      ?2*
+    ]
+    switch superClassKind
+    case prefs :
+      error mSuperEntityName : "prefs cannot be a super entity"
+    case simpleClass :
+      error mSuperEntityName : "a simple class cannot be a super entity"
+    case atomic (*) :
+      error mSuperEntityName : "an atomic class cannot be a super entity"
+    case document (*) :
+      error mSuperEntityName : "a document cannot be a super entity"
+    case entity (@bool isGraphic @bool isAbstract) :
+      if isGraphic & not mIsGraphicEntity then
+        error mClassName : "this entity should be declared with 'graphic', as super entity is graphic"
       end
-    else
-      error mClassName : "a graphic entity should declare the 'selectionDisplay' transient, with 'EBShape' type"
-    end
-    if [propertyMap hasKey !"objectDisplay"] then
-      [propertyMap searchKey !["objectDisplay" here] ?let @propertyKind kind ?*]
-      let errorLocation = [propertyMap locationForKey !"objectDisplay"]
-      switch kind
-      case property (type accessibility) :
-        if not [accessibility isTransient] then
-          error errorLocation : "the 'selectionDisplay' property should be a transient"
-        elsif [type swiftTypeName] != "EBShape" then
-          error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
+      if isAbstract & not mIsAbstract then # Check all abstract properties are defined
+        for superProperty in superPropertyMap do
+          if [superProperty isAbstract] then
+            if [propertyMap hasKey !superProperty.lkey.string] then
+              [propertyMap searchKey !superProperty.lkey ?let @propertyKind propertyKind ?*]
+              let typeName = [propertyKind typeName]
+              let superTypeName = [superProperty.mKind typeName]
+              if typeName != superTypeName then
+                error [propertyMap locationForKey !superProperty.lkey] : "type '" + superTypeName + "' is required by declaration in super entity"
+              end
+            else
+              error mClassName : "transient '" + superProperty.lkey + "' should be defined, it is declared abstract in super entity"
+            end
+          end
         end
-      case toMany (4*) :
-        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case toOne (3*) :
-        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case arrayController (3*) :
-        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
-      case selectionController (*) :
-        error errorLocation : "the 'selectionDisplay' transient type should be 'EBShape'"
       end
-    else
-      error mClassName : "a graphic entity should declare the 'objectDisplay' transient, with 'EBShape' type"
     end
+  
+  
   end
 #--- Generation    
   ioGeneration.mEntityListForGeneration +=
@@ -220,7 +209,6 @@ override method @entityDeclarationAST thirdAnalysisPhase
     !mSignatureList
     !mIsGraphicEntity
     !mIsAbstract
-    !transientsDeclaredInSuperEntity
   }
 }
 
@@ -235,7 +223,6 @@ class @entityForGeneration : @abstractFileGeneration {
   @stringset mSignatureSet
   @bool mIsGraphicEntity
   @bool mIsAbstract
-  @stringset mTransientsDeclaredInSuperEntity
 }
 
 #·······················································································································
@@ -282,7 +269,6 @@ override method @entityForGeneration generateCode
     !mSignatureSet
     !mIsGraphicEntity
     !mIsAbstract
-    !mTransientsDeclaredInSuperEntity
   ]
   let fileName = "entity-" + mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -330,7 +316,6 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@stringset SIGNATURE_SET
     ?@bool IS_GRAPHIC_ENTITY
     ?@bool IS_ABSTRACT
-    ?@stringset TRANSIENTS_DECLARED_IN_SUPER_ENTITY
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
     ?@entityListForGeneratingEBManagedObjectContext ENTITY_LIST

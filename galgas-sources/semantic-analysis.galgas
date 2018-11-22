@@ -7,7 +7,7 @@ enum @classKind {
   case simpleClass
   case atomic (@typeKind kind)
   case document (@lstring rootEntityName)
-  case entity (@bool isGraphic)
+  case entity (@bool isGraphic @bool isAbstract)
 }
 
 #·······················································································································
@@ -74,7 +74,7 @@ map @classMap {
 enum @propertyAccessibility {
   case stored
   case proxy
-  case transient
+  case transient (@bool isAbstract)
 }
 
 #·······················································································································
@@ -110,6 +110,19 @@ map @propertyMap {
   @actionMap mActionMap
   insert insertKey error message "the '%K' property is already declared in %L"
   search searchKey error message "there is no '%K' property"
+}
+
+#·······················································································································
+
+getter @propertyMap-element isAbstract -> @bool {
+  result = false
+  if [mKind isProperty] then
+    [mKind property ?1* ?accessibility:let @propertyAccessibility accessibility]
+    if [accessibility isTransient] then
+      [accessibility transient ?isAbstract: let ab]
+      result = ab
+    end
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
