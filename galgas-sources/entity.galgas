@@ -158,6 +158,7 @@ override method @entityDeclarationAST thirdAnalysisPhase
     ?let @propertyGenerationList propertyGenerationList
   ]
 #--- If super entity is abstract, and current is not, check all transient properties are implemented
+  @stringset overridenTransients = {}
   if (mSuperEntityName.string != "") & not mIsAbstract then
     [ioSemanticContext.mClassMap searchKey
       !mSuperEntityName
@@ -182,14 +183,17 @@ override method @entityDeclarationAST thirdAnalysisPhase
         for superProperty in superPropertyMap do
           if [superProperty isAbstract] then
             if [propertyMap hasKey !superProperty.lkey.string] then
+              overridenTransients += !superProperty.lkey.string
               [propertyMap searchKey !superProperty.lkey ?let @propertyKind propertyKind ?*]
               let typeName = [propertyKind typeName]
               let superTypeName = [superProperty.mKind typeName]
               if typeName != superTypeName then
-                error [propertyMap locationForKey !superProperty.lkey] : "type '" + superTypeName + "' is required by declaration in super entity"
+                error [propertyMap locationForKey !superProperty.lkey]
+                  : "type '" + superTypeName + "' is required by declaration in super entity"
               end
             else
-              error mClassName : "transient '" + superProperty.lkey + "' should be defined, it is declared abstract in super entity"
+              error mClassName
+                : "transient '" + superProperty.lkey + "' should be defined, it is declared abstract in super entity"
             end
           end
         end
@@ -209,6 +213,7 @@ override method @entityDeclarationAST thirdAnalysisPhase
     !mSignatureList
     !mIsGraphicEntity
     !mIsAbstract
+    !overridenTransients
   }
 }
 
@@ -223,6 +228,7 @@ class @entityForGeneration : @abstractFileGeneration {
   @stringset mSignatureSet
   @bool mIsGraphicEntity
   @bool mIsAbstract
+  @stringset mOverridenTransients
 }
 
 #·······················································································································
@@ -269,6 +275,7 @@ override method @entityForGeneration generateCode
     !mSignatureSet
     !mIsGraphicEntity
     !mIsAbstract
+    !mOverridenTransients
   ]
   let fileName = "entity-" + mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -316,6 +323,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@stringset SIGNATURE_SET
     ?@bool IS_GRAPHIC_ENTITY
     ?@bool IS_ABSTRACT
+    ?@stringset OVERRIDEN_TRANSIENTS
 
   template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
     ?@entityListForGeneratingEBManagedObjectContext ENTITY_LIST

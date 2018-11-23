@@ -29,7 +29,7 @@ end
 
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty declarationCode]
+  ![mProperty declarationCode ![@stringset emptySet]]
 end
 %
   //····················································································································

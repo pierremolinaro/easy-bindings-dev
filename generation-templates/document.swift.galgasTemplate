@@ -10,7 +10,7 @@ import Cocoa
 
 %
 for () in DOCUMENT_PROPERTY_LIST do
-  ![mProperty declarationCode]
+  ![mProperty declarationCode ![@stringset emptySet]]
 end
 %
   //····················································································································

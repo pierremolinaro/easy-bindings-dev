@@ -22,7 +22,7 @@ getter @propertyGeneration prefKeyDefinitionCode -> @string { result = "" }
 
 #·······················································································································
 
-abstract getter @propertyGeneration declarationCode -> @string
+abstract getter @propertyGeneration declarationCode ?let @stringset inOverriddenTransients -> @string
 
 #·······················································································································
 

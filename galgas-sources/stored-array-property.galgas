@@ -112,7 +112,7 @@ override getter @atomicArrayGeneration prefKeyDefinitionCode -> @string {
 
 #·······················································································································
 
-override getter @atomicArrayGeneration declarationCode -> @string {
+override getter @atomicArrayGeneration declarationCode ?let @stringset unused inOverriddenTransients -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Property array: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"

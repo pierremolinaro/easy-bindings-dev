@@ -147,7 +147,7 @@ list @toOnePropertyGenerationList {
 
 #·······················································································································
 
-override getter @toOnePropertyGeneration declarationCode -> @string {
+override getter @toOnePropertyGeneration declarationCode ?let @stringset unused inOverriddenTransients -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To one property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"

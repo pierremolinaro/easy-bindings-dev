@@ -165,7 +165,7 @@ override getter @atomicPropertyGeneration prefKeyDefinitionCode -> @string {
 
 #·······················································································································
 
-override getter @atomicPropertyGeneration declarationCode -> @string {
+override getter @atomicPropertyGeneration declarationCode ?let @stringset unused inOverriddenTransients -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Atomic property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
