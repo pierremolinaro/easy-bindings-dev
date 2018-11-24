@@ -178,17 +178,5 @@ enum @propertyMultiplicity {
   case collection
 }
 
-#·······················································································································
-
-map @observablePropertyMap {
-  @propertyKind mKind
-  @string mInverseRelationshipName # "" if not a relationship
-  @actionMap mActionMap
-  @bool mCascade
-  insert insertKey error message "the '%K' property is already declared"
-  search searchKey error message "the '%K' property is not declared"
-  search searchForInverseRelationship error message "the destination entity does not define the '%K' relationship"
-}
-
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

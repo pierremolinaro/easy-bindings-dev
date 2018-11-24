@@ -52,10 +52,10 @@ end
 %  //--- Install undoers and opposite setter for relationships
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
-  %    self.%!mToManyRelationshipName%_property.undoManager = self.undoManager ()\n%
-  if mOppositeRelationshipName != "" then
-  %    self.%!mToManyRelationshipName%_property.setOppositeRelationship = { [weak self] (_ inManagedObject : %![mRelationshipType swiftTypeName]%?) in\n%
-  %      inManagedObject?.%!mOppositeRelationshipName%_property.setProp (self)\n%
+  %    self.%![mProperty mPropertyName]%_property.undoManager = self.undoManager\n%
+  if [mProperty mOppositeRelationshipName] != "" then
+  %    self.%![mProperty mPropertyName]%_property.setOppositeRelationship = { [weak self] (_ inManagedObject : %![[mProperty mRelationshipType] swiftTypeName]%?) in\n%
+  %      inManagedObject?.%![mProperty mOppositeRelationshipName]%_property.setProp (self)\n%
   %    }\n%
   end
 end
@@ -106,11 +106,11 @@ end
 %    createEntryForTitle ("Transients", y:&y, view:view)\n%
 for () in TO_MANY_RELATIONSHIP_LIST do
   %    createEntryForToManyRelationshipNamed (\n%
-  %      "%!mToManyRelationshipName%",\n%
-  %      idx:%!mToManyRelationshipName%_property.mEasyBindingsObjectIndex,\n%
+  %      "%![mProperty mPropertyName]%",\n%
+  %      idx:%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
   %      y: &y,\n%
   %      view: view,\n%
-  %      valueExplorer:&%!mToManyRelationshipName%_property.mValueExplorer\n%
+  %      valueExplorer:&%![mProperty mPropertyName]%_property.mValueExplorer\n%
   %    )\n%
 end
 %    createEntryForTitle ("ToMany Relationships", y:&y, view:view)\n%
@@ -170,27 +170,32 @@ end
   override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
-  if mCascading then
+  if [mProperty mCascading] then
+    %  //--- Cascading toMany %![mProperty mPropertyName]%\n%
     %    do{\n%
-    %      let objects = self.%!mToManyRelationshipName%_property.propval\n%
-    %      self.%!mToManyRelationshipName%_property.setProp ([])\n%
+    %      let objects = self.%![mProperty mPropertyName]%_property.propval\n%
+    %      self.%![mProperty mPropertyName]%_property.setProp ([])\n%
     %      self.managedObjectContext ()?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
     %    }\n%
   else
-    %    self.%!mToManyRelationshipName%_property.setProp ([]) // Set relationships to nil\n%
+    %  //--- Nullify toMany %![mProperty mPropertyName]%\n%
+    %    self.%![mProperty mPropertyName]%_property.setProp ([]) // Set relationship to empty array\n%
   end
 end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if [mProperty mCascading] then
+    %  //--- Cascading toOne %![mProperty mPropertyName]%\n%
     %    if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
     %      self.%![mProperty mPropertyName]%_property.setProp (nil)\n%
     %      self.managedObjectContext ()?.internalRemoveManagedObject (object, &ioObjectsToRemove) // Cascade removing from moc\n%
     %    }\n%
   else
+    %  //--- Nullify toOne %![mProperty mPropertyName]%\n%
     %    self.%![mProperty mPropertyName]%_property.setProp (nil) // Set relationship to nil\n%
   end
 end
-%    super.cascadeObjectRemoving (&ioObjectsToRemove)
+%  //---
+    super.cascadeObjectRemoving (&ioObjectsToRemove)
   }
 
   //····················································································································

@@ -118,7 +118,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
         !mToManyRelationshipName.string
         !kind
         !mOppositeRelationshipName
-#        !mCascading
+        !mCascading
       }
     end
   end
@@ -129,7 +129,13 @@ override method @toManyRelationshipAST firstAnalysisPhase
 class @toManyPropertyGeneration : @propertyGeneration {
   @propertyKind mRelationshipType
   @string mOppositeRelationshipName
-#  @bool mCascading
+  @bool mCascading
+}
+
+#·······················································································································
+
+list @toManyPropertyGenerationList {
+  @toManyPropertyGeneration mProperty
 }
 
 #·······················································································································
@@ -194,18 +200,6 @@ override getter @toManyPropertyGeneration objectAccessibilityCode -> @string {
 override getter @toManyPropertyGeneration clearObjectExplorerCode -> @string {
   result  = "  //--- To many property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   GENERATION TYPES                      
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-list @toManyEntityRelationshipListForGeneration {
-  @string mToManyRelationshipName
-  @typeKind mRelationshipType
-  @string mOppositeRelationshipName
-  @observablePropertyMap mDestinationEntityObservablePropertyMap
-  @bool mCascading
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
