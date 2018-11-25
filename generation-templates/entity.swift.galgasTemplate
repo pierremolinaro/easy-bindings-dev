@@ -175,7 +175,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %    do{\n%
     %      let objects = self.%![mProperty mPropertyName]%_property.propval\n%
     %      self.%![mProperty mPropertyName]%_property.setProp ([])\n%
-    %      self.managedObjectContext ()?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
+    %      self.managedObjectContext?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
     %    }\n%
   else
     %  //--- Nullify toMany %![mProperty mPropertyName]%\n%
@@ -187,7 +187,7 @@ for () in TO_ONE_RELATIONSHIP_LIST do
     %  //--- Cascading toOne %![mProperty mPropertyName]%\n%
     %    if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
     %      self.%![mProperty mPropertyName]%_property.setProp (nil)\n%
-    %      self.managedObjectContext ()?.internalRemoveManagedObject (object, &ioObjectsToRemove) // Cascade removing from moc\n%
+    %      self.managedObjectContext?.internalRemoveManagedObject (object, &ioObjectsToRemove) // Cascade removing from moc\n%
     %    }\n%
   else
     %  //--- Nullify toOne %![mProperty mPropertyName]%\n%

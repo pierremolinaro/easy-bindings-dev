@@ -4581,7 +4581,7 @@ static GALGAS_string extensionGetter_arrayControllerPropertyGeneration_configura
   if (kBoolTrue == test_0) {
     test_0 = object->mProperty_mUsesManagedObjectContext.boolEnum () ;
     if (kBoolTrue == test_0) {
-      result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 243)).add_operation (GALGAS_string (".setManagedObjectContext (self.managedObjectContext ())\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 243)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 243)) ;
+      result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 243)).add_operation (GALGAS_string (".setManagedObjectContext (self.managedObjectContext)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 243)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 243)) ;
     }
   }
   result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 245)).add_operation (GALGAS_string (".bind_model (self."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 245)).add_operation (object->mProperty_mModelString, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 245)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 245)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 245)) ;
@@ -5245,7 +5245,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
       result << "> ()\n"
         "        newSelectedObjectSet.insert (newObject)\n"
-        "        mSelectedSet.mSet = newSelectedObjectSet\n"
+        "        self.mSelectedSet.mSet = newSelectedObjectSet\n"
         "        model.setProp (array)\n"
         "      }\n"
         "    }\n"
@@ -5679,9 +5679,9 @@ static void extensionMethod_arrayControllerGeneration_generateCode (const cPtr_a
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_arrayControllerGeneration * object = (const cPtr_arrayControllerGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerGeneration) ;
-  GALGAS_string var_s_12101 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 311)), object->mProperty_mModelString, object->mProperty_mArrayControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mElementTypeName, object->mProperty_mElementTypeIsGraphic COMMA_SOURCE_FILE ("array-controller.galgas", 309))) ;
+  GALGAS_string var_s_12098 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 311)), object->mProperty_mModelString, object->mProperty_mArrayControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mElementTypeName, object->mProperty_mElementTypeIsGraphic COMMA_SOURCE_FILE ("array-controller.galgas", 309))) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 320)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 320)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 320)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 320)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 320)), var_s_12101, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 318)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 320)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 320)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 320)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 320)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 320)), var_s_12098, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 318)) ;
   }
 }
 
@@ -6197,7 +6197,7 @@ static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_confi
   if (kBoolTrue == test_0) {
     test_0 = object->mProperty_mUsesManagedObjectContext.boolEnum () ;
     if (kBoolTrue == test_0) {
-      result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 455)).add_operation (GALGAS_string (".setManagedObjectContext (self.managedObjectContext ())\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 455)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 455)) ;
+      result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 455)).add_operation (GALGAS_string (".setManagedObjectContext (self.managedObjectContext)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 455)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 455)) ;
     }
   }
   result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 457)).add_operation (GALGAS_string (".bind_model (self."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 457)).add_operation (object->mProperty_mModelString, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 457)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 457)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 457)) ;

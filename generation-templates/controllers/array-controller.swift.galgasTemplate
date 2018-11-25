@@ -458,7 +458,7 @@ case entityArray :
       //--- New object is the selection
         var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
         newSelectedObjectSet.insert (newObject)
-        mSelectedSet.mSet = newSelectedObjectSet
+        self.mSelectedSet.mSet = newSelectedObjectSet
         model.setProp (array)
       }
     }
