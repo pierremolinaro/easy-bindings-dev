@@ -244,11 +244,6 @@ end
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty objectAccessibilityCode]
 end
-for () in TO_ONE_RELATIONSHIP_LIST do
-% /*   if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
-%      objects.append (object)\n%
-%    } */\n%
-end
 %  }
 
 %
@@ -280,7 +275,7 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_N
 
   //····················································································································
 
-  var undoManager : EBUndoManager?
+  weak var undoManager : EBUndoManager? // SOULD BE WEAK
 
   //····················································································································
 
@@ -592,7 +587,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
           self.setOppositeRelationship? (nil)
         }
 %for () in PROPERTY_LIST_FOR_GENERATION do
-  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then # [mKind isProperty] then
+  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
     %        removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
   end
 end
@@ -603,7 +598,7 @@ end
           self.setOppositeRelationship? (managedObject)
         }
 %for () in PROPERTY_LIST_FOR_GENERATION do
-  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then # [mKind isProperty] then
+  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
     %        addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
   end
 end
@@ -650,7 +645,7 @@ end
   //   signature
   //····················································································································
 
-  private weak var mSignatureObserver : EBSignatureObserverProtocol?
+  private weak var mSignatureObserver : EBSignatureObserverProtocol? // SOULD BE WEAK
   private var mSignatureCache : UInt32?
 
   //····················································································································
@@ -723,7 +718,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
     }
   }
 
-  weak var owner : %!ENTITY_NAME%? {
+  weak var owner : %!ENTITY_NAME%? { // SOULD BE WEAK
     didSet {
       if let unwrappedExplorer = mValueExplorer {
         updateManagedObjectToOneRelationshipDisplay (object: propval, button:unwrappedExplorer)
@@ -731,7 +726,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
     }
   }
  
-  weak private var mValue : %![[mProperty mRelationshipType] swiftTypeName]%? {
+  weak private var mValue : %![[mProperty mRelationshipType] swiftTypeName]%? { // SOULD BE WEAK
     didSet {
       if let unwrappedOwner = owner, oldValue !== mValue {
       //--- Register old value in undo manager
@@ -759,13 +754,13 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
      end
 %      //--- Remove property observers of old object
 %    for () in [mProperty mDestinationEntityObservablePropertyMap] do
-       if [mKind isProperty] then # not [mType isEntityType] then
+       if [mKind isProperty] then
        %        oldValue?.%!lkey.string%_property.removeEBObserversFrom (mObserversOf_%!lkey.string%)\n%
        end
      end
 %      //--- Add property observers to new object
 %    for () in [mProperty mDestinationEntityObservablePropertyMap] do
-       if [mKind isProperty] then # not [mType isEntityType] then
+       if [mKind isProperty] then
        %        mValue?.%!lkey.string%_property.addEBObserversFrom (mObserversOf_%!lkey.string%)\n%
        end
      end

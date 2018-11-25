@@ -789,7 +789,7 @@ end%
 %if ELEMENT_TYPE_IS_GRAPHIC then
  %  //····················································································································\n\n%
  %  func set (callBack : @escaping () -> Void) {\n%
- %    mObserverOfSelectionLayerOfSelectedObjects.eventCallBack = callBack\n%
+ %    self.mObserverOfSelectionLayerOfSelectedObjects.eventCallBack = callBack\n%
  %  }\n\n%
 end
 
@@ -802,13 +802,13 @@ end
 %if ELEMENT_TYPE_IS_GRAPHIC then
   %        let addedSet = mPrivateSet.subtracting (oldValue)\n%
   %        for object in addedSet {\n%
-  %          object.selectionDisplay_property.addEBObserver (mObserverOfSelectionLayerOfSelectedObjects)\n%
+  %          object.selectionDisplay_property.addEBObserver (self.mObserverOfSelectionLayerOfSelectedObjects)\n%
   %        }\n%
   %        let removedSet = oldValue.subtracting (mPrivateSet)\n%
   %        for object in removedSet {\n%
-  %          object.selectionDisplay_property.removeEBObserver (mObserverOfSelectionLayerOfSelectedObjects)\n%
+  %          object.selectionDisplay_property.removeEBObserver (self.mObserverOfSelectionLayerOfSelectedObjects)\n%
   %        }\n%
-  %        mObserverOfSelectionLayerOfSelectedObjects.postEvent ()\n%
+  %        self.mObserverOfSelectionLayerOfSelectedObjects.postEvent ()\n%
 end%      }
     }
   }
@@ -822,13 +822,13 @@ end%      }
       case .empty, .multiple :
         break ;
       case .single (let sortedArray) :
-        if !mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {
+        if !self.mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {
           newSelectedSet = Set (arrayLiteral: sortedArray [0])
         }else if !mAllowsMultipleSelection && (newSelectedSet.count > 1) {
           newSelectedSet = Set (arrayLiteral: newSelectedSet.first!)
         }
       }
-      mPrivateSet = newSelectedSet
+      self.mPrivateSet = newSelectedSet
     }
     get {
       return mPrivateSet
