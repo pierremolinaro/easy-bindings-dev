@@ -43,8 +43,8 @@ end
   //    init
   //····················································································································
 
-  override init (managedObjectContext : EBManagedObjectContext) {
-    super.init (managedObjectContext:managedObjectContext)
+  override init (managedObjectContext : EBManagedObjectContext, file: String, _ line : Int) {
+    super.init (managedObjectContext:managedObjectContext, file: file, line)
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode]

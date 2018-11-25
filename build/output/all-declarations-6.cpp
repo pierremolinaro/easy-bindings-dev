@@ -5237,7 +5237,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
       result << " = " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << " (managedObjectContext:managedObjectContext)\n"
+      result << " (managedObjectContext: managedObjectContext, file: #file, #line)\n"
         "        var array = v\n"
         "        array.append (newObject)\n"
         "      //--- New object is the selection\n"
@@ -7268,7 +7268,7 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
       result << " = " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << " (managedObjectContext:managedObjectContext)\n"
+      result << " (managedObjectContext: managedObjectContext, file: #file, #line)\n"
         "        var array = v\n"
         "        array.append (newObject)\n"
         "      //--- New object is the selection\n"
