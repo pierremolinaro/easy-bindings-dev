@@ -3712,7 +3712,7 @@ const char * gWrapperFileContent_21_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object:EBReadOnlyProperty_String, outlet : EBButton, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -3769,7 +3769,7 @@ const cRegularFileWrapper gWrapperFile_21_outletClassGeneration (
   "EBButton.swift",
   "swift",
   true, // Text file
-  4435, // Text length
+  4420, // Text length
   gWrapperFileContent_21_outletClassGeneration
 ) ;
 
@@ -4045,7 +4045,7 @@ const char * gWrapperFileContent_6_outletClassGeneration = "//\xE2""\x80""\x94""
   "    mObject = object\n"
   "    mOutlet = outlet\n"
   "    mSendContinously = sendContinously\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    mOutlet.target = self\n"
   "    mOutlet.action = #selector(Controller_EBColorWell_color.action(_:))\n"
   "    mOutlet.isContinuous = true\n"
@@ -4091,7 +4091,7 @@ const cRegularFileWrapper gWrapperFile_6_outletClassGeneration (
   "EBColorWell.swift",
   "swift",
   true, // Text file
-  4179, // Text length
+  4164, // Text length
   gWrapperFileContent_6_outletClassGeneration
 ) ;
 
@@ -4333,7 +4333,7 @@ const char * gWrapperFileContent_5_outletClassGeneration = "//\xE2""\x80""\x94""
   "        autoFormatter : Bool) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    mOutlet.target = self\n"
   "    mOutlet.action = #selector(Controller_EBDoubleField_value.action(_:))\n"
   "    if autoFormatter {\n"
@@ -4386,7 +4386,7 @@ const cRegularFileWrapper gWrapperFile_5_outletClassGeneration (
   "EBDoubleField.swift",
   "swift",
   true, // Text file
-  6746, // Text length
+  6731, // Text length
   gWrapperFileContent_5_outletClassGeneration
 ) ;
 
@@ -4468,7 +4468,7 @@ const char * gWrapperFileContent_25_outletClassGeneration = "//\xE2""\x80""\x94"
   "        autoFormatter:Bool) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    if autoFormatter {\n"
   "      let formatter = NumberFormatter ()\n"
   "      mOutlet.formatter = formatter\n"
@@ -4513,7 +4513,7 @@ const cRegularFileWrapper gWrapperFile_25_outletClassGeneration (
   "EBDoubleObserverField.swift",
   "swift",
   true, // Text file
-  4514, // Text length
+  4499, // Text length
   gWrapperFileContent_25_outletClassGeneration
 ) ;
 
@@ -4621,7 +4621,7 @@ const char * gWrapperFileContent_10_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object : EBReadWriteProperty_NSFont, outlet : EBFontButton, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -4664,7 +4664,7 @@ const cRegularFileWrapper gWrapperFile_10_outletClassGeneration (
   "EBFontButton.swift",
   "swift",
   true, // Text file
-  5440, // Text length
+  5425, // Text length
   gWrapperFileContent_10_outletClassGeneration
 ) ;
 
@@ -4934,7 +4934,7 @@ const char * gWrapperFileContent_0_outletClassGeneration = "//\xE2""\x80""\x94""
   "  init (object:EBReadOnlyProperty_NSImage, outlet : EBImageObserverView, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -4972,7 +4972,7 @@ const char * gWrapperFileContent_0_outletClassGeneration = "//\xE2""\x80""\x94""
   "  init (object:EBReadOnlyProperty_String, outlet : EBImageObserverView, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -5030,7 +5030,7 @@ const cRegularFileWrapper gWrapperFile_0_outletClassGeneration (
   "EBImageObserverView.swift",
   "swift",
   true, // Text file
-  7265, // Text length
+  7235, // Text length
   gWrapperFileContent_0_outletClassGeneration
 ) ;
 
@@ -5168,7 +5168,7 @@ const char * gWrapperFileContent_1_outletClassGeneration = "//\xE2""\x80""\x94""
   "  {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    mOutlet.target = self\n"
   "    mOutlet.action = #selector(Controller_EBIntField_value.action(_:))\n"
   "    if autoFormatter {\n"
@@ -5249,7 +5249,7 @@ const cRegularFileWrapper gWrapperFile_1_outletClassGeneration (
   "EBIntField.swift",
   "swift",
   true, // Text file
-  8200, // Text length
+  8185, // Text length
   gWrapperFileContent_1_outletClassGeneration
 ) ;
 
@@ -5337,7 +5337,7 @@ const char * gWrapperFileContent_27_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object: EBReadOnlyProperty_Int, outlet: EBIntObserverField, file: String, line: Int, autoFormatter: Bool) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    if autoFormatter {\n"
   "      let formatter = NumberFormatter ()\n"
   "      mOutlet.formatter = formatter\n"
@@ -5403,7 +5403,7 @@ const cRegularFileWrapper gWrapperFile_27_outletClassGeneration (
   "EBIntObserverField.swift",
   "swift",
   true, // Text file
-  5963, // Text length
+  5948, // Text length
   gWrapperFileContent_27_outletClassGeneration
 ) ;
 
@@ -5780,7 +5780,7 @@ const char * gWrapperFileContent_9_outletClassGeneration = "//\xE2""\x80""\x94""
   "  init (object : EBReadWriteProperty_Int, outlet : EBPopUpButton, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -5825,7 +5825,7 @@ const char * gWrapperFileContent_9_outletClassGeneration = "//\xE2""\x80""\x94""
   "  init (object : EBAbstractEnumProperty, outlet : EBPopUpButton, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -5858,7 +5858,7 @@ const cRegularFileWrapper gWrapperFile_9_outletClassGeneration (
   "EBPopUpButton.swift",
   "swift",
   true, // Text file
-  6494, // Text length
+  6464, // Text length
   gWrapperFileContent_9_outletClassGeneration
 ) ;
 
@@ -6177,7 +6177,7 @@ const char * gWrapperFileContent_28_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object:EBReadWriteProperty_Double, outlet : EBSlider, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -6222,7 +6222,7 @@ const char * gWrapperFileContent_28_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object:EBReadWriteProperty_Int, outlet : EBSlider, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -6258,7 +6258,7 @@ const cRegularFileWrapper gWrapperFile_28_outletClassGeneration (
   "EBSlider.swift",
   "swift",
   true, // Text file
-  6729, // Text length
+  6699, // Text length
   gWrapperFileContent_28_outletClassGeneration
 ) ;
 
@@ -6337,7 +6337,7 @@ const char * gWrapperFileContent_8_outletClassGeneration = "//\xE2""\x80""\x94""
   "  init (object:EBReadWriteProperty_Int, outlet : EBStepper, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -6373,7 +6373,7 @@ const cRegularFileWrapper gWrapperFile_8_outletClassGeneration (
   "EBStepper.swift",
   "swift",
   true, // Text file
-  4215, // Text length
+  4200, // Text length
   gWrapperFileContent_8_outletClassGeneration
 ) ;
 
@@ -6454,7 +6454,7 @@ const char * gWrapperFileContent_22_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object:EBReadWriteProperty_Bool, outlet : EBSwitch, file : String, line:Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -6517,7 +6517,7 @@ const cRegularFileWrapper gWrapperFile_22_outletClassGeneration (
   "EBSwitch.swift",
   "swift",
   true, // Text file
-  5357, // Text length
+  5342, // Text length
   gWrapperFileContent_22_outletClassGeneration
 ) ;
 
@@ -6751,7 +6751,7 @@ const char * gWrapperFileContent_2_outletClassGeneration = "//\xE2""\x80""\x94""
   "  init (object:EBReadWriteProperty_String, outlet : EBTextField, file : String, line : Int, sendContinously : Bool) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    mOutlet.target = self\n"
   "    mOutlet.action = #selector(Controller_EBTextField_value.action(_:))\n"
   "    if mOutlet.formatter != nil {\n"
@@ -6826,7 +6826,7 @@ const cRegularFileWrapper gWrapperFile_2_outletClassGeneration (
   "EBTextField.swift",
   "swift",
   true, // Text file
-  6188, // Text length
+  6173, // Text length
   gWrapperFileContent_2_outletClassGeneration
 ) ;
 
@@ -6907,7 +6907,7 @@ const char * gWrapperFileContent_13_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object:EBReadOnlyProperty_String, outlet : EBTextObserverField, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    if mOutlet.formatter != nil {\n"
   "      presentErrorWindow (file: file, line:line, errorMessage:\"the EBTextObserverField outlet has a formatter\")\n"
   "    }\n"
@@ -6968,7 +6968,7 @@ const cRegularFileWrapper gWrapperFile_13_outletClassGeneration (
   "EBTextObserverField.swift",
   "swift",
   true, // Text file
-  5434, // Text length
+  5419, // Text length
   gWrapperFileContent_13_outletClassGeneration
 ) ;
 
@@ -7035,7 +7035,7 @@ const char * gWrapperFileContent_14_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object:EBReadOnlyProperty_String, outlet : EBTextObserverView, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
   "\n"
@@ -7060,7 +7060,7 @@ const cRegularFileWrapper gWrapperFile_14_outletClassGeneration (
   "EBTextObserverView.swift",
   "swift",
   true, // Text file
-  3459, // Text length
+  3444, // Text length
   gWrapperFileContent_14_outletClassGeneration
 ) ;
 
@@ -7126,7 +7126,7 @@ const char * gWrapperFileContent_15_outletClassGeneration = "//\xE2""\x80""\x94"
   "  init (object:EBReadWriteProperty_String, outlet : EBTextView, file : String, line : Int) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
-  "    super.init (observedObjects:[object], outlet:outlet)\n"
+  "    super.init (observedObjects:[object])\n"
   "    outlet.delegate = self\n"
   "    self.eventCallBack = { [weak self] in self\?.updateOutlet () }\n"
   "  }\n"
@@ -7167,7 +7167,7 @@ const cRegularFileWrapper gWrapperFile_15_outletClassGeneration (
   "EBTextView.swift",
   "swift",
   true, // Text file
-  3918, // Text length
+  3903, // Text length
   gWrapperFileContent_15_outletClassGeneration
 ) ;
 

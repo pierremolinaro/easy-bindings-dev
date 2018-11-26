@@ -7,6 +7,8 @@ else
 end
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+typealias EBReadOnlyController_%!CLASS_NAME% = EBReadOnlyClassController <%!CLASS_NAME%>
+
 typealias EBReadOnlyProperty_%!CLASS_NAME%  = EBReadOnlyClassProperty <%!CLASS_NAME%>
 typealias EBTransientProperty_%!CLASS_NAME% = EBTransientClassProperty <%!CLASS_NAME%>
 %
