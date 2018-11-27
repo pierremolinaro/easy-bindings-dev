@@ -156,7 +156,7 @@ override method @transientDeclarationAST firstAnalysisPhase
       ]
     case document (*) :
       error mTransientTypeName : "an atomic class is required here"
-    case entity (2*) :
+    case entity (3*) :
       error mTransientTypeName : "an atomic class is required here"
     end
   end
@@ -181,7 +181,7 @@ override method @transientDeclarationAST secondAnalysisPhase
     typeKind = kind
   case document (*) :
     error mTransientTypeName: "an atomic class is required here" : typeKind
-  case entity (2*) :
+  case entity (3*) :
     error mTransientTypeName: "an atomic class is required here" : typeKind
   end
 #--- Root properties
@@ -237,7 +237,7 @@ override method @transientDeclarationAST secondAnalysisPhase
       generate = true
     case atomic (*) :
       generate = true
-    case entity (graphic *):
+    case entity (* graphic *):
       if graphic then
         generate = (mTransientName.string != "selectionDisplay") & (mTransientName.string != "objectDisplay")
       else

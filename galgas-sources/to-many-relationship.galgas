@@ -105,7 +105,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
       error mDestinationEntityName : "an entity is required here"
     case document (*) :
       error mDestinationEntityName : "an entity is required here"
-    case entity (graphic *) :
+    case entity (* graphic *) :
       let kind = @propertyKind.toMany {
         !typeName: mDestinationEntityName
         !accessibility: .stored

@@ -7,7 +7,7 @@ enum @classKind {
   case simpleClass
   case atomic (@typeKind kind)
   case document (@lstring rootEntityName)
-  case entity (@bool isGraphic @bool isAbstract)
+  case entity (@string superEntityName @bool isGraphic @bool isAbstract)
 }
 
 #·······················································································································

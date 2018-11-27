@@ -147,7 +147,7 @@ proc buildBindingSpecificationMap
           typeKind = kind
         case document (*) :
           error mModelTypeName : "an atomic class is required here" : typeKind
-        case entity (2*) :
+        case entity (3*) :
           error mModelTypeName : "an atomic class is required here" : typeKind
         end
         outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
@@ -164,7 +164,7 @@ proc buildBindingSpecificationMap
         typeKind = kind
       case document (*) :
         error mOptionTypeName : "an atomic class is required here" : typeKind
-      case entity (2*) :
+      case entity (3*) :
         error mOptionTypeName : "an atomic class is required here" : typeKind
       end
       controllerBindingOptionDecoratedList += !typeKind !mOptionName

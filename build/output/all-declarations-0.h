@@ -8589,8 +8589,9 @@ class GALGAS_classKind : public AC_GALGAS_root {
   public : static class GALGAS_classKind constructor_document (const class GALGAS_lstring & inOperand0
                                                                COMMA_LOCATION_ARGS) ;
 
-  public : static class GALGAS_classKind constructor_entity (const class GALGAS_bool & inOperand0,
-                                                             const class GALGAS_bool & inOperand1
+  public : static class GALGAS_classKind constructor_entity (const class GALGAS_string & inOperand0,
+                                                             const class GALGAS_bool & inOperand1,
+                                                             const class GALGAS_bool & inOperand2
                                                              COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_classKind constructor_prefs (LOCATION_ARGS) ;
@@ -8614,8 +8615,9 @@ class GALGAS_classKind : public AC_GALGAS_root {
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_entity (class GALGAS_bool & outArgument0,
+  public : VIRTUAL_IN_DEBUG void method_entity (class GALGAS_string & outArgument0,
                                                 class GALGAS_bool & outArgument1,
+                                                class GALGAS_bool & outArgument2,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) const ;
 

@@ -133,7 +133,7 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
       end
     case document (*) :
       error mPropertyTypeName : "an atomic class is required here"
-    case entity (2*) :
+    case entity (3*) :
       error mPropertyTypeName : "an atomic class is required here"
     end
   end

@@ -90,7 +90,7 @@ override method @propertyArrayDeclarationAST firstAnalysisPhase
       error mElementClassName : "a simple class is required here"
     case document (*) :
       error mElementClassName : "a simple class is required here"
-    case entity (2*) :
+    case entity (3*) :
       error mElementClassName : "a simple class is required here"
     end
   end

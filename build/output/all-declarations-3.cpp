@@ -9,6 +9,487 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                     Class for element of '@BuildFileList' list                                      *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cCollectionElement_BuildFileList : public cCollectionElement {
+  public : GALGAS_BuildFileList_2D_element mObject ;
+
+//--- Constructors
+  public : cCollectionElement_BuildFileList (const GALGAS_string & in_mFileReference,
+                                             const GALGAS_string & in_mFileName,
+                                             const GALGAS_string & in_mBuildReference
+                                             COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_BuildFileList (const GALGAS_BuildFileList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_BuildFileList::cCollectionElement_BuildFileList (const GALGAS_string & in_mFileReference,
+                                                                    const GALGAS_string & in_mFileName,
+                                                                    const GALGAS_string & in_mBuildReference
+                                                                    COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mFileReference, in_mFileName, in_mBuildReference) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_BuildFileList::cCollectionElement_BuildFileList (const GALGAS_BuildFileList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mFileReference, inElement.mProperty_mFileName, inElement.mProperty_mBuildReference) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool cCollectionElement_BuildFileList::isValid (void) const {
+  return mObject.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement * cCollectionElement_BuildFileList::copy (void) {
+  cCollectionElement * result = NULL ;
+  macroMyNew (result, cCollectionElement_BuildFileList (mObject.mProperty_mFileReference, mObject.mProperty_mFileName, mObject.mProperty_mBuildReference COMMA_HERE)) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cCollectionElement_BuildFileList::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mFileReference" ":" ;
+  mObject.mProperty_mFileReference.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mFileName" ":" ;
+  mObject.mProperty_mFileName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mBuildReference" ":" ;
+  mObject.mProperty_mBuildReference.description (ioString, inIndentation) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cCollectionElement_BuildFileList::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_BuildFileList * operand = (cCollectionElement_BuildFileList *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_BuildFileList) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList::GALGAS_BuildFileList (void) :
+AC_GALGAS_list () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList::GALGAS_BuildFileList (const capCollectionElementArray & inSharedArray) :
+AC_GALGAS_list (inSharedArray) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList GALGAS_BuildFileList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+  return GALGAS_BuildFileList  (capCollectionElementArray ()) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList GALGAS_BuildFileList::constructor_listWithValue (const GALGAS_string & inOperand0,
+                                                                      const GALGAS_string & inOperand1,
+                                                                      const GALGAS_string & inOperand2
+                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_BuildFileList result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_BuildFileList (capCollectionElementArray ()) ;
+    capCollectionElement attributes ;
+    GALGAS_BuildFileList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2 COMMA_THERE) ;
+    result.appendObject (attributes) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                      const GALGAS_string & in_mFileReference,
+                                                      const GALGAS_string & in_mFileName,
+                                                      const GALGAS_string & in_mBuildReference
+                                                      COMMA_LOCATION_ARGS) {
+  cCollectionElement_BuildFileList * p = NULL ;
+  macroMyNew (p, cCollectionElement_BuildFileList (in_mFileReference,
+                                                   in_mFileName,
+                                                   in_mBuildReference COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::addAssign_operation (const GALGAS_string & inOperand0,
+                                                const GALGAS_string & inOperand1,
+                                                const GALGAS_string & inOperand2
+                                                COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_BuildFileList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::setter_append (GALGAS_BuildFileList_2D_element inElement,
+                                          C_Compiler * /* inCompiler */
+                                          COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_BuildFileList (inElement COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                                 const GALGAS_string inOperand1,
+                                                 const GALGAS_string inOperand2,
+                                                 const GALGAS_uint inInsertionIndex,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_BuildFileList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                                 GALGAS_string & outOperand1,
+                                                 GALGAS_string & outOperand2,
+                                                 const GALGAS_uint inRemoveIndex,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_BuildFileList * p = (cCollectionElement_BuildFileList *) attributes.ptr () ;
+    if (NULL == p) {
+      outOperand0.drop () ;
+      outOperand1.drop () ;
+      outOperand2.drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+      outOperand0 = p->mObject.mProperty_mFileReference ;
+      outOperand1 = p->mObject.mProperty_mFileName ;
+      outOperand2 = p->mObject.mProperty_mBuildReference ;
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::setter_popFirst (GALGAS_string & outOperand0,
+                                            GALGAS_string & outOperand1,
+                                            GALGAS_string & outOperand2,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_BuildFileList * p = (cCollectionElement_BuildFileList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+    outOperand0 = p->mObject.mProperty_mFileReference ;
+    outOperand1 = p->mObject.mProperty_mFileName ;
+    outOperand2 = p->mObject.mProperty_mBuildReference ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::setter_popLast (GALGAS_string & outOperand0,
+                                           GALGAS_string & outOperand1,
+                                           GALGAS_string & outOperand2,
+                                           C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_BuildFileList * p = (cCollectionElement_BuildFileList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+    outOperand0 = p->mObject.mProperty_mFileReference ;
+    outOperand1 = p->mObject.mProperty_mFileName ;
+    outOperand2 = p->mObject.mProperty_mBuildReference ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::method_first (GALGAS_string & outOperand0,
+                                         GALGAS_string & outOperand1,
+                                         GALGAS_string & outOperand2,
+                                         C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_BuildFileList * p = (cCollectionElement_BuildFileList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+    outOperand0 = p->mObject.mProperty_mFileReference ;
+    outOperand1 = p->mObject.mProperty_mFileName ;
+    outOperand2 = p->mObject.mProperty_mBuildReference ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::method_last (GALGAS_string & outOperand0,
+                                        GALGAS_string & outOperand1,
+                                        GALGAS_string & outOperand2,
+                                        C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_BuildFileList * p = (cCollectionElement_BuildFileList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+    outOperand0 = p->mObject.mProperty_mFileReference ;
+    outOperand1 = p->mObject.mProperty_mFileName ;
+    outOperand2 = p->mObject.mProperty_mBuildReference ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList GALGAS_BuildFileList::add_operation (const GALGAS_BuildFileList & inOperand,
+                                                          C_Compiler * /* inCompiler */
+                                                          COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_BuildFileList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList GALGAS_BuildFileList::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_BuildFileList result = GALGAS_BuildFileList::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList GALGAS_BuildFileList::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_BuildFileList result = GALGAS_BuildFileList::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList GALGAS_BuildFileList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_BuildFileList result = GALGAS_BuildFileList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_BuildFileList::plusAssign_operation (const GALGAS_BuildFileList inOperand,
+                                                 C_Compiler * /* inCompiler */
+                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_BuildFileList::getter_mFileReferenceAtIndex (const GALGAS_uint & inIndex,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_BuildFileList * p = (cCollectionElement_BuildFileList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+    result = p->mObject.mProperty_mFileReference ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_BuildFileList::getter_mFileNameAtIndex (const GALGAS_uint & inIndex,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_BuildFileList * p = (cCollectionElement_BuildFileList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+    result = p->mObject.mProperty_mFileName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_BuildFileList::getter_mBuildReferenceAtIndex (const GALGAS_uint & inIndex,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_BuildFileList * p = (cCollectionElement_BuildFileList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+    result = p->mObject.mProperty_mBuildReference ;
+  }
+  return result ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumerator_BuildFileList::cEnumerator_BuildFileList (const GALGAS_BuildFileList & inEnumeratedObject,
+                                                      const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList_2D_element cEnumerator_BuildFileList::current (LOCATION_ARGS) const {
+  const cCollectionElement_BuildFileList * p = (const cCollectionElement_BuildFileList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+  return p->mObject ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_BuildFileList::current_mFileReference (LOCATION_ARGS) const {
+  const cCollectionElement_BuildFileList * p = (const cCollectionElement_BuildFileList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+  return p->mObject.mProperty_mFileReference ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_BuildFileList::current_mFileName (LOCATION_ARGS) const {
+  const cCollectionElement_BuildFileList * p = (const cCollectionElement_BuildFileList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+  return p->mObject.mProperty_mFileName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_BuildFileList::current_mBuildReference (LOCATION_ARGS) const {
+  const cCollectionElement_BuildFileList * p = (const cCollectionElement_BuildFileList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_BuildFileList) ;
+  return p->mObject.mProperty_mBuildReference ;
+}
+
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                                 @BuildFileList type                                                 *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_BuildFileList ("BuildFileList",
+                                      NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_BuildFileList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_BuildFileList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_BuildFileList::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_BuildFileList (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_BuildFileList GALGAS_BuildFileList::extractObject (const GALGAS_object & inObject,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_BuildFileList result ;
+  const GALGAS_BuildFileList * p = (const GALGAS_BuildFileList *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_BuildFileList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("BuildFileList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                               Class for element of '@mainXibLineDescriptorList' list                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -3084,6 +3565,7 @@ mProperty_mOwnerName (),
 mProperty_mSelectionControllerName (),
 mProperty_mBoundControllerName (),
 mProperty_mBoundControllerPropertyName (),
+mProperty_mBaseTypeName (),
 mProperty_mSelectionTypeName (),
 mProperty_mSelectionObservablePropertyMap () {
 }
@@ -3100,19 +3582,22 @@ GALGAS_selectionControllerForGeneration_2D_element::GALGAS_selectionControllerFo
                                                                                                         const GALGAS_string & inOperand2,
                                                                                                         const GALGAS_string & inOperand3,
                                                                                                         const GALGAS_string & inOperand4,
-                                                                                                        const GALGAS_propertyMap & inOperand5) :
+                                                                                                        const GALGAS_string & inOperand5,
+                                                                                                        const GALGAS_propertyMap & inOperand6) :
 mProperty_mOwnerName (inOperand0),
 mProperty_mSelectionControllerName (inOperand1),
 mProperty_mBoundControllerName (inOperand2),
 mProperty_mBoundControllerPropertyName (inOperand3),
-mProperty_mSelectionTypeName (inOperand4),
-mProperty_mSelectionObservablePropertyMap (inOperand5) {
+mProperty_mBaseTypeName (inOperand4),
+mProperty_mSelectionTypeName (inOperand5),
+mProperty_mSelectionObservablePropertyMap (inOperand6) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_selectionControllerForGeneration_2D_element GALGAS_selectionControllerForGeneration_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_selectionControllerForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
+                                                             GALGAS_string::constructor_default (HERE),
                                                              GALGAS_string::constructor_default (HERE),
                                                              GALGAS_string::constructor_default (HERE),
                                                              GALGAS_string::constructor_default (HERE),
@@ -3127,11 +3612,12 @@ GALGAS_selectionControllerForGeneration_2D_element GALGAS_selectionControllerFor
                                                                                                                         const GALGAS_string & inOperand2,
                                                                                                                         const GALGAS_string & inOperand3,
                                                                                                                         const GALGAS_string & inOperand4,
-                                                                                                                        const GALGAS_propertyMap & inOperand5 
+                                                                                                                        const GALGAS_string & inOperand5,
+                                                                                                                        const GALGAS_propertyMap & inOperand6 
                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_selectionControllerForGeneration_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
-    result = GALGAS_selectionControllerForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result = GALGAS_selectionControllerForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
   }
   return result ;
 }
@@ -3153,6 +3639,9 @@ typeComparisonResult GALGAS_selectionControllerForGeneration_2D_element::objectC
     result = mProperty_mBoundControllerPropertyName.objectCompare (inOperand.mProperty_mBoundControllerPropertyName) ;
   }
   if (result == kOperandEqual) {
+    result = mProperty_mBaseTypeName.objectCompare (inOperand.mProperty_mBaseTypeName) ;
+  }
+  if (result == kOperandEqual) {
     result = mProperty_mSelectionTypeName.objectCompare (inOperand.mProperty_mSelectionTypeName) ;
   }
   if (result == kOperandEqual) {
@@ -3164,7 +3653,7 @@ typeComparisonResult GALGAS_selectionControllerForGeneration_2D_element::objectC
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_selectionControllerForGeneration_2D_element::isValid (void) const {
-  return mProperty_mOwnerName.isValid () && mProperty_mSelectionControllerName.isValid () && mProperty_mBoundControllerName.isValid () && mProperty_mBoundControllerPropertyName.isValid () && mProperty_mSelectionTypeName.isValid () && mProperty_mSelectionObservablePropertyMap.isValid () ;
+  return mProperty_mOwnerName.isValid () && mProperty_mSelectionControllerName.isValid () && mProperty_mBoundControllerName.isValid () && mProperty_mBoundControllerPropertyName.isValid () && mProperty_mBaseTypeName.isValid () && mProperty_mSelectionTypeName.isValid () && mProperty_mSelectionObservablePropertyMap.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -3174,6 +3663,7 @@ void GALGAS_selectionControllerForGeneration_2D_element::drop (void) {
   mProperty_mSelectionControllerName.drop () ;
   mProperty_mBoundControllerName.drop () ;
   mProperty_mBoundControllerPropertyName.drop () ;
+  mProperty_mBaseTypeName.drop () ;
   mProperty_mSelectionTypeName.drop () ;
   mProperty_mSelectionObservablePropertyMap.drop () ;
 }
@@ -3193,6 +3683,8 @@ void GALGAS_selectionControllerForGeneration_2D_element::description (C_String &
     mProperty_mBoundControllerName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mBoundControllerPropertyName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mBaseTypeName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mSelectionTypeName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -3223,6 +3715,12 @@ GALGAS_string GALGAS_selectionControllerForGeneration_2D_element::getter_mBoundC
 
 GALGAS_string GALGAS_selectionControllerForGeneration_2D_element::getter_mBoundControllerPropertyName (UNUSED_LOCATION_ARGS) const {
   return mProperty_mBoundControllerPropertyName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_selectionControllerForGeneration_2D_element::getter_mBaseTypeName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mBaseTypeName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -15250,279 +15748,6 @@ GALGAS_outletClassDeclarationAST GALGAS_outletClassDeclarationAST::extractObject
       result = *p ;
     }else{
       inCompiler->castError ("outletClassDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Object comparison                                                                                                 *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cPtr_transientDeclarationAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_transientDeclarationAST * p = (const cPtr_transientDeclarationAST *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mRootEntityName.objectCompare (p->mProperty_mRootEntityName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mTransientTypeName.objectCompare (p->mProperty_mTransientTypeName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mTransientName.objectCompare (p->mProperty_mTransientName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mDependencyList.objectCompare (p->mProperty_mDependencyList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mExternFunctionName.objectCompare (p->mProperty_mExternFunctionName) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-typeComparisonResult GALGAS_transientDeclarationAST::objectCompare (const GALGAS_transientDeclarationAST & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDeclarationAST::GALGAS_transientDeclarationAST (void) :
-GALGAS_abstractDeclarationAST () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDeclarationAST GALGAS_transientDeclarationAST::constructor_default (LOCATION_ARGS) {
-  return GALGAS_transientDeclarationAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                                          GALGAS_lstring::constructor_default (HERE),
-                                                          GALGAS_lstring::constructor_default (HERE),
-                                                          GALGAS_lstring::constructor_default (HERE),
-                                                          GALGAS_observablePropertyList::constructor_emptyList (HERE),
-                                                          GALGAS_lstring::constructor_default (HERE)
-                                                          COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDeclarationAST::GALGAS_transientDeclarationAST (const cPtr_transientDeclarationAST * inSourcePtr) :
-GALGAS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_transientDeclarationAST) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDeclarationAST GALGAS_transientDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                                const GALGAS_lstring & inAttribute_mRootEntityName,
-                                                                                const GALGAS_lstring & inAttribute_mTransientTypeName,
-                                                                                const GALGAS_lstring & inAttribute_mTransientName,
-                                                                                const GALGAS_observablePropertyList & inAttribute_mDependencyList,
-                                                                                const GALGAS_lstring & inAttribute_mExternFunctionName
-                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_transientDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mTransientTypeName.isValid () && inAttribute_mTransientName.isValid () && inAttribute_mDependencyList.isValid () && inAttribute_mExternFunctionName.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_transientDeclarationAST (inAttribute_mClassName, inAttribute_mRootEntityName, inAttribute_mTransientTypeName, inAttribute_mTransientName, inAttribute_mDependencyList, inAttribute_mExternFunctionName COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_transientDeclarationAST::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientDeclarationAST * p = (const cPtr_transientDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
-    result = p->mProperty_mRootEntityName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_transientDeclarationAST::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mRootEntityName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_transientDeclarationAST::getter_mTransientTypeName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientDeclarationAST * p = (const cPtr_transientDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
-    result = p->mProperty_mTransientTypeName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_transientDeclarationAST::getter_mTransientTypeName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mTransientTypeName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_transientDeclarationAST::getter_mTransientName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientDeclarationAST * p = (const cPtr_transientDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
-    result = p->mProperty_mTransientName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_transientDeclarationAST::getter_mTransientName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mTransientName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_observablePropertyList GALGAS_transientDeclarationAST::getter_mDependencyList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_observablePropertyList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientDeclarationAST * p = (const cPtr_transientDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
-    result = p->mProperty_mDependencyList ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_observablePropertyList cPtr_transientDeclarationAST::getter_mDependencyList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mDependencyList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_transientDeclarationAST::getter_mExternFunctionName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientDeclarationAST * p = (const cPtr_transientDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
-    result = p->mProperty_mExternFunctionName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_transientDeclarationAST::getter_mExternFunctionName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mExternFunctionName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                  Pointer class for @transientDeclarationAST class                                   *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cPtr_transientDeclarationAST::cPtr_transientDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                                            const GALGAS_lstring & in_mRootEntityName,
-                                                            const GALGAS_lstring & in_mTransientTypeName,
-                                                            const GALGAS_lstring & in_mTransientName,
-                                                            const GALGAS_observablePropertyList & in_mDependencyList,
-                                                            const GALGAS_lstring & in_mExternFunctionName
-                                                            COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mRootEntityName (in_mRootEntityName),
-mProperty_mTransientTypeName (in_mTransientTypeName),
-mProperty_mTransientName (in_mTransientName),
-mProperty_mDependencyList (in_mDependencyList),
-mProperty_mExternFunctionName (in_mExternFunctionName) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * cPtr_transientDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientDeclarationAST ;
-}
-
-void cPtr_transientDeclarationAST::description (C_String & ioString,
-                                                const int32_t inIndentation) const {
-  ioString << "[@transientDeclarationAST:" ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mTransientTypeName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mTransientName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mDependencyList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mExternFunctionName.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-acPtr_class * cPtr_transientDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_transientDeclarationAST (mProperty_mClassName, mProperty_mRootEntityName, mProperty_mTransientTypeName, mProperty_mTransientName, mProperty_mDependencyList, mProperty_mExternFunctionName COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                            @transientDeclarationAST type                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientDeclarationAST ("transientDeclarationAST",
-                                                & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_transientDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientDeclarationAST ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_transientDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_transientDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_transientDeclarationAST GALGAS_transientDeclarationAST::extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_transientDeclarationAST result ;
-  const GALGAS_transientDeclarationAST * p = (const GALGAS_transientDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

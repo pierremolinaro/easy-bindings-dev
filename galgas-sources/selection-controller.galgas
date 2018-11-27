@@ -81,13 +81,10 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
     case selectionController (*) :
       error mModelControllerName : "an array controller is required here"
     case arrayController (typeName 2*) :
-      if typeName.string != mSelectionEntityName.string then
-        error mSelectionEntityName : "Required: " + typeName
-      end
       if mModelControllerPropertyName.string != "selectedArray" then
         error mModelControllerPropertyName : "'selectedArray' is required here"
       end
-      let kind = @propertyKind.selectionController {!typeName: typeName}
+      let kind = @propertyKind.selectionController {!typeName: mSelectionEntityName}
       [!?mPropertyMap insertKey !mSelectionControllerName !kind !{}]
       mPropertyGenerationList += !@selectionControllerPropertyGeneration.new {
         !mSelectionControllerName.string
@@ -105,23 +102,42 @@ override method @selectionControllerDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  [ioSemanticContext.mClassMap  searchKey !mClassName ?* ?let propertyMap ?2*]
+  [ioSemanticContext.mClassMap searchKey !mClassName ?let superClassKind ?let propertyMap ?2*]
   [propertyMap searchKey !mModelControllerName ?let propertyKind ?*]
-    switch propertyKind
-    case property (2*) :
-    case toMany (4*) :
-    case toOne (3*) :
-    case selectionController (*) :
-    case arrayController (typeName 2*) :
-      [ioSemanticContext.mClassMap  searchKey !typeName ?* ?let selectionObservablePropertyMap ?2*]
-      ioGeneration.mSelectionControllerListForGeneration +=
-        !mClassName
-        !mSelectionControllerName.string
-        !mModelControllerName.string
-        !mModelControllerPropertyName.string
-        !typeName
-        !selectionObservablePropertyMap # {} # @observablePropertyMap selectionObservablePropertyMap
-   end
+   switch propertyKind
+   case property (2*) :
+   case toMany (4*) :
+   case toOne (3*) :
+   case selectionController (*) :
+   case arrayController (typeName 2*) :
+     [ioSemanticContext.mClassMap searchKey !mSelectionEntityName ?* ?let selectionObservablePropertyMap ?2*]
+     ioGeneration.mSelectionControllerListForGeneration +=
+       !mClassName
+       !mSelectionControllerName.string
+       !mModelControllerName.string
+       !mModelControllerPropertyName.string
+       !typeName
+       !mSelectionEntityName.string
+       !selectionObservablePropertyMap
+     var testedTypeName = mSelectionEntityName.string
+     loop (@uint.max) while (typeName.string != testedTypeName) & (testedTypeName != "") do
+       if typeName.string != mSelectionEntityName.string then
+         switch superClassKind
+         case prefs, simpleClass :
+           testedTypeName = ""
+         case atomic (*) :
+           testedTypeName = ""
+         case document (*) :
+           testedTypeName = ""
+         case entity (@string superOfSuperEntity 2*) :
+            testedTypeName = superOfSuperEntity
+            if testedTypeName == "" then
+              error mSelectionEntityName : "This entity is not descendant of " + typeName
+            end
+         end
+       end
+    end
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -174,6 +190,7 @@ list @selectionControllerForGeneration {
   @string mSelectionControllerName
   @string mBoundControllerName
   @string mBoundControllerPropertyName
+  @string mBaseTypeName
   @string mSelectionTypeName
   @propertyMap mSelectionObservablePropertyMap
 }
@@ -183,10 +200,17 @@ list @selectionControllerForGeneration {
 private filewrapper selectionControllerGenerationTemplate in "../generation-templates/controllers" {
 }{
 }{
-  template selectionControllerImplementation "selection-controller.swift.galgasTemplate"
+  template baseSelectionControllerImplementation "base-selection-controller.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string SELECTION_CONTROLLER_NAME
     ?@string ELEMENT_TYPE_NAME
+    ?@propertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
+
+  template derivedSelectionControllerImplementation "derived-selection-controller.swift.galgasTemplate"
+    ?@string OWNER_NAME
+    ?@string SELECTION_CONTROLLER_NAME
+    ?@string BASE_ELEMENT_TYPE_NAME
+    ?@string DERIVED_ELEMENT_TYPE_NAME
     ?@propertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
 }
 
@@ -200,19 +224,36 @@ proc generateSelectionControllers
   ?!@stringset ioGeneratedFileSet
 {
   for () in inArrayControllerListForGeneration do
-    let s = [filewrapper selectionControllerGenerationTemplate.selectionControllerImplementation
-      !mOwnerName
-      !mSelectionControllerName
-      !mSelectionTypeName
-      !mSelectionObservablePropertyMap
-    ]
-    let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
-    ioGeneratedFileSet += !fileName
-    [@string generateFile
-      !inOutputDirectory
-      !fileName
-      !s
-    ]
+    if mBaseTypeName == mSelectionTypeName then
+      let s = [filewrapper selectionControllerGenerationTemplate.baseSelectionControllerImplementation
+        !mOwnerName
+        !mSelectionControllerName
+        !mBaseTypeName
+        !mSelectionObservablePropertyMap
+      ]
+      let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
+      ioGeneratedFileSet += !fileName
+      [@string generateFile
+        !inOutputDirectory
+        !fileName
+        !s
+      ]
+    else
+      let s = [filewrapper selectionControllerGenerationTemplate.derivedSelectionControllerImplementation
+        !mOwnerName
+        !mSelectionControllerName
+        !mBaseTypeName
+        !mSelectionTypeName
+        !mSelectionObservablePropertyMap
+      ]
+      let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
+      ioGeneratedFileSet += !fileName
+      [@string generateFile
+        !inOutputDirectory
+        !fileName
+        !s
+      ]
+    end
   end
 }
 

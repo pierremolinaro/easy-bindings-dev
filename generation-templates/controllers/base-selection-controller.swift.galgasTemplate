@@ -28,17 +28,40 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
       %    }\n%
       %  }\n\n%
   end
-end%  //····················································································································
+end
+%  //····················································································································
   //   BIND SELECTION
   //····················································································································
 
   func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
-    mModel = model
+    self.mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mKind isEntityType] then
-    %    bind_property_%!lkey.string% (model: model)\n%
+    %    self.bind_property_%!lkey.string% (model: model)\n%
   end
-end%  }
+end
+%  }
+
+  //····················································································································
+  //   UNBIND SELECTION
+  //····················································································································
+
+  func unbind_selection () {
+%
+  for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+    if not [mKind isEntityType] then
+      %  //--- %!lkey.string%\n%
+      %    self.%!lkey.string%_property.readModelFunction = nil \n%
+      if not [mKind isTransient] then
+        %    self.%!lkey.string%_property.writeModelFunction = nil \n%
+        %    self.%!lkey.string%_property.validateAndWriteModelFunction = nil \n%
+       end
+      %    self.mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
+    end
+  end
+%  //---
+    self.mModel = nil    
+  }
 
   //····················································································································
   //    Explorer
@@ -141,45 +164,43 @@ end
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mKind isEntityType] then
-%  //···················································································································*\n\n% 
-%  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
-%    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
-%    self.%!lkey.string%_property.readModelFunction = {\n%
-%      if let model = self.mModel {\n%
-%        switch model.prop {\n%
-%        case .empty :\n%
-%          return .empty\n%
-%        case .multiple :\n%
-%          return .multiple\n%
-%        case .single (let v) :\n%
-%          var s = Set <%![mKind swiftTypeName]%> ()\n%
-%          var isMultipleSelection = false\n%
-%          for baseObject in v {\n%
-%//            if let object = baseObject as? %!ELEMENT_TYPE_NAME% {\n%
-%              switch baseObject.%!lkey.string%_property_selection {\n%
-%              case .empty :\n%
-%                return .empty\n%
-%              case .multiple :\n%
-%                isMultipleSelection = true\n%
-%              case .single (let vProp) :\n%
-%                s.insert (vProp)\n%
-%              }\n%
-%            }\n%
-%//          }\n%
-%          if isMultipleSelection {\n%
-%            return .multiple\n%
-%          }else if s.count == 0 {\n%
-%            return .empty\n%
-%          }else if s.count == 1 {\n%
-%            return .single (s.first!)\n%
-%          }else{\n%
-%            return .multiple\n%
-%          }\n%
-%        }\n%
-%      }else{\n%
-%        return .empty\n%
-%      }\n%
-%    }\n%
+  %  //···················································································································*\n\n% 
+  %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
+  %    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
+  %    self.%!lkey.string%_property.readModelFunction = { [weak self] in\n%
+  %      if let model = self?.mModel {\n%
+  %        switch model.prop {\n%
+  %        case .empty :\n%
+  %          return .empty\n%
+  %        case .multiple :\n%
+  %          return .multiple\n%
+  %        case .single (let v) :\n%
+  %          var s = Set <%![mKind swiftTypeName]%> ()\n%
+  %          var isMultipleSelection = false\n%
+  %          for object in v {\n%
+  %            switch object.%!lkey.string%_property_selection {\n%
+  %            case .empty :\n%
+  %              return .empty\n%
+  %            case .multiple :\n%
+  %              isMultipleSelection = true\n%
+  %            case .single (let vProp) :\n%
+  %              s.insert (vProp)\n%
+  %            }\n%
+  %          }\n%
+  %          if isMultipleSelection {\n%
+  %            return .multiple\n%
+  %          }else if s.count == 0 {\n%
+  %            return .empty\n%
+  %          }else if s.count == 1 {\n%
+  %            return .single (s.first!)\n%
+  %          }else{\n%
+  %            return .multiple\n%
+  %          }\n%
+  %        }\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
 if not [mKind isTransient] then
 %    self.%!lkey.string%_property.writeModelFunction = { (inValue : %![mKind swiftTypeName]%) in\n%
 %      if let model = self.mModel {\n%
@@ -215,25 +236,6 @@ end
 %  }\n\n%
 end
 end%
-
-  //····················································································································
-  //   UNBIND SELECTION
-  //····················································································································
-
-  func unbind_selection () {
-%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if not [mKind isEntityType] then
-    %  //--- %!lkey.string%\n%
-    %    self.%!lkey.string%_property.readModelFunction = nil \n%
-    if not [mKind isTransient] then
-      %    self.%!lkey.string%_property.writeModelFunction = nil \n%
-      %    self.%!lkey.string%_property.validateAndWriteModelFunction = nil \n%
-     end
-    %    self.mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
-  end
-end%  //---
-    mModel = nil    
-  }
 
   //····················································································································
 

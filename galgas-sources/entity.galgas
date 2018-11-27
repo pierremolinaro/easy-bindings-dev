@@ -137,7 +137,7 @@ override method @entityDeclarationAST firstAnalysisPhase
   buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
     !mClassName
-    !.entity {!isGraphic: mIsGraphicEntity !isAbstract: mIsAbstract}
+    !.entity {!superEntityName: mSuperEntityName.string !isGraphic: mIsGraphicEntity !isAbstract: mIsAbstract}
     !{}
     !actionMap
     !{}
@@ -175,7 +175,7 @@ override method @entityDeclarationAST thirdAnalysisPhase
       error mSuperEntityName : "an atomic class cannot be a super entity"
     case document (*) :
       error mSuperEntityName : "a document cannot be a super entity"
-    case entity (@bool isGraphic @bool isAbstract) :
+    case entity (* @bool isGraphic @bool isAbstract) :
       if isGraphic & not mIsGraphicEntity then
         error mClassName : "this entity should be declared with 'graphic', as super entity is graphic"
       end
