@@ -80,7 +80,7 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
       error mModelControllerName : "an array controller is required here"
     case selectionController (*) :
       error mModelControllerName : "an array controller is required here"
-    case arrayController (typeName 2*) :
+    case arrayController (3*) :
       if mModelControllerPropertyName.string != "selectedArray" then
         error mModelControllerPropertyName : "'selectedArray' is required here"
       end

@@ -10,7 +10,6 @@ import Cocoa
 
 @objc(SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME%)
 final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBObject {
-  private var mModel : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%?
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 %  //····················································································································\n%
@@ -32,13 +31,13 @@ end%  //····································
   //   BIND SELECTION
   //····················································································································
 
-  fileprivate var mActualModel = TransientArrayOf_%!DERIVED_ELEMENT_TYPE_NAME% ()
+   private var mModel : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%? = nil
+   private var mActualModel = TransientArrayOf_%!DERIVED_ELEMENT_TYPE_NAME% ()
 
   //····················································································································
 
   func bind_selection (model : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%, file:String, line:Int) {
     self.mModel = model
-    model.addEBObserver (self.mActualModel)
     self.mActualModel.readModelFunction = { [weak self] () -> EBSelection < [%!DERIVED_ELEMENT_TYPE_NAME%] > in
       if let model = self?.mModel {
         switch model.prop {
@@ -58,7 +57,9 @@ end%  //····································
       }else{
         return .empty
       }
-    }\n%
+    }
+    model.addEBObserver (self.mActualModel)
+%
   for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
     if not [mKind isEntityType] then
       %    self.bind_property_%!lkey.string% (model: self.mActualModel)\n%
@@ -174,7 +175,7 @@ end
   //····················································································································
 
   @objc func deleteSelectionControllerWindowAction (_ : Any) {
-    clearObjectExplorer ()
+    self.clearObjectExplorer ()
   }
 
   //····················································································································
@@ -184,8 +185,8 @@ end
   func clearObjectExplorer () {
     let closeButton = mExplorerWindow?.standardWindowButton (.closeButton)
     closeButton!.target = nil
-    mExplorerWindow?.orderOut (nil)
-    mExplorerWindow = nil
+    self.mExplorerWindow?.orderOut (nil)
+    self.mExplorerWindow = nil
   }
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
@@ -228,9 +229,9 @@ if not [mKind isEntityType] then
   %      }\n%
   %    }\n%
 if not [mKind isTransient] then
-%    self.%!lkey.string%_property.writeModelFunction = { (inValue : %![mKind swiftTypeName]%) in\n%
-% //     if let model = self.mModel {\n%
-%        switch self.mActualModel.prop {\n%
+%    self.%!lkey.string%_property.writeModelFunction = { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
+%      if let model = self?.mActualModel {\n%
+%        switch model.prop {\n%
 %        case .empty, .multiple :\n%
 %          break\n%
 %        case .single (let v) :\n%
@@ -238,11 +239,11 @@ if not [mKind isTransient] then
 %            object.%!lkey.string%_property.setProp (inValue)\n%
 %          }\n%
 %        }\n%
-% //     }\n%
+%      }\n%
 %    }\n%
-%    self.%!lkey.string%_property.validateAndWriteModelFunction = { (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
-%  //    if let model = self.mModel {\n%
-%        switch self.mActualModel.prop {\n%
+%    self.%!lkey.string%_property.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+%      if let model = self?.mActualModel {\n%
+%        switch model.prop {\n%
 %        case .empty, .multiple :\n%
 %          return false\n%
 %        case .single (let v) :\n%
@@ -254,9 +255,9 @@ if not [mKind isTransient] then
 %          }\n%
 %          return true\n%
 %        }\n%
-% //     }else{\n%
-% //       return false\n%
-% //     }\n%
+%      }else{\n%
+%        return false\n%
+%      }\n%
 %    }\n%
 end
 %  }\n\n%

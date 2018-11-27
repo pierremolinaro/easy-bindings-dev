@@ -373,11 +373,6 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a property cannot accept 'all'" : outKind
     case toMany (typeName 3*) : # Ok
       [inSemanticContext.mClassMap searchKey !.new {!typeName !relationshipName.location} ?* ?let observablePropertyMap ?2*]
-#      [inSemanticContext.mEntityObservablePropertyMap searchKey
-#        !.new {!typeName !relationshipName.location}
-#        ?let observablePropertyMap
-#        ?*
-#      ]
       [observablePropertyMap searchKey
         !propertyName
         ?outKind

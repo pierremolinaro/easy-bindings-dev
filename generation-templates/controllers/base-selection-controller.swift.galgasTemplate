@@ -10,7 +10,6 @@ import Cocoa
 
 @objc(SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME%)
 final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBObject {
-  private var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%?
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 %  //····················································································································\n%
@@ -31,6 +30,10 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
 end
 %  //····················································································································
   //   BIND SELECTION
+  //····················································································································
+
+  private var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%? = nil
+
   //····················································································································
 
   func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
@@ -202,8 +205,8 @@ if not [mKind isEntityType] then
   %      }\n%
   %    }\n%
 if not [mKind isTransient] then
-%    self.%!lkey.string%_property.writeModelFunction = { (inValue : %![mKind swiftTypeName]%) in\n%
-%      if let model = self.mModel {\n%
+%    self.%!lkey.string%_property.writeModelFunction = { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
+%      if let model = self?.mModel {\n%
 %        switch model.prop {\n%
 %        case .empty, .multiple :\n%
 %          break\n%
@@ -214,8 +217,8 @@ if not [mKind isTransient] then
 %        }\n%
 %      }\n%
 %    }\n%
-%    self.%!lkey.string%_property.validateAndWriteModelFunction = { (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
-%      if let model = self.mModel {\n%
+%    self.%!lkey.string%_property.validateAndWriteModelFunction = { [weak self] (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+%      if let model = self?.mModel {\n%
 %        switch model.prop {\n%
 %        case .empty, .multiple :\n%
 %          return false\n%
