@@ -46,7 +46,7 @@ end%  //····································
         case .multiple :
           return .multiple
         case .single (let v) :
-          var s = [SymbolText] ()
+          var s = [%!DERIVED_ELEMENT_TYPE_NAME%] ()
           for baseObject in v {
             if let object = baseObject as? %!DERIVED_ELEMENT_TYPE_NAME% {
               s.append (object)
