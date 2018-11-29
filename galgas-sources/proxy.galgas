@@ -1,88 +1,89 @@
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   AST
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class @proxyDeclarationAST : @abstractDeclarationAST {
-  @lstring mProxyName
-  @lstring mControllerName
-  @lstring mPropertyName
-}
-
-#·······················································································································
-
-override method @proxyDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  let node = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
-  [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mControllerName !mControllerName.location}]
-}
-
-#·······················································································································
-
-override getter @proxyDeclarationAST lkey -> @lstring {
-  result = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SYNTAX
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-syntax extension easyBindings_syntax {
-
-  #·····················································································································
-  
-  rule <controller_declaration>
-            ?let @lstring inCurrentEntity
-            ?let @lstring unused inRootEntity
-            ?!@astDeclarationStruct ioDeclarationAST
-  {
-    $proxy$
-    $identifier$ ?let @lstring proxyName
-    @tableViewControllerAttributListAST arrayControllerAttributListAST = {}
-    $:$
-    $self$
-    $.$
-    $identifier$ ?let @lstring controllerName
-    $.$
-    $identifier$ ?let @lstring propertyName
-    $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@proxyDeclarationAST.new {
-      !inCurrentEntity
-      !proxyName
-      !controllerName
-      !propertyName
-    }
-  }
-
-  #·····················································································································
-
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @proxyDeclarationAST firstAnalysisPhase
-       ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-  with mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
-  do
-    [mPropertyMap searchKey !mControllerName ?let classKind ?*]
-    switch classKind
-    case property (2*) :
-      error mControllerName : "an array controller is required here"
-    case toMany (4*) :
-      error mControllerName : "an array controller is required here"
-    case toOne (3*) :
-      error mControllerName : "an array controller is required here"
-    case arrayController (typeName 2*) :
-      [ioSemanticContext.mClassMap searchKey !typeName ?* ?let propertyMap ?2*]
-      [propertyMap searchKey !mPropertyName ?2*]
-    case selectionController (*) :
-      error mControllerName : "an array controller is required here"
-    end
-  end
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+##   AST
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#
+#class @proxyDeclarationAST : @abstractDeclarationAST {
+#  @lstring mProxyName
+#  @lstring mControllerName
+#  @lstring mPropertyName
+#}
+#
+##·······················································································································
+#
+#override method @proxyDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+#  let node = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
+#  [!?ioGraph addNode !node !self]
+#  [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mControllerName !mControllerName.location}]
+#}
+#
+##·······················································································································
+#
+#override getter @proxyDeclarationAST lkey -> @lstring {
+#  result = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
+#}
+#
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+##   SYNTAX
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#
+#syntax extension easyBindings_syntax {
+#
+#  #·····················································································································
+#  
+#  rule <controller_declaration>
+#            ?let @lstring inCurrentEntity
+#            ?let @lstring unused inRootEntity
+#            ?!@astDeclarationStruct ioDeclarationAST
+#  {
+#    $proxy$
+#    $identifier$ ?let @lstring proxyName
+#    warning proxyName : "??????"
+#    @tableViewControllerAttributListAST arrayControllerAttributListAST = {}
+#    $:$
+#    $self$
+#    $.$
+#    $identifier$ ?let @lstring controllerName
+#    $.$
+#    $identifier$ ?let @lstring propertyName
+#    $;$
+#    ioDeclarationAST.mUnifiedDeclarationList += !@proxyDeclarationAST.new {
+#      !inCurrentEntity
+#      !proxyName
+#      !controllerName
+#      !propertyName
+#    }
+#  }
+#
+#  #·····················································································································
+#
+#}
+#
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+##   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#
+#override method @proxyDeclarationAST firstAnalysisPhase
+#       ?!@semanticContext ioSemanticContext
+#       ?!@generationStruct unused ioGeneration
+#{
+#  with mClassName in !?ioSemanticContext.mClassMap 
+#    error message searchKey
+#  do
+#    [mPropertyMap searchKey !mControllerName ?let classKind ?*]
+#    switch classKind
+#    case property (2*) :
+#      error mControllerName : "an array controller is required here"
+#    case toMany (4*) :
+#      error mControllerName : "an array controller is required here"
+#    case toOne (3*) :
+#      error mControllerName : "an array controller is required here"
+#    case arrayController (typeName 2*) :
+#      [ioSemanticContext.mClassMap searchKey !typeName ?* ?let propertyMap ?2*]
+#      [propertyMap searchKey !mPropertyName ?2*]
+#    case selectionController (*) :
+#      error mControllerName : "an array controller is required here"
+#    end
+#  end
+#}
+#
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

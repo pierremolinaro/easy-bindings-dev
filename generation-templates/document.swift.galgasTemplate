@@ -126,7 +126,7 @@ end
 %  //--------------------------- Install regular bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
-  %    %!mOutletName%?.bind_%!mBindingName% (%
+  %    self.%!mOutletName%?.bind_%!mBindingName% (%
   for () in mBoundObjectList do
     !mBoundObjectString%, %
   end
@@ -150,8 +150,8 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
-%    %!mOutletName%?.target = %!mTargetName%\n%
-%    %!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
+%    self.%!mOutletName%?.target = %!mTargetName%\n%
+%    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
 %  //--------------------------- Update display
     super.windowControllerDidLoadNib (aController)
@@ -166,15 +166,15 @@ end
   //--------------------------- Unbind regular bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
-  %    %!mOutletName%?.unbind_%!mBindingName% ()\n%
+  %    self.%!mOutletName%?.unbind_%!mBindingName% ()\n%
 end
 %  //--------------------------- Unbind multiple bindings
 %
 for () in MULTIPLE_BINDING_GENERATION_LIST do
   for () in [mBoundObjectExpression observedModelSet] do
-  %    %!key%.removeEBObserver (mController_%!mOutletName%_%!mBindingName%!)\n%
+  %    self.%!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
   end
-  %    mController_%!mOutletName%_%!mBindingName% = nil\n%
+  %    self.mController_%!mOutletName%_%!mBindingName% = nil\n%
 end
 %  //--------------------------- Unbind array controllers
 %
@@ -189,7 +189,7 @@ for () in DOCUMENT_PROPERTY_LIST do
 end
 %  //--------------------------- Remove targets / actions
 %for () in TARGET_ACTION_LIST do
-%    %!mOutletName%?.target = nil\n%
+%    self.%!mOutletName%?.target = nil\n%
 end
 %  //--------------------------- Clean up outlets
 %for () in OUTLET_GENERATION_MAP do
