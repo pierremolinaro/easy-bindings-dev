@@ -54,6 +54,10 @@ getter @propertyGeneration clearObjectExplorerCode -> @string { result = "" }
 
 #·······················································································································
 
+getter @propertyGeneration resetToManyRelationships -> @string { result = "" }
+
+#·······················································································································
+
 list @propertyGenerationList {
   @propertyGeneration mProperty
 }

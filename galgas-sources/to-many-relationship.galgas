@@ -2,10 +2,18 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+enum @toManyRelationshipOptionAST {
+  case none
+  case hasOpposite (@lstring oppositeName)
+  case hasDependance (@lstring masterPropertyName)
+}
+
+#·······················································································································
+
 class @toManyRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToManyRelationshipName
-  @lstring mOppositeRelationshipName
+  @toManyRelationshipOptionAST mOption
   @bool mCascading
 }
 
@@ -62,20 +70,27 @@ syntax extension easyBindings_syntax {
     if usedForSignature then
       ioSignatureList += !relationshipName.string
     end
-    @lstring inserseRelationshipName
+    @toManyRelationshipOptionAST toManyRelationshipOption
     select
       $inverse$
       $toOne$
-      $identifier$ ?inserseRelationshipName
+      $identifier$ ?let inserseRelationshipName
+      toManyRelationshipOption = .hasOpposite {!oppositeName: inserseRelationshipName}
     or
-      inserseRelationshipName = .new {!"" !relationshipName.location}
+      $dependsFrom$
+      $self$
+      $.$
+      $identifier$ ?let masterPropertyName
+      toManyRelationshipOption = .hasDependance {!masterPropertyName: masterPropertyName}
+   or
+      toManyRelationshipOption = .none
     end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@toManyRelationshipAST.new {
       !inCurrentEntity
       !destinationEntityName
       !relationshipName
-      !inserseRelationshipName
+      !toManyRelationshipOption
       !cascading
     }
   }
@@ -117,7 +132,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
       mPropertyGenerationList += !@toManyPropertyGeneration.new {
         !mToManyRelationshipName.string
         !kind
-        !mOppositeRelationshipName
+        !mOption
         !mCascading
       }
     end
@@ -128,7 +143,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
 
 class @toManyPropertyGeneration : @propertyGeneration {
   @propertyKind mRelationshipType
-  @string mOppositeRelationshipName
+  @toManyRelationshipOptionAST mOption
   @bool mCascading
 }
 
@@ -144,8 +159,12 @@ override getter @toManyPropertyGeneration declarationCode ?let @stringset unused
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To many property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+  if [mOption isHasDependance] then
+    result += "  var " + mPropertyName + "_property = TransientArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
+  else
+    result += "  var " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
+  end
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
   result += "      return self." + mPropertyName + "_property.prop\n"
   result += "  }\n\n"
@@ -156,10 +175,13 @@ override getter @toManyPropertyGeneration declarationCode ?let @stringset unused
 override getter @toManyPropertyGeneration configurationCode -> @string {
   result  = "  //--- To many property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
-  if mOppositeRelationshipName != "" then
+  switch mOption
+  case none :
+  case hasDependance (@lstring unused masterPropertyName) :
+  case hasOpposite (@lstring oppositeName) :
     result += "    self." + mPropertyName + "_property.setOppositeRelationship ="
             + " { [weak self] (_ inManagedObject :" + [mRelationshipType swiftTypeName] + "?) in\n"
-    result += "      inManagedObject?." + mOppositeRelationshipName + "_property.setProp (self)\n"
+    result += "      inManagedObject?." + oppositeName + "_property.setProp (self)\n"
     result += "    }\n"
   end
 }
@@ -167,12 +189,16 @@ override getter @toManyPropertyGeneration configurationCode -> @string {
 #·······················································································································
 
 override getter @toManyPropertyGeneration setupFromDictionaryCode -> @string {
-  result  = "  //--- To many property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
-  result += "      inRelationshipName: \"" + mPropertyName + "\",\n"
-  result += "      inDictionary: inDictionary,\n"
-  result += "      managedObjectArray: &managedObjectArray\n"
-  result += "    ) as! [" + [mRelationshipType swiftTypeName] + "])\n"
+  if [mOption isHasDependance] then
+    result = ""
+  else
+    result  = "  //--- To many property: " + mPropertyName + "\n"
+    result += "    self." + mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
+    result += "      inRelationshipName: \"" + mPropertyName + "\",\n"
+    result += "      inDictionary: inDictionary,\n"
+    result += "      managedObjectArray: &managedObjectArray\n"
+    result += "    ) as! [" + [mRelationshipType swiftTypeName] + "])\n"
+  end
 }
 
 #·······················································································································
@@ -198,8 +224,36 @@ override getter @toManyPropertyGeneration objectAccessibilityCode -> @string {
 #·······················································································································
 
 override getter @toManyPropertyGeneration clearObjectExplorerCode -> @string {
-  result  = "  //--- To many property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
+  if [mOption isHasDependance] then
+    result = ""
+  else
+    result  = "  //--- To many property: " + mPropertyName + "\n"
+    result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
+  end
+}
+
+#·······················································································································
+
+override getter @toManyPropertyGeneration resetToManyRelationships -> @string {
+  if [mOption isHasDependance] then
+    result = ""
+  else
+    result  = "  //--- To many property: " + mPropertyName + "\n"
+    result += "    self." + mPropertyName + "_property.setProp ([])\n"
+  end
+}
+#·······················································································································
+
+override getter @toManyPropertyGeneration terminationCode -> @string {
+  switch mOption 
+  case hasDependance (masterPropertyName) :
+    result  = "  //--- To many property: " + mPropertyName + "\n"
+    result += "    self." + masterPropertyName.string + "_property.removeEBObserver (self." + mPropertyName + "_property)\n"
+  case none :
+    result = ""
+  case hasOpposite (*) :
+    result = ""
+  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
