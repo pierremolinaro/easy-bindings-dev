@@ -73,6 +73,8 @@ end
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+typealias EBReadOnlyController_%!ENUM_TYPE_NAME% = EBReadOnlyEnumController <%!ENUM_TYPE_NAME%>
+
 typealias EBReadOnlyProperty_%!ENUM_TYPE_NAME% = EBReadOnlyEnumProperty <%!ENUM_TYPE_NAME%>
 typealias EBTransientProperty_%!ENUM_TYPE_NAME% = EBTransientEnumProperty <%!ENUM_TYPE_NAME%>
 typealias EBReadWriteProperty_%!ENUM_TYPE_NAME% = EBReadWriteEnumProperty <%!ENUM_TYPE_NAME%>
