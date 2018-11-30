@@ -52,9 +52,9 @@ end
 %  //--- Install undoers and opposite setter for relationships
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
-  %    self.%![mProperty mPropertyName]%_property.undoManager = self.undoManager\n%
   switch [mProperty mOption]
   case none :
+    % //   self.%![mProperty mPropertyName]%_property.undoManager = self.undoManager\n%
   case hasDependance (@lstring masterPropertyName) :
     %    self.%![masterPropertyName string]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property)\n%
     %    self.%![mProperty mPropertyName]%_property.readModelFunction =  { [weak self] in\n%
@@ -78,6 +78,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %      }\n%
     %    }\n%
   case hasOpposite (@lstring oppositeName) :
+    % //   self.%![mProperty mPropertyName]%_property.undoManager = self.undoManager\n%
     %    self.%![mProperty mPropertyName]%_property.setOppositeRelationship = { [weak self] (_ inManagedObject : %![[mProperty mRelationshipType] swiftTypeName]%?) in\n%
     %      inManagedObject?.%!oppositeName.string%_property.setProp (self)\n%
     %    }\n%

@@ -173,12 +173,15 @@ override getter @toManyPropertyGeneration declarationCode ?let @stringset unused
 #·······················································································································
 
 override getter @toManyPropertyGeneration configurationCode -> @string {
-  result  = "  //--- To many property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
   switch mOption
   case none :
+    result  = "  //--- To many property: " + mPropertyName + " (no option)\n"
+    result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
   case hasDependance (@lstring unused masterPropertyName) :
+    result = ""
   case hasOpposite (@lstring oppositeName) :
+    result  = "  //--- To many property: " + mPropertyName + " (has opposite relationship)\n"
+    result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
     result += "    self." + mPropertyName + "_property.setOppositeRelationship ="
             + " { [weak self] (_ inManagedObject :" + [mRelationshipType swiftTypeName] + "?) in\n"
     result += "      inManagedObject?." + oppositeName + "_property.setProp (self)\n"
@@ -204,12 +207,16 @@ override getter @toManyPropertyGeneration setupFromDictionaryCode -> @string {
 #·······················································································································
 
 override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
-  result  = "  //--- To many property: " + mPropertyName + "\n"
-  result += "    self.store (\n"
-  result += "      managedObjectArray: " + mPropertyName + "_property.propval as NSArray,\n"
-  result += "      relationshipName: \"" + mPropertyName + "\",\n"
-  result += "      intoDictionary: ioDictionary\n"
-  result += "    )\n"
+  if [mOption isHasDependance] then
+    result = ""
+  else
+    result  = "  //--- To many property: " + mPropertyName + "\n"
+    result += "    self.store (\n"
+    result += "      managedObjectArray: " + mPropertyName + "_property.propval as NSArray,\n"
+    result += "      relationshipName: \"" + mPropertyName + "\",\n"
+    result += "      intoDictionary: ioDictionary\n"
+    result += "    )\n"
+  end
 }
 
 #·······················································································································
