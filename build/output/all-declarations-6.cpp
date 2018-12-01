@@ -5850,6 +5850,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     "    tf.drawsBackground = false\n"
     "    tf.isEnabled = true\n"
     "    tf.isEditable = false\n"
+    "    tf.autoresizingMask = [.width, .minYMargin, .maxYMargin]\n"
     "    tf.stringValue = inString\n"
     "    tf.font = NSFont.boldSystemFont (ofSize: NSFont.systemFontSize * 1.25)\n"
     "    tf.textColor = NSColor.lightGray\n"
