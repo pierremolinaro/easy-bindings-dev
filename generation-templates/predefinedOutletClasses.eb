@@ -9,6 +9,7 @@ binding EBView $underObjectsDisplay : transient EBShape ;
 binding EBView $overObjectsDisplay : transient EBShape ;
 binding EBView $arrowKeyMagnitude : transient CGFloat ;
 binding EBView $shiftArrowKeyMagnitude : transient CGFloat ;
+binding EBView $backColor : transient NSColor ;
 
 extern outlet class NSView $hidden ;
 
