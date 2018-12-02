@@ -5,131 +5,46 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//  EBGraphicManagedObject
+//    EBShape
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBGraphicManagedObject : EBManagedObject {
+class EBShape : Hashable, EBUserClassNameProtocol {
 
   //····················································································································
-  //   Transient property: selectionDisplay
+  //  Properties
   //····················································································································
 
-  var selectionDisplay_property = EBTransientProperty_EBShape ()
+  private var mShapes : [EBShape]
+  private var mCachedBoundingBox : NSRect?
 
   //····················································································································
-
-  var selectionDisplay_property_selection : EBSelection <EBShape> {
-    return self.selectionDisplay_property.prop
-  }
-
+  //  init
   //····················································································································
 
-  var selectionDisplay : EBShape? {
-    switch self.selectionDisplay_property_selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      return v
-    }
-  }
-
-  //····················································································································
-  //   Transient property: objectDisplay
-  //····················································································································
-
-  var objectDisplay_property = EBTransientProperty_EBShape ()
-
-  //····················································································································
-
-  var objectDisplay_property_selection : EBSelection <EBShape> {
-    return self.objectDisplay_property.prop
-  }
-
-  //····················································································································
-
-  var objectDisplay : EBShape? {
-    switch self.objectDisplay_property_selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      return v
-    }
-  }
-
-  //····················································································································
-  //   Translation
-  //  @objc dynamic before func is required in order to allow function overriding in extensions
-  //····················································································································
-
-  @objc dynamic func acceptedTranslation (by inValue: CGPoint) -> CGPoint {
-    return inValue
-  }
-
-  //····················································································································
-
-  @objc dynamic func acceptToTranslate (xBy inDx: CGFloat, yBy inDy: CGFloat) -> Bool {
-    return false
-  }
-
-  //····················································································································
-
-  @objc dynamic func translate (xBy inDx: CGFloat, yBy inDy: CGFloat) {
-  }
-
-  //····················································································································
-  //  Knob
-  //  @objc dynamic before func is required in order to allow function overriding in extensions
-  //····················································································································
-
-  @objc dynamic func canMove (knob inKnobIndex : Int, by inValue: CGPoint) -> Bool {
-    return true
-  }
-
-  //····················································································································
-
-  @objc dynamic func move (knob inKnobIndex : Int, by inTranslation: CGPoint) {
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Build PDF image
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-func buildPDFimage (frame inFrame: CGRect,
-                    shapes inShapes: EBShape,
-                    backgroundColor inBackColor : NSColor? = nil) -> Data {
-  let view = EBOffscreenView (frame: inFrame)
-  view.setBackColor (inBackColor)
-  view.setPaths (inShapes)
-  return view.dataWithPDF (inside: inFrame)
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBOffscreenView
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-fileprivate final class EBOffscreenView : NSView, EBUserClassNameProtocol {
-
-  private var mShape = EBShape ()
-  private var mBackColor : NSColor? = nil
-
-  //····················································································································
-
-  override init (frame frameRect: NSRect) {
-    super.init (frame: frameRect)
+  init () {
+    mShapes = []
+    mCachedBoundingBox = nil
     noteObjectAllocation (self)
   }
 
   //····················································································································
 
-  required init? (coder: NSCoder) {
-    super.init (coder: coder)
+  init (shape inShape : EBShape) {
+    mShapes = [inShape]
+    mCachedBoundingBox = nil
     noteObjectAllocation (self)
   }
 
+  //····················································································································
+
+  init (shapes inShapes : [EBShape]) {
+    mShapes = inShapes
+    mCachedBoundingBox = nil
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+  //  deinit
   //····················································································································
 
   deinit {
@@ -137,32 +52,148 @@ fileprivate final class EBOffscreenView : NSView, EBUserClassNameProtocol {
   }
 
   //····················································································································
-  //  Set paths
+  //  append
   //····················································································································
 
-  func setPaths (_ inShapes : EBShape) {
-    self.mShape = inShapes
+  func append (shape inShape : EBShape) {
+    self.mShapes.append (inShape)
+    self.mCachedBoundingBox = nil
   }
 
   //····················································································································
-  //  Set back color
+
+  func append (shapes inShapes : [EBShape]) {
+    self.mShapes += inShapes
+    self.mCachedBoundingBox = nil
+  }
+
+  //····················································································································
+  //  Transformed shape using NSAffineTransform object
   //····················································································································
 
-  func setBackColor (_ inColor : NSColor?) {
-    self.mBackColor = inColor
+  func transformedBy (_ inAffineTransform : NSAffineTransform) -> EBShape {
+    let result = EBShape ()
+    self.internalTransform (result, by: inAffineTransform)
+    return result
+  }
+
+  //····················································································································
+
+  final func internalTransform (_ result : EBShape, by inAffineTransform : NSAffineTransform) {
+    for shape in self.mShapes {
+      result.append (shape: shape.transformedBy (inAffineTransform))
+    }
   }
 
   //····················································································································
   //  Draw Rect
   //····················································································································
 
-  override func draw (_ inDirtyRect: NSRect) {
-    if let backColor = mBackColor {
-      backColor.setFill ()
-      NSBezierPath.fill (inDirtyRect)
+  func draw (_ inDirtyRect: NSRect) {
+    for shape in self.mShapes {
+      shape.draw (inDirtyRect)
     }
-  //--- Bezier paths
-    self.mShape.draw (inDirtyRect)
+  }
+
+  //····················································································································
+  // boundingBox
+  //····················································································································
+
+  var boundingBox : NSRect {
+    if let cbb = mCachedBoundingBox {
+      return cbb
+    }else{
+      var r = NSZeroRect
+      for shape in self.mShapes {
+        r = r.union (shape.boundingBox)
+      }
+      self.mCachedBoundingBox = r
+      return r
+    }
+  }
+
+  //····················································································································
+  //   intersects
+  //····················································································································
+
+  func intersects (rect inRect : NSRect) -> Bool {
+    var result = false
+    var idx = 0
+    while (idx < self.mShapes.count) && !result {
+      let shape = self.mShapes [idx]
+      idx += 1
+      result = shape.intersects (rect: inRect)
+    }
+    return result
+  }
+
+  //····················································································································
+  //   Contains point
+  //····················································································································
+
+  func contains (point inPoint : NSPoint) -> Bool {
+    for shape in self.mShapes {
+      if shape.contains (point: inPoint) {
+        return true
+      }
+    }
+    return false
+  }
+
+  //····················································································································
+  //   Knob Index
+  //····················································································································
+
+  func knobIndex (at inPoint : NSPoint) -> Int? {
+    for shape in self.mShapes.reversed () {
+      if let idx = shape.knobIndex (at: inPoint) {
+        return idx
+      }
+    }
+    return nil
+  }
+
+  //····················································································································
+  /// Returns a Boolean value indicating whether two values are equal.
+  ///
+  /// Equality is the inverse of inequality. For any values `a` and `b`,
+  /// `a == b` implies that `a != b` is `false`.
+  ///
+  /// - Parameters:
+  ///   - lhs: A value to compare.
+  ///   - rhs: Another value to compare.
+  //····················································································································
+
+  public static func == (lhs: EBShape, rhs: EBShape) -> Bool {
+    return (lhs === rhs) || lhs.isEqualTo (rhs)
+  }
+
+  //····················································································································
+
+  func isEqualTo (_ inOperand : EBShape) -> Bool {
+    var equal = self.mShapes.count == inOperand.mShapes.count
+    var idx = 0
+    while (idx < self.mShapes.count) && equal {
+      equal = self.mShapes [idx] == inOperand.mShapes [idx]
+      idx += 1
+    }
+    return equal
+  }
+
+  //····················································································································
+  /// The hash value.
+  ///
+  /// Hash values are not guaranteed to be equal across different executions of
+  /// your program. Do not save hash values to use during a future execution.
+  //····················································································································
+
+  public var hashValue : Int {
+    var h = 0
+    for shape in self.mShapes {
+      h.rotateLeft ()
+      h ^= shape.hashValue
+    }
+    return h
   }
 
   //····················································································································

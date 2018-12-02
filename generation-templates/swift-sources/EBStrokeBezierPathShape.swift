@@ -5,151 +5,46 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//  EBGraphicManagedObject
+//    EBStrokeBezierPathShape
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBGraphicManagedObject : EBManagedObject {
+class EBStrokeBezierPathShape : EBShape {
+  private var mPaths : [NSBezierPath]
+  private let mColor : NSColor
+  private var mCachedBoundingBox : NSRect?
 
   //····················································································································
-  //   Transient property: selectionDisplay
+  //  Init
   //····················································································································
 
-  var selectionDisplay_property = EBTransientProperty_EBShape ()
-
-  //····················································································································
-
-  var selectionDisplay_property_selection : EBSelection <EBShape> {
-    return self.selectionDisplay_property.prop
+  init (_ inPaths: [NSBezierPath], _ inColor: NSColor) {
+    mPaths = inPaths
+    mColor = inColor
+    super.init ()
   }
 
   //····················································································································
+  //  append
+  //····················································································································
 
-  var selectionDisplay : EBShape? {
-    switch self.selectionDisplay_property_selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      return v
+  func append (path inBezierPath : NSBezierPath) {
+    self.mPaths.append (inBezierPath)
+    self.mCachedBoundingBox = nil
+  }
+
+  //····················································································································
+  //  transformedBy
+  //····················································································································
+
+  override func transformedBy (_ inAffineTransform : NSAffineTransform) -> EBShape {
+    var paths = [NSBezierPath] ()
+    for path in self.mPaths {
+      let bp = inAffineTransform.transform (path)
+      paths.append (bp)
     }
-  }
-
-  //····················································································································
-  //   Transient property: objectDisplay
-  //····················································································································
-
-  var objectDisplay_property = EBTransientProperty_EBShape ()
-
-  //····················································································································
-
-  var objectDisplay_property_selection : EBSelection <EBShape> {
-    return self.objectDisplay_property.prop
-  }
-
-  //····················································································································
-
-  var objectDisplay : EBShape? {
-    switch self.objectDisplay_property_selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      return v
-    }
-  }
-
-  //····················································································································
-  //   Translation
-  //  @objc dynamic before func is required in order to allow function overriding in extensions
-  //····················································································································
-
-  @objc dynamic func acceptedTranslation (by inValue: CGPoint) -> CGPoint {
-    return inValue
-  }
-
-  //····················································································································
-
-  @objc dynamic func acceptToTranslate (xBy inDx: CGFloat, yBy inDy: CGFloat) -> Bool {
-    return false
-  }
-
-  //····················································································································
-
-  @objc dynamic func translate (xBy inDx: CGFloat, yBy inDy: CGFloat) {
-  }
-
-  //····················································································································
-  //  Knob
-  //  @objc dynamic before func is required in order to allow function overriding in extensions
-  //····················································································································
-
-  @objc dynamic func canMove (knob inKnobIndex : Int, by inValue: CGPoint) -> Bool {
-    return true
-  }
-
-  //····················································································································
-
-  @objc dynamic func move (knob inKnobIndex : Int, by inTranslation: CGPoint) {
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Build PDF image
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-func buildPDFimage (frame inFrame: CGRect,
-                    shapes inShapes: EBShape,
-                    backgroundColor inBackColor : NSColor? = nil) -> Data {
-  let view = EBOffscreenView (frame: inFrame)
-  view.setBackColor (inBackColor)
-  view.setPaths (inShapes)
-  return view.dataWithPDF (inside: inFrame)
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBOffscreenView
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-fileprivate final class EBOffscreenView : NSView, EBUserClassNameProtocol {
-
-  private var mShape = EBShape ()
-  private var mBackColor : NSColor? = nil
-
-  //····················································································································
-
-  override init (frame frameRect: NSRect) {
-    super.init (frame: frameRect)
-    noteObjectAllocation (self)
-  }
-
-  //····················································································································
-
-  required init? (coder: NSCoder) {
-    super.init (coder: coder)
-    noteObjectAllocation (self)
-  }
-
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
-
-  //····················································································································
-  //  Set paths
-  //····················································································································
-
-  func setPaths (_ inShapes : EBShape) {
-    self.mShape = inShapes
-  }
-
-  //····················································································································
-  //  Set back color
-  //····················································································································
-
-  func setBackColor (_ inColor : NSColor?) {
-    self.mBackColor = inColor
+    let result = EBStrokeBezierPathShape (paths, self.mColor)
+    self.internalTransform (result, by: inAffineTransform)
+    return result
   }
 
   //····················································································································
@@ -157,12 +52,97 @@ fileprivate final class EBOffscreenView : NSView, EBUserClassNameProtocol {
   //····················································································································
 
   override func draw (_ inDirtyRect: NSRect) {
-    if let backColor = mBackColor {
-      backColor.setFill ()
-      NSBezierPath.fill (inDirtyRect)
+    super.draw (inDirtyRect)
+    self.mColor.setStroke ()
+    for bp in self.mPaths {
+      bp.stroke ()
     }
-  //--- Bezier paths
-    self.mShape.draw (inDirtyRect)
+  }
+
+  //····················································································································
+  // boundingBox
+  //····················································································································
+
+  override var boundingBox : NSRect {
+    if let cbb = mCachedBoundingBox {
+      return cbb
+    }else{
+      var r = super.boundingBox
+      for bp in self.mPaths {
+        let lineWidth = max (bp.lineWidth, 1.0)
+        r = r.union (bp.bounds.insetBy (dx: -lineWidth, dy: -lineWidth))
+      }
+      self.mCachedBoundingBox = r
+      return r
+    }
+  }
+
+  //····················································································································
+  //   Contains point
+  //····················································································································
+
+  override func contains (point inPoint : NSPoint) -> Bool {
+    var result = super.contains (point: inPoint)
+    var idx = 0
+    while (idx < self.mPaths.count) && !result {
+      result = self.mPaths [idx].contains (inPoint) // , using: .winding)
+      idx += 1
+    }
+    return result
+  }
+
+  //····················································································································
+  //   intersects
+  //····················································································································
+
+  override func intersects (rect inRect : NSRect) -> Bool {
+    var result = super.intersects (rect: inRect)
+    var idx = 0
+    while (idx < self.mPaths.count) && !result {
+      if self.mPaths [idx].bounds.intersects (inRect) {
+        result = true
+      }
+      idx += 1
+    }
+    return result
+  }
+
+  //····················································································································
+  //   isEqualTo
+  //····················································································································
+
+  override func isEqualTo (_ inOperand : EBShape) -> Bool {
+    var equal = false
+    if let operand = inOperand as? EBStrokeBezierPathShape {
+      equal = self.mPaths.count == operand.mPaths.count
+      if equal {
+        equal = super.isEqualTo (inOperand)
+      }
+      var idx = 0
+      while (idx < self.mPaths.count) && equal {
+        equal = self.mPaths [idx] == operand.mPaths [idx]
+        idx += 1
+      }
+    }
+    return equal
+  }
+
+  //····················································································································
+  /// The hash value.
+  ///
+  /// Hash values are not guaranteed to be equal across different executions of
+  /// your program. Do not save hash values to use during a future execution.
+  //····················································································································
+
+  override public var hashValue : Int {
+    var h = super.hashValue
+    h.rotateLeft ()
+    h ^= mColor.hashValue
+    for path in self.mPaths {
+      h.rotateLeft ()
+      h ^= path.hashValue
+    }
+    return h
   }
 
   //····················································································································

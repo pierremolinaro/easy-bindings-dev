@@ -132,6 +132,11 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBDataScanner"
     swiftFiles += !"graphic-classes-and-utilities"
     swiftFiles += !"EBView"
+    swiftFiles += !"EBFilledBezierPathShape"
+    swiftFiles += !"EBKnobShape"
+    swiftFiles += !"EBShape"
+    swiftFiles += !"EBStrokeBezierPathShape"
+    swiftFiles += !"EBTextShape"
   end
   @stringlist xibFiles = {!"EBAllocationDebug"}
   var fw = [filewrapper swift_sources]
