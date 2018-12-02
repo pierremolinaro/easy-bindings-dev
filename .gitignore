@@ -7,8 +7,10 @@
 ## Xcode files
 **/project.xcworkspace/**
 **/xcuserdata/**
-build/**
-**/build/**
+build/cli-objects/**
+build/indexes/**
+sample-projects-swift/**/build/**
+xcode-project/build/**
 *.o
 *.dep
 makefile-macosx/eb
