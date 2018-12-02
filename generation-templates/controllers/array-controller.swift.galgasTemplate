@@ -40,6 +40,7 @@ end
   %      }\n%
   %    }\n%
   %    self.mSelectedSet.addEBObserver (self.canBringToFront_property)\n%
+  %  //---\n%
   %    self.canBringToFront_property.readModelFunction = { [weak self] in\n%
   %      if let me = self {\n%
   %        return .single (me.canBringToFront)\n%
@@ -48,6 +49,7 @@ end
   %      }\n%
   %    }\n%
   %    self.mSelectedSet.addEBObserver (self.canBringToFront_property)\n%
+  %  //---\n%
   %    self.canSendBackward_property.readModelFunction = { [weak self] in\n%
   %      if let me = self {\n%
   %        return .single (me.canSendBackward)\n%
@@ -56,6 +58,7 @@ end
   %      }\n%
   %    }\n%
   %    self.mSelectedSet.addEBObserver (self.canSendBackward_property)\n%
+  %  //---\n%
   %    self.canSendToBack_property.readModelFunction = { [weak self] in\n%
   %      if let me = self {\n%
   %        return .single (me.canSendToBack)\n%
@@ -64,6 +67,51 @@ end
   %      }\n%
   %    }\n%
   %    self.mSelectedSet.addEBObserver (self.canSendToBack_property)\n%
+  %  //---\n%
+  %    self.canSnapToGrid_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canSnapToGrid)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canSnapToGrid_property)\n%
+  %  //---\n%
+  %    self.canFlipHorizontally_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canFlipHorizontally)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canFlipHorizontally_property)\n%
+  %  //---\n%
+  %    self.canFlipVertically_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canFlipVertically)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canFlipVertically_property)\n%
+  %  //---\n%
+  %    self.canRotate90Clockwise_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canRotate90Clockwise)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canRotate90Clockwise_property)\n%
+  %  //---\n%
+  %    self.canRotate90CounterClockwise_property.readModelFunction = { [weak self] in\n%
+  %      if let me = self {\n%
+  %        return .single (me.canRotate90CounterClockwise)\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    }\n%
+  %    self.mSelectedSet.addEBObserver (self.canRotate90CounterClockwise_property)\n%
 end%  //--- Set selected array compute function
     self.setSelectedArrayComputeFunction ()
   //--- Install object array read function
@@ -598,6 +646,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   //····················································································································
   // BRING FORWARD
+  // MARK: -
   //····················································································································
 
   var canBringForward_property = EBTransientProperty_Bool ()
@@ -629,6 +678,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   //····················································································································
   // BRING TO FRONT
+  // MARK: -
   //····················································································································
 
   var canBringToFront_property = EBTransientProperty_Bool ()
@@ -665,7 +715,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   //····················································································································
   // SEND BACKWARD
-  //····················································································································
+   // MARK: -
+ //····················································································································
 
   var canSendBackward_property = EBTransientProperty_Bool ()
 
@@ -696,6 +747,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   
   //····················································································································
   // SEND TO BACK
+  // MARK: -
   //····················································································································
 
   var canSendToBack_property = EBTransientProperty_Bool ()
@@ -730,6 +782,138 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     return false
   }
 
+  //····················································································································
+  // SNAP TO GRID
+  // MARK: -
+  //····················································································································
+
+  var canSnapToGrid_property = EBTransientProperty_Bool ()
+
+  //····················································································································
+
+  func snapToGrid () {
+    for object in self.mSelectedSet.mSet {
+      object.snapToGrid ()
+    }
+  }
+
+  //····················································································································
+
+  var canSnapToGrid : Bool {
+    for object in self.mSelectedSet.mSet {
+      if object.canSnapToGrid () {
+        return true
+      }
+    }
+    return false
+  }
+
+ //····················································································································
+  // HORIZONTAL FLIP
+  // MARK: -
+  //····················································································································
+
+  var canFlipHorizontally_property = EBTransientProperty_Bool ()
+
+  //····················································································································
+
+  func flipHorizontally () {
+    for object in self.mSelectedSet.mSet {
+      object.flipHorizontally ()
+    }
+  }
+
+  //····················································································································
+
+  var canFlipHorizontally : Bool {
+    for object in self.mSelectedSet.mSet {
+      if !object.canFlipHorizontally () {
+        return false
+      }
+    }
+    return self.mSelectedSet.mSet.count > 0
+  }
+
+  //····················································································································
+  // VERTICAL FLIP
+  // MARK: -
+  //····················································································································
+
+  var canFlipVertically_property = EBTransientProperty_Bool ()
+
+  //····················································································································
+
+  func flipVertically () {
+    for object in self.mSelectedSet.mSet {
+      object.flipVertically ()
+    }
+  }
+
+  //····················································································································
+
+  var canFlipVertically : Bool {
+    for object in self.mSelectedSet.mSet {
+      if !object.canFlipVertically () {
+        return false
+      }
+    }
+    return self.mSelectedSet.mSet.count > 0
+  }
+
+  //····················································································································
+  // ROTATE 90 CLOCKWISE
+  // MARK: -
+  //····················································································································
+
+  var canRotate90Clockwise_property = EBTransientProperty_Bool ()
+
+  //····················································································································
+
+  func rotate90Clockwise () {
+    for object in self.mSelectedSet.mSet {
+      object.rotate90Clockwise ()
+    }
+  }
+
+  //····················································································································
+
+  var canRotate90Clockwise : Bool {
+    for object in self.mSelectedSet.mSet {
+      if object.canRotate90Clockwise () {
+        return true
+      }
+    }
+    return false
+  }
+
+ //····················································································································
+  // ROTATE 90 COUNTER CLOCKWISE
+  // MARK: -
+  //····················································································································
+
+  var canRotate90CounterClockwise_property = EBTransientProperty_Bool ()
+
+  //····················································································································
+
+  func rotate90CounterClockwise () {
+    for object in self.mSelectedSet.mSet {
+      object.rotate90CounterClockwise ()
+    }
+  }
+
+  //····················································································································
+
+  var canRotate90CounterClockwise : Bool {
+    for object in self.mSelectedSet.mSet {
+      if object.canRotate90CounterClockwise () {
+        return true
+      }
+    }
+    return false
+  }
+
+  //····················································································································
+  // MARK: -
   //····················································································································
 
   func addToSelection (objectsWithIndex inIndexes : [Int]) {

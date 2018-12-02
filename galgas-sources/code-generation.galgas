@@ -130,7 +130,8 @@ private proc generateSwiftApplicationFiles
   if inHasEntities then
     swiftFiles += !"EBManagedObject"
     swiftFiles += !"EBDataScanner"
-    swiftFiles += !"graphic-classes-and-utilities"
+    swiftFiles += !"EBGraphicManagedObject"
+    swiftFiles += !"buildPDFimage"
     swiftFiles += !"EBView"
     swiftFiles += !"EBFilledBezierPathShape"
     swiftFiles += !"EBKnobShape"
