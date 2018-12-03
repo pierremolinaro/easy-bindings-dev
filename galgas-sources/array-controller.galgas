@@ -239,9 +239,9 @@ override getter @arrayControllerPropertyGeneration declarationCode ?let @strings
 
 override getter @arrayControllerPropertyGeneration configurationCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
-  if mUsesManagedObjectContext then
-    result += "    self." + mPropertyName + ".setManagedObjectContext (self.managedObjectContext)\n"
-  end
+#  if mUsesManagedObjectContext then §§
+#    result += "    self." + mPropertyName + ".setManagedObjectContext (self.managedObjectContext)\n"
+#  end
   result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property)\n"
 }
 

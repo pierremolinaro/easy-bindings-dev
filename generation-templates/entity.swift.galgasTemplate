@@ -43,8 +43,8 @@ end
   //    init
   //····················································································································
 
-  override init (managedObjectContext : EBManagedObjectContext, file: String, _ line : Int) {
-    super.init (managedObjectContext:managedObjectContext, file: file, line)
+  override init (_ undoManager : EBUndoManager?, file: String, _ line : Int) {
+    super.init (undoManager, file: file, line)
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode]
@@ -200,9 +200,9 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   if [mProperty mCascading] then
     %  //--- Cascading toMany %![mProperty mPropertyName]%\n%
     %    do{\n%
-    %      let objects = self.%![mProperty mPropertyName]%_property.propval\n%
+    % //     let objects = self.%![mProperty mPropertyName]%_property.propval\n%
     %      self.%![mProperty mPropertyName]%_property.setProp ([])\n%
-    %      self.managedObjectContext?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
+    %//      self.managedObjectContext?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
     %    }\n%
   elsif not [[mProperty mOption] isHasDependance] then
     %  //--- Nullify toMany %![mProperty mPropertyName]%\n%
@@ -212,10 +212,10 @@ end
 for () in TO_ONE_RELATIONSHIP_LIST do
   if [mProperty mCascading] then
     %  //--- Cascading toOne %![mProperty mPropertyName]%\n%
-    %    if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
+    %  //  if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
     %      self.%![mProperty mPropertyName]%_property.setProp (nil)\n%
-    %      self.managedObjectContext?.internalRemoveManagedObject (object, &ioObjectsToRemove) // Cascade removing from moc\n%
-    %    }\n%
+    %//      self.managedObjectContext?.internalRemoveManagedObject (object, &ioObjectsToRemove) // Cascade removing from moc\n%
+    % //   }\n%
   else
     %  //--- Nullify toOne %![mProperty mPropertyName]%\n%
     %    self.%![mProperty mPropertyName]%_property.setProp (nil) // Set relationship to nil\n%

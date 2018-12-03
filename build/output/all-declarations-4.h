@@ -1056,11 +1056,11 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                        Filewrapper template 'entityGenerationTemplate managedObjectContext'                         *
+//                        Filewrapper template 'entityGenerationTemplate managedObjectFactory'                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectContext (class C_Compiler * inCompiler,
+GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectFactory (class C_Compiler * inCompiler,
                                                                                  const class GALGAS_entityListForGeneratingEBManagedObjectContext & in_ENTITY_5F_LIST
                                                                                  COMMA_LOCATION_ARGS) ;
 

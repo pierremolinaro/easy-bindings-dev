@@ -297,9 +297,9 @@ proc generateEBManagedObjectContext
   ?!@stringset ioGeneratedFileSet
 {
   if [inEntityListForGeneration length] > 0 then
-    let fileName = "EBManagedObjectContext.swift"
+    let fileName = "EBManagedObjectFactory.swift"
     ioGeneratedFileSet += !fileName
-    let s = [filewrapper entityGenerationTemplate.managedObjectContext
+    let s = [filewrapper entityGenerationTemplate.managedObjectFactory
       !inEntityListForGeneration
     ]
     [@string generateFile
@@ -328,7 +328,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@bool IS_ABSTRACT
     ?@stringset OVERRIDEN_TRANSIENTS
 
-  template managedObjectContext "EBManagedObjectContext.swift.galgasTemplate"
+  template managedObjectFactory "EBManagedObjectFactory.swift.galgasTemplate"
     ?@entityListForGeneratingEBManagedObjectContext ENTITY_LIST
 }
 

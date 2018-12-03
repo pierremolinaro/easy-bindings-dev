@@ -161,16 +161,6 @@ end
  }
 
   //····················································································································
-  //    Managed object context
-  //····················································································································
-
-  private weak var mManagedObjectContext : EBManagedObjectContext? = nil // SOULD BE WEAK
-
-  func setManagedObjectContext (_ inManagedObjectContext : EBManagedObjectContext?) {
-    self.mManagedObjectContext = inManagedObjectContext
-  }
-  
-  //····················································································································
   //    Undo manager
   //····················································································································
 
@@ -747,12 +737,12 @@ case entityArray :
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    if let model = mModel, let managedObjectContext = self.mManagedObjectContext {
+    if let model = mModel {
       switch model.prop {
       case .empty, .multiple :
         break
       case .single (let v) :
-        let newObject : %!ELEMENT_TYPE_NAME% = %!ELEMENT_TYPE_NAME% (managedObjectContext: managedObjectContext, file: #file, #line)
+        let newObject = %!ELEMENT_TYPE_NAME% (self.undoManager, file: #file, #line)
         var array = v
         array.append (newObject)
       //--- New object is the selection
@@ -772,7 +762,7 @@ case entityArray :
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    if let model = mModel, let managedObjectContext = self.mManagedObjectContext {
+    if let model = mModel {
       switch model.prop {
       case .empty, .multiple :
         break
@@ -789,7 +779,6 @@ case entityArray :
           }
           var indexArrayOfSelectedObjects = [Int] ()
           for object in mSelectedSet.mSet {
-            managedObjectContext.removeManagedObject (object)
             let index = sortedObjectDictionary [object]
             if let idx = index {
               indexArrayOfSelectedObjects.append (idx)
@@ -867,7 +856,6 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     for object in mSelectedSet.mSet {
       if let idx = objects.index (of: object) {
         objects.remove(at: idx)
-        self.mManagedObjectContext?.removeManagedObject (object)
       }
     }
     mModel?.setProp (objects)
