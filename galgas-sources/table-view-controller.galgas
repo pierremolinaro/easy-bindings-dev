@@ -233,7 +233,6 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         !mControllerName.string
         !"rootObject." + mToManyPropertyName
         !mClassName
-        !true
       }
       case toOne (3*) :
         error mRootEntityName : "a tomany relationship is required here"
@@ -259,7 +258,6 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         !mControllerName.string
         !mToManyPropertyName
         !mClassName
-        !isEntity
       }
       case toOne (3*) :
         error mRootEntityName : "a tomany relationship is required here"
@@ -435,7 +433,6 @@ override method @tableViewControllerDeclarationAST secondAnalysisPhase
 class @tableViewControllerPropertyGeneration : @propertyGeneration {
   @string mModelString
   @string mOwnerName
-  @bool mUsesManagedObjectContext
 }
 
 #·······················································································································
@@ -451,9 +448,6 @@ override getter @tableViewControllerPropertyGeneration declarationCode ?let @str
 
 override getter @tableViewControllerPropertyGeneration configurationCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
-#  if mUsesManagedObjectContext then §§
-#    result += "    self." + mPropertyName + ".setManagedObjectContext (self.managedObjectContext)\n"
-#  end
   result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property)\n"
 }
 

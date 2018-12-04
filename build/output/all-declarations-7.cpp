@@ -20,33 +20,33 @@ static void extensionMethod_tableViewControllerGeneration_generateCode (const cP
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_tableViewControllerGeneration * object = (const cPtr_tableViewControllerGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_tableViewControllerGeneration) ;
-  GALGAS_stringset var_observedProperties_22880 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("table-view-controller.galgas", 592)) ;
-  cEnumerator_tableViewControllerSortedColumnListForGeneration enumerator_22947 (object->mProperty_mTableViewControllerSortedColumnListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_22947.hasCurrentObject ()) {
-    var_observedProperties_22880.addAssign_operation (enumerator_22947.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 594)) ;
-    enumerator_22947.gotoNextObject () ;
+  GALGAS_stringset var_observedProperties_22665 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("table-view-controller.galgas", 586)) ;
+  cEnumerator_tableViewControllerSortedColumnListForGeneration enumerator_22732 (object->mProperty_mTableViewControllerSortedColumnListForGeneration, kENUMERATION_UP) ;
+  while (enumerator_22732.hasCurrentObject ()) {
+    var_observedProperties_22665.addAssign_operation (enumerator_22732.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 588)) ;
+    enumerator_22732.gotoNextObject () ;
   }
-  cEnumerator_tableViewControllerFilterListForGeneration enumerator_23069 (object->mProperty_mTableViewControllerFilterListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_23069.hasCurrentObject ()) {
-    var_observedProperties_22880.addAssign_operation (enumerator_23069.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 597)) ;
-    enumerator_23069.gotoNextObject () ;
+  cEnumerator_tableViewControllerFilterListForGeneration enumerator_22854 (object->mProperty_mTableViewControllerFilterListForGeneration, kENUMERATION_UP) ;
+  while (enumerator_22854.hasCurrentObject ()) {
+    var_observedProperties_22665.addAssign_operation (enumerator_22854.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 591)) ;
+    enumerator_22854.gotoNextObject () ;
   }
-  GALGAS_string var_s_23133 = GALGAS_string (filewrapperTemplate_tableViewControllerGenerationTemplate_tableViewControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 601)), object->mProperty_mTableViewControllerFilterListForGeneration, object->mProperty_mModelString, object->mProperty_mTableViewControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mTableViewControllerBoundColumnListForGeneration, object->mProperty_mTableViewControllerSortedColumnListForGeneration, object->mProperty_mElementTypeName, object->mProperty_mElementTypeIsGraphic, var_observedProperties_22880, object->mProperty_mAttributeListForGeneration COMMA_SOURCE_FILE ("table-view-controller.galgas", 599))) ;
+  GALGAS_string var_s_22918 = GALGAS_string (filewrapperTemplate_tableViewControllerGenerationTemplate_tableViewControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 595)), object->mProperty_mTableViewControllerFilterListForGeneration, object->mProperty_mModelString, object->mProperty_mTableViewControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mTableViewControllerBoundColumnListForGeneration, object->mProperty_mTableViewControllerSortedColumnListForGeneration, object->mProperty_mElementTypeName, object->mProperty_mElementTypeIsGraphic, var_observedProperties_22665, object->mProperty_mAttributeListForGeneration COMMA_SOURCE_FILE ("table-view-controller.galgas", 593))) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 615)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 615)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 615)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 615)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 615)), var_s_23133, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 613)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 609)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)), var_s_22918, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 607)) ;
   }
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsStrictSup, object->mProperty_mTableViewControllerFilterListForGeneration.getter_length (SOURCE_FILE ("table-view-controller.galgas", 618)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, object->mProperty_mTableViewControllerFilterListForGeneration.getter_length (SOURCE_FILE ("table-view-controller.galgas", 612)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_s_23813 = GALGAS_string (filewrapperTemplate_tableViewControllerGenerationTemplate_filterFunction (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 621)), object->mProperty_mTableViewControllerFilterListForGeneration COMMA_SOURCE_FILE ("table-view-controller.galgas", 619))) ;
-      GALGAS_string var_fileName_23996 = GALGAS_string ("arrayControllerFilter-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 624)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 624)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 624)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 624)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 624)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_23996  COMMA_SOURCE_FILE ("table-view-controller.galgas", 625)) ;
+      GALGAS_string var_s_23598 = GALGAS_string (filewrapperTemplate_tableViewControllerGenerationTemplate_filterFunction (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 615)), object->mProperty_mTableViewControllerFilterListForGeneration COMMA_SOURCE_FILE ("table-view-controller.galgas", 613))) ;
+      GALGAS_string var_fileName_23781 = GALGAS_string ("arrayControllerFilter-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 618)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 618)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 618)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 618)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 618)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_23781  COMMA_SOURCE_FILE ("table-view-controller.galgas", 619)) ;
       {
-      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_23996, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
-        "\n"), var_s_23813, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_23781, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
+        "\n"), var_s_23598, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
         "\n"
-        "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("table-view-controller.galgas", 634)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 634)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 634)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 626)) ;
+        "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("table-view-controller.galgas", 628)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 628)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 628)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 620)) ;
       }
     }
   }
@@ -3731,6 +3731,7 @@ const char * gWrapperFileContent_17_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  override init () {\n"
   "    super.init ()\n"
   "    noteObjectAllocation (self)\n"
+  "    self.undoManager = self.mUndoManager\n"
   "    self.mUndoManager.disableUndoRegistration ()\n"
   "    mRootObject = try! newInstanceOfEntityNamed (self.mUndoManager, inEntityTypeName: rootEntityClassName ())\n"
   "    self.mUndoManager.enableUndoRegistration ()\n"
@@ -3745,7 +3746,7 @@ const char * gWrapperFileContent_17_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "  //    undoManager\n"
+  "  //    ebUndoManager\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  final var ebUndoManager : EBUndoManager {\n"
@@ -3836,9 +3837,9 @@ const char * gWrapperFileContent_17_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  func dataForSavingFromRootObject () throws -> Data {\n"
-  "    let objectsToSaveArray : [EBManagedObject] = reachableObjectsFromRootObject (rootObject: self.mRootObject!)\n"
+  "    let objectsToSaveArray : [EBManagedObject] = self.reachableObjectsFromRootObject (rootObject: self.mRootObject!)\n"
   "  //--- Set savingIndex for each object\n"
-  "    var idx = 0 ;\n"
+  "    var idx = 0\n"
   "    for object in objectsToSaveArray {\n"
   "      object.savingIndex = idx\n"
   "      idx += 1\n"
@@ -3846,9 +3847,7 @@ const char * gWrapperFileContent_17_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  //---\n"
   "    var saveDataArray : [NSDictionary] = []\n"
   "    for object in objectsToSaveArray {\n"
-  "      let d : NSMutableDictionary = [\n"
-  "        kEntityKey : object.className.pathExtension\n"
-  "      ]\n"
+  "      let d : NSMutableDictionary = [kEntityKey : object.className.pathExtension]\n"
   "      object.saveIntoDictionary (d)\n"
   "      saveDataArray.append (d)\n"
   "    }\n"
@@ -3856,6 +3855,40 @@ const char * gWrapperFileContent_17_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "      format:PropertyListSerialization.PropertyListFormat.binary,\n"
   "      options:0\n"
   "    )\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "  //  R E A C H A B L E   O B J E C T S    F R O M    O B J E C T\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  private func reachableObjectsFromRootObject (rootObject : EBManagedObject) -> [EBManagedObject] {\n"
+  "    var reachableObjectArray = [EBManagedObject] ()\n"
+  "    var reachableObjectSet = Set <EBManagedObject> ()\n"
+  "    reachableObjectSet.insert (rootObject)\n"
+  "    var objectsToExploreArray = Array<EBManagedObject> ()\n"
+  "    objectsToExploreArray.append (rootObject)\n"
+  "    rootObject.savingIndex = reachableObjectArray.count\n"
+  "    reachableObjectArray.append (rootObject)\n"
+  "    // let start = Date()\n"
+  "    //   NSLog (\"start\")\n"
+  "    while (objectsToExploreArray.count > 0) {\n"
+  "      let objectToExplore : EBManagedObject = objectsToExploreArray.last!\n"
+  "      objectsToExploreArray.removeLast ()\n"
+  "      var accessible = [EBManagedObject] ()\n"
+  "      objectToExplore.accessibleObjects (objects: &accessible)\n"
+  "      for object : Any in accessible {\n"
+  "        let managedObject = object as! EBManagedObject\n"
+  "        if !reachableObjectSet.contains (managedObject) {\n"
+  "          reachableObjectSet.insert (managedObject)\n"
+  "          managedObject.savingIndex = reachableObjectArray.count\n"
+  "          reachableObjectArray.append (managedObject)\n"
+  "          objectsToExploreArray.append (managedObject)\n"
+  "        }\n"
+  "      }\n"
+  "    // let timeTaken = Date().timeIntervalSinceDate(start) * 1000\n"
+  "    // NSLog (\"\\%f ms\", timeTaken)\n"
+  "    }\n"
+  "    return reachableObjectArray\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -4435,7 +4468,7 @@ const cRegularFileWrapper gWrapperFile_17_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  31534, // Text length
+  33187, // Text length
   gWrapperFileContent_17_swift_5F_sources
 ) ;
 

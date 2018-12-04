@@ -99,7 +99,6 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         !mControllerName.string
         !"rootObject." + mToManyPropertyName
         !mClassName
-        !true
       }
       case toOne (3*) :
         error mRootEntityName : "a tomany relationship is required here"
@@ -125,7 +124,6 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         !mControllerName.string
         !mToManyPropertyName
         !mClassName
-        !isEntity
       }
       case toOne (3*) :
         error mRootEntityName : "a tomany relationship is required here"
@@ -223,7 +221,6 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
 class @arrayControllerPropertyGeneration : @propertyGeneration {
   @string mModelString
   @string mOwnerName
-  @bool mUsesManagedObjectContext
 }
 
 #·······················································································································
@@ -239,9 +236,6 @@ override getter @arrayControllerPropertyGeneration declarationCode ?let @strings
 
 override getter @arrayControllerPropertyGeneration configurationCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
-#  if mUsesManagedObjectContext then §§
-#    result += "    self." + mPropertyName + ".setManagedObjectContext (self.managedObjectContext)\n"
-#  end
   result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property)\n"
 }
 
