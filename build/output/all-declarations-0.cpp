@@ -299,14 +299,17 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3D__3D_ = "the 
 //--- Syntax error message for terminal '$^$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__5E_ = "the '^' delimitor" ;
 
+//--- Syntax error message for terminal '$-$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__2D_ = "the '-' delimitor" ;
+
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                getMessageForTerminal                                                                                *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
   C_String result = "<unknown>" ;
-  if ((inTerminalIndex >= 0) && (inTerminalIndex < 78)) {
-    static const char * syntaxErrorMessageArray [78] = {kEndOfSourceLexicalErrorMessage,
+  if ((inTerminalIndex >= 0) && (inTerminalIndex < 79)) {
+    static const char * syntaxErrorMessageArray [79] = {kEndOfSourceLexicalErrorMessage,
         gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique__40_attribute,
@@ -383,7 +386,8 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique__3E__3D_,
         gSyntaxErrorMessage_easyBindings_5F_lexique__21__3D_,
         gSyntaxErrorMessage_easyBindings_5F_lexique__3D__3D_,
-        gSyntaxErrorMessage_easyBindings_5F_lexique__5E_
+        gSyntaxErrorMessage_easyBindings_5F_lexique__5E_,
+        gSyntaxErrorMessage_easyBindings_5F_lexique__2D_
     } ;
     result = syntaxErrorMessageArray [inTerminalIndex] ;
   }
@@ -428,6 +432,12 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique__29_ [] = {
 //--- Unicode string for '$_2C_$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique__2C_ [] = {
   TO_UNICODE (','),
+  TO_UNICODE (0)
+} ;
+
+//--- Unicode string for '$_2D_$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique__2D_ [] = {
+  TO_UNICODE ('-'),
   TO_UNICODE (0)
 } ;
 
@@ -1153,7 +1163,7 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique__7D_ [] = {
 //             Key words table 'delimitorsList'                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static const int32_t ktable_size_easyBindings_5F_lexique_delimitorsList = 20 ;
+static const int32_t ktable_size_easyBindings_5F_lexique_delimitorsList = 21 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_delimitorsList [ktable_size_easyBindings_5F_lexique_delimitorsList] = {
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__21_, 1, C_Lexique_easyBindings_5F_lexique::kToken__21_),
@@ -1161,6 +1171,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_de
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__28_, 1, C_Lexique_easyBindings_5F_lexique::kToken__28_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__29_, 1, C_Lexique_easyBindings_5F_lexique::kToken__29_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2C_, 1, C_Lexique_easyBindings_5F_lexique::kToken__2C_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2D_, 1, C_Lexique_easyBindings_5F_lexique::kToken__2D_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2E_, 1, C_Lexique_easyBindings_5F_lexique::kToken__2E_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3A_, 1, C_Lexique_easyBindings_5F_lexique::kToken__3A_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3B_, 1, C_Lexique_easyBindings_5F_lexique::kToken__3B_),
@@ -1673,6 +1684,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString ("^") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
+    case kToken__2D_:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("-") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
     default:
       break ;
     }
@@ -1860,6 +1876,9 @@ bool C_Lexique_easyBindings_5F_lexique::parseLexicalToken (void) {
         enterToken (token) ;
       }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2E_, 1, true)) {
         token.mTokenCode = kToken__2E_ ;
+        enterToken (token) ;
+      }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2D_, 1, true)) {
+        token.mTokenCode = kToken__2D_ ;
         enterToken (token) ;
       }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2C_, 1, true)) {
         token.mTokenCode = kToken__2C_ ;
@@ -2065,6 +2084,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("!=") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("==") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("^") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("-") COMMA_THERE) ;
   return result ;
 }
 
@@ -2088,6 +2108,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("(") ;
     ioList.appendObject (")") ;
     ioList.appendObject (",") ;
+    ioList.appendObject ("-") ;
     ioList.appendObject (".") ;
     ioList.appendObject (":") ;
     ioList.appendObject (";") ;
@@ -2175,7 +2196,7 @@ __attribute__ ((unused)) (getKeywordLists_easyBindings_5F_lexique, getKeywordsFo
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [78] = {0,
+  static const uint32_t kTerminalSymbolStyles [79] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
@@ -2252,7 +2273,8 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     10 /* easyBindings_lexique_1__3E__3D_ */,
     10 /* easyBindings_lexique_1__21__3D_ */,
     10 /* easyBindings_lexique_1__3D__3D_ */,
-    10 /* easyBindings_lexique_1__5E_ */
+    10 /* easyBindings_lexique_1__5E_ */,
+    10 /* easyBindings_lexique_1__2D_ */
   } ;
   return (inTerminalIndex >= 0) ? kTerminalSymbolStyles [inTerminalIndex] : 0 ;
 }
@@ -4883,53 +4905,59 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
   outArgument_outDefaultValue.drop () ; // Release 'out' argument
   switch (select_easyBindings_5F_syntax_52 (inCompiler)) {
   case 1: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.galgas", 61)) ;
-    outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::constructor_new (GALGAS_lbool::constructor_new (GALGAS_bool (true), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62)) ;
+    outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::constructor_new (GALGAS_lbool::constructor_new (GALGAS_bool (true), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 63))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 63))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 63)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("explicit-default-value.galgas", 64)) ;
-    outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::constructor_new (GALGAS_lbool::constructor_new (GALGAS_bool (false), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 65))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 65))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 65)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("explicit-default-value.galgas", 65)) ;
+    outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::constructor_new (GALGAS_lbool::constructor_new (GALGAS_bool (false), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 66))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 66))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 66)) ;
   } break ;
   case 3: {
-    GALGAS_luint var_integerValue_2433 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.galgas", 67)) ;
-    outArgument_outDefaultValue = GALGAS_integerAsDefaultValue::constructor_new (var_integerValue_2433  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 68)) ;
+    GALGAS_luint var_integerValue_2451 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.galgas", 68)) ;
+    outArgument_outDefaultValue = GALGAS_integerAsDefaultValue::constructor_new (var_integerValue_2451, GALGAS_bool (false)  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 69)) ;
   } break ;
   case 4: {
-    GALGAS_ldouble var_doubleValue_2557 = inCompiler->synthetizedAttribute_floatValue () ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_double COMMA_SOURCE_FILE ("explicit-default-value.galgas", 70)) ;
-    outArgument_outDefaultValue = GALGAS_doubleAsDefaultValue::constructor_new (var_doubleValue_2557  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 71)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 71)) ;
+    GALGAS_luint var_integerValue_2592 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.galgas", 72)) ;
+    outArgument_outDefaultValue = GALGAS_integerAsDefaultValue::constructor_new (var_integerValue_2592, GALGAS_bool (true)  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 73)) ;
   } break ;
   case 5: {
-    GALGAS_lstring var_stringValue_2681 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 73)) ;
-    outArgument_outDefaultValue = GALGAS_stringAsDefaultValue::constructor_new (var_stringValue_2681  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 74)) ;
+    GALGAS_ldouble var_doubleValue_2722 = inCompiler->synthetizedAttribute_floatValue () ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_double COMMA_SOURCE_FILE ("explicit-default-value.galgas", 75)) ;
+    outArgument_outDefaultValue = GALGAS_doubleAsDefaultValue::constructor_new (var_doubleValue_2722  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 76)) ;
   } break ;
   case 6: {
-    GALGAS_lstring var_stringValue_2798 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("explicit-default-value.galgas", 76)) ;
-    outArgument_outDefaultValue = GALGAS_identifierAsDefaultValue::constructor_new (var_stringValue_2798  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 77)) ;
+    GALGAS_lstring var_stringValue_2846 = inCompiler->synthetizedAttribute_tokenString () ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 78)) ;
+    outArgument_outDefaultValue = GALGAS_stringAsDefaultValue::constructor_new (var_stringValue_2846  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 79)) ;
   } break ;
   case 7: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 79)) ;
-    GALGAS_location var_startLocation_2908 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 80)) ;
-    GALGAS_defaultValueList var_defaultValueList_2966 = GALGAS_defaultValueList::constructor_emptyList (SOURCE_FILE ("explicit-default-value.galgas", 81)) ;
+    GALGAS_lstring var_stringValue_2963 = inCompiler->synthetizedAttribute_tokenString () ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("explicit-default-value.galgas", 81)) ;
+    outArgument_outDefaultValue = GALGAS_identifierAsDefaultValue::constructor_new (var_stringValue_2963  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 82)) ;
+  } break ;
+  case 8: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 84)) ;
+    GALGAS_location var_startLocation_3073 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 85)) ;
+    GALGAS_defaultValueList var_defaultValueList_3131 = GALGAS_defaultValueList::constructor_emptyList (SOURCE_FILE ("explicit-default-value.galgas", 86)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      GALGAS_abstractDefaultValue var_defaultValue_3049 ;
-      nt_explicit_5F_value_ (var_defaultValue_3049, inCompiler) ;
-      var_defaultValueList_2966.addAssign_operation (var_defaultValue_3049  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 84)) ;
+      GALGAS_abstractDefaultValue var_defaultValue_3214 ;
+      nt_explicit_5F_value_ (var_defaultValue_3214, inCompiler) ;
+      var_defaultValueList_3131.addAssign_operation (var_defaultValue_3214  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 89)) ;
       switch (select_easyBindings_5F_syntax_53 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 86)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 91)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
         break ;
       }
     }
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 88)) ;
-    outArgument_outDefaultValue = GALGAS_listAsDefaultValue::constructor_new (var_startLocation_2908, var_defaultValueList_2966  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 89)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 93)) ;
+    outArgument_outDefaultValue = GALGAS_listAsDefaultValue::constructor_new (var_startLocation_3073, var_defaultValueList_3131  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 94)) ;
   } break ;
   default:
     break ;
@@ -4941,38 +4969,42 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i32_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_52 (inCompiler)) {
   case 1: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.galgas", 61)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.galgas", 62)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("explicit-default-value.galgas", 64)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("explicit-default-value.galgas", 65)) ;
   } break ;
   case 3: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.galgas", 67)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.galgas", 68)) ;
   } break ;
   case 4: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_double COMMA_SOURCE_FILE ("explicit-default-value.galgas", 70)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 71)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.galgas", 72)) ;
   } break ;
   case 5: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 73)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_double COMMA_SOURCE_FILE ("explicit-default-value.galgas", 75)) ;
   } break ;
   case 6: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("explicit-default-value.galgas", 76)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("explicit-default-value.galgas", 78)) ;
   } break ;
   case 7: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 79)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("explicit-default-value.galgas", 81)) ;
+  } break ;
+  case 8: {
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 84)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
       nt_explicit_5F_value_parse (inCompiler) ;
       switch (select_easyBindings_5F_syntax_53 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 86)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 91)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
         break ;
       }
     }
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 88)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("explicit-default-value.galgas", 93)) ;
   } break ;
   default:
     break ;

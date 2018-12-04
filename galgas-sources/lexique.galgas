@@ -44,7 +44,6 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "outlet",
   "prefs",
   "property",
-#  "proxy",
   "root",
   "selectionController",
   "self",
@@ -195,7 +194,7 @@ style delimitersStyle -> "Delimiters"
 list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
   ":",    ",",    ";",   "!",  "[",  "]",  "{",  "}",
   "(",  ")", "." , "|", "&", "<", ">", "<=", ">=", "!=", "==",
-  "^"
+  "^", "-"
 }
 
 rule list delimitorsList

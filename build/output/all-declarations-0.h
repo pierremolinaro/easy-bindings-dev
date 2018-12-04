@@ -140,7 +140,8 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken__3E__3D_,
    kToken__21__3D_,
    kToken__3D__3D_,
-   kToken__5E_} ;
+   kToken__5E_,
+   kToken__2D_} ;
 
 //--- Key words table 'lowerCaseKeyWordList'
   public : static int16_t search_into_lowerCaseKeyWordList (const C_String & inSearchedString) ;
@@ -178,7 +179,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 77 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 78 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -2744,7 +2745,8 @@ class GALGAS_integerAsDefaultValue : public GALGAS_abstractDefaultValue {
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_integerAsDefaultValue constructor_new (const class GALGAS_luint & inOperand0
+  public : static class GALGAS_integerAsDefaultValue constructor_new (const class GALGAS_luint & inOperand0,
+                                                                      const class GALGAS_bool & inOperand1
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2756,6 +2758,8 @@ class GALGAS_integerAsDefaultValue : public GALGAS_abstractDefaultValue {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNegative (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_luint getter_mValue (LOCATION_ARGS) const ;
 
 
@@ -2778,9 +2782,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_integerAsDefaultVal
 class cPtr_integerAsDefaultValue : public cPtr_abstractDefaultValue {
 //--- Attributes
   public : GALGAS_luint mProperty_mValue ;
+  public : GALGAS_bool mProperty_mNegative ;
 
 //--- Constructor
-  public : cPtr_integerAsDefaultValue (const GALGAS_luint & in_mValue
+  public : cPtr_integerAsDefaultValue (const GALGAS_luint & in_mValue,
+                                       const GALGAS_bool & in_mNegative
                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -2788,6 +2794,7 @@ class cPtr_integerAsDefaultValue : public cPtr_abstractDefaultValue {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mValue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mNegative (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

@@ -21,6 +21,7 @@ class @doubleAsDefaultValue : @abstractDefaultValue {
 
 class @integerAsDefaultValue : @abstractDefaultValue {
   @luint mValue
+  @bool mNegative
 }
 
 #·······················································································································
@@ -65,7 +66,11 @@ syntax extension easyBindings_syntax {
       outDefaultValue = @boolAsDefaultValue.new {!.new {!false !.here}}
     or
       $literal_integer$ ?var  @luint integerValue
-      outDefaultValue = @integerAsDefaultValue.new {!integerValue}
+      outDefaultValue = @integerAsDefaultValue.new {!integerValue !false}
+    or
+      $-$
+      $literal_integer$ ?var  @luint integerValue
+      outDefaultValue = @integerAsDefaultValue.new {!integerValue !true}
     or
       $literal_double$ ?var  @ldouble doubleValue ?*
       outDefaultValue = @doubleAsDefaultValue.new {!doubleValue}
@@ -139,7 +144,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
   for () in  inAttributeActualTypeList while not found do
     switch mType
     case integerType :
-      outSwiftDefaultValueAsString = [mValue.uint string]
+      outSwiftDefaultValueAsString = if mNegative then "-" else "" end + [mValue.uint string]
       found = true
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + mValue.uint + ".0)"

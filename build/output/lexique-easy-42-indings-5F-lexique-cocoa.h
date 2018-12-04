@@ -101,7 +101,8 @@ enum {easyBindings_lexique_1_,
   easyBindings_lexique_1__3E__3D_,
   easyBindings_lexique_1__21__3D_,
   easyBindings_lexique_1__3D__3D_,
-  easyBindings_lexique_1__5E_
+  easyBindings_lexique_1__5E_,
+  easyBindings_lexique_1__2D_
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

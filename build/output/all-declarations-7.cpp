@@ -1370,12 +1370,12 @@ static void extensionMethod_boolAsDefaultValue_analyzeDefaultValueType (const cP
   const cPtr_boolAsDefaultValue * object = (const cPtr_boolAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_boolAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_4117 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_4164 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_4117.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 113)).isValidAndTrue () ;
-  if (enumerator_4164.hasCurrentObject () && bool_0) {
-    while (enumerator_4164.hasCurrentObject () && bool_0) {
-      switch (enumerator_4164.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_4282 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_4329 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_4282.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 118)).isValidAndTrue () ;
+  if (enumerator_4329.hasCurrentObject () && bool_0) {
+    while (enumerator_4329.hasCurrentObject () && bool_0) {
+      switch (enumerator_4329.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_boolType:
@@ -1388,7 +1388,7 @@ static void extensionMethod_boolAsDefaultValue_analyzeDefaultValueType (const cP
             temp_1 = GALGAS_string ("false") ;
           }
           outArgument_outSwiftDefaultValueAsString = temp_1 ;
-          var_found_4117 = GALGAS_bool (true) ;
+          var_found_4282 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_integerType:
@@ -1417,18 +1417,18 @@ static void extensionMethod_boolAsDefaultValue_analyzeDefaultValueType (const cP
         }
         break ;
       }
-      enumerator_4164.gotoNextObject () ;
-      if (enumerator_4164.hasCurrentObject ()) {
-        bool_0 = var_found_4117.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 113)).isValidAndTrue () ;
+      enumerator_4329.gotoNextObject () ;
+      if (enumerator_4329.hasCurrentObject ()) {
+        bool_0 = var_found_4282.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 118)).isValidAndTrue () ;
       }
     }
   }
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
-    test_3 = var_found_4117.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 125)).boolEnum () ;
+    test_3 = var_found_4282.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 130)).boolEnum () ;
     if (kBoolTrue == test_3) {
       TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 126)), GALGAS_string ("only a boolean attribute can be initialized by YES or NO"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 126)) ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 131)), GALGAS_string ("only a boolean attribute can be initialized by YES or NO"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 131)) ;
     }
   }
 }
@@ -1458,24 +1458,31 @@ static void extensionMethod_integerAsDefaultValue_analyzeDefaultValueType (const
   const cPtr_integerAsDefaultValue * object = (const cPtr_integerAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_integerAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_4973 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_5020 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_4973.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 139)).isValidAndTrue () ;
-  if (enumerator_5020.hasCurrentObject () && bool_0) {
-    while (enumerator_5020.hasCurrentObject () && bool_0) {
-      switch (enumerator_5020.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_5138 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_5185 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_5138.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 144)).isValidAndTrue () ;
+  if (enumerator_5185.hasCurrentObject () && bool_0) {
+    while (enumerator_5185.hasCurrentObject () && bool_0) {
+      switch (enumerator_5185.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_integerType:
         {
-          outArgument_outSwiftDefaultValueAsString = object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 142)) ;
-          var_found_4973 = GALGAS_bool (true) ;
+          GALGAS_string temp_1 ;
+          const enumGalgasBool test_2 = object->mProperty_mNegative.boolEnum () ;
+          if (kBoolTrue == test_2) {
+            temp_1 = GALGAS_string ("-") ;
+          }else if (kBoolFalse == test_2) {
+            temp_1 = GALGAS_string::makeEmptyString () ;
+          }
+          outArgument_outSwiftDefaultValueAsString = temp_1.add_operation (object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 147)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 147)) ;
+          var_found_5138 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_fontType:
         {
-          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSFont.systemFont (ofSize: ").add_operation (object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 145)).add_operation (GALGAS_string (".0)"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 145)) ;
-          var_found_4973 = GALGAS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSFont.systemFont (ofSize: ").add_operation (object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 150)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 150)).add_operation (GALGAS_string (".0)"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 150)) ;
+          var_found_5138 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
@@ -1503,18 +1510,18 @@ static void extensionMethod_integerAsDefaultValue_analyzeDefaultValueType (const
         }
         break ;
       }
-      enumerator_5020.gotoNextObject () ;
-      if (enumerator_5020.hasCurrentObject ()) {
-        bool_0 = var_found_4973.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 139)).isValidAndTrue () ;
+      enumerator_5185.gotoNextObject () ;
+      if (enumerator_5185.hasCurrentObject ()) {
+        bool_0 = var_found_5138.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 144)).isValidAndTrue () ;
       }
     }
   }
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
-    test_1 = var_found_4973.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 154)).boolEnum () ;
-    if (kBoolTrue == test_1) {
-      TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 155)), GALGAS_string ("only an integer attribute can be initialized by an integer constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 155)) ;
+  enumGalgasBool test_3 = kBoolTrue ;
+  if (kBoolTrue == test_3) {
+    test_3 = var_found_5138.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 159)).boolEnum () ;
+    if (kBoolTrue == test_3) {
+      TC_Array <C_FixItDescription> fixItArray4 ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 160)), GALGAS_string ("only an integer attribute can be initialized by an integer constant"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 160)) ;
     }
   }
 }
@@ -1544,18 +1551,18 @@ static void extensionMethod_doubleAsDefaultValue_analyzeDefaultValueType (const 
   const cPtr_doubleAsDefaultValue * object = (const cPtr_doubleAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_doubleAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_5934 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_5981 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_5934.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 168)).isValidAndTrue () ;
-  if (enumerator_5981.hasCurrentObject () && bool_0) {
-    while (enumerator_5981.hasCurrentObject () && bool_0) {
-      switch (enumerator_5981.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_6135 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_6182 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_6135.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 173)).isValidAndTrue () ;
+  if (enumerator_6182.hasCurrentObject () && bool_0) {
+    while (enumerator_6182.hasCurrentObject () && bool_0) {
+      switch (enumerator_6182.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_doubleType:
         {
-          outArgument_outSwiftDefaultValueAsString = object->mProperty_mValue.getter_double (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 171)) ;
-          var_found_5934 = GALGAS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = object->mProperty_mValue.getter_double (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 176)) ;
+          var_found_6135 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
@@ -1584,18 +1591,18 @@ static void extensionMethod_doubleAsDefaultValue_analyzeDefaultValueType (const 
         }
         break ;
       }
-      enumerator_5981.gotoNextObject () ;
-      if (enumerator_5981.hasCurrentObject ()) {
-        bool_0 = var_found_5934.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 168)).isValidAndTrue () ;
+      enumerator_6182.gotoNextObject () ;
+      if (enumerator_6182.hasCurrentObject ()) {
+        bool_0 = var_found_6135.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 173)).isValidAndTrue () ;
       }
     }
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = var_found_5934.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 180)).boolEnum () ;
+    test_1 = var_found_6135.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 185)).boolEnum () ;
     if (kBoolTrue == test_1) {
       TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 181)), GALGAS_string ("only a double attribute can be initialized by a floating point constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 181)) ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 186)), GALGAS_string ("only a double attribute can be initialized by a floating point constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 186)) ;
     }
   }
 }
@@ -1625,18 +1632,18 @@ static void extensionMethod_stringAsDefaultValue_analyzeDefaultValueType (const 
   const cPtr_stringAsDefaultValue * object = (const cPtr_stringAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_stringAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_6783 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_6830 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_6783.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 194)).isValidAndTrue () ;
-  if (enumerator_6830.hasCurrentObject () && bool_0) {
-    while (enumerator_6830.hasCurrentObject () && bool_0) {
-      switch (enumerator_6830.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_6984 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_7031 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_6984.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 199)).isValidAndTrue () ;
+  if (enumerator_7031.hasCurrentObject () && bool_0) {
+    while (enumerator_7031.hasCurrentObject () && bool_0) {
+      switch (enumerator_7031.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_stringType:
         {
-          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("\"").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 197)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 197)) ;
-          var_found_6783 = GALGAS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("\"").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 202)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 202)) ;
+          var_found_6984 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
@@ -1665,18 +1672,18 @@ static void extensionMethod_stringAsDefaultValue_analyzeDefaultValueType (const 
         }
         break ;
       }
-      enumerator_6830.gotoNextObject () ;
-      if (enumerator_6830.hasCurrentObject ()) {
-        bool_0 = var_found_6783.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 194)).isValidAndTrue () ;
+      enumerator_7031.gotoNextObject () ;
+      if (enumerator_7031.hasCurrentObject ()) {
+        bool_0 = var_found_6984.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 199)).isValidAndTrue () ;
       }
     }
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = var_found_6783.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 206)).boolEnum () ;
+    test_1 = var_found_6984.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 211)).boolEnum () ;
     if (kBoolTrue == test_1) {
       TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 207)), GALGAS_string ("only a string attribute can be initialized by a string constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 207)) ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 212)), GALGAS_string ("only a string attribute can be initialized by a string constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 212)) ;
     }
   }
 }
@@ -1701,8 +1708,8 @@ C_PrologueEpilogue gMethod_stringAsDefaultValue_analyzeDefaultValueType (defineE
 static GALGAS_stringset onceFunction_predefinedDates (C_Compiler * /* inCompiler */
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_result ; // Returned variable
-  result_result = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 215)) ;
-  result_result.addAssign_operation (GALGAS_string ("date")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 216)) ;
+  result_result = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 220)) ;
+  result_result.addAssign_operation (GALGAS_string ("date")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 221)) ;
 //---
   return result_result ;
 }
@@ -1772,48 +1779,48 @@ C_galgas_function_descriptor functionDescriptor_predefinedDates ("predefinedDate
 static GALGAS_stringset onceFunction_predefinedColors (C_Compiler * /* inCompiler */
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_result ; // Returned variable
-  result_result = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 222)) ;
-  result_result.addAssign_operation (GALGAS_string ("black")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 223)) ;
-  result_result.addAssign_operation (GALGAS_string ("blue")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 224)) ;
-  result_result.addAssign_operation (GALGAS_string ("brown")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 225)) ;
-  result_result.addAssign_operation (GALGAS_string ("clear")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 226)) ;
-  result_result.addAssign_operation (GALGAS_string ("control")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 227)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlDarkShadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 228)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlHighlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 229)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlLightHighlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 230)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlShadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 231)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 232)) ;
-  result_result.addAssign_operation (GALGAS_string ("cyan")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 233)) ;
-  result_result.addAssign_operation (GALGAS_string ("darkGray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 234)) ;
-  result_result.addAssign_operation (GALGAS_string ("disabledControlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 235)) ;
-  result_result.addAssign_operation (GALGAS_string ("gray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 236)) ;
-  result_result.addAssign_operation (GALGAS_string ("green")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 237)) ;
-  result_result.addAssign_operation (GALGAS_string ("grid")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 238)) ;
-  result_result.addAssign_operation (GALGAS_string ("header")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 239)) ;
-  result_result.addAssign_operation (GALGAS_string ("headerText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 240)) ;
-  result_result.addAssign_operation (GALGAS_string ("highlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 241)) ;
-  result_result.addAssign_operation (GALGAS_string ("keyboardFocusIndicator")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 242)) ;
-  result_result.addAssign_operation (GALGAS_string ("knob")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 243)) ;
-  result_result.addAssign_operation (GALGAS_string ("lightGray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 244)) ;
-  result_result.addAssign_operation (GALGAS_string ("magenta")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 245)) ;
-  result_result.addAssign_operation (GALGAS_string ("orange")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 246)) ;
-  result_result.addAssign_operation (GALGAS_string ("purple")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 247)) ;
-  result_result.addAssign_operation (GALGAS_string ("red")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 248)) ;
-  result_result.addAssign_operation (GALGAS_string ("scrollBar")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 249)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedControl")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 250)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedControlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 251)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedKnob")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 252)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedMenuItem")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 253)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedMenuItemText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 254)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedTextBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 255)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 256)) ;
-  result_result.addAssign_operation (GALGAS_string ("shadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 257)) ;
-  result_result.addAssign_operation (GALGAS_string ("textBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 258)) ;
-  result_result.addAssign_operation (GALGAS_string ("white")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 259)) ;
-  result_result.addAssign_operation (GALGAS_string ("windowBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 260)) ;
-  result_result.addAssign_operation (GALGAS_string ("windowFrame")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 261)) ;
-  result_result.addAssign_operation (GALGAS_string ("windowFrameText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 262)) ;
-  result_result.addAssign_operation (GALGAS_string ("yellow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 263)) ;
+  result_result = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 227)) ;
+  result_result.addAssign_operation (GALGAS_string ("black")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 228)) ;
+  result_result.addAssign_operation (GALGAS_string ("blue")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 229)) ;
+  result_result.addAssign_operation (GALGAS_string ("brown")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 230)) ;
+  result_result.addAssign_operation (GALGAS_string ("clear")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 231)) ;
+  result_result.addAssign_operation (GALGAS_string ("control")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 232)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlDarkShadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 233)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlHighlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 234)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlLightHighlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 235)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlShadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 236)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 237)) ;
+  result_result.addAssign_operation (GALGAS_string ("cyan")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 238)) ;
+  result_result.addAssign_operation (GALGAS_string ("darkGray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 239)) ;
+  result_result.addAssign_operation (GALGAS_string ("disabledControlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 240)) ;
+  result_result.addAssign_operation (GALGAS_string ("gray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 241)) ;
+  result_result.addAssign_operation (GALGAS_string ("green")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 242)) ;
+  result_result.addAssign_operation (GALGAS_string ("grid")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 243)) ;
+  result_result.addAssign_operation (GALGAS_string ("header")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 244)) ;
+  result_result.addAssign_operation (GALGAS_string ("headerText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 245)) ;
+  result_result.addAssign_operation (GALGAS_string ("highlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 246)) ;
+  result_result.addAssign_operation (GALGAS_string ("keyboardFocusIndicator")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 247)) ;
+  result_result.addAssign_operation (GALGAS_string ("knob")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 248)) ;
+  result_result.addAssign_operation (GALGAS_string ("lightGray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 249)) ;
+  result_result.addAssign_operation (GALGAS_string ("magenta")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 250)) ;
+  result_result.addAssign_operation (GALGAS_string ("orange")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 251)) ;
+  result_result.addAssign_operation (GALGAS_string ("purple")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 252)) ;
+  result_result.addAssign_operation (GALGAS_string ("red")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 253)) ;
+  result_result.addAssign_operation (GALGAS_string ("scrollBar")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 254)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedControl")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 255)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedControlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 256)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedKnob")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 257)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedMenuItem")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 258)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedMenuItemText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 259)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedTextBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 260)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 261)) ;
+  result_result.addAssign_operation (GALGAS_string ("shadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 262)) ;
+  result_result.addAssign_operation (GALGAS_string ("textBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 263)) ;
+  result_result.addAssign_operation (GALGAS_string ("white")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 264)) ;
+  result_result.addAssign_operation (GALGAS_string ("windowBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 265)) ;
+  result_result.addAssign_operation (GALGAS_string ("windowFrame")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 266)) ;
+  result_result.addAssign_operation (GALGAS_string ("windowFrameText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 267)) ;
+  result_result.addAssign_operation (GALGAS_string ("yellow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 268)) ;
 //---
   return result_result ;
 }
@@ -1888,46 +1895,46 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
   const cPtr_identifierAsDefaultValue * object = (const cPtr_identifierAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_identifierAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_9100 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_9146 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_9100.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 273)).isValidAndTrue () ;
-  if (enumerator_9146.hasCurrentObject () && bool_0) {
-    while (enumerator_9146.hasCurrentObject () && bool_0) {
-      switch (enumerator_9146.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_9301 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_9347 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_9301.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 278)).isValidAndTrue () ;
+  if (enumerator_9347.hasCurrentObject () && bool_0) {
+    while (enumerator_9347.hasCurrentObject () && bool_0) {
+      switch (enumerator_9347.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_dateType:
         {
-          var_found_9100 = GALGAS_bool (true) ;
+          var_found_9301 = GALGAS_bool (true) ;
           enumGalgasBool test_1 = kBoolTrue ;
           if (kBoolTrue == test_1) {
-            test_1 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 277)).getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 277)).boolEnum () ;
+            test_1 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 282)).getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 282)).boolEnum () ;
             if (kBoolTrue == test_1) {
               outArgument_outSwiftDefaultValueAsString = GALGAS_string ("Date ()") ;
             }
           }
           if (kBoolFalse == test_1) {
             TC_Array <C_FixItDescription> fixItArray2 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 280)), GALGAS_string ("unknown predefined date"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 280)) ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 285)), GALGAS_string ("unknown predefined date"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 285)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_enumType:
         {
-          const cEnumAssociatedValues_typeKind_enumType * extractPtr_9791 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_9146.current_mType (HERE).unsafePointer ()) ;
-          const GALGAS_string extractedValue_enumTypeName = extractPtr_9791->mAssociatedValue0 ;
-          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_9791->mAssociatedValue1 ;
-          var_found_9100 = GALGAS_bool (true) ;
+          const cEnumAssociatedValues_typeKind_enumType * extractPtr_9992 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_9347.current_mType (HERE).unsafePointer ()) ;
+          const GALGAS_string extractedValue_enumTypeName = extractPtr_9992->mAssociatedValue0 ;
+          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_9992->mAssociatedValue1 ;
+          var_found_9301 = GALGAS_bool (true) ;
           enumGalgasBool test_3 = kBoolTrue ;
           if (kBoolTrue == test_3) {
-            test_3 = extractedValue_constantMap.getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 284)).boolEnum () ;
+            test_3 = extractedValue_constantMap.getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 289)).boolEnum () ;
             if (kBoolTrue == test_3) {
-              outArgument_outSwiftDefaultValueAsString = extractedValue_enumTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 285)).add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 285)) ;
+              outArgument_outSwiftDefaultValueAsString = extractedValue_enumTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 290)).add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 290)) ;
             }
           }
           if (kBoolFalse == test_3) {
             TC_Array <C_FixItDescription> fixItArray4 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 287)), GALGAS_string ("the '").add_operation (extractedValue_enumTypeName, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (GALGAS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (object->mProperty_mValue.getter_string (SOURCE_FILE ("explicit-default-value.galgas", 288)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)).add_operation (GALGAS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 288)), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 287)) ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 292)), GALGAS_string ("the '").add_operation (extractedValue_enumTypeName, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 293)).add_operation (GALGAS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 293)).add_operation (object->mProperty_mValue.getter_string (SOURCE_FILE ("explicit-default-value.galgas", 293)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 293)).add_operation (GALGAS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 293)), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 292)) ;
             outArgument_outSwiftDefaultValueAsString.drop () ; // Release error dropped variable
           }
         }
@@ -1935,80 +1942,80 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
       case GALGAS_typeKind::kEnum_entityType:
         {
           TC_Array <C_FixItDescription> fixItArray5 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 292)), GALGAS_string ("invalid entity type"), fixItArray5  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 292)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 297)), GALGAS_string ("invalid entity type"), fixItArray5  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 297)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_classType:
         {
           TC_Array <C_FixItDescription> fixItArray6 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 294)), GALGAS_string ("invalid class type"), fixItArray6  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 294)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 299)), GALGAS_string ("invalid class type"), fixItArray6  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 299)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
         {
           TC_Array <C_FixItDescription> fixItArray7 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 296)), GALGAS_string ("invalid bool type"), fixItArray7  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 296)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 301)), GALGAS_string ("invalid bool type"), fixItArray7  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 301)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_doubleType:
         {
           TC_Array <C_FixItDescription> fixItArray8 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 298)), GALGAS_string ("invalid double type"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 298)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 303)), GALGAS_string ("invalid double type"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 303)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_integerType:
         {
           TC_Array <C_FixItDescription> fixItArray9 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 300)), GALGAS_string ("invalid integer type"), fixItArray9  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 300)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 305)), GALGAS_string ("invalid integer type"), fixItArray9  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 305)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_stringType:
         {
           TC_Array <C_FixItDescription> fixItArray10 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 302)), GALGAS_string ("invalid string type"), fixItArray10  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 302)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 307)), GALGAS_string ("invalid string type"), fixItArray10  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 307)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_fontType:
         {
           TC_Array <C_FixItDescription> fixItArray11 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 304)), GALGAS_string ("invalid font type"), fixItArray11  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 304)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 309)), GALGAS_string ("invalid font type"), fixItArray11  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 309)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_colorType:
         {
           enumGalgasBool test_12 = kBoolTrue ;
           if (kBoolTrue == test_12) {
-            test_12 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 306)).getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 306)).boolEnum () ;
+            test_12 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 311)).getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 311)).boolEnum () ;
             if (kBoolTrue == test_12) {
-              outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSColor.").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 307)) ;
-              var_found_9100 = GALGAS_bool (true) ;
+              outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSColor.").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 312)) ;
+              var_found_9301 = GALGAS_bool (true) ;
             }
           }
           if (kBoolFalse == test_12) {
             TC_Array <C_FixItDescription> fixItArray13 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 310)), GALGAS_string ("unknown predefined color"), fixItArray13  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 310)) ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 315)), GALGAS_string ("unknown predefined color"), fixItArray13  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 315)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_transientPropertyExternType:
         {
           TC_Array <C_FixItDescription> fixItArray14 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 313)), GALGAS_string ("invalid image type"), fixItArray14  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 313)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 318)), GALGAS_string ("invalid image type"), fixItArray14  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 318)) ;
         }
         break ;
       }
-      enumerator_9146.gotoNextObject () ;
-      if (enumerator_9146.hasCurrentObject ()) {
-        bool_0 = var_found_9100.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 273)).isValidAndTrue () ;
+      enumerator_9347.gotoNextObject () ;
+      if (enumerator_9347.hasCurrentObject ()) {
+        bool_0 = var_found_9301.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 278)).isValidAndTrue () ;
       }
     }
   }
   enumGalgasBool test_15 = kBoolTrue ;
   if (kBoolTrue == test_15) {
-    test_15 = var_found_9100.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 316)).boolEnum () ;
+    test_15 = var_found_9301.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 321)).boolEnum () ;
     if (kBoolTrue == test_15) {
       TC_Array <C_FixItDescription> fixItArray16 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 317)), GALGAS_string ("unknow type for this identifier"), fixItArray16  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 317)) ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 322)), GALGAS_string ("unknow type for this identifier"), fixItArray16  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 322)) ;
     }
   }
 }
@@ -2038,13 +2045,13 @@ static void extensionMethod_listAsDefaultValue_analyzeDefaultValueType (const cP
   const cPtr_listAsDefaultValue * object = (const cPtr_listAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_listAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_11017 = GALGAS_bool (false) ;
+  GALGAS_bool var_found_11218 = GALGAS_bool (false) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = var_found_11017.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 390)).boolEnum () ;
+    test_0 = var_found_11218.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 395)).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (object->mProperty_mStartLocation, GALGAS_string ("invalid initialization value"), fixItArray1  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 391)) ;
+      inCompiler->emitSemanticError (object->mProperty_mStartLocation, GALGAS_string ("invalid initialization value"), fixItArray1  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 396)) ;
     }
   }
 }
