@@ -34,7 +34,11 @@ getter @propertyGeneration terminationCode -> @string { result = "" }
 
 #·······················································································································
 
-getter @propertyGeneration setupFromDictionaryCode -> @string { result = "" }
+getter @propertyGeneration setupAtomicPropertyFromDictionaryCode -> @string { result = "" }
+
+#·······················································································································
+
+getter @propertyGeneration setupRelationshipFromDictionaryCode -> @string { result = "" }
 
 #·······················································································································
 

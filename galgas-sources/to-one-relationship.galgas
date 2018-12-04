@@ -7,7 +7,6 @@ class @toOneRelationshipAST : @abstractDeclarationAST {
   @lstring mToOneRelationshipName
   @lstring mOppositeRelationshipName # Empty string if not inverse relation ship
   @propertyMultiplicity mInverseRelationMultiplicity
-  @bool mCascading
 }
 
 #·······················································································································
@@ -38,19 +37,6 @@ syntax extension easyBindings_syntax {
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $toOne$
-    @bool cascading = false
-    repeat
-    while
-      $@attribute$ ?let attributeName
-      if attributeName.string == "cascading" then
-        if cascading then
-          error attributeName : "duplicated attribute" fixit { remove }
-        end
-        cascading = true
-      else
-        error attributeName : "unknow attribute" fixit { replace "@cascading" }
-      end
-    end
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
     @propertyMultiplicity inverseRelationMultiplicity
@@ -76,7 +62,6 @@ syntax extension easyBindings_syntax {
       !relationshipName
       !inverseRelationshipName
       !inverseRelationMultiplicity
-      !cascading
     }
   }
   
@@ -120,7 +105,6 @@ override method @toOneRelationshipAST firstAnalysisPhase
         !mOppositeRelationshipName
         !mInverseRelationMultiplicity
         !destinationEntityPropertyMap
-        !mCascading
       }
     end
   end
@@ -136,7 +120,6 @@ class @toOnePropertyGeneration : @propertyGeneration {
   @string mOppositeRelationshipName
   @propertyMultiplicity mInverseRelationMultiplicity
   @propertyMap mDestinationEntityObservablePropertyMap
-  @bool mCascading
 }
 
 #·······················································································································
@@ -168,7 +151,7 @@ override getter @toOnePropertyGeneration configurationCode -> @string {
 
 #·······················································································································
 
-override getter @toOnePropertyGeneration setupFromDictionaryCode -> @string {
+override getter @toOnePropertyGeneration setupRelationshipFromDictionaryCode -> @string {
   result  = ""
   if [mInverseRelationMultiplicity isSingle] then
     result += "  //--- To one property: " + mPropertyName + "\n"

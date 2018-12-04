@@ -697,8 +697,6 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
-  protected : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
 
 } ;
 
@@ -4732,8 +4730,7 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
   public : static class GALGAS_toManyRelationshipAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                       const class GALGAS_lstring & inOperand1,
                                                                       const class GALGAS_lstring & inOperand2,
-                                                                      const class GALGAS_toManyRelationshipOptionAST & inOperand3,
-                                                                      const class GALGAS_bool & inOperand4
+                                                                      const class GALGAS_toManyRelationshipOptionAST & inOperand3
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4745,8 +4742,6 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCascading (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mDestinationEntityName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
@@ -4898,14 +4893,12 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
   public : GALGAS_lstring mProperty_mDestinationEntityName ;
   public : GALGAS_lstring mProperty_mToManyRelationshipName ;
   public : GALGAS_toManyRelationshipOptionAST mProperty_mOption ;
-  public : GALGAS_bool mProperty_mCascading ;
 
 //--- Constructor
   public : cPtr_toManyRelationshipAST (const GALGAS_lstring & in_mClassName,
                                        const GALGAS_lstring & in_mDestinationEntityName,
                                        const GALGAS_lstring & in_mToManyRelationshipName,
-                                       const GALGAS_toManyRelationshipOptionAST & in_mOption,
-                                       const GALGAS_bool & in_mCascading
+                                       const GALGAS_toManyRelationshipOptionAST & in_mOption
                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -4915,7 +4908,6 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mDestinationEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToManyRelationshipName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCascading (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -4957,8 +4949,7 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
                                                                      const class GALGAS_lstring & inOperand1,
                                                                      const class GALGAS_lstring & inOperand2,
                                                                      const class GALGAS_lstring & inOperand3,
-                                                                     const class GALGAS_propertyMultiplicity & inOperand4,
-                                                                     const class GALGAS_bool & inOperand5
+                                                                     const class GALGAS_propertyMultiplicity & inOperand4
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4970,8 +4961,6 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCascading (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mDestinationEntityName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyMultiplicity getter_mInverseRelationMultiplicity (LOCATION_ARGS) const ;
@@ -5070,15 +5059,13 @@ class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
   public : GALGAS_lstring mProperty_mToOneRelationshipName ;
   public : GALGAS_lstring mProperty_mOppositeRelationshipName ;
   public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
-  public : GALGAS_bool mProperty_mCascading ;
 
 //--- Constructor
   public : cPtr_toOneRelationshipAST (const GALGAS_lstring & in_mClassName,
                                       const GALGAS_lstring & in_mDestinationEntityName,
                                       const GALGAS_lstring & in_mToOneRelationshipName,
                                       const GALGAS_lstring & in_mOppositeRelationshipName,
-                                      const GALGAS_propertyMultiplicity & in_mInverseRelationMultiplicity,
-                                      const GALGAS_bool & in_mCascading
+                                      const GALGAS_propertyMultiplicity & in_mInverseRelationMultiplicity
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5089,7 +5076,6 @@ class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToOneRelationshipName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mOppositeRelationshipName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_propertyMultiplicity getter_mInverseRelationMultiplicity (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCascading (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -6438,8 +6424,6 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_56 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

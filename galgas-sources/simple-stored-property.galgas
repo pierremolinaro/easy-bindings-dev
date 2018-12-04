@@ -208,7 +208,7 @@ override getter @atomicPropertyGeneration configurationCode -> @string {
 
 #·······················································································································
 
-override getter @atomicPropertyGeneration setupFromDictionaryCode -> @string {
+override getter @atomicPropertyGeneration setupAtomicPropertyFromDictionaryCode -> @string {
   result  = "  //--- Atomic property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey:\"" + mPropertyName + "\")\n"
 }

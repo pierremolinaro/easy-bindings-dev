@@ -3436,8 +3436,7 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
                                                                         const class GALGAS_propertyKind & inOperand2,
                                                                         const class GALGAS_string & inOperand3,
                                                                         const class GALGAS_propertyMultiplicity & inOperand4,
-                                                                        const class GALGAS_propertyMap & inOperand5,
-                                                                        const class GALGAS_bool & inOperand6
+                                                                        const class GALGAS_propertyMap & inOperand5
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3449,8 +3448,6 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCascading (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mClassName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyMap getter_mDestinationEntityObservablePropertyMap (LOCATION_ARGS) const ;
@@ -3485,7 +3482,6 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
   public : GALGAS_string mProperty_mOppositeRelationshipName ;
   public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
   public : GALGAS_propertyMap mProperty_mDestinationEntityObservablePropertyMap ;
-  public : GALGAS_bool mProperty_mCascading ;
 
 //--- Constructor
   public : cPtr_toOnePropertyGeneration (const GALGAS_string & in_mPropertyName,
@@ -3493,8 +3489,7 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
                                          const GALGAS_propertyKind & in_mRelationshipType,
                                          const GALGAS_string & in_mOppositeRelationshipName,
                                          const GALGAS_propertyMultiplicity & in_mInverseRelationMultiplicity,
-                                         const GALGAS_propertyMap & in_mDestinationEntityObservablePropertyMap,
-                                         const GALGAS_bool & in_mCascading
+                                         const GALGAS_propertyMap & in_mDestinationEntityObservablePropertyMap
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3506,7 +3501,6 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mOppositeRelationshipName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_propertyMultiplicity getter_mInverseRelationMultiplicity (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_propertyMap getter_mDestinationEntityObservablePropertyMap (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCascading (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3608,8 +3602,7 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_toManyPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                          const class GALGAS_propertyKind & inOperand1,
-                                                                         const class GALGAS_toManyRelationshipOptionAST & inOperand2,
-                                                                         const class GALGAS_bool & inOperand3
+                                                                         const class GALGAS_toManyRelationshipOptionAST & inOperand2
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3621,8 +3614,6 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCascading (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
@@ -3648,13 +3639,11 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 //--- Attributes
   public : GALGAS_propertyKind mProperty_mRelationshipType ;
   public : GALGAS_toManyRelationshipOptionAST mProperty_mOption ;
-  public : GALGAS_bool mProperty_mCascading ;
 
 //--- Constructor
   public : cPtr_toManyPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                           const GALGAS_propertyKind & in_mRelationshipType,
-                                          const GALGAS_toManyRelationshipOptionAST & in_mOption,
-                                          const GALGAS_bool & in_mCascading
+                                          const GALGAS_toManyRelationshipOptionAST & in_mOption
                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3663,7 +3652,6 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCascading (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

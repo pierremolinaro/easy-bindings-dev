@@ -14,7 +14,6 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToManyRelationshipName
   @toManyRelationshipOptionAST mOption
-  @bool mCascading
 }
 
 #·······················································································································
@@ -47,7 +46,6 @@ syntax extension easyBindings_syntax {
   {
     $toMany$
     @bool usedForSignature = false
-    @bool cascading = false
     repeat
     while
       $@attribute$ ?let attributeName
@@ -56,13 +54,8 @@ syntax extension easyBindings_syntax {
           error attributeName : "duplicated attribute" fixit { remove }
         end
         usedForSignature = true
-      elsif attributeName.string == "cascading" then
-        if cascading then
-          error attributeName : "duplicated attribute" fixit { remove }
-        end
-        cascading = true
       else
-        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@cascading" }
+        error attributeName : "unknow attribute" fixit { replace "@signature" }
       end
     end
     $Identifier$ ?let destinationEntityName
@@ -91,7 +84,6 @@ syntax extension easyBindings_syntax {
       !destinationEntityName
       !relationshipName
       !toManyRelationshipOption
-      !cascading
     }
   }
   
@@ -133,7 +125,6 @@ override method @toManyRelationshipAST firstAnalysisPhase
         !mToManyRelationshipName.string
         !kind
         !mOption
-        !mCascading
       }
     end
   end
@@ -144,7 +135,6 @@ override method @toManyRelationshipAST firstAnalysisPhase
 class @toManyPropertyGeneration : @propertyGeneration {
   @propertyKind mRelationshipType
   @toManyRelationshipOptionAST mOption
-  @bool mCascading
 }
 
 #·······················································································································
@@ -191,7 +181,7 @@ override getter @toManyPropertyGeneration configurationCode -> @string {
 
 #·······················································································································
 
-override getter @toManyPropertyGeneration setupFromDictionaryCode -> @string {
+override getter @toManyPropertyGeneration setupRelationshipFromDictionaryCode -> @string {
   if [mOption isHasDependance] then
     result = ""
   else

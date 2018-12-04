@@ -186,44 +186,21 @@ end
     super.setUpWithDictionary (inDictionary, managedObjectArray:&managedObjectArray)
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty setupFromDictionaryCode]
+  ![mProperty setupRelationshipFromDictionaryCode]
 end
 %  }
 
   //····················································································································
-  //   cascadeObjectRemoving
+  //    setUpAtomicPropertiesWithDictionary
   //····················································································································
 
-  override func cascadeObjectRemoving (_ ioObjectsToRemove : inout Set <EBManagedObject>) {
+  override func setUpAtomicPropertiesWithDictionary (_ inDictionary : NSDictionary) {
+    super.setUpAtomicPropertiesWithDictionary (inDictionary)
 %
-for () in TO_MANY_RELATIONSHIP_LIST do
-  if [mProperty mCascading] then
-    %  //--- Cascading toMany %![mProperty mPropertyName]%\n%
-    %    do{\n%
-    % //     let objects = self.%![mProperty mPropertyName]%_property.propval\n%
-    %      self.%![mProperty mPropertyName]%_property.setProp ([])\n%
-    %//      self.managedObjectContext?.internalRemoveManagedObjects (objects, &ioObjectsToRemove) // Cascade removing from moc\n%
-    %    }\n%
-  elsif not [[mProperty mOption] isHasDependance] then
-    %  //--- Nullify toMany %![mProperty mPropertyName]%\n%
-    %    self.%![mProperty mPropertyName]%_property.setProp ([]) // Set relationship to empty array\n%
-  end
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty setupAtomicPropertyFromDictionaryCode]
 end
-for () in TO_ONE_RELATIONSHIP_LIST do
-  if [mProperty mCascading] then
-    %  //--- Cascading toOne %![mProperty mPropertyName]%\n%
-    %  //  if let object = self.%![mProperty mPropertyName]%_property.propval {\n%
-    %      self.%![mProperty mPropertyName]%_property.setProp (nil)\n%
-    %//      self.managedObjectContext?.internalRemoveManagedObject (object, &ioObjectsToRemove) // Cascade removing from moc\n%
-    % //   }\n%
-  else
-    %  //--- Nullify toOne %![mProperty mPropertyName]%\n%
-    %    self.%![mProperty mPropertyName]%_property.setProp (nil) // Set relationship to nil\n%
-  end
-end
-%  //---
-    super.cascadeObjectRemoving (&ioObjectsToRemove)
-  }
+%  }
 
   //····················································································································
   //   resetControllers
