@@ -37,7 +37,6 @@ project (0:0:1) -> "eb" {
   "galgas-sources/simple-stored-property.galgas"
   "galgas-sources/to-one-relationship.galgas"
   "galgas-sources/to-many-relationship.galgas"
-  "galgas-sources/stored-array-property.galgas"
   "galgas-sources/property-validation-stub-routine.galgas"
   "galgas-sources/run-action.galgas"
 

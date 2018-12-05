@@ -7,7 +7,6 @@ struct @prefDeclaration {
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @lstringlist mActionDeclarationList
   @externSwiftFunctionList mExternSwiftFunctionList
-  @storedArrayPropertyListAST mStoredArrayList
   @stringset mSignatureList
   @mainXibDescriptorList mMainXibDescriptorList
 }
