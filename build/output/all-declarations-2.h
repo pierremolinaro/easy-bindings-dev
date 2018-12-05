@@ -708,7 +708,6 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
   public : typedef enum {
     kNotBuilt,
     kEnum_entityArray,
-    kEnum_classArray,
     kEnum_transientArray
   } enumeration ;
   
@@ -731,8 +730,6 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_arrayControllerModelKind constructor_classArray (LOCATION_ARGS) ;
-
   public : static class GALGAS_arrayControllerModelKind constructor_entityArray (LOCATION_ARGS) ;
 
   public : static class GALGAS_arrayControllerModelKind constructor_transientArray (LOCATION_ARGS) ;
@@ -749,8 +746,6 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isClassArray (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntityArray (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientArray (LOCATION_ARGS) const ;
@@ -1020,7 +1015,6 @@ class GALGAS_tableViewControllerModelKind : public AC_GALGAS_root {
   public : typedef enum {
     kNotBuilt,
     kEnum_entityArray,
-    kEnum_classArray,
     kEnum_transientArray
   } enumeration ;
   
@@ -1043,8 +1037,6 @@ class GALGAS_tableViewControllerModelKind : public AC_GALGAS_root {
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_tableViewControllerModelKind constructor_classArray (LOCATION_ARGS) ;
-
   public : static class GALGAS_tableViewControllerModelKind constructor_entityArray (LOCATION_ARGS) ;
 
   public : static class GALGAS_tableViewControllerModelKind constructor_transientArray (LOCATION_ARGS) ;
@@ -1061,8 +1053,6 @@ class GALGAS_tableViewControllerModelKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isClassArray (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntityArray (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientArray (LOCATION_ARGS) const ;

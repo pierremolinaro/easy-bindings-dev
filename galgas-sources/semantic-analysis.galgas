@@ -104,9 +104,9 @@ enum @typeKind {
 
 enum @propertyKind {
   case property (@typeKind type @propertyAccessibility accessibility)
-  case toMany (@lstring typeName @propertyAccessibility accessibility @bool graphic @bool isEntity)
+  case toMany (@lstring typeName @propertyAccessibility accessibility @bool graphic)
   case toOne (@lstring typeName @propertyAccessibility accessibility @bool graphic)
-  case arrayController (@lstring typeName @bool graphic @bool isEntity)
+  case arrayController (@lstring typeName @bool graphic)
   case selectionController (@string typeName)
 }
 

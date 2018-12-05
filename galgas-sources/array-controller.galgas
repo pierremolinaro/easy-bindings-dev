@@ -87,11 +87,10 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
       switch classKind
       case property (2*) :
         error mRootEntityName : "a tomany relationship is required here"
-      case toMany (typeName * graphic isEntity) :
+      case toMany (typeName * graphic) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
           !graphic: graphic
-          !isEntity: isEntity
         }
         [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
     #--- Code Generation
@@ -102,7 +101,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
       }
       case toOne (3*) :
         error mRootEntityName : "a tomany relationship is required here"
-      case arrayController (3*) :
+      case arrayController (2*) :
         error mRootEntityName : "a tomany relationship is required here"
       case selectionController (*) :
         error mRootEntityName : "a tomany relationship is required here"
@@ -112,11 +111,10 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
       switch classKind
       case property (2*) :
         error mRootEntityName : "a tomany relationship is required here"
-      case toMany (typeName * graphic isEntity) :
+      case toMany (typeName * graphic) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
           !graphic: graphic
-          !isEntity: isEntity
         }
         [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
     #--- Code Generation
@@ -127,7 +125,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
       }
       case toOne (3*) :
         error mRootEntityName : "a tomany relationship is required here"
-      case arrayController (3*) :
+      case arrayController (2*) :
         error mRootEntityName : "a tomany relationship is required here"
       case selectionController (*) :
         error mRootEntityName : "a tomany relationship is required here"
@@ -176,19 +174,19 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
     error mToManyPropertyName
       : "a tomany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
-  case toMany (typeName accessibility isGraphic isEntity) :
+  case toMany (typeName accessibility isGraphic) :
     elementTypeName = typeName
     graphic = isGraphic
     arrayControllerModelKind = if [accessibility isTransient]
       then .transientArray
-      else if isEntity then .entityArray else .classArray end
+      else .entityArray
     end
     [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?actionMap ?*]
   case toOne (3*) :
     error mToManyPropertyName
       : "a tomany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
-  case arrayController (3*) :
+  case arrayController (2*) :
     error mToManyPropertyName
       : "a tomany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
@@ -259,7 +257,6 @@ override getter @arrayControllerPropertyGeneration terminationCode -> @string {
 
 enum @arrayControllerModelKind {
   case entityArray
-  case classArray
   case transientArray
 }
 
@@ -273,7 +270,6 @@ class @arrayControllerGeneration : @abstractFileGeneration {
   @arrayControllerModelKind mArrayControllerModelKind
   @string mElementTypeName
   @bool mElementTypeIsGraphic
-#  @2stringlist mAttributeListForGeneration
 }
 
 #·······················································································································

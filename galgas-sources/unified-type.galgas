@@ -77,11 +77,11 @@ getter @propertyKind typeName -> @string {
   switch self
   case property (type *) :
     result = [type typeName]
-  case toMany (typeName 3*) :
+  case toMany (typeName 2*) :
     result = typeName
   case toOne (typeName 2*) :
     result = typeName
-  case arrayController (typeName 2*) :
+  case arrayController (typeName *) :
     result = typeName
   case selectionController (typeName) :
     result = typeName
@@ -94,11 +94,11 @@ getter @propertyKind swiftTypeName -> @string {
   switch self
   case property (type *) :
     result = [type swiftTypeName]
-  case toMany (typeName 3*) :
+  case toMany (typeName 2*) :
     result = typeName
   case toOne (typeName 2*) :
     result = typeName
-  case arrayController (typeName 2*) :
+  case arrayController (typeName *) :
     result = typeName
   case selectionController (typeName) :
     result = typeName
@@ -128,9 +128,9 @@ getter @typeKind swiftTypeName -> @string outResult {
 getter @propertyKind isTransient -> @bool {
   switch self
   case property (* accessibility) : result = [accessibility isTransient]
-  case toMany (* accessibility 2*) : result = [accessibility isTransient]
+  case toMany (* accessibility *) : result = [accessibility isTransient]
   case toOne (* accessibility *) : result = [accessibility isTransient]
-  case arrayController (3*) : result = false
+  case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
 }
@@ -140,9 +140,9 @@ getter @propertyKind isTransient -> @bool {
 getter @propertyKind isComparable -> @bool {
   switch self
   case property (type *) : result = [type isComparable]
-  case toMany (4*) : result = false
+  case toMany (3*) : result = false
   case toOne (3*) : result = false
-  case arrayController (3*) : result = false
+  case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
 }
@@ -152,9 +152,9 @@ getter @propertyKind isComparable -> @bool {
 getter @propertyKind isEntityType -> @bool {
   switch self
   case property (2*) : result = false
-  case toMany (3* isEntity) : result = isEntity
+  case toMany (3*) : result = true
   case toOne (3*) : result = true
-  case arrayController (3*) : result = false
+  case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
 }
@@ -164,9 +164,9 @@ getter @propertyKind isEntityType -> @bool {
 getter @propertyKind isEnumType -> @bool {
   switch self
   case property (type *) : result = [type isEnumType]
-  case toMany (4*) : result = false
+  case toMany (3*) : result = false
   case toOne (3*) : result = false
-  case arrayController (3*) : result = false
+  case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
 }

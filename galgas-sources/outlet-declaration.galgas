@@ -219,11 +219,11 @@ proc analyzeOutlets
         switch kind 
         case property (2*) :
           error controllerName : "the bound model should be an array controller"
-        case toMany (4*) :
+        case toMany (3*) :
           error controllerName : "the bound model should be an array controller"
         case toOne (3*) :
           error controllerName : "the bound model should be an array controller"
-        case arrayController (entityName graphic *) :
+        case arrayController (entityName graphic) :
           if propertyName.string == "" then
             if not graphic then
               error controllerName : "the controlled entity (" + entityName + ") should be a graphic entity"
@@ -239,13 +239,13 @@ proc analyzeOutlets
             switch propertyKind 
             case property (2*) :
               error controllerName : "the bound model should be a toMany property"
-            case toMany (kEntityName * isGraphic *) :
+            case toMany (kEntityName * isGraphic) :
               if not isGraphic then
                 error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
               end
             case toOne (3*) :
               error controllerName : "the bound model should be a toMany property"
-            case arrayController (3*) :
+            case arrayController (2*) :
               error controllerName : "the bound model should be a toMany property"
             case selectionController (*) :
               error controllerName : "the bound model should be a toMany property"
@@ -388,11 +388,11 @@ proc analyzeRegularBinding
       ]
       switch kind
       case property (2*) : # Ok
-      case toMany (4*) :
+      case toMany (3*) :
         error [mObservableProperty location]:"a toMany property cannot be bound"
       case toOne (3*) :
         error [mObservableProperty location]:"a toOne property cannot be bound"
-      case arrayController (3*) :
+      case arrayController (2*) :
         error [mObservableProperty location]:"an array controller cannot be bound"
       case selectionController (*) :
         error [mObservableProperty location]:"a selection controller cannot be bound"
