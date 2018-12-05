@@ -68,14 +68,14 @@ end
   %    }\n%
   %    self.mSelectedSet.addEBObserver (self.canSendToBack_property)\n%
   %  //---\n%
-  %    self.canSnapToGrid_property.readModelFunction = { [weak self] in\n%
+  %/*    self.canSnapToGrid_property.readModelFunction = { [weak self] in\n%
   %      if let me = self {\n%
   %        return .single (me.canSnapToGrid)\n%
   %      }else{\n%
   %        return .empty\n%
   %      }\n%
   %    }\n%
-  %    self.mSelectedSet.addEBObserver (self.canSnapToGrid_property)\n%
+  %    self.mSelectedSet.addEBObserver (self.canSnapToGrid_property) */\n%
   %  //---\n%
   %    self.canFlipHorizontally_property.readModelFunction = { [weak self] in\n%
   %      if let me = self {\n%
@@ -886,26 +886,27 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-  var canSnapToGrid_property = EBTransientProperty_Bool ()
+ // var canSnapToGrid_property = EBTransientProperty_Bool ()
 
   //····················································································································
 
-  func snapToGrid () {
+  func snapToGrid (_ inGrid : Int) {
     for object in self.mSelectedSet.mSet {
-      object.snapToGrid ()
+      object.snapToGrid (inGrid)
     }
   }
 
   //····················································································································
 
-  var canSnapToGrid : Bool {
+  func canSnapToGrid (_ inGrid : Int) -> Bool {
     for object in self.mSelectedSet.mSet {
-      if object.canSnapToGrid () {
+      if object.canSnapToGrid (inGrid) {
         return true
       }
     }
     return false
   }
+
 
  //····················································································································
   // HORIZONTAL FLIP
