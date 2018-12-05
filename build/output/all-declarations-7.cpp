@@ -3749,7 +3749,7 @@ const char * gWrapperFileContent_17_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    noteObjectAllocation (self)\n"
   "    self.undoManager = self.mUndoManager\n"
   "    self.mUndoManager.disableUndoRegistration ()\n"
-  "    mRootObject = try! newInstanceOfEntityNamed (self.mUndoManager, rootEntityClassName ())\n"
+  "    mRootObject = newInstanceOfEntityNamed (self.mUndoManager, rootEntityClassName ())!\n"
   "    self.mUndoManager.enableUndoRegistration ()\n"
   "  }\n"
   "\n"
@@ -4484,7 +4484,7 @@ const cRegularFileWrapper gWrapperFile_17_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  33124, // Text length
+  33120, // Text length
   gWrapperFileContent_17_swift_5F_sources
 ) ;
 
