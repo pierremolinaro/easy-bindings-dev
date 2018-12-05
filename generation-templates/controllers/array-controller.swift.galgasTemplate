@@ -68,15 +68,6 @@ end
   %    }\n%
   %    self.mSelectedSet.addEBObserver (self.canSendToBack_property)\n%
   %  //---\n%
-  %/*    self.canSnapToGrid_property.readModelFunction = { [weak self] in\n%
-  %      if let me = self {\n%
-  %        return .single (me.canSnapToGrid)\n%
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-  %    self.mSelectedSet.addEBObserver (self.canSnapToGrid_property) */\n%
-  %  //---\n%
   %    self.canFlipHorizontally_property.readModelFunction = { [weak self] in\n%
   %      if let me = self {\n%
   %        return .single (me.canFlipHorizontally)\n%
@@ -884,10 +875,6 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
   // SNAP TO GRID
   // MARK: -
-  //····················································································································
-
- // var canSnapToGrid_property = EBTransientProperty_Bool ()
-
   //····················································································································
 
   func snapToGrid (_ inGrid : Int) {

@@ -515,9 +515,7 @@ class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
   //····················································································································
  
   func setProp (_ value :  [%!ENTITY_NAME%]) { } // Abstract method
- 
-  // var propval : [%!ENTITY_NAME%] { return [] } // Abstract method
- 
+  
   //····················································································································
 
 }
