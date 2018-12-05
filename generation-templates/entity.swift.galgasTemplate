@@ -89,6 +89,11 @@ end
 for () in SIGNATURE_SET do
   %    self.%!key%_property.setSignatureObserver (observer:self)\n%
 end
+%  //--- Extern delegates
+%
+  for () in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
+    %    self.mExternDelegate%![idx string]% = %!mExternSwiftDelegateName.string% (object:self)\n%
+  end
 %  }
 
   //····················································································································
@@ -101,6 +106,15 @@ for () in PROPERTY_LIST_FOR_GENERATION do
 end
 %  }
 
+  //····················································································································
+  //    Extern delegates
+  //····················································································································
+
+%
+  for () in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
+    %  var mExternDelegate%![idx string]% : %!mExternSwiftDelegateName.string%? = nil\n%
+  end
+%
   //····················································································································
   //    populateExplorerWindow
   //····················································································································
@@ -529,6 +543,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
   //····················································································································
 
   var setOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%?) -> Void > = nil
+  private var mPrefKey : String? = nil
 
   //····················································································································
 
@@ -567,13 +582,33 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
 
   //····················································································································
 
+  convenience init (prefKey : String) {
+    self.init ()
+    self.mPrefKey = prefKey
+    if let array = UserDefaults.standard.array (forKey: prefKey) as? [NSDictionary] {
+      var objectArray = [%!ENTITY_NAME%] ()
+      for dictionary in array {
+        do{
+          if let object = try newInstanceOfEntityNamed (self.undoManager, "%!ENTITY_NAME%") as? %!ENTITY_NAME% {
+            object.setUpAtomicPropertiesWithDictionary (dictionary)
+            objectArray.append (object)
+          }
+        }catch _ {
+        }
+      }
+      self.setProp (objectArray)
+    }
+  }
+
+ //····················································································································
+
   private var mSet = Set <%!ENTITY_NAME%> ()
   private var mValue = [%!ENTITY_NAME%] () {
     didSet {
-      postEvent ()
+      self.postEvent ()
       if oldValue != mValue {
-        let oldSet = mSet
-        mSet = Set (mValue)
+        let oldSet = self.mSet
+        self.mSet = Set (self.mValue)
       //--- Register old value in undo manager
         self.undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer
@@ -588,25 +623,38 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
         }
 %for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
-    %        removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
+    %        self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
   end
 end
 %      //--- Added object set
-        let addedObjectSet = mSet.subtracting (oldSet)
+        let addedObjectSet = self.mSet.subtracting (oldSet)
         for managedObject : %!ENTITY_NAME% in addedObjectSet {
           managedObject.setSignatureObserver (observer: self)
           self.setOppositeRelationship? (managedObject)
         }
 %for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
-    %        addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
+    %        self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
   end
 end
 %      //--- Notify observers
-        clearSignatureCache ()
+        self.clearSignatureCache ()
+      //--- Write in preferences ?
+        if let prefKey = self.mPrefKey {
+          var dictionaryArray = [NSDictionary] ()
+          for object in self.mValue {
+            let d = NSMutableDictionary ()
+            object.saveIntoDictionary (d)
+            d [kEntityKey] = nil // Remove entity key, not used in preferences
+            dictionaryArray.append (d)
+          }
+          UserDefaults.standard.set (dictionaryArray, forKey: prefKey)
+        }
       }
     }
   }
+
+  //····················································································································
 
   override var prop : EBSelection < [%!ENTITY_NAME%] > { return .single (mValue) }
 

@@ -2286,7 +2286,8 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
                                                                      const class GALGAS_stringset & inOperand5,
                                                                      const class GALGAS_lstringlist & inOperand6,
                                                                      const class GALGAS_lstringlist & inOperand7,
-                                                                     const class GALGAS_bool & inOperand8
+                                                                     const class GALGAS_bool & inOperand8,
+                                                                     const class GALGAS_externSwiftDelegateList & inOperand9
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2299,6 +2300,8 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
 
@@ -2510,6 +2513,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
   public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
   public : GALGAS_lstringlist mProperty_mObsoleteEntityNames ;
   public : GALGAS_bool mProperty_mIsGraphicEntity ;
+  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
 
 //--- Constructor
   public : cPtr_entityDeclarationAST (const GALGAS_lstring & in_mClassName,
@@ -2520,7 +2524,8 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
                                       const GALGAS_stringset & in_mSignatureList,
                                       const GALGAS_lstringlist & in_mActionDeclarationList,
                                       const GALGAS_lstringlist & in_mObsoleteEntityNames,
-                                      const GALGAS_bool & in_mIsGraphicEntity
+                                      const GALGAS_bool & in_mIsGraphicEntity,
+                                      const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -2535,6 +2540,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -10891,7 +10897,8 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
                                                                     const class GALGAS_stringset & inOperand3,
                                                                     const class GALGAS_bool & inOperand4,
                                                                     const class GALGAS_bool & inOperand5,
-                                                                    const class GALGAS_stringset & inOperand6
+                                                                    const class GALGAS_stringset & inOperand6,
+                                                                    const class GALGAS_externSwiftDelegateList & inOperand7
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10904,6 +10911,8 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
 
@@ -10943,6 +10952,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public : GALGAS_bool mProperty_mIsGraphicEntity ;
   public : GALGAS_bool mProperty_mIsAbstract ;
   public : GALGAS_stringset mProperty_mOverridenTransients ;
+  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
 
 //--- Constructor
   public : cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
@@ -10951,7 +10961,8 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
                                      const GALGAS_stringset & in_mSignatureSet,
                                      const GALGAS_bool & in_mIsGraphicEntity,
                                      const GALGAS_bool & in_mIsAbstract,
-                                     const GALGAS_stringset & in_mOverridenTransients
+                                     const GALGAS_stringset & in_mOverridenTransients,
+                                     const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -10965,6 +10976,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mOverridenTransients (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

@@ -3602,7 +3602,8 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_toManyPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                          const class GALGAS_propertyKind & inOperand1,
-                                                                         const class GALGAS_toManyRelationshipOptionAST & inOperand2
+                                                                         const class GALGAS_toManyRelationshipOptionAST & inOperand2,
+                                                                         const class GALGAS_bool & inOperand3
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3614,6 +3615,8 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mInPreferences (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
@@ -3639,11 +3642,13 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 //--- Attributes
   public : GALGAS_propertyKind mProperty_mRelationshipType ;
   public : GALGAS_toManyRelationshipOptionAST mProperty_mOption ;
+  public : GALGAS_bool mProperty_mInPreferences ;
 
 //--- Constructor
   public : cPtr_toManyPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                           const GALGAS_propertyKind & in_mRelationshipType,
-                                          const GALGAS_toManyRelationshipOptionAST & in_mOption
+                                          const GALGAS_toManyRelationshipOptionAST & in_mOption,
+                                          const GALGAS_bool & in_mInPreferences
                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3652,6 +3657,7 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mInPreferences (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

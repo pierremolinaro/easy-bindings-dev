@@ -70,9 +70,11 @@ syntax extension easyBindings_syntax {
     while
       <extern_swift_func> !?ioDeclarationAST.mPreferences.mExternSwiftFunctionList
     while
-      @storedArrayPropertyListAST storedArrayList = {}
-      <stored_array_declaration> !prefs !?storedArrayList !?ioDeclarationAST
-      ioDeclarationAST.mPreferences.mStoredArrayList += storedArrayList
+      <toMany_relationship> !prefs !?* !?ioDeclarationAST
+#    while
+#      @storedArrayPropertyListAST storedArrayList = {}
+#      <stored_array_declaration> !prefs !?storedArrayList !?ioDeclarationAST
+#      ioDeclarationAST.mPreferences.mStoredArrayList += storedArrayList
     while
       <controller_declaration> !prefs !["" nowhere] !?ioDeclarationAST
     end

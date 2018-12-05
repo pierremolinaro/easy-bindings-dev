@@ -1051,7 +1051,8 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
                                                                                         const class GALGAS_stringset & in_SIGNATURE_5F_SET,
                                                                                         const class GALGAS_bool & in_IS_5F_GRAPHIC_5F_ENTITY,
                                                                                         const class GALGAS_bool & in_IS_5F_ABSTRACT,
-                                                                                        const class GALGAS_stringset & in_OVERRIDEN_5F_TRANSIENTS
+                                                                                        const class GALGAS_stringset & in_OVERRIDEN_5F_TRANSIENTS,
+                                                                                        const class GALGAS_externSwiftDelegateList & in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

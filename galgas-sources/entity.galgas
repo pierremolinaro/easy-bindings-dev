@@ -11,6 +11,7 @@ class @entityDeclarationAST : @abstractDeclarationAST {
   @lstringlist mActionDeclarationList
   @lstringlist mObsoleteEntityNames
   @bool mIsGraphicEntity
+  @externSwiftDelegateList mExternSwiftDelegateList
 }
 
 #·······················································································································
@@ -76,6 +77,7 @@ syntax extension easyBindings_syntax {
     @simpleStoredPropertyList simpleStoredAttributeList = {}
     @stringset signatureList = {}
     @lstringlist actionDeclarationList = {}
+    @externSwiftDelegateList externSwiftDelegateList = {}
     repeat
     while
       <simple_stored_declaration> !entityName !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
@@ -89,6 +91,8 @@ syntax extension easyBindings_syntax {
       <action_declaration> !?actionDeclarationList
     while
       <controller_declaration> !entityName !["" nowhere]  !?ioDeclarationAST
+    while
+      <extern_swift_delegate> !?externSwiftDelegateList
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST.new {
@@ -101,6 +105,7 @@ syntax extension easyBindings_syntax {
       !actionDeclarationList
       !obsoleteEntityNames
       !graphicEntity
+      !externSwiftDelegateList
     }
     if isAbstract && graphicEntity then
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
@@ -214,6 +219,7 @@ override method @entityDeclarationAST thirdAnalysisPhase
     !mIsGraphicEntity
     !mIsAbstract
     !overridenTransients
+    !mExternSwiftDelegateList
   }
 }
 
@@ -229,6 +235,7 @@ class @entityForGeneration : @abstractFileGeneration {
   @bool mIsGraphicEntity
   @bool mIsAbstract
   @stringset mOverridenTransients
+  @externSwiftDelegateList mExternSwiftDelegateList
 }
 
 #·······················································································································
@@ -279,6 +286,8 @@ override method @entityForGeneration generateCode
     !mIsGraphicEntity
     !mIsAbstract
     !mOverridenTransients
+    !mExternSwiftDelegateList
+
   ]
   let fileName = "entity-" + mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -327,6 +336,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@bool IS_GRAPHIC_ENTITY
     ?@bool IS_ABSTRACT
     ?@stringset OVERRIDEN_TRANSIENTS
+    ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
 
   template managedObjectFactory "EBManagedObjectFactory.swift.galgasTemplate"
     ?@entityListForGeneratingEBManagedObjectContext ENTITY_LIST

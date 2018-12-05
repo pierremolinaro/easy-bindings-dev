@@ -120,11 +120,14 @@ override method @toManyRelationshipAST firstAnalysisPhase
         !isEntity: true
       }
       [!?mPropertyMap insertKey !mToManyRelationshipName !kind !{}]
+    #--- Current class is preferences ?
+      let inPrefs = mClassName.string == preferencesName ()
     #--- Code Generation
       mPropertyGenerationList += !@toManyPropertyGeneration.new {
         !mToManyRelationshipName.string
         !kind
         !mOption
+        !inPrefs
       }
     end
   end
@@ -135,6 +138,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
 class @toManyPropertyGeneration : @propertyGeneration {
   @propertyKind mRelationshipType
   @toManyRelationshipOptionAST mOption
+  @bool mInPreferences
 }
 
 #·······················································································································
@@ -151,6 +155,9 @@ override getter @toManyPropertyGeneration declarationCode ?let @stringset unused
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   if [mOption isHasDependance] then
     result += "  var " + mPropertyName + "_property = TransientArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
+  elsif mInPreferences then
+    result += "  var " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName]
+           + " (prefKey: Preferences_" + mPropertyName + ")\n\n"
   else
     result += "  var " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
   end
@@ -158,6 +165,12 @@ override getter @toManyPropertyGeneration declarationCode ?let @stringset unused
   result += "  var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
   result += "      return self." + mPropertyName + "_property.prop\n"
   result += "  }\n\n"
+}
+
+#·······················································································································
+
+override getter @toManyPropertyGeneration prefKeyDefinitionCode -> @string {
+  result = "let Preferences_" + mPropertyName + " = \"Preferences:" + mPropertyName + "\"\n"
 }
 
 #·······················································································································

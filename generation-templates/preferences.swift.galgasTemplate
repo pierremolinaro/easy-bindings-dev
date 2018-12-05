@@ -42,8 +42,12 @@ end
   //    Undo Manager
   //····················································································································
 
-  private var undoManager = EBUndoManager ()
+  private var mUndoManager = EBUndoManager ()
 
+  //····················································································································
+
+  var undoManager : EBUndoManager { return self.mUndoManager }
+ 
   //····················································································································
   // The preferences window should register this object as delegate (do it in Interface Builder)
 
