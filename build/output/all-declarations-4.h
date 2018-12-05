@@ -968,52 +968,6 @@ void routine_buildActionMap (const class GALGAS_lstringlist constinArgument0,
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                       Function 'externSwiftFunctionCallerSet'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_stringset function_externSwiftFunctionCallerSet (class C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        Filewrapper 'classGenerationTemplate'                                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_classGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_1_classGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_2_classGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_3_classGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_4_classGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_5_classGenerationTemplate ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                      Filewrapper template 'classGenerationTemplate classImplementationInSwift'                      *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string filewrapperTemplate_classGenerationTemplate_classImplementationInSwift (class C_Compiler * inCompiler,
-                                                                                      const class GALGAS_string & in_CLASS_5F_NAME,
-                                                                                      const class GALGAS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                      const class GALGAS_atomicPropertyGenerationList & in_ATOMIC_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                                      const class GALGAS_externSwiftFunctionList & in_EXTERN_5F_FUNCTION_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                      const class GALGAS_externSwiftDelegateList & in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
-                                                                                      const class GALGAS_string & in_EXPLORER_5F_ACCESS
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                       Filewrapper 'entityGenerationTemplate'                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -393,51 +393,52 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_enum_5F_declaration_i4_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_class_5F_declaration_i5_ (const GALGAS_bool constinArgument0,
-                                                                         GALGAS_astDeclarationStruct & ioArgument1,
-                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_class_5F_declaration_i5_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_entity_5F_declaration_i6_ (const GALGAS_bool constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_entity_5F_declaration_i5_ (const GALGAS_bool constinArgument0,
                                                                           GALGAS_astDeclarationStruct & ioArgument1,
                                                                           C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_entity_5F_declaration_i6_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_entity_5F_declaration_i5_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_document_5F_declaration_i7_ (const GALGAS_bool constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_document_5F_declaration_i6_ (const GALGAS_bool constinArgument0,
                                                                             GALGAS_astDeclarationStruct & ioArgument1,
                                                                             C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_document_5F_declaration_i7_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_document_5F_declaration_i6_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_ (const GALGAS_bool constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_preferences_5F_declaration_i7_ (const GALGAS_bool constinArgument0,
                                                                                GALGAS_astDeclarationStruct & ioArgument1,
                                                                                C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_preferences_5F_declaration_i7_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i9_ (const GALGAS_bool constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i8_ (const GALGAS_bool constinArgument0,
                                                                                    GALGAS_astDeclarationStruct & ioArgument1,
                                                                                    C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i9_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i8_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_binding_5F_specification_i10_ (const GALGAS_bool constinArgument0,
-                                                                              GALGAS_outletClassBindingSpecificationList & ioArgument1,
-                                                                              C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_binding_5F_specification_i9_ (const GALGAS_bool constinArgument0,
+                                                                             GALGAS_outletClassBindingSpecificationList & ioArgument1,
+                                                                             C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_binding_5F_specification_i10_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_binding_5F_specification_i9_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_outlet_5F_declaration_i11_ (GALGAS_outletDeclarationList & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_outlet_5F_declaration_i10_ (GALGAS_outletDeclarationList & ioArgument0,
                                                                            C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_outlet_5F_declaration_i11_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_outlet_5F_declaration_i10_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_observable_5F_property_i12_ (GALGAS_observablePropertyAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_observable_5F_property_i11_ (GALGAS_observablePropertyAST & outArgument0,
                                                                             C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_observable_5F_property_i12_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_observable_5F_property_i11_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i12_ (const GALGAS_lstring constinArgument0,
+                                                                              const GALGAS_lstring constinArgument1,
+                                                                              GALGAS_astDeclarationStruct & ioArgument2,
+                                                                              C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i12_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i13_ (const GALGAS_lstring constinArgument0,
                                                                               const GALGAS_lstring constinArgument1,
@@ -446,53 +447,51 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i13_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i14_ (const GALGAS_lstring constinArgument0,
-                                                                              const GALGAS_lstring constinArgument1,
-                                                                              GALGAS_astDeclarationStruct & ioArgument2,
-                                                                              C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i14_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i15_ (const GALGAS_lstring constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i14_ (const GALGAS_lstring constinArgument0,
                                                                                      GALGAS_simpleStoredPropertyList & ioArgument1,
                                                                                      GALGAS_stringset & ioArgument2,
                                                                                      GALGAS_astDeclarationStruct & ioArgument3,
                                                                                      C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i15_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i14_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_toOne_5F_relationship_i16_ (const GALGAS_lstring constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_toOne_5F_relationship_i15_ (const GALGAS_lstring constinArgument0,
                                                                            GALGAS_astDeclarationStruct & ioArgument1,
                                                                            C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_toOne_5F_relationship_i16_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_toOne_5F_relationship_i15_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i17_ (const GALGAS_lstring constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i16_ (const GALGAS_lstring constinArgument0,
                                                                             GALGAS_stringset & ioArgument1,
                                                                             GALGAS_astDeclarationStruct & ioArgument2,
                                                                             C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i17_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i16_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i18_ (GALGAS_lstringlist & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i17_ (GALGAS_lstringlist & ioArgument0,
                                                                            C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i18_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i17_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i19_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i18_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i19_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i18_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i20_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i19_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i20_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i19_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i21_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i20_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i21_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i20_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i21_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+                                                                                   C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i21_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                    C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -509,15 +508,17 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i25_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
-                                                                                   C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i25_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i26_ (GALGAS_bindingOptionList & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i25_ (GALGAS_bindingOptionList & outArgument0,
                                                                                C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i26_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i25_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i26_ (const GALGAS_lstring constinArgument0,
+                                                                               const GALGAS_lstring constinArgument1,
+                                                                               GALGAS_astDeclarationStruct & ioArgument2,
+                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i26_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i27_ (const GALGAS_lstring constinArgument0,
                                                                                const GALGAS_lstring constinArgument1,
@@ -526,44 +527,37 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i27_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i28_ (const GALGAS_lstring constinArgument0,
-                                                                               const GALGAS_lstring constinArgument1,
-                                                                               GALGAS_astDeclarationStruct & ioArgument2,
-                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i28_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i29_ (GALGAS_tableViewColumnBindingAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i28_ (GALGAS_tableViewColumnBindingAST & outArgument0,
                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i29_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i28_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i30_ (const GALGAS_lstring constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i29_ (const GALGAS_lstring constinArgument0,
                                                                                const GALGAS_lstring constinArgument1,
                                                                                GALGAS_astDeclarationStruct & ioArgument2,
                                                                                C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i30_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i29_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i31_ (GALGAS_abstractDefaultValue & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i30_ (GALGAS_abstractDefaultValue & outArgument0,
                                                                        C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i31_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i30_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i32_ (GALGAS_lstring & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i31_ (GALGAS_lstring & ioArgument0,
                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i32_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i31_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i33_ (GALGAS_mainXibDescriptorList & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i32_ (GALGAS_mainXibDescriptorList & ioArgument0,
                                                                  C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i33_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i32_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i34_ (GALGAS_mainXibLineDescriptorList & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i33_ (GALGAS_mainXibLineDescriptorList & outArgument0,
                                                                          C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i34_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i33_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
 
 
@@ -681,8 +675,6 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_55 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_56 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -1265,378 +1257,6 @@ class cPtr_boolAsDefaultValue : public cPtr_abstractDefaultValue {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lbool getter_mValue (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             @classDeclarationAST class                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_classDeclarationAST : public GALGAS_abstractDeclarationAST {
-//--- Constructor
-  public : GALGAS_classDeclarationAST (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_classDeclarationAST constructor_default (LOCATION_ARGS) ;
-
-//---
-  public : inline const class cPtr_classDeclarationAST * ptr (void) const { return (const cPtr_classDeclarationAST *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_classDeclarationAST (const cPtr_classDeclarationAST * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_classDeclarationAST extractObject (const GALGAS_object & inObject,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_classDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                    const class GALGAS_bool & inOperand1,
-                                                                    const class GALGAS_externSwiftFunctionList & inOperand2,
-                                                                    const class GALGAS_externSwiftDelegateList & inOperand3,
-                                                                    const class GALGAS_lstringlist & inOperand4
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_classDeclarationAST & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsUserDefined (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_classDeclarationAST class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classDeclarationAST ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                            @externSwiftDelegateList list                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_externSwiftDelegateList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
-  public : GALGAS_externSwiftDelegateList (void) ;
-
-//--------------------------------- List constructor used by listmap
-  public : GALGAS_externSwiftDelegateList (const capCollectionElementArray & inSharedArray) ;
-
-//--------------------------------- Element constructor
-  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_lstring & in_mExternSwiftDelegateName
-                                                  COMMA_LOCATION_ARGS) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_externSwiftDelegateList extractObject (const GALGAS_object & inObject,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_externSwiftDelegateList constructor_emptyList (LOCATION_ARGS) ;
-
-  public : static class GALGAS_externSwiftDelegateList constructor_listWithValue (const class GALGAS_lstring & inOperand0
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_externSwiftDelegateList inOperand,
-                                                       class C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0
-                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList add_operation (const GALGAS_externSwiftDelegateList & inOperand,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_externSwiftDelegateList_2D_element inArgument0,
-                                                C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
-                                                       class GALGAS_uint constinArgument1,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
-                                                       class GALGAS_uint constinArgument1,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mExternSwiftDelegateNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                         C_Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-//--------------------------------- Friend
-
-  friend class cEnumerator_externSwiftDelegateList ;
- 
-} ; // End of GALGAS_externSwiftDelegateList class
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Enumerator declaration                                                                                            *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumerator_externSwiftDelegateList : public cGenericAbstractEnumerator {
-  public : cEnumerator_externSwiftDelegateList (const GALGAS_externSwiftDelegateList & inEnumeratedObject,
-                                                const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_lstring current_mExternSwiftDelegateName (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_externSwiftDelegateList_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegateList ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                            @externSwiftFunctionList list                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_externSwiftFunctionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
-  public : GALGAS_externSwiftFunctionList (void) ;
-
-//--------------------------------- List constructor used by listmap
-  public : GALGAS_externSwiftFunctionList (const capCollectionElementArray & inSharedArray) ;
-
-//--------------------------------- Element constructor
-  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_lstring & in_mExternSwiftFunctionName,
-                                                  const class GALGAS_lstring & in_mCallerName
-                                                  COMMA_LOCATION_ARGS) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_externSwiftFunctionList extractObject (const GALGAS_object & inObject,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_externSwiftFunctionList constructor_emptyList (LOCATION_ARGS) ;
-
-  public : static class GALGAS_externSwiftFunctionList constructor_listWithValue (const class GALGAS_lstring & inOperand0,
-                                                                                  const class GALGAS_lstring & inOperand1
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_externSwiftFunctionList inOperand,
-                                                       class C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
-                                                      const class GALGAS_lstring & inOperand1
-                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftFunctionList add_operation (const GALGAS_externSwiftFunctionList & inOperand,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_externSwiftFunctionList_2D_element inArgument0,
-                                                C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
-                                                       class GALGAS_lstring constinArgument1,
-                                                       class GALGAS_uint constinArgument2,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
-                                                  class GALGAS_lstring & outArgument1,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
-                                                 class GALGAS_lstring & outArgument1,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
-                                                       class GALGAS_lstring & outArgument1,
-                                                       class GALGAS_uint constinArgument2,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
-                                               class GALGAS_lstring & outArgument1,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
-                                              class GALGAS_lstring & outArgument1,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mCallerNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mExternSwiftFunctionNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                         C_Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-//--------------------------------- Friend
-
-  friend class cEnumerator_externSwiftFunctionList ;
- 
-} ; // End of GALGAS_externSwiftFunctionList class
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Enumerator declaration                                                                                            *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumerator_externSwiftFunctionList : public cGenericAbstractEnumerator {
-  public : cEnumerator_externSwiftFunctionList (const GALGAS_externSwiftFunctionList & inEnumeratedObject,
-                                                const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_lstring current_mExternSwiftFunctionName (LOCATION_ARGS) const ;
-  public : class GALGAS_lstring current_mCallerName (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_externSwiftFunctionList_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftFunctionList ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                    Pointer class for @classDeclarationAST class                                     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cPtr_classDeclarationAST : public cPtr_abstractDeclarationAST {
-//--- Attributes
-  public : GALGAS_bool mProperty_mIsUserDefined ;
-  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
-  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
-  public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
-
-//--- Constructor
-  public : cPtr_classDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                     const GALGAS_bool & in_mIsUserDefined,
-                                     const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
-                                     const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
-                                     const GALGAS_lstringlist & in_mActionDeclarationList
-                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsUserDefined (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2313,6 +1933,133 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityDeclarationAST ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                            @externSwiftDelegateList list                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_externSwiftDelegateList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_externSwiftDelegateList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_externSwiftDelegateList (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_lstring & in_mExternSwiftDelegateName
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_externSwiftDelegateList extractObject (const GALGAS_object & inObject,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_externSwiftDelegateList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static class GALGAS_externSwiftDelegateList constructor_listWithValue (const class GALGAS_lstring & inOperand0
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_externSwiftDelegateList inOperand,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList add_operation (const GALGAS_externSwiftDelegateList & inOperand,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_externSwiftDelegateList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
+                                                       class GALGAS_uint constinArgument1,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
+                                                       class GALGAS_uint constinArgument1,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mExternSwiftDelegateNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_externSwiftDelegateList ;
+ 
+} ; // End of GALGAS_externSwiftDelegateList class
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Enumerator declaration                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumerator_externSwiftDelegateList : public cGenericAbstractEnumerator {
+  public : cEnumerator_externSwiftDelegateList (const GALGAS_externSwiftDelegateList & inEnumeratedObject,
+                                                const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_lstring current_mExternSwiftDelegateName (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_externSwiftDelegateList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegateList ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -6319,8 +6066,6 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_55 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_56 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -6732,6 +6477,147 @@ class cEnumerator_declarationListAST : public cGenericAbstractEnumerator {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationListAST ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                            @externSwiftFunctionList list                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_externSwiftFunctionList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_externSwiftFunctionList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_externSwiftFunctionList (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_lstring & in_mExternSwiftFunctionName,
+                                                  const class GALGAS_lstring & in_mCallerName
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_externSwiftFunctionList extractObject (const GALGAS_object & inObject,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_externSwiftFunctionList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static class GALGAS_externSwiftFunctionList constructor_listWithValue (const class GALGAS_lstring & inOperand0,
+                                                                                  const class GALGAS_lstring & inOperand1
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_externSwiftFunctionList inOperand,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
+                                                      const class GALGAS_lstring & inOperand1
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftFunctionList add_operation (const GALGAS_externSwiftFunctionList & inOperand,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_externSwiftFunctionList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
+                                                       class GALGAS_lstring constinArgument1,
+                                                       class GALGAS_uint constinArgument2,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
+                                                  class GALGAS_lstring & outArgument1,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
+                                                 class GALGAS_lstring & outArgument1,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
+                                                       class GALGAS_lstring & outArgument1,
+                                                       class GALGAS_uint constinArgument2,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
+                                               class GALGAS_lstring & outArgument1,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
+                                              class GALGAS_lstring & outArgument1,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mCallerNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mExternSwiftFunctionNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_externSwiftFunctionList ;
+ 
+} ; // End of GALGAS_externSwiftFunctionList class
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Enumerator declaration                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumerator_externSwiftFunctionList : public cGenericAbstractEnumerator {
+  public : cEnumerator_externSwiftFunctionList (const GALGAS_externSwiftFunctionList & inEnumeratedObject,
+                                                const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_lstring current_mExternSwiftFunctionName (LOCATION_ARGS) const ;
+  public : class GALGAS_lstring current_mCallerName (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_externSwiftFunctionList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftFunctionList ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -8301,7 +8187,6 @@ class GALGAS_classKind : public AC_GALGAS_root {
   public : typedef enum {
     kNotBuilt,
     kEnum_prefs,
-    kEnum_simpleClass,
     kEnum_atomic,
     kEnum_document,
     kEnum_entity
@@ -8344,8 +8229,6 @@ class GALGAS_classKind : public AC_GALGAS_root {
 
   public : static class GALGAS_classKind constructor_prefs (LOCATION_ARGS) ;
 
-  public : static class GALGAS_classKind constructor_simpleClass (LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
@@ -8379,8 +8262,6 @@ class GALGAS_classKind : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntity (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPrefs (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSimpleClass (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -10384,6 +10265,86 @@ class cEnumAssociatedValues_typeKind_transientPropertyExternType : public cEnumA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                     @simpleStoredPropertyList_2D_element struct                                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_lstring mProperty_mPropertyTypeName ;
+
+  public : GALGAS_lstring mProperty_mPropertyName ;
+
+  public : GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
+
+  public : GALGAS_bool mProperty_mNeedsValidation ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_simpleStoredPropertyList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : virtual ~ GALGAS_simpleStoredPropertyList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_simpleStoredPropertyList_2D_element (const GALGAS_lstring & in_mPropertyTypeName,
+                                                       const GALGAS_lstring & in_mPropertyName,
+                                                       const GALGAS_abstractDefaultValue & in_mDefaultValue,
+                                                       const GALGAS_bool & in_mNeedsValidation) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_simpleStoredPropertyList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_simpleStoredPropertyList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                    const class GALGAS_lstring & inOperand1,
+                                                                                    const class GALGAS_abstractDefaultValue & inOperand2,
+                                                                                    const class GALGAS_bool & inOperand3
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_simpleStoredPropertyList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mDefaultValue (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyTypeName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_simpleStoredPropertyList_2D_element class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropertyList_2D_element ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                              @propertyGeneration class                                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10517,212 +10478,6 @@ class GALGAS_propertyGenerationList_2D_element : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGenerationList_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                     @simpleStoredPropertyList_2D_element struct                                     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_mPropertyTypeName ;
-
-  public : GALGAS_lstring mProperty_mPropertyName ;
-
-  public : GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
-
-  public : GALGAS_bool mProperty_mNeedsValidation ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_simpleStoredPropertyList_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_simpleStoredPropertyList_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_simpleStoredPropertyList_2D_element (const GALGAS_lstring & in_mPropertyTypeName,
-                                                       const GALGAS_lstring & in_mPropertyName,
-                                                       const GALGAS_abstractDefaultValue & in_mDefaultValue,
-                                                       const GALGAS_bool & in_mNeedsValidation) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_simpleStoredPropertyList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_simpleStoredPropertyList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                    const class GALGAS_lstring & inOperand1,
-                                                                                    const class GALGAS_abstractDefaultValue & inOperand2,
-                                                                                    const class GALGAS_bool & inOperand3
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_simpleStoredPropertyList_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mDefaultValue (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyTypeName (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_simpleStoredPropertyList_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropertyList_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             @entityForGeneration class                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
-//--- Constructor
-  public : GALGAS_entityForGeneration (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_entityForGeneration constructor_default (LOCATION_ARGS) ;
-
-//---
-  public : inline const class cPtr_entityForGeneration * ptr (void) const { return (const cPtr_entityForGeneration *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_entityForGeneration (const cPtr_entityForGeneration * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_entityForGeneration extractObject (const GALGAS_object & inObject,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_entityForGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                    const class GALGAS_string & inOperand1,
-                                                                    const class GALGAS_propertyGenerationList & inOperand2,
-                                                                    const class GALGAS_stringset & inOperand3,
-                                                                    const class GALGAS_bool & inOperand4,
-                                                                    const class GALGAS_bool & inOperand5,
-                                                                    const class GALGAS_stringset & inOperand6,
-                                                                    const class GALGAS_externSwiftDelegateList & inOperand7
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_entityForGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mOverridenTransients (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_entityForGeneration class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                    Pointer class for @entityForGeneration class                                     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
-//--- Attributes
-  public : GALGAS_string mProperty_mEntityName ;
-  public : GALGAS_string mProperty_mSuperEntityName ;
-  public : GALGAS_propertyGenerationList mProperty_mPropertyGenerationList ;
-  public : GALGAS_stringset mProperty_mSignatureSet ;
-  public : GALGAS_bool mProperty_mIsGraphicEntity ;
-  public : GALGAS_bool mProperty_mIsAbstract ;
-  public : GALGAS_stringset mProperty_mOverridenTransients ;
-  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
-
-//--- Constructor
-  public : cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
-                                     const GALGAS_string & in_mSuperEntityName,
-                                     const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
-                                     const GALGAS_stringset & in_mSignatureSet,
-                                     const GALGAS_bool & in_mIsGraphicEntity,
-                                     const GALGAS_bool & in_mIsAbstract,
-                                     const GALGAS_stringset & in_mOverridenTransients,
-                                     const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
-                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mOverridenTransients (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -12397,4 +12152,216 @@ class GALGAS_tableViewBindingGenerationList_2D_element : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewBindingGenerationList_2D_element ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                 @ebViewGraphicControllerBindingGenerationList list                                  *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_ebViewGraphicControllerBindingGenerationList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_ebViewGraphicControllerBindingGenerationList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_ebViewGraphicControllerBindingGenerationList (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_string & in_mEBViewOutletName,
+                                                  const class GALGAS_string & in_mArrayControllerControllerName
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_ebViewGraphicControllerBindingGenerationList extractObject (const GALGAS_object & inObject,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_ebViewGraphicControllerBindingGenerationList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static class GALGAS_ebViewGraphicControllerBindingGenerationList constructor_listWithValue (const class GALGAS_string & inOperand0,
+                                                                                                       const class GALGAS_string & inOperand1
+                                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_ebViewGraphicControllerBindingGenerationList inOperand,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
+                                                      const class GALGAS_string & inOperand1
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_ebViewGraphicControllerBindingGenerationList add_operation (const GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
+                                                       class GALGAS_string constinArgument1,
+                                                       class GALGAS_uint constinArgument2,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_string & outArgument0,
+                                                  class GALGAS_string & outArgument1,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_string & outArgument0,
+                                                 class GALGAS_string & outArgument1,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_string & outArgument0,
+                                                       class GALGAS_string & outArgument1,
+                                                       class GALGAS_uint constinArgument2,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
+                                               class GALGAS_string & outArgument1,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
+                                              class GALGAS_string & outArgument1,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mArrayControllerControllerNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEBViewOutletNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                               C_Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                             C_Compiler * inCompiler
+                                                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                                               C_Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_ebViewGraphicControllerBindingGenerationList ;
+ 
+} ; // End of GALGAS_ebViewGraphicControllerBindingGenerationList class
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Enumerator declaration                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumerator_ebViewGraphicControllerBindingGenerationList : public cGenericAbstractEnumerator {
+  public : cEnumerator_ebViewGraphicControllerBindingGenerationList (const GALGAS_ebViewGraphicControllerBindingGenerationList & inEnumeratedObject,
+                                                                     const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_string current_mEBViewOutletName (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mArrayControllerControllerName (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                           @ebViewGraphicControllerBindingGenerationList_2D_element struct                           *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_string mProperty_mEBViewOutletName ;
+
+  public : GALGAS_string mProperty_mArrayControllerControllerName ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : virtual ~ GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (const GALGAS_string & in_mEBViewOutletName,
+                                                                           const GALGAS_string & in_mArrayControllerControllerName) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element constructor_new (const class GALGAS_string & inOperand0,
+                                                                                                        const class GALGAS_string & inOperand1
+                                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mArrayControllerControllerName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEBViewOutletName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element ;
 

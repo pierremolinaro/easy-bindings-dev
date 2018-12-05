@@ -174,8 +174,6 @@ override method @entityDeclarationAST thirdAnalysisPhase
     switch superClassKind
     case prefs :
       error mSuperEntityName : "prefs cannot be a super entity"
-    case simpleClass :
-      error mSuperEntityName : "a simple class cannot be a super entity"
     case atomic (*) :
       error mSuperEntityName : "an atomic class cannot be a super entity"
     case document (*) :
@@ -204,8 +202,6 @@ override method @entityDeclarationAST thirdAnalysisPhase
         end
       end
     end
-  
-  
   end
 #--- Generation    
   ioGeneration.mEntityListForGeneration +=

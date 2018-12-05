@@ -10,16 +10,6 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                        Extension getter '@mainXibDescriptorList generateCode' (as function)                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_string extensionGetter_generateCode (const class GALGAS_mainXibDescriptorList & inObject,
-                                                  class C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                     Abstract extension method '@abstractDeclarationAST enterInPrecedenceGraph'                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -425,22 +415,22 @@ class cPtr_atomicClassDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @classForGeneration class                                              *
+//                                             @entityForGeneration class                                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_classForGeneration : public GALGAS_abstractFileGeneration {
+class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
-  public : GALGAS_classForGeneration (void) ;
+  public : GALGAS_entityForGeneration (void) ;
 
 //--------------------------------- Default GALGAS constructor
-  public : static GALGAS_classForGeneration constructor_default (LOCATION_ARGS) ;
+  public : static GALGAS_entityForGeneration constructor_default (LOCATION_ARGS) ;
 
 //---
-  public : inline const class cPtr_classForGeneration * ptr (void) const { return (const cPtr_classForGeneration *) mObjectPtr ; }
+  public : inline const class cPtr_entityForGeneration * ptr (void) const { return (const cPtr_entityForGeneration *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_classForGeneration (const cPtr_classForGeneration * inSourcePtr) ;
+  public : GALGAS_entityForGeneration (const cPtr_entityForGeneration * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -448,19 +438,23 @@ class GALGAS_classForGeneration : public GALGAS_abstractFileGeneration {
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_classForGeneration extractObject (const GALGAS_object & inObject,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_entityForGeneration extractObject (const GALGAS_object & inObject,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_classForGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                   const class GALGAS_propertyGenerationList & inOperand1,
-                                                                   const class GALGAS_externSwiftFunctionList & inOperand2,
-                                                                   const class GALGAS_externSwiftDelegateList & inOperand3
-                                                                   COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_entityForGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                    const class GALGAS_string & inOperand1,
+                                                                    const class GALGAS_propertyGenerationList & inOperand2,
+                                                                    const class GALGAS_stringset & inOperand3,
+                                                                    const class GALGAS_bool & inOperand4,
+                                                                    const class GALGAS_bool & inOperand5,
+                                                                    const class GALGAS_stringset & inOperand6,
+                                                                    const class GALGAS_externSwiftDelegateList & inOperand7
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_classForGeneration & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_entityForGeneration & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -468,52 +462,72 @@ class GALGAS_classForGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mClassName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mOverridenTransients (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_classForGeneration class
+} ; // End of GALGAS_entityForGeneration class
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classForGeneration ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     Pointer class for @classForGeneration class                                     *
+//                                    Pointer class for @entityForGeneration class                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cPtr_classForGeneration : public cPtr_abstractFileGeneration {
+class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
-  public : GALGAS_string mProperty_mClassName ;
+  public : GALGAS_string mProperty_mEntityName ;
+  public : GALGAS_string mProperty_mSuperEntityName ;
   public : GALGAS_propertyGenerationList mProperty_mPropertyGenerationList ;
-  public : GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+  public : GALGAS_stringset mProperty_mSignatureSet ;
+  public : GALGAS_bool mProperty_mIsGraphicEntity ;
+  public : GALGAS_bool mProperty_mIsAbstract ;
+  public : GALGAS_stringset mProperty_mOverridenTransients ;
   public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
 
 //--- Constructor
-  public : cPtr_classForGeneration (const GALGAS_string & in_mClassName,
-                                    const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
-                                    const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
-                                    const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
-                                    COMMA_LOCATION_ARGS) ;
+  public : cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
+                                     const GALGAS_string & in_mSuperEntityName,
+                                     const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
+                                     const GALGAS_stringset & in_mSignatureSet,
+                                     const GALGAS_bool & in_mIsGraphicEntity,
+                                     const GALGAS_bool & in_mIsAbstract,
+                                     const GALGAS_stringset & in_mOverridenTransients,
+                                     const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
+                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mClassName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftFunctionList getter_mExternSwiftFunctionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mOverridenTransients (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,

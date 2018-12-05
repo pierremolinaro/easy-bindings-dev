@@ -21,7 +21,6 @@ project (0:0:1) -> "eb" {
 #--- Components  
   "galgas-sources/enumeration.galgas"
   "galgas-sources/atomic-class.galgas"
-  "galgas-sources/class.galgas"
   "galgas-sources/entity.galgas"
   "galgas-sources/document.galgas"
   "galgas-sources/preferences.galgas"

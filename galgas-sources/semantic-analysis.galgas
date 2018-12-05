@@ -4,7 +4,6 @@
 
 enum @classKind {
   case prefs
-  case simpleClass
   case atomic (@typeKind kind)
   case document (@lstring rootEntityName)
   case entity (@string superEntityName @bool isGraphic @bool isAbstract)

@@ -106,8 +106,6 @@ override method @toManyRelationshipAST firstAnalysisPhase
     switch classKind
     case prefs :
       error mDestinationEntityName : "an entity is required here"
-    case simpleClass :
-      error mDestinationEntityName : "an entity is required here"
     case atomic (*) :
       error mDestinationEntityName : "an entity is required here"
     case document (*) :

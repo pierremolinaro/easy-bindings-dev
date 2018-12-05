@@ -146,8 +146,6 @@ override method @transientDeclarationAST firstAnalysisPhase
     switch classKind
     case prefs :
       error mTransientTypeName : "an atomic class is required here"
-    case simpleClass :
-      error mTransientTypeName : "an atomic class is required here"
     case atomic (kind) :
       [!?mPropertyMap insertKey
         !mTransientName
@@ -175,7 +173,7 @@ override method @transientDeclarationAST secondAnalysisPhase
 #--- Check type
   @typeKind typeKind
   switch classKind
-  case prefs, simpleClass :
+  case prefs :
     error mTransientTypeName: "an atomic class is required here" : typeKind
   case atomic (@typeKind kind) :
     typeKind = kind
@@ -231,7 +229,7 @@ override method @transientDeclarationAST secondAnalysisPhase
   do
     @bool generate
     switch currentClassKind
-    case prefs, simpleClass :
+    case prefs :
       generate = true
     case document (*) :
       generate = true

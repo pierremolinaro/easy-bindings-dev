@@ -123,7 +123,7 @@ override method @selectionControllerDeclarationAST thirdAnalysisPhase
      loop (@uint.max) while (typeName.string != testedTypeName) & (testedTypeName != "") do
        if typeName.string != mSelectionEntityName.string then
          switch superClassKind
-         case prefs, simpleClass :
+         case prefs :
            testedTypeName = ""
          case atomic (*) :
            testedTypeName = ""
