@@ -500,8 +500,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-  func cutSelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType?) {
-    self.copySelectedObjectsIntoPasteboard (inPasteboardType)
+  func cutSelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType?, pasteOffset : NSPoint) {
+    self.copySelectedObjectsIntoPasteboard (inPasteboardType, pasteOffset: pasteOffset)
     self.deleteSelectedObjects ()
   }
 
@@ -515,7 +515,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-    func copySelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType?) {
+  func copySelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType?,
+                                          pasteOffset : NSPoint) {
     if let pasteboardType = inPasteboardType {
     //--- Declare pasteboard types
       let pb = NSPasteboard.general
@@ -541,8 +542,11 @@ if ELEMENT_TYPE_IS_GRAPHIC then
         objectDictionaryArray.append (d)
       }
     //--- Copy private representation(s)
-      let data = NSArchiver.archivedData (withRootObject: objectDictionaryArray)
-      pb.setData (data, forType: pasteboardType)
+      let dataDictionary : NSDictionary = [
+        "OBJECTS" : objectDictionaryArray,
+        "START" : NSStringFromPoint (pasteOffset)
+      ]
+      pb.setPropertyList (dataDictionary, forType: pasteboardType)
     }
   }
 
@@ -565,11 +569,14 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     let pb = NSPasteboard.general
     if let pasteboardType = inPasteboardType,
        pb.availableType (from: [pasteboardType]) != nil,
-       let data = pb.data(forType: pasteboardType),
-       let array = NSUnarchiver.unarchiveObject(with: data) as? [NSDictionary] {
+       let dataDictionary = pb.propertyList (forType: pasteboardType) as? NSDictionary,
+       let array = dataDictionary ["OBJECTS"] as? [NSDictionary],
+       let str = dataDictionary ["START"] as? String {
+      let translation = NSPointFromString(str)
       var newObjects = [%!ELEMENT_TYPE_NAME%] ()
       for dictionary in array {
         if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
+          object.translate (xBy: translation.x, yBy: translation.y)
           newObjects.append (object)
         }
       }
