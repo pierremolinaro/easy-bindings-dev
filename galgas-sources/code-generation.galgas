@@ -133,6 +133,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicManagedObject"
     swiftFiles += !"buildPDFimage"
   #--- EBView
+    swiftFiles += !"EBScrollViewWithPlacards"
     swiftFiles += !"EBView-binding-arrowKeyMagnitude"
     swiftFiles += !"EBView-binding-backColor"
     swiftFiles += !"EBView-binding-gridCrossColor"
