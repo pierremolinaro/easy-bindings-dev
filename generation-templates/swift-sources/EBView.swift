@@ -5,83 +5,10 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBViewControllerProtocol
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-protocol EBViewControllerProtocol : class {
-
-  var objectCount : Int { get }
-  var objectArray : [EBGraphicManagedObject] { get }
-
-  var undoManager : EBUndoManager? { get }
-
-//--- Selection operations
-
-  var selectedGraphicObjectSet : Set <EBGraphicManagedObject> { get }
-
-  var selectedIndexesSet : Set <Int> { get }
-
-  func selectAllObjects ()
-
-  func canCut (_ inPasteboardType : NSPasteboard.PasteboardType?) -> Bool
-  func cutSelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType?, pasteOffset : NSPoint)
-
-  func canCopy (_ inPasteboardType : NSPasteboard.PasteboardType?) -> Bool
-  func copySelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType?, pasteOffset : NSPoint)
-
-  func canPaste (_ inPasteboardType : NSPasteboard.PasteboardType?) -> Bool
-  func pasteFromPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType?)
-
-  func canDelete () -> Bool
-  func deleteSelectedObjects ()
-
-  var canBringForward : Bool { get }
-  func bringForward ()
-
-  var canBringToFront : Bool { get }
-  func bringToFront ()
-
-  var canSendBackward : Bool { get }
-  func sendBackward ()
-
-  var canSendToBack : Bool { get }
-  func sendToBack ()
-
-  func canSnapToGrid (_ inGrid : Int) -> Bool
-  func snapToGrid (_ inGrid : Int)
-
-  var canFlipHorizontally : Bool { get }
-  func flipHorizontally ()
-
-  var canFlipVertically : Bool { get }
-  func flipVertically ()
-
-  var canRotate90Clockwise : Bool { get }
-  func rotate90Clockwise ()
-
-  var canRotate90CounterClockwise : Bool { get }
-  func rotate90CounterClockwise ()
-
-//  var canGroup : Bool { get }
-//  func group ()
-//
-//  var canUngroup : Bool { get }
-//  func ungroup ()
-
-  func setSelection (objectsWithIndexes inIndexes : [Int])
-
-  func addToSelection (objectsWithIndex inIndexes : [Int])
-
-  func removeFromSelection (objectWithIndex inIndex : Int)
-
-  func clearSelection ()
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   EBView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBView) class EBView : NSView, EBUserClassNameProtocol {
+@objc(EBView) class EBView : NSView, EBUserClassNameProtocol, EBViewScaleProvider, NSDraggingSource {
 
   //····················································································································
 
@@ -104,7 +31,12 @@ protocol EBViewControllerProtocol : class {
   }
 
   //····················································································································
-  //  Properties
+
+  override var isFlipped : Bool { return false }
+
+  //····················································································································
+  // MARK: -
+  //  View Controller
   //····················································································································
 
    private weak var mViewController : EBViewControllerProtocol? = nil // SOULD BE WEAK
@@ -114,11 +46,9 @@ protocol EBViewControllerProtocol : class {
    var viewController : EBViewControllerProtocol? { return self.mViewController }
 
   //····················································································································
-  //    set controller
-  //····················································································································
 
   func set (controller inController : EBViewControllerProtocol?) {
-    mViewController = inController
+    self.mViewController = inController
   }
 
   //····················································································································
@@ -159,9 +89,9 @@ protocol EBViewControllerProtocol : class {
   private func updateUnderObjectsDisplay (from model : EBReadOnlyProperty_EBShape) {
     switch model.prop {
     case .empty, .multiple :
-      self.setUnderObjectsDisplay (EBShape ())
+      self.mUnderObjectsDisplay = EBShape ()
     case .single (let v) :
-      self.setUnderObjectsDisplay (v)
+      self.mUnderObjectsDisplay = v
     }
   }
 
@@ -171,20 +101,12 @@ protocol EBViewControllerProtocol : class {
   private var mUnderObjectsDisplay = EBShape ()
 
   //····················································································································
-
-  func setUnderObjectsDisplay (_ inDisplay : EBShape) {
-    if self.mUnderObjectsDisplay != inDisplay {
-      self.setNeedsDisplay (self.mUnderObjectsDisplay.boundingBox)
-      self.setNeedsDisplay (inDisplay.boundingBox)
-    }
-    self.mUnderObjectsDisplay = inDisplay
-  }
-
-  //····················································································································
   //    $overObjectsDisplay binding
   //····················································································································
 
   private var mOverObjectsDisplayController : EBReadOnlyController_EBShape?
+
+  //····················································································································
 
   func bind_overObjectsDisplay (_ model : EBReadOnlyProperty_EBShape, file:String, line:Int) {
     self.mOverObjectsDisplayController = EBReadOnlyController_EBShape (
@@ -192,6 +114,8 @@ protocol EBViewControllerProtocol : class {
       callBack: { [weak self] in self?.updateOverObjectsDisplay (from: model) }
     )
   }
+
+  //····················································································································
 
   func unbind_overObjectsDisplay () {
     mOverObjectsDisplayController?.unregister ()
@@ -203,9 +127,9 @@ protocol EBViewControllerProtocol : class {
   private func updateOverObjectsDisplay (from model : EBReadOnlyProperty_EBShape) {
     switch model.prop {
     case .empty, .multiple :
-      self.setOverObjectsDisplay (EBShape ())
+      self.mOverObjectsDisplay = EBShape ()
     case .single (let v) :
-      self.setOverObjectsDisplay (v)
+      self.mOverObjectsDisplay =  v
     }
   }
 
@@ -215,66 +139,36 @@ protocol EBViewControllerProtocol : class {
   private var mOverObjectsDisplay = EBShape ()
 
   //····················································································································
-
-  func setOverObjectsDisplay (_ inDisplay : EBShape) {
-    if self.mOverObjectsDisplay != inDisplay {
-      self.setNeedsDisplay (self.mOverObjectsDisplay.boundingBox)
-      self.setNeedsDisplay (inDisplay.boundingBox)
-    }
-    self.mOverObjectsDisplay = inDisplay
-  }
-
-  //····················································································································
   //  Draw Dirty rect
-  //····················································································································
-
-  func drawUnderObjects (_ inDirtyRect: NSRect) {
-    self.mUnderObjectsDisplay.draw (inDirtyRect)
-  }
-
-  //····················································································································
-
-  func drawOverObjects (_ inDirtyRect: NSRect) {
-    self.mOverObjectsDisplay.draw (inDirtyRect)
-    self.selectionRectangleLayer?.draw (inDirtyRect)
-    for shape in self.mSelectionShapes {
-      shape.draw (inDirtyRect)
-    }
-  }
-
   //····················································································································
 
   override func draw (_ inDirtyRect: NSRect) {
     if let backColor = self.mBackColor {
       backColor.setFill ()
-      __NSRectFill (inDirtyRect)
+      NSBezierPath.fill (inDirtyRect)
     }
-    self.drawUnderObjects (inDirtyRect)
+    self.drawGrid (inDirtyRect)
+    self.mUnderObjectsDisplay.draw (inDirtyRect)
     for object in self.mObjectDisplayArray {
       object.draw (inDirtyRect)
     }
-    self.drawOverObjects (inDirtyRect)
+    self.mOverObjectsDisplay.draw (inDirtyRect)
+    self.selectionRectangleLayer?.draw (inDirtyRect)
+    for shape in self.mSelectionShapes {
+      shape.draw (inDirtyRect)
+    }
+    self.drawIssue (inDirtyRect)
+    if !self.mIsFirstResponder {
+      NSColor.white.withAlphaComponent (0.1).setFill ()
+      NSBezierPath.fill (inDirtyRect)
+    }
   }
 
   //····················································································································
   //    Arrow Key Magnitude
   //····················································································································
 
-
   private var arrowKeyMagnitude : CGFloat = 10.0
-  private var mArrowKeyMagnitudeController : EBReadOnlyController_CGFloat? = nil
-
-  func bind_arrowKeyMagnitude (_ model : EBReadOnlyProperty_CGFloat, file : String, line : Int) {
-    self.mArrowKeyMagnitudeController = EBReadOnlyController_CGFloat (
-      model: model,
-      callBack: { [weak self] in self?.updateShiftArrowKeyMagnitude (from: model) }
-    )
-  }
-
-  func unbind_arrowKeyMagnitude () {
-    self.mArrowKeyMagnitudeController?.unregister ()
-    self.mArrowKeyMagnitudeController = nil
-  }
 
   //····················································································································
 
@@ -284,48 +178,13 @@ protocol EBViewControllerProtocol : class {
 
   //····················································································································
 
-  private func updateArrowKeyMagnitude (from model : EBReadOnlyProperty_CGFloat) {
-    switch model.prop {
-    case .empty :
-      break
-    case .single (let v) :
-      self.set (arrowKeyMagnitude:v)
-    case .multiple :
-      break
-    }
-  }
+  internal var mArrowKeyMagnitudeController : EBReadOnlyController_CGFloat? = nil
 
   //····················································································································
   //    Shift Arrow Key Magnitude
   //····················································································································
 
   private var shiftArrowKeyMagnitude : CGFloat = 10.0
-  private var mShiftArrowKeyMagnitudeController : EBReadOnlyController_CGFloat? = nil
-
-  func bind_shiftArrowKeyMagnitude (_ model : EBReadOnlyProperty_CGFloat, file:String, line:Int) {
-    self.mShiftArrowKeyMagnitudeController = EBReadOnlyController_CGFloat (
-      model: model,
-      callBack: { [weak self] in self?.updateShiftArrowKeyMagnitude (from: model) }
-    )
-  }
-
-  func unbind_shiftArrowKeyMagnitude () {
-    mShiftArrowKeyMagnitudeController?.unregister ()
-    mShiftArrowKeyMagnitudeController = nil
-  }
-
-  //····················································································································
-
-  private func updateShiftArrowKeyMagnitude (from model : EBReadOnlyProperty_CGFloat) {
-    switch model.prop {
-    case .empty :
-      break
-    case .single (let v) :
-      self.set (shiftArrowKeyMagnitude: v)
-    case .multiple :
-      break
-    }
-  }
 
  //····················································································································
 
@@ -333,37 +192,15 @@ protocol EBViewControllerProtocol : class {
     self.shiftArrowKeyMagnitude = shiftArrowKeyMagnitude
   }
 
+ //····················································································································
+
+  internal var mShiftArrowKeyMagnitudeController : EBReadOnlyController_CGFloat? = nil
+
   //····················································································································
   //    Back color
   //····················································································································
 
   private var mBackColor : NSColor? = nil
-  private var mBackColorController : EBReadOnlyController_NSColor? = nil
-
-  func bind_backColor (_ model : EBReadOnlyProperty_NSColor, file:String, line:Int) {
-    self.mBackColorController = EBReadOnlyController_NSColor (
-      model: model,
-      callBack: { [weak self] in self?.updateBackColor (from: model) }
-    )
-  }
-
-  func unbind_backColor () {
-    mBackColorController?.unregister ()
-    mBackColorController = nil
-  }
-
-  //····················································································································
-
-  private func updateBackColor (from model : EBReadOnlyProperty_NSColor) {
-    switch model.prop {
-    case .empty :
-      break
-    case .single (let v) :
-      self.set (backColor: v)
-    case .multiple :
-      break
-    }
-  }
 
  //····················································································································
 
@@ -371,6 +208,10 @@ protocol EBViewControllerProtocol : class {
     self.mBackColor = backColor
     self.needsDisplay = true
   }
+
+  //····················································································································
+
+  internal var mBackColorController : EBReadOnlyController_NSColor? = nil
 
   //····················································································································
   // Object display array
@@ -403,6 +244,7 @@ protocol EBViewControllerProtocol : class {
   //--- Store new object array and tell view to display
     self.mObjectDisplayArray = inObjectDisplayArray
     self.setNeedsDisplay (invalidRect)
+    self.updateViewFrameAndBounds ()
   }
 
   //····················································································································
@@ -411,6 +253,10 @@ protocol EBViewControllerProtocol : class {
     var r = NSRect.null
     for shape in mObjectDisplayArray {
       r = r.union (shape.boundingBox)
+    }
+    if let issueBezierPath = self.mIssueBezierPath, !issueBezierPath.isEmpty {
+      let e = -issueBezierPath.lineWidth / 2.0
+      r = r.union (issueBezierPath.bounds.insetBy (dx: e, dy: e))
     }
     return r
   }
@@ -465,48 +311,9 @@ protocol EBViewControllerProtocol : class {
 
   //····················································································································
 
-  override func mouseDown (with inEvent: NSEvent) {
-    super.mouseDown (with: inEvent)
-    let mouseDownLocation = self.convert (inEvent.locationInWindow, from:nil)
-    mLastMouseDraggedLocation = mouseDownLocation
-    if let viewController = self.mViewController {
-    //--- Find index of object under mouse down
-      let (possibleObjectIndex, possibleKnobIndex) = self.indexOfFrontmostObject (at: mouseDownLocation)
-      let controlKey = inEvent.modifierFlags.contains (.control)
-      if !controlKey {
-        let shiftKey = inEvent.modifierFlags.contains (.shift)
-        let commandKey = inEvent.modifierFlags.contains (.command)
-        if shiftKey { // Shift key extends selection
-          if let objectIndex = possibleObjectIndex {
-            viewController.addToSelection (objectsWithIndex: [objectIndex])
-          }
-        }else if commandKey { // Command key toggles selection of object under click
-          if let objectIndex = possibleObjectIndex {
-            if viewController.selectedIndexesSet.contains (objectIndex) {
-              viewController.removeFromSelection (objectWithIndex: objectIndex)
-            }else{
-              viewController.addToSelection (objectsWithIndex: [objectIndex])
-            }
-          }
-        }else if let objectIndex = possibleObjectIndex {
-          if let knobIndex = possibleKnobIndex {
-            mPossibleKnob = (objectIndex, knobIndex)
-          }
-          if !viewController.selectedIndexesSet.contains (objectIndex) {
-            viewController.setSelection (objectsWithIndexes: [objectIndex])
-          }
-        }else{ // Click outside an object : clear selection
-          viewController.clearSelection ()
-          mSelectionRectangleOrigin = mLastMouseDraggedLocation
-        }
-      }
-    }
-  }
-
-  //····················································································································
-
   override func mouseDragged (with inEvent : NSEvent) {
     super.mouseDragged (with: inEvent)
+    self.updateXYplacards (inEvent.locationInWindow)
     let mouseDraggedLocation = self.convert (inEvent.locationInWindow, from:nil)
     if let selectionRectangleOrigin = mSelectionRectangleOrigin {
       self.handleSelectionRectangle (from: selectionRectangleOrigin, to: mouseDraggedLocation)
@@ -711,13 +518,15 @@ protocol EBViewControllerProtocol : class {
   //····················································································································
 
   @objc func cut (_ : Any?) {
-    self.mViewController?.cutSelectedObjectsIntoPasteboard (self.mPasteboardType)
+    let translation = NSPoint (x: self.shiftArrowKeyMagnitude, y: self.shiftArrowKeyMagnitude)
+    self.mViewController?.cutSelectedObjectsIntoPasteboard (self.mPasteboardType, pasteOffset: translation)
   }
 
   //····················································································································
 
   @objc func copy (_ : Any?) {
-    self.mViewController?.copySelectedObjectsIntoPasteboard (self.mPasteboardType)
+    let translation = NSPoint (x: self.shiftArrowKeyMagnitude, y: self.shiftArrowKeyMagnitude)
+    self.mViewController?.copySelectedObjectsIntoPasteboard (self.mPasteboardType, pasteOffset: translation)
   }
 
   //····················································································································
@@ -821,6 +630,705 @@ protocol EBViewControllerProtocol : class {
       self.setNeedsDisplay (shape.boundingBox)
     }
     self.mSelectionShapes = inShapes
+  }
+
+  //····················································································································
+
+  func updateViewFrameAndBounds () {
+    scaleToZoom (self.mZoom, self.mHorizontalFlip, self.mVerticalFlip)
+  }
+
+  //····················································································································
+
+  override func viewDidMoveToSuperview () {
+    super.viewDidMoveToSuperview ()
+    if let scrollView = self.enclosingScrollView as? CanariScrollViewWithPlacard {
+      self.installZoomPopUpButton (scrollView)
+      self.installXYplacards (scrollView)
+    }
+  }
+
+  //····················································································································
+  //  scaleToZoom
+  //  MARK: -
+  //····················································································································
+
+  internal var mZoom = 100
+
+  //····················································································································
+
+  internal func scaleToZoom (_ inZoom : Int,  // 0 -> fit to window
+                             _ inHorizontalFlip : Bool,
+                             _ inVerticalFlip : Bool) {
+    if let clipView = self.superview as? NSClipView {
+      var newRect = self.objectBoundingBox ()
+      if let issueBezierPath = self.mIssueBezierPath, !issueBezierPath.isEmpty {
+        newRect = newRect.union (issueBezierPath.bounds)
+      }
+      if let minimumBounds = self.mMinimumRect {
+        newRect = newRect.union (minimumBounds)
+      }
+      if (inZoom != 0) || newRect.isNull {
+        let r = clipView.convert (clipView.documentVisibleRect, from: self)
+        newRect = newRect.union (r)
+      }
+      if self.bounds != newRect {
+        self.frame.size = newRect.size
+        self.bounds = newRect
+      }
+      let currentUnitSquareSize : NSSize = clipView.convert (NSSize (width: 1.0, height: 1.0), from:nil)
+      let currentScale = 1.0 / currentUnitSquareSize.width
+      let toggleHorizontalFlip : CGFloat = (inHorizontalFlip != self.mHorizontalFlip) ? -1.0 : 1.0 ;
+      let toggleVerticalFlip   : CGFloat = (inVerticalFlip != self.mVerticalFlip) ? -1.0 : 1.0 ;
+      if 0 == inZoom { // Fit to window
+        let clipViewSize = clipView.frame.size
+        let currentSize = self.frame.size
+        let sx = clipViewSize.width / currentSize.width
+        let sy = clipViewSize.height / currentSize.height
+        let scale = fmin (sx, sy) / currentScale
+        clipView.scaleUnitSquare(to: NSSize (width: toggleHorizontalFlip * scale, height: toggleVerticalFlip * scale))
+      }else{
+        let scale = CGFloat (inZoom) / (100.0 * currentScale)
+        clipView.scaleUnitSquare(to: NSSize (width: toggleHorizontalFlip * scale, height: toggleVerticalFlip * scale))
+      }
+      let zoomTitle = "\(Int ((self.actualScale () * 100.0).rounded (.toNearestOrEven))) %"
+      self.mZoomPopUpButton?.menu?.item (at:0)?.title = (0 == inZoom) ? ("(\(zoomTitle))") : zoomTitle
+      self.setNeedsDisplay (self.frame)
+    }
+  }
+
+  //····················································································································
+
+  func actualScale () -> CGFloat {
+    var result : CGFloat = 1.0
+    if let clipView = self.superview as? NSClipView {
+      let currentScale : NSSize = clipView.convert (NSSize (width: 1.0, height: 1.0), from:nil)
+      result = 1.0 / currentScale.width
+    }
+    return result
+  }
+
+  //····················································································································
+  //  Managing zoom popup button
+  //  MARK: -
+  //····················································································································
+
+  fileprivate var mZoomPopUpButton : NSPopUpButton? = nil
+
+  //····················································································································
+
+  fileprivate func addPopupButtonItemForZoom (_ inZoom : Int) {
+    if let zoomPopUpButton = self.mZoomPopUpButton {
+      zoomPopUpButton.menu?.addItem (withTitle: ("\(inZoom) %"), action:#selector (EBView.setZoomFromPopUpButton(_:)), keyEquivalent: "")
+      zoomPopUpButton.lastItem?.target = self
+      zoomPopUpButton.lastItem?.tag = inZoom
+    }
+  }
+
+  //····················································································································
+
+  @objc func setZoomFromPopUpButton (_ inSender : NSMenuItem) {
+    scaleToZoom (inSender.tag, self.mHorizontalFlip, self.mVerticalFlip)
+    self.mZoom = inSender.tag
+    self.mZoomController?.updateModel (self)
+  }
+
+  //····················································································································
+
+  private func installZoomPopUpButton (_ inScrollView : CanariScrollViewWithPlacard) {
+    if self.mZoomPopUpButton == nil {
+      let r = NSRect (x: 0.0, y: 0.0, width: 70.0, height: 20.0)
+      let zoomPopUpButton = NSPopUpButton (frame:r, pullsDown:true)
+      self.mZoomPopUpButton = zoomPopUpButton
+      zoomPopUpButton.font = NSFont.systemFont (ofSize:NSFont.smallSystemFontSize)
+      zoomPopUpButton.autoenablesItems = false
+      zoomPopUpButton.bezelStyle = .shadowlessSquare
+      if let popUpButtonCell = zoomPopUpButton.cell as? NSPopUpButtonCell {
+        popUpButtonCell.arrowPosition = .arrowAtBottom
+      }
+      zoomPopUpButton.isBordered = false
+      zoomPopUpButton.menu?.addItem (
+        withTitle:"\(Int (self.actualScale () * 100.0)) %",
+        action:nil,
+        keyEquivalent:""
+      )
+      self.addPopupButtonItemForZoom (50)
+      self.addPopupButtonItemForZoom (100)
+      self.addPopupButtonItemForZoom (150)
+      self.addPopupButtonItemForZoom (200)
+      self.addPopupButtonItemForZoom (250)
+      self.addPopupButtonItemForZoom (400)
+      self.addPopupButtonItemForZoom (500)
+      self.addPopupButtonItemForZoom (600)
+      self.addPopupButtonItemForZoom (800)
+      self.addPopupButtonItemForZoom (1000)
+      self.addPopupButtonItemForZoom (1200)
+      self.addPopupButtonItemForZoom (1500)
+      self.addPopupButtonItemForZoom (1700)
+      self.addPopupButtonItemForZoom (2000)
+      zoomPopUpButton.menu?.addItem (withTitle:"Fit to Window", action:#selector (EBView.setZoomFromPopUpButton(_:)), keyEquivalent:"")
+      zoomPopUpButton.lastItem?.target = self
+      zoomPopUpButton.lastItem?.tag = 0
+      inScrollView.addPlacard (zoomPopUpButton)
+    }
+  }
+
+  //····················································································································
+  //  Managing mouse location
+  //  MARK: -
+  //····················································································································
+
+  private var mXPlacard : NSTextField? = nil
+  private var mYPlacard : NSTextField? = nil
+
+  //····················································································································
+
+  private func installXYplacards (_ inScrollView : CanariScrollViewWithPlacard) {
+    if self.mXPlacard == nil {
+      let r = NSRect (x: 0.0, y: 0.0, width: 90.0, height: 20.0)
+      let xPlacard = NSTextField (frame: r)
+      self.mXPlacard = xPlacard
+      xPlacard.font = NSFont.systemFont (ofSize: NSFont.smallSystemFontSize)
+      xPlacard.isBordered = false
+      inScrollView.addPlacard (xPlacard)
+    }
+    if self.mYPlacard == nil {
+      let r = NSRect (x: 0.0, y: 0.0, width: 90.0, height: 20.0)
+      let yPlacard = NSTextField (frame: r)
+      self.mYPlacard = yPlacard
+      yPlacard.font = NSFont.systemFont (ofSize: NSFont.smallSystemFontSize)
+      yPlacard.isBordered = false
+      inScrollView.addPlacard (yPlacard)
+    }
+  }
+
+  //····················································································································
+
+  private func updateXYplacards (_ inLocationInWindow : NSPoint) {
+    let p = self.convert (inLocationInWindow, from: nil)
+    let x = stringFrom (valueInCocoaUnit: p.x, displayUnit: self.mXPlacardUnit)
+    let y = stringFrom (valueInCocoaUnit: p.y, displayUnit: self.mYPlacardUnit)
+    self.mXPlacard?.stringValue = "X = " + x
+    self.mYPlacard?.stringValue = "Y = " + y
+  }
+
+  //····················································································································
+
+  private func clearXYplacards () {
+    self.mXPlacard?.stringValue = ""
+    self.mYPlacard?.stringValue = ""
+  }
+
+  //····················································································································
+  //  Mouse moved and tracking area
+  //  MARK: -
+  //····················································································································
+
+  fileprivate var mTrackingArea : NSTrackingArea? = nil
+
+  //····················································································································
+
+  override func updateTrackingAreas () { // This is required for receiving mouse moved and mouseExited events
+  //---
+    self.updateViewFrameAndBounds ()
+  //--- Remove tracking area
+    if let trackingArea = self.mTrackingArea {
+      self.removeTrackingArea (trackingArea)
+    }
+  //--- Add Updated tracking area
+    let trackingArea = NSTrackingArea (
+      rect: self.bounds,
+      options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow],
+      owner: self,
+      userInfo: nil
+    )
+    self.addTrackingArea (trackingArea)
+    self.mTrackingArea = trackingArea
+  //---
+    super.updateTrackingAreas ()
+  }
+
+  //····················································································································
+
+  override func mouseMoved (with inEvent : NSEvent) {
+    super.mouseMoved (with: inEvent)
+    self.updateXYplacards (inEvent.locationInWindow)
+  }
+
+  //····················································································································
+
+  override func mouseExited (with inEvent : NSEvent) {
+    super.mouseExited (with: inEvent)
+    self.clearXYplacards ()
+  }
+
+  //····················································································································
+  // X placard unit binding
+  // MARK: -
+  //····················································································································
+
+  private var mXPlacardUnit = 2286 // mils
+
+  //····················································································································
+
+  func set (XPlacardUnit inUnit : Int) {
+     self.mXPlacardUnit = inUnit
+  }
+
+  //····················································································································
+
+  internal var mXPlacardUnitController : EBReadOnlyController_Int? = nil
+
+  //····················································································································
+  // Y placard unit binding
+  // MARK: -
+  //····················································································································
+
+  private var mYPlacardUnit = 2286 // mils
+
+  //····················································································································
+
+  func set (YPlacardUnit inUnit : Int) {
+     self.mYPlacardUnit = inUnit
+  }
+
+  //····················································································································
+
+  internal var mYPlacardUnitController : EBReadOnlyController_Int? = nil
+
+  //····················································································································
+  //  Super view has been resized
+  //  MARK: -
+  //····················································································································
+
+  override func viewWillMove (toSuperview inSuperview : NSView?) {
+     super.viewWillMove (toSuperview: inSuperview)
+  //--- Remove from superview ?
+    if nil == inSuperview, let scrollView = self.enclosingScrollView as? CanariScrollViewWithPlacard {
+     scrollView.removePlacard (self.mZoomPopUpButton)
+     scrollView.removePlacard (self.mXPlacard)
+     self.mXPlacard = nil ;
+     scrollView.removePlacard (self.mYPlacard)
+     self.mYPlacard = nil ;
+    }
+  }
+
+  //····················································································································
+  //  Responder chain
+  // MARK: -
+  //····················································································································
+
+  private var mIsFirstResponder = false
+
+  //····················································································································
+
+  override var acceptsFirstResponder : Bool { return true }
+
+  //····················································································································
+
+  override func becomeFirstResponder () -> Bool {
+    self.mIsFirstResponder = true
+    self.needsDisplay = true
+    return true
+  }
+
+  //····················································································································
+
+  override func resignFirstResponder () -> Bool {
+    self.mIsFirstResponder = false
+    self.needsDisplay = true
+    return true
+  }
+
+  //····················································································································
+  //  Focus ring (https://developer.apple.com/library/content/qa/qa1785/_index.html)
+  //····················································································································
+
+  override var focusRingMaskBounds : NSRect { return self.bounds }
+
+  //····················································································································
+
+  override func drawFocusRingMask () {
+    NSBezierPath.fill (self.bounds)
+  }
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  private var mIssueBezierPath : NSBezierPath? = nil
+  private var mIssueKind : CanariIssueKind = .error // Any value, not used if mIssueBezierPath is nil
+
+  //····················································································································
+
+  func setIssue (_ inBezierPath : NSBezierPath?, _ issueKind : CanariIssueKind) {
+    if self.mIssueBezierPath != inBezierPath {
+      self.mIssueBezierPath = inBezierPath
+      self.mIssueKind = issueKind
+      self.updateViewFrameAndBounds ()
+    }
+  }
+
+  //····················································································································
+
+  private func drawIssue (_ inDirtyRect : NSRect) {
+    if let issueBezierPath = self.mIssueBezierPath, !issueBezierPath.isEmpty {
+      switch self.mIssueKind {
+      case .error :
+        NSColor.red.withAlphaComponent (0.15).setFill ()
+        issueBezierPath.fill ()
+        NSColor.red.setStroke ()
+        issueBezierPath.stroke ()
+      case .warning :
+        NSColor.orange.withAlphaComponent (0.15).setFill ()
+        issueBezierPath.fill ()
+        NSColor.orange.setStroke ()
+        issueBezierPath.stroke ()
+      }
+    }
+  }
+
+  //····················································································································
+  //    draw Grid
+  // MARK: -
+  //····················································································································
+
+  fileprivate func drawGrid (_ inDirtyRect: NSRect) {
+    let r = inDirtyRect // self.bounds
+    let gridDisplayStep = self.mGridStep * CGFloat (self.mGridStepFactor)
+    let startX = (r.origin.x / gridDisplayStep).rounded (.down) * gridDisplayStep
+    let endX = r.maxX
+    let startY = (r.origin.y / gridDisplayStep).rounded (.down) * gridDisplayStep
+    let endY = r.maxY
+    let displayOffset = 0.5 / self.actualScale ()
+    switch self.mGridStyle {
+    case .noGrid :
+      ()
+    case .cross :
+      let bp = NSBezierPath ()
+      bp.lineWidth = 0.0
+      bp.lineCapStyle = .round
+      var x = startX
+      while x <= endX {
+        var y = startY
+        while y <= endY {
+          bp.move (to: NSPoint (x: x - 0.5 + displayOffset, y: y + displayOffset))
+          bp.line (to: NSPoint (x: x + 0.5 + displayOffset, y: y + displayOffset))
+          bp.move (to: NSPoint (x: x + displayOffset,       y: y + 0.5 + displayOffset))
+          bp.line (to: NSPoint (x: x + displayOffset,       y: y - 0.5 + displayOffset))
+          y += gridDisplayStep
+        }
+        x += gridDisplayStep
+      }
+      self.mGridCrossColor.setStroke ()
+      bp.stroke ()
+    case .line :
+      let bp = NSBezierPath ()
+      bp.lineWidth = 0.0
+      bp.lineCapStyle = .round
+      var x = startX
+      while x <= r.maxX {
+        let p1 = NSPoint (x: x + displayOffset, y: startY + displayOffset)
+        let p2 = NSPoint (x: x + displayOffset, y: endY + displayOffset)
+        bp.move (to: p1)
+        bp.line (to: p2)
+        x += gridDisplayStep
+      }
+      var y = startY
+      while y <= endY {
+        bp.move (to: NSPoint (x: startX + displayOffset, y: y + displayOffset))
+        bp.line (to: NSPoint (x: endX   + displayOffset, y: y + displayOffset))
+        y += gridDisplayStep
+      }
+      self.mGridLineColor.setStroke ()
+      bp.stroke ()
+    }
+  }
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  private var mCanariRectController : EBReadOnlyController_CanariRect? = nil
+
+  //····················································································································
+
+  func bind_canariRect (_ model : EBReadOnlyProperty_CanariRect, file : String, line : Int) {
+   self.mCanariRectController = EBReadOnlyController_CanariRect (
+      model: model,
+      callBack: { [weak self] in self?.updateRect (from: model) }
+    )
+  }
+
+  //····················································································································
+
+  func unbind_canariRect () {
+    self.mCanariRectController?.unregister ()
+    self.mCanariRectController = nil
+  }
+
+  //····················································································································
+
+  private func updateRect (from model : EBReadOnlyProperty_CanariRect) {
+    var rect = CanariRect ()
+    switch model.prop {
+    case .empty :
+      ()
+    case .single (let v) :
+      rect = v
+    case .multiple :
+      ()
+    }
+    self.setMinimumRect (rect)
+  }
+
+  //····················································································································
+
+  fileprivate var mMinimumRect : NSRect? = nil
+
+  private func setMinimumRect (_ inCanariRect : CanariRect) {
+    let emptyModel = (inCanariRect.size.width <= 0) || (inCanariRect.size.height <= 0)
+    if emptyModel {
+      self.mMinimumRect = nil
+    }else{
+      self.mMinimumRect = inCanariRect.cocoaRect ()
+    }
+    self.updateViewFrameAndBounds ()
+  }
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  internal var mZoomController : Controller_CanariViewWithZoomAndFlip_zoom?
+
+  //····················································································································
+
+  func setZoom (_ inZoom : Int, activateZoomPopUpButton inActivate : Bool) {
+    scaleToZoom (inZoom, self.mHorizontalFlip, self.mVerticalFlip)
+    self.mZoom = inZoom
+    self.mZoomPopUpButton?.isEnabled = inActivate
+  }
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  private var mHorizontalFlip = false
+
+  //····················································································································
+
+  final func set (horizontalFlip inFlip : Bool) {
+    scaleToZoom (self.mZoom, inFlip, self.mVerticalFlip)
+    self.mHorizontalFlip = inFlip
+  }
+
+  //····················································································································
+
+  final var horizontalFlip : Bool {
+    return self.mHorizontalFlip
+  }
+
+  //····················································································································
+
+  internal var mHorizontalFlipController : EBReadOnlyController_Bool? = nil
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  final private var mVerticalFlip = false
+
+  //····················································································································
+
+  final func setVerticalFlip (_ inFlip : Bool) {
+    scaleToZoom (self.mZoom, self.mHorizontalFlip, inFlip)
+    self.mVerticalFlip = inFlip
+  }
+
+  //····················································································································
+
+  final var verticalFlip : Bool {
+    return self.mVerticalFlip
+  }
+
+  //····················································································································
+
+  final internal var mVerticalFlipController : EBReadOnlyController_Bool? = nil
+
+  //····················································································································
+  // Grid Style
+  // MARK: -
+  //····················································································································
+
+  final var mGridStyle : GridStyle = .noGrid {
+    didSet {
+      if self.mGridStyle != oldValue {
+        self.needsDisplay = true
+      }
+    }
+  }
+
+  //····················································································································
+
+  final internal var mGridStyleController : EBReadOnlyController_GridStyle? = nil
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  final var mGridStep : CGFloat = milsToCocoaUnit (25.0) {
+    didSet {
+      if (self.mGridStep != oldValue) && (self.mGridStyle != .noGrid)  {
+        self.needsDisplay = true
+      }
+    }
+  }
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  final var mGridStepFactor : Int = 4 {
+    didSet {
+      if (self.mGridStepFactor != oldValue) && (self.mGridStyle != .noGrid)  {
+        self.needsDisplay = true
+      }
+    }
+  }
+
+  //····················································································································
+
+  final internal var mGridStepFactorController : EBReadOnlyController_Int? = nil
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  final var mGridLineColor : NSColor = .black {
+    didSet {
+      if (self.mGridLineColor != oldValue) && (self.mGridStyle == .line)  {
+        self.needsDisplay = true
+      }
+    }
+  }
+
+  //····················································································································
+
+  final internal var mGridLineColorController : EBReadOnlyController_NSColor? = nil
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
+  var mGridCrossColor : NSColor = .black {
+    didSet {
+      if (self.mGridCrossColor != oldValue) && (self.mGridStyle == .cross)  {
+        self.needsDisplay = true
+      }
+    }
+  }
+
+  //····················································································································
+
+  internal var mGridCrossColorController : EBReadOnlyController_NSColor? = nil
+
+  //····················································································································
+  // MARK: -
+  // Required by NSDraggingSource protocol
+  //····················································································································
+
+  func draggingSession (_ session: NSDraggingSession,
+                        sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
+    return .generic
+  }
+
+  //····················································································································
+
+   override func mouseDown (with inEvent : NSEvent) {
+    let selectedObjectSet = self.viewController?.selectedGraphicObjectSet ?? Set ()
+    let isStartDraggingSourceEvent = inEvent.modifierFlags.contains (.option)
+    let mouseDownLocation = self.convert (inEvent.locationInWindow, from:nil)
+    mLastMouseDraggedLocation = mouseDownLocation
+    if let viewController = self.mViewController {
+    //--- Find index of object under mouse down
+      let (possibleObjectIndex, possibleKnobIndex) = self.indexOfFrontmostObject (at: mouseDownLocation)
+      let controlKey = inEvent.modifierFlags.contains (.control)
+      if !controlKey {
+        let shiftKey = inEvent.modifierFlags.contains (.shift)
+        let commandKey = inEvent.modifierFlags.contains (.command)
+        if shiftKey { // Shift key extends selection
+          if let objectIndex = possibleObjectIndex {
+            viewController.addToSelection (objectsWithIndex: [objectIndex])
+          }
+        }else if commandKey { // Command key toggles selection of object under click
+          if let objectIndex = possibleObjectIndex {
+            if viewController.selectedIndexesSet.contains (objectIndex) {
+              viewController.removeFromSelection (objectWithIndex: objectIndex)
+            }else{
+              viewController.addToSelection (objectsWithIndex: [objectIndex])
+            }
+          }
+        }else if let objectIndex = possibleObjectIndex {
+          if let knobIndex = possibleKnobIndex {
+            mPossibleKnob = (objectIndex, knobIndex)
+          }
+          if !viewController.selectedIndexesSet.contains (objectIndex) {
+            viewController.setSelection (objectsWithIndexes: [objectIndex])
+          }
+        }else{ // Click outside an object : clear selection
+          viewController.clearSelection ()
+          mSelectionRectangleOrigin = mLastMouseDraggedLocation
+        }
+      }
+    }else if selectedObjectSet.count > 0, let pbType = self.pasteboardType, isStartDraggingSourceEvent {
+   //--- Build dragging item
+      let pasteboardItem = NSPasteboardItem ()
+      let draggingItem = NSDraggingItem (pasteboardWriter: pasteboardItem)
+    //--- Buils image ans data
+      let objectArray = self.viewController?.objectArray ?? []
+      let displayShape = EBShape ()
+      var objectDictionaryArray = [NSDictionary] ()
+      for object in objectArray {
+        if selectedObjectSet.contains (object), let objectShape = object.objectDisplay {
+          displayShape.append (objectShape)
+          let d = NSMutableDictionary ()
+          object.saveIntoDictionary (d)
+          objectDictionaryArray.append (d)
+        }
+      }
+    //--- Transform image by scaling and translating
+      let mouseDownLocation = self.convert (inEvent.locationInWindow, from:nil).aligned (onGrid: SYMBOL_GRID_IN_COCOA_UNIT)
+      let transform = NSAffineTransform ()
+      transform.scale (by: self.actualScale ())
+      transform.translateX (by: -displayShape.boundingBox.origin.x, yBy: -displayShape.boundingBox.origin.y)
+      let finalShape = displayShape.transformedBy (transform)
+    //--- Build image
+      let rect = finalShape.boundingBox
+      let imagePDFData = buildPDFimage (frame: rect, shape: finalShape)
+      let image = NSImage (data: imagePDFData)
+    //--- Move image rect origin to mouse click location
+      Swift.print ("\(mouseDownLocation) | \(displayShape.boundingBox)")
+      var p = mouseDownLocation
+  //    var p = displayShape.boundingBox.origin //
+//      p.x -= displayShape.boundingBox.origin.x
+//      p.y -= displayShape.boundingBox.origin.y
+      p.x -= displayShape.boundingBox.size.width  / 2.0
+      p.y -= displayShape.boundingBox.size.height / 2.0
+      let draggingFrame = NSRect (origin: p, size: rect.size)
+    //--- Associated data
+      let dataDictionary : NSDictionary = [
+        "OBJECTS" : objectDictionaryArray,
+        "START" : NSStringFromPoint (mouseDownLocation)
+      ]
+      pasteboardItem.setPropertyList (dataDictionary, forType: pbType)
+    //--- Set dragged image
+      draggingItem.setDraggingFrame (draggingFrame, contents: image)
+    //--- Begin
+      self.beginDraggingSession (with: [draggingItem], event: inEvent, source: self)
+    }else{
+      super.mouseDown (with: inEvent)
+    }
   }
 
   //····················································································································

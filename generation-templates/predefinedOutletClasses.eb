@@ -1,3 +1,10 @@
+
+enum GridStyle {
+  noGrid, cross, line
+}
+
+#————————————————————————————————————————————————————————————————————————————————————————
+
 transient property struct CGFloat ;
 
 transient property class NSImage ;
@@ -10,6 +17,16 @@ binding EBView $overObjectsDisplay : transient EBShape ;
 binding EBView $arrowKeyMagnitude : transient CGFloat ;
 binding EBView $shiftArrowKeyMagnitude : transient CGFloat ;
 binding EBView $backColor : transient NSColor ;
+binding EBView $gridStyle : transient GridStyle ;
+binding EBView $gridStepFactor : transient Int ;
+binding EBView $gridLineColor : transient NSColor ;
+binding EBView $gridCrossColor : transient NSColor ;
+binding EBView $canariRect : transient CanariRect ;
+binding EBView $zoom : property Int ;
+binding EBView $horizontalFlip : transient Bool ;
+binding EBView $verticalFlip : transient Bool ;
+binding EBView $xPlacardUnit : transient Int ;
+binding EBView $yPlacardUnit : transient Int ;
 
 extern outlet class NSView $hidden ;
 
