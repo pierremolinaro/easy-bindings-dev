@@ -191,7 +191,7 @@ end
 
   //····················································································································
 
-  func bind_model (_ inModel:%!MODEL_TYPE_NAME%) {
+  func bind_model (_ inModel : %!MODEL_TYPE_NAME%) {
     self.mModel = inModel
     inModel.addEBObserver (self.objectArray_property)
 %if ELEMENT_TYPE_IS_GRAPHIC then
@@ -399,7 +399,7 @@ case entityArray :
   //    select
   //····················································································································
 
-  func select (object inObject: %!ELEMENT_TYPE_NAME%) {
+  func select (object inObject : %!ELEMENT_TYPE_NAME%) {
     if let model = self.mModel {
       switch model.prop {
       case .empty, .multiple :
@@ -518,7 +518,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     var result = [Int] ()
     let objects = self.mModel?.propval ?? []
     for object in self.selectedArray_property.propset {
-      let idx = objects.index (of:object)!
+      let idx = objects.index (of: object)!
       result.append (idx)
     }
     return result.sorted ()
@@ -565,7 +565,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     if let pasteboardType = inPasteboardType {
     //--- Declare pasteboard types
       let pb = NSPasteboard.general
-      pb.declareTypes ([pasteboardType, .pdf], owner:self)
+      pb.declareTypes ([pasteboardType, .pdf], owner: self)
     //--- Build PDF representation
       let indexArray = self.sortedIndexArrayOfSelectedObjects ()
       let objects = mModel?.propval ?? []
@@ -690,7 +690,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     for idx in sortedIndexArray.reversed () {
        let object = objects [idx]
        objects.remove (at: idx)
-       objects.insert (object, at:idx+1)
+       objects.insert (object, at: idx+1)
     }
     self.mModel?.setProp (objects)
   }
@@ -759,7 +759,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     for idx in sortedIndexArray.reversed () {
       let object = objects [idx]
       objects.remove (at: idx)
-      objects.insert (object, at:idx-1)
+      objects.insert (object, at: idx-1)
     }
     self.mModel?.setProp (objects)
   }
@@ -779,7 +779,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     for idx in sortedIndexArray.reversed () {
       let object = objects [idx]
       objects.remove (at: idx)
-      objects.insert (object, at:0)
+      objects.insert (object, at: 0)
     }
     self.mModel?.setProp (objects)
   }
@@ -969,12 +969,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     }
     self.selectedSet = Set (selectedObjects)
   }
-
-
-%
-end
-
-%
+%end%
   //····················································································································
   // MARK: -
   //  INSPECTOR
