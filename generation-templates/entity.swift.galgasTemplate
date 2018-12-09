@@ -297,6 +297,10 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_N
 
   var propval : [%!ENTITY_NAME%] { return [] } // Abstract method
 
+  //····················································································································
+
+  var propset : Set <%!ENTITY_NAME%> { return Set () } // Abstract method
+
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //····················································································································
@@ -427,12 +431,24 @@ end
 
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
-  var readModelFunction : Optional<() -> EBSelection < [%!ENTITY_NAME%] > >
+  //····················································································································
+
+  var readModelFunction : Optional < () -> EBSelection < [%!ENTITY_NAME%] > >
 
   //····················································································································
 
-   private var prop_cache : EBSelection < [%!ENTITY_NAME%] >? 
+  override var propset : Set <%!ENTITY_NAME%> {
+    self.computeArrayAndSet ()
+    return self.mSet
+  }
 
+  //····················································································································
+
+  override var prop : EBSelection < [%!ENTITY_NAME%] > {
+    self.computeArrayAndSet ()
+    return self.prop_cache!  
+  }
+ 
   //····················································································································
 
   override var propval : [%!ENTITY_NAME%] {
@@ -458,47 +474,50 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   private var mSet = Set <%!ENTITY_NAME%> ()
 
-  override var prop : EBSelection < [%!ENTITY_NAME%] > {
-    get {
-      if let unwrappedComputeFunction = self.readModelFunction, self.prop_cache == nil {
-        self.prop_cache = unwrappedComputeFunction ()
-        let newSet : Set <%!ENTITY_NAME%>
-        switch self.prop_cache! {
-        case .multiple, .empty :
-          newSet = Set <%!ENTITY_NAME%> ()
-        case .single (let array) :
-          newSet = Set (array)
-        }
+  //····················································································································
+
+  private var prop_cache : EBSelection < [%!ENTITY_NAME%] >? = nil
+
+  //····················································································································
+
+  private func computeArrayAndSet () {
+    if let unwrappedComputeFunction = self.readModelFunction, self.prop_cache == nil {
+      self.prop_cache = unwrappedComputeFunction ()
+      let newSet : Set <%!ENTITY_NAME%>
+      switch self.prop_cache! {
+      case .multiple, .empty :
+        newSet = Set <%!ENTITY_NAME%> ()
+      case .single (let array) :
+       newSet = Set (array)
+      }
 %
 if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
-%     //--- Removed object set
-        let removedSet = self.mSet.subtracting (newSet)
-      //--- Remove observers of stored properties
+%    //--- Removed object set
+      let removedSet = self.mSet.subtracting (newSet)
+    //--- Remove observers of stored properties
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %        removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
+  %      self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
 end
-%      //--- Remove observers of transient properties
+%    //--- Remove observers of transient properties
 %for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %        removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
+  %      self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
 end
-%      //--- Added object set
-        let addedSet = newSet.subtracting (self.mSet)
-       //--- Add observers of stored properties
+%    //--- Added object set
+      let addedSet = newSet.subtracting (self.mSet)
+     //--- Add observers of stored properties
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %        addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
+  %      self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
 end
-%       //--- Add observers of transient properties
+%     //--- Add observers of transient properties
 %for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %        addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
+  %      self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
 end
 end
-%      //--- Update object set
-        self.mSet = newSet
-      }
-      if self.prop_cache == nil {
-        self.prop_cache = .empty
-      }
-      return self.prop_cache!
+%    //--- Update object set
+      self.mSet = newSet
+    }
+    if self.prop_cache == nil {
+      self.prop_cache = .empty
     }
   }
 
@@ -655,11 +674,19 @@ end
 
   override var prop : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mValue) }
 
+  //····················································································································
+
   override func setProp (_ inValue : [%!ENTITY_NAME%]) { self.mValue = inValue }
+
+  //····················································································································
 
   override var propval : [%!ENTITY_NAME%] { return self.mValue }
 
   //····················································································································
+
+  override var propset : Set <%!ENTITY_NAME%> { return self.mSet }
+
+ //····················································································································
 
   @objc func performUndo (_ oldValue : [%!ENTITY_NAME%]) {
     self.mValue = oldValue
@@ -691,12 +718,15 @@ end
   //····················································································································
 
   private weak var mSignatureObserver : EBSignatureObserverProtocol? // SOULD BE WEAK
-  private var mSignatureCache : UInt32?
+
+  //····················································································································
+
+  private var mSignatureCache : UInt32? = nil
 
   //····················································································································
 
   final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
-    mSignatureObserver = observer
+    self.mSignatureObserver = observer
     for object in self.mValue {
       object.setSignatureObserver (observer: self)
     }
@@ -706,11 +736,11 @@ end
 
   final func signature () -> UInt32 {
     let computedSignature : UInt32
-    if let s = mSignatureCache {
+    if let s = self.mSignatureCache {
       computedSignature = s
     }else{
       computedSignature = computeSignature ()
-      mSignatureCache = computedSignature
+      self.mSignatureCache = computedSignature
     }
     return computedSignature
   }
@@ -728,9 +758,9 @@ end
   //····················································································································
 
   final func clearSignatureCache () {
-    if mSignatureCache != nil {
-      mSignatureCache = nil
-      mSignatureObserver?.clearSignatureCache ()
+    if self.mSignatureCache != nil {
+      self.mSignatureCache = nil
+      self.mSignatureObserver?.clearSignatureCache ()
     }
   }
 
@@ -814,7 +844,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
        end
      end
 %       //--- Notify observers
-        postEvent ()
+        self.postEvent ()
       }
     }
   }
@@ -873,14 +903,14 @@ for () in [mProperty mDestinationEntityObservablePropertyMap] do
   %  }\n\n%
   %  //····················································································································\n\n%
   %  final func addEBObserverOf_%!lkey.string% (_ inObserver : EBEvent) {\n%
-  %    mObserversOf_%!lkey.string%.insert (inObserver)\n%
+  %    self.mObserversOf_%!lkey.string%.insert (inObserver)\n%
   %    if let object = self.propval {\n%
   %      object.%!lkey.string%_property.addEBObserver (inObserver)\n%
   %    }\n%
   %  }\n\n%
   %  //····················································································································\n\n%
   %  final func removeEBObserverOf_%!lkey.string% (_ inObserver : EBEvent) {\n%
-  %    mObserversOf_%!lkey.string%.remove (inObserver)\n%
+  %    self.mObserversOf_%!lkey.string%.remove (inObserver)\n%
   %    if let object = self.propval {\n%
   %      object.%!lkey.string%_property.removeEBObserver (inObserver)\n%
   %    }\n%
