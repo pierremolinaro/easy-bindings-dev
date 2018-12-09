@@ -158,7 +158,19 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBView"
     swiftFiles += !"EBViewControllerProtocol"
     swiftFiles += !"EBViewScaleProvider"
-  #--- Shapes
+  #--- Extensions
+    swiftFiles += !"extension-CGPath"
+    swiftFiles += !"extension-CGPoint-NSPoint"
+    swiftFiles += !"extension-CGRect-NSRect"
+    swiftFiles += !"extension-Data"
+    swiftFiles += !"extension-Int"
+    swiftFiles += !"extension-NSBezierPath"
+    swiftFiles += !"extension-NSControl"
+    swiftFiles += !"extension-NSObject"
+    swiftFiles += !"extension-NSTextView"
+    swiftFiles += !"extension-String"
+    swiftFiles += !"extension-UInt32"
+ #--- Shapes
     swiftFiles += !"EBFilledBezierPathShape"
     swiftFiles += !"EBKnobShape"
     swiftFiles += !"EBShape"

@@ -5,69 +5,36 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   MultipleBindingController_hidden
+//   Enabled binding
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class MultipleBindingController_hidden : EBOutletEvent {
+private var gEnabledFromValueBindingDictionary = [NSControl : Bool] ()
+private var gEnabledBindingValueDictionary = [NSControl : Bool] ()
 
-  private let mGetPropertyValueCallBack : () -> EBSelection <Bool>
-  private let mOutlet : NSView?
-  
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+extension NSControl {
+
   //····················································································································
 
-  init (computeFunction inGetPropertyValueCallBack : @escaping () -> EBSelection <Bool>,
-        outlet inOutlet : NSView?) {
-    mGetPropertyValueCallBack = inGetPropertyValueCallBack
-    mOutlet = inOutlet
-    super.init ()
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+  func enableFromValueBinding (_ inValue : Bool) {
+    gEnabledFromValueBindingDictionary [self] = inValue
+    self.isEnabled = (gEnabledBindingValueDictionary [self] ?? true) && (gEnabledFromValueBindingDictionary [self] ?? true)
   }
 
   //····················································································································
 
-   private func updateOutlet () {
-    let model = mGetPropertyValueCallBack ()
-    switch model {
-    case .single (let b) :
-      mOutlet?.isHidden = b
-    default :
-      mOutlet?.isHidden = false
-    }
+  func enableFromEnableBinding (_ inValue : Bool) {
+    gEnabledBindingValueDictionary [self] = inValue
+    self.isEnabled = (gEnabledBindingValueDictionary [self] ?? true) && (gEnabledFromValueBindingDictionary [self] ?? true)
   }
 
   //····················································································································
 
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   MultipleBindingController_enabled
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class MultipleBindingController_enabled : EBOutletEvent {
-
-  private let mGetPropertyValueCallBack : () -> EBSelection <Bool>
-  private let mOutlet : NSControl?
-  
-  //····················································································································
-
-  init (computeFunction inGetPropertyValueCallBack : @escaping () -> EBSelection <Bool>,
-        outlet inOutlet : NSControl?) {
-    mGetPropertyValueCallBack = inGetPropertyValueCallBack
-    mOutlet = inOutlet
-    super.init ()
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
-  }
-
-  //····················································································································
-
-   private func updateOutlet () {
-    let model = mGetPropertyValueCallBack ()
-    switch model {
-    case .single (let b) :
-      mOutlet?.enableFromEnableBinding (b)
-    default :
-      mOutlet?.enableFromEnableBinding (false)
-    }
+  override func ebCleanUp () {
+    super.ebCleanUp ()
+    gEnabledFromValueBindingDictionary [self] = nil
+    gEnabledBindingValueDictionary [self] = nil
   }
 
   //····················································································································

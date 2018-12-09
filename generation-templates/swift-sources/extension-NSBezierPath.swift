@@ -5,69 +5,79 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   MultipleBindingController_hidden
+//  Extension NSBezierPath
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class MultipleBindingController_hidden : EBOutletEvent {
-
-  private let mGetPropertyValueCallBack : () -> EBSelection <Bool>
-  private let mOutlet : NSView?
-  
-  //····················································································································
-
-  init (computeFunction inGetPropertyValueCallBack : @escaping () -> EBSelection <Bool>,
-        outlet inOutlet : NSView?) {
-    mGetPropertyValueCallBack = inGetPropertyValueCallBack
-    mOutlet = inOutlet
-    super.init ()
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
-  }
+extension NSBezierPath {
 
   //····················································································································
 
-   private func updateOutlet () {
-    let model = mGetPropertyValueCallBack ()
-    switch model {
-    case .single (let b) :
-      mOutlet?.isHidden = b
-    default :
-      mOutlet?.isHidden = false
+  func addArrow (fillPath : NSBezierPath, to endPoint : NSPoint, arrowSize : CGFloat) {
+    if endPoint != self.currentPoint {
+   //--- Compute angle
+      let angle = CGPoint.angleInRadian (self.currentPoint, endPoint)
+    //--- Affine transform
+      let tr = NSAffineTransform ()
+      tr.translateX (by: endPoint.x, yBy:endPoint.y)
+      tr.rotate (byRadians:angle)
+    //--- Draw path
+      let path = NSBezierPath ()
+      path.move (to: CGPoint (x: 0.0, y: 0.0))
+      path.line (to:CGPoint (x: -2.0 * arrowSize, y:  arrowSize))
+      path.curve (to:CGPoint (x: -2.0 * arrowSize, y: -arrowSize),
+                  controlPoint1: CGPoint (x: -arrowSize, y: -arrowSize),
+                  controlPoint2: CGPoint (x: -arrowSize, y:  arrowSize))
+      path.close ()
+    //--- Add path
+      fillPath.append (tr.transform (path))
+    //--- Draw line
+      self.line (to:endPoint)
     }
   }
 
   //····················································································································
+  // https://stackoverflow.com/questions/1815568/how-can-i-convert-nsbezierpath-to-cgpath
 
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   MultipleBindingController_enabled
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class MultipleBindingController_enabled : EBOutletEvent {
-
-  private let mGetPropertyValueCallBack : () -> EBSelection <Bool>
-  private let mOutlet : NSControl?
-  
-  //····················································································································
-
-  init (computeFunction inGetPropertyValueCallBack : @escaping () -> EBSelection <Bool>,
-        outlet inOutlet : NSControl?) {
-    mGetPropertyValueCallBack = inGetPropertyValueCallBack
-    mOutlet = inOutlet
-    super.init ()
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+  public var cgPath: CGPath {
+    let path = CGMutablePath ()
+    var points = [CGPoint] (repeating: .zero, count: 3)
+    for idx in 0 ..< self.elementCount {
+      let type = self.element (at: idx, associatedPoints: &points)
+      switch type {
+      case .moveTo:
+        path.move (to: points[0])
+      case .lineTo:
+        path.addLine (to: points[0])
+      case .curveTo:
+        path.addCurve (to: points[2], control1: points[0], control2: points[1])
+      case .closePath:
+        path.closeSubpath ()
+      }
+    }
+    return path
   }
 
   //····················································································································
 
-   private func updateOutlet () {
-    let model = mGetPropertyValueCallBack ()
-    switch model {
-    case .single (let b) :
-      mOutlet?.enableFromEnableBinding (b)
-    default :
-      mOutlet?.enableFromEnableBinding (false)
+  public var pathByStroking : CGPath {
+    let lineCap : CGLineCap
+    switch self.lineCapStyle {
+    case .butt : lineCap = .butt
+    case .round : lineCap = .round
+    case .square : lineCap = .square
     }
+    let lineJoin : CGLineJoin
+    switch self.lineJoinStyle {
+    case .bevel : lineJoin = .bevel
+    case .miter : lineJoin = .miter
+    case .round : lineJoin = .round
+    }
+    return self.cgPath.copy (
+      strokingWithWidth: self.lineWidth,
+      lineCap: lineCap,
+      lineJoin: lineJoin,
+      miterLimit: self.miterLimit
+    )
   }
 
   //····················································································································
