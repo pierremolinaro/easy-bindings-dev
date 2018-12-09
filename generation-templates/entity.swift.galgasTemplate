@@ -289,18 +289,6 @@ end
 
 class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_NAME%> {
 
-  //····················································································································
-
-  weak var undoManager : EBUndoManager? // SOULD BE WEAK
-
-  //····················································································································
-
-  var propval : [%!ENTITY_NAME%] { return [] } // Abstract method
-
-  //····················································································································
-
-  var propset : Set <%!ENTITY_NAME%> { return Set () } // Abstract method
-
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //····················································································································
