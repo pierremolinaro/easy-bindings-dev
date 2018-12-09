@@ -21,17 +21,36 @@ end
  
    private var mModel : %!MODEL_TYPE_NAME%? = nil
 
-  //····················································································································
+   //····················································································································
 
-  private var mSelectedSet = Set <%!ELEMENT_TYPE_NAME%> () {
-    didSet {
-      self.selectedArray_property.postEvent ()
+  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> {
+    set (newValue) {
+%
+if ELEMENT_TYPE_IS_GRAPHIC then
+%    //--- Add observers to newly selected set\n%
+%      for object in newValue.subtracting (self.mPrivateSelectedSet) {\n%
+%        object.selectionDisplay_property.addEBObserver (self.mObjectSelectionObserver)\n%
+%      }\n%
+%    //--- Remove observers to deselected set\n%
+%      for object in self.mPrivateSelectedSet.subtracting (newValue) {\n%
+%        object.selectionDisplay_property.removeEBObserver (self.mObjectSelectionObserver)\n%
+%      }\n%
+%    //---\n%
+end
+%      self.mPrivateSelectedSet = newValue
+    }
+    get {
+      return self.selectedArray_property.propset
     }
   }
 
   //····················································································································
 
-  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> { return self.selectedArray_property.propset }
+  private var mPrivateSelectedSet = Set <%!ELEMENT_TYPE_NAME%> () {
+    didSet {
+      self.selectedArray_property.postEvent ()
+    }
+  }
 
   //····················································································································
   // MARK: -
@@ -148,7 +167,7 @@ end
         case .multiple :
           return .multiple
         case .single (let modelArray) :
-          let selectedObjects = self?.mSelectedSet ?? Set ()
+          let selectedObjects = self?.mPrivateSelectedSet ?? Set ()
           var selectedArray = [%!ELEMENT_TYPE_NAME%] ()
           for object in modelArray {
             if selectedObjects.contains (object) {
@@ -166,7 +185,7 @@ end
    //····················································································································
 
   var objectCount : Int {
-    let objects = mModel?.propval ?? []
+    let objects = self.mModel?.propval ?? []
     return objects.count
   }
 
@@ -191,7 +210,7 @@ end%  }
 end
 %    self.mModel?.removeEBObserver (self.objectArray_property)
   //---
-    self.mSelectedSet = Set ()
+    self.selectedSet = Set ()
     self.mModel = nil
  }
 
@@ -223,7 +242,7 @@ end
   //····················································································································
 
   func setSelection (_ inObjects : [%!ELEMENT_TYPE_NAME%]) {
-    self.mSelectedSet = Set (inObjects)
+    self.selectedSet = Set (inObjects)
   }
 %if ELEMENT_TYPE_IS_GRAPHIC then
 %
@@ -251,17 +270,8 @@ end
   //····················································································································
 
   private func startObservingSelectionShape () {
-    self.mModel?.addEBObserverOf_selectionDisplay (self.mObjectSelectionObserver)
-    self.selectedArray_property.addEBObserver (self.mObjectSelectionObserver)
+    self.selectedArray_property.addEBObserverOf_selectionDisplay (self.mObjectSelectionObserver)
     self.mObjectSelectionObserver.eventCallBack = { [weak self] in self?.computeSelectionShape () }
-  }
-
-  //····················································································································
-
-  private func stopObservingSelectionShape () {
-    self.mModel?.removeEBObserverOf_selectionDisplay (self.mObjectSelectionObserver)
-    self.selectedArray_property.removeEBObserver (self.mObjectSelectionObserver)
-    self.mObjectSelectionObserver.eventCallBack = nil
   }
 
   //····················································································································
@@ -280,6 +290,13 @@ end
     for view in self.mEBViews {
       view.updateSelectionShape (selectionDisplayArray)
     }
+  }
+
+  //····················································································································
+
+  private func stopObservingSelectionShape () {
+    self.selectedArray_property.removeEBObserverOf_selectionDisplay (self.mObjectSelectionObserver)
+    self.mObjectSelectionObserver.eventCallBack = nil
   }
 
   //····················································································································
@@ -389,7 +406,7 @@ case entityArray :
         break
       case .single (let objectArray) :
         if objectArray.contains (inObject) {
-           self.mSelectedSet = Set ([inObject])
+           self.selectedSet = Set ([inObject])
         }
       }
     }
@@ -409,7 +426,7 @@ case entityArray :
         var array = v
         array.append (newObject)
       //--- New object is the selection
-        self.mSelectedSet = Set ([newObject])
+        self.selectedSet = Set ([newObject])
         model.setProp (array)
       }
     }
@@ -483,7 +500,7 @@ case entityArray :
           if let object = newSelectedObject {
             newSelectionSet.insert (object)
           }
-          self.mSelectedSet = newSelectionSet
+          self.selectedSet = newSelectionSet
         //----------------------------------------- Set new object array
           model.setProp (newObjectArray)
         }
@@ -612,7 +629,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       var objects = self.mModel?.propval ?? []
       objects += newObjects
       self.mModel?.setProp (objects)
-      self.mSelectedSet = Set (newObjects)
+      self.selectedSet = Set (newObjects)
     }
   }
 
@@ -627,14 +644,14 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
    func deleteSelectedObjects () {
-    var objects = mModel?.propval ?? []
+    var objects = self.mModel?.propval ?? []
     for object in self.selectedArray_property.propset {
       if let idx = objects.index (of: object) {
         objects.remove(at: idx)
       }
     }
-    mModel?.setProp (objects)
-    self.mSelectedSet = Set ()
+    self.mModel?.setProp (objects)
+    self.selectedSet = Set ()
   }
 
   //····················································································································
@@ -642,8 +659,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func selectAllObjects () {
-    let objects = mModel?.propval ?? []
-    self.mSelectedSet = Set (objects)
+    let objects = self.mModel?.propval ?? []
+    self.selectedSet = Set (objects)
   }
 
   //····················································································································
@@ -656,7 +673,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   var canBringForward : Bool {
-    let objects = mModel?.propval ?? []
+    let objects = self.mModel?.propval ?? []
     var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)
     if result {
       let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
@@ -668,14 +685,14 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func bringForward () {
-    var objects = mModel?.propval ?? []
+    var objects = self.mModel?.propval ?? []
     let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
     for idx in sortedIndexArray.reversed () {
        let object = objects [idx]
        objects.remove (at: idx)
        objects.insert (object, at:idx+1)
     }
-    mModel?.setProp (objects)
+    self.mModel?.setProp (objects)
   }
 
   //····················································································································
@@ -688,7 +705,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   var canBringToFront : Bool {
-    let objects = mModel?.propval ?? []
+    let objects = self.mModel?.propval ?? []
     if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {
       let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
       var top = objects.count - 1
@@ -705,14 +722,14 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func bringToFront () {
-    var objects = mModel?.propval ?? []
+    var objects = self.mModel?.propval ?? []
     let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
     for idx in sortedIndexArray {
       let object = objects [idx]
       objects.remove (at: idx)
       objects.append (object)
     }
-    mModel?.setProp (objects)
+    self.mModel?.setProp (objects)
   }
 
   //····················································································································
@@ -725,7 +742,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   var canSendBackward : Bool {
-    let objects = mModel?.propval ?? []
+    let objects = self.mModel?.propval ?? []
     var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)
     if result {
       let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
@@ -737,14 +754,14 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func sendBackward () {
-    var objects = mModel?.propval ?? []
+    var objects = self.mModel?.propval ?? []
     let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
     for idx in sortedIndexArray.reversed () {
       let object = objects [idx]
       objects.remove (at: idx)
       objects.insert (object, at:idx-1)
     }
-    mModel?.setProp (objects)
+    self.mModel?.setProp (objects)
   }
   
   //····················································································································
@@ -757,20 +774,20 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func sendToBack () {
-    var objects = mModel?.propval ?? []
+    var objects = self.mModel?.propval ?? []
     let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
     for idx in sortedIndexArray.reversed () {
       let object = objects [idx]
       objects.remove (at: idx)
       objects.insert (object, at:0)
     }
-    mModel?.setProp (objects)
+    self.mModel?.setProp (objects)
   }
 
   //····················································································································
 
   var canSendToBack : Bool {
-    let objects = mModel?.propval ?? []
+    let objects = self.mModel?.propval ?? []
     if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {
       let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
       var bottom = 0
@@ -916,41 +933,41 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func addToSelection (objectsWithIndex inIndexes : [Int]) {
-    let objects = mModel?.propval ?? []
+    let objects = self.mModel?.propval ?? []
     var newSelectedSet = self.selectedArray_property.propset
     for idx in inIndexes {
       let newSelectedObject = objects [idx]
       newSelectedSet.insert (newSelectedObject)
     }
-    self.mSelectedSet = newSelectedSet
+    self.selectedSet = newSelectedSet
   }
 
   //····················································································································
 
   func removeFromSelection (objectWithIndex inIndex : Int) {
-    let objects = mModel?.propval ?? []
+    let objects = self.mModel?.propval ?? []
     let object = objects [inIndex]
     var newSelectedSet = self.selectedArray_property.propset
     newSelectedSet.remove (object)
-    self.mSelectedSet = newSelectedSet
+    self.selectedSet = newSelectedSet
   }
 
   //····················································································································
 
   func clearSelection () {
-    self.mSelectedSet = []
+    self.selectedSet = []
   }
 
   //····················································································································
 
   func setSelection (objectsWithIndexes inIndexes : [Int]) {
-    let objects = mModel?.propval ?? []
+    let objects = self.mModel?.propval ?? []
     var selectedObjects = [%!ELEMENT_TYPE_NAME%] ()
     for index in inIndexes {
       let newSelectedObject = objects [index]
       selectedObjects.append (newSelectedObject)
     }
-    self.mSelectedSet = Set (selectedObjects)
+    self.selectedSet = Set (selectedObjects)
   }
 
 
