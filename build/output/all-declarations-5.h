@@ -90,19 +90,19 @@ void routine_generateEBManagedDocumentSwift (const class GALGAS_string constinAr
 
 extern const char * gWrapperFileContent_23_swift_5F_sources ;
 extern const char * gWrapperFileContent_27_swift_5F_sources ;
-extern const char * gWrapperFileContent_42_swift_5F_sources ;
-extern const char * gWrapperFileContent_49_swift_5F_sources ;
+extern const char * gWrapperFileContent_44_swift_5F_sources ;
+extern const char * gWrapperFileContent_51_swift_5F_sources ;
 extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_14_swift_5F_sources ;
+extern const char * gWrapperFileContent_54_swift_5F_sources ;
 extern const char * gWrapperFileContent_52_swift_5F_sources ;
-extern const char * gWrapperFileContent_50_swift_5F_sources ;
 extern const char * gWrapperFileContent_25_swift_5F_sources ;
-extern const char * gWrapperFileContent_45_swift_5F_sources ;
+extern const char * gWrapperFileContent_47_swift_5F_sources ;
 extern const char * gWrapperFileContent_21_swift_5F_sources ;
-extern const char * gWrapperFileContent_48_swift_5F_sources ;
+extern const char * gWrapperFileContent_50_swift_5F_sources ;
 extern const char * gWrapperFileContent_34_swift_5F_sources ;
 extern const char * gWrapperFileContent_36_swift_5F_sources ;
-extern const char * gWrapperFileContent_47_swift_5F_sources ;
+extern const char * gWrapperFileContent_49_swift_5F_sources ;
 extern const char * gWrapperFileContent_32_swift_5F_sources ;
 extern const char * gWrapperFileContent_5_swift_5F_sources ;
 extern const char * gWrapperFileContent_28_swift_5F_sources ;
@@ -116,11 +116,13 @@ extern const char * gWrapperFileContent_24_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
 extern const char * gWrapperFileContent_38_swift_5F_sources ;
 extern const char * gWrapperFileContent_22_swift_5F_sources ;
+extern const char * gWrapperFileContent_40_swift_5F_sources ;
 extern const char * gWrapperFileContent_30_swift_5F_sources ;
+extern const char * gWrapperFileContent_42_swift_5F_sources ;
 extern const char * gWrapperFileContent_15_swift_5F_sources ;
-extern const char * gWrapperFileContent_43_swift_5F_sources ;
+extern const char * gWrapperFileContent_45_swift_5F_sources ;
 extern const char * gWrapperFileContent_0_swift_5F_sources ;
-extern const char * gWrapperFileContent_51_swift_5F_sources ;
+extern const char * gWrapperFileContent_53_swift_5F_sources ;
 extern const char * gWrapperFileContent_4_swift_5F_sources ;
 extern const char * gWrapperFileContent_1_swift_5F_sources ;
 extern const char * gWrapperFileContent_33_swift_5F_sources ;
@@ -133,14 +135,14 @@ extern const char * gWrapperFileContent_17_swift_5F_sources ;
 extern const char * gWrapperFileContent_12_swift_5F_sources ;
 extern const char * gWrapperFileContent_35_swift_5F_sources ;
 extern const char * gWrapperFileContent_10_swift_5F_sources ;
-extern const char * gWrapperFileContent_44_swift_5F_sources ;
-extern const char * gWrapperFileContent_2_swift_5F_sources ;
 extern const char * gWrapperFileContent_46_swift_5F_sources ;
+extern const char * gWrapperFileContent_2_swift_5F_sources ;
+extern const char * gWrapperFileContent_48_swift_5F_sources ;
 extern const char * gWrapperFileContent_18_swift_5F_sources ;
 extern const char * gWrapperFileContent_19_swift_5F_sources ;
 extern const char * gWrapperFileContent_13_swift_5F_sources ;
+extern const char * gWrapperFileContent_43_swift_5F_sources ;
 extern const char * gWrapperFileContent_41_swift_5F_sources ;
-extern const char * gWrapperFileContent_40_swift_5F_sources ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -200,6 +202,8 @@ extern const cRegularFileWrapper gWrapperFile_49_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_50_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_51_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_52_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_53_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_54_swift_5F_sources ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

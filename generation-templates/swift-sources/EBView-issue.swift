@@ -10,23 +10,51 @@ extension EBView {
 
   //····················································································································
 
-  override func updateTrackingAreas () { // This is required for receiving mouse moved and mouseExited events
- //   self.updateViewFrameAndBounds ()
-  //--- Remove current tracking areas
-    let currentTrackingAreas = self.trackingAreas
-    for trackingArea in currentTrackingAreas {
-      self.removeTrackingArea (trackingArea)
+  func setIssue (_ inBezierPath : NSBezierPath?, _ issueKind : CanariIssueKind) {
+    if self.mIssueBezierPath != inBezierPath {
+      if let bp = self.mIssueBezierPath, bp.elementCount > 0 {
+     //   self.setNeedsDisplay (bp.bounds.insetBy(dx: -bp.lineWidth, dy: -bp.lineWidth))
+        self.setNeedsDisplay (self.issueBoundingBox)
+      }
+      self.mIssueBezierPath = inBezierPath
+      self.mIssueKind = issueKind
+      self.updateViewFrameAndBounds ()
+      if let bp = self.mIssueBezierPath, bp.elementCount > 0 {
+        self.scrollToVisible (bp.bounds)
+        self.setNeedsDisplay (self.issueBoundingBox)
+//        self.setNeedsDisplay (bp.bounds.insetBy(dx: -bp.lineWidth, dy: -bp.lineWidth))
+      }
     }
-  //--- Add Updated tracking area
-    let trackingArea = NSTrackingArea (
-      rect: self.bounds,
-      options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow],
-      owner: self,
-      userInfo: nil
-    )
-    self.addTrackingArea (trackingArea)
-  //---
-    super.updateTrackingAreas ()
+  }
+
+  //····················································································································
+
+  internal var issueBoundingBox : NSRect {
+    if let bp = self.mIssueBezierPath, bp.elementCount > 0 {
+      let e = -bp.lineWidth
+      return bp.bounds.insetBy (dx: e, dy: e)
+    }else{
+      return NSRect.null
+    }
+  }
+
+  //····················································································································
+
+  internal func drawIssue (_ inDirtyRect : NSRect) {
+    if let issueBezierPath = self.mIssueBezierPath, !issueBezierPath.isEmpty {
+      switch self.mIssueKind {
+      case .error :
+        NSColor.red.withAlphaComponent (0.2).setFill ()
+        issueBezierPath.fill ()
+        NSColor.red.setStroke ()
+        issueBezierPath.stroke ()
+      case .warning :
+        NSColor.orange.withAlphaComponent (0.2).setFill ()
+        issueBezierPath.fill ()
+        NSColor.orange.setStroke ()
+        issueBezierPath.stroke ()
+      }
+    }
   }
 
   //····················································································································
@@ -34,3 +62,4 @@ extension EBView {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+

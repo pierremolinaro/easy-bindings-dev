@@ -149,6 +149,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBView-binding-yPlacardUnit"
     swiftFiles += !"EBView-binding-zoom"
     swiftFiles += !"EBView-dragging-source"
+    swiftFiles += !"EBView-issue"
     swiftFiles += !"EBView-key-down"
     swiftFiles += !"EBView-magnify"
     swiftFiles += !"EBView-menu-actions"
@@ -178,10 +179,10 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBTextShape"
   end
   @stringlist xibFiles = {!"EBAllocationDebug"}
-  var fw = [filewrapper swift_sources]
+  let fw = [filewrapper swift_sources]
   for (@string s) in swiftFiles do
-    let contents = [fw textFileContentsAtPath !s + ".swift"]
     let fileName = s + ".swift"
+    let contents = [fw textFileContentsAtPath !fileName]
     ioGeneratedFileSet += !fileName
     [@string generateFile
       !inOutputDirectory
