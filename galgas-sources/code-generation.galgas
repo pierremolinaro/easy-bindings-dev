@@ -151,7 +151,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBView-dragging-source"
     swiftFiles += !"EBView-issue"
     swiftFiles += !"EBView-key-down"
-    swiftFiles += !"EBView-magnify"
+    swiftFiles += !"EBView-magnify-and-zoom"
     swiftFiles += !"EBView-menu-actions"
     swiftFiles += !"EBView-mouse"
     swiftFiles += !"EBView-placards"
