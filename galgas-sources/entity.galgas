@@ -53,6 +53,7 @@ syntax extension easyBindings_syntax {
       graphicEntity = true
     end
     $entity$
+    $Identifier$ ?let @lstring entityName
     @lstringlist obsoleteEntityNames = {}
     select
     or
@@ -65,7 +66,6 @@ syntax extension easyBindings_syntax {
       end
       $)$
     end
-    $Identifier$ ?let @lstring entityName
     @lstring superEntityName
     select
       superEntityName = ["" nowhere]
