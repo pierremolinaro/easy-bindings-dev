@@ -133,7 +133,9 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicManagedObject"
     swiftFiles += !"buildPDFimage"
   #--- EBView
-    swiftFiles += !"EBScrollViewWithPlacards"
+    swiftFiles += !"EBScrollView-dragging-destination"
+    swiftFiles += !"EBScrollView-placards"
+    swiftFiles += !"EBScrollView"
     swiftFiles += !"EBView-binding-arrowKeyMagnitude"
     swiftFiles += !"EBView-binding-backColor"
     swiftFiles += !"EBView-binding-gridCrossColor"
@@ -155,6 +157,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBView-magnify-and-zoom"
     swiftFiles += !"EBView-menu-actions"
     swiftFiles += !"EBView-mouse"
+    swiftFiles += !"EBView-move-to-superview"
     swiftFiles += !"EBView-placards"
     swiftFiles += !"EBView-tracking-areas"
     swiftFiles += !"EBView"
