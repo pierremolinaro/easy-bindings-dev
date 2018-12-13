@@ -5368,41 +5368,41 @@ GALGAS_string extensionGetter_filterCode (const GALGAS_tableViewControllerFilter
                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_tableViewControllerFilterListForGeneration temp_0 = inObject ;
-  GALGAS_tableViewControllerFilterListForGeneration var_filterProperties_19776 = temp_0 ;
-  GALGAS_string var_firstFilterProperty_19839 ;
+  GALGAS_tableViewControllerFilterListForGeneration var_filterProperties_19967 = temp_0 ;
+  GALGAS_string var_firstFilterProperty_20030 ;
   {
-  GALGAS_propertyKind joker_19841 ; // Joker input parameter
-  var_filterProperties_19776.setter_popFirst (var_firstFilterProperty_19839, joker_19841, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 519)) ;
+  GALGAS_propertyKind joker_20032 ; // Joker input parameter
+  var_filterProperties_19967.setter_popFirst (var_firstFilterProperty_20030, joker_20032, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 524)) ;
   }
-  GALGAS_string var_indent_19860 = GALGAS_string ("            ") ;
-  result_outResult = var_indent_19860.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 521)).add_operation (var_firstFilterProperty_19839, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 521)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 521)) ;
-  result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 522)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 522)) ;
-  result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 523)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 523)) ;
-  result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 524)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 524)) ;
-  result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 525)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 525)) ;
-  result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 526)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 526)) ;
-  GALGAS_uint var_idx_20211 = GALGAS_uint ((uint32_t) 2U) ;
-  GALGAS_string var_args_20230 = GALGAS_string::makeEmptyString () ;
-  GALGAS_string var_blockEnd_20254 = var_indent_19860.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 529)) ;
-  cEnumerator_tableViewControllerFilterListForGeneration enumerator_20300 (var_filterProperties_19776, kENUMERATION_UP) ;
-  while (enumerator_20300.hasCurrentObject ()) {
-    var_indent_19860.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 531)) ;
-    result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 532)).add_operation (enumerator_20300.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 532)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 532)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 532)) ;
-    result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 533)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 533)) ;
-    result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)) ;
-    result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)) ;
-    result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)) ;
-    result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)).add_operation (var_idx_20211.getter_string (SOURCE_FILE ("table-view-controller.galgas", 537)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)) ;
-    var_blockEnd_20254 = var_indent_19860.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)).add_operation (var_blockEnd_20254, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)) ;
-    var_args_20230.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_20211.getter_string (SOURCE_FILE ("table-view-controller.galgas", 539)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)) ;
-    var_idx_20211.increment_operation (inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 540)) ;
-    enumerator_20300.gotoNextObject () ;
+  GALGAS_string var_indent_20051 = GALGAS_string ("            ") ;
+  result_outResult = var_indent_20051.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 526)).add_operation (var_firstFilterProperty_20030, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 526)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 526)) ;
+  result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 527)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 527)) ;
+  result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 528)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 528)) ;
+  result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 529)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 529)) ;
+  result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 530)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 530)) ;
+  result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 531)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 531)) ;
+  GALGAS_uint var_idx_20402 = GALGAS_uint ((uint32_t) 2U) ;
+  GALGAS_string var_args_20421 = GALGAS_string::makeEmptyString () ;
+  GALGAS_string var_blockEnd_20445 = var_indent_20051.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)) ;
+  cEnumerator_tableViewControllerFilterListForGeneration enumerator_20491 (var_filterProperties_19967, kENUMERATION_UP) ;
+  while (enumerator_20491.hasCurrentObject ()) {
+    var_indent_20051.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)) ;
+    result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)).add_operation (enumerator_20491.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)) ;
+    result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)) ;
+    result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)) ;
+    result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 540)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 540)) ;
+    result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 541)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 541)) ;
+    result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)).add_operation (var_idx_20402.getter_string (SOURCE_FILE ("table-view-controller.galgas", 542)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)) ;
+    var_blockEnd_20445 = var_indent_20051.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)).add_operation (var_blockEnd_20445, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)) ;
+    var_args_20421.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_20402.getter_string (SOURCE_FILE ("table-view-controller.galgas", 544)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 544)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 544)) ;
+    var_idx_20402.increment_operation (inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)) ;
+    enumerator_20491.gotoNextObject () ;
   }
-  var_indent_19860.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)) ;
-  result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)).add_operation (var_args_20230, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)) ;
-  result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 544)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 544)) ;
-  result_outResult.plusAssign_operation(var_indent_19860.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)) ;
-  result_outResult.plusAssign_operation(var_blockEnd_20254, inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)) ;
+  var_indent_20051.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 547)) ;
+  result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)).add_operation (var_args_20421, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)) ;
+  result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 549)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 549)) ;
+  result_outResult.plusAssign_operation(var_indent_20051.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)) ;
+  result_outResult.plusAssign_operation(var_blockEnd_20445, inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 551)) ;
 //---
   return result_outResult ;
 }

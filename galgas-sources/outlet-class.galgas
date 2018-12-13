@@ -142,7 +142,7 @@ override method @outletClassDeclarationAST firstAnalysisPhase
       !mHasEnabled | hasEnabled
       !mHasHidden | hasHidden
       !mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
-      !mUserDefined
+      !true # mUserDefined
     ]
   end
 }

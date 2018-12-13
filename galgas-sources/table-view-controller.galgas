@@ -391,7 +391,11 @@ override method @tableViewControllerDeclarationAST secondAnalysisPhase
       !mColumnOutletTypeName.string
       !mColumnBindingAST.mRunActionName.string
       !regularBindingsGenerationList
-    ioGeneration.mNeededOutletClasses += !mColumnOutletTypeName.string
+  #--- Outlet class is needed ?
+    [ioSemanticContext.mOutletClassMap searchKey !mColumnOutletTypeName ?6* ?let outletClassIsUserDefined]
+    if not outletClassIsUserDefined then
+      ioGeneration.mNeededOutletClasses += !mColumnOutletTypeName.string
+    end
   end
 #------------------------------------------------------------ Check filter properties
   @tableViewControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
@@ -469,6 +473,7 @@ override getter @tableViewControllerPropertyGeneration terminationCode -> @strin
 
 enum @tableViewControllerModelKind {
   case entityArray
+
   case transientArray
 }
 
