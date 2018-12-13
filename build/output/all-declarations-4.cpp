@@ -8305,7 +8305,6 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "binding EBView $gridStepFactor : transient Int ;\n"
     "binding EBView $gridLineColor : transient NSColor ;\n"
     "binding EBView $gridCrossColor : transient NSColor ;\n"
-    "# binding EBView $canariRect : transient CanariRect ;\n"
     "binding EBView $zoom : property Int ;\n"
     "binding EBView $horizontalFlip : transient Bool ;\n"
     "binding EBView $verticalFlip : transient Bool ;\n"

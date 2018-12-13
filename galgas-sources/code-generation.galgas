@@ -149,6 +149,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBView-binding-yPlacardUnit"
     swiftFiles += !"EBView-binding-zoom"
     swiftFiles += !"EBView-dragging-source"
+    swiftFiles += !"EBView-draw"
     swiftFiles += !"EBView-issue"
     swiftFiles += !"EBView-key-down"
     swiftFiles += !"EBView-magnify-and-zoom"

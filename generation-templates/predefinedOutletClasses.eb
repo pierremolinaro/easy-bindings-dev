@@ -21,7 +21,6 @@ binding EBView $gridStyle : transient GridStyle ;
 binding EBView $gridStepFactor : transient Int ;
 binding EBView $gridLineColor : transient NSColor ;
 binding EBView $gridCrossColor : transient NSColor ;
-# binding EBView $canariRect : transient CanariRect ;
 binding EBView $zoom : property Int ;
 binding EBView $horizontalFlip : transient Bool ;
 binding EBView $verticalFlip : transient Bool ;
