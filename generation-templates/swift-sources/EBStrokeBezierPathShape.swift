@@ -58,7 +58,7 @@ class EBStrokeBezierPathShape : EBShape {
     super.draw (inView, inDirtyRect)
     self.mColor.setFill ()
     for bp in self.mPaths {
-      if inView.needsToDraw (bp.bounds) {
+      if !bp.isEmpty && inView.needsToDraw (bp.bounds) {
         bp.fill ()
       }
     }
@@ -74,7 +74,9 @@ class EBStrokeBezierPathShape : EBShape {
     }else{
       var r = super.boundingBox
       for bp in self.mPaths {
-        r = r.union (bp.bounds)
+        if !bp.isEmpty {
+          r = r.union (bp.bounds)
+        }
       }
       self.mCachedBoundingBox = r
       return r
