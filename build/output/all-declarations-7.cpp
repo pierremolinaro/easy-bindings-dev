@@ -7936,7 +7936,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "   override func mouseDown (with inEvent : NSEvent) {\n"
+  "  override func mouseDown (with inEvent : NSEvent) {\n"
   "    if let viewController = self.viewController {\n"
   "      let mouseDownLocation = self.convert (inEvent.locationInWindow, from:nil)\n"
   "      self.mLastMouseDraggedLocation = mouseDownLocation.canariPointAligned (onCanariGrid: self.mouseGridInCanariUnit)\n"
@@ -7991,7 +7991,7 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    if let selectionRectangleOrigin = self.mSelectionRectangleOrigin {\n"
   "      self.handleSelectionRectangle (from: selectionRectangleOrigin, to: mouseDraggedCocoaLocation)\n"
   "    }else if let lastMouseDraggedLocation = self.mLastMouseDraggedLocation {\n"
-  "      let mouseDraggedCanariLocation = mouseDraggedCocoaLocation.canariPoint ()\n"
+  "      let mouseDraggedCanariLocation = mouseDraggedCocoaLocation.canariPointAligned (onCanariGrid: self.mouseGridInCanariUnit)\n"
   "      var proposedTranslation = CanariPoint (\n"
   "        x: mouseDraggedCanariLocation.x - lastMouseDraggedLocation.x,\n"
   "        y: mouseDraggedCanariLocation.y - lastMouseDraggedLocation.y\n"
@@ -8136,7 +8136,7 @@ const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
   "EBView-mouse.swift",
   "swift",
   true, // Text file
-  10301, // Text length
+  10347, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 
