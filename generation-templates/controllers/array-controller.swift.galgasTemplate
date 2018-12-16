@@ -634,6 +634,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       var newObjects = [%!ELEMENT_TYPE_NAME%] ()
       for dictionary in array {
         if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
+          object.operationAfterPasting ()
           object.translate (xBy: X, yBy: Y)
           newObjects.append (object)
         }

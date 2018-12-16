@@ -54,7 +54,7 @@ end
 for () in TO_MANY_RELATIONSHIP_LIST do
   switch [mProperty mOption]
   case none :
-    % //   self.%![mProperty mPropertyName]%_property.undoManager = self.undoManager\n%
+
   case hasDependance (@lstring masterPropertyName) :
     %    self.%![masterPropertyName string]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property)\n%
     %    self.%![mProperty mPropertyName]%_property.readModelFunction =  { [weak self] in\n%
@@ -67,7 +67,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %        case .single (let modelArray) :\n%
     %          var array = [%![[mProperty mRelationshipType] swiftTypeName]%] ()\n%
     %          for baseObject in modelArray {\n%
-    %            if let object = baseObject as? SymbolPin {\n%
+    %            if let object = baseObject as? %![[mProperty mRelationshipType] swiftTypeName]% {\n%
     %              array.append (object)\n%
     %            }\n%
     %          }\n%
@@ -78,7 +78,6 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %      }\n%
     %    }\n%
   case hasOpposite (@lstring oppositeName) :
-    % //   self.%![mProperty mPropertyName]%_property.undoManager = self.undoManager\n%
     %    self.%![mProperty mPropertyName]%_property.setOppositeRelationship = { [weak self] (_ inManagedObject : %![[mProperty mRelationshipType] swiftTypeName]%?) in\n%
     %      inManagedObject?.%!oppositeName.string%_property.setProp (self)\n%
     %    }\n%
@@ -301,7 +300,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
-    mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
+    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
     case .empty, .multiple :
       break
@@ -316,7 +315,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
-    mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
+    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
     switch prop {
     case .empty, .multiple :
       break
@@ -331,7 +330,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      for observer in mObserversOf_%![mProperty mPropertyName]% {
+      for observer in self.mObserversOf_%![mProperty mPropertyName]% {
         managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
       }
     }
@@ -340,7 +339,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //····················································································································
 
   final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
-    for observer in mObserversOf_%![mProperty mPropertyName]% {
+    for observer in self.mObserversOf_%![mProperty mPropertyName]% {
       observer.postEvent ()
       for managedObject in inSet {
         managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
@@ -361,7 +360,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
-    mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
+    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
     case .empty, .multiple :
       break
@@ -376,7 +375,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
-    mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
+    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
     switch prop {
     case .empty, .multiple :
       break
@@ -391,7 +390,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      for observer in mObserversOf_%![mProperty mPropertyName]% {
+      for observer in self.mObserversOf_%![mProperty mPropertyName]% {
         managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
       }
     }
@@ -401,7 +400,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      for observer in mObserversOf_%![mProperty mPropertyName]% {
+      for observer in self.mObserversOf_%![mProperty mPropertyName]% {
         managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
       }
     }
@@ -440,6 +439,7 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
   //····················································································································
 
   override var propval : [%!ENTITY_NAME%] {
+    self.computeArrayAndSet ()
     if let value = self.prop_cache {
       switch value {
       case .empty, .multiple :
@@ -550,6 +550,9 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
   //····················································································································
 
   var setOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%?) -> Void > = nil
+
+  //····················································································································
+
   private var mPrefKey : String? = nil
 
   //····················································································································
@@ -822,13 +825,13 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
 %      //--- Remove property observers of old object
 %    for () in [mProperty mDestinationEntityObservablePropertyMap] do
        if [mKind isProperty] then
-       %        oldValue?.%!lkey.string%_property.removeEBObserversFrom (mObserversOf_%!lkey.string%)\n%
+       %        oldValue?.%!lkey.string%_property.removeEBObserversFrom (self.mObserversOf_%!lkey.string%)\n%
        end
      end
 %      //--- Add property observers to new object
 %    for () in [mProperty mDestinationEntityObservablePropertyMap] do
        if [mKind isProperty] then
-       %        self.mValue?.%!lkey.string%_property.addEBObserversFrom (mObserversOf_%!lkey.string%)\n%
+       %        self.mValue?.%!lkey.string%_property.addEBObserversFrom (self.mObserversOf_%!lkey.string%)\n%
        end
      end
 %       //--- Notify observers

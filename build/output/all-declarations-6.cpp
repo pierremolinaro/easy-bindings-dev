@@ -5306,6 +5306,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "        if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as\? " ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << " {\n"
+      "          object.operationAfterPasting ()\n"
       "          object.translate (xBy: X, yBy: Y)\n"
       "          newObjects.append (object)\n"
       "        }\n"

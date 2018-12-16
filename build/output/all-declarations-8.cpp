@@ -18,93 +18,94 @@ void routine_generateSwiftApplicationFiles (const GALGAS_string constinArgument_
                                             GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                             C_Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 128)) ;
+  GALGAS_stringlist temp_0 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 129)) ;
   temp_0.addAssign_operation (GALGAS_string ("main")  COMMA_SOURCE_FILE ("code-generation.galgas", 123)) ;
   temp_0.addAssign_operation (GALGAS_string ("EBAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 124)) ;
   temp_0.addAssign_operation (GALGAS_string ("EBUndoManager")  COMMA_SOURCE_FILE ("code-generation.galgas", 125)) ;
   temp_0.addAssign_operation (GALGAS_string ("easy-bindings-utilities")  COMMA_SOURCE_FILE ("code-generation.galgas", 126)) ;
   temp_0.addAssign_operation (GALGAS_string ("generic-bindings")  COMMA_SOURCE_FILE ("code-generation.galgas", 127)) ;
-  temp_0.addAssign_operation (GALGAS_string ("application")  COMMA_SOURCE_FILE ("code-generation.galgas", 128)) ;
+  temp_0.addAssign_operation (GALGAS_string ("Application")  COMMA_SOURCE_FILE ("code-generation.galgas", 128)) ;
+  temp_0.addAssign_operation (GALGAS_string ("EBEvent")  COMMA_SOURCE_FILE ("code-generation.galgas", 129)) ;
   GALGAS_stringlist var_swiftFiles_4089 = temp_0 ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     test_1 = constinArgument_inHasEntities.boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 131)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 132)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBGraphicManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 133)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("buildPDFimage")  COMMA_SOURCE_FILE ("code-generation.galgas", 134)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBScrollView-dragging-destination")  COMMA_SOURCE_FILE ("code-generation.galgas", 136)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBScrollView-placards")  COMMA_SOURCE_FILE ("code-generation.galgas", 137)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBScrollView")  COMMA_SOURCE_FILE ("code-generation.galgas", 138)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-arrowKeyMagnitude")  COMMA_SOURCE_FILE ("code-generation.galgas", 139)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-backColor")  COMMA_SOURCE_FILE ("code-generation.galgas", 140)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-gridCrossColor")  COMMA_SOURCE_FILE ("code-generation.galgas", 141)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-gridLineColor")  COMMA_SOURCE_FILE ("code-generation.galgas", 142)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-gridStepFactor")  COMMA_SOURCE_FILE ("code-generation.galgas", 143)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-gridStyle")  COMMA_SOURCE_FILE ("code-generation.galgas", 144)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-horizontalFlip")  COMMA_SOURCE_FILE ("code-generation.galgas", 145)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-overObjectsDisplay")  COMMA_SOURCE_FILE ("code-generation.galgas", 146)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-shiftArrowKeyMagnitude")  COMMA_SOURCE_FILE ("code-generation.galgas", 147)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-underObjectsDisplay")  COMMA_SOURCE_FILE ("code-generation.galgas", 148)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-verticalFlip")  COMMA_SOURCE_FILE ("code-generation.galgas", 149)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-xPlacardUnit")  COMMA_SOURCE_FILE ("code-generation.galgas", 150)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-yPlacardUnit")  COMMA_SOURCE_FILE ("code-generation.galgas", 151)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-zoom")  COMMA_SOURCE_FILE ("code-generation.galgas", 152)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-dragging-source")  COMMA_SOURCE_FILE ("code-generation.galgas", 153)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-draw")  COMMA_SOURCE_FILE ("code-generation.galgas", 154)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-issue")  COMMA_SOURCE_FILE ("code-generation.galgas", 155)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-key-down")  COMMA_SOURCE_FILE ("code-generation.galgas", 156)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-magnify-and-zoom")  COMMA_SOURCE_FILE ("code-generation.galgas", 157)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-menu-actions")  COMMA_SOURCE_FILE ("code-generation.galgas", 158)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-mouse")  COMMA_SOURCE_FILE ("code-generation.galgas", 159)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-move-to-superview")  COMMA_SOURCE_FILE ("code-generation.galgas", 160)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-placards")  COMMA_SOURCE_FILE ("code-generation.galgas", 161)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-tracking-areas")  COMMA_SOURCE_FILE ("code-generation.galgas", 162)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView")  COMMA_SOURCE_FILE ("code-generation.galgas", 163)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBViewControllerProtocol")  COMMA_SOURCE_FILE ("code-generation.galgas", 164)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBViewScaleProvider")  COMMA_SOURCE_FILE ("code-generation.galgas", 165)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-CGPath")  COMMA_SOURCE_FILE ("code-generation.galgas", 167)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-CGPoint-NSPoint")  COMMA_SOURCE_FILE ("code-generation.galgas", 168)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-CGRect-NSRect")  COMMA_SOURCE_FILE ("code-generation.galgas", 169)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-Data")  COMMA_SOURCE_FILE ("code-generation.galgas", 170)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-Int")  COMMA_SOURCE_FILE ("code-generation.galgas", 171)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-NSBezierPath")  COMMA_SOURCE_FILE ("code-generation.galgas", 172)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-NSControl")  COMMA_SOURCE_FILE ("code-generation.galgas", 173)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-NSObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 174)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-NSTextView")  COMMA_SOURCE_FILE ("code-generation.galgas", 175)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-String")  COMMA_SOURCE_FILE ("code-generation.galgas", 176)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-UInt32")  COMMA_SOURCE_FILE ("code-generation.galgas", 177)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBFilledBezierPathShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 179)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBKnobShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 180)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 181)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBStrokeBezierPathShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 182)) ;
-      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBTextShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 183)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 132)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBDataScanner")  COMMA_SOURCE_FILE ("code-generation.galgas", 133)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBGraphicManagedObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 134)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("buildPDFimage")  COMMA_SOURCE_FILE ("code-generation.galgas", 135)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBScrollView-dragging-destination")  COMMA_SOURCE_FILE ("code-generation.galgas", 137)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBScrollView-placards")  COMMA_SOURCE_FILE ("code-generation.galgas", 138)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBScrollView")  COMMA_SOURCE_FILE ("code-generation.galgas", 139)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-arrowKeyMagnitude")  COMMA_SOURCE_FILE ("code-generation.galgas", 140)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-backColor")  COMMA_SOURCE_FILE ("code-generation.galgas", 141)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-gridCrossColor")  COMMA_SOURCE_FILE ("code-generation.galgas", 142)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-gridLineColor")  COMMA_SOURCE_FILE ("code-generation.galgas", 143)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-gridStepFactor")  COMMA_SOURCE_FILE ("code-generation.galgas", 144)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-gridStyle")  COMMA_SOURCE_FILE ("code-generation.galgas", 145)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-horizontalFlip")  COMMA_SOURCE_FILE ("code-generation.galgas", 146)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-overObjectsDisplay")  COMMA_SOURCE_FILE ("code-generation.galgas", 147)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-shiftArrowKeyMagnitude")  COMMA_SOURCE_FILE ("code-generation.galgas", 148)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-underObjectsDisplay")  COMMA_SOURCE_FILE ("code-generation.galgas", 149)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-verticalFlip")  COMMA_SOURCE_FILE ("code-generation.galgas", 150)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-xPlacardUnit")  COMMA_SOURCE_FILE ("code-generation.galgas", 151)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-yPlacardUnit")  COMMA_SOURCE_FILE ("code-generation.galgas", 152)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-binding-zoom")  COMMA_SOURCE_FILE ("code-generation.galgas", 153)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-dragging-source")  COMMA_SOURCE_FILE ("code-generation.galgas", 154)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-draw")  COMMA_SOURCE_FILE ("code-generation.galgas", 155)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-issue")  COMMA_SOURCE_FILE ("code-generation.galgas", 156)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-key-down")  COMMA_SOURCE_FILE ("code-generation.galgas", 157)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-magnify-and-zoom")  COMMA_SOURCE_FILE ("code-generation.galgas", 158)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-menu-actions")  COMMA_SOURCE_FILE ("code-generation.galgas", 159)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-mouse")  COMMA_SOURCE_FILE ("code-generation.galgas", 160)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-move-to-superview")  COMMA_SOURCE_FILE ("code-generation.galgas", 161)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-placards")  COMMA_SOURCE_FILE ("code-generation.galgas", 162)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView-tracking-areas")  COMMA_SOURCE_FILE ("code-generation.galgas", 163)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBView")  COMMA_SOURCE_FILE ("code-generation.galgas", 164)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBViewControllerProtocol")  COMMA_SOURCE_FILE ("code-generation.galgas", 165)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBViewScaleProvider")  COMMA_SOURCE_FILE ("code-generation.galgas", 166)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-CGPath")  COMMA_SOURCE_FILE ("code-generation.galgas", 168)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-CGPoint-NSPoint")  COMMA_SOURCE_FILE ("code-generation.galgas", 169)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-CGRect-NSRect")  COMMA_SOURCE_FILE ("code-generation.galgas", 170)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-Data")  COMMA_SOURCE_FILE ("code-generation.galgas", 171)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-Int")  COMMA_SOURCE_FILE ("code-generation.galgas", 172)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-NSBezierPath")  COMMA_SOURCE_FILE ("code-generation.galgas", 173)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-NSControl")  COMMA_SOURCE_FILE ("code-generation.galgas", 174)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-NSObject")  COMMA_SOURCE_FILE ("code-generation.galgas", 175)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-NSTextView")  COMMA_SOURCE_FILE ("code-generation.galgas", 176)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-String")  COMMA_SOURCE_FILE ("code-generation.galgas", 177)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("extension-UInt32")  COMMA_SOURCE_FILE ("code-generation.galgas", 178)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBFilledBezierPathShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 180)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBKnobShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 181)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 182)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBStrokeBezierPathShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 183)) ;
+      var_swiftFiles_4089.addAssign_operation (GALGAS_string ("EBTextShape")  COMMA_SOURCE_FILE ("code-generation.galgas", 184)) ;
     }
   }
-  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 185)) ;
-  temp_2.addAssign_operation (GALGAS_string ("EBAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 185)) ;
-  GALGAS_stringlist var_xibFiles_6460 = temp_2 ;
-  GALGAS_filewrapper var_fw_6494 = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  cEnumerator_stringlist enumerator_6556 (var_swiftFiles_4089, kENUMERATION_UP) ;
-  while (enumerator_6556.hasCurrentObject ()) {
-    GALGAS_string var_fileName_6576 = enumerator_6556.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 188)) ;
-    GALGAS_string var_contents_6608 = var_fw_6494.getter_textFileContentsAtPath (var_fileName_6576, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 189)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_6576  COMMA_SOURCE_FILE ("code-generation.galgas", 190)) ;
+  GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.galgas", 186)) ;
+  temp_2.addAssign_operation (GALGAS_string ("EBAllocationDebug")  COMMA_SOURCE_FILE ("code-generation.galgas", 186)) ;
+  GALGAS_stringlist var_xibFiles_6476 = temp_2 ;
+  GALGAS_filewrapper var_fw_6510 = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
+  cEnumerator_stringlist enumerator_6572 (var_swiftFiles_4089, kENUMERATION_UP) ;
+  while (enumerator_6572.hasCurrentObject ()) {
+    GALGAS_string var_fileName_6592 = enumerator_6572.current_mValue (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 189)) ;
+    GALGAS_string var_contents_6624 = var_fw_6510.getter_textFileContentsAtPath (var_fileName_6592, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 190)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_6592  COMMA_SOURCE_FILE ("code-generation.galgas", 191)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6576, var_contents_6608, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 191)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6592, var_contents_6624, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 192)) ;
     }
-    enumerator_6556.gotoNextObject () ;
+    enumerator_6572.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_6809 (var_xibFiles_6460, kENUMERATION_UP) ;
-  while (enumerator_6809.hasCurrentObject ()) {
-    GALGAS_string var_contents_6829 = var_fw_6494.getter_textFileContentsAtPath (enumerator_6809.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 198)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 198)) ;
-    GALGAS_string var_fileName_6888 = enumerator_6809.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 199)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_6888  COMMA_SOURCE_FILE ("code-generation.galgas", 200)) ;
+  cEnumerator_stringlist enumerator_6825 (var_xibFiles_6476, kENUMERATION_UP) ;
+  while (enumerator_6825.hasCurrentObject ()) {
+    GALGAS_string var_contents_6845 = var_fw_6510.getter_textFileContentsAtPath (enumerator_6825.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 199)), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 199)) ;
+    GALGAS_string var_fileName_6904 = enumerator_6825.current_mValue (HERE).add_operation (GALGAS_string (".xib"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 200)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_6904  COMMA_SOURCE_FILE ("code-generation.galgas", 201)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6888, var_contents_6829, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 201)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6904, var_contents_6845, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 202)) ;
     }
-    enumerator_6809.gotoNextObject () ;
+    enumerator_6825.gotoNextObject () ;
   }
 }
 
@@ -1737,37 +1738,37 @@ void routine_generateStandardProperties (const GALGAS_string constinArgument_inO
                                          GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                          C_Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents_7918 = GALGAS_string (filewrapperTemplate_standard_5F_properties_stub (inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 234))) ;
-  var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Int"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 236))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 236)) ;
-  var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 237))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 237)) ;
-  var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 238))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 238)) ;
-  var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("String"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 239))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 239)) ;
-  cEnumerator_stringlist enumerator_8385 (constinArgument_inPropertyClassList, kENUMERATION_UP) ;
-  while (enumerator_8385.hasCurrentObject ()) {
-    var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_8385.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 242))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 242)) ;
-    enumerator_8385.gotoNextObject () ;
+  GALGAS_string var_contents_7934 = GALGAS_string (filewrapperTemplate_standard_5F_properties_stub (inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 235))) ;
+  var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Int"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 237))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 237)) ;
+  var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Bool"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 238))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 238)) ;
+  var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Double"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 239))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 239)) ;
+  var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("String"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 240))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 240)) ;
+  cEnumerator_stringlist enumerator_8401 (constinArgument_inPropertyClassList, kENUMERATION_UP) ;
+  while (enumerator_8401.hasCurrentObject ()) {
+    var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_8401.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 243))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 243)) ;
+    enumerator_8401.gotoNextObject () ;
   }
-  cEnumerator_transientExternTypeList enumerator_8553 (constinArgument_inTransientPropertyExternTypeList, kENUMERATION_UP) ;
-  while (enumerator_8553.hasCurrentObject ()) {
+  cEnumerator_transientExternTypeList enumerator_8569 (constinArgument_inTransientPropertyExternTypeList, kENUMERATION_UP) ;
+  while (enumerator_8569.hasCurrentObject ()) {
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = enumerator_8553.current_mIsClass (HERE).boolEnum () ;
+      test_0 = enumerator_8569.current_mIsClass (HERE).boolEnum () ;
       if (kBoolTrue == test_0) {
-        var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_8553.current_mTypeName (HERE), GALGAS_bool (false), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 246))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 246)) ;
+        var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, enumerator_8569.current_mTypeName (HERE), GALGAS_bool (false), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 247))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 247)) ;
       }
     }
     if (kBoolFalse == test_0) {
-      var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, enumerator_8553.current_mTypeName (HERE), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 248))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 248)) ;
+      var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, enumerator_8569.current_mTypeName (HERE), GALGAS_bool (true) COMMA_SOURCE_FILE ("code-generation.galgas", 249))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 249)) ;
     }
-    enumerator_8553.gotoNextObject () ;
+    enumerator_8569.gotoNextObject () ;
   }
-  var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Date"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 251))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 251)) ;
-  var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 252))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 252)) ;
-  var_contents_7918.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSColor"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 253))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 253)) ;
-  GALGAS_string var_fileName_9065 = GALGAS_string ("standard-properties.swift") ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_9065  COMMA_SOURCE_FILE ("code-generation.galgas", 256)) ;
+  var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, GALGAS_string ("Date"), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 252))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 252)) ;
+  var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSFont"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 253))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 253)) ;
+  var_contents_7934.plusAssign_operation(GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, GALGAS_string ("NSColor"), GALGAS_bool (false), GALGAS_bool (false) COMMA_SOURCE_FILE ("code-generation.galgas", 254))), inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas", 254)) ;
+  GALGAS_string var_fileName_9081 = GALGAS_string ("standard-properties.swift") ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_9081  COMMA_SOURCE_FILE ("code-generation.galgas", 257)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_9065, var_contents_7918, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 257)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_9081, var_contents_7934, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas", 258)) ;
   }
 }
 
