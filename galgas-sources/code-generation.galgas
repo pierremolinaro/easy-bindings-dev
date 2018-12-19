@@ -181,6 +181,7 @@ private proc generateSwiftApplicationFiles
  #--- Shapes
     swiftFiles += !"EBFilledBezierPathShape"
     swiftFiles += !"EBKnobShape"
+    swiftFiles += !"EBKnobTextShape"
     swiftFiles += !"EBShape"
     swiftFiles += !"EBStrokeBezierPathShape"
     swiftFiles += !"EBTextShape"
