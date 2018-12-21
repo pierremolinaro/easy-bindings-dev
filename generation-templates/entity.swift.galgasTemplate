@@ -864,9 +864,9 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
   
   //····················································································································
 
-  func add (_ object : %![[mProperty mRelationshipType] swiftTypeName]%) {
-    self.mValue = object
-  }
+//  func add (_ object : %![[mProperty mRelationshipType] swiftTypeName]%) {
+ //   self.mValue = object
+//  }
 
 %
 for () in [mProperty mDestinationEntityObservablePropertyMap] do

@@ -8,7 +8,6 @@ import Cocoa
 //    %!["SelectionController_" + OWNER_NAME + "_" + SELECTION_CONTROLLER_NAME stringByRightPadding !113 !' ']%*
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME%)
 final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBObject {
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do

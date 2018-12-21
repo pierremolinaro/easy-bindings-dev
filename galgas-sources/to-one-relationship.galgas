@@ -80,7 +80,7 @@ override method @toOneRelationshipAST firstAnalysisPhase
   with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !mDestinationEntityName ?let classKind ?let destinationEntityPropertyMap ?2*]
+    [ioSemanticContext.mClassMap searchKey !mDestinationEntityName ?let classKind ?3*]
     switch classKind
     case prefs :
       error mDestinationEntityName : "an entity is required here"
@@ -95,6 +95,30 @@ override method @toOneRelationshipAST firstAnalysisPhase
         !graphic: graphic
       }
       [!?mPropertyMap insertKey !mToOneRelationshipName !kind !{}]
+    end
+  end
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @toOneRelationshipAST secondAnalysisPhase 
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct unused ioGeneration
+{
+  with mClassName in !?ioSemanticContext.mClassMap 
+    error message searchKey
+  do
+    [ioSemanticContext.mClassMap searchKey !mDestinationEntityName ?let classKind ?let destinationEntityPropertyMap ?2*]
+    switch classKind
+    case prefs :
+    case atomic (*) :
+    case document (*) :
+    case entity (* graphic *) :
+      let kind = @propertyKind.toOne {
+        !typeName: mDestinationEntityName
+        !accessibility: .stored
+        !graphic: graphic
+      }
     #--- Code Generation
       mPropertyGenerationList += !@toOnePropertyGeneration.new {
         !mToOneRelationshipName.string
