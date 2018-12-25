@@ -95,6 +95,7 @@ end
   //····················································································································
 
   override func windowControllerDidLoadNib (_ aController: NSWindowController) {
+    super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
 %for () in OUTLET_GENERATION_MAP do
 %    if let outlet : Any = self.%!lkey.string% {
@@ -153,11 +154,7 @@ end
 %    self.%!mOutletName%?.target = %!mTargetName%\n%
 %    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
-%  //--------------------------- Update display
-    super.windowControllerDidLoadNib (aController)
-  //--------------------------- Flush outlet event for forcing display
-    flushOutletEvents ()
-  }
+%  }
 
   //····················································································································
   //   removeWindowController
