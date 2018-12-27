@@ -5271,7 +5271,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "      return false\n"
       "    }else{\n"
       "      for object in self.selectedArray_property.propset {\n"
-      "        if !object.canCopyAndPaste () {\n"
+      "        if !object.canCopyAndPaste () || !object.canBeDeleted () {\n"
       "          return false\n"
       "        }\n"
       "      }\n"

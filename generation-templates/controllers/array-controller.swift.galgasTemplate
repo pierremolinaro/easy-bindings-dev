@@ -545,7 +545,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       return false
     }else{
       for object in self.selectedArray_property.propset {
-        if !object.canCopyAndPaste () {
+        if !object.canCopyAndPaste () || !object.canBeDeleted () {
           return false
         }
       }
