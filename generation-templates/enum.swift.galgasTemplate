@@ -15,6 +15,18 @@ end
 
   //····················································································································
 
+  init? (string : String) {
+    switch string {
+%
+for () in CONSTANT_ORDERED_LIST do index idx
+   %      case "%!mValue.string%" : self = .%!mValue.string% // %![idx string]%\n%
+end
+%      case _ : return nil
+    }
+  }
+
+  //····················································································································
+
   func descriptionForExplorer () -> String {
     switch self {
 %
