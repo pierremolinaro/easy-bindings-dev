@@ -43,7 +43,7 @@ end
   //    init
   //····················································································································
 
-  override init (_ undoManager : EBUndoManager?, file: String, _ line : Int) {
+  required init (_ undoManager : EBUndoManager?, file: String, _ line : Int) {
     super.init (undoManager, file: file, line)
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
