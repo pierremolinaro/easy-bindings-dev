@@ -669,6 +669,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     if self.canDelete () {
       var objects = self.mModel?.propval ?? []
       for object in self.selectedArray_property.propset {
+        object.operationAfterRemoving ()
         if let idx = objects.index (of: object) {
           objects.remove(at: idx)
         }

@@ -5399,6 +5399,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "    if self.canDelete () {\n"
       "      var objects = self.mModel\?.propval \?\? []\n"
       "      for object in self.selectedArray_property.propset {\n"
+      "        object.operationAfterRemoving ()\n"
       "        if let idx = objects.index (of: object) {\n"
       "          objects.remove(at: idx)\n"
       "        }\n"
