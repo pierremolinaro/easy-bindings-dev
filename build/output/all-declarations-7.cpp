@@ -3689,7 +3689,7 @@ const char * gWrapperFileContent_7_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  @objc dynamic func move (knob inKnobIndex: Int, xBy inDx: Int, yBy inDy: Int) {\n"
+  "  @objc dynamic func move (knob inKnobIndex: Int, xBy inDx: Int, yBy inDy: Int, newX inNewX : Int, newY inNewY : Int) {\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -3850,7 +3850,7 @@ const cRegularFileWrapper gWrapperFile_7_swift_5F_sources (
   "EBGraphicManagedObject.swift",
   "swift",
   true, // Text file
-  10833, // Text length
+  10871, // Text length
   gWrapperFileContent_7_swift_5F_sources
 ) ;
 
@@ -4210,8 +4210,10 @@ const char * gWrapperFileContent_63_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "let kFormatSignature = \"PM-BINARY-FORMAT\"\n"
-  "private let EBVersion = \"EBVersion\"\n"
   "let kEntityKey = \"--entity\"\n"
+  "private let EBVersion = \"EBVersion\"\n"
+  "private let EBWindowHeight = \"WindowHeight\"\n"
+  "private let EBWindowWidth  = \"WindowWidth\"\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
@@ -4301,19 +4303,9 @@ const char * gWrapperFileContent_63_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    if let unwrappedWindowForSheet = windowForSheet { // Document has been opened in the user interface\n"
   "      if unwrappedWindowForSheet.styleMask.contains(.resizable) { // Only if window is resizable\n"
   "        let windowSize = unwrappedWindowForSheet.frame.size ;\n"
-  "        mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.width)), forKey:\"EBWindowWidth\" as NSCopying)\n"
-  "        mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.height)), forKey:\"EBWindowHeight\" as NSCopying)\n"
+  "        self.mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.width)), forKey: EBWindowWidth as NSCopying)\n"
+  "        self.mMetadataDictionary.setObject (NSNumber (value: Double (windowSize.height)), forKey: EBWindowHeight as NSCopying)\n"
   "      }\n"
-  "    }else{ // Document has not been opened in the user interface, use values read from file, if they exist\n"
-  "/*      NSDictionary * metadataDictionaryReadFromFile = self.metadataDictionaryReadFromFile ;\n"
-  "      NSNumber * v = [metadataDictionaryReadFromFile objectForKey:@\"EBWindowWidth\"] ;\n"
-  "      if (nil != v) {\n"
-  "        [metadataDictionary setObject:v forKey:@\"EBWindowWidth\"] ;\n"
-  "      }\n"
-  "      v = [metadataDictionaryReadFromFile objectForKey:@\"EBWindowHeight\"] ;\n"
-  "      if (nil != v) {\n"
-  "        [metadataDictionary setObject:v forKey:@\"EBWindowHeight\"] ;\n"
-  "      }*/\n"
   "    }\n"
   "  //---\n"
   "    var fileData = Data ()\n"
@@ -4446,8 +4438,8 @@ const char * gWrapperFileContent_63_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    super.showWindows ()\n"
   "    if let unwrappedWindowForSheet = windowForSheet, // Document has been opened in the user interface\n"
   "          unwrappedWindowForSheet.styleMask.contains (.resizable), // Only if window is resizable\n"
-  "          let windowWidthNumber = self.mMetadataDictionary.object (forKey: \"EBWindowWidth\") as\? NSNumber,\n"
-  "          let windowHeightNumber = self.mMetadataDictionary.object (forKey: \"EBWindowHeight\") as\? NSNumber {\n"
+  "          let windowWidthNumber = self.mMetadataDictionary.object (forKey: EBWindowWidth) as\? NSNumber,\n"
+  "          let windowHeightNumber = self.mMetadataDictionary.object (forKey: EBWindowHeight) as\? NSNumber {\n"
   "      let newSize = NSSize (width: CGFloat (windowWidthNumber.doubleValue), height: CGFloat (windowHeightNumber.doubleValue))\n"
   "      var windowFrame : NSRect = unwrappedWindowForSheet.frame\n"
   "      windowFrame.size = newSize\n"
@@ -4894,7 +4886,7 @@ const cRegularFileWrapper gWrapperFile_63_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  30328, // Text length
+  29859, // Text length
   gWrapperFileContent_63_swift_5F_sources
 ) ;
 
@@ -8153,12 +8145,18 @@ const char * gWrapperFileContent_0_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "        self.mPerformEndUndoGroupingOnMouseUp = true\n"
   "        self.viewController\?.undoManager\?.beginUndoGrouping ()\n"
   "      }\n"
-  "      objects [objectIndex].move (knob: knobIndex, xBy: p.x, yBy: p.y)\n"
   "      let mouseDraggedLocation = CanariPoint (\n"
   "        x: p.x + inLastMouseDraggedLocation.x,\n"
   "        y: p.y + inLastMouseDraggedLocation.y\n"
   "      )\n"
-  "      mLastMouseDraggedLocation = mouseDraggedLocation\n"
+  "      objects [objectIndex].move (\n"
+  "        knob: knobIndex,\n"
+  "        xBy: p.x,\n"
+  "        yBy: p.y,\n"
+  "        newX: mouseDraggedLocation.x,\n"
+  "        newY: mouseDraggedLocation.y\n"
+  "      )\n"
+  "      self.mLastMouseDraggedLocation = mouseDraggedLocation\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -8248,7 +8246,7 @@ const cRegularFileWrapper gWrapperFile_0_swift_5F_sources (
   "EBView-mouse.swift",
   "swift",
   true, // Text file
-  10347, // Text length
+  10460, // Text length
   gWrapperFileContent_0_swift_5F_sources
 ) ;
 

@@ -175,14 +175,19 @@ override getter @toOnePropertyGeneration configurationCode -> @string {
 
 override getter @toOnePropertyGeneration setupRelationshipFromDictionaryCode -> @string {
   result  = ""
-  if [mInverseRelationMultiplicity isSingle] then
+#  if [mInverseRelationMultiplicity isSingle] then
     result += "  //--- To one property: " + mPropertyName + "\n"
-    result += "    self." + mPropertyName + "_property.setProp (readEntityFromDictionary (\n"
-    result += "      inRelationshipName: \"" + mPropertyName + "\",\n"
-    result += "      inDictionary: inDictionary,\n"
-    result += "      managedObjectArray: &managedObjectArray\n"
-    result += "    ) as? " + [mRelationshipType swiftTypeName] + ")\n"
-  end
+    result += "    do{\n"
+    result += "      let possibleEntity = readEntityFromDictionary (\n"
+    result += "        inRelationshipName: \"" + mPropertyName + "\",\n"
+    result += "        inDictionary: inDictionary,\n"
+    result += "        managedObjectArray: &managedObjectArray\n"
+    result += "      )\n"
+    result += "      if let entity = possibleEntity as? " + [mRelationshipType swiftTypeName] + " {\n"
+    result += "        self." + mPropertyName + "_property.setProp (entity)\n"
+    result += "      }\n"
+    result += "    }\n"
+#  end
 }
 
 #·······················································································································
