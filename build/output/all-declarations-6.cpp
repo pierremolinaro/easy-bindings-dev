@@ -5313,7 +5313,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "          shape.append (s)\n"
       "        }\n"
       "      }\n"
-      "      let pdfData = buildPDFimage (frame: shape.boundingBox, shape: shape)\n"
+      "      let pdfData = buildPDFimageData (frame: shape.boundingBox, shape: shape)\n"
       "      pb.setData (pdfData, forType: .pdf)\n"
       "   //--- Build private representation\n"
       "      var objectDictionaryArray = [NSDictionary] ()\n"
