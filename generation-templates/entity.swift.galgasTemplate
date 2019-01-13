@@ -762,8 +762,13 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
  
   //····················································································································
 
-  private var mValue : %![[mProperty mRelationshipType] swiftTypeName]%? { // SOULD NOT BE WEAK
-    didSet {
+%
+if [mProperty mOppositeRelationshipName] == "" then
+  %  private var mValue : %![[mProperty mRelationshipType] swiftTypeName]%? { // SHOULD NOT BE WEAK, NO OPPOSITE RELATION\n%
+else
+  %  weak private var mValue : %![[mProperty mRelationshipType] swiftTypeName]%? { // SHOULD BE WEAK, OPPOSITE RELATION\n%
+end
+%    didSet {
       if let unwrappedOwner = self.owner, oldValue !== self.mValue {
       //--- Register old value in undo manager
         unwrappedOwner.undoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object:oldValue)

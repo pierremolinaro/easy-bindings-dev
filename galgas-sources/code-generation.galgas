@@ -124,7 +124,7 @@ private proc generateSwiftApplicationFiles
     !"EBAllocationDebug",
     !"EBUndoManager",
     !"easy-bindings-utilities",
-    !"generic-bindings",
+    !"multiple-binding-controllers",
     !"Application",
     !"EBEvent"
   }
