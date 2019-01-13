@@ -285,7 +285,7 @@ override getter @transientPropertyGeneration declarationCode ?let @stringset inO
     result += "    return self." + mPropertyName + "_property.prop\n"
     result += "  }\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "    var " + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
+    result += "  var " + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
     result += "    switch self." + mPropertyName + "_property_selection {\n"
     result += "    case .empty, .multiple :\n"
     result += "      return nil\n"

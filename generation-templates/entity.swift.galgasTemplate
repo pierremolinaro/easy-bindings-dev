@@ -762,7 +762,7 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
  
   //····················································································································
 
-  weak private var mValue : %![[mProperty mRelationshipType] swiftTypeName]%? { // SOULD BE WEAK
+  private var mValue : %![[mProperty mRelationshipType] swiftTypeName]%? { // SOULD NOT BE WEAK
     didSet {
       if let unwrappedOwner = self.owner, oldValue !== self.mValue {
       //--- Register old value in undo manager
