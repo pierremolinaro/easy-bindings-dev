@@ -75,7 +75,7 @@ end
 for () in ATOMIC_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
   %      "%![mProperty mPropertyName]%",\n%
-  %      idx:self.%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
   %      observerExplorer:&self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
@@ -300,11 +300,11 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
     if prop_cache != nil {
       prop_cache = nil
       if logEvents () {
-        appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\\n")
+        appendMessageString ("  \(explorerIndexString (self.ebObjectIndex)) propagation\\n")
       }
       super.postEvent ()
     }else if logEvents () {
-      appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\\n")
+      appendMessageString ("  \(explorerIndexString (self.ebObjectIndex)) nil\\n")
     }
   }
 

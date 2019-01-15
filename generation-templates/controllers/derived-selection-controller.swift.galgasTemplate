@@ -108,7 +108,7 @@ end%  //····································
     view.addSubview (tf)
     let valueExplorer = NSButton (frame:thirdColumn (y))
     valueExplorer.font = font
-    valueExplorer.title = explorerIndexString (mEasyBindingsObjectIndex) + className
+    valueExplorer.title = explorerIndexString (ebObjectIndex) + className
     valueExplorer.target = self
     valueExplorer.action = #selector(SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME%.showObjectWindowFromExplorerButton(_:))
     view.addSubview (valueExplorer)
@@ -129,7 +129,7 @@ end%  //····································
 if not [mKind isEntityType] & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
-  %      idx:self.%!lkey.string%_property.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%!lkey.string%_property.ebObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
   %      observerExplorer:&self.%!lkey.string%_property.mObserverExplorer,\n%
@@ -148,7 +148,7 @@ end
     closeButton?.target = self
     closeButton?.action = #selector(SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME%.deleteSelectionControllerWindowAction(_:))
   //--- Set window title
-    let windowTitle = explorerIndexString (mEasyBindingsObjectIndex) + className
+    let windowTitle = explorerIndexString (ebObjectIndex) + className
     self.mExplorerWindow!.title = windowTitle
   //--- Add Scroll view
     let frame = NSRect (x:0.0, y:0.0, width:EXPLORER_ROW_WIDTH, height:y)

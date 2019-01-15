@@ -123,7 +123,7 @@ end
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
   %      "%![mProperty mPropertyName]%",\n%
-  %      idx:self.%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
   %      observerExplorer:&self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
@@ -134,7 +134,7 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    createEntryForPropertyNamed (\n%
   %      "%![mProperty mPropertyName]%",\n%
-  %      idx:self.%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
   %      y:&y,\n%
   %      view:view,\n%
   %      observerExplorer:&self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
@@ -146,7 +146,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   if not [[mProperty mOption] isHasDependance] then
     %    createEntryForToManyRelationshipNamed (\n%
     %      "%![mProperty mPropertyName]%",\n%
-    %      idx:%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
+    %      idx:%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
     %      y: &y,\n%
     %      view: view,\n%
     %      valueExplorer:&%![mProperty mPropertyName]%_property.mValueExplorer\n%
@@ -157,7 +157,7 @@ end
 for () in TO_ONE_RELATIONSHIP_LIST do
   %    createEntryForToOneRelationshipNamed (\n%
   %      "%![mProperty mPropertyName]%",\n%
-  %      idx:self.%![mProperty mPropertyName]%_property.mEasyBindingsObjectIndex,\n%
+  %      idx:self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
   %      y: &y,\n%
   %      view: view,\n%
   %      valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
@@ -509,11 +509,11 @@ end
     if self.prop_cache != nil {
       self.prop_cache = nil
       if logEvents () {
-        appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) propagation\\n")
+        appendMessageString ("  \(explorerIndexString (self.ebObjectIndex)) propagation\\n")
       }
       super.postEvent ()
     }else if logEvents () {
-      appendMessageString ("  \(explorerIndexString (self.mEasyBindingsObjectIndex)) nil\\n")
+      appendMessageString ("  \(explorerIndexString (self.ebObjectIndex)) nil\\n")
     }
   }
 
