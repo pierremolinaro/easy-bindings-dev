@@ -621,7 +621,10 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
         for managedObject in removedObjectSet {
           managedObject.setSignatureObserver (observer: nil)
           self.setOppositeRelationship? (nil)
-        }
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+    %          managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = nil\n%
+end
+%        }
 %for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
     %        self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
@@ -632,7 +635,10 @@ end
         for managedObject : %!ENTITY_NAME% in addedObjectSet {
           managedObject.setSignatureObserver (observer: self)
           self.setOppositeRelationship? (managedObject)
-        }
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+    %          managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = { [weak self] inValue in self?.writeInPreferences () }\n%
+end
+%        }
 %for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
     %        self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
@@ -641,17 +647,23 @@ end
 %      //--- Notify observers
         self.clearSignatureCache ()
       //--- Write in preferences ?
-        if let prefKey = self.mPrefKey {
-          var dictionaryArray = [NSDictionary] ()
-          for object in self.mValue {
-            let d = NSMutableDictionary ()
-            object.saveIntoDictionary (d)
-            d [kEntityKey] = nil // Remove entity key, not used in preferences
-            dictionaryArray.append (d)
-          }
-          UserDefaults.standard.set (dictionaryArray, forKey: prefKey)
-        }
+        self.writeInPreferences ()
       }
+    }
+  }
+
+  //····················································································································
+
+  private func writeInPreferences () {
+    if let prefKey = self.mPrefKey {
+      var dictionaryArray = [NSDictionary] ()
+      for object in self.mValue {
+        let d = NSMutableDictionary ()
+        object.saveIntoDictionary (d)
+        d [kEntityKey] = nil // Remove entity key, not used in preferences
+        dictionaryArray.append (d)
+      }
+      UserDefaults.standard.set (dictionaryArray, forKey: prefKey)
     }
   }
 
