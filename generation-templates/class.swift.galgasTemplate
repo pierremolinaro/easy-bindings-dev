@@ -270,9 +270,9 @@ end
 
 class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
-  var readModelFunction : Optional<() -> EBSelection < [%!CLASS_NAME%] > >
+  var readModelFunction : Optional<() -> EBSelection < [%!CLASS_NAME%] > > = nil
  
-  private var prop_cache : EBSelection < [%!CLASS_NAME%] >? 
+  private var prop_cache : EBSelection < [%!CLASS_NAME%] >? = nil
 
   //····················································································································
 

@@ -414,7 +414,7 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  var readModelFunction : Optional < () -> EBSelection < [%!ENTITY_NAME%] > >
+  var readModelFunction : Optional < () -> EBSelection < [%!ENTITY_NAME%] > > = nil
 
   //····················································································································
 
