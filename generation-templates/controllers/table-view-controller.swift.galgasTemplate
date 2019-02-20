@@ -268,7 +268,7 @@ end
   //····················································································································
 
   func unbind_ebView (_ inEBView : EBView?) {
-    if let ebView = inEBView, let idx = self.mEBViews.index (of: ebView) {
+    if let ebView = inEBView, let idx = self.mEBViews.firstIndex (of: ebView) {
       ebView.updateObjectDisplay ([])
       ebView.updateSelectionShape ([])
       self.mEBViews.remove (at: idx)
@@ -436,7 +436,7 @@ end
     if DEBUG_EVENT {
       print ("\(#function)")
     }
-    if let tableView = inTableView, let idx = self.mTableViewArray.index (of:tableView) {
+    if let tableView = inTableView, let idx = self.mTableViewArray.firstIndex (of:tableView) {
       self.sortedArray_property.removeEBObserver (self.mTableViewDataSourceControllerArray [idx])
       self.mSelectedSet.removeEBObserver (self.mTableViewSelectionControllerArray [idx])
       self.mTableViewArray.remove (at: idx)
@@ -719,7 +719,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     var result = [Int] ()
     let objects = mModel?.propval ?? []
     for object in mSelectedSet.mSet {
-      let idx = objects.index (of:object)!
+      let idx = objects.firstIndex (of:object)!
       result.append (idx)
     }
     return result.sorted ()
@@ -730,7 +730,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
    func deleteSelectionAndRemoveDeletedObjectsFromManagedObjectContext () {
     var objects = mModel?.propval ?? []
     for object in mSelectedSet.mSet {
-      if let idx = objects.index (of: object) {
+      if let idx = objects.firstIndex (of: object) {
         objects.remove(at: idx)
       }
     }
