@@ -8054,18 +8054,18 @@ GALGAS_bool extensionGetter_isAbstract (const GALGAS_propertyMap_2D_element & in
   result_result = GALGAS_bool (false) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 126)).boolEnum () ;
+    test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 127)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_propertyAccessibility var_accessibility_5297 ;
-      GALGAS_typeKind joker_5239_1 ; // Joker input parameter
-      inObject.mProperty_mKind.method_property (joker_5239_1, var_accessibility_5297, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 127)) ;
+      GALGAS_propertyAccessibility var_accessibility_5313 ;
+      GALGAS_typeKind joker_5255_1 ; // Joker input parameter
+      inObject.mProperty_mKind.method_property (joker_5255_1, var_accessibility_5313, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 128)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = var_accessibility_5297.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 128)).boolEnum () ;
+        test_1 = var_accessibility_5313.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 129)).boolEnum () ;
         if (kBoolTrue == test_1) {
-          GALGAS_bool var_ab_5389 ;
-          var_accessibility_5297.method_transient (var_ab_5389, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 129)) ;
-          result_result = var_ab_5389 ;
+          GALGAS_bool var_ab_5405 ;
+          var_accessibility_5313.method_transient (var_ab_5405, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 130)) ;
+          result_result = var_ab_5405 ;
         }
       }
     }
@@ -9111,6 +9111,7 @@ void routine_enterAtomicClassesIn (GALGAS_declarationListAST & ioArgument_ioDecl
   ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("NSColor").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 31)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("atomic-class.galgas", 31))  COMMA_SOURCE_FILE ("atomic-class.galgas", 31))  COMMA_SOURCE_FILE ("atomic-class.galgas", 31)) ;
   ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("NSFont").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 32)), GALGAS_typeKind::constructor_fontType (SOURCE_FILE ("atomic-class.galgas", 32))  COMMA_SOURCE_FILE ("atomic-class.galgas", 32))  COMMA_SOURCE_FILE ("atomic-class.galgas", 32)) ;
   ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Date").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 33)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("atomic-class.galgas", 33))  COMMA_SOURCE_FILE ("atomic-class.galgas", 33))  COMMA_SOURCE_FILE ("atomic-class.galgas", 33)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Data").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 34)), GALGAS_typeKind::constructor_dataType (SOURCE_FILE ("atomic-class.galgas", 34))  COMMA_SOURCE_FILE ("atomic-class.galgas", 34))  COMMA_SOURCE_FILE ("atomic-class.galgas", 34)) ;
 }
 
 
@@ -9128,7 +9129,7 @@ static void extensionMethod_atomicClassDeclarationAST_firstAnalysisPhase (const 
   const cPtr_atomicClassDeclarationAST * object = (const cPtr_atomicClassDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_atomicClassDeclarationAST) ;
   {
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (object->mProperty_mClassName, GALGAS_classKind::constructor_atomic (object->mProperty_mKind  COMMA_SOURCE_FILE ("atomic-class.galgas", 46)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 47)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 48)), GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("atomic-class.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas", 44)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (object->mProperty_mClassName, GALGAS_classKind::constructor_atomic (object->mProperty_mKind  COMMA_SOURCE_FILE ("atomic-class.galgas", 47)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 48)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 49)), GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("atomic-class.galgas", 50)), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas", 45)) ;
   }
 }
 

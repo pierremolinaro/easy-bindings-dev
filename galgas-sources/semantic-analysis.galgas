@@ -91,6 +91,7 @@ enum @typeKind {
   case integerType 
   case doubleType
   case stringType 
+  case dataType
   case dateType
   case fontType
   case colorType

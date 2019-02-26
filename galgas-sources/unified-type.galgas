@@ -14,6 +14,8 @@ getter @typeKind typeName -> @string {
     result = "String"
   case dateType :
     result = "Date"
+  case dataType :
+    result = "Data"
   case fontType :
     result = "NSFont"
   case colorType :
@@ -31,7 +33,7 @@ getter @typeKind typeName -> @string {
 
 getter @typeKind isComparable -> @bool outResult {
   switch self
-  case boolType, integerType, doubleType, stringType, dateType :
+  case boolType, integerType, doubleType, stringType, dateType, dataType :
     outResult = true
   case fontType, colorType :
     outResult = false
@@ -50,7 +52,7 @@ getter @typeKind isComparable -> @bool outResult {
 
 getter @typeKind isGraphic -> @bool outResult {
   switch self
-  case boolType, integerType, doubleType, stringType, dateType :
+  case boolType, integerType, doubleType, stringType, dateType, dataType :
     outResult = false
   case fontType, colorType :
     outResult = false
@@ -113,6 +115,7 @@ getter @typeKind swiftTypeName -> @string outResult {
   case stringType : outResult = "String"
   case boolType : outResult = "Bool"
   case dateType : outResult = "Date"
+  case dataType : outResult = "Data"
   case doubleType : outResult = "Double"
   case fontType : outResult = "NSFont"
   case colorType : outResult = "NSColor"

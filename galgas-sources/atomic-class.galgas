@@ -29,8 +29,9 @@ proc enterAtomicClassesIn ?!declarationList: @declarationListAST ioDeclarationLi
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Bool" nowhere]   !.boolType}
 
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["NSColor" nowhere] !.colorType}
-  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["NSFont" nowhere] !.fontType}
-  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Date" nowhere]!.dateType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["NSFont" nowhere]  !.fontType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Date" nowhere]    !.dateType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Data" nowhere]    !.dataType}
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

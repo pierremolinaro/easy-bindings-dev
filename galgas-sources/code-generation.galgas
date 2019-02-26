@@ -241,6 +241,8 @@ private proc generateStandardProperties
   contents += [filewrapper standard_properties.scalarProperty !"Bool"   !false]
   contents += [filewrapper standard_properties.scalarProperty !"Double" !false]
   contents += [filewrapper standard_properties.scalarProperty !"String" !false]
+  contents += [filewrapper standard_properties.scalarProperty !"Data"   !false]
+  contents += [filewrapper standard_properties.scalarProperty !"Date"   !false]
 #--- Add class property types
   for (propertyClass) in inPropertyClassList do
     contents += [filewrapper standard_properties.classProperty !propertyClass !false !false]
@@ -252,7 +254,6 @@ private proc generateStandardProperties
       contents += [filewrapper standard_properties.scalarProperty !propertyType !true]
     end
   end
-  contents += [filewrapper standard_properties.scalarProperty !"Date" !false]
   contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !false]
   contents += [filewrapper standard_properties.classProperty !"NSColor" !false !false]
 #--- Generate file
