@@ -168,7 +168,7 @@ override getter @atomicPropertyGeneration declarationCode ?let @stringset unused
   result += "  //   Atomic property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
-         + " (" + mDefaultValueInSwift
+         + " (defaultValue: " + mDefaultValueInSwift
   if mInPreferences then
     result += ", prefKey: Preferences_" + mPropertyName
   end
