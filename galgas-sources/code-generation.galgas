@@ -254,6 +254,7 @@ private proc generateStandardProperties
       contents += [filewrapper standard_properties.scalarProperty !propertyType !true]
     end
   end
+  contents += [filewrapper standard_properties.classProperty !"NSBezierPath" !false !false]
   contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !false]
   contents += [filewrapper standard_properties.classProperty !"NSColor" !false !false]
 #--- Generate file

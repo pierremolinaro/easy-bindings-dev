@@ -20,6 +20,8 @@ getter @typeKind typeName -> @string {
     result = "NSFont"
   case colorType :
     result = "NSColor"
+  case bezierPathType :
+    result = "NSBezierPath"
   case enumType (typeName *) :
     result = typeName
   case entityType (typeName *) :
@@ -35,7 +37,7 @@ getter @typeKind isComparable -> @bool outResult {
   switch self
   case boolType, integerType, doubleType, stringType, dateType, dataType :
     outResult = true
-  case fontType, colorType :
+  case fontType, colorType, bezierPathType :
     outResult = false
   case enumType (* *) :
     outResult = false
@@ -52,7 +54,7 @@ getter @typeKind isComparable -> @bool outResult {
 
 getter @typeKind isGraphic -> @bool outResult {
   switch self
-  case boolType, integerType, doubleType, stringType, dateType, dataType :
+  case boolType, integerType, doubleType, stringType, dateType, dataType, bezierPathType :
     outResult = false
   case fontType, colorType :
     outResult = false
@@ -119,6 +121,7 @@ getter @typeKind swiftTypeName -> @string outResult {
   case doubleType : outResult = "Double"
   case fontType : outResult = "NSFont"
   case colorType : outResult = "NSColor"
+  case bezierPathType : outResult = "NSBezierPath"
   case entityType (@string entityName *) : outResult = entityName
   case enumType (@string enumTypeName *) : outResult = enumTypeName
   case classType (@string classTypeName) : outResult = classTypeName

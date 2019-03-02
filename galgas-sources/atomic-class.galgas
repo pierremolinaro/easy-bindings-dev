@@ -32,6 +32,7 @@ proc enterAtomicClassesIn ?!declarationList: @declarationListAST ioDeclarationLi
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["NSFont" nowhere]  !.fontType}
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Date" nowhere]    !.dateType}
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Data" nowhere]    !.dataType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["NSBezierPath" nowhere] !.bezierPathType}
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
