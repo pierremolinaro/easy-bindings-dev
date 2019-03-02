@@ -243,6 +243,7 @@ private proc generateStandardProperties
   contents += [filewrapper standard_properties.scalarProperty !"String" !false]
   contents += [filewrapper standard_properties.scalarProperty !"Data"   !false]
   contents += [filewrapper standard_properties.scalarProperty !"Date"   !false]
+  contents += [filewrapper standard_properties.scalarProperty !"BezierPathArray" !false]
 #--- Add class property types
   for (propertyClass) in inPropertyClassList do
     contents += [filewrapper standard_properties.classProperty !propertyClass !false !false]

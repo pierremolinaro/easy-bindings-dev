@@ -1094,6 +1094,91 @@ extension NSBezierPath : ClassPropertyProtocol {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    BezierPathArray
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+struct BezierPathArray : Hashable, Comparable, ValuePropertyProtocol {
+
+  //····················································································································
+
+  private var mPathes = [NSBezierPath] ()
+
+  //····················································································································
+
+  var array : [NSBezierPath] { return mPathes }
+
+  //····················································································································
+
+  mutating func append (_ inBP : NSBezierPath) {
+    if !inBP.isEmpty {
+      self.mPathes.append (inBP)
+    }
+  }
+
+  //····················································································································
+
+  var bounds : NSRect {
+    var r = NSRect.null
+    for path in self.mPathes {
+      r = r.union (path.bounds)
+    }
+    return r
+  }
+  
+  //····················································································································
+
+  public static func == (lhs: BezierPathArray, rhs: BezierPathArray) -> Bool {
+    var equal = lhs.mPathes.count == rhs.mPathes.count
+    if equal {
+      var idx = 0
+      while idx < lhs.mPathes.count {
+        if lhs.mPathes [idx] != rhs.mPathes [idx] {
+          equal = false
+          idx = lhs.mPathes.count // For exiting loop
+        }
+        idx += 1
+      }
+    }
+    return equal
+  }
+
+  //····················································································································
+
+  public static func < (lhs: BezierPathArray, rhs: BezierPathArray) -> Bool {
+    var inferior = lhs.mPathes.count < rhs.mPathes.count
+    if lhs.mPathes.count == rhs.mPathes.count {
+      let leftData  = NSArchiver.archivedData (withRootObject: lhs.mPathes)
+      let rightData = NSArchiver.archivedData (withRootObject: rhs.mPathes)
+      inferior = leftData < rightData
+    }
+    return inferior
+  }
+
+  //····················································································································
+
+  func ebHashValue () -> UInt32 {
+    let data = NSArchiver.archivedData (withRootObject: self.mPathes)
+    return data.ebHashValue ()
+  }
+
+  //····················································································································
+
+  func convertToNSObject () -> NSObject {
+    return self.mPathes as NSArray
+  }
+  
+  //····················································································································
+
+  static func convertFromNSObject (object : NSObject) -> BezierPathArray {
+    let array = object as! [NSBezierPath]
+    return BezierPathArray (mPathes: array)
+  }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Protocol ClassPropertyProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

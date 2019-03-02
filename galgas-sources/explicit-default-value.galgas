@@ -120,7 +120,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case boolType :
       outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
       found = true
-    case integerType, dataType, dateType, doubleType, stringType, fontType, colorType, bezierPathType :
+    case integerType, dataType, dateType, doubleType, stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
     case classType (*) :
     case enumType (* *) :
@@ -149,7 +149,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + mValue.uint + ".0)"
       found = true
-    case boolType, dateType, dataType, doubleType, stringType, colorType, bezierPathType :
+    case boolType, dateType, dataType, doubleType, stringType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
     case enumType (* *) :
     case classType (*) :
@@ -175,7 +175,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case doubleType :
       outSwiftDefaultValueAsString = [mValue.double string]
       found = true
-    case boolType, dateType, dataType, integerType, stringType, fontType, colorType, bezierPathType :
+    case boolType, dateType, dataType, integerType, stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
     case enumType (* *) :
     case classType (*) :
@@ -201,7 +201,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case stringType :
       outSwiftDefaultValueAsString = "\""+ mValue.string + "\""
       found = true
-    case boolType, dateType, dataType, integerType, doubleType, fontType, colorType, bezierPathType :
+    case boolType, dateType, dataType, integerType, doubleType, fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
     case enumType (* *) :
     case classType (*) :
@@ -289,7 +289,14 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       if mValue.string == "empty" then
         outSwiftDefaultValueAsString = "NSBezierPath ()"
       else
-        error mValue : "unknown predefined NSBezierPath"  
+        error mValue : "only 'empty' is accepted as default NSBezierPath"  
+      end
+    case bezierPathArrayType :
+      found = true
+      if mValue.string == "empty" then
+        outSwiftDefaultValueAsString = "BezierPathArray ()"
+      else
+        error mValue : "only 'empty' is accepted as default BezierPathArray"  
       end
     case enumType (@string enumTypeName @enumConstantMap constantMap) :
       found = true

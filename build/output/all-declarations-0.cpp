@@ -9433,6 +9433,14 @@ GALGAS_typeKind GALGAS_typeKind::constructor_bezierPathType (UNUSED_LOCATION_ARG
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+GALGAS_typeKind GALGAS_typeKind::constructor_bezierPathArrayType (UNUSED_LOCATION_ARGS) {
+  GALGAS_typeKind result ;
+  result.mEnum = kEnum_bezierPathArrayType ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 GALGAS_typeKind GALGAS_typeKind::constructor_enumType (const GALGAS_string & inAssociatedValue0,
                                                        const GALGAS_enumConstantMap & inAssociatedValue1
                                                        COMMA_LOCATION_ARGS) {
@@ -9565,7 +9573,7 @@ void GALGAS_typeKind::method_transientPropertyExternType (GALGAS_string & outAss
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static const char * gEnumNameArrayFor_typeKind [14] = {
+static const char * gEnumNameArrayFor_typeKind [15] = {
   "(not built)",
   "boolType",
   "integerType",
@@ -9576,6 +9584,7 @@ static const char * gEnumNameArrayFor_typeKind [14] = {
   "fontType",
   "colorType",
   "bezierPathType",
+  "bezierPathArrayType",
   "enumType",
   "entityType",
   "classType",
@@ -9634,6 +9643,12 @@ GALGAS_bool GALGAS_typeKind::getter_isColorType (UNUSED_LOCATION_ARGS) const {
 
 GALGAS_bool GALGAS_typeKind::getter_isBezierPathType (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_bezierPathType == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_typeKind::getter_isBezierPathArrayType (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_bezierPathArrayType == mEnum) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

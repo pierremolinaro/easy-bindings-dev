@@ -96,6 +96,7 @@ enum @typeKind {
   case fontType
   case colorType
   case bezierPathType
+  case bezierPathArrayType
   case enumType (@string enumTypeName @enumConstantMap constantMap)
   case entityType (@string entityName @bool graphic)
   case classType (@string className)

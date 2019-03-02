@@ -8054,18 +8054,18 @@ GALGAS_bool extensionGetter_isAbstract (const GALGAS_propertyMap_2D_element & in
   result_result = GALGAS_bool (false) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 128)).boolEnum () ;
+    test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 129)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_propertyAccessibility var_accessibility_5335 ;
-      GALGAS_typeKind joker_5277_1 ; // Joker input parameter
-      inObject.mProperty_mKind.method_property (joker_5277_1, var_accessibility_5335, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 129)) ;
+      GALGAS_propertyAccessibility var_accessibility_5362 ;
+      GALGAS_typeKind joker_5304_1 ; // Joker input parameter
+      inObject.mProperty_mKind.method_property (joker_5304_1, var_accessibility_5362, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 130)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = var_accessibility_5335.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 130)).boolEnum () ;
+        test_1 = var_accessibility_5362.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 131)).boolEnum () ;
         if (kBoolTrue == test_1) {
-          GALGAS_bool var_ab_5427 ;
-          var_accessibility_5335.method_transient (var_ab_5427, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 131)) ;
-          result_result = var_ab_5427 ;
+          GALGAS_bool var_ab_5454 ;
+          var_accessibility_5362.method_transient (var_ab_5454, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 132)) ;
+          result_result = var_ab_5454 ;
         }
       }
     }
@@ -9113,6 +9113,7 @@ void routine_enterAtomicClassesIn (GALGAS_declarationListAST & ioArgument_ioDecl
   ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Date").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 33)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("atomic-class.galgas", 33))  COMMA_SOURCE_FILE ("atomic-class.galgas", 33))  COMMA_SOURCE_FILE ("atomic-class.galgas", 33)) ;
   ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Data").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 34)), GALGAS_typeKind::constructor_dataType (SOURCE_FILE ("atomic-class.galgas", 34))  COMMA_SOURCE_FILE ("atomic-class.galgas", 34))  COMMA_SOURCE_FILE ("atomic-class.galgas", 34)) ;
   ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("NSBezierPath").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 35)), GALGAS_typeKind::constructor_bezierPathType (SOURCE_FILE ("atomic-class.galgas", 35))  COMMA_SOURCE_FILE ("atomic-class.galgas", 35))  COMMA_SOURCE_FILE ("atomic-class.galgas", 35)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("BezierPathArray").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 36)), GALGAS_typeKind::constructor_bezierPathArrayType (SOURCE_FILE ("atomic-class.galgas", 36))  COMMA_SOURCE_FILE ("atomic-class.galgas", 36))  COMMA_SOURCE_FILE ("atomic-class.galgas", 36)) ;
 }
 
 
@@ -9130,7 +9131,7 @@ static void extensionMethod_atomicClassDeclarationAST_firstAnalysisPhase (const 
   const cPtr_atomicClassDeclarationAST * object = (const cPtr_atomicClassDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_atomicClassDeclarationAST) ;
   {
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (object->mProperty_mClassName, GALGAS_classKind::constructor_atomic (object->mProperty_mKind  COMMA_SOURCE_FILE ("atomic-class.galgas", 48)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 49)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 50)), GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("atomic-class.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas", 46)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (object->mProperty_mClassName, GALGAS_classKind::constructor_atomic (object->mProperty_mKind  COMMA_SOURCE_FILE ("atomic-class.galgas", 49)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 50)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 51)), GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("atomic-class.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas", 47)) ;
   }
 }
 

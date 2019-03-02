@@ -10072,6 +10072,7 @@ class GALGAS_typeKind : public AC_GALGAS_root {
     kEnum_fontType,
     kEnum_colorType,
     kEnum_bezierPathType,
+    kEnum_bezierPathArrayType,
     kEnum_enumType,
     kEnum_entityType,
     kEnum_classType,
@@ -10102,6 +10103,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
+  public : static class GALGAS_typeKind constructor_bezierPathArrayType (LOCATION_ARGS) ;
+
   public : static class GALGAS_typeKind constructor_bezierPathType (LOCATION_ARGS) ;
 
   public : static class GALGAS_typeKind constructor_boolType (LOCATION_ARGS) ;
@@ -10164,6 +10167,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBezierPathArrayType (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBezierPathType (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBoolType (LOCATION_ARGS) const ;
