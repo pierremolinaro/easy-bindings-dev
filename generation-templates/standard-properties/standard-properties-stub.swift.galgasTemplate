@@ -1164,13 +1164,14 @@ struct BezierPathArray : Hashable, Comparable, ValuePropertyProtocol {
   //····················································································································
 
   func convertToNSObject () -> NSObject {
-    return self.mPathes as NSArray
+    let data = NSArchiver.archivedData (withRootObject: self.mPathes)
+    return data as NSData
   }
   
   //····················································································································
 
   static func convertFromNSObject (object : NSObject) -> BezierPathArray {
-    let array = object as! [NSBezierPath]
+    let array = NSUnarchiver.unarchiveObject (with: object as! Data) as! [NSBezierPath]
     return BezierPathArray (mPathes: array)
   }
 
