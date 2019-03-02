@@ -20,33 +20,33 @@ static void extensionMethod_tableViewControllerGeneration_generateCode (const cP
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_tableViewControllerGeneration * object = (const cPtr_tableViewControllerGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_tableViewControllerGeneration) ;
-  GALGAS_stringset var_observedProperties_22712 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("table-view-controller.galgas", 588)) ;
-  cEnumerator_tableViewControllerSortedColumnListForGeneration enumerator_22779 (object->mProperty_mTableViewControllerSortedColumnListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_22779.hasCurrentObject ()) {
-    var_observedProperties_22712.addAssign_operation (enumerator_22779.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 590)) ;
-    enumerator_22779.gotoNextObject () ;
+  GALGAS_stringset var_observedProperties_22677 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("table-view-controller.galgas", 587)) ;
+  cEnumerator_tableViewControllerSortedColumnListForGeneration enumerator_22744 (object->mProperty_mTableViewControllerSortedColumnListForGeneration, kENUMERATION_UP) ;
+  while (enumerator_22744.hasCurrentObject ()) {
+    var_observedProperties_22677.addAssign_operation (enumerator_22744.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 589)) ;
+    enumerator_22744.gotoNextObject () ;
   }
-  cEnumerator_tableViewControllerFilterListForGeneration enumerator_22901 (object->mProperty_mTableViewControllerFilterListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_22901.hasCurrentObject ()) {
-    var_observedProperties_22712.addAssign_operation (enumerator_22901.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 593)) ;
-    enumerator_22901.gotoNextObject () ;
+  cEnumerator_tableViewControllerFilterListForGeneration enumerator_22866 (object->mProperty_mTableViewControllerFilterListForGeneration, kENUMERATION_UP) ;
+  while (enumerator_22866.hasCurrentObject ()) {
+    var_observedProperties_22677.addAssign_operation (enumerator_22866.current_mFilterPropertyName (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 592)) ;
+    enumerator_22866.gotoNextObject () ;
   }
-  GALGAS_string var_s_22965 = GALGAS_string (filewrapperTemplate_tableViewControllerGenerationTemplate_tableViewControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 597)), object->mProperty_mTableViewControllerFilterListForGeneration, object->mProperty_mModelString, object->mProperty_mTableViewControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mTableViewControllerBoundColumnListForGeneration, object->mProperty_mTableViewControllerSortedColumnListForGeneration, object->mProperty_mElementTypeName, object->mProperty_mElementTypeIsGraphic, var_observedProperties_22712, object->mProperty_mAttributeListForGeneration COMMA_SOURCE_FILE ("table-view-controller.galgas", 595))) ;
+  GALGAS_string var_s_22930 = GALGAS_string (filewrapperTemplate_tableViewControllerGenerationTemplate_tableViewControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 596)), object->mProperty_mTableViewControllerFilterListForGeneration, object->mProperty_mModelString, object->mProperty_mTableViewControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mTableViewControllerBoundColumnListForGeneration, object->mProperty_mTableViewControllerSortedColumnListForGeneration, object->mProperty_mElementTypeName, var_observedProperties_22677, object->mProperty_mAttributeListForGeneration COMMA_SOURCE_FILE ("table-view-controller.galgas", 594))) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 611)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 611)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 611)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 611)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 611)), var_s_22965, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 609)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 609)), var_s_22930, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 607)) ;
   }
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsStrictSup, object->mProperty_mTableViewControllerFilterListForGeneration.getter_length (SOURCE_FILE ("table-view-controller.galgas", 614)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, object->mProperty_mTableViewControllerFilterListForGeneration.getter_length (SOURCE_FILE ("table-view-controller.galgas", 612)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_s_23645 = GALGAS_string (filewrapperTemplate_tableViewControllerGenerationTemplate_filterFunction (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 617)), object->mProperty_mTableViewControllerFilterListForGeneration COMMA_SOURCE_FILE ("table-view-controller.galgas", 615))) ;
-      GALGAS_string var_fileName_23828 = GALGAS_string ("arrayControllerFilter-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 620)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 620)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 620)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 620)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 620)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_23828  COMMA_SOURCE_FILE ("table-view-controller.galgas", 621)) ;
+      GALGAS_string var_s_23583 = GALGAS_string (filewrapperTemplate_tableViewControllerGenerationTemplate_filterFunction (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 615)), object->mProperty_mTableViewControllerFilterListForGeneration COMMA_SOURCE_FILE ("table-view-controller.galgas", 613))) ;
+      GALGAS_string var_fileName_23766 = GALGAS_string ("arrayControllerFilter-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 618)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 618)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 618)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 618)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 618)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_23766  COMMA_SOURCE_FILE ("table-view-controller.galgas", 619)) ;
       {
-      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_23828, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
-        "\n"), var_s_23645, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_23766, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
+        "\n"), var_s_23583, GALGAS_string ("  return WHAT \?\n"), GALGAS_string ("}\n"
         "\n"
-        "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("table-view-controller.galgas", 630)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 630)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 630)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 622)) ;
+        "//").add_operation (GALGAS_string::makeEmptyString ().getter_stringByRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (8212)) COMMA_SOURCE_FILE ("table-view-controller.galgas", 628)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 628)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 628)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 620)) ;
       }
     }
   }
