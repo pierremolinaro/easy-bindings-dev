@@ -97,7 +97,7 @@ end
 
   //····················································································································
 
-  override func removeAllObservers () {
+  override internal func removeAllObservers () {
     super.removeAllObservers ()
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
@@ -182,7 +182,7 @@ end
   //    cleanUpToManyRelationships
   //····················································································································
 
-  override func cleanUpToManyRelationships () {
+  override internal func cleanUpToManyRelationships () {
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
   if not [[mProperty mOption] isHasDependance] then
@@ -197,7 +197,7 @@ end
   //    cleanUpToOneRelationships
   //····················································································································
 
-  override func cleanUpToOneRelationships () {
+  override internal func cleanUpToOneRelationships () {
 %
 for () in TO_ONE_RELATIONSHIP_LIST do
   %    self.%![mProperty mPropertyName]%_property.setProp (nil)\n%
@@ -606,7 +606,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
   private var mSet = Set <%!ENTITY_NAME%> ()
   private var mValue = [%!ENTITY_NAME%] () {
     didSet {
-      self.postEvent ()
+     // self.postEvent ()
       if oldValue != self.mValue {
         let oldSet = self.mSet
         self.mSet = Set (self.mValue)
@@ -618,33 +618,38 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
         }
       //--- Removed object set
         let removedObjectSet = oldSet.subtracting (self.mSet)
-        for managedObject in removedObjectSet {
-          managedObject.setSignatureObserver (observer: nil)
-          self.setOppositeRelationship? (nil)
+        if removedObjectSet.count > 0 {
+          for managedObject in removedObjectSet {
+            managedObject.setSignatureObserver (observer: nil)
+            self.setOppositeRelationship? (nil)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-    %          managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = nil\n%
+    %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = nil\n%
 end
-%        }
+%          }
 %for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
-    %        self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
+    %          self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
   end
 end
-%      //--- Added object set
+%        }
+       //--- Added object set
         let addedObjectSet = self.mSet.subtracting (oldSet)
-        for managedObject : %!ENTITY_NAME% in addedObjectSet {
-          managedObject.setSignatureObserver (observer: self)
-          self.setOppositeRelationship? (managedObject)
+        if addedObjectSet.count > 0 {
+          for managedObject : %!ENTITY_NAME% in addedObjectSet {
+            managedObject.setSignatureObserver (observer: self)
+            self.setOppositeRelationship? (managedObject)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-    %          managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = { [weak self] inValue in self?.writeInPreferences () }\n%
+    %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = { [weak self] inValue in self?.writeInPreferences () }\n%
 end
-%        }
+%          }
 %for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
-    %        self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
+    %          self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
   end
 end
-%      //--- Notify observers
+%        }
+      //--- Notify observers
+        self.postEvent ()
         self.clearSignatureCache ()
       //--- Write in preferences ?
         self.writeInPreferences ()

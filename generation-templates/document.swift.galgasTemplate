@@ -166,10 +166,11 @@ end
   }
 
   //····················································································································
-  //   removeWindowController
+  //   removeUserInterface
   //····················································································································
 
   override func removeUserInterface () {
+    super.removeUserInterface ()
   //--------------------------- Unbind regular bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
