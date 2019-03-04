@@ -155,7 +155,7 @@ end
 %    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
 %  //--------------------------- Read documentFilePath model 
-    self.documentFilePath_property.readModelFunction = { [weak self] in
+    self.documentFilePath_property.mReadModelFunction = { [weak self] in
       if let r = self?.computeTransient_documentFilePath () {
         return .single (r)
       }else{

@@ -57,7 +57,7 @@ final class Controller_EBCheckedMenuItem_check : EBSimpleController {
     super.init (observedObjects:[checked], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = #selector (Controller_EBCheckedMenuItem_check.menuItemAction(_:))
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+    self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //····················································································································

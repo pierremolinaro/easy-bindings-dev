@@ -57,7 +57,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 
   case hasDependance (@lstring masterPropertyName) :
     %    self.%![masterPropertyName string]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property)\n%
-    %    self.%![mProperty mPropertyName]%_property.readModelFunction =  { [weak self] in\n%
+    %    self.%![mProperty mPropertyName]%_property.mReadModelFunction =  { [weak self] in\n%
     %      if let model = self?.%!masterPropertyName.string%_property {\n%
     %        switch model.prop {\n%
     %        case .empty :\n%
@@ -86,19 +86,19 @@ end
 %  //--- register properties for handling signature
 %
 for () in SIGNATURE_SET do
-  %    self.%!key%_property.setSignatureObserver (observer:self)\n%
+  %    self.%!key%_property.setSignatureObserver (observer: self)\n%
 end
 %  //--- Extern delegates
 %
   for () in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
-    %    self.mExternDelegate%![idx string]% = %!mExternSwiftDelegateName.string% (object:self)\n%
+    %    self.mExternDelegate%![idx string]% = %!mExternSwiftDelegateName.string% (object: self)\n%
   end
 %  }
 
   //····················································································································
 
-  deinit {
-  //--- Remove observers
+  override func removeAllObservers () {
+    super.removeAllObservers ()
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty terminationCode]
@@ -414,7 +414,7 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  var readModelFunction : Optional < () -> EBSelection < [%!ENTITY_NAME%] > > = nil
+  var mReadModelFunction : Optional < () -> EBSelection < [%!ENTITY_NAME%] > > = nil
 
   //····················································································································
 
@@ -463,7 +463,7 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
   //····················································································································
 
   private func computeArrayAndSet () {
-    if let unwrappedComputeFunction = self.readModelFunction, self.mCachedValue == nil {
+    if let unwrappedComputeFunction = self.mReadModelFunction, self.mCachedValue == nil {
       self.mCachedValue = unwrappedComputeFunction ()
       let newSet : Set <%!ENTITY_NAME%>
       switch self.mCachedValue! {
@@ -568,7 +568,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
 
   override init () {
     super.init ()
-    self.count_property.readModelFunction = { [weak self] in
+    self.count_property.mReadModelFunction = { [weak self] in
       if let unwSelf = self {
         switch unwSelf.prop {
         case .empty :

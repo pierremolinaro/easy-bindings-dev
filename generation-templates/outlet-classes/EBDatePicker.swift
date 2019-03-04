@@ -62,7 +62,7 @@ final class Controller_EBDatePicker_date : EBSimpleController {
     super.init (observedObjects:[object], outlet:outlet)
     mOutlet.target = self
     mOutlet.action = #selector(Controller_EBDatePicker_date.action(_:))
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+    self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //···················································································································*

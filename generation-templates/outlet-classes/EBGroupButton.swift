@@ -138,7 +138,7 @@ final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
     mObject = object
     mOutlet = outlet
     super.init (observedObjects:[object], outlet:outlet)
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+    self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //···················································································································*

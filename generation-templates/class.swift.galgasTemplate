@@ -270,7 +270,7 @@ end
 
 class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
-  var readModelFunction : Optional<() -> EBSelection < [%!CLASS_NAME%] > > = nil
+  var mReadModelFunction : Optional<() -> EBSelection < [%!CLASS_NAME%] > > = nil
  
   private var mCachedValue : EBSelection < [%!CLASS_NAME%] >? = nil
 
@@ -283,7 +283,7 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   //····················································································································
 
   override var prop : EBSelection < [%!CLASS_NAME%] > {
-    if let unwrappedComputeFunction = self.readModelFunction, self.mCachedValue == nil {
+    if let unwrappedComputeFunction = self.mReadModelFunction, self.mCachedValue == nil {
       self.mCachedValue = unwrappedComputeFunction ()
     }
     if self.mCachedValue == nil {

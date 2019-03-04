@@ -67,7 +67,7 @@ private let DEBUG_EVENT = false
     mTableView = tableView
     mDelegate = delegate
     super.init ()
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+    self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //····················································································································

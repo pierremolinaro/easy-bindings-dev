@@ -304,14 +304,14 @@ override getter @transientPropertyGeneration configurationCode -> @string {
     let needs_unwSelf = [mDependencyList needs_unwSelf]
     result += "  //--- Atomic property: " + mPropertyName + "\n"
     if needs_unwSelf then
-      result += "    self." + mPropertyName + "_property.readModelFunction = { [weak self] in\n"
+      result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
       result += "      if let unwSelf = self {\n"
       result += [mDependencyList transientComputeFunctionCall !mClassName !mPropertyName !mExternFunctionName]
       result += "      }else{\n"
       result += "        return .empty\n"
       result += "      }\n"
     else
-      result += "    self." + mPropertyName + "_property.readModelFunction = {\n"
+      result += "    self." + mPropertyName + "_property.mReadModelFunction = {\n"
       result += [mDependencyList transientComputeFunctionCall !mClassName !mPropertyName !mExternFunctionName]
     end
     result += "    }\n"
