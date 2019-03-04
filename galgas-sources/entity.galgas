@@ -4,7 +4,6 @@
 
 class @entityDeclarationAST : @abstractDeclarationAST {
   @bool mIsAbstract
-  @bool mIsUserDefined
   @lstring mSuperEntityName
   @simpleStoredPropertyList mSimpleStoredAttributeList
   @stringset mSignatureList
@@ -37,7 +36,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <entity_declaration> ?let @bool inIsUserDefined ?!@astDeclarationStruct ioDeclarationAST {
+  rule <entity_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     @bool isAbstract
     select
       isAbstract = false
@@ -98,7 +97,6 @@ syntax extension easyBindings_syntax {
     ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST.new {
       !entityName
       !isAbstract
-      !inIsUserDefined
       !superEntityName
       !simpleStoredAttributeList
       !signatureList

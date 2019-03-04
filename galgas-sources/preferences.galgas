@@ -43,10 +43,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <preferences_declaration>
-    ?let @bool unused inIsUserDefined
-    ?!@astDeclarationStruct ioDeclarationAST
-  {
+  rule <preferences_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $prefs$
     let prefs = @lstring.new {!preferencesName () !.here}
     ${$

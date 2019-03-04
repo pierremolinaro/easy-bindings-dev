@@ -10,15 +10,15 @@ import Cocoa
 
   //····················································································································
 
-  required init (coder: NSCoder) {
-    super.init (coder:coder)
+  required init (coder : NSCoder) {
+    super.init (coder: coder)
     noteObjectAllocation (self)
   }
 
   //····················································································································
 
   deinit {
-    noteObjectDeallocation (self)
+    noteObjectDeallocation (String (describing: type(of: self)))
   }
 
   //····················································································································

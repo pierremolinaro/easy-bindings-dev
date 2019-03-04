@@ -5,7 +5,6 @@
 grammar easyBindings_grammar "SLR" {
   syntax easyBindings_syntax
   <start_symbol>
-    ?userDefined:let @bool inIsUserDefined
     ?!@astDeclarationStruct ioDeclarationAST
     !@location outEndOfFile
 }
@@ -43,7 +42,6 @@ syntax easyBindings_syntax (easyBindings_lexique) {
   #·····················································································································
   
   rule <start_symbol>
-    ?userDefined:let @bool inIsUserDefined
     ?!@astDeclarationStruct ioDeclarationAST
     !@location outEndOfFile
   {
@@ -57,23 +55,22 @@ syntax easyBindings_syntax (easyBindings_lexique) {
         !filePath.location
       }
       grammar easyBindings_grammar in sourceFile
-        !userDefined:inIsUserDefined
         !?ioDeclarationAST
         ?*
     while
-      <enum_declaration> !inIsUserDefined !?ioDeclarationAST
+      <enum_declaration> !?ioDeclarationAST
     while
-      <entity_declaration>  !inIsUserDefined  !?ioDeclarationAST
+      <entity_declaration>  !?ioDeclarationAST
     while
-      <class_declaration>  !inIsUserDefined  !?ioDeclarationAST
+      <class_declaration>  !?ioDeclarationAST
     while
-      <preferences_declaration> !inIsUserDefined !?ioDeclarationAST
+      <preferences_declaration> !?ioDeclarationAST
     while
-      <document_declaration> !inIsUserDefined !?ioDeclarationAST
+      <document_declaration> !?ioDeclarationAST
     while
-      <outlet_class_declaration> !inIsUserDefined !?ioDeclarationAST
+      <outlet_class_declaration> !?ioDeclarationAST
     while
-      <binding_specification> !inIsUserDefined !?ioDeclarationAST.mBindingSpecificationListMap
+      <binding_specification> !?ioDeclarationAST.mBindingSpecificationListMap
     while
       <xcode_project> !?ioDeclarationAST.mXcodeProject
     while

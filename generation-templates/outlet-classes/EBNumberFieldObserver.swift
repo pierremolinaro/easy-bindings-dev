@@ -12,8 +12,8 @@ import Cocoa
 
   //···················································································································*
 
-  required init? (coder: NSCoder) {
-    super.init (coder:coder)
+  required init? (coder : NSCoder) {
+    super.init (coder: coder)
     self.delegate = self
     self.editable = false
     self.drawsBackground = false
@@ -23,8 +23,8 @@ import Cocoa
 
   //···················································································································*
 
-  override init (frame:NSRect) {
-    super.init (frame:frame)
+  override init (frame : NSRect) {
+    super.init (frame: frame)
     self.delegate = self
     self.editable = false
     self.drawsBackground = false
@@ -35,7 +35,7 @@ import Cocoa
   //···················································································································*
 
   deinit {
-    noteObjectDeallocation (self)
+    noteObjectDeallocation (String (describing: type(of: self)))
   }
 
   //···················································································································*

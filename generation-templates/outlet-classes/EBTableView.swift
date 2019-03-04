@@ -31,7 +31,7 @@ private let DEBUG_EVENT = false
   //····················································································································
 
   deinit {
-    noteObjectDeallocation (self)
+    noteObjectDeallocation (String (describing: type(of: self)))
   }
 }
 
@@ -110,7 +110,7 @@ private let DEBUG_EVENT = false
     mTableView = tableView
     mDelegate = delegate
     super.init ()
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+    self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //····················································································································

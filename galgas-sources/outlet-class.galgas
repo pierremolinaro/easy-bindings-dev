@@ -35,11 +35,14 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <outlet_class_declaration>
-      ?let @bool inIsUserDefined
-      ?!@astDeclarationStruct ioDeclarationAST
-  {
-    $extern$
+  rule <outlet_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
+    @bool userDefined
+    select
+      $extern$
+      userDefined = true
+    or
+      userDefined = false
+    end
     $outlet$
     $class$
     $Identifier$ ?let @lstring outletClassName
@@ -75,7 +78,7 @@ syntax extension easyBindings_syntax {
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@outletClassDeclarationAST.new {
       !outletClassName
-      !inIsUserDefined
+      !userDefined
       !superClassName
       !hasRunAction
       !hasEnabled
@@ -142,7 +145,7 @@ override method @outletClassDeclarationAST firstAnalysisPhase
       !mHasEnabled | hasEnabled
       !mHasHidden | hasHidden
       !mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
-      !true # mUserDefined
+      !mUserDefined
     ]
   end
 }

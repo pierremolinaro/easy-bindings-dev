@@ -19,7 +19,6 @@ list @outletClassBindingSpecificationModelList {
 
 list @outletClassBindingSpecificationList {
   @lstring mOutletClassName
-  @bool mIsUserDefined
   @lstring mBindingName
   @outletClassBindingSpecificationModelList mOutletClassBindingSpecificationModelList
   @controllerBindingOptionList mBindingOptionList
@@ -33,10 +32,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <binding_specification>
-    ?let @bool inIsUserDefined
-    ?!@outletClassBindingSpecificationList ioControllerTemplateList
-  {
+  rule <binding_specification> ?!@outletClassBindingSpecificationList ioControllerTemplateList {
     $binding$
     $Identifier$ ?let @lstring outletClassName
     $bindingName$ ?let @lstring bindingName
@@ -79,7 +75,6 @@ syntax extension easyBindings_syntax {
     $;$
     ioControllerTemplateList +=
       !outletClassName
-      !inIsUserDefined
       !bindingName
       !outletClassBindingSpecificationModelList
       !bindingOptionList

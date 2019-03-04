@@ -33,98 +33,98 @@ extern outlet class NSView $hidden ;
 
 extern outlet class NSControl : NSView $enabled $run ;
 
-extern outlet class EBButton : NSControl ;
+outlet class EBButton : NSControl ;
 binding EBButton $title : transient String ;
 
-extern outlet class EBColorObserverWell : NSControl ;
+outlet class EBColorObserverWell : NSControl ;
 binding EBColorObserverWell $colorObserver : transient NSColor ;
 
-extern outlet class EBColorWell : NSControl ;
+outlet class EBColorWell : NSControl ;
 binding EBColorWell $color : property NSColor {sendContinously : Bool} ;
 
 
-extern outlet class EBDatePicker : NSControl ;
+outlet class EBDatePicker : NSControl ;
 binding EBDatePicker $date : property Date ;
 
-extern outlet class EBDoubleField : NSView ;
+outlet class EBDoubleField : NSView ;
 binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-extern outlet class EBDoubleObserverField : NSView ;
+outlet class EBDoubleObserverField : NSView ;
 binding EBDoubleObserverField $valueObserver : transient Double {autoFormatter:Bool} ;
 
 
-extern outlet class EBIntField : NSControl ;
+outlet class EBIntField : NSControl ;
 binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-extern outlet class EBIntObserverField : NSView ;
+outlet class EBIntObserverField : NSView ;
 binding EBIntObserverField $valueObserver : transient Int {autoFormatter:Bool} ;
 
 
-extern outlet class EBFontButton : NSControl ;
+outlet class EBFontButton : NSControl ;
 binding EBFontButton $fontValue : property NSFont ;
 
 
-extern outlet class EBPopUpButton : NSControl ;
+outlet class EBPopUpButton : NSControl ;
 binding EBPopUpButton $selectedTag : property Int ;
 binding EBPopUpButton $selectedIndex : property enum ;
 
 
-extern outlet class EBGroupButton : NSControl ;
+outlet class EBGroupButton : NSControl ;
 binding EBGroupButton $selectedIndex : property Int ;
 
 
-extern outlet class EBImageObserverView : NSView ;
+outlet class EBImageObserverView : NSView ;
 binding EBImageObserverView $image : transient NSImage ;
 binding EBImageObserverView $tooltip : transient String ;
 
 
-extern outlet class EBMenu ;
+outlet class EBMenu ;
 
 
-extern outlet class EBMenuItem ;
+outlet class EBMenuItem ;
 
 
-extern outlet class EBCheckedMenuItem ;
+outlet class EBCheckedMenuItem ;
 binding EBCheckedMenuItem $checked : property Bool ;
 
 
-extern outlet class EBProgressIndicator : NSView ;
+outlet class EBProgressIndicator : NSView ;
 
 
-extern outlet class EBSegmentedControl : NSControl ;
+outlet class EBSegmentedControl : NSControl ;
 binding EBSegmentedControl $selectedIndex : property Int ;
 
 
-extern outlet class EBSlider : NSControl ;
+outlet class EBSlider : NSControl ;
 binding EBSlider $doubleValue : property Double {sendContinously:Bool} ;
 binding EBSlider $intValue : property Int {sendContinously:Bool} ;
 
 
-extern outlet class EBStepper : NSControl ;
+outlet class EBStepper : NSControl ;
 binding EBStepper $value : property Int {sendContinously:Bool} ;
 
 
-extern outlet class EBSwitch : NSControl ;
+outlet class EBSwitch : NSControl ;
 binding EBSwitch $value : property Bool ;
 
 
-extern outlet class EBTableView : NSControl $tableValue ;
+outlet class EBTableView : NSControl $tableValue ;
 
 
-extern outlet class EBTextField : NSControl ;
+outlet class EBTextField : NSControl ;
 binding EBTextField $value : property String {sendContinously : Bool} ;
 
-extern outlet class EBTextObserverField : NSView ;
+outlet class EBTextObserverField : NSView ;
 binding EBTextObserverField $valueObserver : transient String ;
 
 
-extern outlet class EBTextObserverView : NSView ;
+outlet class EBTextObserverView : NSView ;
 binding EBTextObserverView $valueObserver : transient String ;
 
 
-extern outlet class EBTextView : NSControl ;
+outlet class EBTextView : NSControl ;
 binding EBTextView $value : property String ;
 
-extern outlet class EBWindow ;
+outlet class EBWindow ;

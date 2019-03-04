@@ -213,8 +213,7 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual void nt_binding_5F_option_5F_list_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_binding_5F_specification_ (const class GALGAS_bool constinArgument0,
-                                                         class GALGAS_outletClassBindingSpecificationList & ioArgument1,
+  protected : virtual void nt_binding_5F_specification_ (class GALGAS_outletClassBindingSpecificationList & ioArgument0,
                                                          class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_binding_5F_specification_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -239,8 +238,7 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual void nt_booleanMultipleBindingTerm_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_class_5F_declaration_ (const class GALGAS_bool constinArgument0,
-                                                     class GALGAS_astDeclarationStruct & ioArgument1,
+  protected : virtual void nt_class_5F_declaration_ (class GALGAS_astDeclarationStruct & ioArgument0,
                                                      class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_class_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -257,20 +255,17 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual void nt_controller_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_document_5F_declaration_ (const class GALGAS_bool constinArgument0,
-                                                        class GALGAS_astDeclarationStruct & ioArgument1,
+  protected : virtual void nt_document_5F_declaration_ (class GALGAS_astDeclarationStruct & ioArgument0,
                                                         class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_document_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_entity_5F_declaration_ (const class GALGAS_bool constinArgument0,
-                                                      class GALGAS_astDeclarationStruct & ioArgument1,
+  protected : virtual void nt_entity_5F_declaration_ (class GALGAS_astDeclarationStruct & ioArgument0,
                                                       class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_entity_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_enum_5F_declaration_ (const class GALGAS_bool constinArgument0,
-                                                    class GALGAS_astDeclarationStruct & ioArgument1,
+  protected : virtual void nt_enum_5F_declaration_ (class GALGAS_astDeclarationStruct & ioArgument0,
                                                     class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_enum_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -305,8 +300,7 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual void nt_observable_5F_property_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_outlet_5F_class_5F_declaration_ (const class GALGAS_bool constinArgument0,
-                                                               class GALGAS_astDeclarationStruct & ioArgument1,
+  protected : virtual void nt_outlet_5F_class_5F_declaration_ (class GALGAS_astDeclarationStruct & ioArgument0,
                                                                class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_outlet_5F_class_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -316,8 +310,7 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual void nt_outlet_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_preferences_5F_declaration_ (const class GALGAS_bool constinArgument0,
-                                                           class GALGAS_astDeclarationStruct & ioArgument1,
+  protected : virtual void nt_preferences_5F_declaration_ (class GALGAS_astDeclarationStruct & ioArgument0,
                                                            class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_preferences_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -330,9 +323,8 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual void nt_simple_5F_stored_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected : virtual void nt_start_5F_symbol_ (const class GALGAS_bool constinArgument0,
-                                                class GALGAS_astDeclarationStruct & ioArgument1,
-                                                class GALGAS_location & outArgument2,
+  protected : virtual void nt_start_5F_symbol_ (class GALGAS_astDeclarationStruct & ioArgument0,
+                                                class GALGAS_location & outArgument1,
                                                 class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected : virtual void nt_start_5F_symbol_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -364,9 +356,8 @@ class cParser_easyBindings_5F_syntax {
 
 
 //--- Rule declarations
-  protected : void rule_easyBindings_5F_syntax_start_5F_symbol_i0_ (const GALGAS_bool constinArgument0,
-                                                                    GALGAS_astDeclarationStruct & ioArgument1,
-                                                                    GALGAS_location & outArgument2,
+  protected : void rule_easyBindings_5F_syntax_start_5F_symbol_i0_ (GALGAS_astDeclarationStruct & ioArgument0,
+                                                                    GALGAS_location & outArgument1,
                                                                     C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_start_5F_symbol_i0_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -381,44 +372,37 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_class_5F_declaration_i3_ (const GALGAS_bool constinArgument0,
-                                                                         GALGAS_astDeclarationStruct & ioArgument1,
+  protected : void rule_easyBindings_5F_syntax_class_5F_declaration_i3_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                                          C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_class_5F_declaration_i3_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_enum_5F_declaration_i4_ (const GALGAS_bool constinArgument0,
-                                                                        GALGAS_astDeclarationStruct & ioArgument1,
+  protected : void rule_easyBindings_5F_syntax_enum_5F_declaration_i4_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_enum_5F_declaration_i4_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_entity_5F_declaration_i5_ (const GALGAS_bool constinArgument0,
-                                                                          GALGAS_astDeclarationStruct & ioArgument1,
+  protected : void rule_easyBindings_5F_syntax_entity_5F_declaration_i5_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                                           C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_entity_5F_declaration_i5_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_document_5F_declaration_i6_ (const GALGAS_bool constinArgument0,
-                                                                            GALGAS_astDeclarationStruct & ioArgument1,
+  protected : void rule_easyBindings_5F_syntax_document_5F_declaration_i6_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                                             C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_document_5F_declaration_i6_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_preferences_5F_declaration_i7_ (const GALGAS_bool constinArgument0,
-                                                                               GALGAS_astDeclarationStruct & ioArgument1,
+  protected : void rule_easyBindings_5F_syntax_preferences_5F_declaration_i7_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                                                C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_preferences_5F_declaration_i7_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i8_ (const GALGAS_bool constinArgument0,
-                                                                                   GALGAS_astDeclarationStruct & ioArgument1,
+  protected : void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i8_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                                                    C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i8_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_binding_5F_specification_i9_ (const GALGAS_bool constinArgument0,
-                                                                             GALGAS_outletClassBindingSpecificationList & ioArgument1,
+  protected : void rule_easyBindings_5F_syntax_binding_5F_specification_i9_ (GALGAS_outletClassBindingSpecificationList & ioArgument0,
                                                                              C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_binding_5F_specification_i9_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -675,6 +659,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_55 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_56 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -1886,14 +1872,13 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_entityDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                      const class GALGAS_bool & inOperand1,
-                                                                     const class GALGAS_bool & inOperand2,
-                                                                     const class GALGAS_lstring & inOperand3,
-                                                                     const class GALGAS_simpleStoredPropertyList & inOperand4,
-                                                                     const class GALGAS_stringset & inOperand5,
+                                                                     const class GALGAS_lstring & inOperand2,
+                                                                     const class GALGAS_simpleStoredPropertyList & inOperand3,
+                                                                     const class GALGAS_stringset & inOperand4,
+                                                                     const class GALGAS_lstringlist & inOperand5,
                                                                      const class GALGAS_lstringlist & inOperand6,
-                                                                     const class GALGAS_lstringlist & inOperand7,
-                                                                     const class GALGAS_bool & inOperand8,
-                                                                     const class GALGAS_externSwiftDelegateList & inOperand9
+                                                                     const class GALGAS_bool & inOperand7,
+                                                                     const class GALGAS_externSwiftDelegateList & inOperand8
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1912,8 +1897,6 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsUserDefined (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
 
@@ -2239,7 +2222,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
   public : GALGAS_bool mProperty_mIsAbstract ;
-  public : GALGAS_bool mProperty_mIsUserDefined ;
   public : GALGAS_lstring mProperty_mSuperEntityName ;
   public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
   public : GALGAS_stringset mProperty_mSignatureList ;
@@ -2251,7 +2233,6 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Constructor
   public : cPtr_entityDeclarationAST (const GALGAS_lstring & in_mClassName,
                                       const GALGAS_bool & in_mIsAbstract,
-                                      const GALGAS_bool & in_mIsUserDefined,
                                       const GALGAS_lstring & in_mSuperEntityName,
                                       const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
                                       const GALGAS_stringset & in_mSignatureList,
@@ -2266,7 +2247,6 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsUserDefined (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mSuperEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_simpleStoredPropertyList getter_mSimpleStoredAttributeList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureList (LOCATION_ARGS) const ;
@@ -5703,8 +5683,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_binding_5F_specification_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_binding_5F_specification_ (const GALGAS_bool inArgument0,
-                                                      GALGAS_outletClassBindingSpecificationList & ioArgument1,
+  public : virtual void nt_binding_5F_specification_ (GALGAS_outletClassBindingSpecificationList & ioArgument0,
                                                       C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'booleanMultipleBindingComparison' non terminal
@@ -5744,8 +5723,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_class_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_class_5F_declaration_ (const GALGAS_bool inArgument0,
-                                                  GALGAS_astDeclarationStruct & ioArgument1,
+  public : virtual void nt_class_5F_declaration_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                   C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'column_bindings' non terminal
@@ -5771,8 +5749,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_document_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_document_5F_declaration_ (const GALGAS_bool inArgument0,
-                                                     GALGAS_astDeclarationStruct & ioArgument1,
+  public : virtual void nt_document_5F_declaration_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'entity_declaration' non terminal
@@ -5780,8 +5757,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_entity_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_entity_5F_declaration_ (const GALGAS_bool inArgument0,
-                                                   GALGAS_astDeclarationStruct & ioArgument1,
+  public : virtual void nt_entity_5F_declaration_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                    C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'enum_declaration' non terminal
@@ -5789,8 +5765,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_enum_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_enum_5F_declaration_ (const GALGAS_bool inArgument0,
-                                                 GALGAS_astDeclarationStruct & ioArgument1,
+  public : virtual void nt_enum_5F_declaration_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'explicit_value' non terminal
@@ -5846,8 +5821,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_outlet_5F_class_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_outlet_5F_class_5F_declaration_ (const GALGAS_bool inArgument0,
-                                                            GALGAS_astDeclarationStruct & ioArgument1,
+  public : virtual void nt_outlet_5F_class_5F_declaration_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                             C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'outlet_declaration' non terminal
@@ -5863,8 +5837,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_preferences_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_preferences_5F_declaration_ (const GALGAS_bool inArgument0,
-                                                        GALGAS_astDeclarationStruct & ioArgument1,
+  public : virtual void nt_preferences_5F_declaration_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                         C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'simple_stored_declaration' non terminal
@@ -5883,25 +5856,22 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_start_5F_symbol_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_start_5F_symbol_ (const GALGAS_bool inArgument0,
-                                             GALGAS_astDeclarationStruct & ioArgument1,
-                                             GALGAS_location & outArgument2,
+  public : virtual void nt_start_5F_symbol_ (GALGAS_astDeclarationStruct & ioArgument0,
+                                             GALGAS_location & outArgument1,
                                              C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //--- Start symbol
   public : static void _performSourceFileParsing_ (C_Compiler * inCompiler,
                                                    GALGAS_lstring inFileName,
-                                                   const GALGAS_bool inArgument0,
-                                                   GALGAS_astDeclarationStruct & ioArgument1,
-                                                   GALGAS_location & outArgument2
+                                                   GALGAS_astDeclarationStruct & ioArgument0,
+                                                   GALGAS_location & outArgument1
                                                    COMMA_LOCATION_ARGS) ;
 
   public : static void _performSourceStringParsing_ (C_Compiler * inCompiler,
                                                      GALGAS_string inSourceString,
                                                      GALGAS_string inNameString,
-                                                     const GALGAS_bool inArgument0,
-                                                     GALGAS_astDeclarationStruct & ioArgument1,
-                                                     GALGAS_location & outArgument2
+                                                     GALGAS_astDeclarationStruct & ioArgument0,
+                                                     GALGAS_location & outArgument1
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Indexing
@@ -6066,6 +6036,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_55 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_56 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -6889,7 +6861,6 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 //--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mOutletClassName,
-                                                  const class GALGAS_bool & in_mIsUserDefined,
                                                   const class GALGAS_lstring & in_mBindingName,
                                                   const class GALGAS_outletClassBindingSpecificationModelList & in_mOutletClassBindingSpecificationModelList,
                                                   const class GALGAS_controllerBindingOptionList & in_mBindingOptionList
@@ -6909,10 +6880,9 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
   public : static class GALGAS_outletClassBindingSpecificationList constructor_emptyList (LOCATION_ARGS) ;
 
   public : static class GALGAS_outletClassBindingSpecificationList constructor_listWithValue (const class GALGAS_lstring & inOperand0,
-                                                                                              const class GALGAS_bool & inOperand1,
-                                                                                              const class GALGAS_lstring & inOperand2,
-                                                                                              const class GALGAS_outletClassBindingSpecificationModelList & inOperand3,
-                                                                                              const class GALGAS_controllerBindingOptionList & inOperand4
+                                                                                              const class GALGAS_lstring & inOperand1,
+                                                                                              const class GALGAS_outletClassBindingSpecificationModelList & inOperand2,
+                                                                                              const class GALGAS_controllerBindingOptionList & inOperand3
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -6922,10 +6892,9 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
-                                                      const class GALGAS_bool & inOperand1,
-                                                      const class GALGAS_lstring & inOperand2,
-                                                      const class GALGAS_outletClassBindingSpecificationModelList & inOperand3,
-                                                      const class GALGAS_controllerBindingOptionList & inOperand4
+                                                      const class GALGAS_lstring & inOperand1,
+                                                      const class GALGAS_outletClassBindingSpecificationModelList & inOperand2,
+                                                      const class GALGAS_controllerBindingOptionList & inOperand3
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_outletClassBindingSpecificationList add_operation (const GALGAS_outletClassBindingSpecificationList & inOperand,
@@ -6939,54 +6908,48 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
                                                 COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
-                                                       class GALGAS_bool constinArgument1,
-                                                       class GALGAS_lstring constinArgument2,
-                                                       class GALGAS_outletClassBindingSpecificationModelList constinArgument3,
-                                                       class GALGAS_controllerBindingOptionList constinArgument4,
-                                                       class GALGAS_uint constinArgument5,
+                                                       class GALGAS_lstring constinArgument1,
+                                                       class GALGAS_outletClassBindingSpecificationModelList constinArgument2,
+                                                       class GALGAS_controllerBindingOptionList constinArgument3,
+                                                       class GALGAS_uint constinArgument4,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
-                                                  class GALGAS_bool & outArgument1,
-                                                  class GALGAS_lstring & outArgument2,
-                                                  class GALGAS_outletClassBindingSpecificationModelList & outArgument3,
-                                                  class GALGAS_controllerBindingOptionList & outArgument4,
+                                                  class GALGAS_lstring & outArgument1,
+                                                  class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                                  class GALGAS_controllerBindingOptionList & outArgument3,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
-                                                 class GALGAS_bool & outArgument1,
-                                                 class GALGAS_lstring & outArgument2,
-                                                 class GALGAS_outletClassBindingSpecificationModelList & outArgument3,
-                                                 class GALGAS_controllerBindingOptionList & outArgument4,
+                                                 class GALGAS_lstring & outArgument1,
+                                                 class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                                 class GALGAS_controllerBindingOptionList & outArgument3,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
-                                                       class GALGAS_bool & outArgument1,
-                                                       class GALGAS_lstring & outArgument2,
-                                                       class GALGAS_outletClassBindingSpecificationModelList & outArgument3,
-                                                       class GALGAS_controllerBindingOptionList & outArgument4,
-                                                       class GALGAS_uint constinArgument5,
+                                                       class GALGAS_lstring & outArgument1,
+                                                       class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                                       class GALGAS_controllerBindingOptionList & outArgument3,
+                                                       class GALGAS_uint constinArgument4,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
-                                               class GALGAS_bool & outArgument1,
-                                               class GALGAS_lstring & outArgument2,
-                                               class GALGAS_outletClassBindingSpecificationModelList & outArgument3,
-                                               class GALGAS_controllerBindingOptionList & outArgument4,
+                                               class GALGAS_lstring & outArgument1,
+                                               class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                               class GALGAS_controllerBindingOptionList & outArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
-                                              class GALGAS_bool & outArgument1,
-                                              class GALGAS_lstring & outArgument2,
-                                              class GALGAS_outletClassBindingSpecificationModelList & outArgument3,
-                                              class GALGAS_controllerBindingOptionList & outArgument4,
+                                              class GALGAS_lstring & outArgument1,
+                                              class GALGAS_outletClassBindingSpecificationModelList & outArgument2,
+                                              class GALGAS_controllerBindingOptionList & outArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -7000,10 +6963,6 @@ class GALGAS_outletClassBindingSpecificationList : public AC_GALGAS_list {
   public : VIRTUAL_IN_DEBUG class GALGAS_controllerBindingOptionList getter_mBindingOptionListAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                                        C_Compiler * inCompiler
                                                                                                        COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsUserDefinedAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_outletClassBindingSpecificationModelList getter_mOutletClassBindingSpecificationModelListAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                                                                            C_Compiler * inCompiler
@@ -7044,7 +7003,6 @@ class cEnumerator_outletClassBindingSpecificationList : public cGenericAbstractE
 
 //--- Current element access
   public : class GALGAS_lstring current_mOutletClassName (LOCATION_ARGS) const ;
-  public : class GALGAS_bool current_mIsUserDefined (LOCATION_ARGS) const ;
   public : class GALGAS_lstring current_mBindingName (LOCATION_ARGS) const ;
   public : class GALGAS_outletClassBindingSpecificationModelList current_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
   public : class GALGAS_controllerBindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
@@ -7951,8 +7909,6 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
 //--------------------------------- Properties
   public : GALGAS_lstring mProperty_mOutletClassName ;
 
-  public : GALGAS_bool mProperty_mIsUserDefined ;
-
   public : GALGAS_lstring mProperty_mBindingName ;
 
   public : GALGAS_outletClassBindingSpecificationModelList mProperty_mOutletClassBindingSpecificationModelList ;
@@ -7974,7 +7930,6 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
 
 //--------------------------------- Native constructor
   public : GALGAS_outletClassBindingSpecificationList_2D_element (const GALGAS_lstring & in_mOutletClassName,
-                                                                  const GALGAS_bool & in_mIsUserDefined,
                                                                   const GALGAS_lstring & in_mBindingName,
                                                                   const GALGAS_outletClassBindingSpecificationModelList & in_mOutletClassBindingSpecificationModelList,
                                                                   const GALGAS_controllerBindingOptionList & in_mBindingOptionList) ;
@@ -7991,10 +7946,9 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_outletClassBindingSpecificationList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                               const class GALGAS_bool & inOperand1,
-                                                                                               const class GALGAS_lstring & inOperand2,
-                                                                                               const class GALGAS_outletClassBindingSpecificationModelList & inOperand3,
-                                                                                               const class GALGAS_controllerBindingOptionList & inOperand4
+                                                                                               const class GALGAS_lstring & inOperand1,
+                                                                                               const class GALGAS_outletClassBindingSpecificationModelList & inOperand2,
+                                                                                               const class GALGAS_controllerBindingOptionList & inOperand3
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -8012,8 +7966,6 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mBindingName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_controllerBindingOptionList getter_mBindingOptionList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsUserDefined (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_outletClassBindingSpecificationModelList getter_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
 

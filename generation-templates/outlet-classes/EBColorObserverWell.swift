@@ -12,16 +12,16 @@ import Cocoa
 
   //···················································································································*
 
-  required init? (coder: NSCoder) {
-    super.init (coder:coder)
+  required init? (coder : NSCoder) {
+    super.init (coder: coder)
     noteObjectAllocation (self)
     self.isEnabled = false
   }
 
   //···················································································································*
 
-  override init (frame:NSRect) {
-    super.init (frame:frame)
+  override init (frame : NSRect) {
+    super.init (frame: frame)
     noteObjectAllocation (self)
     self.isEnabled = false
   }
@@ -29,7 +29,7 @@ import Cocoa
   //···················································································································*
 
   deinit {
-    noteObjectDeallocation (self)
+    noteObjectDeallocation (String (describing: type(of: self)))
   }
 
   //···················································································································*

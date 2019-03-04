@@ -26,10 +26,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <class_declaration>
-    ?let @bool unused inIsUserDefined
-    ?!@astDeclarationStruct ioDeclarationAST
-  {
+  rule <class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $transient$
     $property$
     @bool isClass

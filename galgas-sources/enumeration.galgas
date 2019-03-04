@@ -26,9 +26,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <enum_declaration>
-    ?let @bool unused inIsUserDefined
-    ?!@astDeclarationStruct ioDeclarationAST {
+  rule <enum_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $enum$
     $Identifier$ ?let @lstring enumName
     ${$

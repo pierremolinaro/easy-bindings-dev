@@ -18,12 +18,10 @@ case . "eb"
   @astDeclarationStruct declarationStruct = .default
 #----------------------------------------- Parse predefined outlets files
   grammar easyBindings_grammar on ([filewrapper predefinedOutletClasses.sourceFile], "")
-    !userDefined:false
     !?declarationStruct
     ?*
 #----------------------------------------- Parse source file
   grammar easyBindings_grammar in inSourceFile
-    !userDefined:true
     !?declarationStruct
     ?var @location endOfSourceFile
 #------------------------ Add prefs declaration

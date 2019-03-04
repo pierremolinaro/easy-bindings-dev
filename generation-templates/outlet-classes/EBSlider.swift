@@ -27,7 +27,7 @@ import Cocoa
   //····················································································································
 
   deinit {
-    noteObjectDeallocation (self)
+    noteObjectDeallocation (String (describing: type(of: self)))
   }
 
   //····················································································································
@@ -134,7 +134,7 @@ final class Controller_EBSlider_intValue : EBSimpleController {
     mObject = object
     mOutlet = outlet
     super.init (observedObjects:[object])
-    self.eventCallBack = { [weak self] in self?.updateOutlet () }
+    self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //····················································································································

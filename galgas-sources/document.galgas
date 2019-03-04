@@ -29,10 +29,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <document_declaration>
-    ?let @bool unused inIsUserDefined
-    ?!@astDeclarationStruct ioDeclarationAST
-  {
+  rule <document_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $document$
     $Identifier$ ?let @lstring documentName
     $root$
