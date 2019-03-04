@@ -21,9 +21,7 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
       %  var %!lkey.string%_property = EBPropertyProxy_%![mKind swiftTypeName]% ()\n\n%
     end
       %  var %!lkey.string%_property_selection : EBSelection <%![mKind swiftTypeName]%> {\n%
-      %    get {\n%
-      %      return self.%!lkey.string%_property.prop\n%
-      %    }\n%
+      %    return self.%!lkey.string%_property.prop\n%
       %  }\n\n%
   end
 end

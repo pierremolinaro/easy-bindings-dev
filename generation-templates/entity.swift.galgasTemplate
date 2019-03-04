@@ -427,14 +427,14 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   override var prop : EBSelection < [%!ENTITY_NAME%] > {
     self.computeArrayAndSet ()
-    return self.prop_cache!  
+    return self.mCachedValue!  
   }
  
   //····················································································································
 
   override var propval : [%!ENTITY_NAME%] {
     self.computeArrayAndSet ()
-    if let value = self.prop_cache {
+    if let value = self.mCachedValue {
       switch value {
       case .empty, .multiple :
         return []
@@ -458,15 +458,15 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  private var prop_cache : EBSelection < [%!ENTITY_NAME%] >? = nil
+  private var mCachedValue : EBSelection < [%!ENTITY_NAME%] >? = nil
 
   //····················································································································
 
   private func computeArrayAndSet () {
-    if let unwrappedComputeFunction = self.readModelFunction, self.prop_cache == nil {
-      self.prop_cache = unwrappedComputeFunction ()
+    if let unwrappedComputeFunction = self.readModelFunction, self.mCachedValue == nil {
+      self.mCachedValue = unwrappedComputeFunction ()
       let newSet : Set <%!ENTITY_NAME%>
-      switch self.prop_cache! {
+      switch self.mCachedValue! {
       case .multiple, .empty :
         newSet = Set <%!ENTITY_NAME%> ()
       case .single (let array) :
@@ -498,16 +498,16 @@ end
 %    //--- Update object set
       self.mSet = newSet
     }
-    if self.prop_cache == nil {
-      self.prop_cache = .empty
+    if self.mCachedValue == nil {
+      self.mCachedValue = .empty
     }
   }
 
   //····················································································································
 
   override func postEvent () {
-    if self.prop_cache != nil {
-      self.prop_cache = nil
+    if self.mCachedValue != nil {
+      self.mCachedValue = nil
       if logEvents () {
         appendMessageString ("  \(explorerIndexString (self.ebObjectIndex)) propagation\\n")
       }
@@ -848,9 +848,9 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
 
   //····················································································································
 
-  var propval : %![[mProperty mRelationshipType] swiftTypeName]%? { get { return self.mValue } }
+  var propval : %![[mProperty mRelationshipType] swiftTypeName]%? { return self.mValue }
 
-  var prop : EBSelection <%![[mProperty mRelationshipType] swiftTypeName]%?> { get { return .single (self.mValue) } }
+  var prop : EBSelection <%![[mProperty mRelationshipType] swiftTypeName]%?> { return .single (self.mValue) }
 
   func setProp (_ value : %![[mProperty mRelationshipType] swiftTypeName]%?) { self.mValue = value }
 
@@ -883,19 +883,17 @@ for () in [mProperty mDestinationEntityObservablePropertyMap] do
   %  private var mObserversOf_%!lkey.string% = EBWeakEventSet ()\n\n%
   %  //····················································································································\n\n%
   %  var %!lkey.string%_property_selection : EBSelection <%![mKind swiftTypeName]%?> {\n%
-  %    get {\n%
-  %      if let model = self.propval {\n%
-  %        switch (model.%!lkey.string%_property_selection) {\n%
-  %        case .empty :\n%
-  %          return .empty\n%
-  %        case .multiple :\n%
-  %          return .multiple\n%
-  %        case .single (let v) :\n%
-  %          return .single (v)\n%
-  %        }\n%
-  %      }else{\n%
-  %        return .single (nil)\n%
+  %    if let model = self.propval {\n%
+  %      switch (model.%!lkey.string%_property_selection) {\n%
+  %      case .empty :\n%
+  %        return .empty\n%
+  %      case .multiple :\n%
+  %        return .multiple\n%
+  %      case .single (let v) :\n%
+  %        return .single (v)\n%
   %      }\n%
+  %    }else{\n%
+  %      return .single (nil)\n%
   %    }\n%
   %  }\n\n%
   %  //····················································································································\n\n%

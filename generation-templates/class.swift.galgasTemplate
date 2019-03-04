@@ -272,7 +272,7 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   var readModelFunction : Optional<() -> EBSelection < [%!CLASS_NAME%] > > = nil
  
-  private var prop_cache : EBSelection < [%!CLASS_NAME%] >? = nil
+  private var mCachedValue : EBSelection < [%!CLASS_NAME%] >? = nil
 
   //····················································································································
 
@@ -283,22 +283,20 @@ class TransientArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   //····················································································································
 
   override var prop : EBSelection < [%!CLASS_NAME%] > {
-    get {
-      if let unwrappedComputeFunction = readModelFunction, prop_cache == nil {
-        prop_cache = unwrappedComputeFunction ()
-      }
-      if prop_cache == nil {
-        prop_cache = .empty
-      }
-      return prop_cache!
+    if let unwrappedComputeFunction = self.readModelFunction, self.mCachedValue == nil {
+      self.mCachedValue = unwrappedComputeFunction ()
     }
+    if self.mCachedValue == nil {
+      self.mCachedValue = .empty
+    }
+    return self.mCachedValue!
   }
 
   //····················································································································
 
   override func postEvent () {
-    if prop_cache != nil {
-      prop_cache = nil
+    if self.mCachedValue != nil {
+      self.mCachedValue = nil
       if logEvents () {
         appendMessageString ("  \(explorerIndexString (self.ebObjectIndex)) propagation\\n")
       }
@@ -350,7 +348,7 @@ class ReadWriteArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
 
   //····················································································································
 
-  var propval : [%!CLASS_NAME%] { get { return [] } }
+  var propval : [%!CLASS_NAME%] { return [] }
 
   //····················································································································
 }
@@ -441,11 +439,7 @@ end
 
   //····················································································································
 
-  override var prop : EBSelection < [%!CLASS_NAME%] > {
-    get {
-      return .single (mValue)
-    }
-  }
+  override var prop : EBSelection < [%!CLASS_NAME%] > { return .single (mValue) }
 
   //····················································································································
 
@@ -453,7 +447,7 @@ end
 
   //····················································································································
 
-  override var propval : [%!CLASS_NAME%] { get { return mValue } }
+  override var propval : [%!CLASS_NAME%] { return mValue }
 
   //····················································································································
 

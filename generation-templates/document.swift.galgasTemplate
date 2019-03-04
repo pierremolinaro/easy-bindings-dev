@@ -88,7 +88,7 @@ end
   //    rootObject
   //····················································································································
 
-  var rootObject : %!ROOT_ENTITY_NAME% { get { return mRootObject as! %!ROOT_ENTITY_NAME% } }
+  var rootObject : %!ROOT_ENTITY_NAME% { return mRootObject as! %!ROOT_ENTITY_NAME% }
 
   //····················································································································
   //    windowControllerDidLoadNib
