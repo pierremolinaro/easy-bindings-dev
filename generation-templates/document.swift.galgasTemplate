@@ -180,7 +180,7 @@ end
 %
 for () in MULTIPLE_BINDING_GENERATION_LIST do
   for () in [mBoundObjectExpression observedModelSet] do
-  %    self.%!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
+  %    %!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
   end
   %    self.mController_%!mOutletName%_%!mBindingName% = nil\n%
 end
