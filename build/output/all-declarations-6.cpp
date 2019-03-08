@@ -5148,7 +5148,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
         "      case .single (let v) :\n"
         "        let newObject = " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << " (self.undoManager, file: #file, #line)\n"
+      result << " (self.undoManager)\n"
         "        var array = v\n"
         "        array.append (newObject)\n"
         "      //--- New object is the selection\n"
@@ -7143,7 +7143,7 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
         "      case .single (let v) :\n"
         "        let newObject = " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << " (self.undoManager, file: #file, #line)\n"
+      result << " (self.undoManager)\n"
         "        var array = v\n"
         "        array.append (newObject)\n"
         "      //--- New object is the selection\n"
