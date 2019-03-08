@@ -273,7 +273,7 @@ list @transientPropertyGenerationList {
 
 #·······················································································································
 
-override getter @transientPropertyGeneration declarationCode ?let @stringset inOverriddenTransients -> @string {
+override getter @transientPropertyGeneration propertyDeclarationCode ?let @stringset inOverriddenTransients -> @string {
   result  = ""
   if mGenerate & not [inOverriddenTransients hasKey !mPropertyName] then #  mGenerate then
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"

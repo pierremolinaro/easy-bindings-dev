@@ -2558,26 +2558,26 @@ class GALGAS_string callExtensionGetter_prefKeyDefinitionCode (const cPtr_proper
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                           Abstract extension getter '@propertyGeneration declarationCode'                           *
+//                       Abstract extension getter '@propertyGeneration propertyDeclarationCode'                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_declarationCode) (const class cPtr_propertyGeneration * inObject,
-                                                                                        const class GALGAS_stringset constinArgument0,
-                                                                                        class C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_propertyDeclarationCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                                const class GALGAS_stringset constinArgument0,
+                                                                                                class C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void enterExtensionGetter_declarationCode (const int32_t inClassIndex,
-                                           enterExtensionGetter_propertyGeneration_declarationCode inMethod) ;
+void enterExtensionGetter_propertyDeclarationCode (const int32_t inClassIndex,
+                                                   enterExtensionGetter_propertyGeneration_propertyDeclarationCode inMethod) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_string callExtensionGetter_declarationCode (const class cPtr_propertyGeneration * inObject,
-                                                         const GALGAS_stringset constin_inOverriddenTransients,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+class GALGAS_string callExtensionGetter_propertyDeclarationCode (const class cPtr_propertyGeneration * inObject,
+                                                                 const GALGAS_stringset constin_inOverriddenTransients,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

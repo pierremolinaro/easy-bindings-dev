@@ -146,7 +146,7 @@ list @toManyPropertyGenerationList {
 
 #·······················································································································
 
-override getter @toManyPropertyGeneration declarationCode ?let @stringset unused inOverriddenTransients -> @string {
+override getter @toManyPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To many property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"

@@ -1183,14 +1183,14 @@ C_PrologueEpilogue gMethod_transientDeclarationAST_secondAnalysisPhase (defineEx
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                     Overriding extension getter '@transientPropertyGeneration declarationCode'                      *
+//                 Overriding extension getter '@transientPropertyGeneration propertyDeclarationCode'                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static GALGAS_string extensionGetter_transientPropertyGeneration_declarationCode (const cPtr_propertyGeneration * inObject,
-                                                                                  const GALGAS_stringset constinArgument_inOverriddenTransients,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+static GALGAS_string extensionGetter_transientPropertyGeneration_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
+                                                                                          const GALGAS_stringset constinArgument_inOverriddenTransients,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_result ; // Returned variable
   const cPtr_transientPropertyGeneration * object = (const cPtr_transientPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientPropertyGeneration) ;
@@ -1231,14 +1231,14 @@ static GALGAS_string extensionGetter_transientPropertyGeneration_declarationCode
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void defineExtensionGetter_transientPropertyGeneration_declarationCode (void) {
-  enterExtensionGetter_declarationCode (kTypeDescriptor_GALGAS_transientPropertyGeneration.mSlotID,
-                                        extensionGetter_transientPropertyGeneration_declarationCode) ;
+static void defineExtensionGetter_transientPropertyGeneration_propertyDeclarationCode (void) {
+  enterExtensionGetter_propertyDeclarationCode (kTypeDescriptor_GALGAS_transientPropertyGeneration.mSlotID,
+                                                extensionGetter_transientPropertyGeneration_propertyDeclarationCode) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-C_PrologueEpilogue gGetter_transientPropertyGeneration_declarationCode (defineExtensionGetter_transientPropertyGeneration_declarationCode, NULL) ;
+C_PrologueEpilogue gGetter_transientPropertyGeneration_propertyDeclarationCode (defineExtensionGetter_transientPropertyGeneration_propertyDeclarationCode, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -1257,11 +1257,11 @@ static GALGAS_string extensionGetter_transientPropertyGeneration_configurationCo
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (kIsStrictSup, object->mProperty_mDependencyList.getter_length (SOURCE_FILE ("transient-property.galgas", 303)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_bool var_needs_5F_unwSelf_12430 = extensionGetter_needs_5F_unwSelf (object->mProperty_mDependencyList, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 304)) ;
+      GALGAS_bool var_needs_5F_unwSelf_12438 = extensionGetter_needs_5F_unwSelf (object->mProperty_mDependencyList, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 304)) ;
       result_result.plusAssign_operation(GALGAS_string ("  //--- Atomic property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 305)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 305)), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 305)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = var_needs_5F_unwSelf_12430.boolEnum () ;
+        test_1 = var_needs_5F_unwSelf_12438.boolEnum () ;
         if (kBoolTrue == test_1) {
           result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 307)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 307)), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 307)) ;
           result_result.plusAssign_operation(GALGAS_string ("      if let unwSelf = self {\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 308)) ;
@@ -1276,10 +1276,10 @@ static GALGAS_string extensionGetter_transientPropertyGeneration_configurationCo
         result_result.plusAssign_operation(extensionGetter_transientComputeFunctionCall (object->mProperty_mDependencyList, object->mProperty_mClassName, object->mProperty_mPropertyName, object->mProperty_mExternFunctionName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 315)), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 315)) ;
       }
       result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 317)) ;
-      cEnumerator_transientDependencyListForGeneration enumerator_13182 (object->mProperty_mDependencyList, kENUMERATION_UP) ;
-      while (enumerator_13182.hasCurrentObject ()) {
-        result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (extensionGetter_generateAddObserverCall (enumerator_13182.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 319)) ;
-        enumerator_13182.gotoNextObject () ;
+      cEnumerator_transientDependencyListForGeneration enumerator_13190 (object->mProperty_mDependencyList, kENUMERATION_UP) ;
+      while (enumerator_13190.hasCurrentObject ()) {
+        result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (extensionGetter_generateAddObserverCall (enumerator_13190.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 319)), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 319)) ;
+        enumerator_13190.gotoNextObject () ;
       }
     }
   }
@@ -1312,10 +1312,10 @@ static GALGAS_string extensionGetter_transientPropertyGeneration_terminationCode
   const cPtr_transientPropertyGeneration * object = (const cPtr_transientPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_transientPropertyGeneration) ;
   result_result = GALGAS_string::makeEmptyString () ;
-  cEnumerator_transientDependencyListForGeneration enumerator_13548 (object->mProperty_mDependencyList, kENUMERATION_UP) ;
-  while (enumerator_13548.hasCurrentObject ()) {
-    result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (extensionGetter_generateRemoveObserverCall (enumerator_13548.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 329)) ;
-    enumerator_13548.gotoNextObject () ;
+  cEnumerator_transientDependencyListForGeneration enumerator_13556 (object->mProperty_mDependencyList, kENUMERATION_UP) ;
+  while (enumerator_13556.hasCurrentObject ()) {
+    result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (extensionGetter_generateRemoveObserverCall (enumerator_13556.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 329)), inCompiler  COMMA_SOURCE_FILE ("transient-property.galgas", 329)) ;
+    enumerator_13556.gotoNextObject () ;
   }
 //---
   return result_result ;
@@ -1350,12 +1350,12 @@ static void extensionMethod_ptransientRoutineGeneration_generateCode (const cPtr
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (kIsStrictSup, object->mProperty_mDependencyList.getter_length (SOURCE_FILE ("transient-property.galgas", 515)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsEqual, object->mProperty_mExternFunctionName.objectCompare (GALGAS_string::makeEmptyString ())) COMMA_SOURCE_FILE ("transient-property.galgas", 515)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_string var_s_22485 = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, object->mProperty_mOwnerName, object->mProperty_mTransientName, object->mProperty_mDependencyList, object->mProperty_mTransientType COMMA_SOURCE_FILE ("transient-property.galgas", 516))) ;
-      GALGAS_string var_fileName_22659 = GALGAS_string ("transient-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 522)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 522)).add_operation (object->mProperty_mTransientName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 522)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 522)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_22659  COMMA_SOURCE_FILE ("transient-property.galgas", 523)) ;
+      GALGAS_string var_s_22493 = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, object->mProperty_mOwnerName, object->mProperty_mTransientName, object->mProperty_mDependencyList, object->mProperty_mTransientType COMMA_SOURCE_FILE ("transient-property.galgas", 516))) ;
+      GALGAS_string var_fileName_22667 = GALGAS_string ("transient-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 522)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 522)).add_operation (object->mProperty_mTransientName, inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 522)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 522)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_22667  COMMA_SOURCE_FILE ("transient-property.galgas", 523)) ;
       {
-      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_22659, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
-        "\n"), var_s_22485, GALGAS_string ("\n"), GALGAS_string ("}\n"
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_22667, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
+        "\n"), var_s_22493, GALGAS_string ("\n"), GALGAS_string ("}\n"
         "\n"
         "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.galgas", 524)) ;
       }
@@ -1745,14 +1745,14 @@ C_PrologueEpilogue gGetter_atomicPropertyGeneration_prefKeyDefinitionCode (defin
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                       Overriding extension getter '@atomicPropertyGeneration declarationCode'                       *
+//                   Overriding extension getter '@atomicPropertyGeneration propertyDeclarationCode'                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static GALGAS_string extensionGetter_atomicPropertyGeneration_declarationCode (const cPtr_propertyGeneration * inObject,
-                                                                               const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+static GALGAS_string extensionGetter_atomicPropertyGeneration_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
+                                                                                       const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
+                                                                                       C_Compiler * inCompiler
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_result ; // Returned variable
   const cPtr_atomicPropertyGeneration * object = (const cPtr_atomicPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_atomicPropertyGeneration) ;
@@ -1806,14 +1806,14 @@ static GALGAS_string extensionGetter_atomicPropertyGeneration_declarationCode (c
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void defineExtensionGetter_atomicPropertyGeneration_declarationCode (void) {
-  enterExtensionGetter_declarationCode (kTypeDescriptor_GALGAS_atomicPropertyGeneration.mSlotID,
-                                        extensionGetter_atomicPropertyGeneration_declarationCode) ;
+static void defineExtensionGetter_atomicPropertyGeneration_propertyDeclarationCode (void) {
+  enterExtensionGetter_propertyDeclarationCode (kTypeDescriptor_GALGAS_atomicPropertyGeneration.mSlotID,
+                                                extensionGetter_atomicPropertyGeneration_propertyDeclarationCode) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-C_PrologueEpilogue gGetter_atomicPropertyGeneration_declarationCode (defineExtensionGetter_atomicPropertyGeneration_declarationCode, NULL) ;
+C_PrologueEpilogue gGetter_atomicPropertyGeneration_propertyDeclarationCode (defineExtensionGetter_atomicPropertyGeneration_propertyDeclarationCode, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -2136,14 +2136,14 @@ C_PrologueEpilogue gMethod_toOneRelationshipAST_secondAnalysisPhase (defineExten
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                       Overriding extension getter '@toOnePropertyGeneration declarationCode'                        *
+//                   Overriding extension getter '@toOnePropertyGeneration propertyDeclarationCode'                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static GALGAS_string extensionGetter_toOnePropertyGeneration_declarationCode (const cPtr_propertyGeneration * inObject,
-                                                                              const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+static GALGAS_string extensionGetter_toOnePropertyGeneration_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
+                                                                                      const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_result ; // Returned variable
   const cPtr_toOnePropertyGeneration * object = (const cPtr_toOnePropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toOnePropertyGeneration) ;
@@ -2166,14 +2166,14 @@ static GALGAS_string extensionGetter_toOnePropertyGeneration_declarationCode (co
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void defineExtensionGetter_toOnePropertyGeneration_declarationCode (void) {
-  enterExtensionGetter_declarationCode (kTypeDescriptor_GALGAS_toOnePropertyGeneration.mSlotID,
-                                        extensionGetter_toOnePropertyGeneration_declarationCode) ;
+static void defineExtensionGetter_toOnePropertyGeneration_propertyDeclarationCode (void) {
+  enterExtensionGetter_propertyDeclarationCode (kTypeDescriptor_GALGAS_toOnePropertyGeneration.mSlotID,
+                                                extensionGetter_toOnePropertyGeneration_propertyDeclarationCode) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-C_PrologueEpilogue gGetter_toOnePropertyGeneration_declarationCode (defineExtensionGetter_toOnePropertyGeneration_declarationCode, NULL) ;
+C_PrologueEpilogue gGetter_toOnePropertyGeneration_propertyDeclarationCode (defineExtensionGetter_toOnePropertyGeneration_propertyDeclarationCode, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -2483,14 +2483,14 @@ C_PrologueEpilogue gMethod_toManyRelationshipAST_firstAnalysisPhase (defineExten
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                       Overriding extension getter '@toManyPropertyGeneration declarationCode'                       *
+//                   Overriding extension getter '@toManyPropertyGeneration propertyDeclarationCode'                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static GALGAS_string extensionGetter_toManyPropertyGeneration_declarationCode (const cPtr_propertyGeneration * inObject,
-                                                                               const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+static GALGAS_string extensionGetter_toManyPropertyGeneration_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
+                                                                                       const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
+                                                                                       C_Compiler * inCompiler
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_result ; // Returned variable
   const cPtr_toManyPropertyGeneration * object = (const cPtr_toManyPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toManyPropertyGeneration) ;
@@ -2533,14 +2533,14 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_declarationCode (c
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void defineExtensionGetter_toManyPropertyGeneration_declarationCode (void) {
-  enterExtensionGetter_declarationCode (kTypeDescriptor_GALGAS_toManyPropertyGeneration.mSlotID,
-                                        extensionGetter_toManyPropertyGeneration_declarationCode) ;
+static void defineExtensionGetter_toManyPropertyGeneration_propertyDeclarationCode (void) {
+  enterExtensionGetter_propertyDeclarationCode (kTypeDescriptor_GALGAS_toManyPropertyGeneration.mSlotID,
+                                                extensionGetter_toManyPropertyGeneration_propertyDeclarationCode) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-C_PrologueEpilogue gGetter_toManyPropertyGeneration_declarationCode (defineExtensionGetter_toManyPropertyGeneration_declarationCode, NULL) ;
+C_PrologueEpilogue gGetter_toManyPropertyGeneration_propertyDeclarationCode (defineExtensionGetter_toManyPropertyGeneration_propertyDeclarationCode, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -2594,15 +2594,15 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_configurationCode 
     break ;
   case GALGAS_toManyRelationshipOptionAST::kEnum_hasDependance:
     {
-      const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance * extractPtr_7381 = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance *) (object->mProperty_mOption.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_masterPropertyName = extractPtr_7381->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance * extractPtr_7389 = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance *) (object->mProperty_mOption.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_masterPropertyName = extractPtr_7389->mAssociatedValue0 ;
       result_result = GALGAS_string::makeEmptyString () ;
     }
     break ;
   case GALGAS_toManyRelationshipOptionAST::kEnum_hasOpposite:
     {
-      const cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite * extractPtr_7901 = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite *) (object->mProperty_mOption.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_oppositeName = extractPtr_7901->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite * extractPtr_7909 = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite *) (object->mProperty_mOption.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_oppositeName = extractPtr_7909->mAssociatedValue0 ;
       result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 183)).add_operation (GALGAS_string (" (has opposite relationship)\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 183)) ;
       result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 184)).add_operation (GALGAS_string ("_property.undoManager = self.undoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 184)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 184)) ;
       result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 185)).add_operation (GALGAS_string ("_property.setOppositeRelationship ="), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 185)).add_operation (GALGAS_string (" { [weak self] (_ inManagedObject :"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 185)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mRelationshipType, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 186)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 186)).add_operation (GALGAS_string ("\?) in\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 186)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 185)) ;
@@ -2840,8 +2840,8 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_terminationCode (c
     break ;
   case GALGAS_toManyRelationshipOptionAST::kEnum_hasDependance:
     {
-      const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance * extractPtr_10940 = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance *) (object->mProperty_mOption.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_masterPropertyName = extractPtr_10940->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance * extractPtr_10948 = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance *) (object->mProperty_mOption.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_masterPropertyName = extractPtr_10948->mAssociatedValue0 ;
       result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 257)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 257)) ;
       result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (extractedValue_masterPropertyName.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 258)).add_operation (GALGAS_string ("_property.removeEBObserver (self."), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 258)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 258)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 258)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 258)) ;
     }
@@ -4497,14 +4497,14 @@ C_PrologueEpilogue gMethod_arrayControllerDeclarationAST_secondAnalysisPhase (de
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                  Overriding extension getter '@arrayControllerPropertyGeneration declarationCode'                   *
+//              Overriding extension getter '@arrayControllerPropertyGeneration propertyDeclarationCode'               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static GALGAS_string extensionGetter_arrayControllerPropertyGeneration_declarationCode (const cPtr_propertyGeneration * inObject,
-                                                                                        const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+static GALGAS_string extensionGetter_arrayControllerPropertyGeneration_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
+                                                                                                const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_result ; // Returned variable
   const cPtr_arrayControllerPropertyGeneration * object = (const cPtr_arrayControllerPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerPropertyGeneration) ;
@@ -4521,14 +4521,14 @@ static GALGAS_string extensionGetter_arrayControllerPropertyGeneration_declarati
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void defineExtensionGetter_arrayControllerPropertyGeneration_declarationCode (void) {
-  enterExtensionGetter_declarationCode (kTypeDescriptor_GALGAS_arrayControllerPropertyGeneration.mSlotID,
-                                        extensionGetter_arrayControllerPropertyGeneration_declarationCode) ;
+static void defineExtensionGetter_arrayControllerPropertyGeneration_propertyDeclarationCode (void) {
+  enterExtensionGetter_propertyDeclarationCode (kTypeDescriptor_GALGAS_arrayControllerPropertyGeneration.mSlotID,
+                                                extensionGetter_arrayControllerPropertyGeneration_propertyDeclarationCode) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-C_PrologueEpilogue gGetter_arrayControllerPropertyGeneration_declarationCode (defineExtensionGetter_arrayControllerPropertyGeneration_declarationCode, NULL) ;
+C_PrologueEpilogue gGetter_arrayControllerPropertyGeneration_propertyDeclarationCode (defineExtensionGetter_arrayControllerPropertyGeneration_propertyDeclarationCode, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -5846,9 +5846,9 @@ static void extensionMethod_arrayControllerGeneration_generateCode (const cPtr_a
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_arrayControllerGeneration * object = (const cPtr_arrayControllerGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerGeneration) ;
-  GALGAS_string var_s_11702 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 301)), object->mProperty_mModelString, object->mProperty_mArrayControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mElementTypeName, object->mProperty_mElementTypeIsGraphic COMMA_SOURCE_FILE ("array-controller.galgas", 299))) ;
+  GALGAS_string var_s_11710 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 301)), object->mProperty_mModelString, object->mProperty_mArrayControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mElementTypeName, object->mProperty_mElementTypeIsGraphic COMMA_SOURCE_FILE ("array-controller.galgas", 299))) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)), var_s_11702, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 308)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("arrayController-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)), var_s_11710, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 308)) ;
   }
 }
 
@@ -6318,14 +6318,14 @@ C_PrologueEpilogue gMethod_tableViewControllerDeclarationAST_secondAnalysisPhase
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                Overriding extension getter '@tableViewControllerPropertyGeneration declarationCode'                 *
+//            Overriding extension getter '@tableViewControllerPropertyGeneration propertyDeclarationCode'             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_declarationCode (const cPtr_propertyGeneration * inObject,
-                                                                                            const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
+                                                                                                    const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_result ; // Returned variable
   const cPtr_tableViewControllerPropertyGeneration * object = (const cPtr_tableViewControllerPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_tableViewControllerPropertyGeneration) ;
@@ -6342,14 +6342,14 @@ static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_decla
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-static void defineExtensionGetter_tableViewControllerPropertyGeneration_declarationCode (void) {
-  enterExtensionGetter_declarationCode (kTypeDescriptor_GALGAS_tableViewControllerPropertyGeneration.mSlotID,
-                                        extensionGetter_tableViewControllerPropertyGeneration_declarationCode) ;
+static void defineExtensionGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode (void) {
+  enterExtensionGetter_propertyDeclarationCode (kTypeDescriptor_GALGAS_tableViewControllerPropertyGeneration.mSlotID,
+                                                extensionGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-C_PrologueEpilogue gGetter_tableViewControllerPropertyGeneration_declarationCode (defineExtensionGetter_tableViewControllerPropertyGeneration_declarationCode, NULL) ;
+C_PrologueEpilogue gGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode (defineExtensionGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode, NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *

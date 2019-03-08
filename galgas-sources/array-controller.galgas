@@ -223,7 +223,7 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration declarationCode ?let @stringset unused inOverriddenTransients -> @string {
+override getter @arrayControllerPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Array controller: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"

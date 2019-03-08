@@ -152,7 +152,7 @@ class @selectionControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override getter @selectionControllerPropertyGeneration declarationCode ?let @stringset unused inOverriddenTransients -> @string {
+override getter @selectionControllerPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Selection controller: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"

@@ -439,7 +439,7 @@ class @tableViewControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration declarationCode ?let @stringset unused inOverriddenTransients -> @string {
+override getter @tableViewControllerPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Array controller: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
