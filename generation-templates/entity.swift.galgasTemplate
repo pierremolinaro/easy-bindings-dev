@@ -824,9 +824,9 @@ final class ToOneRelationship_%!ENTITY_NAME%_%![mProperty mPropertyName]% : EBAb
         self.mValue?.%![mProperty mOppositeRelationshipName]%_property.add (unwrappedOwner)
 %      else
 %     //--- Reset old opposite relation ship
-        oldValue?.%![mProperty mOppositeRelationshipName]% = nil
+        oldValue?.%![mProperty mOppositeRelationshipName]%_property.setProp (nil)
       //--- Set new opposite relation ship
-        %![mProperty mPropertyName]%?.%![mProperty mOppositeRelationshipName]% = self
+        self.mValue?.%![mProperty mOppositeRelationshipName]%_property.setProp (unwrappedOwner)
 %      end
      end
 %      //--- Remove property observers of old object
