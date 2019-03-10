@@ -18,11 +18,11 @@ end
   //  Undo manager
   //····················································································································
 
-  var undoManager : EBUndoManager? = nil {
+  var ebUndoManager : EBUndoManager? = nil {
     didSet {
 %
 for () in ATOMIC_PROPERTY_LIST_FOR_GENERATION do
-  %      self.%![mProperty mPropertyName]%_property.undoManager = self.undoManager\n%
+  %      self.%![mProperty mPropertyName]%_property.ebUndoManager = self.ebUndoManager\n%
 end
 %    }
   }
@@ -332,10 +332,10 @@ class ReadWriteArrayOf_%!CLASS_NAME% : ReadOnlyArrayOf_%!CLASS_NAME% {
   //  Undo manager
   //····················································································································
 
-  var undoManager : EBUndoManager? = nil {
+  var ebUndoManager : EBUndoManager? = nil {
     didSet {
       for object in self.propval {
-        object.undoManager = self.undoManager
+        object.ebUndoManager = self.ebUndoManager
       }
     }
   }
@@ -395,7 +395,7 @@ class StoredArrayOf_%!CLASS_NAME% : ReadWriteArrayOf_%!CLASS_NAME% {
         let oldSet = mSet
         mSet = Set (mValue)
       //--- Register old value in undo manager
-        self.undoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
+        self.ebUndoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Removed object set
         let removedSet = oldSet.subtracting (mSet)
 %
@@ -403,7 +403,7 @@ for () in PROPERTY_LIST_FOR_GENERATION do
   %        removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
 end
 %        for object in removedSet {
-          object.undoManager = nil
+          object.ebUndoManager = nil
         }
       //--- Added object set
         let addedSet = mSet.subtracting (oldSet)
@@ -412,12 +412,12 @@ for () in PROPERTY_LIST_FOR_GENERATION do
   %        addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
 end
 %        for object in addedSet {
-          object.undoManager = self.undoManager
+          object.ebUndoManager = self.ebUndoManager
         }
       //--- Notify observers object count did change
         postEvent ()
       //--- Store in user defaults (undo manager is nil during setup)
-        if self.undoManager != nil {
+        if self.ebUndoManager != nil {
           let ud = UserDefaults.standard
           var array = [NSDictionary] ()
           for object in mValue {

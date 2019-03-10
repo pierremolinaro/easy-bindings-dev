@@ -218,8 +218,8 @@ end
   //    Undo manager
   //····················································································································
 
-  var undoManager : EBUndoManager? {
-    return self.mModel?.undoManager
+  var ebUndoManager : EBUndoManager? {
+    return self.mModel?.ebUndoManager
   }
 
   //····················································································································
@@ -434,7 +434,7 @@ case entityArray :
       case .empty, .multiple :
         break
       case .single (let v) :
-        let newObject = %!ELEMENT_TYPE_NAME% (self.undoManager)
+        let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
         var array = v
         array.append (newObject)
       //--- New object is the selection
@@ -633,7 +633,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
        let Y = dataDictionary ["Y"] as? Int {
       var newObjects = [%!ELEMENT_TYPE_NAME%] ()
       for dictionary in array {
-        if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
+        if let object = makeManagedObjectFromDictionary (self.ebUndoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
           object.operationAfterPasting ()
           object.translate (xBy: X, yBy: Y)
           newObjects.append (object)

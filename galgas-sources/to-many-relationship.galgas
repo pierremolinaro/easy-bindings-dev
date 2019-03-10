@@ -176,12 +176,12 @@ override getter @toManyPropertyGeneration configurationCode -> @string {
   switch mOption
   case none :
     result  = "  //--- To many property: " + mPropertyName + " (no option)\n"
-    result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
+    result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
   case hasDependance (@lstring unused masterPropertyName) :
     result = ""
   case hasOpposite (@lstring oppositeName) :
     result  = "  //--- To many property: " + mPropertyName + " (has opposite relationship)\n"
-    result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
+    result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
     result += "    self." + mPropertyName + "_property.setOppositeRelationship ="
             + " { [weak self] (_ inManagedObject :" + [mRelationshipType swiftTypeName] + "?) in\n"
     result += "      inManagedObject?." + oppositeName + "_property.setProp (self)\n"

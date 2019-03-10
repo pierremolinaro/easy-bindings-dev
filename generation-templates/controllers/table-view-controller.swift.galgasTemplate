@@ -119,8 +119,8 @@ end
   //    Undo manager
   //····················································································································
 
-  var undoManager : EBUndoManager? {
-    return self.mModel?.undoManager
+  var ebUndoManager : EBUndoManager? {
+    return self.mModel?.ebUndoManager
   }
 
   //····················································································································
@@ -499,7 +499,7 @@ case entityArray :
       case .empty, .multiple :
         break
       case .single (let v) :
-        let newObject = %!ELEMENT_TYPE_NAME% (self.undoManager)
+        let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
         var array = v
         array.append (newObject)
       //--- New object is the selection

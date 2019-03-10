@@ -198,7 +198,7 @@ override getter @atomicPropertyGeneration propertyDeclarationCode ?let @stringse
 
 override getter @atomicPropertyGeneration configurationCode -> @string {
   result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.undoManager = self.undoManager\n"
+  result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
   if mNeedsValidation then
     result += "    self." + mPropertyName + "_property.validationFunction = self.validate_" + mPropertyName + "\n"
   end
