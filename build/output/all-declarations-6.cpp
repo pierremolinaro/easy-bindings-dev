@@ -7011,94 +7011,94 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
       "    case .empty, .multiple :\n"
       "      return nil\n"
       "    case .single (let v) :\n"
-      "      let result : NSTableCellView = tableView.makeView (withIdentifier: (inTableColumn\?.identifier)!, owner:self) as! NSTableCellView\n"
-      "      if !reuseTableViewCells () {\n"
-      "        result.identifier = nil // So result cannot be reused, will be freed\n"
-      "      }\n"
-      "      let object = v.objectAtIndex (inRowIndex, file: #file, line: #line)\n"
-      "      " ;
-    GALGAS_uint index_17546_ (0) ;
+      "      if let tableColumnIdentifier = inTableColumn\?.identifier,\n"
+      "         let result = tableView.makeView (withIdentifier: tableColumnIdentifier, owner:self) as\? NSTableCellView {\n"
+      "        if !reuseTableViewCells () {\n"
+      "          result.identifier = nil // So result cannot be reused, will be freed\n"
+      "        }\n"
+      "        let object = v.objectAtIndex (inRowIndex, file: #file, line: #line)\n"
+      "        " ;
+    GALGAS_uint index_17600_ (0) ;
     if (in_BOUND_5F_COLUMNS.isValid ()) {
-      cEnumerator_tableViewControllerBoundColumnListForGeneration enumerator_17546 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
-      const bool nonEmpty_enumerator_17546 = enumerator_17546.hasCurrentObject () ;
-      while (enumerator_17546.hasCurrentObject ()) {
-        result << "if inTableColumn\?.identifier == NSUserInterfaceItemIdentifier (\"" ;
-        result << enumerator_17546.current_mColumnName (HERE).stringValue () ;
-        result << "\") {\n"
-          "        if let cell : " ;
-        result << enumerator_17546.current_mColumnOutletTypeName (HERE).stringValue () ;
-        result << "_TableViewCell = result as\? " ;
-        result << enumerator_17546.current_mColumnOutletTypeName (HERE).stringValue () ;
+      cEnumerator_tableViewControllerBoundColumnListForGeneration enumerator_17600 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
+      const bool nonEmpty_enumerator_17600 = enumerator_17600.hasCurrentObject () ;
+      while (enumerator_17600.hasCurrentObject ()) {
+        result << "if tableColumnIdentifier.rawValue == \"" ;
+        result << enumerator_17600.current_mColumnName (HERE).stringValue () ;
+        result << "\", let cell = result as\? " ;
+        result << enumerator_17600.current_mColumnOutletTypeName (HERE).stringValue () ;
         result << "_TableViewCell {\n"
           "          cell.mUnbindFunction = { [weak cell] in\n" ;
-        const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_17546.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_17600.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_5) {
           result << "            cell\?.mCellOutlet\?.target = nil\n"
             "            cell\?.mCellOutlet\?.action = nil\n" ;
         }else if (kBoolFalse == test_5) {
         }
-        GALGAS_uint index_18007_ (0) ;
-        if (enumerator_17546.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-          cEnumerator_regularBindingsGenerationList enumerator_18007 (enumerator_17546.current_mRegularBindingsGenerationList (HERE), kENUMERATION_UP) ;
-          while (enumerator_18007.hasCurrentObject ()) {
+        GALGAS_uint index_17973_ (0) ;
+        if (enumerator_17600.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+          cEnumerator_regularBindingsGenerationList enumerator_17973 (enumerator_17600.current_mRegularBindingsGenerationList (HERE), kENUMERATION_UP) ;
+          while (enumerator_17973.hasCurrentObject ()) {
             result << "            cell\?.mCellOutlet\?.unbind_" ;
-            result << enumerator_18007.current_mBindingName (HERE).stringValue () ;
+            result << enumerator_17973.current_mBindingName (HERE).stringValue () ;
             result << " ()\n" ;
-            index_18007_.increment () ;
-            enumerator_18007.gotoNextObject () ;
+            index_17973_.increment () ;
+            enumerator_17973.gotoNextObject () ;
           }
         }
         result << "          }\n"
           "          cell.mUnbindFunction\? ()\n" ;
-        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, enumerator_17546.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, enumerator_17600.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_6) {
           result << "          cell.mCellOutlet\?.target = object\n"
             "          cell.mCellOutlet\?.action = #selector (" ;
           result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
           result << "." ;
-          result << enumerator_17546.current_mRunAction (HERE).stringValue () ;
+          result << enumerator_17600.current_mRunAction (HERE).stringValue () ;
           result << "(_:))\n" ;
         }else if (kBoolFalse == test_6) {
         }
-        GALGAS_uint index_18376_ (0) ;
-        if (enumerator_17546.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-          cEnumerator_regularBindingsGenerationList enumerator_18376 (enumerator_17546.current_mRegularBindingsGenerationList (HERE), kENUMERATION_UP) ;
-          while (enumerator_18376.hasCurrentObject ()) {
+        GALGAS_uint index_18342_ (0) ;
+        if (enumerator_17600.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+          cEnumerator_regularBindingsGenerationList enumerator_18342 (enumerator_17600.current_mRegularBindingsGenerationList (HERE), kENUMERATION_UP) ;
+          while (enumerator_18342.hasCurrentObject ()) {
             result << "          cell.mCellOutlet\?.bind_" ;
-            result << enumerator_18376.current_mBindingName (HERE).stringValue () ;
+            result << enumerator_18342.current_mBindingName (HERE).stringValue () ;
             result << " (" ;
-            GALGAS_uint index_18469_ (0) ;
-            if (enumerator_18376.current_mBoundObjectList (HERE).isValid ()) {
-              cEnumerator_boundObjectList enumerator_18469 (enumerator_18376.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
-              while (enumerator_18469.hasCurrentObject ()) {
-                result << enumerator_18469.current_mBoundObjectString (HERE).stringValue () ;
+            GALGAS_uint index_18435_ (0) ;
+            if (enumerator_18342.current_mBoundObjectList (HERE).isValid ()) {
+              cEnumerator_boundObjectList enumerator_18435 (enumerator_18342.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
+              while (enumerator_18435.hasCurrentObject ()) {
+                result << enumerator_18435.current_mBoundObjectString (HERE).stringValue () ;
                 result << ", " ;
-                index_18469_.increment () ;
-                enumerator_18469.gotoNextObject () ;
+                index_18435_.increment () ;
+                enumerator_18435.gotoNextObject () ;
               }
             }
             result << "file: #file, line: #line" ;
-            result << enumerator_18376.current_mBindingOptionsString (HERE).stringValue () ;
+            result << enumerator_18342.current_mBindingOptionsString (HERE).stringValue () ;
             result << ")\n" ;
-            index_18376_.increment () ;
-            enumerator_18376.gotoNextObject () ;
+            index_18342_.increment () ;
+            enumerator_18342.gotoNextObject () ;
           }
         }
-        result << "        }\n"
-          "      " ;
-        if (enumerator_17546.hasNextObject ()) {
+        result << "        " ;
+        if (enumerator_17600.hasNextObject ()) {
           result << "}else " ;
         }
-        index_17546_.increment () ;
-        enumerator_17546.gotoNextObject () ;
+        index_17600_.increment () ;
+        enumerator_17600.gotoNextObject () ;
       }
-      if (nonEmpty_enumerator_17546) {
+      if (nonEmpty_enumerator_17600) {
         result << "}else{\n"
-          "        NSLog (\"Unknown column '\\(String (describing: inTableColumn\?.identifier))'\")\n"
-          "      }\n" ;
+          "          NSLog (\"Unknown column '\\(String (describing: inTableColumn\?.identifier))'\")\n"
+          "        }\n" ;
       }
     }
-    result << "      return result\n"
+    result << "        return result\n"
+      "      }else{\n"
+      "        return nil\n"
+      "      } \n"
       "    } \n" ;
   }
   result << "  }\n"
@@ -7260,7 +7260,7 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "//    " ;
-  result << GALGAS_string ("SelectedSet_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("table-view-controller.swift.galgasTemplate", 599)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.swift.galgasTemplate", 599)).add_operation (in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("table-view-controller.swift.galgasTemplate", 599)).stringValue () ;
+  result << GALGAS_string ("SelectedSet_").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("table-view-controller.swift.galgasTemplate", 601)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.swift.galgasTemplate", 601)).add_operation (in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("table-view-controller.swift.galgasTemplate", 601)).stringValue () ;
   result << "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n"

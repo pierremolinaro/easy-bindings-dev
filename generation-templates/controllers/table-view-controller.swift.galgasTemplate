@@ -418,16 +418,16 @@ else
     case .empty, .multiple :
       return nil
     case .single (let v) :
-      let result : NSTableCellView = tableView.makeView (withIdentifier: (inTableColumn?.identifier)!, owner:self) as! NSTableCellView
-      if !reuseTableViewCells () {
-        result.identifier = nil // So result cannot be reused, will be freed
-      }
-      let object = v.objectAtIndex (inRowIndex, file: #file, line: #line)
-      %
+      if let tableColumnIdentifier = inTableColumn?.identifier,
+         let result = tableView.makeView (withIdentifier: tableColumnIdentifier, owner:self) as? NSTableCellView {
+        if !reuseTableViewCells () {
+          result.identifier = nil // So result cannot be reused, will be freed
+        }
+        let object = v.objectAtIndex (inRowIndex, file: #file, line: #line)
+        %
 for () in BOUND_COLUMNS
   do
-    %if inTableColumn?.identifier == NSUserInterfaceItemIdentifier ("%!mColumnName%") {\n%
-    %        if let cell : %!mColumnOutletTypeName%_TableViewCell = result as? %!mColumnOutletTypeName%_TableViewCell {\n%
+    %if tableColumnIdentifier.rawValue == "%!mColumnName%", let cell = result as? %!mColumnOutletTypeName%_TableViewCell {\n%
     %          cell.mUnbindFunction = { [weak cell] in\n%
     if mRunAction != "" then
     %            cell?.mCellOutlet?.target = nil\n%
@@ -449,16 +449,18 @@ for () in BOUND_COLUMNS
       end
       %file: #file, line: #line%!mBindingOptionsString%)\n%
     end
-    %        }\n%
-    %      %
+    %        %
   between
     %}else %
   after
    %}else{\n%
-   %        NSLog ("Unknown column '\(String (describing: inTableColumn?.identifier))'")\n%
-   %      }\n% 
+   %          NSLog ("Unknown column '\(String (describing: inTableColumn?.identifier))'")\n%
+   %        }\n% 
 end
-%      return result
+%        return result
+      }else{
+        return nil
+      } 
     } 
 %
 end
