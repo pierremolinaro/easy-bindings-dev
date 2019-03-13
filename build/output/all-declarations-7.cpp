@@ -3522,9 +3522,14 @@ const char * gWrapperFileContent_60_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  //  Init\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  init (_ inPaths: [NSBezierPath], _ inColor: NSColor) {\n"
-  "    mFilledPaths = inPaths\n"
+  "  init (_ inPaths : [NSBezierPath], _ inColor : NSColor) {\n"
   "    mColor = inColor\n"
+  "    mFilledPaths = []\n"
+  "    for path in inPaths {\n"
+  "      if !path.isEmpty {\n"
+  "        self.mFilledPaths.append (path)\n"
+  "      }\n"
+  "    }\n"
   "    super.init ()\n"
   "  }\n"
   "\n"
@@ -3651,7 +3656,7 @@ const cRegularFileWrapper gWrapperFile_60_swift_5F_sources (
   "EBFilledBezierPathShape.swift",
   "swift",
   true, // Text file
-  5772, // Text length
+  5874, // Text length
   gWrapperFileContent_60_swift_5F_sources
 ) ;
 
@@ -4110,36 +4115,39 @@ const char * gWrapperFileContent_45_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  //  Init\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  init (_ inString: String,\n"
+  "  init (_ inString : String,\n"
   "        _ inOrigin : CGPoint,\n"
   "        _ inFont : NSFont,\n"
   "        _ inHorizontalAlignment : EBTextHorizontalAlignment,\n"
   "        _ inVerticalAlignment : EBTextVerticalAlignment,\n"
   "        _ inIndex : Int) {\n"
-  "    let textAttributes : [NSAttributedString.Key : Any] = [\n"
-  "      NSAttributedString.Key.font : inFont\n"
-  "    ]\n"
-  "    let size = inString.size (withAttributes: textAttributes)\n"
-  "    var p = inOrigin\n"
-  "    switch inHorizontalAlignment {\n"
-  "    case .left :\n"
-  "      ()\n"
-  "    case .center :\n"
-  "      p.x -= size.width / 2.0\n"
-  "    case .right :\n"
-  "      p.x -= size.width\n"
-  "    }\n"
-  "    switch inVerticalAlignment {\n"
-  "    case .above :\n"
-  "      ()\n"
-  "    case .center :\n"
-  "      p.y -= size.height / 2.0\n"
-  "    case .below :\n"
-  "      p.y -= size.height\n"
-  "    }\n"
-  "  //--- Bezier path\n"
-  "    mFilledBezierPath = inString.bezierPath (at: p, withAttributes: textAttributes)\n"
   "    mIndex = inIndex\n"
+  "    if inString == \"\" {\n"
+  "      mFilledBezierPath = NSBezierPath ()\n"
+  "    }else{\n"
+  "      let textAttributes : [NSAttributedString.Key : Any] = [\n"
+  "        NSAttributedString.Key.font : inFont\n"
+  "      ]\n"
+  "      let size = inString.size (withAttributes: textAttributes)\n"
+  "      var p = inOrigin\n"
+  "      switch inHorizontalAlignment {\n"
+  "      case .left :\n"
+  "        ()\n"
+  "      case .center :\n"
+  "        p.x -= size.width / 2.0\n"
+  "      case .right :\n"
+  "        p.x -= size.width\n"
+  "      }\n"
+  "      switch inVerticalAlignment {\n"
+  "      case .above :\n"
+  "        ()\n"
+  "      case .center :\n"
+  "        p.y -= size.height / 2.0\n"
+  "      case .below :\n"
+  "        p.y -= size.height\n"
+  "      }\n"
+  "      mFilledBezierPath = inString.bezierPath (at: p, withAttributes: textAttributes)\n"
+  "    }\n"
   "  //---\n"
   "    super.init ()\n"
   "  }\n"
@@ -4270,7 +4278,7 @@ const cRegularFileWrapper gWrapperFile_45_swift_5F_sources (
   "EBKnobTextShape.swift",
   "swift",
   true, // Text file
-  6810, // Text length
+  6918, // Text length
   gWrapperFileContent_45_swift_5F_sources
 ) ;
 
@@ -5973,8 +5981,10 @@ const char * gWrapperFileContent_26_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    mColor = inColor\n"
   "    super.init ()\n"
   "    for path in inPaths {\n"
-  "      let cgPath = path.pathByStroking\n"
-  "      self.mFilledPaths.append (cgPath.bezierPath)\n"
+  "      if !path.isEmpty {\n"
+  "        let cgPath = path.pathByStroking\n"
+  "        self.mFilledPaths.append (cgPath.bezierPath)\n"
+  "      }\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -6105,7 +6115,7 @@ const cRegularFileWrapper gWrapperFile_26_swift_5F_sources (
   "EBStrokeBezierPathShape.swift",
   "swift",
   true, // Text file
-  5972, // Text length
+  6009, // Text length
   gWrapperFileContent_26_swift_5F_sources
 ) ;
 
@@ -6153,37 +6163,41 @@ const char * gWrapperFileContent_59_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "        _ inTextAttributes : [NSAttributedString.Key : Any],\n"
   "        _ inHorizontalAlignment : EBTextHorizontalAlignment,\n"
   "        _ inVerticalAlignment : EBTextVerticalAlignment) {\n"
-  "    let size = inString.size (withAttributes: inTextAttributes)\n"
-  "    var p = inOrigin\n"
-  "    switch inHorizontalAlignment {\n"
-  "    case .left :\n"
-  "      ()\n"
-  "    case .center :\n"
-  "      p.x -= size.width / 2.0\n"
-  "    case .right :\n"
-  "      p.x -= size.width\n"
-  "    }\n"
-  "    switch inVerticalAlignment {\n"
-  "    case .above :\n"
-  "      ()\n"
-  "    case .center :\n"
-  "      p.y -= size.height / 2.0\n"
-  "    case .below :\n"
-  "      p.y -= size.height\n"
-  "    }\n"
-  "  //--- Bezier path\n"
-  "    mFilledBezierPath = inString.bezierPath (at: p, withAttributes: inTextAttributes)\n"
   "  //--- Forecolor\n"
   "    if let c = inTextAttributes [NSAttributedString.Key.foregroundColor] as\? NSColor {\n"
   "      mForeColor = c\n"
   "    }else{\n"
-  "      mForeColor = NSColor.black\n"
+  "      mForeColor = .black\n"
   "    }\n"
   "  //--- Back Color\n"
   "    if let c = inTextAttributes [NSAttributedString.Key.backgroundColor] as\? NSColor {\n"
   "      mBackColor = c\n"
   "    }else{\n"
   "      mBackColor = nil\n"
+  "    }\n"
+  "  //--- Transform text into filled bezier path\n"
+  "    if inString == \"\" {\n"
+  "      mFilledBezierPath = NSBezierPath ()\n"
+  "    }else{\n"
+  "      let size = inString.size (withAttributes: inTextAttributes)\n"
+  "      var p = inOrigin\n"
+  "      switch inHorizontalAlignment {\n"
+  "      case .left :\n"
+  "        ()\n"
+  "      case .center :\n"
+  "        p.x -= size.width / 2.0\n"
+  "      case .right :\n"
+  "        p.x -= size.width\n"
+  "      }\n"
+  "      switch inVerticalAlignment {\n"
+  "      case .above :\n"
+  "        ()\n"
+  "      case .center :\n"
+  "        p.y -= size.height / 2.0\n"
+  "      case .below :\n"
+  "        p.y -= size.height\n"
+  "      }\n"
+  "      mFilledBezierPath = inString.bezierPath (at: p, withAttributes: inTextAttributes)\n"
   "    }\n"
   "    super.init ()\n"
   "  }\n"
@@ -6300,7 +6314,7 @@ const cRegularFileWrapper gWrapperFile_59_swift_5F_sources (
   "EBTextShape.swift",
   "swift",
   true, // Text file
-  7162, // Text length
+  7303, // Text length
   gWrapperFileContent_59_swift_5F_sources
 ) ;
 
