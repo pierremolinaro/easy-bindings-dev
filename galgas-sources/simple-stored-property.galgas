@@ -200,7 +200,10 @@ override getter @atomicPropertyGeneration configurationCode -> @string {
   result  = "  //--- Atomic property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
   if mNeedsValidation then
-    result += "    self." + mPropertyName + "_property.validationFunction = self.validate_" + mPropertyName + "\n"
+    result += "//    self." + mPropertyName + "_property.validationFunction = self.validate_" + mPropertyName + "\n"
+    result += "    self." + mPropertyName + "_property.validationFunction = { [weak self] in\n"
+              "      return self?.validate_" + mPropertyName + " (currentValue: $0, proposedValue: $1) ?? .rejectWithBeep\n"
+              "    }\n"
   end
 }
 

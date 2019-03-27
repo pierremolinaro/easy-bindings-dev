@@ -83,7 +83,7 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %    }\n%
   end
 end
-%  //--- register properties for handling signature
+%  //--- Register properties for handling signature
 %
 for () in SIGNATURE_SET do
   %    self.%!key%_property.setSignatureObserver (observer: self)\n%
@@ -102,6 +102,22 @@ end
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty terminationCode]
+end
+for () in TO_MANY_RELATIONSHIP_LIST do
+  switch [mProperty mOption]
+  case none :
+
+  case hasDependance (@lstring masterPropertyName) :
+    %    self.%![masterPropertyName string]%_property.removeEBObserver (self.%![mProperty mPropertyName]%_property)\n%
+    %    self.%![mProperty mPropertyName]%_property.mReadModelFunction = nil\n%
+  case hasOpposite (@lstring oppositeName) :
+    % //   self.%![mProperty mPropertyName]%_property.setOppositeRelationship = nil\n%
+  end
+end
+%  //--- Unregister properties for handling signature
+%
+for () in SIGNATURE_SET do
+  %    self.%!key%_property.setSignatureObserver (observer: nil)\n%
 end
 %  }
 
@@ -719,7 +735,7 @@ end
   //   signature
   //····················································································································
 
-  private weak var mSignatureObserver : EBSignatureObserverProtocol? // SOULD BE WEAK
+  private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil // SOULD BE WEAK
 
   //····················································································································
 
@@ -730,7 +746,7 @@ end
   final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
     self.mSignatureObserver = observer
     for object in self.mValue {
-      object.setSignatureObserver (observer: self)
+      object.setSignatureObserver (observer: observer)
     }
   }
 

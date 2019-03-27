@@ -212,7 +212,7 @@ override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
   else
     result  = "  //--- To many property: " + mPropertyName + "\n"
     result += "    self.store (\n"
-    result += "      managedObjectArray: " + mPropertyName + "_property.propval as NSArray,\n"
+    result += "      managedObjectArray: self." + mPropertyName + "_property.propval,\n"
     result += "      relationshipName: \"" + mPropertyName + "\",\n"
     result += "      intoDictionary: ioDictionary\n"
     result += "    )\n"
