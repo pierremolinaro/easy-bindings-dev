@@ -294,6 +294,9 @@ class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
 
   override func removeFromSuperview () {
    // NSLog ("\(#function)")
+    if !Thread.isMainThread {
+      NSLog ("removeFromSuperview not in main thread")
+    }
     self.mUnbindFunction? ()
     super.removeFromSuperview ()
   }
@@ -302,6 +305,9 @@ class EBTableCellView : NSTableCellView, EBUserClassNameProtocol {
 
   override func removeFromSuperviewWithoutNeedingDisplay () {
    // NSLog ("\(#function)")
+    if !Thread.isMainThread {
+      NSLog ("removeFromSuperviewWithoutNeedingDisplay not in main thread")
+    }
     self.mUnbindFunction? ()
     super.removeFromSuperviewWithoutNeedingDisplay ()
   }
