@@ -25,15 +25,15 @@ import Cocoa
   //    Is Checked binding
   //····················································································································
 
-  private var mCheckedController : Controller_EBCheckedMenuItem_check?
+  private var mCheckedController : Controller_EBCheckedMenuItem_check? = nil
 
-  func bind_checked (_ checked:EBReadWriteProperty_Bool, file:String, line:Int) {
-    mCheckedController = Controller_EBCheckedMenuItem_check (checked:checked, outlet:self, file:file, line:line)
+  func bind_checked (_ checked : EBReadWriteProperty_Bool, file : String, line : Int) {
+    self.mCheckedController = Controller_EBCheckedMenuItem_check (checked:checked, outlet:self)
   }
 
   func unbind_checked () {
-    mCheckedController?.unregister ()
-    mCheckedController = nil
+    self.mCheckedController?.unregister ()
+    self.mCheckedController = nil
   }
 
   //····················································································································
@@ -51,12 +51,12 @@ final class Controller_EBCheckedMenuItem_check : EBSimpleController {
 
   //····················································································································
 
-  init (checked : EBReadWriteProperty_Bool, outlet : EBCheckedMenuItem, file : String, line : Int) {
+  init (checked : EBReadWriteProperty_Bool, outlet : EBCheckedMenuItem) {
     mIsChecked = checked
     mOutlet = outlet
     super.init (observedObjects:[checked], outlet:outlet)
-    mOutlet.target = self
-    mOutlet.action = #selector (Controller_EBCheckedMenuItem_check.menuItemAction(_:))
+    self.mOutlet.target = self
+    self.mOutlet.action = #selector (Controller_EBCheckedMenuItem_check.menuItemAction(_:))
     self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
@@ -64,31 +64,31 @@ final class Controller_EBCheckedMenuItem_check : EBSimpleController {
   
   override func unregister () {
     super.unregister ()
-    mOutlet.target = nil
-    mOutlet.action = nil
+    self.mOutlet.target = nil
+    self.mOutlet.action = nil
   }
 
   //····················································································································
 
   private func updateOutlet () {
-    switch mIsChecked.prop {
+    switch self.mIsChecked.prop {
     case .empty :
-      mOutlet.isEnabled = false
-      mOutlet.state = sw34_OffState
+      self.mOutlet.isEnabled = false
+      self.mOutlet.state = sw34_OffState
     case .single (let v) :
-      mOutlet.isEnabled = true
-      mOutlet.state = v ? sw34_OnState : sw34_OffState
+      self.mOutlet.isEnabled = true
+      self.mOutlet.state = v ? sw34_OnState : sw34_OffState
     case .multiple :
-      mOutlet.isEnabled = false
-      mOutlet.state = sw34_OffState
+      self.mOutlet.isEnabled = false
+      self.mOutlet.state = sw34_OffState
     }
   }
 
   //····················································································································
 
   @objc func menuItemAction (_ sender : AnyObject?) {
-    mOutlet.state = (mOutlet.state == sw34_OffState) ? sw34_OnState : sw34_OffState
-    _ = mIsChecked.validateAndSetProp (mOutlet.state == sw34_OnState, windowForSheet:nil)
+    self.mOutlet.state = (self.mOutlet.state == sw34_OffState) ? sw34_OnState : sw34_OffState
+    _ = self.mIsChecked.validateAndSetProp (self.mOutlet.state == sw34_OnState, windowForSheet: nil)
   }
 
   //····················································································································

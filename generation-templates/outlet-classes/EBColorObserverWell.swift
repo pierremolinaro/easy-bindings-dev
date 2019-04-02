@@ -36,15 +36,15 @@ import Cocoa
   //  color binding
   //····················································································································
 
-  private var mValueController : Controller_EBColorObserverWell_color?
+  private var mValueController : Controller_EBColorObserverWell_color? = nil
 
-  func bind_colorObserver (_ object:EBReadOnlyProperty_NSColor, file:String, line:Int) {
-    mValueController = Controller_EBColorObserverWell_color (object:object, outlet:self, file:file, line:line)
+  func bind_colorObserver (_ object : EBReadOnlyProperty_NSColor, file : String, line : Int) {
+    self.mValueController = Controller_EBColorObserverWell_color (object:object, outlet:self)
   }
 
   func unbind_colorObserver () {
-    mValueController?.unregister ()
-    mValueController = nil
+    self.mValueController?.unregister ()
+    self.mValueController = nil
   }
 
 }
@@ -53,7 +53,6 @@ import Cocoa
 //   Controller_EBColorObserverWell_color
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBColorObserverWell_color)
 final class Controller_EBColorObserverWell_color : EBSimpleController {
 
   private let mObject : EBReadOnlyProperty_NSColor
@@ -61,21 +60,21 @@ final class Controller_EBColorObserverWell_color : EBSimpleController {
 
   //····················································································································
 
-  init (object : EBReadOnlyProperty_NSColor, outlet : EBColorObserverWell, file : String, line : Int) {
+  init (object : EBReadOnlyProperty_NSColor, outlet : EBColorObserverWell) {
     mObject = object
     mOutlet = outlet
-    super.init (observedObjects:[object], outlet:outlet)
+    super.init (observedObjects: [object], outlet: outlet)
     self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
   //····················································································································
 
   private func updateOutlet () {
-    switch mObject.prop {
+    switch self.mObject.prop {
     case .empty, .multiple :
-      mOutlet.color = NSColor.white
+      self.mOutlet.color = NSColor.white
     case .single (let v) :
-      mOutlet.color = v
+      self.mOutlet.color = v
     }
   }
 

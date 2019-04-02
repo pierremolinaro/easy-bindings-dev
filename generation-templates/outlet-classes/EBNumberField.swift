@@ -41,13 +41,13 @@ import Cocoa
   //····················································································································
 
   override func controlTextDidChange (inNotification : Notification) {
-    if mSendContinously {
+    if self.mSendContinously {
       if let inputString = currentEditor()?.string {
         // NSLog ("inputString %@", inputString)
         let numberFormatter = self.formatter as! NSNumberFormatter
         let number = numberFormatter.numberFromString (inputString)
         if number == nil {
-          control (
+          self.control (
             self,
             didFailToFormatString:inputString, errorDescription:String (format:"The value “%@” is invalid.", inputString)
           )

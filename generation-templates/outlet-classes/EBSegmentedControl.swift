@@ -128,7 +128,6 @@ import Cocoa
 //   Controller_EBSegmentedControl_selectedIndex
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBSegmentedControl_selectedIndex)
 final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
 
   private let mObject : EBReadWriteProperty_Int
@@ -146,21 +145,21 @@ final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
   //····················································································································
 
   private func updateOutlet () {
-    switch mObject.prop {
+    switch self.mObject.prop {
     case .empty :
-      mOutlet.enableFromValueBinding (false)
+      self.mOutlet.enableFromValueBinding (false)
     case .single (let v) :
-      mOutlet.enableFromValueBinding (true)
-      mOutlet.selectedSegment = v
+      self.mOutlet.enableFromValueBinding (true)
+      self.mOutlet.selectedSegment = v
     case .multiple :
-      mOutlet.enableFromValueBinding (false)
+      self.mOutlet.enableFromValueBinding (false)
     }
   }
 
   //····················································································································
 
   func updateModel (sender : EBSegmentedControl) {
-    mObject.validateAndSetProp (mOutlet.selectedSegment, windowForSheet:sender.window)
+    self.mObject.validateAndSetProp (self.mOutlet.selectedSegment, windowForSheet: sender.window)
   }
 
   //····················································································································

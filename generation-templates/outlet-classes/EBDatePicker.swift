@@ -32,15 +32,15 @@ import Cocoa
   //  date binding
   //····················································································································
 
-  private var mValueController : Controller_EBDatePicker_date?
+  private var mValueController : Controller_EBDatePicker_date? = nil
 
   func bind_date (_ object:EBReadWriteProperty_Date, file:String, line:Int) {
-    mValueController = Controller_EBDatePicker_date (object:object, outlet:self, file:file, line:line)
+    self.mValueController = Controller_EBDatePicker_date (object:object, outlet:self, file:file, line:line)
   }
 
   func unbind_date () {
-    mValueController?.unregister ()
-    mValueController = nil
+    self.mValueController?.unregister ()
+    self.mValueController = nil
   }
 }
 
@@ -48,7 +48,6 @@ import Cocoa
 //   Controller_EBDatePicker_date
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBDatePicker_date)
 final class Controller_EBDatePicker_date : EBSimpleController {
 
   private let mObject : EBReadWriteProperty_Date
@@ -57,11 +56,11 @@ final class Controller_EBDatePicker_date : EBSimpleController {
   //····················································································································
 
   init (object : EBReadWriteProperty_Date, outlet : EBDatePicker, file : String, line : Int) {
-    mObject = object
-    mOutlet = outlet
+    self.mObject = object
+    self.mOutlet = outlet
     super.init (observedObjects:[object], outlet:outlet)
-    mOutlet.target = self
-    mOutlet.action = #selector(Controller_EBDatePicker_date.action(_:))
+    self.mOutlet.target = self
+    self.mOutlet.action = #selector(Controller_EBDatePicker_date.action(_:))
     self.mEventCallBack = { [weak self] in self?.updateOutlet () }
   }
 
@@ -69,30 +68,30 @@ final class Controller_EBDatePicker_date : EBSimpleController {
 
   override func unregister () {
     super.unregister ()
-    mOutlet.target = nil
-    mOutlet.action = nil
+    self.mOutlet.target = nil
+    self.mOutlet.action = nil
   }
 
   //····················································································································
 
   private func updateOutlet () {
-    switch mObject.prop {
+    switch self.mObject.prop {
     case .empty :
-      mOutlet.enableFromValueBinding (false)
-      mOutlet.stringValue = "—"
+      self.mOutlet.enableFromValueBinding (false)
+      self.mOutlet.stringValue = "—"
     case .single (let v) :
-      mOutlet.enableFromValueBinding (true)
-      mOutlet.dateValue = v as Date
+      self.mOutlet.enableFromValueBinding (true)
+      self.mOutlet.dateValue = v as Date
     case .multiple :
-      mOutlet.enableFromValueBinding (false)
-      mOutlet.stringValue = "—"
+      self.mOutlet.enableFromValueBinding (false)
+      self.mOutlet.stringValue = "—"
     }
   }
 
   //····················································································································
 
   @objc func action (_ sender : Any) {
-    mObject.setProp (mOutlet.dateValue)
+    self.mObject.setProp (self.mOutlet.dateValue)
   }
 
 }

@@ -58,7 +58,6 @@ import Cocoa
 //   Controller_EBNumberField_readOnlyValue
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBNumberField_readOnlyValue)
 final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
 
   private let mObject : EBReadOnlyProperty_Int
@@ -69,10 +68,10 @@ final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
   init (object : EBReadOnlyProperty_Int, outlet : EBNumberFieldObserver, file : String, line : Int) {
     mObject = object
     mOutlet = outlet
-    super.init (observedObjects:[object], outlet:outlet)
-    if mOutlet.formatter == nil {
+    super.init (observedObjects: [object], outlet: outlet)
+    if self.mOutlet.formatter == nil {
       presentErrorWindow (file: file, line, "the outlet has no formatter")
-    }else if !(mOutlet.formatter is NSNumberFormatter) {
+    }else if !(self.mOutlet.formatter is NSNumberFormatter) {
       presentErrorWindow (file: file, line, "the formatter should be an NSNumberFormatter")
     }
   }
@@ -80,16 +79,16 @@ final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
   //····················································································································
 
   override func sendUpdateEvent () {
-    switch mObject.prop {
+    switch self.mObject.prop {
     case .empty :
-      mOutlet.enableFromValueBinding (false)
-      mOutlet.stringValue = "—"
+      self.mOutlet.enableFromValueBinding (false)
+      self.mOutlet.stringValue = "—"
     case .single (let v):
-      mOutlet.enableFromValueBinding (true)
-      mOutlet.integerValue = v
+      self.mOutlet.enableFromValueBinding (true)
+      self.mOutlet.integerValue = v
     case .multiple :
-      mOutlet.enableFromValueBinding (false)
-      mOutlet.stringValue = "—"
+      self.mOutlet.enableFromValueBinding (false)
+      self.mOutlet.stringValue = "—"
     }
   }
 

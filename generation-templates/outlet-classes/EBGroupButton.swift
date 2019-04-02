@@ -86,7 +86,7 @@ import Cocoa
   //  color binding
   //····················································································································
 
-  private var mValueController : Controller_EBGroupButton_selectedIndex?
+  private var mValueController : Controller_EBGroupButton_selectedIndex? = nil
 
   func bind_selectedIndex (_ object:EBReadWriteProperty_Int, file:String, line:Int) {
   //--- Check tags
@@ -112,12 +112,12 @@ import Cocoa
       }
     }
   //--- Bind
-    mValueController = Controller_EBGroupButton_selectedIndex (object:object, outlet:self, file:file, line:line)
+    self.mValueController = Controller_EBGroupButton_selectedIndex (object:object, outlet:self, file:file, line:line)
   }
 
   func unbind_selectedIndex () {
-    mValueController?.unregister ()
-    mValueController = nil
+    self.mValueController?.unregister ()
+    self.mValueController = nil
   }
 
 }
@@ -126,8 +126,7 @@ import Cocoa
 //   Controller_EBGroupButton_selectedIndex
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(Controller_EBGroupButton_selectedIndex)
-final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
+-final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
 
   private let mObject : EBReadWriteProperty_Int
   private let mOutlet : EBGroupButton
@@ -144,23 +143,23 @@ final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
   //····················································································································
 
   private func updateOutlet () {
-    switch mObject.prop {
+    switch self.mObject.prop {
     case .empty :
-      mOutlet.enableFromValueBinding (false)
+      self.mOutlet.enableFromValueBinding (false)
     case .single (let v) :
-      mOutlet.enableFromValueBinding (true)
-      if v == mOutlet.tag {
-        mOutlet.selectViewFromSelectedSegmentIndex ()
+      self.mOutlet.enableFromValueBinding (true)
+      if v == self.mOutlet.tag {
+        self.mOutlet.selectViewFromSelectedSegmentIndex ()
       }
     case .multiple :
-      mOutlet.enableFromValueBinding (false)
+      self.mOutlet.enableFromValueBinding (false)
     }
   }
 
   //····················································································································
 
   func updateModel (sender : EBGroupButton) {
-    mObject.validateAndSetProp (mOutlet.tag, windowForSheet:sender.window)
+    self.mObject.validateAndSetProp (self.mOutlet.tag, windowForSheet: sender.window)
   }
 
   //····················································································································
