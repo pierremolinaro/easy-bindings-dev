@@ -88,8 +88,25 @@ end
   //    rootObject
   //····················································································································
 
-  var rootObject : %!ROOT_ENTITY_NAME% { return mRootObject as! %!ROOT_ENTITY_NAME% }
+  var rootObject : %!ROOT_ENTITY_NAME% { return self.mRootObject as! %!ROOT_ENTITY_NAME% }
 
+  //····················································································································
+  //    check outlet connections
+  //····················································································································
+
+  private func checkOutletConnections () {
+%for () in OUTLET_GENERATION_MAP do
+%    if let outlet : NSObject = self.%!lkey.string% {
+      if !(outlet is %!mOutletTypeName%) {
+        presentErrorWindow (#file, #line, "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'")
+      }
+    }else{
+      presentErrorWindow (#file, #line, "the '%!lkey.string%' outlet is nil")
+    }
+%
+end% 
+  }
+  
   //····················································································································
   //    windowControllerDidLoadNib
   //····················································································································
@@ -97,24 +114,8 @@ end
   override func windowControllerDidLoadNib (_ aController: NSWindowController) {
     super.windowControllerDidLoadNib (aController)
   //--------------------------- Outlet checking
-%for () in OUTLET_GENERATION_MAP do
-%    if let outlet : Any = self.%!lkey.string% {
-      if !(outlet is %!mOutletTypeName%) {
-        presentErrorWindow (
-          file: #file,
-          line: #line,
-          errorMessage: "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'"
-        )
-      }
-    }else{
-      presentErrorWindow (
-        file: #file,
-        line: #line,
-        errorMessage: "the '%!lkey.string%' outlet is nil"
-      )
-    }
+    self.checkOutletConnections ()
 %
-end
 for () in DOCUMENT_PROPERTY_LIST do
   ![mProperty configurationCode]
 end

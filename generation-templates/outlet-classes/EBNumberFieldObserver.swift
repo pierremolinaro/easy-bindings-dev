@@ -44,13 +44,13 @@ import Cocoa
 
   private var mValueController : Controller_EBNumberField_readOnlyValue?
 
-  func bind_valueObserver (_ object:EBReadOnlyProperty_Int, file:String, line:Int) {
-    mValueController = Controller_EBNumberField_readOnlyValue (object:object, outlet:self, file:file, line:line)
+  func bind_valueObserver (_ object : EBReadOnlyProperty_Int, file : String, line : Int) {
+    self.mValueController = Controller_EBNumberField_readOnlyValue (object: object, outlet: self, file: file, line: line)
   }
 
   func unbind_valueObserver () {
-    mValueController?.unregister ()
-    mValueController = nil
+    self.mValueController?.unregister ()
+    self.mValueController = nil
   }
 }
 
@@ -70,9 +70,9 @@ final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
     mOutlet = outlet
     super.init (observedObjects: [object], outlet: outlet)
     if self.mOutlet.formatter == nil {
-      presentErrorWindow (file: file, line, "the outlet has no formatter")
+      presentErrorWindow (file, line, "the outlet has no formatter")
     }else if !(self.mOutlet.formatter is NSNumberFormatter) {
-      presentErrorWindow (file: file, line, "the formatter should be an NSNumberFormatter")
+      presentErrorWindow (file, line, "the formatter should be an NSNumberFormatter")
     }
   }
 

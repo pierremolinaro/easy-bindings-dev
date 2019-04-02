@@ -297,7 +297,7 @@ end
       if let column : NSTableColumn = tableView.tableColumn (withIdentifier: NSUserInterfaceItemIdentifier (rawValue: "%!mColumnName%")) {
         column.sortDescriptorPrototype = nil
       }else{
-        presentErrorWindow (file: file, line: line, errorMessage:"\"%!mColumnName%\" column view unknown")
+        presentErrorWindow (file, line, "\"%!mColumnName%\" column view unknown")
       }
 %
 end

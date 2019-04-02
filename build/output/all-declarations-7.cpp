@@ -2417,11 +2417,13 @@ const char * gWrapperFileContent_28_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    let debugObject = EBAllocationDebug ()\n"
   "    gDebugObject = debugObject\n"
   "    let mainBundle = Bundle.main\n"
-  "    let ok = mainBundle.loadNibNamed (\"EBAllocationDebug\",\n"
-  "                                      owner: debugObject,\n"
-  "                                      topLevelObjects: &debugObject.mTopLevelObjects)\n"
+  "    let ok = mainBundle.loadNibNamed (\n"
+  "      \"EBAllocationDebug\",\n"
+  "      owner: debugObject,\n"
+  "      topLevelObjects: &debugObject.mTopLevelObjects\n"
+  "    )\n"
   "    if !ok {\n"
-  "      presentErrorWindow (file: #file, line: #line, errorMessage: \"Cannot load 'EBAllocationDebug' nib file\") ;\n"
+  "      presentErrorWindow (#file, #line, \"Cannot load 'EBAllocationDebug' nib file\")\n"
   "    }\n"
   "  }\n"
   "}\n"
@@ -2779,7 +2781,7 @@ const cRegularFileWrapper gWrapperFile_28_swift_5F_sources (
   "EBAllocationDebug.swift",
   "swift",
   true, // Text file
-  19063, // Text length
+  18983, // Text length
   gWrapperFileContent_28_swift_5F_sources
 ) ;
 
@@ -9685,9 +9687,9 @@ const char * gWrapperFileContent_13_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
-  "func presentErrorWindow (file : String!,\n"
-  "                         line : Int,\n"
-  "                         errorMessage : String) {\n"
+  "func presentErrorWindow (_ file : String!,\n"
+  "                         _ line : Int,\n"
+  "                         _ errorMessage : String) {\n"
   "  var message = \"\"\n"
   "  message += \"File: \" + file + \"\\n\"\n"
   "  message += \"Line: \\(line)\\n\"\n"
@@ -10375,7 +10377,7 @@ const cRegularFileWrapper gWrapperFile_13_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  33691, // Text length
+  33697, // Text length
   gWrapperFileContent_13_swift_5F_sources
 ) ;
 

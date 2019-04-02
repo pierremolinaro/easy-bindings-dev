@@ -7,14 +7,14 @@ import Cocoa
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 @objc(EBGroupButton) class EBGroupButton : NSButton, EBUserClassNameProtocol {
-  @IBOutlet private var mMasterView : NSView?
-  @IBOutlet private var mView : NSView?
+  @IBOutlet private var mMasterView : NSView? = nil
+  @IBOutlet private var mView : NSView? = nil
   private var mWindowDefaultTitle : String = ""
   
   //····················································································································
 
-  required init? (coder: NSCoder) {
-    super.init (coder:coder)
+  required init? (coder : NSCoder) {
+    super.init (coder: coder)
     noteObjectAllocation (self)
   }
 
@@ -29,8 +29,8 @@ import Cocoa
 
   //····················································································································
 
-  override init (frame:NSRect) {
-    super.init (frame:frame)
+  override init (frame : NSRect) {
+    super.init (frame: frame)
     noteObjectAllocation (self)
   }
   
@@ -97,7 +97,7 @@ import Cocoa
         if let button = v as? EBGroupButton, button.mMasterView == mMasterView {
           let tag = button.tag
           if tagSet.contains (tag) {
-            presentErrorWindow (file: #file, line:#line, errorMessage:"duplicated tag: " + String (tag))
+            presentErrorWindow (#file, #line, "duplicated tag: " + String (tag))
           }else{
             tagSet.insert (tag)
           }
@@ -106,7 +106,7 @@ import Cocoa
       var idx = 0
       for tag in tagSet.sort () {
         if tag != idx {
-          presentErrorWindow (file: #file, line:#line, errorMessage:"missing tag: " + String (tag))
+          presentErrorWindow (#file, #line, "missing tag: \(tag)")
         }
         idx += 1
       }
@@ -126,7 +126,7 @@ import Cocoa
 //   Controller_EBGroupButton_selectedIndex
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
--final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
+final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
 
   private let mObject : EBReadWriteProperty_Int
   private let mOutlet : EBGroupButton
