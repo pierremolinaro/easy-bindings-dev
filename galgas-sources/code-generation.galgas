@@ -126,7 +126,8 @@ private proc generateSwiftApplicationFiles
     !"easy-bindings-utilities",
     !"multiple-binding-controllers",
     !"Application",
-    !"EBEvent"
+    !"model-events",
+    !"outlet-events"
   }
   if inHasEntities then
     swiftFiles += !"EBManagedObject"
