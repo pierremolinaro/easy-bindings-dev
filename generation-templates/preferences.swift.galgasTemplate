@@ -100,14 +100,8 @@ end
 %
 ![MAIN_XIB_DESCRIPTOR_LIST generateCode]
 for () in OUTLET_MAP do
-%    if let outlet : Any = self.%!lkey.string% {
-      if !(outlet is %!mOutletTypeName%) {
-        presentErrorWindow (#file, #line, "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'") ;
-      }
-    }else{
-      presentErrorWindow (#file, #line, "the '%!lkey.string%' outlet is nil") ;
-    }
-%end
+%    checkOutletConnection (self.%!lkey.string%, "%!lkey.string%", %!mOutletTypeName%.self, #file, #line)\n%
+end
 %  //--------------------------- Install bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do

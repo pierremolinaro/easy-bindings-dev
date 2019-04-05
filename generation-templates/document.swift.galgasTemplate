@@ -96,16 +96,9 @@ end
 
   private func checkOutletConnections () {
 %for () in OUTLET_GENERATION_MAP do
-%    if let outlet : NSObject = self.%!lkey.string% {
-      if !(outlet is %!mOutletTypeName%) {
-        presentErrorWindow (#file, #line, "the '%!lkey.string%' outlet is not an instance of '%!mOutletTypeName%'")
-      }
-    }else{
-      presentErrorWindow (#file, #line, "the '%!lkey.string%' outlet is nil")
-    }
-%
-end% 
-  }
+%    checkOutletConnection (self.%!lkey.string%, "%!lkey.string%", %!mOutletTypeName%.self, #file, #line)\n%
+end
+%   }
   
   //····················································································································
   //    windowControllerDidLoadNib
