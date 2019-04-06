@@ -271,6 +271,18 @@ for () in PROPERTY_LIST_FOR_GENERATION do
 end
 %  }
 
+  //····················································································································
+  //   accessibleObjectsForSaveOperation
+  //····················································································································
+
+  override func accessibleObjectsForSaveOperation (objects : inout [EBManagedObject]) {
+    super.accessibleObjectsForSaveOperation (objects: &objects)
+%
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty objectAccessibilityCodeForSaveOperation]
+end
+%  }
+
 %
 if [SIGNATURE_SET count] > 0 then
 %  //····················································································································

@@ -4364,7 +4364,8 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
   public : static class GALGAS_toManyRelationshipAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                       const class GALGAS_lstring & inOperand1,
                                                                       const class GALGAS_lstring & inOperand2,
-                                                                      const class GALGAS_toManyRelationshipOptionAST & inOperand3
+                                                                      const class GALGAS_toManyRelationshipOptionAST & inOperand3,
+                                                                      const class GALGAS_bool & inOperand4
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4376,6 +4377,8 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCustomStore (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mDestinationEntityName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
@@ -4527,12 +4530,14 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
   public : GALGAS_lstring mProperty_mDestinationEntityName ;
   public : GALGAS_lstring mProperty_mToManyRelationshipName ;
   public : GALGAS_toManyRelationshipOptionAST mProperty_mOption ;
+  public : GALGAS_bool mProperty_mCustomStore ;
 
 //--- Constructor
   public : cPtr_toManyRelationshipAST (const GALGAS_lstring & in_mClassName,
                                        const GALGAS_lstring & in_mDestinationEntityName,
                                        const GALGAS_lstring & in_mToManyRelationshipName,
-                                       const GALGAS_toManyRelationshipOptionAST & in_mOption
+                                       const GALGAS_toManyRelationshipOptionAST & in_mOption,
+                                       const GALGAS_bool & in_mCustomStore
                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -4542,6 +4547,7 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mDestinationEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToManyRelationshipName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCustomStore (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

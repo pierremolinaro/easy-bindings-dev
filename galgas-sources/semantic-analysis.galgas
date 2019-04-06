@@ -49,6 +49,10 @@ getter @propertyGeneration objectAccessibilityCode -> @string { result = "" }
 
 #·······················································································································
 
+getter @propertyGeneration objectAccessibilityCodeForSaveOperation -> @string { result = "" }
+
+#·······················································································································
+
 getter @propertyGeneration populateExplorerWindowCode -> @string { result = "" }
 
 #·······················································································································

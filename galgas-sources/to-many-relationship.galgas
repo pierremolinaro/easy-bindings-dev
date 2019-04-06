@@ -14,6 +14,7 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToManyRelationshipName
   @toManyRelationshipOptionAST mOption
+  @bool mCustomStore
 }
 
 #·······················································································································
@@ -46,6 +47,7 @@ syntax extension easyBindings_syntax {
   {
     $toMany$
     @bool usedForSignature = false
+    @bool customStore = false
     repeat
     while
       $@attribute$ ?let attributeName
@@ -54,8 +56,13 @@ syntax extension easyBindings_syntax {
           error attributeName : "duplicated attribute" fixit { remove }
         end
         usedForSignature = true
+      elsif attributeName.string == "customStore" then
+        if customStore then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        customStore = true
       else
-        error attributeName : "unknow attribute" fixit { replace "@signature" }
+        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@customStore" }
       end
     end
     $Identifier$ ?let destinationEntityName
@@ -84,6 +91,7 @@ syntax extension easyBindings_syntax {
       !destinationEntityName
       !relationshipName
       !toManyRelationshipOption
+      !customStore
     }
   }
   
@@ -125,6 +133,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
         !kind
         !mOption
         !inPrefs
+        !mCustomStore
       }
     end
   end
@@ -136,6 +145,7 @@ class @toManyPropertyGeneration : @propertyGeneration {
   @propertyKind mRelationshipType
   @toManyRelationshipOptionAST mOption
   @bool mInPreferences
+  @bool mCustomStore
 }
 
 #·······················································································································
@@ -194,6 +204,15 @@ override getter @toManyPropertyGeneration configurationCode -> @string {
 override getter @toManyPropertyGeneration setupRelationshipFromDictionaryCode -> @string {
   if [mOption isHasDependance] then
     result = ""
+  elsif mCustomStore then
+    result  = "  //--- To many property: " + mPropertyName + " (Custom store)\n"
+    result += "    self." + mPropertyName + "_property.setProp (customRead_" + [mRelationshipType swiftTypeName] + "_" + mPropertyName + " (from: inDictionary, with: self.ebUndoManager))\n"
+
+    result += "    /* self." + mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
+    result += "      inRelationshipName: \"" + mPropertyName + "\",\n"
+    result += "      inDictionary: inDictionary,\n"
+    result += "      managedObjectArray: &managedObjectArray\n"
+    result += "    ) as! [" + [mRelationshipType swiftTypeName] + "]) */\n"
   else
     result  = "  //--- To many property: " + mPropertyName + "\n"
     result += "    self." + mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
@@ -209,6 +228,14 @@ override getter @toManyPropertyGeneration setupRelationshipFromDictionaryCode ->
 override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
   if [mOption isHasDependance] then
     result = ""
+  elsif mCustomStore then
+    result  = "  //--- To many property: " + mPropertyName + " (Custom store)\n"
+    result += "    customStore_" + [mRelationshipType swiftTypeName] + "_" + mPropertyName + " (self." + mPropertyName + "_property.propval, intoDictionary: ioDictionary)\n"
+    result += "    /* self.store (\n"
+    result += "      managedObjectArray: self." + mPropertyName + "_property.propval,\n"
+    result += "      relationshipName: \"" + mPropertyName + "\",\n"
+    result += "      intoDictionary: ioDictionary\n"
+    result += "    ) */\n"
   else
     result  = "  //--- To many property: " + mPropertyName + "\n"
     result += "    self.store (\n"
@@ -223,9 +250,25 @@ override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
 
 override getter @toManyPropertyGeneration objectAccessibilityCode -> @string {
   result  = "  //--- To many property: " + mPropertyName + "\n"
-  result += "    for managedObject : EBManagedObject in self." + mPropertyName + "_property.propval {\n"
+  result += "    for managedObject in self." + mPropertyName + "_property.propval {\n"
   result += "      objects.append (managedObject)\n"
   result += "    }\n"
+}
+#·······················································································································
+
+override getter @toManyPropertyGeneration objectAccessibilityCodeForSaveOperation -> @string {
+  if mCustomStore then
+    result  = "  //--- To many property: " + mPropertyName + " (custom store)\n"
+    result += "    /* for managedObject in self." + mPropertyName + "_property.propval {\n"
+    result += "      objects.append (managedObject)\n"
+    result += "    } */\n"
+  
+  else
+    result  = "  //--- To many property: " + mPropertyName + "\n"
+    result += "    for managedObject in self." + mPropertyName + "_property.propval {\n"
+    result += "      objects.append (managedObject)\n"
+    result += "    }\n"
+  end
 }
 
 #·······················································································································

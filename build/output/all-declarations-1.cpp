@@ -11992,6 +11992,9 @@ typeComparisonResult cPtr_toManyPropertyGeneration::dynamicObjectCompare (const 
   if (kOperandEqual == result) {
     result = mProperty_mInPreferences.objectCompare (p->mProperty_mInPreferences) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mCustomStore.objectCompare (p->mProperty_mCustomStore) ;
+  }
   return result ;
 }
 
@@ -12032,11 +12035,12 @@ GALGAS_propertyGeneration (inSourcePtr) {
 GALGAS_toManyPropertyGeneration GALGAS_toManyPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
                                                                                   const GALGAS_propertyKind & inAttribute_mRelationshipType,
                                                                                   const GALGAS_toManyRelationshipOptionAST & inAttribute_mOption,
-                                                                                  const GALGAS_bool & inAttribute_mInPreferences
+                                                                                  const GALGAS_bool & inAttribute_mInPreferences,
+                                                                                  const GALGAS_bool & inAttribute_mCustomStore
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_toManyPropertyGeneration result ;
-  if (inAttribute_mPropertyName.isValid () && inAttribute_mRelationshipType.isValid () && inAttribute_mOption.isValid () && inAttribute_mInPreferences.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_toManyPropertyGeneration (inAttribute_mPropertyName, inAttribute_mRelationshipType, inAttribute_mOption, inAttribute_mInPreferences COMMA_THERE)) ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mRelationshipType.isValid () && inAttribute_mOption.isValid () && inAttribute_mInPreferences.isValid () && inAttribute_mCustomStore.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_toManyPropertyGeneration (inAttribute_mPropertyName, inAttribute_mRelationshipType, inAttribute_mOption, inAttribute_mInPreferences, inAttribute_mCustomStore COMMA_THERE)) ;
   }
   return result ;
 }
@@ -12096,18 +12100,38 @@ GALGAS_bool cPtr_toManyPropertyGeneration::getter_mInPreferences (UNUSED_LOCATIO
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_toManyPropertyGeneration::getter_mCustomStore (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toManyPropertyGeneration * p = (const cPtr_toManyPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
+    result = p->mProperty_mCustomStore ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cPtr_toManyPropertyGeneration::getter_mCustomStore (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mCustomStore ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                  Pointer class for @toManyPropertyGeneration class                                  *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 cPtr_toManyPropertyGeneration::cPtr_toManyPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                                               const GALGAS_propertyKind & in_mRelationshipType,
                                                               const GALGAS_toManyRelationshipOptionAST & in_mOption,
-                                                              const GALGAS_bool & in_mInPreferences
+                                                              const GALGAS_bool & in_mInPreferences,
+                                                              const GALGAS_bool & in_mCustomStore
                                                               COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
 mProperty_mRelationshipType (in_mRelationshipType),
 mProperty_mOption (in_mOption),
-mProperty_mInPreferences (in_mInPreferences) {
+mProperty_mInPreferences (in_mInPreferences),
+mProperty_mCustomStore (in_mCustomStore) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -12126,6 +12150,8 @@ void cPtr_toManyPropertyGeneration::description (C_String & ioString,
   mProperty_mOption.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mInPreferences.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mCustomStore.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -12133,7 +12159,7 @@ void cPtr_toManyPropertyGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_toManyPropertyGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_toManyPropertyGeneration (mProperty_mPropertyName, mProperty_mRelationshipType, mProperty_mOption, mProperty_mInPreferences COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_toManyPropertyGeneration (mProperty_mPropertyName, mProperty_mRelationshipType, mProperty_mOption, mProperty_mInPreferences, mProperty_mCustomStore COMMA_THERE)) ;
   return ptr ;
 }
 

@@ -213,6 +213,15 @@ override getter @toOnePropertyGeneration objectAccessibilityCode -> @string {
 
 #·······················································································································
 
+override getter @toOnePropertyGeneration objectAccessibilityCodeForSaveOperation -> @string {
+  result  = "  //--- To one property: " + mPropertyName + "\n"
+  result += "    if let managedObject = self." + mPropertyName + "_property.propval {\n"
+  result += "      objects.append (managedObject)\n"
+  result += "    }\n"
+}
+
+#·······················································································································
+
 override getter @toOnePropertyGeneration clearObjectExplorerCode -> @string {
   result  = "  //--- To one property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + "_property.mObserverExplorer = nil\n"
