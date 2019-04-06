@@ -448,6 +448,7 @@ for () in BOUND_COLUMNS
         !mBoundObjectString%, %
       end
       %file: #file, line: #line%!mBindingOptionsString%)\n%
+      %          cell.update ()\n%
     end
     %        %
   between
