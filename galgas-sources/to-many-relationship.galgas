@@ -123,6 +123,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
         !typeName: mDestinationEntityName
         !accessibility: .stored
         !graphic: graphic
+        !optionKind: mOption
       }
       [!?mPropertyMap insertKey !mToManyRelationshipName !kind !{}]
     #--- Current class is preferences ?

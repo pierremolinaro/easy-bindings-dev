@@ -203,7 +203,7 @@ override method @transientDeclarationAST secondAnalysisPhase
     ]
     switch dependencyKind
     case property (* *) :
-    case toMany (3*) :
+    case toMany (4*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
     case toOne (3*) :
       error [mObservableProperty location] : "only an atomic property can be observed"

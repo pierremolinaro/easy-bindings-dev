@@ -221,7 +221,7 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
       switch classKind
       case property (2*) :
         error mRootEntityName : "a tomany relationship is required here"
-      case toMany (typeName * graphic) :
+      case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
           !graphic: graphic
@@ -245,7 +245,7 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
       switch classKind
       case property (2*) :
         error mRootEntityName : "a tomany relationship is required here"
-      case toMany (typeName * graphic) :
+      case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
           !graphic: graphic
@@ -330,12 +330,12 @@ override method @tableViewControllerDeclarationAST secondAnalysisPhase
     error mToManyPropertyName
       : "a tomany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
-  case toMany (typeName accessibility isGraphic) :
+  case toMany (typeName accessibility isGraphic *) :
     elementTypeName = typeName
     graphic = isGraphic
     arrayControllerModelKind = if [accessibility isTransient]
       then .transientArray
-      else.entityArray
+      else .entityArray
     end
     [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?actionMap ?*]
   case toOne (3*) :

@@ -53,10 +53,17 @@ private proc graphvizRootEntityAnalysis
       case property (2*) :
       case arrayController (2*) :
       case selectionController (*) :
-      case toMany (@lstring typeName @propertyAccessibility accessibility *) :
+      case toMany (@lstring typeName @propertyAccessibility accessibility * optionKind) :
        if [accessibility isStored] then
          node += "|<" + propertyName + ">" + propertyName
-         arrowList += !"  " + entityName + ":" + propertyName + " -> " + typeName + "[dir=both arrowtail=none arrowhead=vee]"
+         switch optionKind
+         case none :
+           arrowList += !"  " + entityName + ":" + propertyName + " -> " + typeName + "[dir=both arrowtail=none arrowhead=vee]"
+         case hasOpposite (oppositeName) :
+           arrowList += !"  " + entityName + ":" + propertyName
+              + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=vee]"
+         case hasDependance (*) :
+         end
          if not [reachableEntityNameSet hasKey !typeName] then
             reachableEntityNameSet += !typeName
             exploreArray += !typeName

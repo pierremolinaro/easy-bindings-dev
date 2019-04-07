@@ -1659,21 +1659,41 @@ void routine_graphvizRootEntityAnalysis (const GALGAS_string constinArgument_inS
             break ;
           case GALGAS_propertyKind::kEnum_toMany:
             {
-              const cEnumAssociatedValues_propertyKind_toMany * extractPtr_2751 = (const cEnumAssociatedValues_propertyKind_toMany *) (enumerator_2146.current_mKind (HERE).unsafePointer ()) ;
-              const GALGAS_lstring extractedValue_typeName = extractPtr_2751->mAssociatedValue0 ;
-              const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_2751->mAssociatedValue1 ;
+              const cEnumAssociatedValues_propertyKind_toMany * extractPtr_3069 = (const cEnumAssociatedValues_propertyKind_toMany *) (enumerator_2146.current_mKind (HERE).unsafePointer ()) ;
+              const GALGAS_lstring extractedValue_typeName = extractPtr_3069->mAssociatedValue0 ;
+              const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_3069->mAssociatedValue1 ;
+              const GALGAS_toManyRelationshipOptionAST extractedValue_optionKind = extractPtr_3069->mAssociatedValue3 ;
               enumGalgasBool test_2 = kBoolTrue ;
               if (kBoolTrue == test_2) {
                 test_2 = extractedValue_accessibility.getter_isStored (SOURCE_FILE ("graphviz.galgas", 57)).boolEnum () ;
                 if (kBoolTrue == test_2) {
                   var_node_1943.plusAssign_operation(GALGAS_string ("|<").add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 58)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 58)).add_operation (GALGAS_string (">"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 58)).add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 58)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 58)), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 58)) ;
-                  var_arrowList_1788.addAssign_operation (GALGAS_string ("  ").add_operation (var_entityName_1929, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 59)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 59)).add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 59)).add_operation (GALGAS_string (" -> "), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 59)).add_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 59)).add_operation (GALGAS_string ("[dir=both arrowtail=none arrowhead=vee]"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 59))  COMMA_SOURCE_FILE ("graphviz.galgas", 59)) ;
+                  switch (extractedValue_optionKind.enumValue ()) {
+                  case GALGAS_toManyRelationshipOptionAST::kNotBuilt:
+                    break ;
+                  case GALGAS_toManyRelationshipOptionAST::kEnum_none:
+                    {
+                      var_arrowList_1788.addAssign_operation (GALGAS_string ("  ").add_operation (var_entityName_1929, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 61)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 61)).add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 61)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 61)).add_operation (GALGAS_string (" -> "), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 61)).add_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 61)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 61)).add_operation (GALGAS_string ("[dir=both arrowtail=none arrowhead=vee]"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 61))  COMMA_SOURCE_FILE ("graphviz.galgas", 61)) ;
+                    }
+                    break ;
+                  case GALGAS_toManyRelationshipOptionAST::kEnum_hasOpposite:
+                    {
+                      const cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite * extractPtr_2847 = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite *) (extractedValue_optionKind.unsafePointer ()) ;
+                      const GALGAS_lstring extractedValue_oppositeName = extractPtr_2847->mAssociatedValue0 ;
+                      var_arrowList_1788.addAssign_operation (GALGAS_string ("  ").add_operation (var_entityName_1929, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 63)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 63)).add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 63)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 63)).add_operation (GALGAS_string (" -> "), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 63)).add_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 64)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 64)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 64)).add_operation (extractedValue_oppositeName.getter_string (SOURCE_FILE ("graphviz.galgas", 64)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 64)).add_operation (GALGAS_string (" [dir=both arrowtail=onormal arrowhead=vee]"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 64))  COMMA_SOURCE_FILE ("graphviz.galgas", 63)) ;
+                    }
+                    break ;
+                  case GALGAS_toManyRelationshipOptionAST::kEnum_hasDependance:
+                    {
+                    }
+                    break ;
+                  }
                   enumGalgasBool test_3 = kBoolTrue ;
                   if (kBoolTrue == test_3) {
-                    test_3 = var_reachableEntityNameSet_1665.getter_hasKey (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 60)) COMMA_SOURCE_FILE ("graphviz.galgas", 60)).operator_not (SOURCE_FILE ("graphviz.galgas", 60)).boolEnum () ;
+                    test_3 = var_reachableEntityNameSet_1665.getter_hasKey (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 67)) COMMA_SOURCE_FILE ("graphviz.galgas", 67)).operator_not (SOURCE_FILE ("graphviz.galgas", 67)).boolEnum () ;
                     if (kBoolTrue == test_3) {
-                      var_reachableEntityNameSet_1665.addAssign_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 61))  COMMA_SOURCE_FILE ("graphviz.galgas", 61)) ;
-                      var_exploreArray_1714.addAssign_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 62))  COMMA_SOURCE_FILE ("graphviz.galgas", 62)) ;
+                      var_reachableEntityNameSet_1665.addAssign_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 68))  COMMA_SOURCE_FILE ("graphviz.galgas", 68)) ;
+                      var_exploreArray_1714.addAssign_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 69))  COMMA_SOURCE_FILE ("graphviz.galgas", 69)) ;
                     }
                   }
                 }
@@ -1682,21 +1702,21 @@ void routine_graphvizRootEntityAnalysis (const GALGAS_string constinArgument_inS
             break ;
           case GALGAS_propertyKind::kEnum_toOne:
             {
-              const cEnumAssociatedValues_propertyKind_toOne * extractPtr_3236 = (const cEnumAssociatedValues_propertyKind_toOne *) (enumerator_2146.current_mKind (HERE).unsafePointer ()) ;
-              const GALGAS_lstring extractedValue_typeName = extractPtr_3236->mAssociatedValue0 ;
-              const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_3236->mAssociatedValue1 ;
+              const cEnumAssociatedValues_propertyKind_toOne * extractPtr_3554 = (const cEnumAssociatedValues_propertyKind_toOne *) (enumerator_2146.current_mKind (HERE).unsafePointer ()) ;
+              const GALGAS_lstring extractedValue_typeName = extractPtr_3554->mAssociatedValue0 ;
+              const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_3554->mAssociatedValue1 ;
               enumGalgasBool test_4 = kBoolTrue ;
               if (kBoolTrue == test_4) {
-                test_4 = extractedValue_accessibility.getter_isStored (SOURCE_FILE ("graphviz.galgas", 66)).boolEnum () ;
+                test_4 = extractedValue_accessibility.getter_isStored (SOURCE_FILE ("graphviz.galgas", 73)).boolEnum () ;
                 if (kBoolTrue == test_4) {
-                  var_node_1943.plusAssign_operation(GALGAS_string ("|<").add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 67)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 67)).add_operation (GALGAS_string (">"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 67)).add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 67)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 67)), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 67)) ;
-                  var_arrowList_1788.addAssign_operation (GALGAS_string ("  ").add_operation (var_entityName_1929, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 68)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 68)).add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 68)).add_operation (GALGAS_string (" -> "), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 68)).add_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 68)).add_operation (GALGAS_string ("[dir=both arrowtail=none arrowhead=onormal]"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 68))  COMMA_SOURCE_FILE ("graphviz.galgas", 68)) ;
+                  var_node_1943.plusAssign_operation(GALGAS_string ("|<").add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 74)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 74)).add_operation (GALGAS_string (">"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 74)).add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 74)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 74)), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 74)) ;
+                  var_arrowList_1788.addAssign_operation (GALGAS_string ("  ").add_operation (var_entityName_1929, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 75)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 75)).add_operation (enumerator_2146.current_lkey (HERE).getter_string (SOURCE_FILE ("graphviz.galgas", 75)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 75)).add_operation (GALGAS_string (" -> "), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 75)).add_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 75)), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 75)).add_operation (GALGAS_string ("[dir=both arrowtail=none arrowhead=onormal]"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 75))  COMMA_SOURCE_FILE ("graphviz.galgas", 75)) ;
                   enumGalgasBool test_5 = kBoolTrue ;
                   if (kBoolTrue == test_5) {
-                    test_5 = var_reachableEntityNameSet_1665.getter_hasKey (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 69)) COMMA_SOURCE_FILE ("graphviz.galgas", 69)).operator_not (SOURCE_FILE ("graphviz.galgas", 69)).boolEnum () ;
+                    test_5 = var_reachableEntityNameSet_1665.getter_hasKey (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 76)) COMMA_SOURCE_FILE ("graphviz.galgas", 76)).operator_not (SOURCE_FILE ("graphviz.galgas", 76)).boolEnum () ;
                     if (kBoolTrue == test_5) {
-                      var_reachableEntityNameSet_1665.addAssign_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 70))  COMMA_SOURCE_FILE ("graphviz.galgas", 70)) ;
-                      var_exploreArray_1714.addAssign_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 71))  COMMA_SOURCE_FILE ("graphviz.galgas", 71)) ;
+                      var_reachableEntityNameSet_1665.addAssign_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 77))  COMMA_SOURCE_FILE ("graphviz.galgas", 77)) ;
+                      var_exploreArray_1714.addAssign_operation (extractedValue_typeName.getter_string (SOURCE_FILE ("graphviz.galgas", 78))  COMMA_SOURCE_FILE ("graphviz.galgas", 78)) ;
                     }
                   }
                 }
@@ -1706,29 +1726,29 @@ void routine_graphvizRootEntityAnalysis (const GALGAS_string constinArgument_inS
           }
           enumerator_2146.gotoNextObject () ;
         }
-        var_node_1943.plusAssign_operation(GALGAS_string ("\"]"), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 76)) ;
-        var_nodeList_1759.addAssign_operation (var_node_1943  COMMA_SOURCE_FILE ("graphviz.galgas", 77)) ;
+        var_node_1943.plusAssign_operation(GALGAS_string ("\"]"), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 83)) ;
+        var_nodeList_1759.addAssign_operation (var_node_1943  COMMA_SOURCE_FILE ("graphviz.galgas", 84)) ;
       }
     }
   }
-  GALGAS_string var_s_3338 = GALGAS_string ("digraph G {\n") ;
-  var_s_3338.plusAssign_operation(GALGAS_string ("  rankdir=LR ;\n"), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 81)) ;
-  var_s_3338.plusAssign_operation(GALGAS_string ("  node [shape=record fontname=helvetica style=rounded] ;\n"), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 82)) ;
-  cEnumerator_stringlist enumerator_3475 (var_nodeList_1759, kENUMERATION_UP) ;
-  while (enumerator_3475.hasCurrentObject ()) {
-    var_s_3338.plusAssign_operation(enumerator_3475.current_mValue (HERE).add_operation (GALGAS_string (" ;\n"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 84)), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 84)) ;
-    enumerator_3475.gotoNextObject () ;
+  GALGAS_string var_s_3656 = GALGAS_string ("digraph G {\n") ;
+  var_s_3656.plusAssign_operation(GALGAS_string ("  rankdir=LR ;\n"), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 88)) ;
+  var_s_3656.plusAssign_operation(GALGAS_string ("  node [shape=record fontname=helvetica style=rounded] ;\n"), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 89)) ;
+  cEnumerator_stringlist enumerator_3793 (var_nodeList_1759, kENUMERATION_UP) ;
+  while (enumerator_3793.hasCurrentObject ()) {
+    var_s_3656.plusAssign_operation(enumerator_3793.current_mValue (HERE).add_operation (GALGAS_string (" ;\n"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 91)), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 91)) ;
+    enumerator_3793.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_3534 (var_arrowList_1788, kENUMERATION_UP) ;
-  while (enumerator_3534.hasCurrentObject ()) {
-    var_s_3338.plusAssign_operation(enumerator_3534.current_mValue (HERE).add_operation (GALGAS_string (" ;\n"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 87)), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 87)) ;
-    enumerator_3534.gotoNextObject () ;
+  cEnumerator_stringlist enumerator_3852 (var_arrowList_1788, kENUMERATION_UP) ;
+  while (enumerator_3852.hasCurrentObject ()) {
+    var_s_3656.plusAssign_operation(enumerator_3852.current_mValue (HERE).add_operation (GALGAS_string (" ;\n"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 94)), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 94)) ;
+    enumerator_3852.gotoNextObject () ;
   }
-  var_s_3338.plusAssign_operation(GALGAS_string ("}\n"), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 89)) ;
-  GALGAS_string var_filePath_3595 = constinArgument_inSourceFileDirectory.add_operation (GALGAS_string ("/models/"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 90)).add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 90)).add_operation (GALGAS_string (".dot"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 90)) ;
-  var_filePath_3595.getter_stringByDeletingLastPathComponent (SOURCE_FILE ("graphviz.galgas", 91)).method_makeDirectory (inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 91)) ;
-  GALGAS_bool joker_3773 ; // Joker input parameter
-  var_s_3338.method_writeToFileWhenDifferentContents (var_filePath_3595, joker_3773, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 92)) ;
+  var_s_3656.plusAssign_operation(GALGAS_string ("}\n"), inCompiler  COMMA_SOURCE_FILE ("graphviz.galgas", 96)) ;
+  GALGAS_string var_filePath_3913 = constinArgument_inSourceFileDirectory.add_operation (GALGAS_string ("/models/"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 97)).add_operation (constinArgument_inRootEntityName, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 97)).add_operation (GALGAS_string (".dot"), inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 97)) ;
+  var_filePath_3913.getter_stringByDeletingLastPathComponent (SOURCE_FILE ("graphviz.galgas", 98)).method_makeDirectory (inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 98)) ;
+  GALGAS_bool joker_4091 ; // Joker input parameter
+  var_s_3656.method_writeToFileWhenDifferentContents (var_filePath_3913, joker_4091, inCompiler COMMA_SOURCE_FILE ("graphviz.galgas", 99)) ;
 }
 
 

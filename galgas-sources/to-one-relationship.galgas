@@ -2,6 +2,14 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+#enum @toOneOppositeRelationship {
+#  case none
+#  case toOneOpposite (@lstring oppositeRelationshipName)
+#  case toManyOpposite (@lstring oppositeRelationshipName)
+#}
+
+#·······················································································································
+
 class @toOneRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToOneRelationshipName

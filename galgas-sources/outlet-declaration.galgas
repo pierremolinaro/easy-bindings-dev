@@ -219,7 +219,7 @@ proc analyzeOutlets
         switch kind 
         case property (2*) :
           error controllerName : "the bound model should be an array controller"
-        case toMany (3*) :
+        case toMany (4*) :
           error controllerName : "the bound model should be an array controller"
         case toOne (3*) :
           error controllerName : "the bound model should be an array controller"
@@ -239,7 +239,7 @@ proc analyzeOutlets
             switch propertyKind 
             case property (2*) :
               error controllerName : "the bound model should be a toMany property"
-            case toMany (kEntityName * isGraphic) :
+            case toMany (kEntityName * isGraphic *) :
               if not isGraphic then
                 error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
               end
@@ -388,7 +388,7 @@ proc analyzeRegularBinding
       ]
       switch kind
       case property (2*) : # Ok
-      case toMany (3*) :
+      case toMany (4*) :
         error [mObservableProperty location]:"a toMany property cannot be bound"
       case toOne (3*) :
         error [mObservableProperty location]:"a toOne property cannot be bound"

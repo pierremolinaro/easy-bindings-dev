@@ -74,7 +74,7 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
     switch propertyKind
     case property (2*) :
       error mModelControllerName : "an array controller is required here"
-    case toMany (3*) :
+    case toMany (4*) :
       error mModelControllerName : "an array controller is required here"
     case toOne (3*) :
       error mModelControllerName : "an array controller is required here"
@@ -106,7 +106,7 @@ override method @selectionControllerDeclarationAST thirdAnalysisPhase
   [propertyMap searchKey !mModelControllerName ?let propertyKind ?*]
    switch propertyKind
    case property (2*) :
-   case toMany (3*) :
+   case toMany (4*) :
    case toOne (3*) :
    case selectionController (*) :
    case arrayController (typeName *) :

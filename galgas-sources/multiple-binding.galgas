@@ -267,7 +267,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
   switch kind
   case property (type *) :
     outType = type
-  case toMany (3*) :
+  case toMany (4*) :
     error [mProperty location] : "only an atomic property can be observed" : outType
   case toOne (3*) :
     error [mProperty location] : "only an atomic property can be observed" : outType
