@@ -269,7 +269,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     outType = type
   case toMany (4*) :
     error [mProperty location] : "only an atomic property can be observed" : outType
-  case toOne (3*) :
+  case toOne (4*) :
     error [mProperty location] : "only an atomic property can be observed" : outType
   case arrayController (2*) :
     error [mProperty location] : "only an atomic property can be observed" : outType

@@ -1323,7 +1323,8 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
 
   public : static class GALGAS_propertyKind constructor_toOne (const class GALGAS_lstring & inOperand0,
                                                                const class GALGAS_propertyAccessibility & inOperand1,
-                                                               const class GALGAS_bool & inOperand2
+                                                               const class GALGAS_bool & inOperand2,
+                                                               const class GALGAS_toOneOppositeRelationship & inOperand3
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -1359,6 +1360,7 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG void method_toOne (class GALGAS_lstring & outArgument0,
                                                class GALGAS_propertyAccessibility & outArgument1,
                                                class GALGAS_bool & outArgument2,
+                                               class GALGAS_toOneOppositeRelationship & outArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -1436,11 +1438,13 @@ class cEnumAssociatedValues_propertyKind_toOne : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
   public : const GALGAS_propertyAccessibility mAssociatedValue1 ;
   public : const GALGAS_bool mAssociatedValue2 ;
+  public : const GALGAS_toOneOppositeRelationship mAssociatedValue3 ;
 
 //--- Constructor
   public : cEnumAssociatedValues_propertyKind_toOne (const GALGAS_lstring & inAssociatedValue0,
                                                      const GALGAS_propertyAccessibility & inAssociatedValue1,
-                                                     const GALGAS_bool & inAssociatedValue2
+                                                     const GALGAS_bool & inAssociatedValue2,
+                                                     const GALGAS_toOneOppositeRelationship & inAssociatedValue3
                                                      COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
@@ -3147,9 +3151,8 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
   public : static class GALGAS_toOnePropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                         const class GALGAS_string & inOperand1,
                                                                         const class GALGAS_propertyKind & inOperand2,
-                                                                        const class GALGAS_string & inOperand3,
-                                                                        const class GALGAS_propertyMultiplicity & inOperand4,
-                                                                        const class GALGAS_propertyMap & inOperand5
+                                                                        const class GALGAS_toOneOppositeRelationship & inOperand3,
+                                                                        const class GALGAS_propertyMap & inOperand4
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3165,9 +3168,7 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyMap getter_mDestinationEntityObservablePropertyMap (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_propertyMultiplicity getter_mInverseRelationMultiplicity (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOppositeRelationshipName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_toOneOppositeRelationship getter_mOpposite (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
 
@@ -3192,16 +3193,14 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
 //--- Attributes
   public : GALGAS_string mProperty_mClassName ;
   public : GALGAS_propertyKind mProperty_mRelationshipType ;
-  public : GALGAS_string mProperty_mOppositeRelationshipName ;
-  public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
+  public : GALGAS_toOneOppositeRelationship mProperty_mOpposite ;
   public : GALGAS_propertyMap mProperty_mDestinationEntityObservablePropertyMap ;
 
 //--- Constructor
   public : cPtr_toOnePropertyGeneration (const GALGAS_string & in_mPropertyName,
                                          const GALGAS_string & in_mClassName,
                                          const GALGAS_propertyKind & in_mRelationshipType,
-                                         const GALGAS_string & in_mOppositeRelationshipName,
-                                         const GALGAS_propertyMultiplicity & in_mInverseRelationMultiplicity,
+                                         const GALGAS_toOneOppositeRelationship & in_mOpposite,
                                          const GALGAS_propertyMap & in_mDestinationEntityObservablePropertyMap
                                          COMMA_LOCATION_ARGS) ;
 
@@ -3211,8 +3210,7 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mClassName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mOppositeRelationshipName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_propertyMultiplicity getter_mInverseRelationMultiplicity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_toOneOppositeRelationship getter_mOpposite (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_propertyMap getter_mDestinationEntityObservablePropertyMap (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,

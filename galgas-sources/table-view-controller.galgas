@@ -233,7 +233,7 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         !"rootObject." + mToManyPropertyName
         !mClassName
       }
-      case toOne (3*) :
+      case toOne (4*) :
         error mRootEntityName : "a tomany relationship is required here"
       case arrayController (2*) :
         error mRootEntityName : "a tomany relationship is required here"
@@ -257,7 +257,7 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         !mToManyPropertyName
         !mClassName
       }
-      case toOne (3*) :
+      case toOne (4*) :
         error mRootEntityName : "a tomany relationship is required here"
       case arrayController (2*) :
         error mRootEntityName : "a tomany relationship is required here"
@@ -338,7 +338,7 @@ override method @tableViewControllerDeclarationAST secondAnalysisPhase
       else .entityArray
     end
     [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?actionMap ?*]
-  case toOne (3*) :
+  case toOne (4*) :
     error mToManyPropertyName
       : "a tomany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName

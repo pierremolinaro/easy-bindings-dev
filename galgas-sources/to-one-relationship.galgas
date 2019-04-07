@@ -2,19 +2,18 @@
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-#enum @toOneOppositeRelationship {
-#  case none
-#  case toOneOpposite (@lstring oppositeRelationshipName)
-#  case toManyOpposite (@lstring oppositeRelationshipName)
-#}
+enum @toOneOppositeRelationship {
+  case none
+  case oppositeIsToOne (@lstring oppositeRelationshipName)
+  case oppositeIsToMany (@lstring oppositeRelationshipName)
+}
 
 #·······················································································································
 
 class @toOneRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToOneRelationshipName
-  @lstring mOppositeRelationshipName # Empty string if not inverse relation ship
-  @propertyMultiplicity mInverseRelationMultiplicity
+  @toOneOppositeRelationship mOpposite
 }
 
 #·······················································································································
@@ -44,29 +43,27 @@ syntax extension easyBindings_syntax {
     $toOne$
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
-    @propertyMultiplicity inverseRelationMultiplicity
-    @lstring inverseRelationshipName
+    @toOneOppositeRelationship opposite
     select
-      inverseRelationMultiplicity = .single
-      inverseRelationshipName = ["" here]
+      opposite = .none
     or
       $inverse$
       select
         $toOne$
-        inverseRelationMultiplicity = .single
+        $identifier$ ?let inverseRelationshipName
+        opposite = .oppositeIsToOne {!oppositeRelationshipName: inverseRelationshipName}
       or
         $toMany$
-        inverseRelationMultiplicity = .collection
+        $identifier$ ?let inverseRelationshipName
+        opposite = .oppositeIsToMany {!oppositeRelationshipName: inverseRelationshipName}
       end
-      $identifier$ ?inverseRelationshipName
-      end
+    end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@toOneRelationshipAST.new {
       !inCurrentEntity
       !destinationEntityName
       !relationshipName
-      !inverseRelationshipName
-      !inverseRelationMultiplicity
+      !opposite
     }
   }
   
@@ -98,6 +95,7 @@ override method @toOneRelationshipAST firstAnalysisPhase
         !typeName: mDestinationEntityName
         !accessibility: .stored
         !graphic: graphic
+        !opposite: mOpposite
       }
       [!?mPropertyMap insertKey !mToOneRelationshipName !kind !{}]
     end
@@ -123,14 +121,14 @@ override method @toOneRelationshipAST secondAnalysisPhase
         !typeName: mDestinationEntityName
         !accessibility: .stored
         !graphic: graphic
+        !opposite: mOpposite
       }
     #--- Code Generation
       mPropertyGenerationList += !@toOnePropertyGeneration.new {
         !mToOneRelationshipName.string
         !mClassName
         !kind
-        !mOppositeRelationshipName
-        !mInverseRelationMultiplicity
+        !mOpposite
         !destinationEntityPropertyMap
       }
     end
@@ -144,8 +142,7 @@ override method @toOneRelationshipAST secondAnalysisPhase
 class @toOnePropertyGeneration : @propertyGeneration {
   @string mClassName
   @propertyKind mRelationshipType
-  @string mOppositeRelationshipName
-  @propertyMultiplicity mInverseRelationMultiplicity
+  @toOneOppositeRelationship mOpposite
   @propertyMap mDestinationEntityObservablePropertyMap
 }
 
@@ -199,8 +196,15 @@ override getter @toOnePropertyGeneration setupRelationshipFromDictionaryCode -> 
 
 override getter @toOnePropertyGeneration saveIntoDictionaryCode -> @string {
   result  = ""
-  if [mInverseRelationMultiplicity isSingle] then
+  switch mOpposite
+  case oppositeIsToMany (*) :
+  case none :
     result +="  //--- To one property: " + mPropertyName + "\n"
+    result += "    self.store (managedObject:self." + mPropertyName + "_property.propval,\n"
+    result += "      relationshipName: \"" + mPropertyName + "\",\n"
+    result += "      intoDictionary: ioDictionary)\n"
+  case oppositeIsToOne (oppositeName) :
+    result +="  //--- To one property: " + mPropertyName + " // Opposite is toOne " + oppositeName + "\n"
     result += "    self.store (managedObject:self." + mPropertyName + "_property.propval,\n"
     result += "      relationshipName: \"" + mPropertyName + "\",\n"
     result += "      intoDictionary: ioDictionary)\n"

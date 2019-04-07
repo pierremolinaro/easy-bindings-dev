@@ -46,7 +46,7 @@ private proc graphvizRootEntityAnalysis
   @stringlist arrowList = {}
   loop ([inSemanticContext.mClassMap count] + 1) while [exploreArray length] > 0 do
     [!?exploreArray popLast ?let @string entityName]
-    var node = "  " + entityName + "[label=\"" + entityName
+    var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
     [inSemanticContext.mClassMap searchKey ![entityName nowhere] ?* ?let @propertyMap propertyMap ?2*]
     for (propertyName propertyKind *) in propertyMap do
       switch propertyKind
@@ -58,7 +58,8 @@ private proc graphvizRootEntityAnalysis
          node += "|<" + propertyName + ">" + propertyName
          switch optionKind
          case none :
-           arrowList += !"  " + entityName + ":" + propertyName + " -> " + typeName + "[dir=both arrowtail=none arrowhead=vee]"
+           arrowList += !"  " + entityName + ":" + propertyName
+             + " -> " + typeName + ":" + typeName + " [dir=both arrowtail=none arrowhead=vee]"
          case hasOpposite (oppositeName) :
            arrowList += !"  " + entityName + ":" + propertyName
               + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=vee]"
@@ -69,10 +70,20 @@ private proc graphvizRootEntityAnalysis
             exploreArray += !typeName
           end
         end
-      case toOne (@lstring typeName @propertyAccessibility accessibility *) :
+      case toOne (@lstring typeName @propertyAccessibility accessibility * opposite) :
         if [accessibility isStored] then
           node += "|<" + propertyName + ">" + propertyName
-          arrowList += !"  " + entityName + ":" + propertyName + " -> " + typeName + "[dir=both arrowtail=none arrowhead=onormal]"
+          switch opposite
+          case none :
+            arrowList += !"  " + entityName + ":" + propertyName 
+               + " -> " + typeName + ":" + typeName + " [dir=both arrowtail=none arrowhead=onormal]"
+          case oppositeIsToMany (*) : # No generation
+          case oppositeIsToOne (oppositeName) :
+            if propertyName.string > oppositeName.string then
+              arrowList += !"  " + entityName + ":" + propertyName 
+                   + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=onormal]"
+            end
+          end
           if not [reachableEntityNameSet hasKey !typeName] then
             reachableEntityNameSet += !typeName
             exploreArray += !typeName
@@ -83,7 +94,7 @@ private proc graphvizRootEntityAnalysis
     node += "\"]"
     nodeList += !node
   end
-#  log reachableEntityNameSet
+#--- Generation
   var s = "digraph G {\n"
   s += "  rankdir=LR ;\n"
   s += "  node [shape=record fontname=helvetica style=rounded] ;\n"

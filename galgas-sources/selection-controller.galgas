@@ -76,7 +76,7 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
       error mModelControllerName : "an array controller is required here"
     case toMany (4*) :
       error mModelControllerName : "an array controller is required here"
-    case toOne (3*) :
+    case toOne (4*) :
       error mModelControllerName : "an array controller is required here"
     case selectionController (*) :
       error mModelControllerName : "an array controller is required here"
@@ -107,7 +107,7 @@ override method @selectionControllerDeclarationAST thirdAnalysisPhase
    switch propertyKind
    case property (2*) :
    case toMany (4*) :
-   case toOne (3*) :
+   case toOne (4*) :
    case selectionController (*) :
    case arrayController (typeName *) :
      [ioSemanticContext.mClassMap searchKey !mSelectionEntityName ?* ?let selectionObservablePropertyMap ?2*]

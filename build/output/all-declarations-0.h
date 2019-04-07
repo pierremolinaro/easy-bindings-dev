@@ -4599,8 +4599,7 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
   public : static class GALGAS_toOneRelationshipAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                      const class GALGAS_lstring & inOperand1,
                                                                      const class GALGAS_lstring & inOperand2,
-                                                                     const class GALGAS_lstring & inOperand3,
-                                                                     const class GALGAS_propertyMultiplicity & inOperand4
+                                                                     const class GALGAS_toOneOppositeRelationship & inOperand3
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4614,9 +4613,7 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mDestinationEntityName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_propertyMultiplicity getter_mInverseRelationMultiplicity (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOppositeRelationshipName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_toOneOppositeRelationship getter_mOpposite (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mToOneRelationshipName (LOCATION_ARGS) const ;
 
@@ -4633,22 +4630,28 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneRelationshipAS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @propertyMultiplicity enum                                              *
+//                                           @toOneOppositeRelationship enum                                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_propertyMultiplicity : public AC_GALGAS_root {
+class GALGAS_toOneOppositeRelationship : public AC_GALGAS_root {
 //--------------------------------- Default constructor
-  public : GALGAS_propertyMultiplicity (void) ;
+  public : GALGAS_toOneOppositeRelationship (void) ;
 
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_single,
-    kEnum_collection
+    kEnum_none,
+    kEnum_oppositeIsToOne,
+    kEnum_oppositeIsToMany
   } enumeration ;
   
 //--------------------------------- Private data member
+  private : AC_GALGAS_enumAssociatedValues mAssociatedValues ;
+  public : VIRTUAL_IN_DEBUG const cEnumAssociatedValues * unsafePointer (void) const {
+    return mAssociatedValues.unsafePointer () ;
+  }
+
   private : enumeration mEnum ;
 
 //--------------------------------- Accessors
@@ -4662,41 +4665,91 @@ class GALGAS_propertyMultiplicity : public AC_GALGAS_root {
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_propertyMultiplicity extractObject (const GALGAS_object & inObject,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_toOneOppositeRelationship extractObject (const GALGAS_object & inObject,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_propertyMultiplicity constructor_collection (LOCATION_ARGS) ;
+  public : static class GALGAS_toOneOppositeRelationship constructor_none (LOCATION_ARGS) ;
 
-  public : static class GALGAS_propertyMultiplicity constructor_single (LOCATION_ARGS) ;
+  public : static class GALGAS_toOneOppositeRelationship constructor_oppositeIsToMany (const class GALGAS_lstring & inOperand0
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_toOneOppositeRelationship constructor_oppositeIsToOne (const class GALGAS_lstring & inOperand0
+                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_propertyMultiplicity & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_toOneOppositeRelationship & inOperand) const ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_oppositeIsToMany (class GALGAS_lstring & outArgument0,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_oppositeIsToOne (class GALGAS_lstring & outArgument0,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
+
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCollection (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSingle (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isOppositeIsToMany (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isOppositeIsToOne (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_propertyMultiplicity class
+} ; // End of GALGAS_toOneOppositeRelationship class
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyMultiplicity ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneOppositeRelationship ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                 @toOneOppositeRelationship enum, associated values                                  *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne : public cEnumAssociatedValues {
+  public : const GALGAS_lstring mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne (const GALGAS_lstring & inAssociatedValue0
+                                                                            COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne (void) {}
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany : public cEnumAssociatedValues {
+  public : const GALGAS_lstring mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany (const GALGAS_lstring & inAssociatedValue0
+                                                                             COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany (void) {}
+} ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -4708,15 +4761,13 @@ class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
   public : GALGAS_lstring mProperty_mDestinationEntityName ;
   public : GALGAS_lstring mProperty_mToOneRelationshipName ;
-  public : GALGAS_lstring mProperty_mOppositeRelationshipName ;
-  public : GALGAS_propertyMultiplicity mProperty_mInverseRelationMultiplicity ;
+  public : GALGAS_toOneOppositeRelationship mProperty_mOpposite ;
 
 //--- Constructor
   public : cPtr_toOneRelationshipAST (const GALGAS_lstring & in_mClassName,
                                       const GALGAS_lstring & in_mDestinationEntityName,
                                       const GALGAS_lstring & in_mToOneRelationshipName,
-                                      const GALGAS_lstring & in_mOppositeRelationshipName,
-                                      const GALGAS_propertyMultiplicity & in_mInverseRelationMultiplicity
+                                      const GALGAS_toOneOppositeRelationship & in_mOpposite
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -4725,8 +4776,7 @@ class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mDestinationEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToOneRelationshipName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mOppositeRelationshipName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_propertyMultiplicity getter_mInverseRelationMultiplicity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_toOneOppositeRelationship getter_mOpposite (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

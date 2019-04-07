@@ -221,7 +221,7 @@ proc analyzeOutlets
           error controllerName : "the bound model should be an array controller"
         case toMany (4*) :
           error controllerName : "the bound model should be an array controller"
-        case toOne (3*) :
+        case toOne (4*) :
           error controllerName : "the bound model should be an array controller"
         case arrayController (entityName graphic) :
           if propertyName.string == "" then
@@ -243,7 +243,7 @@ proc analyzeOutlets
               if not isGraphic then
                 error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
               end
-            case toOne (3*) :
+            case toOne (4*) :
               error controllerName : "the bound model should be a toMany property"
             case arrayController (2*) :
               error controllerName : "the bound model should be a toMany property"
@@ -390,7 +390,7 @@ proc analyzeRegularBinding
       case property (2*) : # Ok
       case toMany (4*) :
         error [mObservableProperty location]:"a toMany property cannot be bound"
-      case toOne (3*) :
+      case toOne (4*) :
         error [mObservableProperty location]:"a toOne property cannot be bound"
       case arrayController (2*) :
         error [mObservableProperty location]:"an array controller cannot be bound"
