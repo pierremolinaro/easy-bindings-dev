@@ -24,6 +24,7 @@ project (0:0:1) -> "eb" {
   "galgas-sources/entity.galgas"
   "galgas-sources/document.galgas"
   "galgas-sources/preferences.galgas"
+  "galgas-sources/graphviz.galgas"
 
 #--- Oulet classes
   "galgas-sources/outlet-class.galgas"

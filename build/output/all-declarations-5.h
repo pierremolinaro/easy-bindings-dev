@@ -271,6 +271,30 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_C
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                             Routine 'graphvizAnalysis'                                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_graphvizAnalysis (const class GALGAS_string constinArgument0,
+                               const class GALGAS_semanticContext constinArgument1,
+                               const class GALGAS_lstringlist constinArgument2,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                        Routine 'graphvizRootEntityAnalysis'                                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_graphvizRootEntityAnalysis (const class GALGAS_string constinArgument0,
+                                         const class GALGAS_semanticContext constinArgument1,
+                                         const class GALGAS_string constinArgument2,
+                                         class C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                         Filewrapper 'outletClassGeneration'                                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

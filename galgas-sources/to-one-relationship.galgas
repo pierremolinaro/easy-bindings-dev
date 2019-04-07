@@ -32,10 +32,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
 
-  rule <toOne_relationship>
-            ?let @lstring inCurrentEntity
-            ?!@astDeclarationStruct ioDeclarationAST
-  {
+  rule <toOne_relationship> ?let @lstring inCurrentEntity ?!@astDeclarationStruct ioDeclarationAST {
     $toOne$
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName

@@ -52,6 +52,9 @@ case . "eb"
   for (declaration) in sortedDeclarationListAST do
     [declaration thirdAnalysisPhase !?semanticContext !?generation]
   end
+#----------------------------------------- Semantic Analysis, third phase
+  graphvizAnalysis (![inSourceFile stringByDeletingLastPathComponent] !semanticContext !declarationStruct.mGraphvizList)
+#----------------------------------------- Generate code
   if @uint.errorCount == 0 then
     generateCode (
       !declarationStruct.mXcodeProject.string

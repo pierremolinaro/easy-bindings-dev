@@ -1,0 +1,96 @@
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SYNTAX
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <graphviz_declaration> ?!@astDeclarationStruct ioDeclarationAST {
+    $graphviz$
+    $Identifier$ ?let @lstring entityName
+    ioDeclarationAST.mGraphvizList += !entityName
+    $;$
+ }
+ 
+  #·····················································································································
+
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#   SEMANTIC TYPES                        
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+proc graphvizAnalysis 
+  ?let @string inSourceFileDirectory
+  ?let @semanticContext inSemanticContext
+  ?let @lstringlist inGraphvizList
+{
+  if @uint.errorCount == 0 then
+    for (rootEntityName) in inGraphvizList do
+      graphvizRootEntityAnalysis (!inSourceFileDirectory !inSemanticContext !rootEntityName.string)
+    end
+  end
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+private proc graphvizRootEntityAnalysis
+  ?let @string inSourceFileDirectory
+  ?let @semanticContext inSemanticContext
+  ?let @string inRootEntityName
+{
+  @stringset reachableEntityNameSet = {!inRootEntityName}
+  @stringlist exploreArray = {!inRootEntityName}
+  @stringlist nodeList = {}
+  @stringlist arrowList = {}
+  loop ([inSemanticContext.mClassMap count] + 1) while [exploreArray length] > 0 do
+    [!?exploreArray popLast ?let @string entityName]
+    var node = "  " + entityName + "[label=\"" + entityName
+    [inSemanticContext.mClassMap searchKey ![entityName nowhere] ?* ?let @propertyMap propertyMap ?2*]
+    for (propertyName propertyKind *) in propertyMap do
+      switch propertyKind
+      case property (2*) :
+      case arrayController (2*) :
+      case selectionController (*) :
+      case toMany (@lstring typeName @propertyAccessibility accessibility *) :
+       if [accessibility isStored] then
+         node += "|<" + propertyName + ">" + propertyName
+         arrowList += !"  " + entityName + ":" + propertyName + " -> " + typeName + "[dir=both arrowtail=none arrowhead=vee]"
+         if not [reachableEntityNameSet hasKey !typeName] then
+            reachableEntityNameSet += !typeName
+            exploreArray += !typeName
+          end
+        end
+      case toOne (@lstring typeName @propertyAccessibility accessibility *) :
+        if [accessibility isStored] then
+          node += "|<" + propertyName + ">" + propertyName
+          arrowList += !"  " + entityName + ":" + propertyName + " -> " + typeName + "[dir=both arrowtail=none arrowhead=onormal]"
+          if not [reachableEntityNameSet hasKey !typeName] then
+            reachableEntityNameSet += !typeName
+            exploreArray += !typeName
+          end
+        end
+      end
+    end
+    node += "\"]"
+    nodeList += !node
+  end
+#  log reachableEntityNameSet
+  var s = "digraph G {\n"
+  s += "  rankdir=LR ;\n"
+  s += "  node [shape=record fontname=helvetica style=rounded] ;\n"
+  for (node) in nodeList do
+    s += node + " ;\n"
+  end
+  for (arrow) in arrowList do
+    s += arrow + " ;\n"
+  end
+  s += "}\n"
+  let filePath = inSourceFileDirectory + "/models/" + inRootEntityName + ".dot"
+  [[filePath stringByDeletingLastPathComponent] makeDirectory]
+  [s writeToFileWhenDifferentContents !filePath ?*]
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+

@@ -11,6 +11,267 @@
 //   Object comparison                                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+typeComparisonResult cPtr_toOnePropertyGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_toOnePropertyGeneration * p = (const cPtr_toOnePropertyGeneration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_toOnePropertyGeneration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mPropertyName.objectCompare (p->mProperty_mPropertyName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRelationshipType.objectCompare (p->mProperty_mRelationshipType) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mOppositeRelationshipName.objectCompare (p->mProperty_mOppositeRelationshipName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mInverseRelationMultiplicity.objectCompare (p->mProperty_mInverseRelationMultiplicity) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mDestinationEntityObservablePropertyMap.objectCompare (p->mProperty_mDestinationEntityObservablePropertyMap) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_toOnePropertyGeneration::objectCompare (const GALGAS_toOnePropertyGeneration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toOnePropertyGeneration::GALGAS_toOnePropertyGeneration (void) :
+GALGAS_propertyGeneration () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toOnePropertyGeneration::GALGAS_toOnePropertyGeneration (const cPtr_toOnePropertyGeneration * inSourcePtr) :
+GALGAS_propertyGeneration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_toOnePropertyGeneration) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toOnePropertyGeneration GALGAS_toOnePropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
+                                                                                const GALGAS_string & inAttribute_mClassName,
+                                                                                const GALGAS_propertyKind & inAttribute_mRelationshipType,
+                                                                                const GALGAS_string & inAttribute_mOppositeRelationshipName,
+                                                                                const GALGAS_propertyMultiplicity & inAttribute_mInverseRelationMultiplicity,
+                                                                                const GALGAS_propertyMap & inAttribute_mDestinationEntityObservablePropertyMap
+                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_toOnePropertyGeneration result ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mClassName.isValid () && inAttribute_mRelationshipType.isValid () && inAttribute_mOppositeRelationshipName.isValid () && inAttribute_mInverseRelationMultiplicity.isValid () && inAttribute_mDestinationEntityObservablePropertyMap.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_toOnePropertyGeneration (inAttribute_mPropertyName, inAttribute_mClassName, inAttribute_mRelationshipType, inAttribute_mOppositeRelationshipName, inAttribute_mInverseRelationMultiplicity, inAttribute_mDestinationEntityObservablePropertyMap COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_toOnePropertyGeneration::getter_mClassName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toOnePropertyGeneration * p = (const cPtr_toOnePropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOnePropertyGeneration) ;
+    result = p->mProperty_mClassName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_toOnePropertyGeneration::getter_mClassName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mClassName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyKind GALGAS_toOnePropertyGeneration::getter_mRelationshipType (UNUSED_LOCATION_ARGS) const {
+  GALGAS_propertyKind result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toOnePropertyGeneration * p = (const cPtr_toOnePropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOnePropertyGeneration) ;
+    result = p->mProperty_mRelationshipType ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyKind cPtr_toOnePropertyGeneration::getter_mRelationshipType (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRelationshipType ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_toOnePropertyGeneration::getter_mOppositeRelationshipName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toOnePropertyGeneration * p = (const cPtr_toOnePropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOnePropertyGeneration) ;
+    result = p->mProperty_mOppositeRelationshipName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_toOnePropertyGeneration::getter_mOppositeRelationshipName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOppositeRelationshipName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMultiplicity GALGAS_toOnePropertyGeneration::getter_mInverseRelationMultiplicity (UNUSED_LOCATION_ARGS) const {
+  GALGAS_propertyMultiplicity result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toOnePropertyGeneration * p = (const cPtr_toOnePropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOnePropertyGeneration) ;
+    result = p->mProperty_mInverseRelationMultiplicity ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMultiplicity cPtr_toOnePropertyGeneration::getter_mInverseRelationMultiplicity (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mInverseRelationMultiplicity ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap GALGAS_toOnePropertyGeneration::getter_mDestinationEntityObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+  GALGAS_propertyMap result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toOnePropertyGeneration * p = (const cPtr_toOnePropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOnePropertyGeneration) ;
+    result = p->mProperty_mDestinationEntityObservablePropertyMap ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyMap cPtr_toOnePropertyGeneration::getter_mDestinationEntityObservablePropertyMap (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mDestinationEntityObservablePropertyMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                  Pointer class for @toOnePropertyGeneration class                                   *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_toOnePropertyGeneration::cPtr_toOnePropertyGeneration (const GALGAS_string & in_mPropertyName,
+                                                            const GALGAS_string & in_mClassName,
+                                                            const GALGAS_propertyKind & in_mRelationshipType,
+                                                            const GALGAS_string & in_mOppositeRelationshipName,
+                                                            const GALGAS_propertyMultiplicity & in_mInverseRelationMultiplicity,
+                                                            const GALGAS_propertyMap & in_mDestinationEntityObservablePropertyMap
+                                                            COMMA_LOCATION_ARGS) :
+cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
+mProperty_mClassName (in_mClassName),
+mProperty_mRelationshipType (in_mRelationshipType),
+mProperty_mOppositeRelationshipName (in_mOppositeRelationshipName),
+mProperty_mInverseRelationMultiplicity (in_mInverseRelationMultiplicity),
+mProperty_mDestinationEntityObservablePropertyMap (in_mDestinationEntityObservablePropertyMap) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_toOnePropertyGeneration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toOnePropertyGeneration ;
+}
+
+void cPtr_toOnePropertyGeneration::description (C_String & ioString,
+                                                const int32_t inIndentation) const {
+  ioString << "[@toOnePropertyGeneration:" ;
+  mProperty_mPropertyName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mClassName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRelationshipType.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mOppositeRelationshipName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mInverseRelationMultiplicity.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mDestinationEntityObservablePropertyMap.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_toOnePropertyGeneration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_toOnePropertyGeneration (mProperty_mPropertyName, mProperty_mClassName, mProperty_mRelationshipType, mProperty_mOppositeRelationshipName, mProperty_mInverseRelationMultiplicity, mProperty_mDestinationEntityObservablePropertyMap COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                            @toOnePropertyGeneration type                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_toOnePropertyGeneration ("toOnePropertyGeneration",
+                                                & kTypeDescriptor_GALGAS_propertyGeneration) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_toOnePropertyGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toOnePropertyGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_toOnePropertyGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_toOnePropertyGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toOnePropertyGeneration GALGAS_toOnePropertyGeneration::extractObject (const GALGAS_object & inObject,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_toOnePropertyGeneration result ;
+  const GALGAS_toOnePropertyGeneration * p = (const GALGAS_toOnePropertyGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_toOnePropertyGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toOnePropertyGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 typeComparisonResult cPtr_toManyRelationshipAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_toManyRelationshipAST * p = (const cPtr_toManyRelationshipAST *) inOperandPtr ;
@@ -7764,7 +8025,8 @@ mProperty_mUnifiedDeclarationList (),
 mProperty_mDeclarationList (),
 mProperty_mBindingSpecificationListMap (),
 mProperty_mPreferences (),
-mProperty_mXcodeProject () {
+mProperty_mXcodeProject (),
+mProperty_mGraphvizList () {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7778,12 +8040,14 @@ GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (const GALGAS_declarati
                                                           const GALGAS_astDeclarationListEX & inOperand1,
                                                           const GALGAS_outletClassBindingSpecificationList & inOperand2,
                                                           const GALGAS_prefDeclaration & inOperand3,
-                                                          const GALGAS_lstring & inOperand4) :
+                                                          const GALGAS_lstring & inOperand4,
+                                                          const GALGAS_lstringlist & inOperand5) :
 mProperty_mUnifiedDeclarationList (inOperand0),
 mProperty_mDeclarationList (inOperand1),
 mProperty_mBindingSpecificationListMap (inOperand2),
 mProperty_mPreferences (inOperand3),
-mProperty_mXcodeProject (inOperand4) {
+mProperty_mXcodeProject (inOperand4),
+mProperty_mGraphvizList (inOperand5) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7793,7 +8057,8 @@ GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_default (UN
                                       GALGAS_astDeclarationListEX::constructor_emptyList (HERE),
                                       GALGAS_outletClassBindingSpecificationList::constructor_emptyList (HERE),
                                       GALGAS_prefDeclaration::constructor_default (HERE),
-                                      GALGAS_lstring::constructor_default (HERE)) ;
+                                      GALGAS_lstring::constructor_default (HERE),
+                                      GALGAS_lstringlist::constructor_emptyList (HERE)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7802,11 +8067,12 @@ GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::constructor_new (const 
                                                                           const GALGAS_astDeclarationListEX & inOperand1,
                                                                           const GALGAS_outletClassBindingSpecificationList & inOperand2,
                                                                           const GALGAS_prefDeclaration & inOperand3,
-                                                                          const GALGAS_lstring & inOperand4 
+                                                                          const GALGAS_lstring & inOperand4,
+                                                                          const GALGAS_lstringlist & inOperand5 
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astDeclarationStruct result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_astDeclarationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+    result = GALGAS_astDeclarationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
   }
   return result ;
 }
@@ -7830,13 +8096,16 @@ typeComparisonResult GALGAS_astDeclarationStruct::objectCompare (const GALGAS_as
   if (result == kOperandEqual) {
     result = mProperty_mXcodeProject.objectCompare (inOperand.mProperty_mXcodeProject) ;
   }
+  if (result == kOperandEqual) {
+    result = mProperty_mGraphvizList.objectCompare (inOperand.mProperty_mGraphvizList) ;
+  }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 bool GALGAS_astDeclarationStruct::isValid (void) const {
-  return mProperty_mUnifiedDeclarationList.isValid () && mProperty_mDeclarationList.isValid () && mProperty_mBindingSpecificationListMap.isValid () && mProperty_mPreferences.isValid () && mProperty_mXcodeProject.isValid () ;
+  return mProperty_mUnifiedDeclarationList.isValid () && mProperty_mDeclarationList.isValid () && mProperty_mBindingSpecificationListMap.isValid () && mProperty_mPreferences.isValid () && mProperty_mXcodeProject.isValid () && mProperty_mGraphvizList.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7847,6 +8116,7 @@ void GALGAS_astDeclarationStruct::drop (void) {
   mProperty_mBindingSpecificationListMap.drop () ;
   mProperty_mPreferences.drop () ;
   mProperty_mXcodeProject.drop () ;
+  mProperty_mGraphvizList.drop () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7866,6 +8136,8 @@ void GALGAS_astDeclarationStruct::description (C_String & ioString,
     mProperty_mPreferences.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mXcodeProject.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mGraphvizList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -7898,6 +8170,12 @@ GALGAS_prefDeclaration GALGAS_astDeclarationStruct::getter_mPreferences (UNUSED_
 
 GALGAS_lstring GALGAS_astDeclarationStruct::getter_mXcodeProject (UNUSED_LOCATION_ARGS) const {
   return mProperty_mXcodeProject ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist GALGAS_astDeclarationStruct::getter_mGraphvizList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mGraphvizList ;
 }
 
 

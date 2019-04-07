@@ -4222,12 +4222,15 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
     callExtensionMethod_thirdAnalysisPhase ((const cPtr_abstractDeclarationAST *) enumerator_2436.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_1749, var_generation_1791, inCompiler COMMA_SOURCE_FILE ("program.galgas", 53)) ;
     enumerator_2436.gotoNextObject () ;
   }
+  {
+  routine_graphvizAnalysis (constinArgument_inSourceFile.getter_string (HERE).getter_stringByDeletingLastPathComponent (SOURCE_FILE ("program.galgas", 56)), var_semanticContext_1749, var_declarationStruct_734.getter_mGraphvizList (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 56)) ;
+  }
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 55)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 58)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
       {
-      routine_generateCode (var_declarationStruct_734.getter_mXcodeProject (HERE).getter_string (HERE), var_generation_1791, constinArgument_inSourceFile.getter_string (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 56)) ;
+      routine_generateCode (var_declarationStruct_734.getter_mXcodeProject (HERE).getter_string (HERE), var_generation_1791, constinArgument_inSourceFile.getter_string (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 59)) ;
       }
     }
   }
