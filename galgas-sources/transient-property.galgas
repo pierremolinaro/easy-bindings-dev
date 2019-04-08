@@ -53,6 +53,8 @@ override method @transientDeclarationAST enterInPrecedenceGraph ?!@declarationPr
       [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
     case selfControllerSecondaryProperty (@lstring controllerName unused propertyName unused secondaryPropertyName) :
       [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
+    case selfControllerAllProperties (@lstring controllerName unused propertyName unused secondaryPropertyName) :
+      [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
@@ -424,6 +426,8 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
     outResult = "self." + controllerName.string + "." + propertyName + "_property.addEBObserver"
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.addEBObserver"
+  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+    outResult = "self." + controllerName.string + "." + propertyName + "_property.addEBObserverOf_" + secondaryPropertyName 
   case selfProperty (@lstring masterName) :
     outResult = "self." + masterName.string + "_property.addEBObserver"
   case selfPropertyWithOption (@lstring masterName *) :
@@ -463,6 +467,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
     outResult = "self." + controllerName.string + "." + propertyName + "_property.removeEBObserver"
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.removeEBObserver"
+  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+    outResult = "self." + controllerName.string + "." + propertyName + "_property.removeEBObserverOf_" + secondaryPropertyName
   case selfProperty (@lstring masterName) :
     outResult = "self." + masterName.string + "_property.removeEBObserver"
   case selfPropertyWithOption (@lstring masterName *) :

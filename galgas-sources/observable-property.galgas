@@ -16,6 +16,7 @@ enum @observablePropertyAST {
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName)
   case selfControllerProperty (@lstring controllerName @lstring propertyName)
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
+  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName)
   case signatureProperty (@location location)
   case versionProperty (@location location)
   case versionShouldChangeProperty (@location location)
@@ -110,6 +111,16 @@ syntax extension easyBindings_syntax {
           !propertyName:propertyName
           !secondaryPropertyName:secondaryPropertyName
         }
+      or
+        $.$
+        $all$
+        $.$
+        $identifier$ ?let secondaryPropertyName
+        outObservablePropertyAST = .selfControllerAllProperties {
+          !controllerName: controllerName
+          !propertyName: propertyName
+          !secondaryPropertyName: secondaryPropertyName
+        }
       end
     or
       $signature$
@@ -159,6 +170,8 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
     outResult = inSelf + "." + controllerName + "." + propertyName + "_property"
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     outResult = inSelf + "." + controllerName + "." + propertyName + "_property" + "." + secondaryPropertyName + "_property"
+  case selfControllerAllProperties (@lstring controllerName @lstring propertyName *) :
+    outResult = inSelf + "." + controllerName + "." + propertyName + "_property"
   case signatureProperty (*) :
     outResult = "self.signatureObserver_property"
   case versionProperty (*) :
@@ -198,6 +211,8 @@ getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
     outResult = "self_" + controllerName + "_" + propertyName
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     outResult = "self_" + controllerName + "_" + propertyName + "_" + secondaryPropertyName
+  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    outResult = "self_" + controllerName + "_" + propertyName + "_all_" + secondaryPropertyName
   case signatureProperty (*) :
     outResult = "self_signatureObserver"
   case versionProperty (*) :
@@ -237,6 +252,8 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
     outResult = true
   case selfControllerSecondaryProperty (* * *) :
     outResult = true
+  case selfControllerAllProperties (* * *) :
+    outResult = true
   case signatureProperty (*) :
     outResult = true
   case versionProperty (*) :
@@ -275,6 +292,8 @@ getter @observablePropertyAST location -> @location outResult {
   case selfControllerProperty (* @lstring propertyName) :
     outResult = propertyName.location
   case selfControllerSecondaryProperty (* * @lstring secondaryPropertyName) :
+    outResult = secondaryPropertyName.location
+  case selfControllerAllProperties (* * @lstring secondaryPropertyName) :
     outResult = secondaryPropertyName.location
   case signatureProperty (@location location) :
     outResult = location
@@ -560,14 +579,15 @@ method @observablePropertyAST analyzeObservableProperty
         error propertyName
           : "unknown option (accepted : 'sortedArray' or 'selectedArray')"
           : outKind
+          fixit { replace "sortedArray" replace "selectedArray" }
       end
     case selectionController (entityName) :
-      [inSemanticContext.mClassMap searchKey !.new {!entityName !controllerName.location} ?* ?let observablePropertyMap ?2*]
-#      [inSemanticContext.mEntityObservablePropertyMap searchKey
-#        !.new {!entityName !controllerName.location}
-#        ?let observablePropertyMap
-#        ?*
-#      ]
+      [inSemanticContext.mClassMap searchKey !
+        .new {!entityName !controllerName.location}
+        ?*
+        ?let observablePropertyMap
+        ?2*
+      ]
       [observablePropertyMap searchKey !propertyName ?outKind ?*]
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
@@ -581,6 +601,41 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "unknown option" : outKind
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+    [inBoundModelPropertyMap searchKey !controllerName ?let @propertyKind propertyKind ?*]
+    if propertyName.string != "selectedArray" then
+      error propertyName : "unknown property"
+        : outKind, outSwiftTypeStringForTransientFunctionArgument
+        fixit { replace "selectedArray" }
+    else
+      outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
+      switch propertyKind
+      case property (2*) :
+        error propertyName : "a property cannot accept any option" : outKind, outSwiftTypeStringForTransientFunctionArgument
+      case toMany (4*) :
+        error propertyName : "a toMany property cannot accept any option" : outKind, outSwiftTypeStringForTransientFunctionArgument
+      case toOne (4*) :
+        error propertyName : "a toOne property cannot accept any option" : outKind, outSwiftTypeStringForTransientFunctionArgument
+      case arrayController (typeName *) :
+         [inSemanticContext.mClassMap searchKey !
+          .new {!typeName !controllerName.location}
+          ?*
+          ?let observablePropertyMap
+          ?2*
+        ]
+        [observablePropertyMap searchKey !secondaryPropertyName ?outKind ?*]
+        outSwiftTypeStringForTransientFunctionArgument = "[" + typeName + "_" + secondaryPropertyName + "]"
+      case selectionController (entityName) :
+        [inSemanticContext.mClassMap searchKey !
+          .new {!entityName !controllerName.location}
+          ?*
+          ?let observablePropertyMap
+          ?2*
+        ]
+        [observablePropertyMap searchKey !secondaryPropertyName ?outKind ?*]
+         outSwiftTypeStringForTransientFunctionArgument = "[" + entityName + "_" + secondaryPropertyName + "]"
+     end
+    end
   end  
 }
 
