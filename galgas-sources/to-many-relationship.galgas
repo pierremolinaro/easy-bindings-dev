@@ -171,7 +171,14 @@ override getter @toManyPropertyGeneration propertyDeclarationCode ?let @stringse
   end
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
-  result += "      return self." + mPropertyName + "_property.prop\n"
+  result += "    return self." + mPropertyName + "_property.prop\n"
+  result += "  }\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
+  result += "    get { return self." + mPropertyName + "_property.propval }\n"
+  if not [mOption isHasDependance] then
+    result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
+  end
   result += "  }\n\n"
 }
 
