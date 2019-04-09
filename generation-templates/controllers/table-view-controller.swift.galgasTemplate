@@ -235,7 +235,7 @@ end
   if [SORTED_COLUMNS length] == 0 then
     %          return .single (modelArray)\n%
   else
-    %          let sortedArray = modelArray.sorted (by: {me.isOrderedBefore (left: $0, right: $1)})\n%
+    %          let sortedArray = modelArray.sorted { me.isOrderedBefore (left: $0, right: $1) }\n%
     %          return .single (sortedArray)\n%
   end
 else
@@ -250,7 +250,7 @@ else
   if [SORTED_COLUMNS length] == 0 then
     %            return .single (filteredArray)\n%
   else
-    %            let sortedFilteredArray = filteredArray.sorted (by: {me.isOrderedBefore (left: $0, right: $1)})\n%
+    %            let sortedFilteredArray = filteredArray.sorted { me.isOrderedBefore (left: $0, right: $1) }\n%
     %            return .single (sortedFilteredArray)\n%
   end
   %          }\n%
@@ -549,7 +549,7 @@ case entityArray :
             }
           }
         //--- Sort
-          indexArrayOfSelectedObjects.sort (by: { $0 < $1 })
+          indexArrayOfSelectedObjects.sort { $0 < $1 }
         //--- Find the first index of a non selected object
           var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
           for index in indexArrayOfSelectedObjects {
@@ -578,7 +578,7 @@ case entityArray :
             }
           }
         //--- Sort in reverse order
-          selectedObjectIndexArray.sort (by: { $1 < $0 })
+          selectedObjectIndexArray.sort { $1 < $0 }
         //--- Remove objects, in reverse of order of their index
           var newObjectArray = model_prop
           for index in selectedObjectIndexArray {

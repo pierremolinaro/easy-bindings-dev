@@ -352,21 +352,21 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      self.mObserversOf_%![mProperty mPropertyName]%.apply ( {(_ observer : EBEvent) in
+      self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
-      })
+      }
     }
   }
 
   //····················································································································
 
   final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
-    self.mObserversOf_%![mProperty mPropertyName]%.apply ( {(_ observer : EBEvent) in
+    self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
       observer.postEvent ()
       for managedObject in inSet {
         managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
       }
-    })
+    }
   }
 
 %
@@ -412,9 +412,9 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      self.mObserversOf_%![mProperty mPropertyName]%.apply ( {(_ observer : EBEvent) in
+      self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
-      })
+      }
     }
   }
 
@@ -422,9 +422,9 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
     for managedObject in inSet {
-      self.mObserversOf_%![mProperty mPropertyName]%.apply ( {(_ observer : EBEvent) in
+      self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
-      })
+      }
     }
   }
 
@@ -492,13 +492,14 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   private func computeArrayAndSet () {
     if let unwrappedComputeFunction = self.mReadModelFunction, self.mCachedValue == nil {
-      self.mCachedValue = unwrappedComputeFunction ()
+      let cachedValue = unwrappedComputeFunction ()
+      self.mCachedValue = cachedValue
       let newSet : Set <%!ENTITY_NAME%>
-      switch self.mCachedValue! {
+      switch cachedValue {
       case .multiple, .empty :
         newSet = Set <%!ENTITY_NAME%> ()
       case .single (let array) :
-       newSet = Set (array)
+        newSet = Set (array)
       }
 %
 if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
@@ -656,8 +657,16 @@ end
 %          }
 %for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
-    %          self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
+    %       //   self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
   end
+end
+%        //--- Remove observers of stored properties
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %          self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
+end
+%        //--- Remove observers of transient properties
+%for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %          self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
 end
 %        }
        //--- Added object set
@@ -672,8 +681,16 @@ end
 %          }
 %for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
-    %          self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
+    %        // self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
   end
+end
+%        //--- Add observers of stored properties
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %          self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
+end
+%        //--- Add observers of transient properties
+%for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %          self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
 end
 %        }
       //--- Notify observers

@@ -5342,7 +5342,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
         "            }\n"
         "          }\n"
         "        //--- Sort\n"
-        "          indexArrayOfSelectedObjects.sort (by: { $0 < $1 })\n"
+        "          indexArrayOfSelectedObjects.sort { $0 < $1 }\n"
         "        //--- Find the first index of a non selected object\n"
         "          var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n"
         "          for index in indexArrayOfSelectedObjects {\n"
@@ -5375,7 +5375,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
         "            }\n"
         "          }\n"
         "        //--- Sort in reverse order\n"
-        "          selectedObjectIndexArray.sort (by: { $1 < $0 })\n"
+        "          selectedObjectIndexArray.sort { $1 < $0 }\n"
         "        //--- Remove objects, in reverse of order of their index\n"
         "          var newObjectArray = model_prop\n"
         "          for index in selectedObjectIndexArray {\n"
@@ -6965,7 +6965,7 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
     if (kBoolTrue == test_2) {
       result << "          return .single (modelArray)\n" ;
     }else if (kBoolFalse == test_2) {
-      result << "          let sortedArray = modelArray.sorted (by: {me.isOrderedBefore (left: $0, right: $1)})\n"
+      result << "          let sortedArray = modelArray.sorted { me.isOrderedBefore (left: $0, right: $1) }\n"
         "          return .single (sortedArray)\n" ;
     }
   }else if (kBoolFalse == test_1) {
@@ -6983,7 +6983,7 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
     if (kBoolTrue == test_3) {
       result << "            return .single (filteredArray)\n" ;
     }else if (kBoolFalse == test_3) {
-      result << "            let sortedFilteredArray = filteredArray.sorted (by: {me.isOrderedBefore (left: $0, right: $1)})\n"
+      result << "            let sortedFilteredArray = filteredArray.sorted { me.isOrderedBefore (left: $0, right: $1) }\n"
         "            return .single (sortedFilteredArray)\n" ;
     }
     result << "          }\n" ;
@@ -7029,24 +7029,24 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
     "      let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)\n"
     "      self.mSelectedSet.addEBObserver (selectionTableViewController)\n"
     "      self.mTableViewSelectionControllerArray.append (selectionTableViewController)\n" ;
-  GALGAS_uint index_12247_ (0) ;
+  GALGAS_uint index_12239_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_tableViewControllerBoundColumnListForGeneration enumerator_12247 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
-    while (enumerator_12247.hasCurrentObject ()) {
+    cEnumerator_tableViewControllerBoundColumnListForGeneration enumerator_12239 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
+    while (enumerator_12239.hasCurrentObject ()) {
       result << "    //--- Check '" ;
-      result << enumerator_12247.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12239.current_mColumnName (HERE).stringValue () ;
       result << "' column\n"
         "      if let column : NSTableColumn = tableView.tableColumn (withIdentifier: NSUserInterfaceItemIdentifier (rawValue: \"" ;
-      result << enumerator_12247.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12239.current_mColumnName (HERE).stringValue () ;
       result << "\")) {\n"
         "        column.sortDescriptorPrototype = nil\n"
         "      }else{\n"
         "        presentErrorWindow (file, line, \"\\\"" ;
-      result << enumerator_12247.current_mColumnName (HERE).stringValue () ;
+      result << enumerator_12239.current_mColumnName (HERE).stringValue () ;
       result << "\\\" column view unknown\")\n"
         "      }\n" ;
-      index_12247_.increment () ;
-      enumerator_12247.gotoNextObject () ;
+      index_12239_.increment () ;
+      enumerator_12239.gotoNextObject () ;
     }
   }
   result << "    //--- Set descriptors from first column of table view\n"
@@ -7178,79 +7178,79 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
       "        }\n"
       "        let object = v [inRowIndex]\n"
       "        " ;
-    GALGAS_uint index_17741_ (0) ;
+    GALGAS_uint index_17733_ (0) ;
     if (in_BOUND_5F_COLUMNS.isValid ()) {
-      cEnumerator_tableViewControllerBoundColumnListForGeneration enumerator_17741 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
-      const bool nonEmpty_enumerator_17741 = enumerator_17741.hasCurrentObject () ;
-      while (enumerator_17741.hasCurrentObject ()) {
+      cEnumerator_tableViewControllerBoundColumnListForGeneration enumerator_17733 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
+      const bool nonEmpty_enumerator_17733 = enumerator_17733.hasCurrentObject () ;
+      while (enumerator_17733.hasCurrentObject ()) {
         result << "if tableColumnIdentifier.rawValue == \"" ;
-        result << enumerator_17741.current_mColumnName (HERE).stringValue () ;
+        result << enumerator_17733.current_mColumnName (HERE).stringValue () ;
         result << "\", let cell = result as\? " ;
-        result << enumerator_17741.current_mColumnOutletTypeName (HERE).stringValue () ;
+        result << enumerator_17733.current_mColumnOutletTypeName (HERE).stringValue () ;
         result << "_TableViewCell {\n"
           "          cell.mUnbindFunction = { [weak cell] in\n" ;
-        const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_17741.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, enumerator_17733.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_5) {
           result << "            cell\?.mCellOutlet\?.target = nil\n"
             "            cell\?.mCellOutlet\?.action = nil\n" ;
         }else if (kBoolFalse == test_5) {
         }
-        GALGAS_uint index_18114_ (0) ;
-        if (enumerator_17741.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-          cEnumerator_regularBindingsGenerationList enumerator_18114 (enumerator_17741.current_mRegularBindingsGenerationList (HERE), kENUMERATION_UP) ;
-          while (enumerator_18114.hasCurrentObject ()) {
+        GALGAS_uint index_18106_ (0) ;
+        if (enumerator_17733.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+          cEnumerator_regularBindingsGenerationList enumerator_18106 (enumerator_17733.current_mRegularBindingsGenerationList (HERE), kENUMERATION_UP) ;
+          while (enumerator_18106.hasCurrentObject ()) {
             result << "            cell\?.mCellOutlet\?.unbind_" ;
-            result << enumerator_18114.current_mBindingName (HERE).stringValue () ;
+            result << enumerator_18106.current_mBindingName (HERE).stringValue () ;
             result << " ()\n" ;
-            index_18114_.increment () ;
-            enumerator_18114.gotoNextObject () ;
+            index_18106_.increment () ;
+            enumerator_18106.gotoNextObject () ;
           }
         }
         result << "          }\n"
           "          cell.mUnbindFunction\? ()\n" ;
-        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, enumerator_17741.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, enumerator_17733.current_mRunAction (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_6) {
           result << "          cell.mCellOutlet\?.target = object\n"
             "          cell.mCellOutlet\?.action = #selector (" ;
           result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
           result << "." ;
-          result << enumerator_17741.current_mRunAction (HERE).stringValue () ;
+          result << enumerator_17733.current_mRunAction (HERE).stringValue () ;
           result << "(_:))\n" ;
         }else if (kBoolFalse == test_6) {
         }
-        GALGAS_uint index_18483_ (0) ;
-        if (enumerator_17741.current_mRegularBindingsGenerationList (HERE).isValid ()) {
-          cEnumerator_regularBindingsGenerationList enumerator_18483 (enumerator_17741.current_mRegularBindingsGenerationList (HERE), kENUMERATION_UP) ;
-          while (enumerator_18483.hasCurrentObject ()) {
+        GALGAS_uint index_18475_ (0) ;
+        if (enumerator_17733.current_mRegularBindingsGenerationList (HERE).isValid ()) {
+          cEnumerator_regularBindingsGenerationList enumerator_18475 (enumerator_17733.current_mRegularBindingsGenerationList (HERE), kENUMERATION_UP) ;
+          while (enumerator_18475.hasCurrentObject ()) {
             result << "          cell.mCellOutlet\?.bind_" ;
-            result << enumerator_18483.current_mBindingName (HERE).stringValue () ;
+            result << enumerator_18475.current_mBindingName (HERE).stringValue () ;
             result << " (" ;
-            GALGAS_uint index_18576_ (0) ;
-            if (enumerator_18483.current_mBoundObjectList (HERE).isValid ()) {
-              cEnumerator_boundObjectList enumerator_18576 (enumerator_18483.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
-              while (enumerator_18576.hasCurrentObject ()) {
-                result << enumerator_18576.current_mBoundObjectString (HERE).stringValue () ;
+            GALGAS_uint index_18568_ (0) ;
+            if (enumerator_18475.current_mBoundObjectList (HERE).isValid ()) {
+              cEnumerator_boundObjectList enumerator_18568 (enumerator_18475.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
+              while (enumerator_18568.hasCurrentObject ()) {
+                result << enumerator_18568.current_mBoundObjectString (HERE).stringValue () ;
                 result << ", " ;
-                index_18576_.increment () ;
-                enumerator_18576.gotoNextObject () ;
+                index_18568_.increment () ;
+                enumerator_18568.gotoNextObject () ;
               }
             }
             result << "file: #file, line: #line" ;
-            result << enumerator_18483.current_mBindingOptionsString (HERE).stringValue () ;
+            result << enumerator_18475.current_mBindingOptionsString (HERE).stringValue () ;
             result << ")\n"
               "          cell.update ()\n" ;
-            index_18483_.increment () ;
-            enumerator_18483.gotoNextObject () ;
+            index_18475_.increment () ;
+            enumerator_18475.gotoNextObject () ;
           }
         }
         result << "        " ;
-        if (enumerator_17741.hasNextObject ()) {
+        if (enumerator_17733.hasNextObject ()) {
           result << "}else " ;
         }
-        index_17741_.increment () ;
-        enumerator_17741.gotoNextObject () ;
+        index_17733_.increment () ;
+        enumerator_17733.gotoNextObject () ;
       }
-      if (nonEmpty_enumerator_17741) {
+      if (nonEmpty_enumerator_17733) {
         result << "}else{\n"
           "          NSLog (\"Unknown column '\\(String (describing: inTableColumn\?.identifier))'\")\n"
           "        }\n" ;
@@ -7358,7 +7358,7 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
         "            }\n"
         "          }\n"
         "        //--- Sort\n"
-        "          indexArrayOfSelectedObjects.sort (by: { $0 < $1 })\n"
+        "          indexArrayOfSelectedObjects.sort { $0 < $1 }\n"
         "        //--- Find the first index of a non selected object\n"
         "          var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n"
         "          for index in indexArrayOfSelectedObjects {\n"
@@ -7391,7 +7391,7 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
         "            }\n"
         "          }\n"
         "        //--- Sort in reverse order\n"
-        "          selectedObjectIndexArray.sort (by: { $1 < $0 })\n"
+        "          selectedObjectIndexArray.sort { $1 < $0 }\n"
         "        //--- Remove objects, in reverse of order of their index\n"
         "          var newObjectArray = model_prop\n"
         "          for index in selectedObjectIndexArray {\n"
