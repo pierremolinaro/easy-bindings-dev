@@ -2,8 +2,6 @@
 //   Scalar property %!TYPE%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-typealias EBReadOnlyController_%!TYPE% = EBReadOnlyValueController <%!TYPE%>
-
 typealias EBReadOnlyProperty_%!TYPE%  = EBReadOnlyValueProperty <%!TYPE%>
 typealias EBTransientProperty_%!TYPE% = EBTransientValueProperty <%!TYPE%>
 %if not TRANSIENT then

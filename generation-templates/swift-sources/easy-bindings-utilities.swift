@@ -372,9 +372,10 @@ class EBSimpleController : EBOutletEvent {
 
   //····················································································································
 
-  init (observedObjects : [EBAbstractProperty]) {
+  init (observedObjects : [EBAbstractProperty], callBack: @escaping () -> Void) {
     mPrivateObservedObjects = observedObjects
     super.init ()
+    self.mEventCallBack = callBack
     for object in observedObjects {
       object.addEBObserver (self)
     }
@@ -391,40 +392,22 @@ class EBSimpleController : EBOutletEvent {
   //····················································································································
 
 }
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyClassController <T>
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class EBReadOnlyClassController <T> : EBSimpleController {
-
-  //····················································································································
-
-  init (model : EBReadOnlyClassProperty <T>, callBack: @escaping () -> Void) {
-    super.init (observedObjects:[model])
-    self.mEventCallBack = callBack
-  }
-
-  //····················································································································
-
-}
-
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   EBReadOnlyValueController <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBReadOnlyValueController <T> : EBSimpleController {
+//class EBReadOnlyValueController <T> : EBSimpleController {
 
   //····················································································································
 
-  init (model : EBReadOnlyValueProperty <T>, callBack : @escaping () -> Void) {
-    super.init (observedObjects: [model])
-    self.mEventCallBack = callBack
-  }
+//  init (model : EBReadOnlyValueProperty <T>, callBack : @escaping () -> Void) {
+//    super.init (observedObjects: [model])
+//    self.mEventCallBack = callBack
+//  }
 
   //····················································································································
 
-}
+//}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    createEntryForAttributeNamed

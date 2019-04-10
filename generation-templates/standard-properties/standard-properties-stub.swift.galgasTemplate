@@ -120,7 +120,7 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
   //····················································································································
 
   override func validateAndSetProp (_ candidateValue : T,
-                                    windowForSheet inWindow:NSWindow?) -> Bool {
+                                    windowForSheet inWindow : NSWindow?) -> Bool {
     var result = false
     if let unwValidateAndWriteModelFunction = self.mValidateAndWriteModelFunction {
       result = unwValidateAndWriteModelFunction (candidateValue, inWindow)
@@ -142,7 +142,7 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   weak var ebUndoManager : UndoManager?  // SOULD BE WEAK
   fileprivate var mPreferenceKey : String?
-  var mSetterDelegate : ((_ inValue : T) -> Void)?
+  var mSetterDelegate : Optional < (_ inValue : T) -> Void >
 
   //····················································································································
 
@@ -756,23 +756,6 @@ class EBTransientEnumProperty <T : EBEnumProtocol> : EBReadOnlyEnumProperty <T> 
     }else if logEvents () {
       appendMessageString ("Transient \(explorerIndexString (self.ebObjectIndex)) nil\\n")
     }
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyEnumController <T>
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class EBReadOnlyEnumController <T : EBEnumProtocol> : EBSimpleController {
-
-  //····················································································································
-
-  init (model : EBReadOnlyEnumProperty <T>, callBack: @escaping () -> Void) {
-    super.init (observedObjects:[model])
-    self.mEventCallBack = callBack
   }
 
   //····················································································································
