@@ -220,7 +220,7 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
       [rootProperties searchKey !mToManyPropertyName ?let classKind ?*]
       switch classKind
       case property (2*) :
-        error mRootEntityName : "a tomany relationship is required here"
+        error mRootEntityName : "a toMany relationship is required here"
       case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
@@ -234,17 +234,19 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         !mClassName
       }
       case toOne (4*) :
-        error mRootEntityName : "a tomany relationship is required here"
+        error mRootEntityName : "a toMany relationship is required here"
       case arrayController (2*) :
-        error mRootEntityName : "a tomany relationship is required here"
+        error mRootEntityName : "a toMany relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a tomany relationship is required here"
+        error mRootEntityName : "a toMany relationship is required here"
+      case objectController (2*) :
+        error mRootEntityName : "a toMany relationship is required here"
       end
     else
       [mPropertyMap searchKey !mToManyPropertyName ?let classKind ?*]
       switch classKind
       case property (2*) :
-        error mRootEntityName : "a tomany relationship is required here"
+        error mRootEntityName : "a toMany relationship is required here"
       case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
@@ -258,11 +260,13 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         !mClassName
       }
       case toOne (4*) :
-        error mRootEntityName : "a tomany relationship is required here"
+        error mRootEntityName : "a toMany relationship is required here"
       case arrayController (2*) :
-        error mRootEntityName : "a tomany relationship is required here"
+        error mRootEntityName : "a toMany relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a tomany relationship is required here"
+        error mRootEntityName : "a toMany relationship is required here"
+      case objectController (2*) :
+        error mRootEntityName : "a toMany relationship is required here"
       end
     end
   end
@@ -328,7 +332,7 @@ override method @tableViewControllerDeclarationAST secondAnalysisPhase
   switch boundModelClassKind
   case property (2*) :
     error mToManyPropertyName
-      : "a tomany property is required here"
+      : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   case toMany (typeName accessibility isGraphic *) :
     elementTypeName = typeName
@@ -340,15 +344,19 @@ override method @tableViewControllerDeclarationAST secondAnalysisPhase
     [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?actionMap ?*]
   case toOne (4*) :
     error mToManyPropertyName
-      : "a tomany property is required here"
+      : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   case arrayController (2*) :
     error mToManyPropertyName
-      : "a tomany property is required here"
+      : "a toMany property is required here"
+      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+  case objectController (2*) :
+    error mToManyPropertyName
+      : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   case selectionController (*) :
     error mToManyPropertyName
-      : "a tomany property is required here"
+      : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
   @tableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
@@ -443,7 +451,7 @@ override getter @tableViewControllerPropertyGeneration propertyDeclarationCode ?
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Array controller: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + " = ArrayController_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+  result += "  var " + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
 }
 
 #·······················································································································
@@ -606,7 +614,7 @@ override method @tableViewControllerGeneration generateCode
   ]
   [@string generateFile
     !inOutputDirectory
-    !"arrayController-" + mOwnerName + "-" +  mControllerName + ".swift"
+    !"controller-table-view-" + mOwnerName + "-" +  mControllerName + ".swift"
     !s
   ]
   if [mTableViewControllerFilterListForGeneration length] > 0 then

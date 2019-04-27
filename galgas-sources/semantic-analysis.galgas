@@ -114,6 +114,7 @@ enum @propertyKind {
   case toMany (@lstring typeName @propertyAccessibility accessibility @bool graphic @toManyRelationshipOptionAST optionKind)
   case toOne (@lstring typeName @propertyAccessibility accessibility @bool graphic @toOneOppositeRelationship opposite)
   case arrayController (@lstring typeName @bool graphic)
+  case objectController (@lstring typeName @bool graphic)
   case selectionController (@string typeName)
 }
 

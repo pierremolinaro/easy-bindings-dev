@@ -119,7 +119,6 @@ class EBAbstractProperty : EBEvent {
 
   final func removeEBObserver (_ inObserver : EBEvent) {
     self.mObservers.remove (inObserver)
-  //  inObserver.postEvent ()
     self.updateObserverExplorer ()
   }
 
@@ -128,7 +127,7 @@ class EBAbstractProperty : EBEvent {
   final func removeEBObserversFrom (_ inObserverSet : inout EBWeakEventSet) {
     inObserverSet.apply {(_ observer : EBEvent) in
       self.mObservers.remove (observer)
-      observer.postEvent ()
+      // observer.postEvent () §
     }
     self.updateObserverExplorer ()
   }
@@ -392,22 +391,6 @@ class EBSimpleController : EBOutletEvent {
   //····················································································································
 
 }
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBReadOnlyValueController <T>
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-//class EBReadOnlyValueController <T> : EBSimpleController {
-
-  //····················································································································
-
-//  init (model : EBReadOnlyValueProperty <T>, callBack : @escaping () -> Void) {
-//    super.init (observedObjects: [model])
-//    self.mEventCallBack = callBack
-//  }
-
-  //····················································································································
-
-//}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    createEntryForAttributeNamed

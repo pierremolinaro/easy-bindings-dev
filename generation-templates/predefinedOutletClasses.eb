@@ -118,6 +118,7 @@ binding EBTextField $value : property String {sendContinously : Bool} ;
 
 outlet class EBTextObserverField : NSView ;
 binding EBTextObserverField $valueObserver : transient String ;
+binding EBTextObserverField $backColor : transient NSColor ;
 
 
 outlet class EBTextObserverView : NSView ;

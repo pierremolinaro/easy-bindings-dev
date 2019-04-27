@@ -20,11 +20,12 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
     else
       %  var %!lkey.string%_property = EBPropertyProxy_%![mKind swiftTypeName]% ()\n\n%
     end
-      %  var %!lkey.string%_property_selection : EBSelection <%![mKind swiftTypeName]%> {\n%
-      %    return self.%!lkey.string%_property.prop\n%
-      %  }\n\n%
+    %  var %!lkey.string%_property_selection : EBSelection <%![mKind swiftTypeName]%> {\n%
+    %    return self.%!lkey.string%_property.prop\n%
+    %  }\n\n%
   end
-end%  //····················································································································
+end
+%  //····················································································································
   //   BIND SELECTION
   //····················································································································
 

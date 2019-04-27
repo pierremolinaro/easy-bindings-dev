@@ -2,29 +2,29 @@
 #   AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @arrayControllerDeclarationAST : @abstractDeclarationAST {
+class @objectControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
   @bool mIsRoot
   @lstring mRootEntityName
-  @lstring mToManyPropertyName
+  @lstring mToOneRelationshipName
 }
 
 #·······················································································································
 
-override method @arrayControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+override method @objectControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
   let node = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !mClassName]
   if not mIsRoot then
-    [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
+    [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mToOneRelationshipName !mToOneRelationshipName.location}]
   elsif mRootEntityName.string != "" then
-    [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
+    [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + mToOneRelationshipName !mToOneRelationshipName.location}]
   end
 }
 
 #·······················································································································
 
-override getter @arrayControllerDeclarationAST lkey -> @lstring {
+override getter @objectControllerDeclarationAST lkey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
 }
 
@@ -41,7 +41,7 @@ syntax extension easyBindings_syntax {
             ?let @lstring inRootEntity
             ?!@astDeclarationStruct ioDeclarationAST
   {
-    $arrayController$
+    $objectController$
     $identifier$ ?let @lstring controllerName
   #--- Model
     $:$
@@ -56,7 +56,7 @@ syntax extension easyBindings_syntax {
     $.$
     $identifier$ ?let @lstring relationshipName
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST.new {
+    ioDeclarationAST.mUnifiedDeclarationList += !@objectControllerDeclarationAST.new {
       !inCurrentEntity
       !controllerName
       !isRoot
@@ -73,66 +73,65 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerDeclarationAST firstAnalysisPhase 
+override method @objectControllerDeclarationAST firstAnalysisPhase 
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
   with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    let @actionMap controllerActions = {!["add" nowhere], !["remove" nowhere] }
     if mIsRoot then
       [ioSemanticContext.mClassMap searchKey !mRootEntityName ?* ?let rootProperties ?2*]
-      [rootProperties searchKey !mToManyPropertyName ?let classKind ?*]
+      [rootProperties searchKey !mToOneRelationshipName ?let classKind ?*]
       switch classKind
       case property (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
-      case toMany (typeName * graphic *) :
-        let kind = @propertyKind.arrayController {
+        error mRootEntityName : "a toOne relationship is required here"
+      case toOne (typeName * graphic *) :
+        let kind = @propertyKind.objectController {
           !typeName: typeName
           !graphic: graphic
         }
-        [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
+        [!?mPropertyMap insertKey !mControllerName !kind !{}]
     #--- Code Generation
-      mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
+      mPropertyGenerationList += !@objectControllerPropertyGeneration.new {
         !mControllerName.string
-        !"rootObject." + mToManyPropertyName
+        !"rootObject." + mToOneRelationshipName
         !mClassName
       }
-      case toOne (4*) :
-        error mRootEntityName : "a toMany relationship is required here"
+      case toMany (4*) :
+        error mRootEntityName : "a toOne relationship is required here"
       case arrayController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mRootEntityName : "a toOne relationship is required here"
       case objectController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mRootEntityName : "a toOne relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mRootEntityName : "a toOne relationship is required here"
       end
     else
-      [mPropertyMap searchKey !mToManyPropertyName ?let classKind ?*]
+      [mPropertyMap searchKey !mToOneRelationshipName ?let classKind ?*]
       switch classKind
       case property (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
-      case toMany (typeName * graphic *) :
+        error mRootEntityName : "a toOne relationship is required here"
+      case toOne (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
           !graphic: graphic
         }
-        [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
+        [!?mPropertyMap insertKey !mControllerName !kind !{}]
     #--- Code Generation
-      mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
+      mPropertyGenerationList += !@objectControllerPropertyGeneration.new {
         !mControllerName.string
-        !mToManyPropertyName
+        !mToOneRelationshipName
         !mClassName
       }
-      case toOne (4*) :
-        error mRootEntityName : "a toMany relationship is required here"
+      case toMany (4*) :
+        error mRootEntityName : "a toOne relationship is required here"
       case arrayController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mRootEntityName : "a toOne relationship is required here"
       case objectController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mRootEntityName : "a toOne relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mRootEntityName : "a toOne relationship is required here"
       end
     end
   end
@@ -142,7 +141,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
 #   SECOND ANALYSIS PHASE
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerDeclarationAST secondAnalysisPhase
+override method @objectControllerDeclarationAST secondAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -163,59 +162,54 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
      ]  
   end
   [boundModelPropertyMap searchKey
-     !mToManyPropertyName
+     !mToOneRelationshipName
      ?let @propertyKind boundModelClassKind
      ?*
   ]
 #------------------------------------------------------------ Check colum bound models
   @actionMap actionMap
   @propertyMap propertyMap
-  @arrayControllerModelKind arrayControllerModelKind
   @bool graphic
   @string elementTypeName
   switch boundModelClassKind
   case property (2*) :
-    error mToManyPropertyName
-      : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
-  case toMany (typeName accessibility isGraphic *) :
+    error mToOneRelationshipName
+      : "a toOne property is required here"
+      : graphic, propertyMap, actionMap, elementTypeName
+  case toOne (typeName * isGraphic *) :
     elementTypeName = typeName
     graphic = isGraphic
-    arrayControllerModelKind = if [accessibility isTransient]
-      then .transientArray
-      else .entityArray
-    end
     [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?actionMap ?*]
-  case toOne (4*) :
-    error mToManyPropertyName
-      : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+  case toMany (4*) :
+    error mToOneRelationshipName
+      : "a toOne property is required here"
+      : graphic, propertyMap, actionMap, elementTypeName
   case arrayController (2*) :
-    error mToManyPropertyName
-      : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+    error mToOneRelationshipName
+      : "a toOne property is required here"
+      : graphic, propertyMap, actionMap, elementTypeName
   case objectController (2*) :
-    error mToManyPropertyName
-      : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+    error mToOneRelationshipName
+      : "a toOne property is required here"
+      : graphic, propertyMap, actionMap, elementTypeName
   case selectionController (*) :
-    error mToManyPropertyName
-      : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+    error mToOneRelationshipName
+      : "a toOne property is required here"
+      : graphic, propertyMap, actionMap, elementTypeName
   end
   let modelString = if mIsRoot
-    then "self.rootObject." + mToManyPropertyName + "_property"
-    else "self." + mToManyPropertyName + "_property"
+    then "self.rootObject." + mToOneRelationshipName + "_property"
+    else "self." + mToOneRelationshipName + "_property"
   end
 #---
-  ioGeneration.mFileGenerationList += !@arrayControllerGeneration.new {
+  ioGeneration.mFileGenerationList += !@objectControllerGeneration.new {
     !mClassName
     !mControllerName
     !modelString
-    !"ReadWriteArrayOf_" + elementTypeName
-    !arrayControllerModelKind
+    !"ToOneRelationship_" + mRootEntityName + "_" + mToOneRelationshipName
     !elementTypeName
     !graphic
+    !propertyMap
   }
 }
 
@@ -224,38 +218,38 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
 #   CODE GENERATION                       
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @arrayControllerPropertyGeneration : @propertyGeneration {
+class @objectControllerPropertyGeneration : @propertyGeneration {
   @string mModelString
   @string mOwnerName
 }
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
+override getter @objectControllerPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Array controller: " + mPropertyName + "\n"
+  result += "  //   Object controller: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
 }
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration configurationCode -> @string {
-  result  = "  //--- Array controller property: " + mPropertyName + "\n"
+override getter @objectControllerPropertyGeneration configurationCode -> @string {
+  result  = "  //--- Object controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property)\n"
 }
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration populateExplorerWindowCode -> @string {
-  result  = "  //--- Array controller property: " + mPropertyName + "\n"
+override getter @objectControllerPropertyGeneration populateExplorerWindowCode -> @string {
+  result  = "  //--- Object controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".addExplorer (name: \"" + mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration terminationCode -> @string {
-  result  = "  //--- Array controller property: " + mPropertyName + "\n"
+override getter @objectControllerPropertyGeneration terminationCode -> @string {
+  result  = "  //--- Object controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".unbind_model ()\n"
 }
 
@@ -263,59 +257,52 @@ override getter @arrayControllerPropertyGeneration terminationCode -> @string {
 #   GENERATION TYPES
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum @arrayControllerModelKind {
-  case entityArray
-  case transientArray
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class @arrayControllerGeneration : @abstractFileGeneration {
+class @objectControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
   @string mModelString
   @string mModelTypeName
-  @arrayControllerModelKind mArrayControllerModelKind
   @string mElementTypeName
   @bool mElementTypeIsGraphic
+  @propertyMap mPropertyMap
 }
 
 #·······················································································································
 
-private filewrapper arrayControllerGenerationTemplate in "../generation-templates/controllers" {
+private filewrapper objectControllerGenerationTemplate in "../generation-templates/controllers" {
 }{
 }{
-  template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
+  template objectControllerImplementationInSwift "object-controller.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string ARRAY_CONTROLLER_NAME
     ?@string MODEL_STRING
-    ?@arrayControllerModelKind MODEL_KIND
     ?@string MODEL_TYPE_NAME
     ?@string ELEMENT_TYPE_NAME
     ?@bool ELEMENT_TYPE_IS_GRAPHIC
+    ?@propertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   GENERATION
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerGeneration generateCode
+override method @objectControllerGeneration generateCode
     ?let @string inOutputDirectory
     ?!@stringset unused ioGeneratedFileSet
 {
 #--- Build observed property set (for sorting and filtering)
-  let s = [filewrapper arrayControllerGenerationTemplate.arrayControllerImplementationInSwift
+  let s = [filewrapper objectControllerGenerationTemplate.objectControllerImplementationInSwift
     !mOwnerName
     !mControllerName
     !mModelString
-    !mArrayControllerModelKind
     !mModelTypeName
     !mElementTypeName
     !mElementTypeIsGraphic
+    !mPropertyMap
   ]
   [@string generateFile
     !inOutputDirectory
-    !"controller-array-" + mOwnerName + "-" +  mControllerName + ".swift"
+    !"controller-object-" + mOwnerName + "-" +  mControllerName + ".swift"
     !s
   ]
 }

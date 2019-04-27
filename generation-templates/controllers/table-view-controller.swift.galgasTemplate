@@ -9,10 +9,10 @@ import Cocoa
 private let DEBUG_EVENT = false
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"ArrayController_" + OWNER_NAME + "_" + TABLE_VIEW_CONTROLLER_NAME%
+//    %!"Table View Controller " + OWNER_NAME + " " + TABLE_VIEW_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ArrayController_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBObject, EBTableViewDelegate, EBTableViewDataSource {
+final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBObject, EBTableViewDelegate, EBTableViewDataSource {
  
   //····················································································································
   //    init
@@ -20,9 +20,9 @@ final class ArrayController_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBObje
 
   override init () {
     mSelectedSet = SelectedSet_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% (
-      allowsEmptySelection:allowsEmptySelection,
-      allowsMultipleSelection:allowsMultipleSelection,
-      sortedArray:self.sortedArray_property
+      allowsEmptySelection: allowsEmptySelection,
+      allowsMultipleSelection: allowsMultipleSelection,
+      sortedArray: self.sortedArray_property
     )
     super.init ()
   //--- Set selected array compute function
@@ -36,6 +36,10 @@ final class ArrayController_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBObje
   //····················································································································
 
   let sortedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
+
+  //····················································································································
+
+  var sortedArray : [%!ELEMENT_TYPE_NAME%] { return self.sortedArray_property.propval }
 
   //····················································································································
 
@@ -81,7 +85,7 @@ end
 
   //····················································································································
 
-  func bind_model (_ inModel:%!MODEL_TYPE_NAME%) {
+  func bind_model (_ inModel : %!MODEL_TYPE_NAME%) {
     self.mModel = inModel
     inModel.addEBObserver (self.sortedArray_property)
     self.sortedArray_property.addEBObserver (mSelectedSet)
@@ -128,6 +132,10 @@ end
   //····················································································································
 
   let selectedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
+
+  //····················································································································
+
+  var selectedArray : [%!ELEMENT_TYPE_NAME%] { return self.selectedArray_property.propval }
 
   //····················································································································
 

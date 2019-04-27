@@ -5,10 +5,10 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"ArrayController_" + OWNER_NAME + "_" + ARRAY_CONTROLLER_NAME%
+//    %!"Array controller " + OWNER_NAME + " " + ARRAY_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class ArrayController_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject%
+final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject%
 if ELEMENT_TYPE_IS_GRAPHIC then
  %, EBViewControllerProtocol%
 end
@@ -62,6 +62,10 @@ end
   //····················································································································
 
   let selectedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
+
+  //····················································································································
+
+  var selectedArray : [%!ELEMENT_TYPE_NAME%] { return self.selectedArray_property.propval }
 
   //····················································································································
 

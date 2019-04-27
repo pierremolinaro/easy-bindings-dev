@@ -273,6 +273,8 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     error [mProperty location] : "only an atomic property can be observed" : outType
   case arrayController (2*) :
     error [mProperty location] : "only an atomic property can be observed" : outType
+  case objectController (2*) :
+    error [mProperty location] : "only an atomic property can be observed" : outType
   case selectionController (*) :
     error [mProperty location] : "only an atomic property can be observed" : outType
   end
