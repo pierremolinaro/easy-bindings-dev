@@ -155,7 +155,7 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   case rootProperty (@lstring propertyName) :
     outResult = inSelf + ".rootObject." + propertyName + "_property"
   case rootPropertyNone (@lstring propertyName) :
-    outResult = inSelf + ".rootObject." + propertyName + "_property"
+    outResult = inSelf + ".rootObject." + propertyName + "_none"
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
     outResult = inSelf + ".rootObject." + propertyName + "_property" + "." + optionName + "_property"
   case rootPropertyRelationship (@lstring relationshipName *) :
@@ -169,7 +169,7 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) :
     outResult = inSelf + "." + propertyName + "_property." + elementPropertyName + "_property"
   case selfPropertyNone (@lstring propertyName) :
-    outResult = inSelf + "." + propertyName + "_property"
+    outResult = inSelf + "." + propertyName + "_none"
   case prefsProperty (@lstring propertyName) :
     outResult = "g_" + preferencesName () + "!." + propertyName + "_property"
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -437,9 +437,9 @@ method @observablePropertyAST analyzeObservableProperty
     case property (2*) :
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
     case toMany (4*) :
-      error propertyName : "a toMany property cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+      outSwiftTypeStringForTransientFunctionArgument = "[EBManagedObject_alloc_index_protocol]"
     case toOne (4*) :
-      error propertyName : "a toOne property cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+      outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_alloc_index_protocol?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case objectController (2*) :

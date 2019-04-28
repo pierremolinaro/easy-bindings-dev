@@ -626,7 +626,7 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration :
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedModel (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedModelString (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -647,17 +647,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyA
 
 class cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
 //--- Attributes
-  public : GALGAS_string mProperty_mObservedModel ;
+  public : GALGAS_string mProperty_mObservedModelString ;
 
 //--- Constructor
-  public : cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (const GALGAS_string & in_mObservedModel
+  public : cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (const GALGAS_string & in_mObservedModelString
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedModel (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedModelString (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

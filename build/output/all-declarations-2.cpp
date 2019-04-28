@@ -2644,7 +2644,7 @@ typeComparisonResult cPtr_observablePropertyAsBooleanMultipleBindingExpressionFo
   const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration * p = (const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration *) inOperandPtr ;
   macroValidSharedObject (p, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration) ;
   if (kOperandEqual == result) {
-    result = mProperty_mObservedModel.objectCompare (p->mProperty_mObservedModel) ;
+    result = mProperty_mObservedModelString.objectCompare (p->mProperty_mObservedModelString) ;
   }
   return result ;
 }
@@ -2690,41 +2690,41 @@ GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (inSourcePtr) {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::constructor_new (const GALGAS_string & inAttribute_mObservedModel
+GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::constructor_new (const GALGAS_string & inAttribute_mObservedModelString
                                                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration result ;
-  if (inAttribute_mObservedModel.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (inAttribute_mObservedModel COMMA_THERE)) ;
+  if (inAttribute_mObservedModelString.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (inAttribute_mObservedModelString COMMA_THERE)) ;
   }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::getter_mObservedModel (UNUSED_LOCATION_ARGS) const {
+GALGAS_string GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::getter_mObservedModelString (UNUSED_LOCATION_ARGS) const {
   GALGAS_string result ;
   if (NULL != mObjectPtr) {
     const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration * p = (const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration) ;
-    result = p->mProperty_mObservedModel ;
+    result = p->mProperty_mObservedModelString ;
   }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::getter_mObservedModel (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mObservedModel ;
+GALGAS_string cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::getter_mObservedModelString (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mObservedModelString ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //             Pointer class for @observablePropertyAsBooleanMultipleBindingExpressionForGeneration class              *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (const GALGAS_string & in_mObservedModel
+cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (const GALGAS_string & in_mObservedModelString
                                                                                                                                                 COMMA_LOCATION_ARGS) :
 cPtr_abstractBooleanMultipleBindingExpressionForGeneration (THERE),
-mProperty_mObservedModel (in_mObservedModel) {
+mProperty_mObservedModelString (in_mObservedModelString) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2736,7 +2736,7 @@ const C_galgas_type_descriptor * cPtr_observablePropertyAsBooleanMultipleBinding
 void cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::description (C_String & ioString,
                                                                                           const int32_t inIndentation) const {
   ioString << "[@observablePropertyAsBooleanMultipleBindingExpressionForGeneration:" ;
-  mProperty_mObservedModel.description (ioString, inIndentation+1) ;
+  mProperty_mObservedModelString.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -2744,7 +2744,7 @@ void cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::des
 
 acPtr_class * cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (mProperty_mObservedModel COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration (mProperty_mObservedModelString COMMA_THERE)) ;
   return ptr ;
 }
 

@@ -188,7 +188,7 @@ abstract class @abstractBooleanMultipleBindingExpressionForGeneration {
 #·······················································································································
 
 class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @string mObservedModel
+  @string mObservedModelString
 }
 
 #·······················································································································
@@ -478,7 +478,7 @@ override getter @booleanMultipleBindingLiteralIntForGeneration observedModelSet
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
-  outObservedModelSet = {!mObservedModel}
+  outObservedModelSet = {!mObservedModelString}
 }
 
 #·······················································································································
@@ -537,7 +537,7 @@ override getter @booleanMultipleBindingLiteralIntForGeneration expressionString
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = mObservedModel + "_selection"
+  outExpressionString = mObservedModelString + "_selection"
 }
 
 #·······················································································································

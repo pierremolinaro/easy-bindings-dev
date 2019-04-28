@@ -162,12 +162,12 @@ override getter @toManyPropertyGeneration propertyDeclarationCode ?let @stringse
   result += "  //   To many property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   if [mOption isHasDependance] then
-    result += "  var " + mPropertyName + "_property = TransientArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
+    result += "  let " + mPropertyName + "_property = TransientArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
   elsif mInPreferences then
-    result += "  var " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName]
+    result += "  let " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName]
            + " (prefKey: Preferences_" + mPropertyName + ")\n\n"
   else
-    result += "  var " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
+    result += "  let " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
   end
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"

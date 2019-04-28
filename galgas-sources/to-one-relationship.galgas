@@ -158,16 +158,23 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To one property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property = ToOneRelationship_" + mClassName
+  result += "  let " + mPropertyName + "_property = ToOneRelationship_" + mClassName
           + "_" + mPropertyName + " ()\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <Bool> {\n"
-  result += "    return .single (self." + mPropertyName + "_property.propval == nil)\n"
+  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mRelationshipType swiftTypeName] + "?> {\n"
+  result += "    return .single (self." + mPropertyName + "_property.propval)\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + " : " + [mRelationshipType swiftTypeName] + "? {\n"
   result += "    get { return self." + mPropertyName + "_property.propval }\n"
   result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
+  result += "  }\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + "_none : ToOneRelationship_" + mClassName
+          + "_" + mPropertyName + " { return self." + mPropertyName + "_property }\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  var " + mPropertyName + "_none_selection : EBSelection <Bool> {\n"
+  result += "    return .single (self." + mPropertyName + "_property.propval == nil)\n"
   result += "  }\n\n"
 }
 

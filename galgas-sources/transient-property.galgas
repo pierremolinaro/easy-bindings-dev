@@ -1,3 +1,4 @@
+
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -208,9 +209,7 @@ override method @transientDeclarationAST secondAnalysisPhase
     switch dependencyKind
     case property (* *) :
     case toMany (4*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
     case toOne (4*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
     case arrayController (2*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
     case objectController (2*) :
