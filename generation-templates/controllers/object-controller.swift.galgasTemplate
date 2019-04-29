@@ -17,19 +17,21 @@ final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
   override init () {
     super.init ()
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
-  %      return self?.mModel?.%!lkey.string%_property_selection ?? .empty\n%
-  %    }\n%
-  %    self.%!lkey.string%_property.mWriteModelFunction = { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
-  %      self?.mModel?.%!lkey.string% = inValue\n%
-  %    }\n%
-  %    self.%!lkey.string%_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
-  %      if let property = self?.mModel?.%!lkey.string%_property {\n%
-  %        return property.validateAndSetProp (candidateValue, windowForSheet: windowForSheet)\n%
-  %      }else{\n%
-  %        return false\n%
-  %      }\n%
-  %    }\n%
+  if [mKind isProperty] then
+    %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
+    %      return self?.mModel?.%!lkey.string%_property_selection ?? .empty\n%
+    %    }\n%
+    %    self.%!lkey.string%_property.mWriteModelFunction = { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
+    %      self?.mModel?.%!lkey.string% = inValue\n%
+    %    }\n%
+    %    self.%!lkey.string%_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+    %      if let property = self?.mModel?.%!lkey.string%_property {\n%
+    %        return property.validateAndSetProp (candidateValue, windowForSheet: windowForSheet)\n%
+    %      }else{\n%
+    %        return false\n%
+    %      }\n%
+    %    }\n%
+  end
 end
 %  }
 
@@ -79,8 +81,10 @@ end
     didSet {
       if self.mModel !== oldValue {
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  %        oldValue?.%!lkey.string%_property.removeEBObserver (self.%!lkey.string%_property)\n%
-  %        self.mModel?.%!lkey.string%_property.addEBObserver (self.%!lkey.string%_property)\n%
+  if [mKind isProperty] then
+    %        oldValue?.%!lkey.string%_property.removeEBObserver (self.%!lkey.string%_property)\n%
+    %        self.mModel?.%!lkey.string%_property.addEBObserver (self.%!lkey.string%_property)\n%
+  end
 end
 %      }
     }
