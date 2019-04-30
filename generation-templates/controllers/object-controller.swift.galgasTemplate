@@ -17,7 +17,8 @@ final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
   override init () {
     super.init ()
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if [mKind isProperty] then
+  if [mKind isToMany] then
+  elsif [mKind isProperty] then
     %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
     %      return self?.mModel?.%!lkey.string%_property_selection ?? .empty\n%
     %    }\n%
@@ -36,14 +37,19 @@ end
 %  }
 
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-%  //····················································································································\n%
-%  //   Observable property: %!lkey.string%\n%
-%  //····················································································································\n\n%
-  if not [mKind isEntityType] then
+  if [mKind isToMany] then
+    %  //····················································································································\n%
+    %  //   ToMany relationship: %!lkey.string%\n%
+    %  //····················································································································\n\n%
+    %  let %!lkey.string%_property = StoredArrayOf_%![mKind swiftTypeName]% ()\n\n%
+  elsif [mKind isProperty] then
+    %  //····················································································································\n%
+    %  //   Observable atomic property: %!lkey.string%\n%
+    %  //····················································································································\n\n%
     if [mKind isTransient] then
-      %  var %!lkey.string%_property = EBTransientProperty_%![mKind swiftTypeName]% ()\n\n%
+      %  let %!lkey.string%_property = EBTransientProperty_%![mKind swiftTypeName]% ()\n\n%
     else
-      %  var %!lkey.string%_property = EBPropertyProxy_%![mKind swiftTypeName]% ()\n\n%
+      %  let %!lkey.string%_property = EBPropertyProxy_%![mKind swiftTypeName]% ()\n\n%
     end
     %  var %!lkey.string%_property_selection : EBSelection <%![mKind swiftTypeName]%> {\n%
     %    return self.%!lkey.string%_property.prop\n%
@@ -61,8 +67,17 @@ end
   func bind_model (_ inToOneRelationship : %!MODEL_TYPE_NAME%) {
     self.mController = EBSimpleController (
       observedObjects: [inToOneRelationship],
-      callBack: { [weak self] in self?.mModel = inToOneRelationship.propval }
+      callBack: { [weak self] in self?.modelDidChange (inToOneRelationship) }
     )
+  }
+
+  //····················································································································
+
+  private func modelDidChange (_ inToOneRelationship : %!MODEL_TYPE_NAME%) {
+    self.mModel = inToOneRelationship.propval
+    let objects = self.mModel?.mObjects_property.propval ?? []
+    self.mObjects_property.setProp (objects)
+    // NSLog ("objects \(objects.count)")
   }
 
   //····················································································································
@@ -81,7 +96,16 @@ end
     didSet {
       if self.mModel !== oldValue {
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
-  if [mKind isProperty] then
+  if [mKind isToMany] then
+    %      //--- ToMany relationship%!lkey.string%\n%
+    %        // oldValue?.%!lkey.string%_property.removeEBObserver (self.%!lkey.string%_property)\n%
+    %        // self.mModel?.%!lkey.string%_property.addEBObserver (self.%!lkey.string%_property)\n%
+    %        if let controller = self.mController {\n%
+    %          oldValue?.%!lkey.string%_property.removeEBObserver (controller)\n%
+    %          self.mModel?.%!lkey.string%_property.addEBObserver (controller)\n%
+    %        }\n%
+  elsif [mKind isProperty] then
+    %      //--- Atomic property%!lkey.string%\n%
     %        oldValue?.%!lkey.string%_property.removeEBObserver (self.%!lkey.string%_property)\n%
     %        self.mModel?.%!lkey.string%_property.addEBObserver (self.%!lkey.string%_property)\n%
   end

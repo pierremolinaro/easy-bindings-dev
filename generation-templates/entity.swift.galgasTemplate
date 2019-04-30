@@ -476,12 +476,6 @@ class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  override init () {
-    super.init ()
-  }
-
-  //····················································································································
-
   private var mSet = Set <%!ENTITY_NAME%> ()
 
   //····················································································································
@@ -635,7 +629,6 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
   private var mSet = Set <%!ENTITY_NAME%> ()
   private var mValue = [%!ENTITY_NAME%] () {
     didSet {
-     // self.postEvent ()
       if oldValue != self.mValue {
         let oldSet = self.mSet
         self.mSet = Set (self.mValue)
@@ -655,12 +648,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
     %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = nil\n%
 end
 %          }
-%for () in PROPERTY_LIST_FOR_GENERATION do
-  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
-    %       //   self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
-  end
-end
-%        //--- Remove observers of stored properties
+        //--- Remove observers of stored properties
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %          self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
 end
@@ -679,12 +667,7 @@ end
     %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = { [weak self] inValue in self?.writeInPreferences () }\n%
 end
 %          }
-%for () in PROPERTY_LIST_FOR_GENERATION do
-  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
-    %        // self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
-  end
-end
-%        //--- Add observers of stored properties
+        //--- Add observers of stored properties
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %          self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
 end

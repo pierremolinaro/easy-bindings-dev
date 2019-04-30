@@ -4,9 +4,16 @@
 
 class @arrayControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
-  @bool mIsRoot
-  @lstring mRootEntityName
+  @arrayControllerBoundModelAST mModel
   @lstring mToManyPropertyName
+}
+
+#·······················································································································
+
+enum @arrayControllerBoundModelAST {
+  case rootToManyRelationship (@lstring rootEntityName)
+  case selfObjectControllerToManyRelationship (@lstring objectControllerName)
+  case selfToManyRelationship
 }
 
 #·······················································································································
@@ -15,10 +22,15 @@ override method @arrayControllerDeclarationAST enterInPrecedenceGraph ?!@declara
   let node = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !mClassName]
-  if not mIsRoot then
+  switch mModel 
+  case rootToManyRelationship (@lstring rootEntityName) :
+    if rootEntityName.string != "" then
+      [!?ioGraph addEdge !node !.new {!rootEntityName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
+    end
+  case selfToManyRelationship :
     [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
-  elsif mRootEntityName.string != "" then
-    [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
+  case selfObjectControllerToManyRelationship (@lstring objectControllerName) :
+    [!?ioGraph addEdge !node !.new {!mClassName.string + " " + objectControllerName !mToManyPropertyName.location}]
   end
 }
 
@@ -44,14 +56,17 @@ syntax extension easyBindings_syntax {
     $arrayController$
     $identifier$ ?let @lstring controllerName
   #--- Model
+    @arrayControllerBoundModelAST model
     $:$
-    @bool isRoot
     select
+      $identifier$ ?let @lstring objectControllerName
+      model = .selfObjectControllerToManyRelationship {!objectControllerName: objectControllerName}
+    or
       $root$
-      isRoot = true
+      model = .rootToManyRelationship {!rootEntityName: inRootEntity}
     or
       $self$
-      isRoot = false
+      model = .selfToManyRelationship
     end
     $.$
     $identifier$ ?let @lstring relationshipName
@@ -59,8 +74,7 @@ syntax extension easyBindings_syntax {
     ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST.new {
       !inCurrentEntity
       !controllerName
-      !isRoot
-      !inRootEntity
+      !model
       !relationshipName
     }
   }
@@ -81,12 +95,13 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
     error message searchKey
   do
     let @actionMap controllerActions = {!["add" nowhere], !["remove" nowhere] }
-    if mIsRoot then
-      [ioSemanticContext.mClassMap searchKey !mRootEntityName ?* ?let rootProperties ?2*]
+    switch mModel
+    case rootToManyRelationship (@lstring rootEntityName) :
+      [ioSemanticContext.mClassMap searchKey !rootEntityName ?* ?let rootProperties ?2*]
       [rootProperties searchKey !mToManyPropertyName ?let classKind ?*]
       switch classKind
       case property (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error rootEntityName : "a toMany relationship is required here"
       case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
@@ -100,19 +115,19 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         !mClassName
       }
       case toOne (4*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error rootEntityName : "a toMany relationship is required here"
       case arrayController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error rootEntityName : "a toMany relationship is required here"
       case objectController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error rootEntityName : "a toMany relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error rootEntityName : "a toMany relationship is required here"
       end
-    else
+    case selfToManyRelationship :
       [mPropertyMap searchKey !mToManyPropertyName ?let classKind ?*]
       switch classKind
       case property (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mToManyPropertyName : "a toMany relationship is required here"
       case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
@@ -126,13 +141,55 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         !mClassName
       }
       case toOne (4*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mToManyPropertyName : "a toMany relationship is required here"
       case arrayController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mToManyPropertyName : "a toMany relationship is required here"
       case objectController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mToManyPropertyName : "a toMany relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error mToManyPropertyName : "a toMany relationship is required here"
+      end
+    case selfObjectControllerToManyRelationship (@lstring objectControllerName) :
+      [mPropertyMap searchKey !objectControllerName ?let classKind ?*]
+      switch classKind
+      case property (2*) :
+        error mToManyPropertyName : "an object controller is required here"
+      case toMany (4*) :
+        error mToManyPropertyName : "an object controller is required here"
+      case toOne (4*) :
+        error mToManyPropertyName : "an object controller is required here"
+      case arrayController (2*) :
+        error mToManyPropertyName : "an object controller is required here"
+      case objectController (@lstring typeName2 *) :
+        [ioSemanticContext.mClassMap searchKey !typeName2 ?* ?let rootProperties ?2*]
+        [rootProperties searchKey !mToManyPropertyName ?let classKind ?*]
+        switch classKind
+        case property (2*) :
+          error mToManyPropertyName : "a toMany relationship is required here"
+        case toMany (typeName * graphic *) :
+          let kind = @propertyKind.arrayController {
+            !typeName: typeName
+            !graphic: graphic
+          }
+          [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
+        #--- Code Generation
+          mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
+            !mControllerName.string
+            !objectControllerName.string + "." + mToManyPropertyName
+            !mClassName
+          }
+        case toOne (4*) :
+          error mToManyPropertyName : "a toMany relationship is required here"
+        case arrayController (2*) :
+          error mToManyPropertyName : "a toMany relationship is required here"
+        case objectController (2*) :
+          error mToManyPropertyName : "a toMany relationship is required here"
+        case selectionController (*) :
+          error mToManyPropertyName : "a toMany relationship is required here"
+        end
+
+      case selectionController (*) :
+        error mToManyPropertyName : "an object controller is required here"
       end
     end
   end
@@ -147,24 +204,44 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
        ?!@generationStruct ioGeneration
 {
   @propertyMap boundModelPropertyMap
-  if mIsRoot then
+  switch mModel
+  case rootToManyRelationship (@lstring rootEntityName) :
     [ioSemanticContext.mClassMap searchKey
-       !mRootEntityName
+       !rootEntityName
        ?*
        ?boundModelPropertyMap 
        ?2*
-     ]
-  else
+    ]
+  case selfToManyRelationship :
     [ioSemanticContext.mClassMap searchKey
        !mClassName
        ?*
        ?boundModelPropertyMap 
        ?2*
      ]  
+  case selfObjectControllerToManyRelationship (@lstring objectControllerName) :
+    [ioSemanticContext.mClassMap searchKey
+       !mClassName
+       ?*
+       ?let propertyMap 
+       ?2*
+    ]  
+    [propertyMap searchKey !objectControllerName ?let boundModelClassKind ?*]
+    if [boundModelClassKind isObjectController] then
+      [boundModelClassKind objectController ?typeName: let objectControllerTypeName ?1*]
+      [ioSemanticContext.mClassMap searchKey
+       !objectControllerTypeName
+       ?*
+       ?boundModelPropertyMap 
+       ?2*
+      ]  
+    else
+      error objectControllerName : "an object controller is required here" : boundModelPropertyMap
+    end
   end
   [boundModelPropertyMap searchKey
      !mToManyPropertyName
-     ?let @propertyKind boundModelClassKind
+     ?let boundModelClassKind
      ?*
   ]
 #------------------------------------------------------------ Check colum bound models
@@ -203,15 +280,10 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
-  let modelString = if mIsRoot
-    then "self.rootObject." + mToManyPropertyName + "_property"
-    else "self." + mToManyPropertyName + "_property"
-  end
 #---
   ioGeneration.mFileGenerationList += !@arrayControllerGeneration.new {
     !mClassName
     !mControllerName
-    !modelString
     !"ReadWriteArrayOf_" + elementTypeName
     !arrayControllerModelKind
     !elementTypeName
@@ -273,7 +345,6 @@ enum @arrayControllerModelKind {
 class @arrayControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
-  @string mModelString
   @string mModelTypeName
   @arrayControllerModelKind mArrayControllerModelKind
   @string mElementTypeName
@@ -288,7 +359,6 @@ private filewrapper arrayControllerGenerationTemplate in "../generation-template
   template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string ARRAY_CONTROLLER_NAME
-    ?@string MODEL_STRING
     ?@arrayControllerModelKind MODEL_KIND
     ?@string MODEL_TYPE_NAME
     ?@string ELEMENT_TYPE_NAME
@@ -307,7 +377,6 @@ override method @arrayControllerGeneration generateCode
   let s = [filewrapper arrayControllerGenerationTemplate.arrayControllerImplementationInSwift
     !mOwnerName
     !mControllerName
-    !mModelString
     !mArrayControllerModelKind
     !mModelTypeName
     !mElementTypeName

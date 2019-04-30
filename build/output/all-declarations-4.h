@@ -242,10 +242,9 @@ class GALGAS_arrayControllerGeneration : public GALGAS_abstractFileGeneration {
   public : static class GALGAS_arrayControllerGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                           const class GALGAS_lstring & inOperand1,
                                                                           const class GALGAS_string & inOperand2,
-                                                                          const class GALGAS_string & inOperand3,
-                                                                          const class GALGAS_arrayControllerModelKind & inOperand4,
-                                                                          const class GALGAS_string & inOperand5,
-                                                                          const class GALGAS_bool & inOperand6
+                                                                          const class GALGAS_arrayControllerModelKind & inOperand3,
+                                                                          const class GALGAS_string & inOperand4,
+                                                                          const class GALGAS_bool & inOperand5
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -264,8 +263,6 @@ class GALGAS_arrayControllerGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mElementTypeIsGraphic (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mElementTypeName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelString (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mModelTypeName (LOCATION_ARGS) const ;
 
@@ -292,7 +289,6 @@ class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
   public : GALGAS_string mProperty_mOwnerName ;
   public : GALGAS_lstring mProperty_mControllerName ;
-  public : GALGAS_string mProperty_mModelString ;
   public : GALGAS_string mProperty_mModelTypeName ;
   public : GALGAS_arrayControllerModelKind mProperty_mArrayControllerModelKind ;
   public : GALGAS_string mProperty_mElementTypeName ;
@@ -301,7 +297,6 @@ class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
 //--- Constructor
   public : cPtr_arrayControllerGeneration (const GALGAS_string & in_mOwnerName,
                                            const GALGAS_lstring & in_mControllerName,
-                                           const GALGAS_string & in_mModelString,
                                            const GALGAS_string & in_mModelTypeName,
                                            const GALGAS_arrayControllerModelKind & in_mArrayControllerModelKind,
                                            const GALGAS_string & in_mElementTypeName,
@@ -314,7 +309,6 @@ class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mControllerName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mModelString (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mModelTypeName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_arrayControllerModelKind getter_mArrayControllerModelKind (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mElementTypeName (LOCATION_ARGS) const ;
