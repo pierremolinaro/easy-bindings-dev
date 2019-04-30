@@ -16,7 +16,7 @@ enum EBKnobKind {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class EBKnobShape : EBShape {
-  private let mKnobSize : CGFloat = 2.0
+  private let mKnobSize : CGFloat
   private let mPoint : CGPoint
   private let mIndex : Int
   private let mKind : EBKnobKind
@@ -25,10 +25,11 @@ class EBKnobShape : EBShape {
   //  Init
   //····················································································································
 
-  init (at inPoint: CGPoint, index inIndex : Int, _ inKind : EBKnobKind) {
+  init (at inPoint: CGPoint, index inIndex : Int, _ inKind : EBKnobKind, _ inKnobSize : CGFloat) {
     mPoint = inPoint
     mIndex = inIndex
     mKind = inKind
+    mKnobSize = inKnobSize
     super.init ()
   }
 
@@ -38,7 +39,7 @@ class EBKnobShape : EBShape {
 
   override func transformedBy (_ inAffineTransform : NSAffineTransform) -> EBKnobShape {
     let p = inAffineTransform.transform (self.mPoint)
-    let result = EBKnobShape (at: p, index: self.mIndex, self.mKind)
+    let result = EBKnobShape (at: p, index: self.mIndex, self.mKind, self.mKnobSize)
     self.internalTransform (result, by: inAffineTransform)
     return result
   }
@@ -157,6 +158,7 @@ class EBKnobShape : EBShape {
     self.mPoint.y.hash (into: &hasher)
     self.mIndex.hash (into: &hasher)
     self.mKind.hash (into: &hasher)
+    self.mKnobSize.hash (into: &hasher)
   }
 
   //····················································································································
