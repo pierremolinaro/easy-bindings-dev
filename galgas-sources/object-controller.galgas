@@ -24,7 +24,7 @@ override method @objectControllerDeclarationAST enterInPrecedenceGraph ?!@declar
 
 #·······················································································································
 
-override getter @objectControllerDeclarationAST lkey -> @lstring {
+override getter @objectControllerDeclarationAST nodeKey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
 }
 
@@ -82,7 +82,7 @@ override method @objectControllerDeclarationAST firstAnalysisPhase
   do
     if mIsRoot then
       [ioSemanticContext.mClassMap searchKey !mRootEntityName ?* ?let rootProperties ?2*]
-      [rootProperties searchKey !mToOneRelationshipName ?let classKind ?*]
+      [rootProperties searchKey !mToOneRelationshipName ?let classKind ?2*]
       switch classKind
       case property (2*) :
         error mRootEntityName : "a toOne relationship is required here"
@@ -91,7 +91,7 @@ override method @objectControllerDeclarationAST firstAnalysisPhase
           !typeName: typeName
           !graphic: graphic
         }
-        [!?mPropertyMap insertKey !mControllerName !kind !{}]
+        [!?mPropertyMap insertKey !mControllerName !kind !{} !false]
     #--- Code Generation
       mPropertyGenerationList += !@objectControllerPropertyGeneration.new {
         !mControllerName.string
@@ -108,7 +108,7 @@ override method @objectControllerDeclarationAST firstAnalysisPhase
         error mRootEntityName : "a toOne relationship is required here"
       end
     else
-      [mPropertyMap searchKey !mToOneRelationshipName ?let classKind ?*]
+      [mPropertyMap searchKey !mToOneRelationshipName ?let classKind ?2*]
       switch classKind
       case property (2*) :
         error mRootEntityName : "a toOne relationship is required here"
@@ -117,7 +117,7 @@ override method @objectControllerDeclarationAST firstAnalysisPhase
           !typeName: typeName
           !graphic: graphic
         }
-        [!?mPropertyMap insertKey !mControllerName !kind !{}]
+        [!?mPropertyMap insertKey !mControllerName !kind !{} !false]
     #--- Code Generation
       mPropertyGenerationList += !@objectControllerPropertyGeneration.new {
         !mControllerName.string
@@ -141,7 +141,7 @@ override method @objectControllerDeclarationAST firstAnalysisPhase
 #   SECOND ANALYSIS PHASE
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @objectControllerDeclarationAST secondAnalysisPhase
+override method @objectControllerDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -164,7 +164,7 @@ override method @objectControllerDeclarationAST secondAnalysisPhase
   [boundModelPropertyMap searchKey
      !mToOneRelationshipName
      ?let @propertyKind boundModelClassKind
-     ?*
+     ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
   @actionMap actionMap

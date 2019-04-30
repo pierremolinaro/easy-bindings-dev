@@ -123,6 +123,7 @@ enum @propertyKind {
 map @propertyMap {
   @propertyKind mKind
   @actionMap mActionMap
+  @bool mIsOverriding
   insert insertKey error message "the '%K' property is already declared in %L"
   search searchKey error message "there is no '%K' property"
 }

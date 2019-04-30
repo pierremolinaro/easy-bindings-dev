@@ -2096,11 +2096,13 @@ class cMapElement_propertyMap : public cMapElement {
 //--- Map attributes
   public : GALGAS_propertyKind mProperty_mKind ;
   public : GALGAS_actionMap mProperty_mActionMap ;
+  public : GALGAS_bool mProperty_mIsOverriding ;
 
 //--- Constructor
   public : cMapElement_propertyMap (const GALGAS_lstring & inKey,
                                     const GALGAS_propertyKind & in_mKind,
-                                    const GALGAS_actionMap & in_mActionMap
+                                    const GALGAS_actionMap & in_mActionMap,
+                                    const GALGAS_bool & in_mIsOverriding
                                     COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -3176,6 +3178,8 @@ class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
 
   public : GALGAS_actionMap mProperty_mActionMap ;
 
+  public : GALGAS_bool mProperty_mIsOverriding ;
+
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -3189,7 +3193,8 @@ class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public : GALGAS_propertyMap_2D_element (const GALGAS_lstring & in_lkey,
                                           const GALGAS_propertyKind & in_mKind,
-                                          const GALGAS_actionMap & in_mActionMap) ;
+                                          const GALGAS_actionMap & in_mActionMap,
+                                          const GALGAS_bool & in_mIsOverriding) ;
 
 //-- Start of generic part --*
 
@@ -3204,7 +3209,8 @@ class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_propertyMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                        const class GALGAS_propertyKind & inOperand1,
-                                                                       const class GALGAS_actionMap & inOperand2
+                                                                       const class GALGAS_actionMap & inOperand2,
+                                                                       const class GALGAS_bool & inOperand3
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -3222,6 +3228,8 @@ class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_actionMap getter_mActionMap (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsOverriding (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mKind (LOCATION_ARGS) const ;
 
@@ -3525,105 +3533,4 @@ class GALGAS_toOnePropertyGenerationList_2D_element : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOnePropertyGenerationList_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                           @toManyPropertyGeneration class                                           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
-//--- Constructor
-  public : GALGAS_toManyPropertyGeneration (void) ;
-
-//---
-  public : inline const class cPtr_toManyPropertyGeneration * ptr (void) const { return (const cPtr_toManyPropertyGeneration *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_toManyPropertyGeneration (const cPtr_toManyPropertyGeneration * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_toManyPropertyGeneration extractObject (const GALGAS_object & inObject,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_toManyPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                         const class GALGAS_propertyKind & inOperand1,
-                                                                         const class GALGAS_toManyRelationshipOptionAST & inOperand2,
-                                                                         const class GALGAS_bool & inOperand3,
-                                                                         const class GALGAS_bool & inOperand4
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_toManyPropertyGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCustomStore (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mInPreferences (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_toManyPropertyGeneration class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyPropertyGeneration ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                  Pointer class for @toManyPropertyGeneration class                                  *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
-//--- Attributes
-  public : GALGAS_propertyKind mProperty_mRelationshipType ;
-  public : GALGAS_toManyRelationshipOptionAST mProperty_mOption ;
-  public : GALGAS_bool mProperty_mInPreferences ;
-  public : GALGAS_bool mProperty_mCustomStore ;
-
-//--- Constructor
-  public : cPtr_toManyPropertyGeneration (const GALGAS_string & in_mPropertyName,
-                                          const GALGAS_propertyKind & in_mRelationshipType,
-                                          const GALGAS_toManyRelationshipOptionAST & in_mOption,
-                                          const GALGAS_bool & in_mInPreferences,
-                                          const GALGAS_bool & in_mCustomStore
-                                          COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_toManyRelationshipOptionAST getter_mOption (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mInPreferences (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCustomStore (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
 

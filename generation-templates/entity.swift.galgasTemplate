@@ -78,8 +78,13 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %      }\n%
     %    }\n%
   case hasOpposite (@lstring oppositeName) :
-    %    self.%![mProperty mPropertyName]%_property.setOppositeRelationship = { [weak self] (_ inManagedObject : %![[mProperty mRelationshipType] swiftTypeName]%?) in\n%
-    %      inManagedObject?.%!oppositeName.string%_property.setProp (self)\n%
+    %    self.%![mProperty mPropertyName]%_property.setOppositeRelationship = { [weak self] (_ inManagedObject : %![[mProperty mRelationshipType] swiftTypeName]%) in\n%
+    %      if let me = self {\n%
+    %        inManagedObject.%!oppositeName.string%_property.setProp (me)\n%
+    %      }\n%
+    %    }\n%
+    %    self.%![mProperty mPropertyName]%_property.resetOppositeRelationship = { (_ inManagedObject : %![[mProperty mRelationshipType] swiftTypeName]%) in\n%
+    %      inManagedObject.%!oppositeName.string%_property.setProp (nil)\n%
     %    }\n%
   end
 end
@@ -566,7 +571,8 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
 
   //····················································································································
 
-  var setOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%?) -> Void > = nil
+  var setOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
+  var resetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
 
   //····················································································································
 
@@ -643,7 +649,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
         if removedObjectSet.count > 0 {
           for managedObject in removedObjectSet {
             managedObject.setSignatureObserver (observer: nil)
-            self.setOppositeRelationship? (nil)
+            self.resetOppositeRelationship? (managedObject)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = nil\n%
 end

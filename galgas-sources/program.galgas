@@ -36,24 +36,32 @@ case . "eb"
 #----------------------------------------- Semantic Analysis, first phase
   @semanticContext semanticContext = .default
   @generationStruct generation = .default
-  for (declaration) in sortedDeclarationListAST do
+  for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     [declaration firstAnalysisPhase !?semanticContext !?generation]
   end
 #----------------------------------------- Build binding specification map
-  buildBindingSpecificationMap (
-    !?semanticContext
-    !declarationStruct.mBindingSpecificationListMap
-  )
+  if @uint.errorCount == 0 then
+    buildBindingSpecificationMap (
+      !?semanticContext
+      !declarationStruct.mBindingSpecificationListMap
+    )
+  end
 #----------------------------------------- Semantic Analysis, second phase
-  for (declaration) in sortedDeclarationListAST do
+  for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     [declaration secondAnalysisPhase !?semanticContext !?generation]
   end
 #----------------------------------------- Semantic Analysis, third phase
-  for (declaration) in sortedDeclarationListAST do
+  for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     [declaration thirdAnalysisPhase !?semanticContext !?generation]
   end
-#----------------------------------------- Semantic Analysis, third phase
-  graphvizAnalysis (![inSourceFile stringByDeletingLastPathComponent] !semanticContext !declarationStruct.mGraphvizList)
+#----------------------------------------- Semantic Analysis, fourth phase
+  for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
+    [declaration fourthAnalysisPhase !?semanticContext !?generation]
+  end
+#----------------------------------------- Semantic Analysis, graphviz
+  if @uint.errorCount == 0 then
+    graphvizAnalysis (![inSourceFile stringByDeletingLastPathComponent] !semanticContext !declarationStruct.mGraphvizList)
+  end
 #----------------------------------------- Generate code
   if @uint.errorCount == 0 then
     generateCode (

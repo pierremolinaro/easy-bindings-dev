@@ -23,7 +23,7 @@ override method @outletClassDeclarationAST enterInPrecedenceGraph ?!@declaration
 
 #·······················································································································
 
-override getter @outletClassDeclarationAST lkey -> @lstring {
+override getter @outletClassDeclarationAST nodeKey -> @lstring {
   result = mClassName
 }
 

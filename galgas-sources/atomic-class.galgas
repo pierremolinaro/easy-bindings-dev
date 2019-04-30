@@ -14,7 +14,7 @@ override method @atomicClassDeclarationAST enterInPrecedenceGraph ?!@declaration
 
 #·······················································································································
 
-override getter @atomicClassDeclarationAST lkey -> @lstring {
+override getter @atomicClassDeclarationAST nodeKey -> @lstring {
   result = mClassName
 }
 

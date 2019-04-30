@@ -27,7 +27,7 @@ override method @toOneRelationshipAST enterInPrecedenceGraph ?!@declarationPrece
 
 #·······················································································································
 
-override getter @toOneRelationshipAST lkey -> @lstring {
+override getter @toOneRelationshipAST nodeKey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mToOneRelationshipName !mToOneRelationshipName.location}
 }
 
@@ -97,14 +97,14 @@ override method @toOneRelationshipAST firstAnalysisPhase
         !graphic: graphic
         !opposite: mOpposite
       }
-      [!?mPropertyMap insertKey !mToOneRelationshipName !kind !{}]
+      [!?mPropertyMap insertKey !mToOneRelationshipName !kind !{} !false]
     end
   end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @toOneRelationshipAST secondAnalysisPhase 
+override method @toOneRelationshipAST thirdAnalysisPhase 
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {

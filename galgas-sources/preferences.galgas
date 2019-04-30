@@ -25,7 +25,7 @@ override method @prefsDeclarationAST enterInPrecedenceGraph ?!@declarationPreced
 
 #·······················································································································
 
-override getter @prefsDeclarationAST lkey -> @lstring {
+override getter @prefsDeclarationAST nodeKey -> @lstring {
   result = mClassName
 }
 
@@ -107,7 +107,7 @@ override method @prefsDeclarationAST firstAnalysisPhase
 #   THIRD ANALYSIS PHASE
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @prefsDeclarationAST thirdAnalysisPhase
+override method @prefsDeclarationAST fourthAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {

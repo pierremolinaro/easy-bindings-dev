@@ -14,7 +14,7 @@ override method @enumerationDeclarationAST enterInPrecedenceGraph ?!@declaration
 
 #·······················································································································
 
-override getter @enumerationDeclarationAST lkey -> @lstring {
+override getter @enumerationDeclarationAST nodeKey -> @lstring {
   result = mClassName
 }
 

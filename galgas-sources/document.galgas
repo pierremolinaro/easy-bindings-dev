@@ -17,7 +17,7 @@ override method @documentDeclarationAST enterInPrecedenceGraph ?!@declarationPre
 
 #·······················································································································
 
-override getter @documentDeclarationAST lkey -> @lstring {
+override getter @documentDeclarationAST nodeKey -> @lstring {
   result = mClassName
 }
 
@@ -63,6 +63,7 @@ syntax extension easyBindings_syntax {
       !["documentFilePath" here]
       !{}
       !["" here]
+      !false
     }
   }
 
@@ -96,7 +97,7 @@ override method @documentDeclarationAST firstAnalysisPhase
 
 #·······················································································································
 
-override method @documentDeclarationAST thirdAnalysisPhase
+override method @documentDeclarationAST fourthAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {

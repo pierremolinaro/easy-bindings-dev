@@ -21,6 +21,7 @@ enum @observablePropertyAST {
   case signatureProperty (@location location)
   case versionProperty (@location location)
   case versionShouldChangeProperty (@location location)
+  case superProperty (@lstring superEntityName @lstring propertyName)
 }
 
 #·······················································································································
@@ -139,6 +140,16 @@ syntax extension easyBindings_syntax {
     or
       $versionShouldChange$
       outObservablePropertyAST = .versionShouldChangeProperty {!location:.here}
+    or
+      $super$
+      $.$
+      $Identifier$ ?let superEntityName
+      $.$
+      $identifier$ ?let propertyName
+      outObservablePropertyAST = .superProperty {
+        !superEntityName: superEntityName
+        !propertyName: propertyName
+      }
     end
   }
 
@@ -188,6 +199,8 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
     outResult = "self.versionObserver_property"
   case versionShouldChangeProperty (*) :
     outResult = "self.versionShouldChangeObserver_property"
+  case superProperty (* @lstring propertyName) :
+    outResult = inSelf + "." + propertyName + "_property"
   end  
 }
 
@@ -231,6 +244,8 @@ getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
     outResult = "self_versionObserver"
   case versionShouldChangeProperty (*) :
     outResult = "self_versionShouldChangeObserver"
+  case superProperty (@lstring superEntityName @lstring propertyName) :
+    outResult = "self_" + superEntityName + "_" + propertyName
   end  
 }
 
@@ -273,6 +288,8 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   case versionProperty (*) :
     outResult = true
   case versionShouldChangeProperty (*) :
+    outResult = true
+  case superProperty (2*) :
     outResult = true
   end  
 }
@@ -317,6 +334,8 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = location
   case versionShouldChangeProperty (@location location) :
     outResult = location
+  case superProperty (* @lstring propertyName) :
+    outResult = propertyName.location
   end  
 }
 
@@ -346,14 +365,14 @@ method @observablePropertyAST analyzeObservableProperty
     [inRootPropertyMap searchKey
       !propertyName
       ?outKind
-      ?*
+      ?2*
     ]
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case rootPropertyNone (@lstring relationshipName) :
     [inRootPropertyMap searchKey
       !relationshipName
       ?let kind
-      ?*
+      ?2*
     ]
     switch kind
     case property (2*) :
@@ -374,7 +393,7 @@ method @observablePropertyAST analyzeObservableProperty
     [inRootPropertyMap searchKey
       !propertyName
       ?let kind
-      ?*
+      ?2*
     ]
     switch kind
     case property (2*) :
@@ -405,7 +424,7 @@ method @observablePropertyAST analyzeObservableProperty
     [inRootPropertyMap searchKey
       !relationshipName
       ?let kind
-      ?*
+      ?2*
     ]
     switch kind
     case property (2*) :
@@ -415,7 +434,7 @@ method @observablePropertyAST analyzeObservableProperty
       [observablePropertyMap searchKey
         !propertyName
         ?outKind
-        ?*
+        ?2*
       ]
     case toOne (4*) :
       error relationshipName : "a toOne property does not accept 'all'" : outKind
@@ -431,7 +450,7 @@ method @observablePropertyAST analyzeObservableProperty
     [inBoundModelPropertyMap searchKey
       !propertyName
       ?outKind
-      ?*
+      ?2*
     ]
     switch outKind
     case property (2*) :
@@ -451,7 +470,7 @@ method @observablePropertyAST analyzeObservableProperty
     [inBoundModelPropertyMap searchKey
       !propertyName
       ?let kind
-      ?*
+      ?2*
     ]
     switch kind
     case property (2*) :
@@ -482,7 +501,7 @@ method @observablePropertyAST analyzeObservableProperty
     [inBoundModelPropertyMap searchKey
       !propertyName
       ?let kind
-      ?*
+      ?2*
     ]
     switch kind
     case property (2*) :
@@ -492,7 +511,7 @@ method @observablePropertyAST analyzeObservableProperty
       [observablePropertyMap searchKey
         !elementPropertyName
         ?outKind
-        ?*
+        ?2*
       ]
     case toOne (4*) :
       error propertyName : "a toOne property accepts no option" : outKind
@@ -509,7 +528,7 @@ method @observablePropertyAST analyzeObservableProperty
     [inBoundModelPropertyMap searchKey
       !propertyName
       ?let kind
-      ?*
+      ?2*
     ]
     switch kind
     case property (2*) :
@@ -521,7 +540,7 @@ method @observablePropertyAST analyzeObservableProperty
       [observablePropertyMap searchKey
         !elementPropertyName
         ?outKind
-        ?*
+        ?2*
       ]
     case arrayController (2*) :
       error propertyName : "an array controller does not accept 'one'" : outKind
@@ -535,7 +554,7 @@ method @observablePropertyAST analyzeObservableProperty
     [inBoundModelPropertyMap searchKey
       !propertyName
       ?let kind
-      ?*
+      ?2*
     ]
     switch kind
     case property (2*) :
@@ -557,7 +576,7 @@ method @observablePropertyAST analyzeObservableProperty
     [observablePropertyMap searchKey
       !propertyName
       ?outKind
-      ?*
+      ?2*
     ]
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -565,7 +584,7 @@ method @observablePropertyAST analyzeObservableProperty
     [observablePropertyMap searchKey
       !propertyName
       ?let kind
-      ?*
+      ?2*
     ]
     switch kind
     case property (2*) :
@@ -592,7 +611,7 @@ method @observablePropertyAST analyzeObservableProperty
     [inBoundModelPropertyMap searchKey
       !controllerName
       ?let @propertyKind propertyKind
-      ?*
+      ?2*
     ]
     switch propertyKind
     case property (2*) :
@@ -624,11 +643,11 @@ method @observablePropertyAST analyzeObservableProperty
         ?let observablePropertyMap
         ?2*
       ]
-      [observablePropertyMap searchKey !propertyName ?outKind ?*]
+      [observablePropertyMap searchKey !propertyName ?outKind ?2*]
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    [inBoundModelPropertyMap searchKey !controllerName ?2*]
+    [inBoundModelPropertyMap searchKey !controllerName ?3*]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
       outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
     elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
@@ -638,7 +657,7 @@ method @observablePropertyAST analyzeObservableProperty
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case selfControllerOneProperty (@lstring controllerName @lstring propertyName) :
-    [inBoundModelPropertyMap searchKey !controllerName ?let @propertyKind propertyKind ?*]
+    [inBoundModelPropertyMap searchKey !controllerName ?let @propertyKind propertyKind ?2*]
     @string controllerTypeName = ""
     switch propertyKind
     case objectController (typeName *) :
@@ -660,10 +679,10 @@ method @observablePropertyAST analyzeObservableProperty
       ?let observablePropertyMap
       ?2*
     ]
-   [observablePropertyMap searchKey !propertyName ?outKind ?*]
+   [observablePropertyMap searchKey !propertyName ?outKind ?2*]
     outSwiftTypeStringForTransientFunctionArgument = controllerTypeName + "?<<8>>"
   case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    [inBoundModelPropertyMap searchKey !controllerName ?let @propertyKind propertyKind ?*]
+    [inBoundModelPropertyMap searchKey !controllerName ?let @propertyKind propertyKind ?2*]
     if propertyName.string != "selectedArray" then
       error propertyName : "unknown property"
         : outKind, outSwiftTypeStringForTransientFunctionArgument
@@ -694,7 +713,7 @@ method @observablePropertyAST analyzeObservableProperty
           ?let observablePropertyMap
           ?2*
         ]
-        [observablePropertyMap searchKey !secondaryPropertyName ?outKind ?*]
+        [observablePropertyMap searchKey !secondaryPropertyName ?outKind ?2*]
         outSwiftTypeStringForTransientFunctionArgument = "[" + typeName + "_" + secondaryPropertyName + "]"
       case selectionController (entityName) :
         [inSemanticContext.mClassMap searchKey !
@@ -703,9 +722,29 @@ method @observablePropertyAST analyzeObservableProperty
           ?let observablePropertyMap
           ?2*
         ]
-        [observablePropertyMap searchKey !secondaryPropertyName ?outKind ?*]
+        [observablePropertyMap searchKey !secondaryPropertyName ?outKind ?2*]
          outSwiftTypeStringForTransientFunctionArgument = "[" + entityName + "_" + secondaryPropertyName + "]"
      end
+    end
+  case superProperty (* @lstring propertyName) :
+    [inBoundModelPropertyMap searchKey
+      !propertyName
+      ?outKind
+      ?2*
+    ]
+    switch outKind
+    case property (2*) :
+      outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+    case toMany (4*) :
+      outSwiftTypeStringForTransientFunctionArgument = "[EBManagedObject_alloc_index_protocol]"
+    case toOne (4*) :
+      outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_alloc_index_protocol?"
+    case arrayController (2*) :
+      error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case objectController (2*) :
+      error propertyName : "an object controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case selectionController (*) :
+      error propertyName : "a selection controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     end
   end  
 }

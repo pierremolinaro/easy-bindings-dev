@@ -60,33 +60,58 @@ end
   //    Controller
   //····················································································································
 
-  private var mController : EBSimpleController? = nil
-
+  private var mModelController : EBSimpleController? = nil
+%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+  if [mKind isToMany] then
+    %  private var mBoundObjectController_%!lkey.string% : EBSimpleController? = nil\n%
+  end
+end
+%
   //····················································································································
 
   func bind_model (_ inToOneRelationship : %!MODEL_TYPE_NAME%) {
-    self.mController = EBSimpleController (
+    self.mModelController = EBSimpleController (
       observedObjects: [inToOneRelationship],
       callBack: { [weak self] in self?.modelDidChange (inToOneRelationship) }
     )
-  }
+%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+  if [mKind isToMany] then
+    %    self.mBoundObjectController_%!lkey.string% = EBSimpleController (\n%
+    %      observedObjects: [self.%!lkey.string%_property],\n%
+    %      callBack: { [weak self] in\n%
+    %        let objects = self?.%!lkey.string%_property.propval ?? []\n%
+    %        //NSLog ("bound objects \(objects.count) \(self?.mModel)")\n%
+    %        self?.mModel?.%!lkey.string% = objects\n%
+    %      }\n%
+    %    )\n%
+  end
+end
+%  }
 
   //····················································································································
 
   private func modelDidChange (_ inToOneRelationship : %!MODEL_TYPE_NAME%) {
     self.mModel = inToOneRelationship.propval
-    let objects = self.mModel?.mObjects_property.propval ?? []
-    self.mObjects_property.setProp (objects)
-    // NSLog ("objects \(objects.count)")
-  }
+%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+  if [mKind isToMany] then
+    %    self.%!lkey.string%_property.setProp (self.mModel?.%!lkey.string%_property.propval ?? [])\n%
+  end
+end
+%  }
 
   //····················································································································
 
   func unbind_model () {
-    self.mController?.unregister ()
-    self.mController = nil
-    self.mModel = nil
- }
+    self.mModelController?.unregister ()
+    self.mModelController = nil
+%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+  if [mKind isToMany] then
+    %    self.mBoundObjectController_%!lkey.string%?.unregister ()\n%
+    %    self.mBoundObjectController_%!lkey.string% = nil\n%
+  end
+end
+%    self.mModel = nil
+  }
 
   //····················································································································
   //    Model
@@ -97,15 +122,13 @@ end
       if self.mModel !== oldValue {
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if [mKind isToMany] then
-    %      //--- ToMany relationship%!lkey.string%\n%
-    %        // oldValue?.%!lkey.string%_property.removeEBObserver (self.%!lkey.string%_property)\n%
-    %        // self.mModel?.%!lkey.string%_property.addEBObserver (self.%!lkey.string%_property)\n%
-    %        if let controller = self.mController {\n%
+    %      //--- ToMany relationship %!lkey.string%\n%
+    %        if let controller = self.mModelController {\n%
     %          oldValue?.%!lkey.string%_property.removeEBObserver (controller)\n%
     %          self.mModel?.%!lkey.string%_property.addEBObserver (controller)\n%
     %        }\n%
   elsif [mKind isProperty] then
-    %      //--- Atomic property%!lkey.string%\n%
+    %      //--- Atomic property %!lkey.string%\n%
     %        oldValue?.%!lkey.string%_property.removeEBObserver (self.%!lkey.string%_property)\n%
     %        self.mModel?.%!lkey.string%_property.addEBObserver (self.%!lkey.string%_property)\n%
   end

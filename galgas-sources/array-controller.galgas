@@ -36,7 +36,7 @@ override method @arrayControllerDeclarationAST enterInPrecedenceGraph ?!@declara
 
 #·······················································································································
 
-override getter @arrayControllerDeclarationAST lkey -> @lstring {
+override getter @arrayControllerDeclarationAST nodeKey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
 }
 
@@ -98,7 +98,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
     switch mModel
     case rootToManyRelationship (@lstring rootEntityName) :
       [ioSemanticContext.mClassMap searchKey !rootEntityName ?* ?let rootProperties ?2*]
-      [rootProperties searchKey !mToManyPropertyName ?let classKind ?*]
+      [rootProperties searchKey !mToManyPropertyName ?let classKind ?2*]
       switch classKind
       case property (2*) :
         error rootEntityName : "a toMany relationship is required here"
@@ -107,7 +107,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
           !typeName: typeName
           !graphic: graphic
         }
-        [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
+        [!?mPropertyMap insertKey !mControllerName !kind !controllerActions !false]
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
         !mControllerName.string
@@ -124,7 +124,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         error rootEntityName : "a toMany relationship is required here"
       end
     case selfToManyRelationship :
-      [mPropertyMap searchKey !mToManyPropertyName ?let classKind ?*]
+      [mPropertyMap searchKey !mToManyPropertyName ?let classKind ?2*]
       switch classKind
       case property (2*) :
         error mToManyPropertyName : "a toMany relationship is required here"
@@ -133,7 +133,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
           !typeName: typeName
           !graphic: graphic
         }
-        [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
+        [!?mPropertyMap insertKey !mControllerName !kind !controllerActions !false]
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
         !mControllerName.string
@@ -150,7 +150,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         error mToManyPropertyName : "a toMany relationship is required here"
       end
     case selfObjectControllerToManyRelationship (@lstring objectControllerName) :
-      [mPropertyMap searchKey !objectControllerName ?let classKind ?*]
+      [mPropertyMap searchKey !objectControllerName ?let classKind ?2*]
       switch classKind
       case property (2*) :
         error mToManyPropertyName : "an object controller is required here"
@@ -162,7 +162,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         error mToManyPropertyName : "an object controller is required here"
       case objectController (@lstring typeName2 *) :
         [ioSemanticContext.mClassMap searchKey !typeName2 ?* ?let rootProperties ?2*]
-        [rootProperties searchKey !mToManyPropertyName ?let classKind ?*]
+        [rootProperties searchKey !mToManyPropertyName ?let classKind ?2*]
         switch classKind
         case property (2*) :
           error mToManyPropertyName : "a toMany relationship is required here"
@@ -171,7 +171,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
             !typeName: typeName
             !graphic: graphic
           }
-          [!?mPropertyMap insertKey !mControllerName !kind !controllerActions]
+          [!?mPropertyMap insertKey !mControllerName !kind !controllerActions !false]
         #--- Code Generation
           mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
             !mControllerName.string
@@ -199,7 +199,7 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
 #   SECOND ANALYSIS PHASE
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @arrayControllerDeclarationAST secondAnalysisPhase
+override method @arrayControllerDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -226,7 +226,7 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
        ?let propertyMap 
        ?2*
     ]  
-    [propertyMap searchKey !objectControllerName ?let boundModelClassKind ?*]
+    [propertyMap searchKey !objectControllerName ?let boundModelClassKind ?2*]
     if [boundModelClassKind isObjectController] then
       [boundModelClassKind objectController ?typeName: let objectControllerTypeName ?1*]
       [ioSemanticContext.mClassMap searchKey
@@ -242,7 +242,7 @@ override method @arrayControllerDeclarationAST secondAnalysisPhase
   [boundModelPropertyMap searchKey
      !mToManyPropertyName
      ?let boundModelClassKind
-     ?*
+     ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
   @actionMap actionMap

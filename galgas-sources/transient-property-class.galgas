@@ -14,7 +14,7 @@ override method @transientClassDeclarationAST enterInPrecedenceGraph ?!@declarat
 
 #·······················································································································
 
-override getter @transientClassDeclarationAST lkey -> @lstring {
+override getter @transientClassDeclarationAST nodeKey -> @lstring {
   result = mClassName
 }
 

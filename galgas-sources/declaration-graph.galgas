@@ -12,7 +12,7 @@ abstract method @abstractDeclarationAST enterInPrecedenceGraph ?!@declarationPre
 
 #·······················································································································
 
-abstract getter @abstractDeclarationAST lkey -> @lstring
+abstract getter @abstractDeclarationAST nodeKey -> @lstring
 
 #·······················································································································
 
@@ -38,6 +38,14 @@ method @abstractDeclarationAST thirdAnalysisPhase
 
 #·······················································································································
 
+method @abstractDeclarationAST fourthAnalysisPhase
+    ?!@semanticContext unused ioSemanticContext
+    ?!@generationStruct unused ioGeneration
+{
+}
+
+#·······················································································································
+
 list @declarationListAST {
   @abstractDeclarationAST mPropertyDeclaration
 }
@@ -55,7 +63,7 @@ proc sortProperties
       ?let @declarationListAST inDeclarationListAST
       !@declarationListAST outSortedDeclarationListAST
 {
-#--- Enter declarations in graph
+#------------------------ Enter declarations in graph
   @declarationPrecedenceGraph declarationPrecedenceGraph = .emptyGraph
   for (declaration) in inDeclarationListAST do
     [declaration enterInPrecedenceGraph !?declarationPrecedenceGraph]
@@ -66,7 +74,7 @@ proc sortProperties
     let path = inSourceFile + ".declarationDependancy.dot"
     [s writeToFileWhenDifferentContents !path ?*]
   end
-#------------------------------------------  Get ordered declaration list
+#------------------------  Get ordered declaration list
   outSortedDeclarationListAST = {}
   if [declarationPrecedenceGraph undefinedNodeCount] > 0 then
     for () in  [declarationPrecedenceGraph undefinedNodeReferenceList] do
@@ -84,11 +92,11 @@ proc sortProperties
             + [unsortedSemanticDeclarationListAST length]
             + " declarations are involved in circular definition:"
       for (declaration) in  unsortedSemanticDeclarationListAST do
-        s += "\n-  " + [declaration lkey]
+        s += "\n-  " + [declaration nodeKey]
       end
       error .nowhere : s
       for (declaration) in  unsortedSemanticDeclarationListAST do
-        error [declaration lkey] : "the " + [declaration lkey] + " property is declared here"
+        error [declaration nodeKey] : "the " + [declaration nodeKey] + " property is declared here"
       end
     end
   end

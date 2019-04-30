@@ -337,24 +337,24 @@ void callExtensionMethod_enterInPrecedenceGraph (const class cPtr_abstractDeclar
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                              Abstract extension getter '@abstractDeclarationAST lkey'                               *
+//                             Abstract extension getter '@abstractDeclarationAST nodeKey'                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-typedef class GALGAS_lstring (*enterExtensionGetter_abstractDeclarationAST_lkey) (const class cPtr_abstractDeclarationAST * inObject,
-                                                                                  class C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
+typedef class GALGAS_lstring (*enterExtensionGetter_abstractDeclarationAST_nodeKey) (const class cPtr_abstractDeclarationAST * inObject,
+                                                                                     class C_Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void enterExtensionGetter_lkey (const int32_t inClassIndex,
-                                enterExtensionGetter_abstractDeclarationAST_lkey inMethod) ;
+void enterExtensionGetter_nodeKey (const int32_t inClassIndex,
+                                   enterExtensionGetter_abstractDeclarationAST_nodeKey inMethod) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_lstring callExtensionGetter_lkey (const class cPtr_abstractDeclarationAST * inObject,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+class GALGAS_lstring callExtensionGetter_nodeKey (const class cPtr_abstractDeclarationAST * inObject,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -543,6 +543,31 @@ void callExtensionMethod_thirdAnalysisPhase (const class cPtr_abstractDeclaratio
                                              GALGAS_generationStruct & io_ioGeneration,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                           Extension method '@abstractDeclarationAST fourthAnalysisPhase'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef void (*extensionMethodSignature_abstractDeclarationAST_fourthAnalysisPhase) (const class cPtr_abstractDeclarationAST * inObject,
+                                                                                     class GALGAS_semanticContext & ioArgument0,
+                                                                                     class GALGAS_generationStruct & ioArgument1,
+                                                                                     class C_Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_fourthAnalysisPhase (const int32_t inClassIndex,
+                                               extensionMethodSignature_abstractDeclarationAST_fourthAnalysisPhase inMethod) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_fourthAnalysisPhase (const class cPtr_abstractDeclarationAST * inObject,
+                                              GALGAS_semanticContext & io_ioSemanticContext,
+                                              GALGAS_generationStruct & io_ioGeneration,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -965,92 +990,6 @@ class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_multipleBindingGenerationList getter_multipleBindingGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             @prefsDeclarationAST class                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_prefsDeclarationAST : public GALGAS_abstractDeclarationAST {
-//--- Constructor
-  public : GALGAS_prefsDeclarationAST (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_prefsDeclarationAST constructor_default (LOCATION_ARGS) ;
-
-//---
-  public : inline const class cPtr_prefsDeclarationAST * ptr (void) const { return (const cPtr_prefsDeclarationAST *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_prefsDeclarationAST (const cPtr_prefsDeclarationAST * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_prefsDeclarationAST extractObject (const GALGAS_object & inObject,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_prefsDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                    const class GALGAS_prefDeclaration & inOperand1
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_prefsDeclarationAST & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_prefDeclaration getter_mDeclaration (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_prefsDeclarationAST class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsDeclarationAST ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                    Pointer class for @prefsDeclarationAST class                                     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cPtr_prefsDeclarationAST : public cPtr_abstractDeclarationAST {
-//--- Attributes
-  public : GALGAS_prefDeclaration mProperty_mDeclaration ;
-
-//--- Constructor
-  public : cPtr_prefsDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                     const GALGAS_prefDeclaration & in_mDeclaration
-                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_prefDeclaration getter_mDeclaration (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

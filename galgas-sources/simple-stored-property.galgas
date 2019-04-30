@@ -29,7 +29,7 @@ override method @atomicPropertyDeclarationAST enterInPrecedenceGraph ?!@declarat
 
 #·······················································································································
 
-override getter @atomicPropertyDeclarationAST lkey -> @lstring {
+override getter @atomicPropertyDeclarationAST nodeKey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mPropertyName !mPropertyName.location}
 }
 
@@ -110,7 +110,7 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
     case prefs :
       error mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
-      [!?mPropertyMap insertKey !mPropertyName !.property {!type: kind !accessibility: .stored} !{}]
+      [!?mPropertyMap insertKey !mPropertyName !.property {!type: kind !accessibility: .stored} !{} !false]
     #--- Analyze default value
       [mDefaultValue analyzeDefaultValueType !{!kind} ?let @string swiftDefaultValueAsString]
     #--- Code Generation

@@ -19,7 +19,7 @@ override method @selectionControllerDeclarationAST enterInPrecedenceGraph ?!@dec
 
 #·······················································································································
 
-override getter @selectionControllerDeclarationAST lkey -> @lstring {
+override getter @selectionControllerDeclarationAST nodeKey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mSelectionControllerName !mSelectionControllerName.location}
 }
 
@@ -70,7 +70,7 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
   with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [mPropertyMap searchKey !mModelControllerName ?let propertyKind ?*]
+    [mPropertyMap searchKey !mModelControllerName ?let propertyKind ?2*]
     switch propertyKind
     case property (2*) :
       error mModelControllerName : "an array controller is required here"
@@ -87,7 +87,7 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
         error mModelControllerPropertyName : "'selectedArray' is required here"
       end
       let kind = @propertyKind.selectionController {!typeName: mSelectionEntityName}
-      [!?mPropertyMap insertKey !mSelectionControllerName !kind !{}]
+      [!?mPropertyMap insertKey !mSelectionControllerName !kind !{} !false]
       mPropertyGenerationList += !@selectionControllerPropertyGeneration.new {
         !mSelectionControllerName.string
         !mClassName
@@ -100,12 +100,12 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
 
 #·······················································································································
 
-override method @selectionControllerDeclarationAST thirdAnalysisPhase
+override method @selectionControllerDeclarationAST fourthAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
   [ioSemanticContext.mClassMap searchKey !mClassName ?let superClassKind ?let propertyMap ?2*]
-  [propertyMap searchKey !mModelControllerName ?let propertyKind ?*]
+  [propertyMap searchKey !mModelControllerName ?let propertyKind ?2*]
    switch propertyKind
    case property (2*) :
    case toMany (4*) :

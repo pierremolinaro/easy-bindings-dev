@@ -9,6 +9,7 @@ class @transientDeclarationAST : @abstractDeclarationAST {
   @lstring mTransientName
   @observablePropertyList mDependencyList
   @lstring mExternFunctionName
+  @bool mIsOverriding
 }
 
 #·······················································································································
@@ -61,13 +62,15 @@ override method @transientDeclarationAST enterInPrecedenceGraph ?!@declarationPr
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
+    case superProperty (@lstring superEntityName @lstring propertyName) :
+      [!?ioGraph addEdge !node !.new {!superEntityName.string + " " + propertyName !propertyName.location}]
     end
   end
 }
 
 #·······················································································································
 
-override getter @transientDeclarationAST lkey -> @lstring {
+override getter @transientDeclarationAST nodeKey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mTransientName !mTransientName.location}
 }
 
@@ -96,6 +99,7 @@ syntax extension easyBindings_syntax {
       !transientName
       !{}
       !["" here]
+      !false
     }
   }
 
@@ -106,6 +110,13 @@ syntax extension easyBindings_syntax {
             ?let @lstring inRootEntity
             ?!@astDeclarationStruct ioDeclarationAST
   {
+    @bool isOverriding
+    select
+      isOverriding = false
+    or
+      $override$
+      isOverriding = true
+    end
     $transient$
     $Identifier$ ?let transientTypeName
     $identifier$ ?let @lstring transientName
@@ -132,6 +143,7 @@ syntax extension easyBindings_syntax {
       !transientName
       !dependanceList
       !externFunctionName
+      !isOverriding
     }
   }
 }
@@ -156,6 +168,7 @@ override method @transientDeclarationAST firstAnalysisPhase
         !mTransientName
         !.property {!type: kind !accessibility: .transient {!isAbstract:[mDependencyList length] == 0}}
         !{}
+        !mIsOverriding
       ]
     case document (*) :
       error mTransientTypeName : "an atomic class is required here"
@@ -169,7 +182,7 @@ override method @transientDeclarationAST firstAnalysisPhase
 #   SECOND ANALYSIS PHASE
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @transientDeclarationAST secondAnalysisPhase
+override method @transientDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -461,6 +474,8 @@ getter @observablePropertyAST generateAddObserverCall -> @string outResult {
     outResult = "<< ligne 245 >>"
   case versionShouldChangeProperty (*) :
     outResult = "<< ligne 247 >>"
+  case superProperty (* @lstring propertyName) :
+    outResult = "self." + propertyName.string + "_property.addEBObserver"
   end
 }
 
@@ -504,6 +519,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
     outResult = "<< ligne 272 >>"
   case versionShouldChangeProperty (*) :
     outResult = "<< ligne 274 >>"
+  case superProperty (* @lstring propertyName) :
+    outResult = "self." + propertyName.string + "_property.removeEBObserver"
   end
 }
 

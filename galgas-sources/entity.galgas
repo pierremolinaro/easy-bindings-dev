@@ -24,7 +24,7 @@ override method @entityDeclarationAST enterInPrecedenceGraph ?!@declarationPrece
 
 #·······················································································································
 
-override getter @entityDeclarationAST lkey -> @lstring {
+override getter @entityDeclarationAST nodeKey -> @lstring {
   result = mClassName
 }
 
@@ -113,6 +113,7 @@ syntax extension easyBindings_syntax {
         !["selectionDisplay" here]
         !{}
         !["" here]
+        !false
       }
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
         !entityName
@@ -121,6 +122,7 @@ syntax extension easyBindings_syntax {
         !["objectDisplay" here]
         !{}
         !["" here]
+        !false
       }
     end
  }
@@ -149,7 +151,52 @@ override method @entityDeclarationAST firstAnalysisPhase
 
 #·······················································································································
 
-override method @entityDeclarationAST thirdAnalysisPhase
+override method @entityDeclarationAST secondAnalysisPhase
+    ?!@semanticContext ioSemanticContext
+    ?!@generationStruct unused ioGeneration
+{
+  if mSuperEntityName.string != "" then
+  #--- Search for super entity property map
+    [ioSemanticContext.mClassMap searchKey
+      !mSuperEntityName
+      ?*
+      ?let @propertyMap inheritedPropertyMap
+      ?2*
+    ]  
+#    message "Entity '" + mClassName + "\n"
+#    message "  Super entity '" + mSuperEntityName + "' has " + [inheritedPropertyMap count] + " properties\n"
+  #--- Search for current entity property map
+    [ioSemanticContext.mClassMap searchKey
+      !mClassName
+      ?*
+      ?let @propertyMap propertyMap
+      ?2*
+    ]
+  #--- Merge properties
+    var newPropertyMap = inheritedPropertyMap
+#    for (lkey 3*) in inheritedPropertyMap do
+#        message "  inherit '" + lkey + "'\n"
+#    end
+    for (lkey kind actionMap isOverriding) in propertyMap do
+      if isOverriding then
+        [inheritedPropertyMap searchKey !lkey ?3*]
+      else
+#        message "  insert '" + lkey + "'\n"
+        [!?newPropertyMap insertKey !lkey !kind !actionMap !false]
+      end
+    end
+  #--- Replace property map
+    with mClassName in !?ioSemanticContext.mClassMap 
+      error message searchKey
+    do
+      mPropertyMap = newPropertyMap
+    end
+  end
+}
+
+#·······················································································································
+
+override method @entityDeclarationAST fourthAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -185,7 +232,7 @@ override method @entityDeclarationAST thirdAnalysisPhase
           if [superProperty isAbstract] then
             if [propertyMap hasKey !superProperty.lkey.string] then
               overridenTransients += !superProperty.lkey.string
-              [propertyMap searchKey !superProperty.lkey ?let @propertyKind propertyKind ?*]
+              [propertyMap searchKey !superProperty.lkey ?let @propertyKind propertyKind ?2*]
               let typeName = [propertyKind typeName]
               let superTypeName = [superProperty.mKind typeName]
               if typeName != superTypeName then

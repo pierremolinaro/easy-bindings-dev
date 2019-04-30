@@ -8,6 +8,241 @@
 #include "all-declarations-2.h"
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cPtr_toManyPropertyGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_toManyPropertyGeneration * p = (const cPtr_toManyPropertyGeneration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mPropertyName.objectCompare (p->mProperty_mPropertyName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRelationshipType.objectCompare (p->mProperty_mRelationshipType) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mOption.objectCompare (p->mProperty_mOption) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mInPreferences.objectCompare (p->mProperty_mInPreferences) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mCustomStore.objectCompare (p->mProperty_mCustomStore) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_toManyPropertyGeneration::objectCompare (const GALGAS_toManyPropertyGeneration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toManyPropertyGeneration::GALGAS_toManyPropertyGeneration (void) :
+GALGAS_propertyGeneration () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toManyPropertyGeneration::GALGAS_toManyPropertyGeneration (const cPtr_toManyPropertyGeneration * inSourcePtr) :
+GALGAS_propertyGeneration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_toManyPropertyGeneration) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toManyPropertyGeneration GALGAS_toManyPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
+                                                                                  const GALGAS_propertyKind & inAttribute_mRelationshipType,
+                                                                                  const GALGAS_toManyRelationshipOptionAST & inAttribute_mOption,
+                                                                                  const GALGAS_bool & inAttribute_mInPreferences,
+                                                                                  const GALGAS_bool & inAttribute_mCustomStore
+                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_toManyPropertyGeneration result ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mRelationshipType.isValid () && inAttribute_mOption.isValid () && inAttribute_mInPreferences.isValid () && inAttribute_mCustomStore.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_toManyPropertyGeneration (inAttribute_mPropertyName, inAttribute_mRelationshipType, inAttribute_mOption, inAttribute_mInPreferences, inAttribute_mCustomStore COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyKind GALGAS_toManyPropertyGeneration::getter_mRelationshipType (UNUSED_LOCATION_ARGS) const {
+  GALGAS_propertyKind result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toManyPropertyGeneration * p = (const cPtr_toManyPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
+    result = p->mProperty_mRelationshipType ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyKind cPtr_toManyPropertyGeneration::getter_mRelationshipType (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRelationshipType ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toManyRelationshipOptionAST GALGAS_toManyPropertyGeneration::getter_mOption (UNUSED_LOCATION_ARGS) const {
+  GALGAS_toManyRelationshipOptionAST result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toManyPropertyGeneration * p = (const cPtr_toManyPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
+    result = p->mProperty_mOption ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toManyRelationshipOptionAST cPtr_toManyPropertyGeneration::getter_mOption (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOption ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_toManyPropertyGeneration::getter_mInPreferences (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toManyPropertyGeneration * p = (const cPtr_toManyPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
+    result = p->mProperty_mInPreferences ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cPtr_toManyPropertyGeneration::getter_mInPreferences (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mInPreferences ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_toManyPropertyGeneration::getter_mCustomStore (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toManyPropertyGeneration * p = (const cPtr_toManyPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
+    result = p->mProperty_mCustomStore ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cPtr_toManyPropertyGeneration::getter_mCustomStore (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mCustomStore ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                  Pointer class for @toManyPropertyGeneration class                                  *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_toManyPropertyGeneration::cPtr_toManyPropertyGeneration (const GALGAS_string & in_mPropertyName,
+                                                              const GALGAS_propertyKind & in_mRelationshipType,
+                                                              const GALGAS_toManyRelationshipOptionAST & in_mOption,
+                                                              const GALGAS_bool & in_mInPreferences,
+                                                              const GALGAS_bool & in_mCustomStore
+                                                              COMMA_LOCATION_ARGS) :
+cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
+mProperty_mRelationshipType (in_mRelationshipType),
+mProperty_mOption (in_mOption),
+mProperty_mInPreferences (in_mInPreferences),
+mProperty_mCustomStore (in_mCustomStore) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_toManyPropertyGeneration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toManyPropertyGeneration ;
+}
+
+void cPtr_toManyPropertyGeneration::description (C_String & ioString,
+                                                 const int32_t inIndentation) const {
+  ioString << "[@toManyPropertyGeneration:" ;
+  mProperty_mPropertyName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRelationshipType.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mOption.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mInPreferences.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mCustomStore.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_toManyPropertyGeneration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_toManyPropertyGeneration (mProperty_mPropertyName, mProperty_mRelationshipType, mProperty_mOption, mProperty_mInPreferences, mProperty_mCustomStore COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                           @toManyPropertyGeneration type                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_toManyPropertyGeneration ("toManyPropertyGeneration",
+                                                 & kTypeDescriptor_GALGAS_propertyGeneration) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_toManyPropertyGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toManyPropertyGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_toManyPropertyGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_toManyPropertyGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_toManyPropertyGeneration GALGAS_toManyPropertyGeneration::extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_toManyPropertyGeneration result ;
+  const GALGAS_toManyPropertyGeneration * p = (const GALGAS_toManyPropertyGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_toManyPropertyGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toManyPropertyGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                              Class for element of '@toManyPropertyGenerationList' list                              *
 //                                                                                                                     *
@@ -7301,41 +7536,41 @@ GALGAS_string extensionGetter_filterCode (const GALGAS_tableViewControllerFilter
                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_tableViewControllerFilterListForGeneration temp_0 = inObject ;
-  GALGAS_tableViewControllerFilterListForGeneration var_filterProperties_20382 = temp_0 ;
-  GALGAS_string var_firstFilterProperty_20445 ;
+  GALGAS_tableViewControllerFilterListForGeneration var_filterProperties_20403 = temp_0 ;
+  GALGAS_string var_firstFilterProperty_20466 ;
   {
-  GALGAS_propertyKind joker_20447 ; // Joker input parameter
-  var_filterProperties_20382.setter_popFirst (var_firstFilterProperty_20445, joker_20447, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 532)) ;
+  GALGAS_propertyKind joker_20468 ; // Joker input parameter
+  var_filterProperties_20403.setter_popFirst (var_firstFilterProperty_20466, joker_20468, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 532)) ;
   }
-  GALGAS_string var_indent_20466 = GALGAS_string ("            ") ;
-  result_outResult = var_indent_20466.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)).add_operation (var_firstFilterProperty_20445, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)) ;
-  result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)) ;
-  result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)) ;
-  result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)) ;
-  result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)) ;
-  result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)) ;
-  GALGAS_uint var_idx_20817 = GALGAS_uint ((uint32_t) 2U) ;
-  GALGAS_string var_args_20836 = GALGAS_string::makeEmptyString () ;
-  GALGAS_string var_blockEnd_20860 = var_indent_20466.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)) ;
-  cEnumerator_tableViewControllerFilterListForGeneration enumerator_20906 (var_filterProperties_20382, kENUMERATION_UP) ;
-  while (enumerator_20906.hasCurrentObject ()) {
-    var_indent_20466.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 544)) ;
-    result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)).add_operation (enumerator_20906.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)) ;
-    result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)) ;
-    result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 547)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 547)) ;
-    result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)) ;
-    result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 549)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 549)) ;
-    result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)).add_operation (var_idx_20817.getter_string (SOURCE_FILE ("table-view-controller.galgas", 550)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)) ;
-    var_blockEnd_20860 = var_indent_20466.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 551)).add_operation (var_blockEnd_20860, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 551)) ;
-    var_args_20836.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_20817.getter_string (SOURCE_FILE ("table-view-controller.galgas", 552)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 552)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 552)) ;
-    var_idx_20817.increment_operation (inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 553)) ;
-    enumerator_20906.gotoNextObject () ;
+  GALGAS_string var_indent_20487 = GALGAS_string ("            ") ;
+  result_outResult = var_indent_20487.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)).add_operation (var_firstFilterProperty_20466, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)) ;
+  result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)) ;
+  result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)) ;
+  result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)) ;
+  result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)) ;
+  result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)) ;
+  GALGAS_uint var_idx_20838 = GALGAS_uint ((uint32_t) 2U) ;
+  GALGAS_string var_args_20857 = GALGAS_string::makeEmptyString () ;
+  GALGAS_string var_blockEnd_20881 = var_indent_20487.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)) ;
+  cEnumerator_tableViewControllerFilterListForGeneration enumerator_20927 (var_filterProperties_20403, kENUMERATION_UP) ;
+  while (enumerator_20927.hasCurrentObject ()) {
+    var_indent_20487.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 544)) ;
+    result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)).add_operation (enumerator_20927.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)) ;
+    result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)) ;
+    result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 547)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 547)) ;
+    result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)) ;
+    result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 549)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 549)) ;
+    result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)).add_operation (var_idx_20838.getter_string (SOURCE_FILE ("table-view-controller.galgas", 550)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 550)) ;
+    var_blockEnd_20881 = var_indent_20487.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 551)).add_operation (var_blockEnd_20881, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 551)) ;
+    var_args_20857.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_20838.getter_string (SOURCE_FILE ("table-view-controller.galgas", 552)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 552)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 552)) ;
+    var_idx_20838.increment_operation (inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 553)) ;
+    enumerator_20927.gotoNextObject () ;
   }
-  var_indent_20466.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 555)) ;
-  result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)).add_operation (var_args_20836, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)) ;
-  result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 557)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 557)) ;
-  result_outResult.plusAssign_operation(var_indent_20466.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 558)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 558)) ;
-  result_outResult.plusAssign_operation(var_blockEnd_20860, inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 559)) ;
+  var_indent_20487.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 555)) ;
+  result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)).add_operation (var_args_20857, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 556)) ;
+  result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 557)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 557)) ;
+  result_outResult.plusAssign_operation(var_indent_20487.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 558)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 558)) ;
+  result_outResult.plusAssign_operation(var_blockEnd_20881, inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 559)) ;
 //---
   return result_outResult ;
 }

@@ -214,7 +214,7 @@ proc analyzeOutlets
         [inObservablePropertyMap searchKey
           !controllerName
           ?let @propertyKind kind
-          ?*
+          ?2*
         ]
         switch kind 
         case property (2*) :
@@ -235,7 +235,7 @@ proc analyzeOutlets
               ?let observablePropertyMap
               ?2*
             ]
-            [observablePropertyMap searchKey !propertyName ?let propertyKind ?*]
+            [observablePropertyMap searchKey !propertyName ?let propertyKind ?2*]
             switch propertyKind 
             case property (2*) :
               error controllerName : "the bound model should be a toMany property"
@@ -271,7 +271,7 @@ proc analyzeOutlets
         [inObservablePropertyMap searchKey
           !controllerName
           ?let @propertyKind unused kind
-          ?*
+          ?2*
         ]
         if not [kind isArrayController] then
           error controllerName : "the bound model should be an array controller"
@@ -297,6 +297,7 @@ proc analyzeOutlets
           !target
           ?*
           ?let @actionMap controllerActionMap
+          ?*
         ]
         [controllerActionMap searchKey !action]
         outTargetActionList +=

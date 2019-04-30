@@ -101,6 +101,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_objectController,
    kToken_one,
    kToken_outlet,
+   kToken_override,
    kToken_prefs,
    kToken_property,
    kToken_root,
@@ -109,6 +110,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_signature,
    kToken_sort,
    kToken_struct,
+   kToken_super,
    kToken_to,
    kToken_toMany,
    kToken_toOne,
@@ -180,7 +182,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 79 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 81 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -683,6 +685,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_60 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -3228,7 +3232,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
     kEnum_selfControllerOneProperty,
     kEnum_signatureProperty,
     kEnum_versionProperty,
-    kEnum_versionShouldChangeProperty
+    kEnum_versionShouldChangeProperty,
+    kEnum_superProperty
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -3314,6 +3319,10 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
 
   public : static class GALGAS_observablePropertyAST constructor_signatureProperty (const class GALGAS_location & inOperand0
                                                                                     COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_observablePropertyAST constructor_superProperty (const class GALGAS_lstring & inOperand0,
+                                                                                const class GALGAS_lstring & inOperand1
+                                                                                COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_observablePropertyAST constructor_versionProperty (const class GALGAS_location & inOperand0
                                                                                   COMMA_LOCATION_ARGS) ;
@@ -3406,6 +3415,11 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG void method_superProperty (class GALGAS_lstring & outArgument0,
+                                                       class GALGAS_lstring & outArgument1,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG void method_versionProperty (class GALGAS_location & outArgument0,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const ;
@@ -3448,6 +3462,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfPropertyWithOption (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSignatureProperty (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSuperProperty (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isVersionProperty (LOCATION_ARGS) const ;
 
@@ -3778,6 +3794,24 @@ class cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty : 
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty (void) {}
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumAssociatedValues_observablePropertyAST_superProperty : public cEnumAssociatedValues {
+  public : const GALGAS_lstring mAssociatedValue0 ;
+  public : const GALGAS_lstring mAssociatedValue1 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_observablePropertyAST_superProperty (const GALGAS_lstring & inAssociatedValue0,
+                                                                      const GALGAS_lstring & inAssociatedValue1
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_observablePropertyAST_superProperty (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5201,7 +5235,8 @@ class GALGAS_transientDeclarationAST : public GALGAS_abstractDeclarationAST {
                                                                         const class GALGAS_lstring & inOperand2,
                                                                         const class GALGAS_lstring & inOperand3,
                                                                         const class GALGAS_observablePropertyList & inOperand4,
-                                                                        const class GALGAS_lstring & inOperand5
+                                                                        const class GALGAS_lstring & inOperand5,
+                                                                        const class GALGAS_bool & inOperand6
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5216,6 +5251,8 @@ class GALGAS_transientDeclarationAST : public GALGAS_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyList getter_mDependencyList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mExternFunctionName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsOverriding (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mRootEntityName (LOCATION_ARGS) const ;
 
@@ -5374,6 +5411,7 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
   public : GALGAS_lstring mProperty_mTransientName ;
   public : GALGAS_observablePropertyList mProperty_mDependencyList ;
   public : GALGAS_lstring mProperty_mExternFunctionName ;
+  public : GALGAS_bool mProperty_mIsOverriding ;
 
 //--- Constructor
   public : cPtr_transientDeclarationAST (const GALGAS_lstring & in_mClassName,
@@ -5381,7 +5419,8 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
                                          const GALGAS_lstring & in_mTransientTypeName,
                                          const GALGAS_lstring & in_mTransientName,
                                          const GALGAS_observablePropertyList & in_mDependencyList,
-                                         const GALGAS_lstring & in_mExternFunctionName
+                                         const GALGAS_lstring & in_mExternFunctionName,
+                                         const GALGAS_bool & in_mIsOverriding
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5393,6 +5432,7 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTransientName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_observablePropertyList getter_mDependencyList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mExternFunctionName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsOverriding (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -6410,6 +6450,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_60 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8864,6 +8906,7 @@ class GALGAS_propertyMap : public AC_GALGAS_map {
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                       const class GALGAS_propertyKind & inOperand1,
                                                       const class GALGAS_actionMap & inOperand2,
+                                                      const class GALGAS_bool & inOperand3,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -8871,6 +8914,7 @@ class GALGAS_propertyMap : public AC_GALGAS_map {
   public : VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
                                                    class GALGAS_propertyKind constinArgument1,
                                                    class GALGAS_actionMap constinArgument2,
+                                                   class GALGAS_bool constinArgument3,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -8878,6 +8922,11 @@ class GALGAS_propertyMap : public AC_GALGAS_map {
                                                              class GALGAS_string constinArgument1,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMIsOverridingForKey (class GALGAS_bool constinArgument0,
+                                                                class GALGAS_string constinArgument1,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMKindForKey (class GALGAS_propertyKind constinArgument0,
                                                         class GALGAS_string constinArgument1,
@@ -8889,6 +8938,7 @@ class GALGAS_propertyMap : public AC_GALGAS_map {
   public : VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
                                                    class GALGAS_propertyKind & outArgument1,
                                                    class GALGAS_actionMap & outArgument2,
+                                                   class GALGAS_bool & outArgument3,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const ;
 
@@ -8898,6 +8948,10 @@ class GALGAS_propertyMap : public AC_GALGAS_map {
   public : VIRTUAL_IN_DEBUG class GALGAS_actionMap getter_mActionMapForKey (const class GALGAS_string & constinOperand0,
                                                                             C_Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsOverridingForKey (const class GALGAS_string & constinOperand0,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mKindForKey (const class GALGAS_string & constinOperand0,
                                                                           C_Compiler * inCompiler
@@ -8931,6 +8985,7 @@ class cEnumerator_propertyMap : public cGenericAbstractEnumerator {
   public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
   public : class GALGAS_propertyKind current_mKind (LOCATION_ARGS) const ;
   public : class GALGAS_actionMap current_mActionMap (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mIsOverriding (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_propertyMap_2D_element current (LOCATION_ARGS) const ;
 } ;

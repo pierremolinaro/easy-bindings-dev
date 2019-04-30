@@ -28,7 +28,7 @@ override method @toManyRelationshipAST enterInPrecedenceGraph ?!@declarationPrec
 
 #·······················································································································
 
-override getter @toManyRelationshipAST lkey -> @lstring {
+override getter @toManyRelationshipAST nodeKey -> @lstring {
   result = @lstring.new {!mClassName.string + " " + mToManyRelationshipName !mToManyRelationshipName.location}
 }
 
@@ -125,7 +125,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
         !graphic: graphic
         !optionKind: mOption
       }
-      [!?mPropertyMap insertKey !mToManyRelationshipName !kind !{}]
+      [!?mPropertyMap insertKey !mToManyRelationshipName !kind !{} !false]
     #--- Current class is preferences ?
       let inPrefs = mClassName.string == preferencesName ()
     #--- Code Generation

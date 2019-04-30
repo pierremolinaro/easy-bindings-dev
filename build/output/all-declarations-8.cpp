@@ -4146,32 +4146,73 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   GALGAS_semanticContext var_semanticContext_1749 = GALGAS_semanticContext::constructor_default (SOURCE_FILE ("program.galgas", 37)) ;
   GALGAS_generationStruct var_generation_1791 = GALGAS_generationStruct::constructor_default (SOURCE_FILE ("program.galgas", 38)) ;
   cEnumerator_declarationListAST enumerator_1850 (var_sortedDeclarationListAST_1639, kENUMERATION_UP) ;
-  while (enumerator_1850.hasCurrentObject ()) {
-    callExtensionMethod_firstAnalysisPhase ((const cPtr_abstractDeclarationAST *) enumerator_1850.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_1749, var_generation_1791, inCompiler COMMA_SOURCE_FILE ("program.galgas", 40)) ;
-    enumerator_1850.gotoNextObject () ;
+  bool bool_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 39)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+  if (enumerator_1850.hasCurrentObject () && bool_0) {
+    while (enumerator_1850.hasCurrentObject () && bool_0) {
+      callExtensionMethod_firstAnalysisPhase ((const cPtr_abstractDeclarationAST *) enumerator_1850.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_1749, var_generation_1791, inCompiler COMMA_SOURCE_FILE ("program.galgas", 40)) ;
+      enumerator_1850.gotoNextObject () ;
+      if (enumerator_1850.hasCurrentObject ()) {
+        bool_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 39)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+      }
+    }
   }
-  {
-  routine_buildBindingSpecificationMap (var_semanticContext_1749, var_declarationStruct_734.getter_mBindingSpecificationListMap (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 43)) ;
-  }
-  cEnumerator_declarationListAST enumerator_2236 (var_sortedDeclarationListAST_1639, kENUMERATION_UP) ;
-  while (enumerator_2236.hasCurrentObject ()) {
-    callExtensionMethod_secondAnalysisPhase ((const cPtr_abstractDeclarationAST *) enumerator_2236.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_1749, var_generation_1791, inCompiler COMMA_SOURCE_FILE ("program.galgas", 49)) ;
-    enumerator_2236.gotoNextObject () ;
-  }
-  cEnumerator_declarationListAST enumerator_2436 (var_sortedDeclarationListAST_1639, kENUMERATION_UP) ;
-  while (enumerator_2436.hasCurrentObject ()) {
-    callExtensionMethod_thirdAnalysisPhase ((const cPtr_abstractDeclarationAST *) enumerator_2436.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_1749, var_generation_1791, inCompiler COMMA_SOURCE_FILE ("program.galgas", 53)) ;
-    enumerator_2436.gotoNextObject () ;
-  }
-  {
-  routine_graphvizAnalysis (constinArgument_inSourceFile.getter_string (HERE).getter_stringByDeletingLastPathComponent (SOURCE_FILE ("program.galgas", 56)), var_semanticContext_1749, var_declarationStruct_734.getter_mGraphvizList (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 56)) ;
-  }
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 58)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-    if (kBoolTrue == test_0) {
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    test_1 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 43)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    if (kBoolTrue == test_1) {
       {
-      routine_generateCode (var_declarationStruct_734.getter_mXcodeProject (HERE).getter_string (HERE), var_generation_1791, constinArgument_inSourceFile.getter_string (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 59)) ;
+      routine_buildBindingSpecificationMap (var_semanticContext_1749, var_declarationStruct_734.getter_mBindingSpecificationListMap (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 44)) ;
+      }
+    }
+  }
+  cEnumerator_declarationListAST enumerator_2310 (var_sortedDeclarationListAST_1639, kENUMERATION_UP) ;
+  bool bool_2 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 50)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+  if (enumerator_2310.hasCurrentObject () && bool_2) {
+    while (enumerator_2310.hasCurrentObject () && bool_2) {
+      callExtensionMethod_secondAnalysisPhase ((const cPtr_abstractDeclarationAST *) enumerator_2310.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_1749, var_generation_1791, inCompiler COMMA_SOURCE_FILE ("program.galgas", 51)) ;
+      enumerator_2310.gotoNextObject () ;
+      if (enumerator_2310.hasCurrentObject ()) {
+        bool_2 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 50)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+      }
+    }
+  }
+  cEnumerator_declarationListAST enumerator_2538 (var_sortedDeclarationListAST_1639, kENUMERATION_UP) ;
+  bool bool_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 54)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+  if (enumerator_2538.hasCurrentObject () && bool_3) {
+    while (enumerator_2538.hasCurrentObject () && bool_3) {
+      callExtensionMethod_thirdAnalysisPhase ((const cPtr_abstractDeclarationAST *) enumerator_2538.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_1749, var_generation_1791, inCompiler COMMA_SOURCE_FILE ("program.galgas", 55)) ;
+      enumerator_2538.gotoNextObject () ;
+      if (enumerator_2538.hasCurrentObject ()) {
+        bool_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 54)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+      }
+    }
+  }
+  cEnumerator_declarationListAST enumerator_2766 (var_sortedDeclarationListAST_1639, kENUMERATION_UP) ;
+  bool bool_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 58)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+  if (enumerator_2766.hasCurrentObject () && bool_4) {
+    while (enumerator_2766.hasCurrentObject () && bool_4) {
+      callExtensionMethod_fourthAnalysisPhase ((const cPtr_abstractDeclarationAST *) enumerator_2766.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_1749, var_generation_1791, inCompiler COMMA_SOURCE_FILE ("program.galgas", 59)) ;
+      enumerator_2766.gotoNextObject () ;
+      if (enumerator_2766.hasCurrentObject ()) {
+        bool_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 58)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
+      }
+    }
+  }
+  enumGalgasBool test_5 = kBoolTrue ;
+  if (kBoolTrue == test_5) {
+    test_5 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 62)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    if (kBoolTrue == test_5) {
+      {
+      routine_graphvizAnalysis (constinArgument_inSourceFile.getter_string (HERE).getter_stringByDeletingLastPathComponent (SOURCE_FILE ("program.galgas", 63)), var_semanticContext_1749, var_declarationStruct_734.getter_mGraphvizList (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 63)) ;
+      }
+    }
+  }
+  enumGalgasBool test_6 = kBoolTrue ;
+  if (kBoolTrue == test_6) {
+    test_6 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 66)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    if (kBoolTrue == test_6) {
+      {
+      routine_generateCode (var_declarationStruct_734.getter_mXcodeProject (HERE).getter_string (HERE), var_generation_1791, constinArgument_inSourceFile.getter_string (HERE), inCompiler  COMMA_SOURCE_FILE ("program.galgas", 67)) ;
       }
     }
   }
