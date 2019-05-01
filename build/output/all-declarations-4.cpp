@@ -11,6 +11,944 @@
 //   Object comparison                                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+typeComparisonResult cPtr_entityForGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_entityForGeneration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mEntityName.objectCompare (p->mProperty_mEntityName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mSuperEntityName.objectCompare (p->mProperty_mSuperEntityName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mPropertyGenerationList.objectCompare (p->mProperty_mPropertyGenerationList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mSignatureSet.objectCompare (p->mProperty_mSignatureSet) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mIsGraphicEntity.objectCompare (p->mProperty_mIsGraphicEntity) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mIsAbstract.objectCompare (p->mProperty_mIsAbstract) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mOverridenTransients.objectCompare (p->mProperty_mOverridenTransients) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mExternSwiftDelegateList.objectCompare (p->mProperty_mExternSwiftDelegateList) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_entityForGeneration::objectCompare (const GALGAS_entityForGeneration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityForGeneration::GALGAS_entityForGeneration (void) :
+GALGAS_abstractFileGeneration () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityForGeneration GALGAS_entityForGeneration::constructor_default (LOCATION_ARGS) {
+  return GALGAS_entityForGeneration::constructor_new (GALGAS_string::constructor_default (HERE),
+                                                      GALGAS_string::constructor_default (HERE),
+                                                      GALGAS_propertyGenerationList::constructor_emptyList (HERE),
+                                                      GALGAS_stringset::constructor_emptySet (HERE),
+                                                      GALGAS_bool::constructor_default (HERE),
+                                                      GALGAS_bool::constructor_default (HERE),
+                                                      GALGAS_stringset::constructor_emptySet (HERE),
+                                                      GALGAS_externSwiftDelegateList::constructor_emptyList (HERE)
+                                                      COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityForGeneration::GALGAS_entityForGeneration (const cPtr_entityForGeneration * inSourcePtr) :
+GALGAS_abstractFileGeneration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_entityForGeneration) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityForGeneration GALGAS_entityForGeneration::constructor_new (const GALGAS_string & inAttribute_mEntityName,
+                                                                        const GALGAS_string & inAttribute_mSuperEntityName,
+                                                                        const GALGAS_propertyGenerationList & inAttribute_mPropertyGenerationList,
+                                                                        const GALGAS_stringset & inAttribute_mSignatureSet,
+                                                                        const GALGAS_bool & inAttribute_mIsGraphicEntity,
+                                                                        const GALGAS_bool & inAttribute_mIsAbstract,
+                                                                        const GALGAS_stringset & inAttribute_mOverridenTransients,
+                                                                        const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList
+                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_entityForGeneration result ;
+  if (inAttribute_mEntityName.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mPropertyGenerationList.isValid () && inAttribute_mSignatureSet.isValid () && inAttribute_mIsGraphicEntity.isValid () && inAttribute_mIsAbstract.isValid () && inAttribute_mOverridenTransients.isValid () && inAttribute_mExternSwiftDelegateList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_entityForGeneration (inAttribute_mEntityName, inAttribute_mSuperEntityName, inAttribute_mPropertyGenerationList, inAttribute_mSignatureSet, inAttribute_mIsGraphicEntity, inAttribute_mIsAbstract, inAttribute_mOverridenTransients, inAttribute_mExternSwiftDelegateList COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_entityForGeneration::getter_mEntityName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_entityForGeneration::getter_mEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_entityForGeneration::getter_mSuperEntityName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mSuperEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_entityForGeneration::getter_mSuperEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSuperEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyGenerationList GALGAS_entityForGeneration::getter_mPropertyGenerationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_propertyGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mPropertyGenerationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyGenerationList cPtr_entityForGeneration::getter_mPropertyGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mPropertyGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringset GALGAS_entityForGeneration::getter_mSignatureSet (UNUSED_LOCATION_ARGS) const {
+  GALGAS_stringset result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mSignatureSet ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringset cPtr_entityForGeneration::getter_mSignatureSet (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSignatureSet ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_entityForGeneration::getter_mIsGraphicEntity (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mIsGraphicEntity ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cPtr_entityForGeneration::getter_mIsGraphicEntity (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mIsGraphicEntity ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_entityForGeneration::getter_mIsAbstract (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mIsAbstract ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cPtr_entityForGeneration::getter_mIsAbstract (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mIsAbstract ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringset GALGAS_entityForGeneration::getter_mOverridenTransients (UNUSED_LOCATION_ARGS) const {
+  GALGAS_stringset result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mOverridenTransients ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringset cPtr_entityForGeneration::getter_mOverridenTransients (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOverridenTransients ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_externSwiftDelegateList GALGAS_entityForGeneration::getter_mExternSwiftDelegateList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_externSwiftDelegateList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mExternSwiftDelegateList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_externSwiftDelegateList cPtr_entityForGeneration::getter_mExternSwiftDelegateList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mExternSwiftDelegateList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                    Pointer class for @entityForGeneration class                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_entityForGeneration::cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
+                                                    const GALGAS_string & in_mSuperEntityName,
+                                                    const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
+                                                    const GALGAS_stringset & in_mSignatureSet,
+                                                    const GALGAS_bool & in_mIsGraphicEntity,
+                                                    const GALGAS_bool & in_mIsAbstract,
+                                                    const GALGAS_stringset & in_mOverridenTransients,
+                                                    const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
+                                                    COMMA_LOCATION_ARGS) :
+cPtr_abstractFileGeneration (THERE),
+mProperty_mEntityName (in_mEntityName),
+mProperty_mSuperEntityName (in_mSuperEntityName),
+mProperty_mPropertyGenerationList (in_mPropertyGenerationList),
+mProperty_mSignatureSet (in_mSignatureSet),
+mProperty_mIsGraphicEntity (in_mIsGraphicEntity),
+mProperty_mIsAbstract (in_mIsAbstract),
+mProperty_mOverridenTransients (in_mOverridenTransients),
+mProperty_mExternSwiftDelegateList (in_mExternSwiftDelegateList) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_entityForGeneration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_entityForGeneration ;
+}
+
+void cPtr_entityForGeneration::description (C_String & ioString,
+                                            const int32_t inIndentation) const {
+  ioString << "[@entityForGeneration:" ;
+  mProperty_mEntityName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSuperEntityName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mPropertyGenerationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mSignatureSet.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mIsGraphicEntity.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mIsAbstract.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mOverridenTransients.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mExternSwiftDelegateList.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_entityForGeneration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_entityForGeneration (mProperty_mEntityName, mProperty_mSuperEntityName, mProperty_mPropertyGenerationList, mProperty_mSignatureSet, mProperty_mIsGraphicEntity, mProperty_mIsAbstract, mProperty_mOverridenTransients, mProperty_mExternSwiftDelegateList COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                              @entityForGeneration type                                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_entityForGeneration ("entityForGeneration",
+                                            & kTypeDescriptor_GALGAS_abstractFileGeneration) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_entityForGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_entityForGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_entityForGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_entityForGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_entityForGeneration GALGAS_entityForGeneration::extractObject (const GALGAS_object & inObject,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_entityForGeneration result ;
+  const GALGAS_entityForGeneration * p = (const GALGAS_entityForGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_entityForGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("entityForGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cPtr_documentDeclarationAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_documentDeclarationAST * p = (const cPtr_documentDeclarationAST *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_documentDeclarationAST) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRootEntityName.objectCompare (p->mProperty_mRootEntityName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mOutletDeclarationList.objectCompare (p->mProperty_mOutletDeclarationList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mActionDeclarationList.objectCompare (p->mProperty_mActionDeclarationList) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_documentDeclarationAST::objectCompare (const GALGAS_documentDeclarationAST & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclarationAST::GALGAS_documentDeclarationAST (void) :
+GALGAS_abstractDeclarationAST () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclarationAST GALGAS_documentDeclarationAST::constructor_default (LOCATION_ARGS) {
+  return GALGAS_documentDeclarationAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
+                                                         GALGAS_lstring::constructor_default (HERE),
+                                                         GALGAS_outletDeclarationList::constructor_emptyList (HERE),
+                                                         GALGAS_lstringlist::constructor_emptyList (HERE)
+                                                         COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclarationAST::GALGAS_documentDeclarationAST (const cPtr_documentDeclarationAST * inSourcePtr) :
+GALGAS_abstractDeclarationAST (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_documentDeclarationAST) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclarationAST GALGAS_documentDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
+                                                                              const GALGAS_lstring & inAttribute_mRootEntityName,
+                                                                              const GALGAS_outletDeclarationList & inAttribute_mOutletDeclarationList,
+                                                                              const GALGAS_lstringlist & inAttribute_mActionDeclarationList
+                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_documentDeclarationAST result ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mOutletDeclarationList.isValid () && inAttribute_mActionDeclarationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_documentDeclarationAST (inAttribute_mClassName, inAttribute_mRootEntityName, inAttribute_mOutletDeclarationList, inAttribute_mActionDeclarationList COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_documentDeclarationAST::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclarationAST * p = (const cPtr_documentDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclarationAST) ;
+    result = p->mProperty_mRootEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_documentDeclarationAST::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRootEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_outletDeclarationList GALGAS_documentDeclarationAST::getter_mOutletDeclarationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_outletDeclarationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclarationAST * p = (const cPtr_documentDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclarationAST) ;
+    result = p->mProperty_mOutletDeclarationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_outletDeclarationList cPtr_documentDeclarationAST::getter_mOutletDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOutletDeclarationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist GALGAS_documentDeclarationAST::getter_mActionDeclarationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstringlist result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentDeclarationAST * p = (const cPtr_documentDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentDeclarationAST) ;
+    result = p->mProperty_mActionDeclarationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstringlist cPtr_documentDeclarationAST::getter_mActionDeclarationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mActionDeclarationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                   Pointer class for @documentDeclarationAST class                                   *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_documentDeclarationAST::cPtr_documentDeclarationAST (const GALGAS_lstring & in_mClassName,
+                                                          const GALGAS_lstring & in_mRootEntityName,
+                                                          const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
+                                                          const GALGAS_lstringlist & in_mActionDeclarationList
+                                                          COMMA_LOCATION_ARGS) :
+cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
+mProperty_mRootEntityName (in_mRootEntityName),
+mProperty_mOutletDeclarationList (in_mOutletDeclarationList),
+mProperty_mActionDeclarationList (in_mActionDeclarationList) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_documentDeclarationAST::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_documentDeclarationAST ;
+}
+
+void cPtr_documentDeclarationAST::description (C_String & ioString,
+                                               const int32_t inIndentation) const {
+  ioString << "[@documentDeclarationAST:" ;
+  mProperty_mClassName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mOutletDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mActionDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_documentDeclarationAST::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_documentDeclarationAST (mProperty_mClassName, mProperty_mRootEntityName, mProperty_mOutletDeclarationList, mProperty_mActionDeclarationList COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                            @documentDeclarationAST type                                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_documentDeclarationAST ("documentDeclarationAST",
+                                               & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_documentDeclarationAST::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_documentDeclarationAST ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_documentDeclarationAST::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_documentDeclarationAST (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentDeclarationAST GALGAS_documentDeclarationAST::extractObject (const GALGAS_object & inObject,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_documentDeclarationAST result ;
+  const GALGAS_documentDeclarationAST * p = (const GALGAS_documentDeclarationAST *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_documentDeclarationAST *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("documentDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cPtr_documentFileGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mDocumentName.objectCompare (p->mProperty_mDocumentName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRootEntityName.objectCompare (p->mProperty_mRootEntityName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mDocumentPropertyGenearionList.objectCompare (p->mProperty_mDocumentPropertyGenearionList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mOutletMap.objectCompare (p->mProperty_mOutletMap) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mTargetActionList.objectCompare (p->mProperty_mTargetActionList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRegularBindingsGenerationList.objectCompare (p->mProperty_mRegularBindingsGenerationList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_multipleBindingGenerationList.objectCompare (p->mProperty_multipleBindingGenerationList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mTableViewBindingGenerationList.objectCompare (p->mProperty_mTableViewBindingGenerationList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mEBViewBindingGenerationList.objectCompare (p->mProperty_mEBViewBindingGenerationList) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_documentFileGeneration::objectCompare (const GALGAS_documentFileGeneration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentFileGeneration::GALGAS_documentFileGeneration (void) :
+GALGAS_abstractFileGeneration () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentFileGeneration GALGAS_documentFileGeneration::constructor_default (LOCATION_ARGS) {
+  return GALGAS_documentFileGeneration::constructor_new (GALGAS_string::constructor_default (HERE),
+                                                         GALGAS_string::constructor_default (HERE),
+                                                         GALGAS_propertyGenerationList::constructor_emptyList (HERE),
+                                                         GALGAS_decoratedOutletMap::constructor_emptyMap (HERE),
+                                                         GALGAS_actionBindingListForGeneration::constructor_emptyList (HERE),
+                                                         GALGAS_regularBindingsGenerationList::constructor_emptyList (HERE),
+                                                         GALGAS_multipleBindingGenerationList::constructor_emptyList (HERE),
+                                                         GALGAS_tableViewBindingGenerationList::constructor_emptyList (HERE),
+                                                         GALGAS_ebViewGraphicControllerBindingGenerationList::constructor_emptyList (HERE)
+                                                         COMMA_THERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentFileGeneration::GALGAS_documentFileGeneration (const cPtr_documentFileGeneration * inSourcePtr) :
+GALGAS_abstractFileGeneration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_documentFileGeneration) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentFileGeneration GALGAS_documentFileGeneration::constructor_new (const GALGAS_string & inAttribute_mDocumentName,
+                                                                              const GALGAS_string & inAttribute_mRootEntityName,
+                                                                              const GALGAS_propertyGenerationList & inAttribute_mDocumentPropertyGenearionList,
+                                                                              const GALGAS_decoratedOutletMap & inAttribute_mOutletMap,
+                                                                              const GALGAS_actionBindingListForGeneration & inAttribute_mTargetActionList,
+                                                                              const GALGAS_regularBindingsGenerationList & inAttribute_mRegularBindingsGenerationList,
+                                                                              const GALGAS_multipleBindingGenerationList & inAttribute_multipleBindingGenerationList,
+                                                                              const GALGAS_tableViewBindingGenerationList & inAttribute_mTableViewBindingGenerationList,
+                                                                              const GALGAS_ebViewGraphicControllerBindingGenerationList & inAttribute_mEBViewBindingGenerationList
+                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_documentFileGeneration result ;
+  if (inAttribute_mDocumentName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mDocumentPropertyGenearionList.isValid () && inAttribute_mOutletMap.isValid () && inAttribute_mTargetActionList.isValid () && inAttribute_mRegularBindingsGenerationList.isValid () && inAttribute_multipleBindingGenerationList.isValid () && inAttribute_mTableViewBindingGenerationList.isValid () && inAttribute_mEBViewBindingGenerationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_documentFileGeneration (inAttribute_mDocumentName, inAttribute_mRootEntityName, inAttribute_mDocumentPropertyGenearionList, inAttribute_mOutletMap, inAttribute_mTargetActionList, inAttribute_mRegularBindingsGenerationList, inAttribute_multipleBindingGenerationList, inAttribute_mTableViewBindingGenerationList, inAttribute_mEBViewBindingGenerationList COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_documentFileGeneration::getter_mDocumentName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_mDocumentName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_documentFileGeneration::getter_mDocumentName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mDocumentName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_documentFileGeneration::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_mRootEntityName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_documentFileGeneration::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRootEntityName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyGenerationList GALGAS_documentFileGeneration::getter_mDocumentPropertyGenearionList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_propertyGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_mDocumentPropertyGenearionList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_propertyGenerationList cPtr_documentFileGeneration::getter_mDocumentPropertyGenearionList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mDocumentPropertyGenearionList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_decoratedOutletMap GALGAS_documentFileGeneration::getter_mOutletMap (UNUSED_LOCATION_ARGS) const {
+  GALGAS_decoratedOutletMap result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_mOutletMap ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_decoratedOutletMap cPtr_documentFileGeneration::getter_mOutletMap (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mOutletMap ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_actionBindingListForGeneration GALGAS_documentFileGeneration::getter_mTargetActionList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_actionBindingListForGeneration result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_mTargetActionList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_actionBindingListForGeneration cPtr_documentFileGeneration::getter_mTargetActionList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mTargetActionList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_regularBindingsGenerationList GALGAS_documentFileGeneration::getter_mRegularBindingsGenerationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_regularBindingsGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_mRegularBindingsGenerationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_regularBindingsGenerationList cPtr_documentFileGeneration::getter_mRegularBindingsGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRegularBindingsGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_multipleBindingGenerationList GALGAS_documentFileGeneration::getter_multipleBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_multipleBindingGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_multipleBindingGenerationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_multipleBindingGenerationList cPtr_documentFileGeneration::getter_multipleBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_multipleBindingGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_tableViewBindingGenerationList GALGAS_documentFileGeneration::getter_mTableViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_tableViewBindingGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_mTableViewBindingGenerationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_tableViewBindingGenerationList cPtr_documentFileGeneration::getter_mTableViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mTableViewBindingGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_ebViewGraphicControllerBindingGenerationList GALGAS_documentFileGeneration::getter_mEBViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_ebViewGraphicControllerBindingGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_documentFileGeneration * p = (const cPtr_documentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_documentFileGeneration) ;
+    result = p->mProperty_mEBViewBindingGenerationList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_ebViewGraphicControllerBindingGenerationList cPtr_documentFileGeneration::getter_mEBViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mEBViewBindingGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                   Pointer class for @documentFileGeneration class                                   *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_documentFileGeneration::cPtr_documentFileGeneration (const GALGAS_string & in_mDocumentName,
+                                                          const GALGAS_string & in_mRootEntityName,
+                                                          const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
+                                                          const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                                          const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
+                                                          const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                                          const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
+                                                          const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                                          const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList
+                                                          COMMA_LOCATION_ARGS) :
+cPtr_abstractFileGeneration (THERE),
+mProperty_mDocumentName (in_mDocumentName),
+mProperty_mRootEntityName (in_mRootEntityName),
+mProperty_mDocumentPropertyGenearionList (in_mDocumentPropertyGenearionList),
+mProperty_mOutletMap (in_mOutletMap),
+mProperty_mTargetActionList (in_mTargetActionList),
+mProperty_mRegularBindingsGenerationList (in_mRegularBindingsGenerationList),
+mProperty_multipleBindingGenerationList (in_multipleBindingGenerationList),
+mProperty_mTableViewBindingGenerationList (in_mTableViewBindingGenerationList),
+mProperty_mEBViewBindingGenerationList (in_mEBViewBindingGenerationList) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_documentFileGeneration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_documentFileGeneration ;
+}
+
+void cPtr_documentFileGeneration::description (C_String & ioString,
+                                               const int32_t inIndentation) const {
+  ioString << "[@documentFileGeneration:" ;
+  mProperty_mDocumentName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mDocumentPropertyGenearionList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mOutletMap.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mTargetActionList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_multipleBindingGenerationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mTableViewBindingGenerationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mEBViewBindingGenerationList.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_documentFileGeneration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_documentFileGeneration (mProperty_mDocumentName, mProperty_mRootEntityName, mProperty_mDocumentPropertyGenearionList, mProperty_mOutletMap, mProperty_mTargetActionList, mProperty_mRegularBindingsGenerationList, mProperty_multipleBindingGenerationList, mProperty_mTableViewBindingGenerationList, mProperty_mEBViewBindingGenerationList COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                            @documentFileGeneration type                                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_documentFileGeneration ("documentFileGeneration",
+                                               & kTypeDescriptor_GALGAS_abstractFileGeneration) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_documentFileGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_documentFileGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_documentFileGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_documentFileGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_documentFileGeneration GALGAS_documentFileGeneration::extractObject (const GALGAS_object & inObject,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_documentFileGeneration result ;
+  const GALGAS_documentFileGeneration * p = (const GALGAS_documentFileGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_documentFileGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("documentFileGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 typeComparisonResult cPtr_prefsDeclarationAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_prefsDeclarationAST * p = (const cPtr_prefsDeclarationAST *) inOperandPtr ;
@@ -10539,18 +11477,18 @@ GALGAS_bool extensionGetter_isAbstract (const GALGAS_propertyMap_2D_element & in
   result_result = GALGAS_bool (false) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 135)).boolEnum () ;
+    test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 143)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_propertyAccessibility var_accessibility_5743 ;
-      GALGAS_typeKind joker_5685_1 ; // Joker input parameter
-      inObject.mProperty_mKind.method_property (joker_5685_1, var_accessibility_5743, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 136)) ;
+      GALGAS_propertyAccessibility var_accessibility_6206 ;
+      GALGAS_typeKind joker_6148_1 ; // Joker input parameter
+      inObject.mProperty_mKind.method_property (joker_6148_1, var_accessibility_6206, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 144)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = var_accessibility_5743.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 137)).boolEnum () ;
+        test_1 = var_accessibility_6206.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 145)).boolEnum () ;
         if (kBoolTrue == test_1) {
-          GALGAS_bool var_ab_5835 ;
-          var_accessibility_5743.method_transient (var_ab_5835, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 138)) ;
-          result_result = var_ab_5835 ;
+          GALGAS_bool var_ab_6298 ;
+          var_accessibility_6206.method_transient (var_ab_6298, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 146)) ;
+          result_result = var_ab_6298 ;
         }
       }
     }

@@ -98,7 +98,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
                                                                                                                   const class GALGAS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
                                                                                                                   const class GALGAS_string & in_BASE_5F_ELEMENT_5F_TYPE_5F_NAME,
                                                                                                                   const class GALGAS_string & in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                                  const class GALGAS_propertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
+                                                                                                                  const class GALGAS_propertyGenerationList & in_PROPERTY_5F_GENERATION_5F_LIST
                                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -291,6 +291,61 @@ list @transientPropertyGenerationList {
 
 #·······················································································································
 
+override getter @transientPropertyGeneration declarationInSelectionControllerCode -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+  result += "  //   Selection observable property: " + mPropertyName + "\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  let " + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
+  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
+  result += "    return self." + mPropertyName + "_property.prop\n"
+  result += "  }\n\n"
+}
+
+#·······················································································································
+
+override getter @transientPropertyGeneration bindPropertyInSelectionController ?let @string inDerivedTypeName -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  private final func bind_property_" + mPropertyName + " (model : " + inDerivedTypeName + ") {\n"
+  result += "    model.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
+  result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
+  result += "      if let model = self?.mActualModel {\n"
+  result += "        switch model.prop {\n"
+  result += "        case .empty :\n"
+  result += "          return .empty\n"
+  result += "        case .multiple :\n"
+  result += "          return .multiple\n"
+  result += "        case .single (let v) :\n"
+  result += "          var s = Set <" + [mType swiftTypeName] + "> ()\n"
+  result += "          var isMultipleSelection = false\n"
+  result += "          for object in v {\n"
+  result += "            switch object." + mPropertyName + "_property_selection {\n"
+  result += "            case .empty :\n"
+  result += "              return .empty\n"
+  result += "            case .multiple :\n"
+  result += "              isMultipleSelection = true\n"
+  result += "            case .single (let vProp) :\n"
+  result += "              s.insert (vProp)\n"
+  result += "            }\n"
+  result += "          }\n"
+  result += "          if isMultipleSelection {\n"
+  result += "            return .multiple\n"
+  result += "          }else if s.count == 0 {\n"
+  result += "            return .empty\n"
+  result += "          }else if s.count == 1 {\n"
+  result += "            return .single (s.first!)\n"
+  result += "          }else{\n"
+  result += "            return .multiple\n"
+  result += "          }\n"
+  result += "        }\n"
+  result += "      }else{\n"
+  result += "        return .empty\n"
+  result += "      }\n"
+  result += "    }\n"
+  result += "  }\n"
+}
+
+#·······················································································································
+
 override getter @transientPropertyGeneration propertyDeclarationCode ?let @stringset inOverriddenTransients -> @string {
   result  = ""
   if mGenerate & not [inOverriddenTransients hasKey !mPropertyName] then #  mGenerate then

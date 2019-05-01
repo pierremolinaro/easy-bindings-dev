@@ -21,6 +21,14 @@ getter @propertyGeneration prefKeyDefinitionCode -> @string { result = "" }
 
 #·······················································································································
 
+getter @propertyGeneration declarationInSelectionControllerCode -> @string { result = "" }
+
+#·······················································································································
+
+getter @propertyGeneration bindPropertyInSelectionController ?let @string unused inDerivedTypeName -> @string { result = "" }
+
+#·······················································································································
+
 abstract getter @propertyGeneration propertyDeclarationCode ?let @stringset inOverriddenTransients -> @string
 
 #·······················································································································

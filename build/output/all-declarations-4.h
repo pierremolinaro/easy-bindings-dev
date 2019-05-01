@@ -10,6 +10,264 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                             @entityForGeneration class                                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
+//--- Constructor
+  public : GALGAS_entityForGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_entityForGeneration constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_entityForGeneration * ptr (void) const { return (const cPtr_entityForGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_entityForGeneration (const cPtr_entityForGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_entityForGeneration extractObject (const GALGAS_object & inObject,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_entityForGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                    const class GALGAS_string & inOperand1,
+                                                                    const class GALGAS_propertyGenerationList & inOperand2,
+                                                                    const class GALGAS_stringset & inOperand3,
+                                                                    const class GALGAS_bool & inOperand4,
+                                                                    const class GALGAS_bool & inOperand5,
+                                                                    const class GALGAS_stringset & inOperand6,
+                                                                    const class GALGAS_externSwiftDelegateList & inOperand7
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_entityForGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mOverridenTransients (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_entityForGeneration class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                    Pointer class for @entityForGeneration class                                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
+//--- Attributes
+  public : GALGAS_string mProperty_mEntityName ;
+  public : GALGAS_string mProperty_mSuperEntityName ;
+  public : GALGAS_propertyGenerationList mProperty_mPropertyGenerationList ;
+  public : GALGAS_stringset mProperty_mSignatureSet ;
+  public : GALGAS_bool mProperty_mIsGraphicEntity ;
+  public : GALGAS_bool mProperty_mIsAbstract ;
+  public : GALGAS_stringset mProperty_mOverridenTransients ;
+  public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
+
+//--- Constructor
+  public : cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
+                                     const GALGAS_string & in_mSuperEntityName,
+                                     const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
+                                     const GALGAS_stringset & in_mSignatureSet,
+                                     const GALGAS_bool & in_mIsGraphicEntity,
+                                     const GALGAS_bool & in_mIsAbstract,
+                                     const GALGAS_stringset & in_mOverridenTransients,
+                                     const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
+                                     COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mOverridenTransients (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                            @documentFileGeneration class                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_documentFileGeneration : public GALGAS_abstractFileGeneration {
+//--- Constructor
+  public : GALGAS_documentFileGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_documentFileGeneration constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_documentFileGeneration * ptr (void) const { return (const cPtr_documentFileGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_documentFileGeneration (const cPtr_documentFileGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_documentFileGeneration extractObject (const GALGAS_object & inObject,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_documentFileGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                       const class GALGAS_string & inOperand1,
+                                                                       const class GALGAS_propertyGenerationList & inOperand2,
+                                                                       const class GALGAS_decoratedOutletMap & inOperand3,
+                                                                       const class GALGAS_actionBindingListForGeneration & inOperand4,
+                                                                       const class GALGAS_regularBindingsGenerationList & inOperand5,
+                                                                       const class GALGAS_multipleBindingGenerationList & inOperand6,
+                                                                       const class GALGAS_tableViewBindingGenerationList & inOperand7,
+                                                                       const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand8
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_documentFileGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_decoratedOutletMap getter_mOutletMap (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mRootEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration getter_mTargetActionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingGenerationList getter_multipleBindingGenerationList (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_documentFileGeneration class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_documentFileGeneration ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                   Pointer class for @documentFileGeneration class                                   *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
+//--- Attributes
+  public : GALGAS_string mProperty_mDocumentName ;
+  public : GALGAS_string mProperty_mRootEntityName ;
+  public : GALGAS_propertyGenerationList mProperty_mDocumentPropertyGenearionList ;
+  public : GALGAS_decoratedOutletMap mProperty_mOutletMap ;
+  public : GALGAS_actionBindingListForGeneration mProperty_mTargetActionList ;
+  public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
+  public : GALGAS_multipleBindingGenerationList mProperty_multipleBindingGenerationList ;
+  public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
+  public : GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
+
+//--- Constructor
+  public : cPtr_documentFileGeneration (const GALGAS_string & in_mDocumentName,
+                                        const GALGAS_string & in_mRootEntityName,
+                                        const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
+                                        const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                        const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
+                                        const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                        const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
+                                        const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                        const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList
+                                        COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mRootEntityName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_decoratedOutletMap getter_mOutletMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_actionBindingListForGeneration getter_mTargetActionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_multipleBindingGenerationList getter_multipleBindingGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                             @prefsDeclarationAST class                                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
