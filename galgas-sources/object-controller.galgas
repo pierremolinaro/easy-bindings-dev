@@ -201,12 +201,16 @@ override method @objectControllerDeclarationAST thirdAnalysisPhase
     then "self.rootObject." + mToOneRelationshipName + "_property"
     else "self." + mToOneRelationshipName + "_property"
   end
+  let modelTypeString = if mIsRoot
+    then "ToOneRelationship_" + mRootEntityName + "_" + mToOneRelationshipName
+    else "ToOneRelationship_" + mClassName + "_" + mToOneRelationshipName
+  end
 #---
   ioGeneration.mFileGenerationList += !@objectControllerGeneration.new {
     !mClassName
     !mControllerName
     !modelString
-    !"ToOneRelationship_" + mRootEntityName + "_" + mToOneRelationshipName
+    !modelTypeString
     !elementTypeName
     !graphic
     !propertyMap

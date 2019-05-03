@@ -22,16 +22,18 @@ final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject {
     %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
     %      return self?.mModel?.%!lkey.string%_property_selection ?? .empty\n%
     %    }\n%
-    %    self.%!lkey.string%_property.mWriteModelFunction = { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
-    %      self?.mModel?.%!lkey.string% = inValue\n%
-    %    }\n%
-    %    self.%!lkey.string%_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
-    %      if let property = self?.mModel?.%!lkey.string%_property {\n%
-    %        return property.validateAndSetProp (candidateValue, windowForSheet: windowForSheet)\n%
-    %      }else{\n%
-    %        return false\n%
-    %      }\n%
-    %    }\n%
+    if not [mKind isTransient] then
+      %    self.%!lkey.string%_property.mWriteModelFunction = { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
+      %      self?.mModel?.%!lkey.string% = inValue\n%
+      %    }\n%
+      %    self.%!lkey.string%_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
+      %      if let property = self?.mModel?.%!lkey.string%_property {\n%
+      %        return property.validateAndSetProp (candidateValue, windowForSheet: windowForSheet)\n%
+      %      }else{\n%
+      %        return false\n%
+      %      }\n%
+      %    }\n%
+  end
   end
 end
 %  }
