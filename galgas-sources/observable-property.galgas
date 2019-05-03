@@ -653,7 +653,7 @@ method @observablePropertyAST analyzeObservableProperty
     elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
       outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
     else
-      error propertyName : "unknown option" : outKind
+      error propertyName : "unknown option" : outKind fixit { replace "sortedArray" replace "selectedArray" }
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case selfControllerOneProperty (@lstring controllerName @lstring propertyName) :

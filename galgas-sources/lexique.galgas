@@ -46,6 +46,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "override",
   "prefs",
   "property",
+  "proxy",
   "root",
   "selectionController",
   "self",

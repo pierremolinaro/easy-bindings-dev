@@ -54,7 +54,6 @@ private proc graphvizRootEntityAnalysis
         switch accessibility 
         case stored :
           node += "|" + [type swiftTypeName] + " " + propertyName
-        case proxy :
         case transient (*) :
         end
       case arrayController (2*) :

@@ -92,7 +92,6 @@ map @classMap {
 
 enum @propertyAccessibility {
   case stored
-  case proxy
   case transient (@bool isAbstract)
 }
 
