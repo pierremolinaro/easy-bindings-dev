@@ -253,7 +253,7 @@ override getter @atomicPropertyGeneration propertyDeclarationCode ?let @stringse
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Atomic property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
+  result += "  let " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
          + " (defaultValue: " + mDefaultValueInSwift
   if mInPreferences then
     result += ", prefKey: Preferences_" + mPropertyName
