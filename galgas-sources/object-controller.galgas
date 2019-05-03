@@ -42,7 +42,7 @@ syntax extension easyBindings_syntax {
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $objectController$
-    $identifier$ ?let @lstring controllerName
+    $controllerName$ ?let @lstring controllerName
   #--- Model
     $:$
     @bool isRoot

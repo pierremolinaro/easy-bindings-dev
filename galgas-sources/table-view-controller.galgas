@@ -70,7 +70,7 @@ syntax extension easyBindings_syntax {
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $tableViewController$
-    $identifier$ ?let @lstring controllerName
+    $controllerName$ ?let @lstring controllerName
     @tableViewControllerAttributListAST arrayControllerAttributListAST = {}
     ${$
     repeat
@@ -155,8 +155,6 @@ syntax extension easyBindings_syntax {
       if runActionDescriptor.string != "" then
         error .here : "duplicated $run binding"
       end
-      $self$
-      $.$
       $identifier$ ?runActionDescriptor
   #--- Enabled
     while

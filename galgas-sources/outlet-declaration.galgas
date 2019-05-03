@@ -67,12 +67,11 @@ syntax extension easyBindings_syntax {
       end
       @lstring runTargetName
       select
-        $self$
         runTargetName = @lstring.new {!"self" !.here}
       or
-        $identifier$ ?runTargetName
+        $controllerName$ ?runTargetName
+        $.$
       end
-      $.$
       $identifier$ ?let @lstring runActionName
       runActionDescriptor = .action {!target:runTargetName !action:runActionName}
   #--- Enabled

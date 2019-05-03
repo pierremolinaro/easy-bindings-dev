@@ -68,6 +68,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_Identifier,
    kToken__40_attribute,
    kToken_bindingName,
+   kToken_controllerName,
    kToken_literal_5F_integer,
    kToken_literal_5F_double,
    kToken_literal_5F_string,
@@ -104,7 +105,6 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_override,
    kToken_prefs,
    kToken_property,
-   kToken_proxy,
    kToken_root,
    kToken_selectionController,
    kToken_self,
@@ -445,53 +445,51 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_transient_5F_declaration_i14_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i15_ (const GALGAS_lstring constinArgument0,
-                                                                               const GALGAS_lstring constinArgument1,
-                                                                               GALGAS_astDeclarationStruct & ioArgument2,
-                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i15_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i16_ (const GALGAS_lstring constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i15_ (const GALGAS_lstring constinArgument0,
                                                                                      GALGAS_simpleStoredPropertyList & ioArgument1,
                                                                                      GALGAS_stringset & ioArgument2,
                                                                                      GALGAS_astDeclarationStruct & ioArgument3,
                                                                                      C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i16_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i15_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_toOne_5F_relationship_i17_ (const GALGAS_lstring constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_toOne_5F_relationship_i16_ (const GALGAS_lstring constinArgument0,
                                                                            GALGAS_astDeclarationStruct & ioArgument1,
                                                                            C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_toOne_5F_relationship_i17_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_toOne_5F_relationship_i16_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i18_ (const GALGAS_lstring constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i17_ (const GALGAS_lstring constinArgument0,
                                                                             GALGAS_stringset & ioArgument1,
                                                                             GALGAS_astDeclarationStruct & ioArgument2,
                                                                             C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i18_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_toMany_5F_relationship_i17_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i19_ (GALGAS_lstringlist & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i18_ (GALGAS_lstringlist & ioArgument0,
                                                                            C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i19_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_action_5F_declaration_i18_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i20_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i19_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i20_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i19_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i21_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i20_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i21_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i20_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i22_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i21_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i22_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i21_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+                                                                                   C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i23_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                    C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -508,15 +506,17 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i25_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i26_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
-                                                                                   C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i26_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i27_ (GALGAS_bindingOptionList & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i26_ (GALGAS_bindingOptionList & outArgument0,
                                                                                C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i27_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i26_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i27_ (const GALGAS_lstring constinArgument0,
+                                                                               const GALGAS_lstring constinArgument1,
+                                                                               GALGAS_astDeclarationStruct & ioArgument2,
+                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i27_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i28_ (const GALGAS_lstring constinArgument0,
                                                                                const GALGAS_lstring constinArgument1,
@@ -532,44 +532,37 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i29_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i30_ (const GALGAS_lstring constinArgument0,
-                                                                               const GALGAS_lstring constinArgument1,
-                                                                               GALGAS_astDeclarationStruct & ioArgument2,
-                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i30_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i31_ (GALGAS_tableViewColumnBindingAST & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i30_ (GALGAS_tableViewColumnBindingAST & outArgument0,
                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i31_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_column_5F_bindings_i30_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i32_ (const GALGAS_lstring constinArgument0,
+  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i31_ (const GALGAS_lstring constinArgument0,
                                                                                const GALGAS_lstring constinArgument1,
                                                                                GALGAS_astDeclarationStruct & ioArgument2,
                                                                                C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i32_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_controller_5F_declaration_i31_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i33_ (GALGAS_abstractDefaultValue & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i32_ (GALGAS_abstractDefaultValue & outArgument0,
                                                                        C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i33_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_explicit_5F_value_i32_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i34_ (GALGAS_lstring & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i33_ (GALGAS_lstring & ioArgument0,
                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i34_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_xcode_5F_project_i33_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i35_ (GALGAS_mainXibDescriptorList & ioArgument0,
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i34_ (GALGAS_mainXibDescriptorList & ioArgument0,
                                                                  C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i35_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_i34_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i36_ (GALGAS_mainXibLineDescriptorList & outArgument0,
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i35_ (GALGAS_mainXibLineDescriptorList & outArgument0,
                                                                          C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i36_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i35_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
 
 
@@ -4050,110 +4043,6 @@ class cPtr_outletClassDeclarationAST : public cPtr_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mHandlesTableValueBinding (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mHandlesGraphicControllerBinding (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mHasHidden (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             @proxyDeclarationAST class                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_proxyDeclarationAST : public GALGAS_abstractDeclarationAST {
-//--- Constructor
-  public : GALGAS_proxyDeclarationAST (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_proxyDeclarationAST constructor_default (LOCATION_ARGS) ;
-
-//---
-  public : inline const class cPtr_proxyDeclarationAST * ptr (void) const { return (const cPtr_proxyDeclarationAST *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_proxyDeclarationAST (const cPtr_proxyDeclarationAST * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_proxyDeclarationAST extractObject (const GALGAS_object & inObject,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_proxyDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                    const class GALGAS_lstring & inOperand1,
-                                                                    const class GALGAS_lstring & inOperand2,
-                                                                    const class GALGAS_lstring & inOperand3,
-                                                                    const class GALGAS_lstring & inOperand4
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_proxyDeclarationAST & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mProxyName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mToOneRelationshipClassName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mToOneRelationshipName (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_proxyDeclarationAST class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyDeclarationAST ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                    Pointer class for @proxyDeclarationAST class                                     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
-//--- Attributes
-  public : GALGAS_lstring mProperty_mProxyName ;
-  public : GALGAS_lstring mProperty_mToOneRelationshipClassName ;
-  public : GALGAS_lstring mProperty_mToOneRelationshipName ;
-  public : GALGAS_lstring mProperty_mPropertyName ;
-
-//--- Constructor
-  public : cPtr_proxyDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                     const GALGAS_lstring & in_mProxyName,
-                                     const GALGAS_lstring & in_mToOneRelationshipClassName,
-                                     const GALGAS_lstring & in_mToOneRelationshipName,
-                                     const GALGAS_lstring & in_mPropertyName
-                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mProxyName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToOneRelationshipClassName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToOneRelationshipName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

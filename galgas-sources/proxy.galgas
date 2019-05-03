@@ -1,241 +1,241 @@
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   AST
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class @proxyDeclarationAST : @abstractDeclarationAST {
-  @lstring mProxyName
-  @lstring mToOneRelationshipClassName
-  @lstring mToOneRelationshipName
-  @lstring mPropertyName
-}
-
-#·······················································································································
-
-override method @proxyDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  let node = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
-  [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !mClassName]
-  [!?ioGraph addEdge !node !.new {!mToOneRelationshipClassName.string + " " + mPropertyName !mPropertyName.location}]
-}
-
-#·······················································································································
-
-override getter @proxyDeclarationAST nodeKey -> @lstring {
-  result = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   SYNTAX
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-syntax extension easyBindings_syntax {
-
-  #·····················································································································
-  
-  rule <controller_declaration>
-            ?let @lstring inCurrentEntity
-            ?let @lstring unused inRootEntity
-            ?!@astDeclarationStruct ioDeclarationAST
-  {
-    $proxy$
-    $identifier$ ?let @lstring proxyName
-    $:$
-    $Identifier$ ?let @lstring toOnePropertyClassName
-    $.$
-    $identifier$ ?let @lstring toOnePropertyName
-    $.$
-    $identifier$ ?let @lstring propertyName
-    $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@proxyDeclarationAST.new {
-      !inCurrentEntity
-      !proxyName
-      !toOnePropertyClassName
-      !toOnePropertyName
-      !propertyName
-    }
-  }
-
-  #·····················································································································
-
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-override method @proxyDeclarationAST firstAnalysisPhase
-       ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration
-{
-  with mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
-  do
-    [ioSemanticContext.mClassMap searchKey !mToOneRelationshipClassName ?let classKind ?let propertyMap ?2*]
-    switch classKind
-    case prefs :
-      error mToOneRelationshipClassName : "a toOne relationship is required here"
-    case entity (3*) :
-     [propertyMap searchKey !mPropertyName ?let propertyKind ?2*]
-     if [propertyKind isProperty] then
-       [propertyKind property ?type:let propertyType ?1*]
-       [!?mPropertyMap insertKey !mProxyName !.property {!type: propertyType !accessibility: .stored} !{} !false]
-       mPropertyGenerationList += !@proxyPropertyGeneration.new {
-         !mProxyName.string
-         !propertyType
-         !mToOneRelationshipName.string
-         !mPropertyName.string
-       }
-     else
-       error mPropertyName : "an atomic property is required here"
-     end
-    case document (*) :
-      error mToOneRelationshipClassName : "a toOne relationship is required here"
-    case atomic (*) :
-      error mToOneRelationshipClassName : "a toOne relationship is required here"
-    end
-  end
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#   CODE GENERATION                       
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class @proxyPropertyGeneration : @propertyGeneration {
-  @typeKind mType
-  @string mObservedRelationshipName
-  @string mObservedPropertyName
-}
-
-#·······················································································································
-
-override getter @proxyPropertyGeneration declarationInSelectionControllerCode -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Selection observable property: " + mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-  result += "    return self." + mPropertyName + "_property.prop\n"
-  result += "  }\n\n"
-}
-
-#·······················································································································
-
-override getter @proxyPropertyGeneration bindPropertyInSelectionController ?let @string inDerivedTypeName -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  private final func bind_property_" + mPropertyName + " (model : " + inDerivedTypeName + ") {\n"
-  result += "    model.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
-  result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
-  result += "      if let model = self?.mActualModel {\n"
-  result += "        switch model.prop {\n"
-  result += "        case .empty :\n"
-  result += "          return .empty\n"
-  result += "        case .multiple :\n"
-  result += "          return .multiple\n"
-  result += "        case .single (let v) :\n"
-  result += "          var s = Set <" + [mType swiftTypeName] + "> ()\n"
-  result += "          var isMultipleSelection = false\n"
-  result += "          for object in v {\n"
-  result += "            switch object." + mPropertyName + "_property_selection {\n"
-  result += "            case .empty :\n"
-  result += "              return .empty\n"
-  result += "            case .multiple :\n"
-  result += "              isMultipleSelection = true\n"
-  result += "            case .single (let vProp) :\n"
-  result += "              s.insert (vProp)\n"
-  result += "            }\n"
-  result += "          }\n"
-  result += "          if isMultipleSelection {\n"
-  result += "            return .multiple\n"
-  result += "          }else if s.count == 0 {\n"
-  result += "            return .empty\n"
-  result += "          }else if s.count == 1 {\n"
-  result += "            return .single (s.first!)\n"
-  result += "          }else{\n"
-  result += "            return .multiple\n"
-  result += "          }\n"
-  result += "        }\n"
-  result += "      }else{\n"
-  result += "        return .empty\n"
-  result += "      }\n"
-  result += "    }\n"
-
-  result += "    self." + mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [mType swiftTypeName] + ") in\n"
-  result += "      if let model = self?.mActualModel {\n"
-  result += "        switch model.prop {\n"
-  result += "        case .empty, .multiple :\n"
-  result += "          break\n"
-  result += "        case .single (let v) :\n"
-  result += "          for object in v {\n"
-  result += "            object." + mPropertyName + "_property.setProp (inValue)\n"
-  result += "          }\n"
-  result += "        }\n"
-  result += "      }\n"
-  result += "    }\n"
-  result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " + [mType swiftTypeName] + ", windowForSheet : NSWindow?) in\n"
-  result += "      if let model = self?.mActualModel {\n"
-  result += "        switch model.prop {\n"
-  result += "        case .empty, .multiple :\n"
-  result += "          return false\n"
-  result += "        case .single (let v) :\n"
-  result += "          for object in v {\n"
-  result += "            let result = object." + mPropertyName + "_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
-  result += "            if !result {\n"
-  result += "              return false\n"
-  result += "            }\n"
-  result += "          }\n"
-  result += "          return true\n"
-  result += "        }\n"
-  result += "      }else{\n"
-  result += "        return false\n"
-  result += "      }\n"
-  result += "    }\n"
-  result += "  }\n"
-}
-
-#·······················································································································
-
-override getter @proxyPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Atomic proxy property: " + mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += " /* var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
-  result += "    get { return self." + mPropertyName + "_property.propval }\n"
-  result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
-  result += "  } */\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
-  result += "> { return self." + mPropertyName + "_property.prop }\n\n"
-}
-
-#·······················································································································
-
-override getter @proxyPropertyGeneration configurationCode -> @string {
-  result  = "  //--- Atomic proxy property: " + mPropertyName + "\n"
-  result += "    self." + mObservedRelationshipName + "_property.addEBObserver (self." + mPropertyName + "_property)\n"
-}
-
-#·······················································································································
-
-#override getter @proxyPropertyGeneration setupAtomicPropertyFromDictionaryCode -> @string {
-#  result  = "  //--- Atomic proxy property: " + mPropertyName + "\n"
-#  result += "    self." + mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey:\"" + mPropertyName + "\")\n"
+##   AST
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#
+#class @proxyDeclarationAST : @abstractDeclarationAST {
+#  @lstring mProxyName
+#  @lstring mToOneRelationshipClassName
+#  @lstring mToOneRelationshipName
+#  @lstring mPropertyName
 #}
-
-#·······················································································································
-
-#override getter @proxyPropertyGeneration saveIntoDictionaryCode -> @string {
-#  result  = "  //--- Atomic proxy property: " + mPropertyName + "\n"
-#  result += "    self." + mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey:\"" + mPropertyName + "\")\n"
+#
+##·······················································································································
+#
+#override method @proxyDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+#  let node = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
+#  [!?ioGraph addNode !node !self]
+#  [!?ioGraph addEdge !node !mClassName]
+#  [!?ioGraph addEdge !node !.new {!mToOneRelationshipClassName.string + " " + mPropertyName !mPropertyName.location}]
 #}
-
-#·······················································································································
-
-override getter @proxyPropertyGeneration clearObjectExplorerCode -> @string {
-  result  = "  //--- Atomic proxy property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.mObserverExplorer = nil\n"
-  result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
-}
-
-#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#
+##·······················································································································
+#
+#override getter @proxyDeclarationAST nodeKey -> @lstring {
+#  result = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
+#}
+#
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+##   SYNTAX
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#
+#syntax extension easyBindings_syntax {
+#
+#  #·····················································································································
+#  
+#  rule <controller_declaration>
+#            ?let @lstring inCurrentEntity
+#            ?let @lstring unused inRootEntity
+#            ?!@astDeclarationStruct ioDeclarationAST
+#  {
+#    $proxy$
+#    $identifier$ ?let @lstring proxyName
+#    $:$
+#    $Identifier$ ?let @lstring toOnePropertyClassName
+#    $.$
+#    $identifier$ ?let @lstring toOnePropertyName
+#    $.$
+#    $identifier$ ?let @lstring propertyName
+#    $;$
+#    ioDeclarationAST.mUnifiedDeclarationList += !@proxyDeclarationAST.new {
+#      !inCurrentEntity
+#      !proxyName
+#      !toOnePropertyClassName
+#      !toOnePropertyName
+#      !propertyName
+#    }
+#  }
+#
+#  #·····················································································································
+#
+#}
+#
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+##   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#
+#override method @proxyDeclarationAST firstAnalysisPhase
+#       ?!@semanticContext ioSemanticContext
+#       ?!@generationStruct unused ioGeneration
+#{
+#  with mClassName in !?ioSemanticContext.mClassMap 
+#    error message searchKey
+#  do
+#    [ioSemanticContext.mClassMap searchKey !mToOneRelationshipClassName ?let classKind ?let propertyMap ?2*]
+#    switch classKind
+#    case prefs :
+#      error mToOneRelationshipClassName : "a toOne relationship is required here"
+#    case entity (3*) :
+#     [propertyMap searchKey !mPropertyName ?let propertyKind ?2*]
+#     if [propertyKind isProperty] then
+#       [propertyKind property ?type:let propertyType ?1*]
+#       [!?mPropertyMap insertKey !mProxyName !.property {!type: propertyType !accessibility: .stored} !{} !false]
+#       mPropertyGenerationList += !@proxyPropertyGeneration.new {
+#         !mProxyName.string
+#         !propertyType
+#         !mToOneRelationshipName.string
+#         !mPropertyName.string
+#       }
+#     else
+#       error mPropertyName : "an atomic property is required here"
+#     end
+#    case document (*) :
+#      error mToOneRelationshipClassName : "a toOne relationship is required here"
+#    case atomic (*) :
+#      error mToOneRelationshipClassName : "a toOne relationship is required here"
+#    end
+#  end
+#}
+#
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+##   CODE GENERATION                       
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#
+#class @proxyPropertyGeneration : @propertyGeneration {
+#  @typeKind mType
+#  @string mObservedRelationshipName
+#  @string mObservedPropertyName
+#}
+#
+##·······················································································································
+#
+#override getter @proxyPropertyGeneration declarationInSelectionControllerCode -> @string {
+#  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+#  result += "  //   Selection observable property: " + mPropertyName + "\n"
+#  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+#  result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n\n"
+#  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
+#  result += "    return self." + mPropertyName + "_property.prop\n"
+#  result += "  }\n\n"
+#}
+#
+##·······················································································································
+#
+#override getter @proxyPropertyGeneration bindPropertyInSelectionController ?let @string inDerivedTypeName -> @string {
+#  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+#  result += "  private final func bind_property_" + mPropertyName + " (model : " + inDerivedTypeName + ") {\n"
+#  result += "    model.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
+#  result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
+#  result += "      if let model = self?.mActualModel {\n"
+#  result += "        switch model.prop {\n"
+#  result += "        case .empty :\n"
+#  result += "          return .empty\n"
+#  result += "        case .multiple :\n"
+#  result += "          return .multiple\n"
+#  result += "        case .single (let v) :\n"
+#  result += "          var s = Set <" + [mType swiftTypeName] + "> ()\n"
+#  result += "          var isMultipleSelection = false\n"
+#  result += "          for object in v {\n"
+#  result += "            switch object." + mPropertyName + "_property_selection {\n"
+#  result += "            case .empty :\n"
+#  result += "              return .empty\n"
+#  result += "            case .multiple :\n"
+#  result += "              isMultipleSelection = true\n"
+#  result += "            case .single (let vProp) :\n"
+#  result += "              s.insert (vProp)\n"
+#  result += "            }\n"
+#  result += "          }\n"
+#  result += "          if isMultipleSelection {\n"
+#  result += "            return .multiple\n"
+#  result += "          }else if s.count == 0 {\n"
+#  result += "            return .empty\n"
+#  result += "          }else if s.count == 1 {\n"
+#  result += "            return .single (s.first!)\n"
+#  result += "          }else{\n"
+#  result += "            return .multiple\n"
+#  result += "          }\n"
+#  result += "        }\n"
+#  result += "      }else{\n"
+#  result += "        return .empty\n"
+#  result += "      }\n"
+#  result += "    }\n"
+#
+#  result += "    self." + mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [mType swiftTypeName] + ") in\n"
+#  result += "      if let model = self?.mActualModel {\n"
+#  result += "        switch model.prop {\n"
+#  result += "        case .empty, .multiple :\n"
+#  result += "          break\n"
+#  result += "        case .single (let v) :\n"
+#  result += "          for object in v {\n"
+#  result += "            object." + mPropertyName + "_property.setProp (inValue)\n"
+#  result += "          }\n"
+#  result += "        }\n"
+#  result += "      }\n"
+#  result += "    }\n"
+#  result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " + [mType swiftTypeName] + ", windowForSheet : NSWindow?) in\n"
+#  result += "      if let model = self?.mActualModel {\n"
+#  result += "        switch model.prop {\n"
+#  result += "        case .empty, .multiple :\n"
+#  result += "          return false\n"
+#  result += "        case .single (let v) :\n"
+#  result += "          for object in v {\n"
+#  result += "            let result = object." + mPropertyName + "_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
+#  result += "            if !result {\n"
+#  result += "              return false\n"
+#  result += "            }\n"
+#  result += "          }\n"
+#  result += "          return true\n"
+#  result += "        }\n"
+#  result += "      }else{\n"
+#  result += "        return false\n"
+#  result += "      }\n"
+#  result += "    }\n"
+#  result += "  }\n"
+#}
+#
+##·······················································································································
+#
+#override getter @proxyPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
+#  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+#  result += "  //   Atomic proxy property: " + mPropertyName + "\n"
+#  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+#  result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n\n"
+#  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+#  result += " /* var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
+#  result += "    get { return self." + mPropertyName + "_property.propval }\n"
+#  result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
+#  result += "  } */\n\n"
+#  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+#  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
+#  result += "> { return self." + mPropertyName + "_property.prop }\n\n"
+#}
+#
+##·······················································································································
+#
+#override getter @proxyPropertyGeneration configurationCode -> @string {
+#  result  = "  //--- Atomic proxy property: " + mPropertyName + "\n"
+#  result += "    self." + mObservedRelationshipName + "_property.addEBObserver (self." + mPropertyName + "_property)\n"
+#}
+#
+##·······················································································································
+#
+##override getter @proxyPropertyGeneration setupAtomicPropertyFromDictionaryCode -> @string {
+##  result  = "  //--- Atomic proxy property: " + mPropertyName + "\n"
+##  result += "    self." + mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey:\"" + mPropertyName + "\")\n"
+##}
+#
+##·······················································································································
+#
+##override getter @proxyPropertyGeneration saveIntoDictionaryCode -> @string {
+##  result  = "  //--- Atomic proxy property: " + mPropertyName + "\n"
+##  result += "    self." + mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey:\"" + mPropertyName + "\")\n"
+##}
+#
+##·······················································································································
+#
+#override getter @proxyPropertyGeneration clearObjectExplorerCode -> @string {
+#  result  = "  //--- Atomic proxy property: " + mPropertyName + "\n"
+#  result += "    self." + mPropertyName + "_property.mObserverExplorer = nil\n"
+#  result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
+#}
+#
+##———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

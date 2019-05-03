@@ -46,7 +46,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "override",
   "prefs",
   "property",
-  "proxy",
+#  "proxy",
   "root",
   "selectionController",
   "self",
@@ -124,9 +124,26 @@ rule '$' {
   repeat
   while
    'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
-    enterCharacterIntoString ( !?tokenString !* )
+    enterCharacterIntoString (!?tokenString !*)
   end
   send search tokenString in reservedBindingNameKeyWordList default $bindingName$
+}
+
+#----------------------------------------------------------------------------*
+#   Controller names                                                         *
+#----------------------------------------------------------------------------*
+
+style controllerNameStyle -> "Controller Names"
+
+$controllerName$ ! tokenString  style controllerNameStyle error message "a controller name (identifier prefixed by '#')"
+
+rule '#' {
+  repeat
+  while
+   'a'->'z' | 'A'->'Z' | '0'->'9' :
+    enterCharacterIntoString (!?tokenString !*)
+  end
+  send $controllerName$
 }
 
 #----------------------------------------------------------------------------*
@@ -208,8 +225,8 @@ rule list delimitorsList
 #----------------------------------------------------------------------------*
 
 style commentStyle -> "Comments"
-$comment$  style commentStyle %nonAtomicSelection error message "a comment"
-rule '#' {
+$comment$ style commentStyle %nonAtomicSelection error message "a comment"
+rule "//" {
   repeat
   while '\u0001' -> '\u0009' | '\u000B' | '\u000C' | '\u000E' -> '\uFFFD' :
   end

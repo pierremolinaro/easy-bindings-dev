@@ -100,7 +100,7 @@ syntax extension easyBindings_syntax {
         outObservablePropertyAST = .prefsPropertyWithOption {!propertyName:propertyName !optionName:optionName}
       end
     or
-      $identifier$ ?let controllerName
+      $controllerName$ ?let controllerName
       $.$
       select
         $one$
