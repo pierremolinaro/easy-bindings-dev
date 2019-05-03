@@ -43,6 +43,7 @@ syntax extension easyBindings_syntax {
   {
     $objectController$
     $controllerName$ ?let @lstring controllerName
+    warning controllerName : "OBJECT CONTROLLER"
   #--- Model
     $:$
     @bool isRoot

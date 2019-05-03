@@ -14,6 +14,15 @@ protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : class {
 
 %
 end
+for () in PROXY_LIST_FOR_GENERATION do
+%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : class {
+  var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]%? { get }
+}
+
+%
+end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -29,7 +38,7 @@ end
 
 class %!ENTITY_NAME% : %!SUPER_CLASS_NAME
 for () in PROPERTY_LIST_FOR_GENERATION do
-  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
+  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration)  | (mProperty is == @proxyPropertyGeneration) then
     %,\n         %!ENTITY_NAME%_%![mProperty mPropertyName]
   end
 end
@@ -319,6 +328,66 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_N
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //····················································································································
   //   Observers of '%![mProperty mPropertyName]%' stored property
+  //····················································································································
+
+  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+
+  //····················································································································
+
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
+    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
+    switch prop {
+    case .empty, .multiple :
+      break
+    case .single (let v) :
+      for managedObject in v {
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
+    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
+    switch prop {
+    case .empty, .multiple :
+      break
+    case .single (let v) :
+      for managedObject in v {
+        managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+    for managedObject in inSet {
+      self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+    self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
+      observer.postEvent ()
+      for managedObject in inSet {
+        managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
+      }
+    }
+  }
+
+%
+end
+for () in PROXY_LIST_FOR_GENERATION do
+%  //····················································································································
+  //   Observers of '%![mProperty mPropertyName]%' proxy property
   //····················································································································
 
   private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()

@@ -1456,6 +1456,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
                                                                                         const class GALGAS_string & in_ENTITY_5F_NAME,
                                                                                         const class GALGAS_string & in_SUPER_5F_CLASS_5F_NAME,
                                                                                         const class GALGAS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                        const class GALGAS_proxyPropertyGenerationList & in_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                         const class GALGAS_atomicPropertyGenerationList & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                         const class GALGAS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                         const class GALGAS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
