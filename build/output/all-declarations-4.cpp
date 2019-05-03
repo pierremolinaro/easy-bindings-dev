@@ -2364,10 +2364,10 @@ typeComparisonResult cPtr_proxyDeclarationAST::dynamicObjectCompare (const acPtr
     result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mProxyName.objectCompare (p->mProperty_mProxyName) ;
+    result = mProperty_mProxyTypeName.objectCompare (p->mProperty_mProxyTypeName) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mToOneRelationshipClassName.objectCompare (p->mProperty_mToOneRelationshipClassName) ;
+    result = mProperty_mProxyName.objectCompare (p->mProperty_mProxyName) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mToOneRelationshipName.objectCompare (p->mProperty_mToOneRelationshipName) ;
@@ -2424,16 +2424,34 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_proxyDeclarationAST GALGAS_proxyDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
+                                                                        const GALGAS_lstring & inAttribute_mProxyTypeName,
                                                                         const GALGAS_lstring & inAttribute_mProxyName,
-                                                                        const GALGAS_lstring & inAttribute_mToOneRelationshipClassName,
                                                                         const GALGAS_lstring & inAttribute_mToOneRelationshipName,
                                                                         const GALGAS_lstring & inAttribute_mPropertyName
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_proxyDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mProxyName.isValid () && inAttribute_mToOneRelationshipClassName.isValid () && inAttribute_mToOneRelationshipName.isValid () && inAttribute_mPropertyName.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_proxyDeclarationAST (inAttribute_mClassName, inAttribute_mProxyName, inAttribute_mToOneRelationshipClassName, inAttribute_mToOneRelationshipName, inAttribute_mPropertyName COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mProxyTypeName.isValid () && inAttribute_mProxyName.isValid () && inAttribute_mToOneRelationshipName.isValid () && inAttribute_mPropertyName.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_proxyDeclarationAST (inAttribute_mClassName, inAttribute_mProxyTypeName, inAttribute_mProxyName, inAttribute_mToOneRelationshipName, inAttribute_mPropertyName COMMA_THERE)) ;
   }
   return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring GALGAS_proxyDeclarationAST::getter_mProxyTypeName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_proxyDeclarationAST * p = (const cPtr_proxyDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_proxyDeclarationAST) ;
+    result = p->mProperty_mProxyTypeName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_lstring cPtr_proxyDeclarationAST::getter_mProxyTypeName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mProxyTypeName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2452,24 +2470,6 @@ GALGAS_lstring GALGAS_proxyDeclarationAST::getter_mProxyName (UNUSED_LOCATION_AR
 
 GALGAS_lstring cPtr_proxyDeclarationAST::getter_mProxyName (UNUSED_LOCATION_ARGS) const {
   return mProperty_mProxyName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_proxyDeclarationAST::getter_mToOneRelationshipClassName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_proxyDeclarationAST * p = (const cPtr_proxyDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_proxyDeclarationAST) ;
-    result = p->mProperty_mToOneRelationshipClassName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_proxyDeclarationAST::getter_mToOneRelationshipClassName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mToOneRelationshipClassName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2513,14 +2513,14 @@ GALGAS_lstring cPtr_proxyDeclarationAST::getter_mPropertyName (UNUSED_LOCATION_A
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 cPtr_proxyDeclarationAST::cPtr_proxyDeclarationAST (const GALGAS_lstring & in_mClassName,
+                                                    const GALGAS_lstring & in_mProxyTypeName,
                                                     const GALGAS_lstring & in_mProxyName,
-                                                    const GALGAS_lstring & in_mToOneRelationshipClassName,
                                                     const GALGAS_lstring & in_mToOneRelationshipName,
                                                     const GALGAS_lstring & in_mPropertyName
                                                     COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
+mProperty_mProxyTypeName (in_mProxyTypeName),
 mProperty_mProxyName (in_mProxyName),
-mProperty_mToOneRelationshipClassName (in_mToOneRelationshipClassName),
 mProperty_mToOneRelationshipName (in_mToOneRelationshipName),
 mProperty_mPropertyName (in_mPropertyName) {
 }
@@ -2536,9 +2536,9 @@ void cPtr_proxyDeclarationAST::description (C_String & ioString,
   ioString << "[@proxyDeclarationAST:" ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mProxyName.description (ioString, inIndentation+1) ;
+  mProperty_mProxyTypeName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mToOneRelationshipClassName.description (ioString, inIndentation+1) ;
+  mProperty_mProxyName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mToOneRelationshipName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
@@ -2550,7 +2550,7 @@ void cPtr_proxyDeclarationAST::description (C_String & ioString,
 
 acPtr_class * cPtr_proxyDeclarationAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_proxyDeclarationAST (mProperty_mClassName, mProperty_mProxyName, mProperty_mToOneRelationshipClassName, mProperty_mToOneRelationshipName, mProperty_mPropertyName COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_proxyDeclarationAST (mProperty_mClassName, mProperty_mProxyTypeName, mProperty_mProxyName, mProperty_mToOneRelationshipName, mProperty_mPropertyName COMMA_THERE)) ;
   return ptr ;
 }
 

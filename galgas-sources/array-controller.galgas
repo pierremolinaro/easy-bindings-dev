@@ -59,7 +59,7 @@ syntax extension easyBindings_syntax {
     @arrayControllerBoundModelAST model
     $:$
     select
-      $identifier$ ?let @lstring objectControllerName
+      $controllerName$ ?let @lstring objectControllerName
       model = .selfObjectControllerToManyRelationship {!objectControllerName: objectControllerName}
     or
       $root$

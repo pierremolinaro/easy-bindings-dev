@@ -4111,7 +4111,7 @@ class GALGAS_proxyDeclarationAST : public GALGAS_abstractDeclarationAST {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mProxyName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mToOneRelationshipClassName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mProxyTypeName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mToOneRelationshipName (LOCATION_ARGS) const ;
 
@@ -4134,15 +4134,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyDeclarationAST
 
 class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
+  public : GALGAS_lstring mProperty_mProxyTypeName ;
   public : GALGAS_lstring mProperty_mProxyName ;
-  public : GALGAS_lstring mProperty_mToOneRelationshipClassName ;
   public : GALGAS_lstring mProperty_mToOneRelationshipName ;
   public : GALGAS_lstring mProperty_mPropertyName ;
 
 //--- Constructor
   public : cPtr_proxyDeclarationAST (const GALGAS_lstring & in_mClassName,
+                                     const GALGAS_lstring & in_mProxyTypeName,
                                      const GALGAS_lstring & in_mProxyName,
-                                     const GALGAS_lstring & in_mToOneRelationshipClassName,
                                      const GALGAS_lstring & in_mToOneRelationshipName,
                                      const GALGAS_lstring & in_mPropertyName
                                      COMMA_LOCATION_ARGS) ;
@@ -4151,8 +4151,8 @@ class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mProxyTypeName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mProxyName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToOneRelationshipClassName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToOneRelationshipName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
 //--- Description

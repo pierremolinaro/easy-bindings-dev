@@ -3,8 +3,8 @@
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @proxyDeclarationAST : @abstractDeclarationAST {
+  @lstring mProxyTypeName
   @lstring mProxyName
-  @lstring mToOneRelationshipClassName
   @lstring mToOneRelationshipName
   @lstring mPropertyName
 }
@@ -15,7 +15,6 @@ override method @proxyDeclarationAST enterInPrecedenceGraph ?!@declarationPreced
   let node = @lstring.new {!mClassName.string + " " + mProxyName !mProxyName.location}
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !mClassName]
-  [!?ioGraph addEdge !node !.new {!mToOneRelationshipClassName.string + " " + mPropertyName !mPropertyName.location}]
 }
 
 #·······················································································································
@@ -38,18 +37,17 @@ syntax extension easyBindings_syntax {
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $proxy$
+    $Identifier$ ?var @lstring proxyTypeName
     $identifier$ ?let @lstring proxyName
     $:$
-    $Identifier$ ?let @lstring toOnePropertyClassName
-    $.$
     $identifier$ ?let @lstring toOnePropertyName
     $.$
     $identifier$ ?let @lstring propertyName
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@proxyDeclarationAST.new {
       !inCurrentEntity
+      !proxyTypeName
       !proxyName
-      !toOnePropertyClassName
       !toOnePropertyName
       !propertyName
     }
@@ -70,28 +68,55 @@ override method @proxyDeclarationAST firstAnalysisPhase
   with mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !mToOneRelationshipClassName ?let classKind ?let propertyMap ?2*]
-    switch classKind
+    [ioSemanticContext.mClassMap searchKey !mProxyTypeName ?let proxyKind ?3*]
+    switch proxyKind
     case prefs :
-      error mToOneRelationshipClassName : "a toOne relationship is required here"
+      error mProxyTypeName : "an atomic type is required here"
     case entity (3*) :
-     [propertyMap searchKey !mPropertyName ?let propertyKind ?2*]
-     if [propertyKind isProperty] then
-       [propertyKind property ?type:let propertyType ?1*]
-       [!?mPropertyMap insertKey !mProxyName !.property {!type: propertyType !accessibility: .stored} !{} !false]
-       mPropertyGenerationList += !@proxyPropertyGeneration.new {
-         !mProxyName.string
-         !propertyType
-         !mToOneRelationshipName.string
-         !mPropertyName.string
-       }
-     else
-       error mPropertyName : "an atomic property is required here"
-     end
+      error mProxyTypeName : "an atomic type is required here"
     case document (*) :
-      error mToOneRelationshipClassName : "a toOne relationship is required here"
-    case atomic (*) :
-      error mToOneRelationshipClassName : "a toOne relationship is required here"
+      error mProxyTypeName : "an atomic type is required here"
+    case atomic (type) :
+      [!?mPropertyMap insertKey !mProxyName !.property {!type: type !accessibility: .stored} !{} !false]
+    end
+  end
+}
+
+#·······················································································································
+
+override method @proxyDeclarationAST secondAnalysisPhase
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct unused ioGeneration
+{
+  with mClassName in !?ioSemanticContext.mClassMap 
+    error message searchKey
+  do
+    [mPropertyMap searchKey !mToOneRelationshipName ?let relationshipKind ?2*]
+    switch relationshipKind
+    case toOne (typeName 3*) :
+      [ioSemanticContext.mClassMap searchKey !typeName ?* ?let propertyMap ?2*]
+      [propertyMap searchKey !mPropertyName ?let propertyKind ?2*]
+      if [propertyKind isProperty] then
+        [propertyKind property ?type:let propertyType ?1*]
+        mPropertyGenerationList += !@proxyPropertyGeneration.new {
+          !mProxyName.string
+          !propertyType
+          !mToOneRelationshipName.string
+          !mPropertyName.string
+        }
+      else
+        error mPropertyName : "an atomic property is required here"
+      end
+    case arrayController (2*) :
+      error mToOneRelationshipName : "a toOne relationship is required here"
+    case objectController (2*) :
+      error mToOneRelationshipName : "a toOne relationship is required here"
+    case selectionController (*) :
+      error mToOneRelationshipName : "a toOne relationship is required here"
+    case property (2*) :
+      error mToOneRelationshipName : "a toOne relationship is required here"
+    case toMany (4*) :
+      error mToOneRelationshipName : "a toOne relationship is required here"
     end
   end
 }

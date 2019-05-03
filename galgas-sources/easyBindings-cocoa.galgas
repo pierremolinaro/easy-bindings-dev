@@ -4,7 +4,7 @@ gui cocoa {
   with lexique easyBindings_lexique {
     fileExtension: "eb"
     title: "Source"
-    blockComment : "#"
+    blockComment : "//"
   }
 
 }
