@@ -17,12 +17,12 @@ end
   //   BIND SELECTION
   //····················································································································
 
-   private var mModel : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%? = nil
+   private var mModel : TransientArrayOf_%!BASE_ELEMENT_TYPE_NAME%? = nil
    private var mActualModel = TransientArrayOf_%!DERIVED_ELEMENT_TYPE_NAME% ()
 
   //····················································································································
 
-  func bind_selection (model : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%, file : String, line : Int) {
+  func bind_selection (model : TransientArrayOf_%!BASE_ELEMENT_TYPE_NAME%, file : String, line : Int) {
     self.mModel = model
     self.mActualModel.mReadModelFunction = { [weak self] () -> EBSelection < [%!DERIVED_ELEMENT_TYPE_NAME%] > in
       if let model = self?.mModel {

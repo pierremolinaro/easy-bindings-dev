@@ -29,11 +29,11 @@ end
   //   BIND SELECTION
   //····················································································································
 
-  private var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%? = nil
+  private var mModel : TransientArrayOf_%!ELEMENT_TYPE_NAME%? = nil
 
   //····················································································································
 
-  func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
+  func bind_selection (model : TransientArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
     self.mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mKind isEntityType] then
@@ -165,7 +165,7 @@ end
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mKind isEntityType] then
   %  //···················································································································*\n\n% 
-  %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
+  %  private final func bind_property_%!lkey.string% (model : TransientArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
   %    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
   %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
   %      if let model = self?.mModel {\n%
