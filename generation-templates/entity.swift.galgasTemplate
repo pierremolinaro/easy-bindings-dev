@@ -319,10 +319,10 @@ end
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"TransientArrayOf_" + ENTITY_NAME%
+//    %!"ReadOnlyArrayOf_" + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_NAME%> {
+class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_NAME%> {
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
@@ -506,6 +506,16 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 end
 %  //····················································································································
 
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    %!"TransientArrayOf_" + ENTITY_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
+
+  //····················································································································
+
   var mReadModelFunction : Optional < () -> EBSelection < [%!ENTITY_NAME%] > > = nil
 
   //····················································································································
@@ -612,7 +622,7 @@ end
 //    %!"To many relationship read write: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ReadWriteArrayOf_%!ENTITY_NAME% : TransientArrayOf_%!ENTITY_NAME% {
+class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
  
