@@ -7180,8 +7180,12 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "        object.selectionDisplay_property.addEBObserver (self.mObjectSelectionObserver)\n"
       "      }\n"
       "    //--- Remove observers to deselected set\n"
-      "      for object in self.mPrivateSelectedSet.subtracting (newValue) {\n"
+      "      let deselectedSet = self.mPrivateSelectedSet.subtracting (newValue)\n"
+      "      for object in deselectedSet {\n"
       "        object.selectionDisplay_property.removeEBObserver (self.mObjectSelectionObserver)\n"
+      "      }\n"
+      "      if deselectedSet.count > 0 {\n"
+      "        self.mObjectSelectionObserver.postEvent () // Required, as removing observer does not post event\n"
       "      }\n"
       "    //---\n" ;
   }else if (kBoolFalse == test_1) {
