@@ -697,6 +697,8 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_60 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected : virtual int32_t select_easyBindings_5F_syntax_61 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -4071,9 +4073,6 @@ class GALGAS_proxyDeclarationAST : public GALGAS_abstractDeclarationAST {
 //--- Constructor
   public : GALGAS_proxyDeclarationAST (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_proxyDeclarationAST constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_proxyDeclarationAST * ptr (void) const { return (const cPtr_proxyDeclarationAST *) mObjectPtr ; }
 
@@ -4092,10 +4091,11 @@ class GALGAS_proxyDeclarationAST : public GALGAS_abstractDeclarationAST {
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_proxyDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                    const class GALGAS_lstring & inOperand1,
+                                                                    const class GALGAS_proxyKind & inOperand1,
                                                                     const class GALGAS_lstring & inOperand2,
                                                                     const class GALGAS_lstring & inOperand3,
-                                                                    const class GALGAS_lstring & inOperand4
+                                                                    const class GALGAS_lstring & inOperand4,
+                                                                    const class GALGAS_lstring & inOperand5
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4108,6 +4108,8 @@ class GALGAS_proxyDeclarationAST : public GALGAS_abstractDeclarationAST {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mProxyName (LOCATION_ARGS) const ;
 
@@ -4128,12 +4130,80 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyDeclarationAST
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                                                   @proxyKind enum                                                   *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_proxyKind : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public : GALGAS_proxyKind (void) ;
+
+//--------------------------------- Enumeration
+  public : typedef enum {
+    kNotBuilt,
+    kEnum_propertyProxy,
+    kEnum_toManyProxy
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private : enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
+  public : VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public : inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_proxyKind extractObject (const GALGAS_object & inObject,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_proxyKind constructor_propertyProxy (LOCATION_ARGS) ;
+
+  public : static class GALGAS_proxyKind constructor_toManyProxy (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_proxyKind & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPropertyProxy (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isToManyProxy (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_proxyKind class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyKind ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                    Pointer class for @proxyDeclarationAST class                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
+  public : GALGAS_proxyKind mProperty_mProxyKind ;
   public : GALGAS_lstring mProperty_mProxyTypeName ;
   public : GALGAS_lstring mProperty_mProxyName ;
   public : GALGAS_lstring mProperty_mToOneRelationshipName ;
@@ -4141,6 +4211,7 @@ class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //--- Constructor
   public : cPtr_proxyDeclarationAST (const GALGAS_lstring & in_mClassName,
+                                     const GALGAS_proxyKind & in_mProxyKind,
                                      const GALGAS_lstring & in_mProxyTypeName,
                                      const GALGAS_lstring & in_mProxyName,
                                      const GALGAS_lstring & in_mToOneRelationshipName,
@@ -4151,6 +4222,7 @@ class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mProxyTypeName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mProxyName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToOneRelationshipName (LOCATION_ARGS) const ;
@@ -6565,6 +6637,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_60 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_61 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

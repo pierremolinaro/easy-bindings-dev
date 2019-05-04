@@ -47,7 +47,7 @@ end
     model.addEBObserver (self.mActualModel)
 %
   for () in PROPERTY_GENERATION_LIST do
-    if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) | (mProperty is == @proxyPropertyGeneration) then
+    if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) | (mProperty is == @atomicProxyGeneration) then
       %    self.bind_property_%![mProperty mPropertyName]% (model: self.mActualModel)\n%
     end
   end

@@ -2865,19 +2865,19 @@ class cPtr_ptransientRoutineGeneration : public cPtr_abstractFileGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @proxyPropertyGeneration class                                            *
+//                                            @toManyProxyGeneration class                                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_proxyPropertyGeneration : public GALGAS_propertyGeneration {
+class GALGAS_toManyProxyGeneration : public GALGAS_propertyGeneration {
 //--- Constructor
-  public : GALGAS_proxyPropertyGeneration (void) ;
+  public : GALGAS_toManyProxyGeneration (void) ;
 
 //---
-  public : inline const class cPtr_proxyPropertyGeneration * ptr (void) const { return (const cPtr_proxyPropertyGeneration *) mObjectPtr ; }
+  public : inline const class cPtr_toManyProxyGeneration * ptr (void) const { return (const cPtr_toManyProxyGeneration *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_proxyPropertyGeneration (const cPtr_proxyPropertyGeneration * inSourcePtr) ;
+  public : GALGAS_toManyProxyGeneration (const cPtr_toManyProxyGeneration * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -2885,19 +2885,20 @@ class GALGAS_proxyPropertyGeneration : public GALGAS_propertyGeneration {
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_proxyPropertyGeneration extractObject (const GALGAS_object & inObject,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_toManyProxyGeneration extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_proxyPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                        const class GALGAS_typeKind & inOperand1,
-                                                                        const class GALGAS_string & inOperand2,
-                                                                        const class GALGAS_string & inOperand3
-                                                                        COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_toManyProxyGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                      const class GALGAS_proxyKind & inOperand1,
+                                                                      const class GALGAS_string & inOperand2,
+                                                                      const class GALGAS_string & inOperand3,
+                                                                      const class GALGAS_string & inOperand4
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_proxyPropertyGeneration & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_toManyProxyGeneration & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2909,42 +2910,337 @@ class GALGAS_proxyPropertyGeneration : public GALGAS_propertyGeneration {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedRelationshipName (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mToManyTypeName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_toManyProxyGeneration class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGeneration ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                   Pointer class for @toManyProxyGeneration class                                    *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
+//--- Attributes
+  public : GALGAS_proxyKind mProperty_mProxyKind ;
+  public : GALGAS_string mProperty_mToManyTypeName ;
+  public : GALGAS_string mProperty_mObservedRelationshipName ;
+  public : GALGAS_string mProperty_mObservedPropertyName ;
+
+//--- Constructor
+  public : cPtr_toManyProxyGeneration (const GALGAS_string & in_mPropertyName,
+                                       const GALGAS_proxyKind & in_mProxyKind,
+                                       const GALGAS_string & in_mToManyTypeName,
+                                       const GALGAS_string & in_mObservedRelationshipName,
+                                       const GALGAS_string & in_mObservedPropertyName
+                                       COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mToManyTypeName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedRelationshipName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedPropertyName (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                           @toManyProxyGenerationList list                                           *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_toManyProxyGenerationList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_toManyProxyGenerationList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_toManyProxyGenerationList (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_toManyProxyGeneration & in_mProperty
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_toManyProxyGenerationList extractObject (const GALGAS_object & inObject,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_toManyProxyGenerationList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static class GALGAS_toManyProxyGenerationList constructor_listWithValue (const class GALGAS_toManyProxyGeneration & inOperand0
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_toManyProxyGenerationList inOperand,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_toManyProxyGeneration & inOperand0
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_toManyProxyGenerationList add_operation (const GALGAS_toManyProxyGenerationList & inOperand,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_toManyProxyGenerationList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_toManyProxyGeneration constinArgument0,
+                                                       class GALGAS_uint constinArgument1,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_toManyProxyGeneration & outArgument0,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_toManyProxyGeneration & outArgument0,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_toManyProxyGeneration & outArgument0,
+                                                       class GALGAS_uint constinArgument1,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_toManyProxyGeneration & outArgument0,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_toManyProxyGeneration & outArgument0,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_toManyProxyGeneration getter_mPropertyAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toManyProxyGenerationList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toManyProxyGenerationList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_toManyProxyGenerationList getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_toManyProxyGenerationList ;
+ 
+} ; // End of GALGAS_toManyProxyGenerationList class
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Enumerator declaration                                                                                            *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cEnumerator_toManyProxyGenerationList : public cGenericAbstractEnumerator {
+  public : cEnumerator_toManyProxyGenerationList (const GALGAS_toManyProxyGenerationList & inEnumeratedObject,
+                                                  const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_toManyProxyGeneration current_mProperty (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_toManyProxyGenerationList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGenerationList ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                    @toManyProxyGenerationList_2D_element struct                                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_toManyProxyGenerationList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_toManyProxyGeneration mProperty_mProperty ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_toManyProxyGenerationList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : virtual ~ GALGAS_toManyProxyGenerationList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_toManyProxyGenerationList_2D_element (const GALGAS_toManyProxyGeneration & in_mProperty) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_toManyProxyGenerationList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_toManyProxyGenerationList_2D_element constructor_new (const class GALGAS_toManyProxyGeneration & inOperand0
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_toManyProxyGenerationList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_toManyProxyGeneration getter_mProperty (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_toManyProxyGenerationList_2D_element class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGenerationList_2D_element ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                            @atomicProxyGeneration class                                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_atomicProxyGeneration : public GALGAS_propertyGeneration {
+//--- Constructor
+  public : GALGAS_atomicProxyGeneration (void) ;
+
+//---
+  public : inline const class cPtr_atomicProxyGeneration * ptr (void) const { return (const cPtr_atomicProxyGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_atomicProxyGeneration (const cPtr_atomicProxyGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_atomicProxyGeneration extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_atomicProxyGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                      const class GALGAS_proxyKind & inOperand1,
+                                                                      const class GALGAS_typeKind & inOperand2,
+                                                                      const class GALGAS_string & inOperand3,
+                                                                      const class GALGAS_string & inOperand4
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_atomicProxyGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedPropertyName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedRelationshipName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_proxyPropertyGeneration class
+} ; // End of GALGAS_atomicProxyGeneration class
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyPropertyGeneration ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGeneration ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Pointer class for @proxyPropertyGeneration class                                   *
+//                                   Pointer class for @atomicProxyGeneration class                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cPtr_proxyPropertyGeneration : public cPtr_propertyGeneration {
+class cPtr_atomicProxyGeneration : public cPtr_propertyGeneration {
 //--- Attributes
+  public : GALGAS_proxyKind mProperty_mProxyKind ;
   public : GALGAS_typeKind mProperty_mType ;
   public : GALGAS_string mProperty_mObservedRelationshipName ;
   public : GALGAS_string mProperty_mObservedPropertyName ;
 
 //--- Constructor
-  public : cPtr_proxyPropertyGeneration (const GALGAS_string & in_mPropertyName,
-                                         const GALGAS_typeKind & in_mType,
-                                         const GALGAS_string & in_mObservedRelationshipName,
-                                         const GALGAS_string & in_mObservedPropertyName
-                                         COMMA_LOCATION_ARGS) ;
+  public : cPtr_atomicProxyGeneration (const GALGAS_string & in_mPropertyName,
+                                       const GALGAS_proxyKind & in_mProxyKind,
+                                       const GALGAS_typeKind & in_mType,
+                                       const GALGAS_string & in_mObservedRelationshipName,
+                                       const GALGAS_string & in_mObservedPropertyName
+                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedRelationshipName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedPropertyName (LOCATION_ARGS) const ;
@@ -2960,20 +3256,20 @@ class cPtr_proxyPropertyGeneration : public cPtr_propertyGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @proxyPropertyGenerationList list                                          *
+//                                           @atomicProxyGenerationList list                                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_proxyPropertyGenerationList : public AC_GALGAS_list {
+class GALGAS_atomicProxyGenerationList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
-  public : GALGAS_proxyPropertyGenerationList (void) ;
+  public : GALGAS_atomicProxyGenerationList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_proxyPropertyGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public : GALGAS_atomicProxyGenerationList (const capCollectionElementArray & inSharedArray) ;
 
 //--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_proxyPropertyGeneration & in_mProperty
+                                                  const class GALGAS_atomicProxyGeneration & in_mProperty
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -2982,131 +3278,131 @@ class GALGAS_proxyPropertyGenerationList : public AC_GALGAS_list {
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_proxyPropertyGenerationList extractObject (const GALGAS_object & inObject,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_atomicProxyGenerationList extractObject (const GALGAS_object & inObject,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_proxyPropertyGenerationList constructor_emptyList (LOCATION_ARGS) ;
+  public : static class GALGAS_atomicProxyGenerationList constructor_emptyList (LOCATION_ARGS) ;
 
-  public : static class GALGAS_proxyPropertyGenerationList constructor_listWithValue (const class GALGAS_proxyPropertyGeneration & inOperand0
-                                                                                      COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_atomicProxyGenerationList constructor_listWithValue (const class GALGAS_atomicProxyGeneration & inOperand0
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_proxyPropertyGenerationList inOperand,
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_atomicProxyGenerationList inOperand,
                                                        class C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_proxyPropertyGeneration & inOperand0
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_atomicProxyGeneration & inOperand0
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public : VIRTUAL_IN_DEBUG GALGAS_proxyPropertyGenerationList add_operation (const GALGAS_proxyPropertyGenerationList & inOperand,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_atomicProxyGenerationList add_operation (const GALGAS_atomicProxyGenerationList & inOperand,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_proxyPropertyGenerationList_2D_element inArgument0,
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_atomicProxyGenerationList_2D_element inArgument0,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_proxyPropertyGeneration constinArgument0,
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_atomicProxyGeneration constinArgument0,
                                                        class GALGAS_uint constinArgument1,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_proxyPropertyGeneration & outArgument0,
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_atomicProxyGeneration & outArgument0,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_proxyPropertyGeneration & outArgument0,
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_atomicProxyGeneration & outArgument0,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_proxyPropertyGeneration & outArgument0,
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_atomicProxyGeneration & outArgument0,
                                                        class GALGAS_uint constinArgument1,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_proxyPropertyGeneration & outArgument0,
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_atomicProxyGeneration & outArgument0,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_proxyPropertyGeneration & outArgument0,
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_atomicProxyGeneration & outArgument0,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_proxyPropertyGeneration getter_mPropertyAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_atomicProxyGeneration getter_mPropertyAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_proxyPropertyGenerationList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_proxyPropertyGenerationList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+  public : VIRTUAL_IN_DEBUG class GALGAS_atomicProxyGenerationList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
                                                                                             C_Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_proxyPropertyGenerationList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_atomicProxyGenerationList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_atomicProxyGenerationList getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
 //--------------------------------- Friend
 
-  friend class cEnumerator_proxyPropertyGenerationList ;
+  friend class cEnumerator_atomicProxyGenerationList ;
  
-} ; // End of GALGAS_proxyPropertyGenerationList class
+} ; // End of GALGAS_atomicProxyGenerationList class
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Enumerator declaration                                                                                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cEnumerator_proxyPropertyGenerationList : public cGenericAbstractEnumerator {
-  public : cEnumerator_proxyPropertyGenerationList (const GALGAS_proxyPropertyGenerationList & inEnumeratedObject,
-                                                    const typeEnumerationOrder inOrder) ;
+class cEnumerator_atomicProxyGenerationList : public cGenericAbstractEnumerator {
+  public : cEnumerator_atomicProxyGenerationList (const GALGAS_atomicProxyGenerationList & inEnumeratedObject,
+                                                  const typeEnumerationOrder inOrder) ;
 
 //--- Current element access
-  public : class GALGAS_proxyPropertyGeneration current_mProperty (LOCATION_ARGS) const ;
+  public : class GALGAS_atomicProxyGeneration current_mProperty (LOCATION_ARGS) const ;
 //--- Current element access
-  public : class GALGAS_proxyPropertyGenerationList_2D_element current (LOCATION_ARGS) const ;
+  public : class GALGAS_atomicProxyGenerationList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyPropertyGenerationList ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGenerationList ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   @proxyPropertyGenerationList_2D_element struct                                    *
+//                                    @atomicProxyGenerationList_2D_element struct                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class GALGAS_proxyPropertyGenerationList_2D_element : public AC_GALGAS_root {
+class GALGAS_atomicProxyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
-  public : GALGAS_proxyPropertyGeneration mProperty_mProperty ;
+  public : GALGAS_atomicProxyGeneration mProperty_mProperty ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
 
 //--------------------------------- Default constructor
-  public : GALGAS_proxyPropertyGenerationList_2D_element (void) ;
+  public : GALGAS_atomicProxyGenerationList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_proxyPropertyGenerationList_2D_element (void) ;
+  public : virtual ~ GALGAS_atomicProxyGenerationList_2D_element (void) ;
 
 //--------------------------------- Native constructor
-  public : GALGAS_proxyPropertyGenerationList_2D_element (const GALGAS_proxyPropertyGeneration & in_mProperty) ;
+  public : GALGAS_atomicProxyGenerationList_2D_element (const GALGAS_atomicProxyGeneration & in_mProperty) ;
 
 //-- Start of generic part --*
 
@@ -3114,19 +3410,19 @@ class GALGAS_proxyPropertyGenerationList_2D_element : public AC_GALGAS_root {
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_proxyPropertyGenerationList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_atomicProxyGenerationList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_proxyPropertyGenerationList_2D_element constructor_new (const class GALGAS_proxyPropertyGeneration & inOperand0
-                                                                                       COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_atomicProxyGenerationList_2D_element constructor_new (const class GALGAS_atomicProxyGeneration & inOperand0
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_proxyPropertyGenerationList_2D_element & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_atomicProxyGenerationList_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3134,18 +3430,18 @@ class GALGAS_proxyPropertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_proxyPropertyGeneration getter_mProperty (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_atomicProxyGeneration getter_mProperty (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_proxyPropertyGenerationList_2D_element class
+} ; // End of GALGAS_atomicProxyGenerationList_2D_element class
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyPropertyGenerationList_2D_element ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGenerationList_2D_element ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -3442,84 +3738,4 @@ class GALGAS_atomicPropertyGenerationList_2D_element : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGenerationList_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                           @propertyMap_2D_element struct                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_lkey ;
-
-  public : GALGAS_propertyKind mProperty_mKind ;
-
-  public : GALGAS_actionMap mProperty_mActionMap ;
-
-  public : GALGAS_bool mProperty_mIsOverriding ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_propertyMap_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_propertyMap_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_propertyMap_2D_element (const GALGAS_lstring & in_lkey,
-                                          const GALGAS_propertyKind & in_mKind,
-                                          const GALGAS_actionMap & in_mActionMap,
-                                          const GALGAS_bool & in_mIsOverriding) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_propertyMap_2D_element extractObject (const GALGAS_object & inObject,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_propertyMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                       const class GALGAS_propertyKind & inOperand1,
-                                                                       const class GALGAS_actionMap & inOperand2,
-                                                                       const class GALGAS_bool & inOperand3
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_propertyMap_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_actionMap getter_mActionMap (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsOverriding (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mKind (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_propertyMap_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyMap_2D_element ;
 

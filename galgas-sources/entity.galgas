@@ -296,13 +296,16 @@ override method @entityForGeneration generateCode
   @transientPropertyGenerationList transientPropertyGenerationList = {}
   @toOnePropertyGenerationList toOnePropertyGenerationList = {}
   @toManyPropertyGenerationList toManyPropertyGenerationList = {}
-  @proxyPropertyGenerationList proxyGenerationList = {}
+  @atomicProxyGenerationList proxyGenerationList = {}
+  @toManyProxyGenerationList toManyProxyGenerationList = {}
   for (property) in mPropertyGenerationList do
     if let atomicProperty = property as @atomicPropertyGeneration then
       atomicPropertyGenerationList += !atomicProperty
     elsif let transientProperty = property as @transientPropertyGeneration then
       transientPropertyGenerationList += !transientProperty
-    elsif let proxyProperty = property as @proxyPropertyGeneration then
+    elsif let toManyProxy = property as @toManyProxyGeneration then
+      toManyProxyGenerationList += !toManyProxy
+    elsif let proxyProperty = property as @atomicProxyGeneration then
       proxyGenerationList += !proxyProperty
     elsif let toOneProperty = property as @toOnePropertyGeneration then
       toOnePropertyGenerationList += !toOneProperty
@@ -323,6 +326,7 @@ override method @entityForGeneration generateCode
     !superEntityName
     !mPropertyGenerationList
     !proxyGenerationList
+    !toManyProxyGenerationList
     !atomicPropertyGenerationList
     !transientPropertyGenerationList
     !toOnePropertyGenerationList
@@ -373,7 +377,8 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@string ENTITY_NAME
     ?@string SUPER_CLASS_NAME
     ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
-    ?@proxyPropertyGenerationList PROXY_LIST_FOR_GENERATION
+    ?@atomicProxyGenerationList PROXY_LIST_FOR_GENERATION
+    ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION
     ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
     ?@toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST

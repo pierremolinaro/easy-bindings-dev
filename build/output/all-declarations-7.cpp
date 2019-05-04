@@ -2564,7 +2564,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_propertyGenerationList enumerator_2221 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_2221.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = GALGAS_bool (enumerator_2221.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GALGAS_bool (enumerator_2221.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 50)).operator_or (GALGAS_bool (enumerator_2221.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_proxyPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 50)).boolEnum () ;
+      const enumGalgasBool test_0 = GALGAS_bool (enumerator_2221.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GALGAS_bool (enumerator_2221.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 50)).operator_or (GALGAS_bool (enumerator_2221.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicProxyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 50)).boolEnum () ;
       if (kBoolTrue == test_0) {
         result << "    self.bind_property_" ;
         result << enumerator_2221.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 51)).stringValue () ;
@@ -2584,37 +2584,37 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
     "  func unbind_selection () {\n"
     "    self.mModel\?.removeEBObserver (self.mActualModel)\n"
     "    self.mActualModel.mReadModelFunction = nil\n" ;
-  GALGAS_uint index_2919_ (0) ;
+  GALGAS_uint index_2917_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_2919 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_2919.hasCurrentObject ()) {
-      const enumGalgasBool test_1 = GALGAS_bool (enumerator_2919.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GALGAS_bool (enumerator_2919.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 65)).boolEnum () ;
+    cEnumerator_propertyGenerationList enumerator_2917 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_2917.hasCurrentObject ()) {
+      const enumGalgasBool test_1 = GALGAS_bool (enumerator_2917.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GALGAS_bool (enumerator_2917.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 65)).boolEnum () ;
       if (kBoolTrue == test_1) {
         result << "  //--- " ;
-        result << enumerator_2919.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 66)).stringValue () ;
+        result << enumerator_2917.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 66)).stringValue () ;
         result << "\n"
           "    self." ;
-        result << enumerator_2919.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 67)).stringValue () ;
+        result << enumerator_2917.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 67)).stringValue () ;
         result << "_property.mReadModelFunction = nil \n" ;
-        const enumGalgasBool test_2 = GALGAS_bool (enumerator_2919.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).boolEnum () ;
+        const enumGalgasBool test_2 = GALGAS_bool (enumerator_2917.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).boolEnum () ;
         if (kBoolTrue == test_2) {
           result << "    self." ;
-          result << enumerator_2919.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 69)).stringValue () ;
+          result << enumerator_2917.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 69)).stringValue () ;
           result << "_property.mWriteModelFunction = nil \n"
             "    self." ;
-          result << enumerator_2919.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 70)).stringValue () ;
+          result << enumerator_2917.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 70)).stringValue () ;
           result << "_property.mValidateAndWriteModelFunction = nil \n" ;
         }else if (kBoolFalse == test_2) {
         }
         result << "    self.mActualModel.removeEBObserverOf_" ;
-        result << enumerator_2919.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 72)).stringValue () ;
+        result << enumerator_2917.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 72)).stringValue () ;
         result << " (self." ;
-        result << enumerator_2919.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 72)).stringValue () ;
+        result << enumerator_2917.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 72)).stringValue () ;
         result << "_property)\n" ;
       }else if (kBoolFalse == test_1) {
       }
-      index_2919_.increment () ;
-      enumerator_2919.gotoNextObject () ;
+      index_2917_.increment () ;
+      enumerator_2917.gotoNextObject () ;
     }
   }
   result << "  //---\n"
@@ -2661,32 +2661,32 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
     "  //-------------------------------------------------- Adding properties\n"
     "    let view = NSView (frame:r)\n"
     "    var y : CGFloat = 0.0\n" ;
-  GALGAS_uint index_5401_ (0) ;
+  GALGAS_uint index_5399_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_5401 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5401.hasCurrentObject ()) {
-      const enumGalgasBool test_3 = GALGAS_bool (enumerator_5401.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).boolEnum () ;
+    cEnumerator_propertyGenerationList enumerator_5399 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5399.hasCurrentObject ()) {
+      const enumGalgasBool test_3 = GALGAS_bool (enumerator_5399.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).boolEnum () ;
       if (kBoolTrue == test_3) {
         result << "    createEntryForPropertyNamed (\n"
           "      \"" ;
-        result << enumerator_5401.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 118)).stringValue () ;
+        result << enumerator_5399.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 118)).stringValue () ;
         result << "\",\n"
           "      idx:self." ;
-        result << enumerator_5401.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 119)).stringValue () ;
+        result << enumerator_5399.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 119)).stringValue () ;
         result << "_property.ebObjectIndex,\n"
           "      y:&y,\n"
           "      view:view,\n"
           "      observerExplorer:&self." ;
-        result << enumerator_5401.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 122)).stringValue () ;
+        result << enumerator_5399.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 122)).stringValue () ;
         result << "_property.mObserverExplorer,\n"
           "      valueExplorer:&self." ;
-        result << enumerator_5401.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 123)).stringValue () ;
+        result << enumerator_5399.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 123)).stringValue () ;
         result << "_property.mValueExplorer\n"
           "    )\n" ;
       }else if (kBoolFalse == test_3) {
       }
-      index_5401_.increment () ;
-      enumerator_5401.gotoNextObject () ;
+      index_5399_.increment () ;
+      enumerator_5399.gotoNextObject () ;
     }
   }
   result << "  //-------------------------------------------------- Finish Window construction\n"
@@ -2745,13 +2745,13 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
     "    self.mExplorerWindow = nil\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_8321_ (0) ;
+  GALGAS_uint index_8319_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_8321 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_8321.hasCurrentObject ()) {
-      result << callExtensionGetter_bindPropertyInSelectionController ((const cPtr_propertyGeneration *) enumerator_8321.current_mProperty (HERE).ptr (), GALGAS_string ("TransientArrayOf_").add_operation (in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME, inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 180)), inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 180)).stringValue () ;
-      index_8321_.increment () ;
-      enumerator_8321.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_8319 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_8319.hasCurrentObject ()) {
+      result << callExtensionGetter_bindPropertyInSelectionController ((const cPtr_propertyGeneration *) enumerator_8319.current_mProperty (HERE).ptr (), GALGAS_string ("TransientArrayOf_").add_operation (in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME, inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 180)), inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 180)).stringValue () ;
+      index_8319_.increment () ;
+      enumerator_8319.gotoNextObject () ;
     }
   }
   result << "\n"

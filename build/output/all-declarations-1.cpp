@@ -11490,18 +11490,130 @@ GALGAS_ptransientRoutineGeneration GALGAS_ptransientRoutineGeneration::extractOb
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_proxyKind::GALGAS_proxyKind (void) :
+mEnum (kNotBuilt) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_proxyKind GALGAS_proxyKind::constructor_propertyProxy (UNUSED_LOCATION_ARGS) {
+  GALGAS_proxyKind result ;
+  result.mEnum = kEnum_propertyProxy ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_proxyKind GALGAS_proxyKind::constructor_toManyProxy (UNUSED_LOCATION_ARGS) {
+  GALGAS_proxyKind result ;
+  result.mEnum = kEnum_toManyProxy ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static const char * gEnumNameArrayFor_proxyKind [3] = {
+  "(not built)",
+  "propertyProxy",
+  "toManyProxy"
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_proxyKind::getter_isPropertyProxy (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_propertyProxy == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_proxyKind::getter_isToManyProxy (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_toManyProxy == mEnum) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_proxyKind::description (C_String & ioString,
+                                    const int32_t /* inIndentation */) const {
+  ioString << "<enum @proxyKind: " << gEnumNameArrayFor_proxyKind [mEnum] ;
+  ioString << ">" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult GALGAS_proxyKind::objectCompare (const GALGAS_proxyKind & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mEnum < inOperand.mEnum) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mEnum > inOperand.mEnum) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = kOperandEqual ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                                   @proxyKind type                                                   *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_proxyKind ("proxyKind",
+                                  NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_proxyKind::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_proxyKind ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_proxyKind::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_proxyKind (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_proxyKind GALGAS_proxyKind::extractObject (const GALGAS_object & inObject,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_proxyKind result ;
+  const GALGAS_proxyKind * p = (const GALGAS_proxyKind *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_proxyKind *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("proxyKind", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Object comparison                                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-typeComparisonResult cPtr_proxyPropertyGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+typeComparisonResult cPtr_toManyProxyGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
-  const cPtr_proxyPropertyGeneration * p = (const cPtr_proxyPropertyGeneration *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_proxyPropertyGeneration) ;
+  const cPtr_toManyProxyGeneration * p = (const cPtr_toManyProxyGeneration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_toManyProxyGeneration) ;
   if (kOperandEqual == result) {
     result = mProperty_mPropertyName.objectCompare (p->mProperty_mPropertyName) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mType.objectCompare (p->mProperty_mType) ;
+    result = mProperty_mProxyKind.objectCompare (p->mProperty_mProxyKind) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mToManyTypeName.objectCompare (p->mProperty_mToManyTypeName) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mObservedRelationshipName.objectCompare (p->mProperty_mObservedRelationshipName) ;
@@ -11515,7 +11627,7 @@ typeComparisonResult cPtr_proxyPropertyGeneration::dynamicObjectCompare (const a
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 
-typeComparisonResult GALGAS_proxyPropertyGeneration::objectCompare (const GALGAS_proxyPropertyGeneration & inOperand) const {
+typeComparisonResult GALGAS_toManyProxyGeneration::objectCompare (const GALGAS_toManyProxyGeneration & inOperand) const {
   typeComparisonResult result = kOperandNotValid ;
   if (isValid () && inOperand.isValid ()) {
     const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
@@ -11533,56 +11645,75 @@ typeComparisonResult GALGAS_proxyPropertyGeneration::objectCompare (const GALGAS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGeneration::GALGAS_proxyPropertyGeneration (void) :
+GALGAS_toManyProxyGeneration::GALGAS_toManyProxyGeneration (void) :
 GALGAS_propertyGeneration () {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGeneration::GALGAS_proxyPropertyGeneration (const cPtr_proxyPropertyGeneration * inSourcePtr) :
+GALGAS_toManyProxyGeneration::GALGAS_toManyProxyGeneration (const cPtr_toManyProxyGeneration * inSourcePtr) :
 GALGAS_propertyGeneration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_proxyPropertyGeneration) ;
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_toManyProxyGeneration) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGeneration GALGAS_proxyPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
-                                                                                const GALGAS_typeKind & inAttribute_mType,
-                                                                                const GALGAS_string & inAttribute_mObservedRelationshipName,
-                                                                                const GALGAS_string & inAttribute_mObservedPropertyName
-                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_proxyPropertyGeneration result ;
-  if (inAttribute_mPropertyName.isValid () && inAttribute_mType.isValid () && inAttribute_mObservedRelationshipName.isValid () && inAttribute_mObservedPropertyName.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_proxyPropertyGeneration (inAttribute_mPropertyName, inAttribute_mType, inAttribute_mObservedRelationshipName, inAttribute_mObservedPropertyName COMMA_THERE)) ;
+GALGAS_toManyProxyGeneration GALGAS_toManyProxyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
+                                                                            const GALGAS_proxyKind & inAttribute_mProxyKind,
+                                                                            const GALGAS_string & inAttribute_mToManyTypeName,
+                                                                            const GALGAS_string & inAttribute_mObservedRelationshipName,
+                                                                            const GALGAS_string & inAttribute_mObservedPropertyName
+                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_toManyProxyGeneration result ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mProxyKind.isValid () && inAttribute_mToManyTypeName.isValid () && inAttribute_mObservedRelationshipName.isValid () && inAttribute_mObservedPropertyName.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_toManyProxyGeneration (inAttribute_mPropertyName, inAttribute_mProxyKind, inAttribute_mToManyTypeName, inAttribute_mObservedRelationshipName, inAttribute_mObservedPropertyName COMMA_THERE)) ;
   }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_typeKind GALGAS_proxyPropertyGeneration::getter_mType (UNUSED_LOCATION_ARGS) const {
-  GALGAS_typeKind result ;
+GALGAS_proxyKind GALGAS_toManyProxyGeneration::getter_mProxyKind (UNUSED_LOCATION_ARGS) const {
+  GALGAS_proxyKind result ;
   if (NULL != mObjectPtr) {
-    const cPtr_proxyPropertyGeneration * p = (const cPtr_proxyPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_proxyPropertyGeneration) ;
-    result = p->mProperty_mType ;
+    const cPtr_toManyProxyGeneration * p = (const cPtr_toManyProxyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyProxyGeneration) ;
+    result = p->mProperty_mProxyKind ;
   }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_typeKind cPtr_proxyPropertyGeneration::getter_mType (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mType ;
+GALGAS_proxyKind cPtr_toManyProxyGeneration::getter_mProxyKind (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mProxyKind ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string GALGAS_proxyPropertyGeneration::getter_mObservedRelationshipName (UNUSED_LOCATION_ARGS) const {
+GALGAS_string GALGAS_toManyProxyGeneration::getter_mToManyTypeName (UNUSED_LOCATION_ARGS) const {
   GALGAS_string result ;
   if (NULL != mObjectPtr) {
-    const cPtr_proxyPropertyGeneration * p = (const cPtr_proxyPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_proxyPropertyGeneration) ;
+    const cPtr_toManyProxyGeneration * p = (const cPtr_toManyProxyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyProxyGeneration) ;
+    result = p->mProperty_mToManyTypeName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_toManyProxyGeneration::getter_mToManyTypeName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mToManyTypeName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_toManyProxyGeneration::getter_mObservedRelationshipName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toManyProxyGeneration * p = (const cPtr_toManyProxyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyProxyGeneration) ;
     result = p->mProperty_mObservedRelationshipName ;
   }
   return result ;
@@ -11590,17 +11721,17 @@ GALGAS_string GALGAS_proxyPropertyGeneration::getter_mObservedRelationshipName (
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string cPtr_proxyPropertyGeneration::getter_mObservedRelationshipName (UNUSED_LOCATION_ARGS) const {
+GALGAS_string cPtr_toManyProxyGeneration::getter_mObservedRelationshipName (UNUSED_LOCATION_ARGS) const {
   return mProperty_mObservedRelationshipName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string GALGAS_proxyPropertyGeneration::getter_mObservedPropertyName (UNUSED_LOCATION_ARGS) const {
+GALGAS_string GALGAS_toManyProxyGeneration::getter_mObservedPropertyName (UNUSED_LOCATION_ARGS) const {
   GALGAS_string result ;
   if (NULL != mObjectPtr) {
-    const cPtr_proxyPropertyGeneration * p = (const cPtr_proxyPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_proxyPropertyGeneration) ;
+    const cPtr_toManyProxyGeneration * p = (const cPtr_toManyProxyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyProxyGeneration) ;
     result = p->mProperty_mObservedPropertyName ;
   }
   return result ;
@@ -11608,37 +11739,41 @@ GALGAS_string GALGAS_proxyPropertyGeneration::getter_mObservedPropertyName (UNUS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_string cPtr_proxyPropertyGeneration::getter_mObservedPropertyName (UNUSED_LOCATION_ARGS) const {
+GALGAS_string cPtr_toManyProxyGeneration::getter_mObservedPropertyName (UNUSED_LOCATION_ARGS) const {
   return mProperty_mObservedPropertyName ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                  Pointer class for @proxyPropertyGeneration class                                   *
+//                                   Pointer class for @toManyProxyGeneration class                                    *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cPtr_proxyPropertyGeneration::cPtr_proxyPropertyGeneration (const GALGAS_string & in_mPropertyName,
-                                                            const GALGAS_typeKind & in_mType,
-                                                            const GALGAS_string & in_mObservedRelationshipName,
-                                                            const GALGAS_string & in_mObservedPropertyName
-                                                            COMMA_LOCATION_ARGS) :
+cPtr_toManyProxyGeneration::cPtr_toManyProxyGeneration (const GALGAS_string & in_mPropertyName,
+                                                        const GALGAS_proxyKind & in_mProxyKind,
+                                                        const GALGAS_string & in_mToManyTypeName,
+                                                        const GALGAS_string & in_mObservedRelationshipName,
+                                                        const GALGAS_string & in_mObservedPropertyName
+                                                        COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
-mProperty_mType (in_mType),
+mProperty_mProxyKind (in_mProxyKind),
+mProperty_mToManyTypeName (in_mToManyTypeName),
 mProperty_mObservedRelationshipName (in_mObservedRelationshipName),
 mProperty_mObservedPropertyName (in_mObservedPropertyName) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-const C_galgas_type_descriptor * cPtr_proxyPropertyGeneration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_proxyPropertyGeneration ;
+const C_galgas_type_descriptor * cPtr_toManyProxyGeneration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toManyProxyGeneration ;
 }
 
-void cPtr_proxyPropertyGeneration::description (C_String & ioString,
-                                                const int32_t inIndentation) const {
-  ioString << "[@proxyPropertyGeneration:" ;
+void cPtr_toManyProxyGeneration::description (C_String & ioString,
+                                              const int32_t inIndentation) const {
+  ioString << "[@toManyProxyGeneration:" ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mType.description (ioString, inIndentation+1) ;
+  mProperty_mProxyKind.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mToManyTypeName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mObservedRelationshipName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
@@ -11648,51 +11783,51 @@ void cPtr_proxyPropertyGeneration::description (C_String & ioString,
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-acPtr_class * cPtr_proxyPropertyGeneration::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_toManyProxyGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_proxyPropertyGeneration (mProperty_mPropertyName, mProperty_mType, mProperty_mObservedRelationshipName, mProperty_mObservedPropertyName COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_toManyProxyGeneration (mProperty_mPropertyName, mProperty_mProxyKind, mProperty_mToManyTypeName, mProperty_mObservedRelationshipName, mProperty_mObservedPropertyName COMMA_THERE)) ;
   return ptr ;
 }
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @proxyPropertyGeneration type                                            *
+//                                             @toManyProxyGeneration type                                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_proxyPropertyGeneration ("proxyPropertyGeneration",
-                                                & kTypeDescriptor_GALGAS_propertyGeneration) ;
+kTypeDescriptor_GALGAS_toManyProxyGeneration ("toManyProxyGeneration",
+                                              & kTypeDescriptor_GALGAS_propertyGeneration) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-const C_galgas_type_descriptor * GALGAS_proxyPropertyGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_proxyPropertyGeneration ;
+const C_galgas_type_descriptor * GALGAS_toManyProxyGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toManyProxyGeneration ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-AC_GALGAS_root * GALGAS_proxyPropertyGeneration::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_toManyProxyGeneration::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_proxyPropertyGeneration (*this)) ;
+    macroMyNew (result, GALGAS_toManyProxyGeneration (*this)) ;
   }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGeneration GALGAS_proxyPropertyGeneration::extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_proxyPropertyGeneration result ;
-  const GALGAS_proxyPropertyGeneration * p = (const GALGAS_proxyPropertyGeneration *) inObject.embeddedObject () ;
+GALGAS_toManyProxyGeneration GALGAS_toManyProxyGeneration::extractObject (const GALGAS_object & inObject,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_toManyProxyGeneration result ;
+  const GALGAS_toManyProxyGeneration * p = (const GALGAS_toManyProxyGeneration *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_proxyPropertyGeneration *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_toManyProxyGeneration *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("proxyPropertyGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("toManyProxyGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -11700,17 +11835,17 @@ GALGAS_proxyPropertyGeneration GALGAS_proxyPropertyGeneration::extractObject (co
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                              Class for element of '@proxyPropertyGenerationList' list                               *
+//                               Class for element of '@toManyProxyGenerationList' list                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-class cCollectionElement_proxyPropertyGenerationList : public cCollectionElement {
-  public : GALGAS_proxyPropertyGenerationList_2D_element mObject ;
+class cCollectionElement_toManyProxyGenerationList : public cCollectionElement {
+  public : GALGAS_toManyProxyGenerationList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_proxyPropertyGenerationList (const GALGAS_proxyPropertyGeneration & in_mProperty
-                                                           COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_proxyPropertyGenerationList (const GALGAS_proxyPropertyGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_toManyProxyGenerationList (const GALGAS_toManyProxyGeneration & in_mProperty
+                                                         COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_toManyProxyGenerationList (const GALGAS_toManyProxyGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -11727,36 +11862,36 @@ class cCollectionElement_proxyPropertyGenerationList : public cCollectionElement
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cCollectionElement_proxyPropertyGenerationList::cCollectionElement_proxyPropertyGenerationList (const GALGAS_proxyPropertyGeneration & in_mProperty
-                                                                                                COMMA_LOCATION_ARGS) :
+cCollectionElement_toManyProxyGenerationList::cCollectionElement_toManyProxyGenerationList (const GALGAS_toManyProxyGeneration & in_mProperty
+                                                                                            COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mProperty) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cCollectionElement_proxyPropertyGenerationList::cCollectionElement_proxyPropertyGenerationList (const GALGAS_proxyPropertyGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement_toManyProxyGenerationList::cCollectionElement_toManyProxyGenerationList (const GALGAS_toManyProxyGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (inElement.mProperty_mProperty) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-bool cCollectionElement_proxyPropertyGenerationList::isValid (void) const {
+bool cCollectionElement_toManyProxyGenerationList::isValid (void) const {
   return mObject.isValid () ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cCollectionElement * cCollectionElement_proxyPropertyGenerationList::copy (void) {
+cCollectionElement * cCollectionElement_toManyProxyGenerationList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_proxyPropertyGenerationList (mObject.mProperty_mProperty COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_toManyProxyGenerationList (mObject.mProperty_mProperty COMMA_HERE)) ;
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void cCollectionElement_proxyPropertyGenerationList::description (C_String & ioString, const int32_t inIndentation) const {
+void cCollectionElement_toManyProxyGenerationList::description (C_String & ioString, const int32_t inIndentation) const {
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mProperty" ":" ;
@@ -11765,39 +11900,39 @@ void cCollectionElement_proxyPropertyGenerationList::description (C_String & ioS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-typeComparisonResult cCollectionElement_proxyPropertyGenerationList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_proxyPropertyGenerationList * operand = (cCollectionElement_proxyPropertyGenerationList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_proxyPropertyGenerationList) ;
+typeComparisonResult cCollectionElement_toManyProxyGenerationList::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_toManyProxyGenerationList * operand = (cCollectionElement_toManyProxyGenerationList *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_toManyProxyGenerationList) ;
   return mObject.objectCompare (operand->mObject) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList::GALGAS_proxyPropertyGenerationList (void) :
+GALGAS_toManyProxyGenerationList::GALGAS_toManyProxyGenerationList (void) :
 AC_GALGAS_list () {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList::GALGAS_proxyPropertyGenerationList (const capCollectionElementArray & inSharedArray) :
+GALGAS_toManyProxyGenerationList::GALGAS_toManyProxyGenerationList (const capCollectionElementArray & inSharedArray) :
 AC_GALGAS_list (inSharedArray) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_proxyPropertyGenerationList  (capCollectionElementArray ()) ;
+GALGAS_toManyProxyGenerationList GALGAS_toManyProxyGenerationList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+  return GALGAS_toManyProxyGenerationList  (capCollectionElementArray ()) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::constructor_listWithValue (const GALGAS_proxyPropertyGeneration & inOperand0
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_proxyPropertyGenerationList result ;
+GALGAS_toManyProxyGenerationList GALGAS_toManyProxyGenerationList::constructor_listWithValue (const GALGAS_toManyProxyGeneration & inOperand0
+                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_toManyProxyGenerationList result ;
   if (inOperand0.isValid ()) {
-    result = GALGAS_proxyPropertyGenerationList (capCollectionElementArray ()) ;
+    result = GALGAS_toManyProxyGenerationList (capCollectionElementArray ()) ;
     capCollectionElement attributes ;
-    GALGAS_proxyPropertyGenerationList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
+    GALGAS_toManyProxyGenerationList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
     result.appendObject (attributes) ;
   }
   return result ;
@@ -11805,22 +11940,22 @@ GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::construct
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                    const GALGAS_proxyPropertyGeneration & in_mProperty
-                                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement_proxyPropertyGenerationList * p = NULL ;
-  macroMyNew (p, cCollectionElement_proxyPropertyGenerationList (in_mProperty COMMA_THERE)) ;
+void GALGAS_toManyProxyGenerationList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                                  const GALGAS_toManyProxyGeneration & in_mProperty
+                                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement_toManyProxyGenerationList * p = NULL ;
+  macroMyNew (p, cCollectionElement_toManyProxyGenerationList (in_mProperty COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::addAssign_operation (const GALGAS_proxyPropertyGeneration & inOperand0
-                                                              COMMA_LOCATION_ARGS) {
+void GALGAS_toManyProxyGenerationList::addAssign_operation (const GALGAS_toManyProxyGeneration & inOperand0
+                                                            COMMA_LOCATION_ARGS) {
   if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_proxyPropertyGenerationList (inOperand0 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_toManyProxyGenerationList (inOperand0 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -11830,12 +11965,12 @@ void GALGAS_proxyPropertyGenerationList::addAssign_operation (const GALGAS_proxy
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::setter_append (GALGAS_proxyPropertyGenerationList_2D_element inElement,
-                                                        C_Compiler * /* inCompiler */
-                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_toManyProxyGenerationList::setter_append (GALGAS_toManyProxyGenerationList_2D_element inElement,
+                                                      C_Compiler * /* inCompiler */
+                                                      COMMA_LOCATION_ARGS) {
   if (isValid () && inElement.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_proxyPropertyGenerationList (inElement COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_toManyProxyGenerationList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -11845,13 +11980,13 @@ void GALGAS_proxyPropertyGenerationList::setter_append (GALGAS_proxyPropertyGene
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::setter_insertAtIndex (const GALGAS_proxyPropertyGeneration inOperand0,
-                                                               const GALGAS_uint inInsertionIndex,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_toManyProxyGenerationList::setter_insertAtIndex (const GALGAS_toManyProxyGeneration inOperand0,
+                                                             const GALGAS_uint inInsertionIndex,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
   if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_proxyPropertyGenerationList (inOperand0 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_toManyProxyGenerationList (inOperand0 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -11861,18 +11996,18 @@ void GALGAS_proxyPropertyGenerationList::setter_insertAtIndex (const GALGAS_prox
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::setter_removeAtIndex (GALGAS_proxyPropertyGeneration & outOperand0,
-                                                               const GALGAS_uint inRemoveIndex,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
+void GALGAS_toManyProxyGenerationList::setter_removeAtIndex (GALGAS_toManyProxyGeneration & outOperand0,
+                                                             const GALGAS_uint inRemoveIndex,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
   if (isValid () && inRemoveIndex.isValid ()) {
     capCollectionElement attributes ;
     removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_proxyPropertyGenerationList * p = (cCollectionElement_proxyPropertyGenerationList *) attributes.ptr () ;
+    cCollectionElement_toManyProxyGenerationList * p = (cCollectionElement_toManyProxyGenerationList *) attributes.ptr () ;
     if (NULL == p) {
       outOperand0.drop () ;
     }else{
-      macroValidSharedObject (p, cCollectionElement_proxyPropertyGenerationList) ;
+      macroValidSharedObject (p, cCollectionElement_toManyProxyGenerationList) ;
       outOperand0 = p->mObject.mProperty_mProperty ;
     }
   }
@@ -11880,74 +12015,74 @@ void GALGAS_proxyPropertyGenerationList::setter_removeAtIndex (GALGAS_proxyPrope
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::setter_popFirst (GALGAS_proxyPropertyGeneration & outOperand0,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_toManyProxyGenerationList::setter_popFirst (GALGAS_toManyProxyGeneration & outOperand0,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_proxyPropertyGenerationList * p = (cCollectionElement_proxyPropertyGenerationList *) attributes.ptr () ;
+  cCollectionElement_toManyProxyGenerationList * p = (cCollectionElement_toManyProxyGenerationList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
   }else{
-    macroValidSharedObject (p, cCollectionElement_proxyPropertyGenerationList) ;
+    macroValidSharedObject (p, cCollectionElement_toManyProxyGenerationList) ;
     outOperand0 = p->mObject.mProperty_mProperty ;
   }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::setter_popLast (GALGAS_proxyPropertyGeneration & outOperand0,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) {
+void GALGAS_toManyProxyGenerationList::setter_popLast (GALGAS_toManyProxyGeneration & outOperand0,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_proxyPropertyGenerationList * p = (cCollectionElement_proxyPropertyGenerationList *) attributes.ptr () ;
+  cCollectionElement_toManyProxyGenerationList * p = (cCollectionElement_toManyProxyGenerationList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
   }else{
-    macroValidSharedObject (p, cCollectionElement_proxyPropertyGenerationList) ;
+    macroValidSharedObject (p, cCollectionElement_toManyProxyGenerationList) ;
     outOperand0 = p->mObject.mProperty_mProperty ;
   }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::method_first (GALGAS_proxyPropertyGeneration & outOperand0,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) const {
+void GALGAS_toManyProxyGenerationList::method_first (GALGAS_toManyProxyGeneration & outOperand0,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
   readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_proxyPropertyGenerationList * p = (cCollectionElement_proxyPropertyGenerationList *) attributes.ptr () ;
+  cCollectionElement_toManyProxyGenerationList * p = (cCollectionElement_toManyProxyGenerationList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
   }else{
-    macroValidSharedObject (p, cCollectionElement_proxyPropertyGenerationList) ;
+    macroValidSharedObject (p, cCollectionElement_toManyProxyGenerationList) ;
     outOperand0 = p->mObject.mProperty_mProperty ;
   }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::method_last (GALGAS_proxyPropertyGeneration & outOperand0,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const {
+void GALGAS_toManyProxyGenerationList::method_last (GALGAS_toManyProxyGeneration & outOperand0,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
   readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_proxyPropertyGenerationList * p = (cCollectionElement_proxyPropertyGenerationList *) attributes.ptr () ;
+  cCollectionElement_toManyProxyGenerationList * p = (cCollectionElement_toManyProxyGenerationList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
   }else{
-    macroValidSharedObject (p, cCollectionElement_proxyPropertyGenerationList) ;
+    macroValidSharedObject (p, cCollectionElement_toManyProxyGenerationList) ;
     outOperand0 = p->mObject.mProperty_mProperty ;
   }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::add_operation (const GALGAS_proxyPropertyGenerationList & inOperand,
-                                                                                      C_Compiler * /* inCompiler */
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_proxyPropertyGenerationList result ;
+GALGAS_toManyProxyGenerationList GALGAS_toManyProxyGenerationList::add_operation (const GALGAS_toManyProxyGenerationList & inOperand,
+                                                                                  C_Compiler * /* inCompiler */
+                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_toManyProxyGenerationList result ;
   if (isValid () && inOperand.isValid ()) {
     result = *this ;
     result.appendList (inOperand) ;
@@ -11957,52 +12092,52 @@ GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::add_opera
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::getter_subListWithRange (const GALGAS_range & inRange,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) const {
-  GALGAS_proxyPropertyGenerationList result = GALGAS_proxyPropertyGenerationList::constructor_emptyList (THERE) ;
+GALGAS_toManyProxyGenerationList GALGAS_toManyProxyGenerationList::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_toManyProxyGenerationList result = GALGAS_toManyProxyGenerationList::constructor_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::getter_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                                                C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) const {
-  GALGAS_proxyPropertyGenerationList result = GALGAS_proxyPropertyGenerationList::constructor_emptyList (THERE) ;
+GALGAS_toManyProxyGenerationList GALGAS_toManyProxyGenerationList::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_toManyProxyGenerationList result = GALGAS_toManyProxyGenerationList::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::getter_subListToIndex (const GALGAS_uint & inIndex,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const {
-  GALGAS_proxyPropertyGenerationList result = GALGAS_proxyPropertyGenerationList::constructor_emptyList (THERE) ;
+GALGAS_toManyProxyGenerationList GALGAS_toManyProxyGenerationList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_toManyProxyGenerationList result = GALGAS_toManyProxyGenerationList::constructor_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-void GALGAS_proxyPropertyGenerationList::plusAssign_operation (const GALGAS_proxyPropertyGenerationList inOperand,
-                                                               C_Compiler * /* inCompiler */
-                                                               COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_toManyProxyGenerationList::plusAssign_operation (const GALGAS_toManyProxyGenerationList inOperand,
+                                                             C_Compiler * /* inCompiler */
+                                                             COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGeneration GALGAS_proxyPropertyGenerationList::getter_mPropertyAtIndex (const GALGAS_uint & inIndex,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) const {
+GALGAS_toManyProxyGeneration GALGAS_toManyProxyGenerationList::getter_mPropertyAtIndex (const GALGAS_uint & inIndex,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_proxyPropertyGenerationList * p = (cCollectionElement_proxyPropertyGenerationList *) attributes.ptr () ;
-  GALGAS_proxyPropertyGeneration result ;
+  cCollectionElement_toManyProxyGenerationList * p = (cCollectionElement_toManyProxyGenerationList *) attributes.ptr () ;
+  GALGAS_toManyProxyGeneration result ;
   if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_proxyPropertyGenerationList) ;
+    macroValidSharedObject (p, cCollectionElement_toManyProxyGenerationList) ;
     result = p->mObject.mProperty_mProperty ;
   }
   return result ;
@@ -12012,26 +12147,26 @@ GALGAS_proxyPropertyGeneration GALGAS_proxyPropertyGenerationList::getter_mPrope
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-cEnumerator_proxyPropertyGenerationList::cEnumerator_proxyPropertyGenerationList (const GALGAS_proxyPropertyGenerationList & inEnumeratedObject,
-                                                                                  const typeEnumerationOrder inOrder) :
+cEnumerator_toManyProxyGenerationList::cEnumerator_toManyProxyGenerationList (const GALGAS_toManyProxyGenerationList & inEnumeratedObject,
+                                                                              const typeEnumerationOrder inOrder) :
 cGenericAbstractEnumerator (inOrder) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList_2D_element cEnumerator_proxyPropertyGenerationList::current (LOCATION_ARGS) const {
-  const cCollectionElement_proxyPropertyGenerationList * p = (const cCollectionElement_proxyPropertyGenerationList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_proxyPropertyGenerationList) ;
+GALGAS_toManyProxyGenerationList_2D_element cEnumerator_toManyProxyGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_toManyProxyGenerationList * p = (const cCollectionElement_toManyProxyGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_toManyProxyGenerationList) ;
   return p->mObject ;
 }
 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGeneration cEnumerator_proxyPropertyGenerationList::current_mProperty (LOCATION_ARGS) const {
-  const cCollectionElement_proxyPropertyGenerationList * p = (const cCollectionElement_proxyPropertyGenerationList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_proxyPropertyGenerationList) ;
+GALGAS_toManyProxyGeneration cEnumerator_toManyProxyGenerationList::current_mProperty (LOCATION_ARGS) const {
+  const cCollectionElement_toManyProxyGenerationList * p = (const cCollectionElement_toManyProxyGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_toManyProxyGenerationList) ;
   return p->mObject.mProperty_mProperty ;
 }
 
@@ -12040,42 +12175,660 @@ GALGAS_proxyPropertyGeneration cEnumerator_proxyPropertyGenerationList::current_
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @proxyPropertyGenerationList type                                          *
+//                                           @toManyProxyGenerationList type                                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_proxyPropertyGenerationList ("proxyPropertyGenerationList",
-                                                    NULL) ;
+kTypeDescriptor_GALGAS_toManyProxyGenerationList ("toManyProxyGenerationList",
+                                                  NULL) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-const C_galgas_type_descriptor * GALGAS_proxyPropertyGenerationList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_proxyPropertyGenerationList ;
+const C_galgas_type_descriptor * GALGAS_toManyProxyGenerationList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toManyProxyGenerationList ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-AC_GALGAS_root * GALGAS_proxyPropertyGenerationList::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_toManyProxyGenerationList::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_proxyPropertyGenerationList (*this)) ;
+    macroMyNew (result, GALGAS_toManyProxyGenerationList (*this)) ;
   }
   return result ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
-GALGAS_proxyPropertyGenerationList GALGAS_proxyPropertyGenerationList::extractObject (const GALGAS_object & inObject,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_proxyPropertyGenerationList result ;
-  const GALGAS_proxyPropertyGenerationList * p = (const GALGAS_proxyPropertyGenerationList *) inObject.embeddedObject () ;
+GALGAS_toManyProxyGenerationList GALGAS_toManyProxyGenerationList::extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_toManyProxyGenerationList result ;
+  const GALGAS_toManyProxyGenerationList * p = (const GALGAS_toManyProxyGenerationList *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_proxyPropertyGenerationList *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_toManyProxyGenerationList *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("proxyPropertyGenerationList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("toManyProxyGenerationList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cPtr_atomicProxyGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_atomicProxyGeneration * p = (const cPtr_atomicProxyGeneration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_atomicProxyGeneration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mPropertyName.objectCompare (p->mProperty_mPropertyName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mProxyKind.objectCompare (p->mProperty_mProxyKind) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mType.objectCompare (p->mProperty_mType) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mObservedRelationshipName.objectCompare (p->mProperty_mObservedRelationshipName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mObservedPropertyName.objectCompare (p->mProperty_mObservedPropertyName) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_atomicProxyGeneration::objectCompare (const GALGAS_atomicProxyGeneration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGeneration::GALGAS_atomicProxyGeneration (void) :
+GALGAS_propertyGeneration () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGeneration::GALGAS_atomicProxyGeneration (const cPtr_atomicProxyGeneration * inSourcePtr) :
+GALGAS_propertyGeneration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_atomicProxyGeneration) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGeneration GALGAS_atomicProxyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
+                                                                            const GALGAS_proxyKind & inAttribute_mProxyKind,
+                                                                            const GALGAS_typeKind & inAttribute_mType,
+                                                                            const GALGAS_string & inAttribute_mObservedRelationshipName,
+                                                                            const GALGAS_string & inAttribute_mObservedPropertyName
+                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_atomicProxyGeneration result ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mProxyKind.isValid () && inAttribute_mType.isValid () && inAttribute_mObservedRelationshipName.isValid () && inAttribute_mObservedPropertyName.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_atomicProxyGeneration (inAttribute_mPropertyName, inAttribute_mProxyKind, inAttribute_mType, inAttribute_mObservedRelationshipName, inAttribute_mObservedPropertyName COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_proxyKind GALGAS_atomicProxyGeneration::getter_mProxyKind (UNUSED_LOCATION_ARGS) const {
+  GALGAS_proxyKind result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_atomicProxyGeneration * p = (const cPtr_atomicProxyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicProxyGeneration) ;
+    result = p->mProperty_mProxyKind ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_proxyKind cPtr_atomicProxyGeneration::getter_mProxyKind (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mProxyKind ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_typeKind GALGAS_atomicProxyGeneration::getter_mType (UNUSED_LOCATION_ARGS) const {
+  GALGAS_typeKind result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_atomicProxyGeneration * p = (const cPtr_atomicProxyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicProxyGeneration) ;
+    result = p->mProperty_mType ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_typeKind cPtr_atomicProxyGeneration::getter_mType (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mType ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_atomicProxyGeneration::getter_mObservedRelationshipName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_atomicProxyGeneration * p = (const cPtr_atomicProxyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicProxyGeneration) ;
+    result = p->mProperty_mObservedRelationshipName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_atomicProxyGeneration::getter_mObservedRelationshipName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mObservedRelationshipName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_atomicProxyGeneration::getter_mObservedPropertyName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_atomicProxyGeneration * p = (const cPtr_atomicProxyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicProxyGeneration) ;
+    result = p->mProperty_mObservedPropertyName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cPtr_atomicProxyGeneration::getter_mObservedPropertyName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mObservedPropertyName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                   Pointer class for @atomicProxyGeneration class                                    *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_atomicProxyGeneration::cPtr_atomicProxyGeneration (const GALGAS_string & in_mPropertyName,
+                                                        const GALGAS_proxyKind & in_mProxyKind,
+                                                        const GALGAS_typeKind & in_mType,
+                                                        const GALGAS_string & in_mObservedRelationshipName,
+                                                        const GALGAS_string & in_mObservedPropertyName
+                                                        COMMA_LOCATION_ARGS) :
+cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
+mProperty_mProxyKind (in_mProxyKind),
+mProperty_mType (in_mType),
+mProperty_mObservedRelationshipName (in_mObservedRelationshipName),
+mProperty_mObservedPropertyName (in_mObservedPropertyName) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_atomicProxyGeneration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_atomicProxyGeneration ;
+}
+
+void cPtr_atomicProxyGeneration::description (C_String & ioString,
+                                              const int32_t inIndentation) const {
+  ioString << "[@atomicProxyGeneration:" ;
+  mProperty_mPropertyName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mProxyKind.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mType.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mObservedRelationshipName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mObservedPropertyName.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_atomicProxyGeneration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_atomicProxyGeneration (mProperty_mPropertyName, mProperty_mProxyKind, mProperty_mType, mProperty_mObservedRelationshipName, mProperty_mObservedPropertyName COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                             @atomicProxyGeneration type                                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_atomicProxyGeneration ("atomicProxyGeneration",
+                                              & kTypeDescriptor_GALGAS_propertyGeneration) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_atomicProxyGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_atomicProxyGeneration ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_atomicProxyGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_atomicProxyGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGeneration GALGAS_atomicProxyGeneration::extractObject (const GALGAS_object & inObject,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_atomicProxyGeneration result ;
+  const GALGAS_atomicProxyGeneration * p = (const GALGAS_atomicProxyGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_atomicProxyGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("atomicProxyGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                               Class for element of '@atomicProxyGenerationList' list                                *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cCollectionElement_atomicProxyGenerationList : public cCollectionElement {
+  public : GALGAS_atomicProxyGenerationList_2D_element mObject ;
+
+//--- Constructors
+  public : cCollectionElement_atomicProxyGenerationList (const GALGAS_atomicProxyGeneration & in_mProperty
+                                                         COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_atomicProxyGenerationList (const GALGAS_atomicProxyGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_atomicProxyGenerationList::cCollectionElement_atomicProxyGenerationList (const GALGAS_atomicProxyGeneration & in_mProperty
+                                                                                            COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mProperty) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_atomicProxyGenerationList::cCollectionElement_atomicProxyGenerationList (const GALGAS_atomicProxyGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mProperty) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool cCollectionElement_atomicProxyGenerationList::isValid (void) const {
+  return mObject.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement * cCollectionElement_atomicProxyGenerationList::copy (void) {
+  cCollectionElement * result = NULL ;
+  macroMyNew (result, cCollectionElement_atomicProxyGenerationList (mObject.mProperty_mProperty COMMA_HERE)) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cCollectionElement_atomicProxyGenerationList::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mProperty" ":" ;
+  mObject.mProperty_mProperty.description (ioString, inIndentation) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cCollectionElement_atomicProxyGenerationList::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_atomicProxyGenerationList * operand = (cCollectionElement_atomicProxyGenerationList *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_atomicProxyGenerationList) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList::GALGAS_atomicProxyGenerationList (void) :
+AC_GALGAS_list () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList::GALGAS_atomicProxyGenerationList (const capCollectionElementArray & inSharedArray) :
+AC_GALGAS_list (inSharedArray) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList GALGAS_atomicProxyGenerationList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+  return GALGAS_atomicProxyGenerationList  (capCollectionElementArray ()) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList GALGAS_atomicProxyGenerationList::constructor_listWithValue (const GALGAS_atomicProxyGeneration & inOperand0
+                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_atomicProxyGenerationList result ;
+  if (inOperand0.isValid ()) {
+    result = GALGAS_atomicProxyGenerationList (capCollectionElementArray ()) ;
+    capCollectionElement attributes ;
+    GALGAS_atomicProxyGenerationList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
+    result.appendObject (attributes) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                                  const GALGAS_atomicProxyGeneration & in_mProperty
+                                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement_atomicProxyGenerationList * p = NULL ;
+  macroMyNew (p, cCollectionElement_atomicProxyGenerationList (in_mProperty COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::addAssign_operation (const GALGAS_atomicProxyGeneration & inOperand0
+                                                            COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand0.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_atomicProxyGenerationList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::setter_append (GALGAS_atomicProxyGenerationList_2D_element inElement,
+                                                      C_Compiler * /* inCompiler */
+                                                      COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_atomicProxyGenerationList (inElement COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::setter_insertAtIndex (const GALGAS_atomicProxyGeneration inOperand0,
+                                                             const GALGAS_uint inInsertionIndex,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_atomicProxyGenerationList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::setter_removeAtIndex (GALGAS_atomicProxyGeneration & outOperand0,
+                                                             const GALGAS_uint inRemoveIndex,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_atomicProxyGenerationList * p = (cCollectionElement_atomicProxyGenerationList *) attributes.ptr () ;
+    if (NULL == p) {
+      outOperand0.drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_atomicProxyGenerationList) ;
+      outOperand0 = p->mObject.mProperty_mProperty ;
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::setter_popFirst (GALGAS_atomicProxyGeneration & outOperand0,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_atomicProxyGenerationList * p = (cCollectionElement_atomicProxyGenerationList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_atomicProxyGenerationList) ;
+    outOperand0 = p->mObject.mProperty_mProperty ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::setter_popLast (GALGAS_atomicProxyGeneration & outOperand0,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_atomicProxyGenerationList * p = (cCollectionElement_atomicProxyGenerationList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_atomicProxyGenerationList) ;
+    outOperand0 = p->mObject.mProperty_mProperty ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::method_first (GALGAS_atomicProxyGeneration & outOperand0,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_atomicProxyGenerationList * p = (cCollectionElement_atomicProxyGenerationList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_atomicProxyGenerationList) ;
+    outOperand0 = p->mObject.mProperty_mProperty ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::method_last (GALGAS_atomicProxyGeneration & outOperand0,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_atomicProxyGenerationList * p = (cCollectionElement_atomicProxyGenerationList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_atomicProxyGenerationList) ;
+    outOperand0 = p->mObject.mProperty_mProperty ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList GALGAS_atomicProxyGenerationList::add_operation (const GALGAS_atomicProxyGenerationList & inOperand,
+                                                                                  C_Compiler * /* inCompiler */
+                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_atomicProxyGenerationList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList GALGAS_atomicProxyGenerationList::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_atomicProxyGenerationList result = GALGAS_atomicProxyGenerationList::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList GALGAS_atomicProxyGenerationList::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_atomicProxyGenerationList result = GALGAS_atomicProxyGenerationList::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList GALGAS_atomicProxyGenerationList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_atomicProxyGenerationList result = GALGAS_atomicProxyGenerationList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_atomicProxyGenerationList::plusAssign_operation (const GALGAS_atomicProxyGenerationList inOperand,
+                                                             C_Compiler * /* inCompiler */
+                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGeneration GALGAS_atomicProxyGenerationList::getter_mPropertyAtIndex (const GALGAS_uint & inIndex,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_atomicProxyGenerationList * p = (cCollectionElement_atomicProxyGenerationList *) attributes.ptr () ;
+  GALGAS_atomicProxyGeneration result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_atomicProxyGenerationList) ;
+    result = p->mObject.mProperty_mProperty ;
+  }
+  return result ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumerator_atomicProxyGenerationList::cEnumerator_atomicProxyGenerationList (const GALGAS_atomicProxyGenerationList & inEnumeratedObject,
+                                                                              const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList_2D_element cEnumerator_atomicProxyGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_atomicProxyGenerationList * p = (const cCollectionElement_atomicProxyGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_atomicProxyGenerationList) ;
+  return p->mObject ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGeneration cEnumerator_atomicProxyGenerationList::current_mProperty (LOCATION_ARGS) const {
+  const cCollectionElement_atomicProxyGenerationList * p = (const cCollectionElement_atomicProxyGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_atomicProxyGenerationList) ;
+  return p->mObject.mProperty_mProperty ;
+}
+
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                           @atomicProxyGenerationList type                                           *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_atomicProxyGenerationList ("atomicProxyGenerationList",
+                                                  NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_atomicProxyGenerationList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_atomicProxyGenerationList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_atomicProxyGenerationList::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_atomicProxyGenerationList (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_atomicProxyGenerationList GALGAS_atomicProxyGenerationList::extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_atomicProxyGenerationList result ;
+  const GALGAS_atomicProxyGenerationList * p = (const GALGAS_atomicProxyGenerationList *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_atomicProxyGenerationList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("atomicProxyGenerationList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -12720,596 +13473,6 @@ GALGAS_atomicPropertyGenerationList GALGAS_atomicPropertyGenerationList::extract
       result = *p ;
     }else{
       inCompiler->castError ("atomicPropertyGenerationList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne::cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne (const GALGAS_lstring & inAssociatedValue0
-                                                                                                                                  COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0) {
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne::description (C_String & ioString,
-                                                                                   const int32_t inIndentation) const {
-  ioString << "(\n" ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString << ")" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * ptr = dynamic_cast<const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *> (inOperand) ;
-  macroValidPointer (ptr) ;
-  typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany::cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany (const GALGAS_lstring & inAssociatedValue0
-                                                                                                                                    COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0) {
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany::description (C_String & ioString,
-                                                                                    const int32_t inIndentation) const {
-  ioString << "(\n" ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString << ")" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany * ptr = dynamic_cast<const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany *> (inOperand) ;
-  macroValidPointer (ptr) ;
-  typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_toOneOppositeRelationship::GALGAS_toOneOppositeRelationship (void) :
-mAssociatedValues (),
-mEnum (kNotBuilt) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_toOneOppositeRelationship GALGAS_toOneOppositeRelationship::constructor_none (UNUSED_LOCATION_ARGS) {
-  GALGAS_toOneOppositeRelationship result ;
-  result.mEnum = kEnum_none ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_toOneOppositeRelationship GALGAS_toOneOppositeRelationship::constructor_oppositeIsToOne (const GALGAS_lstring & inAssociatedValue0
-                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_toOneOppositeRelationship result ;
-  if (inAssociatedValue0.isValid ()) {
-    result.mEnum = kEnum_oppositeIsToOne ;
-    cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne (inAssociatedValue0 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_toOneOppositeRelationship GALGAS_toOneOppositeRelationship::constructor_oppositeIsToMany (const GALGAS_lstring & inAssociatedValue0
-                                                                                                 COMMA_LOCATION_ARGS) {
-  GALGAS_toOneOppositeRelationship result ;
-  if (inAssociatedValue0.isValid ()) {
-    result.mEnum = kEnum_oppositeIsToMany ;
-    cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany (inAssociatedValue0 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_toOneOppositeRelationship::method_oppositeIsToOne (GALGAS_lstring & outAssociatedValue0,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_oppositeIsToOne) {
-    outAssociatedValue0.drop () ;
-    C_String s ;
-    s << "method @toOneOppositeRelationship oppositeIsToOne invoked with an invalid enum value" ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * ptr = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_toOneOppositeRelationship::method_oppositeIsToMany (GALGAS_lstring & outAssociatedValue0,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_oppositeIsToMany) {
-    outAssociatedValue0.drop () ;
-    C_String s ;
-    s << "method @toOneOppositeRelationship oppositeIsToMany invoked with an invalid enum value" ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany * ptr = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static const char * gEnumNameArrayFor_toOneOppositeRelationship [4] = {
-  "(not built)",
-  "none",
-  "oppositeIsToOne",
-  "oppositeIsToMany"
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_toOneOppositeRelationship::getter_isNone (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_none == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_toOneOppositeRelationship::getter_isOppositeIsToOne (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_oppositeIsToOne == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_toOneOppositeRelationship::getter_isOppositeIsToMany (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_oppositeIsToMany == mEnum) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_toOneOppositeRelationship::description (C_String & ioString,
-                                                    const int32_t inIndentation) const {
-  ioString << "<enum @toOneOppositeRelationship: " << gEnumNameArrayFor_toOneOppositeRelationship [mEnum] ;
-  mAssociatedValues.description (ioString, inIndentation) ;
-  ioString << ">" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult GALGAS_toOneOppositeRelationship::objectCompare (const GALGAS_toOneOppositeRelationship & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
-    }
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                           @toOneOppositeRelationship type                                           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_toOneOppositeRelationship ("toOneOppositeRelationship",
-                                                  NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_toOneOppositeRelationship::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_toOneOppositeRelationship ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_toOneOppositeRelationship::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_toOneOppositeRelationship (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_toOneOppositeRelationship GALGAS_toOneOppositeRelationship::extractObject (const GALGAS_object & inObject,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_toOneOppositeRelationship result ;
-  const GALGAS_toOneOppositeRelationship * p = (const GALGAS_toOneOppositeRelationship *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toOneOppositeRelationship *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("toOneOppositeRelationship", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement_propertyMap::cMapElement_propertyMap (const GALGAS_lstring & inKey,
-                                                  const GALGAS_propertyKind & in_mKind,
-                                                  const GALGAS_actionMap & in_mActionMap,
-                                                  const GALGAS_bool & in_mIsOverriding
-                                                  COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mProperty_mKind (in_mKind),
-mProperty_mActionMap (in_mActionMap),
-mProperty_mIsOverriding (in_mIsOverriding) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-bool cMapElement_propertyMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mKind.isValid () && mProperty_mActionMap.isValid () && mProperty_mIsOverriding.isValid () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement * cMapElement_propertyMap::copy (void) {
-  cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_propertyMap (mProperty_lkey, mProperty_mKind, mProperty_mActionMap, mProperty_mIsOverriding COMMA_HERE)) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cMapElement_propertyMap::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mKind" ":" ;
-  mProperty_mKind.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mActionMap" ":" ;
-  mProperty_mActionMap.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mIsOverriding" ":" ;
-  mProperty_mIsOverriding.description (ioString, inIndentation) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cMapElement_propertyMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_propertyMap * operand = (cMapElement_propertyMap *) inOperand ;
-  typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mKind.objectCompare (operand->mProperty_mKind) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mActionMap.objectCompare (operand->mProperty_mActionMap) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mIsOverriding.objectCompare (operand->mProperty_mIsOverriding) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap::GALGAS_propertyMap (void) :
-AC_GALGAS_map () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap::GALGAS_propertyMap (const GALGAS_propertyMap & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap & GALGAS_propertyMap::operator = (const GALGAS_propertyMap & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap GALGAS_propertyMap::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_propertyMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap GALGAS_propertyMap::constructor_mapWithMapToOverride (const GALGAS_propertyMap & inMapToOverride
-                                                                         COMMA_LOCATION_ARGS) {
-  GALGAS_propertyMap result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap GALGAS_propertyMap::getter_overriddenMap (C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_propertyMap result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyMap::addAssign_operation (const GALGAS_lstring & inKey,
-                                              const GALGAS_propertyKind & inArgument0,
-                                              const GALGAS_actionMap & inArgument1,
-                                              const GALGAS_bool & inArgument2,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
-  cMapElement_propertyMap * p = NULL ;
-  macroMyNew (p, cMapElement_propertyMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@propertyMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyMap::setter_insertKey (GALGAS_lstring inKey,
-                                           GALGAS_propertyKind inArgument0,
-                                           GALGAS_actionMap inArgument1,
-                                           GALGAS_bool inArgument2,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) {
-  cMapElement_propertyMap * p = NULL ;
-  macroMyNew (p, cMapElement_propertyMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' property is already declared in %L" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const char * kSearchErrorMessage_propertyMap_searchKey = "there is no '%K' property" ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyMap::method_searchKey (GALGAS_lstring inKey,
-                                           GALGAS_propertyKind & outArgument0,
-                                           GALGAS_actionMap & outArgument1,
-                                           GALGAS_bool & outArgument2,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) const {
-  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) performSearch (inKey,
-                                                                                       inCompiler,
-                                                                                       kSearchErrorMessage_propertyMap_searchKey
-                                                                                       COMMA_THERE) ;
-  if (NULL == p) {
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_propertyMap) ;
-    outArgument0 = p->mProperty_mKind ;
-    outArgument1 = p->mProperty_mActionMap ;
-    outArgument2 = p->mProperty_mIsOverriding ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyKind GALGAS_propertyMap::getter_mKindForKey (const GALGAS_string & inKey,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) attributes ;
-  GALGAS_propertyKind result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_propertyMap) ;
-    result = p->mProperty_mKind ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_actionMap GALGAS_propertyMap::getter_mActionMapForKey (const GALGAS_string & inKey,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) attributes ;
-  GALGAS_actionMap result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_propertyMap) ;
-    result = p->mProperty_mActionMap ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_propertyMap::getter_mIsOverridingForKey (const GALGAS_string & inKey,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) attributes ;
-  GALGAS_bool result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_propertyMap) ;
-    result = p->mProperty_mIsOverriding ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyMap::setter_setMKindForKey (GALGAS_propertyKind inAttributeValue,
-                                                GALGAS_string inKey,
-                                                C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_propertyMap * p = (cMapElement_propertyMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_propertyMap) ;
-    p->mProperty_mKind = inAttributeValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyMap::setter_setMActionMapForKey (GALGAS_actionMap inAttributeValue,
-                                                     GALGAS_string inKey,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_propertyMap * p = (cMapElement_propertyMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_propertyMap) ;
-    p->mProperty_mActionMap = inAttributeValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_propertyMap::setter_setMIsOverridingForKey (GALGAS_bool inAttributeValue,
-                                                        GALGAS_string inKey,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_propertyMap * p = (cMapElement_propertyMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_propertyMap) ;
-    p->mProperty_mIsOverriding = inAttributeValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement_propertyMap * GALGAS_propertyMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                 const GALGAS_string & inKey
-                                                                                 COMMA_LOCATION_ARGS) {
-  cMapElement_propertyMap * result = (cMapElement_propertyMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_propertyMap) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumerator_propertyMap::cEnumerator_propertyMap (const GALGAS_propertyMap & inEnumeratedObject,
-                                                  const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap_2D_element cEnumerator_propertyMap::current (LOCATION_ARGS) const {
-  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_propertyMap) ;
-  return GALGAS_propertyMap_2D_element (p->mProperty_lkey, p->mProperty_mKind, p->mProperty_mActionMap, p->mProperty_mIsOverriding) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cEnumerator_propertyMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mProperty_lkey ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyKind cEnumerator_propertyMap::current_mKind (LOCATION_ARGS) const {
-  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_propertyMap) ;
-  return p->mProperty_mKind ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_actionMap cEnumerator_propertyMap::current_mActionMap (LOCATION_ARGS) const {
-  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_propertyMap) ;
-  return p->mProperty_mActionMap ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool cEnumerator_propertyMap::current_mIsOverriding (LOCATION_ARGS) const {
-  const cMapElement_propertyMap * p = (const cMapElement_propertyMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_propertyMap) ;
-  return p->mProperty_mIsOverriding ;
-}
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                                  @propertyMap type                                                  *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_propertyMap ("propertyMap",
-                                    NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_propertyMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_propertyMap ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_propertyMap::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_propertyMap (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap GALGAS_propertyMap::extractObject (const GALGAS_object & inObject,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_propertyMap result ;
-  const GALGAS_propertyMap * p = (const GALGAS_propertyMap *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_propertyMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("propertyMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
