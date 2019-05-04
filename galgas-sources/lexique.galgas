@@ -40,7 +40,6 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "mainxib",
   "no",
   "none",
-  "objectController",
   "one",
   "outlet",
   "override",

@@ -225,8 +225,6 @@ override method @transientDeclarationAST thirdAnalysisPhase
     case toOne (4*) :
     case arrayController (2*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
-    case objectController (2*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
     case selectionController (*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
     end

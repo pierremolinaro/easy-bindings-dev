@@ -91,8 +91,6 @@ getter @propertyKind typeName -> @string {
     result = typeName
   case arrayController (typeName *) :
     result = typeName
-  case objectController (typeName *) :
-    result = typeName
   case selectionController (typeName) :
     result = typeName
   end
@@ -109,8 +107,6 @@ getter @propertyKind swiftTypeName -> @string {
   case toOne (typeName 3*) :
     result = typeName
   case arrayController (typeName *) :
-    result = typeName
-  case objectController (typeName *) :
     result = typeName
   case selectionController (typeName) :
     result = typeName
@@ -146,7 +142,6 @@ getter @propertyKind isTransient -> @bool {
   case toMany (* accessibility 2*) : result = [accessibility isTransient]
   case toOne (* accessibility 2*) : result = [accessibility isTransient]
   case arrayController (2*) : result = false
-  case objectController (2*) : result = false
   case selectionController (*) : result = false
   end
 }
@@ -159,7 +154,6 @@ getter @propertyKind isComparable -> @bool {
   case toMany (4*) : result = false
   case toOne (4*) : result = false
   case arrayController (2*) : result = false
-  case objectController (2*) : result = false
   case selectionController (*) : result = false
   end
 }
@@ -172,7 +166,6 @@ getter @propertyKind isEntityType -> @bool {
   case toMany (4*) : result = true
   case toOne (4*) : result = true
   case arrayController (2*) : result = false
-  case objectController (2*) : result = false
   case selectionController (*) : result = false
   end
 }
@@ -185,7 +178,6 @@ getter @propertyKind isEnumType -> @bool {
   case toMany (4*) : result = false
   case toOne (4*) : result = false
   case arrayController (2*) : result = false
-  case objectController (2*) : result = false
   case selectionController (*) : result = false
   end
 }

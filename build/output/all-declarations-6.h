@@ -164,39 +164,6 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (cla
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Filewrapper 'objectControllerGenerationTemplate'                                   *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const cDirectoryWrapper gWrapperDirectory_0_objectControllerGenerationTemplate ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//           Filewrapper template 'objectControllerGenerationTemplate objectControllerImplementationInSwift'           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string filewrapperTemplate_objectControllerGenerationTemplate_objectControllerImplementationInSwift (class C_Compiler * inCompiler,
-                                                                                                            const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                                            const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                                            const class GALGAS_string & in_MODEL_5F_STRING,
-                                                                                                            const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
-                                                                                                            const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                            const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC,
-                                                                                                            const class GALGAS_propertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
-                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                                   Filewrapper 'arrayControllerGenerationTemplate'                                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

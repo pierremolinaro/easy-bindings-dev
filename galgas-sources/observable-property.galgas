@@ -383,8 +383,6 @@ method @observablePropertyAST analyzeObservableProperty
       outKind = .property {!type: .boolType !accessibility: .transient {!isAbstract: false}}
     case arrayController (2*) :
       error relationshipName : "an array controller does not accept 'none'" : outKind
-    case objectController (2*) :
-      error relationshipName : "an object controller does not accept 'none'" : outKind
     case selectionController (*) :
       error relationshipName : "a selection controller does not accept 'none'" : outKind
     end
@@ -416,8 +414,6 @@ method @observablePropertyAST analyzeObservableProperty
       end
     case selectionController (*) :
       error propertyName : "a selection controller does not accept any option" : outKind
-    case objectController (2*) :
-      error propertyName : "an object controller does not accept any option" : outKind
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) : # root.xxx.all.xxx
@@ -440,8 +436,6 @@ method @observablePropertyAST analyzeObservableProperty
       error relationshipName : "a toOne property does not accept 'all'" : outKind
     case arrayController (2*) :
       error relationshipName : "an array controller does not accept 'all'" : outKind
-    case objectController (2*) :
-      error relationshipName : "an object controller does not accept 'all'" : outKind
     case selectionController (*) :
       error relationshipName : "an array controller does not accept 'all'" : outKind
     end
@@ -461,8 +455,6 @@ method @observablePropertyAST analyzeObservableProperty
       outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_alloc_index_protocol?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
-    case objectController (2*) :
-      error propertyName : "an object controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case selectionController (*) :
       error propertyName : "a selection controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     end
@@ -481,8 +473,6 @@ method @observablePropertyAST analyzeObservableProperty
       else
         error optionName : "unknown option (accepted : 'count')" : outKind
       end
-    case objectController (2*) :
-      error propertyName : "an object controller accepts no option" : outKind
     case toOne (4*) :
       error propertyName : "a toOne property accepts no option" : outKind
     case arrayController (2*) :
@@ -517,8 +507,6 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a toOne property accepts no option" : outKind
     case arrayController (2*) :
       error propertyName : "an array controller accepts no option" : outKind
-    case objectController (2*) :
-      error propertyName : "an object controller accepts no option" : outKind
     case selectionController (*) :
       error propertyName : "a selection controller accepts no option" : outKind
     end
@@ -544,8 +532,6 @@ method @observablePropertyAST analyzeObservableProperty
       ]
     case arrayController (2*) :
       error propertyName : "an array controller does not accept 'one'" : outKind
-    case objectController (2*) :
-      error propertyName : "an object controller does not accept 'one'" : outKind
     case selectionController (*) :
       error propertyName : "a selection controller does not accept 'one'" : outKind
     end
@@ -565,8 +551,6 @@ method @observablePropertyAST analyzeObservableProperty
       outKind = .property {!type: .boolType !accessibility: .transient {!isAbstract: false}}
     case arrayController (2*) :
       error propertyName : "an array controller does not accept 'none'" : outKind
-    case objectController (2*) :
-      error propertyName : "an object controller does not accept 'none'" : outKind
     case selectionController (*) :
       error propertyName : "a selection controller does not accept 'none'" : outKind
     end
@@ -603,8 +587,6 @@ method @observablePropertyAST analyzeObservableProperty
       end
     case selectionController (*) :
       error propertyName : "a selection controller does not accept any option" : outKind
-    case objectController (2*) :
-      error propertyName : "an object controller does not accept any option" : outKind
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case selfControllerProperty (@lstring controllerName @lstring propertyName) :
@@ -620,8 +602,6 @@ method @observablePropertyAST analyzeObservableProperty
       error propertyName : "a toMany property does not accept any option" : outKind
     case toOne (4*) :
       error propertyName : "a toOne property does not accept any option" : outKind
-    case objectController (2*) :
-      error propertyName : "an object controller does not accept any option" : outKind
     case arrayController (typeName graphic) :
       if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
         outKind = .toMany {
@@ -660,8 +640,6 @@ method @observablePropertyAST analyzeObservableProperty
     [inBoundModelPropertyMap searchKey !controllerName ?let @propertyKind propertyKind ?2*]
     @string controllerTypeName = ""
     switch propertyKind
-    case objectController (typeName *) :
-      controllerTypeName = typeName
     case arrayController (2*) :
       error controllerName : "an array controller does not support 'one'"
     case selectionController (*) :
@@ -702,10 +680,6 @@ method @observablePropertyAST analyzeObservableProperty
         error propertyName
           : "a toOne property does not accept any option"
           : outKind, outSwiftTypeStringForTransientFunctionArgument
-      case objectController (2*) :
-        error propertyName
-          : "an object controller does not accept any option"
-          : outKind, outSwiftTypeStringForTransientFunctionArgument
       case arrayController (typeName *) :
          [inSemanticContext.mClassMap searchKey !
           .new {!typeName !controllerName.location}
@@ -741,8 +715,6 @@ method @observablePropertyAST analyzeObservableProperty
       outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_alloc_index_protocol?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
-    case objectController (2*) :
-      error propertyName : "an object controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case selectionController (*) :
       error propertyName : "a selection controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     end

@@ -1484,7 +1484,6 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
     kEnum_toMany,
     kEnum_toOne,
     kEnum_arrayController,
-    kEnum_objectController,
     kEnum_selectionController
   } enumeration ;
   
@@ -1515,10 +1514,6 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
   public : static class GALGAS_propertyKind constructor_arrayController (const class GALGAS_lstring & inOperand0,
                                                                          const class GALGAS_bool & inOperand1
                                                                          COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_propertyKind constructor_objectController (const class GALGAS_lstring & inOperand0,
-                                                                          const class GALGAS_bool & inOperand1
-                                                                          COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_propertyKind constructor_property (const class GALGAS_typeKind & inOperand0,
                                                                   const class GALGAS_propertyAccessibility & inOperand1
@@ -1553,11 +1548,6 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_objectController (class GALGAS_lstring & outArgument0,
-                                                          class GALGAS_bool & outArgument1,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG void method_property (class GALGAS_typeKind & outArgument0,
                                                   class GALGAS_propertyAccessibility & outArgument1,
                                                   C_Compiler * inCompiler
@@ -1585,8 +1575,6 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isArrayController (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isObjectController (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isProperty (LOCATION_ARGS) const ;
 
@@ -1689,24 +1677,6 @@ class cEnumAssociatedValues_propertyKind_arrayController : public cEnumAssociate
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_propertyKind_arrayController (void) {}
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumAssociatedValues_propertyKind_objectController : public cEnumAssociatedValues {
-  public : const GALGAS_lstring mAssociatedValue0 ;
-  public : const GALGAS_bool mAssociatedValue1 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_propertyKind_objectController (const GALGAS_lstring & inAssociatedValue0,
-                                                                const GALGAS_bool & inAssociatedValue1
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_propertyKind_objectController (void) {}
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

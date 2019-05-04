@@ -237,8 +237,6 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         error mRootEntityName : "a toMany relationship is required here"
       case selectionController (*) :
         error mRootEntityName : "a toMany relationship is required here"
-      case objectController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
       end
     else
       [mPropertyMap searchKey !mToManyPropertyName ?let classKind ?2*]
@@ -262,8 +260,6 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
       case arrayController (2*) :
         error mRootEntityName : "a toMany relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a toMany relationship is required here"
-      case objectController (2*) :
         error mRootEntityName : "a toMany relationship is required here"
       end
     end
@@ -345,10 +341,6 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   case arrayController (2*) :
-    error mToManyPropertyName
-      : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
-  case objectController (2*) :
     error mToManyPropertyName
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName

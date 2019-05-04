@@ -12,7 +12,6 @@ class @arrayControllerDeclarationAST : @abstractDeclarationAST {
 
 enum @arrayControllerBoundModelAST {
   case rootToManyRelationship (@lstring rootEntityName)
-  case selfObjectControllerToManyRelationship (@lstring objectControllerName)
   case selfToManyRelationship
 }
 
@@ -29,8 +28,6 @@ override method @arrayControllerDeclarationAST enterInPrecedenceGraph ?!@declara
     end
   case selfToManyRelationship :
     [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
-  case selfObjectControllerToManyRelationship (@lstring objectControllerName) :
-    [!?ioGraph addEdge !node !.new {!mClassName.string + " " + objectControllerName !mToManyPropertyName.location}]
   end
 }
 
@@ -59,9 +56,6 @@ syntax extension easyBindings_syntax {
     @arrayControllerBoundModelAST model
     $:$
     select
-      $controllerName$ ?let @lstring objectControllerName
-      model = .selfObjectControllerToManyRelationship {!objectControllerName: objectControllerName}
-    or
       $root$
       model = .rootToManyRelationship {!rootEntityName: inRootEntity}
     or
@@ -118,8 +112,6 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         error rootEntityName : "a toMany relationship is required here"
       case arrayController (2*) :
         error rootEntityName : "a toMany relationship is required here"
-      case objectController (2*) :
-        error rootEntityName : "a toMany relationship is required here"
       case selectionController (*) :
         error rootEntityName : "a toMany relationship is required here"
       end
@@ -144,52 +136,8 @@ override method @arrayControllerDeclarationAST firstAnalysisPhase
         error mToManyPropertyName : "a toMany relationship is required here"
       case arrayController (2*) :
         error mToManyPropertyName : "a toMany relationship is required here"
-      case objectController (2*) :
-        error mToManyPropertyName : "a toMany relationship is required here"
       case selectionController (*) :
         error mToManyPropertyName : "a toMany relationship is required here"
-      end
-    case selfObjectControllerToManyRelationship (@lstring objectControllerName) :
-      [mPropertyMap searchKey !objectControllerName ?let classKind ?2*]
-      switch classKind
-      case property (2*) :
-        error mToManyPropertyName : "an object controller is required here"
-      case toMany (4*) :
-        error mToManyPropertyName : "an object controller is required here"
-      case toOne (4*) :
-        error mToManyPropertyName : "an object controller is required here"
-      case arrayController (2*) :
-        error mToManyPropertyName : "an object controller is required here"
-      case objectController (@lstring typeName2 *) :
-        [ioSemanticContext.mClassMap searchKey !typeName2 ?* ?let rootProperties ?2*]
-        [rootProperties searchKey !mToManyPropertyName ?let classKind ?2*]
-        switch classKind
-        case property (2*) :
-          error mToManyPropertyName : "a toMany relationship is required here"
-        case toMany (typeName * graphic *) :
-          let kind = @propertyKind.arrayController {
-            !typeName: typeName
-            !graphic: graphic
-          }
-          [!?mPropertyMap insertKey !mControllerName !kind !controllerActions !false]
-        #--- Code Generation
-          mPropertyGenerationList += !@arrayControllerPropertyGeneration.new {
-            !mControllerName.string
-            !objectControllerName.string + "." + mToManyPropertyName
-            !mClassName
-          }
-        case toOne (4*) :
-          error mToManyPropertyName : "a toMany relationship is required here"
-        case arrayController (2*) :
-          error mToManyPropertyName : "a toMany relationship is required here"
-        case objectController (2*) :
-          error mToManyPropertyName : "a toMany relationship is required here"
-        case selectionController (*) :
-          error mToManyPropertyName : "a toMany relationship is required here"
-        end
-
-      case selectionController (*) :
-        error mToManyPropertyName : "an object controller is required here"
       end
     end
   end
@@ -219,25 +167,6 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
        ?boundModelPropertyMap 
        ?2*
      ]  
-  case selfObjectControllerToManyRelationship (@lstring objectControllerName) :
-    [ioSemanticContext.mClassMap searchKey
-       !mClassName
-       ?*
-       ?let propertyMap 
-       ?2*
-    ]  
-    [propertyMap searchKey !objectControllerName ?let boundModelClassKind ?2*]
-    if [boundModelClassKind isObjectController] then
-      [boundModelClassKind objectController ?typeName: let objectControllerTypeName ?1*]
-      [ioSemanticContext.mClassMap searchKey
-       !objectControllerTypeName
-       ?*
-       ?boundModelPropertyMap 
-       ?2*
-      ]  
-    else
-      error objectControllerName : "an object controller is required here" : boundModelPropertyMap
-    end
   end
   [boundModelPropertyMap searchKey
      !mToManyPropertyName
@@ -268,10 +197,6 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   case arrayController (2*) :
-    error mToManyPropertyName
-      : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
-  case objectController (2*) :
     error mToManyPropertyName
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName

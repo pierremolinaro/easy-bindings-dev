@@ -124,8 +124,6 @@ override method @proxyDeclarationAST secondAnalysisPhase
     switch relationshipKind
     case arrayController (2*) :
       error mToOneRelationshipName : "a toOne relationship is required here"
-    case objectController (2*) :
-      error mToOneRelationshipName : "a toOne relationship is required here"
     case selectionController (*) :
       error mToOneRelationshipName : "a toOne relationship is required here"
     case property (2*) :
@@ -167,13 +165,6 @@ override method @proxyDeclarationAST secondAnalysisPhase
           error mPropertyName : "a toMany property is required here"
         end
       case arrayController (2*) :
-        switch mProxyKind
-        case propertyProxy :
-          error mPropertyName : "an atomic property is required here"
-        case toManyProxy :
-          error mPropertyName : "a toMany property is required here"
-        end
-      case objectController (2*) :
         switch mProxyKind
         case propertyProxy :
           error mPropertyName : "an atomic property is required here"

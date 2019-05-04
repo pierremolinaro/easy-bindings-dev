@@ -57,7 +57,6 @@ private proc graphvizRootEntityAnalysis
         case transient (*) :
         end
       case arrayController (2*) :
-      case objectController (2*) :
       case selectionController (*) :
       case toMany (@lstring typeName @propertyAccessibility accessibility * optionKind) :
        if [accessibility isStored] then

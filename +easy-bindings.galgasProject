@@ -46,7 +46,6 @@ project (0:0:1) -> "eb" {
   "galgas-sources/regular-binding.galgas"
 
 #--- Controllers
-  "galgas-sources/object-controller.galgas"
   "galgas-sources/array-controller.galgas"
   "galgas-sources/table-view-controller.galgas"
   "galgas-sources/selection-controller.galgas"

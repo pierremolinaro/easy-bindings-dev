@@ -246,15 +246,11 @@ proc analyzeOutlets
               error controllerName : "the bound model should be a toMany property"
             case arrayController (2*) :
               error controllerName : "the bound model should be a toMany property"
-            case objectController (2*) :
-              error controllerName : "the bound model should be a toMany property"
             case selectionController (*) :
               error controllerName : "the bound model should be a toMany property"
             end
          end
         case selectionController (*) :
-          error controllerName : "the bound model should be an array controller"
-        case objectController (2*) :
           error controllerName : "the bound model should be an array controller"
         end
         outEBViewGraphicControllerBindingGenerationList += !outlet_mOutletName.string !controllerName.string
@@ -398,8 +394,6 @@ proc analyzeRegularBinding
         error [mObservableProperty location]:"a toOne property cannot be bound"
       case arrayController (2*) :
         error [mObservableProperty location]:"an array controller cannot be bound"
-      case objectController (2*) :
-        error [mObservableProperty location]:"an object controller cannot be bound"
       case selectionController (*) :
         error [mObservableProperty location]:"a selection controller cannot be bound"
       end

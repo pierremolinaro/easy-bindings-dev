@@ -8,113 +8,6 @@
 #include "all-declarations-4.h"
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Object comparison                                                                                                 *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-
-typeComparisonResult GALGAS_abstractDeclarationAST::objectCompare (const GALGAS_abstractDeclarationAST & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_abstractDeclarationAST::GALGAS_abstractDeclarationAST (void) :
-AC_GALGAS_class (false) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_abstractDeclarationAST::GALGAS_abstractDeclarationAST (const cPtr_abstractDeclarationAST * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr, false) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_abstractDeclarationAST) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_abstractDeclarationAST::getter_mClassName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_abstractDeclarationAST * p = (const cPtr_abstractDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_abstractDeclarationAST) ;
-    result = p->mProperty_mClassName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_abstractDeclarationAST::getter_mClassName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mClassName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                   Pointer class for @abstractDeclarationAST class                                   *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cPtr_abstractDeclarationAST::cPtr_abstractDeclarationAST (const GALGAS_lstring & in_mClassName
-                                                          COMMA_LOCATION_ARGS) :
-acPtr_class (THERE),
-mProperty_mClassName (in_mClassName) {
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                            @abstractDeclarationAST type                                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_abstractDeclarationAST ("abstractDeclarationAST",
-                                               NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_abstractDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_abstractDeclarationAST ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_abstractDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_abstractDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_abstractDeclarationAST GALGAS_abstractDeclarationAST::extractObject (const GALGAS_object & inObject,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_abstractDeclarationAST result ;
-  const GALGAS_abstractDeclarationAST * p = (const GALGAS_abstractDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_abstractDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("abstractDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
 //                     Abstract extension method '@abstractDeclarationAST enterInPrecedenceGraph'                      *
 //                                                                                                                     *
@@ -4860,571 +4753,6 @@ GALGAS_booleanMultipleBindingLiteralIntForGeneration GALGAS_booleanMultipleBindi
       result = *p ;
     }else{
       inCompiler->castError ("booleanMultipleBindingLiteralIntForGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Object comparison                                                                                                 *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cPtr_objectControllerDeclarationAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_objectControllerDeclarationAST * p = (const cPtr_objectControllerDeclarationAST *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_objectControllerDeclarationAST) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mControllerName.objectCompare (p->mProperty_mControllerName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mIsRoot.objectCompare (p->mProperty_mIsRoot) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mRootEntityName.objectCompare (p->mProperty_mRootEntityName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mToOneRelationshipName.objectCompare (p->mProperty_mToOneRelationshipName) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-typeComparisonResult GALGAS_objectControllerDeclarationAST::objectCompare (const GALGAS_objectControllerDeclarationAST & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerDeclarationAST::GALGAS_objectControllerDeclarationAST (void) :
-GALGAS_abstractDeclarationAST () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerDeclarationAST GALGAS_objectControllerDeclarationAST::constructor_default (LOCATION_ARGS) {
-  return GALGAS_objectControllerDeclarationAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                                                 GALGAS_lstring::constructor_default (HERE),
-                                                                 GALGAS_bool::constructor_default (HERE),
-                                                                 GALGAS_lstring::constructor_default (HERE),
-                                                                 GALGAS_lstring::constructor_default (HERE)
-                                                                 COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerDeclarationAST::GALGAS_objectControllerDeclarationAST (const cPtr_objectControllerDeclarationAST * inSourcePtr) :
-GALGAS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_objectControllerDeclarationAST) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerDeclarationAST GALGAS_objectControllerDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                                              const GALGAS_lstring & inAttribute_mControllerName,
-                                                                                              const GALGAS_bool & inAttribute_mIsRoot,
-                                                                                              const GALGAS_lstring & inAttribute_mRootEntityName,
-                                                                                              const GALGAS_lstring & inAttribute_mToOneRelationshipName
-                                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_objectControllerDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mControllerName.isValid () && inAttribute_mIsRoot.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mToOneRelationshipName.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_objectControllerDeclarationAST (inAttribute_mClassName, inAttribute_mControllerName, inAttribute_mIsRoot, inAttribute_mRootEntityName, inAttribute_mToOneRelationshipName COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_objectControllerDeclarationAST::getter_mControllerName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerDeclarationAST * p = (const cPtr_objectControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerDeclarationAST) ;
-    result = p->mProperty_mControllerName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_objectControllerDeclarationAST::getter_mControllerName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mControllerName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_objectControllerDeclarationAST::getter_mIsRoot (UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerDeclarationAST * p = (const cPtr_objectControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerDeclarationAST) ;
-    result = p->mProperty_mIsRoot ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool cPtr_objectControllerDeclarationAST::getter_mIsRoot (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mIsRoot ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_objectControllerDeclarationAST::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerDeclarationAST * p = (const cPtr_objectControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerDeclarationAST) ;
-    result = p->mProperty_mRootEntityName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_objectControllerDeclarationAST::getter_mRootEntityName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mRootEntityName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_objectControllerDeclarationAST::getter_mToOneRelationshipName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerDeclarationAST * p = (const cPtr_objectControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerDeclarationAST) ;
-    result = p->mProperty_mToOneRelationshipName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_objectControllerDeclarationAST::getter_mToOneRelationshipName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mToOneRelationshipName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                               Pointer class for @objectControllerDeclarationAST class                               *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cPtr_objectControllerDeclarationAST::cPtr_objectControllerDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                                                          const GALGAS_lstring & in_mControllerName,
-                                                                          const GALGAS_bool & in_mIsRoot,
-                                                                          const GALGAS_lstring & in_mRootEntityName,
-                                                                          const GALGAS_lstring & in_mToOneRelationshipName
-                                                                          COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mControllerName (in_mControllerName),
-mProperty_mIsRoot (in_mIsRoot),
-mProperty_mRootEntityName (in_mRootEntityName),
-mProperty_mToOneRelationshipName (in_mToOneRelationshipName) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * cPtr_objectControllerDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_objectControllerDeclarationAST ;
-}
-
-void cPtr_objectControllerDeclarationAST::description (C_String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString << "[@objectControllerDeclarationAST:" ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mControllerName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mIsRoot.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mToOneRelationshipName.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-acPtr_class * cPtr_objectControllerDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_objectControllerDeclarationAST (mProperty_mClassName, mProperty_mControllerName, mProperty_mIsRoot, mProperty_mRootEntityName, mProperty_mToOneRelationshipName COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        @objectControllerDeclarationAST type                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_objectControllerDeclarationAST ("objectControllerDeclarationAST",
-                                                       & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_objectControllerDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_objectControllerDeclarationAST ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_objectControllerDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_objectControllerDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerDeclarationAST GALGAS_objectControllerDeclarationAST::extractObject (const GALGAS_object & inObject,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_objectControllerDeclarationAST result ;
-  const GALGAS_objectControllerDeclarationAST * p = (const GALGAS_objectControllerDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_objectControllerDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("objectControllerDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Object comparison                                                                                                 *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cPtr_objectControllerGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_objectControllerGeneration * p = (const cPtr_objectControllerGeneration *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_objectControllerGeneration) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mOwnerName.objectCompare (p->mProperty_mOwnerName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mControllerName.objectCompare (p->mProperty_mControllerName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mModelString.objectCompare (p->mProperty_mModelString) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mModelTypeName.objectCompare (p->mProperty_mModelTypeName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mElementTypeName.objectCompare (p->mProperty_mElementTypeName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mElementTypeIsGraphic.objectCompare (p->mProperty_mElementTypeIsGraphic) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mPropertyMap.objectCompare (p->mProperty_mPropertyMap) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-typeComparisonResult GALGAS_objectControllerGeneration::objectCompare (const GALGAS_objectControllerGeneration & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerGeneration::GALGAS_objectControllerGeneration (void) :
-GALGAS_abstractFileGeneration () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerGeneration GALGAS_objectControllerGeneration::constructor_default (LOCATION_ARGS) {
-  return GALGAS_objectControllerGeneration::constructor_new (GALGAS_string::constructor_default (HERE),
-                                                             GALGAS_lstring::constructor_default (HERE),
-                                                             GALGAS_string::constructor_default (HERE),
-                                                             GALGAS_string::constructor_default (HERE),
-                                                             GALGAS_string::constructor_default (HERE),
-                                                             GALGAS_bool::constructor_default (HERE),
-                                                             GALGAS_propertyMap::constructor_emptyMap (HERE)
-                                                             COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerGeneration::GALGAS_objectControllerGeneration (const cPtr_objectControllerGeneration * inSourcePtr) :
-GALGAS_abstractFileGeneration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_objectControllerGeneration) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerGeneration GALGAS_objectControllerGeneration::constructor_new (const GALGAS_string & inAttribute_mOwnerName,
-                                                                                      const GALGAS_lstring & inAttribute_mControllerName,
-                                                                                      const GALGAS_string & inAttribute_mModelString,
-                                                                                      const GALGAS_string & inAttribute_mModelTypeName,
-                                                                                      const GALGAS_string & inAttribute_mElementTypeName,
-                                                                                      const GALGAS_bool & inAttribute_mElementTypeIsGraphic,
-                                                                                      const GALGAS_propertyMap & inAttribute_mPropertyMap
-                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_objectControllerGeneration result ;
-  if (inAttribute_mOwnerName.isValid () && inAttribute_mControllerName.isValid () && inAttribute_mModelString.isValid () && inAttribute_mModelTypeName.isValid () && inAttribute_mElementTypeName.isValid () && inAttribute_mElementTypeIsGraphic.isValid () && inAttribute_mPropertyMap.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_objectControllerGeneration (inAttribute_mOwnerName, inAttribute_mControllerName, inAttribute_mModelString, inAttribute_mModelTypeName, inAttribute_mElementTypeName, inAttribute_mElementTypeIsGraphic, inAttribute_mPropertyMap COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_objectControllerGeneration::getter_mOwnerName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerGeneration * p = (const cPtr_objectControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerGeneration) ;
-    result = p->mProperty_mOwnerName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cPtr_objectControllerGeneration::getter_mOwnerName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mOwnerName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_objectControllerGeneration::getter_mControllerName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerGeneration * p = (const cPtr_objectControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerGeneration) ;
-    result = p->mProperty_mControllerName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cPtr_objectControllerGeneration::getter_mControllerName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mControllerName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_objectControllerGeneration::getter_mModelString (UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerGeneration * p = (const cPtr_objectControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerGeneration) ;
-    result = p->mProperty_mModelString ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cPtr_objectControllerGeneration::getter_mModelString (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mModelString ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_objectControllerGeneration::getter_mModelTypeName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerGeneration * p = (const cPtr_objectControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerGeneration) ;
-    result = p->mProperty_mModelTypeName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cPtr_objectControllerGeneration::getter_mModelTypeName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mModelTypeName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_objectControllerGeneration::getter_mElementTypeName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerGeneration * p = (const cPtr_objectControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerGeneration) ;
-    result = p->mProperty_mElementTypeName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cPtr_objectControllerGeneration::getter_mElementTypeName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mElementTypeName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool GALGAS_objectControllerGeneration::getter_mElementTypeIsGraphic (UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerGeneration * p = (const cPtr_objectControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerGeneration) ;
-    result = p->mProperty_mElementTypeIsGraphic ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_bool cPtr_objectControllerGeneration::getter_mElementTypeIsGraphic (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mElementTypeIsGraphic ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap GALGAS_objectControllerGeneration::getter_mPropertyMap (UNUSED_LOCATION_ARGS) const {
-  GALGAS_propertyMap result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_objectControllerGeneration * p = (const cPtr_objectControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_objectControllerGeneration) ;
-    result = p->mProperty_mPropertyMap ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyMap cPtr_objectControllerGeneration::getter_mPropertyMap (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mPropertyMap ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                 Pointer class for @objectControllerGeneration class                                 *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cPtr_objectControllerGeneration::cPtr_objectControllerGeneration (const GALGAS_string & in_mOwnerName,
-                                                                  const GALGAS_lstring & in_mControllerName,
-                                                                  const GALGAS_string & in_mModelString,
-                                                                  const GALGAS_string & in_mModelTypeName,
-                                                                  const GALGAS_string & in_mElementTypeName,
-                                                                  const GALGAS_bool & in_mElementTypeIsGraphic,
-                                                                  const GALGAS_propertyMap & in_mPropertyMap
-                                                                  COMMA_LOCATION_ARGS) :
-cPtr_abstractFileGeneration (THERE),
-mProperty_mOwnerName (in_mOwnerName),
-mProperty_mControllerName (in_mControllerName),
-mProperty_mModelString (in_mModelString),
-mProperty_mModelTypeName (in_mModelTypeName),
-mProperty_mElementTypeName (in_mElementTypeName),
-mProperty_mElementTypeIsGraphic (in_mElementTypeIsGraphic),
-mProperty_mPropertyMap (in_mPropertyMap) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * cPtr_objectControllerGeneration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_objectControllerGeneration ;
-}
-
-void cPtr_objectControllerGeneration::description (C_String & ioString,
-                                                   const int32_t inIndentation) const {
-  ioString << "[@objectControllerGeneration:" ;
-  mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mControllerName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mModelString.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mModelTypeName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mElementTypeName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mElementTypeIsGraphic.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mPropertyMap.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-acPtr_class * cPtr_objectControllerGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_objectControllerGeneration (mProperty_mOwnerName, mProperty_mControllerName, mProperty_mModelString, mProperty_mModelTypeName, mProperty_mElementTypeName, mProperty_mElementTypeIsGraphic, mProperty_mPropertyMap COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                          @objectControllerGeneration type                                           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_objectControllerGeneration ("objectControllerGeneration",
-                                                   & kTypeDescriptor_GALGAS_abstractFileGeneration) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_objectControllerGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_objectControllerGeneration ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_objectControllerGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_objectControllerGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_objectControllerGeneration GALGAS_objectControllerGeneration::extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_objectControllerGeneration result ;
-  const GALGAS_objectControllerGeneration * p = (const GALGAS_objectControllerGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_objectControllerGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("objectControllerGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -13273,18 +12601,18 @@ GALGAS_bool extensionGetter_isAbstract (const GALGAS_propertyMap_2D_element & in
   result_result = GALGAS_bool (false) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 142)).boolEnum () ;
+    test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 141)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_propertyAccessibility var_accessibility_6193 ;
-      GALGAS_typeKind joker_6135_1 ; // Joker input parameter
-      inObject.mProperty_mKind.method_property (joker_6135_1, var_accessibility_6193, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 143)) ;
+      GALGAS_propertyAccessibility var_accessibility_6135 ;
+      GALGAS_typeKind joker_6077_1 ; // Joker input parameter
+      inObject.mProperty_mKind.method_property (joker_6077_1, var_accessibility_6135, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 142)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = var_accessibility_6193.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 144)).boolEnum () ;
+        test_1 = var_accessibility_6135.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 143)).boolEnum () ;
         if (kBoolTrue == test_1) {
-          GALGAS_bool var_ab_6285 ;
-          var_accessibility_6193.method_transient (var_ab_6285, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 145)) ;
-          result_result = var_ab_6285 ;
+          GALGAS_bool var_ab_6227 ;
+          var_accessibility_6135.method_transient (var_ab_6227, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 144)) ;
+          result_result = var_ab_6227 ;
         }
       }
     }
@@ -14250,4 +13578,403 @@ static void defineExtensionMethod_enumForGeneration_generateCode (void) {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 C_PrologueEpilogue gMethod_enumForGeneration_generateCode (defineExtensionMethod_enumForGeneration_generateCode, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                   Overriding extension method '@atomicClassDeclarationAST enterInPrecedenceGraph'                   *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_atomicClassDeclarationAST_enterInPrecedenceGraph (const cPtr_abstractDeclarationAST * inObject,
+                                                                              GALGAS_declarationPrecedenceGraph & ioArgument_ioGraph,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_atomicClassDeclarationAST * object = (const cPtr_atomicClassDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_atomicClassDeclarationAST) ;
+  {
+  const GALGAS_atomicClassDeclarationAST temp_0 = object ;
+  ioArgument_ioGraph.setter_addNode (object->mProperty_mClassName, temp_0, inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas", 12)) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_atomicClassDeclarationAST_enterInPrecedenceGraph (void) {
+  enterExtensionMethod_enterInPrecedenceGraph (kTypeDescriptor_GALGAS_atomicClassDeclarationAST.mSlotID,
+                                               extensionMethod_atomicClassDeclarationAST_enterInPrecedenceGraph) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_atomicClassDeclarationAST_enterInPrecedenceGraph (defineExtensionMethod_atomicClassDeclarationAST_enterInPrecedenceGraph, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                          Overriding extension getter '@atomicClassDeclarationAST nodeKey'                           *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static GALGAS_lstring extensionGetter_atomicClassDeclarationAST_nodeKey (const cPtr_abstractDeclarationAST * inObject,
+                                                                         C_Compiler * /* inCompiler */
+                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_lstring result_result ; // Returned variable
+  const cPtr_atomicClassDeclarationAST * object = (const cPtr_atomicClassDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_atomicClassDeclarationAST) ;
+  result_result = object->mProperty_mClassName ;
+//---
+  return result_result ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionGetter_atomicClassDeclarationAST_nodeKey (void) {
+  enterExtensionGetter_nodeKey (kTypeDescriptor_GALGAS_atomicClassDeclarationAST.mSlotID,
+                                extensionGetter_atomicClassDeclarationAST_nodeKey) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_atomicClassDeclarationAST_nodeKey (defineExtensionGetter_atomicClassDeclarationAST_nodeKey, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                           Routine 'enterAtomicClassesIn'                                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void routine_enterAtomicClassesIn (GALGAS_declarationListAST & ioArgument_ioDeclarationListAST,
+                                   C_Compiler * /* inCompiler */
+                                   COMMA_UNUSED_LOCATION_ARGS) {
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Double").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 26)), GALGAS_typeKind::constructor_doubleType (SOURCE_FILE ("atomic-class.galgas", 26))  COMMA_SOURCE_FILE ("atomic-class.galgas", 26))  COMMA_SOURCE_FILE ("atomic-class.galgas", 26)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("String").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 27)), GALGAS_typeKind::constructor_stringType (SOURCE_FILE ("atomic-class.galgas", 27))  COMMA_SOURCE_FILE ("atomic-class.galgas", 27))  COMMA_SOURCE_FILE ("atomic-class.galgas", 27)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Int").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 28)), GALGAS_typeKind::constructor_integerType (SOURCE_FILE ("atomic-class.galgas", 28))  COMMA_SOURCE_FILE ("atomic-class.galgas", 28))  COMMA_SOURCE_FILE ("atomic-class.galgas", 28)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Bool").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 29)), GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("atomic-class.galgas", 29))  COMMA_SOURCE_FILE ("atomic-class.galgas", 29))  COMMA_SOURCE_FILE ("atomic-class.galgas", 29)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("NSColor").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 31)), GALGAS_typeKind::constructor_colorType (SOURCE_FILE ("atomic-class.galgas", 31))  COMMA_SOURCE_FILE ("atomic-class.galgas", 31))  COMMA_SOURCE_FILE ("atomic-class.galgas", 31)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("NSFont").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 32)), GALGAS_typeKind::constructor_fontType (SOURCE_FILE ("atomic-class.galgas", 32))  COMMA_SOURCE_FILE ("atomic-class.galgas", 32))  COMMA_SOURCE_FILE ("atomic-class.galgas", 32)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Date").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 33)), GALGAS_typeKind::constructor_dateType (SOURCE_FILE ("atomic-class.galgas", 33))  COMMA_SOURCE_FILE ("atomic-class.galgas", 33))  COMMA_SOURCE_FILE ("atomic-class.galgas", 33)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Data").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 34)), GALGAS_typeKind::constructor_dataType (SOURCE_FILE ("atomic-class.galgas", 34))  COMMA_SOURCE_FILE ("atomic-class.galgas", 34))  COMMA_SOURCE_FILE ("atomic-class.galgas", 34)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("NSBezierPath").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 35)), GALGAS_typeKind::constructor_bezierPathType (SOURCE_FILE ("atomic-class.galgas", 35))  COMMA_SOURCE_FILE ("atomic-class.galgas", 35))  COMMA_SOURCE_FILE ("atomic-class.galgas", 35)) ;
+  ioArgument_ioDeclarationListAST.addAssign_operation (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("BezierPathArray").getter_nowhere (SOURCE_FILE ("atomic-class.galgas", 36)), GALGAS_typeKind::constructor_bezierPathArrayType (SOURCE_FILE ("atomic-class.galgas", 36))  COMMA_SOURCE_FILE ("atomic-class.galgas", 36))  COMMA_SOURCE_FILE ("atomic-class.galgas", 36)) ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                     Overriding extension method '@atomicClassDeclarationAST firstAnalysisPhase'                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_atomicClassDeclarationAST_firstAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
+                                                                          GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                                          GALGAS_generationStruct & /* ioArgument_ioGeneration */,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_atomicClassDeclarationAST * object = (const cPtr_atomicClassDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_atomicClassDeclarationAST) ;
+  {
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (object->mProperty_mClassName, GALGAS_classKind::constructor_atomic (object->mProperty_mKind  COMMA_SOURCE_FILE ("atomic-class.galgas", 49)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 50)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("atomic-class.galgas", 51)), GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("atomic-class.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas", 47)) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_atomicClassDeclarationAST_firstAnalysisPhase (void) {
+  enterExtensionMethod_firstAnalysisPhase (kTypeDescriptor_GALGAS_atomicClassDeclarationAST.mSlotID,
+                                           extensionMethod_atomicClassDeclarationAST_firstAnalysisPhase) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_atomicClassDeclarationAST_firstAnalysisPhase (defineExtensionMethod_atomicClassDeclarationAST_firstAnalysisPhase, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                     Overriding extension method '@entityDeclarationAST enterInPrecedenceGraph'                      *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_entityDeclarationAST_enterInPrecedenceGraph (const cPtr_abstractDeclarationAST * inObject,
+                                                                         GALGAS_declarationPrecedenceGraph & ioArgument_ioGraph,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_entityDeclarationAST * object = (const cPtr_entityDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_entityDeclarationAST) ;
+  {
+  const GALGAS_entityDeclarationAST temp_0 = object ;
+  ioArgument_ioGraph.setter_addNode (object->mProperty_mClassName, temp_0, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 19)) ;
+  }
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    test_1 = GALGAS_bool (kIsNotEqual, object->mProperty_mSuperEntityName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      {
+      ioArgument_ioGraph.setter_addEdge (object->mProperty_mClassName, object->mProperty_mSuperEntityName COMMA_SOURCE_FILE ("entity.galgas", 21)) ;
+      }
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_entityDeclarationAST_enterInPrecedenceGraph (void) {
+  enterExtensionMethod_enterInPrecedenceGraph (kTypeDescriptor_GALGAS_entityDeclarationAST.mSlotID,
+                                               extensionMethod_entityDeclarationAST_enterInPrecedenceGraph) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_entityDeclarationAST_enterInPrecedenceGraph (defineExtensionMethod_entityDeclarationAST_enterInPrecedenceGraph, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                             Overriding extension getter '@entityDeclarationAST nodeKey'                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static GALGAS_lstring extensionGetter_entityDeclarationAST_nodeKey (const cPtr_abstractDeclarationAST * inObject,
+                                                                    C_Compiler * /* inCompiler */
+                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_lstring result_result ; // Returned variable
+  const cPtr_entityDeclarationAST * object = (const cPtr_entityDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_entityDeclarationAST) ;
+  result_result = object->mProperty_mClassName ;
+//---
+  return result_result ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionGetter_entityDeclarationAST_nodeKey (void) {
+  enterExtensionGetter_nodeKey (kTypeDescriptor_GALGAS_entityDeclarationAST.mSlotID,
+                                extensionGetter_entityDeclarationAST_nodeKey) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_entityDeclarationAST_nodeKey (defineExtensionGetter_entityDeclarationAST_nodeKey, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                       Overriding extension method '@entityDeclarationAST firstAnalysisPhase'                        *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_entityDeclarationAST_firstAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
+                                                                     GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                                     GALGAS_generationStruct & /* ioArgument_ioGeneration */,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_entityDeclarationAST * object = (const cPtr_entityDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_entityDeclarationAST) ;
+  GALGAS_actionMap var_actionMap_4571 ;
+  {
+  routine_buildActionMap (object->mProperty_mActionDeclarationList, var_actionMap_4571, inCompiler  COMMA_SOURCE_FILE ("entity.galgas", 142)) ;
+  }
+  {
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (object->mProperty_mClassName, GALGAS_classKind::constructor_entity (object->mProperty_mSuperEntityName.getter_string (HERE), object->mProperty_mIsGraphicEntity, object->mProperty_mIsAbstract  COMMA_SOURCE_FILE ("entity.galgas", 145)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("entity.galgas", 146)), var_actionMap_4571, GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("entity.galgas", 148)), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 143)) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_entityDeclarationAST_firstAnalysisPhase (void) {
+  enterExtensionMethod_firstAnalysisPhase (kTypeDescriptor_GALGAS_entityDeclarationAST.mSlotID,
+                                           extensionMethod_entityDeclarationAST_firstAnalysisPhase) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_entityDeclarationAST_firstAnalysisPhase (defineExtensionMethod_entityDeclarationAST_firstAnalysisPhase, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                       Overriding extension method '@entityDeclarationAST secondAnalysisPhase'                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_entityDeclarationAST_secondAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
+                                                                      GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                                      GALGAS_generationStruct & /* ioArgument_ioGeneration */,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_entityDeclarationAST * object = (const cPtr_entityDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_entityDeclarationAST) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = GALGAS_bool (kIsNotEqual, object->mProperty_mSuperEntityName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_propertyMap var_inheritedPropertyMap_5252 ;
+      GALGAS_classKind joker_5206 ; // Joker input parameter
+      GALGAS_actionMap joker_5260_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_5260_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mSuperEntityName, joker_5206, var_inheritedPropertyMap_5252, joker_5260_2, joker_5260_1, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 160)) ;
+      GALGAS_propertyMap var_propertyMap_5577 ;
+      GALGAS_classKind joker_5540 ; // Joker input parameter
+      GALGAS_actionMap joker_5585_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_5585_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mClassName, joker_5540, var_propertyMap_5577, joker_5585_2, joker_5585_1, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 169)) ;
+      GALGAS_propertyMap var_newPropertyMap_5640 = var_inheritedPropertyMap_5252 ;
+      cEnumerator_propertyMap enumerator_5822 (var_propertyMap_5577, kENUMERATION_UP) ;
+      while (enumerator_5822.hasCurrentObject ()) {
+        enumGalgasBool test_1 = kBoolTrue ;
+        if (kBoolTrue == test_1) {
+          test_1 = enumerator_5822.current_mIsOverriding (HERE).boolEnum () ;
+          if (kBoolTrue == test_1) {
+            GALGAS_propertyKind joker_5900_3 ; // Joker input parameter
+            GALGAS_actionMap joker_5900_2 ; // Joker input parameter
+            GALGAS_bool joker_5900_1 ; // Joker input parameter
+            var_inheritedPropertyMap_5252.method_searchKey (enumerator_5822.current_lkey (HERE), joker_5900_3, joker_5900_2, joker_5900_1, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 182)) ;
+          }
+        }
+        if (kBoolFalse == test_1) {
+          {
+          var_newPropertyMap_5640.setter_insertKey (enumerator_5822.current_lkey (HERE), enumerator_5822.current_mKind (HERE), enumerator_5822.current_mActionMap (HERE), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 185)) ;
+          }
+        }
+        enumerator_5822.gotoNextObject () ;
+      }
+      cMapElement_classMap * objectArray_6081 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("entity.galgas", 189)) ;
+      if (NULL != objectArray_6081) {
+          macroValidSharedObject (objectArray_6081, cMapElement_classMap) ;
+        objectArray_6081->mProperty_mPropertyMap = var_newPropertyMap_5640 ;
+      }
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_entityDeclarationAST_secondAnalysisPhase (void) {
+  enterExtensionMethod_secondAnalysisPhase (kTypeDescriptor_GALGAS_entityDeclarationAST.mSlotID,
+                                            extensionMethod_entityDeclarationAST_secondAnalysisPhase) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_entityDeclarationAST_secondAnalysisPhase (defineExtensionMethod_entityDeclarationAST_secondAnalysisPhase, NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                       Overriding extension method '@entityDeclarationAST fourthAnalysisPhase'                       *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_entityDeclarationAST_fourthAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
+                                                                      GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                                      GALGAS_generationStruct & ioArgument_ioGeneration,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_entityDeclarationAST * object = (const cPtr_entityDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_entityDeclarationAST) ;
+  GALGAS_propertyMap var_propertyMap_6580 ;
+  GALGAS_propertyGenerationList var_propertyGenerationList_6643 ;
+  GALGAS_classKind joker_6545 ; // Joker input parameter
+  GALGAS_actionMap joker_6586 ; // Joker input parameter
+  ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mClassName, joker_6545, var_propertyMap_6580, joker_6586, var_propertyGenerationList_6643, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 203)) ;
+  GALGAS_stringset var_overridenTransients_6781 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("entity.galgas", 211)) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = GALGAS_bool (kIsNotEqual, object->mProperty_mSuperEntityName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (object->mProperty_mIsAbstract.operator_not (SOURCE_FILE ("entity.galgas", 212)) COMMA_SOURCE_FILE ("entity.galgas", 212)).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_classKind var_superClassKind_6950 ;
+      GALGAS_propertyMap var_superPropertyMap_6991 ;
+      GALGAS_actionMap joker_6999_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_6999_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mSuperEntityName, var_superClassKind_6950, var_superPropertyMap_6991, joker_6999_2, joker_6999_1, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 213)) ;
+      switch (var_superClassKind_6950.enumValue ()) {
+      case GALGAS_classKind::kNotBuilt:
+        break ;
+      case GALGAS_classKind::kEnum_prefs:
+        {
+          TC_Array <C_FixItDescription> fixItArray1 ;
+          inCompiler->emitSemanticError (object->mProperty_mSuperEntityName.getter_location (SOURCE_FILE ("entity.galgas", 221)), GALGAS_string ("prefs cannot be a super entity"), fixItArray1  COMMA_SOURCE_FILE ("entity.galgas", 221)) ;
+        }
+        break ;
+      case GALGAS_classKind::kEnum_atomic:
+        {
+          TC_Array <C_FixItDescription> fixItArray2 ;
+          inCompiler->emitSemanticError (object->mProperty_mSuperEntityName.getter_location (SOURCE_FILE ("entity.galgas", 223)), GALGAS_string ("an atomic class cannot be a super entity"), fixItArray2  COMMA_SOURCE_FILE ("entity.galgas", 223)) ;
+        }
+        break ;
+      case GALGAS_classKind::kEnum_document:
+        {
+          TC_Array <C_FixItDescription> fixItArray3 ;
+          inCompiler->emitSemanticError (object->mProperty_mSuperEntityName.getter_location (SOURCE_FILE ("entity.galgas", 225)), GALGAS_string ("a document cannot be a super entity"), fixItArray3  COMMA_SOURCE_FILE ("entity.galgas", 225)) ;
+        }
+        break ;
+      case GALGAS_classKind::kEnum_entity:
+        {
+          const cEnumAssociatedValues_classKind_entity * extractPtr_8492 = (const cEnumAssociatedValues_classKind_entity *) (var_superClassKind_6950.unsafePointer ()) ;
+          const GALGAS_bool extractedValue_isGraphic = extractPtr_8492->mAssociatedValue1 ;
+          const GALGAS_bool extractedValue_isAbstract = extractPtr_8492->mAssociatedValue2 ;
+          enumGalgasBool test_4 = kBoolTrue ;
+          if (kBoolTrue == test_4) {
+            test_4 = extractedValue_isGraphic.operator_and (object->mProperty_mIsGraphicEntity.operator_not (SOURCE_FILE ("entity.galgas", 227)) COMMA_SOURCE_FILE ("entity.galgas", 227)).boolEnum () ;
+            if (kBoolTrue == test_4) {
+              TC_Array <C_FixItDescription> fixItArray5 ;
+              inCompiler->emitSemanticError (object->mProperty_mClassName.getter_location (SOURCE_FILE ("entity.galgas", 228)), GALGAS_string ("this entity should be declared with 'graphic', as super entity is graphic"), fixItArray5  COMMA_SOURCE_FILE ("entity.galgas", 228)) ;
+            }
+          }
+          enumGalgasBool test_6 = kBoolTrue ;
+          if (kBoolTrue == test_6) {
+            test_6 = extractedValue_isAbstract.operator_and (object->mProperty_mIsAbstract.operator_not (SOURCE_FILE ("entity.galgas", 230)) COMMA_SOURCE_FILE ("entity.galgas", 230)).boolEnum () ;
+            if (kBoolTrue == test_6) {
+              cEnumerator_propertyMap enumerator_7651 (var_superPropertyMap_6991, kENUMERATION_UP) ;
+              while (enumerator_7651.hasCurrentObject ()) {
+                enumGalgasBool test_7 = kBoolTrue ;
+                if (kBoolTrue == test_7) {
+                  test_7 = extensionGetter_isAbstract (enumerator_7651.current (HERE), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 232)).boolEnum () ;
+                  if (kBoolTrue == test_7) {
+                    enumGalgasBool test_8 = kBoolTrue ;
+                    if (kBoolTrue == test_8) {
+                      test_8 = var_propertyMap_6580.getter_hasKey (enumerator_7651.current (HERE).getter_lkey (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("entity.galgas", 233)).boolEnum () ;
+                      if (kBoolTrue == test_8) {
+                        var_overridenTransients_6781.addAssign_operation (enumerator_7651.current (HERE).getter_lkey (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("entity.galgas", 234)) ;
+                        GALGAS_propertyKind var_propertyKind_7920 ;
+                        GALGAS_actionMap joker_7922_2 ; // Joker input parameter
+                        GALGAS_bool joker_7922_1 ; // Joker input parameter
+                        var_propertyMap_6580.method_searchKey (enumerator_7651.current (HERE).getter_lkey (HERE), var_propertyKind_7920, joker_7922_2, joker_7922_1, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 235)) ;
+                        GALGAS_string var_typeName_7952 = extensionGetter_typeName (var_propertyKind_7920, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 236)) ;
+                        GALGAS_string var_superTypeName_8010 = extensionGetter_typeName (enumerator_7651.current (HERE).getter_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 237)) ;
+                        enumGalgasBool test_9 = kBoolTrue ;
+                        if (kBoolTrue == test_9) {
+                          test_9 = GALGAS_bool (kIsNotEqual, var_typeName_7952.objectCompare (var_superTypeName_8010)).boolEnum () ;
+                          if (kBoolTrue == test_9) {
+                            TC_Array <C_FixItDescription> fixItArray10 ;
+                            inCompiler->emitSemanticError (var_propertyMap_6580.getter_locationForKey (enumerator_7651.current (HERE).getter_lkey (HERE).getter_string (SOURCE_FILE ("entity.galgas", 239)), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 239)), GALGAS_string ("type '").add_operation (var_superTypeName_8010, inCompiler COMMA_SOURCE_FILE ("entity.galgas", 240)).add_operation (GALGAS_string ("' is required by declaration in super entity"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 240)), fixItArray10  COMMA_SOURCE_FILE ("entity.galgas", 239)) ;
+                          }
+                        }
+                      }
+                    }
+                    if (kBoolFalse == test_8) {
+                      TC_Array <C_FixItDescription> fixItArray11 ;
+                      inCompiler->emitSemanticError (object->mProperty_mClassName.getter_location (SOURCE_FILE ("entity.galgas", 243)), GALGAS_string ("transient '").add_operation (enumerator_7651.current (HERE).getter_lkey (HERE).getter_string (SOURCE_FILE ("entity.galgas", 244)), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 244)).add_operation (GALGAS_string ("' should be defined, it is declared abstract in super entity"), inCompiler COMMA_SOURCE_FILE ("entity.galgas", 244)), fixItArray11  COMMA_SOURCE_FILE ("entity.galgas", 243)) ;
+                    }
+                  }
+                }
+                enumerator_7651.gotoNextObject () ;
+              }
+            }
+          }
+        }
+        break ;
+      }
+    }
+  }
+  ioArgument_ioGeneration.mProperty_mEntityListForGeneration.addAssign_operation (object->mProperty_mClassName.getter_string (HERE), object->mProperty_mObsoleteEntityNames  COMMA_SOURCE_FILE ("entity.galgas", 252)) ;
+  ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_entityForGeneration::constructor_new (object->mProperty_mClassName.getter_string (HERE), object->mProperty_mSuperEntityName.getter_string (HERE), var_propertyGenerationList_6643, object->mProperty_mSignatureList, object->mProperty_mIsGraphicEntity, object->mProperty_mIsAbstract, var_overridenTransients_6781, object->mProperty_mExternSwiftDelegateList  COMMA_SOURCE_FILE ("entity.galgas", 255))  COMMA_SOURCE_FILE ("entity.galgas", 255)) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_entityDeclarationAST_fourthAnalysisPhase (void) {
+  enterExtensionMethod_fourthAnalysisPhase (kTypeDescriptor_GALGAS_entityDeclarationAST.mSlotID,
+                                            extensionMethod_entityDeclarationAST_fourthAnalysisPhase) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_entityDeclarationAST_fourthAnalysisPhase (defineExtensionMethod_entityDeclarationAST_fourthAnalysisPhase, NULL) ;
 
