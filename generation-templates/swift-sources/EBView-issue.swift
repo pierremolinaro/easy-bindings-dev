@@ -13,14 +13,14 @@ extension EBView {
   func setIssue (_ inBezierPath : NSBezierPath?, _ issueKind : CanariIssueKind) {
     if self.mIssueBezierPath != inBezierPath {
       if let bp = self.mIssueBezierPath, bp.elementCount > 0 {
-        self.setNeedsDisplay (self.issueBoundingBox)
+        self.setNeedsDisplay (self.issueBoundingBox.insetBy(dx: -1.0, dy: -1.0))
       }
       self.mIssueBezierPath = inBezierPath
       self.mIssueKind = issueKind
       self.updateViewFrameAndBounds ()
       if let bp = self.mIssueBezierPath, bp.elementCount > 0 {
         self.scrollToVisible (bp.bounds)
-        self.setNeedsDisplay (self.issueBoundingBox)
+        self.setNeedsDisplay (self.issueBoundingBox.insetBy(dx: -1.0, dy: -1.0))
       }
     }
   }

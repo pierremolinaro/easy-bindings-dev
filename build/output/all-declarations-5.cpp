@@ -4245,7 +4245,7 @@ static void extensionMethod_outletClassDeclarationAST_firstAnalysisPhase (const 
       test_9 = object->mProperty_mHandlesGraphicControllerBinding.operator_and (var_handlesGraphicControllerBinding_3781 COMMA_SOURCE_FILE ("outlet-class.galgas", 137)).boolEnum () ;
       if (kBoolTrue == test_9) {
         TC_Array <C_FixItDescription> fixItArray10 ;
-        inCompiler->emitSemanticError (object->mProperty_mClassName.getter_location (SOURCE_FILE ("outlet-class.galgas", 138)), GALGAS_string ("$graphicControler binding already defined in superclass"), fixItArray10  COMMA_SOURCE_FILE ("outlet-class.galgas", 138)) ;
+        inCompiler->emitSemanticError (object->mProperty_mClassName.getter_location (SOURCE_FILE ("outlet-class.galgas", 138)), GALGAS_string ("$graphicController binding already defined in superclass"), fixItArray10  COMMA_SOURCE_FILE ("outlet-class.galgas", 138)) ;
       }
     }
     {

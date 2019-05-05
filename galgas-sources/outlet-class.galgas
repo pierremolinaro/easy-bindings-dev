@@ -121,7 +121,7 @@ override method @outletClassDeclarationAST firstAnalysisPhase
       ?let hasHidden
       ?let handlesGraphicControllerBinding
       ?*
-    ]  
+    ]
     if mHasRunAction & hasRunAction then
       error mClassName : "$run binding already defined in superclass"
     end
@@ -135,7 +135,7 @@ override method @outletClassDeclarationAST firstAnalysisPhase
       error mClassName : "$hidden binding already defined in superclass"
     end
     if mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
-      error mClassName : "$graphicControler binding already defined in superclass"
+      error mClassName : "$graphicController binding already defined in superclass"
     end
     [!?ioSemanticContext.mOutletClassMap insertKey
       !mClassName

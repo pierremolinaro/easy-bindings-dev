@@ -18,16 +18,16 @@ void routine_generateOutletClasses (const GALGAS_stringset constinArgument_inNee
                                     GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                     C_Compiler * inCompiler
                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_filewrapper var_w_6160 = GALGAS_filewrapper (gWrapperDirectory_0_outletClassGeneration) ;
-  cEnumerator_stringset enumerator_6233 (constinArgument_inNeededOutletClasses, kENUMERATION_UP) ;
-  while (enumerator_6233.hasCurrentObject ()) {
-    GALGAS_string var_s_6246 = var_w_6160.getter_textFileContentsAtPath (GALGAS_string ("/").add_operation (enumerator_6233.current (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 188)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 188)), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 188)) ;
-    GALGAS_string var_fileName_6314 = enumerator_6233.current (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 189)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_6314  COMMA_SOURCE_FILE ("outlet-class.galgas", 190)) ;
+  GALGAS_filewrapper var_w_6159 = GALGAS_filewrapper (gWrapperDirectory_0_outletClassGeneration) ;
+  cEnumerator_stringset enumerator_6232 (constinArgument_inNeededOutletClasses, kENUMERATION_UP) ;
+  while (enumerator_6232.hasCurrentObject ()) {
+    GALGAS_string var_s_6245 = var_w_6159.getter_textFileContentsAtPath (GALGAS_string ("/").add_operation (enumerator_6232.current (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 188)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 188)), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 188)) ;
+    GALGAS_string var_fileName_6313 = enumerator_6232.current (HERE).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 189)) ;
+    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_6313  COMMA_SOURCE_FILE ("outlet-class.galgas", 190)) ;
     {
-    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6314, var_s_6246, inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 191)) ;
+    GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6313, var_s_6245, inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 191)) ;
     }
-    enumerator_6233.gotoNextObject () ;
+    enumerator_6232.gotoNextObject () ;
   }
 }
 
@@ -6783,15 +6783,15 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "  func deleteSelectedObjects () {\n"
       "    if self.canDelete () {\n"
       "    //--- Remove selected objects\n"
-      "      var objects = self.mModel\?.propval \?\? []\n"
       "      for object in self.selectedArray_property.propset {\n"
+      "        object.operationBeforeRemoving ()\n"
+      "        flushOutletEvents () // \xC2""\xA7"" Temporary !!!\n"
+      "        var objects = self.mModel\?.propval \?\? []\n"
       "        if let idx = objects.firstIndex (of: object) {\n"
-      "         object.operationBeforeRemoving ()\n"
-      "         objects.remove (at: idx)\n"
+      "          objects.remove (at: idx)\n"
+      "          self.mModel\?.setProp (objects)\n"
       "        }\n"
       "      }\n"
-      "      self.mModel\?.setProp (objects)\n"
-      "      self.selectedSet = Set ()\n"
       "    //---\n"
       "      self.mAfterObjectRemovingCallback\? ()\n"
       "    }\n"
