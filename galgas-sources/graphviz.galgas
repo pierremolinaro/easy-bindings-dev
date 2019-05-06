@@ -47,7 +47,15 @@ private proc graphvizRootEntityAnalysis
   loop ([inSemanticContext.mClassMap count] + 1) while [exploreArray length] > 0 do
     [!?exploreArray popLast ?let @string entityName]
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
-    [inSemanticContext.mClassMap searchKey ![entityName nowhere] ?* ?let @propertyMap propertyMap ?2*]
+    [inSemanticContext.mClassMap searchKey ![entityName nowhere] ?let entityKind ?let @propertyMap propertyMap ?2*]
+    [entityKind entity ?superEntityName: let superEntityName ?2*]
+    if superEntityName != "" then
+      if not [reachableEntityNameSet hasKey !superEntityName] then
+        reachableEntityNameSet += !superEntityName
+        exploreArray += !superEntityName
+      end
+      arrowList += !"  " + entityName + " -> " + superEntityName +  " [arrowhead=dot]"
+    end
     for (propertyName propertyKind 2*) in propertyMap do
       switch propertyKind
       case property (type accessibility) :
