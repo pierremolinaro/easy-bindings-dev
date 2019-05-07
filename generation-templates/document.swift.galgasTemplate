@@ -194,8 +194,12 @@ end
 %    self.%!mOutletName%?.target = nil\n%
 end
 %  //--------------------------- Clean up outlets
-%for () in OUTLET_GENERATION_MAP do
+%
+for () in OUTLET_GENERATION_MAP do
    %    self.%!lkey.string%?.ebCleanUp ()\n%
+end
+for () in OUTLET_GENERATION_MAP do
+   %//    self.%!lkey.string% = nil\n%
 end
 %  }
 

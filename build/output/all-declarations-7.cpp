@@ -5942,7 +5942,7 @@ const char * gWrapperFileContent_64_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    }\n"
   "  //---\n"
   "    super.removeWindowController (inWindowController)\n"
-  "  //--- Horrible hack: run a method 5s in future in main thread, for preventing the document to deallocated in background thread\n"
+  "  //--- Horrible hack: run a method 5s in future on main thread, for preventing the document to deallocated in background thread\n"
   "    let deadline = DispatchTime (uptimeNanoseconds: DispatchTime.now ().uptimeNanoseconds + 5 * 1_000_000_000)\n"
   "    DispatchQueue.main.asyncAfter (deadline: deadline) { self.nop () }\n"
   "  }\n"

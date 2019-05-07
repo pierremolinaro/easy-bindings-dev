@@ -3228,15 +3228,26 @@ GALGAS_string filewrapperTemplate_documentGenerationTemplate_documentImplementat
     }
   }
   result << "  //--------------------------- Clean up outlets\n" ;
-  GALGAS_uint index_8134_ (0) ;
+  GALGAS_uint index_8135_ (0) ;
   if (in_OUTLET_5F_GENERATION_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_8134 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_8134.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_8135 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_8135.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_8134.current_lkey (HERE).getter_string (HERE).stringValue () ;
+      result << enumerator_8135.current_lkey (HERE).getter_string (HERE).stringValue () ;
       result << "\?.ebCleanUp ()\n" ;
-      index_8134_.increment () ;
-      enumerator_8134.gotoNextObject () ;
+      index_8135_.increment () ;
+      enumerator_8135.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_8219_ (0) ;
+  if (in_OUTLET_5F_GENERATION_5F_MAP.isValid ()) {
+    cEnumerator_decoratedOutletMap enumerator_8219 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_8219.hasCurrentObject ()) {
+      result << "//    self." ;
+      result << enumerator_8219.current_lkey (HERE).getter_string (HERE).stringValue () ;
+      result << " = nil\n" ;
+      index_8219_.increment () ;
+      enumerator_8219.gotoNextObject () ;
     }
   }
   result << "  }\n"
