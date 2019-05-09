@@ -218,6 +218,7 @@ private filewrapper selectionControllerGenerationTemplate in "../generation-temp
     ?@string BASE_ELEMENT_TYPE_NAME
     ?@string DERIVED_ELEMENT_TYPE_NAME
     ?@propertyGenerationList PROPERTY_GENERATION_LIST
+    ?@bool HAS_ATOMIC_PROPERTIES
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -245,13 +246,17 @@ proc generateSelectionControllers
         !s
       ]
     else
+      var hasAtomicStoredProperties = false
+      for (property) in mPropertyGenerationList while not hasAtomicStoredProperties do
+        hasAtomicStoredProperties = property is == @atomicPropertyGeneration
+      end
       let s = [filewrapper selectionControllerGenerationTemplate.derivedSelectionControllerImplementation
         !mOwnerName
         !mSelectionControllerName
         !mBaseTypeName
         !mSelectionTypeName
-#        !mSelectionObservablePropertyMap
         !mPropertyGenerationList
+        !hasAtomicStoredProperties
       ]
       let fileName = "selectionController-" + mOwnerName + "-" +  mSelectionControllerName + ".swift"
       ioGeneratedFileSet += !fileName
