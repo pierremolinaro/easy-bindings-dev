@@ -65,7 +65,6 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   case none :
 
   case hasDependance (@lstring masterPropertyName) :
-    %    self.%![masterPropertyName string]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property)\n%
     %    self.%![mProperty mPropertyName]%_property.mReadModelFunction =  { [weak self] in\n%
     %      if let model = self?.%!masterPropertyName.string%_property {\n%
     %        switch model.prop {\n%
@@ -86,15 +85,12 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %        return .empty\n%
     %      }\n%
     %    }\n%
+    %    self.%![masterPropertyName string]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property)\n%
   case hasOpposite (@lstring oppositeName) :
-    %    self.%![mProperty mPropertyName]%_property.setOppositeRelationship = { [weak self] (_ inManagedObject : %![[mProperty mRelationshipType] swiftTypeName]%) in\n%
-    %      if let me = self {\n%
-    %        inManagedObject.%!oppositeName.string%_property.setProp (me)\n%
-    %      }\n%
-    %    }\n%
-    %    self.%![mProperty mPropertyName]%_property.resetOppositeRelationship = { (_ inManagedObject : %![[mProperty mRelationshipType] swiftTypeName]%) in\n%
-    %      inManagedObject.%!oppositeName.string%_property.setProp (nil)\n%
-    %    }\n%
+    %    self.%![mProperty mPropertyName]%_property.setOppositeRelationShipFunctions (\n%
+    %      setter: { [weak self] inObject in if let me = self { inObject.%!oppositeName.string%_property.setProp (me) } },\n%
+    %      resetter: { inObject in inObject.%!oppositeName.string%_property.setProp (nil) }\n%
+    %    )\n%
   end
 end
 %  //--- Register properties for handling signature
@@ -766,10 +762,20 @@ end
 final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatureObserverProtocol {
 
   //····················································································································
+  //   Opposite relationship management
+  //····················································································································
 
-  var setOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
-  var resetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
+  private var mSetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
+  private var mResetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
 
+  //····················································································································
+
+  func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void,
+                                         resetter inResetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void) {
+    self.mSetOppositeRelationship = inSetter
+    self.mResetOppositeRelationship = inResetter
+  }
+  
   //····················································································································
 
   private var mPrefKey : String? = nil
@@ -845,7 +851,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
         if removedObjectSet.count > 0 {
           for managedObject in removedObjectSet {
             managedObject.setSignatureObserver (observer: nil)
-            self.resetOppositeRelationship? (managedObject)
+            self.mResetOppositeRelationship? (managedObject)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = nil\n%
 end
@@ -864,7 +870,7 @@ end
         if addedObjectSet.count > 0 {
           for managedObject : %!ENTITY_NAME% in addedObjectSet {
             managedObject.setSignatureObserver (observer: self)
-            self.setOppositeRelationship? (managedObject)
+            self.mSetOppositeRelationship? (managedObject)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = { [weak self] inValue in self?.writeInPreferences () }\n%
 end

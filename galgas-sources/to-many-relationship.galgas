@@ -200,10 +200,10 @@ override getter @toManyPropertyGeneration configurationCode -> @string {
   case hasOpposite (@lstring oppositeName) :
     result  = "  //--- To many property: " + mPropertyName + " (has opposite relationship)\n"
     result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
-    result += "    self." + mPropertyName + "_property.setOppositeRelationship ="
-            + " { [weak self] (_ inManagedObject :" + [mRelationshipType swiftTypeName] + "?) in\n"
-    result += "      inManagedObject?." + oppositeName + "_property.setProp (self)\n"
-    result += "    }\n"
+    result += "    self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
+    result += "      setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.setProp (me) } },\n"
+    result += "      resetter: { inObject in inObject." + oppositeName + "_property.setProp (nil) }\n"
+    result += "    )\n"
   end
 }
 
