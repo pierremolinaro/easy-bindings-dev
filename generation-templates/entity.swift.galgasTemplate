@@ -64,9 +64,10 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   switch [mProperty mOption]
   case none :
 
-  case hasDependance (@lstring masterPropertyName) :
-    %    self.%![mProperty mPropertyName]%_property.mReadModelFunction =  { [weak self] in\n%
-    %      if let model = self?.%!masterPropertyName.string%_property {\n%
+  case hasDependance (@string masterPropertyName *) :
+    %    self.%![mProperty mPropertyName]%_property.setDataProvider (self.%!masterPropertyName%_property)\n%
+    %    /* self.%![mProperty mPropertyName]%_property.mReadModelFunction =  { [weak self] in\n%
+    %      if let model = self?.%!masterPropertyName%_property {\n%
     %        switch model.prop {\n%
     %        case .empty :\n%
     %          return .empty\n%
@@ -85,11 +86,11 @@ for () in TO_MANY_RELATIONSHIP_LIST do
     %        return .empty\n%
     %      }\n%
     %    }\n%
-    %    self.%![masterPropertyName string]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property)\n%
-  case hasOpposite (@lstring oppositeName) :
+    %    self.%!masterPropertyName%_property.addEBObserver (self.%![mProperty mPropertyName]%_property) */\n%
+  case hasOpposite (@string oppositeName) :
     %    self.%![mProperty mPropertyName]%_property.setOppositeRelationShipFunctions (\n%
-    %      setter: { [weak self] inObject in if let me = self { inObject.%!oppositeName.string%_property.setProp (me) } },\n%
-    %      resetter: { inObject in inObject.%!oppositeName.string%_property.setProp (nil) }\n%
+    %      setter: { [weak self] inObject in if let me = self { inObject.%!oppositeName%_property.setProp (me) } },\n%
+    %      resetter: { inObject in inObject.%!oppositeName%_property.setProp (nil) }\n%
     %    )\n%
   end
 end
@@ -117,10 +118,11 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   switch [mProperty mOption]
   case none :
 
-  case hasDependance (@lstring masterPropertyName) :
-    %    self.%![masterPropertyName string]%_property.removeEBObserver (self.%![mProperty mPropertyName]%_property)\n%
-    %    self.%![mProperty mPropertyName]%_property.mReadModelFunction = nil\n%
-  case hasOpposite (@lstring oppositeName) :
+  case hasDependance (@string masterPropertyName *) :
+    %    self.%![mProperty mPropertyName]%_property.setDataProvider (nil)\n%
+    %    // self.%!masterPropertyName%_property.removeEBObserver (self.%![mProperty mPropertyName]%_property)\n%
+    %    // self.%![mProperty mPropertyName]%_property.mReadModelFunction = nil\n%
+  case hasOpposite (*) :
     % //   self.%![mProperty mPropertyName]%_property.setOppositeRelationship = nil\n%
   end
 end
@@ -320,6 +322,26 @@ end
 
 class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_NAME%> {
 
+  //····················································································································
+
+  internal override func updateObservers (removedSet inRemovedSet : Set <%!ENTITY_NAME%>, addedSet inAddedSet : Set <%!ENTITY_NAME%>) {
+    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
+  //--- Remove observers from removed objects
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %    self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inRemovedSet) // Stored property\n%
+end
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %    self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inRemovedSet) // Transient property\n%
+end
+%  //--- Add observers to added objects
+%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %    self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // Stored property\n%
+end
+for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+  %    self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // Transient property\n%
+end
+%  }
+
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //····················································································································
@@ -505,110 +527,142 @@ end
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"TransientArrayOf_" + ENTITY_NAME%
+//    TransientArrayOf %!ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
+  //   Data provider
+  //····················································································································
 
-  var mReadModelFunction : Optional < () -> EBSelection < [%!ENTITY_NAME%] > > = nil
+  private var mDataProvider : ReadOnlyArrayOf_%!ENTITY_NAME%? = nil
+  private var mTransientKind : PropertyKind = .empty
 
   //····················································································································
 
-  override var propset : Set <%!ENTITY_NAME%> {
-    self.computeArrayAndSet ()
-    return self.mSet
+  func setDataProvider (_ inProvider : ReadOnlyArrayOf_%!ENTITY_NAME%?) {
+    if self.mDataProvider !== inProvider {
+      self.mDataProvider?.detachClient (self)
+      self.mDataProvider = inProvider
+      self.mDataProvider?.attachClient (self)
+    }
+  }
+
+  //····················································································································
+
+  override func notifyModelDidChange () {
+    let newArray : [%!ENTITY_NAME%] 
+    if let dataProvider = self.mDataProvider {
+      switch dataProvider.prop {
+      case .empty :
+        newArray = []
+        self.mTransientKind = .empty
+      case .single (let v) :
+        newArray = v
+        self.mTransientKind = .single
+       case .multiple :
+        newArray = []
+        self.mTransientKind = .multiple
+      }
+    }else{
+      newArray = []
+      self.mTransientKind = .empty
+    }
+    self.mInternalArrayValue = newArray
+    super.notifyModelDidChange ()
   }
 
   //····················································································································
 
   override var prop : EBSelection < [%!ENTITY_NAME%] > {
-    self.computeArrayAndSet ()
-    return self.mCachedValue!  
+    switch self.mTransientKind {
+    case .empty :
+      return .empty
+    case .single :
+      return .single (self.mInternalArrayValue)
+    case .multiple :
+      return .multiple
+    }
   }
- 
+
   //····················································································································
 
-  override var propval : [%!ENTITY_NAME%] {
-    self.computeArrayAndSet ()
-    if let value = self.mCachedValue {
-      switch value {
-      case .empty, .multiple :
-        return []
+  override var propval : [%!ENTITY_NAME%] { return self.mInternalArrayValue }
+
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    TransientArrayOfSuperOf %!ENTITY_NAME%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : ReadOnlyArrayOf_%!ENTITY_NAME% {
+
+  //····················································································································
+  //   Data provider
+  //····················································································································
+
+  private var mDataProvider : ReadOnlyAbstractArrayProperty <SUPER>? = nil
+  private var mTransientKind : PropertyKind = .empty
+
+  //····················································································································
+
+  func setDataProvider (_ inProvider : ReadOnlyAbstractArrayProperty <SUPER>?) {
+    if self.mDataProvider !== inProvider {
+      self.mDataProvider?.detachClient (self)
+      self.mDataProvider = inProvider
+      self.mDataProvider?.attachClient (self)
+    }
+  }
+
+  //····················································································································
+
+  override func notifyModelDidChange () {
+    var newModelArray : [SUPER] 
+    if let dataProvider = self.mDataProvider {
+      switch dataProvider.prop {
+      case .empty :
+        newModelArray = []
+        self.mTransientKind = .empty
       case .single (let v) :
-        return v
+        newModelArray = v
+        self.mTransientKind = .single
+       case .multiple :
+        newModelArray = []
+        self.mTransientKind = .multiple
       }
     }else{
-      return []
+      newModelArray = []
+      self.mTransientKind = .empty
     }
-  }
-
-  //····················································································································
-
-  private var mSet = Set <%!ENTITY_NAME%> ()
-
-  //····················································································································
-
-  private var mCachedValue : EBSelection < [%!ENTITY_NAME%] >? = nil
-
-  //····················································································································
-
-  private func computeArrayAndSet () {
-    if let unwrappedComputeFunction = self.mReadModelFunction, self.mCachedValue == nil {
-      let cachedValue = unwrappedComputeFunction ()
-      self.mCachedValue = cachedValue
-      let newSet : Set <%!ENTITY_NAME%>
-      switch cachedValue {
-      case .multiple, .empty :
-        newSet = Set <%!ENTITY_NAME%> ()
-      case .single (let array) :
-        newSet = Set (array)
+    var newArray = [%!ENTITY_NAME%] ()
+    for superObject in newModelArray {
+      if let object = superObject as? %!ENTITY_NAME% {
+        newArray.append (object)
       }
-%
-if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
-%    //--- Removed object set
-      let removedSet = self.mSet.subtracting (newSet)
-    //--- Remove observers of stored properties
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
-end
-%    //--- Remove observers of transient properties
-%for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %      self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedSet)\n%
-end
-%    //--- Added object set
-      let addedSet = newSet.subtracting (self.mSet)
-     //--- Add observers of stored properties
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
-end
-%     //--- Add observers of transient properties
-%for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %      self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedSet)\n%
-end
-end
-%    //--- Update object set
-      self.mSet = newSet
     }
-    if self.mCachedValue == nil {
-      self.mCachedValue = .empty
+    self.mInternalArrayValue = newArray
+    super.notifyModelDidChange ()
+  }
+
+  //····················································································································
+
+  override var prop : EBSelection < [%!ENTITY_NAME%] > {
+    switch self.mTransientKind {
+    case .empty :
+      return .empty
+    case .single :
+      return .single (self.mInternalArrayValue)
+    case .multiple :
+      return .multiple
     }
   }
 
   //····················································································································
 
-  override func postEvent () {
-    if self.mCachedValue != nil {
-      self.mCachedValue = nil
-      if logEvents () {
-        appendMessageString ("  \(explorerIndexString (self.ebObjectIndex)) propagation\\n")
-      }
-      super.postEvent ()
-    }else if logEvents () {
-      appendMessageString ("  \(explorerIndexString (self.ebObjectIndex)) nil\\n")
-    }
-  }
+  override var propval : [%!ENTITY_NAME%] { return self.mInternalArrayValue }
 
   //····················································································································
 
@@ -624,35 +678,6 @@ class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
  
   func setProp (_ value :  [%!ENTITY_NAME%]) { } // Abstract method
   
- //····················································································································
-
-  private var mProxyArray = [ProxyArrayOf_%!ENTITY_NAME%] ()
-
-  //····················································································································
-
-  func attachProxy (_ inProxy : ProxyArrayOf_%!ENTITY_NAME%) {
-    self.mProxyArray.append (inProxy)
-    inProxy.updateProxy ()
-    self.postEvent ()
-  }
-
-  //····················································································································
-
-  func detachProxy (_ inProxy : ProxyArrayOf_%!ENTITY_NAME%) {
-    if let idx = self.mProxyArray.firstIndex(of: inProxy) {
-      self.mProxyArray.remove (at: idx)
-      self.postEvent ()
-    }
-  }
-
-  //····················································································································
-
-  internal func propagateProxyUpdate () {
-    for proxy in self.mProxyArray {
-      proxy.updateProxy ()
-    }
-  }
-
   //····················································································································
 
 }
@@ -663,92 +688,54 @@ class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
 final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
-   //····················································································································
+  //····················································································································
 
   private var mModel : ReadWriteArrayOf_%!ENTITY_NAME%? = nil
 
   //····················································································································
 
-  private var mInternalValue : EBSelection < [%!ENTITY_NAME%] > = .empty {
-    didSet {
-      if self.mInternalValue != oldValue {
-        switch self.mInternalValue {
-        case .empty, .multiple :
-          self.mCurrentObjectSet = []
-        case .single (let v) :
-          self.mCurrentObjectSet = Set (v)
-        }
-        self.propagateProxyUpdate ()
-        self.postEvent ()
+  func setModel (_ inModel : ReadWriteArrayOf_%!ENTITY_NAME%) {
+    if self.mModel !== inModel {
+      self.mModel?.detachClient (self)
+      self.mModel = inModel
+      self.mModel?.attachClient (self)
+    }
+  }
+
+  //····················································································································
+
+  override func notifyModelDidChange () {
+    let newModelArray : [%!ENTITY_NAME%]
+    if let model = self.mModel {
+      switch model.prop {
+      case .empty :
+        newModelArray = []
+      case .single (let v) :
+        newModelArray = v
+       case .multiple :
+        newModelArray = []
       }
-    }
-  }
-
-  //····················································································································
-
-  private var mCurrentObjectSet = Set <%!ENTITY_NAME%> () {
-    didSet {
-%if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length]) > 0 then
-%      if self.mCurrentObjectSet != oldValue {
-      //--- Add observers from removed objects
-        let removedObjectSet = oldValue.subtracting (self.mCurrentObjectSet)
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %        self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet) // Stored property\n%
-end
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %        self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet) // Transient property\n%
-end
-%      //--- Add observers to added objects
-        let addedObjectSet = self.mCurrentObjectSet.subtracting (oldValue)
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %        self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet) // Stored property\n%
-end
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %        self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet) // Transient property\n%
-end
-%      }
-%
-end
-%    }
-  }
-
-  //····················································································································
-
-  func bind (_ inModel : ReadWriteArrayOf_%!ENTITY_NAME%) {
-    self.unbind ()
-    self.mModel = inModel
-    inModel.attachProxy (self)
-  }
-
-  //····················································································································
-
-  func unbind () {
-    if let model = self.mModel {
-      model.detachProxy (self)
-      self.mModel = nil
-    }
-  }
-
-  //····················································································································
-
-  func updateProxy () {
-    if let model = self.mModel {
-      self.mInternalValue = model.prop
     }else{
-      self.mInternalValue = .empty
+      newModelArray = []
     }
+    self.mInternalArrayValue = newModelArray
+    super.notifyModelDidChange ()
   }
 
   //····················································································································
 
-  override func setProp (_ inArrayValue :  [%!ENTITY_NAME%]) {
+  override func setProp (_ inArrayValue : [%!ENTITY_NAME%]) {
     self.mModel?.setProp (inArrayValue)
   }
 
   //····················································································································
 
   override var prop : EBSelection < [%!ENTITY_NAME%] > {
-    return self.mInternalValue
+    if let model = self.mModel {
+      return model.prop
+    }else{
+      return .empty
+    }
   }
 
   //····················································································································
@@ -796,25 +783,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
   }
 
   //····················································································································
-
-  override init () {
-    super.init ()
-    self.count_property.mReadModelFunction = { [weak self] in
-      if let unwSelf = self {
-        switch unwSelf.prop {
-        case .empty :
-          return .empty
-        case .multiple :
-          return .multiple
-        case .single (let v) :
-          return .single (v.count)
-        }
-      }else{
-        return .empty
-      }
-    }
-  }
-
+  //  Init
   //····················································································································
 
   convenience init (prefKey : String) {
@@ -832,14 +801,67 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
     }
   }
 
- //····················································································································
+  //····················································································································
+  // Model will change 
+  //····················································································································
 
-  private var mSet = Set <%!ENTITY_NAME%> ()
-  private var mValue = [%!ENTITY_NAME%] () {
+  override func notifyModelDidChangeFrom (oldValue inOldValue : [%!ENTITY_NAME%]) {
+  //--- Register old value in undo manager
+    self.ebUndoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object: inOldValue)
+  //---
+    super.notifyModelDidChangeFrom (oldValue: inOldValue)
+  }
+ 
+  //····················································································································
+
+  @objc func performUndo (_ oldValue : [%!ENTITY_NAME%]) {
+    self.mInternalArrayValue = oldValue
+  }
+ 
+  //····················································································································
+  // Model did change 
+  //····················································································································
+
+  override func notifyModelDidChange () {
+  //--- Update explorer
+    if let valueExplorer = self.mValueExplorer {
+      updateManagedObjectToManyRelationshipDisplay (objectArray: self.mInternalArrayValue, popUpButton: valueExplorer)
+    }
+  //--- Notify observers
+    self.postEvent ()
+    self.clearSignatureCache ()
+  //--- Write in preferences ?
+    self.writeInPreferences ()
+  //---
+    super.notifyModelDidChange ()
+  }
+
+  //····················································································································
+  // Update observers 
+  //····················································································································
+
+  internal override func updateObservers (removedSet inRemovedSet : Set <%!ENTITY_NAME%>, addedSet inAddedSet : Set <%!ENTITY_NAME%>) {
+    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
+  //---
+    for managedObject in inRemovedSet {
+      managedObject.setSignatureObserver (observer: nil)
+      self.mResetOppositeRelationship? (managedObject)
+    }
+  //---
+    for managedObject in inAddedSet {
+      managedObject.setSignatureObserver (observer: self)
+      self.mSetOppositeRelationship? (managedObject)
+    }
+  }
+ 
+  //····················································································································
+ 
+  // private var mSet = Set <%!ENTITY_NAME%> ()
+  /* private var mValue = [%!ENTITY_NAME%] () {
     didSet {
       if oldValue != self.mValue {
-        let oldSet = self.mSet
-        self.mSet = Set (self.mValue)
+        let oldSet = Set (oldValue)
+        let newSet = Set (self.mValue)
       //--- Register old value in undo manager
         self.ebUndoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
       //--- Update explorer
@@ -847,7 +869,7 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
           updateManagedObjectToManyRelationshipDisplay (objectArray: self.mValue, popUpButton: valueExplorer)
         }
       //--- Removed object set
-        let removedObjectSet = oldSet.subtracting (self.mSet)
+        let removedObjectSet = oldSet.subtracting (newSet)
         if removedObjectSet.count > 0 {
           for managedObject in removedObjectSet {
             managedObject.setSignatureObserver (observer: nil)
@@ -866,7 +888,7 @@ end
 end
 %        }
        //--- Added object set
-        let addedObjectSet = self.mSet.subtracting (oldSet)
+        let addedObjectSet = newSet.subtracting (oldSet)
         if addedObjectSet.count > 0 {
           for managedObject : %!ENTITY_NAME% in addedObjectSet {
             managedObject.setSignatureObserver (observer: self)
@@ -885,21 +907,33 @@ end
 end
 %        }
       //--- Notify observers
-        self.propagateProxyUpdate ()
+        // self.propagateProxyUpdate ()
         self.postEvent ()
         self.clearSignatureCache ()
       //--- Write in preferences ?
         self.writeInPreferences ()
       }
     }
-  }
+  } */
+
+  //····················································································································
+
+  override var prop : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue) }
+
+  //····················································································································
+
+  override func setProp (_ inValue : [%!ENTITY_NAME%]) { self.mInternalArrayValue = inValue }
+
+  //····················································································································
+
+  override var propval : [%!ENTITY_NAME%] { return self.mInternalArrayValue }
 
   //····················································································································
 
   private func writeInPreferences () {
     if let prefKey = self.mPrefKey {
       var dictionaryArray = [NSDictionary] ()
-      for object in self.mValue {
+      for object in self.mInternalArrayValue {
         let d = NSMutableDictionary ()
         object.saveIntoDictionary (d)
         d [ENTITY_KEY] = nil // Remove entity key, not used in preferences
@@ -911,44 +945,21 @@ end
 
   //····················································································································
 
-  override var prop : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mValue) }
-
-  //····················································································································
-
-  override func setProp (_ inValue : [%!ENTITY_NAME%]) { self.mValue = inValue }
-
-  //····················································································································
-
-  override var propval : [%!ENTITY_NAME%] { return self.mValue }
-
-  //····················································································································
-
-  override var propset : Set <%!ENTITY_NAME%> { return self.mSet }
-
- //····················································································································
-
-  @objc func performUndo (_ oldValue : [%!ENTITY_NAME%]) {
-    self.mValue = oldValue
-  }
-
-  //····················································································································
-
   func remove (_ object : %!ENTITY_NAME%) {
-    if self.mSet.contains (object) {
-      var array = self.mValue
-      let idx = array.firstIndex (of: object)
-      array.remove (at: idx!)
-      self.mValue = array
+    if let idx = self.mInternalArrayValue.firstIndex (of: object) {
+      var array = self.mInternalArrayValue
+      array.remove (at: idx)
+      self.mInternalArrayValue = array
     }
   }
   
   //····················································································································
 
   func add (_ object : %!ENTITY_NAME%) {
-    if !self.mSet.contains (object) {
-      var array = self.mValue
+    if self.mInternalArrayValue.firstIndex (of: object) == nil {
+      var array = self.mInternalArrayValue
       array.append (object)
-      self.mValue = array
+      self.mInternalArrayValue = array
     }
   }
   
@@ -966,7 +977,7 @@ end
 
   final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
     self.mSignatureObserver = observer
-    for object in self.mValue {
+    for object in self.mInternalArrayValue {
       object.setSignatureObserver (observer: observer)
     }
   }
@@ -988,7 +999,7 @@ end
 
   final func computeSignature () -> UInt32 {
     var crc : UInt32 = 0
-    for object in self.mValue {
+    for object in self.mInternalArrayValue {
       crc.accumulateUInt32 (object.signature ())
     }
     return crc

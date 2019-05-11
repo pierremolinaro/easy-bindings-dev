@@ -301,10 +301,10 @@ override getter @transientPropertyGeneration declarationInSelectionControllerCod
 
 #·······················································································································
 
-override getter @transientPropertyGeneration bindPropertyInSelectionController ?let @string inDerivedTypeName -> @string {
+override getter @transientPropertyGeneration bindPropertyInSelectionController -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  private final func bind_property_" + mPropertyName + " (model : " + inDerivedTypeName + ") {\n"
-  result += "    model.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
+  result += "  private final func bind_property_" + mPropertyName + " () {\n"
+  result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
   result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.prop {\n"
@@ -433,11 +433,11 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
     end
   end
   outResult += ident + "switch kind {\n"
-  outResult += ident + "case .noSelectionKind :\n"
+  outResult += ident + "case .empty :\n"
   outResult += ident + "  return .empty\n"
-  outResult += ident + "case .multipleSelectionKind :\n"
+  outResult += ident + "case .multiple :\n"
   outResult += ident + "  return .multiple\n"
-  outResult += ident + "case .singleSelectionKind :\n"
+  outResult += ident + "case .single :\n"
   outResult += ident + "  switch ("
   for () in self
   do

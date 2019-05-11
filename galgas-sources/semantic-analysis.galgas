@@ -25,7 +25,7 @@ getter @propertyGeneration declarationInSelectionControllerCode -> @string { res
 
 #·······················································································································
 
-getter @propertyGeneration bindPropertyInSelectionController ?let @string unused inDerivedTypeName -> @string { result = "" }
+getter @propertyGeneration bindPropertyInSelectionController -> @string { result = "" }
 
 #·······················································································································
 

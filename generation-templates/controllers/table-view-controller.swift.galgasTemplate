@@ -9,30 +9,22 @@ import Cocoa
 private let DEBUG_EVENT = false
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"Table View Controller " + OWNER_NAME + " " + TABLE_VIEW_CONTROLLER_NAME%
+//    Table View Controller + %!OWNER_NAME% %!TABLE_VIEW_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBObject, EBTableViewDelegate, EBTableViewDataSource {
+final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : ReadOnlyAbstractGenericArrayProperty, EBTableViewDelegate, NSTableViewDataSource {
  
   //····················································································································
-  //    init
+  //    Constant properties
   //····················································································································
 
-  override init () {
-    mSelectedSet = SelectedSet_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% (
-      allowsEmptySelection: allowsEmptySelection,
-      allowsMultipleSelection: allowsMultipleSelection,
-      sortedArray: self.sortedArray_property
-    )
-    super.init ()
-  //--- Set selected array compute function
-    self.setSelectedArrayComputeFunction ()
-  //--- Set sorted array compute function
-    self.setFilterAndSortFunction ()
-  }
-
+%
+for () in ATTRIBUTE_VALUES do
+%  private let %!mValue0% = %!mValue1%\n%
+end
+%
   //····················································································································
-  //    Sort Array
+  //   Sorted Array
   //····················································································································
 
   let sortedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
@@ -62,15 +54,6 @@ final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBObject, E
   }
 
   //····················································································································
-  //    Attributes
-  //····················································································································
-
-%
-for () in ATTRIBUTE_VALUES do
-%  private let %!mValue0% = %!mValue1%\n%
-end
-%  
-  //····················································································································
   //    Model
   //····················································································································
 
@@ -87,9 +70,8 @@ end
 
   func bind_model (_ inModel : %!MODEL_TYPE_NAME%) {
     self.mModel = inModel
-    inModel.addEBObserver (self.sortedArray_property)
-    self.sortedArray_property.addEBObserver (mSelectedSet)
-    self.mSelectedSet.addEBObserver (self.selectedArray_property)
+    self.sortedArray_property.setDataProvider (inModel)
+    inModel.attachClient (self)
   //--- Add observed properties (for filtering and sorting)
 %
 for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
@@ -100,24 +82,39 @@ end
   //····················································································································
 
   func unbind_model () {
-    self.mModel?.removeEBObserver (self.sortedArray_property)
-    self.sortedArray_property.removeEBObserver (mSelectedSet)
-    self.mSelectedSet.removeEBObserver (self.selectedArray_property)
+    self.sortedArray_property.setDataProvider (nil)
+    self.mModel?.detachClient (self)
   //--- Remove observed properties (for filtering and sorting)
 %
 for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
   %//    mModel?.removeEBObserverOf_%!key% (self.sortedArray_property)\n%
 end
-%    for tvc in mTableViewDataSourceControllerArray {
+%    for tvc in self.mTableViewDataSourceControllerArray {
       self.sortedArray_property.removeEBObserver (tvc)
     }
-    for tvc in mTableViewSelectionControllerArray {
-      self.mSelectedSet.removeEBObserver (tvc)
+    for tvc in self.mTableViewSelectionControllerArray {
+      self.mInternalSelectedArrayProperty.removeEBObserver (tvc)
     }
   //---
-    self.mSelectedSet.mSet = Set ()
     self.mModel = nil
  }
+
+  //····················································································································
+  //    Observing model change
+  //····················································································································
+
+  override func notifyModelDidChange () {
+    super.notifyModelDidChange ()
+    // NSLog ("self.sortedArray \(self.sortedArray.count)")
+    let oldSelectionSet = self.selectedSet
+    var newSelectedArray = [%!ELEMENT_TYPE_NAME%] ()
+    for object in self.sortedArray {
+      if oldSelectionSet.contains (object) {
+        newSelectedArray.append (object)
+      }
+    }
+    self.mInternalSelectedArrayProperty.setProp (newSelectedArray)
+  }
 
   //····················································································································
   //    Undo manager
@@ -128,10 +125,14 @@ end
   }
 
   //····················································································································
-  //   SELECTION
+  //   Selected Array
   //····················································································································
 
-  let selectedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
+  private let mInternalSelectedArrayProperty = StoredArrayOf_%!ELEMENT_TYPE_NAME% ()
+
+  //····················································································································
+
+  var selectedArray_property : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME% { return self.mInternalSelectedArrayProperty }
 
   //····················································································································
 
@@ -143,11 +144,7 @@ end
  
   //····················································································································
 
-  private let mSelectedSet : SelectedSet_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME%
-
-  //····················································································································
-
-  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> { return self.mSelectedSet.mSet }
+  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> { return Set (self.selectedArray) }
 
   //····················································································································
 
@@ -155,7 +152,7 @@ end
     var result = Set <Int> ()
     var idx = 0
     for object in self.mModel?.propval ?? [] {
-      if self.mSelectedSet.mSet.contains (object) {
+      if self.selectedSet.contains (object) {
         result.insert (idx)
       }
       idx += 1
@@ -166,12 +163,12 @@ end
   //····················································································································
 
   func setSelection (_ inObjects : [%!ELEMENT_TYPE_NAME%]) {
-    self.mSelectedSet.mSet = Set (inObjects)
+    self.mInternalSelectedArrayProperty.setProp (inObjects)
   }
 
   //····················································································································
 
-  private final func setSelectedArrayComputeFunction () {
+/*  private final func setSelectedArrayComputeFunction () {
     self.selectedArray_property.mReadModelFunction = { [weak self] in
       if let me = self {
         switch me.sortedArray_property.prop {
@@ -193,7 +190,7 @@ end
       }
     }
   }
-
+*/
 %
 if [SORTED_COLUMNS length] > 0 then
 %  //····················································································································
@@ -230,7 +227,7 @@ end
 end
 %  //····················································································································
 
-  private final func setFilterAndSortFunction () {
+/*  private final func setFilterAndSortFunction () {
     self.sortedArray_property.mReadModelFunction = { [weak self] in
       if let me = self, let model = me.mModel {
         switch model.prop {
@@ -269,7 +266,7 @@ end
       }
     }
   }
-
+*/
   //····················································································································
   //    Explorer
   //····················································································································
@@ -302,7 +299,7 @@ end
       self.mTableViewDataSourceControllerArray.append (dataSourceTableViewController)
     //--- Set table view selection controller
       let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)
-      self.mSelectedSet.addEBObserver (selectionTableViewController)
+      self.mInternalSelectedArrayProperty.addEBObserver (selectionTableViewController)
       self.mTableViewSelectionControllerArray.append (selectionTableViewController)
 %for () in BOUND_COLUMNS do
 %    //--- Check '%!mColumnName%' column
@@ -331,7 +328,7 @@ end
     }
     if let tableView = inTableView, let idx = self.mTableViewArray.firstIndex (of:tableView) {
       self.sortedArray_property.removeEBObserver (self.mTableViewDataSourceControllerArray [idx])
-      self.mSelectedSet.removeEBObserver (self.mTableViewSelectionControllerArray [idx])
+      self.mInternalSelectedArrayProperty.removeEBObserver (self.mTableViewSelectionControllerArray [idx])
       self.mTableViewArray.remove (at: idx)
       self.mTableViewDataSourceControllerArray.remove (at: idx)
       self.mTableViewSelectionControllerArray.remove (at: idx)
@@ -351,7 +348,7 @@ end
         objectDictionary [object] = index
       }
       let indexSet = NSMutableIndexSet ()
-      for object in self.mSelectedSet.mSet {
+      for object in self.selectedSet {
         if let index = objectDictionary [object] {
           indexSet.add (index)
         }
@@ -389,11 +386,11 @@ end
       break
     case .single (let v) :
       let tableView = notification.object as! EBTableView
-      var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
+      var newSelectedObjects = [%!ELEMENT_TYPE_NAME%] ()
       for index in tableView.selectedRowIndexes {
-        newSelectedObjectSet.insert (v [index])
+        newSelectedObjects.append (v [index])
       }
-      self.mSelectedSet.mSet = newSelectedObjectSet
+      self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
     }
   }
 
@@ -483,7 +480,7 @@ end
 case transientArray :
 case entityArray :
 %  //····················································································································
-  //    select
+  //   Select a single object
   //····················································································································
 
   func select (object inObject: %!ELEMENT_TYPE_NAME%) {
@@ -493,9 +490,7 @@ case entityArray :
         break
       case .single (let objectArray) :
         if objectArray.contains (inObject) {
-          var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
-          newSelectedObjectSet.insert (inObject)
-          self.mSelectedSet.mSet = newSelectedObjectSet
+          self.mInternalSelectedArrayProperty.setProp ([inObject])
         }
       }
     }
@@ -517,11 +512,9 @@ case entityArray :
         let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
         var array = v
         array.append (newObject)
-      //--- New object is the selection
-        var newSelectedObjectSet = Set <%!ELEMENT_TYPE_NAME%> ()
-        newSelectedObjectSet.insert (newObject)
-        self.mSelectedSet.mSet = newSelectedObjectSet
         model.setProp (array)
+      //--- New object is the selection
+        self.mInternalSelectedArrayProperty.setProp ([newObject])
       }
     }
   }
@@ -550,7 +543,7 @@ case entityArray :
             sortedObjectDictionary [object] = index
           }
           var indexArrayOfSelectedObjects = [Int] ()
-          for object in self.mSelectedSet.mSet {
+          for object in self.selectedSet {
             let index = sortedObjectDictionary [object]
             if let idx = index {
               indexArrayOfSelectedObjects.append (idx)
@@ -579,7 +572,7 @@ case entityArray :
           }
         //--- Build selected objects index array
           var selectedObjectIndexArray = [Int] ()
-          for object in self.mSelectedSet.mSet {
+          for object in self.selectedSet {
             let index = objectDictionary [object]
             if let idx = index {
               selectedObjectIndexArray.append (idx)
@@ -592,14 +585,14 @@ case entityArray :
           for index in selectedObjectIndexArray {
             newObjectArray.remove (at: index)
           }
-        //----------------------------------------- Set new selection
-          var newSelectionSet = Set <%!ELEMENT_TYPE_NAME%> ()
-          if let object = newSelectedObject {
-            newSelectionSet.insert (object)
-          }
-          self.mSelectedSet.mSet = newSelectionSet
         //----------------------------------------- Set new object array
           model.setProp (newObjectArray)
+        //----------------------------------------- Set new selection
+          if let object = newSelectedObject {
+            self.mInternalSelectedArrayProperty.setProp ([object])
+          }else{
+            self.mInternalSelectedArrayProperty.setProp ([])
+          }
         }
       }
     }
@@ -611,60 +604,3 @@ case entityArray :
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"SelectedSet_" + OWNER_NAME + "_" + TABLE_VIEW_CONTROLLER_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-final class SelectedSet_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBAbstractProperty {
-  private let mAllowsEmptySelection : Bool
-  private let mAllowsMultipleSelection : Bool
-  private let mSortedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%
- 
-  //····················································································································
-
-  init (allowsEmptySelection : Bool,
-        allowsMultipleSelection : Bool,
-        sortedArray : TransientArrayOf_%!ELEMENT_TYPE_NAME%) {
-    mAllowsMultipleSelection = allowsMultipleSelection
-    mAllowsEmptySelection = allowsEmptySelection
-    mSortedArray = sortedArray
-    super.init ()
-  }
-
-  //····················································································································
-
-  private var mPrivateSet = Set<%!ELEMENT_TYPE_NAME%> () {
-    didSet {
-      if self.mPrivateSet != oldValue {
-        self.postEvent ()
-      }
-    }
-  }
-
-  //····················································································································
-
-  var mSet : Set<%!ELEMENT_TYPE_NAME%> {
-    set {
-      var newSelectedSet = newValue
-      switch self.mSortedArray.prop {
-      case .empty, .multiple :
-        break ;
-      case .single (let sortedArray) :
-        if !self.mAllowsEmptySelection && (newSelectedSet.count == 0) && (sortedArray.count > 0) {
-          newSelectedSet = Set (arrayLiteral: sortedArray [0])
-        }else if !mAllowsMultipleSelection && (newSelectedSet.count > 1) {
-          newSelectedSet = Set (arrayLiteral: newSelectedSet.first!)
-        }
-      }
-      self.mPrivateSet = newSelectedSet
-    }
-    get {
-      return self.mPrivateSet
-    }
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-

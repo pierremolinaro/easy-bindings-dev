@@ -23,38 +23,16 @@ end
   //   BIND SELECTION
   //····················································································································
 
-   private var mModel : TransientArrayOf_%!BASE_ELEMENT_TYPE_NAME%? = nil
-   let selectedArray_property = TransientArrayOf_%!DERIVED_ELEMENT_TYPE_NAME% ()
+   let selectedArray_property = TransientArrayOfSuperOf_%!DERIVED_ELEMENT_TYPE_NAME% <%!BASE_ELEMENT_TYPE_NAME%> ()
 
   //····················································································································
 
-  func bind_selection (model : TransientArrayOf_%!BASE_ELEMENT_TYPE_NAME%, file : String, line : Int) {
-    self.mModel = model
-    self.selectedArray_property.mReadModelFunction = { [weak self] () -> EBSelection < [%!DERIVED_ELEMENT_TYPE_NAME%] > in
-      if let model = self?.mModel {
-        switch model.prop {
-        case .empty :
-          return .empty
-        case .multiple :
-          return .multiple
-        case .single (let v) :
-          var s = [%!DERIVED_ELEMENT_TYPE_NAME%] ()
-          for baseObject in v {
-            if let object = baseObject as? %!DERIVED_ELEMENT_TYPE_NAME% {
-              s.append (object)
-            }
-          }
-          return .single (s)
-        }
-      }else{
-        return .empty
-      }
-    }
-    model.addEBObserver (self.selectedArray_property)
+  func bind_selection (model : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%, file : String, line : Int) {
+    self.selectedArray_property.setDataProvider (model)
 %
   for () in PROPERTY_GENERATION_LIST do
     if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) | (mProperty is == @atomicProxyGeneration) then
-      %    self.bind_property_%![mProperty mPropertyName]% (model: self.selectedArray_property)\n%
+      %    self.bind_property_%![mProperty mPropertyName]% ()\n%
     end
   end
 %  }
@@ -64,8 +42,7 @@ end
   //····················································································································
 
   func unbind_selection () {
-    self.mModel?.removeEBObserver (self.selectedArray_property)
-    self.selectedArray_property.mReadModelFunction = nil
+    self.selectedArray_property.setDataProvider (nil)
 %
   for () in PROPERTY_GENERATION_LIST do
     if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
@@ -79,7 +56,6 @@ end
     end
   end
 %  //---
-    self.mModel = nil    
   }
 
   //····················································································································
@@ -188,7 +164,7 @@ end
   }
 
 %for () in PROPERTY_GENERATION_LIST do
-  ![mProperty bindPropertyInSelectionController !"TransientArrayOf_" + DERIVED_ELEMENT_TYPE_NAME]
+  ![mProperty bindPropertyInSelectionController]
 end%
 
   //····················································································································

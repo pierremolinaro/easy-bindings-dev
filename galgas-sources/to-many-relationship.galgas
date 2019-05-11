@@ -24,6 +24,13 @@ override method @toManyRelationshipAST enterInPrecedenceGraph ?!@declarationPrec
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !mClassName]
   [!?ioGraph addEdge !node !mDestinationEntityName]
+  switch mOption
+  case hasDependance (masterPropertyName) :
+    let dependanceNode = @lstring.new {!mClassName.string + " " + masterPropertyName !masterPropertyName.location}
+    [!?ioGraph addEdge !node !dependanceNode]
+  case hasOpposite (*) :
+  case none :
+  end
 }
 
 #·······················································································································
@@ -128,11 +135,25 @@ override method @toManyRelationshipAST firstAnalysisPhase
       [!?mPropertyMap insertKey !mToManyRelationshipName !kind !{} !false]
     #--- Current class is preferences ?
       let inPrefs = mClassName.string == preferencesName ()
+    #--- Option
+      @toManyRelationshipOptionGeneration optionForGeneration
+      switch mOption
+      case hasDependance (masterPropertyName) :
+        [mPropertyMap searchKey !masterPropertyName ?let masterPropertyKind ?2*]
+        optionForGeneration = .hasDependance {
+          !masterPropertyName: masterPropertyName.string
+          !masterPropertySwiftTypeName: [masterPropertyKind swiftTypeName]
+        }
+      case hasOpposite (oppositeName) :
+        optionForGeneration = .hasOpposite {!oppositeName: oppositeName.string}
+      case none :
+        optionForGeneration = .none
+      end
     #--- Code Generation
       mPropertyGenerationList += !@toManyPropertyGeneration.new {
         !mToManyRelationshipName.string
         !kind
-        !mOption
+        !optionForGeneration
         !inPrefs
         !mCustomStore
       }
@@ -142,9 +163,17 @@ override method @toManyRelationshipAST firstAnalysisPhase
 
 #·······················································································································
 
+enum @toManyRelationshipOptionGeneration {
+  case none
+  case hasOpposite (@string oppositeName)
+  case hasDependance (@string masterPropertyName @string masterPropertySwiftTypeName)
+}
+
+#·······················································································································
+
 class @toManyPropertyGeneration : @propertyGeneration {
   @propertyKind mRelationshipType
-  @toManyRelationshipOptionAST mOption
+  @toManyRelationshipOptionGeneration mOption
   @bool mInPreferences
   @bool mCustomStore
 }
@@ -162,7 +191,9 @@ override getter @toManyPropertyGeneration propertyDeclarationCode ?let @stringse
   result += "  //   To many property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   if [mOption isHasDependance] then
-    result += "  let " + mPropertyName + "_property = TransientArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
+    [mOption hasDependance ?1* ?masterPropertySwiftTypeName: let masterPropertyTypeName]
+    result += "  let " + mPropertyName + "_property = TransientArrayOfSuperOf_" + [mRelationshipType swiftTypeName]
+           + " <" + masterPropertyTypeName + "> ()\n\n"
   elsif mInPreferences then
     result += "  let " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName]
            + " (prefKey: Preferences_" + mPropertyName + ")\n\n"
@@ -195,9 +226,9 @@ override getter @toManyPropertyGeneration configurationCode -> @string {
   case none :
     result  = "  //--- To many property: " + mPropertyName + " (no option)\n"
     result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
-  case hasDependance (@lstring unused masterPropertyName) :
+  case hasDependance (2*) :
     result = ""
-  case hasOpposite (@lstring oppositeName) :
+  case hasOpposite (@string oppositeName) :
     result  = "  //--- To many property: " + mPropertyName + " (has opposite relationship)\n"
     result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
     result += "    self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
@@ -304,9 +335,9 @@ override getter @toManyPropertyGeneration resetToManyRelationships -> @string {
 
 override getter @toManyPropertyGeneration terminationCode -> @string {
   switch mOption 
-  case hasDependance (masterPropertyName) :
+  case hasDependance (masterPropertyName *) :
     result  = "  //--- To many property: " + mPropertyName + "\n"
-    result += "    self." + masterPropertyName.string + "_property.removeEBObserver (self." + mPropertyName + "_property)\n"
+    result += "    self." + masterPropertyName + "_property.removeEBObserver (self." + mPropertyName + "_property)\n"
   case none :
     result = ""
   case hasOpposite (*) :

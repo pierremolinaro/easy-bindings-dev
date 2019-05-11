@@ -8,15 +8,14 @@ import Cocoa
 //    %!"Array controller " + OWNER_NAME + " " + ARRAY_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBObject%
+final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyAbstractGenericArrayProperty%
 if ELEMENT_TYPE_IS_GRAPHIC then
  %, EBViewControllerProtocol%
 end
 % {
  
   //····················································································································
-  // MARK: -
-  // Models
+  // Model
   //····················································································································
  
    private var mModel : %!MODEL_TYPE_NAME%? = nil
@@ -53,19 +52,19 @@ end
   private var mPrivateSelectedSet = Set <%!ELEMENT_TYPE_NAME%> () {
     didSet {
       self.selectedArray_property.postEvent ()
+      self.mInternalSelectedArrayProperty.setProp (Array (self.mPrivateSelectedSet))
     }
   }
 
   //····················································································································
-  // MARK: -
-  // Observable properties
+  // Selected Array
   //····················································································································
 
-  let objectArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
+  private let mInternalSelectedArrayProperty = StoredArrayOf_%!ELEMENT_TYPE_NAME% ()
 
   //····················································································································
 
-  let selectedArray_property = TransientArrayOf_%!ELEMENT_TYPE_NAME% ()
+  var selectedArray_property : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME% { return self.mInternalSelectedArrayProperty }
 
   //····················································································································
 
@@ -76,7 +75,7 @@ end
   var selectedArray_property_selection : EBSelection <[%!ELEMENT_TYPE_NAME%]> { return self.selectedArray_property.prop }
  
   //····················································································································
-  // MARK: -
+  //   Init
   //····················································································································
 
   override init () {
@@ -155,46 +154,9 @@ end
   %    }\n%
   %    self.selectedArray_property.addEBObserver (self.canRotate90CounterClockwise_property)\n%
 end
-%  //--- Install object array read function
-    self.objectArray_property.mReadModelFunction = { [weak self] in
-      if let model = self?.mModel {
-        switch model.prop {
-        case .empty :
-          return .empty
-        case .multiple :
-          return .multiple
-        case .single (let modelArray) :
-          return .single (modelArray)
-        }
-      }else{
-        return .empty
-      }
-    }
-   //--- Install selected object array read function
-    self.selectedArray_property.mReadModelFunction = { [weak self] in
-      if let model = self?.mModel {
-        switch model.prop {
-        case .empty :
-          return .empty
-        case .multiple :
-          return .multiple
-        case .single (let modelArray) :
-          let selectedObjects = self?.mPrivateSelectedSet ?? Set ()
-          var selectedArray = [%!ELEMENT_TYPE_NAME%] ()
-          for object in modelArray {
-            if selectedObjects.contains (object) {
-              selectedArray.append (object)
-            }
-          }
-          return .single (selectedArray)
-        }
-      }else{
-        return .empty
-      }
-    }
- }
+%  }
 
-   //····················································································································
+  //····················································································································
 
   var objectCount : Int {
     let objects = self.mModel?.propval ?? []
@@ -205,7 +167,7 @@ end
 
   func bind_model (_ inModel : %!MODEL_TYPE_NAME%) {
     self.mModel = inModel
-    inModel.addEBObserver (self.objectArray_property)
+    inModel.attachClient (self)
 %if ELEMENT_TYPE_IS_GRAPHIC then
  %    self.startObservingObjectShape ()\n%
  %    self.startObservingSelectionShape ()\n%
@@ -220,8 +182,7 @@ end%  }
   %    self.stopObservingSelectionShape ()\n%
   %    self.inspectorViewManagerStopsObservingSelection ()\n%
 end
-%    self.mModel?.removeEBObserver (self.objectArray_property)
-  //---
+%    self.mModel?.detachClient (self)
     self.selectedSet = Set ()
     self.mModel = nil
  }
@@ -363,13 +324,13 @@ end
   // EBViews
   //····················································································································
 
-  private var mEBViews = [EBView] ()
+  private var mEBViews = Set <EBView> ()
 
   //····················································································································
 
   func bind_ebView (_ inEBView : EBView?) {
     if let ebView = inEBView {
-      self.mEBViews.append (ebView)
+      self.mEBViews.insert (ebView)
       ebView.set (controller: self)
     }
   }
@@ -377,10 +338,10 @@ end
   //····················································································································
 
   func unbind_ebView (_ inEBView : EBView?) {
-    if let ebView = inEBView, let idx = self.mEBViews.firstIndex (of: ebView) {
+    if let ebView = inEBView {
       ebView.updateObjectDisplay ([])
       ebView.updateSelectionShape ([])
-      self.mEBViews.remove (at: idx)
+      self.mEBViews.remove (ebView)
     }
   }
 
@@ -395,23 +356,15 @@ end
   //····················································································································
 
   func selectedObjectIndexSet () -> NSIndexSet {
-    switch self.objectArray_property.prop {
-    case .empty, .multiple :
-       return NSIndexSet ()
-    case .single (let v) :
-    //--- Dictionary of object indexes
-      var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-      for (index, object) in v.enumerated () {
-        objectDictionary [object] = index
+    let modelObjects = self.mModel?.propval ?? []
+    let selectedObjects = self.selectedArray_property.propset
+    let indexSet = NSMutableIndexSet ()
+    for object in selectedObjects {
+      if let index = modelObjects.firstIndex(of: object) {
+        indexSet.add (index)
       }
-      let indexSet = NSMutableIndexSet ()
-      for object in self.selectedArray_property.propset {
-        if let index = objectDictionary [object] {
-          indexSet.add (index)
-        }
-      }
-      return indexSet
     }
+    return indexSet
   }
 
 %switch MODEL_KIND
@@ -464,68 +417,63 @@ case entityArray :
       case .empty, .multiple :
         break
       case .single (let model_prop) :
-        switch self.objectArray_property.prop {
-        case .empty, .multiple :
-          break
-        case .single (let sortedArray_prop) :
-        //------------- Find the object to be selected after selected object removing
-        //--- Dictionary of object sorted indexes
-          var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-          for (index, object) in sortedArray_prop.enumerated () {
-            sortedObjectDictionary [object] = index
-          }
-          var indexArrayOfSelectedObjects = [Int] ()
-          for object in self.selectedArray_property.propset {
-            let index = sortedObjectDictionary [object]
-            if let idx = index {
-              indexArrayOfSelectedObjects.append (idx)
-            }
-          }
-        //--- Sort
-          indexArrayOfSelectedObjects.sort { $0 < $1 }
-        //--- Find the first index of a non selected object
-          var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
-          for index in indexArrayOfSelectedObjects {
-            if newSelectionIndex < index {
-              break
-            }else{
-              newSelectionIndex = index + 1
-            }
-          }
-          var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
-          if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {
-            newSelectedObject = sortedArray_prop [newSelectionIndex]
-          }
-        //----------------------------------------- Remove selected object
-        //--- Dictionary of object absolute indexes
-          var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-          for (index, object) in model_prop.enumerated () {
-            objectDictionary [object] = index
-          }
-        //--- Build selected objects index array
-          var selectedObjectIndexArray = [Int] ()
-          for object in self.selectedArray_property.propset {
-            let index = objectDictionary [object]
-            if let idx = index {
-              selectedObjectIndexArray.append (idx)
-            }
-          }
-        //--- Sort in reverse order
-          selectedObjectIndexArray.sort { $1 < $0 }
-        //--- Remove objects, in reverse of order of their index
-          var newObjectArray = model_prop
-          for index in selectedObjectIndexArray {
-            newObjectArray.remove (at: index)
-          }
-        //----------------------------------------- Set new selection
-          var newSelectionSet = Set <%!ELEMENT_TYPE_NAME%> ()
-          if let object = newSelectedObject {
-            newSelectionSet.insert (object)
-          }
-          self.selectedSet = newSelectionSet
-        //----------------------------------------- Set new object array
-          model.setProp (newObjectArray)
+      //------------- Find the object to be selected after selected object removing
+      //--- Dictionary of object sorted indexes
+        var sortedObjectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+        for (index, object) in model_prop.enumerated () {
+          sortedObjectDictionary [object] = index
         }
+        var indexArrayOfSelectedObjects = [Int] ()
+        for object in self.selectedArray_property.propset {
+          let index = sortedObjectDictionary [object]
+          if let idx = index {
+            indexArrayOfSelectedObjects.append (idx)
+          }
+        }
+      //--- Sort
+        indexArrayOfSelectedObjects.sort { $0 < $1 }
+      //--- Find the first index of a non selected object
+        var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
+        for index in indexArrayOfSelectedObjects {
+          if newSelectionIndex < index {
+            break
+          }else{
+            newSelectionIndex = index + 1
+          }
+        }
+        var newSelectedObject : %!ELEMENT_TYPE_NAME%? = nil
+        if (newSelectionIndex >= 0) && (newSelectionIndex < model_prop.count) {
+          newSelectedObject = model_prop [newSelectionIndex]
+        }
+      //----------------------------------------- Remove selected object
+      //--- Dictionary of object absolute indexes
+        var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
+        for (index, object) in model_prop.enumerated () {
+          objectDictionary [object] = index
+        }
+      //--- Build selected objects index array
+        var selectedObjectIndexArray = [Int] ()
+        for object in self.selectedArray_property.propset {
+          let index = objectDictionary [object]
+          if let idx = index {
+            selectedObjectIndexArray.append (idx)
+          }
+        }
+      //--- Sort in reverse order
+        selectedObjectIndexArray.sort { $1 < $0 }
+      //--- Remove objects, in reverse of order of their index
+        var newObjectArray = model_prop
+        for index in selectedObjectIndexArray {
+          newObjectArray.remove (at: index)
+        }
+      //----------------------------------------- Set new selection
+        var newSelectionSet = Set <%!ELEMENT_TYPE_NAME%> ()
+        if let object = newSelectedObject {
+          newSelectionSet.insert (object)
+        }
+        self.selectedSet = newSelectionSet
+      //----------------------------------------- Set new object array
+        model.setProp (newObjectArray)
       }
     }
   }
