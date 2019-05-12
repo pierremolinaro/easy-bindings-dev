@@ -694,7 +694,7 @@ final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  func setModel (_ inModel : ReadWriteArrayOf_%!ENTITY_NAME%) {
+  func setModel (_ inModel : ReadWriteArrayOf_%!ENTITY_NAME%?) {
     if self.mModel !== inModel {
       self.mModel?.detachClient (self)
       self.mModel = inModel
@@ -735,6 +735,21 @@ final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
       return model.prop
     }else{
       return .empty
+    }
+  }
+
+  //····················································································································
+
+  override var propval : [%!ENTITY_NAME%] {
+    if let model = self.mModel {
+      switch model.prop {
+      case .empty, .multiple :
+        return []
+      case .single (let v) :
+        return v
+      }
+    }else{
+      return []
     }
   }
 
@@ -855,68 +870,6 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
   }
  
   //····················································································································
- 
-  // private var mSet = Set <%!ENTITY_NAME%> ()
-  /* private var mValue = [%!ENTITY_NAME%] () {
-    didSet {
-      if oldValue != self.mValue {
-        let oldSet = Set (oldValue)
-        let newSet = Set (self.mValue)
-      //--- Register old value in undo manager
-        self.ebUndoManager?.registerUndo (withTarget: self, selector:#selector(performUndo(_:)), object:oldValue)
-      //--- Update explorer
-        if let valueExplorer = self.mValueExplorer {
-          updateManagedObjectToManyRelationshipDisplay (objectArray: self.mValue, popUpButton: valueExplorer)
-        }
-      //--- Removed object set
-        let removedObjectSet = oldSet.subtracting (newSet)
-        if removedObjectSet.count > 0 {
-          for managedObject in removedObjectSet {
-            managedObject.setSignatureObserver (observer: nil)
-            self.mResetOppositeRelationship? (managedObject)
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-    %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = nil\n%
-end
-%          }
-        //--- Remove observers of stored properties
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %          self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
-end
-%        //--- Remove observers of transient properties
-%for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %          self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (removedObjectSet)\n%
-end
-%        }
-       //--- Added object set
-        let addedObjectSet = newSet.subtracting (oldSet)
-        if addedObjectSet.count > 0 {
-          for managedObject : %!ENTITY_NAME% in addedObjectSet {
-            managedObject.setSignatureObserver (observer: self)
-            self.mSetOppositeRelationship? (managedObject)
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-    %            managedObject.%![mProperty mPropertyName]%_property.mSetterDelegate = { [weak self] inValue in self?.writeInPreferences () }\n%
-end
-%          }
-        //--- Add observers of stored properties
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %          self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
-end
-%        //--- Add observers of transient properties
-%for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %          self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (addedObjectSet)\n%
-end
-%        }
-      //--- Notify observers
-        // self.propagateProxyUpdate ()
-        self.postEvent ()
-        self.clearSignatureCache ()
-      //--- Write in preferences ?
-        self.writeInPreferences ()
-      }
-    }
-  } */
-
-  //····················································································································
 
   override var prop : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue) }
 
@@ -947,19 +900,15 @@ end
 
   func remove (_ object : %!ENTITY_NAME%) {
     if let idx = self.mInternalArrayValue.firstIndex (of: object) {
-      var array = self.mInternalArrayValue
-      array.remove (at: idx)
-      self.mInternalArrayValue = array
+      self.mInternalArrayValue.remove (at: idx)
     }
   }
   
   //····················································································································
 
   func add (_ object : %!ENTITY_NAME%) {
-    if self.mInternalArrayValue.firstIndex (of: object) == nil {
-      var array = self.mInternalArrayValue
-      array.append (object)
-      self.mInternalArrayValue = array
+    if !self.internalSetValue.contains (object) {
+      self.mInternalArrayValue.append (object)
     }
   }
   
