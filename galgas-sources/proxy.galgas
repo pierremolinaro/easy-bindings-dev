@@ -204,7 +204,7 @@ list @toManyProxyGenerationList {
 
 override getter @toManyProxyGeneration declarationInSelectionControllerCode -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   ToMany proxy: " + mPropertyName + " §\n"
+  result += "  //   ToMany proxy: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  let " + mPropertyName + "_property = ReadWriteArrayOf_" + mToManyTypeName + " ()\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + mToManyTypeName + "> {\n"
@@ -215,7 +215,7 @@ override getter @toManyProxyGeneration declarationInSelectionControllerCode -> @
 #·······················································································································
 
 override getter @toManyProxyGeneration bindPropertyInSelectionController -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + " §\n\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  private final func bind_property_" + mPropertyName + " () {\n"
   result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
   result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"

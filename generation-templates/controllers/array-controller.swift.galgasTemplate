@@ -188,6 +188,16 @@ end
  }
 
   //····················································································································
+
+  override func notifyModelDidChange () {
+    super.notifyModelDidChange ()
+    let currentSelectedSet = self.selectedSet
+    let objectArray = self.mModel?.propval ?? []
+    let newSelectedSet = currentSelectedSet.intersection (objectArray)
+    self.mInternalSelectedArrayProperty.setProp (Array (newSelectedSet))
+  }
+
+  //····················································································································
   //    Undo manager
   //····················································································································
 
@@ -633,7 +643,6 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       let objectsToRemove = self.selectedArray_property.propset
       for object in objectsToRemove {
         object.operationBeforeRemoving ()
-       // flushOutletEvents () // § Temporary !!!
         var objects = model.propval
         if let idx = objects.firstIndex (of: object) {
           objects.remove (at: idx)
