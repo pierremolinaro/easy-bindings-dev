@@ -6087,7 +6087,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
   result << in_OWNER_5F_NAME.stringValue () ;
   result << "_" ;
   result << in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue () ;
-  result << " : ReadOnlyAbstractGenericArrayProperty" ;
+  result << " : ReadOnlyAbstractGenericRelationshipProperty" ;
   const enumGalgasBool test_0 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   if (kBoolTrue == test_0) {
     result << ", EBViewControllerProtocol" ;

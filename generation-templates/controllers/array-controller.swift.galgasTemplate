@@ -8,7 +8,7 @@ import Cocoa
 //    %!"Array controller " + OWNER_NAME + " " + ARRAY_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyAbstractGenericArrayProperty%
+final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyAbstractGenericRelationshipProperty%
 if ELEMENT_TYPE_IS_GRAPHIC then
  %, EBViewControllerProtocol%
 end

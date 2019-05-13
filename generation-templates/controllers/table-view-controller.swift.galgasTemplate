@@ -12,7 +12,7 @@ private let DEBUG_EVENT = false
 //    Table View Controller + %!OWNER_NAME% %!TABLE_VIEW_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : ReadOnlyAbstractGenericArrayProperty, EBTableViewDelegate, NSTableViewDataSource {
+final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : ReadOnlyAbstractGenericRelationshipProperty, EBTableViewDelegate, NSTableViewDataSource {
  
   //····················································································································
   //    Constant properties
