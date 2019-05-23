@@ -158,8 +158,12 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To one property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  let " + mPropertyName + "_property = ToOneRelationship_" + mClassName
-          + "_" + mPropertyName + " ()\n\n"
+  result += "    #if NEWTOONE\n"
+  result += "     let " + mPropertyName + "_property = StoredObject_" + [mRelationshipType swiftTypeName] + " ()\n"
+  result += "    #else\n"
+  result += "      let " + mPropertyName + "_property = ToOneRelationship_" + mClassName
+          + "_" + mPropertyName + " ()\n"
+  result += "    #endif\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mRelationshipType swiftTypeName] + "?> {\n"
   result += "    return .single (self." + mPropertyName + "_property.propval)\n"
@@ -170,8 +174,12 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
   result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_none : ToOneRelationship_" + mClassName
-          + "_" + mPropertyName + " { return self." + mPropertyName + "_property }\n\n"
+  result += "    #if NEWTOONE\n"
+  result += "      var " + mPropertyName + "_none : StoredObject_" + [mRelationshipType swiftTypeName] + " { return self." + mPropertyName + "_property }\n"
+  result += "    #else\n"
+  result += "      var " + mPropertyName + "_none : ToOneRelationship_" + mClassName
+          + "_" + mPropertyName + " { return self." + mPropertyName + "_property }\n"
+  result += "    #endif\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_none_selection : EBSelection <Bool> {\n"
   result += "    return .single (self." + mPropertyName + "_property.propval == nil)\n"
@@ -181,8 +189,33 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
 #·······················································································································
 
 override getter @toOnePropertyGeneration configurationCode -> @string {
-  result  = "  //--- To one property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.owner = self\n"
+  switch mOpposite
+  case oppositeIsToMany (oppositeName) :
+    result  = "  //--- To one property: " + mPropertyName + " (has opposite to many relationship: " + oppositeName + ") §\n"
+    result += "    #if !NEWTOONE\n"
+    result += "      self." + mPropertyName + "_property.owner = self\n"
+    result += "    #else\n"
+    result += "      self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    #endif\n"
+  case none :
+    result  = "  //--- To one property: " + mPropertyName + "\n"
+    result += "    #if !NEWTOONE\n"
+    result += "      self." + mPropertyName + "_property.owner = self\n"
+    result += "    #else\n"
+    result += "      self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    #endif\n"
+  case oppositeIsToOne (oppositeName) :
+    result  = "  //--- To one property: " + mPropertyName + " (has opposite to one relationship: " + oppositeName + ") §\n"
+    result += "    #if !NEWTOONE\n"
+    result += "      self." + mPropertyName + "_property.owner = self\n"
+    result += "    #else\n"
+    result += "      self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "      self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
+    result += "        setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.setProp (me) } },\n"
+    result += "        resetter: { inObject in inObject." + oppositeName + "_property.setProp (nil) }\n"
+    result += "      )\n"
+    result += "    #endif\n"
+  end
 }
 
 #·······················································································································
