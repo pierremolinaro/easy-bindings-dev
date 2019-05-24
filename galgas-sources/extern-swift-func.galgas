@@ -20,6 +20,7 @@ syntax extension easyBindings_syntax {
   {
     $externFunc$
     $identifier$ ?let @lstring externFunctionName
+#      warning externFunctionName : "Extern function" 
     $calledBy$
     $identifier$ ?let @lstring callerName
     $;$

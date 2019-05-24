@@ -125,7 +125,7 @@ syntax extension easyBindings_syntax {
       externFunctionName = ["" here] # Generate stub
     or
       $externFunc$
-      $identifier$ ?externFunctionName    
+      $identifier$ ?externFunctionName   
     end
     $dependsFrom$
     @observablePropertyList dependanceList = {}
