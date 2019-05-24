@@ -117,13 +117,9 @@ end
 for () in TO_MANY_RELATIONSHIP_LIST do
   switch [mProperty mOption]
   case none :
-
   case hasDependance (@string masterPropertyName *) :
     %    self.%![mProperty mPropertyName]%_property.setDataProvider (nil)\n%
-    %    // self.%!masterPropertyName%_property.removeEBObserver (self.%![mProperty mPropertyName]%_property)\n%
-    %    // self.%![mProperty mPropertyName]%_property.mReadModelFunction = nil\n%
   case hasOpposite (*) :
-    % //   self.%![mProperty mPropertyName]%_property.setOppositeRelationship = nil\n%
   end
 end
 %  //--- Unregister properties for handling signature
@@ -151,11 +147,11 @@ end
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    createEntryForPropertyNamed (\n%
   %      "%![mProperty mPropertyName]%",\n%
-  %      idx:self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
-  %      y:&y,\n%
-  %      view:view,\n%
-  %      observerExplorer:&self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
-  %      valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
+  %      idx: self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
+  %      y: &y,\n%
+  %      view: view,\n%
+  %      observerExplorer: &self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
+  %      valueExplorer: &self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
   %    )\n%
 end
 %    createEntryForTitle ("Properties", y:&y, view:view)\n%
@@ -856,8 +852,6 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
   //····················································································································
 
   internal override func updateObservers (removedSet inRemovedSet : Set <%!ENTITY_NAME%>, addedSet inAddedSet : Set <%!ENTITY_NAME%>) {
-    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
-  //---
     for managedObject in inRemovedSet {
       managedObject.setSignatureObserver (observer: nil)
       self.mResetOppositeRelationship? (managedObject)
@@ -867,7 +861,9 @@ final class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSi
       managedObject.setSignatureObserver (observer: self)
       self.mSetOppositeRelationship? (managedObject)
     }
-  }
+  //---
+    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
+ }
  
   //····················································································································
 
