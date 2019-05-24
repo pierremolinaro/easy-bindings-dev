@@ -103,11 +103,11 @@ end
 if not [mKind isEntityType] & not [mKind isTransient] then
   %    createEntryForPropertyNamed (\n%
   %      "%!lkey.string%",\n%
-  %      idx:self.%!lkey.string%_property.ebObjectIndex,\n%
-  %      y:&y,\n%
-  %      view:view,\n%
-  %      observerExplorer:&self.%!lkey.string%_property.mObserverExplorer,\n%
-  %      valueExplorer:&self.%!lkey.string%_property.mValueExplorer\n%
+  %      idx: self.%!lkey.string%_property.ebObjectIndex,\n%
+  %      y: &y,\n%
+  %      view: view,\n%
+  %      observerExplorer: &self.%!lkey.string%_property.mObserverExplorer,\n%
+  %      valueExplorer: &self.%!lkey.string%_property.mValueExplorer\n%
   %    )\n%
 end
 end

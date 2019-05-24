@@ -2162,15 +2162,15 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           "      \"" ;
         result << enumerator_4906.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "\",\n"
-          "      idx:self." ;
+          "      idx: self." ;
         result << enumerator_4906.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property.ebObjectIndex,\n"
-          "      y:&y,\n"
-          "      view:view,\n"
-          "      observerExplorer:&self." ;
+          "      y: &y,\n"
+          "      view: view,\n"
+          "      observerExplorer: &self." ;
         result << enumerator_4906.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property.mObserverExplorer,\n"
-          "      valueExplorer:&self." ;
+          "      valueExplorer: &self." ;
         result << enumerator_4906.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property.mValueExplorer\n"
           "    )\n" ;
@@ -2235,26 +2235,26 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
     "    mExplorerWindow = nil\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_7701_ (0) ;
+  GALGAS_uint index_7706_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_propertyMap enumerator_7701 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_7701.hasCurrentObject ()) {
-      const enumGalgasBool test_6 = extensionGetter_isEntityType (enumerator_7701.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 166)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 166)).boolEnum () ;
+    cEnumerator_propertyMap enumerator_7706 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_7706.hasCurrentObject ()) {
+      const enumGalgasBool test_6 = extensionGetter_isEntityType (enumerator_7706.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 166)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 166)).boolEnum () ;
       if (kBoolTrue == test_6) {
         result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
           "\n"
           "  private final func bind_property_" ;
-        result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << " (model : ReadOnlyArrayOf_" ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
         result << ") {\n"
           "    model.addEBObserverOf_" ;
-        result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << " (self." ;
-        result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property)\n"
           "    self." ;
-        result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property.mReadModelFunction = { [weak self] in\n"
           "      if let model = self\?.mModel {\n"
           "        switch model.prop {\n"
@@ -2264,12 +2264,12 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           "          return .multiple\n"
           "        case .single (let v) :\n"
           "          var s = Set <" ;
-        result << extensionGetter_swiftTypeName (enumerator_7701.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 178)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_7706.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 178)).stringValue () ;
         result << "> ()\n"
           "          var isMultipleSelection = false\n"
           "          for object in v {\n"
           "            switch object." ;
-        result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property_selection {\n"
           "            case .empty :\n"
           "              return .empty\n"
@@ -2293,12 +2293,12 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           "        return .empty\n"
           "      }\n"
           "    }\n" ;
-        const enumGalgasBool test_7 = extensionGetter_isTransient (enumerator_7701.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 204)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 204)).boolEnum () ;
+        const enumGalgasBool test_7 = extensionGetter_isTransient (enumerator_7706.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 204)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 204)).boolEnum () ;
         if (kBoolTrue == test_7) {
           result << "    self." ;
-          result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
           result << "_property.mWriteModelFunction = { [weak self] (inValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7701.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 205)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7706.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 205)).stringValue () ;
           result << ") in\n"
             "      if let model = self\?.mModel {\n"
             "        switch model.prop {\n"
@@ -2307,16 +2307,16 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
             "        case .single (let v) :\n"
             "          for object in v {\n"
             "            object." ;
-          result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
           result << "_property.setProp (inValue)\n"
             "          }\n"
             "        }\n"
             "      }\n"
             "    }\n"
             "    self." ;
-          result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
           result << "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7701.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 217)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7706.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 217)).stringValue () ;
           result << ", windowForSheet : NSWindow\?) in\n"
             "      if let model = self\?.mModel {\n"
             "        switch model.prop {\n"
@@ -2325,7 +2325,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
             "        case .single (let v) :\n"
             "          for object in v {\n"
             "            let result = object." ;
-          result << enumerator_7701.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << enumerator_7706.current_lkey (HERE).getter_string (HERE).stringValue () ;
           result << "_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
             "            if !result {\n"
             "              return false\n"
@@ -2343,8 +2343,8 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           "\n" ;
       }else if (kBoolFalse == test_6) {
       }
-      index_7701_.increment () ;
-      enumerator_7701.gotoNextObject () ;
+      index_7706_.increment () ;
+      enumerator_7706.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -6175,7 +6175,7 @@ const char * gWrapperFileContent_63_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "func string (_ inManagedObject : EBManagedObject\?) -> String {\n"
   "  if let object = inManagedObject {\n"
-  "    return \"\\(object.ebObjectIndex)\"\n"
+  "    return explorerIndexString (object.ebObjectIndex)\n"
   "  }else{\n"
   "    return \"nil\"\n"
   "  }\n"
@@ -6569,7 +6569,7 @@ const cRegularFileWrapper gWrapperFile_63_swift_5F_sources (
   "EBManagedObject.swift",
   "swift",
   true, // Text file
-  17574, // Text length
+  17591, // Text length
   gWrapperFileContent_63_swift_5F_sources
 ) ;
 
@@ -10909,7 +10909,7 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "      observerExplorer.addItem (withTitle: String (observerCount))\n"
   "      observerExplorer.isEnabled = observerCount > 0\n"
   "      self.mObservers.apply ( {(_ observer : EBEvent) in\n"
-  "        let stringValue = explorerIndexString (observer.ebObjectIndex) + observer.className\n"
+  "        let stringValue = explorerIndexString (observer.ebObjectIndex) + \" \xE2""\x80""\x94"" \" + observer.className\n"
   "        observerExplorer.addItem (withTitle: stringValue)\n"
   "      })\n"
   "    }\n"
@@ -11158,25 +11158,25 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "func titleColumn (_ y : CGFloat) -> NSRect {\n"
-  "  return NSRect (x:0.0, y:y, width:EXPLORER_ROW_WIDTH, height:EXPLORER_ROW_HEIGHT)\n"
+  "  return NSRect (x: 0.0, y: y, width: EXPLORER_ROW_WIDTH, height: EXPLORER_ROW_HEIGHT)\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "func firstColumn (_ y : CGFloat) -> NSRect {\n"
-  "  return NSRect (x:0.0, y:y, width:FIRST_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)\n"
+  "  return NSRect (x: 0.0, y: y, width: FIRST_COLUMN_WIDTH, height: EXPLORER_ROW_HEIGHT)\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "func secondColumn (_ y : CGFloat) -> NSRect {\n"
-  "  return NSRect (x:FIRST_COLUMN_WIDTH, y:y, width:SECOND_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)\n"
+  "  return NSRect (x: FIRST_COLUMN_WIDTH, y: y, width: SECOND_COLUMN_WIDTH, height: EXPLORER_ROW_HEIGHT)\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "func thirdColumn (_ y : CGFloat) -> NSRect {\n"
-  "  return NSRect (x:FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH, y:y, width:THIRD_COLUMN_WIDTH, height:EXPLORER_ROW_HEIGHT)\n"
+  "  return NSRect (x: FIRST_COLUMN_WIDTH + SECOND_COLUMN_WIDTH, y: y, width: THIRD_COLUMN_WIDTH, height: EXPLORER_ROW_HEIGHT)\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -11187,7 +11187,7 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "func explorerIndexString (_ idx : Int) -> String {\n"
   "  var result = String (idx % 10)\n"
   "  var n = idx / 10\n"
-  "  result += String (n % 10)\n"
+  "  result += \"\\(n % 10)\"\n"
   "  n /= 10\n"
   "  result += explorerLetters [n % explorerLetters.count]\n"
   "  n /= explorerLetters.count\n"
@@ -11196,49 +11196,51 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  result += explorerLetters [n % explorerLetters.count]\n"
   "  n /= explorerLetters.count\n"
   "  if n > 0 {\n"
-  "    result += String (n)\n"
+  "    result += \"\\(n)\"\n"
   "  }\n"
-  "  return result + \" \xE2""\x80""\x94"" \"\n"
+  "  return result\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "func createEntryForPropertyNamed (_ attributeName : String,\n"
   "                                  idx : Int,\n"
-  "                                  y : inout CGFloat,\n"
+  "                                  y ioY : inout CGFloat,\n"
   "                                  view : NSView,\n"
-  "                                  observerExplorer : inout NSPopUpButton\?,\n"
-  "                                  valueExplorer : inout NSTextField\?) {\n"
+  "                                  observerExplorer ioObserverExplorer : inout NSPopUpButton\?,\n"
+  "                                  valueExplorer ioValueExplorer : inout NSTextField\?) {\n"
   "  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)\n"
   "//--- Explorer popup button\n"
-  "  observerExplorer = NSPopUpButton (frame:firstColumn (y), pullsDown:true)\n"
-  "  observerExplorer\?.font = font\n"
-  "  view.addSubview (observerExplorer!)\n"
+  "  let observerExplorer = NSPopUpButton (frame: firstColumn (ioY), pullsDown: true)\n"
+  "  ioObserverExplorer = observerExplorer\n"
+  "  observerExplorer.font = font\n"
+  "  view.addSubview (observerExplorer)\n"
   "//--- Property textfield\n"
-  "  let tf = NSTextField (frame:secondColumn (y))\n"
+  "  let tf = NSTextField (frame: secondColumn (ioY))\n"
   "  tf.isEnabled = true\n"
   "  tf.isEditable = false\n"
-  "  tf.stringValue = explorerIndexString (idx) + attributeName\n"
+  "  tf.stringValue = explorerIndexString (idx) + \" \xE2""\x80""\x94"" \" + attributeName\n"
   "  tf.font = font\n"
   "  view.addSubview (tf)\n"
   "//--- Value textfield\n"
-  "  valueExplorer = NSTextField (frame:thirdColumn (y))\n"
-  "  valueExplorer\?.isEnabled = true\n"
-  "  valueExplorer\?.isEditable = false\n"
-  "  valueExplorer\?.font = font\n"
-  "  view.addSubview (valueExplorer!)\n"
+  "  let valueExplorer = NSTextField (frame: thirdColumn (ioY))\n"
+  "  ioValueExplorer = valueExplorer\n"
+  "  valueExplorer.isEnabled = true\n"
+  "  valueExplorer.isEditable = false\n"
+  "  valueExplorer.font = font\n"
+  "  view.addSubview (valueExplorer)\n"
   "//--- Update rect origin\n"
-  "  y += EXPLORER_ROW_HEIGHT\n"
+  "  ioY += EXPLORER_ROW_HEIGHT\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "func createEntryForTitle (_ title : String,\n"
-  "                          y : inout CGFloat,\n"
+  "                          y ioY : inout CGFloat,\n"
   "                          view : NSView) {\n"
   "  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)\n"
   "//--- Title textfield\n"
-  "  let tf = NSTextField (frame:titleColumn (y))\n"
+  "  let tf = NSTextField (frame:titleColumn (ioY))\n"
   "  tf.isEnabled = true\n"
   "  tf.isEditable = false\n"
   "  tf.stringValue = title\n"
@@ -11248,7 +11250,7 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  tf.isBordered = false\n"
   "  view.addSubview (tf)\n"
   "//--- Update rect origin\n"
-  "  y += EXPLORER_ROW_HEIGHT\n"
+  "  ioY += EXPLORER_ROW_HEIGHT\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -11257,25 +11259,25 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "func createEntryForObjectNamed (_ name : String,\n"
   "                                object : EBObject,\n"
-  "                                y : inout CGFloat,\n"
+  "                                y ioY : inout CGFloat,\n"
   "                                view : NSView) {\n"
   "  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)\n"
   "//--- Property textfield\n"
-  "  let tf = NSTextField (frame:secondColumn (y))\n"
+  "  let tf = NSTextField (frame:secondColumn (ioY))\n"
   "  tf.isEnabled = true\n"
   "  tf.isEditable = false\n"
   "  tf.stringValue = name\n"
   "  tf.font = font\n"
   "  view.addSubview (tf)\n"
   "//--- Value textfield\n"
-  "  let vtf = NSTextField (frame:thirdColumn (y))\n"
+  "  let vtf = NSTextField (frame:thirdColumn (ioY))\n"
   "  vtf.isEnabled = true\n"
   "  vtf.isEditable = false\n"
-  "  vtf.stringValue = explorerIndexString (object.ebObjectIndex) + String (describing: type(of: object))\n"
+  "  vtf.stringValue = explorerIndexString (object.ebObjectIndex) + \" \xE2""\x80""\x94"" \" + String (describing: type(of: object))\n"
   "  vtf.font = font\n"
   "  view.addSubview (vtf)\n"
   "//--- Update rect origin\n"
-  "  y += EXPLORER_ROW_HEIGHT\n"
+  "  ioY += EXPLORER_ROW_HEIGHT\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -11284,20 +11286,21 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "func createEntryForToOneRelationshipNamed (_ relationshipName : String,\n"
   "                                           idx : Int,\n"
-  "                                           y : inout CGFloat,\n"
+  "                                           y ioY : inout CGFloat,\n"
   "                                           view : NSView,\n"
-  "                                           valueExplorer : inout NSButton\?) {\n"
+  "                                           valueExplorer ioValueExplorer : inout NSButton\?) {\n"
   "  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)\n"
-  "  let tf = NSTextField (frame:secondColumn (y))\n"
+  "  let tf = NSTextField (frame: secondColumn (ioY))\n"
   "  tf.isEnabled = true\n"
   "  tf.isEditable = false\n"
-  "  tf.stringValue = explorerIndexString (idx) + relationshipName\n"
+  "  tf.stringValue = explorerIndexString (idx) + \" \xE2""\x80""\x94"" \" + relationshipName\n"
   "  tf.font = font\n"
   "  view.addSubview (tf)\n"
-  "  valueExplorer = NSButton (frame:thirdColumn (y))\n"
-  "  valueExplorer\?.font = font\n"
-  "  view.addSubview (valueExplorer!)\n"
-  "  y += EXPLORER_ROW_HEIGHT\n"
+  "  let valueExplorer = NSButton (frame: thirdColumn (ioY))\n"
+  "  ioValueExplorer = valueExplorer\n"
+  "  valueExplorer.font = font\n"
+  "  view.addSubview (valueExplorer)\n"
+  "  ioY += EXPLORER_ROW_HEIGHT\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -11306,20 +11309,21 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "func createEntryForToManyRelationshipNamed (_ relationshipName : String,\n"
   "                                            idx : Int,\n"
-  "                                            y : inout CGFloat,\n"
+  "                                            y ioY : inout CGFloat,\n"
   "                                            view : NSView,\n"
-  "                                            valueExplorer : inout NSPopUpButton\?) {\n"
+  "                                            valueExplorer ioValueExplorer : inout NSPopUpButton\?) {\n"
   "  let font = NSFont.boldSystemFont (ofSize: NSFont.smallSystemFontSize)\n"
-  "  let tf = NSTextField (frame:secondColumn (y))\n"
+  "  let tf = NSTextField (frame:secondColumn (ioY))\n"
   "  tf.isEnabled = true\n"
   "  tf.isEditable = false\n"
-  "  tf.stringValue = explorerIndexString (idx) + relationshipName\n"
+  "  tf.stringValue = explorerIndexString (idx) + \" \xE2""\x80""\x94"" \" + relationshipName\n"
   "  tf.font = font\n"
   "  view.addSubview (tf)\n"
-  "  valueExplorer = NSPopUpButton (frame:thirdColumn (y), pullsDown:true)\n"
-  "  valueExplorer\?.font = font\n"
-  "  view.addSubview (valueExplorer!)\n"
-  "  y += EXPLORER_ROW_HEIGHT\n"
+  "  let valueExplorer = NSPopUpButton (frame: thirdColumn (ioY), pullsDown: true)\n"
+  "  ioValueExplorer = valueExplorer\n"
+  "  valueExplorer.font = font\n"
+  "  view.addSubview (valueExplorer)\n"
+  "  ioY += EXPLORER_ROW_HEIGHT\n"
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
@@ -11760,7 +11764,7 @@ const cRegularFileWrapper gWrapperFile_14_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  39260, // Text length
+  39573, // Text length
   gWrapperFileContent_14_swift_5F_sources
 ) ;
 
