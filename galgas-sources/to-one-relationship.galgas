@@ -158,9 +158,9 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To one property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "   let " + mPropertyName + "_property = StoredObject_" + [mRelationshipType swiftTypeName] + " ()\n"
+  result += "   let " + mPropertyName + "_property = StoredObject_" + [mRelationshipType swiftTypeName] + " ()\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mRelationshipType swiftTypeName] + "?> {\n\n"
+  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mRelationshipType swiftTypeName] + "?> {\n"
   result += "    return .single (self." + mPropertyName + "_property.propval)\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
@@ -182,11 +182,11 @@ override getter @toOnePropertyGeneration configurationCode -> @string {
   switch mOpposite
   case oppositeIsToMany (oppositeName) :
     result  = "  //--- To one property: " + mPropertyName + " (has opposite to many relationship: " + oppositeName + ") §\n"
-    result += "      self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
-    result += "      self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
-    result += "        setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.add (me) } },\n"
-    result += "        resetter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.remove (me) } }\n"
-    result += "      )\n"
+    result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
+    result += "      setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.add (me) } },\n"
+    result += "      resetter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.remove (me) } }\n"
+    result += "    )\n"
   case none :
     result  = "  //--- To one property: " + mPropertyName + "\n"
     result += "      self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
