@@ -5,39 +5,39 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension  EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  func bind_gridCrossColor (_ model: EBReadOnlyProperty_NSColor, file:String, line:Int) {
-    self.mGridCrossColorController = EBSimpleController (
+  func bind_underObjectsDisplay (_ model : EBReadOnlyProperty_EBShape, file : String, line : Int) {
+    self.mUnderObjectsDisplayController = EBSimpleController (
       observedObjects: [model],
-      callBack: { [weak self] in self?.updateGridColor (from: model) }
+      callBack: { [weak self] in self?.updateUnderObjectsDisplay (from: model) }
     )
   }
 
   //····················································································································
 
-  func unbind_gridCrossColor () {
-    self.mGridCrossColorController?.unregister ()
-    self.mGridCrossColorController = nil
+  func unbind_underObjectsDisplay () {
+    self.mUnderObjectsDisplayController?.unregister ()
+    self.mUnderObjectsDisplayController = nil
   }
 
   //····················································································································
 
-  private func updateGridColor (from model : EBReadOnlyProperty_NSColor) {
+  private func updateUnderObjectsDisplay (from model : EBReadOnlyProperty_EBShape) {
     switch model.prop {
-    case .empty, .multiple  :
-      self.mGridCrossColor = .black
+    case .empty, .multiple :
+      self.mUnderObjectsDisplay = EBShape ()
     case .single (let v) :
-      self.mGridCrossColor = v
+      self.mUnderObjectsDisplay = v
     }
   }
 
-  //····················································································································  //····················································································································
+  //····················································································································
 
 }
 

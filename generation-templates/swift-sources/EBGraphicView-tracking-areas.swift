@@ -5,36 +5,27 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  func bind_gridDisplayFactor (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
-    self.mGridDisplayFactorController = EBSimpleController (
-      observedObjects: [model],
-      callBack: { [weak self] in self?.updateGridDisplayFactor (from: model) }
-    )
-  }
-
-  //····················································································································
-
-  func unbind_gridDisplayFactor () {
-    self.mGridDisplayFactorController?.unregister ()
-    self.mGridDisplayFactorController = nil
-  }
-
-  //····················································································································
-
-  private func updateGridDisplayFactor (from model : EBReadOnlyProperty_Int) {
-    switch model.prop {
-    case .empty, .multiple :
-      self.mGridDisplayFactor = 4
-    case .single (let v) :
-      self.mGridDisplayFactor = v
+  override func updateTrackingAreas () { // This is required for receiving mouse moved and mouseExited events
+  //--- Remove current tracking areas
+    let currentTrackingAreas = self.trackingAreas
+    for trackingArea in currentTrackingAreas {
+      self.removeTrackingArea (trackingArea)
     }
+  //--- Add Updated tracking area
+    let trackingArea = NSTrackingArea (
+      rect: self.bounds,
+      options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow],
+      owner: self,
+      userInfo: nil
+    )
+    self.addTrackingArea (trackingArea)
+  //---
+    super.updateTrackingAreas ()
   }
 
   //····················································································································

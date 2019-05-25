@@ -5,15 +5,42 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBViewScaleProvider
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol EBViewScaleProvider : class {
-  var actualScale : CGFloat { get }
+extension EBGraphicView {
 
-  var horizontalFlip : Bool { get }
+  //····················································································································
 
-  var verticalFlip : Bool { get }
+  func bind_horizontalFlip (_ model : EBReadOnlyProperty_Bool, file : String, line : Int) {
+    self.mHorizontalFlipController = EBSimpleController (
+      observedObjects: [model],
+      callBack: { [weak self] in self?.updateHorizontalFlip (from: model) }
+    )
+  }
+
+  //····················································································································
+
+  func unbind_horizontalFlip () {
+    self.mHorizontalFlipController?.unregister ()
+    self.mHorizontalFlipController = nil
+  }
+
+  //····················································································································
+
+  private func updateHorizontalFlip (from model : EBReadOnlyProperty_Bool) {
+    var horizontalFlip = false
+    switch model.prop {
+    case .empty, .multiple :
+      ()
+    case .single (let v) :
+      horizontalFlip = v
+    }
+    self.set (horizontalFlip: horizontalFlip)
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

@@ -5,10 +5,10 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBViewControllerProtocol
+//   EBGraphicViewControllerProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol EBViewControllerProtocol : class {
+protocol EBGraphicViewControllerProtocol : class {
 
   var objectCount : Int { get }
   var objectArray : [EBGraphicManagedObject] { get }

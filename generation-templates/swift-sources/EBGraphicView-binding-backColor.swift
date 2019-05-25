@@ -5,28 +5,38 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBGraphicView
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  override func updateTrackingAreas () { // This is required for receiving mouse moved and mouseExited events
- //   self.updateViewFrameAndBounds ()
-  //--- Remove current tracking areas
-    let currentTrackingAreas = self.trackingAreas
-    for trackingArea in currentTrackingAreas {
-      self.removeTrackingArea (trackingArea)
-    }
-  //--- Add Updated tracking area
-    let trackingArea = NSTrackingArea (
-      rect: self.bounds,
-      options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow],
-      owner: self,
-      userInfo: nil
+  func bind_backColor (_ model : EBReadOnlyProperty_NSColor, file:String, line:Int) {
+    self.mBackColorController = EBSimpleController (
+      observedObjects: [model],
+      callBack: { [weak self] in self?.updateBackColor (from: model) }
     )
-    self.addTrackingArea (trackingArea)
-  //---
-    super.updateTrackingAreas ()
+  }
+
+  //····················································································································
+
+  func unbind_backColor () {
+    mBackColorController?.unregister ()
+    mBackColorController = nil
+  }
+
+  //····················································································································
+
+  private func updateBackColor (from model : EBReadOnlyProperty_NSColor) {
+    switch model.prop {
+    case .empty :
+      break
+    case .single (let v) :
+      self.mBackColor = v
+    case .multiple :
+      break
+    }
   }
 
   //····················································································································

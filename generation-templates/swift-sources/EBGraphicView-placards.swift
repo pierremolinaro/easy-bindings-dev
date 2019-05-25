@@ -6,13 +6,13 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
  //····················································································································
 
   fileprivate func addPopupButtonItemForZoom (_ inZoom : Int) {
     if let zoomPopUpButton = self.mZoomPopUpButton {
-      zoomPopUpButton.menu?.addItem (withTitle: ("\(inZoom) %"), action:#selector (EBView.setZoomFromPopUpButton(_:)), keyEquivalent: "")
+      zoomPopUpButton.menu?.addItem (withTitle: ("\(inZoom) %"), action:#selector (EBGraphicView.setZoomFromPopUpButton(_:)), keyEquivalent: "")
       zoomPopUpButton.lastItem?.target = self
       zoomPopUpButton.lastItem?.tag = inZoom
     }
@@ -71,7 +71,7 @@ extension EBView {
       self.addPopupButtonItemForZoom (1500)
       self.addPopupButtonItemForZoom (1700)
       self.addPopupButtonItemForZoom (2000)
-      zoomPopUpButton.menu?.addItem (withTitle:"Fit to Window", action:#selector (EBView.setZoomFromPopUpButton(_:)), keyEquivalent:"")
+      zoomPopUpButton.menu?.addItem (withTitle:"Fit to Window", action:#selector (EBGraphicView.setZoomFromPopUpButton(_:)), keyEquivalent:"")
       zoomPopUpButton.lastItem?.target = self
       zoomPopUpButton.lastItem?.tag = 0
       inScrollView.addPlacard (zoomPopUpButton)
@@ -145,7 +145,7 @@ extension EBView {
       let nc = NotificationCenter.default
       nc.addObserver (
         self,
-        selector: #selector (EBView.performLiveScrolling(_:)),
+        selector: #selector (EBGraphicView.performLiveScrolling(_:)),
         name: NSScrollView.didLiveScrollNotification,
         object: scrollView
       )

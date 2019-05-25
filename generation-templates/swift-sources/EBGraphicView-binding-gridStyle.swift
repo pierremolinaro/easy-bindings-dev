@@ -5,62 +5,36 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  fileprivate func updateOutlet (_ zoom : EBReadOnlyProperty_Int) {
-    switch zoom.prop {
+  func bind_gridStyle (_ model : EBReadOnlyProperty_GridStyle, file : String, line : Int) {
+    self.mGridStyleController = EBSimpleController (
+      observedObjects: [model],
+      callBack: { [weak self] in self?.updateGridStyle (from: model) }
+    )
+  }
+
+  //····················································································································
+
+  func unbind_gridStyle () {
+    mGridStyleController?.unregister ()
+    mGridStyleController = nil
+  }
+
+  //····················································································································
+
+  private func updateGridStyle (from model : EBReadOnlyProperty_GridStyle) {
+    switch model.prop {
     case .empty, .multiple :
-      self.applyZoom (100)
+      self.mGridStyle = .noGrid
     case .single (let v) :
-      self.applyZoom (v)
+      self.mGridStyle = v
     }
-  }
-
-  //····················································································································
-
-  func bind_zoom (_ zoom : EBReadWriteProperty_Int, file : String, line : Int) {
-    self.mZoomController = Controller_CanariViewWithZoomAndFlip_zoom (zoom: zoom, outlet: self)
-  }
-
-  //····················································································································
-
-  func unbind_zoom () {
-    self.mZoomController?.unregister ()
-    self.mZoomController = nil
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   Controller_CanariViewWithZoomAndFlip_zoom
-//   MARK: -
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-final class Controller_CanariViewWithZoomAndFlip_zoom : EBSimpleController {
-
-  private let mZoomProperty : EBReadWriteProperty_Int
-  private let mOutlet : EBView
-
-  //····················································································································
-
-  init (zoom : EBReadWriteProperty_Int, outlet : EBView) {
-    mZoomProperty = zoom
-    mOutlet = outlet
-    super.init (observedObjects:[zoom], callBack: { outlet.updateOutlet (zoom) })
-//    self.mEventCallBack = { [weak self] in self?.updateOutlet () }
-  }
-
-  //····················································································································
-
-  func updateModel (_ sender : EBView, _ inNewZoom : Int) {
-    _ = self.mZoomProperty.validateAndSetProp (inNewZoom, windowForSheet:sender.window)
   }
 
   //····················································································································

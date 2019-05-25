@@ -5,34 +5,35 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBGraphicView
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  func setIssue (_ inBezierPath : NSBezierPath?, _ issueKind : CanariIssueKind) {
-    if self.mIssueBezierPath != inBezierPath {
-      if let bp = self.mIssueBezierPath, bp.elementCount > 0 {
-        self.setNeedsDisplay (self.issueBoundingBox.insetBy(dx: -1.0, dy: -1.0))
-      }
-      self.mIssueBezierPath = inBezierPath
-      self.mIssueKind = issueKind
-      self.updateViewFrameAndBounds ()
-      if let bp = self.mIssueBezierPath, bp.elementCount > 0 {
-        self.scrollToVisible (bp.bounds)
-        self.setNeedsDisplay (self.issueBoundingBox.insetBy(dx: -1.0, dy: -1.0))
-      }
-    }
+  func bind_xPlacardUnit (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
+    self.mXPlacardUnitController = EBSimpleController (
+      observedObjects: [model],
+      callBack: { [weak self] in self?.updateXPlacardUnit (from: model) }
+    )
   }
 
   //····················································································································
 
-  internal var issueBoundingBox : NSRect {
-    if let bp = self.mIssueBezierPath, bp.elementCount > 0 {
-      let e = -bp.lineWidth
-      return bp.bounds.insetBy (dx: e, dy: e)
-    }else{
-      return NSRect.null
+  func unbind_xPlacardUnit () {
+    self.mXPlacardUnitController?.unregister ()
+    self.mXPlacardUnitController = nil
+  }
+
+  //····················································································································
+
+  private func updateXPlacardUnit (from model : EBReadOnlyProperty_Int) {
+    switch model.prop {
+    case .empty, .multiple :
+      self.set (XPlacardUnit: 2286) // mils
+    case .single (let v) :
+      self.set (XPlacardUnit: v)
     }
   }
 
@@ -41,4 +42,3 @@ extension EBView {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-

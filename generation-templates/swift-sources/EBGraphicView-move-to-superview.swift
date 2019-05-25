@@ -5,40 +5,24 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  func bind_gridLineColor (_ model: EBReadOnlyProperty_NSColor, file:String, line:Int) {
-    self.mGridLineColorController = EBSimpleController (
-      observedObjects: [model],
-      callBack: { [weak self] in self?.updateLineColor (from: model) }
-    )
-  }
-
-  //····················································································································
-
-  func unbind_gridLineColor () {
-    self.mGridLineColorController?.unregister ()
-    self.mGridLineColorController = nil
-  }
-
-  //····················································································································
-
-  private func updateLineColor (from model : EBReadOnlyProperty_NSColor) {
-    switch model.prop {
-    case .empty, .multiple :
-      self.mGridLineColor = .black
-    case .single (let v) :
-      self.mGridLineColor = v
+  override func viewDidMoveToSuperview () {
+    super.viewDidMoveToSuperview ()
+    if self.superview != nil {
+      self.installPlacards ()
+      self.addEndLiveMagnificationObserver ()
+      self.updateViewFrameAndBounds ()
     }
   }
-
   //····················································································································
 
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+

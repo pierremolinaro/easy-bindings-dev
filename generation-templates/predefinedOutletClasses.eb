@@ -11,23 +11,23 @@ transient property class NSImage ;
 
 transient property class EBShape ;
 
-extern outlet class EBView : NSView $graphicController ;
-binding EBView $underObjectsDisplay : transient EBShape ;
-binding EBView $overObjectsDisplay : transient EBShape ;
-binding EBView $arrowKeyMagnitude : transient Int ;
-binding EBView $shiftArrowKeyMagnitude : transient Int ;
-binding EBView $backColor : transient NSColor ;
-binding EBView $mouseGrid : transient Int ;
-binding EBView $gridStep : transient Int ;
-binding EBView $gridStyle : transient GridStyle ;
-binding EBView $gridDisplayFactor : transient Int ;
-binding EBView $gridLineColor : transient NSColor ;
-binding EBView $gridCrossColor : transient NSColor ;
-binding EBView $zoom : property Int ;
-binding EBView $horizontalFlip : transient Bool ;
-binding EBView $verticalFlip : transient Bool ;
-binding EBView $xPlacardUnit : transient Int ;
-binding EBView $yPlacardUnit : transient Int ;
+extern outlet class EBGraphicView : NSView $graphicController ;
+binding EBGraphicView $underObjectsDisplay : transient EBShape ;
+binding EBGraphicView $overObjectsDisplay : transient EBShape ;
+binding EBGraphicView $arrowKeyMagnitude : transient Int ;
+binding EBGraphicView $shiftArrowKeyMagnitude : transient Int ;
+binding EBGraphicView $backColor : transient NSColor ;
+binding EBGraphicView $mouseGrid : transient Int ;
+binding EBGraphicView $gridStep : transient Int ;
+binding EBGraphicView $gridStyle : transient GridStyle ;
+binding EBGraphicView $gridDisplayFactor : transient Int ;
+binding EBGraphicView $gridLineColor : transient NSColor ;
+binding EBGraphicView $gridCrossColor : transient NSColor ;
+binding EBGraphicView $zoom : property Int ;
+binding EBGraphicView $horizontalFlip : transient Bool ;
+binding EBGraphicView $verticalFlip : transient Bool ;
+binding EBGraphicView $xPlacardUnit : transient Int ;
+binding EBGraphicView $yPlacardUnit : transient Int ;
 
 extern outlet class NSView $hidden ;
 

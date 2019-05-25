@@ -5,37 +5,35 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  func bind_backColor (_ model : EBReadOnlyProperty_NSColor, file:String, line:Int) {
-    self.mBackColorController = EBSimpleController (
+  func bind_gridStep (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
+    self.mGridStepController = EBSimpleController (
       observedObjects: [model],
-      callBack: { [weak self] in self?.updateBackColor (from: model) }
+      callBack: { [weak self] in self?.updateGridStep (from: model) }
     )
   }
 
   //····················································································································
 
-  func unbind_backColor () {
-    mBackColorController?.unregister ()
-    mBackColorController = nil
+  func unbind_gridStep () {
+    self.mGridStepController?.unregister ()
+    self.mGridStepController = nil
   }
 
   //····················································································································
 
-  private func updateBackColor (from model : EBReadOnlyProperty_NSColor) {
+  private func updateGridStep (from model : EBReadOnlyProperty_Int) {
     switch model.prop {
-    case .empty :
-      break
+    case .empty, .multiple :
+      self.mGridStepInCanariUnit = milsToCanariUnit (25)
     case .single (let v) :
-      self.mBackColor = v
-    case .multiple :
-      break
+      self.mGridStepInCanariUnit = v
     }
   }
 

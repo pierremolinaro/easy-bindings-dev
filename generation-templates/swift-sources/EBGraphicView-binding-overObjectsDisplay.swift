@@ -5,50 +5,36 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBGraphicView
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  override func keyDown (with inEvent: NSEvent) {
-    let amount : Int = inEvent.modifierFlags.contains (.shift)
-      ? self.shiftArrowKeyMagnitude
-      : self.arrowKeyMagnitude
-    ;
-    for character in (inEvent.characters ?? "").unicodeScalars {
-      switch (character) {
-      case NSEvent.SpecialKey.upArrow.unicodeScalar :
-        _ = self.wantsToTranslateSelection (byX: 0, byY:amount)
-      case NSEvent.SpecialKey.downArrow.unicodeScalar :
-        _ = self.wantsToTranslateSelection (byX: 0, byY:-amount)
-      case NSEvent.SpecialKey.leftArrow.unicodeScalar :
-        _ = self.wantsToTranslateSelection (byX: -amount, byY: 0)
-      case NSEvent.SpecialKey.rightArrow.unicodeScalar :
-        _ = self.wantsToTranslateSelection (byX: amount, byY: 0)
-      case NSEvent.SpecialKey.deleteForward.unicodeScalar, NSEvent.SpecialKey.delete.unicodeScalar :
-        self.deleteSelection ()
-      default :
-        break
-      }
-    }
+  func bind_overObjectsDisplay (_ model : EBReadOnlyProperty_EBShape, file:String, line:Int) {
+    self.mOverObjectsDisplayController = EBSimpleController (
+      observedObjects: [model],
+      callBack: { [weak self] in self?.updateOverObjectsDisplay (from: model) }
+    )
   }
 
   //····················································································································
 
-  private func wantsToTranslateSelection (byX inDx: Int, byY inDy: Int) -> Bool {
-    var accepted = true
-    for object in self.viewController?.selectedGraphicObjectSet ?? [] {
-      if !object.acceptToTranslate (xBy: inDx, yBy:inDy) {
-        accepted = false
-        break
-      }
+  func unbind_overObjectsDisplay () {
+    self.mOverObjectsDisplayController?.unregister ()
+    self.mOverObjectsDisplayController = nil
+  }
+
+  //····················································································································
+
+  private func updateOverObjectsDisplay (from model : EBReadOnlyProperty_EBShape) {
+    switch model.prop {
+    case .empty, .multiple :
+      self.mOverObjectsDisplay = EBShape ()
+    case .single (let v) :
+      self.mOverObjectsDisplay =  v
     }
-    if accepted {
-      for object in self.viewController?.selectedGraphicObjectSet ?? [] {
-        object.translate (xBy: inDx, yBy:inDy)
-      }
-    }
-    return accepted
   }
 
   //····················································································································

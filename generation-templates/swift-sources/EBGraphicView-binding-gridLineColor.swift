@@ -5,33 +5,35 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  func bind_yPlacardUnit (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
-    self.mYPlacardUnitController = EBSimpleController (
+  func bind_gridLineColor (_ model: EBReadOnlyProperty_NSColor, file:String, line:Int) {
+    self.mGridLineColorController = EBSimpleController (
       observedObjects: [model],
-      callBack: { [weak self] in self?.updateYPlacardUnit (from: model) }
+      callBack: { [weak self] in self?.updateLineColor (from: model) }
     )
   }
 
-  func unbind_yPlacardUnit () {
-    self.mYPlacardUnitController?.unregister ()
-    self.mYPlacardUnitController = nil
+  //····················································································································
+
+  func unbind_gridLineColor () {
+    self.mGridLineColorController?.unregister ()
+    self.mGridLineColorController = nil
   }
 
   //····················································································································
 
-  private func updateYPlacardUnit (from model : EBReadOnlyProperty_Int) {
+  private func updateLineColor (from model : EBReadOnlyProperty_NSColor) {
     switch model.prop {
     case .empty, .multiple :
-      self.set (YPlacardUnit: 2286) // mils
+      self.mGridLineColor = .black
     case .single (let v) :
-      self.set (YPlacardUnit: v)
+      self.mGridLineColor = v
     }
   }
 

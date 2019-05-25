@@ -5,35 +5,42 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  override func viewDidMoveToSuperview () {
-    super.viewDidMoveToSuperview ()
-    if self.superview != nil {
-      self.installPlacards ()
-      self.addEndLiveMagnificationObserver ()
-      self.updateViewFrameAndBounds ()
-    }
+  func bind_arrowKeyMagnitude (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
+    self.mArrowKeyMagnitudeController = EBSimpleController (
+      observedObjects: [model],
+      callBack: { [weak self] in self?.updateArrowKeyMagnitude (from: model) }
+    )
   }
 
   //····················································································································
 
-//  override func viewWillMove (toSuperview inSuperview : NSView?) {
-//     super.viewWillMove (toSuperview: inSuperview)
-//  //--- Remove from superview ?
-//    if nil == inSuperview {
-//      self.removePlacards ()
-//    }
-//  }
+  func unbind_arrowKeyMagnitude () {
+    self.mArrowKeyMagnitudeController?.unregister ()
+    self.mArrowKeyMagnitudeController = nil
+  }
+
+  //····················································································································
+
+  private func updateArrowKeyMagnitude (from model : EBReadOnlyProperty_Int) {
+    switch model.prop {
+    case .empty :
+      break
+    case .single (let v) :
+      self.set (arrowKeyMagnitude: v)
+    case .multiple :
+      break
+    }
+  }
 
   //····················································································································
 
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-

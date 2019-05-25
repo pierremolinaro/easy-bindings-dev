@@ -5,10 +5,10 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBView) class EBView : NSView, EBUserClassNameProtocol, EBViewScaleProvider {
+@objc(EBGraphicView) class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvider {
 
   //····················································································································
   // MARK: -
@@ -51,15 +51,15 @@ import Cocoa
   // MARK: -
   //····················································································································
 
-   private weak var mViewController : EBViewControllerProtocol? = nil // SOULD BE WEAK
+   private weak var mViewController : EBGraphicViewControllerProtocol? = nil // SOULD BE WEAK
 
   //····················································································································
 
-   var viewController : EBViewControllerProtocol? { return self.mViewController }
+   var viewController : EBGraphicViewControllerProtocol? { return self.mViewController }
 
   //····················································································································
 
-  func set (controller inController : EBViewControllerProtocol?) {
+  func set (controller inController : EBGraphicViewControllerProtocol?) {
     self.mViewController = inController
   }
 

@@ -5,35 +5,35 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  func bind_mouseGrid (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
-    self.mMouseGridController = EBSimpleController (
+  func bind_gridDisplayFactor (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
+    self.mGridDisplayFactorController = EBSimpleController (
       observedObjects: [model],
-      callBack: { [weak self] in self?.updateMouseGrid (from: model) }
+      callBack: { [weak self] in self?.updateGridDisplayFactor (from: model) }
     )
   }
 
   //····················································································································
 
-  func unbind_mouseGrid () {
-    self.mMouseGridController?.unregister ()
-    self.mMouseGridController = nil
+  func unbind_gridDisplayFactor () {
+    self.mGridDisplayFactorController?.unregister ()
+    self.mGridDisplayFactorController = nil
   }
 
   //····················································································································
 
-  private func updateMouseGrid (from model : EBReadOnlyProperty_Int) {
+  private func updateGridDisplayFactor (from model : EBReadOnlyProperty_Int) {
     switch model.prop {
     case .empty, .multiple :
-      self.set (mouseGridInCanariUnit: 1)
+      self.mGridDisplayFactor = 4
     case .single (let v) :
-      self.set (mouseGridInCanariUnit: v)
+      self.mGridDisplayFactor = v
     }
   }
 

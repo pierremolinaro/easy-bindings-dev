@@ -5,43 +5,43 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
   @objc func validateMenuItem (_ inMenuItem : NSMenuItem) -> Bool {
     let validate : Bool
     let action = inMenuItem.action
-    if action == #selector (EBView.selectAll(_:)) {
+    if action == #selector (EBGraphicView.selectAll(_:)) {
       validate = (self.viewController?.objectCount ?? 0) > 0
-    }else if action == #selector (EBView.cut(_:)) {
+    }else if action == #selector (EBGraphicView.cut(_:)) {
       validate = self.viewController?.canCut (self.pasteboardType) ?? false
-    }else if action == #selector (EBView.copy(_:)) {
+    }else if action == #selector (EBGraphicView.copy(_:)) {
       validate = self.viewController?.canCopy (self.pasteboardType) ?? false
-    }else if action == #selector (EBView.paste(_:)) {
+    }else if action == #selector (EBGraphicView.paste(_:)) {
       validate = self.viewController?.canPaste (self.pasteboardType) ?? false
-    }else if action == #selector (EBView.delete(_:)) {
+    }else if action == #selector (EBGraphicView.delete(_:)) {
       validate = self.viewController?.canDelete () ?? false
-    }else if action == #selector (EBView.bringToFront(_:)) {
+    }else if action == #selector (EBGraphicView.bringToFront(_:)) {
       validate = self.viewController?.canBringToFront ?? false
-    }else if action == #selector (EBView.bringForward(_:)) {
+    }else if action == #selector (EBGraphicView.bringForward(_:)) {
       validate = self.viewController?.canBringForward ?? false
-    }else if action == #selector (EBView.sendToBack(_:)) {
+    }else if action == #selector (EBGraphicView.sendToBack(_:)) {
       validate = self.viewController?.canSendToBack ?? false
-    }else if action == #selector (EBView.sendBackward(_:)) {
+    }else if action == #selector (EBGraphicView.sendBackward(_:)) {
       validate = self.viewController?.canSendBackward ?? false
-    }else if action == #selector (EBView.snapToGrid(_:)) {
+    }else if action == #selector (EBGraphicView.snapToGrid(_:)) {
       validate = self.viewController?.canSnapToGrid (self.arrowKeyMagnitude) ?? false
-    }else if action == #selector (EBView.flipHorizontally(_:)) {
+    }else if action == #selector (EBGraphicView.flipHorizontally(_:)) {
       validate = self.viewController?.canFlipHorizontally ?? false
-    }else if action == #selector (EBView.flipVertically(_:)) {
+    }else if action == #selector (EBGraphicView.flipVertically(_:)) {
       validate = self.viewController?.canFlipVertically ?? false
-    }else if action == #selector (EBView.rotate90Clockwise(_:)) {
+    }else if action == #selector (EBGraphicView.rotate90Clockwise(_:)) {
       validate = self.viewController?.canRotate90Clockwise ?? false
-    }else if action == #selector (EBView.rotate90CounterClockwise(_:)) {
+    }else if action == #selector (EBGraphicView.rotate90CounterClockwise(_:)) {
       validate = self.viewController?.canRotate90CounterClockwise ?? false
     }else{
       validate = false

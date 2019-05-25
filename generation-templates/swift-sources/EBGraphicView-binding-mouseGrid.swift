@@ -5,35 +5,35 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicView
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+extension EBGraphicView {
 
   //····················································································································
 
-  func bind_xPlacardUnit (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
-    self.mXPlacardUnitController = EBSimpleController (
+  func bind_mouseGrid (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
+    self.mMouseGridController = EBSimpleController (
       observedObjects: [model],
-      callBack: { [weak self] in self?.updateXPlacardUnit (from: model) }
+      callBack: { [weak self] in self?.updateMouseGrid (from: model) }
     )
   }
 
   //····················································································································
 
-  func unbind_xPlacardUnit () {
-    self.mXPlacardUnitController?.unregister ()
-    self.mXPlacardUnitController = nil
+  func unbind_mouseGrid () {
+    self.mMouseGridController?.unregister ()
+    self.mMouseGridController = nil
   }
 
   //····················································································································
 
-  private func updateXPlacardUnit (from model : EBReadOnlyProperty_Int) {
+  private func updateMouseGrid (from model : EBReadOnlyProperty_Int) {
     switch model.prop {
     case .empty, .multiple :
-      self.set (XPlacardUnit: 2286) // mils
+      self.set (mouseGridInCanariUnit: 1)
     case .single (let v) :
-      self.set (XPlacardUnit: v)
+      self.set (mouseGridInCanariUnit: v)
     }
   }
 

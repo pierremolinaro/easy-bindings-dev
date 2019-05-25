@@ -5,40 +5,15 @@
 import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//   EBView
+//   EBGraphicViewScaleProvider
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-extension EBView {
+protocol EBGraphicViewScaleProvider : class {
+  var actualScale : CGFloat { get }
 
-  //····················································································································
+  var horizontalFlip : Bool { get }
 
-  func bind_gridStyle (_ model : EBReadOnlyProperty_GridStyle, file : String, line : Int) {
-    self.mGridStyleController = EBSimpleController (
-      observedObjects: [model],
-      callBack: { [weak self] in self?.updateGridStyle (from: model) }
-    )
-  }
-
-  //····················································································································
-
-  func unbind_gridStyle () {
-    mGridStyleController?.unregister ()
-    mGridStyleController = nil
-  }
-
-  //····················································································································
-
-  private func updateGridStyle (from model : EBReadOnlyProperty_GridStyle) {
-    switch model.prop {
-    case .empty, .multiple :
-      self.mGridStyle = .noGrid
-    case .single (let v) :
-      self.mGridStyle = v
-    }
-  }
-
-  //····················································································································
-
+  var verticalFlip : Bool { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
