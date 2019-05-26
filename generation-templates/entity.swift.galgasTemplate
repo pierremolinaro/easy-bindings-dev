@@ -210,7 +210,7 @@ end
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
   if not [[mProperty mOption] isHasDependance] then
-    %    self.%![mProperty mPropertyName]%_property.setProp ([])\n%
+    %    self.%![mProperty mPropertyName]% = []\n%
   end
 end
 %  //---
@@ -224,7 +224,7 @@ end
   override internal func cleanUpToOneRelationships () {
 %
 for () in TO_ONE_RELATIONSHIP_LIST do
-  %    self.%![mProperty mPropertyName]%_property.setProp (nil)\n%
+  %    self.%![mProperty mPropertyName]% = nil\n%
 end
 %  //---
     super.cleanUpToOneRelationships ()
@@ -1507,22 +1507,6 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
 
   override var propval : %!ENTITY_NAME%? { return self.mInternalValue }
 
-  //····················································································································
-
-  func remove (_ object : %!ENTITY_NAME%) {
-    if object === self.mInternalValue {
-      self.mInternalValue = nil
-    }
-  }
-  
-  //····················································································································
-
-  func add (_ object : %!ENTITY_NAME%) {
-    if object !== self.mInternalValue {
-      self.mInternalValue = object
-    }
-  }
-  
   //····················································································································
   //   signature
   //····················································································································

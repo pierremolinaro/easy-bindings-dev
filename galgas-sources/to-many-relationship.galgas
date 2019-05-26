@@ -289,7 +289,7 @@ override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
 
 override getter @toManyPropertyGeneration objectAccessibilityCode -> @string {
   result  = "  //--- To many property: " + mPropertyName + "\n"
-  result += "    for managedObject in self." + mPropertyName + "_property.propval {\n"
+  result += "    for managedObject in self." + mPropertyName + " {\n"
   result += "      objects.append (managedObject)\n"
   result += "    }\n"
 }
@@ -301,10 +301,9 @@ override getter @toManyPropertyGeneration objectAccessibilityCodeForSaveOperatio
     result += "    /* for managedObject in self." + mPropertyName + "_property.propval {\n"
     result += "      objects.append (managedObject)\n"
     result += "    } */\n"
-  
   else
     result  = "  //--- To many property: " + mPropertyName + "\n"
-    result += "    for managedObject in self." + mPropertyName + "_property.propval {\n"
+    result += "    for managedObject in self." + mPropertyName + " {\n"
     result += "      objects.append (managedObject)\n"
     result += "    }\n"
   end

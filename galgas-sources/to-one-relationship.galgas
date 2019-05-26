@@ -251,8 +251,8 @@ override getter @toOnePropertyGeneration saveIntoDictionaryCode -> @string {
 
 override getter @toOnePropertyGeneration objectAccessibilityCode -> @string {
   result  = "  //--- To one property: " + mPropertyName + "\n"
-  result += "    if let managedObject = self." + mPropertyName + "_property.propval {\n"
-  result += "      objects.append (managedObject)\n"
+  result += "    if let object = self." + mPropertyName + " {\n"
+  result += "      objects.append (object)\n"
   result += "    }\n"
 }
 
@@ -260,8 +260,8 @@ override getter @toOnePropertyGeneration objectAccessibilityCode -> @string {
 
 override getter @toOnePropertyGeneration objectAccessibilityCodeForSaveOperation -> @string {
   result  = "  //--- To one property: " + mPropertyName + "\n"
-  result += "    if let managedObject = self." + mPropertyName + "_property.propval {\n"
-  result += "      objects.append (managedObject)\n"
+  result += "    if let object = self." + mPropertyName + " {\n"
+  result += "      objects.append (object)\n"
   result += "    }\n"
 }
 

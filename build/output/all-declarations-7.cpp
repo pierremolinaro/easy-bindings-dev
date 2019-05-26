@@ -11667,7 +11667,7 @@ const char * gWrapperFileContent_13_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "        self.notifyModelDidChange ()\n"
   "        let newSet = Set (self.mInternalArrayValue)\n"
   "        if self.mInternalSetValue != newSet {\n"
-  "          let oldSet = Set (self.mInternalSetValue)\n"
+  "          let oldSet = self.mInternalSetValue\n"
   "          self.mInternalSetValue = newSet\n"
   "          let removedSet = oldSet.subtracting (newSet)\n"
   "          let addedSet = newSet.subtracting (oldSet)\n"
@@ -11751,7 +11751,7 @@ const cRegularFileWrapper gWrapperFile_13_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  39573, // Text length
+  39567, // Text length
   gWrapperFileContent_13_swift_5F_sources
 ) ;
 

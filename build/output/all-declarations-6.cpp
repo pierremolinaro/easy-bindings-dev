@@ -3561,8 +3561,8 @@ static GALGAS_string extensionGetter_toOnePropertyGeneration_objectAccessibility
   const cPtr_toOnePropertyGeneration * object = (const cPtr_toOnePropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toOnePropertyGeneration) ;
   result_result = GALGAS_string ("  //--- To one property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 253)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 253)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    if let managedObject = self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 254)).add_operation (GALGAS_string ("_property.propval {\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 254)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 254)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      objects.append (managedObject)\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 255)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    if let object = self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 254)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 254)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 254)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      objects.append (object)\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 255)) ;
   result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 256)) ;
 //---
   return result_result ;
@@ -3593,8 +3593,8 @@ static GALGAS_string extensionGetter_toOnePropertyGeneration_objectAccessibility
   const cPtr_toOnePropertyGeneration * object = (const cPtr_toOnePropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toOnePropertyGeneration) ;
   result_result = GALGAS_string ("  //--- To one property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 262)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 262)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    if let managedObject = self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 263)).add_operation (GALGAS_string ("_property.propval {\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 263)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 263)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      objects.append (managedObject)\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 264)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    if let object = self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 263)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 263)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 263)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      objects.append (object)\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 264)) ;
   result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 265)) ;
 //---
   return result_result ;
@@ -4117,7 +4117,7 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_objectAccessibilit
   const cPtr_toManyPropertyGeneration * object = (const cPtr_toManyPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toManyPropertyGeneration) ;
   result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 291)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 291)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    for managedObject in self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 292)).add_operation (GALGAS_string ("_property.propval {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 292)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 292)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    for managedObject in self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 292)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 292)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 292)) ;
   result_result.plusAssign_operation(GALGAS_string ("      objects.append (managedObject)\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 293)) ;
   result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 294)) ;
 //---
@@ -4159,10 +4159,10 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_objectAccessibilit
     }
   }
   if (kBoolFalse == test_0) {
-    result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 306)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 306)) ;
-    result_result.plusAssign_operation(GALGAS_string ("    for managedObject in self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 307)).add_operation (GALGAS_string ("_property.propval {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 307)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 307)) ;
-    result_result.plusAssign_operation(GALGAS_string ("      objects.append (managedObject)\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 308)) ;
-    result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 309)) ;
+    result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 305)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 305)) ;
+    result_result.plusAssign_operation(GALGAS_string ("    for managedObject in self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 306)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 306)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 306)) ;
+    result_result.plusAssign_operation(GALGAS_string ("      objects.append (managedObject)\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 307)) ;
+    result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 308)) ;
   }
 //---
   return result_result ;
@@ -4194,14 +4194,14 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_clearObjectExplore
   macroValidSharedObject (object, cPtr_toManyPropertyGeneration) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = object->mProperty_mOption.getter_isHasDependance (SOURCE_FILE ("to-many-relationship.galgas", 316)).boolEnum () ;
+    test_0 = object->mProperty_mOption.getter_isHasDependance (SOURCE_FILE ("to-many-relationship.galgas", 315)).boolEnum () ;
     if (kBoolTrue == test_0) {
       result_result = GALGAS_string::makeEmptyString () ;
     }
   }
   if (kBoolFalse == test_0) {
-    result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 319)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 319)) ;
-    result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 320)).add_operation (GALGAS_string ("_property.mValueExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 320)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 320)) ;
+    result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 318)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 318)) ;
+    result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 319)).add_operation (GALGAS_string ("_property.mValueExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 319)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 319)) ;
   }
 //---
   return result_result ;
@@ -4233,14 +4233,14 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_resetToManyRelatio
   macroValidSharedObject (object, cPtr_toManyPropertyGeneration) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = object->mProperty_mOption.getter_isHasDependance (SOURCE_FILE ("to-many-relationship.galgas", 327)).boolEnum () ;
+    test_0 = object->mProperty_mOption.getter_isHasDependance (SOURCE_FILE ("to-many-relationship.galgas", 326)).boolEnum () ;
     if (kBoolTrue == test_0) {
       result_result = GALGAS_string::makeEmptyString () ;
     }
   }
   if (kBoolFalse == test_0) {
-    result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 330)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 330)) ;
-    result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 331)).add_operation (GALGAS_string ("_property.setProp ([])\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 331)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 331)) ;
+    result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 329)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 329)) ;
+    result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 330)).add_operation (GALGAS_string ("_property.setProp ([])\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 330)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 330)) ;
   }
 //---
   return result_result ;
@@ -4275,10 +4275,10 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_terminationCode (c
     break ;
   case GALGAS_toManyRelationshipOptionGeneration::kEnum_hasDependance:
     {
-      const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance * extractPtr_15031 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance *) (object->mProperty_mOption.unsafePointer ()) ;
-      const GALGAS_string extractedValue_masterPropertyName = extractPtr_15031->mAssociatedValue0 ;
-      result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 339)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 339)) ;
-      result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (extractedValue_masterPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 340)).add_operation (GALGAS_string ("_property.removeEBObserver (self."), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 340)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 340)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 340)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 340)) ;
+      const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance * extractPtr_14994 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance *) (object->mProperty_mOption.unsafePointer ()) ;
+      const GALGAS_string extractedValue_masterPropertyName = extractPtr_14994->mAssociatedValue0 ;
+      result_result = GALGAS_string ("  //--- To many property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 338)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 338)) ;
+      result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (extractedValue_masterPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 339)).add_operation (GALGAS_string ("_property.removeEBObserver (self."), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 339)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 339)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 339)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 339)) ;
     }
     break ;
   case GALGAS_toManyRelationshipOptionGeneration::kEnum_none:
