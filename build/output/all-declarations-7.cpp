@@ -8609,6 +8609,10 @@ const char * gWrapperFileContent_65_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    self.mMetadataDictionary = metadataDictionary\n"
   "  //--- Read version from file\n"
   "    self.mVersion.setProp (self.readVersionFromMetadataDictionary (metadataDictionary))\n"
+  "  //--- Remove current root object graph\n"
+  "    for object in self.reachableObjectsFromRootObject () {\n"
+  "      object.cleanUpRelationshipsAndRemoveAllObservers ()\n"
+  "    }\n"
   "  //--- Store root object\n"
   "    self.mRootObject = possibleRootObject\n"
   "  //---\n"
@@ -9115,7 +9119,7 @@ const cRegularFileWrapper gWrapperFile_65_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  31139, // Text length
+  31303, // Text length
   gWrapperFileContent_65_swift_5F_sources
 ) ;
 
