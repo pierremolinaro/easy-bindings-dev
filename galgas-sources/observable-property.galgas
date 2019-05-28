@@ -7,6 +7,7 @@ enum @observablePropertyAST {
   case rootPropertyWithOption (@lstring propertyName @lstring optionName)
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName)
   case rootPropertyNone (@lstring relationshipName)
+  case selfWithoutProperty (@location issueLocation)
   case selfProperty (@lstring propertyName)
   case selfPropertyWithOption (@lstring propertyName @lstring optionName)
   case selfPropertyArray (@lstring propertyName @lstring elementPropertyName)
@@ -64,28 +65,38 @@ syntax extension easyBindings_syntax {
       end
     or
       $self$
-      $.$
-      $identifier$ ?let propertyName
       select
-        outObservablePropertyAST = .selfProperty {!propertyName:propertyName}
+        outObservablePropertyAST = .selfWithoutProperty {!issueLocation: .here}
       or
-        $.$ ;
+        $.$
+        $identifier$ ?let propertyName
         select
-          $all$
-          $.$
-          $identifier$ ?let elementPropertyName
-          outObservablePropertyAST = .selfPropertyArray {!propertyName:propertyName !elementPropertyName:elementPropertyName}
+          outObservablePropertyAST = .selfProperty {!propertyName:propertyName}
         or
-          $one$
-          $.$
-          $identifier$ ?let elementPropertyName
-          outObservablePropertyAST = .selfPropertyObject {!propertyName:propertyName !elementPropertyName:elementPropertyName}
-        or
-          $none$
-          outObservablePropertyAST = .selfPropertyNone {!propertyName:propertyName}
-        or
-          $identifier$ ?let optionName
-          outObservablePropertyAST = .selfPropertyWithOption {!propertyName:propertyName !optionName:optionName}
+          $.$ ;
+          select
+            $all$
+            $.$
+            $identifier$ ?let elementPropertyName
+            outObservablePropertyAST = .selfPropertyArray {
+              !propertyName:propertyName
+              !elementPropertyName:elementPropertyName
+            }
+          or
+            $one$
+            $.$
+            $identifier$ ?let elementPropertyName
+            outObservablePropertyAST = .selfPropertyObject {
+              !propertyName:propertyName
+              !elementPropertyName:elementPropertyName
+            }
+          or
+            $none$
+            outObservablePropertyAST = .selfPropertyNone {!propertyName:propertyName}
+          or
+            $identifier$ ?let optionName
+            outObservablePropertyAST = .selfPropertyWithOption {!propertyName:propertyName !optionName:optionName}
+          end
         end
       end
     or
@@ -171,6 +182,8 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
     outResult = inSelf + ".rootObject." + propertyName + "_property" + "." + optionName + "_property"
   case rootPropertyRelationship (@lstring relationshipName *) :
     outResult = inSelf + ".rootObject." + relationshipName + "_property"
+  case selfWithoutProperty (*) :
+    outResult = inSelf + ".ebObjectIndex"
   case selfProperty (@lstring propertyName) :
     outResult = inSelf + "." + propertyName + "_property"
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -216,6 +229,8 @@ getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
     outResult = "root_" + propertyName + "_" + optionName
   case rootPropertyRelationship (@lstring relationshipName @lstring elementPropertyName) :
     outResult = "root_" + relationshipName + "_" + elementPropertyName
+  case selfWithoutProperty (*) :
+    outResult = "self_ebObjectIndex"
   case selfProperty (@lstring propertyName) :
     outResult = "self_" + propertyName
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -260,6 +275,8 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   case rootPropertyWithOption (* *) :
     outResult = true
   case rootPropertyRelationship (* *) :
+    outResult = true
+  case selfWithoutProperty (*) :
     outResult = true
   case selfProperty (*) :
     outResult = true
@@ -306,6 +323,8 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = optionName.location
   case rootPropertyRelationship (* @lstring propertyName) :
     outResult = propertyName.location
+  case selfWithoutProperty (issueLocation) :
+    outResult = issueLocation
   case selfProperty (@lstring propertyName) :
     outResult = propertyName.location
   case selfPropertyWithOption (@lstring propertyName *) :
@@ -458,6 +477,9 @@ method @observablePropertyAST analyzeObservableProperty
     case selectionController (*) :
       error propertyName : "a selection controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     end
+  case selfWithoutProperty (*) :
+    outSwiftTypeStringForTransientFunctionArgument = "Int"
+    outKind = .property {!type: .integerType !accessibility: .transient {!isAbstract: false}}
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
     [inBoundModelPropertyMap searchKey
       !propertyName
