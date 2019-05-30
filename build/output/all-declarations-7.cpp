@@ -6839,7 +6839,11 @@ const char * gWrapperFileContent_40_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    let locationInView = self.convert (inEvent.locationInWindow, from: nil)\n"
   "    let locationOnGridInView = locationInView.aligned (onGrid: canariUnitToCocoa (self.mouseGridInCanariUnit))\n"
   "    self.updateXYplacards (locationOnGridInView)\n"
-  "    self.mMouseMovedCallback\? (locationOnGridInView)\n"
+  "    if self.window\?.firstResponder == self, self.visibleRect.contains (locationOnGridInView) {\n"
+  "      self.mMouseMovedCallback\? (locationOnGridInView)\n"
+  "    }else{\n"
+  "      self.mMouseExitCallback\? ()\n"
+  "    }\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -6856,6 +6860,7 @@ const char * gWrapperFileContent_40_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    if let viewController = self.viewController {\n"
   "      let mouseDownLocation = self.convert (inEvent.locationInWindow, from:nil)\n"
   "      let alignedLastMouseDraggedLocation = mouseDownLocation.canariPointAligned (onCanariGrid: self.mouseGridInCanariUnit)\n"
+  "      self.mMouseMovedCallback\? (mouseDownLocation)\n"
   "      self.mLastMouseDraggedLocation = alignedLastMouseDraggedLocation\n"
   "      let modifierFlags = inEvent.modifierFlags\n"
   "      if modifierFlags.contains (.control), !modifierFlags.contains (.shift), !modifierFlags.contains (.option) { // Ctrl Key On, no shift\n"
@@ -7064,7 +7069,7 @@ const cRegularFileWrapper gWrapperFile_40_swift_5F_sources (
   "EBGraphicView-mouse.swift",
   "swift",
   true, // Text file
-  11002, // Text length
+  11202, // Text length
   gWrapperFileContent_40_swift_5F_sources
 ) ;
 
