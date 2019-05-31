@@ -7042,7 +7042,8 @@ const char * gWrapperFileContent_40_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  override func mouseUp (with inEvent : NSEvent) {\n"
   "    super.mouseUp (with: inEvent)\n"
   "    if self.mOptionClickOperationInProgress {\n"
-  "      self.mStopOptionMouseUpCallback\? ()\n"
+  "      let unalignedLocationInView = self.convert (inEvent.locationInWindow, from: nil)\n"
+  "      self.mStopOptionMouseUpCallback\? (unalignedLocationInView)\n"
   "      self.mOptionClickOperationInProgress = false\n"
   "    }\n"
   "    if self.mPerformEndUndoGroupingOnMouseUp {\n"
@@ -7104,7 +7105,7 @@ const cRegularFileWrapper gWrapperFile_40_swift_5F_sources (
   "EBGraphicView-mouse.swift",
   "swift",
   true, // Text file
-  11897, // Text length
+  12007, // Text length
   gWrapperFileContent_40_swift_5F_sources
 ) ;
 
@@ -7436,7 +7437,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  internal var mStartOptionMouseDownCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Void > = nil\n"
   "  internal var mContinueOptionMouseDraggedCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Void > = nil\n"
   "  internal var mAbortOptionMouseOperationCallback : Optional < () -> Void > = nil\n"
-  "  internal var mStopOptionMouseUpCallback : Optional < () -> Void > = nil\n"
+  "  internal var mStopOptionMouseUpCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Void > = nil\n"
   "  internal var mOptionClickOperationInProgress = false\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -7444,7 +7445,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  func setOptionMouseCallbacks (start inStartCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Void,\n"
   "                                continue inContinueCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Void,\n"
   "                                abort inAbortCallback : @escaping () -> Void,\n"
-  "                                stop inStopCallback : @escaping () -> Void) {\n"
+  "                                stop inStopCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Void) {\n"
   "    self.mStartOptionMouseDownCallback = inStartCallback\n"
   "    self.mContinueOptionMouseDraggedCallback = inContinueCallback\n"
   "    self.mAbortOptionMouseOperationCallback = inAbortCallback\n"
@@ -8006,7 +8007,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  27800, // Text length
+  27872, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
