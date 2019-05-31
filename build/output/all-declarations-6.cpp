@@ -6794,12 +6794,13 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "      var newObjects = [" ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << "] ()\n"
+      "      let userSet = OCObjectSet ()\n"
       "      for dictionary in array {\n"
       "        if let object = makeManagedObjectFromDictionary (self.ebUndoManager, dictionary) as\? " ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << " {\n"
       "          object.operationAfterPasting ()\n"
-      "          object.translate (xBy: X, yBy: Y)\n"
+      "          object.translate (xBy: X, yBy: Y, userSet: userSet)\n"
       "          newObjects.append (object)\n"
       "        }\n"
       "      }\n"

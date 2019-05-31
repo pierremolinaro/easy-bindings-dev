@@ -15,8 +15,8 @@ extension EBGraphicView {
     let locationInView = self.convert (inEvent.locationInWindow, from: nil)
     let locationOnGridInView = locationInView.aligned (onGrid: canariUnitToCocoa (self.mouseGridInCanariUnit))
     self.updateXYplacards (locationOnGridInView)
-    if self.window?.firstResponder == self, self.visibleRect.contains (locationOnGridInView) {
-      self.mMouseMovedCallback? (locationOnGridInView)
+    if self.window?.firstResponder == self, self.visibleRect.contains (locationInView) {
+      self.mMouseMovedCallback? (locationInView)
     }else{
       self.mMouseExitCallback? ()
     }
@@ -174,8 +174,9 @@ extension EBGraphicView {
         self.mPerformEndUndoGroupingOnMouseUp = true
         self.viewController?.ebUndoManager?.beginUndoGrouping ()
       }
+      let userSet = OCObjectSet ()
       for object in self.viewController?.selectedGraphicObjectSet ?? [] {
-        object.translate (xBy: dx, yBy: dy)
+        object.translate (xBy: dx, yBy: dy, userSet: userSet)
       }
       let mouseDraggedLocation = CanariPoint (x: dx + lastMouseDraggedLocation.x, y: dy + lastMouseDraggedLocation.y)
       mLastMouseDraggedLocation = mouseDraggedLocation

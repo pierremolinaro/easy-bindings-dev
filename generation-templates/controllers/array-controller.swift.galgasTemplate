@@ -600,10 +600,11 @@ if ELEMENT_TYPE_IS_GRAPHIC then
        let X = dataDictionary ["X"] as? Int,
        let Y = dataDictionary ["Y"] as? Int {
       var newObjects = [%!ELEMENT_TYPE_NAME%] ()
+      let userSet = OCObjectSet ()
       for dictionary in array {
         if let object = makeManagedObjectFromDictionary (self.ebUndoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
           object.operationAfterPasting ()
-          object.translate (xBy: X, yBy: Y)
+          object.translate (xBy: X, yBy: Y, userSet: userSet)
           newObjects.append (object)
         }
       }
