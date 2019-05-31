@@ -58,7 +58,7 @@ syntax extension easyBindings_syntax {
       if tableValueBinding != .noTableValueBinding then
         error .here : "duplicated $tableValue binding"
       end
-      $identifier$ ?let @lstring controllerName
+      $controllerName$ ?let @lstring controllerName
       tableValueBinding = .tableValueBinding {!controllerName:controllerName}
     while
       $run$
@@ -108,9 +108,7 @@ syntax extension easyBindings_syntax {
   #--- Graphic controller binding
     while
       $graphicController$
-      $self$
-      $.$
-      $identifier$ ?let @lstring graphicControllerName
+      $controllerName$ ?let @lstring graphicControllerName
       @lstring propertyName
       select
         propertyName = ["" here]
