@@ -448,7 +448,7 @@ override getter @tableViewControllerPropertyGeneration propertyDeclarationCode ?
 
 override getter @tableViewControllerPropertyGeneration configurationCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property)\n"
+  result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property, self.ebUndoManager)\n"
 }
 
 #·······················································································································

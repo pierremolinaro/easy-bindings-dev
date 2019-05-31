@@ -165,8 +165,9 @@ end
 
   //····················································································································
 
-  func bind_model (_ inModel : %!MODEL_TYPE_NAME%) {
+  func bind_model (_ inModel : %!MODEL_TYPE_NAME%, _ inUndoManager : EBUndoManager) {
     self.mModel = inModel
+    self.mUndoManager = inUndoManager
     inModel.attachClient (self)
 %if ELEMENT_TYPE_IS_GRAPHIC then
  %    self.startObservingObjectShape ()\n%
@@ -185,6 +186,7 @@ end
 %    self.mModel?.detachClient (self)
     self.selectedSet = Set ()
     self.mModel = nil
+    self.mUndoManager = nil
  }
 
   //····················································································································
@@ -197,11 +199,12 @@ end
     self.mInternalSelectedArrayProperty.setProp (Array (newSelectedSet))
   }
 
-  //····················································································································
+ //····················································································································
   //    Undo manager
   //····················································································································
 
-  var ebUndoManager : EBUndoManager? { return self.mModel?.ebUndoManager }
+  private var mUndoManager : EBUndoManager? = nil
+  var ebUndoManager : EBUndoManager? { return self.mUndoManager }
 
   //····················································································································
   //   SELECTION
