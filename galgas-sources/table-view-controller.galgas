@@ -497,7 +497,7 @@ private filewrapper tableViewControllerGenerationTemplate in "../generation-temp
     ?@tableViewControllerBoundColumnListForGeneration BOUND_COLUMNS
     ?@tableViewControllerSortedColumnListForGeneration SORTED_COLUMNS
     ?@string ELEMENT_TYPE_NAME
-    ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
+    ?@stringset OBSERVED_PROPERTIES_FOR_SORTING
     ?@2stringlist ATTRIBUTE_VALUES
 }
 

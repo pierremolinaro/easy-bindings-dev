@@ -24,7 +24,7 @@ if COMPARABLE then
 %
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_%!CLASS_NAME% (left : EBReadOnlyProperty_%!CLASS_NAME%, right : EBReadOnlyProperty_%!CLASS_NAME%) -> ComparisonResult {
+func compare_%!CLASS_NAME%_properties (_ left : EBReadOnlyProperty_%!CLASS_NAME%, _ right : EBReadOnlyProperty_%!CLASS_NAME%) -> ComparisonResult {
   switch left.prop {
   case .empty :
     switch right.prop {

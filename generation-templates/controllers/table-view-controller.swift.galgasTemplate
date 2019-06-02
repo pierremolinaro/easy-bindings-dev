@@ -50,10 +50,7 @@ end
 
   func bind_model (_ inModel : %!MODEL_TYPE_NAME%, _ inUndoManager : EBUndoManager) {
   //--- Set sort descriptors
-%if [SORTED_COLUMNS length] > 0 then
-  %    self.sortedArray_property.setSortCallback ( { (left, right) in self.isOrderedBefore (left, right) } )\n%
-end
-%    self.mSortDescriptorArray = []    
+    self.mSortDescriptorArray = []    
 %
 for () in SORTED_COLUMNS do
   %    self.mSortDescriptorArray.append (NSSortDescriptor (key: "%!mColumnName%", ascending: true))\n%
@@ -66,30 +63,36 @@ end
       }
       tableView.sortDescriptors = self.mSortDescriptorArray
     }
-  //--- Add observed properties (for filtering and sorting)
-%
-for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
-  %    inModel.addEBObserverOf_%!key% (self.sortedArray_property)\n%
-end
-%  //---
+  //---
     self.mModel = inModel
     self.mUndoManager = inUndoManager
-    self.sortedArray_property.setDataProvider (inModel)
+    self.sortedArray_property.setDataProvider (
+      inModel,
+%if [SORTED_COLUMNS length] > 0 then
+  %      sortCallback: { (left, right) in self.isOrderedBefore (left, right) },\n%
+else
+  %      sortCallback: nil,\n%
+end
+%      addSortObserversCallback: {(observer) in
+%for () in OBSERVED_PROPERTIES_FOR_SORTING do
+  %        inModel.addEBObserverOf_%!key% (observer)\n%
+end
+%      },
+      removeSortObserversCallback: {(observer) in
+%for () in OBSERVED_PROPERTIES_FOR_SORTING do
+  %        inModel.removeEBObserverOf_%!key% (observer)\n%
+end
+%      }
+    )
     inModel.attachClient (self)
   }
 
   //····················································································································
 
   func unbind_model () {
-    self.sortedArray_property.setSortCallback (nil)
-    self.sortedArray_property.setDataProvider (nil)
+    self.sortedArray_property.resetDataProvider ()
     self.mModel?.detachClient (self)
-  //--- Remove observed properties (for filtering and sorting)
-%
-for () in OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING do
-  %    self.mModel?.removeEBObserverOf_%!key% (self.sortedArray_property)\n%
-end
-%    for tvc in self.mTableViewDataSourceControllerArray {
+    for tvc in self.mTableViewDataSourceControllerArray {
       self.sortedArray_property.removeEBObserver (tvc)
     }
     for tvc in self.mTableViewSelectionControllerArray {
@@ -178,7 +181,7 @@ for () in SORTED_COLUMNS
   %      %
   do
   %if sortDescriptor.key == "%!mColumnName%" {\n%
-  %        order = compare_%![mSortPropertyKind swiftTypeName]% (left: left.%!mObservablePropertyForSorting%_property, right: right.%!mObservablePropertyForSorting%_property)\n%
+  %        order = compare_%![mSortPropertyKind swiftTypeName]%_properties (left.%!mObservablePropertyForSorting%_property, right.%!mObservablePropertyForSorting%_property)\n%
   between
   %      }else %
   after

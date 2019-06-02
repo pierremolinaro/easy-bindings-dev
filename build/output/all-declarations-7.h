@@ -40,7 +40,7 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
                                                                                                                   const class GALGAS_tableViewControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
                                                                                                                   const class GALGAS_tableViewControllerSortedColumnListForGeneration & in_SORTED_5F_COLUMNS,
                                                                                                                   const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                                  const class GALGAS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING_5F_AND_5F_FILERING,
+                                                                                                                  const class GALGAS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING,
                                                                                                                   const class GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
                                                                                                                   COMMA_LOCATION_ARGS) ;
 

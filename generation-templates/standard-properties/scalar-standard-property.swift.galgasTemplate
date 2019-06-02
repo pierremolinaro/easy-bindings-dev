@@ -11,7 +11,7 @@ typealias EBStoredProperty_%!TYPE%    = EBStoredValueProperty <%!TYPE%>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_%!TYPE% (left : EBReadOnlyProperty_%!TYPE%, right : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
+func compare_%!TYPE%_properties (_ left : EBReadOnlyProperty_%!TYPE%, _ right : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
   switch left.prop {
   case .empty :
     switch right.prop {
@@ -34,14 +34,19 @@ func compare_%!TYPE% (left : EBReadOnlyProperty_%!TYPE%, right : EBReadOnlyPrope
     case .empty, .multiple :
       return .orderedDescending
     case .single (let otherValue) :
-      if currentValue < otherValue {
-        return .orderedAscending
-      }else if currentValue > otherValue {
-        return .orderedDescending
-      }else{
-        return .orderedSame
-      }
-    }
+%
+if COMPARISON_METHOD != "" then
+  %      return currentValue.%!COMPARISON_METHOD% (otherValue)\n%
+else
+  %      if currentValue < otherValue {\n%
+  %        return .orderedAscending\n%
+  %      }else if currentValue > otherValue {\n%
+  %        return .orderedDescending\n%
+  %      }else{\n%
+  %        return .orderedSame\n%
+  %      }\n%
+end
+%    }
   }
 }
 

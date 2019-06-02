@@ -222,6 +222,7 @@ filewrapper standard_properties in "../generation-templates/standard-properties"
   template scalarProperty "scalar-standard-property.swift.galgasTemplate"
     ?@string TYPE
     ?@bool TRANSIENT
+    ?@string COMPARISON_METHOD
 
   template classProperty "class-standard-property.swift.galgasTemplate"
     ?@string CLASS_NAME
@@ -239,13 +240,13 @@ private proc generateStandardProperties
 {
   var contents = [filewrapper standard_properties.stub]
 #--- Add scalar property types
-  contents += [filewrapper standard_properties.scalarProperty !"Int"    !false]
-  contents += [filewrapper standard_properties.scalarProperty !"Bool"   !false]
-  contents += [filewrapper standard_properties.scalarProperty !"Double" !false]
-  contents += [filewrapper standard_properties.scalarProperty !"String" !false]
-  contents += [filewrapper standard_properties.scalarProperty !"Data"   !false]
-  contents += [filewrapper standard_properties.scalarProperty !"Date"   !false]
-  contents += [filewrapper standard_properties.scalarProperty !"BezierPathArray" !false]
+  contents += [filewrapper standard_properties.scalarProperty !"Int"    !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"Bool"   !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"Double" !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"String" !false !"localizedStandardCompare"]
+  contents += [filewrapper standard_properties.scalarProperty !"Data"   !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"Date"   !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"BezierPathArray" !false !""]
 #--- Add class property types
   for (propertyClass) in inPropertyClassList do
     contents += [filewrapper standard_properties.classProperty !propertyClass !false !false]
@@ -254,7 +255,7 @@ private proc generateStandardProperties
     if isClass then
       contents += [filewrapper standard_properties.classProperty !propertyType !false !true]
     else
-      contents += [filewrapper standard_properties.scalarProperty !propertyType !true]
+      contents += [filewrapper standard_properties.scalarProperty !propertyType !true !""]
     end
   end
   contents += [filewrapper standard_properties.classProperty !"NSBezierPath" !false !false]
