@@ -30,7 +30,7 @@ syntax extension easyBindings_syntax {
     $enum$
     $Identifier$ ?let @lstring enumName
     ${$
-    var enumConstants =@lstringlist.emptyList{}
+    @lstringlist enumConstants = {}
     repeat
       $identifier$ ?let @lstring constantName
       enumConstants += !constantName

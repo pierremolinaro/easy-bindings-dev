@@ -32,7 +32,6 @@ class @tableViewControllerDeclarationAST : @abstractDeclarationAST {
   @bool mIsRoot
   @lstring mRootEntityName
   @lstring mToManyPropertyName
-  @lstringlist mFilterProperties
   @tableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
   @tableViewControllerAttributListAST mTableViewControllerAttributListAST
 }
@@ -93,17 +92,6 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ ?let @lstring relationshipName
-    @lstringlist filterProperties = {}
-    select
-    or
-      $filter$
-      repeat
-        $identifier$ ?let @lstring filterProperty
-        filterProperties += !filterProperty
-      while
-        $,$
-      end
-    end
     @tableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     select
       $;$
@@ -136,7 +124,6 @@ syntax extension easyBindings_syntax {
       !isRoot
       !inRootEntity
       !relationshipName
-      !filterProperties
       !arrayControllerBoundColumnListAST
       !arrayControllerAttributListAST
     }
@@ -395,16 +382,6 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
       ioGeneration.mNeededOutletClasses += !mColumnOutletTypeName.string
     end
   end
-#------------------------------------------------------------ Check filter properties
-  @tableViewControllerFilterListForGeneration arrayControllerFilterListForGeneration = {}
-  for (filterPropertyName) in mFilterProperties do
-    [propertyMap searchKey
-      !filterPropertyName
-      ?let @propertyKind columnKind
-      ?2*
-    ]
-    arrayControllerFilterListForGeneration += !filterPropertyName.string !columnKind
-  end
   let modelString = if mIsRoot
     then "self.rootObject." + mToManyPropertyName + "_property"
     else "self." + mToManyPropertyName + "_property"
@@ -413,7 +390,6 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
   ioGeneration.mFileGenerationList += !@tableViewControllerGeneration.new {
     !mClassName
     !mControllerName
-    !arrayControllerFilterListForGeneration
     !modelString
     !arrayControllerBoundColumnListForGeneration
     !arrayControllerSortedColumnListForGeneration
@@ -480,7 +456,6 @@ enum @tableViewControllerModelKind {
 class @tableViewControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
-  @tableViewControllerFilterListForGeneration mTableViewControllerFilterListForGeneration
   @string mModelString
   @tableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
   @tableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
@@ -489,13 +464,6 @@ class @tableViewControllerGeneration : @abstractFileGeneration {
   @string mElementTypeName
   @bool mElementTypeIsGraphic
   @2stringlist mAttributeListForGeneration
-}
-
-#·······················································································································
-
-list @tableViewControllerFilterListForGeneration {
-  @string mFilterPropertyName
-  @propertyKind mFilterPropertyKind
 }
 
 #·······················································································································
@@ -517,47 +485,12 @@ list @tableViewControllerSortedColumnListForGeneration {
 
 #·······················································································································
 
-getter @tableViewControllerFilterListForGeneration filterCode ?let @string inFilterFunction -> @string outResult {
-  var filterProperties = self
-  [!?filterProperties popFirst ?let firstFilterProperty ?*]
-  @string indent = "            "
-  outResult  = indent + "switch object." + firstFilterProperty + "_property_selection {\n"
-  outResult += indent + "case .empty :\n"
-  outResult += indent + "  return .empty\n"
-  outResult += indent + "case .multiple :\n"
-  outResult += indent + "  isMultiple = true\n"
-  outResult += indent + "case .single (let v1) :\n"
-  @uint idx = 2
-  @string args = ""
-  @string blockEnd = indent + "}\n"
-  for () in filterProperties do
-    indent += "  "
-    outResult += indent + "switch object." + mFilterPropertyName + "_property_selection {\n"
-    outResult += indent + "case .empty :\n"
-    outResult += indent + "  return .empty\n"
-    outResult += indent + "case .multiple :\n"
-    outResult += indent + "  isMultiple = true\n"
-    outResult += indent + "case .single (let v" + idx + ") :\n"
-    blockEnd = indent + "}\n" + blockEnd
-    args += ", v" + idx
-    idx ++
-  end
-  indent += "  "
-  outResult += indent + "if " + inFilterFunction + " (v1" + args + ") {\n"
-  outResult += indent + "  filteredArray.append (object)\n"
-  outResult += indent + "}\n"
-  outResult += blockEnd
-}
-
-#·······················································································································
-
 private filewrapper tableViewControllerGenerationTemplate in "../generation-templates/controllers" {
 }{
 }{
   template tableViewControllerImplementationInSwift "table-view-controller.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string TABLE_VIEW_CONTROLLER_NAME
-    ?@tableViewControllerFilterListForGeneration FILTER_PROPERTIES
     ?@string MODEL_STRING
     ?@tableViewControllerModelKind MODEL_KIND
     ?@string MODEL_TYPE_NAME
@@ -566,11 +499,6 @@ private filewrapper tableViewControllerGenerationTemplate in "../generation-temp
     ?@string ELEMENT_TYPE_NAME
     ?@stringset OBSERVED_PROPERTIES_FOR_SORTING_AND_FILERING
     ?@2stringlist ATTRIBUTE_VALUES
-
-  template filterFunction "table-view-controller-filter-function.swift.galgasTemplate"
-    ?@string OWNER_NAME
-    ?@string TABLE_VIEW_CONTROLLER_NAME
-    ?@tableViewControllerFilterListForGeneration FILTER_PROPERTIES
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -579,20 +507,16 @@ private filewrapper tableViewControllerGenerationTemplate in "../generation-temp
 
 override method @tableViewControllerGeneration generateCode
     ?let @string inOutputDirectory
-    ?!@stringset ioGeneratedFileSet
+    ?!@stringset unused ioGeneratedFileSet
 {
 #--- Build observed property set (for sorting and filtering)
   @stringset observedProperties = {}
   for () in mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end
-  for () in mTableViewControllerFilterListForGeneration do
-    observedProperties += !mFilterPropertyName
-  end
   let s = [filewrapper tableViewControllerGenerationTemplate.tableViewControllerImplementationInSwift
     !mOwnerName
     !mControllerName
-    !mTableViewControllerFilterListForGeneration
     !mModelString
     !mTableViewControllerModelKind
     !mModelTypeName
@@ -607,26 +531,6 @@ override method @tableViewControllerGeneration generateCode
     !"controller-table-view-" + mOwnerName + "-" +  mControllerName + ".swift"
     !s
   ]
-  if [mTableViewControllerFilterListForGeneration length] > 0 then
-    let s = [filewrapper tableViewControllerGenerationTemplate.filterFunction
-      !mOwnerName
-      !mControllerName
-      !mTableViewControllerFilterListForGeneration
-    ]
-    let fileName = "arrayControllerFilter-" + mOwnerName + "-" +  mControllerName + ".swift"
-    ioGeneratedFileSet += !fileName
-    [@string generateFileWithPattern
-      !startPath:inOutputDirectory
-      !fileName:fileName
-      !lineComment:"//"
-      !header:""
-      !defaultUserZone1:"\n\n" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"  return WHAT ?\n" # Defaut user zone2
-      !generatedZone3:"}\n\n//" + ["" stringByRightPadding !117 !'—'] + "\n"
-      !makeExecutable:false
-    ]
-  end
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

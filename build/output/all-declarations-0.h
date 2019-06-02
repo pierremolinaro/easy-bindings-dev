@@ -93,7 +93,6 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_externFunc,
    kToken_graphic,
    kToken_graphviz,
-   kToken_filter,
    kToken_include,
    kToken_inverse,
    kToken_mainxib,
@@ -183,7 +182,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 82 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 81 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -686,10 +685,6 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected : virtual int32_t select_easyBindings_5F_syntax_60 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected : virtual int32_t select_easyBindings_5F_syntax_61 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -4348,9 +4343,8 @@ class GALGAS_tableViewControllerDeclarationAST : public GALGAS_abstractDeclarati
                                                                                   const class GALGAS_bool & inOperand2,
                                                                                   const class GALGAS_lstring & inOperand3,
                                                                                   const class GALGAS_lstring & inOperand4,
-                                                                                  const class GALGAS_lstringlist & inOperand5,
-                                                                                  const class GALGAS_tableViewControllerBoundColumnListAST & inOperand6,
-                                                                                  const class GALGAS_tableViewControllerAttributListAST & inOperand7
+                                                                                  const class GALGAS_tableViewControllerBoundColumnListAST & inOperand5,
+                                                                                  const class GALGAS_tableViewControllerAttributListAST & inOperand6
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4363,8 +4357,6 @@ class GALGAS_tableViewControllerDeclarationAST : public GALGAS_abstractDeclarati
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mControllerName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mFilterProperties (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsRoot (LOCATION_ARGS) const ;
 
@@ -4709,7 +4701,6 @@ class cPtr_tableViewControllerDeclarationAST : public cPtr_abstractDeclarationAS
   public : GALGAS_bool mProperty_mIsRoot ;
   public : GALGAS_lstring mProperty_mRootEntityName ;
   public : GALGAS_lstring mProperty_mToManyPropertyName ;
-  public : GALGAS_lstringlist mProperty_mFilterProperties ;
   public : GALGAS_tableViewControllerBoundColumnListAST mProperty_mTableViewControllerBoundColumnListAST ;
   public : GALGAS_tableViewControllerAttributListAST mProperty_mTableViewControllerAttributListAST ;
 
@@ -4719,7 +4710,6 @@ class cPtr_tableViewControllerDeclarationAST : public cPtr_abstractDeclarationAS
                                                    const GALGAS_bool & in_mIsRoot,
                                                    const GALGAS_lstring & in_mRootEntityName,
                                                    const GALGAS_lstring & in_mToManyPropertyName,
-                                                   const GALGAS_lstringlist & in_mFilterProperties,
                                                    const GALGAS_tableViewControllerBoundColumnListAST & in_mTableViewControllerBoundColumnListAST,
                                                    const GALGAS_tableViewControllerAttributListAST & in_mTableViewControllerAttributListAST
                                                    COMMA_LOCATION_ARGS) ;
@@ -4732,7 +4722,6 @@ class cPtr_tableViewControllerDeclarationAST : public cPtr_abstractDeclarationAS
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsRoot (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mRootEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mToManyPropertyName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mFilterProperties (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_tableViewControllerBoundColumnListAST getter_mTableViewControllerBoundColumnListAST (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_tableViewControllerAttributListAST getter_mTableViewControllerAttributListAST (LOCATION_ARGS) const ;
 //--- Description
@@ -6523,10 +6512,6 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_60 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_61 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

@@ -34,7 +34,6 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "externFunc",
   "graphic",
   "graphviz",
-  "filter",
   "include",
   "inverse",
   "mainxib",

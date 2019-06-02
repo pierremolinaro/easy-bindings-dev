@@ -7267,438 +7267,6 @@ GALGAS_tableViewControllerModelKind GALGAS_tableViewControllerModelKind::extract
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                       Class for element of '@tableViewControllerFilterListForGeneration' list                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cCollectionElement_tableViewControllerFilterListForGeneration : public cCollectionElement {
-  public : GALGAS_tableViewControllerFilterListForGeneration_2D_element mObject ;
-
-//--- Constructors
-  public : cCollectionElement_tableViewControllerFilterListForGeneration (const GALGAS_string & in_mFilterPropertyName,
-                                                                          const GALGAS_propertyKind & in_mFilterPropertyKind
-                                                                          COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_tableViewControllerFilterListForGeneration (const GALGAS_tableViewControllerFilterListForGeneration_2D_element & inElement COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
-
-//--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement_tableViewControllerFilterListForGeneration::cCollectionElement_tableViewControllerFilterListForGeneration (const GALGAS_string & in_mFilterPropertyName,
-                                                                                                                              const GALGAS_propertyKind & in_mFilterPropertyKind
-                                                                                                                              COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mFilterPropertyName, in_mFilterPropertyKind) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement_tableViewControllerFilterListForGeneration::cCollectionElement_tableViewControllerFilterListForGeneration (const GALGAS_tableViewControllerFilterListForGeneration_2D_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (inElement.mProperty_mFilterPropertyName, inElement.mProperty_mFilterPropertyKind) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-bool cCollectionElement_tableViewControllerFilterListForGeneration::isValid (void) const {
-  return mObject.isValid () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement * cCollectionElement_tableViewControllerFilterListForGeneration::copy (void) {
-  cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_tableViewControllerFilterListForGeneration (mObject.mProperty_mFilterPropertyName, mObject.mProperty_mFilterPropertyKind COMMA_HERE)) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cCollectionElement_tableViewControllerFilterListForGeneration::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mFilterPropertyName" ":" ;
-  mObject.mProperty_mFilterPropertyName.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mFilterPropertyKind" ":" ;
-  mObject.mProperty_mFilterPropertyKind.description (ioString, inIndentation) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cCollectionElement_tableViewControllerFilterListForGeneration::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_tableViewControllerFilterListForGeneration * operand = (cCollectionElement_tableViewControllerFilterListForGeneration *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration::GALGAS_tableViewControllerFilterListForGeneration (void) :
-AC_GALGAS_list () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration::GALGAS_tableViewControllerFilterListForGeneration (const capCollectionElementArray & inSharedArray) :
-AC_GALGAS_list (inSharedArray) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration GALGAS_tableViewControllerFilterListForGeneration::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_tableViewControllerFilterListForGeneration  (capCollectionElementArray ()) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration GALGAS_tableViewControllerFilterListForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                                                const GALGAS_propertyKind & inOperand1
-                                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_tableViewControllerFilterListForGeneration result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_tableViewControllerFilterListForGeneration (capCollectionElementArray ()) ;
-    capCollectionElement attributes ;
-    GALGAS_tableViewControllerFilterListForGeneration::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
-    result.appendObject (attributes) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                                   const GALGAS_string & in_mFilterPropertyName,
-                                                                                   const GALGAS_propertyKind & in_mFilterPropertyKind
-                                                                                   COMMA_LOCATION_ARGS) {
-  cCollectionElement_tableViewControllerFilterListForGeneration * p = NULL ;
-  macroMyNew (p, cCollectionElement_tableViewControllerFilterListForGeneration (in_mFilterPropertyName,
-                                                                                in_mFilterPropertyKind COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::addAssign_operation (const GALGAS_string & inOperand0,
-                                                                             const GALGAS_propertyKind & inOperand1
-                                                                             COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_tableViewControllerFilterListForGeneration (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::setter_append (GALGAS_tableViewControllerFilterListForGeneration_2D_element inElement,
-                                                                       C_Compiler * /* inCompiler */
-                                                                       COMMA_LOCATION_ARGS) {
-  if (isValid () && inElement.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_tableViewControllerFilterListForGeneration (inElement COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::setter_insertAtIndex (const GALGAS_string inOperand0,
-                                                                              const GALGAS_propertyKind inOperand1,
-                                                                              const GALGAS_uint inInsertionIndex,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_tableViewControllerFilterListForGeneration (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::setter_removeAtIndex (GALGAS_string & outOperand0,
-                                                                              GALGAS_propertyKind & outOperand1,
-                                                                              const GALGAS_uint inRemoveIndex,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_tableViewControllerFilterListForGeneration * p = (cCollectionElement_tableViewControllerFilterListForGeneration *) attributes.ptr () ;
-    if (NULL == p) {
-      outOperand0.drop () ;
-      outOperand1.drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-      outOperand0 = p->mObject.mProperty_mFilterPropertyName ;
-      outOperand1 = p->mObject.mProperty_mFilterPropertyKind ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::setter_popFirst (GALGAS_string & outOperand0,
-                                                                         GALGAS_propertyKind & outOperand1,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerFilterListForGeneration * p = (cCollectionElement_tableViewControllerFilterListForGeneration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-    outOperand0 = p->mObject.mProperty_mFilterPropertyName ;
-    outOperand1 = p->mObject.mProperty_mFilterPropertyKind ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::setter_popLast (GALGAS_string & outOperand0,
-                                                                        GALGAS_propertyKind & outOperand1,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerFilterListForGeneration * p = (cCollectionElement_tableViewControllerFilterListForGeneration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-    outOperand0 = p->mObject.mProperty_mFilterPropertyName ;
-    outOperand1 = p->mObject.mProperty_mFilterPropertyKind ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::method_first (GALGAS_string & outOperand0,
-                                                                      GALGAS_propertyKind & outOperand1,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerFilterListForGeneration * p = (cCollectionElement_tableViewControllerFilterListForGeneration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-    outOperand0 = p->mObject.mProperty_mFilterPropertyName ;
-    outOperand1 = p->mObject.mProperty_mFilterPropertyKind ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::method_last (GALGAS_string & outOperand0,
-                                                                     GALGAS_propertyKind & outOperand1,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerFilterListForGeneration * p = (cCollectionElement_tableViewControllerFilterListForGeneration *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-    outOperand0 = p->mObject.mProperty_mFilterPropertyName ;
-    outOperand1 = p->mObject.mProperty_mFilterPropertyKind ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration GALGAS_tableViewControllerFilterListForGeneration::add_operation (const GALGAS_tableViewControllerFilterListForGeneration & inOperand,
-                                                                                                                    C_Compiler * /* inCompiler */
-                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_tableViewControllerFilterListForGeneration result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration GALGAS_tableViewControllerFilterListForGeneration::getter_subListWithRange (const GALGAS_range & inRange,
-                                                                                                                              C_Compiler * inCompiler
-                                                                                                                              COMMA_LOCATION_ARGS) const {
-  GALGAS_tableViewControllerFilterListForGeneration result = GALGAS_tableViewControllerFilterListForGeneration::constructor_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration GALGAS_tableViewControllerFilterListForGeneration::getter_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                                                                              C_Compiler * inCompiler
-                                                                                                                              COMMA_LOCATION_ARGS) const {
-  GALGAS_tableViewControllerFilterListForGeneration result = GALGAS_tableViewControllerFilterListForGeneration::constructor_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration GALGAS_tableViewControllerFilterListForGeneration::getter_subListToIndex (const GALGAS_uint & inIndex,
-                                                                                                                            C_Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) const {
-  GALGAS_tableViewControllerFilterListForGeneration result = GALGAS_tableViewControllerFilterListForGeneration::constructor_emptyList (THERE) ;
-  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_tableViewControllerFilterListForGeneration::plusAssign_operation (const GALGAS_tableViewControllerFilterListForGeneration inOperand,
-                                                                              C_Compiler * /* inCompiler */
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_tableViewControllerFilterListForGeneration::getter_mFilterPropertyNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerFilterListForGeneration * p = (cCollectionElement_tableViewControllerFilterListForGeneration *) attributes.ptr () ;
-  GALGAS_string result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-    result = p->mObject.mProperty_mFilterPropertyName ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyKind GALGAS_tableViewControllerFilterListForGeneration::getter_mFilterPropertyKindAtIndex (const GALGAS_uint & inIndex,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerFilterListForGeneration * p = (cCollectionElement_tableViewControllerFilterListForGeneration *) attributes.ptr () ;
-  GALGAS_propertyKind result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-    result = p->mObject.mProperty_mFilterPropertyKind ;
-  }
-  return result ;
-}
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumerator_tableViewControllerFilterListForGeneration::cEnumerator_tableViewControllerFilterListForGeneration (const GALGAS_tableViewControllerFilterListForGeneration & inEnumeratedObject,
-                                                                                                                const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration_2D_element cEnumerator_tableViewControllerFilterListForGeneration::current (LOCATION_ARGS) const {
-  const cCollectionElement_tableViewControllerFilterListForGeneration * p = (const cCollectionElement_tableViewControllerFilterListForGeneration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-  return p->mObject ;
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cEnumerator_tableViewControllerFilterListForGeneration::current_mFilterPropertyName (LOCATION_ARGS) const {
-  const cCollectionElement_tableViewControllerFilterListForGeneration * p = (const cCollectionElement_tableViewControllerFilterListForGeneration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-  return p->mObject.mProperty_mFilterPropertyName ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_propertyKind cEnumerator_tableViewControllerFilterListForGeneration::current_mFilterPropertyKind (LOCATION_ARGS) const {
-  const cCollectionElement_tableViewControllerFilterListForGeneration * p = (const cCollectionElement_tableViewControllerFilterListForGeneration *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_tableViewControllerFilterListForGeneration) ;
-  return p->mObject.mProperty_mFilterPropertyKind ;
-}
-
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                  @tableViewControllerFilterListForGeneration type                                   *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_tableViewControllerFilterListForGeneration ("tableViewControllerFilterListForGeneration",
-                                                                   NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_tableViewControllerFilterListForGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_tableViewControllerFilterListForGeneration ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_tableViewControllerFilterListForGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_tableViewControllerFilterListForGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_tableViewControllerFilterListForGeneration GALGAS_tableViewControllerFilterListForGeneration::extractObject (const GALGAS_object & inObject,
-                                                                                                                    C_Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_tableViewControllerFilterListForGeneration result ;
-  const GALGAS_tableViewControllerFilterListForGeneration * p = (const GALGAS_tableViewControllerFilterListForGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_tableViewControllerFilterListForGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("tableViewControllerFilterListForGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                    Class for element of '@tableViewControllerBoundColumnListForGeneration' list                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8707,60 +8275,6 @@ GALGAS_tableViewControllerSortedColumnListForGeneration GALGAS_tableViewControll
   }
   return result ;
 }
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                      Extension Getter '@tableViewControllerFilterListForGeneration filterCode'                      *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string extensionGetter_filterCode (const GALGAS_tableViewControllerFilterListForGeneration & inObject,
-                                          const GALGAS_string & constinArgument_inFilterFunction,
-                                          C_Compiler * inCompiler
-                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_tableViewControllerFilterListForGeneration temp_0 = inObject ;
-  GALGAS_tableViewControllerFilterListForGeneration var_filterProperties_19999 = temp_0 ;
-  GALGAS_string var_firstFilterProperty_20062 ;
-  {
-  GALGAS_propertyKind joker_20064 ; // Joker input parameter
-  var_filterProperties_19999.setter_popFirst (var_firstFilterProperty_20062, joker_20064, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 522)) ;
-  }
-  GALGAS_string var_indent_20083 = GALGAS_string ("            ") ;
-  result_outResult = var_indent_20083.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 524)).add_operation (var_firstFilterProperty_20062, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 524)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 524)) ;
-  result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 525)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 525)) ;
-  result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 526)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 526)) ;
-  result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 527)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 527)) ;
-  result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 528)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 528)) ;
-  result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("case .single (let v1) :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 529)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 529)) ;
-  GALGAS_uint var_idx_20434 = GALGAS_uint ((uint32_t) 2U) ;
-  GALGAS_string var_args_20453 = GALGAS_string::makeEmptyString () ;
-  GALGAS_string var_blockEnd_20477 = var_indent_20083.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 532)) ;
-  cEnumerator_tableViewControllerFilterListForGeneration enumerator_20523 (var_filterProperties_19999, kENUMERATION_UP) ;
-  while (enumerator_20523.hasCurrentObject ()) {
-    var_indent_20083.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 534)) ;
-    result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("switch object."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)).add_operation (enumerator_20523.current_mFilterPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 535)) ;
-    result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("case .empty :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 536)) ;
-    result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 537)) ;
-    result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("case .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 538)) ;
-    result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("  isMultiple = true\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 539)) ;
-    result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("case .single (let v"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 540)).add_operation (var_idx_20434.getter_string (SOURCE_FILE ("table-view-controller.galgas", 540)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 540)).add_operation (GALGAS_string (") :\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 540)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 540)) ;
-    var_blockEnd_20477 = var_indent_20083.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 541)).add_operation (var_blockEnd_20477, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 541)) ;
-    var_args_20453.plusAssign_operation(GALGAS_string (", v").add_operation (var_idx_20434.getter_string (SOURCE_FILE ("table-view-controller.galgas", 542)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 542)) ;
-    var_idx_20434.increment_operation (inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 543)) ;
-    enumerator_20523.gotoNextObject () ;
-  }
-  var_indent_20083.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 545)) ;
-  result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("if "), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)).add_operation (constinArgument_inFilterFunction, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)).add_operation (GALGAS_string (" (v1"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)).add_operation (var_args_20453, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)).add_operation (GALGAS_string (") {\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 546)) ;
-  result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("  filteredArray.append (object)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 547)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 547)) ;
-  result_outResult.plusAssign_operation(var_indent_20083.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 548)) ;
-  result_outResult.plusAssign_operation(var_blockEnd_20477, inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 549)) ;
-//---
-  return result_outResult ;
-}
-
-
-
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //   Object comparison                                                                                                 *
@@ -14303,6 +13817,879 @@ GALGAS_XCodeGroupList GALGAS_XCodeGroupList::extractObject (const GALGAS_object 
       result = *p ;
     }else{
       inCompiler->castError ("XCodeGroupList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                  Class for element of '@XCodeToolTargetList' list                                   *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cCollectionElement_XCodeToolTargetList : public cCollectionElement {
+  public : GALGAS_XCodeToolTargetList_2D_element mObject ;
+
+//--- Constructors
+  public : cCollectionElement_XCodeToolTargetList (const GALGAS_string & in_mTargetRef,
+                                                   const GALGAS_string & in_mTargetName,
+                                                   const GALGAS_string & in_mProductFileReference,
+                                                   const GALGAS_string & in_mProductFileName,
+                                                   const GALGAS_stringlist & in_mBuildPhaseRefList,
+                                                   const GALGAS_string & in_mBuildPhaseRef,
+                                                   const GALGAS_string & in_mBuildConfigurationListRef,
+                                                   const GALGAS_stringlist & in_mBuildConfigurationSettingList,
+                                                   const GALGAS_string & in_mBuildConfigurationRef,
+                                                   const GALGAS_stringlist & in_mFrameworksFileRefList,
+                                                   const GALGAS_string & in_mFrameworkBuildPhaseRef
+                                                   COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_XCodeToolTargetList (const GALGAS_XCodeToolTargetList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_XCodeToolTargetList::cCollectionElement_XCodeToolTargetList (const GALGAS_string & in_mTargetRef,
+                                                                                const GALGAS_string & in_mTargetName,
+                                                                                const GALGAS_string & in_mProductFileReference,
+                                                                                const GALGAS_string & in_mProductFileName,
+                                                                                const GALGAS_stringlist & in_mBuildPhaseRefList,
+                                                                                const GALGAS_string & in_mBuildPhaseRef,
+                                                                                const GALGAS_string & in_mBuildConfigurationListRef,
+                                                                                const GALGAS_stringlist & in_mBuildConfigurationSettingList,
+                                                                                const GALGAS_string & in_mBuildConfigurationRef,
+                                                                                const GALGAS_stringlist & in_mFrameworksFileRefList,
+                                                                                const GALGAS_string & in_mFrameworkBuildPhaseRef
+                                                                                COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mTargetRef, in_mTargetName, in_mProductFileReference, in_mProductFileName, in_mBuildPhaseRefList, in_mBuildPhaseRef, in_mBuildConfigurationListRef, in_mBuildConfigurationSettingList, in_mBuildConfigurationRef, in_mFrameworksFileRefList, in_mFrameworkBuildPhaseRef) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_XCodeToolTargetList::cCollectionElement_XCodeToolTargetList (const GALGAS_XCodeToolTargetList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mTargetRef, inElement.mProperty_mTargetName, inElement.mProperty_mProductFileReference, inElement.mProperty_mProductFileName, inElement.mProperty_mBuildPhaseRefList, inElement.mProperty_mBuildPhaseRef, inElement.mProperty_mBuildConfigurationListRef, inElement.mProperty_mBuildConfigurationSettingList, inElement.mProperty_mBuildConfigurationRef, inElement.mProperty_mFrameworksFileRefList, inElement.mProperty_mFrameworkBuildPhaseRef) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+bool cCollectionElement_XCodeToolTargetList::isValid (void) const {
+  return mObject.isValid () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement * cCollectionElement_XCodeToolTargetList::copy (void) {
+  cCollectionElement * result = NULL ;
+  macroMyNew (result, cCollectionElement_XCodeToolTargetList (mObject.mProperty_mTargetRef, mObject.mProperty_mTargetName, mObject.mProperty_mProductFileReference, mObject.mProperty_mProductFileName, mObject.mProperty_mBuildPhaseRefList, mObject.mProperty_mBuildPhaseRef, mObject.mProperty_mBuildConfigurationListRef, mObject.mProperty_mBuildConfigurationSettingList, mObject.mProperty_mBuildConfigurationRef, mObject.mProperty_mFrameworksFileRefList, mObject.mProperty_mFrameworkBuildPhaseRef COMMA_HERE)) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cCollectionElement_XCodeToolTargetList::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mTargetRef" ":" ;
+  mObject.mProperty_mTargetRef.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mTargetName" ":" ;
+  mObject.mProperty_mTargetName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mProductFileReference" ":" ;
+  mObject.mProperty_mProductFileReference.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mProductFileName" ":" ;
+  mObject.mProperty_mProductFileName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mBuildPhaseRefList" ":" ;
+  mObject.mProperty_mBuildPhaseRefList.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mBuildPhaseRef" ":" ;
+  mObject.mProperty_mBuildPhaseRef.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mBuildConfigurationListRef" ":" ;
+  mObject.mProperty_mBuildConfigurationListRef.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mBuildConfigurationSettingList" ":" ;
+  mObject.mProperty_mBuildConfigurationSettingList.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mBuildConfigurationRef" ":" ;
+  mObject.mProperty_mBuildConfigurationRef.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mFrameworksFileRefList" ":" ;
+  mObject.mProperty_mFrameworksFileRefList.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mFrameworkBuildPhaseRef" ":" ;
+  mObject.mProperty_mFrameworkBuildPhaseRef.description (ioString, inIndentation) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typeComparisonResult cCollectionElement_XCodeToolTargetList::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_XCodeToolTargetList * operand = (cCollectionElement_XCodeToolTargetList *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_XCodeToolTargetList) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList::GALGAS_XCodeToolTargetList (void) :
+AC_GALGAS_list () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList::GALGAS_XCodeToolTargetList (const capCollectionElementArray & inSharedArray) :
+AC_GALGAS_list (inSharedArray) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+  return GALGAS_XCodeToolTargetList  (capCollectionElementArray ()) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::constructor_listWithValue (const GALGAS_string & inOperand0,
+                                                                                  const GALGAS_string & inOperand1,
+                                                                                  const GALGAS_string & inOperand2,
+                                                                                  const GALGAS_string & inOperand3,
+                                                                                  const GALGAS_stringlist & inOperand4,
+                                                                                  const GALGAS_string & inOperand5,
+                                                                                  const GALGAS_string & inOperand6,
+                                                                                  const GALGAS_stringlist & inOperand7,
+                                                                                  const GALGAS_string & inOperand8,
+                                                                                  const GALGAS_stringlist & inOperand9,
+                                                                                  const GALGAS_string & inOperand10
+                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_XCodeToolTargetList result ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
+    result = GALGAS_XCodeToolTargetList (capCollectionElementArray ()) ;
+    capCollectionElement attributes ;
+    GALGAS_XCodeToolTargetList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10 COMMA_THERE) ;
+    result.appendObject (attributes) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                            const GALGAS_string & in_mTargetRef,
+                                                            const GALGAS_string & in_mTargetName,
+                                                            const GALGAS_string & in_mProductFileReference,
+                                                            const GALGAS_string & in_mProductFileName,
+                                                            const GALGAS_stringlist & in_mBuildPhaseRefList,
+                                                            const GALGAS_string & in_mBuildPhaseRef,
+                                                            const GALGAS_string & in_mBuildConfigurationListRef,
+                                                            const GALGAS_stringlist & in_mBuildConfigurationSettingList,
+                                                            const GALGAS_string & in_mBuildConfigurationRef,
+                                                            const GALGAS_stringlist & in_mFrameworksFileRefList,
+                                                            const GALGAS_string & in_mFrameworkBuildPhaseRef
+                                                            COMMA_LOCATION_ARGS) {
+  cCollectionElement_XCodeToolTargetList * p = NULL ;
+  macroMyNew (p, cCollectionElement_XCodeToolTargetList (in_mTargetRef,
+                                                         in_mTargetName,
+                                                         in_mProductFileReference,
+                                                         in_mProductFileName,
+                                                         in_mBuildPhaseRefList,
+                                                         in_mBuildPhaseRef,
+                                                         in_mBuildConfigurationListRef,
+                                                         in_mBuildConfigurationSettingList,
+                                                         in_mBuildConfigurationRef,
+                                                         in_mFrameworksFileRefList,
+                                                         in_mFrameworkBuildPhaseRef COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::addAssign_operation (const GALGAS_string & inOperand0,
+                                                      const GALGAS_string & inOperand1,
+                                                      const GALGAS_string & inOperand2,
+                                                      const GALGAS_string & inOperand3,
+                                                      const GALGAS_stringlist & inOperand4,
+                                                      const GALGAS_string & inOperand5,
+                                                      const GALGAS_string & inOperand6,
+                                                      const GALGAS_stringlist & inOperand7,
+                                                      const GALGAS_string & inOperand8,
+                                                      const GALGAS_stringlist & inOperand9,
+                                                      const GALGAS_string & inOperand10
+                                                      COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_XCodeToolTargetList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::setter_append (GALGAS_XCodeToolTargetList_2D_element inElement,
+                                                C_Compiler * /* inCompiler */
+                                                COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_XCodeToolTargetList (inElement COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::setter_insertAtIndex (const GALGAS_string inOperand0,
+                                                       const GALGAS_string inOperand1,
+                                                       const GALGAS_string inOperand2,
+                                                       const GALGAS_string inOperand3,
+                                                       const GALGAS_stringlist inOperand4,
+                                                       const GALGAS_string inOperand5,
+                                                       const GALGAS_string inOperand6,
+                                                       const GALGAS_stringlist inOperand7,
+                                                       const GALGAS_string inOperand8,
+                                                       const GALGAS_stringlist inOperand9,
+                                                       const GALGAS_string inOperand10,
+                                                       const GALGAS_uint inInsertionIndex,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_XCodeToolTargetList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::setter_removeAtIndex (GALGAS_string & outOperand0,
+                                                       GALGAS_string & outOperand1,
+                                                       GALGAS_string & outOperand2,
+                                                       GALGAS_string & outOperand3,
+                                                       GALGAS_stringlist & outOperand4,
+                                                       GALGAS_string & outOperand5,
+                                                       GALGAS_string & outOperand6,
+                                                       GALGAS_stringlist & outOperand7,
+                                                       GALGAS_string & outOperand8,
+                                                       GALGAS_stringlist & outOperand9,
+                                                       GALGAS_string & outOperand10,
+                                                       const GALGAS_uint inRemoveIndex,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+    if (NULL == p) {
+      outOperand0.drop () ;
+      outOperand1.drop () ;
+      outOperand2.drop () ;
+      outOperand3.drop () ;
+      outOperand4.drop () ;
+      outOperand5.drop () ;
+      outOperand6.drop () ;
+      outOperand7.drop () ;
+      outOperand8.drop () ;
+      outOperand9.drop () ;
+      outOperand10.drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+      outOperand0 = p->mObject.mProperty_mTargetRef ;
+      outOperand1 = p->mObject.mProperty_mTargetName ;
+      outOperand2 = p->mObject.mProperty_mProductFileReference ;
+      outOperand3 = p->mObject.mProperty_mProductFileName ;
+      outOperand4 = p->mObject.mProperty_mBuildPhaseRefList ;
+      outOperand5 = p->mObject.mProperty_mBuildPhaseRef ;
+      outOperand6 = p->mObject.mProperty_mBuildConfigurationListRef ;
+      outOperand7 = p->mObject.mProperty_mBuildConfigurationSettingList ;
+      outOperand8 = p->mObject.mProperty_mBuildConfigurationRef ;
+      outOperand9 = p->mObject.mProperty_mFrameworksFileRefList ;
+      outOperand10 = p->mObject.mProperty_mFrameworkBuildPhaseRef ;
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::setter_popFirst (GALGAS_string & outOperand0,
+                                                  GALGAS_string & outOperand1,
+                                                  GALGAS_string & outOperand2,
+                                                  GALGAS_string & outOperand3,
+                                                  GALGAS_stringlist & outOperand4,
+                                                  GALGAS_string & outOperand5,
+                                                  GALGAS_string & outOperand6,
+                                                  GALGAS_stringlist & outOperand7,
+                                                  GALGAS_string & outOperand8,
+                                                  GALGAS_stringlist & outOperand9,
+                                                  GALGAS_string & outOperand10,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+    outOperand5.drop () ;
+    outOperand6.drop () ;
+    outOperand7.drop () ;
+    outOperand8.drop () ;
+    outOperand9.drop () ;
+    outOperand10.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    outOperand0 = p->mObject.mProperty_mTargetRef ;
+    outOperand1 = p->mObject.mProperty_mTargetName ;
+    outOperand2 = p->mObject.mProperty_mProductFileReference ;
+    outOperand3 = p->mObject.mProperty_mProductFileName ;
+    outOperand4 = p->mObject.mProperty_mBuildPhaseRefList ;
+    outOperand5 = p->mObject.mProperty_mBuildPhaseRef ;
+    outOperand6 = p->mObject.mProperty_mBuildConfigurationListRef ;
+    outOperand7 = p->mObject.mProperty_mBuildConfigurationSettingList ;
+    outOperand8 = p->mObject.mProperty_mBuildConfigurationRef ;
+    outOperand9 = p->mObject.mProperty_mFrameworksFileRefList ;
+    outOperand10 = p->mObject.mProperty_mFrameworkBuildPhaseRef ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::setter_popLast (GALGAS_string & outOperand0,
+                                                 GALGAS_string & outOperand1,
+                                                 GALGAS_string & outOperand2,
+                                                 GALGAS_string & outOperand3,
+                                                 GALGAS_stringlist & outOperand4,
+                                                 GALGAS_string & outOperand5,
+                                                 GALGAS_string & outOperand6,
+                                                 GALGAS_stringlist & outOperand7,
+                                                 GALGAS_string & outOperand8,
+                                                 GALGAS_stringlist & outOperand9,
+                                                 GALGAS_string & outOperand10,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+    outOperand5.drop () ;
+    outOperand6.drop () ;
+    outOperand7.drop () ;
+    outOperand8.drop () ;
+    outOperand9.drop () ;
+    outOperand10.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    outOperand0 = p->mObject.mProperty_mTargetRef ;
+    outOperand1 = p->mObject.mProperty_mTargetName ;
+    outOperand2 = p->mObject.mProperty_mProductFileReference ;
+    outOperand3 = p->mObject.mProperty_mProductFileName ;
+    outOperand4 = p->mObject.mProperty_mBuildPhaseRefList ;
+    outOperand5 = p->mObject.mProperty_mBuildPhaseRef ;
+    outOperand6 = p->mObject.mProperty_mBuildConfigurationListRef ;
+    outOperand7 = p->mObject.mProperty_mBuildConfigurationSettingList ;
+    outOperand8 = p->mObject.mProperty_mBuildConfigurationRef ;
+    outOperand9 = p->mObject.mProperty_mFrameworksFileRefList ;
+    outOperand10 = p->mObject.mProperty_mFrameworkBuildPhaseRef ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::method_first (GALGAS_string & outOperand0,
+                                               GALGAS_string & outOperand1,
+                                               GALGAS_string & outOperand2,
+                                               GALGAS_string & outOperand3,
+                                               GALGAS_stringlist & outOperand4,
+                                               GALGAS_string & outOperand5,
+                                               GALGAS_string & outOperand6,
+                                               GALGAS_stringlist & outOperand7,
+                                               GALGAS_string & outOperand8,
+                                               GALGAS_stringlist & outOperand9,
+                                               GALGAS_string & outOperand10,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+    outOperand5.drop () ;
+    outOperand6.drop () ;
+    outOperand7.drop () ;
+    outOperand8.drop () ;
+    outOperand9.drop () ;
+    outOperand10.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    outOperand0 = p->mObject.mProperty_mTargetRef ;
+    outOperand1 = p->mObject.mProperty_mTargetName ;
+    outOperand2 = p->mObject.mProperty_mProductFileReference ;
+    outOperand3 = p->mObject.mProperty_mProductFileName ;
+    outOperand4 = p->mObject.mProperty_mBuildPhaseRefList ;
+    outOperand5 = p->mObject.mProperty_mBuildPhaseRef ;
+    outOperand6 = p->mObject.mProperty_mBuildConfigurationListRef ;
+    outOperand7 = p->mObject.mProperty_mBuildConfigurationSettingList ;
+    outOperand8 = p->mObject.mProperty_mBuildConfigurationRef ;
+    outOperand9 = p->mObject.mProperty_mFrameworksFileRefList ;
+    outOperand10 = p->mObject.mProperty_mFrameworkBuildPhaseRef ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::method_last (GALGAS_string & outOperand0,
+                                              GALGAS_string & outOperand1,
+                                              GALGAS_string & outOperand2,
+                                              GALGAS_string & outOperand3,
+                                              GALGAS_stringlist & outOperand4,
+                                              GALGAS_string & outOperand5,
+                                              GALGAS_string & outOperand6,
+                                              GALGAS_stringlist & outOperand7,
+                                              GALGAS_string & outOperand8,
+                                              GALGAS_stringlist & outOperand9,
+                                              GALGAS_string & outOperand10,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+    outOperand5.drop () ;
+    outOperand6.drop () ;
+    outOperand7.drop () ;
+    outOperand8.drop () ;
+    outOperand9.drop () ;
+    outOperand10.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    outOperand0 = p->mObject.mProperty_mTargetRef ;
+    outOperand1 = p->mObject.mProperty_mTargetName ;
+    outOperand2 = p->mObject.mProperty_mProductFileReference ;
+    outOperand3 = p->mObject.mProperty_mProductFileName ;
+    outOperand4 = p->mObject.mProperty_mBuildPhaseRefList ;
+    outOperand5 = p->mObject.mProperty_mBuildPhaseRef ;
+    outOperand6 = p->mObject.mProperty_mBuildConfigurationListRef ;
+    outOperand7 = p->mObject.mProperty_mBuildConfigurationSettingList ;
+    outOperand8 = p->mObject.mProperty_mBuildConfigurationRef ;
+    outOperand9 = p->mObject.mProperty_mFrameworksFileRefList ;
+    outOperand10 = p->mObject.mProperty_mFrameworkBuildPhaseRef ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::add_operation (const GALGAS_XCodeToolTargetList & inOperand,
+                                                                      C_Compiler * /* inCompiler */
+                                                                      COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_XCodeToolTargetList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_XCodeToolTargetList::plusAssign_operation (const GALGAS_XCodeToolTargetList inOperand,
+                                                       C_Compiler * /* inCompiler */
+                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_XCodeToolTargetList::getter_mTargetRefAtIndex (const GALGAS_uint & inIndex,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mTargetRef ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_XCodeToolTargetList::getter_mTargetNameAtIndex (const GALGAS_uint & inIndex,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mTargetName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_XCodeToolTargetList::getter_mProductFileReferenceAtIndex (const GALGAS_uint & inIndex,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mProductFileReference ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_XCodeToolTargetList::getter_mProductFileNameAtIndex (const GALGAS_uint & inIndex,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mProductFileName ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringlist GALGAS_XCodeToolTargetList::getter_mBuildPhaseRefListAtIndex (const GALGAS_uint & inIndex,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_stringlist result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mBuildPhaseRefList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_XCodeToolTargetList::getter_mBuildPhaseRefAtIndex (const GALGAS_uint & inIndex,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mBuildPhaseRef ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_XCodeToolTargetList::getter_mBuildConfigurationListRefAtIndex (const GALGAS_uint & inIndex,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mBuildConfigurationListRef ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringlist GALGAS_XCodeToolTargetList::getter_mBuildConfigurationSettingListAtIndex (const GALGAS_uint & inIndex,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_stringlist result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mBuildConfigurationSettingList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_XCodeToolTargetList::getter_mBuildConfigurationRefAtIndex (const GALGAS_uint & inIndex,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mBuildConfigurationRef ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringlist GALGAS_XCodeToolTargetList::getter_mFrameworksFileRefListAtIndex (const GALGAS_uint & inIndex,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_stringlist result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mFrameworksFileRefList ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string GALGAS_XCodeToolTargetList::getter_mFrameworkBuildPhaseRefAtIndex (const GALGAS_uint & inIndex,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_XCodeToolTargetList * p = (cCollectionElement_XCodeToolTargetList *) attributes.ptr () ;
+  GALGAS_string result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+    result = p->mObject.mProperty_mFrameworkBuildPhaseRef ;
+  }
+  return result ;
+}
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cEnumerator_XCodeToolTargetList::cEnumerator_XCodeToolTargetList (const GALGAS_XCodeToolTargetList & inEnumeratedObject,
+                                                                  const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList_2D_element cEnumerator_XCodeToolTargetList::current (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_XCodeToolTargetList::current_mTargetRef (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mTargetRef ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_XCodeToolTargetList::current_mTargetName (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mTargetName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_XCodeToolTargetList::current_mProductFileReference (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mProductFileReference ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_XCodeToolTargetList::current_mProductFileName (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mProductFileName ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringlist cEnumerator_XCodeToolTargetList::current_mBuildPhaseRefList (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mBuildPhaseRefList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_XCodeToolTargetList::current_mBuildPhaseRef (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mBuildPhaseRef ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_XCodeToolTargetList::current_mBuildConfigurationListRef (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mBuildConfigurationListRef ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringlist cEnumerator_XCodeToolTargetList::current_mBuildConfigurationSettingList (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mBuildConfigurationSettingList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_XCodeToolTargetList::current_mBuildConfigurationRef (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mBuildConfigurationRef ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_stringlist cEnumerator_XCodeToolTargetList::current_mFrameworksFileRefList (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mFrameworksFileRefList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string cEnumerator_XCodeToolTargetList::current_mFrameworkBuildPhaseRef (LOCATION_ARGS) const {
+  const cCollectionElement_XCodeToolTargetList * p = (const cCollectionElement_XCodeToolTargetList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_XCodeToolTargetList) ;
+  return p->mObject.mProperty_mFrameworkBuildPhaseRef ;
+}
+
+
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                              @XCodeToolTargetList type                                              *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_XCodeToolTargetList ("XCodeToolTargetList",
+                                            NULL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_XCodeToolTargetList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_XCodeToolTargetList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_XCodeToolTargetList::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_XCodeToolTargetList (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::extractObject (const GALGAS_object & inObject,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_XCodeToolTargetList result ;
+  const GALGAS_XCodeToolTargetList * p = (const GALGAS_XCodeToolTargetList *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_XCodeToolTargetList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("XCodeToolTargetList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
