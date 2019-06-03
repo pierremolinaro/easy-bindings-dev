@@ -6721,12 +6721,13 @@ const char * gWrapperFileContent_40_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  override func mouseDown (with inEvent : NSEvent) {\n"
   "    if let viewController = self.viewController {\n"
   "      let unalignedMouseDownLocation = self.convert (inEvent.locationInWindow, from:nil)\n"
-  "      let alignedLastMouseDraggedLocation = unalignedMouseDownLocation.canariPointAligned (onCanariGrid: self.mouseGridInCanariUnit)\n"
+  "      let canariUnalignedMouseDownLocation = unalignedMouseDownLocation.canariPoint\n"
+  "      let alignedLastMouseDraggedLocation = canariUnalignedMouseDownLocation.point (alignedOnGrid: self.mouseGridInCanariUnit)\n"
   "      self.mMouseMovedCallback\? (unalignedMouseDownLocation)\n"
   "      self.mLastMouseDraggedLocation = alignedLastMouseDraggedLocation\n"
   "      let modifierFlags = inEvent.modifierFlags\n"
   "      if modifierFlags.contains (.control), !modifierFlags.contains (.shift), !modifierFlags.contains (.option) { // Ctrl Key On, no shift\n"
-  "        if let theMenu = self.mPopulateContextualMenuClosure\? (alignedLastMouseDraggedLocation) {\n"
+  "        if let theMenu = self.mPopulateContextualMenuClosure\? (canariUnalignedMouseDownLocation) {\n"
   "          NSMenu.popUpContextMenu (theMenu, with: inEvent, for: self)\n"
   "        }\n"
   "      }else if let pbType = self.pasteboardType, inEvent.modifierFlags.contains (.option) {\n"
@@ -6944,7 +6945,7 @@ const cRegularFileWrapper gWrapperFile_40_swift_5F_sources (
   "EBGraphicView-mouse.swift",
   "swift",
   true, // Text file
-  12007, // Text length
+  12086, // Text length
   gWrapperFileContent_40_swift_5F_sources
 ) ;
 

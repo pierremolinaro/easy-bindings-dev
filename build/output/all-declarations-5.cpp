@@ -3864,8 +3864,6 @@ const char * gWrapperFileContent_15_outletClassGeneration = "//\xE2""\x80""\x94"
   "    super.init (coder: coder)\n"
   "    self.delegate = self\n"
   "    self.editable = false\n"
-  "    self.drawsBackground = false\n"
-  "    self.bordered = false\n"
   "    noteObjectAllocation (self)\n"
   "  }\n"
   "\n"
@@ -3875,8 +3873,6 @@ const char * gWrapperFileContent_15_outletClassGeneration = "//\xE2""\x80""\x94"
   "    super.init (frame: frame)\n"
   "    self.delegate = self\n"
   "    self.editable = false\n"
-  "    self.drawsBackground = false\n"
-  "    self.bordered = false\n"
   "    noteObjectAllocation (self)\n"
   "  }\n"
   "  \n"
@@ -3949,7 +3945,7 @@ const cRegularFileWrapper gWrapperFile_15_outletClassGeneration (
   "EBNumberFieldObserver.swift",
   "swift",
   true, // Text file
-  4047, // Text length
+  3929, // Text length
   gWrapperFileContent_15_outletClassGeneration
 ) ;
 
@@ -5106,7 +5102,6 @@ const char * gWrapperFileContent_12_outletClassGeneration = "//\xE2""\x80""\x94"
   "    super.init (coder: coder)\n"
   "    self.delegate = self\n"
   "    self.isEditable = false\n"
-  "    self.isBordered = false\n"
   "    noteObjectAllocation (self)\n"
   "  }\n"
   "\n"
@@ -5116,7 +5111,6 @@ const char * gWrapperFileContent_12_outletClassGeneration = "//\xE2""\x80""\x94"
   "    super.init (frame: frame)\n"
   "    self.delegate = self\n"
   "    self.isEditable = false\n"
-  "    self.isBordered = false\n"
   "    noteObjectAllocation (self)\n"
   "  }\n"
   "  \n"
@@ -5232,7 +5226,7 @@ const cRegularFileWrapper gWrapperFile_12_outletClassGeneration (
   "EBTextObserverField.swift",
   "swift",
   true, // Text file
-  5742, // Text length
+  5686, // Text length
   gWrapperFileContent_12_outletClassGeneration
 ) ;
 

@@ -16,8 +16,6 @@ import Cocoa
     super.init (coder: coder)
     self.delegate = self
     self.editable = false
-    self.drawsBackground = false
-    self.bordered = false
     noteObjectAllocation (self)
   }
 
@@ -27,8 +25,6 @@ import Cocoa
     super.init (frame: frame)
     self.delegate = self
     self.editable = false
-    self.drawsBackground = false
-    self.bordered = false
     noteObjectAllocation (self)
   }
   
