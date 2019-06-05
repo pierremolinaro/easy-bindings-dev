@@ -190,7 +190,7 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
 override getter @toOnePropertyGeneration configurationCode -> @string {
   switch mOpposite
   case oppositeIsToMany (oppositeName) :
-    result  = "  //--- To one property: " + mPropertyName + " (has opposite to many relationship: " + oppositeName + ") §\n"
+    result  = "  //--- To one property: " + mPropertyName + " (has opposite to many relationship: " + oppositeName + ")\n"
     result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
     result += "    self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
     result += "      setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.add (me) } },\n"
@@ -200,7 +200,7 @@ override getter @toOnePropertyGeneration configurationCode -> @string {
     result  = "  //--- To one property: " + mPropertyName + "\n"
     result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
   case oppositeIsToOne (oppositeName) :
-    result  = "  //--- To one property: " + mPropertyName + " (has opposite to one relationship: " + oppositeName + ") §\n"
+    result  = "  //--- To one property: " + mPropertyName + " (has opposite to one relationship: " + oppositeName + ")\n"
     result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
     result += "    self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
     result += "      setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.setProp (me) } },\n"
