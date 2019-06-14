@@ -7234,6 +7234,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     "          inspectorView.addSubview (tf)\n"
     "          self.mCurrentAttachedView = tf\n"
     "        }else if let selectionInspectorView = self.mInspectorDictionary [selectionTypes.first!] {\n"
+    "          selectionInspectorView.autoresizingMask = [.width, .minYMargin]\n"
     "          selectionInspectorView.frame = inspectorView.frame\n"
     "          inspectorView.addSubview (selectionInspectorView)\n"
     "          self.mCurrentAttachedView = selectionInspectorView\n"

@@ -10167,7 +10167,13 @@ const char * gWrapperFileContent_29_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "      let bp = inAffineTransform.transform (path)\n"
   "      filledPaths.append (bp)\n"
   "    }\n"
-  "    let result = EBStrokeBezierPathShape (transformedPaths: filledPaths, self.mColor, self.mClipBezierPath)\n"
+  "    let clipPath : NSBezierPath\?\n"
+  "    if let path = self.mClipBezierPath {\n"
+  "      clipPath = inAffineTransform.transform (path)\n"
+  "    }else{\n"
+  "      clipPath = nil\n"
+  "    }\n"
+  "    let result = EBStrokeBezierPathShape (transformedPaths: filledPaths, self.mColor, clipPath)\n"
   "    self.internalTransform (result, by: inAffineTransform)\n"
   "    return result\n"
   "  }\n"
@@ -10203,6 +10209,9 @@ const char * gWrapperFileContent_29_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "      if !bp.isEmpty {\n"
   "        r = r.union (bp.bounds)\n"
   "      }\n"
+  "    }\n"
+  "    if let path = self.mClipBezierPath {\n"
+  "      r = r.intersection (path.bounds)\n"
   "    }\n"
   "    return r\n"
   "  }\n"
@@ -10247,6 +10256,9 @@ const char * gWrapperFileContent_29_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "        equal = self.mColor == operand.mColor\n"
   "      }\n"
   "      if equal {\n"
+  "        equal = self.mClipBezierPath == operand.mClipBezierPath\n"
+  "      }\n"
+  "      if equal {\n"
   "        equal = super.isEqualToShape (operand)\n"
   "      }\n"
   "      var idx = 0\n"
@@ -10268,6 +10280,7 @@ const char * gWrapperFileContent_29_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  override func hash (into hasher: inout Hasher) {\n"
   "    super.hash (into: &hasher)\n"
   "    self.mColor.hash (into: &hasher)\n"
+  "    self.mClipBezierPath\?.hash (into: &hasher)\n"
   "    for path in self.mFilledPaths {\n"
   "      path.hash (into: &hasher)\n"
   "    }\n"
@@ -10283,7 +10296,7 @@ const cRegularFileWrapper gWrapperFile_29_swift_5F_sources (
   "EBStrokeBezierPathShape.swift",
   "swift",
   true, // Text file
-  6505, // Text length
+  6879, // Text length
   gWrapperFileContent_29_swift_5F_sources
 ) ;
 
