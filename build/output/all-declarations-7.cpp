@@ -6584,9 +6584,9 @@ const char * gWrapperFileContent_26_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    let r = inDirtyRect\n"
   "    let gridDisplayStep = canariUnitToCocoa (self.mGridStepInCanariUnit) * CGFloat (self.mGridDisplayFactor)\n"
   "    let startX = (r.origin.x / gridDisplayStep).rounded (.down) * gridDisplayStep\n"
-  "    let endX = r.maxX\n"
+  "    let endX = (r.maxX / gridDisplayStep + 1.0).rounded (.up) * gridDisplayStep\n"
   "    let startY = (r.origin.y / gridDisplayStep).rounded (.down) * gridDisplayStep\n"
-  "    let endY = r.maxY\n"
+  "    let endY = (r.maxY / gridDisplayStep + 1.0).rounded (.up) * gridDisplayStep\n"
   "    switch self.mGridStyle {\n"
   "    case .noGrid :\n"
   "      ()\n"
@@ -6722,7 +6722,7 @@ const cRegularFileWrapper gWrapperFile_26_swift_5F_sources (
   "EBGraphicView-draw.swift",
   "swift",
   true, // Text file
-  7376, // Text length
+  7492, // Text length
   gWrapperFileContent_26_swift_5F_sources
 ) ;
 
@@ -8163,16 +8163,11 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    var newBounds = NSRect () // For including point (0, 0)\n"
   "    newBounds = newBounds.union (self.objectsAndIssueBoundingBox)\n"
   "    newBounds = newBounds.union (self.mMinimumRectangle)\n"
-  "//    if let clipView = self.superview as\? NSClipView {\n"
-  "////      let r = self.convert (clipView.documentVisibleRect, from: clipView)\n"
-  "//      let r = clipView.documentVisibleRect\n"
-  "//      newBounds = newBounds.union (r)\n"
-  "//    }\n"
   "    let currentBounds = self.bounds\n"
   "    if currentBounds != newBounds {\n"
-  "      // Swift.print (\"updateViewFrameAndBounds change\")\n"
   "      self.frame.size = newBounds.size\n"
   "      self.bounds = newBounds\n"
+  "      self.setNeedsDisplay (self.frame)\n"
   "      self.applyZoom (Int (s * 100.0))\n"
   "    }\n"
   "  }\n"
@@ -8419,7 +8414,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  27907, // Text length
+  27663, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 

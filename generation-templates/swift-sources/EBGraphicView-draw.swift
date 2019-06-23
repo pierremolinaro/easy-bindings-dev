@@ -59,9 +59,9 @@ extension EBGraphicView {
     let r = inDirtyRect
     let gridDisplayStep = canariUnitToCocoa (self.mGridStepInCanariUnit) * CGFloat (self.mGridDisplayFactor)
     let startX = (r.origin.x / gridDisplayStep).rounded (.down) * gridDisplayStep
-    let endX = r.maxX
+    let endX = (r.maxX / gridDisplayStep + 1.0).rounded (.up) * gridDisplayStep
     let startY = (r.origin.y / gridDisplayStep).rounded (.down) * gridDisplayStep
-    let endY = r.maxY
+    let endY = (r.maxY / gridDisplayStep + 1.0).rounded (.up) * gridDisplayStep
     switch self.mGridStyle {
     case .noGrid :
       ()
