@@ -1328,7 +1328,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_stub (C_Compiler * /* i
     "    let archiver = NSKeyedArchiver (forWritingWith: data)\n"
     "    var array = [NSBezierPath] ()\n"
     "    for p in self.mPathes {\n"
-    "      array.append (p.bezierPath)\n"
+    "      array.append (p.nsBezierPath)\n"
     "    }\n"
     "    archiver.encode (array, forKey: NSKeyedArchiveRootObjectKey)\n"
     "    archiver.finishEncoding ()\n"
