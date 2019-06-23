@@ -181,6 +181,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"extension-String"
     swiftFiles += !"extension-UInt32"
  #--- Shapes
+    swiftFiles += !"EBBezierPath"
     swiftFiles += !"EBFilledBezierPathShape"
     swiftFiles += !"EBKnobShape"
     swiftFiles += !"EBKnobTextShape"

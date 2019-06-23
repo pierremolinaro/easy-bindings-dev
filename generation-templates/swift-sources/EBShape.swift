@@ -8,7 +8,7 @@ import Cocoa
 //    EBShape
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBShape : Hashable, Equatable, EBUserClassNameProtocol {
+class EBShape : Hashable, EBUserClassNameProtocol {
 
   //····················································································································
   //  Properties
@@ -68,7 +68,7 @@ class EBShape : Hashable, Equatable, EBUserClassNameProtocol {
   //  Transformed shape using NSAffineTransform object
   //····················································································································
 
-  func transformedBy (_ inAffineTransform : NSAffineTransform) -> EBShape {
+  func transformed (by inAffineTransform : AffineTransform) -> EBShape {
     let result = EBShape ()
     self.internalTransform (result, by: inAffineTransform)
     return result
@@ -76,9 +76,9 @@ class EBShape : Hashable, Equatable, EBUserClassNameProtocol {
 
   //····················································································································
 
-  final func internalTransform (_ result : EBShape, by inAffineTransform : NSAffineTransform) {
+  final func internalTransform (_ result : EBShape, by inAffineTransform : AffineTransform) {
     for shape in self.mShapes {
-      result.append (shape.transformedBy (inAffineTransform))
+      result.append (shape.transformed (by: inAffineTransform))
     }
   }
 
@@ -125,9 +125,8 @@ class EBShape : Hashable, Equatable, EBUserClassNameProtocol {
     var result = false
     var idx = 0
     while (idx < self.mShapes.count) && !result {
-      let shape = self.mShapes [idx]
+      result = self.mShapes [idx].intersects (rect: inRect)
       idx += 1
-      result = shape.intersects (rect: inRect)
     }
     return result
   }
@@ -169,14 +168,8 @@ class EBShape : Hashable, Equatable, EBUserClassNameProtocol {
   ///   - rhs: Another value to compare.
   //····················································································································
 
-  public static func == (lhs: EBShape, rhs: EBShape) -> Bool {
+  public static func == (lhs : EBShape, rhs : EBShape) -> Bool {
     return (lhs === rhs) || lhs.isEqualToShape (rhs)
-  }
-
-  //····················································································································
-
-  public static func != (lhs: EBShape, rhs: EBShape) -> Bool {
-    return !(lhs == rhs)
   }
 
   //····················································································································
