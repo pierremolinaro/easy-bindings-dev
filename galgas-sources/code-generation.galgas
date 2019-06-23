@@ -169,7 +169,6 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicViewControllerProtocol"
     swiftFiles += !"EBGraphicViewScaleProvider"
   #--- Extensions
-    swiftFiles += !"extension-CGPath"
     swiftFiles += !"extension-CGPoint-NSPoint"
     swiftFiles += !"extension-CGRect-NSRect"
     swiftFiles += !"extension-CGSize-NSSize"
