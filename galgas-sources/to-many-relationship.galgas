@@ -195,7 +195,7 @@ override getter @toManyPropertyGeneration propertyDeclarationCode ?let @stringse
     result += "  let " + mPropertyName + "_property = TransientArrayOfSuperOf_" + [mRelationshipType swiftTypeName]
            + " <" + masterPropertyTypeName + "> ()\n\n"
   elsif mInPreferences then
-    result += "  let " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName]
+    result += "  let " + mPropertyName + "_property = PreferencesArrayOf_" + [mRelationshipType swiftTypeName]
            + " (prefKey: Preferences_" + mPropertyName + ")\n\n"
   else
     result += "  let " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName] + " ()\n\n"
@@ -270,11 +270,6 @@ override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
   elsif mCustomStore then
     result  = "  //--- To many property: " + mPropertyName + " (Custom store)\n"
     result += "    customStore_" + [mRelationshipType swiftTypeName] + "_" + mPropertyName + " (self." + mPropertyName + "_property.propval, intoDictionary: ioDictionary)\n"
-    result += "    /* self.store (\n"
-    result += "      managedObjectArray: self." + mPropertyName + "_property.propval,\n"
-    result += "      relationshipName: \"" + mPropertyName + "\",\n"
-    result += "      intoDictionary: ioDictionary\n"
-    result += "    ) */\n"
   else
     result  = "  //--- To many property: " + mPropertyName + "\n"
     result += "    self.store (\n"
