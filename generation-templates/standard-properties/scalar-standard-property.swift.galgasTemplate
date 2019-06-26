@@ -2,12 +2,13 @@
 //   Scalar property %!TYPE%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-typealias EBReadOnlyProperty_%!TYPE%  = EBReadOnlyValueProperty <%!TYPE%>
-typealias EBTransientProperty_%!TYPE% = EBTransientValueProperty <%!TYPE%>
+typealias EBReadOnlyProperty_%!TYPE%    = EBReadOnlyValueProperty <%!TYPE%>
+typealias EBTransientProperty_%!TYPE%   = EBTransientValueProperty <%!TYPE%>
 %if not TRANSIENT then
-%typealias EBReadWriteProperty_%!TYPE% = EBReadWriteValueProperty <%!TYPE%>
-typealias EBPropertyProxy_%!TYPE%     = EBPropertyValueProxy <%!TYPE%>
-typealias EBStoredProperty_%!TYPE%    = EBStoredValueProperty <%!TYPE%>
+%typealias EBReadWriteProperty_%!TYPE%   = EBReadWriteValueProperty <%!TYPE%>
+typealias EBPropertyProxy_%!TYPE%       = EBPropertyValueProxy <%!TYPE%>
+typealias EBStoredProperty_%!TYPE%      = EBStoredValueProperty <%!TYPE%>
+typealias EBPreferencesProperty_%!TYPE% = EBPreferencesValueProperty <%!TYPE%>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

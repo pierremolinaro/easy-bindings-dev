@@ -136,12 +136,11 @@ final class EBPropertyValueProxy <T : ValuePropertyProtocol> : EBReadWriteValueP
 //   EBStoredValueProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValueProperty <T> {
+class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValueProperty <T> {
 
   //····················································································································
 
   weak var ebUndoManager : UndoManager?  // SOULD BE WEAK
-  fileprivate var mPreferenceKey : String?
   var mSetterDelegate : Optional < (_ inValue : T) -> Void >
 
   //····················································································································
@@ -156,30 +155,14 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
 
   init (defaultValue inValue : T) {
     mValue = inValue
-    mPreferenceKey = nil
     mSetterDelegate = nil
     super.init ()
-  }
-
-  //····················································································································
-
-  init (defaultValue inValue : T, prefKey inPreferenceKey : String) {
-    mValue = inValue
-    mPreferenceKey = inPreferenceKey
-    mSetterDelegate = nil
-    super.init ()
-  //--- Read from preferences
-    let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)
-    if let value = possibleValue as? NSObject {
-      setProp (T.convertFromNSObject (object: value))
-    }
   }
 
  //····················································································································
 
   init (defaultValue inValue : T, setterDelegate inSetterDelegate : @escaping (_ inValue : T) -> Void) {
     mValue = inValue
-    mPreferenceKey = nil
     mSetterDelegate = inSetterDelegate
     super.init ()
   }
@@ -190,9 +173,6 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
     didSet {
       if self.mValue != oldValue {
         self.mSetterDelegate? (mValue)
-        if let prefKey = self.mPreferenceKey {
-          UserDefaults.standard.set (mValue.convertToNSObject (), forKey:prefKey)
-        }
         self.mValueExplorer?.stringValue = "\(mValue)"
         self.ebUndoManager?.registerUndo (withTarget:self, selector:#selector(performUndo(_:)), object: oldValue.convertToNSObject ())
         if logEvents () {
@@ -309,6 +289,39 @@ final class EBStoredValueProperty <T : ValuePropertyProtocol> : EBReadWriteValue
   }
   
   //····················································································································
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBPreferencesValueProperty <T>
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+final class EBPreferencesValueProperty <T : ValuePropertyProtocol> : EBStoredValueProperty <T> {
+
+  //····················································································································
+
+  private var mPreferenceKey : String
+
+  //····················································································································
+
+  init (defaultValue inValue : T, prefKey inPreferenceKey : String) {
+    mPreferenceKey = inPreferenceKey
+    super.init (defaultValue: inValue)
+  //--- Read from preferences
+    let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)
+    if let value = possibleValue as? NSObject {
+      setProp (T.convertFromNSObject (object: value))
+    }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    UserDefaults.standard.set (self.propval.convertToNSObject (), forKey: self.mPreferenceKey)
+    super.postEvent ()
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -1318,9 +1331,8 @@ final class EBPropertyClassProxy <T : ClassPropertyProtocol> : EBReadWriteClassP
 //   EBStoredClassProperty <T>
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClassProperty <T> {
+class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClassProperty <T> {
   weak var ebUndoManager : UndoManager? // SOULD BE WEAK
-  fileprivate var mPreferenceKey : String?
   var mSetterDelegate : ((_ inValue : T) -> Void)?
 
   //····················································································································
@@ -1335,30 +1347,14 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
 
   init (defaultValue inValue : T) {
     mValue = inValue
-    mPreferenceKey = nil
     mSetterDelegate = nil
     super.init ()
   }
 
-  //····················································································································
-
-  init (defaultValue inValue : T, prefKey inPreferenceKey : String) {
-    mValue = inValue
-    mPreferenceKey = inPreferenceKey
-    mSetterDelegate = nil
-    super.init ()
-  //--- Read value from preferences
-    let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)
-    if let value = possibleValue as? Data, let unarchivedValue = T.unarchiveFromData (data: value) as? T {
-      self.setProp (unarchivedValue)
-    }
-  }
-
-  //····················································································································
+   //····················································································································
 
   init (defaultValue inValue : T, setterDelegate inSetterDelegate : @escaping (_ inValue : T) -> Void) {
     mValue = inValue
-    mPreferenceKey = nil
     mSetterDelegate = inSetterDelegate
     super.init ()
   }
@@ -1369,9 +1365,6 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
     didSet {
       if self.mValue != oldValue {
         self.mSetterDelegate? (self.mValue)
-        if let prefKey = self.mPreferenceKey {
-          UserDefaults.standard.set (self.mValue.archiveToData (), forKey: prefKey)
-        }
         self.mValueExplorer?.stringValue = "\(mValue)"
         self.ebUndoManager?.registerUndo (withTarget: self, selector: #selector (performUndo(_:)), object: oldValue)
         if logEvents () {
@@ -1482,6 +1475,39 @@ final class EBStoredClassProperty <T : ClassPropertyProtocol> : EBReadWriteClass
   }
   
   //····················································································································
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//   EBPreferencesClassProperty <T>
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class EBPreferencesClassProperty <T : ClassPropertyProtocol> : EBStoredClassProperty <T> {
+
+ //····················································································································
+
+  private var mPreferenceKey : String
+
+ //····················································································································
+
+  init (defaultValue inValue : T, prefKey inPreferenceKey : String) {
+    mPreferenceKey = inPreferenceKey
+    super.init (defaultValue: inValue)
+  //--- Read value from preferences
+    let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)
+    if let value = possibleValue as? Data, let unarchivedValue = T.unarchiveFromData (data: value) as? T {
+      self.setProp (unarchivedValue)
+    }
+  }
+
+  //····················································································································
+
+  override func postEvent () {
+    UserDefaults.standard.set (self.propval.archiveToData (), forKey: self.mPreferenceKey)
+    super.postEvent ()
+  }
+
+  //····················································································································
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
