@@ -19,7 +19,7 @@ end
 
 %
 for () in OUTLET_GENERATION_MAP do
-%  @IBOutlet var %!lkey.string% : %!mOutletTypeName%?\n%
+%  @IBOutlet weak var %!lkey.string% : %!mOutletTypeName%? = nil // An outlet should be declared weak\n%
 end
 %
   //····················································································································
