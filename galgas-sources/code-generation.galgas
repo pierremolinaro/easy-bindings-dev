@@ -164,6 +164,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicView-mouse"
     swiftFiles += !"EBGraphicView-move-to-superview"
     swiftFiles += !"EBGraphicView-placards"
+    swiftFiles += !"EBGraphicView-tool-tips"
     swiftFiles += !"EBGraphicView-tracking-areas"
     swiftFiles += !"EBGraphicView"
     swiftFiles += !"EBGraphicViewControllerProtocol"
