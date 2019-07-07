@@ -10212,10 +10212,15 @@ const char * gWrapperFileContent_57_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    )\n"
   "  //--- Append background\n"
   "    do{\n"
-  "      let bp = EBBezierPath (rect: filledBezierPath.bounds)\n"
-  "      let e = EBShapeElement ([bp], .white, inKnobIndex, nil)\n"
-  "      self.mElements.append (e)\n"
-  "      self.mCachedBoundingBox = self.mCachedBoundingBox.union (e.boundingBox)\n"
+  "      var bp = EBBezierPath (rect: filledBezierPath.bounds.insetBy (dx: -1.0, dy: -1.0))\n"
+  "      bp.lineWidth = 0.5\n"
+  "      bp.lineJoinStyle = .round\n"
+  "      bp.lineCapStyle = .round\n"
+  "      let e1 = EBShapeElement ([bp], .white, inKnobIndex, nil)\n"
+  "      self.mElements.append (e1)\n"
+  "      let e2 = EBShapeElement ([bp.pathByStroking], .cyan, inKnobIndex, nil)\n"
+  "      self.mElements.append (e2)\n"
+  "      self.mCachedBoundingBox = self.mCachedBoundingBox.union (e2.boundingBox)\n"
   "    }\n"
   "  //--- Append text\n"
   "    let e = EBShapeElement ([filledBezierPath], .black, nil, nil)\n"
@@ -10497,7 +10502,7 @@ const cRegularFileWrapper gWrapperFile_57_swift_5F_sources (
   "EBShape.swift",
   "swift",
   true, // Text file
-  19292, // Text length
+  19522, // Text length
   gWrapperFileContent_57_swift_5F_sources
 ) ;
 
