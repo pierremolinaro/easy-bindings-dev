@@ -12883,6 +12883,8 @@ const char * gWrapperFileContent_12_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "        result += \"@\\(points[0].x) \\(points[0].y) \\(points[1].x) \\(points[1].y) \\(points[2].x) \\(points[2].y)\"\n"
   "      case .closePath:\n"
   "        result += \"#\"\n"
+  "      @unknown default :\n"
+  "        ()\n"
   "      }\n"
   "    }\n"
   "    result += \"*\\(self.windingRule.rawValue) \\(self.lineCapStyle.rawValue) \\(self.lineJoinStyle.rawValue)\"\n"
@@ -13508,7 +13510,7 @@ const cRegularFileWrapper gWrapperFile_12_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  107816, // Text length
+  107852, // Text length
   gWrapperFileContent_12_swift_5F_sources
 ) ;
 
