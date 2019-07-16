@@ -138,6 +138,8 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBScrollView-dragging-destination"
     swiftFiles += !"EBScrollView-placards"
     swiftFiles += !"EBScrollView"
+    swiftFiles += !"EBGraphicView"
+    swiftFiles += !"EBGraphicView-binding-control-key-hilite-diameter"
     swiftFiles += !"EBGraphicView-binding-arrowKeyMagnitude"
     swiftFiles += !"EBGraphicView-binding-backColor"
     swiftFiles += !"EBGraphicView-binding-gridCrossColor"
@@ -166,7 +168,6 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicView-placards"
     swiftFiles += !"EBGraphicView-tool-tips"
     swiftFiles += !"EBGraphicView-tracking-areas"
-    swiftFiles += !"EBGraphicView"
     swiftFiles += !"EBGraphicViewControllerProtocol"
     swiftFiles += !"EBGraphicViewScaleProvider"
   #--- Extensions

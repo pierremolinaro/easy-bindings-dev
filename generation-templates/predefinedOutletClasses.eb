@@ -12,6 +12,7 @@ transient property class NSImage ;
 transient property class EBShape ;
 
 extern outlet class EBGraphicView : NSView $graphicController ;
+binding EBGraphicView $controlKeyHiliteDiameter : transient Double ;
 binding EBGraphicView $underObjectsDisplay : transient EBShape ;
 binding EBGraphicView $overObjectsDisplay : transient EBShape ;
 binding EBGraphicView $arrowKeyMagnitude : transient Int ;
