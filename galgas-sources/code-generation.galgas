@@ -183,12 +183,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"extension-UInt32"
  #--- Shapes
     swiftFiles += !"EBBezierPath"
-#    swiftFiles += !"EBFilledBezierPathShape"
-#    swiftFiles += !"EBKnobShape"
-#    swiftFiles += !"EBKnobTextShape"
     swiftFiles += !"EBShape"
-#    swiftFiles += !"EBStrokeBezierPathShape"
-#    swiftFiles += !"EBTextShape"
   end
   @stringlist xibFiles = {!"EBAllocationDebug"}
   let fw = [filewrapper swift_sources]

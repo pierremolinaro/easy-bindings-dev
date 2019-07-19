@@ -27,10 +27,38 @@ extension NSRect : Hashable {
 
   //····················································································································
 
-  init (center inCenter : NSPoint, size inSize : CGFloat) {
+  init (center inCenter : NSPoint, size inSize : NSSize) {
     self.init ()
-    self.origin = NSPoint (x: inCenter.x - inSize / 2.0, y: inCenter.y - inSize / 2.0)
-    self.size = NSSize (width: inSize, height: inSize)
+    self.origin = NSPoint (x: inCenter.x - inSize.width / 2.0, y: inCenter.y - inSize.height / 2.0)
+    self.size = inSize
+  }
+
+  //····················································································································
+
+  init (points inPoints : [NSPoint]) {
+    if inPoints.count == 0 {
+      self = .null
+    }else{
+      var xMin =  CGFloat.greatestFiniteMagnitude
+      var yMin =  CGFloat.greatestFiniteMagnitude
+      var xMax = -CGFloat.greatestFiniteMagnitude
+      var yMax = -CGFloat.greatestFiniteMagnitude
+      for p in inPoints {
+        if xMin > p.x {
+          xMin = p.x
+        }
+        if yMin > p.y {
+          yMin = p.y
+        }
+        if xMax < p.x {
+          xMax = p.x
+        }
+        if yMax < p.y {
+          yMax = p.y
+        }
+      }
+      self = NSRect (x: xMin, y: yMin, width: xMax - xMin, height: yMax - yMin)
+    }
   }
 
   //····················································································································
