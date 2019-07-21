@@ -6778,12 +6778,16 @@ const char * gWrapperFileContent_14_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "  func setIssue (_ inBezierPathes : [EBBezierPath], _ issueKind : CanariIssueKind) {\n"
   "    if self.mIssueBezierPathes != inBezierPathes {\n"
-  "      self.setNeedsDisplay (self.issueBoundingBox.insetBy (dx: -1.0, dy: -1.0))\n"
+  "      if !self.issueBoundingBox.isEmpty {\n"
+  "        self.setNeedsDisplay (self.issueBoundingBox.insetBy (dx: -1.0, dy: -1.0))\n"
+  "      }\n"
   "      self.mIssueBezierPathes = inBezierPathes\n"
   "      self.mIssueKind = issueKind\n"
   "      self.updateViewFrameAndBounds ()\n"
-  "      self.scrollToVisible (self.issueBoundingBox)\n"
-  "      self.setNeedsDisplay (self.issueBoundingBox.insetBy (dx: -1.0, dy: -1.0))\n"
+  "      if !self.issueBoundingBox.isEmpty {\n"
+  "        self.scrollToVisible (self.issueBoundingBox)\n"
+  "        self.setNeedsDisplay (self.issueBoundingBox.insetBy (dx: -1.0, dy: -1.0))\n"
+  "      }\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -6808,7 +6812,7 @@ const cRegularFileWrapper gWrapperFile_14_swift_5F_sources (
   "EBGraphicView-issue.swift",
   "swift",
   true, // Text file
-  1606, // Text length
+  1712, // Text length
   gWrapperFileContent_14_swift_5F_sources
 ) ;
 
