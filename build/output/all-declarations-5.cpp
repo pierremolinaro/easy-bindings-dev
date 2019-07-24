@@ -2361,6 +2361,7 @@ const char * gWrapperFileContent_6_outletClassGeneration = "//\xE2""\x80""\x94""
   "  var mSendContinously = false\n"
   "\n"
   "  func bind_color (_ object : EBReadWriteProperty_NSColor, file : String, line : Int, sendContinously : Bool) {\n"
+  "    NSColorPanel.shared.showsAlpha = true\n"
   "    self.mSendContinously = sendContinously\n"
   "    self.mValueController = Controller_EBColorWell_color (object:object, outlet:self)\n"
   "  }\n"
@@ -2414,7 +2415,7 @@ const cRegularFileWrapper gWrapperFile_6_outletClassGeneration (
   "EBColorWell.swift",
   "swift",
   true, // Text file
-  3981, // Text length
+  4023, // Text length
   gWrapperFileContent_6_outletClassGeneration
 ) ;
 
