@@ -218,7 +218,8 @@ override method @stringAsDefaultValue analyzeDefaultValueType
 
 func %once predefinedDates -> @stringset {
   result = {}
-  result += !"date"
+  result += !"now"
+  result += !"distantPast"
 }
 
 #·······················································································································
@@ -280,7 +281,13 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
     case dateType :
       found = true
       if [predefinedDates () hasKey !mValue.string] then
-        outSwiftDefaultValueAsString = "Date ()"
+        if mValue.string == "now" then
+          outSwiftDefaultValueAsString = "Date ()"
+        elsif mValue.string == "distantPast" then
+          outSwiftDefaultValueAsString = "Date.distantPast"
+        else
+          error mValue : "unknown predefined date" 
+        end 
       else
         error mValue : "unknown predefined date"  
       end
