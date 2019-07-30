@@ -120,7 +120,8 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     case boolType :
       outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
       found = true
-    case integerType, dataType, dateType, doubleType, stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
+    case integerType, uint32Type, dataType, dateType, doubleType,
+         stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
     case classType (*) :
     case enumType (* *) :
@@ -145,6 +146,12 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     switch mType
     case integerType :
       outSwiftDefaultValueAsString = if mNegative then "-" else "" end + [mValue.uint string]
+      found = true
+    case uint32Type :
+      if mNegative then
+        error mValue : "Uint32 value should be ≥ 0"
+      end
+      outSwiftDefaultValueAsString = [mValue.uint string]
       found = true
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + mValue.uint + ".0)"
@@ -175,7 +182,8 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case doubleType :
       outSwiftDefaultValueAsString = [mValue.double string]
       found = true
-    case boolType, dateType, dataType, integerType, stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
+    case boolType, dateType, dataType, integerType, uint32Type,
+         stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
     case enumType (* *) :
     case classType (*) :
@@ -201,7 +209,8 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case stringType :
       outSwiftDefaultValueAsString = "\""+ mValue.string + "\""
       found = true
-    case boolType, dateType, dataType, integerType, doubleType, fontType, colorType, bezierPathType, bezierPathArrayType :
+    case boolType, dateType, dataType, integerType, uint32Type, doubleType,
+         fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
     case enumType (* *) :
     case classType (*) :
@@ -331,6 +340,8 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       error mValue : "invalid double type"  
     case integerType :
       error mValue : "invalid integer type"  
+    case uint32Type :
+      error mValue : "invalid UInt32 type"  
     case stringType :
       error mValue : "invalid string type"  
     case fontType :

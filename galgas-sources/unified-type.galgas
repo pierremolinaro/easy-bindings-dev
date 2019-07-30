@@ -8,6 +8,8 @@ getter @typeKind typeName -> @string {
     result = "Bool"
   case integerType :
     result = "Int"
+  case uint32Type :
+    result = "UInt32"
   case doubleType :
     result = "Double"
   case stringType :
@@ -39,7 +41,7 @@ getter @typeKind typeName -> @string {
 
 getter @typeKind isComparable -> @bool outResult {
   switch self
-  case boolType, integerType, doubleType, stringType, dateType, dataType :
+  case boolType, integerType, uint32Type, doubleType, stringType, dateType, dataType :
     outResult = true
   case fontType, colorType, bezierPathType, bezierPathArrayType :
     outResult = false
@@ -58,7 +60,8 @@ getter @typeKind isComparable -> @bool outResult {
 
 getter @typeKind isGraphic -> @bool outResult {
   switch self
-  case boolType, integerType, doubleType, stringType, dateType, dataType, bezierPathType, bezierPathArrayType :
+  case boolType, integerType, uint32Type, doubleType, stringType, dateType,
+       dataType, bezierPathType, bezierPathArrayType :
     outResult = false
   case fontType, colorType :
     outResult = false
@@ -118,6 +121,7 @@ getter @propertyKind swiftTypeName -> @string {
 getter @typeKind swiftTypeName -> @string outResult {
   switch self
   case integerType : outResult = "Int"
+  case uint32Type : outResult = "UInt32"
   case stringType : outResult = "String"
   case boolType : outResult = "Bool"
   case dateType : outResult = "Date"

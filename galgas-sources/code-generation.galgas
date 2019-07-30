@@ -237,6 +237,7 @@ private proc generateStandardProperties
 {
   var contents = [filewrapper standard_properties.stub]
 #--- Add scalar property types
+  contents += [filewrapper standard_properties.scalarProperty !"UInt32" !false !""]
   contents += [filewrapper standard_properties.scalarProperty !"Int"    !false !""]
   contents += [filewrapper standard_properties.scalarProperty !"Bool"   !false !""]
   contents += [filewrapper standard_properties.scalarProperty !"Double" !false !""]

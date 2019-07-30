@@ -10510,6 +10510,7 @@ class GALGAS_typeKind : public AC_GALGAS_root {
     kNotBuilt,
     kEnum_boolType,
     kEnum_integerType,
+    kEnum_uint_33__32_Type,
     kEnum_doubleType,
     kEnum_stringType,
     kEnum_dataType,
@@ -10582,6 +10583,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
   public : static class GALGAS_typeKind constructor_transientPropertyExternType (const class GALGAS_string & inOperand0
                                                                                  COMMA_LOCATION_ARGS) ;
 
+  public : static class GALGAS_typeKind constructor_uint_33__32_Type (LOCATION_ARGS) ;
+
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
@@ -10639,6 +10642,8 @@ class GALGAS_typeKind : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isStringType (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientPropertyExternType (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isUint_33__32_Type (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection

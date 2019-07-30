@@ -2530,6 +2530,7 @@ static void extensionMethod_boolAsDefaultValue_analyzeDefaultValueType (const cP
         }
         break ;
       case GALGAS_typeKind::kEnum_integerType:
+      case GALGAS_typeKind::kEnum_uint_33__32_Type:
       case GALGAS_typeKind::kEnum_dataType:
       case GALGAS_typeKind::kEnum_dateType:
       case GALGAS_typeKind::kEnum_doubleType:
@@ -2566,10 +2567,10 @@ static void extensionMethod_boolAsDefaultValue_analyzeDefaultValueType (const cP
   }
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
-    test_3 = var_found_4282.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 130)).boolEnum () ;
+    test_3 = var_found_4282.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 131)).boolEnum () ;
     if (kBoolTrue == test_3) {
       TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 131)), GALGAS_string ("only a boolean attribute can be initialized by YES or NO"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 131)) ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 132)), GALGAS_string ("only a boolean attribute can be initialized by YES or NO"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 132)) ;
     }
   }
 }
@@ -2599,12 +2600,12 @@ static void extensionMethod_integerAsDefaultValue_analyzeDefaultValueType (const
   const cPtr_integerAsDefaultValue * object = (const cPtr_integerAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_integerAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_5185 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_5232 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_5185.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 144)).isValidAndTrue () ;
-  if (enumerator_5232.hasCurrentObject () && bool_0) {
-    while (enumerator_5232.hasCurrentObject () && bool_0) {
-      switch (enumerator_5232.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_5206 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_5253 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_5206.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 145)).isValidAndTrue () ;
+  if (enumerator_5253.hasCurrentObject () && bool_0) {
+    while (enumerator_5253.hasCurrentObject () && bool_0) {
+      switch (enumerator_5253.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_integerType:
@@ -2616,14 +2617,28 @@ static void extensionMethod_integerAsDefaultValue_analyzeDefaultValueType (const
           }else if (kBoolFalse == test_2) {
             temp_1 = GALGAS_string::makeEmptyString () ;
           }
-          outArgument_outSwiftDefaultValueAsString = temp_1.add_operation (object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 147)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 147)) ;
-          var_found_5185 = GALGAS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = temp_1.add_operation (object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 148)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 148)) ;
+          var_found_5206 = GALGAS_bool (true) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_uint_33__32_Type:
+        {
+          enumGalgasBool test_3 = kBoolTrue ;
+          if (kBoolTrue == test_3) {
+            test_3 = object->mProperty_mNegative.boolEnum () ;
+            if (kBoolTrue == test_3) {
+              TC_Array <C_FixItDescription> fixItArray4 ;
+              inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 152)), GALGAS_string ("Uint32 value should be \xE2""\x89""\xA5"" 0"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 152)) ;
+            }
+          }
+          outArgument_outSwiftDefaultValueAsString = object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 154)) ;
+          var_found_5206 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_fontType:
         {
-          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSFont.systemFont (ofSize: ").add_operation (object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 150)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 150)).add_operation (GALGAS_string (".0)"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 150)) ;
-          var_found_5185 = GALGAS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSFont.systemFont (ofSize: ").add_operation (object->mProperty_mValue.getter_uint (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 157)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 157)).add_operation (GALGAS_string (".0)"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 157)) ;
+          var_found_5206 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
@@ -2654,18 +2669,18 @@ static void extensionMethod_integerAsDefaultValue_analyzeDefaultValueType (const
         }
         break ;
       }
-      enumerator_5232.gotoNextObject () ;
-      if (enumerator_5232.hasCurrentObject ()) {
-        bool_0 = var_found_5185.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 144)).isValidAndTrue () ;
+      enumerator_5253.gotoNextObject () ;
+      if (enumerator_5253.hasCurrentObject ()) {
+        bool_0 = var_found_5206.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 145)).isValidAndTrue () ;
       }
     }
   }
-  enumGalgasBool test_3 = kBoolTrue ;
-  if (kBoolTrue == test_3) {
-    test_3 = var_found_5185.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 159)).boolEnum () ;
-    if (kBoolTrue == test_3) {
-      TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 160)), GALGAS_string ("only an integer attribute can be initialized by an integer constant"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 160)) ;
+  enumGalgasBool test_5 = kBoolTrue ;
+  if (kBoolTrue == test_5) {
+    test_5 = var_found_5206.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 166)).boolEnum () ;
+    if (kBoolTrue == test_5) {
+      TC_Array <C_FixItDescription> fixItArray6 ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 167)), GALGAS_string ("only an integer attribute can be initialized by an integer constant"), fixItArray6  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 167)) ;
     }
   }
 }
@@ -2695,24 +2710,25 @@ static void extensionMethod_doubleAsDefaultValue_analyzeDefaultValueType (const 
   const cPtr_doubleAsDefaultValue * object = (const cPtr_doubleAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_doubleAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_6229 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_6276 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_6229.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 173)).isValidAndTrue () ;
-  if (enumerator_6276.hasCurrentObject () && bool_0) {
-    while (enumerator_6276.hasCurrentObject () && bool_0) {
-      switch (enumerator_6276.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_6435 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_6482 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_6435.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 180)).isValidAndTrue () ;
+  if (enumerator_6482.hasCurrentObject () && bool_0) {
+    while (enumerator_6482.hasCurrentObject () && bool_0) {
+      switch (enumerator_6482.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_doubleType:
         {
-          outArgument_outSwiftDefaultValueAsString = object->mProperty_mValue.getter_double (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 176)) ;
-          var_found_6229 = GALGAS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = object->mProperty_mValue.getter_double (HERE).getter_string (SOURCE_FILE ("explicit-default-value.galgas", 183)) ;
+          var_found_6435 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
       case GALGAS_typeKind::kEnum_dateType:
       case GALGAS_typeKind::kEnum_dataType:
       case GALGAS_typeKind::kEnum_integerType:
+      case GALGAS_typeKind::kEnum_uint_33__32_Type:
       case GALGAS_typeKind::kEnum_stringType:
       case GALGAS_typeKind::kEnum_fontType:
       case GALGAS_typeKind::kEnum_colorType:
@@ -2738,18 +2754,18 @@ static void extensionMethod_doubleAsDefaultValue_analyzeDefaultValueType (const 
         }
         break ;
       }
-      enumerator_6276.gotoNextObject () ;
-      if (enumerator_6276.hasCurrentObject ()) {
-        bool_0 = var_found_6229.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 173)).isValidAndTrue () ;
+      enumerator_6482.gotoNextObject () ;
+      if (enumerator_6482.hasCurrentObject ()) {
+        bool_0 = var_found_6435.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 180)).isValidAndTrue () ;
       }
     }
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = var_found_6229.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 185)).boolEnum () ;
+    test_1 = var_found_6435.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 193)).boolEnum () ;
     if (kBoolTrue == test_1) {
       TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 186)), GALGAS_string ("only a double attribute can be initialized by a floating point constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 186)) ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 194)), GALGAS_string ("only a double attribute can be initialized by a floating point constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 194)) ;
     }
   }
 }
@@ -2779,24 +2795,25 @@ static void extensionMethod_stringAsDefaultValue_analyzeDefaultValueType (const 
   const cPtr_stringAsDefaultValue * object = (const cPtr_stringAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_stringAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_7125 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_7172 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_7125.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 199)).isValidAndTrue () ;
-  if (enumerator_7172.hasCurrentObject () && bool_0) {
-    while (enumerator_7172.hasCurrentObject () && bool_0) {
-      switch (enumerator_7172.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_7352 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_7399 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_7352.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 207)).isValidAndTrue () ;
+  if (enumerator_7399.hasCurrentObject () && bool_0) {
+    while (enumerator_7399.hasCurrentObject () && bool_0) {
+      switch (enumerator_7399.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_stringType:
         {
-          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("\"").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 202)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 202)) ;
-          var_found_7125 = GALGAS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = GALGAS_string ("\"").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 210)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 210)) ;
+          var_found_7352 = GALGAS_bool (true) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
       case GALGAS_typeKind::kEnum_dateType:
       case GALGAS_typeKind::kEnum_dataType:
       case GALGAS_typeKind::kEnum_integerType:
+      case GALGAS_typeKind::kEnum_uint_33__32_Type:
       case GALGAS_typeKind::kEnum_doubleType:
       case GALGAS_typeKind::kEnum_fontType:
       case GALGAS_typeKind::kEnum_colorType:
@@ -2822,18 +2839,18 @@ static void extensionMethod_stringAsDefaultValue_analyzeDefaultValueType (const 
         }
         break ;
       }
-      enumerator_7172.gotoNextObject () ;
-      if (enumerator_7172.hasCurrentObject ()) {
-        bool_0 = var_found_7125.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 199)).isValidAndTrue () ;
+      enumerator_7399.gotoNextObject () ;
+      if (enumerator_7399.hasCurrentObject ()) {
+        bool_0 = var_found_7352.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 207)).isValidAndTrue () ;
       }
     }
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = var_found_7125.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 211)).boolEnum () ;
+    test_1 = var_found_7352.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 220)).boolEnum () ;
     if (kBoolTrue == test_1) {
       TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 212)), GALGAS_string ("only a string attribute can be initialized by a string constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 212)) ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 221)), GALGAS_string ("only a string attribute can be initialized by a string constant"), fixItArray2  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 221)) ;
     }
   }
 }
@@ -2858,9 +2875,9 @@ C_PrologueEpilogue gMethod_stringAsDefaultValue_analyzeDefaultValueType (defineE
 static GALGAS_stringset onceFunction_predefinedDates (C_Compiler * /* inCompiler */
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_result ; // Returned variable
-  result_result = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 220)) ;
-  result_result.addAssign_operation (GALGAS_string ("now")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 221)) ;
-  result_result.addAssign_operation (GALGAS_string ("distantPast")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 222)) ;
+  result_result = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 229)) ;
+  result_result.addAssign_operation (GALGAS_string ("now")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 230)) ;
+  result_result.addAssign_operation (GALGAS_string ("distantPast")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 231)) ;
 //---
   return result_result ;
 }
@@ -2930,48 +2947,48 @@ C_galgas_function_descriptor functionDescriptor_predefinedDates ("predefinedDate
 static GALGAS_stringset onceFunction_predefinedColors (C_Compiler * /* inCompiler */
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_result ; // Returned variable
-  result_result = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 228)) ;
-  result_result.addAssign_operation (GALGAS_string ("black")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 229)) ;
-  result_result.addAssign_operation (GALGAS_string ("blue")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 230)) ;
-  result_result.addAssign_operation (GALGAS_string ("brown")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 231)) ;
-  result_result.addAssign_operation (GALGAS_string ("clear")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 232)) ;
-  result_result.addAssign_operation (GALGAS_string ("control")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 233)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlDarkShadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 234)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlHighlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 235)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlLightHighlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 236)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlShadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 237)) ;
-  result_result.addAssign_operation (GALGAS_string ("controlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 238)) ;
-  result_result.addAssign_operation (GALGAS_string ("cyan")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 239)) ;
-  result_result.addAssign_operation (GALGAS_string ("darkGray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 240)) ;
-  result_result.addAssign_operation (GALGAS_string ("disabledControlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 241)) ;
-  result_result.addAssign_operation (GALGAS_string ("gray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 242)) ;
-  result_result.addAssign_operation (GALGAS_string ("green")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 243)) ;
-  result_result.addAssign_operation (GALGAS_string ("grid")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 244)) ;
-  result_result.addAssign_operation (GALGAS_string ("header")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 245)) ;
-  result_result.addAssign_operation (GALGAS_string ("headerText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 246)) ;
-  result_result.addAssign_operation (GALGAS_string ("highlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 247)) ;
-  result_result.addAssign_operation (GALGAS_string ("keyboardFocusIndicator")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 248)) ;
-  result_result.addAssign_operation (GALGAS_string ("knob")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 249)) ;
-  result_result.addAssign_operation (GALGAS_string ("lightGray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 250)) ;
-  result_result.addAssign_operation (GALGAS_string ("magenta")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 251)) ;
-  result_result.addAssign_operation (GALGAS_string ("orange")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 252)) ;
-  result_result.addAssign_operation (GALGAS_string ("purple")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 253)) ;
-  result_result.addAssign_operation (GALGAS_string ("red")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 254)) ;
-  result_result.addAssign_operation (GALGAS_string ("scrollBar")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 255)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedControl")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 256)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedControlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 257)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedKnob")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 258)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedMenuItem")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 259)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedMenuItemText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 260)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedTextBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 261)) ;
-  result_result.addAssign_operation (GALGAS_string ("selectedText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 262)) ;
-  result_result.addAssign_operation (GALGAS_string ("shadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 263)) ;
-  result_result.addAssign_operation (GALGAS_string ("textBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 264)) ;
-  result_result.addAssign_operation (GALGAS_string ("white")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 265)) ;
-  result_result.addAssign_operation (GALGAS_string ("windowBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 266)) ;
-  result_result.addAssign_operation (GALGAS_string ("windowFrame")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 267)) ;
-  result_result.addAssign_operation (GALGAS_string ("windowFrameText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 268)) ;
-  result_result.addAssign_operation (GALGAS_string ("yellow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 269)) ;
+  result_result = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("explicit-default-value.galgas", 237)) ;
+  result_result.addAssign_operation (GALGAS_string ("black")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 238)) ;
+  result_result.addAssign_operation (GALGAS_string ("blue")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 239)) ;
+  result_result.addAssign_operation (GALGAS_string ("brown")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 240)) ;
+  result_result.addAssign_operation (GALGAS_string ("clear")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 241)) ;
+  result_result.addAssign_operation (GALGAS_string ("control")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 242)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlDarkShadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 243)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlHighlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 244)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlLightHighlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 245)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlShadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 246)) ;
+  result_result.addAssign_operation (GALGAS_string ("controlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 247)) ;
+  result_result.addAssign_operation (GALGAS_string ("cyan")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 248)) ;
+  result_result.addAssign_operation (GALGAS_string ("darkGray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 249)) ;
+  result_result.addAssign_operation (GALGAS_string ("disabledControlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 250)) ;
+  result_result.addAssign_operation (GALGAS_string ("gray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 251)) ;
+  result_result.addAssign_operation (GALGAS_string ("green")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 252)) ;
+  result_result.addAssign_operation (GALGAS_string ("grid")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 253)) ;
+  result_result.addAssign_operation (GALGAS_string ("header")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 254)) ;
+  result_result.addAssign_operation (GALGAS_string ("headerText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 255)) ;
+  result_result.addAssign_operation (GALGAS_string ("highlight")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 256)) ;
+  result_result.addAssign_operation (GALGAS_string ("keyboardFocusIndicator")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 257)) ;
+  result_result.addAssign_operation (GALGAS_string ("knob")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 258)) ;
+  result_result.addAssign_operation (GALGAS_string ("lightGray")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 259)) ;
+  result_result.addAssign_operation (GALGAS_string ("magenta")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 260)) ;
+  result_result.addAssign_operation (GALGAS_string ("orange")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 261)) ;
+  result_result.addAssign_operation (GALGAS_string ("purple")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 262)) ;
+  result_result.addAssign_operation (GALGAS_string ("red")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 263)) ;
+  result_result.addAssign_operation (GALGAS_string ("scrollBar")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 264)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedControl")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 265)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedControlText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 266)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedKnob")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 267)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedMenuItem")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 268)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedMenuItemText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 269)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedTextBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 270)) ;
+  result_result.addAssign_operation (GALGAS_string ("selectedText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 271)) ;
+  result_result.addAssign_operation (GALGAS_string ("shadow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 272)) ;
+  result_result.addAssign_operation (GALGAS_string ("textBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 273)) ;
+  result_result.addAssign_operation (GALGAS_string ("white")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 274)) ;
+  result_result.addAssign_operation (GALGAS_string ("windowBackground")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 275)) ;
+  result_result.addAssign_operation (GALGAS_string ("windowFrame")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 276)) ;
+  result_result.addAssign_operation (GALGAS_string ("windowFrameText")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 277)) ;
+  result_result.addAssign_operation (GALGAS_string ("yellow")  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 278)) ;
 //---
   return result_result ;
 }
@@ -3046,20 +3063,20 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
   const cPtr_identifierAsDefaultValue * object = (const cPtr_identifierAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_identifierAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_9515 = GALGAS_bool (false) ;
-  cEnumerator_typeKindList enumerator_9561 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
-  bool bool_0 = var_found_9515.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 279)).isValidAndTrue () ;
-  if (enumerator_9561.hasCurrentObject () && bool_0) {
-    while (enumerator_9561.hasCurrentObject () && bool_0) {
-      switch (enumerator_9561.current_mType (HERE).enumValue ()) {
+  GALGAS_bool var_found_9763 = GALGAS_bool (false) ;
+  cEnumerator_typeKindList enumerator_9809 (constinArgument_inAttributeActualTypeList, kENUMERATION_UP) ;
+  bool bool_0 = var_found_9763.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 288)).isValidAndTrue () ;
+  if (enumerator_9809.hasCurrentObject () && bool_0) {
+    while (enumerator_9809.hasCurrentObject () && bool_0) {
+      switch (enumerator_9809.current_mType (HERE).enumValue ()) {
       case GALGAS_typeKind::kNotBuilt:
         break ;
       case GALGAS_typeKind::kEnum_dateType:
         {
-          var_found_9515 = GALGAS_bool (true) ;
+          var_found_9763 = GALGAS_bool (true) ;
           enumGalgasBool test_1 = kBoolTrue ;
           if (kBoolTrue == test_1) {
-            test_1 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 283)).getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 283)).boolEnum () ;
+            test_1 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 292)).getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 292)).boolEnum () ;
             if (kBoolTrue == test_1) {
               enumGalgasBool test_2 = kBoolTrue ;
               if (kBoolTrue == test_2) {
@@ -3078,20 +3095,20 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
                 }
                 if (kBoolFalse == test_3) {
                   TC_Array <C_FixItDescription> fixItArray4 ;
-                  inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 289)), GALGAS_string ("unknown predefined date"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 289)) ;
+                  inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 298)), GALGAS_string ("unknown predefined date"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 298)) ;
                 }
               }
             }
           }
           if (kBoolFalse == test_1) {
             TC_Array <C_FixItDescription> fixItArray5 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 292)), GALGAS_string ("unknown predefined date"), fixItArray5  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 292)) ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 301)), GALGAS_string ("unknown predefined date"), fixItArray5  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 301)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_bezierPathType:
         {
-          var_found_9515 = GALGAS_bool (true) ;
+          var_found_9763 = GALGAS_bool (true) ;
           enumGalgasBool test_6 = kBoolTrue ;
           if (kBoolTrue == test_6) {
             test_6 = GALGAS_bool (kIsEqual, object->mProperty_mValue.getter_string (HERE).objectCompare (GALGAS_string ("empty"))).boolEnum () ;
@@ -3101,13 +3118,13 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
           }
           if (kBoolFalse == test_6) {
             TC_Array <C_FixItDescription> fixItArray7 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 299)), GALGAS_string ("only 'empty' is accepted as default NSBezierPath"), fixItArray7  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 299)) ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 308)), GALGAS_string ("only 'empty' is accepted as default NSBezierPath"), fixItArray7  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 308)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_bezierPathArrayType:
         {
-          var_found_9515 = GALGAS_bool (true) ;
+          var_found_9763 = GALGAS_bool (true) ;
           enumGalgasBool test_8 = kBoolTrue ;
           if (kBoolTrue == test_8) {
             test_8 = GALGAS_bool (kIsEqual, object->mProperty_mValue.getter_string (HERE).objectCompare (GALGAS_string ("empty"))).boolEnum () ;
@@ -3117,26 +3134,26 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
           }
           if (kBoolFalse == test_8) {
             TC_Array <C_FixItDescription> fixItArray9 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 306)), GALGAS_string ("only 'empty' is accepted as default BezierPathArray"), fixItArray9  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 306)) ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 315)), GALGAS_string ("only 'empty' is accepted as default BezierPathArray"), fixItArray9  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 315)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_enumType:
         {
-          const cEnumAssociatedValues_typeKind_enumType * extractPtr_10922 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_9561.current_mType (HERE).unsafePointer ()) ;
-          const GALGAS_string extractedValue_enumTypeName = extractPtr_10922->mAssociatedValue0 ;
-          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_10922->mAssociatedValue1 ;
-          var_found_9515 = GALGAS_bool (true) ;
+          const cEnumAssociatedValues_typeKind_enumType * extractPtr_11170 = (const cEnumAssociatedValues_typeKind_enumType *) (enumerator_9809.current_mType (HERE).unsafePointer ()) ;
+          const GALGAS_string extractedValue_enumTypeName = extractPtr_11170->mAssociatedValue0 ;
+          const GALGAS_enumConstantMap extractedValue_constantMap = extractPtr_11170->mAssociatedValue1 ;
+          var_found_9763 = GALGAS_bool (true) ;
           enumGalgasBool test_10 = kBoolTrue ;
           if (kBoolTrue == test_10) {
-            test_10 = extractedValue_constantMap.getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 310)).boolEnum () ;
+            test_10 = extractedValue_constantMap.getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 319)).boolEnum () ;
             if (kBoolTrue == test_10) {
-              outArgument_outSwiftDefaultValueAsString = extractedValue_enumTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 311)).add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 311)) ;
+              outArgument_outSwiftDefaultValueAsString = extractedValue_enumTypeName.add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 320)).add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 320)) ;
             }
           }
           if (kBoolFalse == test_10) {
             TC_Array <C_FixItDescription> fixItArray11 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 313)), GALGAS_string ("the '").add_operation (extractedValue_enumTypeName, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 314)).add_operation (GALGAS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 314)).add_operation (object->mProperty_mValue.getter_string (SOURCE_FILE ("explicit-default-value.galgas", 314)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 314)).add_operation (GALGAS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 314)), fixItArray11  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 313)) ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 322)), GALGAS_string ("the '").add_operation (extractedValue_enumTypeName, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 323)).add_operation (GALGAS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 323)).add_operation (object->mProperty_mValue.getter_string (SOURCE_FILE ("explicit-default-value.galgas", 323)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 323)).add_operation (GALGAS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 323)), fixItArray11  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 322)) ;
             outArgument_outSwiftDefaultValueAsString.drop () ; // Release error dropped variable
           }
         }
@@ -3144,24 +3161,24 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
       case GALGAS_typeKind::kEnum_entityType:
         {
           TC_Array <C_FixItDescription> fixItArray12 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 318)), GALGAS_string ("invalid entity type"), fixItArray12  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 318)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 327)), GALGAS_string ("invalid entity type"), fixItArray12  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 327)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_classType:
         {
           TC_Array <C_FixItDescription> fixItArray13 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 320)), GALGAS_string ("invalid class type"), fixItArray13  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 320)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 329)), GALGAS_string ("invalid class type"), fixItArray13  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 329)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_boolType:
         {
           TC_Array <C_FixItDescription> fixItArray14 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 322)), GALGAS_string ("invalid bool type"), fixItArray14  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 322)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 331)), GALGAS_string ("invalid bool type"), fixItArray14  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 331)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_dataType:
         {
-          var_found_9515 = GALGAS_bool (true) ;
+          var_found_9763 = GALGAS_bool (true) ;
           enumGalgasBool test_15 = kBoolTrue ;
           if (kBoolTrue == test_15) {
             test_15 = GALGAS_bool (kIsEqual, object->mProperty_mValue.getter_string (HERE).objectCompare (GALGAS_string ("empty"))).boolEnum () ;
@@ -3171,69 +3188,75 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
           }
           if (kBoolFalse == test_15) {
             TC_Array <C_FixItDescription> fixItArray16 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 328)), GALGAS_string ("only 'empty' is accepted as default Data"), fixItArray16  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 328)) ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 337)), GALGAS_string ("only 'empty' is accepted as default Data"), fixItArray16  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 337)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_doubleType:
         {
           TC_Array <C_FixItDescription> fixItArray17 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 331)), GALGAS_string ("invalid double type"), fixItArray17  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 331)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 340)), GALGAS_string ("invalid double type"), fixItArray17  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 340)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_integerType:
         {
           TC_Array <C_FixItDescription> fixItArray18 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 333)), GALGAS_string ("invalid integer type"), fixItArray18  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 333)) ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 342)), GALGAS_string ("invalid integer type"), fixItArray18  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 342)) ;
+        }
+        break ;
+      case GALGAS_typeKind::kEnum_uint_33__32_Type:
+        {
+          TC_Array <C_FixItDescription> fixItArray19 ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 344)), GALGAS_string ("invalid UInt32 type"), fixItArray19  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 344)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_stringType:
         {
-          TC_Array <C_FixItDescription> fixItArray19 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 335)), GALGAS_string ("invalid string type"), fixItArray19  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 335)) ;
+          TC_Array <C_FixItDescription> fixItArray20 ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 346)), GALGAS_string ("invalid string type"), fixItArray20  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 346)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_fontType:
         {
-          TC_Array <C_FixItDescription> fixItArray20 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 337)), GALGAS_string ("invalid font type"), fixItArray20  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 337)) ;
+          TC_Array <C_FixItDescription> fixItArray21 ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 348)), GALGAS_string ("invalid font type"), fixItArray21  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 348)) ;
         }
         break ;
       case GALGAS_typeKind::kEnum_colorType:
         {
-          enumGalgasBool test_21 = kBoolTrue ;
-          if (kBoolTrue == test_21) {
-            test_21 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 339)).getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 339)).boolEnum () ;
-            if (kBoolTrue == test_21) {
-              outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSColor.").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 340)) ;
-              var_found_9515 = GALGAS_bool (true) ;
+          enumGalgasBool test_22 = kBoolTrue ;
+          if (kBoolTrue == test_22) {
+            test_22 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 350)).getter_hasKey (object->mProperty_mValue.getter_string (HERE) COMMA_SOURCE_FILE ("explicit-default-value.galgas", 350)).boolEnum () ;
+            if (kBoolTrue == test_22) {
+              outArgument_outSwiftDefaultValueAsString = GALGAS_string ("NSColor.").add_operation (object->mProperty_mValue.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 351)) ;
+              var_found_9763 = GALGAS_bool (true) ;
             }
           }
-          if (kBoolFalse == test_21) {
-            TC_Array <C_FixItDescription> fixItArray22 ;
-            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 343)), GALGAS_string ("unknown predefined color"), fixItArray22  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 343)) ;
+          if (kBoolFalse == test_22) {
+            TC_Array <C_FixItDescription> fixItArray23 ;
+            inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 354)), GALGAS_string ("unknown predefined color"), fixItArray23  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 354)) ;
           }
         }
         break ;
       case GALGAS_typeKind::kEnum_transientPropertyExternType:
         {
-          TC_Array <C_FixItDescription> fixItArray23 ;
-          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 346)), GALGAS_string ("invalid image type"), fixItArray23  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 346)) ;
+          TC_Array <C_FixItDescription> fixItArray24 ;
+          inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 357)), GALGAS_string ("invalid image type"), fixItArray24  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 357)) ;
         }
         break ;
       }
-      enumerator_9561.gotoNextObject () ;
-      if (enumerator_9561.hasCurrentObject ()) {
-        bool_0 = var_found_9515.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 279)).isValidAndTrue () ;
+      enumerator_9809.gotoNextObject () ;
+      if (enumerator_9809.hasCurrentObject ()) {
+        bool_0 = var_found_9763.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 288)).isValidAndTrue () ;
       }
     }
   }
-  enumGalgasBool test_24 = kBoolTrue ;
-  if (kBoolTrue == test_24) {
-    test_24 = var_found_9515.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 349)).boolEnum () ;
-    if (kBoolTrue == test_24) {
-      TC_Array <C_FixItDescription> fixItArray25 ;
-      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 350)), GALGAS_string ("unknow type for this identifier"), fixItArray25  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 350)) ;
+  enumGalgasBool test_25 = kBoolTrue ;
+  if (kBoolTrue == test_25) {
+    test_25 = var_found_9763.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 360)).boolEnum () ;
+    if (kBoolTrue == test_25) {
+      TC_Array <C_FixItDescription> fixItArray26 ;
+      inCompiler->emitSemanticError (object->mProperty_mValue.getter_location (SOURCE_FILE ("explicit-default-value.galgas", 361)), GALGAS_string ("unknow type for this identifier"), fixItArray26  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 361)) ;
     }
   }
 }
@@ -3263,13 +3286,13 @@ static void extensionMethod_listAsDefaultValue_analyzeDefaultValueType (const cP
   const cPtr_listAsDefaultValue * object = (const cPtr_listAsDefaultValue *) inObject ;
   macroValidSharedObject (object, cPtr_listAsDefaultValue) ;
   outArgument_outSwiftDefaultValueAsString = GALGAS_string::makeEmptyString () ;
-  GALGAS_bool var_found_12364 = GALGAS_bool (false) ;
+  GALGAS_bool var_found_12679 = GALGAS_bool (false) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = var_found_12364.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 423)).boolEnum () ;
+    test_0 = var_found_12679.operator_not (SOURCE_FILE ("explicit-default-value.galgas", 434)).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (object->mProperty_mStartLocation, GALGAS_string ("invalid initialization value"), fixItArray1  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 424)) ;
+      inCompiler->emitSemanticError (object->mProperty_mStartLocation, GALGAS_string ("invalid initialization value"), fixItArray1  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 435)) ;
     }
   }
 }
@@ -12844,6 +12867,35 @@ const char * gWrapperFileContent_12_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "}\n"
   "\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
+  "//    extension UInt32 : ValuePropertyProtocol\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
+  "\n"
+  "extension UInt32 : ValuePropertyProtocol {\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  func ebHashValue () -> UInt32 {\n"
+  "    return self\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  func convertToNSObject () -> NSObject {\n"
+  "    return NSNumber (value: self)\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  static func convertFromNSObject (object : NSObject) -> UInt32 {\n"
+  "    let number = object as! NSNumber\n"
+  "    return number.uint32Value\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "}\n"
+  "\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "//    extension Int : ValuePropertyProtocol\n"
   "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
@@ -12914,7 +12966,7 @@ const char * gWrapperFileContent_12_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "  func ebHashValue () -> UInt32 {\n"
   "    var crc : UInt32 = 0\n"
-  "    crc.accumulateByte (self \? 1 : 0)\n"
+  "    crc.accumulateUInt8 (self \? 1 : 0)\n"
   "    return crc\n"
   "  }\n"
   "\n"
@@ -13095,7 +13147,7 @@ const char * gWrapperFileContent_12_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  func ebHashValue () -> UInt32 {\n"
   "    var crc : UInt32 = 0\n"
   "    for i in 0 ..< self.count {\n"
-  "      crc.accumulateByte (self [i])\n"
+  "      crc.accumulateUInt8 (self [i])\n"
   "    }\n"
   "    return crc\n"
   "  }\n"
@@ -13774,7 +13826,7 @@ const cRegularFileWrapper gWrapperFile_12_swift_5F_sources (
   "easy-bindings-utilities.swift",
   "swift",
   true, // Text file
-  107790, // Text length
+  108891, // Text length
   gWrapperFileContent_12_swift_5F_sources
 ) ;
 
@@ -14709,18 +14761,25 @@ const char * gWrapperFileContent_15_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  mutating func accumulateByte (_ byte : UInt8) {\n"
-  "    let idx = Int ((self ^ UInt32(byte)) & 0xff)\n"
+  "  mutating func accumulateUInt8 (_ inByte : UInt8) {\n"
+  "    let idx = Int ((self ^ UInt32 (inByte)) & 0xff)\n"
   "    self = (self >> 8) ^ kTableCRC [idx]\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  mutating func accumulateUInt32 (_ value : UInt32) {\n"
-  "    self.accumulateByte (UInt8 (value & 0xFF))\n"
-  "    self.accumulateByte (UInt8 ((value >>  8) & 0xFF))\n"
-  "    self.accumulateByte (UInt8 ((value >> 16) & 0xFF))\n"
-  "    self.accumulateByte (UInt8 (value >> 24))\n"
+  "  mutating func accumulateUInt32 (_ inValue : UInt32) {\n"
+  "    self.accumulateUInt8 (UInt8 (inValue & 0xFF))\n"
+  "    self.accumulateUInt8 (UInt8 ((inValue >>  8) & 0xFF))\n"
+  "    self.accumulateUInt8 (UInt8 ((inValue >> 16) & 0xFF))\n"
+  "    self.accumulateUInt8 (UInt8 (inValue >> 24))\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  mutating func accumulateInt8 (_ inValue : Int8) {\n"
+  "    let v = UInt8 (bitPattern: inValue)\n"
+  "    self.accumulateUInt8 (v)\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -14736,7 +14795,7 @@ const char * gWrapperFileContent_15_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  func ebHashValue () -> UInt32 {\n"
   "    var crc : UInt32 = 0\n"
   "    for i in 0 ..< self.count {\n"
-  "      crc.accumulateByte (self [i])\n"
+  "      crc.accumulateUInt8 (self [i])\n"
   "    }\n"
   "    return crc\n"
   "  }\n"
@@ -14750,7 +14809,7 @@ const cRegularFileWrapper gWrapperFile_15_swift_5F_sources (
   "extension-UInt32.swift",
   "swift",
   true, // Text file
-  5514, // Text length
+  5783, // Text length
   gWrapperFileContent_15_swift_5F_sources
 ) ;
 

@@ -100,6 +100,7 @@ enum @propertyAccessibility {
 enum @typeKind {
   case boolType 
   case integerType 
+  case uint32Type 
   case doubleType
   case stringType 
   case dataType

@@ -26,6 +26,7 @@ proc enterAtomicClassesIn ?!declarationList: @declarationListAST ioDeclarationLi
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Double" nowhere] !.doubleType}
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["String" nowhere] !.stringType}
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Int" nowhere]    !.integerType}
+  ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["UInt32" nowhere] !.uint32Type}
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["Bool" nowhere]   !.boolType}
 
   ioDeclarationListAST += !@atomicClassDeclarationAST.new {!["NSColor" nowhere] !.colorType}
