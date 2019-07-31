@@ -541,27 +541,43 @@ struct EBBezierPath : Hashable {
 
   //····················································································································
 
-  func pointsByFlattening (withFlatness inFlatness : CGFloat) -> [NSPoint] {
+  func pointsByFlattening (withFlatness inFlatness : CGFloat) -> [EBLinePath] { // Array of pathes
     let savedDefaultFlatness = NSBezierPath.defaultFlatness
     NSBezierPath.defaultFlatness = inFlatness
     let flattenedBP = self.mPath.flattened
     NSBezierPath.defaultFlatness = savedDefaultFlatness
-    var result = [NSPoint] ()
+    var result = [EBLinePath] ()
     var curvePoints = [NSPoint] (repeating: .zero, count: 3)
+    var optionalStartPoint : NSPoint? = nil
+    var linePoints = [NSPoint] ()
     for idx in 0 ..< flattenedBP.elementCount {
       let type = flattenedBP.element (at: idx, associatedPoints: &curvePoints)
       switch type {
       case .moveTo:
-        result.append (curvePoints[0])
+        if let startPoint = optionalStartPoint, linePoints.count > 0 {
+          let path = EBLinePath (origin: startPoint, lines: linePoints, closed: false)
+          result.append (path)
+        }
+        optionalStartPoint = curvePoints[0]
+        linePoints.removeAll ()
       case .lineTo:
-        result.append (curvePoints[0])
+        linePoints.append (curvePoints[0])
       case .curveTo: // No curve, Bezier path is flattened
         ()
       case .closePath:
-        result.append (result[0])
+        if let startPoint = optionalStartPoint, linePoints.count > 0  {
+          let path = EBLinePath (origin: startPoint, lines: linePoints, closed: true)
+          result.append (path)
+          optionalStartPoint = nil
+          linePoints.removeAll ()
+        }
       @unknown default:
          ()
       }
+    }
+    if let startPoint = optionalStartPoint, linePoints.count > 0 {
+      let path = EBLinePath (origin: startPoint, lines: linePoints, closed: false)
+      result.append (path)
     }
     return result
   }

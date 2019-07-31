@@ -183,6 +183,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"extension-UInt32"
  #--- Shapes
     swiftFiles += !"EBBezierPath"
+    swiftFiles += !"EBLinePath"
     swiftFiles += !"EBShape"
   end
   @stringlist xibFiles = {!"EBAllocationDebug"}
