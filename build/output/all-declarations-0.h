@@ -684,8 +684,6 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
-  protected : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
 
 } ;
 
@@ -5297,8 +5295,7 @@ class GALGAS_transientDeclarationAST : public GALGAS_abstractDeclarationAST {
                                                                         const class GALGAS_lstring & inOperand2,
                                                                         const class GALGAS_lstring & inOperand3,
                                                                         const class GALGAS_observablePropertyList & inOperand4,
-                                                                        const class GALGAS_lstring & inOperand5,
-                                                                        const class GALGAS_bool & inOperand6
+                                                                        const class GALGAS_bool & inOperand5
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5311,8 +5308,6 @@ class GALGAS_transientDeclarationAST : public GALGAS_abstractDeclarationAST {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_observablePropertyList getter_mDependencyList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mExternFunctionName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsOverriding (LOCATION_ARGS) const ;
 
@@ -5472,7 +5467,6 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
   public : GALGAS_lstring mProperty_mTransientTypeName ;
   public : GALGAS_lstring mProperty_mTransientName ;
   public : GALGAS_observablePropertyList mProperty_mDependencyList ;
-  public : GALGAS_lstring mProperty_mExternFunctionName ;
   public : GALGAS_bool mProperty_mIsOverriding ;
 
 //--- Constructor
@@ -5481,7 +5475,6 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
                                          const GALGAS_lstring & in_mTransientTypeName,
                                          const GALGAS_lstring & in_mTransientName,
                                          const GALGAS_observablePropertyList & in_mDependencyList,
-                                         const GALGAS_lstring & in_mExternFunctionName,
                                          const GALGAS_bool & in_mIsOverriding
                                          COMMA_LOCATION_ARGS) ;
 
@@ -5493,7 +5486,6 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTransientTypeName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTransientName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_observablePropertyList getter_mDependencyList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mExternFunctionName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsOverriding (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
@@ -6510,8 +6502,6 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_57 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

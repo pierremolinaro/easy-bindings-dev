@@ -62,7 +62,6 @@ syntax extension easyBindings_syntax {
       !["String" here]
       !["documentFilePath" here]
       !{}
-      !["" here]
       !false
     }
   }

@@ -112,7 +112,6 @@ syntax extension easyBindings_syntax {
         !["EBShape" here]
         !["selectionDisplay" here]
         !{}
-        !["" here]
         !false
       }
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
@@ -121,7 +120,6 @@ syntax extension easyBindings_syntax {
         !["EBShape" here]
         !["objectDisplay" here]
         !{}
-        !["" here]
         !false
       }
     end

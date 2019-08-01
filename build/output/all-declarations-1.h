@@ -2547,8 +2547,7 @@ class GALGAS_transientPropertyGeneration : public GALGAS_propertyGeneration {
                                                                             const class GALGAS_string & inOperand1,
                                                                             const class GALGAS_typeKind & inOperand2,
                                                                             const class GALGAS_transientDependencyListForGeneration & inOperand3,
-                                                                            const class GALGAS_string & inOperand4,
-                                                                            const class GALGAS_bool & inOperand5
+                                                                            const class GALGAS_bool & inOperand4
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2563,8 +2562,6 @@ class GALGAS_transientPropertyGeneration : public GALGAS_propertyGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mClassName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDependencyListForGeneration getter_mDependencyList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mExternFunctionName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mGenerate (LOCATION_ARGS) const ;
 
@@ -2592,7 +2589,6 @@ class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
   public : GALGAS_string mProperty_mClassName ;
   public : GALGAS_typeKind mProperty_mType ;
   public : GALGAS_transientDependencyListForGeneration mProperty_mDependencyList ;
-  public : GALGAS_string mProperty_mExternFunctionName ;
   public : GALGAS_bool mProperty_mGenerate ;
 
 //--- Constructor
@@ -2600,7 +2596,6 @@ class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
                                              const GALGAS_string & in_mClassName,
                                              const GALGAS_typeKind & in_mType,
                                              const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
-                                             const GALGAS_string & in_mExternFunctionName,
                                              const GALGAS_bool & in_mGenerate
                                              COMMA_LOCATION_ARGS) ;
 
@@ -2611,7 +2606,6 @@ class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mClassName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_transientDependencyListForGeneration getter_mDependencyList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mExternFunctionName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mGenerate (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
@@ -2694,7 +2688,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGe
 class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GALGAS_transientDependencyListForGeneration & inObject,
                                                                   const class GALGAS_string & constinArgument0,
                                                                   const class GALGAS_string & constinArgument1,
-                                                                  const class GALGAS_string & constinArgument2,
                                                                   class C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
@@ -2758,8 +2751,7 @@ class GALGAS_ptransientRoutineGeneration : public GALGAS_abstractFileGeneration 
   public : static class GALGAS_ptransientRoutineGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                             const class GALGAS_string & inOperand1,
                                                                             const class GALGAS_typeKind & inOperand2,
-                                                                            const class GALGAS_transientDependencyListForGeneration & inOperand3,
-                                                                            const class GALGAS_string & inOperand4
+                                                                            const class GALGAS_transientDependencyListForGeneration & inOperand3
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2772,8 +2764,6 @@ class GALGAS_ptransientRoutineGeneration : public GALGAS_abstractFileGeneration 
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_transientDependencyListForGeneration getter_mDependencyList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mExternFunctionName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
 
@@ -2804,14 +2794,12 @@ class cPtr_ptransientRoutineGeneration : public cPtr_abstractFileGeneration {
   public : GALGAS_string mProperty_mTransientName ;
   public : GALGAS_typeKind mProperty_mTransientType ;
   public : GALGAS_transientDependencyListForGeneration mProperty_mDependencyList ;
-  public : GALGAS_string mProperty_mExternFunctionName ;
 
 //--- Constructor
   public : cPtr_ptransientRoutineGeneration (const GALGAS_string & in_mOwnerName,
                                              const GALGAS_string & in_mTransientName,
                                              const GALGAS_typeKind & in_mTransientType,
-                                             const GALGAS_transientDependencyListForGeneration & in_mDependencyList,
-                                             const GALGAS_string & in_mExternFunctionName
+                                             const GALGAS_transientDependencyListForGeneration & in_mDependencyList
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -2822,7 +2810,6 @@ class cPtr_ptransientRoutineGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mTransientName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_typeKind getter_mTransientType (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_transientDependencyListForGeneration getter_mDependencyList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mExternFunctionName (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
