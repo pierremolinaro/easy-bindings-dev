@@ -12,8 +12,16 @@ import Cocoa
 
   //····················································································································
 
-  required init? (coder: NSCoder) {
-    super.init (coder:coder)
+  required init? (coder : NSCoder) {
+    super.init (coder: coder)
+    noteObjectAllocation (self)
+    self.isEditable = false
+  }
+
+  //····················································································································
+
+  override init (frame : NSRect) {
+    super.init (frame: frame)
     noteObjectAllocation (self)
     self.isEditable = false
   }
@@ -44,7 +52,7 @@ import Cocoa
   func bind_valueObserver (_ object : EBReadOnlyProperty_String, file : String, line : Int) {
     self.mValueController = EBSimpleController (
       observedObjects: [object],
-      callBack: { [weak self] in self?.updateTextValue (object) }
+      callBack: { self.updateTextValue (object) }
     )
   }
 

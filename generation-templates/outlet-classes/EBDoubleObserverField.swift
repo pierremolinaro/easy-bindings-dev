@@ -74,7 +74,7 @@ final class Controller_EBDoubleObserverField_valueObserver : EBSimpleController 
         autoFormatter:Bool) {
     mObject = object
     mOutlet = outlet
-    super.init (observedObjects:[object])
+    super.init (observedObjects: [object])
     if autoFormatter {
       let formatter = NumberFormatter ()
       self.mOutlet.formatter = formatter
