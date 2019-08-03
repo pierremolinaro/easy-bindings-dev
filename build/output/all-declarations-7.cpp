@@ -6931,6 +6931,7 @@ const char * gWrapperFileContent_17_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "        if self.mOptionClickOperationInProgress {\n"
   "          self.mOptionClickOperationInProgress = false\n"
   "          self.mAbortOptionMouseOperationCallback\? ()\n"
+  "          self.viewController\?.ebUndoManager\?.undo ()\n"
   "        }\n"
   "      case NSEvent.SpecialKey.upArrow.unicodeScalar :\n"
   "        _ = self.wantsToTranslateSelection (byX: 0, byY:amount)\n"
@@ -6979,7 +6980,7 @@ const cRegularFileWrapper gWrapperFile_17_swift_5F_sources (
   "EBGraphicView-key-down.swift",
   "swift",
   true, // Text file
-  2988, // Text length
+  3042, // Text length
   gWrapperFileContent_17_swift_5F_sources
 ) ;
 
@@ -7508,14 +7509,18 @@ const char * gWrapperFileContent_39_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "  override func mouseUp (with inEvent : NSEvent) {\n"
   "    super.mouseUp (with: inEvent)\n"
+  "    var accepts = true\n"
   "    if self.mOptionClickOperationInProgress {\n"
   "      let unalignedLocationInView = self.convert (inEvent.locationInWindow, from: nil)\n"
-  "      self.mStopOptionMouseUpCallback\? (unalignedLocationInView)\n"
+  "      accepts = self.mStopOptionMouseUpCallback\? (unalignedLocationInView) \?\? true\n"
   "      self.mOptionClickOperationInProgress = false\n"
   "    }\n"
   "    if self.mPerformEndUndoGroupingOnMouseUp {\n"
   "      self.mPerformEndUndoGroupingOnMouseUp = false\n"
   "      self.viewController\?.ebUndoManager\?.endUndoGrouping ()\n"
+  "    }\n"
+  "    if !accepts {\n"
+  "      self.viewController\?.ebUndoManager\?.undo ()\n"
   "    }\n"
   "    self.mLastMouseDraggedLocation = nil\n"
   "    self.mSelectionRectangleOrigin = nil\n"
@@ -7544,7 +7549,6 @@ const char * gWrapperFileContent_39_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "        possibleObjectIndex = idx\n"
   "      }\n"
   "    }\n"
-  "    //Swift.print (\"possibleObjectIndex \\(possibleObjectIndex), possibleKnobIndex \\(possibleKnobIndex)\")\n"
   "    return (possibleObjectIndex, possibleKnobIndex)\n"
   "  }\n"
   "\n"
@@ -7572,7 +7576,7 @@ const cRegularFileWrapper gWrapperFile_39_swift_5F_sources (
   "EBGraphicView-mouse.swift",
   "swift",
   true, // Text file
-  13212, // Text length
+  13222, // Text length
   gWrapperFileContent_39_swift_5F_sources
 ) ;
 
@@ -7860,9 +7864,8 @@ const char * gWrapperFileContent_16_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  override func updateTrackingAreas () { // This is required for receiving mouse moved and mouseExited events\n"
-  "  //--- Remove current tracking areas\n"
-  "    let currentTrackingAreas = self.trackingAreas\n"
-  "    for trackingArea in currentTrackingAreas {\n"
+  "  //--- Remove current tracking area\n"
+  "    if let trackingArea = self.mTrackingArea {\n"
   "      self.removeTrackingArea (trackingArea)\n"
   "    }\n"
   "  //--- Add Updated tracking area\n"
@@ -7873,6 +7876,7 @@ const char * gWrapperFileContent_16_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "      userInfo: nil\n"
   "    )\n"
   "    self.addTrackingArea (trackingArea)\n"
+  "    self.mTrackingArea = trackingArea\n"
   "  //---\n"
   "    super.updateTrackingAreas ()\n"
   "  }\n"
@@ -7887,7 +7891,7 @@ const cRegularFileWrapper gWrapperFile_16_swift_5F_sources (
   "EBGraphicView-tracking-areas.swift",
   "swift",
   true, // Text file
-  1436, // Text length
+  1423, // Text length
   gWrapperFileContent_16_swift_5F_sources
 ) ;
 
@@ -7962,6 +7966,10 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  override var isOpaque : Bool { return true }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  internal var mTrackingArea : NSTrackingArea\? = nil\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "  // MARK: -\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -7976,7 +7984,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  internal var mStartOptionMouseDownCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Void > = nil\n"
   "  internal var mContinueOptionMouseDraggedCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Void > = nil\n"
   "  internal var mAbortOptionMouseOperationCallback : Optional < () -> Void > = nil\n"
-  "  internal var mStopOptionMouseUpCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Void > = nil\n"
+  "  internal var mStopOptionMouseUpCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Bool > = nil\n"
   "  internal var mOptionClickOperationInProgress = false\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -7984,7 +7992,7 @@ const char * gWrapperFileContent_3_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  func setOptionMouseCallbacks (start inStartCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Void,\n"
   "                                continue inContinueCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Void,\n"
   "                                abort inAbortCallback : @escaping () -> Void,\n"
-  "                                stop inStopCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Void) {\n"
+  "                                stop inStopCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Bool) {\n"
   "    self.mStartOptionMouseDownCallback = inStartCallback\n"
   "    self.mContinueOptionMouseDraggedCallback = inContinueCallback\n"
   "    self.mAbortOptionMouseOperationCallback = inAbortCallback\n"
@@ -8585,7 +8593,7 @@ const cRegularFileWrapper gWrapperFile_3_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  30455, // Text length
+  30631, // Text length
   gWrapperFileContent_3_swift_5F_sources
 ) ;
 
