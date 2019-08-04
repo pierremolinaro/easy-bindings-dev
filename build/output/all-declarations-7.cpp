@@ -10365,7 +10365,7 @@ const char * gWrapperFileContent_59_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "        _ inHorizontalAlignment : EBTextHorizontalAlignment,\n"
   "        _ inVerticalAlignment : EBTextVerticalAlignment,\n"
   "        knobIndex inKnobIndex : Int) {\n"
-  "    self.add (textKnob: inString, inOrigin, inFont, inHorizontalAlignment, inVerticalAlignment, knobIndex: inKnobIndex)\n"
+  "    self.add (textKnob: inString, inOrigin, inFont, .black, inHorizontalAlignment, inVerticalAlignment, knobIndex: inKnobIndex)\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -10486,6 +10486,7 @@ const char * gWrapperFileContent_59_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  mutating func add (textKnob inString : String,\n"
   "                     _ inOrigin : NSPoint,\n"
   "                     _ inFont : NSFont,\n"
+  "                     _ inColor : NSColor,\n"
   "                     _ inHorizontalAlignment : EBTextHorizontalAlignment,\n"
   "                     _ inVerticalAlignment : EBTextVerticalAlignment,\n"
   "                     knobIndex inKnobIndex : Int) {\n"
@@ -10514,7 +10515,7 @@ const char * gWrapperFileContent_59_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "      self.mCachedBoundingBox = self.mCachedBoundingBox.union (e2.boundingBox)\n"
   "    }\n"
   "  //--- Append text\n"
-  "    let e = EBShapeElement ([filledBezierPath], .black, nil, .none)\n"
+  "    let e = EBShapeElement ([filledBezierPath], inColor, nil, .none)\n"
   "    self.mElements.append (e)\n"
   "    self.mCachedBoundingBox = self.mCachedBoundingBox.union (e.boundingBox)\n"
   "  }\n"
@@ -10884,7 +10885,7 @@ const cRegularFileWrapper gWrapperFile_59_swift_5F_sources (
   "EBShape.swift",
   "swift",
   true, // Text file
-  22808, // Text length
+  22859, // Text length
   gWrapperFileContent_59_swift_5F_sources
 ) ;
 
