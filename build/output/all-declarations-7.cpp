@@ -10489,7 +10489,16 @@ const char * gWrapperFileContent_59_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "      bp.lineWidth = 0.5\n"
   "      bp.lineJoinStyle = .round\n"
   "      bp.lineCapStyle = .round\n"
-  "      let e1 = EBShapeElement ([bp], .white, inKnobIndex, .none)\n"
+  "      let rgbColor = inColor.usingColorSpace (.sRGB)\n"
+  "      var red : CGFloat = 0.0\n"
+  "      var green : CGFloat = 0.0\n"
+  "      var blue : CGFloat = 0.0\n"
+  "      rgbColor\?.getRed (&red, green: &green, blue: &blue, alpha: nil)\n"
+  "      red += 0.5 ; if red > 1.0 { red -= 1.0 }\n"
+  "      green += 0.5 ; if green > 1.0 { green -= 1.0 }\n"
+  "      blue += 0.5 ; if blue > 1.0 { blue -= 1.0 }\n"
+  "      let backgroundColor = NSColor (red: red, green: green, blue: blue, alpha: 1.0)\n"
+  "      let e1 = EBShapeElement ([bp], backgroundColor, inKnobIndex, .none)\n"
   "      self.mElements.append (e1)\n"
   "      let e2 = EBShapeElement ([bp.pathByStroking], .cyan, inKnobIndex, .none)\n"
   "      self.mElements.append (e2)\n"
@@ -10866,7 +10875,7 @@ const cRegularFileWrapper gWrapperFile_59_swift_5F_sources (
   "EBShape.swift",
   "swift",
   true, // Text file
-  22859, // Text length
+  23319, // Text length
   gWrapperFileContent_59_swift_5F_sources
 ) ;
 
