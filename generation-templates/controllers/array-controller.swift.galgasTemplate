@@ -897,12 +897,16 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   var canRotate90Clockwise : Bool {
-    for object in self.selectedArray_property.propset {
-      if object.canRotate90Clockwise () {
-        return true
+    if self.selectedArray.count == 0 {
+      return false
+    }else{
+      for object in self.selectedArray {
+        if !object.canRotate90Clockwise () {
+          return false
+        }
       }
+      return true
     }
-    return false
   }
 
  //····················································································································
@@ -923,12 +927,16 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   var canRotate90CounterClockwise : Bool {
-    for object in self.selectedArray_property.propset {
-      if object.canRotate90CounterClockwise () {
-        return true
+    if self.selectedArray.count == 0 {
+      return false
+    }else{
+      for object in self.selectedArray {
+        if !object.canRotate90CounterClockwise () {
+          return false
+        }
       }
+      return true
     }
-    return false
   }
 
   //····················································································································
