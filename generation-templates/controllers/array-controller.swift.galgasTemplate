@@ -898,9 +898,9 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   func rotate90Clockwise () {
     let r = CanariRect (points: Array (self.mRotate90PointSet.points))
-    var userSet = OCObjectSet ()
+    let userSet = OCObjectSet ()
     for object in self.selectedArray {
-      object.rotate90Clockwise (from: OCCanariRect (r), userSet: userSet)
+      object.rotate90Clockwise (from: OCCanariPoint (r.center), userSet: userSet)
     }
   }
 
@@ -908,9 +908,9 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   func rotate90CounterClockwise () {
     let r = CanariRect (points: Array (self.mRotate90PointSet.points))
-    var userSet = OCObjectSet ()
+    let userSet = OCObjectSet ()
     for object in self.selectedArray {
-      object.rotate90CounterClockwise (from: OCCanariRect (r), userSet: userSet)
+      object.rotate90CounterClockwise (from: OCCanariPoint (r.center), userSet: userSet)
     }
   }
 
