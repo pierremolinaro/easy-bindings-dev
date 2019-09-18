@@ -1473,6 +1473,9 @@ typeComparisonResult cPtr_toManyPropertyGeneration::dynamicObjectCompare (const 
   if (kOperandEqual == result) {
     result = mProperty_mCustomStore.objectCompare (p->mProperty_mCustomStore) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mUsedForSignature.objectCompare (p->mProperty_mUsedForSignature) ;
+  }
   return result ;
 }
 
@@ -1514,11 +1517,12 @@ GALGAS_toManyPropertyGeneration GALGAS_toManyPropertyGeneration::constructor_new
                                                                                   const GALGAS_propertyKind & inAttribute_mRelationshipType,
                                                                                   const GALGAS_toManyRelationshipOptionGeneration & inAttribute_mOption,
                                                                                   const GALGAS_bool & inAttribute_mInPreferences,
-                                                                                  const GALGAS_bool & inAttribute_mCustomStore
+                                                                                  const GALGAS_bool & inAttribute_mCustomStore,
+                                                                                  const GALGAS_bool & inAttribute_mUsedForSignature
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_toManyPropertyGeneration result ;
-  if (inAttribute_mPropertyName.isValid () && inAttribute_mRelationshipType.isValid () && inAttribute_mOption.isValid () && inAttribute_mInPreferences.isValid () && inAttribute_mCustomStore.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_toManyPropertyGeneration (inAttribute_mPropertyName, inAttribute_mRelationshipType, inAttribute_mOption, inAttribute_mInPreferences, inAttribute_mCustomStore COMMA_THERE)) ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mRelationshipType.isValid () && inAttribute_mOption.isValid () && inAttribute_mInPreferences.isValid () && inAttribute_mCustomStore.isValid () && inAttribute_mUsedForSignature.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_toManyPropertyGeneration (inAttribute_mPropertyName, inAttribute_mRelationshipType, inAttribute_mOption, inAttribute_mInPreferences, inAttribute_mCustomStore, inAttribute_mUsedForSignature COMMA_THERE)) ;
   }
   return result ;
 }
@@ -1596,6 +1600,24 @@ GALGAS_bool cPtr_toManyPropertyGeneration::getter_mCustomStore (UNUSED_LOCATION_
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool GALGAS_toManyPropertyGeneration::getter_mUsedForSignature (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_toManyPropertyGeneration * p = (const cPtr_toManyPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
+    result = p->mProperty_mUsedForSignature ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_bool cPtr_toManyPropertyGeneration::getter_mUsedForSignature (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mUsedForSignature ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                  Pointer class for @toManyPropertyGeneration class                                  *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1603,13 +1625,15 @@ cPtr_toManyPropertyGeneration::cPtr_toManyPropertyGeneration (const GALGAS_strin
                                                               const GALGAS_propertyKind & in_mRelationshipType,
                                                               const GALGAS_toManyRelationshipOptionGeneration & in_mOption,
                                                               const GALGAS_bool & in_mInPreferences,
-                                                              const GALGAS_bool & in_mCustomStore
+                                                              const GALGAS_bool & in_mCustomStore,
+                                                              const GALGAS_bool & in_mUsedForSignature
                                                               COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
 mProperty_mRelationshipType (in_mRelationshipType),
 mProperty_mOption (in_mOption),
 mProperty_mInPreferences (in_mInPreferences),
-mProperty_mCustomStore (in_mCustomStore) {
+mProperty_mCustomStore (in_mCustomStore),
+mProperty_mUsedForSignature (in_mUsedForSignature) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1630,6 +1654,8 @@ void cPtr_toManyPropertyGeneration::description (C_String & ioString,
   mProperty_mInPreferences.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mCustomStore.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mUsedForSignature.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -1637,7 +1663,7 @@ void cPtr_toManyPropertyGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_toManyPropertyGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_toManyPropertyGeneration (mProperty_mPropertyName, mProperty_mRelationshipType, mProperty_mOption, mProperty_mInPreferences, mProperty_mCustomStore COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_toManyPropertyGeneration (mProperty_mPropertyName, mProperty_mRelationshipType, mProperty_mOption, mProperty_mInPreferences, mProperty_mCustomStore, mProperty_mUsedForSignature COMMA_THERE)) ;
   return ptr ;
 }
 

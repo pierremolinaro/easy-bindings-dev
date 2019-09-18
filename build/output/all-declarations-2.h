@@ -246,7 +246,8 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
                                                                         const class GALGAS_string & inOperand1,
                                                                         const class GALGAS_propertyKind & inOperand2,
                                                                         const class GALGAS_toOneOppositeRelationship & inOperand3,
-                                                                        const class GALGAS_propertyMap & inOperand4
+                                                                        const class GALGAS_propertyMap & inOperand4,
+                                                                        const class GALGAS_bool & inOperand5
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -265,6 +266,8 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_toOneOppositeRelationship getter_mOpposite (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mUsedForSignature (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -289,13 +292,15 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
   public : GALGAS_propertyKind mProperty_mRelationshipType ;
   public : GALGAS_toOneOppositeRelationship mProperty_mOpposite ;
   public : GALGAS_propertyMap mProperty_mDestinationEntityObservablePropertyMap ;
+  public : GALGAS_bool mProperty_mUsedForSignature ;
 
 //--- Constructor
   public : cPtr_toOnePropertyGeneration (const GALGAS_string & in_mPropertyName,
                                          const GALGAS_string & in_mClassName,
                                          const GALGAS_propertyKind & in_mRelationshipType,
                                          const GALGAS_toOneOppositeRelationship & in_mOpposite,
-                                         const GALGAS_propertyMap & in_mDestinationEntityObservablePropertyMap
+                                         const GALGAS_propertyMap & in_mDestinationEntityObservablePropertyMap,
+                                         const GALGAS_bool & in_mUsedForSignature
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -306,6 +311,7 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_toOneOppositeRelationship getter_mOpposite (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_propertyMap getter_mDestinationEntityObservablePropertyMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mUsedForSignature (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -536,7 +542,8 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
                                                                          const class GALGAS_propertyKind & inOperand1,
                                                                          const class GALGAS_toManyRelationshipOptionGeneration & inOperand2,
                                                                          const class GALGAS_bool & inOperand3,
-                                                                         const class GALGAS_bool & inOperand4
+                                                                         const class GALGAS_bool & inOperand4,
+                                                                         const class GALGAS_bool & inOperand5
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -555,6 +562,8 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionGeneration getter_mOption (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyKind getter_mRelationshipType (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mUsedForSignature (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -579,13 +588,15 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
   public : GALGAS_toManyRelationshipOptionGeneration mProperty_mOption ;
   public : GALGAS_bool mProperty_mInPreferences ;
   public : GALGAS_bool mProperty_mCustomStore ;
+  public : GALGAS_bool mProperty_mUsedForSignature ;
 
 //--- Constructor
   public : cPtr_toManyPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                           const GALGAS_propertyKind & in_mRelationshipType,
                                           const GALGAS_toManyRelationshipOptionGeneration & in_mOption,
                                           const GALGAS_bool & in_mInPreferences,
-                                          const GALGAS_bool & in_mCustomStore
+                                          const GALGAS_bool & in_mCustomStore,
+                                          const GALGAS_bool & in_mUsedForSignature
                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -596,6 +607,7 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
   public : VIRTUAL_IN_DEBUG GALGAS_toManyRelationshipOptionGeneration getter_mOption (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mInPreferences (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCustomStore (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mUsedForSignature (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

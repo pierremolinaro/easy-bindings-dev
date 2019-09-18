@@ -14,6 +14,7 @@ class @toOneRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToOneRelationshipName
   @toOneOppositeRelationship mOpposite
+  @bool mUsedForSignature
 }
 
 #·······················································································································
@@ -41,6 +42,19 @@ syntax extension easyBindings_syntax {
 
   rule <toOne_relationship> ?let @lstring inCurrentEntity ?!@astDeclarationStruct ioDeclarationAST {
     $toOne$
+    @bool usedForSignature = false
+    repeat
+    while
+      $@attribute$ ?let attributeName
+      if attributeName.string == "signature" then
+        if usedForSignature then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        usedForSignature = true
+      else
+        error attributeName : "unknow attribute" fixit { replace "@signature" }
+      end
+    end
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
     @toOneOppositeRelationship opposite
@@ -64,6 +78,7 @@ syntax extension easyBindings_syntax {
       !destinationEntityName
       !relationshipName
       !opposite
+      !usedForSignature
     }
   }
   
@@ -130,6 +145,7 @@ override method @toOneRelationshipAST thirdAnalysisPhase
         !kind
         !mOpposite
         !destinationEntityPropertyMap
+        !mUsedForSignature
       }
     end
   end
@@ -144,6 +160,7 @@ class @toOnePropertyGeneration : @propertyGeneration {
   @propertyKind mRelationshipType
   @toOneOppositeRelationship mOpposite
   @propertyMap mDestinationEntityObservablePropertyMap
+  @bool mUsedForSignature
 }
 
 #·······················································································································
@@ -158,7 +175,8 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To one property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "   let " + mPropertyName + "_property = StoredObject_" + [mRelationshipType swiftTypeName] + " ()\n\n"
+  result += "   let " + mPropertyName + "_property = StoredObject_" + [mRelationshipType swiftTypeName]
+  result +=            " (usedForSignature: " + [mUsedForSignature cString] + ")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mRelationshipType swiftTypeName] + "?> {\n"
   result += "    return .single (self." + mPropertyName + "_property.propval)\n"
