@@ -2535,23 +2535,23 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declar
                                                                                            C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property-class.galgas", 30)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("transient-property-class.galgas", 31)) ;
-  GALGAS_bool var_isClass_1381 ;
+  GALGAS_bool var_isClass_1382 ;
   switch (select_easyBindings_5F_syntax_1 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("transient-property-class.galgas", 34)) ;
-    var_isClass_1381 = GALGAS_bool (true) ;
+    var_isClass_1382 = GALGAS_bool (true) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_struct COMMA_SOURCE_FILE ("transient-property-class.galgas", 37)) ;
-    var_isClass_1381 = GALGAS_bool (false) ;
+    var_isClass_1382 = GALGAS_bool (false) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_lstring var_propertyTypeName_1527 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_propertyTypeName_1528 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property-class.galgas", 40)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property-class.galgas", 41)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientClassDeclarationAST::constructor_new (var_propertyTypeName_1527, var_isClass_1381  COMMA_SOURCE_FILE ("transient-property-class.galgas", 42))  COMMA_SOURCE_FILE ("transient-property-class.galgas", 42)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientClassDeclarationAST::constructor_new (var_propertyTypeName_1528, var_isClass_1382  COMMA_SOURCE_FILE ("transient-property-class.galgas", 42))  COMMA_SOURCE_FILE ("transient-property-class.galgas", 42)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
