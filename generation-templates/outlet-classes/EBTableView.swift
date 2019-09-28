@@ -23,12 +23,40 @@ class EBTableView : NSTableView, EBUserClassNameProtocol {
     super.init (frame: frame)
     noteObjectAllocation (self)
   }
-  
+
   //····················································································································
 
   deinit {
     noteObjectDeallocation (self)
   }
+
+  //····················································································································
+
+  private var mActionOnDeleteKey : Optional <() -> Void> = nil
+
+  //····················································································································
+
+  func set (actionOnDeleteKey inActionOnDeleteKey : Optional <() -> Void>) {
+    self.mActionOnDeleteKey = inActionOnDeleteKey
+  }
+
+  //····················································································································
+
+  final override func keyDown (with event: NSEvent) {
+    let unicodeScalars = event.charactersIgnoringModifiers!.unicodeScalars
+    let unicodeChar = unicodeScalars [unicodeScalars.startIndex].value
+    // Swift.print ("\(Int (unicodeChar))")
+    switch Int (unicodeChar) {
+    case NSEvent.SpecialKey.delete.rawValue :
+      self.mActionOnDeleteKey? ()
+    default :
+      super.keyDown (with: event)
+    }
+  }
+
+  //····················································································································
+
+
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -51,7 +79,7 @@ final class DataSource_EBTableView_controller : EBOutletEvent {
   //····················································································································
   //   When init is called, table view delegate and data source are set
   //····················································································································
-  
+
   init (delegate : EBTableViewDelegate, tableView : EBTableView) {
     mTableView = tableView
     mDelegate = delegate
@@ -60,7 +88,7 @@ final class DataSource_EBTableView_controller : EBOutletEvent {
   }
 
   //····················································································································
-  
+
   private func updateOutlet () {
   //---------------- Get current selection, as reloadData may change it
     let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
@@ -91,7 +119,7 @@ final class Selection_EBTableView_controller : EBOutletEvent {
   //····················································································································
   //   When init is called, table view delegate and data source are set
   //····················································································································
-  
+
   init (delegate : EBTableViewDelegate, tableView : EBTableView) {
     mTableView = tableView
     mDelegate = delegate
@@ -100,7 +128,7 @@ final class Selection_EBTableView_controller : EBOutletEvent {
   }
 
   //····················································································································
-  
+
   private func updateOutlet () {
  //---------------- Update table view selection
     let newTableViewSelectionIndexSet = self.mDelegate.selectedObjectIndexSet ()
