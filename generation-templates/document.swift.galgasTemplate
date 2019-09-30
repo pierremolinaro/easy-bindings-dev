@@ -101,20 +101,24 @@ end
 %   }
   
   //····················································································································
-  //    windowControllerDidLoadNib
-  //····················································································································
-
-  override func windowControllerDidLoadNib (_ aController: NSWindowController) {
-    super.windowControllerDidLoadNib (aController)
-  //--------------------------- Outlet checking
-    self.checkOutletConnections ()
+  
+  final private func configureProperties () {
 %
 for () in DOCUMENT_PROPERTY_LIST do
   ![mProperty configurationCode]
 end
+%  }
+
+  //····················································································································
+  
+  final private func installBindings () {
+  //--------------------------- Install table view bindings
+%
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
   %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
 end
+%  //--------------------------- Install ebView bindings
+%
 for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    self.%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
 end
@@ -143,12 +147,29 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %      self.mController_%!mOutletName%_%!mBindingName% = controller\n%
   %    }\n%
 end
-%  //--------------------------- Set targets / actions
+%  }
+
+  //····················································································································
+  
+  final private func setTargetsAndActions () {
+   //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
 %    self.%!mOutletName%?.target = %!mTargetName%\n%
 %    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
-%  //--------------------------- Read documentFilePath model 
+%  }
+
+  //····················································································································
+  //    windowControllerDidLoadNib
+  //····················································································································
+
+  override func windowControllerDidLoadNib (_ aController: NSWindowController) {
+    super.windowControllerDidLoadNib (aController)
+    self.checkOutletConnections ()
+    self.configureProperties ()
+    self.installBindings ()
+    self.setTargetsAndActions ()
+  //--------------------------- Read documentFilePath model 
     self.documentFilePath_property.mReadModelFunction = { [weak self] in
       if let r = self?.computeTransient_documentFilePath () {
         return .single (r)
@@ -156,7 +177,6 @@ end
         return .empty
       }
     }
-
   }
 
   //····················································································································
