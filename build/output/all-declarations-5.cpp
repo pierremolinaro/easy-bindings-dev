@@ -2659,8 +2659,8 @@ const char * gWrapperFileContent_5_outletClassGeneration = "//\xE2""\x80""\x94""
   "      self.enableFromValueBinding (true)\n"
   "      self.doubleValue = v\n"
   "    case .multiple :\n"
-  "      self.enableFromValueBinding (false)\n"
-  "      self.stringValue = \"\xE2""\x80""\x94""\"\n"
+  "      self.stringValue = \"multiple\"\n"
+  "      self.enableFromValueBinding (true)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -2743,7 +2743,7 @@ const cRegularFileWrapper gWrapperFile_5_outletClassGeneration (
   "EBDoubleField.swift",
   "swift",
   true, // Text file
-  6701, // Text length
+  6707, // Text length
   gWrapperFileContent_5_outletClassGeneration
 ) ;
 
@@ -3435,8 +3435,8 @@ const char * gWrapperFileContent_1_outletClassGeneration = "//\xE2""\x80""\x94""
   "      self.enableFromValueBinding (true)\n"
   "      self.integerValue = v\n"
   "    case .multiple :\n"
-  "      self.enableFromValueBinding (false)\n"
-  "      self.stringValue = \"\xE2""\x80""\x94""\"\n"
+  "      self.stringValue = \"multiple\"\n"
+  "      self.enableFromValueBinding (true)\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -3548,7 +3548,7 @@ const cRegularFileWrapper gWrapperFile_1_outletClassGeneration (
   "EBIntField.swift",
   "swift",
   true, // Text file
-  8037, // Text length
+  8043, // Text length
   gWrapperFileContent_1_outletClassGeneration
 ) ;
 
@@ -5033,8 +5033,8 @@ const char * gWrapperFileContent_2_outletClassGeneration = "//\xE2""\x80""\x94""
   "      self.stringValue = \"\xE2""\x80""\x94""\"\n"
   "      self.enableFromValueBinding (false)\n"
   "    case .multiple :\n"
-  "      self.stringValue = \"\xE2""\x80""\x94""\"\n"
-  "      self.enableFromValueBinding (false)\n"
+  "      self.stringValue = \"multiple\"\n"
+  "      self.enableFromValueBinding (true)\n"
   "    case .single (let propertyValue) :\n"
   "      self.stringValue = propertyValue\n"
   "      self.enableFromValueBinding (true)\n"
@@ -5149,7 +5149,7 @@ const cRegularFileWrapper gWrapperFile_2_outletClassGeneration (
   "EBTextField.swift",
   "swift",
   true, // Text file
-  7127, // Text length
+  7133, // Text length
   gWrapperFileContent_2_outletClassGeneration
 ) ;
 
