@@ -292,7 +292,7 @@ override getter @transientPropertyGeneration declarationInSelectionControllerCod
 override getter @transientPropertyGeneration bindPropertyInSelectionController -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  private final func bind_property_" + mPropertyName + " () {\n"
-  result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property, postEvent: true)\n"
+  result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
   result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.prop {\n"
@@ -377,10 +377,9 @@ override getter @transientPropertyGeneration configurationCode -> @string {
     for () in mDependencyList do
       let s = [mDependency generateAddObserverCall]
       if s != "" then
-        result += "    " + s + " (self." + mPropertyName + "_property, postEvent: false)\n"
+        result += "    " + s + " (self." + mPropertyName + "_property)\n"
       end
     end
-    result += "    self." + mPropertyName + "_property.postEvent ()\n"
   end
 }
 

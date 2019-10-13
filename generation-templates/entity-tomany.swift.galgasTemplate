@@ -46,7 +46,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent, postEvent inPostEvent : Bool) {
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
@@ -54,7 +54,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver, postEvent: inPostEvent)
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
       }
     }
   }
@@ -106,7 +106,7 @@ for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent, postEvent inPostEvent : Bool) {
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
@@ -114,7 +114,7 @@ for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver, postEvent: inPostEvent)
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
       }
     }
   }
@@ -166,7 +166,7 @@ for () in PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent, postEvent inPostEvent : Bool) {
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
@@ -174,7 +174,7 @@ for () in PROXY_LIST_FOR_GENERATION do
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver, postEvent: inPostEvent)
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
       }
     }
   }
@@ -226,7 +226,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent, postEvent inPostEvent : Bool) {
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
@@ -234,7 +234,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver, postEvent: inPostEvent)
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
       }
     }
   }
@@ -833,7 +833,7 @@ final class PreferencesArrayOf_%!ENTITY_NAME% : StoredArrayOf_%!ENTITY_NAME% {
       self.setProp (objectArray)
     }
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    self.addEBObserverOf_%![mProperty mPropertyName]% (self.mObserverForWritingPreferences, postEvent: true)\n%
+  %    self.addEBObserverOf_%![mProperty mPropertyName]% (self.mObserverForWritingPreferences)\n%
 end
 %    self.mObserverForWritingPreferences.mEventCallBack = { self.writeInPreferences () }
  }

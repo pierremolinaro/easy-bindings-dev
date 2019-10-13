@@ -57,14 +57,14 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent, postEvent inPostEvent : Bool) {
-    self.addEBObserver (inObserver, postEvent: inPostEvent)
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
     case .empty, .multiple :
       break
     case .single (let v) :
-       v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver, postEvent: inPostEvent)
+       v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
     }
   }
 
@@ -130,14 +130,14 @@ for () in PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent, postEvent inPostEvent : Bool) {
-    self.addEBObserver (inObserver, postEvent: inPostEvent)
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
     case .empty, .multiple :
       break
     case .single (let v) :
-      v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver, postEvent: inPostEvent)
+      v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
     }
   }
 
@@ -203,14 +203,14 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent, postEvent inPostEvent : Bool) {
-    self.addEBObserver (inObserver, postEvent: inPostEvent)
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch prop {
     case .empty, .multiple :
       break
     case .single (let v) :
-      v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver, postEvent: inPostEvent)
+      v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
     }
   }
 
@@ -270,10 +270,10 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   %    }\n%
   %  }\n\n%
   %  //····················································································································\n\n%
-  %  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent, postEvent inPostEvent : Bool) {\n%
+  %  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {\n%
   %    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)\n%
   %    if let object = self.propval {\n%
-  %      object.%![mProperty mPropertyName]%_property.addEBObserver (inObserver, postEvent: inPostEvent)\n%
+  %      object.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)\n%
   %    }\n%
   %  }\n\n%
   %  //····················································································································\n\n%
