@@ -62,6 +62,7 @@ end
   override init () {
     super.init ()
     g_%!preferencesName ()% = self ;
+    let operationQueue = OperationQueue ()
   //--- Read from preferences
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
@@ -80,7 +81,8 @@ end
       %    self.%!mExternSwiftFunctionName.string% ()\n%
     end
   end
-%  }
+%    operationQueue.waitUntilAllOperationsAreFinished ()
+  }
 
 %
 if [MAIN_XIB_DESCRIPTOR_LIST length] > 0 then

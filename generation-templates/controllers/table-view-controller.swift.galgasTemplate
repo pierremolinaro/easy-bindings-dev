@@ -86,11 +86,12 @@ end
 else
   %      sortCallback: nil,\n%
 end
-%      addSortObserversCallback: {(observer) in
+%      addSortObserversCallback: { (observer) in
 %for () in OBSERVED_PROPERTIES_FOR_SORTING do
-  %        inModel.addEBObserverOf_%!key% (observer)\n%
+  %        inModel.addEBObserverOf_%!key% (observer, postEvent: false)\n%
 end
-%      },
+%        observer.postEvent ()
+      },
       removeSortObserversCallback: {(observer) in
 %for () in OBSERVED_PROPERTIES_FOR_SORTING do
   %        inModel.removeEBObserverOf_%!key% (observer)\n%

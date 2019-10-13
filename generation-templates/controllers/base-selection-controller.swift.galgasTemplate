@@ -166,7 +166,7 @@ end
 if not [mKind isEntityType] then
   %  //···················································································································*\n\n% 
   %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
-  %    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
+  %    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property, postEvent: true)\n%
   %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
   %      if let model = self?.mModel {\n%
   %        switch model.prop {\n%
