@@ -54,7 +54,6 @@ end
 
   required init (_ ebUndoManager : EBUndoManager?) {
     super.init (ebUndoManager)
-    let operationQueue = OperationQueue ()
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode]
@@ -84,8 +83,7 @@ end
   for () in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
     %    self.mExternDelegate%![idx string]% = %!mExternSwiftDelegateName.string% (object: self)\n%
   end
-%    operationQueue.waitUntilAllOperationsAreFinished ()
-  }
+%  }
 
   //····················································································································
 
