@@ -4623,6 +4623,7 @@ const char * gWrapperFileContent_67_swift_5F_sources = "//\n"
   "//\n"
   "//  Created by Pierre Molinaro on 22/06/2019.\n"
   "//\n"
+  "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
   "\n"
   "import Cocoa\n"
   "\n"
@@ -5281,7 +5282,7 @@ const cRegularFileWrapper gWrapperFile_67_swift_5F_sources (
   "EBBezierPath.swift",
   "swift",
   true, // Text file
-  23456, // Text length
+  23577, // Text length
   gWrapperFileContent_67_swift_5F_sources
 ) ;
 
@@ -11763,10 +11764,21 @@ const char * gWrapperFileContent_107_swift_5F_sources = "//\xE2""\x80""\x94""\xE
   "  init (textKnob inString : String,\n"
   "        _ inOrigin : NSPoint,\n"
   "        _ inFont : NSFont,\n"
+  "        foreColor inForeColor : NSColor,\n"
+  "        backColor inBackColor : NSColor,\n"
   "        _ inHorizontalAlignment : EBTextHorizontalAlignment,\n"
   "        _ inVerticalAlignment : EBTextVerticalAlignment,\n"
   "        knobIndex inKnobIndex : Int) {\n"
-  "    self.add (textKnob: inString, inOrigin, inFont, .black, inHorizontalAlignment, inVerticalAlignment, knobIndex: inKnobIndex)\n"
+  "    self.add (\n"
+  "      textKnob: inString,\n"
+  "      inOrigin,\n"
+  "      inFont,\n"
+  "      foreColor: inForeColor,\n"
+  "      backColor: inBackColor,\n"
+  "      inHorizontalAlignment,\n"
+  "      inVerticalAlignment,\n"
+  "      knobIndex: inKnobIndex\n"
+  "    )\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -11887,7 +11899,8 @@ const char * gWrapperFileContent_107_swift_5F_sources = "//\xE2""\x80""\x94""\xE
   "  mutating func add (textKnob inString : String,\n"
   "                     _ inOrigin : NSPoint,\n"
   "                     _ inFont : NSFont,\n"
-  "                     _ inColor : NSColor,\n"
+  "                     foreColor inForeColor : NSColor,\n"
+  "                     backColor inBackColor : NSColor,\n"
   "                     _ inHorizontalAlignment : EBTextHorizontalAlignment,\n"
   "                     _ inVerticalAlignment : EBTextVerticalAlignment,\n"
   "                     knobIndex inKnobIndex : Int) {\n"
@@ -11909,23 +11922,23 @@ const char * gWrapperFileContent_107_swift_5F_sources = "//\xE2""\x80""\x94""\xE
   "      bp.lineWidth = 0.5\n"
   "      bp.lineJoinStyle = .round\n"
   "      bp.lineCapStyle = .round\n"
-  "      let rgbColor = inColor.usingColorSpace (.sRGB)\n"
-  "      var red : CGFloat = 0.0\n"
-  "      var green : CGFloat = 0.0\n"
-  "      var blue : CGFloat = 0.0\n"
-  "      rgbColor\?.getRed (&red, green: &green, blue: &blue, alpha: nil)\n"
-  "      red += 0.5 ; if red > 1.0 { red -= 1.0 }\n"
-  "      green += 0.5 ; if green > 1.0 { green -= 1.0 }\n"
-  "      blue += 0.5 ; if blue > 1.0 { blue -= 1.0 }\n"
-  "      let backgroundColor = NSColor (red: red, green: green, blue: blue, alpha: 1.0)\n"
-  "      let e1 = EBShapeElement ([bp], backgroundColor, inKnobIndex, .none)\n"
+  "//      let rgbColor = inForeColor.usingColorSpace (.sRGB)\n"
+  "//      var red : CGFloat = 0.0\n"
+  "//      var green : CGFloat = 0.0\n"
+  "//      var blue : CGFloat = 0.0\n"
+  "//      rgbColor\?.getRed (&red, green: &green, blue: &blue, alpha: nil)\n"
+  "//      red += 0.5 ; if red > 1.0 { red -= 1.0 }\n"
+  "//      green += 0.5 ; if green > 1.0 { green -= 1.0 }\n"
+  "//      blue += 0.5 ; if blue > 1.0 { blue -= 1.0 }\n"
+  "//      let backgroundColor = NSColor (red: red, green: green, blue: blue, alpha: 1.0)\n"
+  "      let e1 = EBShapeElement ([bp], inBackColor, inKnobIndex, .none)\n"
   "      self.mElements.append (e1)\n"
   "      let e2 = EBShapeElement ([bp.pathByStroking], .cyan, inKnobIndex, .none)\n"
   "      self.mElements.append (e2)\n"
   "      self.mCachedBoundingBox = self.mCachedBoundingBox.union (e2.boundingBox)\n"
   "    }\n"
   "  //--- Append text\n"
-  "    let e = EBShapeElement ([filledBezierPath], inColor, nil, .none)\n"
+  "    let e = EBShapeElement ([filledBezierPath], inForeColor, nil, .none)\n"
   "    self.mElements.append (e)\n"
   "    self.mCachedBoundingBox = self.mCachedBoundingBox.union (e.boundingBox)\n"
   "  }\n"
@@ -12295,7 +12308,7 @@ const cRegularFileWrapper gWrapperFile_107_swift_5F_sources (
   "EBShape.swift",
   "swift",
   true, // Text file
-  23319, // Text length
+  23583, // Text length
   gWrapperFileContent_107_swift_5F_sources
 ) ;
 
