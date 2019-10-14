@@ -4641,6 +4641,7 @@ const char * gWrapperFileContent_67_swift_5F_sources = "//\n"
   "enum EBTextVerticalAlignment {\n"
   "  case above\n"
   "  case center\n"
+  "  case baseline\n"
   "  case below\n"
   "}\n"
   "\n"
@@ -4755,6 +4756,8 @@ const char * gWrapperFileContent_67_swift_5F_sources = "//\n"
   "        ()\n"
   "      case .center :\n"
   "        deltaY -= height / 2.0\n"
+  "      case .baseline :\n"
+  "        deltaY = 2.0 * font.descender\n"
   "      case .below :\n"
   "        deltaY -= height\n"
   "      }\n"
@@ -5278,7 +5281,7 @@ const cRegularFileWrapper gWrapperFile_67_swift_5F_sources (
   "EBBezierPath.swift",
   "swift",
   true, // Text file
-  23379, // Text length
+  23456, // Text length
   gWrapperFileContent_67_swift_5F_sources
 ) ;
 
