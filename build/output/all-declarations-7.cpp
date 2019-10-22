@@ -4686,8 +4686,11 @@ const char * gWrapperFileContent_67_swift_5F_sources = "//\n"
   "      }else{\n"
   "        font = NSFont ()\n"
   "      }\n"
+  "    //--- Disable ligatures\n"
+  "      var t = inTextAttributes\n"
+  "      t [NSAttributedString.Key.ligature] = 0\n"
   "    //--- Build text infrastructure\n"
-  "      let textStore = NSTextStorage (string: inString, attributes: inTextAttributes)\n"
+  "      let textStore = NSTextStorage (string: inString, attributes: t)\n"
   "      let textContainer = NSTextContainer ()\n"
   "      let myLayout = NSLayoutManager ()\n"
   "      myLayout.addTextContainer (textContainer)\n"
@@ -5247,7 +5250,7 @@ const cRegularFileWrapper gWrapperFile_67_swift_5F_sources (
   "EBBezierPath.swift",
   "swift",
   true, // Text file
-  23577, // Text length
+  23667, // Text length
   gWrapperFileContent_67_swift_5F_sources
 ) ;
 
