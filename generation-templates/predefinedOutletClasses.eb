@@ -47,11 +47,11 @@ binding EBColorWell $color : property NSColor {sendContinously : Bool} ;
 outlet class EBDatePicker : NSControl ;
 binding EBDatePicker $date : property Date ;
 
-outlet class EBDoubleField : NSView ;
+outlet class EBDoubleField : NSControl ;
 binding EBDoubleField $value : property Double {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-outlet class EBDoubleObserverField : NSView ;
+outlet class EBDoubleObserverField : NSControl ;
 binding EBDoubleObserverField $valueObserver : transient Double {autoFormatter:Bool} ;
 
 
@@ -59,7 +59,7 @@ outlet class EBIntField : NSControl ;
 binding EBIntField $value : property Int {sendContinously : Bool, autoFormatter:Bool} ;
 
 
-outlet class EBIntObserverField : NSView ;
+outlet class EBIntObserverField : NSControl ;
 binding EBIntObserverField $valueObserver : transient Int {autoFormatter:Bool} ;
 
 

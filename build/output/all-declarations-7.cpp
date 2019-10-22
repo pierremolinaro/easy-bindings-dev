@@ -9243,10 +9243,10 @@ const char * gWrapperFileContent_115_swift_5F_sources = "//\xE2""\x80""\x94""\xE
   "      }\n"
   "    }\n"
   "  //--- Temp\n"
-  "    let textualData = try self.textualDataForSaving ()\n"
-  "    let s = self.fileURL!.lastPathComponent\n"
-  "    let tempFile = NSHomeDirectory() + \"/desktop/\" + s + \".txt\"\n"
-  "    try textualData.write (to: URL (fileURLWithPath: tempFile))\n"
+  "//    let textualData = try self.textualDataForSaving ()\n"
+  "//    let s = self.fileURL!.lastPathComponent\n"
+  "//    let tempFile = NSHomeDirectory() + \"/desktop/\" + s + \".txt\"\n"
+  "//    try textualData.write (to: URL (fileURLWithPath: tempFile))\n"
   "  //---\n"
   "    switch self.mManagedDocumentFileFormat {\n"
   "    case .binary :\n"
@@ -9259,7 +9259,7 @@ const char * gWrapperFileContent_115_swift_5F_sources = "//\xE2""\x80""\x94""\xE
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  private func binaryDataForSaving () throws -> Data {\n"
-  "    let start = Date ()\n"
+  " //   let start = Date ()\n"
   "    var fileBinaryData = Data ()\n"
   "  //--- Append signature\n"
   "    fileBinaryData.appendBinarySignature ()\n"
@@ -9277,7 +9277,7 @@ const char * gWrapperFileContent_115_swift_5F_sources = "//\xE2""\x80""\x94""\xE
   "  //--- Append final byte\n"
   "    fileBinaryData.append (0)\n"
   "  //---\n"
-  "    Swift.print (\"Binary Saving \\(Int (Date ().timeIntervalSince (start) * 1000.0)) ms\")\n"
+  "//    Swift.print (\"Binary Saving \\(Int (Date ().timeIntervalSince (start) * 1000.0)) ms\")\n"
   "    return fileBinaryData\n"
   "  }\n"
   "\n"
@@ -9922,7 +9922,7 @@ const cRegularFileWrapper gWrapperFile_115_swift_5F_sources (
   "EBManagedDocument.swift",
   "swift",
   true, // Text file
-  34742, // Text length
+  34754, // Text length
   gWrapperFileContent_115_swift_5F_sources
 ) ;
 
