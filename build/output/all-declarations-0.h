@@ -111,7 +111,6 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_sort,
    kToken_struct,
    kToken_super,
-   kToken_to,
    kToken_toMany,
    kToken_toOne,
    kToken_transient,
@@ -182,7 +181,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 81 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 80 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;

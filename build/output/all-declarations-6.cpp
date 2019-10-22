@@ -1003,7 +1003,7 @@ static void extensionMethod_transientDeclarationAST_firstAnalysisPhase (const cP
   macroValidSharedObject (object, cPtr_transientDeclarationAST) ;
   cMapElement_classMap * objectArray_6748 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("transient-property.galgas", 150)) ;
   if (NULL != objectArray_6748) {
-      macroValidSharedObject (objectArray_6748, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_6748, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_6904 ;
     GALGAS_propertyMap joker_6906_3 ; // Joker input parameter
     GALGAS_actionMap joker_6906_2 ; // Joker input parameter
@@ -1164,7 +1164,7 @@ static void extensionMethod_transientDeclarationAST_thirdAnalysisPhase (const cP
   ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_ptransientRoutineGeneration::constructor_new (object->mProperty_mClassName.getter_string (SOURCE_FILE ("transient-property.galgas", 228)), object->mProperty_mTransientName.getter_string (HERE), var_typeKind_7995, var_dependencies_8780  COMMA_SOURCE_FILE ("transient-property.galgas", 227))  COMMA_SOURCE_FILE ("transient-property.galgas", 227)) ;
   cMapElement_classMap * objectArray_9708 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("transient-property.galgas", 233)) ;
   if (NULL != objectArray_9708) {
-      macroValidSharedObject (objectArray_9708, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_9708, cMapElement_classMap) ;
     GALGAS_bool var_generate_9805 ;
     switch (var_currentClassKind_8675.enumValue ()) {
     case GALGAS_classKind::kNotBuilt:
@@ -1805,7 +1805,7 @@ static void extensionMethod_proxyDeclarationAST_firstAnalysisPhase (const cPtr_a
   macroValidSharedObject (object, cPtr_proxyDeclarationAST) ;
   cMapElement_classMap * objectArray_3075 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("proxy.galgas", 86)) ;
   if (NULL != objectArray_3075) {
-      macroValidSharedObject (objectArray_3075, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_3075, cMapElement_classMap) ;
     GALGAS_classKind var_proxyKind_3227 ;
     GALGAS_propertyMap joker_3229_3 ; // Joker input parameter
     GALGAS_actionMap joker_3229_2 ; // Joker input parameter
@@ -1889,7 +1889,7 @@ static void extensionMethod_proxyDeclarationAST_secondAnalysisPhase (const cPtr_
   macroValidSharedObject (object, cPtr_proxyDeclarationAST) ;
   cMapElement_classMap * objectArray_4261 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("proxy.galgas", 120)) ;
   if (NULL != objectArray_4261) {
-      macroValidSharedObject (objectArray_4261, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_4261, cMapElement_classMap) ;
     GALGAS_propertyKind var_relationshipKind_4413 ;
     GALGAS_actionMap joker_4415_2 ; // Joker input parameter
     GALGAS_bool joker_4415_1 ; // Joker input parameter
@@ -2657,7 +2657,7 @@ static void extensionMethod_atomicPropertyDeclarationAST_firstAnalysisPhase (con
   macroValidSharedObject (object, cPtr_atomicPropertyDeclarationAST) ;
   cMapElement_classMap * objectArray_3896 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 105)) ;
   if (NULL != objectArray_3896) {
-      macroValidSharedObject (objectArray_3896, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_3896, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_4051 ;
     GALGAS_propertyMap joker_4053_3 ; // Joker input parameter
     GALGAS_actionMap joker_4053_2 ; // Joker input parameter
@@ -3163,7 +3163,7 @@ static void extensionMethod_toOneRelationshipAST_firstAnalysisPhase (const cPtr_
   macroValidSharedObject (object, cPtr_toOneRelationshipAST) ;
   cMapElement_classMap * objectArray_3757 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 97)) ;
   if (NULL != objectArray_3757) {
-      macroValidSharedObject (objectArray_3757, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_3757, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_3917 ;
     GALGAS_propertyMap joker_3919_3 ; // Joker input parameter
     GALGAS_actionMap joker_3919_2 ; // Joker input parameter
@@ -3230,7 +3230,7 @@ static void extensionMethod_toOneRelationshipAST_thirdAnalysisPhase (const cPtr_
   macroValidSharedObject (object, cPtr_toOneRelationshipAST) ;
   cMapElement_classMap * objectArray_4783 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 126)) ;
   if (NULL != objectArray_4783) {
-      macroValidSharedObject (objectArray_4783, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_4783, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_4943 ;
     GALGAS_propertyMap var_destinationEntityPropertyMap_4977 ;
     GALGAS_actionMap joker_4979_2 ; // Joker input parameter
@@ -3696,7 +3696,7 @@ static void extensionMethod_toManyRelationshipAST_firstAnalysisPhase (const cPtr
   macroValidSharedObject (object, cPtr_toManyRelationshipAST) ;
   cMapElement_classMap * objectArray_4493 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 119)) ;
   if (NULL != objectArray_4493) {
-      macroValidSharedObject (objectArray_4493, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_4493, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_4653 ;
     GALGAS_propertyMap joker_4655_3 ; // Joker input parameter
     GALGAS_actionMap joker_4655_2 ; // Joker input parameter
@@ -5635,7 +5635,7 @@ static void extensionMethod_arrayControllerDeclarationAST_firstAnalysisPhase (co
   macroValidSharedObject (object, cPtr_arrayControllerDeclarationAST) ;
   cMapElement_classMap * objectArray_3479 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("array-controller.galgas", 88)) ;
   if (NULL != objectArray_3479) {
-      macroValidSharedObject (objectArray_3479, cMapElement_classMap) ;
+    macroValidSharedObject (objectArray_3479, cMapElement_classMap) ;
     GALGAS_actionMap temp_0 = GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("array-controller.galgas", 91)) ;
     temp_0.addAssign_operation (GALGAS_string ("add").getter_nowhere (SOURCE_FILE ("array-controller.galgas", 91)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 91)) ;
     temp_0.addAssign_operation (GALGAS_string ("remove").getter_nowhere (SOURCE_FILE ("array-controller.galgas", 91)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 91)) ;

@@ -52,7 +52,6 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "sort",
   "struct",
   "super",
-  "to",
   "toMany",
   "toOne",
   "transient",
