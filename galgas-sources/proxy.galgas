@@ -43,6 +43,7 @@ syntax extension easyBindings_syntax {
   rule <controller_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring unused inRootEntity
+            ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST
             ?!@astDeclarationStruct ioDeclarationAST
   {
     @proxyKind proxyKind

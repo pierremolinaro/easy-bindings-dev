@@ -12,7 +12,7 @@ final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyAbstract
 if ELEMENT_TYPE_IS_GRAPHIC then
  %, EBGraphicViewControllerProtocol%
 end
-% {
+%, HiddenEBProtocol {
  
   //····················································································································
   // Model
@@ -235,7 +235,7 @@ end
 %if ELEMENT_TYPE_IS_GRAPHIC then
 %
   //····················································································································
-  //  EBView interface
+  //  Graphic view interface
   //····················································································································
 
   var selectedGraphicObjectSet : Set <EBGraphicManagedObject> {
@@ -1033,13 +1033,15 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     //--- Remove current attached view
       self.mCurrentAttachedView?.removeFromSuperview ()
     //--- Add the new attached view
-      if self.selectedArray_property.propset.count == 0 {
+      if self.mViewIsHidden {
+        self.mCurrentAttachedView = nil
+      }else if self.selectedArray.count == 0 {
         let tf = self.textField ("Empty Selection", inspectorView.frame)
         inspectorView.addSubview (tf)
         self.mCurrentAttachedView = tf
       }else{
         var selectionTypes = Set <ObjectIdentifier> ()
-        for object in self.selectedArray_property.propset {
+        for object in self.selectedArray {
           let T = ObjectIdentifier (type (of: object))
           selectionTypes.insert (T)
         }
@@ -1083,6 +1085,19 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     tf.font = NSFont.boldSystemFont (ofSize: NSFont.systemFontSize * 1.25)
     tf.textColor = NSColor.lightGray
     return tf
+  }
+
+  //····················································································································
+
+  private var mViewIsHidden = false {
+    didSet { self.updateInspectorViews () }
+  }
+
+  //····················································································································
+
+  var isHidden : Bool {
+    get { return self.mViewIsHidden }
+    set { self.mViewIsHidden = newValue }
   }
 
   //····················································································································

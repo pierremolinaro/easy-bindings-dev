@@ -48,6 +48,7 @@ syntax extension easyBindings_syntax {
     let prefs = @lstring.new {!preferencesName () !.here}
     ${$
     @stringset signatureList = {}
+    @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     repeat
     while
       <action_declaration> !?ioDeclarationAST.mPreferences.mActionDeclarationList
@@ -68,7 +69,7 @@ syntax extension easyBindings_syntax {
     while
       <toMany_relationship> !prefs !?* !?ioDeclarationAST
     while
-      <controller_declaration> !prefs !["" nowhere] !?ioDeclarationAST
+      <controller_declaration> !prefs !["" nowhere] !?arrayControllerBindingListAST!?ioDeclarationAST
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$

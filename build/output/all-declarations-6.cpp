@@ -1803,42 +1803,42 @@ static void extensionMethod_proxyDeclarationAST_firstAnalysisPhase (const cPtr_a
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_proxyDeclarationAST * object = (const cPtr_proxyDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_proxyDeclarationAST) ;
-  cMapElement_classMap * objectArray_3075 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("proxy.galgas", 86)) ;
-  if (NULL != objectArray_3075) {
-    macroValidSharedObject (objectArray_3075, cMapElement_classMap) ;
-    GALGAS_classKind var_proxyKind_3227 ;
-    GALGAS_propertyMap joker_3229_3 ; // Joker input parameter
-    GALGAS_actionMap joker_3229_2 ; // Joker input parameter
-    GALGAS_propertyGenerationList joker_3229_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mProxyTypeName, var_proxyKind_3227, joker_3229_3, joker_3229_2, joker_3229_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 89)) ;
-    switch (var_proxyKind_3227.enumValue ()) {
+  cMapElement_classMap * objectArray_3159 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("proxy.galgas", 87)) ;
+  if (NULL != objectArray_3159) {
+    macroValidSharedObject (objectArray_3159, cMapElement_classMap) ;
+    GALGAS_classKind var_proxyKind_3311 ;
+    GALGAS_propertyMap joker_3313_3 ; // Joker input parameter
+    GALGAS_actionMap joker_3313_2 ; // Joker input parameter
+    GALGAS_propertyGenerationList joker_3313_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mProxyTypeName, var_proxyKind_3311, joker_3313_3, joker_3313_2, joker_3313_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 90)) ;
+    switch (var_proxyKind_3311.enumValue ()) {
     case GALGAS_classKind::kNotBuilt:
       break ;
     case GALGAS_classKind::kEnum_prefs:
       {
         TC_Array <C_FixItDescription> fixItArray0 ;
-        inCompiler->emitSemanticError (object->mProperty_mProxyTypeName.getter_location (SOURCE_FILE ("proxy.galgas", 92)), GALGAS_string ("an atomic type is required here"), fixItArray0  COMMA_SOURCE_FILE ("proxy.galgas", 92)) ;
+        inCompiler->emitSemanticError (object->mProperty_mProxyTypeName.getter_location (SOURCE_FILE ("proxy.galgas", 93)), GALGAS_string ("an atomic type is required here"), fixItArray0  COMMA_SOURCE_FILE ("proxy.galgas", 93)) ;
       }
       break ;
     case GALGAS_classKind::kEnum_entity:
       {
-        const cEnumAssociatedValues_classKind_entity * extractPtr_3748 = (const cEnumAssociatedValues_classKind_entity *) (var_proxyKind_3227.unsafePointer ()) ;
-        const GALGAS_bool extractedValue_isGraphic = extractPtr_3748->mAssociatedValue1 ;
+        const cEnumAssociatedValues_classKind_entity * extractPtr_3832 = (const cEnumAssociatedValues_classKind_entity *) (var_proxyKind_3311.unsafePointer ()) ;
+        const GALGAS_bool extractedValue_isGraphic = extractPtr_3832->mAssociatedValue1 ;
         switch (object->mProperty_mProxyKind.enumValue ()) {
         case GALGAS_proxyKind::kNotBuilt:
           break ;
         case GALGAS_proxyKind::kEnum_toManyProxy:
           {
-            GALGAS_propertyKind var_k_3435 = GALGAS_propertyKind::constructor_toMany (object->mProperty_mProxyTypeName, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("proxy.galgas", 98)), extractedValue_isGraphic, GALGAS_toManyRelationshipOptionAST::constructor_none (SOURCE_FILE ("proxy.galgas", 100))  COMMA_SOURCE_FILE ("proxy.galgas", 96)) ;
+            GALGAS_propertyKind var_k_3519 = GALGAS_propertyKind::constructor_toMany (object->mProperty_mProxyTypeName, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("proxy.galgas", 99)), extractedValue_isGraphic, GALGAS_toManyRelationshipOptionAST::constructor_none (SOURCE_FILE ("proxy.galgas", 101))  COMMA_SOURCE_FILE ("proxy.galgas", 97)) ;
             {
-            objectArray_3075->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mProxyName, var_k_3435, GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("proxy.galgas", 102)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 102)) ;
+            objectArray_3159->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mProxyName, var_k_3519, GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("proxy.galgas", 103)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 103)) ;
             }
           }
           break ;
         case GALGAS_proxyKind::kEnum_propertyProxy:
           {
             TC_Array <C_FixItDescription> fixItArray1 ;
-            inCompiler->emitSemanticError (object->mProperty_mProxyTypeName.getter_location (SOURCE_FILE ("proxy.galgas", 104)), GALGAS_string ("this type should be an entity"), fixItArray1  COMMA_SOURCE_FILE ("proxy.galgas", 104)) ;
+            inCompiler->emitSemanticError (object->mProperty_mProxyTypeName.getter_location (SOURCE_FILE ("proxy.galgas", 105)), GALGAS_string ("this type should be an entity"), fixItArray1  COMMA_SOURCE_FILE ("proxy.galgas", 105)) ;
           }
           break ;
         }
@@ -1847,15 +1847,15 @@ static void extensionMethod_proxyDeclarationAST_firstAnalysisPhase (const cPtr_a
     case GALGAS_classKind::kEnum_document:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (object->mProperty_mProxyTypeName.getter_location (SOURCE_FILE ("proxy.galgas", 107)), GALGAS_string ("an atomic type is required here"), fixItArray2  COMMA_SOURCE_FILE ("proxy.galgas", 107)) ;
+        inCompiler->emitSemanticError (object->mProperty_mProxyTypeName.getter_location (SOURCE_FILE ("proxy.galgas", 108)), GALGAS_string ("an atomic type is required here"), fixItArray2  COMMA_SOURCE_FILE ("proxy.galgas", 108)) ;
       }
       break ;
     case GALGAS_classKind::kEnum_atomic:
       {
-        const cEnumAssociatedValues_classKind_atomic * extractPtr_3965 = (const cEnumAssociatedValues_classKind_atomic *) (var_proxyKind_3227.unsafePointer ()) ;
-        const GALGAS_typeKind extractedValue_type = extractPtr_3965->mAssociatedValue0 ;
+        const cEnumAssociatedValues_classKind_atomic * extractPtr_4049 = (const cEnumAssociatedValues_classKind_atomic *) (var_proxyKind_3311.unsafePointer ()) ;
+        const GALGAS_typeKind extractedValue_type = extractPtr_4049->mAssociatedValue0 ;
         {
-        objectArray_3075->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mProxyName, GALGAS_propertyKind::constructor_property (extractedValue_type, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("proxy.galgas", 109))  COMMA_SOURCE_FILE ("proxy.galgas", 109)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("proxy.galgas", 109)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 109)) ;
+        objectArray_3159->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mProxyName, GALGAS_propertyKind::constructor_property (extractedValue_type, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("proxy.galgas", 110))  COMMA_SOURCE_FILE ("proxy.galgas", 110)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("proxy.galgas", 110)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 110)) ;
         }
       }
       break ;
@@ -1887,87 +1887,87 @@ static void extensionMethod_proxyDeclarationAST_secondAnalysisPhase (const cPtr_
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_proxyDeclarationAST * object = (const cPtr_proxyDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_proxyDeclarationAST) ;
-  cMapElement_classMap * objectArray_4261 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("proxy.galgas", 120)) ;
-  if (NULL != objectArray_4261) {
-    macroValidSharedObject (objectArray_4261, cMapElement_classMap) ;
-    GALGAS_propertyKind var_relationshipKind_4413 ;
-    GALGAS_actionMap joker_4415_2 ; // Joker input parameter
-    GALGAS_bool joker_4415_1 ; // Joker input parameter
-    objectArray_4261->mProperty_mPropertyMap.method_searchKey (object->mProperty_mToOneRelationshipName, var_relationshipKind_4413, joker_4415_2, joker_4415_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 123)) ;
-    switch (var_relationshipKind_4413.enumValue ()) {
+  cMapElement_classMap * objectArray_4345 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("proxy.galgas", 121)) ;
+  if (NULL != objectArray_4345) {
+    macroValidSharedObject (objectArray_4345, cMapElement_classMap) ;
+    GALGAS_propertyKind var_relationshipKind_4497 ;
+    GALGAS_actionMap joker_4499_2 ; // Joker input parameter
+    GALGAS_bool joker_4499_1 ; // Joker input parameter
+    objectArray_4345->mProperty_mPropertyMap.method_searchKey (object->mProperty_mToOneRelationshipName, var_relationshipKind_4497, joker_4499_2, joker_4499_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 124)) ;
+    switch (var_relationshipKind_4497.enumValue ()) {
     case GALGAS_propertyKind::kNotBuilt:
       break ;
     case GALGAS_propertyKind::kEnum_arrayController:
       {
         TC_Array <C_FixItDescription> fixItArray0 ;
-        inCompiler->emitSemanticError (object->mProperty_mToOneRelationshipName.getter_location (SOURCE_FILE ("proxy.galgas", 126)), GALGAS_string ("a toOne relationship is required here"), fixItArray0  COMMA_SOURCE_FILE ("proxy.galgas", 126)) ;
+        inCompiler->emitSemanticError (object->mProperty_mToOneRelationshipName.getter_location (SOURCE_FILE ("proxy.galgas", 127)), GALGAS_string ("a toOne relationship is required here"), fixItArray0  COMMA_SOURCE_FILE ("proxy.galgas", 127)) ;
       }
       break ;
     case GALGAS_propertyKind::kEnum_selectionController:
       {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (object->mProperty_mToOneRelationshipName.getter_location (SOURCE_FILE ("proxy.galgas", 128)), GALGAS_string ("a toOne relationship is required here"), fixItArray1  COMMA_SOURCE_FILE ("proxy.galgas", 128)) ;
+        inCompiler->emitSemanticError (object->mProperty_mToOneRelationshipName.getter_location (SOURCE_FILE ("proxy.galgas", 129)), GALGAS_string ("a toOne relationship is required here"), fixItArray1  COMMA_SOURCE_FILE ("proxy.galgas", 129)) ;
       }
       break ;
     case GALGAS_propertyKind::kEnum_property:
       {
         TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (object->mProperty_mToOneRelationshipName.getter_location (SOURCE_FILE ("proxy.galgas", 130)), GALGAS_string ("a toOne relationship is required here"), fixItArray2  COMMA_SOURCE_FILE ("proxy.galgas", 130)) ;
+        inCompiler->emitSemanticError (object->mProperty_mToOneRelationshipName.getter_location (SOURCE_FILE ("proxy.galgas", 131)), GALGAS_string ("a toOne relationship is required here"), fixItArray2  COMMA_SOURCE_FILE ("proxy.galgas", 131)) ;
       }
       break ;
     case GALGAS_propertyKind::kEnum_toMany:
       {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (object->mProperty_mToOneRelationshipName.getter_location (SOURCE_FILE ("proxy.galgas", 132)), GALGAS_string ("a toOne relationship is required here"), fixItArray3  COMMA_SOURCE_FILE ("proxy.galgas", 132)) ;
+        inCompiler->emitSemanticError (object->mProperty_mToOneRelationshipName.getter_location (SOURCE_FILE ("proxy.galgas", 133)), GALGAS_string ("a toOne relationship is required here"), fixItArray3  COMMA_SOURCE_FILE ("proxy.galgas", 133)) ;
       }
       break ;
     case GALGAS_propertyKind::kEnum_toOne:
       {
-        const cEnumAssociatedValues_propertyKind_toOne * extractPtr_6719 = (const cEnumAssociatedValues_propertyKind_toOne *) (var_relationshipKind_4413.unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_toOneTypeName = extractPtr_6719->mAssociatedValue0 ;
-        GALGAS_propertyMap var_propertyMap_4985 ;
-        GALGAS_classKind joker_4967 ; // Joker input parameter
-        GALGAS_actionMap joker_4987_2 ; // Joker input parameter
-        GALGAS_propertyGenerationList joker_4987_1 ; // Joker input parameter
-        ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_toOneTypeName, joker_4967, var_propertyMap_4985, joker_4987_2, joker_4987_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 134)) ;
-        GALGAS_propertyKind var_propertyKind_5052 ;
-        GALGAS_actionMap joker_5054_2 ; // Joker input parameter
-        GALGAS_bool joker_5054_1 ; // Joker input parameter
-        var_propertyMap_4985.method_searchKey (object->mProperty_mPropertyName, var_propertyKind_5052, joker_5054_2, joker_5054_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 135)) ;
-        switch (var_propertyKind_5052.enumValue ()) {
+        const cEnumAssociatedValues_propertyKind_toOne * extractPtr_6803 = (const cEnumAssociatedValues_propertyKind_toOne *) (var_relationshipKind_4497.unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_toOneTypeName = extractPtr_6803->mAssociatedValue0 ;
+        GALGAS_propertyMap var_propertyMap_5069 ;
+        GALGAS_classKind joker_5051 ; // Joker input parameter
+        GALGAS_actionMap joker_5071_2 ; // Joker input parameter
+        GALGAS_propertyGenerationList joker_5071_1 ; // Joker input parameter
+        ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_toOneTypeName, joker_5051, var_propertyMap_5069, joker_5071_2, joker_5071_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 135)) ;
+        GALGAS_propertyKind var_propertyKind_5136 ;
+        GALGAS_actionMap joker_5138_2 ; // Joker input parameter
+        GALGAS_bool joker_5138_1 ; // Joker input parameter
+        var_propertyMap_5069.method_searchKey (object->mProperty_mPropertyName, var_propertyKind_5136, joker_5138_2, joker_5138_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 136)) ;
+        switch (var_propertyKind_5136.enumValue ()) {
         case GALGAS_propertyKind::kNotBuilt:
           break ;
         case GALGAS_propertyKind::kEnum_property:
           {
-            const cEnumAssociatedValues_propertyKind_property * extractPtr_5465 = (const cEnumAssociatedValues_propertyKind_property *) (var_propertyKind_5052.unsafePointer ()) ;
-            const GALGAS_typeKind extractedValue_propertyType = extractPtr_5465->mAssociatedValue0 ;
-            objectArray_4261->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_atomicProxyGeneration::constructor_new (object->mProperty_mProxyName.getter_string (HERE), object->mProperty_mProxyKind, extractedValue_propertyType, object->mProperty_mToOneRelationshipName.getter_string (HERE), object->mProperty_mPropertyName.getter_string (HERE)  COMMA_SOURCE_FILE ("proxy.galgas", 138))  COMMA_SOURCE_FILE ("proxy.galgas", 138)) ;
+            const cEnumAssociatedValues_propertyKind_property * extractPtr_5549 = (const cEnumAssociatedValues_propertyKind_property *) (var_propertyKind_5136.unsafePointer ()) ;
+            const GALGAS_typeKind extractedValue_propertyType = extractPtr_5549->mAssociatedValue0 ;
+            objectArray_4345->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_atomicProxyGeneration::constructor_new (object->mProperty_mProxyName.getter_string (HERE), object->mProperty_mProxyKind, extractedValue_propertyType, object->mProperty_mToOneRelationshipName.getter_string (HERE), object->mProperty_mPropertyName.getter_string (HERE)  COMMA_SOURCE_FILE ("proxy.galgas", 139))  COMMA_SOURCE_FILE ("proxy.galgas", 139)) ;
             enumGalgasBool test_4 = kBoolTrue ;
             if (kBoolTrue == test_4) {
-              test_4 = GALGAS_bool (kIsNotEqual, object->mProperty_mProxyKind.objectCompare (GALGAS_proxyKind::constructor_propertyProxy (SOURCE_FILE ("proxy.galgas", 145)))).boolEnum () ;
+              test_4 = GALGAS_bool (kIsNotEqual, object->mProperty_mProxyKind.objectCompare (GALGAS_proxyKind::constructor_propertyProxy (SOURCE_FILE ("proxy.galgas", 146)))).boolEnum () ;
               if (kBoolTrue == test_4) {
                 TC_Array <C_FixItDescription> fixItArray5 ;
-                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 146)), GALGAS_string ("this property is not atomic"), fixItArray5  COMMA_SOURCE_FILE ("proxy.galgas", 146)) ;
+                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 147)), GALGAS_string ("this property is not atomic"), fixItArray5  COMMA_SOURCE_FILE ("proxy.galgas", 147)) ;
               }
             }
           }
           break ;
         case GALGAS_propertyKind::kEnum_toMany:
           {
-            const cEnumAssociatedValues_propertyKind_toMany * extractPtr_5915 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_propertyKind_5052.unsafePointer ()) ;
-            const GALGAS_lstring extractedValue_toManyTypeName = extractPtr_5915->mAssociatedValue0 ;
-            GALGAS_classKind joker_5570_4 ; // Joker input parameter
-            GALGAS_propertyMap joker_5570_3 ; // Joker input parameter
-            GALGAS_actionMap joker_5570_2 ; // Joker input parameter
-            GALGAS_propertyGenerationList joker_5570_1 ; // Joker input parameter
-            ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_toManyTypeName, joker_5570_4, joker_5570_3, joker_5570_2, joker_5570_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 149)) ;
-            objectArray_4261->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_toManyProxyGeneration::constructor_new (object->mProperty_mProxyName.getter_string (HERE), object->mProperty_mProxyKind, extractedValue_toManyTypeName.getter_string (SOURCE_FILE ("proxy.galgas", 153)), object->mProperty_mToOneRelationshipName.getter_string (HERE), object->mProperty_mPropertyName.getter_string (HERE)  COMMA_SOURCE_FILE ("proxy.galgas", 150))  COMMA_SOURCE_FILE ("proxy.galgas", 150)) ;
+            const cEnumAssociatedValues_propertyKind_toMany * extractPtr_5999 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_propertyKind_5136.unsafePointer ()) ;
+            const GALGAS_lstring extractedValue_toManyTypeName = extractPtr_5999->mAssociatedValue0 ;
+            GALGAS_classKind joker_5654_4 ; // Joker input parameter
+            GALGAS_propertyMap joker_5654_3 ; // Joker input parameter
+            GALGAS_actionMap joker_5654_2 ; // Joker input parameter
+            GALGAS_propertyGenerationList joker_5654_1 ; // Joker input parameter
+            ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_toManyTypeName, joker_5654_4, joker_5654_3, joker_5654_2, joker_5654_1, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 150)) ;
+            objectArray_4345->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_toManyProxyGeneration::constructor_new (object->mProperty_mProxyName.getter_string (HERE), object->mProperty_mProxyKind, extractedValue_toManyTypeName.getter_string (SOURCE_FILE ("proxy.galgas", 154)), object->mProperty_mToOneRelationshipName.getter_string (HERE), object->mProperty_mPropertyName.getter_string (HERE)  COMMA_SOURCE_FILE ("proxy.galgas", 151))  COMMA_SOURCE_FILE ("proxy.galgas", 151)) ;
             enumGalgasBool test_6 = kBoolTrue ;
             if (kBoolTrue == test_6) {
-              test_6 = GALGAS_bool (kIsNotEqual, object->mProperty_mProxyKind.objectCompare (GALGAS_proxyKind::constructor_toManyProxy (SOURCE_FILE ("proxy.galgas", 157)))).boolEnum () ;
+              test_6 = GALGAS_bool (kIsNotEqual, object->mProperty_mProxyKind.objectCompare (GALGAS_proxyKind::constructor_toManyProxy (SOURCE_FILE ("proxy.galgas", 158)))).boolEnum () ;
               if (kBoolTrue == test_6) {
                 TC_Array <C_FixItDescription> fixItArray7 ;
-                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 158)), GALGAS_string ("this property is not atomic"), fixItArray7  COMMA_SOURCE_FILE ("proxy.galgas", 158)) ;
+                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 159)), GALGAS_string ("this property is not atomic"), fixItArray7  COMMA_SOURCE_FILE ("proxy.galgas", 159)) ;
               }
             }
           }
@@ -1980,13 +1980,13 @@ static void extensionMethod_proxyDeclarationAST_secondAnalysisPhase (const cPtr_
             case GALGAS_proxyKind::kEnum_propertyProxy:
               {
                 TC_Array <C_FixItDescription> fixItArray8 ;
-                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 163)), GALGAS_string ("an atomic property is required here"), fixItArray8  COMMA_SOURCE_FILE ("proxy.galgas", 163)) ;
+                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 164)), GALGAS_string ("an atomic property is required here"), fixItArray8  COMMA_SOURCE_FILE ("proxy.galgas", 164)) ;
               }
               break ;
             case GALGAS_proxyKind::kEnum_toManyProxy:
               {
                 TC_Array <C_FixItDescription> fixItArray9 ;
-                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 165)), GALGAS_string ("a toMany property is required here"), fixItArray9  COMMA_SOURCE_FILE ("proxy.galgas", 165)) ;
+                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 166)), GALGAS_string ("a toMany property is required here"), fixItArray9  COMMA_SOURCE_FILE ("proxy.galgas", 166)) ;
               }
               break ;
             }
@@ -2000,13 +2000,13 @@ static void extensionMethod_proxyDeclarationAST_secondAnalysisPhase (const cPtr_
             case GALGAS_proxyKind::kEnum_propertyProxy:
               {
                 TC_Array <C_FixItDescription> fixItArray10 ;
-                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 170)), GALGAS_string ("an atomic property is required here"), fixItArray10  COMMA_SOURCE_FILE ("proxy.galgas", 170)) ;
+                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 171)), GALGAS_string ("an atomic property is required here"), fixItArray10  COMMA_SOURCE_FILE ("proxy.galgas", 171)) ;
               }
               break ;
             case GALGAS_proxyKind::kEnum_toManyProxy:
               {
                 TC_Array <C_FixItDescription> fixItArray11 ;
-                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 172)), GALGAS_string ("a toMany property is required here"), fixItArray11  COMMA_SOURCE_FILE ("proxy.galgas", 172)) ;
+                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 173)), GALGAS_string ("a toMany property is required here"), fixItArray11  COMMA_SOURCE_FILE ("proxy.galgas", 173)) ;
               }
               break ;
             }
@@ -2020,13 +2020,13 @@ static void extensionMethod_proxyDeclarationAST_secondAnalysisPhase (const cPtr_
             case GALGAS_proxyKind::kEnum_propertyProxy:
               {
                 TC_Array <C_FixItDescription> fixItArray12 ;
-                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 177)), GALGAS_string ("an atomic property is required here"), fixItArray12  COMMA_SOURCE_FILE ("proxy.galgas", 177)) ;
+                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 178)), GALGAS_string ("an atomic property is required here"), fixItArray12  COMMA_SOURCE_FILE ("proxy.galgas", 178)) ;
               }
               break ;
             case GALGAS_proxyKind::kEnum_toManyProxy:
               {
                 TC_Array <C_FixItDescription> fixItArray13 ;
-                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 179)), GALGAS_string ("a toMany property is required here"), fixItArray13  COMMA_SOURCE_FILE ("proxy.galgas", 179)) ;
+                inCompiler->emitSemanticError (object->mProperty_mPropertyName.getter_location (SOURCE_FILE ("proxy.galgas", 180)), GALGAS_string ("a toMany property is required here"), fixItArray13  COMMA_SOURCE_FILE ("proxy.galgas", 180)) ;
               }
               break ;
             }
@@ -2062,16 +2062,16 @@ static GALGAS_string extensionGetter_toManyProxyGeneration_declarationInSelectio
   GALGAS_string result_result ; // Returned variable
   const cPtr_toManyProxyGeneration * object = (const cPtr_toManyProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toManyProxyGeneration) ;
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 206)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 206)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 206)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 207)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 207)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 207)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 208)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 208)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 208)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 208)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 209)).add_operation (GALGAS_string ("_property = ProxyArrayOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 209)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 209)).add_operation (GALGAS_string (" ()\n"
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 207)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 207)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 207)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //   ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 208)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 208)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 208)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 209)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 209)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 209)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 209)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 210)).add_operation (GALGAS_string ("_property_selection : EBSelection <["), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 210)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 210)).add_operation (GALGAS_string ("]> {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 210)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 210)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    return .single (self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 211)).add_operation (GALGAS_string ("_property.propval)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 211)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 211)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 210)).add_operation (GALGAS_string ("_property = ProxyArrayOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 210)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 210)).add_operation (GALGAS_string (" ()\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 210)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 210)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 211)).add_operation (GALGAS_string ("_property_selection : EBSelection <["), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 211)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 211)).add_operation (GALGAS_string ("]> {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 211)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 211)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    return .single (self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 212)).add_operation (GALGAS_string ("_property.propval)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 212)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 212)) ;
   result_result.plusAssign_operation(GALGAS_string ("  }\n"
-    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 212)) ;
+    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 213)) ;
 //---
   return result_result ;
 }
@@ -2128,36 +2128,36 @@ static GALGAS_string extensionGetter_toManyProxyGeneration_propertyDeclarationCo
   GALGAS_string result_result ; // Returned variable
   const cPtr_toManyProxyGeneration * object = (const cPtr_toManyProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toManyProxyGeneration) ;
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 224)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 224)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 224)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 225)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 225)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 225)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 226)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 226)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 226)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 227)).add_operation (GALGAS_string ("_modelDidChangeController : EBSimpleController\? = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 227)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 227)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  // var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 228)).add_operation (GALGAS_string ("_boundObjectDidChangeController : EBSimpleController\? = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 228)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 228)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 229)).add_operation (GALGAS_string ("_property = ProxyArrayOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 229)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 229)).add_operation (GALGAS_string (" ()\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 229)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 229)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 230)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 230)).add_operation (GALGAS_string ("\n"
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 225)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 225)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 225)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //   ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 226)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 226)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 226)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 227)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 227)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 227)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 227)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 228)).add_operation (GALGAS_string ("_modelDidChangeController : EBSimpleController\? = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 228)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 228)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  // var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 229)).add_operation (GALGAS_string ("_boundObjectDidChangeController : EBSimpleController\? = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 229)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 229)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 230)).add_operation (GALGAS_string ("_property = ProxyArrayOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 230)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 230)).add_operation (GALGAS_string (" ()\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 230)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 230)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 231)).add_operation (GALGAS_string (" : ["), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 231)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 231)).add_operation (GALGAS_string ("] {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 231)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 231)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    get {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 232)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      switch self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 233)).add_operation (GALGAS_string ("_property.prop {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 233)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 233)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 234)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return []\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 235)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 236)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return v\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 237)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 238)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 239)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    set {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 240)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 241)).add_operation (GALGAS_string ("_property.setProp (newValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 241)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 241)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 242)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 231)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 231)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 231)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 231)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 232)).add_operation (GALGAS_string (" : ["), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 232)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 232)).add_operation (GALGAS_string ("] {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 232)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 232)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    get {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 233)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      switch self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 234)).add_operation (GALGAS_string ("_property.prop {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 234)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 234)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 235)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return []\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 236)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 237)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return v\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 238)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 239)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 240)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    set {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 241)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 242)).add_operation (GALGAS_string ("_property.setProp (newValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 242)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 242)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 243)) ;
   result_result.plusAssign_operation(GALGAS_string ("  }\n"
-    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 243)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 244)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 244)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 244)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 244)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 245)).add_operation (GALGAS_string ("_property_selection : EBSelection <["), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 245)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 245)).add_operation (GALGAS_string ("]> {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 245)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 245)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    return self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 246)).add_operation (GALGAS_string ("_property.prop\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 246)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 246)) ;
+    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 244)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 245)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 245)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 245)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 245)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 246)).add_operation (GALGAS_string ("_property_selection : EBSelection <["), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 246)).add_operation (object->mProperty_mToManyTypeName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 246)).add_operation (GALGAS_string ("]> {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 246)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 246)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    return self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 247)).add_operation (GALGAS_string ("_property.prop\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 247)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 247)) ;
   result_result.plusAssign_operation(GALGAS_string ("  }\n"
-    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 247)) ;
+    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 248)) ;
 //---
   return result_result ;
 }
@@ -2186,19 +2186,19 @@ static GALGAS_string extensionGetter_toManyProxyGeneration_configurationCode (co
   GALGAS_string result_result ; // Returned variable
   const cPtr_toManyProxyGeneration * object = (const cPtr_toManyProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toManyProxyGeneration) ;
-  result_result = GALGAS_string ("  //--- ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 253)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 253)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    do{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 254)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      let controller = EBSimpleController (\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 255)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        observedObjects: [self.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 256)).add_operation (GALGAS_string ("_property],\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 256)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 256)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        callBack: { [weak self] in\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 257)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          if let me = self, let model = me.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 258)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 258)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 258)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            me.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 259)).add_operation (GALGAS_string ("_property.setModel (model."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 259)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 259)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 259)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 259)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 260)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 261)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      )\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 262)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 263)).add_operation (GALGAS_string ("_property.addEBObserverOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 263)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 263)).add_operation (GALGAS_string (" (controller)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 263)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 263)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 264)).add_operation (GALGAS_string ("_modelDidChangeController = controller\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 264)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 264)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 265)) ;
+  result_result = GALGAS_string ("  //--- ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 254)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 254)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    do{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 255)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      let controller = EBSimpleController (\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 256)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        observedObjects: [self.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 257)).add_operation (GALGAS_string ("_property],\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 257)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 257)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        callBack: { [weak self] in\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 258)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          if let me = self, let model = me.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 259)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 259)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 259)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            me.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 260)).add_operation (GALGAS_string ("_property.setModel (model."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 260)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 260)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 260)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 260)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 261)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 262)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      )\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 263)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 264)).add_operation (GALGAS_string ("_property.addEBObserverOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 264)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 264)).add_operation (GALGAS_string (" (controller)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 264)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 264)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 265)).add_operation (GALGAS_string ("_modelDidChangeController = controller\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 265)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 265)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 266)) ;
 //---
   return result_result ;
 }
@@ -2227,10 +2227,10 @@ static GALGAS_string extensionGetter_toManyProxyGeneration_terminationCode (cons
   GALGAS_string result_result ; // Returned variable
   const cPtr_toManyProxyGeneration * object = (const cPtr_toManyProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toManyProxyGeneration) ;
-  result_result = GALGAS_string ("  //--- ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 271)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 271)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 272)).add_operation (GALGAS_string ("_property.setModel (nil)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 272)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 272)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 273)).add_operation (GALGAS_string ("_modelDidChangeController\?.unregister ()\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 273)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 273)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 274)).add_operation (GALGAS_string ("_modelDidChangeController = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 274)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 274)) ;
+  result_result = GALGAS_string ("  //--- ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 272)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 272)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 273)).add_operation (GALGAS_string ("_property.setModel (nil)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 273)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 273)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 274)).add_operation (GALGAS_string ("_modelDidChangeController\?.unregister ()\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 274)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 274)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 275)).add_operation (GALGAS_string ("_modelDidChangeController = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 275)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 275)) ;
 //---
   return result_result ;
 }
@@ -2259,8 +2259,8 @@ static GALGAS_string extensionGetter_toManyProxyGeneration_clearObjectExplorerCo
   GALGAS_string result_result ; // Returned variable
   const cPtr_toManyProxyGeneration * object = (const cPtr_toManyProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_toManyProxyGeneration) ;
-  result_result = GALGAS_string ("  //--- ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 280)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 280)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 281)).add_operation (GALGAS_string ("_property.mObserverExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 281)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 281)) ;
+  result_result = GALGAS_string ("  //--- ToMany proxy: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 281)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 281)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 282)).add_operation (GALGAS_string ("_property.mObserverExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 282)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 282)) ;
 //---
   return result_result ;
 }
@@ -2289,16 +2289,16 @@ static GALGAS_string extensionGetter_atomicProxyGeneration_declarationInSelectio
   GALGAS_string result_result ; // Returned variable
   const cPtr_atomicProxyGeneration * object = (const cPtr_atomicProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_atomicProxyGeneration) ;
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 304)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 304)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 304)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 305)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 305)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 305)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 306)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 306)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 306)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 306)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 307)).add_operation (GALGAS_string ("_property = EBPropertyProxy_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 307)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 307)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 307)).add_operation (GALGAS_string (" ()\n"
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 305)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 305)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 305)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //   Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 306)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 306)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 306)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 307)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 307)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 307)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 307)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)).add_operation (GALGAS_string ("_property_selection : EBSelection <"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 308)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    return self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 309)).add_operation (GALGAS_string ("_property.prop\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 309)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 309)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)).add_operation (GALGAS_string ("_property = EBPropertyProxy_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)).add_operation (GALGAS_string (" ()\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 308)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 308)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 309)).add_operation (GALGAS_string ("_property_selection : EBSelection <"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 309)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 309)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 309)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 309)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 309)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    return self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 310)).add_operation (GALGAS_string ("_property.prop\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 310)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 310)) ;
   result_result.plusAssign_operation(GALGAS_string ("  }\n"
-    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 310)) ;
+    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 311)) ;
 //---
   return result_result ;
 }
@@ -2327,75 +2327,75 @@ static GALGAS_string extensionGetter_atomicProxyGeneration_bindPropertyInSelecti
   GALGAS_string result_result ; // Returned variable
   const cPtr_atomicProxyGeneration * object = (const cPtr_atomicProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_atomicProxyGeneration) ;
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 316)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 316)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 316)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  private final func bind_property_").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 317)).add_operation (GALGAS_string (" () {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 317)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 317)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.selectedArray_property.addEBObserverOf_").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 318)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 318)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 318)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 318)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 318)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 319)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 319)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 319)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 320)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        switch model.prop {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 321)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 322)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 323)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 324)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 325)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 326)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          var s = Set <").add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 327)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 327)).add_operation (GALGAS_string ("> ()\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 327)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 327)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          var isMultipleSelection = false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 328)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 329)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            switch object.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 330)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 330)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 330)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 331)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 332)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 333)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              isMultipleSelection = true\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 334)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .single (let vProp) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 335)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              s.insert (vProp)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 336)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 337)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 338)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          if isMultipleSelection {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 339)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 340)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 0 {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 341)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 342)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 1 {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 343)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .single (s.first!)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 344)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 345)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 346)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 347)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 348)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 349)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 350)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 351)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 352)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 354)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 354)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 354)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 354)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 354)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 354)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 355)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        switch model.prop {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 356)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 357)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          break\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 358)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 359)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 360)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            object.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 361)).add_operation (GALGAS_string ("_property.setProp (inValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 361)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 361)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 362)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 363)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 364)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 365)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 366)).add_operation (GALGAS_string ("_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 366)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 366)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 366)).add_operation (GALGAS_string (", windowForSheet : NSWindow\?) in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 366)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 366)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 367)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        switch model.prop {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 368)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 369)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 370)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 371)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 372)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            let result = object.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 373)).add_operation (GALGAS_string ("_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 373)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 373)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            if !result {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 374)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              return false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 375)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 376)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 377)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return true\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 378)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 379)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 380)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 381)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 382)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 383)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 384)) ;
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 317)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 317)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 317)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  private final func bind_property_").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 318)).add_operation (GALGAS_string (" () {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 318)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 318)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.selectedArray_property.addEBObserverOf_").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 319)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 319)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 319)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 319)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 319)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 320)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 320)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 320)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 321)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        switch model.prop {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 322)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 323)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 324)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 325)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 326)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 327)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          var s = Set <").add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 328)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 328)).add_operation (GALGAS_string ("> ()\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 328)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 328)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          var isMultipleSelection = false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 329)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 330)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            switch object.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 331)).add_operation (GALGAS_string ("_property_selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 331)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 331)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 332)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 333)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 334)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              isMultipleSelection = true\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 335)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .single (let vProp) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 336)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              s.insert (vProp)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 337)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 338)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 339)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          if isMultipleSelection {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 340)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 341)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 0 {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 342)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 343)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 1 {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 344)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .single (s.first!)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 345)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 346)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 347)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 348)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 349)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 350)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 351)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 352)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 353)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 355)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 355)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 355)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 355)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 355)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 355)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 356)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        switch model.prop {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 357)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 358)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          break\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 359)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 360)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 361)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            object.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 362)).add_operation (GALGAS_string ("_property.setProp (inValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 362)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 362)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 363)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 364)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 365)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 366)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 367)).add_operation (GALGAS_string ("_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 367)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 367)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 367)).add_operation (GALGAS_string (", windowForSheet : NSWindow\?) in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 367)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 367)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 368)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        switch model.prop {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 369)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 370)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 371)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 372)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 373)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            let result = object.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 374)).add_operation (GALGAS_string ("_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 374)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 374)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            if !result {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 375)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              return false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 376)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 377)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 378)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return true\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 379)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 380)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 381)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 382)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 383)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 384)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 385)) ;
 //---
   return result_result ;
 }
@@ -2425,35 +2425,35 @@ static GALGAS_string extensionGetter_atomicProxyGeneration_propertyDeclarationCo
   GALGAS_string result_result ; // Returned variable
   const cPtr_atomicProxyGeneration * object = (const cPtr_atomicProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_atomicProxyGeneration) ;
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 390)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 390)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 390)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 391)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 391)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 391)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 392)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 392)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 392)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 392)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 393)).add_operation (GALGAS_string ("_property = EBPropertyProxy_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 393)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 393)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 393)).add_operation (GALGAS_string (" ()\n"
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 391)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 391)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 391)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //   Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 392)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 392)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 392)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 393)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 393)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 393)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 393)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 394)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 394)).add_operation (GALGAS_string ("\n"
+  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 394)).add_operation (GALGAS_string ("_property = EBPropertyProxy_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 394)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 394)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 394)).add_operation (GALGAS_string (" ()\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 394)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 394)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 395)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 395)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 395)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 395)).add_operation (GALGAS_string ("\? {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 395)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 395)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    get {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 396)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      switch self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 397)).add_operation (GALGAS_string ("_property.prop {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 397)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 397)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 398)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return nil\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 399)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 400)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return v\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 401)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 402)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 403)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    set {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 404)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let unwrappedNewValue = newValue {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 405)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 406)).add_operation (GALGAS_string ("_property.setProp (unwrappedNewValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 406)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 406)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 407)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 408)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 395)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 395)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 395)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 395)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 396)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 396)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 396)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 396)).add_operation (GALGAS_string ("\? {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 396)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 396)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    get {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 397)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      switch self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 398)).add_operation (GALGAS_string ("_property.prop {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 398)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 398)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 399)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return nil\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 400)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 401)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return v\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 402)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 403)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 404)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    set {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 405)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let unwrappedNewValue = newValue {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 406)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 407)).add_operation (GALGAS_string ("_property.setProp (unwrappedNewValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 407)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 407)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 408)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 409)) ;
   result_result.plusAssign_operation(GALGAS_string ("  }\n"
-    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 409)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 410)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 410)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 410)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 410)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 411)).add_operation (GALGAS_string ("_property_selection : EBSelection <"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 411)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 411)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 411)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 411)) ;
-  result_result.plusAssign_operation(GALGAS_string ("> { return self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 412)).add_operation (GALGAS_string ("_property.prop }\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 412)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 412)) ;
+    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 410)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("proxy.galgas", 411)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 411)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 411)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 411)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 412)).add_operation (GALGAS_string ("_property_selection : EBSelection <"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 412)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 412)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 412)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 412)) ;
+  result_result.plusAssign_operation(GALGAS_string ("> { return self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 413)).add_operation (GALGAS_string ("_property.prop }\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 413)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 413)) ;
 //---
   return result_result ;
 }
@@ -2482,21 +2482,21 @@ static GALGAS_string extensionGetter_atomicProxyGeneration_configurationCode (co
   GALGAS_string result_result ; // Returned variable
   const cPtr_atomicProxyGeneration * object = (const cPtr_atomicProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_atomicProxyGeneration) ;
-  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 418)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 418)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 419)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 419)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 419)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let object = self\?.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 420)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 420)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 420)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return .single (object.").add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 421)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 421)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 421)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 422)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 423)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 424)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 425)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 426)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (_ inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 426)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 426)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 426)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 426)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 426)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      self\?.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)).add_operation (GALGAS_string (" = inValue\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 427)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 428)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 429)).add_operation (GALGAS_string ("_property.mValidateAndWriteModelFunction = { [weak self] (_ inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 429)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 429)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 429)).add_operation (GALGAS_string (", _ inWindow : NSWindow\?) -> Bool in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 429)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 429)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      return self\?.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)).add_operation (GALGAS_string ("_property.validateAndSetProp (inValue, windowForSheet: inWindow) \?\? false\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 430)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 431)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 432)).add_operation (GALGAS_string ("_property.addEBObserverOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 432)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 432)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 432)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 433)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 433)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 432)) ;
+  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 419)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 419)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 420)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 420)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 420)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let object = self\?.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 421)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 421)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 421)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return .single (object.").add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 422)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 422)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 422)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 423)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 424)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 425)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 426)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (_ inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 427)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 427)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self\?.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 428)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 428)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 428)).add_operation (GALGAS_string (" = inValue\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 428)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 428)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 429)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)).add_operation (GALGAS_string ("_property.mValidateAndWriteModelFunction = { [weak self] (_ inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)).add_operation (extensionGetter_swiftTypeName (object->mProperty_mType, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)).add_operation (GALGAS_string (", _ inWindow : NSWindow\?) -> Bool in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 430)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 430)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      return self\?.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 431)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 431)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 431)).add_operation (GALGAS_string ("_property.validateAndSetProp (inValue, windowForSheet: inWindow) \?\? false\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 431)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 431)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 432)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 433)).add_operation (GALGAS_string ("_property.addEBObserverOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 433)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 433)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 433)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 434)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 434)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 433)) ;
 //---
   return result_result ;
 }
@@ -2525,11 +2525,11 @@ static GALGAS_string extensionGetter_atomicProxyGeneration_terminationCode (cons
   GALGAS_string result_result ; // Returned variable
   const cPtr_atomicProxyGeneration * object = (const cPtr_atomicProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_atomicProxyGeneration) ;
-  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 439)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 439)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 440)).add_operation (GALGAS_string ("_property.mReadModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 440)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 440)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 441)).add_operation (GALGAS_string ("_property.mWriteModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 441)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 441)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 442)).add_operation (GALGAS_string ("_property.mValidateAndWriteModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 442)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 442)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 443)).add_operation (GALGAS_string ("_property.removeEBObserverOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 443)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 443)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 443)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 444)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 444)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 443)) ;
+  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 440)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 440)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 441)).add_operation (GALGAS_string ("_property.mReadModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 441)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 441)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 442)).add_operation (GALGAS_string ("_property.mWriteModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 442)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 442)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 443)).add_operation (GALGAS_string ("_property.mValidateAndWriteModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 443)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 443)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mObservedRelationshipName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 444)).add_operation (GALGAS_string ("_property.removeEBObserverOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 444)).add_operation (object->mProperty_mObservedPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 444)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 444)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 445)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 445)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 444)) ;
 //---
   return result_result ;
 }
@@ -2558,9 +2558,9 @@ static GALGAS_string extensionGetter_atomicProxyGeneration_clearObjectExplorerCo
   GALGAS_string result_result ; // Returned variable
   const cPtr_atomicProxyGeneration * object = (const cPtr_atomicProxyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_atomicProxyGeneration) ;
-  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 450)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 450)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 451)).add_operation (GALGAS_string ("_property.mObserverExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 451)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 451)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 452)).add_operation (GALGAS_string ("_property.mValueExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 452)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 452)) ;
+  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 451)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 451)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 452)).add_operation (GALGAS_string ("_property.mObserverExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 452)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 452)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 453)).add_operation (GALGAS_string ("_property.mValueExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 453)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 453)) ;
 //---
   return result_result ;
 }
@@ -5544,27 +5544,27 @@ static void extensionMethod_arrayControllerDeclarationAST_enterInPrecedenceGraph
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_arrayControllerDeclarationAST * object = (const cPtr_arrayControllerDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerDeclarationAST) ;
-  GALGAS_lstring var_node_905 = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 21)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 21)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 21)), object->mProperty_mControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 21)) ;
+  GALGAS_lstring var_node_1162 = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 28)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 28)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 28)), object->mProperty_mControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 28)) ;
   {
   const GALGAS_arrayControllerDeclarationAST temp_0 = object ;
-  ioArgument_ioGraph.setter_addNode (var_node_905, temp_0, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 22)) ;
+  ioArgument_ioGraph.setter_addNode (var_node_1162, temp_0, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 29)) ;
   }
   {
-  ioArgument_ioGraph.setter_addEdge (var_node_905, object->mProperty_mClassName COMMA_SOURCE_FILE ("array-controller.galgas", 23)) ;
+  ioArgument_ioGraph.setter_addEdge (var_node_1162, object->mProperty_mClassName COMMA_SOURCE_FILE ("array-controller.galgas", 30)) ;
   }
   switch (object->mProperty_mModel.enumValue ()) {
   case GALGAS_arrayControllerBoundModelAST::kNotBuilt:
     break ;
   case GALGAS_arrayControllerBoundModelAST::kEnum_rootToManyRelationship:
     {
-      const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship * extractPtr_1309 = (const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship *) (object->mProperty_mModel.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_rootEntityName = extractPtr_1309->mAssociatedValue0 ;
+      const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship * extractPtr_1566 = (const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship *) (object->mProperty_mModel.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_rootEntityName = extractPtr_1566->mAssociatedValue0 ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
         test_1 = GALGAS_bool (kIsNotEqual, extractedValue_rootEntityName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_1) {
           {
-          ioArgument_ioGraph.setter_addEdge (var_node_905, GALGAS_lstring::constructor_new (extractedValue_rootEntityName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 27)).add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 27)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 27)), object->mProperty_mToManyPropertyName.getter_location (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 27)) COMMA_SOURCE_FILE ("array-controller.galgas", 27)) ;
+          ioArgument_ioGraph.setter_addEdge (var_node_1162, GALGAS_lstring::constructor_new (extractedValue_rootEntityName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 34)).add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 34)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 34)), object->mProperty_mToManyPropertyName.getter_location (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 34)) COMMA_SOURCE_FILE ("array-controller.galgas", 34)) ;
           }
         }
       }
@@ -5573,7 +5573,7 @@ static void extensionMethod_arrayControllerDeclarationAST_enterInPrecedenceGraph
   case GALGAS_arrayControllerBoundModelAST::kEnum_selfToManyRelationship:
     {
       {
-      ioArgument_ioGraph.setter_addEdge (var_node_905, GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 30)).add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 30)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 30)), object->mProperty_mToManyPropertyName.getter_location (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 30)) COMMA_SOURCE_FILE ("array-controller.galgas", 30)) ;
+      ioArgument_ioGraph.setter_addEdge (var_node_1162, GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 37)).add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 37)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 37)), object->mProperty_mToManyPropertyName.getter_location (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 37)) COMMA_SOURCE_FILE ("array-controller.galgas", 37)) ;
       }
     }
     break ;
@@ -5603,7 +5603,7 @@ static GALGAS_lstring extensionGetter_arrayControllerDeclarationAST_nodeKey (con
   GALGAS_lstring result_result ; // Returned variable
   const cPtr_arrayControllerDeclarationAST * object = (const cPtr_arrayControllerDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerDeclarationAST) ;
-  result_result = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 37)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 37)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 37)), object->mProperty_mControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 37)) ;
+  result_result = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 44)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 44)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 44)), object->mProperty_mControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("array-controller.galgas", 44)) ;
 //---
   return result_result ;
 }
@@ -5633,66 +5633,66 @@ static void extensionMethod_arrayControllerDeclarationAST_firstAnalysisPhase (co
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_arrayControllerDeclarationAST * object = (const cPtr_arrayControllerDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerDeclarationAST) ;
-  cMapElement_classMap * objectArray_3479 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("array-controller.galgas", 88)) ;
-  if (NULL != objectArray_3479) {
-    macroValidSharedObject (objectArray_3479, cMapElement_classMap) ;
-    GALGAS_actionMap temp_0 = GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("array-controller.galgas", 91)) ;
-    temp_0.addAssign_operation (GALGAS_string ("add").getter_nowhere (SOURCE_FILE ("array-controller.galgas", 91)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 91)) ;
-    temp_0.addAssign_operation (GALGAS_string ("remove").getter_nowhere (SOURCE_FILE ("array-controller.galgas", 91)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 91)) ;
-    GALGAS_actionMap var_controllerActions_3594 = temp_0 ;
+  cMapElement_classMap * objectArray_4216 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, object->mProperty_mClassName, kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("array-controller.galgas", 106)) ;
+  if (NULL != objectArray_4216) {
+    macroValidSharedObject (objectArray_4216, cMapElement_classMap) ;
+    GALGAS_actionMap temp_0 = GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("array-controller.galgas", 109)) ;
+    temp_0.addAssign_operation (GALGAS_string ("add").getter_nowhere (SOURCE_FILE ("array-controller.galgas", 109)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 109)) ;
+    temp_0.addAssign_operation (GALGAS_string ("remove").getter_nowhere (SOURCE_FILE ("array-controller.galgas", 109)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 109)) ;
+    GALGAS_actionMap var_controllerActions_4331 = temp_0 ;
     switch (object->mProperty_mModel.enumValue ()) {
     case GALGAS_arrayControllerBoundModelAST::kNotBuilt:
       break ;
     case GALGAS_arrayControllerBoundModelAST::kEnum_rootToManyRelationship:
       {
-        const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship * extractPtr_4771 = (const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship *) (object->mProperty_mModel.unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_rootEntityName = extractPtr_4771->mAssociatedValue0 ;
-        GALGAS_propertyMap var_rootProperties_3799 ;
-        GALGAS_classKind joker_3778 ; // Joker input parameter
-        GALGAS_actionMap joker_3801_2 ; // Joker input parameter
-        GALGAS_propertyGenerationList joker_3801_1 ; // Joker input parameter
-        ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_rootEntityName, joker_3778, var_rootProperties_3799, joker_3801_2, joker_3801_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 94)) ;
-        GALGAS_propertyKind var_classKind_3872 ;
-        GALGAS_actionMap joker_3874_2 ; // Joker input parameter
-        GALGAS_bool joker_3874_1 ; // Joker input parameter
-        var_rootProperties_3799.method_searchKey (object->mProperty_mToManyPropertyName, var_classKind_3872, joker_3874_2, joker_3874_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 95)) ;
-        switch (var_classKind_3872.enumValue ()) {
+        const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship * extractPtr_5508 = (const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship *) (object->mProperty_mModel.unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_rootEntityName = extractPtr_5508->mAssociatedValue0 ;
+        GALGAS_propertyMap var_rootProperties_4536 ;
+        GALGAS_classKind joker_4515 ; // Joker input parameter
+        GALGAS_actionMap joker_4538_2 ; // Joker input parameter
+        GALGAS_propertyGenerationList joker_4538_1 ; // Joker input parameter
+        ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_rootEntityName, joker_4515, var_rootProperties_4536, joker_4538_2, joker_4538_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 112)) ;
+        GALGAS_propertyKind var_classKind_4609 ;
+        GALGAS_actionMap joker_4611_2 ; // Joker input parameter
+        GALGAS_bool joker_4611_1 ; // Joker input parameter
+        var_rootProperties_4536.method_searchKey (object->mProperty_mToManyPropertyName, var_classKind_4609, joker_4611_2, joker_4611_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 113)) ;
+        switch (var_classKind_4609.enumValue ()) {
         case GALGAS_propertyKind::kNotBuilt:
           break ;
         case GALGAS_propertyKind::kEnum_property:
           {
             TC_Array <C_FixItDescription> fixItArray1 ;
-            inCompiler->emitSemanticError (extractedValue_rootEntityName.getter_location (SOURCE_FILE ("array-controller.galgas", 98)), GALGAS_string ("a toMany relationship is required here"), fixItArray1  COMMA_SOURCE_FILE ("array-controller.galgas", 98)) ;
+            inCompiler->emitSemanticError (extractedValue_rootEntityName.getter_location (SOURCE_FILE ("array-controller.galgas", 116)), GALGAS_string ("a toMany relationship is required here"), fixItArray1  COMMA_SOURCE_FILE ("array-controller.galgas", 116)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_toMany:
           {
-            const cEnumAssociatedValues_propertyKind_toMany * extractPtr_4450 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_classKind_3872.unsafePointer ()) ;
-            const GALGAS_lstring extractedValue_typeName = extractPtr_4450->mAssociatedValue0 ;
-            const GALGAS_bool extractedValue_graphic = extractPtr_4450->mAssociatedValue2 ;
-            GALGAS_propertyKind var_kind_4059 = GALGAS_propertyKind::constructor_arrayController (extractedValue_typeName, extractedValue_graphic  COMMA_SOURCE_FILE ("array-controller.galgas", 100)) ;
+            const cEnumAssociatedValues_propertyKind_toMany * extractPtr_5187 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_classKind_4609.unsafePointer ()) ;
+            const GALGAS_lstring extractedValue_typeName = extractPtr_5187->mAssociatedValue0 ;
+            const GALGAS_bool extractedValue_graphic = extractPtr_5187->mAssociatedValue2 ;
+            GALGAS_propertyKind var_kind_4796 = GALGAS_propertyKind::constructor_arrayController (extractedValue_typeName, extractedValue_graphic  COMMA_SOURCE_FILE ("array-controller.galgas", 118)) ;
             {
-            objectArray_3479->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mControllerName, var_kind_4059, var_controllerActions_3594, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 104)) ;
+            objectArray_4216->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mControllerName, var_kind_4796, var_controllerActions_4331, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 122)) ;
             }
-            objectArray_3479->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_arrayControllerPropertyGeneration::constructor_new (object->mProperty_mControllerName.getter_string (HERE), GALGAS_string ("rootObject.").add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 108)), object->mProperty_mClassName.getter_string (SOURCE_FILE ("array-controller.galgas", 109))  COMMA_SOURCE_FILE ("array-controller.galgas", 106))  COMMA_SOURCE_FILE ("array-controller.galgas", 106)) ;
+            objectArray_4216->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_arrayControllerPropertyGeneration::constructor_new (object->mProperty_mControllerName.getter_string (HERE), GALGAS_string ("rootObject.").add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 126)), object->mProperty_mClassName.getter_string (SOURCE_FILE ("array-controller.galgas", 127))  COMMA_SOURCE_FILE ("array-controller.galgas", 124))  COMMA_SOURCE_FILE ("array-controller.galgas", 124)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_toOne:
           {
             TC_Array <C_FixItDescription> fixItArray2 ;
-            inCompiler->emitSemanticError (extractedValue_rootEntityName.getter_location (SOURCE_FILE ("array-controller.galgas", 112)), GALGAS_string ("a toMany relationship is required here"), fixItArray2  COMMA_SOURCE_FILE ("array-controller.galgas", 112)) ;
+            inCompiler->emitSemanticError (extractedValue_rootEntityName.getter_location (SOURCE_FILE ("array-controller.galgas", 130)), GALGAS_string ("a toMany relationship is required here"), fixItArray2  COMMA_SOURCE_FILE ("array-controller.galgas", 130)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_arrayController:
           {
             TC_Array <C_FixItDescription> fixItArray3 ;
-            inCompiler->emitSemanticError (extractedValue_rootEntityName.getter_location (SOURCE_FILE ("array-controller.galgas", 114)), GALGAS_string ("a toMany relationship is required here"), fixItArray3  COMMA_SOURCE_FILE ("array-controller.galgas", 114)) ;
+            inCompiler->emitSemanticError (extractedValue_rootEntityName.getter_location (SOURCE_FILE ("array-controller.galgas", 132)), GALGAS_string ("a toMany relationship is required here"), fixItArray3  COMMA_SOURCE_FILE ("array-controller.galgas", 132)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_selectionController:
           {
             TC_Array <C_FixItDescription> fixItArray4 ;
-            inCompiler->emitSemanticError (extractedValue_rootEntityName.getter_location (SOURCE_FILE ("array-controller.galgas", 116)), GALGAS_string ("a toMany relationship is required here"), fixItArray4  COMMA_SOURCE_FILE ("array-controller.galgas", 116)) ;
+            inCompiler->emitSemanticError (extractedValue_rootEntityName.getter_location (SOURCE_FILE ("array-controller.galgas", 134)), GALGAS_string ("a toMany relationship is required here"), fixItArray4  COMMA_SOURCE_FILE ("array-controller.galgas", 134)) ;
           }
           break ;
         }
@@ -5700,47 +5700,47 @@ static void extensionMethod_arrayControllerDeclarationAST_firstAnalysisPhase (co
       break ;
     case GALGAS_arrayControllerBoundModelAST::kEnum_selfToManyRelationship:
       {
-        GALGAS_propertyKind var_classKind_4871 ;
-        GALGAS_actionMap joker_4873_2 ; // Joker input parameter
-        GALGAS_bool joker_4873_1 ; // Joker input parameter
-        objectArray_3479->mProperty_mPropertyMap.method_searchKey (object->mProperty_mToManyPropertyName, var_classKind_4871, joker_4873_2, joker_4873_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 119)) ;
-        switch (var_classKind_4871.enumValue ()) {
+        GALGAS_propertyKind var_classKind_5608 ;
+        GALGAS_actionMap joker_5610_2 ; // Joker input parameter
+        GALGAS_bool joker_5610_1 ; // Joker input parameter
+        objectArray_4216->mProperty_mPropertyMap.method_searchKey (object->mProperty_mToManyPropertyName, var_classKind_5608, joker_5610_2, joker_5610_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 137)) ;
+        switch (var_classKind_5608.enumValue ()) {
         case GALGAS_propertyKind::kNotBuilt:
           break ;
         case GALGAS_propertyKind::kEnum_property:
           {
             TC_Array <C_FixItDescription> fixItArray5 ;
-            inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 122)), GALGAS_string ("a toMany relationship is required here"), fixItArray5  COMMA_SOURCE_FILE ("array-controller.galgas", 122)) ;
+            inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 140)), GALGAS_string ("a toMany relationship is required here"), fixItArray5  COMMA_SOURCE_FILE ("array-controller.galgas", 140)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_toMany:
           {
-            const cEnumAssociatedValues_propertyKind_toMany * extractPtr_5438 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_classKind_4871.unsafePointer ()) ;
-            const GALGAS_lstring extractedValue_typeName = extractPtr_5438->mAssociatedValue0 ;
-            const GALGAS_bool extractedValue_graphic = extractPtr_5438->mAssociatedValue2 ;
-            GALGAS_propertyKind var_kind_5063 = GALGAS_propertyKind::constructor_arrayController (extractedValue_typeName, extractedValue_graphic  COMMA_SOURCE_FILE ("array-controller.galgas", 124)) ;
+            const cEnumAssociatedValues_propertyKind_toMany * extractPtr_6175 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_classKind_5608.unsafePointer ()) ;
+            const GALGAS_lstring extractedValue_typeName = extractPtr_6175->mAssociatedValue0 ;
+            const GALGAS_bool extractedValue_graphic = extractPtr_6175->mAssociatedValue2 ;
+            GALGAS_propertyKind var_kind_5800 = GALGAS_propertyKind::constructor_arrayController (extractedValue_typeName, extractedValue_graphic  COMMA_SOURCE_FILE ("array-controller.galgas", 142)) ;
             {
-            objectArray_3479->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mControllerName, var_kind_5063, var_controllerActions_3594, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 128)) ;
+            objectArray_4216->mProperty_mPropertyMap.setter_insertKey (object->mProperty_mControllerName, var_kind_5800, var_controllerActions_4331, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 146)) ;
             }
-            objectArray_3479->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_arrayControllerPropertyGeneration::constructor_new (object->mProperty_mControllerName.getter_string (HERE), object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 132)), object->mProperty_mClassName.getter_string (SOURCE_FILE ("array-controller.galgas", 133))  COMMA_SOURCE_FILE ("array-controller.galgas", 130))  COMMA_SOURCE_FILE ("array-controller.galgas", 130)) ;
+            objectArray_4216->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_arrayControllerPropertyGeneration::constructor_new (object->mProperty_mControllerName.getter_string (HERE), object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("array-controller.galgas", 150)), object->mProperty_mClassName.getter_string (SOURCE_FILE ("array-controller.galgas", 151))  COMMA_SOURCE_FILE ("array-controller.galgas", 148))  COMMA_SOURCE_FILE ("array-controller.galgas", 148)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_toOne:
           {
             TC_Array <C_FixItDescription> fixItArray6 ;
-            inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 136)), GALGAS_string ("a toMany relationship is required here"), fixItArray6  COMMA_SOURCE_FILE ("array-controller.galgas", 136)) ;
+            inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 154)), GALGAS_string ("a toMany relationship is required here"), fixItArray6  COMMA_SOURCE_FILE ("array-controller.galgas", 154)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_arrayController:
           {
             TC_Array <C_FixItDescription> fixItArray7 ;
-            inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 138)), GALGAS_string ("a toMany relationship is required here"), fixItArray7  COMMA_SOURCE_FILE ("array-controller.galgas", 138)) ;
+            inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 156)), GALGAS_string ("a toMany relationship is required here"), fixItArray7  COMMA_SOURCE_FILE ("array-controller.galgas", 156)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_selectionController:
           {
             TC_Array <C_FixItDescription> fixItArray8 ;
-            inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 140)), GALGAS_string ("a toMany relationship is required here"), fixItArray8  COMMA_SOURCE_FILE ("array-controller.galgas", 140)) ;
+            inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 158)), GALGAS_string ("a toMany relationship is required here"), fixItArray8  COMMA_SOURCE_FILE ("array-controller.galgas", 158)) ;
           }
           break ;
         }
@@ -5774,108 +5774,108 @@ static void extensionMethod_arrayControllerDeclarationAST_thirdAnalysisPhase (co
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_arrayControllerDeclarationAST * object = (const cPtr_arrayControllerDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerDeclarationAST) ;
-  GALGAS_propertyMap var_boundModelPropertyMap_6249 ;
+  GALGAS_propertyMap var_boundModelPropertyMap_6986 ;
   switch (object->mProperty_mModel.enumValue ()) {
   case GALGAS_arrayControllerBoundModelAST::kNotBuilt:
     break ;
   case GALGAS_arrayControllerBoundModelAST::kEnum_rootToManyRelationship:
     {
-      const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship * extractPtr_6447 = (const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship *) (object->mProperty_mModel.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_rootEntityName = extractPtr_6447->mAssociatedValue0 ;
-      GALGAS_classKind joker_6398 ; // Joker input parameter
-      GALGAS_actionMap joker_6439_2 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_6439_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_rootEntityName, joker_6398, var_boundModelPropertyMap_6249, joker_6439_2, joker_6439_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 157)) ;
+      const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship * extractPtr_7184 = (const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship *) (object->mProperty_mModel.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_rootEntityName = extractPtr_7184->mAssociatedValue0 ;
+      GALGAS_classKind joker_7135 ; // Joker input parameter
+      GALGAS_actionMap joker_7176_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_7176_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_rootEntityName, joker_7135, var_boundModelPropertyMap_6986, joker_7176_2, joker_7176_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 175)) ;
     }
     break ;
   case GALGAS_arrayControllerBoundModelAST::kEnum_selfToManyRelationship:
     {
-      GALGAS_classKind joker_6550 ; // Joker input parameter
-      GALGAS_actionMap joker_6591_2 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_6591_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mClassName, joker_6550, var_boundModelPropertyMap_6249, joker_6591_2, joker_6591_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 164)) ;
+      GALGAS_classKind joker_7287 ; // Joker input parameter
+      GALGAS_actionMap joker_7328_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_7328_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mClassName, joker_7287, var_boundModelPropertyMap_6986, joker_7328_2, joker_7328_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 182)) ;
     }
     break ;
   }
-  GALGAS_propertyKind var_boundModelClassKind_6699 ;
-  GALGAS_actionMap joker_6706_2 ; // Joker input parameter
-  GALGAS_bool joker_6706_1 ; // Joker input parameter
-  var_boundModelPropertyMap_6249.method_searchKey (object->mProperty_mToManyPropertyName, var_boundModelClassKind_6699, joker_6706_2, joker_6706_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 171)) ;
-  GALGAS_actionMap var_actionMap_6822 ;
-  GALGAS_propertyMap var_propertyMap_6849 ;
-  GALGAS_arrayControllerModelKind var_arrayControllerModelKind_6902 ;
-  GALGAS_bool var_graphic_6918 ;
-  GALGAS_string var_elementTypeName_6944 ;
-  switch (var_boundModelClassKind_6699.enumValue ()) {
+  GALGAS_propertyKind var_boundModelClassKind_7436 ;
+  GALGAS_actionMap joker_7443_2 ; // Joker input parameter
+  GALGAS_bool joker_7443_1 ; // Joker input parameter
+  var_boundModelPropertyMap_6986.method_searchKey (object->mProperty_mToManyPropertyName, var_boundModelClassKind_7436, joker_7443_2, joker_7443_1, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 189)) ;
+  GALGAS_actionMap var_actionMap_7559 ;
+  GALGAS_propertyMap var_propertyMap_7586 ;
+  GALGAS_arrayControllerModelKind var_arrayControllerModelKind_7639 ;
+  GALGAS_bool var_graphic_7655 ;
+  GALGAS_string var_elementTypeName_7681 ;
+  switch (var_boundModelClassKind_7436.enumValue ()) {
   case GALGAS_propertyKind::kNotBuilt:
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
       TC_Array <C_FixItDescription> fixItArray0 ;
-      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 184)), GALGAS_string ("a toMany property is required here"), fixItArray0  COMMA_SOURCE_FILE ("array-controller.galgas", 184)) ;
-      var_graphic_6918.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_6902.drop () ; // Release error dropped variable
-      var_propertyMap_6849.drop () ; // Release error dropped variable
-      var_actionMap_6822.drop () ; // Release error dropped variable
-      var_elementTypeName_6944.drop () ; // Release error dropped variable
+      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 202)), GALGAS_string ("a toMany property is required here"), fixItArray0  COMMA_SOURCE_FILE ("array-controller.galgas", 202)) ;
+      var_graphic_7655.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_7639.drop () ; // Release error dropped variable
+      var_propertyMap_7586.drop () ; // Release error dropped variable
+      var_actionMap_7559.drop () ; // Release error dropped variable
+      var_elementTypeName_7681.drop () ; // Release error dropped variable
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
     {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_7467 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_boundModelClassKind_6699.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_typeName = extractPtr_7467->mAssociatedValue0 ;
-      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_7467->mAssociatedValue1 ;
-      const GALGAS_bool extractedValue_isGraphic = extractPtr_7467->mAssociatedValue2 ;
-      var_elementTypeName_6944 = extractedValue_typeName.getter_string (SOURCE_FILE ("array-controller.galgas", 188)) ;
-      var_graphic_6918 = extractedValue_isGraphic ;
+      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_8204 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_boundModelClassKind_7436.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_typeName = extractPtr_8204->mAssociatedValue0 ;
+      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_8204->mAssociatedValue1 ;
+      const GALGAS_bool extractedValue_isGraphic = extractPtr_8204->mAssociatedValue2 ;
+      var_elementTypeName_7681 = extractedValue_typeName.getter_string (SOURCE_FILE ("array-controller.galgas", 206)) ;
+      var_graphic_7655 = extractedValue_isGraphic ;
       GALGAS_arrayControllerModelKind temp_1 ;
-      const enumGalgasBool test_2 = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("array-controller.galgas", 190)).boolEnum () ;
+      const enumGalgasBool test_2 = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("array-controller.galgas", 208)).boolEnum () ;
       if (kBoolTrue == test_2) {
-        temp_1 = GALGAS_arrayControllerModelKind::constructor_transientArray (SOURCE_FILE ("array-controller.galgas", 191)) ;
+        temp_1 = GALGAS_arrayControllerModelKind::constructor_transientArray (SOURCE_FILE ("array-controller.galgas", 209)) ;
       }else if (kBoolFalse == test_2) {
-        temp_1 = GALGAS_arrayControllerModelKind::constructor_entityArray (SOURCE_FILE ("array-controller.galgas", 192)) ;
+        temp_1 = GALGAS_arrayControllerModelKind::constructor_entityArray (SOURCE_FILE ("array-controller.galgas", 210)) ;
       }
-      var_arrayControllerModelKind_6902 = temp_1 ;
-      GALGAS_classKind joker_7438 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_7465 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_typeName, joker_7438, var_propertyMap_6849, var_actionMap_6822, joker_7465, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 194)) ;
+      var_arrayControllerModelKind_7639 = temp_1 ;
+      GALGAS_classKind joker_8175 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_8202 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_typeName, joker_8175, var_propertyMap_7586, var_actionMap_7559, joker_8202, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 212)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toOne:
     {
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 196)), GALGAS_string ("a toMany property is required here"), fixItArray3  COMMA_SOURCE_FILE ("array-controller.galgas", 196)) ;
-      var_graphic_6918.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_6902.drop () ; // Release error dropped variable
-      var_propertyMap_6849.drop () ; // Release error dropped variable
-      var_actionMap_6822.drop () ; // Release error dropped variable
-      var_elementTypeName_6944.drop () ; // Release error dropped variable
+      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 214)), GALGAS_string ("a toMany property is required here"), fixItArray3  COMMA_SOURCE_FILE ("array-controller.galgas", 214)) ;
+      var_graphic_7655.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_7639.drop () ; // Release error dropped variable
+      var_propertyMap_7586.drop () ; // Release error dropped variable
+      var_actionMap_7559.drop () ; // Release error dropped variable
+      var_elementTypeName_7681.drop () ; // Release error dropped variable
     }
     break ;
   case GALGAS_propertyKind::kEnum_arrayController:
     {
       TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 200)), GALGAS_string ("a toMany property is required here"), fixItArray4  COMMA_SOURCE_FILE ("array-controller.galgas", 200)) ;
-      var_graphic_6918.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_6902.drop () ; // Release error dropped variable
-      var_propertyMap_6849.drop () ; // Release error dropped variable
-      var_actionMap_6822.drop () ; // Release error dropped variable
-      var_elementTypeName_6944.drop () ; // Release error dropped variable
+      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 218)), GALGAS_string ("a toMany property is required here"), fixItArray4  COMMA_SOURCE_FILE ("array-controller.galgas", 218)) ;
+      var_graphic_7655.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_7639.drop () ; // Release error dropped variable
+      var_propertyMap_7586.drop () ; // Release error dropped variable
+      var_actionMap_7559.drop () ; // Release error dropped variable
+      var_elementTypeName_7681.drop () ; // Release error dropped variable
     }
     break ;
   case GALGAS_propertyKind::kEnum_selectionController:
     {
       TC_Array <C_FixItDescription> fixItArray5 ;
-      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 204)), GALGAS_string ("a toMany property is required here"), fixItArray5  COMMA_SOURCE_FILE ("array-controller.galgas", 204)) ;
-      var_graphic_6918.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_6902.drop () ; // Release error dropped variable
-      var_propertyMap_6849.drop () ; // Release error dropped variable
-      var_actionMap_6822.drop () ; // Release error dropped variable
-      var_elementTypeName_6944.drop () ; // Release error dropped variable
+      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("array-controller.galgas", 222)), GALGAS_string ("a toMany property is required here"), fixItArray5  COMMA_SOURCE_FILE ("array-controller.galgas", 222)) ;
+      var_graphic_7655.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_7639.drop () ; // Release error dropped variable
+      var_propertyMap_7586.drop () ; // Release error dropped variable
+      var_actionMap_7559.drop () ; // Release error dropped variable
+      var_elementTypeName_7681.drop () ; // Release error dropped variable
     }
     break ;
   }
-  ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_arrayControllerGeneration::constructor_new (object->mProperty_mClassName.getter_string (SOURCE_FILE ("array-controller.galgas", 210)), object->mProperty_mControllerName, GALGAS_string ("ReadWriteArrayOf_").add_operation (var_elementTypeName_6944, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 212)), var_arrayControllerModelKind_6902, var_elementTypeName_6944, var_graphic_6918  COMMA_SOURCE_FILE ("array-controller.galgas", 209))  COMMA_SOURCE_FILE ("array-controller.galgas", 209)) ;
+  ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_arrayControllerGeneration::constructor_new (object->mProperty_mClassName.getter_string (SOURCE_FILE ("array-controller.galgas", 228)), object->mProperty_mControllerName, GALGAS_string ("ReadWriteArrayOf_").add_operation (var_elementTypeName_7681, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 230)), var_arrayControllerModelKind_7639, var_elementTypeName_7681, var_graphic_7655  COMMA_SOURCE_FILE ("array-controller.galgas", 227))  COMMA_SOURCE_FILE ("array-controller.galgas", 227)) ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5902,12 +5902,12 @@ static GALGAS_string extensionGetter_arrayControllerPropertyGeneration_propertyD
   GALGAS_string result_result ; // Returned variable
   const cPtr_arrayControllerPropertyGeneration * object = (const cPtr_arrayControllerPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerPropertyGeneration) ;
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("array-controller.galgas", 232)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 232)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 232)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   Array controller: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 233)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 233)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 233)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("array-controller.galgas", 234)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 234)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 234)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 234)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 235)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 235)).add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 235)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 235)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 235)).add_operation (GALGAS_string (" ()\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 235)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 235)) ;
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("array-controller.galgas", 250)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 250)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 250)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //   Array controller: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 251)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 251)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 251)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("array-controller.galgas", 252)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 252)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 252)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 252)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 253)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 253)).add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 253)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 253)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 253)).add_operation (GALGAS_string (" ()\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 253)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 253)) ;
 //---
   return result_result ;
 }
@@ -5936,8 +5936,8 @@ static GALGAS_string extensionGetter_arrayControllerPropertyGeneration_configura
   GALGAS_string result_result ; // Returned variable
   const cPtr_arrayControllerPropertyGeneration * object = (const cPtr_arrayControllerPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerPropertyGeneration) ;
-  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 241)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 241)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 242)).add_operation (GALGAS_string (".bind_model (self."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 242)).add_operation (object->mProperty_mModelString, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 242)).add_operation (GALGAS_string ("_property, self.ebUndoManager)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 242)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 242)) ;
+  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 259)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 259)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 260)).add_operation (GALGAS_string (".bind_model (self."), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 260)).add_operation (object->mProperty_mModelString, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 260)).add_operation (GALGAS_string ("_property, self.ebUndoManager)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 260)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 260)) ;
 //---
   return result_result ;
 }
@@ -5966,8 +5966,8 @@ static GALGAS_string extensionGetter_arrayControllerPropertyGeneration_populateE
   GALGAS_string result_result ; // Returned variable
   const cPtr_arrayControllerPropertyGeneration * object = (const cPtr_arrayControllerPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerPropertyGeneration) ;
-  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 248)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 248)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 249)).add_operation (GALGAS_string (".addExplorer (name: \""), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 249)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 249)).add_operation (GALGAS_string ("\", y:&y, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 249)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 249)) ;
+  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 266)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 266)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 267)).add_operation (GALGAS_string (".addExplorer (name: \""), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 267)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 267)).add_operation (GALGAS_string ("\", y:&y, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 267)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 267)) ;
 //---
   return result_result ;
 }
@@ -5996,8 +5996,8 @@ static GALGAS_string extensionGetter_arrayControllerPropertyGeneration_terminati
   GALGAS_string result_result ; // Returned variable
   const cPtr_arrayControllerPropertyGeneration * object = (const cPtr_arrayControllerPropertyGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_arrayControllerPropertyGeneration) ;
-  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 255)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 255)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 256)).add_operation (GALGAS_string (".unbind_model ()\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 256)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 256)) ;
+  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 273)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 273)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 274)).add_operation (GALGAS_string (".unbind_model ()\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 274)), inCompiler  COMMA_SOURCE_FILE ("array-controller.galgas", 274)) ;
 //---
   return result_result ;
 }
@@ -6080,7 +6080,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     result << ", EBGraphicViewControllerProtocol" ;
   }else if (kBoolFalse == test_0) {
   }
-  result << " {\n"
+  result << ", HiddenEBProtocol {\n"
     " \n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "  // Model\n"
@@ -6332,7 +6332,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
   if (kBoolTrue == test_5) {
     result << "\n"
       "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-      "  //  EBView interface\n"
+      "  //  Graphic view interface\n"
       "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
       "\n"
       "  var selectedGraphicObjectSet : Set <EBGraphicManagedObject> {\n"
@@ -7163,13 +7163,15 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     "    //--- Remove current attached view\n"
     "      self.mCurrentAttachedView\?.removeFromSuperview ()\n"
     "    //--- Add the new attached view\n"
-    "      if self.selectedArray_property.propset.count == 0 {\n"
+    "      if self.mViewIsHidden {\n"
+    "        self.mCurrentAttachedView = nil\n"
+    "      }else if self.selectedArray.count == 0 {\n"
     "        let tf = self.textField (\"Empty Selection\", inspectorView.frame)\n"
     "        inspectorView.addSubview (tf)\n"
     "        self.mCurrentAttachedView = tf\n"
     "      }else{\n"
     "        var selectionTypes = Set <ObjectIdentifier> ()\n"
-    "        for object in self.selectedArray_property.propset {\n"
+    "        for object in self.selectedArray {\n"
     "          let T = ObjectIdentifier (type (of: object))\n"
     "          selectionTypes.insert (T)\n"
     "        }\n"
@@ -7217,93 +7219,23 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
+    "  private var mViewIsHidden = false {\n"
+    "    didSet { self.updateInspectorViews () }\n"
+    "  }\n"
+    "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
+    "  var isHidden : Bool {\n"
+    "    get { return self.mViewIsHidden }\n"
+    "    set { self.mViewIsHidden = newValue }\n"
+    "  }\n"
+    "\n"
+    "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+    "\n"
     "}\n"
     "\n"
     "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
     "\n" ;
   return GALGAS_string (result) ;
 }
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                        Overriding extension method '@arrayControllerGeneration generateCode'                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void extensionMethod_arrayControllerGeneration_generateCode (const cPtr_abstractFileGeneration * inObject,
-                                                                    const GALGAS_string constinArgument_inOutputDirectory,
-                                                                    GALGAS_stringset & /* ioArgument_ioGeneratedFileSet */,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_arrayControllerGeneration * object = (const cPtr_arrayControllerGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_arrayControllerGeneration) ;
-  GALGAS_string var_s_12098 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, object->mProperty_mOwnerName, object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 304)), object->mProperty_mArrayControllerModelKind, object->mProperty_mModelTypeName, object->mProperty_mElementTypeName, object->mProperty_mElementTypeIsGraphic COMMA_SOURCE_FILE ("array-controller.galgas", 302))) ;
-  {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-array-").add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 312)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 312)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("array-controller.galgas", 312)), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 312)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 312)), var_s_12098, inCompiler COMMA_SOURCE_FILE ("array-controller.galgas", 310)) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void defineExtensionMethod_arrayControllerGeneration_generateCode (void) {
-  enterExtensionMethod_generateCode (kTypeDescriptor_GALGAS_arrayControllerGeneration.mSlotID,
-                                     extensionMethod_arrayControllerGeneration_generateCode) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_arrayControllerGeneration_generateCode (defineExtensionMethod_arrayControllerGeneration_generateCode, NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//               Overriding extension method '@tableViewControllerDeclarationAST enterInPrecedenceGraph'               *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void extensionMethod_tableViewControllerDeclarationAST_enterInPrecedenceGraph (const cPtr_abstractDeclarationAST * inObject,
-                                                                                      GALGAS_declarationPrecedenceGraph & ioArgument_ioGraph,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_tableViewControllerDeclarationAST * object = (const cPtr_tableViewControllerDeclarationAST *) inObject ;
-  macroValidSharedObject (object, cPtr_tableViewControllerDeclarationAST) ;
-  GALGAS_lstring var_node_1731 = GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 42)).add_operation (object->mProperty_mControllerName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 42)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 42)), object->mProperty_mControllerName.getter_location (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 42)) ;
-  {
-  const GALGAS_tableViewControllerDeclarationAST temp_0 = object ;
-  ioArgument_ioGraph.setter_addNode (var_node_1731, temp_0, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 43)) ;
-  }
-  {
-  ioArgument_ioGraph.setter_addEdge (var_node_1731, object->mProperty_mClassName COMMA_SOURCE_FILE ("table-view-controller.galgas", 44)) ;
-  }
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
-    test_1 = object->mProperty_mIsRoot.operator_not (SOURCE_FILE ("table-view-controller.galgas", 45)).boolEnum () ;
-    if (kBoolTrue == test_1) {
-      {
-      ioArgument_ioGraph.setter_addEdge (var_node_1731, GALGAS_lstring::constructor_new (object->mProperty_mClassName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 46)).add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 46)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 46)), object->mProperty_mToManyPropertyName.getter_location (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 46)) COMMA_SOURCE_FILE ("table-view-controller.galgas", 46)) ;
-      }
-    }
-  }
-  if (kBoolFalse == test_1) {
-    enumGalgasBool test_2 = kBoolTrue ;
-    if (kBoolTrue == test_2) {
-      test_2 = GALGAS_bool (kIsNotEqual, object->mProperty_mRootEntityName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_2) {
-        {
-        ioArgument_ioGraph.setter_addEdge (var_node_1731, GALGAS_lstring::constructor_new (object->mProperty_mRootEntityName.getter_string (HERE).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 48)).add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 48)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 48)), object->mProperty_mToManyPropertyName.getter_location (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 48)) COMMA_SOURCE_FILE ("table-view-controller.galgas", 48)) ;
-        }
-      }
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void defineExtensionMethod_tableViewControllerDeclarationAST_enterInPrecedenceGraph (void) {
-  enterExtensionMethod_enterInPrecedenceGraph (kTypeDescriptor_GALGAS_tableViewControllerDeclarationAST.mSlotID,
-                                               extensionMethod_tableViewControllerDeclarationAST_enterInPrecedenceGraph) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_tableViewControllerDeclarationAST_enterInPrecedenceGraph (defineExtensionMethod_tableViewControllerDeclarationAST_enterInPrecedenceGraph, NULL) ;
 

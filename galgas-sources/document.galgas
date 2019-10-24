@@ -6,6 +6,7 @@ class @documentDeclarationAST : @abstractDeclarationAST {
   @lstring mRootEntityName
   @outletDeclarationList mOutletDeclarationList
   @lstringlist mActionDeclarationList
+  @arrayControllerBindingListAST mArrayControllerBindingListAST
 }
 
 #·······················································································································
@@ -39,6 +40,7 @@ syntax extension easyBindings_syntax {
     @regularBindingList bindingList = {}
     @lstringlist actionDeclarationList = {}
     @stringset signatureList = {}
+    @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     repeat
     while
       <action_declaration> !?actionDeclarationList
@@ -47,7 +49,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <controller_declaration> !documentName !rootEntityName !?ioDeclarationAST
+      <controller_declaration> !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@documentDeclarationAST.new {
@@ -55,6 +57,7 @@ syntax extension easyBindings_syntax {
       !rootEntityName
       !outletDeclarationList
       !actionDeclarationList
+      !arrayControllerBindingListAST
     }
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
       !documentName
@@ -127,12 +130,35 @@ override method @documentDeclarationAST fourthAnalysisPhase
     !mClassName
     !?ioGeneration
     ?let @regularBindingsGenerationList regularBindingsGenerationList
-    ?let @multipleBindingGenerationList multipleBindingGenerationList
+    ?@multipleBindingGenerationList multipleBindingGenerationList
     ?let @actionBindingListForGeneration actionBindingListForGeneration
     ?let @decoratedOutletMap outletMap
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
+#--- Analyze controller bindings
+  for (controllerName hiddenBinding) in mArrayControllerBindingListAST do
+  #--- Hidden
+    switch hiddenBinding
+    case noBinding :
+    case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+      [expression analyzeExpressionForMultipleBinding
+        !rootPropertyMap
+        !ioSemanticContext
+        !documentPropertyMap
+        ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+        ?let @typeKind type
+        ?let @location errorLocation
+      ]
+      if not [type isBoolType] then
+        error errorLocation : "expression is not boolean"
+      end
+      multipleBindingGenerationList +=
+        !controllerName.string
+        !"hidden"
+        !hiddenExpression
+    end
+  end
 #--- Code generation
   ioGeneration.mGenerateEBManagedDocumentSwift = true
 #---
@@ -140,15 +166,12 @@ override method @documentDeclarationAST fourthAnalysisPhase
     !mClassName.string
     !mRootEntityName.string
     !documentPropertyGenerationList
-#    !{} # transientDefinitionListForGeneration
     !outletMap
     !actionBindingListForGeneration
     !regularBindingsGenerationList
     !multipleBindingGenerationList
-#    !{} # documentArrayControllerListForGeneration
     !tableViewBindingGenerationList
-    !ebViewGraphicControllerBindingGenerationList # ebViewBindingGenerationList
-#    !{} # selectionControllerListForGeneration
+    !ebViewGraphicControllerBindingGenerationList
   }
 }
 

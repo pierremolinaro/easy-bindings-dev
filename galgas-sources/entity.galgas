@@ -77,6 +77,7 @@ syntax extension easyBindings_syntax {
     @stringset signatureList = {}
     @lstringlist actionDeclarationList = {}
     @externSwiftDelegateList externSwiftDelegateList = {}
+    @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     repeat
     while
       <simple_stored_declaration> !entityName !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
@@ -89,7 +90,7 @@ syntax extension easyBindings_syntax {
     while
       <action_declaration> !?actionDeclarationList
     while
-      <controller_declaration> !entityName !["" nowhere]  !?ioDeclarationAST
+      <controller_declaration> !entityName !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST
     while
       <extern_swift_delegate> !?externSwiftDelegateList
     end

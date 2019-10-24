@@ -10,6 +10,13 @@ class @arrayControllerDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
+list @arrayControllerBindingListAST {
+  @lstring mControllerName
+  @multipleBindingDescriptor mHiddenSelectionViewBindingDescriptor
+}
+
+#·······················································································································
+
 enum @arrayControllerBoundModelAST {
   case rootToManyRelationship (@lstring rootEntityName)
   case selfToManyRelationship
@@ -48,6 +55,7 @@ syntax extension easyBindings_syntax {
   rule <controller_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring inRootEntity
+            ?!@arrayControllerBindingListAST ioArrayControllerBindingListAST
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $arrayController$
@@ -64,6 +72,16 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ ?let @lstring relationshipName
+  #--- Hidden binding ?
+    select
+    or
+      $hidden$
+       <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      let hiddenSelectionViewBindingDescriptor = @multipleBindingDescriptor.binding {!expression:bindingExpression}
+      ioArrayControllerBindingListAST += 
+        !controllerName
+        !hiddenSelectionViewBindingDescriptor
+    end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST.new {
       !inCurrentEntity

@@ -66,6 +66,7 @@ syntax extension easyBindings_syntax {
   rule <controller_declaration>
             ?let @lstring inCurrentEntity
             ?let @lstring inRootEntity
+            ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $tableViewController$

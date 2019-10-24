@@ -13,21 +13,8 @@ grammar easyBindings_grammar "SLR" {
 #   AST   
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract class @astDeclaration {
-  @bool mUserDefined
-}
-
-#·······················································································································
-
-list @astDeclarationListEX {
-  @astDeclaration mDeclaration
-}
-
-#·······················································································································
-
 struct @astDeclarationStruct {
   @declarationListAST mUnifiedDeclarationList
-  @astDeclarationListEX mDeclarationList
   @outletClassBindingSpecificationList mBindingSpecificationListMap
   @prefDeclaration mPreferences
   @lstring mXcodeProject
