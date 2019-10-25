@@ -23,7 +23,7 @@ class EBScrollView : NSScrollView, EBUserClassNameProtocol {
     super.init (frame: frame)
     noteObjectAllocation (self)
   }
-  
+
   //····················································································································
 
   deinit {
@@ -68,6 +68,14 @@ class EBScrollView : NSScrollView, EBUserClassNameProtocol {
       }
     }else{
       super.mouseDown (with:inEvent)
+    }
+  }
+
+  //····················································································································
+
+  func setFocusRing (_ inValue : Bool) {
+    if let focusView = self.superview as? EBFocusRingView {
+      focusView.setFocusRing (inValue)
     }
   }
 

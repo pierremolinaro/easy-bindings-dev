@@ -62,7 +62,7 @@ extension EBGraphicView {
   //  Live Resize
   //····················································································································
 
-  internal func scrollViewResizeDidEnd () {
+  internal func scrollViewIsLiveResizing () {
     if self.mZoomPropertyCache == 0, let scrollView = self.enclosingScrollView {
       let box = self.objectsAndIssueBoundingBox
       if !box.isEmpty {

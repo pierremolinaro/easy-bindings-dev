@@ -190,6 +190,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBScrollView-dragging-destination"
     swiftFiles += !"EBScrollView-placards"
     swiftFiles += !"EBScrollView"
+    swiftFiles += !"EBFocusRingView"
     swiftFiles += !"EBGraphicView"
     swiftFiles += !"EBGraphicView-binding-control-key-hilite-diameter"
     swiftFiles += !"EBGraphicView-binding-arrowKeyMagnitude"
@@ -223,7 +224,6 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicViewControllerProtocol"
     swiftFiles += !"EBGraphicViewScaleProvider"
     swiftFiles += !"NSControl-extension-enable-binding"
-    swiftFiles += !"NSView-extension-ebCleanUp"
   #--- Extensions
     swiftFiles += !"extension-CGPoint-NSPoint"
     swiftFiles += !"extension-CGRect-NSRect"

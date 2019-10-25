@@ -6,17 +6,17 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBScrollViewWithPlacards) class EBScrollViewWithPlacards : NSScrollView, EBUserClassNameProtocol {
+private let MARGIN : CGFloat = 5.0
 
-  //····················································································································
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-  fileprivate var mPlacardArray = [NSView] ()
+class EBFocusRingView : NSView, EBUserClassNameProtocol {
 
   //····················································································································
   // MARK: -
   //····················································································································
 
-  required init? (coder: NSCoder) {
+  required init? (coder : NSCoder) {
     super.init (coder: coder)
     noteObjectAllocation (self)
   }
@@ -27,7 +27,7 @@ import Cocoa
     super.init (frame: frame)
     noteObjectAllocation (self)
   }
-  
+
   //····················································································································
 
   deinit {
@@ -35,80 +35,48 @@ import Cocoa
   }
 
   //····················································································································
-  // MARK: -
-  //····················································································································
 
-  func addPlacard (_ inPlacardView : NSView) {
-    if !self.mPlacardArray.contains (inPlacardView) {
-      self.mPlacardArray.append (inPlacardView)
-      self.addSubview (inPlacardView)
+  override func awakeFromNib () {
+    super.awakeFromNib ()
+    if self.subviews.count == 1, let scrollView = self.subviews [0] as? EBScrollView {
+      let r = self.bounds
+      scrollView.frame = r.insetBy (dx: MARGIN, dy: MARGIN)
     }
   }
 
   //····················································································································
 
-  func removePlacard (_ inPlacardView : NSView?) {
-    if let view = inPlacardView, self.mPlacardArray.contains (view) {
-      view.removeFromSuperview ()
-      if let index = self.mPlacardArray.index (of: view) {
-        self.mPlacardArray.remove (at: index)
-      }
+  final func viewIsLiveResing () {
+    self.needsDisplay = true
+  }
+
+  //····················································································································
+  //  FOCUS RING
+  //····················································································································
+
+  private var mHasFocusRing = false {
+    didSet {
+      self.needsDisplay = true
     }
   }
 
   //····················································································································
-  // MARK: -
-  //····················································································································
 
-  override func tile () { // tile is called during live resizing
-    super.tile ()
-    self.updatePlacardsLocation ()
+  func setFocusRing (_ inValue : Bool) {
+    self.mHasFocusRing = inValue
   }
 
   //····················································································································
 
-  private final func updatePlacardsLocation () {
-    if let horizScroller = self.horizontalScroller, self.mPlacardArray.count > 0 {
-      var horizScrollerFrame : NSRect = horizScroller.frame
-      for placard in self.mPlacardArray {
-        var placardFrame : NSRect = placard.frame
-
-      //--- Now we'll just adjust the horizontal scroller size and set the placard size and location.
-        horizScrollerFrame.size.width -= placardFrame.size.width;
-        horizScroller.setFrameSize (horizScrollerFrame.size)
-
-      // Put placard where the horizontal scroller is
-        placardFrame.origin.x = NSMinX (horizScrollerFrame);
-
-      // Move horizontal scroller over to the right of the placard
-        horizScrollerFrame.origin.x = NSMaxX(placardFrame);
-        horizScroller.setFrameOrigin (horizScrollerFrame.origin)
-
-      // Adjust height of placard
-        placardFrame.size.height = horizScrollerFrame.size.height + 1.0
-        placardFrame.origin.y = self.bounds.size.height - placardFrame.size.height
-
-      // Move the placard into place
-        placard.frame = placardFrame
-      }
-    }
-  }
-
-  //····················································································································
-  // MARK: -
-  //  Mouse down
-  //  Strangely, an NSScrollView does not respond to ctrl-click for displaying a contextual menu
-  //····················································································································
-
-  override func mouseDown (with inEvent: NSEvent) {
-    let modifierFlags = inEvent.modifierFlags
-    if modifierFlags.contains (.control) && !(modifierFlags.contains (.shift) || modifierFlags.contains (.option)) { // Ctrl Key On, no shift
-    //  NSLog ("\(self.menu)")
-      if let theMenu = self.menu {
-        NSMenu.popUpContextMenu (theMenu, with: inEvent, for: self)
-      }
-    }else{
-      super.mouseDown (with:inEvent)
+  override func draw (_ inDirtyRect : NSRect) {
+    super.draw (inDirtyRect)
+    if self.mHasFocusRing {
+      let width = (MARGIN - 1.0) / 2.0
+      let r = self.bounds.insetBy (dx: width, dy: width)
+      let bp = NSBezierPath (roundedRect: r, xRadius: width / 2.0, yRadius: width / 2.0)
+      bp.lineWidth = width * 2.0
+      NSColor.keyboardFocusIndicatorColor.setStroke ()
+      bp.stroke ()
     }
   }
 
