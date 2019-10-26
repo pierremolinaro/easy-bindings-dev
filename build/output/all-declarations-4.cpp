@@ -12078,8 +12078,8 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
-    "  func stringPropertyValue () -> String {\n"
-    "    return \"\\(self.rawValue)\\n\"\n"
+    "  func appendPropertyValueTo (_ ioData : inout Data) {\n"
+    "    ioData.append (base62Encoded: self.rawValue)\n"
     "  }\n"
     "  \n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -13437,70 +13437,76 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "  //   appendPropertyValuesTo\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
-    "  override func appendPropertyValuesTo (_ ioString : inout String) {\n"
-    "    super.appendPropertyValuesTo (&ioString)\n"
+    "  override func appendPropertyValuesTo (_ ioData : inout Data) {\n"
+    "    super.appendPropertyValuesTo (&ioData)\n"
     "  //--- Atomic properties\n" ;
-  GALGAS_uint index_11444_ (0) ;
+  GALGAS_uint index_11438_ (0) ;
   if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicPropertyGenerationList enumerator_11444 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_11444.hasCurrentObject ()) {
-      result << "    ioString += self." ;
-      result << enumerator_11444.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 286)).stringValue () ;
-      result << ".stringPropertyValue ()\n" ;
-      index_11444_.increment () ;
-      enumerator_11444.gotoNextObject () ;
+    cEnumerator_atomicPropertyGenerationList enumerator_11438 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_11438.hasCurrentObject ()) {
+      result << "    self." ;
+      result << enumerator_11438.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 286)).stringValue () ;
+      result << ".appendPropertyValueTo (&ioData)\n"
+        "    ioData.append (ascii: .lineFeed)\n" ;
+      index_11438_.increment () ;
+      enumerator_11438.gotoNextObject () ;
     }
   }
   result << "  //--- To one relationships\n" ;
-  GALGAS_uint index_11597_ (0) ;
+  GALGAS_uint index_11631_ (0) ;
   if (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toOnePropertyGenerationList enumerator_11597 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_11597.hasCurrentObject ()) {
+    cEnumerator_toOnePropertyGenerationList enumerator_11631 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_11631.hasCurrentObject ()) {
       result << "    if let object = self." ;
-      result << enumerator_11597.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 290)).stringValue () ;
+      result << enumerator_11631.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 291)).stringValue () ;
       result << " {\n"
-        "      ioString += \"\\(String (object.savingIndex, radix: 36))\"\n"
+        "      ioData.append (base62Encoded: object.savingIndex)\n"
         "    }\n"
-        "    ioString += \"\\n\"\n" ;
-      index_11597_.increment () ;
-      enumerator_11597.gotoNextObject () ;
+        "    ioData.append (ascii: .lineFeed)\n" ;
+      index_11631_.increment () ;
+      enumerator_11631.gotoNextObject () ;
     }
   }
   result << "  //--- To many relationships\n" ;
-  GALGAS_uint index_11846_ (0) ;
+  GALGAS_uint index_11889_ (0) ;
   if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toManyPropertyGenerationList enumerator_11846 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_11846.hasCurrentObject ()) {
+    cEnumerator_toManyPropertyGenerationList enumerator_11889 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_11889.hasCurrentObject ()) {
       result << "    do{\n"
         "      var optionalFirstIndex : Int\? = nil\n"
         "      var rangeCount = 0\n"
         "      for object in self." ;
-      result << enumerator_11846.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 300)).stringValue () ;
+      result << enumerator_11889.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 301)).stringValue () ;
       result << " {\n"
         "        if let firstIndex = optionalFirstIndex {\n"
         "          if object.savingIndex == (firstIndex + 1) {\n"
         "            rangeCount += 1\n"
         "            optionalFirstIndex = object.savingIndex\n"
         "          }else if rangeCount > 0 {\n"
-        "            ioString += \":\\(rangeCount.baseXXEncodedString ()) \\(object.savingIndex.baseXXEncodedString ())\"\n"
+        "            ioData.append (ascii: .colon)\n"
+        "            ioData.append (base62Encoded: rangeCount)\n"
+        "            ioData.append (ascii: .space)\n"
+        "            ioData.append (base62Encoded: object.savingIndex)\n"
         "            rangeCount = 0\n"
         "            optionalFirstIndex = object.savingIndex\n"
         "          }else{\n"
-        "            ioString += \" \\(object.savingIndex.baseXXEncodedString ())\"\n"
+        "            ioData.append (ascii: .space)\n"
+        "            ioData.append (base62Encoded: object.savingIndex)\n"
         "            optionalFirstIndex = object.savingIndex\n"
         "          }\n"
         "        }else{\n"
-        "          ioString += \"\\(object.savingIndex.baseXXEncodedString ())\"\n"
+        "          ioData.append (base62Encoded: object.savingIndex)\n"
         "          optionalFirstIndex = object.savingIndex\n"
         "        }\n"
         "      }\n"
         "      if optionalFirstIndex != nil, rangeCount > 0 {\n"
-        "        ioString += \":\\(rangeCount.baseXXEncodedString ())\"\n"
+        "        ioData.append (ascii: .colon)\n"
+        "        ioData.append (base62Encoded: rangeCount)\n"
         "      }\n"
-        "      ioString += \"\\n\"\n"
+        "      ioData.append (ascii: .lineFeed)\n"
         "    }\n" ;
-      index_11846_.increment () ;
-      enumerator_11846.gotoNextObject () ;
+      index_11889_.increment () ;
+      enumerator_11889.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -13511,13 +13517,13 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "\n"
     "  override func accessibleObjects (objects : inout [EBManagedObject]) {\n"
     "    super.accessibleObjects (objects: &objects)\n" ;
-  GALGAS_uint index_13464_ (0) ;
+  GALGAS_uint index_13699_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_13464 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_13464.hasCurrentObject ()) {
-      result << callExtensionGetter_objectAccessibilityCode ((const cPtr_propertyGeneration *) enumerator_13464.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 334)).stringValue () ;
-      index_13464_.increment () ;
-      enumerator_13464.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_13699 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_13699.hasCurrentObject ()) {
+      result << callExtensionGetter_objectAccessibilityCode ((const cPtr_propertyGeneration *) enumerator_13699.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 340)).stringValue () ;
+      index_13699_.increment () ;
+      enumerator_13699.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -13528,18 +13534,18 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "\n"
     "  override func accessibleObjectsForSaveOperation (objects : inout [EBManagedObject]) {\n"
     "    super.accessibleObjectsForSaveOperation (objects: &objects)\n" ;
-  GALGAS_uint index_13993_ (0) ;
+  GALGAS_uint index_14228_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_13993 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_13993.hasCurrentObject ()) {
-      result << callExtensionGetter_objectAccessibilityCodeForSaveOperation ((const cPtr_propertyGeneration *) enumerator_13993.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 346)).stringValue () ;
-      index_13993_.increment () ;
-      enumerator_13993.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_14228 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_14228.hasCurrentObject ()) {
+      result << callExtensionGetter_objectAccessibilityCodeForSaveOperation ((const cPtr_propertyGeneration *) enumerator_14228.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 352)).stringValue () ;
+      index_14228_.increment () ;
+      enumerator_14228.gotoNextObject () ;
     }
   }
   result << "  }\n"
     "\n" ;
-  const enumGalgasBool test_3 = GALGAS_bool (kIsStrictSup, in_SIGNATURE_5F_SET.getter_count (SOURCE_FILE ("entity.swift.galgasTemplate", 351)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_3 = GALGAS_bool (kIsStrictSup, in_SIGNATURE_5F_SET.getter_count (SOURCE_FILE ("entity.swift.galgasTemplate", 357)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_3) {
     result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
       "  //   computeSignature\n"
@@ -13547,15 +13553,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
       "\n"
       "  override func computeSignature () -> UInt32 {\n"
       "    var crc = super.computeSignature ()\n" ;
-    GALGAS_uint index_14479_ (0) ;
+    GALGAS_uint index_14714_ (0) ;
     if (in_SIGNATURE_5F_SET.isValid ()) {
-      cEnumerator_stringset enumerator_14479 (in_SIGNATURE_5F_SET, kENUMERATION_UP) ;
-      while (enumerator_14479.hasCurrentObject ()) {
+      cEnumerator_stringset enumerator_14714 (in_SIGNATURE_5F_SET, kENUMERATION_UP) ;
+      while (enumerator_14714.hasCurrentObject ()) {
         result << "    crc.accumulateUInt32 (self." ;
-        result << enumerator_14479.current_key (HERE).stringValue () ;
+        result << enumerator_14714.current_key (HERE).stringValue () ;
         result << "_property.signature ())\n" ;
-        index_14479_.increment () ;
-        enumerator_14479.gotoNextObject () ;
+        index_14714_.increment () ;
+        enumerator_14714.gotoNextObject () ;
       }
     }
     result << "    return crc\n"

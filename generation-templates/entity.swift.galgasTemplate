@@ -278,19 +278,20 @@ end
   //   appendPropertyValuesTo
   //····················································································································
 
-  override func appendPropertyValuesTo (_ ioString : inout String) {
-    super.appendPropertyValuesTo (&ioString)
+  override func appendPropertyValuesTo (_ ioData : inout Data) {
+    super.appendPropertyValuesTo (&ioData)
   //--- Atomic properties
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    ioString += self.%![mProperty mPropertyName]%.stringPropertyValue ()\n% 
+  %    self.%![mProperty mPropertyName]%.appendPropertyValueTo (&ioData)\n% 
+  %    ioData.append (ascii: .lineFeed)\n%
 end
 %  //--- To one relationships
 %for () in TO_ONE_RELATIONSHIP_LIST do
   %    if let object = self.%![mProperty mPropertyName]% {\n% 
-  %      ioString += "\(String (object.savingIndex, radix: 36))"\n% 
+  %      ioData.append (base62Encoded: object.savingIndex)\n% 
   %    }\n% 
-  %    ioString += "\\n"\n% 
+  %    ioData.append (ascii: .lineFeed)\n% 
 end
 %  //--- To many relationships
 %for () in TO_MANY_RELATIONSHIP_LIST do
@@ -303,22 +304,27 @@ end
   %            rangeCount += 1\n% 
   %            optionalFirstIndex = object.savingIndex\n% 
   %          }else if rangeCount > 0 {\n% 
-  %            ioString += ":\(rangeCount.baseXXEncodedString ()) \(object.savingIndex.baseXXEncodedString ())"\n% 
+  %            ioData.append (ascii: .colon)\n% 
+  %            ioData.append (base62Encoded: rangeCount)\n% 
+  %            ioData.append (ascii: .space)\n% 
+  %            ioData.append (base62Encoded: object.savingIndex)\n% 
   %            rangeCount = 0\n% 
   %            optionalFirstIndex = object.savingIndex\n% 
   %          }else{\n% 
-  %            ioString += " \(object.savingIndex.baseXXEncodedString ())"\n% 
+  %            ioData.append (ascii: .space)\n% 
+  %            ioData.append (base62Encoded: object.savingIndex)\n% 
   %            optionalFirstIndex = object.savingIndex\n% 
   %          }\n% 
   %        }else{\n% 
-  %          ioString += "\(object.savingIndex.baseXXEncodedString ())"\n% 
+  %          ioData.append (base62Encoded: object.savingIndex)\n% 
   %          optionalFirstIndex = object.savingIndex\n% 
   %        }\n% 
   %      }\n% 
   %      if optionalFirstIndex != nil, rangeCount > 0 {\n% 
-  %        ioString += ":\(rangeCount.baseXXEncodedString ())"\n% 
+  %        ioData.append (ascii: .colon)\n% 
+  %        ioData.append (base62Encoded: rangeCount)\n% 
   %      }\n% 
-  %      ioString += "\\n"\n% 
+  %      ioData.append (ascii: .lineFeed)\n% 
   %    }\n% 
 end
 %  }
