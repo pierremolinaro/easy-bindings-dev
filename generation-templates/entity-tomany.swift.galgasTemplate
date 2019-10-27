@@ -49,7 +49,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -109,7 +109,7 @@ for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -169,7 +169,7 @@ for () in PROXY_LIST_FOR_GENERATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -229,7 +229,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -411,6 +411,7 @@ final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : R
 
   private var mDataProvider : ReadOnlyAbstractArrayProperty <SUPER>? = nil
   private var mTransientKind : PropertyKind = .empty
+  private var mModelArrayShouldBeComputed = true
   private var mModelEvent = EBModelEvent ()
 
   //····················································································································
@@ -434,41 +435,46 @@ final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : R
 
   override func notifyModelDidChange () {
     self.mModelEvent.postEvent ()
+    self.mModelArrayShouldBeComputed = true
     super.notifyModelDidChange ()
   }
  
   //····················································································································
 
   private final func computeModelArray () {
-    var newModelArray : [SUPER] 
-    if let dataProvider = self.mDataProvider {
-      switch dataProvider.prop {
-      case .empty :
+    if self.mModelArrayShouldBeComputed {
+      self.mModelArrayShouldBeComputed = false
+      var newModelArray : [SUPER] 
+      if let dataProvider = self.mDataProvider {
+        switch dataProvider.prop {
+        case .empty :
+          newModelArray = []
+          self.mTransientKind = .empty
+        case .single (let v) :
+          newModelArray = v
+          self.mTransientKind = .single
+         case .multiple :
+          newModelArray = []
+          self.mTransientKind = .multiple
+        }
+      }else{
         newModelArray = []
         self.mTransientKind = .empty
-      case .single (let v) :
-        newModelArray = v
-        self.mTransientKind = .single
-       case .multiple :
-        newModelArray = []
-        self.mTransientKind = .multiple
       }
-    }else{
-      newModelArray = []
-      self.mTransientKind = .empty
-    }
-    var newArray = [%!ENTITY_NAME%] ()
-    for superObject in newModelArray {
-      if let object = superObject as? %!ENTITY_NAME% {
-        newArray.append (object)
+      var newArray = [%!ENTITY_NAME%] ()
+      for superObject in newModelArray {
+        if let object = superObject as? %!ENTITY_NAME% {
+          newArray.append (object)
+        }
       }
+      self.mInternalArrayValue = newArray
     }
-    self.mInternalArrayValue = newArray
   }
 
   //····················································································································
 
   override var prop : EBSelection < [%!ENTITY_NAME%] > {
+    self.computeModelArray ()
     switch self.mTransientKind {
     case .empty :
       return .empty
