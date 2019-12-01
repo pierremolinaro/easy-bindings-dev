@@ -12,8 +12,8 @@ import Cocoa
 
   //····················································································································
 
-  required init? (coder: NSCoder) {
-    super.init (coder:coder)
+  required init? (coder : NSCoder) {
+    super.init (coder: coder)
     noteObjectAllocation (self)
   }
 
@@ -33,7 +33,9 @@ import Cocoa
       self.string = ""
       self.isEditable = false
     case .single (let propertyValue) :
+      let currentSelectedRangeValues = self.selectedRanges
       self.string = propertyValue
+      self.selectedRanges = currentSelectedRangeValues
       self.isEditable = true
     }
   }
@@ -78,7 +80,7 @@ final class Controller_EBTextView_value : EBSimpleController, NSTextViewDelegate
   }
 
   //····················································································································
-  
+
   override func unregister () {
     super.unregister ()
     self.mOutlet.delegate = nil
@@ -86,7 +88,7 @@ final class Controller_EBTextView_value : EBSimpleController, NSTextViewDelegate
 
   //····················································································································
 
-  func textDidChange (_ notification: Notification) {
+  func textDidChange (_ notification : Notification) {
     _ = self.mObject.validateAndSetProp (self.mOutlet.string, windowForSheet: self.mOutlet.window)
   }
 
