@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum %!ENUM_TYPE_NAME% : Int, EnumPropertyProtocol {
+enum %!ENUM_TYPE_NAME% : Int, EnumPropertyProtocol, Hashable, CaseIterable {
 %
 for () in CONSTANT_ORDERED_LIST do index idx
    %  case %!mValue.string% = %![idx string]%\n%

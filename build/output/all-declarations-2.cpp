@@ -1762,7 +1762,7 @@ typeComparisonResult cMapElement_propertyMap::compare (const cCollectionElement 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_propertyMap::GALGAS_propertyMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4238,7 +4238,7 @@ typeComparisonResult cMapElement_actionMap::compare (const cCollectionElement * 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_actionMap::GALGAS_actionMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

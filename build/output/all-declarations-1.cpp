@@ -2843,7 +2843,7 @@ typeComparisonResult cMapElement_outletBindingSpecificationMap::compare (const c
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletBindingSpecificationMap::GALGAS_outletBindingSpecificationMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

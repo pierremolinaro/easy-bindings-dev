@@ -8893,7 +8893,7 @@ class GALGAS_classMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_classMap (const GALGAS_classMap & inSource) ;
   public : GALGAS_classMap & operator = (const GALGAS_classMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -9269,7 +9269,7 @@ class GALGAS_actionMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_actionMap (const GALGAS_actionMap & inSource) ;
   public : GALGAS_actionMap & operator = (const GALGAS_actionMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -9360,7 +9360,7 @@ class GALGAS_propertyMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_propertyMap (const GALGAS_propertyMap & inSource) ;
   public : GALGAS_propertyMap & operator = (const GALGAS_propertyMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -9610,7 +9610,7 @@ class GALGAS_outletClassMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_outletClassMap (const GALGAS_outletClassMap & inSource) ;
   public : GALGAS_outletClassMap & operator = (const GALGAS_outletClassMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -9939,7 +9939,7 @@ class GALGAS_bindingSpecificationMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_bindingSpecificationMap (const GALGAS_bindingSpecificationMap & inSource) ;
   public : GALGAS_bindingSpecificationMap & operator = (const GALGAS_bindingSpecificationMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -10062,7 +10062,7 @@ class GALGAS_outletBindingSpecificationMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_outletBindingSpecificationMap (const GALGAS_outletBindingSpecificationMap & inSource) ;
   public : GALGAS_outletBindingSpecificationMap & operator = (const GALGAS_outletBindingSpecificationMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -10502,7 +10502,7 @@ class GALGAS_externFunctionMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_externFunctionMap (const GALGAS_externFunctionMap & inSource) ;
   public : GALGAS_externFunctionMap & operator = (const GALGAS_externFunctionMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -10680,7 +10680,7 @@ class GALGAS_enumConstantMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_enumConstantMap (const GALGAS_enumConstantMap & inSource) ;
   public : GALGAS_enumConstantMap & operator = (const GALGAS_enumConstantMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -11778,7 +11778,7 @@ class GALGAS_decoratedOutletMap : public AC_GALGAS_map {
 //--------------------------------- Handle copy
   public : GALGAS_decoratedOutletMap (const GALGAS_decoratedOutletMap & inSource) ;
   public : GALGAS_decoratedOutletMap & operator = (const GALGAS_decoratedOutletMap & inSource) ;
-
+  
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning

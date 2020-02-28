@@ -101,7 +101,6 @@ static inline NSUInteger imax (const NSUInteger a, const NSUInteger b) { return 
       displayDescriptor:self
     ] ;
     mTextView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable ;
-  //  mTextView.wantsLayer = YES ;
     [mTextView setGrammarCheckingEnabled:NO] ;
     [mTextView setContinuousSpellCheckingEnabled:NO] ;
     mTextView.allowsUndo = YES ;
@@ -657,6 +656,28 @@ static inline NSUInteger imax (const NSUInteger a, const NSUInteger b) { return 
   #ifdef DEBUG_MESSAGES
     NSLog (@"%s:DONE", __PRETTY_FUNCTION__) ;
   #endif
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+- (void) setSelectionRange: (NSRange) inRange {
+  #ifdef DEBUG_MESSAGES
+    NSLog (@"%s [%lu, %lu], source length %lu", __PRETTY_FUNCTION__, inRange.location, inRange.length, mTextView.string.length) ;
+  #endif
+  NSRange range = inRange ;
+  if (NSMaxRange (inRange) >= mTextView.string.length) {
+    range = NSMakeRange (mTextView.string.length, 0) ;
+  }
+  [mTextView setSelectedRange: range] ;
+  #ifdef DEBUG_MESSAGES
+    NSLog (@"%s:DONE", __PRETTY_FUNCTION__) ;
+  #endif
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+- (NSRange) selectedRange {
+  return mTextView.selectedRange ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

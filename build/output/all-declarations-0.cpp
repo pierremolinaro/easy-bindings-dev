@@ -6414,7 +6414,7 @@ typeComparisonResult cMapElement_classMap::compare (const cCollectionElement * i
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_classMap::GALGAS_classMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -6852,7 +6852,7 @@ typeComparisonResult cMapElement_outletClassMap::compare (const cCollectionEleme
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_outletClassMap::GALGAS_outletClassMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7371,7 +7371,7 @@ typeComparisonResult cMapElement_bindingSpecificationMap::compare (const cCollec
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_bindingSpecificationMap::GALGAS_bindingSpecificationMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8713,7 +8713,7 @@ typeComparisonResult cMapElement_externFunctionMap::compare (const cCollectionEl
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_externFunctionMap::GALGAS_externFunctionMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8901,7 +8901,7 @@ typeComparisonResult cMapElement_enumConstantMap::compare (const cCollectionElem
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_enumConstantMap::GALGAS_enumConstantMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -12479,7 +12479,7 @@ typeComparisonResult cMapElement_decoratedOutletMap::compare (const cCollectionE
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 GALGAS_decoratedOutletMap::GALGAS_decoratedOutletMap (void) :
-AC_GALGAS_map () {
+AC_GALGAS_map (true) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
