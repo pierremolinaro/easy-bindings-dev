@@ -194,6 +194,10 @@ class C_String : public AC_OutputStream {
                                         int32_t & outColumnNumber,
                                         C_String & outLineContents) const ;
 
+//--- Get index from line number and column number
+  public : int32_t indexFromLineAndColumn (const int32_t inLineNumber,
+                                           const int32_t inColumnNumber) const ;
+
 //--- Subsitute 'inCharacter' by 'inString' ; if the character occurs twice, suppress one
   public : C_String stringByReplacingCharacterByString (const utf32 inCharacter,
                                                         const C_String & inString) const ;

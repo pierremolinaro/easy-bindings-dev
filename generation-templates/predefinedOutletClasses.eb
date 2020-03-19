@@ -29,6 +29,7 @@ binding EBGraphicView $horizontalFlip : transient Bool ;
 binding EBGraphicView $verticalFlip : transient Bool ;
 binding EBGraphicView $xPlacardUnit : transient Int ;
 binding EBGraphicView $yPlacardUnit : transient Int ;
+binding EBGraphicView $backgroundImageData : transient Data ;
 
 extern outlet class NSView $hidden ;
 

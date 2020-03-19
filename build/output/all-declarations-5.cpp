@@ -455,6 +455,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "binding EBGraphicView $verticalFlip : transient Bool ;\n"
     "binding EBGraphicView $xPlacardUnit : transient Int ;\n"
     "binding EBGraphicView $yPlacardUnit : transient Int ;\n"
+    "binding EBGraphicView $backgroundImageData : transient Data ;\n"
     "\n"
     "extern outlet class NSView $hidden ;\n"
     "\n"
