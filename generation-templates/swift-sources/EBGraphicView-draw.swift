@@ -22,8 +22,9 @@ extension EBGraphicView {
     self.mBackColor.setFill ()
     NSBezierPath.fill (inDirtyRect)
     if let ciImage = self.mBackgroundImage {
-      let r =  ciImage.extent
-      ciImage.draw (in: r, from: r, operation: .copy, fraction: 1.0)
+      let transformedImage = ciImage.transformed (by: self.mBackgroundImageAffineTransform)
+      let rImage = transformedImage.extent
+      transformedImage.draw (in: rImage, from: rImage, operation: .copy, fraction: 1.0)
     }
     self.drawGrid (inDirtyRect)
     self.mUnderObjectsDisplay.draw (inDirtyRect)

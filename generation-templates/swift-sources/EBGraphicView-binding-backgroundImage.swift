@@ -39,7 +39,7 @@ extension EBGraphicView {
     case .single (let v) :
       if let ciImage = CIImage (data: v) {
         self.mBackgroundImage = ciImage
-        self.needsDisplay = true
+        self.updateViewFrameAndBounds ()
       }
     case .multiple :
       break

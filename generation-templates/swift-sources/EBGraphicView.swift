@@ -678,6 +678,15 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   var mBackgroundImage : CIImage? = nil
   var mBackgroundImageDataController : EBSimpleController? = nil
 
+  var mBackgroundImageAffineTransform : CGAffineTransform = .identity
+
+  //····················································································································
+
+  func set (backgroundImageAffineTransform inAffineTransform : CGAffineTransform) {
+    self.mBackgroundImageAffineTransform = inAffineTransform
+    self.needsDisplay = true
+  }
+
   //····················································································································
   // MARK: -
   //····················································································································
