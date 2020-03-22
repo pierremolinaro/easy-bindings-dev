@@ -30,10 +30,7 @@ binding EBGraphicView $verticalFlip : transient Bool ;
 binding EBGraphicView $xPlacardUnit : transient Int ;
 binding EBGraphicView $yPlacardUnit : transient Int ;
 binding EBGraphicView $backgroundImageData : transient Data ;
-//binding EBGraphicView $backgroundImageDeltaX : transient Int ;
-//binding EBGraphicView $backgroundImageDeltaY : transient Int ;
-//binding EBGraphicView $backgroundImageScale : transient Double ;
-//binding EBGraphicView $backgroundImageRotationInRadians : transient Double ;
+binding EBGraphicView $backgroundImageOpacity : transient Double ;
 
 extern outlet class NSView $hidden ;
 
