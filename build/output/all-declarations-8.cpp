@@ -7997,6 +7997,7 @@ const char * gWrapperFileContent_75_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  override func mouseDown (with inEvent : NSEvent) {\n"
   "    if let viewController = self.viewController {\n"
   "      let unalignedMouseDownLocation = self.convert (inEvent.locationInWindow, from:nil)\n"
+  "      self.mUnalignedMouseDownLocation = unalignedMouseDownLocation\n"
   "      let canariUnalignedMouseDownLocation = unalignedMouseDownLocation.canariPoint\n"
   "      let alignedLastMouseDraggedLocation = canariUnalignedMouseDownLocation.point (alignedOnGrid: self.mouseGridInCanariUnit)\n"
   "      self.mMouseMovedCallback\? (unalignedMouseDownLocation)\n"
@@ -8048,6 +8049,17 @@ const char * gWrapperFileContent_75_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "      }\n"
   "    }else{\n"
   "      super.mouseDown (with: inEvent)\n"
+  "    }\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  func updateKnobSelection () {\n"
+  "    if let unalignedMouseDownLocation = self.mUnalignedMouseDownLocation {\n"
+  "      let (possibleObjectIndex, possibleKnobIndex) = self.indexOfFrontmostObject (at: unalignedMouseDownLocation)\n"
+  "      if let objectIndex = possibleObjectIndex, let knobIndex = possibleKnobIndex {\n"
+  "        self.mPossibleKnob = (objectIndex, knobIndex)\n"
+  "      }\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -8224,7 +8236,7 @@ const cRegularFileWrapper gWrapperFile_75_swift_5F_sources (
   "EBGraphicView-mouse.swift",
   "swift",
   true, // Text file
-  13229, // Text length
+  13797, // Text length
   gWrapperFileContent_75_swift_5F_sources
 ) ;
 
@@ -8923,6 +8935,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  internal var mLastMouseDraggedLocation : CanariPoint\? = nil\n"
+  "  internal var mUnalignedMouseDownLocation : NSPoint\? = nil\n"
   "  internal var mSelectionRectangleOrigin : NSPoint\? = nil\n"
   "  internal var mPossibleKnob : (Int, Int)\? = nil // Object index, knob index\n"
   "  internal var mPerformEndUndoGroupingOnMouseUp = false\n"
@@ -8983,6 +8996,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "          self.setNeedsDisplay (shape.boundingBox.insetBy(dx: -1.0, dy: -1.0))\n"
   "        }\n"
   "      }\n"
+  "      self.updateKnobSelection ()\n"
   "      self.updateViewFrameAndBounds ()\n"
   "    }\n"
   "  }\n"
@@ -9280,7 +9294,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  31887, // Text length
+  31981, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 
