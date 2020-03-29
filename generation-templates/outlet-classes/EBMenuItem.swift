@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(EBMenuItem) class EBMenuItem : NSMenuItem, EBUserClassNameProtocol {
+class EBMenuItem : NSMenuItem, EBUserClassNameProtocol, EnabledMultipleBindingProtocol {
 
   //····················································································································
 
@@ -19,6 +19,12 @@ import Cocoa
 
   deinit {
     noteObjectDeallocation (self)
+  }
+
+  //····················································································································
+
+  func enableFromEnableBinding (_ inValue : Bool) {
+    self.isEnabled = inValue
   }
 
   //····················································································································

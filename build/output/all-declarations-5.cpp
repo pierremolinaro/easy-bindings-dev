@@ -512,7 +512,7 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "outlet class EBMenu ;\n"
     "\n"
     "\n"
-    "outlet class EBMenuItem ;\n"
+    "outlet class EBMenuItem $enabled $run ;\n"
     "\n"
     "\n"
     "outlet class EBCheckedMenuItem ;\n"

@@ -86,7 +86,7 @@ binding EBImageObserverView $tooltip : transient String ;
 outlet class EBMenu ;
 
 
-outlet class EBMenuItem ;
+outlet class EBMenuItem $enabled $run ;
 
 
 outlet class EBCheckedMenuItem ;
