@@ -7184,9 +7184,12 @@ const char * gWrapperFileContent_42_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    self.mBackColor.setFill ()\n"
   "    NSBezierPath.fill (inDirtyRect)\n"
   "    if let ciImage = self.mBackgroundImage {\n"
-  "      let transformedImage = ciImage.transformed (by: self.mBackgroundImageAffineTransform)\n"
-  "      let rImage = transformedImage.extent\n"
-  "      transformedImage.draw (in: rImage, from: rImage, operation: .copy, fraction: self.mBackgroundImageOpacity)\n"
+  "      let graphicContext = NSGraphicsContext.current\n"
+  "      graphicContext\?.saveGraphicsState ()\n"
+  "      self.mBackgroundImageAffineTransform.concat ()\n"
+  "      let rImage = ciImage.extent\n"
+  "      ciImage.draw (at: rImage.origin, from: rImage, operation: .copy, fraction: self.mBackgroundImageOpacity)\n"
+  "      graphicContext\?.restoreGraphicsState ()\n"
   "    }\n"
   "    self.drawGrid (inDirtyRect)\n"
   "    self.mUnderObjectsDisplay.draw (inDirtyRect)\n"
@@ -7379,7 +7382,7 @@ const cRegularFileWrapper gWrapperFile_42_swift_5F_sources (
   "EBGraphicView-draw.swift",
   "swift",
   true, // Text file
-  8105, // Text length
+  8197, // Text length
   gWrapperFileContent_42_swift_5F_sources
 ) ;
 
@@ -9025,8 +9028,9 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "    newBounds = newBounds.union (self.objectsAndIssueBoundingBox)\n"
   "    newBounds = newBounds.union (self.mMinimumRectangle)\n"
   "    if let ciImage = self.mBackgroundImage {\n"
-  "      let transformedImage = ciImage.transformed (by: self.mBackgroundImageAffineTransform)\n"
-  "      newBounds = newBounds.union (transformedImage.extent)\n"
+  "      let bp = NSBezierPath (rect: ciImage.extent)\n"
+  "      let transformedBP = self.mBackgroundImageAffineTransform.transform (bp)\n"
+  "      newBounds = newBounds.union (transformedBP.bounds)\n"
   "    }\n"
   "    let currentBounds = self.bounds\n"
   "    if currentBounds != newBounds {\n"
@@ -9289,11 +9293,11 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  var mBackgroundImageOpacity : CGFloat = 1.0\n"
   "  var mBackgroundImageOpacityController : EBSimpleController\? = nil\n"
   "\n"
-  "  var mBackgroundImageAffineTransform : CGAffineTransform = .identity\n"
+  "  var mBackgroundImageAffineTransform = NSAffineTransform ()\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func set (backgroundImageAffineTransform inAffineTransform : CGAffineTransform) {\n"
+  "  func set (backgroundImageAffineTransform inAffineTransform : NSAffineTransform) {\n"
   "    self.mBackgroundImageAffineTransform = inAffineTransform\n"
   "    self.updateViewFrameAndBounds ()\n"
   "    self.needsDisplay = true\n"
@@ -9310,7 +9314,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  32574, // Text length
+  32599, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 
