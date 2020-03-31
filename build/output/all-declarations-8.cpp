@@ -8607,13 +8607,7 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "\n"
   "  override func awakeFromNib () {\n"
   "    super.awakeFromNib ()\n"
-  "    var view : NSView\? = self\n"
-  "    var allViewsRequireLayer = true\n"
-  "    while (view != nil) && allViewsRequireLayer {\n"
-  "      allViewsRequireLayer = self.wantsLayer\n"
-  "      view = view\?.superview\n"
-  "    }\n"
-  "    if !allViewsRequireLayer {\n"
+  "    if !self.wantsLayer {\n"
   "      presentErrorWindow (#file, #line, \"EBGraphicView requires layer\")\n"
   "    }\n"
   "  }\n"
@@ -9314,7 +9308,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  32599, // Text length
+  32398, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 

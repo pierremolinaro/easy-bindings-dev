@@ -259,19 +259,23 @@ override getter @atomicPropertyGeneration propertyDeclarationCode ?let @stringse
   else
    result += "  let " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
            + " (defaultValue: " + mDefaultValueInSwift + ")\n\n"
+   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+   result += "  final func reset_" + mPropertyName + "_toDefaultValue () {\n"
+           + "    self." + mPropertyName + " = " + mDefaultValueInSwift + "\n"
+           + "  }\n\n"
   end
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
+  result += "  final var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
   result += "    get { return self." + mPropertyName + "_property.propval }\n"
   result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
+  result += "  final var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
   result += "> { return self." + mPropertyName + "_property.prop }\n\n"
   if mNeedsValidation then
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  func " + mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [mType swiftTypeName] + ", windowForSheet inWindow:NSWindow?) -> Bool {\n"
-    result += "    return self." + mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet:inWindow)\n"
+    result += "  final func " + mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [mType swiftTypeName] + ", windowForSheet inWindow : NSWindow?) -> Bool {\n"
+    result += "    return self." + mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet: inWindow)\n"
     result += "  }\n\n"
   end
 }
@@ -292,14 +296,14 @@ override getter @atomicPropertyGeneration configurationCode -> @string {
 
 override getter @atomicPropertyGeneration setupAtomicPropertyFromDictionaryCode -> @string {
   result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey:\"" + mPropertyName + "\")\n"
+  result += "    self." + mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey: \"" + mPropertyName + "\")\n"
 }
 
 #·······················································································································
 
 override getter @atomicPropertyGeneration saveIntoDictionaryCode -> @string {
   result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey:\"" + mPropertyName + "\")\n"
+  result += "    self." + mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey: \"" + mPropertyName + "\")\n"
 }
 
 #·······················································································································
