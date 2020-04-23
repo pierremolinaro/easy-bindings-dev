@@ -11758,625 +11758,6 @@ GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration:
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Class for element of '@defaultValueList' list                                    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cCollectionElement_defaultValueList : public cCollectionElement {
-  public : GALGAS_defaultValueList_2D_element mObject ;
-
-//--- Constructors
-  public : cCollectionElement_defaultValueList (const GALGAS_abstractDefaultValue & in_mDefaultValue
-                                                COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_defaultValueList (const GALGAS_defaultValueList_2D_element & inElement COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
-
-//--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement_defaultValueList::cCollectionElement_defaultValueList (const GALGAS_abstractDefaultValue & in_mDefaultValue
-                                                                          COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mDefaultValue) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement_defaultValueList::cCollectionElement_defaultValueList (const GALGAS_defaultValueList_2D_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (inElement.mProperty_mDefaultValue) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-bool cCollectionElement_defaultValueList::isValid (void) const {
-  return mObject.isValid () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement * cCollectionElement_defaultValueList::copy (void) {
-  cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_defaultValueList (mObject.mProperty_mDefaultValue COMMA_HERE)) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cCollectionElement_defaultValueList::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mDefaultValue" ":" ;
-  mObject.mProperty_mDefaultValue.description (ioString, inIndentation) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cCollectionElement_defaultValueList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_defaultValueList * operand = (cCollectionElement_defaultValueList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_defaultValueList) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList::GALGAS_defaultValueList (void) :
-AC_GALGAS_list () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList::GALGAS_defaultValueList (const capCollectionElementArray & inSharedArray) :
-AC_GALGAS_list (inSharedArray) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList GALGAS_defaultValueList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_defaultValueList  (capCollectionElementArray ()) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList GALGAS_defaultValueList::constructor_listWithValue (const GALGAS_abstractDefaultValue & inOperand0
-                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_defaultValueList result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_defaultValueList (capCollectionElementArray ()) ;
-    capCollectionElement attributes ;
-    GALGAS_defaultValueList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
-    result.appendObject (attributes) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                         const GALGAS_abstractDefaultValue & in_mDefaultValue
-                                                         COMMA_LOCATION_ARGS) {
-  cCollectionElement_defaultValueList * p = NULL ;
-  macroMyNew (p, cCollectionElement_defaultValueList (in_mDefaultValue COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::addAssign_operation (const GALGAS_abstractDefaultValue & inOperand0
-                                                   COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_defaultValueList (inOperand0 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::setter_append (GALGAS_defaultValueList_2D_element inElement,
-                                             C_Compiler * /* inCompiler */
-                                             COMMA_LOCATION_ARGS) {
-  if (isValid () && inElement.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_defaultValueList (inElement COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::setter_insertAtIndex (const GALGAS_abstractDefaultValue inOperand0,
-                                                    const GALGAS_uint inInsertionIndex,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_defaultValueList (inOperand0 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::setter_removeAtIndex (GALGAS_abstractDefaultValue & outOperand0,
-                                                    const GALGAS_uint inRemoveIndex,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_defaultValueList * p = (cCollectionElement_defaultValueList *) attributes.ptr () ;
-    if (NULL == p) {
-      outOperand0.drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-      outOperand0 = p->mObject.mProperty_mDefaultValue ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::setter_popFirst (GALGAS_abstractDefaultValue & outOperand0,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_defaultValueList * p = (cCollectionElement_defaultValueList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-    outOperand0 = p->mObject.mProperty_mDefaultValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::setter_popLast (GALGAS_abstractDefaultValue & outOperand0,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_defaultValueList * p = (cCollectionElement_defaultValueList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-    outOperand0 = p->mObject.mProperty_mDefaultValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::method_first (GALGAS_abstractDefaultValue & outOperand0,
-                                            C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_defaultValueList * p = (cCollectionElement_defaultValueList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-    outOperand0 = p->mObject.mProperty_mDefaultValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::method_last (GALGAS_abstractDefaultValue & outOperand0,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_defaultValueList * p = (cCollectionElement_defaultValueList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-    outOperand0 = p->mObject.mProperty_mDefaultValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList GALGAS_defaultValueList::add_operation (const GALGAS_defaultValueList & inOperand,
-                                                                C_Compiler * /* inCompiler */
-                                                                COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_defaultValueList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList GALGAS_defaultValueList::getter_subListWithRange (const GALGAS_range & inRange,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const {
-  GALGAS_defaultValueList result = GALGAS_defaultValueList::constructor_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList GALGAS_defaultValueList::getter_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const {
-  GALGAS_defaultValueList result = GALGAS_defaultValueList::constructor_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList GALGAS_defaultValueList::getter_subListToIndex (const GALGAS_uint & inIndex,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const {
-  GALGAS_defaultValueList result = GALGAS_defaultValueList::constructor_emptyList (THERE) ;
-  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::plusAssign_operation (const GALGAS_defaultValueList inOperand,
-                                                    C_Compiler * /* inCompiler */
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_defaultValueList::setter_setMDefaultValueAtIndex (GALGAS_abstractDefaultValue inOperand,
-                                                              GALGAS_uint inIndex,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-  cCollectionElement_defaultValueList * p = (cCollectionElement_defaultValueList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mDefaultValue = inOperand ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_abstractDefaultValue GALGAS_defaultValueList::getter_mDefaultValueAtIndex (const GALGAS_uint & inIndex,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_defaultValueList * p = (cCollectionElement_defaultValueList *) attributes.ptr () ;
-  GALGAS_abstractDefaultValue result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-    result = p->mObject.mProperty_mDefaultValue ;
-  }
-  return result ;
-}
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumerator_defaultValueList::cEnumerator_defaultValueList (const GALGAS_defaultValueList & inEnumeratedObject,
-                                                            const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList_2D_element cEnumerator_defaultValueList::current (LOCATION_ARGS) const {
-  const cCollectionElement_defaultValueList * p = (const cCollectionElement_defaultValueList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-  return p->mObject ;
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_abstractDefaultValue cEnumerator_defaultValueList::current_mDefaultValue (LOCATION_ARGS) const {
-  const cCollectionElement_defaultValueList * p = (const cCollectionElement_defaultValueList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_defaultValueList) ;
-  return p->mObject.mProperty_mDefaultValue ;
-}
-
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                               @defaultValueList type                                                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_defaultValueList ("defaultValueList",
-                                         NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_defaultValueList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_defaultValueList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_defaultValueList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_defaultValueList (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList GALGAS_defaultValueList::extractObject (const GALGAS_object & inObject,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_defaultValueList result ;
-  const GALGAS_defaultValueList * p = (const GALGAS_defaultValueList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_defaultValueList *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("defaultValueList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Object comparison                                                                                                 *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cPtr_listAsDefaultValue::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_listAsDefaultValue * p = (const cPtr_listAsDefaultValue *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_listAsDefaultValue) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mStartLocation.objectCompare (p->mProperty_mStartLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mDefaultValueList.objectCompare (p->mProperty_mDefaultValueList) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-
-typeComparisonResult GALGAS_listAsDefaultValue::objectCompare (const GALGAS_listAsDefaultValue & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_listAsDefaultValue::GALGAS_listAsDefaultValue (void) :
-GALGAS_abstractDefaultValue () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_listAsDefaultValue GALGAS_listAsDefaultValue::constructor_default (LOCATION_ARGS) {
-  return GALGAS_listAsDefaultValue::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                     GALGAS_defaultValueList::constructor_emptyList (HERE)
-                                                     COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_listAsDefaultValue::GALGAS_listAsDefaultValue (const cPtr_listAsDefaultValue * inSourcePtr) :
-GALGAS_abstractDefaultValue (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_listAsDefaultValue) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_listAsDefaultValue GALGAS_listAsDefaultValue::constructor_new (const GALGAS_location & inAttribute_mStartLocation,
-                                                                      const GALGAS_defaultValueList & inAttribute_mDefaultValueList
-                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_listAsDefaultValue result ;
-  if (inAttribute_mStartLocation.isValid () && inAttribute_mDefaultValueList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_listAsDefaultValue (inAttribute_mStartLocation, inAttribute_mDefaultValueList COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_location GALGAS_listAsDefaultValue::getter_mStartLocation (UNUSED_LOCATION_ARGS) const {
-  GALGAS_location result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_listAsDefaultValue * p = (const cPtr_listAsDefaultValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_listAsDefaultValue) ;
-    result = p->mProperty_mStartLocation ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_location cPtr_listAsDefaultValue::getter_mStartLocation (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mStartLocation ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList GALGAS_listAsDefaultValue::getter_mDefaultValueList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_defaultValueList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_listAsDefaultValue * p = (const cPtr_listAsDefaultValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_listAsDefaultValue) ;
-    result = p->mProperty_mDefaultValueList ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_defaultValueList cPtr_listAsDefaultValue::getter_mDefaultValueList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mDefaultValueList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_listAsDefaultValue::setter_setMStartLocation (GALGAS_location inValue
-                                                          COMMA_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    insulate (THERE) ;
-    cPtr_listAsDefaultValue * p = (cPtr_listAsDefaultValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_listAsDefaultValue) ;
-    p->mProperty_mStartLocation = inValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cPtr_listAsDefaultValue::setter_setMStartLocation (GALGAS_location inValue
-                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mStartLocation = inValue ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_listAsDefaultValue::setter_setMDefaultValueList (GALGAS_defaultValueList inValue
-                                                             COMMA_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    insulate (THERE) ;
-    cPtr_listAsDefaultValue * p = (cPtr_listAsDefaultValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_listAsDefaultValue) ;
-    p->mProperty_mDefaultValueList = inValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cPtr_listAsDefaultValue::setter_setMDefaultValueList (GALGAS_defaultValueList inValue
-                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mDefaultValueList = inValue ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                     Pointer class for @listAsDefaultValue class                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cPtr_listAsDefaultValue::cPtr_listAsDefaultValue (const GALGAS_location & in_mStartLocation,
-                                                  const GALGAS_defaultValueList & in_mDefaultValueList
-                                                  COMMA_LOCATION_ARGS) :
-cPtr_abstractDefaultValue (THERE),
-mProperty_mStartLocation (in_mStartLocation),
-mProperty_mDefaultValueList (in_mDefaultValueList) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * cPtr_listAsDefaultValue::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_listAsDefaultValue ;
-}
-
-void cPtr_listAsDefaultValue::description (C_String & ioString,
-                                           const int32_t inIndentation) const {
-  ioString << "[@listAsDefaultValue:" ;
-  mProperty_mStartLocation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mDefaultValueList.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-acPtr_class * cPtr_listAsDefaultValue::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_listAsDefaultValue (mProperty_mStartLocation, mProperty_mDefaultValueList COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                              @listAsDefaultValue type                                               *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_listAsDefaultValue ("listAsDefaultValue",
-                                           & kTypeDescriptor_GALGAS_abstractDefaultValue) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_listAsDefaultValue::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_listAsDefaultValue ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_listAsDefaultValue::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_listAsDefaultValue (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_listAsDefaultValue GALGAS_listAsDefaultValue::extractObject (const GALGAS_object & inObject,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_listAsDefaultValue result ;
-  const GALGAS_listAsDefaultValue * p = (const GALGAS_listAsDefaultValue *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_listAsDefaultValue *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("listAsDefaultValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                      Abstract extension method '@abstractDefaultValue analyzeDefaultValueType'                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -12405,6 +11786,7 @@ C_PrologueEpilogue gMethod_abstractDefaultValue_analyzeDefaultValueType (NULL,
 
 void callExtensionMethod_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
                                                   const GALGAS_typeKindList constin_inAttributeActualTypeList,
+                                                  const GALGAS_propertyMap constin_inPreferencesPropertyMap,
                                                   GALGAS_string & out_outSwiftDefaultValueAsString,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) {
@@ -12432,10 +11814,84 @@ void callExtensionMethod_analyzeDefaultValueType (const cPtr_abstractDefaultValu
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inAttributeActualTypeList, out_outSwiftDefaultValueAsString, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inAttributeActualTypeList, constin_inPreferencesPropertyMap, out_outSwiftDefaultValueAsString, inCompiler COMMA_THERE) ;
     }
   }
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                        Extension method '@abstractDefaultValue enterDefaultValuePrecedence'                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <extensionMethodSignature_abstractDefaultValue_enterDefaultValuePrecedence> gExtensionMethodTable_abstractDefaultValue_enterDefaultValuePrecedence ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_enterDefaultValuePrecedence (const int32_t inClassIndex,
+                                                       extensionMethodSignature_abstractDefaultValue_enterDefaultValuePrecedence inMethod) {
+  gExtensionMethodTable_abstractDefaultValue_enterDefaultValuePrecedence.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_enterDefaultValuePrecedence (const cPtr_abstractDefaultValue * inObject,
+                                                      const GALGAS_lstring constin_inNode,
+                                                      GALGAS_declarationPrecedenceGraph & io_ioGraph,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_abstractDefaultValue) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    extensionMethodSignature_abstractDefaultValue_enterDefaultValuePrecedence f = NULL ;
+    if (classIndex < gExtensionMethodTable_abstractDefaultValue_enterDefaultValuePrecedence.count ()) {
+      f = gExtensionMethodTable_abstractDefaultValue_enterDefaultValuePrecedence (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionMethodTable_abstractDefaultValue_enterDefaultValuePrecedence.count ()) {
+           f = gExtensionMethodTable_abstractDefaultValue_enterDefaultValuePrecedence (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionMethodTable_abstractDefaultValue_enterDefaultValuePrecedence.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      f (inObject, constin_inNode, io_ioGraph, inCompiler COMMA_THERE) ;
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_abstractDefaultValue_enterDefaultValuePrecedence (const cPtr_abstractDefaultValue * /* inObject */,
+                                                                              const GALGAS_lstring /* constinArgument_inNode */,
+                                                                              GALGAS_declarationPrecedenceGraph & /* ioArgument_ioGraph */,
+                                                                              C_Compiler * /* inCompiler */
+                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+}
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_abstractDefaultValue_enterDefaultValuePrecedence (void) {
+  enterExtensionMethod_enterDefaultValuePrecedence (kTypeDescriptor_GALGAS_abstractDefaultValue.mSlotID,
+                                                    extensionMethod_abstractDefaultValue_enterDefaultValuePrecedence) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionMethod_abstractDefaultValue_enterDefaultValuePrecedence (void) {
+  gExtensionMethodTable_abstractDefaultValue_enterDefaultValuePrecedence.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_abstractDefaultValue_enterDefaultValuePrecedence (defineExtensionMethod_abstractDefaultValue_enterDefaultValuePrecedence,
+                                                                             freeExtensionMethod_abstractDefaultValue_enterDefaultValuePrecedence) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
@@ -14094,4 +13550,459 @@ GALGAS_string callExtensionGetter_propertyDeclarationCode (const cPtr_propertyGe
   }
   return result ;
 }
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                          Abstract extension getter '@propertyGeneration configurationCode'                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_configurationCode> gExtensionGetterTable_propertyGeneration_configurationCode ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_configurationCode (const int32_t inClassIndex,
+                                             enterExtensionGetter_propertyGeneration_configurationCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_configurationCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionGetter_propertyGeneration_configurationCode (void) {
+  gExtensionGetterTable_propertyGeneration_configurationCode.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_propertyGeneration_configurationCode (NULL,
+                                                                 freeExtensionGetter_propertyGeneration_configurationCode) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string callExtensionGetter_configurationCode (const cPtr_propertyGeneration * inObject,
+                                                     C_Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_configurationCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_configurationCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_configurationCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_configurationCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_configurationCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_configurationCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                               Extension getter '@propertyGeneration terminationCode'                                *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_terminationCode> gExtensionGetterTable_propertyGeneration_terminationCode ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_terminationCode (const int32_t inClassIndex,
+                                           enterExtensionGetter_propertyGeneration_terminationCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_terminationCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGeneration * inObject,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_terminationCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_terminationCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_terminationCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_terminationCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_terminationCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_terminationCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static GALGAS_string extensionGetter_propertyGeneration_terminationCode (const cPtr_propertyGeneration * /* inObject */,
+                                                                         C_Compiler * /* inCompiler */
+                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_result ; // Returned variable
+  result_result = GALGAS_string::makeEmptyString () ;
+//---
+  return result_result ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionGetter_propertyGeneration_terminationCode (void) {
+  enterExtensionGetter_terminationCode (kTypeDescriptor_GALGAS_propertyGeneration.mSlotID,
+                                        extensionGetter_propertyGeneration_terminationCode) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionGetter_propertyGeneration_terminationCode (void) {
+  gExtensionGetterTable_propertyGeneration_terminationCode.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_propertyGeneration_terminationCode (defineExtensionGetter_propertyGeneration_terminationCode,
+                                                               freeExtensionGetter_propertyGeneration_terminationCode) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                    Extension getter '@propertyGeneration setupAtomicPropertyFromDictionaryCode'                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode> gExtensionGetterTable_propertyGeneration_setupAtomicPropertyFromDictionaryCode ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_setupAtomicPropertyFromDictionaryCode (const int32_t inClassIndex,
+                                                                 enterExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_setupAtomicPropertyFromDictionaryCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string callExtensionGetter_setupAtomicPropertyFromDictionaryCode (const cPtr_propertyGeneration * inObject,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_setupAtomicPropertyFromDictionaryCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_setupAtomicPropertyFromDictionaryCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_setupAtomicPropertyFromDictionaryCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_setupAtomicPropertyFromDictionaryCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_setupAtomicPropertyFromDictionaryCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static GALGAS_string extensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode (const cPtr_propertyGeneration * /* inObject */,
+                                                                                               C_Compiler * /* inCompiler */
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_result ; // Returned variable
+  result_result = GALGAS_string::makeEmptyString () ;
+//---
+  return result_result ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode (void) {
+  enterExtensionGetter_setupAtomicPropertyFromDictionaryCode (kTypeDescriptor_GALGAS_propertyGeneration.mSlotID,
+                                                              extensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode (void) {
+  gExtensionGetterTable_propertyGeneration_setupAtomicPropertyFromDictionaryCode.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode (defineExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode,
+                                                                                     freeExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                     Extension getter '@propertyGeneration setupRelationshipFromDictionaryCode'                      *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode> gExtensionGetterTable_propertyGeneration_setupRelationshipFromDictionaryCode ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_setupRelationshipFromDictionaryCode (const int32_t inClassIndex,
+                                                               enterExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_setupRelationshipFromDictionaryCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string callExtensionGetter_setupRelationshipFromDictionaryCode (const cPtr_propertyGeneration * inObject,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_setupRelationshipFromDictionaryCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_setupRelationshipFromDictionaryCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_setupRelationshipFromDictionaryCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_setupRelationshipFromDictionaryCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_setupRelationshipFromDictionaryCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static GALGAS_string extensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode (const cPtr_propertyGeneration * /* inObject */,
+                                                                                             C_Compiler * /* inCompiler */
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_result ; // Returned variable
+  result_result = GALGAS_string::makeEmptyString () ;
+//---
+  return result_result ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode (void) {
+  enterExtensionGetter_setupRelationshipFromDictionaryCode (kTypeDescriptor_GALGAS_propertyGeneration.mSlotID,
+                                                            extensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode (void) {
+  gExtensionGetterTable_propertyGeneration_setupRelationshipFromDictionaryCode.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_propertyGeneration_setupRelationshipFromDictionaryCode (defineExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode,
+                                                                                   freeExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                            Extension getter '@propertyGeneration saveIntoDictionaryCode'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_saveIntoDictionaryCode> gExtensionGetterTable_propertyGeneration_saveIntoDictionaryCode ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_saveIntoDictionaryCode (const int32_t inClassIndex,
+                                                  enterExtensionGetter_propertyGeneration_saveIntoDictionaryCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_saveIntoDictionaryCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string callExtensionGetter_saveIntoDictionaryCode (const cPtr_propertyGeneration * inObject,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_saveIntoDictionaryCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_saveIntoDictionaryCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_saveIntoDictionaryCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_saveIntoDictionaryCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_saveIntoDictionaryCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_saveIntoDictionaryCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static GALGAS_string extensionGetter_propertyGeneration_saveIntoDictionaryCode (const cPtr_propertyGeneration * /* inObject */,
+                                                                                C_Compiler * /* inCompiler */
+                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_result ; // Returned variable
+  result_result = GALGAS_string::makeEmptyString () ;
+//---
+  return result_result ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionGetter_propertyGeneration_saveIntoDictionaryCode (void) {
+  enterExtensionGetter_saveIntoDictionaryCode (kTypeDescriptor_GALGAS_propertyGeneration.mSlotID,
+                                               extensionGetter_propertyGeneration_saveIntoDictionaryCode) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionGetter_propertyGeneration_saveIntoDictionaryCode (void) {
+  gExtensionGetterTable_propertyGeneration_saveIntoDictionaryCode.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_propertyGeneration_saveIntoDictionaryCode (defineExtensionGetter_propertyGeneration_saveIntoDictionaryCode,
+                                                                      freeExtensionGetter_propertyGeneration_saveIntoDictionaryCode) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                           Extension getter '@propertyGeneration objectAccessibilityCode'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_objectAccessibilityCode> gExtensionGetterTable_propertyGeneration_objectAccessibilityCode ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_objectAccessibilityCode (const int32_t inClassIndex,
+                                                   enterExtensionGetter_propertyGeneration_objectAccessibilityCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_objectAccessibilityCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_string callExtensionGetter_objectAccessibilityCode (const cPtr_propertyGeneration * inObject,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_objectAccessibilityCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_objectAccessibilityCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_objectAccessibilityCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_objectAccessibilityCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_objectAccessibilityCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_objectAccessibilityCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static GALGAS_string extensionGetter_propertyGeneration_objectAccessibilityCode (const cPtr_propertyGeneration * /* inObject */,
+                                                                                 C_Compiler * /* inCompiler */
+                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_result ; // Returned variable
+  result_result = GALGAS_string::makeEmptyString () ;
+//---
+  return result_result ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionGetter_propertyGeneration_objectAccessibilityCode (void) {
+  enterExtensionGetter_objectAccessibilityCode (kTypeDescriptor_GALGAS_propertyGeneration.mSlotID,
+                                                extensionGetter_propertyGeneration_objectAccessibilityCode) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionGetter_propertyGeneration_objectAccessibilityCode (void) {
+  gExtensionGetterTable_propertyGeneration_objectAccessibilityCode.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gGetter_propertyGeneration_objectAccessibilityCode (defineExtensionGetter_propertyGeneration_objectAccessibilityCode,
+                                                                       freeExtensionGetter_propertyGeneration_objectAccessibilityCode) ;
 

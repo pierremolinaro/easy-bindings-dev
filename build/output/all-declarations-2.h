@@ -10,7 +10,7 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @atomicProxyGeneration class                                             *
+//                                        Phase 1: @atomicProxyGeneration class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -84,7 +84,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGenerati
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   Pointer class for @atomicProxyGeneration class                                    *
+//                               Phase 2: pointer class for @atomicProxyGeneration class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -127,7 +127,7 @@ class cPtr_atomicProxyGeneration : public cPtr_propertyGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @atomicProxyGenerationList list                                           *
+//                                       Phase 1: @atomicProxyGenerationList list                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -259,7 +259,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGenerati
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @atomicProxyGenerationList_2D_element struct                                     *
+//                                Phase 1: @atomicProxyGenerationList_2D_element struct                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -321,7 +321,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGenerati
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @atomicPropertyGeneration class                                           *
+//                                       Phase 1: @atomicPropertyGeneration class                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -401,7 +401,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGener
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Pointer class for @atomicPropertyGeneration class                                  *
+//                              Phase 2: pointer class for @atomicPropertyGeneration class                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -448,7 +448,7 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @atomicPropertyGenerationList list                                          *
+//                                     Phase 1: @atomicPropertyGenerationList list                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -580,7 +580,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGener
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   @atomicPropertyGenerationList_2D_element struct                                   *
+//                               Phase 1: @atomicPropertyGenerationList_2D_element struct                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -642,7 +642,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGener
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @propertyMap_2D_element struct                                            *
+//                                       Phase 1: @propertyMap_2D_element struct                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -722,7 +722,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyMap_2D_elem
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @toOnePropertyGenerationList list                                          *
+//                                      Phase 1: @toOnePropertyGenerationList list                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -854,7 +854,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOnePropertyGenera
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @toOnePropertyGeneration class                                            *
+//                                       Phase 1: @toOnePropertyGeneration class                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -934,7 +934,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOnePropertyGenera
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Pointer class for @toOnePropertyGeneration class                                   *
+//                              Phase 2: pointer class for @toOnePropertyGeneration class                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -981,7 +981,7 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   @toOnePropertyGenerationList_2D_element struct                                    *
+//                               Phase 1: @toOnePropertyGenerationList_2D_element struct                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1043,7 +1043,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOnePropertyGenera
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @toManyRelationshipOptionGeneration enum                                       *
+//                                  Phase 1: @toManyRelationshipOptionGeneration enum                                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1132,7 +1132,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipO
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                             @toManyRelationshipOptionGeneration enum, associated values                             *
+//                         Phase 2: @toManyRelationshipOptionGeneration enum, associated values                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1170,7 +1170,7 @@ class cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance : p
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @toManyPropertyGeneration class                                           *
+//                                       Phase 1: @toManyPropertyGeneration class                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1250,7 +1250,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyPropertyGener
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Pointer class for @toManyPropertyGeneration class                                  *
+//                              Phase 2: pointer class for @toManyPropertyGeneration class                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1297,7 +1297,7 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @toManyPropertyGenerationList list                                          *
+//                                     Phase 1: @toManyPropertyGenerationList list                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1429,7 +1429,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyPropertyGener
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   @toManyPropertyGenerationList_2D_element struct                                   *
+//                               Phase 1: @toManyPropertyGenerationList_2D_element struct                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1491,7 +1491,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyPropertyGener
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @validationStubRoutineListForGeneration list                                     *
+//                                Phase 1: @validationStubRoutineListForGeneration list                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1661,7 +1661,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_validationStubRouti
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                              @validationStubRoutineListForGeneration_2D_element struct                              *
+//                          Phase 1: @validationStubRoutineListForGeneration_2D_element struct                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1738,7 +1738,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_validationStubRouti
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @actionMap_2D_element struct                                             *
+//                                        Phase 1: @actionMap_2D_element struct                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1803,7 +1803,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionMap_2D_elemen
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @actionFileGeneration class                                             *
+//                                         Phase 1: @actionFileGeneration class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1867,7 +1867,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionFileGeneratio
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @actionFileGeneration class                                    *
+//                                Phase 2: pointer class for @actionFileGeneration class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1901,7 +1901,7 @@ class cPtr_actionFileGeneration : public cPtr_abstractFileGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                      @observablePropertyAsBooleanMultipleBindingExpressionForGeneration class                       *
+//                  Phase 1: @observablePropertyAsBooleanMultipleBindingExpressionForGeneration class                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1959,7 +1959,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//             Pointer class for @observablePropertyAsBooleanMultipleBindingExpressionForGeneration class              *
+//         Phase 2: pointer class for @observablePropertyAsBooleanMultipleBindingExpressionForGeneration class         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1989,7 +1989,7 @@ class cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration : p
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                             @negateBooleanMultipleBindingExpressionForGeneration class                              *
+//                         Phase 1: @negateBooleanMultipleBindingExpressionForGeneration class                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2044,7 +2044,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_negateBooleanMultip
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                    Pointer class for @negateBooleanMultipleBindingExpressionForGeneration class                     *
+//                Phase 2: pointer class for @negateBooleanMultipleBindingExpressionForGeneration class                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2074,7 +2074,7 @@ class cPtr_negateBooleanMultipleBindingExpressionForGeneration : public cPtr_abs
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               @orBooleanMultipleBindingExpressionForGeneration class                                *
+//                           Phase 1: @orBooleanMultipleBindingExpressionForGeneration class                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2135,7 +2135,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_orBooleanMultipleBi
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                      Pointer class for @orBooleanMultipleBindingExpressionForGeneration class                       *
+//                  Phase 2: pointer class for @orBooleanMultipleBindingExpressionForGeneration class                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2169,7 +2169,7 @@ class cPtr_orBooleanMultipleBindingExpressionForGeneration : public cPtr_abstrac
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               @xorBooleanMultipleBindingExpressionForGeneration class                               *
+//                           Phase 1: @xorBooleanMultipleBindingExpressionForGeneration class                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2230,7 +2230,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xorBooleanMultipleB
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                      Pointer class for @xorBooleanMultipleBindingExpressionForGeneration class                      *
+//                  Phase 2: pointer class for @xorBooleanMultipleBindingExpressionForGeneration class                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2264,7 +2264,7 @@ class cPtr_xorBooleanMultipleBindingExpressionForGeneration : public cPtr_abstra
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               @andBooleanMultipleBindingExpressionForGeneration class                               *
+//                           Phase 1: @andBooleanMultipleBindingExpressionForGeneration class                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2325,7 +2325,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_andBooleanMultipleB
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                      Pointer class for @andBooleanMultipleBindingExpressionForGeneration class                      *
+//                  Phase 2: pointer class for @andBooleanMultipleBindingExpressionForGeneration class                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2359,7 +2359,7 @@ class cPtr_andBooleanMultipleBindingExpressionForGeneration : public cPtr_abstra
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               @comparisonMultipleBindingExpressionForGeneration class                               *
+//                           Phase 1: @comparisonMultipleBindingExpressionForGeneration class                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2426,7 +2426,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleB
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                      Pointer class for @comparisonMultipleBindingExpressionForGeneration class                      *
+//                  Phase 2: pointer class for @comparisonMultipleBindingExpressionForGeneration class                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2539,7 +2539,7 @@ class GALGAS_string callExtensionGetter_expressionString (const class cPtr_abstr
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @arrayControllerPropertyGeneration class                                       *
+//                                  Phase 1: @arrayControllerPropertyGeneration class                                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2604,7 +2604,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerProp
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                             Pointer class for @arrayControllerPropertyGeneration class                              *
+//                         Phase 2: pointer class for @arrayControllerPropertyGeneration class                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2639,7 +2639,7 @@ class cPtr_arrayControllerPropertyGeneration : public cPtr_propertyGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @arrayControllerModelKind enum                                            *
+//                                       Phase 1: @arrayControllerModelKind enum                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2706,7 +2706,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerMode
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                              @tableViewControllerBoundColumnListAST_2D_element struct                               *
+//                          Phase 1: @tableViewControllerBoundColumnListAST_2D_element struct                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2786,7 +2786,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                @tableViewControllerAttributListAST_2D_element struct                                *
+//                            Phase 1: @tableViewControllerAttributListAST_2D_element struct                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2854,7 +2854,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @tableViewControllerPropertyGeneration class                                     *
+//                                Phase 1: @tableViewControllerPropertyGeneration class                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2919,7 +2919,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                           Pointer class for @tableViewControllerPropertyGeneration class                            *
+//                       Phase 2: pointer class for @tableViewControllerPropertyGeneration class                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2954,7 +2954,7 @@ class cPtr_tableViewControllerPropertyGeneration : public cPtr_propertyGeneratio
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @tableViewControllerModelKind enum                                          *
+//                                     Phase 1: @tableViewControllerModelKind enum                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3021,7 +3021,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                @tableViewControllerBoundColumnListForGeneration list                                *
+//                            Phase 1: @tableViewControllerBoundColumnListForGeneration list                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3210,7 +3210,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                         @tableViewControllerBoundColumnListForGeneration_2D_element struct                          *
+//                     Phase 1: @tableViewControllerBoundColumnListForGeneration_2D_element struct                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3293,7 +3293,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               @tableViewControllerSortedColumnListForGeneration list                                *
+//                           Phase 1: @tableViewControllerSortedColumnListForGeneration list                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3463,7 +3463,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                         @tableViewControllerSortedColumnListForGeneration_2D_element struct                         *
+//                     Phase 1: @tableViewControllerSortedColumnListForGeneration_2D_element struct                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3537,7 +3537,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @selectionControllerPropertyGeneration class                                     *
+//                                Phase 1: @selectionControllerPropertyGeneration class                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3608,7 +3608,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                           Pointer class for @selectionControllerPropertyGeneration class                            *
+//                       Phase 2: pointer class for @selectionControllerPropertyGeneration class                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3647,7 +3647,7 @@ class cPtr_selectionControllerPropertyGeneration : public cPtr_propertyGeneratio
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                       @selectionControllerForGeneration list                                        *
+//                                   Phase 1: @selectionControllerForGeneration list                                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3912,7 +3912,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 @selectionControllerForGeneration_2D_element struct                                 *
+//                             Phase 1: @selectionControllerForGeneration_2D_element struct                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4019,75 +4019,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @defaultValueList_2D_element struct                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_defaultValueList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_defaultValueList_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_defaultValueList_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_defaultValueList_2D_element (const GALGAS_abstractDefaultValue & in_mDefaultValue) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_defaultValueList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_defaultValueList_2D_element constructor_new (const class GALGAS_abstractDefaultValue & inOperand0
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_defaultValueList_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mDefaultValue (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_defaultValueList_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_defaultValueList_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
 //                      Abstract extension method '@abstractDefaultValue analyzeDefaultValueType'                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 typedef void (*extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType) (const class cPtr_abstractDefaultValue * inObject,
                                                                                        const class GALGAS_typeKindList constinArgument0,
-                                                                                       class GALGAS_string & outArgument1,
+                                                                                       const class GALGAS_propertyMap constinArgument1,
+                                                                                       class GALGAS_string & outArgument2,
                                                                                        class C_Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
@@ -4100,13 +4039,14 @@ void enterExtensionMethod_analyzeDefaultValueType (const int32_t inClassIndex,
 
 void callExtensionMethod_analyzeDefaultValueType (const class cPtr_abstractDefaultValue * inObject,
                                                   const GALGAS_typeKindList constin_inAttributeActualTypeList,
+                                                  const GALGAS_propertyMap constin_inPreferencesPropertyMap,
                                                   GALGAS_string & out_outSwiftDefaultValueAsString,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                 @typeKindList list                                                  *
+//                                             Phase 1: @typeKindList list                                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4238,6 +4178,31 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKindList ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                        Extension method '@abstractDefaultValue enterDefaultValuePrecedence'                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef void (*extensionMethodSignature_abstractDefaultValue_enterDefaultValuePrecedence) (const class cPtr_abstractDefaultValue * inObject,
+                                                                                           const class GALGAS_lstring constinArgument0,
+                                                                                           class GALGAS_declarationPrecedenceGraph & ioArgument1,
+                                                                                           class C_Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_enterDefaultValuePrecedence (const int32_t inClassIndex,
+                                                       extensionMethodSignature_abstractDefaultValue_enterDefaultValuePrecedence inMethod) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_enterDefaultValuePrecedence (const class cPtr_abstractDefaultValue * inObject,
+                                                      const GALGAS_lstring constin_inNode,
+                                                      GALGAS_declarationPrecedenceGraph & io_ioGraph,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                                 Extension getter '@typeKind typeName' (as function)                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4268,7 +4233,7 @@ class GALGAS_bool extensionGetter_isGraphic (const class GALGAS_typeKind & inObj
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @typeKindList_2D_element struct                                           *
+//                                       Phase 1: @typeKindList_2D_element struct                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4462,5 +4427,131 @@ void enterExtensionGetter_propertyDeclarationCode (const int32_t inClassIndex,
 class GALGAS_string callExtensionGetter_propertyDeclarationCode (const class cPtr_propertyGeneration * inObject,
                                                                  const GALGAS_stringset constin_inOverriddenTransients,
                                                                  C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                          Abstract extension getter '@propertyGeneration configurationCode'                          *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_configurationCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                          class C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_configurationCode (const int32_t inClassIndex,
+                                             enterExtensionGetter_propertyGeneration_configurationCode inMethod) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_configurationCode (const class cPtr_propertyGeneration * inObject,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                               Extension getter '@propertyGeneration terminationCode'                                *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_terminationCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_terminationCode (const int32_t inClassIndex,
+                                           enterExtensionGetter_propertyGeneration_terminationCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGeneration * inObject,
+                                                         class C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                    Extension getter '@propertyGeneration setupAtomicPropertyFromDictionaryCode'                     *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                                              C_Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_setupAtomicPropertyFromDictionaryCode (const int32_t inClassIndex,
+                                                                 enterExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_setupAtomicPropertyFromDictionaryCode (const cPtr_propertyGeneration * inObject,
+                                                                               class C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                     Extension getter '@propertyGeneration setupRelationshipFromDictionaryCode'                      *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                                            C_Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_setupRelationshipFromDictionaryCode (const int32_t inClassIndex,
+                                                               enterExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_setupRelationshipFromDictionaryCode (const cPtr_propertyGeneration * inObject,
+                                                                             class C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                            Extension getter '@propertyGeneration saveIntoDictionaryCode'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_saveIntoDictionaryCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_saveIntoDictionaryCode (const int32_t inClassIndex,
+                                                  enterExtensionGetter_propertyGeneration_saveIntoDictionaryCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_saveIntoDictionaryCode (const cPtr_propertyGeneration * inObject,
+                                                                class C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                           Extension getter '@propertyGeneration objectAccessibilityCode'                            *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_objectAccessibilityCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionGetter_objectAccessibilityCode (const int32_t inClassIndex,
+                                                   enterExtensionGetter_propertyGeneration_objectAccessibilityCode inGetter) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_string callExtensionGetter_objectAccessibilityCode (const cPtr_propertyGeneration * inObject,
+                                                                 class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 

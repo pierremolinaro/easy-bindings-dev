@@ -690,14 +690,12 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
-  protected : virtual int32_t select_easyBindings_5F_syntax_60 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
 
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 @abstractBooleanMultipleBindingExpressionAST class                                  *
+//                             Phase 1: @abstractBooleanMultipleBindingExpressionAST class                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -743,7 +741,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBooleanMult
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                        Pointer class for @abstractBooleanMultipleBindingExpressionAST class                         *
+//                    Phase 2: pointer class for @abstractBooleanMultipleBindingExpressionAST class                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -766,7 +764,7 @@ class cPtr_abstractBooleanMultipleBindingExpressionAST : public acPtr_class {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @abstractDefaultValue class                                             *
+//                                         Phase 1: @abstractDefaultValue class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -812,7 +810,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDefaultValu
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @abstractDefaultValue class                                    *
+//                                Phase 2: pointer class for @abstractDefaultValue class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -835,7 +833,7 @@ class cPtr_abstractDefaultValue : public acPtr_class {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @andBooleanMultipleBindingExpressionAST class                                    *
+//                                Phase 1: @andBooleanMultipleBindingExpressionAST class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -896,7 +894,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_andBooleanMultipleB
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                           Pointer class for @andBooleanMultipleBindingExpressionAST class                           *
+//                       Phase 2: pointer class for @andBooleanMultipleBindingExpressionAST class                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -930,7 +928,7 @@ class cPtr_andBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanM
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @abstractDeclarationAST class                                            *
+//                                        Phase 1: @abstractDeclarationAST class                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -981,7 +979,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDeclaration
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   Pointer class for @abstractDeclarationAST class                                   *
+//                               Phase 2: pointer class for @abstractDeclarationAST class                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1008,7 +1006,7 @@ class cPtr_abstractDeclarationAST : public acPtr_class {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                        @arrayControllerDeclarationAST class                                         *
+//                                    Phase 1: @arrayControllerDeclarationAST class                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1076,7 +1074,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerDecl
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @arrayControllerBoundModelAST enum                                          *
+//                                     Phase 1: @arrayControllerBoundModelAST enum                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1153,7 +1151,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoun
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                @arrayControllerBoundModelAST enum, associated values                                *
+//                            Phase 2: @arrayControllerBoundModelAST enum, associated values                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1173,7 +1171,7 @@ class cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               Pointer class for @arrayControllerDeclarationAST class                                *
+//                           Phase 2: pointer class for @arrayControllerDeclarationAST class                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1212,7 +1210,7 @@ class cPtr_arrayControllerDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @atomicPropertyDeclarationAST class                                         *
+//                                     Phase 1: @atomicPropertyDeclarationAST class                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1286,7 +1284,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyDecla
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                Pointer class for @atomicPropertyDeclarationAST class                                *
+//                            Phase 2: pointer class for @atomicPropertyDeclarationAST class                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1329,7 +1327,7 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @boolAsDefaultValue class                                              *
+//                                          Phase 1: @boolAsDefaultValue class                                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1387,7 +1385,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boolAsDefaultValue 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     Pointer class for @boolAsDefaultValue class                                     *
+//                                 Phase 2: pointer class for @boolAsDefaultValue class                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1417,7 +1415,7 @@ class cPtr_boolAsDefaultValue : public cPtr_abstractDefaultValue {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @comparisonMultipleBindingExpressionAST class                                    *
+//                                Phase 1: @comparisonMultipleBindingExpressionAST class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1484,7 +1482,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleB
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @multipleBindingComparisonAST enum                                          *
+//                                     Phase 1: @multipleBindingComparisonAST enum                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1571,7 +1569,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingComp
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                           Pointer class for @comparisonMultipleBindingExpressionAST class                           *
+//                       Phase 2: pointer class for @comparisonMultipleBindingExpressionAST class                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1609,7 +1607,7 @@ class cPtr_comparisonMultipleBindingExpressionAST : public cPtr_abstractBooleanM
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @documentDeclarationAST class                                            *
+//                                        Phase 1: @documentDeclarationAST class                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1686,7 +1684,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_documentDeclaration
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @arrayControllerBindingListAST list                                         *
+//                                     Phase 1: @arrayControllerBindingListAST list                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1837,7 +1835,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBind
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @outletDeclarationList list                                             *
+//                                         Phase 1: @outletDeclarationList list                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2102,7 +2100,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletDeclarationLi
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   Pointer class for @documentDeclarationAST class                                   *
+//                               Phase 2: pointer class for @documentDeclarationAST class                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2145,7 +2143,7 @@ class cPtr_documentDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @doubleAsDefaultValue class                                             *
+//                                         Phase 1: @doubleAsDefaultValue class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2203,7 +2201,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_doubleAsDefaultValu
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @doubleAsDefaultValue class                                    *
+//                                Phase 2: pointer class for @doubleAsDefaultValue class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2233,7 +2231,7 @@ class cPtr_doubleAsDefaultValue : public cPtr_abstractDefaultValue {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @entityDeclarationAST class                                             *
+//                                         Phase 1: @entityDeclarationAST class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2334,7 +2332,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityDeclarationAS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @externSwiftDelegateList list                                            *
+//                                        Phase 1: @externSwiftDelegateList list                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2466,7 +2464,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegate
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @simpleStoredPropertyList list                                            *
+//                                       Phase 1: @simpleStoredPropertyList list                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2655,7 +2653,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @entityDeclarationAST class                                    *
+//                                Phase 2: pointer class for @entityDeclarationAST class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2714,7 +2712,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @enumerationDeclarationAST class                                           *
+//                                      Phase 1: @enumerationDeclarationAST class                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2773,7 +2771,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumerationDeclarat
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 Pointer class for @enumerationDeclarationAST class                                  *
+//                             Phase 2: pointer class for @enumerationDeclarationAST class                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2804,7 +2802,7 @@ class cPtr_enumerationDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @identifierAsDefaultValue class                                           *
+//                                       Phase 1: @identifierAsDefaultValue class                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2862,7 +2860,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_identifierAsDefault
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Pointer class for @identifierAsDefaultValue class                                  *
+//                              Phase 2: pointer class for @identifierAsDefaultValue class                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2892,7 +2890,7 @@ class cPtr_identifierAsDefaultValue : public cPtr_abstractDefaultValue {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @integerAsDefaultValue class                                             *
+//                                        Phase 1: @integerAsDefaultValue class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2956,7 +2954,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_integerAsDefaultVal
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   Pointer class for @integerAsDefaultValue class                                    *
+//                               Phase 2: pointer class for @integerAsDefaultValue class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2990,237 +2988,7 @@ class cPtr_integerAsDefaultValue : public cPtr_abstractDefaultValue {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @listAsDefaultValue class                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_listAsDefaultValue : public GALGAS_abstractDefaultValue {
-//--- Constructor
-  public : GALGAS_listAsDefaultValue (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_listAsDefaultValue constructor_default (LOCATION_ARGS) ;
-
-//---
-  public : inline const class cPtr_listAsDefaultValue * ptr (void) const { return (const cPtr_listAsDefaultValue *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_listAsDefaultValue (const cPtr_listAsDefaultValue * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_listAsDefaultValue extractObject (const GALGAS_object & inObject,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_listAsDefaultValue constructor_new (const class GALGAS_location & inOperand0,
-                                                                   const class GALGAS_defaultValueList & inOperand1
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_listAsDefaultValue & inOperand) const ;
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_setMDefaultValueList (class GALGAS_defaultValueList inArgument0
-                                                              COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMStartLocation (class GALGAS_location inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_defaultValueList getter_mDefaultValueList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_location getter_mStartLocation (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_listAsDefaultValue class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_listAsDefaultValue ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                               @defaultValueList list                                                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_defaultValueList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
-  public : GALGAS_defaultValueList (void) ;
-
-//--------------------------------- List constructor used by listmap
-  public : GALGAS_defaultValueList (const capCollectionElementArray & inSharedArray) ;
-
-//--------------------------------- Element constructor
-  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_abstractDefaultValue & in_mDefaultValue
-                                                  COMMA_LOCATION_ARGS) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_defaultValueList extractObject (const GALGAS_object & inObject,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_defaultValueList constructor_emptyList (LOCATION_ARGS) ;
-
-  public : static class GALGAS_defaultValueList constructor_listWithValue (const class GALGAS_abstractDefaultValue & inOperand0
-                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_defaultValueList inOperand,
-                                                       class C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_abstractDefaultValue & inOperand0
-                                                      COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public : VIRTUAL_IN_DEBUG GALGAS_defaultValueList add_operation (const GALGAS_defaultValueList & inOperand,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_defaultValueList_2D_element inArgument0,
-                                                C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_abstractDefaultValue constinArgument0,
-                                                       class GALGAS_uint constinArgument1,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_abstractDefaultValue & outArgument0,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_abstractDefaultValue & outArgument0,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_abstractDefaultValue & outArgument0,
-                                                       class GALGAS_uint constinArgument1,
-                                                       C_Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMDefaultValueAtIndex (class GALGAS_abstractDefaultValue constinArgument0,
-                                                                 class GALGAS_uint constinArgument1,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_abstractDefaultValue & outArgument0,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_abstractDefaultValue & outArgument0,
-                                              C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mDefaultValueAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                           C_Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_defaultValueList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_defaultValueList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                 C_Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_defaultValueList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-//--------------------------------- Friend
-
-  friend class cEnumerator_defaultValueList ;
- 
-} ; // End of GALGAS_defaultValueList class
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Enumerator declaration                                                                                            *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumerator_defaultValueList : public cGenericAbstractEnumerator {
-  public : cEnumerator_defaultValueList (const GALGAS_defaultValueList & inEnumeratedObject,
-                                         const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_abstractDefaultValue current_mDefaultValue (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_defaultValueList_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_defaultValueList ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                     Pointer class for @listAsDefaultValue class                                     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cPtr_listAsDefaultValue : public cPtr_abstractDefaultValue {
-//--- Attributes
-  public : GALGAS_location mProperty_mStartLocation ;
-  public : GALGAS_defaultValueList mProperty_mDefaultValueList ;
-
-//--- Constructor
-  public : cPtr_listAsDefaultValue (const GALGAS_location & in_mStartLocation,
-                                    const GALGAS_defaultValueList & in_mDefaultValueList
-                                    COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_location getter_mStartLocation (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMStartLocation (GALGAS_location inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_defaultValueList getter_mDefaultValueList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMDefaultValueList (GALGAS_defaultValueList inValue COMMA_LOCATION_ARGS) ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                    @literalIntMultipleBindingExpressionAST class                                    *
+//                                Phase 1: @literalIntMultipleBindingExpressionAST class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3278,7 +3046,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literalIntMultipleB
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                           Pointer class for @literalIntMultipleBindingExpressionAST class                           *
+//                       Phase 2: pointer class for @literalIntMultipleBindingExpressionAST class                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3308,7 +3076,7 @@ class cPtr_literalIntMultipleBindingExpressionAST : public cPtr_abstractBooleanM
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  @negateBooleanMultipleBindingExpressionAST class                                   *
+//                              Phase 1: @negateBooleanMultipleBindingExpressionAST class                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3363,7 +3131,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_negateBooleanMultip
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                         Pointer class for @negateBooleanMultipleBindingExpressionAST class                          *
+//                     Phase 2: pointer class for @negateBooleanMultipleBindingExpressionAST class                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3393,7 +3161,7 @@ class cPtr_negateBooleanMultipleBindingExpressionAST : public cPtr_abstractBoole
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               @observablePropertyInMultipleBindingExpressionAST class                               *
+//                           Phase 1: @observablePropertyInMultipleBindingExpressionAST class                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3448,7 +3216,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyI
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @observablePropertyAST enum                                             *
+//                                         Phase 1: @observablePropertyAST enum                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3736,7 +3504,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   @observablePropertyAST enum, associated values                                    *
+//                               Phase 2: @observablePropertyAST enum, associated values                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4086,7 +3854,7 @@ class cEnumAssociatedValues_observablePropertyAST_superProperty : public cEnumAs
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                      Pointer class for @observablePropertyInMultipleBindingExpressionAST class                      *
+//                  Phase 2: pointer class for @observablePropertyInMultipleBindingExpressionAST class                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4116,7 +3884,7 @@ class cPtr_observablePropertyInMultipleBindingExpressionAST : public cPtr_abstra
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @orBooleanMultipleBindingExpressionAST class                                     *
+//                                Phase 1: @orBooleanMultipleBindingExpressionAST class                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4177,7 +3945,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_orBooleanMultipleBi
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                           Pointer class for @orBooleanMultipleBindingExpressionAST class                            *
+//                       Phase 2: pointer class for @orBooleanMultipleBindingExpressionAST class                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4211,7 +3979,7 @@ class cPtr_orBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMu
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @outletClassDeclarationAST class                                           *
+//                                      Phase 1: @outletClassDeclarationAST class                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4306,7 +4074,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassDeclarat
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 Pointer class for @outletClassDeclarationAST class                                  *
+//                             Phase 2: pointer class for @outletClassDeclarationAST class                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4361,7 +4129,95 @@ class cPtr_outletClassDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @proxyDeclarationAST class                                              *
+//                                         Phase 1: @prefsAsDefaultValue class                                         *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class GALGAS_prefsAsDefaultValue : public GALGAS_abstractDefaultValue {
+//--- Constructor
+  public : GALGAS_prefsAsDefaultValue (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_prefsAsDefaultValue constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_prefsAsDefaultValue * ptr (void) const { return (const cPtr_prefsAsDefaultValue *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_prefsAsDefaultValue (const cPtr_prefsAsDefaultValue * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_prefsAsDefaultValue extractObject (const GALGAS_object & inObject,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_prefsAsDefaultValue constructor_new (const class GALGAS_lstring & inOperand0
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_prefsAsDefaultValue & inOperand) const ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMPrefPropertyName (class GALGAS_lstring inArgument0
+                                                              COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPrefPropertyName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_prefsAsDefaultValue class
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsAsDefaultValue ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                Phase 2: pointer class for @prefsAsDefaultValue class                                *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+class cPtr_prefsAsDefaultValue : public cPtr_abstractDefaultValue {
+//--- Attributes
+  public : GALGAS_lstring mProperty_mPrefPropertyName ;
+
+//--- Constructor
+  public : cPtr_prefsAsDefaultValue (const GALGAS_lstring & in_mPrefPropertyName
+                                     COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mPrefPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMPrefPropertyName (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                         Phase 1: @proxyDeclarationAST class                                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4441,7 +4297,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyDeclarationAST
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                   @proxyKind enum                                                   *
+//                                               Phase 1: @proxyKind enum                                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4508,7 +4364,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyKind ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @proxyDeclarationAST class                                     *
+//                                Phase 2: pointer class for @proxyDeclarationAST class                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4555,7 +4411,7 @@ class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @selectionControllerDeclarationAST class                                       *
+//                                  Phase 1: @selectionControllerDeclarationAST class                                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4632,7 +4488,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                             Pointer class for @selectionControllerDeclarationAST class                              *
+//                         Phase 2: pointer class for @selectionControllerDeclarationAST class                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4675,7 +4531,7 @@ class cPtr_selectionControllerDeclarationAST : public cPtr_abstractDeclarationAS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @stringAsDefaultValue class                                             *
+//                                         Phase 1: @stringAsDefaultValue class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4733,7 +4589,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringAsDefaultValu
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @stringAsDefaultValue class                                    *
+//                                Phase 2: pointer class for @stringAsDefaultValue class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4763,7 +4619,7 @@ class cPtr_stringAsDefaultValue : public cPtr_abstractDefaultValue {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @tableViewControllerDeclarationAST class                                       *
+//                                  Phase 1: @tableViewControllerDeclarationAST class                                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4852,7 +4708,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @tableViewControllerAttributListAST list                                       *
+//                                  Phase 1: @tableViewControllerAttributListAST list                                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5003,7 +4859,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     @tableViewControllerBoundColumnListAST list                                     *
+//                                 Phase 1: @tableViewControllerBoundColumnListAST list                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5192,7 +5048,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                             Pointer class for @tableViewControllerDeclarationAST class                              *
+//                         Phase 2: pointer class for @tableViewControllerDeclarationAST class                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5243,7 +5099,7 @@ class cPtr_tableViewControllerDeclarationAST : public cPtr_abstractDeclarationAS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @toManyRelationshipAST class                                             *
+//                                        Phase 1: @toManyRelationshipAST class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5323,7 +5179,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @toManyRelationshipOptionAST enum                                          *
+//                                      Phase 1: @toManyRelationshipOptionAST enum                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5410,7 +5266,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipO
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                @toManyRelationshipOptionAST enum, associated values                                 *
+//                            Phase 2: @toManyRelationshipOptionAST enum, associated values                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5446,7 +5302,7 @@ class cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance : public c
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   Pointer class for @toManyRelationshipAST class                                    *
+//                               Phase 2: pointer class for @toManyRelationshipAST class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5493,7 +5349,7 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @toOneRelationshipAST class                                             *
+//                                         Phase 1: @toOneRelationshipAST class                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5567,7 +5423,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneRelationshipAS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @toOneOppositeRelationship enum                                           *
+//                                       Phase 1: @toOneOppositeRelationship enum                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5654,7 +5510,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneOppositeRelati
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 @toOneOppositeRelationship enum, associated values                                  *
+//                             Phase 2: @toOneOppositeRelationship enum, associated values                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5690,7 +5546,7 @@ class cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany : public 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @toOneRelationshipAST class                                    *
+//                                Phase 2: pointer class for @toOneRelationshipAST class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5733,7 +5589,7 @@ class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @transientClassDeclarationAST class                                         *
+//                                     Phase 1: @transientClassDeclarationAST class                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5792,7 +5648,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientClassDecla
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                Pointer class for @transientClassDeclarationAST class                                *
+//                            Phase 2: pointer class for @transientClassDeclarationAST class                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5823,7 +5679,7 @@ class cPtr_transientClassDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @transientDeclarationAST class                                            *
+//                                       Phase 1: @transientDeclarationAST class                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5906,7 +5762,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDeclaratio
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @observablePropertyList list                                             *
+//                                        Phase 1: @observablePropertyList list                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6038,7 +5894,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyL
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  Pointer class for @transientDeclarationAST class                                   *
+//                              Phase 2: pointer class for @transientDeclarationAST class                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6085,7 +5941,7 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @xorBooleanMultipleBindingExpressionAST class                                    *
+//                                Phase 1: @xorBooleanMultipleBindingExpressionAST class                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6146,7 +6002,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xorBooleanMultipleB
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                           Pointer class for @xorBooleanMultipleBindingExpressionAST class                           *
+//                       Phase 2: pointer class for @xorBooleanMultipleBindingExpressionAST class                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6180,7 +6036,7 @@ class cPtr_xorBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanM
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               @graphicController enum                                               *
+//                                           Phase 1: @graphicController enum                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6259,7 +6115,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_graphicController ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     @graphicController enum, associated values                                      *
+//                                 Phase 2: @graphicController enum, associated values                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6281,7 +6137,7 @@ class cEnumAssociatedValues_graphicController_defined : public cEnumAssociatedVa
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                @mainXibElement enum                                                 *
+//                                            Phase 1: @mainXibElement enum                                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6365,7 +6221,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibElement ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                       @mainXibElement enum, associated values                                       *
+//                                   Phase 2: @mainXibElement enum, associated values                                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6403,7 +6259,7 @@ class cEnumAssociatedValues_mainXibElement_outlet : public cEnumAssociatedValues
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @multipleBindingDescriptor enum                                           *
+//                                       Phase 1: @multipleBindingDescriptor enum                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6480,7 +6336,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingDesc
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 @multipleBindingDescriptor enum, associated values                                  *
+//                             Phase 2: @multipleBindingDescriptor enum, associated values                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6500,7 +6356,7 @@ class cEnumAssociatedValues_multipleBindingDescriptor_binding : public cEnumAsso
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @runActionDescriptor enum                                              *
+//                                          Phase 1: @runActionDescriptor enum                                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6579,7 +6435,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_runActionDescriptor
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    @runActionDescriptor enum, associated values                                     *
+//                                Phase 2: @runActionDescriptor enum, associated values                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6601,7 +6457,7 @@ class cEnumAssociatedValues_runActionDescriptor_action : public cEnumAssociatedV
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               @tableValueBinding enum                                               *
+//                                           Phase 1: @tableValueBinding enum                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6678,7 +6534,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableValueBinding ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     @tableValueBinding enum, associated values                                      *
+//                                 Phase 2: @tableValueBinding enum, associated values                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7099,14 +6955,12 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_58 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_59 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public : virtual int32_t select_easyBindings_5F_syntax_60 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               @bindingOptionList list                                               *
+//                                           Phase 1: @bindingOptionList list                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7257,7 +7111,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingOptionList ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @controllerBindingOptionList list                                          *
+//                                      Phase 1: @controllerBindingOptionList list                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7408,7 +7262,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOp
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @declarationListAST list                                               *
+//                                          Phase 1: @declarationListAST list                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7540,7 +7394,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationListAST 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @externSwiftFunctionList list                                            *
+//                                        Phase 1: @externSwiftFunctionList list                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7691,7 +7545,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftFunction
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @mainXibDescriptorList list                                             *
+//                                         Phase 1: @mainXibDescriptorList list                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7823,7 +7677,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibDescriptorLi
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @mainXibLineDescriptorList list                                           *
+//                                       Phase 1: @mainXibLineDescriptorList list                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7955,7 +7809,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibLineDescript
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @outletClassBindingSpecificationList list                                      *
+//                                  Phase 1: @outletClassBindingSpecificationList list                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8144,7 +7998,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   @outletClassBindingSpecificationModelList list                                    *
+//                               Phase 1: @outletClassBindingSpecificationModelList list                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8295,7 +8149,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @regularBindingList list                                               *
+//                                          Phase 1: @regularBindingList list                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8465,7 +8319,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingList 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               @prefDeclaration struct                                               *
+//                                           Phase 1: @prefDeclaration struct                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8560,7 +8414,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefDeclaration ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @astDeclarationStruct struct                                             *
+//                                        Phase 1: @astDeclarationStruct struct                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8649,7 +8503,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclarationStruc
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @tableViewColumnBindingAST struct                                          *
+//                                      Phase 1: @tableViewColumnBindingAST struct                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8729,7 +8583,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewColumnBind
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                        @declarationListAST_2D_element struct                                        *
+//                                    Phase 1: @declarationListAST_2D_element struct                                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8791,7 +8645,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationListAST_
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               @outletClassBindingSpecificationList_2D_element struct                                *
+//                           Phase 1: @outletClassBindingSpecificationList_2D_element struct                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8874,7 +8728,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingS
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                    @classMap map                                                    *
+//                                                Phase 1: @classMap map                                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9017,7 +8871,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classMap ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                   @classKind enum                                                   *
+//                                               Phase 1: @classKind enum                                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9118,7 +8972,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classKind ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @propertyGenerationList list                                             *
+//                                        Phase 1: @propertyGenerationList list                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9250,7 +9104,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGenerationL
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                   @actionMap map                                                    *
+//                                               Phase 1: @actionMap map                                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9341,7 +9195,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionMap ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                  @propertyMap map                                                   *
+//                                              Phase 1: @propertyMap map                                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9471,7 +9325,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyMap ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                        Class for element of '@classMap' map                                         *
+//                                    Phase 2: class for element of '@classMap' map                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9505,7 +9359,7 @@ class cMapElement_classMap : public cMapElement {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @classMap_2D_element struct                                             *
+//                                         Phase 1: @classMap_2D_element struct                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9591,7 +9445,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classMap_2D_element
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                 @outletClassMap map                                                 *
+//                                             Phase 1: @outletClassMap map                                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9773,7 +9627,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassMap ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     Class for element of '@outletClassMap' map                                      *
+//                                 Phase 2: class for element of '@outletClassMap' map                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9813,7 +9667,7 @@ class cMapElement_outletClassMap : public cMapElement {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @outletClassMap_2D_element struct                                          *
+//                                      Phase 1: @outletClassMap_2D_element struct                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -9920,7 +9774,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassMap_2D_e
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @bindingSpecificationMap map                                             *
+//                                        Phase 1: @bindingSpecificationMap map                                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10043,7 +9897,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingSpecificatio
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @outletBindingSpecificationMap map                                          *
+//                                     Phase 1: @outletBindingSpecificationMap map                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10160,7 +10014,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecif
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 Class for element of '@bindingSpecificationMap' map                                 *
+//                             Phase 2: class for element of '@bindingSpecificationMap' map                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10190,7 +10044,7 @@ class cMapElement_bindingSpecificationMap : public cMapElement {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     @bindingSpecificationMap_2D_element struct                                      *
+//                                 Phase 1: @bindingSpecificationMap_2D_element struct                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10267,7 +10121,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingSpecificatio
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @declarationPrecedenceGraph graph                                          *
+//                                      Phase 1: @declarationPrecedenceGraph graph                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10351,7 +10205,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationPreceden
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     @externSwiftDelegateList_2D_element struct                                      *
+//                                 Phase 1: @externSwiftDelegateList_2D_element struct                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10416,7 +10270,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegate
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     @externSwiftFunctionList_2D_element struct                                      *
+//                                 Phase 1: @externSwiftFunctionList_2D_element struct                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10487,7 +10341,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftFunction
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               @externFunctionMap map                                                *
+//                                           Phase 1: @externFunctionMap map                                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10570,7 +10424,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externFunctionMap ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Class for element of '@externFunctionMap' map                                    *
+//                                Phase 2: class for element of '@externFunctionMap' map                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10596,7 +10450,7 @@ class cMapElement_externFunctionMap : public cMapElement {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                        @externFunctionMap_2D_element struct                                         *
+//                                    Phase 1: @externFunctionMap_2D_element struct                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10661,7 +10515,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externFunctionMap_2
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                @enumConstantMap map                                                 *
+//                                            Phase 1: @enumConstantMap map                                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10752,7 +10606,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumConstantMap ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     Class for element of '@enumConstantMap' map                                     *
+//                                 Phase 2: class for element of '@enumConstantMap' map                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10778,7 +10632,7 @@ class cMapElement_enumConstantMap : public cMapElement {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @enumConstantMap_2D_element struct                                          *
+//                                     Phase 1: @enumConstantMap_2D_element struct                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10843,7 +10697,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumConstantMap_2D_
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @abstractFileGeneration class                                            *
+//                                        Phase 1: @abstractFileGeneration class                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10889,7 +10743,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractFileGenerat
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   Pointer class for @abstractFileGeneration class                                   *
+//                               Phase 2: pointer class for @abstractFileGeneration class                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -10912,7 +10766,7 @@ class cPtr_abstractFileGeneration : public acPtr_class {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                   @typeKind enum                                                    *
+//                                               Phase 1: @typeKind enum                                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11073,7 +10927,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @typeKind enum, associated values                                          *
+//                                      Phase 2: @typeKind enum, associated values                                     *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11145,7 +10999,7 @@ class cEnumAssociatedValues_typeKind_transientPropertyExternType : public cEnumA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     @simpleStoredPropertyList_2D_element struct                                     *
+//                                 Phase 1: @simpleStoredPropertyList_2D_element struct                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11225,7 +11079,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @propertyGeneration class                                              *
+//                                          Phase 1: @propertyGeneration class                                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11276,7 +11130,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGeneration 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     Pointer class for @propertyGeneration class                                     *
+//                                 Phase 2: pointer class for @propertyGeneration class                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11303,7 +11157,7 @@ class cPtr_propertyGeneration : public acPtr_class {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @propertyGenerationList_2D_element struct                                      *
+//                                  Phase 1: @propertyGenerationList_2D_element struct                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11365,7 +11219,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGenerationL
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 @entityListForGeneratingEBManagedObjectContext list                                 *
+//                             Phase 1: @entityListForGeneratingEBManagedObjectContext list                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11516,7 +11370,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGenera
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                          @entityListForGeneratingEBManagedObjectContext_2D_element struct                           *
+//                      Phase 1: @entityListForGeneratingEBManagedObjectContext_2D_element struct                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11587,7 +11441,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGenera
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                      @outletDeclarationList_2D_element struct                                       *
+//                                  Phase 1: @outletDeclarationList_2D_element struct                                  *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11691,7 +11545,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletDeclarationLi
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  @arrayControllerBindingListAST_2D_element struct                                   *
+//                              Phase 1: @arrayControllerBindingListAST_2D_element struct                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11759,7 +11613,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBind
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                               @decoratedOutletMap map                                               *
+//                                           Phase 1: @decoratedOutletMap map                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11863,7 +11717,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_decoratedOutletMap 
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   Class for element of '@decoratedOutletMap' map                                    *
+//                               Phase 2: class for element of '@decoratedOutletMap' map                               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11891,7 +11745,7 @@ class cMapElement_decoratedOutletMap : public cMapElement {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                        @decoratedOutletMap_2D_element struct                                        *
+//                                    Phase 1: @decoratedOutletMap_2D_element struct                                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -11962,7 +11816,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_decoratedOutletMap_
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                        @actionBindingListForGeneration list                                         *
+//                                    Phase 1: @actionBindingListForGeneration list                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -12151,7 +12005,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionBindingListFo
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  @actionBindingListForGeneration_2D_element struct                                  *
+//                              Phase 1: @actionBindingListForGeneration_2D_element struct                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -12234,7 +12088,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionBindingListFo
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @regularBindingsGenerationList list                                         *
+//                                     Phase 1: @regularBindingsGenerationList list                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -12423,7 +12277,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingsGene
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                                @boundObjectList list                                                *
+//                                            Phase 1: @boundObjectList list                                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -12574,7 +12428,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boundObjectList ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  @regularBindingsGenerationList_2D_element struct                                   *
+//                              Phase 1: @regularBindingsGenerationList_2D_element struct                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -12657,7 +12511,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingsGene
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                         @multipleBindingGenerationList list                                         *
+//                                     Phase 1: @multipleBindingGenerationList list                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -12827,7 +12681,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingGene
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                            @abstractBooleanMultipleBindingExpressionForGeneration class                             *
+//                        Phase 1: @abstractBooleanMultipleBindingExpressionForGeneration class                        *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -12873,7 +12727,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBooleanMult
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                   Pointer class for @abstractBooleanMultipleBindingExpressionForGeneration class                    *
+//               Phase 2: pointer class for @abstractBooleanMultipleBindingExpressionForGeneration class               *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -12896,7 +12750,7 @@ class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public acPtr_
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                  @multipleBindingGenerationList_2D_element struct                                   *
+//                              Phase 1: @multipleBindingGenerationList_2D_element struct                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

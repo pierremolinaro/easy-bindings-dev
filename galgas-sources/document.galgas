@@ -103,6 +103,12 @@ override method @documentDeclarationAST fourthAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
+  [ioSemanticContext.mClassMap searchKey
+    !.new {!preferencesName () !.nowhere}
+    ?*
+    ?let preferencesPropertyMap
+    ?2*
+  ]
 #--- Get document property map
   [ioSemanticContext.mClassMap searchKey
     !.new {!mClassName !.nowhere}
@@ -122,6 +128,7 @@ override method @documentDeclarationAST fourthAnalysisPhase
 #--- Analyze outlets and bindings
   analyzeOutlets (
     !rootPropertyMap
+    !preferencesPropertyMap
     !mRootEntityName.string
     !ioSemanticContext
     !mOutletDeclarationList

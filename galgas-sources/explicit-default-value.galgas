@@ -38,15 +38,8 @@ class @identifierAsDefaultValue : @abstractDefaultValue {
 
 #·······················································································································
 
-list @defaultValueList {
-  @abstractDefaultValue mDefaultValue
-}
-
-#·······················································································································
-
-class @listAsDefaultValue : @abstractDefaultValue {
-  @location mStartLocation
-  @defaultValueList mDefaultValueList
+class @prefsAsDefaultValue : @abstractDefaultValue {
+  @lstring mPrefPropertyName
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -65,33 +58,26 @@ syntax extension easyBindings_syntax {
       $no$
       outDefaultValue = @boolAsDefaultValue.new {!.new {!false !.here}}
     or
-      $literal_integer$ ?var  @luint integerValue
+      $literal_integer$ ?let @luint integerValue
       outDefaultValue = @integerAsDefaultValue.new {!integerValue !false}
     or
       $-$
-      $literal_integer$ ?var  @luint integerValue
+      $literal_integer$ ?let @luint integerValue
       outDefaultValue = @integerAsDefaultValue.new {!integerValue !true}
     or
-      $literal_double$ ?var  @ldouble doubleValue ?*
+      $literal_double$ ?let @ldouble doubleValue ?*
       outDefaultValue = @doubleAsDefaultValue.new {!doubleValue}
     or
-      $literal_string$ ?var @lstring stringValue
+      $literal_string$ ?let @lstring stringValue
       outDefaultValue = @stringAsDefaultValue.new {!stringValue}
     or
       $identifier$ ?let @lstring stringValue
       outDefaultValue = @identifierAsDefaultValue.new {!stringValue}
     or
-      $($
-      let startLocation = @location.here
-      @defaultValueList defaultValueList = {}
-      repeat
-        <explicit_value> ?var @abstractDefaultValue defaultValue
-        defaultValueList += !defaultValue
-      while
-        $,$
-      end
-      $)$
-      outDefaultValue = @listAsDefaultValue.new {!startLocation !defaultValueList}
+      $prefs$
+      $.$
+      $identifier$ ?let name
+      outDefaultValue = @prefsAsDefaultValue.new {!name}
     end
   }
 
@@ -105,12 +91,21 @@ syntax extension easyBindings_syntax {
 
 abstract method @abstractDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
+  ?let @propertyMap inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString
+
+#·······················································································································
+
+method @abstractDefaultValue enterDefaultValuePrecedence
+   ?let @lstring unused inNode
+   ?!@declarationPrecedenceGraph unused ioGraph {
+}
 
 #·······················································································································
   
 override method @boolAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
+  ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
@@ -138,6 +133,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
   
 override method @integerAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
+  ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
@@ -173,6 +169,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
   
 override method @doubleAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
+  ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
@@ -200,6 +197,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
   
 override method @stringAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
+  ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
@@ -281,6 +279,7 @@ func %once predefinedColors -> @stringset {
   
 override method @identifierAsDefaultValue analyzeDefaultValueType 
   ?let @typeKindList inAttributeActualTypeList
+  ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
@@ -365,76 +364,41 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
 
 #·······················································································································
  
-override method @listAsDefaultValue analyzeDefaultValueType 
-  ?let @typeKindList unused inAttributeActualTypeList
+override method @prefsAsDefaultValue analyzeDefaultValueType 
+  ?let @typeKindList inAttributeActualTypeList
+  ?let @propertyMap inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString
 {
-  outSwiftDefaultValueAsString = ""
-  @bool found = false
-#  foreach inAttributeActualTypeList while not found do
-#    if [mType mTypeKind] == [@typeKind structType] then
-#      found := true ;
-#      ioFileInclusionSet->mHeaderFileInclusionSet += ![mType ebTypeName] ;
-#      [inContextAnalysisStruct->mStructTypeMap searchKey
-#        !mType->mTypeName
-#        ?@structFieldList fieldList
-#      ] ;
-#      if [mDefaultValueList length] != [fieldList length] then
-#        error mStartLocation : "the '" . [mType ebTypeName] . "' struct needs " . [fieldList length] . " values for initialization" ;
-#      else
-#        outDirectDefaultValueAsString := "make" . [mType ebTypeName] . " (" ;
-#        foreach mDefaultValueList, fieldList
-#        do
-#          [mDefaultValue analyzeDefaultValueType
-#            ![@EXebTypeList listWithValue !mFieldType]
-#            !inContextAnalysisStruct
-#            ?@string directDefaultValueAsString
-#            ?2*
-#            !?ioFileInclusionSet
-#          ] ;
-#          outDirectDefaultValueAsString .= directDefaultValueAsString ;
-#        between
-#          outDirectDefaultValueAsString .= ", " ;
-#        end foreach ; 
-#        outDirectDefaultValueAsString .= ")" ;     
-#      end if ;
-#    elsif mType->mKind == [@EXTypeKind fontType] then
-#      found := true ;
-#      const @string errorMessage := "an NSFont should be initialized by a (fontName, fontSize) value" ;
-#      if [mDefaultValueList length] != 2 then
-#        error mStartLocation : errorMessage ; 
-#      else
-#        const @abstractDefaultValue v0 := [mDefaultValueList mDefaultValueAtIndex !0] ; 
-#        const @abstractDefaultValue v1 := [mDefaultValueList mDefaultValueAtIndex !1] ;
-#        @identifierAsDefaultValue fontName ;
-#        if (v0 is == @identifierAsDefaultValue) then 
-#          fontName := (cast v0 : @identifierAsDefaultValue) ;
-#        else
-#          error mStartLocation : errorMessage : fontName ;
-#        end if ;
-#        @integerAsDefaultValue fontSize ;
-#        if (v1 is == @integerAsDefaultValue) then 
-#          fontSize := (cast v1 : @integerAsDefaultValue) ;
-#        else
-#          error mStartLocation : errorMessage : fontSize ;
-#        end if ;
-#        if [predefinedFonts [] hasKey ![fontName mValue]->string] then
-#          outDirectDefaultValueAsString := "[NSFont " . [fontName mValue]->string . ":" . [[fontSize mValue]->uint string] . "]" ;
-#          outObjectiveCDefaultValueAsString := outDirectDefaultValueAsString ;
-#          outSwiftDefaultValueAsString := "NSFont (" . [fontName mValue]->string . ", " . [[fontSize mValue]->uint string] . ")" ;
-#        else
-#          error [fontName mValue]
-#          : "unknown predefined font name"
-#          : outDirectDefaultValueAsString, outObjectiveCDefaultValueAsString
-#          ;  
-#        end if ;
-#      end if ;
-#    end if ;
-#  end foreach ;
-  if not found then
-    error mStartLocation
-    : "invalid initialization value"  
+  [inPreferencesPropertyMap searchKey !mPrefPropertyName ?let @propertyKind kind ?2*]
+  switch kind
+  case property (@typeKind type *) :
+    var found = false
+    for (t) in inAttributeActualTypeList while not found do
+      found = type == t
+    end
+    if not found then
+      error mPrefPropertyName : "the atomic property type is not compatible"
+    end
+  case toMany (4*) :
+    error mPrefPropertyName : "an atomic property is required here"
+  case toOne (4*) :
+    error mPrefPropertyName : "an atomic property is required here"
+  case arrayController (2*) :
+    error mPrefPropertyName : "an atomic property is required here"
+  case selectionController (*) :
+    error mPrefPropertyName : "an atomic property is required here"
   end
+  outSwiftDefaultValueAsString = "g_Preferences!." + mPrefPropertyName
+}
+
+#·······················································································································
+
+override method @prefsAsDefaultValue enterDefaultValuePrecedence
+   ?let @lstring inNode
+   ?!@declarationPrecedenceGraph ioGraph
+{
+  let p = @lstring.new {!preferencesName () + " " + mPrefPropertyName.string !mPrefPropertyName.location}
+  [!?ioGraph addEdge !inNode !p]
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

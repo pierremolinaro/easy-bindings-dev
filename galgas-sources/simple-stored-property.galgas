@@ -25,6 +25,7 @@ override method @atomicPropertyDeclarationAST enterInPrecedenceGraph ?!@declarat
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !mClassName]
   [!?ioGraph addEdge !node !mPropertyTypeName]
+  [mDefaultValue enterDefaultValuePrecedence !node !?ioGraph]
 }
 
 #·······················································································································
@@ -106,13 +107,19 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
     error message searchKey
   do
     [ioSemanticContext.mClassMap searchKey !mPropertyTypeName ?let classKind ?3*]
+    [ioSemanticContext.mClassMap searchKey
+      !.new {!preferencesName () !.nowhere}
+      ?*
+      ?let preferencesPropertyMap
+      ?2*
+    ]
     switch classKind
     case prefs :
       error mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
       [!?mPropertyMap insertKey !mPropertyName !.property {!type: kind !accessibility: .stored} !{} !false]
     #--- Analyze default value
-      [mDefaultValue analyzeDefaultValueType !{!kind} ?let @string swiftDefaultValueAsString]
+      [mDefaultValue analyzeDefaultValueType !{!kind} !preferencesPropertyMap ?let @string swiftDefaultValueAsString]
     #--- Code Generation
       mPropertyGenerationList += !@atomicPropertyGeneration.new {
         !mPropertyName.string

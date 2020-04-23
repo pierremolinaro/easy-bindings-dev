@@ -129,17 +129,18 @@ override method @prefsDeclarationAST fourthAnalysisPhase
   [ioSemanticContext.mClassMap searchKey
     !.new {!preferencesName () !.nowhere}
     ?*
-    ?let propertyMap
+    ?let preferencesPropertyMap
     ?let actionMap
     ?let propertyGenerationList
   ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
     !{} # No root entity
+    !preferencesPropertyMap
     !"" # No root entity
     !ioSemanticContext
     !mDeclaration.mOutletDeclarationList
-    !propertyMap
+    !preferencesPropertyMap
     !actionMap
     !preferencesName ()
     !?ioGeneration

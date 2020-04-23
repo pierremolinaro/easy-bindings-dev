@@ -79,7 +79,7 @@ void callExtensionMethod_firstAnalysisPhase (const class cPtr_abstractDeclaratio
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @generationStruct struct                                               *
+//                                          Phase 1: @generationStruct struct                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -267,7 +267,7 @@ void callExtensionMethod_fourthAnalysisPhase (const class cPtr_abstractDeclarati
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                              @enumForGeneration class                                               *
+//                                          Phase 1: @enumForGeneration class                                          *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -331,7 +331,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumForGeneration ;
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                     Pointer class for @enumForGeneration class                                      *
+//                                 Phase 2: pointer class for @enumForGeneration class                                 *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -365,7 +365,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @atomicClassDeclarationAST class                                           *
+//                                      Phase 1: @atomicClassDeclarationAST class                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -421,7 +421,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicClassDeclarat
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 Pointer class for @atomicClassDeclarationAST class                                  *
+//                             Phase 2: pointer class for @atomicClassDeclarationAST class                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -452,7 +452,7 @@ class cPtr_atomicClassDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @entityForGeneration class                                              *
+//                                         Phase 1: @entityForGeneration class                                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -552,7 +552,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @entityForGeneration class                                     *
+//                                Phase 2: pointer class for @entityForGeneration class                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -610,7 +610,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                            @documentFileGeneration class                                            *
+//                                        Phase 1: @documentFileGeneration class                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -716,7 +716,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_documentFileGenerat
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                   Pointer class for @documentFileGeneration class                                   *
+//                               Phase 2: pointer class for @documentFileGeneration class                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -778,7 +778,7 @@ class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                             @prefsDeclarationAST class                                              *
+//                                         Phase 1: @prefsDeclarationAST class                                         *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -837,7 +837,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsDeclarationAST
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                    Pointer class for @prefsDeclarationAST class                                     *
+//                                Phase 2: pointer class for @prefsDeclarationAST class                                *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -868,7 +868,7 @@ class cPtr_prefsDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                @booleanMultipleBindingLiteralIntForGeneration class                                 *
+//                            Phase 1: @booleanMultipleBindingLiteralIntForGeneration class                            *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -926,7 +926,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_booleanMultipleBind
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                       Pointer class for @booleanMultipleBindingLiteralIntForGeneration class                        *
+//                   Phase 2: pointer class for @booleanMultipleBindingLiteralIntForGeneration class                   *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -956,7 +956,7 @@ class cPtr_booleanMultipleBindingLiteralIntForGeneration : public cPtr_abstractB
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                          @arrayControllerGeneration class                                           *
+//                                      Phase 1: @arrayControllerGeneration class                                      *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1041,7 +1041,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerGene
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                 Pointer class for @arrayControllerGeneration class                                  *
+//                             Phase 2: pointer class for @arrayControllerGeneration class                             *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1091,7 +1091,7 @@ class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                        @tableViewControllerGeneration class                                         *
+//                                    Phase 1: @tableViewControllerGeneration class                                    *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1200,7 +1200,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                               Pointer class for @tableViewControllerGeneration class                                *
+//                           Phase 2: pointer class for @tableViewControllerGeneration class                           *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -1266,7 +1266,7 @@ class cPtr_tableViewControllerGeneration : public cPtr_abstractFileGeneration {
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
-//                                           @XcodeProjectDescriptor struct                                            *
+//                                       Phase 1: @XcodeProjectDescriptor struct                                       *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 

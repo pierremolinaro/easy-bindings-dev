@@ -166,6 +166,7 @@ list @ebViewGraphicControllerBindingGenerationList {
 
 proc analyzeOutlets
   ?let @propertyMap inRootObservablePropertyMap
+  ?let @propertyMap inPreferencesPropertyMap
   ?let @string unused inRootEntityName
   ?let @semanticContext inSemanticContext
   ?let @outletDeclarationList inOutletDeclarationList
@@ -349,6 +350,7 @@ proc analyzeOutlets
   #---------------------------------- Regular bindings
     analyzeRegularBinding (
       !inRootObservablePropertyMap
+      !inPreferencesPropertyMap
       !inSemanticContext
       !inObservablePropertyMap
       !outlet_mOutletTypeName
@@ -364,6 +366,7 @@ proc analyzeOutlets
 
 proc analyzeRegularBinding
   ?let @propertyMap inRootPropertyMap
+  ?let @propertyMap inPreferencesPropertyMap
   ?let @semanticContext inSemanticContext
   ?let @propertyMap inBoundModelPropertyMap
   ?let @lstring inOutletTypeName
@@ -459,6 +462,7 @@ proc analyzeRegularBinding
         end
         [binding_mOptionValue analyzeDefaultValueType 
           !{!controller_mOptionType}
+          !inPreferencesPropertyMap
           ?let @string optionValueAsString
         ]
         bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString

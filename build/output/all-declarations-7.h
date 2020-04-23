@@ -38,13 +38,14 @@ void routine_buildBindingSpecificationMap (class GALGAS_semanticContext & ioArgu
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 void routine_analyzeRegularBinding (const class GALGAS_propertyMap constinArgument0,
-                                    const class GALGAS_semanticContext constinArgument1,
-                                    const class GALGAS_propertyMap constinArgument2,
-                                    const class GALGAS_lstring constinArgument3,
-                                    const class GALGAS_string constinArgument4,
-                                    const class GALGAS_regularBindingList constinArgument5,
-                                    const class GALGAS_string constinArgument6,
-                                    class GALGAS_regularBindingsGenerationList & ioArgument7,
+                                    const class GALGAS_propertyMap constinArgument1,
+                                    const class GALGAS_semanticContext constinArgument2,
+                                    const class GALGAS_propertyMap constinArgument3,
+                                    const class GALGAS_lstring constinArgument4,
+                                    const class GALGAS_string constinArgument5,
+                                    const class GALGAS_regularBindingList constinArgument6,
+                                    const class GALGAS_string constinArgument7,
+                                    class GALGAS_regularBindingsGenerationList & ioArgument8,
                                     class C_Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 

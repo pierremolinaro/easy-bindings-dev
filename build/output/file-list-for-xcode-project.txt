@@ -6663,7 +6663,8 @@
       GCC_OPTIMIZATION_LEVEL = 0 ;
       GCC_PREPROCESSOR_DEFINITIONS = () ;
       INFOPLIST_FILE = "Info.plist";
-      PRODUCT_NAME = "CocoaEb" ;
+      PRODUCT_NAME = "CocoaEb";
+      PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.eb";
     };
     name = Default;
   };

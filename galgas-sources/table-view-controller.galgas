@@ -262,6 +262,12 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
+  [ioSemanticContext.mClassMap searchKey
+    !.new {!preferencesName () !.nowhere}
+    ?*
+    ?let preferencesPropertyMap
+    ?2*
+  ]
 #------------------------------------------------------------ Check array controller attributes
   let attributes = @stringset {!"allowsEmptySelection", !"allowsMultipleSelection"}
   let allowedTypes = @typeKindList {!.boolType}
@@ -275,7 +281,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
     else
       definedAttributes += !name.string
     end
-    [value analyzeDefaultValueType !allowedTypes ?let valueAsString]
+    [value analyzeDefaultValueType !allowedTypes !preferencesPropertyMap ?let valueAsString]
     attributeListForGeneration += !name.string !valueAsString
   end
   for s in attributes do
@@ -345,9 +351,16 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
       [actionMap searchKey !mColumnBindingAST.mRunActionName]
     end
   #-------- Simple bindings
+    [ioSemanticContext.mClassMap searchKey
+      !.new {!preferencesName () !.nowhere}
+      ?*
+      ?let preferencesPropertyMap
+      ?2*
+    ]
     @regularBindingsGenerationList regularBindingsGenerationList = {}
     analyzeRegularBinding (
       !{} # No root observable property map
+      !preferencesPropertyMap
       !ioSemanticContext
       !propertyMap
       !mColumnOutletTypeName
