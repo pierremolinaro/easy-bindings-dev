@@ -175,7 +175,7 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To one property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "   let " + mPropertyName + "_property = StoredObject_" + [mRelationshipType swiftTypeName]
+  result += "  let " + mPropertyName + "_property = StoredObject_" + [mRelationshipType swiftTypeName]
   result +=            " (usedForSignature: " + [mUsedForSignature cString] + ")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mRelationshipType swiftTypeName] + "?> {\n"

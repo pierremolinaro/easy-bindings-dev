@@ -60,7 +60,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -73,7 +73,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -133,7 +133,7 @@ for () in PROXY_LIST_FOR_GENERATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -146,7 +146,7 @@ for () in PROXY_LIST_FOR_GENERATION do
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -206,7 +206,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -219,7 +219,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch prop {
+    switch self.prop {
     case .empty, .multiple :
       break
     case .single (let v) :

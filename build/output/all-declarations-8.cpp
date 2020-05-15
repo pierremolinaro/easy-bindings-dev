@@ -8109,11 +8109,17 @@ const char * gWrapperFileContent_75_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "        }\n"
   "      }else if let pbType = self.pasteboardType, inEvent.modifierFlags.contains (.option) {\n"
   "        self.ebStartDragging (with: inEvent, dragType: pbType)\n"
-  "      }else if self.pasteboardType == nil, inEvent.modifierFlags.contains (.option) {\n"
+  "      }else if self.pasteboardType == nil, inEvent.modifierFlags.contains (.option) && !inEvent.modifierFlags.contains (.shift) {\n"
   "        self.mPerformEndUndoGroupingOnMouseUp = true\n"
   "        self.viewController\?.ebUndoManager\?.beginUndoGrouping ()\n"
   "        self.mStartOptionMouseDownCallback\? (unalignedMouseDownLocation)\n"
   "        self.mOptionClickOperationInProgress = true\n"
+  "      }else if !inEvent.modifierFlags.contains (.option) && inEvent.modifierFlags.contains (.shift) {\n"
+  "        self.mShiftClickOperationInProgress = true\n"
+  "        if let selectedIndexesSet = self.viewController\?.selectedIndexesSet {\n"
+  "          self.mSelectionOnShiftClick = selectedIndexesSet\n"
+  "        }\n"
+  "        self.mSelectionRectangleOrigin = mLastMouseDraggedLocation\?.cocoaPoint\n"
   "      }else{\n"
   "      //--- Find index of object under mouse down\n"
   "        let (possibleObjectIndex, possibleKnobIndex) = self.indexOfFrontmostObject (at: unalignedMouseDownLocation)\n"
@@ -8170,11 +8176,13 @@ const char * gWrapperFileContent_75_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    let unalignedLocationInView = self.convert (inEvent.locationInWindow, from: nil)\n"
   "    let locationOnGridInView = unalignedLocationInView.aligned (onGrid: canariUnitToCocoa (self.mouseGridInCanariUnit))\n"
   "    self.updateXYplacards (locationOnGridInView)\n"
-  "    let mouseDraggedCocoaLocation = self.convert (inEvent.locationInWindow, from:nil)\n"
-  "    if self.mOptionClickOperationInProgress {\n"
+  "    let mouseDraggedCocoaLocation = self.convert (inEvent.locationInWindow, from: nil)\n"
+  "    if self.mShiftClickOperationInProgress, let selectionRectangleOrigin = self.mSelectionRectangleOrigin {\n"
+  "      self.handleSelectionOnMouseDragged (from: selectionRectangleOrigin, to: mouseDraggedCocoaLocation)\n"
+  "    }else if self.mOptionClickOperationInProgress {\n"
   "      self.mContinueOptionMouseDraggedCallback\? (unalignedLocationInView)\n"
   "    }else if let selectionRectangleOrigin = self.mSelectionRectangleOrigin {\n"
-  "      self.handleSelectionRectangle (from: selectionRectangleOrigin, to: mouseDraggedCocoaLocation)\n"
+  "      self.handleSelectionOnMouseDragged (from: selectionRectangleOrigin, to: mouseDraggedCocoaLocation)\n"
   "    }else if let lastMouseDraggedLocation = self.mLastMouseDraggedLocation {\n"
   "      let mouseDraggedCanariLocation = mouseDraggedCocoaLocation.canariPointAligned (onCanariGrid: self.mouseGridInCanariUnit)\n"
   "      var proposedTranslation = CanariPoint (\n"
@@ -8196,8 +8204,8 @@ const char * gWrapperFileContent_75_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  final fileprivate func handleSelectionRectangle (from inSelectionRectangleOrigin : NSPoint,\n"
-  "                                             to inMouseDraggedLocation : NSPoint) {\n"
+  "  final fileprivate func handleSelectionOnMouseDragged (from inSelectionRectangleOrigin : NSPoint,\n"
+  "                                                        to inMouseDraggedLocation : NSPoint) {\n"
   "    let xMin = min (inSelectionRectangleOrigin.x, inMouseDraggedLocation.x)\n"
   "    let yMin = min (inSelectionRectangleOrigin.y, inMouseDraggedLocation.y)\n"
   "    let xMax = max (inSelectionRectangleOrigin.x, inMouseDraggedLocation.x)\n"
@@ -8205,20 +8213,21 @@ const char * gWrapperFileContent_75_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "    if (xMax > xMin) && (yMax > yMin) {\n"
   "      let r = NSRect (x: xMin, y: yMin, width: xMax - xMin, height: yMax - yMin)\n"
   "      self.mSelectionRectangle = r\n"
-  "      let indexSet = self.indexesOfObjects (intersecting: r)\n"
-  "      self.viewController\?.setSelection (objectsWithIndexes: Array (indexSet))\n"
+  "      let indexSet : Set <Int> = self.indexesOfObjects (intersecting: r)\n"
+  "      let newSelection = indexSet.symmetricDifference (self.mSelectionOnShiftClick)\n"
+  "      self.viewController\?.setSelection (objectsWithIndexes: Array (newSelection))\n"
   "    }else{\n"
   "      self.mSelectionRectangle = nil\n"
-  "      self.viewController\?.setSelection (objectsWithIndexes: [])\n"
+  "      self.viewController\?.setSelection (objectsWithIndexes: Array (self.mSelectionOnShiftClick))\n"
   "    }\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  final fileprivate func drag (knob knobIndex : Int,\n"
-  "                         objectIndex : Int,\n"
-  "                         _ inProposedTranslation: CanariPoint,\n"
-  "                         _ inLastMouseDraggedLocation : CanariPoint) {\n"
+  "                               objectIndex : Int,\n"
+  "                               _ inProposedTranslation: CanariPoint,\n"
+  "                               _ inLastMouseDraggedLocation : CanariPoint) {\n"
   "    let objects = self.viewController\?.graphicObjectArray \?\? []\n"
   "    let p = objects [objectIndex].canMove (knob: knobIndex, xBy: inProposedTranslation.x, yBy: inProposedTranslation.y)\n"
   "    if (p.x != 0) || (p.y != 0) {\n"
@@ -8270,6 +8279,10 @@ const char * gWrapperFileContent_75_swift_5F_sources = "//\xE2""\x80""\x94""\xE2
   "  final override func mouseUp (with inEvent : NSEvent) {\n"
   "    super.mouseUp (with: inEvent)\n"
   "    var accepts = true\n"
+  "    if self.mShiftClickOperationInProgress {\n"
+  "      self.mShiftClickOperationInProgress = false\n"
+  "      self.mSelectionOnShiftClick.removeAll ()\n"
+  "    }\n"
   "    if self.mOptionClickOperationInProgress {\n"
   "      let unalignedLocationInView = self.convert (inEvent.locationInWindow, from: nil)\n"
   "      accepts = self.mStopOptionMouseUpCallback\? (unalignedLocationInView) \?\? true\n"
@@ -8336,7 +8349,7 @@ const cRegularFileWrapper gWrapperFile_75_swift_5F_sources (
   "EBGraphicView-mouse.swift",
   "swift",
   true, // Text file
-  13869, // Text length
+  14832, // Text length
   gWrapperFileContent_75_swift_5F_sources
 ) ;
 
@@ -8764,6 +8777,8 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//\xE2""\x80""\x94""\xE2"
   "  final internal var mAbortOptionMouseOperationCallback : Optional < () -> Void > = nil\n"
   "  final internal var mStopOptionMouseUpCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Bool > = nil\n"
   "  final internal var mOptionClickOperationInProgress = false\n"
+  "  final internal var mShiftClickOperationInProgress = false\n"
+  "  final internal var mSelectionOnShiftClick = Set <Int> ()\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -9413,7 +9428,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  33221, // Text length
+  33340, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 
