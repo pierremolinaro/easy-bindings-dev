@@ -216,6 +216,8 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicView-key-down"
     swiftFiles += !"EBGraphicView-magnify-and-zoom"
     swiftFiles += !"EBGraphicView-menu-actions"
+    swiftFiles += !"EBGraphicView-mouse-down-behaviours"
+    swiftFiles += !"EBGraphicView-mouse-moved-exited"
     swiftFiles += !"EBGraphicView-mouse"
     swiftFiles += !"EBGraphicView-move-to-superview"
     swiftFiles += !"EBGraphicView-placards"
