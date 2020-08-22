@@ -1,62 +1,62 @@
 #pragma once
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-predefined-types.h"
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-declarations-3.h"
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                     Abstract extension method '@abstractDeclarationAST enterInPrecedenceGraph'                      *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_abstractDeclarationAST_enterInPrecedenceGraph) (const class cPtr_abstractDeclarationAST * inObject,
                                                                                         class GALGAS_declarationPrecedenceGraph & ioArgument0,
                                                                                         class C_Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_enterInPrecedenceGraph (const int32_t inClassIndex,
                                                   extensionMethodSignature_abstractDeclarationAST_enterInPrecedenceGraph inMethod) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_enterInPrecedenceGraph (const class cPtr_abstractDeclarationAST * inObject,
                                                  GALGAS_declarationPrecedenceGraph & io_ioGraph,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Abstract extension getter '@abstractDeclarationAST nodeKey'                             *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef class GALGAS_lstring (*enterExtensionGetter_abstractDeclarationAST_nodeKey) (const class cPtr_abstractDeclarationAST * inObject,
                                                                                      class C_Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_nodeKey (const int32_t inClassIndex,
                                    enterExtensionGetter_abstractDeclarationAST_nodeKey inMethod) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_lstring callExtensionGetter_nodeKey (const class cPtr_abstractDeclarationAST * inObject,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                       Abstract extension method '@abstractDeclarationAST firstAnalysisPhase'                        *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_abstractDeclarationAST_firstAnalysisPhase) (const class cPtr_abstractDeclarationAST * inObject,
                                                                                     class GALGAS_semanticContext & ioArgument0,
@@ -64,12 +64,12 @@ typedef void (*extensionMethodSignature_abstractDeclarationAST_firstAnalysisPhas
                                                                                     class C_Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_firstAnalysisPhase (const int32_t inClassIndex,
                                               extensionMethodSignature_abstractDeclarationAST_firstAnalysisPhase inMethod) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_firstAnalysisPhase (const class cPtr_abstractDeclarationAST * inObject,
                                              GALGAS_semanticContext & io_ioSemanticContext,
@@ -77,11 +77,11 @@ void callExtensionMethod_firstAnalysisPhase (const class cPtr_abstractDeclaratio
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                          Phase 1: @generationStruct struct                                          *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_generationStruct : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -180,21 +180,23 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_validationStubRoutineListForGeneration getter_mValidationStubRoutineListForGeneration (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_generationStruct class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_generationStruct ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Extension method '@abstractDeclarationAST secondAnalysisPhase'                            *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_abstractDeclarationAST_secondAnalysisPhase) (const class cPtr_abstractDeclarationAST * inObject,
                                                                                      class GALGAS_semanticContext & ioArgument0,
@@ -202,12 +204,12 @@ typedef void (*extensionMethodSignature_abstractDeclarationAST_secondAnalysisPha
                                                                                      class C_Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_secondAnalysisPhase (const int32_t inClassIndex,
                                                extensionMethodSignature_abstractDeclarationAST_secondAnalysisPhase inMethod) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_secondAnalysisPhase (const class cPtr_abstractDeclarationAST * inObject,
                                               GALGAS_semanticContext & io_ioSemanticContext,
@@ -215,11 +217,11 @@ void callExtensionMethod_secondAnalysisPhase (const class cPtr_abstractDeclarati
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Extension method '@abstractDeclarationAST thirdAnalysisPhase'                            *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_abstractDeclarationAST_thirdAnalysisPhase) (const class cPtr_abstractDeclarationAST * inObject,
                                                                                     class GALGAS_semanticContext & ioArgument0,
@@ -227,12 +229,12 @@ typedef void (*extensionMethodSignature_abstractDeclarationAST_thirdAnalysisPhas
                                                                                     class C_Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_thirdAnalysisPhase (const int32_t inClassIndex,
                                               extensionMethodSignature_abstractDeclarationAST_thirdAnalysisPhase inMethod) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_thirdAnalysisPhase (const class cPtr_abstractDeclarationAST * inObject,
                                              GALGAS_semanticContext & io_ioSemanticContext,
@@ -240,11 +242,11 @@ void callExtensionMethod_thirdAnalysisPhase (const class cPtr_abstractDeclaratio
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Extension method '@abstractDeclarationAST fourthAnalysisPhase'                            *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_abstractDeclarationAST_fourthAnalysisPhase) (const class cPtr_abstractDeclarationAST * inObject,
                                                                                      class GALGAS_semanticContext & ioArgument0,
@@ -252,12 +254,12 @@ typedef void (*extensionMethodSignature_abstractDeclarationAST_fourthAnalysisPha
                                                                                      class C_Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_fourthAnalysisPhase (const int32_t inClassIndex,
                                                extensionMethodSignature_abstractDeclarationAST_fourthAnalysisPhase inMethod) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_fourthAnalysisPhase (const class cPtr_abstractDeclarationAST * inObject,
                                               GALGAS_semanticContext & io_ioSemanticContext,
@@ -265,11 +267,11 @@ void callExtensionMethod_fourthAnalysisPhase (const class cPtr_abstractDeclarati
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                          Phase 1: @enumForGeneration class                                          *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
@@ -319,21 +321,23 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEnumName (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_enumForGeneration class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumForGeneration ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                 Phase 2: pointer class for @enumForGeneration class                                 *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
@@ -363,11 +367,11 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                      Phase 1: @atomicClassDeclarationAST class                                      *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_atomicClassDeclarationAST : public GALGAS_abstractDeclarationAST {
 //--- Constructor
@@ -409,21 +413,23 @@ class GALGAS_atomicClassDeclarationAST : public GALGAS_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mKind (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_atomicClassDeclarationAST class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicClassDeclarationAST ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Phase 2: pointer class for @atomicClassDeclarationAST class                             *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class cPtr_atomicClassDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
@@ -450,11 +456,11 @@ class cPtr_atomicClassDeclarationAST : public cPtr_abstractDeclarationAST {
 
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                         Phase 1: @entityForGeneration class                                         *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
@@ -540,21 +546,23 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_entityForGeneration class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Phase 2: pointer class for @entityForGeneration class                                *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
@@ -608,11 +616,11 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
 
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                        Phase 1: @documentFileGeneration class                                       *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_documentFileGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
@@ -704,21 +712,23 @@ class GALGAS_documentFileGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingGenerationList getter_multipleBindingGenerationList (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_documentFileGeneration class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_documentFileGeneration ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Phase 2: pointer class for @documentFileGeneration class                              *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
@@ -776,11 +786,11 @@ class cPtr_documentFileGeneration : public cPtr_abstractFileGeneration {
 
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                         Phase 1: @prefsDeclarationAST class                                         *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_prefsDeclarationAST : public GALGAS_abstractDeclarationAST {
 //--- Constructor
@@ -825,21 +835,23 @@ class GALGAS_prefsDeclarationAST : public GALGAS_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG class GALGAS_prefDeclaration getter_mDeclaration (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_prefsDeclarationAST class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsDeclarationAST ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Phase 2: pointer class for @prefsDeclarationAST class                                *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class cPtr_prefsDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
@@ -866,11 +878,11 @@ class cPtr_prefsDeclarationAST : public cPtr_abstractDeclarationAST {
 
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Phase 1: @booleanMultipleBindingLiteralIntForGeneration class                            *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_booleanMultipleBindingLiteralIntForGeneration : public GALGAS_abstractBooleanMultipleBindingExpressionForGeneration {
 //--- Constructor
@@ -914,21 +926,23 @@ class GALGAS_booleanMultipleBindingLiteralIntForGeneration : public GALGAS_abstr
   public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mValue (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_booleanMultipleBindingLiteralIntForGeneration class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_booleanMultipleBindingLiteralIntForGeneration ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                   Phase 2: pointer class for @booleanMultipleBindingLiteralIntForGeneration class                   *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class cPtr_booleanMultipleBindingLiteralIntForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
 //--- Attributes
@@ -954,11 +968,11 @@ class cPtr_booleanMultipleBindingLiteralIntForGeneration : public cPtr_abstractB
 
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                      Phase 1: @arrayControllerGeneration class                                      *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_arrayControllerGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
@@ -1029,21 +1043,23 @@ class GALGAS_arrayControllerGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOwnerName (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_arrayControllerGeneration class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerGeneration ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Phase 2: pointer class for @arrayControllerGeneration class                             *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
@@ -1089,11 +1105,11 @@ class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
 
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                    Phase 1: @tableViewControllerGeneration class                                    *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_tableViewControllerGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
@@ -1188,21 +1204,23 @@ class GALGAS_tableViewControllerGeneration : public GALGAS_abstractFileGeneratio
   public : VIRTUAL_IN_DEBUG class GALGAS_tableViewControllerSortedColumnListForGeneration getter_mTableViewControllerSortedColumnListForGeneration (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_tableViewControllerGeneration class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewControllerGeneration ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Phase 2: pointer class for @tableViewControllerGeneration class                           *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class cPtr_tableViewControllerGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
@@ -1264,11 +1282,11 @@ class cPtr_tableViewControllerGeneration : public cPtr_abstractFileGeneration {
 
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                       Phase 1: @XcodeProjectDescriptor struct                                       *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -1439,21 +1457,23 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS__32_stringlist getter_m_5F_SwiftFileList (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Optional Methods
+
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_XcodeProjectDescriptor class
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_XcodeProjectDescriptor ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Extension setter '@XcodeProjectDescriptor addTIFF_file'                               *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addTIFF_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
                                       const class GALGAS_string constin_inFileName,
@@ -1461,22 +1481,22 @@ void extensionSetter_addTIFF_5F_file (class GALGAS_XcodeProjectDescriptor & ioOb
                                       class C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension setter '@XcodeProjectDescriptor getReferenceKey'                              *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_getReferenceKey (class GALGAS_XcodeProjectDescriptor & ioObject,
                                       class GALGAS_string & out_outRef,
                                       class C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension setter '@XcodeProjectDescriptor addInfoPlistFile'                             *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addInfoPlistFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                        const class GALGAS_string constin_inFileName,
@@ -1484,11 +1504,11 @@ void extensionSetter_addInfoPlistFile (class GALGAS_XcodeProjectDescriptor & ioO
                                        class C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension setter '@XcodeProjectDescriptor addXIBFile'                                *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addXIBFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                  const class GALGAS_string constin_inFileName,
@@ -1496,11 +1516,11 @@ void extensionSetter_addXIBFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                  class C_Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension setter '@XcodeProjectDescriptor addFrameworkFile'                             *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addFrameworkFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                        const class GALGAS_string constin_inFileName,
@@ -1508,11 +1528,11 @@ void extensionSetter_addFrameworkFile (class GALGAS_XcodeProjectDescriptor & ioO
                                        class C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                 Extension setter '@XcodeProjectDescriptor addMFile'                                 *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                const class GALGAS_string constin_inFileName,
@@ -1520,11 +1540,11 @@ void extensionSetter_addMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Extension setter '@XcodeProjectDescriptor addSwiftFile'                               *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addSwiftFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                    const class GALGAS_string constin_inFileName,
@@ -1532,11 +1552,11 @@ void extensionSetter_addSwiftFile (class GALGAS_XcodeProjectDescriptor & ioObjec
                                    class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension setter '@XcodeProjectDescriptor addMMFile'                                 *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addMMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                 const class GALGAS_string constin_inFileName,
@@ -1544,11 +1564,11 @@ void extensionSetter_addMMFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                 class C_Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension setter '@XcodeProjectDescriptor addCppFile'                                *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addCppFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                  const class GALGAS_string constin_inFileName,
@@ -1556,11 +1576,11 @@ void extensionSetter_addCppFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                  class C_Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                              Extension setter '@XcodeProjectDescriptor addHeaderFile'                               *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addHeaderFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                     const class GALGAS_string constin_inFileName,
@@ -1568,11 +1588,11 @@ void extensionSetter_addHeaderFile (class GALGAS_XcodeProjectDescriptor & ioObje
                                     class C_Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Extension setter '@XcodeProjectDescriptor addBuildFile'                               *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addBuildFile (class GALGAS_XcodeProjectDescriptor & ioObject,
                                    const class GALGAS_string constin_inFileReference,
@@ -1581,11 +1601,11 @@ void extensionSetter_addBuildFile (class GALGAS_XcodeProjectDescriptor & ioObjec
                                    class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                              Extension setter '@XcodeProjectDescriptor addToolTarget'                               *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addToolTarget (class GALGAS_XcodeProjectDescriptor & ioObject,
                                     const class GALGAS_string constin_inTargetName,
@@ -1598,11 +1618,11 @@ void extensionSetter_addToolTarget (class GALGAS_XcodeProjectDescriptor & ioObje
                                     class C_Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Extension setter '@XcodeProjectDescriptor addAppTarget'                               *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addAppTarget (class GALGAS_XcodeProjectDescriptor & ioObject,
                                    const class GALGAS_string constin_inTargetName,
@@ -1618,11 +1638,11 @@ void extensionSetter_addAppTarget (class GALGAS_XcodeProjectDescriptor & ioObjec
                                    class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                 Extension setter '@XcodeProjectDescriptor addGroup'                                 *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
                                const class GALGAS_string constin_inGroupName,
@@ -1632,11 +1652,11 @@ void extensionSetter_addGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Extension setter '@XcodeProjectDescriptor addGroupWithFiles'                             *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & ioObject,
                                         const class GALGAS_string constin_inGroupName,
@@ -1652,11 +1672,11 @@ void extensionSetter_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & io
                                         class C_Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Extension setter '@XcodeProjectDescriptor addICNS_file'                               *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addICNS_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
                                       const class GALGAS_string constin_inFileName,
@@ -1664,33 +1684,33 @@ void extensionSetter_addICNS_5F_file (class GALGAS_XcodeProjectDescriptor & ioOb
                                       class C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Extension setter '@XcodeProjectDescriptor placeGroupAsMainGroup'                           *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_placeGroupAsMainGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
                                             const class GALGAS_string constin_inGroupRef,
                                             class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                    Extension setter '@XcodeProjectDescriptor addSettingsToDefaultConfiguration'                     *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionSetter_addSettingsToDefaultConfiguration (class GALGAS_XcodeProjectDescriptor & ioObject,
                                                         const class GALGAS_stringlist constin_inSettingList,
                                                         class C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                              Extension method '@XcodeProjectDescriptor generateAtPath'                              *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_generateAtPath (const class GALGAS_XcodeProjectDescriptor inObject,
                                      const class GALGAS_string constin_inPath,
@@ -1698,28 +1718,28 @@ void extensionMethod_generateAtPath (const class GALGAS_XcodeProjectDescriptor i
                                      class C_Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                   Filewrapper 'xcodeProjectGenerationFilewrapper'                                   *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 extern const cDirectoryWrapper gWrapperDirectory_0_xcodeProjectGenerationFilewrapper ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Filewrapper template 'xcodeProjectGenerationFilewrapper xcodeproj'                          *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (class C_Compiler * inCompiler,
                                                                                const class GALGAS_string & in_PROJECT_5F_REF,

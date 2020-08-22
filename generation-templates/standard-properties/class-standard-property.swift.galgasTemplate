@@ -1,11 +1,11 @@
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//----------------------------------------------------------------------------------------------------------------------
 %
 if TRANSIENT then
   %//   Transient property class %!CLASS_NAME%\n%
 else
   %//   Property class %!CLASS_NAME%\n%
 end
-%//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+%//----------------------------------------------------------------------------------------------------------------------
 
 typealias EBReadOnlyProperty_%!CLASS_NAME%       = EBReadOnlyClassProperty <%!CLASS_NAME%>
 typealias EBTransientProperty_%!CLASS_NAME%      = EBTransientClassProperty <%!CLASS_NAME%>
@@ -23,7 +23,7 @@ end
 %
 if COMPARABLE then
 %
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//----------------------------------------------------------------------------------------------------------------------
 
 func compare_%!CLASS_NAME%_properties (_ left : EBReadOnlyProperty_%!CLASS_NAME%, _ right : EBReadOnlyProperty_%!CLASS_NAME%) -> ComparisonResult {
   switch left.prop {

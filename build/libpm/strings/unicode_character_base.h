@@ -1,4 +1,4 @@
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //  unicode_character : an implementation of Unicode character                                                         *
 //                                                                                                                     *
@@ -18,11 +18,11 @@
 //  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
 //  more details.                                                                                                      *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 #pragma once
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- Character assigned ?
 bool isUnicodeCharacterAssigned (const utf32 inUnicodeCharacterCode) ;
@@ -78,7 +78,7 @@ bool isUnicodeSymbol (const utf32 inUnicodeCharacter) ;
 //--- Returns the number of bytes needed for encoding this character in UTF8
 uint32_t utf8Length (const utf32 inUnicodeCharacter) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const utf32 UNICODE_REPLACEMENT_CHARACTER ;
 extern const utf32 UNICODE_MAX_LEGAL_UTF32_CHARACTER ;
@@ -86,11 +86,11 @@ extern const utf32 UNICODE_MAX_LEGAL_UTF32_CHARACTER ;
 //--- Returns true if unicode letter
 bool isRestrictedUnicodeLetter (const utf32 inUnicodeCharacter) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 //                                                                                                                     *
 //   D E C O D E    H T M L    E N C O D I N G                                                                         *
 //                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- Decode HTML in string, return Unicode (or NULL if not found)
 #ifdef __cplusplus
@@ -101,7 +101,7 @@ bool isRestrictedUnicodeLetter (const utf32 inUnicodeCharacter) ;
   utf32 unicodeCharacterFromHTMLSequence (NSString * inString) ;
 #endif
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 utf32 unicodeCharacterForSingleByteCharacter (const char inChar, const PMStringEncoding inStringEncoding) ;
 
@@ -118,4 +118,4 @@ int32_t UTF8StringFromUTF32Character (const utf32 inUnicodeChar, char outSequenc
                                   bool & ioOK) ;
 #endif
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
