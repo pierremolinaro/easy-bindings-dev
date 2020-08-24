@@ -3,15 +3,13 @@
 //  galgas-developer
 //
 //  Created by Pierre Molinaro on 22/05/14.
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "bdd/C_Relation.h"
 #include "utilities/C_SharedObject.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-//  cVariablesInRelationConfiguration                                                                                  *
+//  cVariablesInRelationConfiguration                                                            
 //----------------------------------------------------------------------------------------------------------------------
 
 class cVariablesInRelationConfiguration : public C_SharedObject {
@@ -309,7 +307,7 @@ void cVariablesInRelationConfiguration::swap210 (LOCATION_ARGS) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//  C_RelationConfiguration                                                    *
+//  C_RelationConfiguration                              
 //----------------------------------------------------------------------------------------------------------------------
 
 C_RelationConfiguration::C_RelationConfiguration (void) :

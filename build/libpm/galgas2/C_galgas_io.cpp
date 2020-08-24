@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  'C_galgas_io'                                                                                                      *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 1996, ..., 2017 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  'C_galgas_io'                                                                                
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 1996, ..., 2017 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "galgas2/C_galgas_io.h"
@@ -62,9 +60,9 @@ mTokenCode (inOperand.mTokenCode) {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  Exception raised when maximum error count is reached                                                               *
-//                                                                                                                     *
+//
+//  Exception raised when maximum error count is reached                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 const char * max_error_count_reached_exception::what (void) const throw () {
@@ -72,9 +70,9 @@ const char * max_error_count_reached_exception::what (void) const throw () {
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  Exception raised when maximum warning count is reached                                                             *
-//                                                                                                                     *
+//
+//  Exception raised when maximum warning count is reached                                       
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static const char * kMaxWarning = "The maximum warning count is reached" ;
@@ -122,9 +120,9 @@ int32_t totalWarningCount (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    Construct error or warning location message                                                                      *
-//                                                                                                                     *
+//
+//    Construct error or warning location message                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static C_String errorOrWarningLocationString (const C_IssueWithFixIt & inIssue,
@@ -187,9 +185,9 @@ static C_String constructErrorOrWarningLocationMessage (const C_String & inMessa
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    This method is called by lexique for signaling lexical warning                                                   *
-//                                                                                                                     *
+//
+//    This method is called by lexique for signaling lexical warning                             
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void signalLexicalWarning (C_Compiler * inCompiler,
@@ -213,9 +211,9 @@ void signalLexicalWarning (C_Compiler * inCompiler,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    This method is called by lexique for signaling lexical error                                                     *
-//                                                                                                                     *
+//
+//    This method is called by lexique for signaling lexical error                               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void signalLexicalError (C_Compiler * inCompiler,
@@ -238,9 +236,9 @@ void signalLexicalError (C_Compiler * inCompiler,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    This method is called by lexique for signaling parsing error                                                     *
-//                                                                                                                     *
+//
+//    This method is called by lexique for signaling parsing error                               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void signalParsingError (C_Compiler * inCompiler,
@@ -268,9 +266,9 @@ void signalParsingError (C_Compiler * inCompiler,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//            Method called for signaling an extract error                                                             *
-//                                                                                                                     *
+//
+//            Method called for signaling an extract error                                       
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void signalExtractError (C_Compiler * inCompiler,
@@ -319,9 +317,9 @@ void signalExtractError (C_Compiler * inCompiler,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//            Method called for signaling a cast error                                                                 *
-//                                                                                                                     *
+//
+//            Method called for signaling a cast error                                           
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void signalCastError (C_Compiler * inCompiler,
@@ -493,9 +491,9 @@ static const utf32 COCOA_WARNING_ID = TO_UNICODE (3) ;
 static const utf32 COCOA_ERROR_ID   = TO_UNICODE (4) ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    Method called for printing an error                                                                              *
-//                                                                                                                     *
+//
+//    Method called for printing an error                                                        
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void ggs_printError (C_Compiler * inCompiler,
@@ -583,9 +581,9 @@ void fatalError (const C_String & inErrorMessage,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    Method called for printing a warning                                                                             *
-//                                                                                                                     *
+//
+//    Method called for printing a warning                                                       
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void ggs_printWarning (C_Compiler * inCompiler,
@@ -636,9 +634,9 @@ void ggs_printWarning (C_Compiler * inCompiler,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    Method called for printing a success message                                                                     *
-//                                                                                                                     *
+//
+//    Method called for printing a success message                                               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void ggs_printFileOperationSuccess (const C_String & inMessage) {
@@ -660,9 +658,9 @@ void ggs_printFileOperationSuccess (const C_String & inMessage) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    Method called for printing a file creation success                                                               *
-//                                                                                                                     *
+//
+//    Method called for printing a file creation success                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void ggs_printFileCreationSuccess (const C_String & inMessage) {
@@ -684,9 +682,9 @@ void ggs_printFileCreationSuccess (const C_String & inMessage) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    Methods called for printing a message                                                                            *
-//                                                                                                                     *
+//
+//    Methods called for printing a message                                                      
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void ggs_printMessage (const C_String & inMessage

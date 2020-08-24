@@ -1,30 +1,28 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2009, ..., 2009 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2009, ..., 2009 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #import <Objc/Objc.h>
 #import "unicode_character_m.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  T E M P L A T E    D E L I M I T E R     C L A S S                                                                 *
-//                                                                                                                     *
+//
+//  T E M P L A T E    D E L I M I T E R     C L A S S                                           
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 @interface OC_GGS_TemplateDelimiter : NSObject
@@ -39,9 +37,9 @@
 @end
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//              S C A N N I N G   P O I N T   S T R U C T                                                              *
-//                                                                                                                     *
+//
+//              S C A N N I N G   P O I N T   S T R U C T                                        
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef struct {
@@ -51,9 +49,9 @@ typedef struct {
 } scanningPointStructForCocoa ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                       O C   L E X I Q U E                                                                           *
-//                                                                                                                     *
+//
+//                       O C   L E X I Q U E                                                     
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 @interface OC_Lexique : NSObject {
@@ -146,9 +144,9 @@ NSInteger searchStringInTable (NSString * inSearchedString,
                                const NSUInteger inTableSize) ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  S C A N N E R    A C T I O N S                                                                                     *
-//                                                                                                                     *
+//
+//  S C A N N E R    A C T I O N S                                                               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 //--- Predefined scanner actions: see http://galgas.rts-software.org/doku.php?id=lex#predefined_lexical_actions

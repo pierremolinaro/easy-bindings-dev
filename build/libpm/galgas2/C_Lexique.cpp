@@ -1,24 +1,22 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  'C_Lexique' : an abstract lexique class ;                                                                          *
-//  Galgas generated scanner classes inherit from this class.                                                          *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 1996, ..., 2018 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  'C_Lexique' : an abstract lexique class ;                                                    
+//  Galgas generated scanner classes inherit from this class.                                    
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 1996, ..., 2018 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "galgas2/C_Lexique.h"
@@ -308,9 +306,9 @@ int32_t C_Lexique::findTemplateDelimiterIndex (const cTemplateDelimiter inTempla
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   performLexicalAnalysis                                                                                            *
-//                                                                                                                     *
+//
+//   performLexicalAnalysis                                                                      
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void C_Lexique::performLexicalAnalysis (void) {
@@ -329,9 +327,9 @@ void C_Lexique::performLexicalAnalysis (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//        Methods for scanning                                                                                         *
-//                                                                                                                     *
+//
+//        Methods for scanning                                                                   
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void C_Lexique::advance (void) {
@@ -439,9 +437,9 @@ void C_Lexique::lexicalLog (LOCATION_ARGS) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    Search in an ordered list (used for searching into scanner generated tables)                                     *
-//                                                                                                                     *
+//
+//    Search in an ordered list (used for searching into scanner generated tables)               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 int16_t C_Lexique::searchInList (const C_String & inString,
@@ -487,9 +485,9 @@ void C_Lexique::internalBottomUpParserError (LOCATION_ARGS) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//           Lexical error                                                                                             *
-//                                                                                                                     *
+//
+//           Lexical error                                                                       
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void C_Lexique::unknownCharacterLexicalError (LOCATION_ARGS) {
@@ -510,9 +508,9 @@ void C_Lexique::lexicalError (const C_String & inLexicalErrorMessage
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                Signaler une erreur syntaxique                                                                       *
-//                                                                                                                     *
+//
+//                Signaler une erreur syntaxique                                                 
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void C_Lexique::parsingError (const TC_UniqueArray <int16_t> & inExpectedTerminalsArray,
@@ -555,9 +553,9 @@ void C_Lexique::lexicalWarning (const C_String & inLexicalWarningMessage
 //#define TRACE_LL1_PARSING
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Test if a terminal symbol can be accepted in current context                                                      *
-//                                                                                                                     *
+//
+//   Test if a terminal symbol can be accepted in current context                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 bool C_Lexique::acceptTerminalForErrorSignaling (const int16_t inTerminal,
@@ -661,9 +659,9 @@ bool C_Lexique::acceptTerminalForErrorSignaling (const int16_t inTerminal,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Build expected terminals array on syntax error with LL (1) parser                                                 *
-//                                                                                                                     *
+//
+//   Build expected terminals array on syntax error with LL (1) parser                           
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void C_Lexique::buildExpectedTerminalsArrayOnSyntaxError (const int16_t inErrorProgramCounter,
@@ -785,9 +783,9 @@ void C_Lexique::buildExpectedTerminalsArrayOnSyntaxError (const int16_t inErrorP
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Perform top down parsing (called by LL (1) parser)                                                                *
-//                                                                                                                     *
+//
+//   Perform top down parsing (called by LL (1) parser)                                          
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void indentForParseOnly (const int32_t inIndentation) {
@@ -1084,9 +1082,9 @@ bool C_Lexique::performTopDownParsing (const int16_t inProductions [],
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
+//
 //   Test if a given terminal symbol can be accepted for signaling an error (for bottom-up parsing)                    *
-//                                                                                                                     *
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static bool acceptExpectedTerminalForBottomUpParsingError (const int16_t inExpectedTerminal,
@@ -1148,9 +1146,9 @@ static bool acceptExpectedTerminalForBottomUpParsingError (const int16_t inExpec
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Perform bottom up parsing (called by SLR and LR (1) parsers)                                                      *
-//                                                                                                                     *
+//
+//   Perform bottom up parsing (called by SLR and LR (1) parsers)                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 bool C_Lexique::performBottomUpParsing (const int16_t inActionTable [],
@@ -1390,9 +1388,9 @@ bool C_Lexique::performBottomUpParsing (const int16_t inActionTable [],
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                         Get next production index                                                                   *
-//                                                                                                                     *
+//
+//                         Get next production index                                             
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 int16_t C_Lexique::nextProductionIndex (void) {
@@ -1427,9 +1425,9 @@ C_String C_Lexique::tokenString (void) const {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Accept current token by shifting it                                                                               *
-//                                                                                                                     *
+//
+//   Accept current token by shifting it                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -1517,9 +1515,9 @@ void C_Lexique::generateIndexFile (void) {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//Handling parsing context (for parse ... rewind ... end parse ; instruction)                                          *
-//                                                                                                                     *
+//
+//Handling parsing context (for parse ... rewind ... end parse ; instruction)                    
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 C_parsingContext C_Lexique::parsingContext (void) const {
@@ -1551,9 +1549,9 @@ void C_Lexique::setParsingContext (const C_parsingContext & inContext) {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  For Debugging parser                                                                                               *
-//                                                                                                                     *
+//
+//  For Debugging parser                                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void C_Lexique::enterProduction (const char * inProductionName,

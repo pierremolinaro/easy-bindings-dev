@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  GALGAS_stringset                                                                                                   *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2005, ..., 2016 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  GALGAS_stringset                                                                             
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2005, ..., 2016 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
@@ -26,7 +24,7 @@
 #include "galgas2/C_Compiler.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-//   cCollectionElement_stringset                                                                                      *
+//   cCollectionElement_stringset                                                                
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_stringset : public cCollectionElement {
@@ -93,9 +91,9 @@ void cCollectionElement_stringset::description (C_String & ioString, const int32
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  c S t r i n g s e t N o d e                                                                                        *
-//                                                                                                                     *
+//
+//  c S t r i n g s e t N o d e                                                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class cStringsetNode {
@@ -376,9 +374,9 @@ static void internalRemoveRecursively (cStringsetNode * & ioRoot,
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  cSharedStringsetRoot                                                                                               *
-//                                                                                                                     *
+//
+//  cSharedStringsetRoot                                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class cSharedStringsetRoot : public C_SharedObject {
@@ -595,9 +593,9 @@ void cSharedStringsetRoot::addToStringList (GALGAS_stringlist & ioResult) const 
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  G A L G A S _ s t r i n g s e t                                                                                    *
-//                                                                                                                     *
+//
+//  G A L G A S _ s t r i n g s e t                                                              
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset::GALGAS_stringset (void) :
@@ -717,9 +715,9 @@ void GALGAS_stringset::setter_removeKey (GALGAS_string inKey
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    I N T E R S E C T I O N                                                                                          *
-//                                                                                                                     *
+//
+//    I N T E R S E C T I O N                                                                    
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset GALGAS_stringset::operator_and (const GALGAS_stringset & inOperand2
@@ -763,9 +761,9 @@ GALGAS_stringset GALGAS_stringset::operator_and (const GALGAS_stringset & inOper
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    U N I O N                                                                                                        *
-//                                                                                                                     *
+//
+//    U N I O N                                                                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset GALGAS_stringset::operator_or (const GALGAS_stringset & inOperand2
@@ -819,9 +817,9 @@ void GALGAS_stringset::plusAssign_operation (const GALGAS_stringset inOperand2,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    D I F F E R E N C E                                                                                              *
-//                                                                                                                     *
+//
+//    D I F F E R E N C E                                                                        
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset GALGAS_stringset::substract_operation (const GALGAS_stringset & inOperand2,
@@ -911,9 +909,9 @@ GALGAS_string GALGAS_stringset::getter_anyString (C_Compiler * inCompiler
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                 'GALGAS_stringset::cEnumerator' class                                                               *
-//                                                                                                                     *
+//
+//                 'GALGAS_stringset::cEnumerator' class                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void enterAscendingEnumeration (const cStringsetNode * inNode,
@@ -970,9 +968,9 @@ GALGAS_string cEnumerator_stringset::current (LOCATION_ARGS) const {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    C O M P A R I S O N                                                                                              *
-//                                                                                                                     *
+//
+//    C O M P A R I S O N                                                                        
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 typeComparisonResult GALGAS_stringset::objectCompare (const GALGAS_stringset & inOperand) const {

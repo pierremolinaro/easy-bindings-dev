@@ -3,8 +3,6 @@
 //  galgas-developer
 //
 //  Created by Pierre Molinaro on 22/05/14.
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "bdd/C_RelationSingleType.h"
@@ -24,7 +22,7 @@ static uint32_t bitCountForCount (const uint32_t inCount) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//  C_RelationSingleType::cType                                                                                        *
+//  C_RelationSingleType::cType                                                                  
 //----------------------------------------------------------------------------------------------------------------------
 
 static C_RelationSingleType::cType * gFirstRelation ;
@@ -79,7 +77,7 @@ class C_RelationSingleType::cType : public C_SharedObject {
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//  C_EnumeratedTypeInRelation                                                                                         *
+//  C_EnumeratedTypeInRelation                                                                   
 //----------------------------------------------------------------------------------------------------------------------
 
 class C_EnumeratedTypeInRelation : public C_RelationSingleType::cType {
@@ -143,7 +141,7 @@ mTypePtr (NULL) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//  C_UnsignedTypeInRelation                                                                                           *
+//  C_UnsignedTypeInRelation                                                                     
 //----------------------------------------------------------------------------------------------------------------------
 
 class C_UnsignedTypeInRelation : public C_RelationSingleType::cType {
@@ -202,7 +200,7 @@ mTypePtr (NULL) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//  Accessors                                                                  *
+//  Accessors                                            
 //----------------------------------------------------------------------------------------------------------------------
 
 C_String C_RelationSingleType::typeName (void) const {
@@ -233,7 +231,7 @@ C_String C_RelationSingleType::nameForValue (const uint32_t inIndex
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//  Handling copy                                                                                                      *
+//  Handling copy                                                                                
 //----------------------------------------------------------------------------------------------------------------------
 
 C_RelationSingleType::~C_RelationSingleType (void) {

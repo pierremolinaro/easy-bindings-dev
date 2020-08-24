@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
+//
 //  Routine 'F_Analyze_CLI_Options' : a way for automatic command line options analysis for MacOS, Win32 and Unix.     *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2001, ..., 2017 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2001, ..., 2017 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "command_line_interface/F_Analyze_CLI_Options.h"
@@ -48,9 +46,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                        C O C O A   O U T P U T                                                                      *
-//                                                                                                                     *
+//
+//                        C O C O A   O U T P U T                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static bool gCocoaOutput = false ;
@@ -68,9 +66,9 @@ const char * galgasVersionString (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     print_usage                                                                                                     *
-//                                                                                                                     *
+//
+//     print_usage                                                                               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void print_usage (int argv, const char * argc []) {
@@ -89,9 +87,9 @@ static void print_usage (int argv, const char * argc []) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     print_options                                                                                                   *
-//                                                                                                                     *
+//
+//     print_options                                                                             
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void print_option_list (void) {
@@ -103,9 +101,9 @@ static void print_option_list (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     print_help                                                                                                      *
-//                                                                                                                     *
+//
+//     print_help                                                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void print_help (int argv,
@@ -172,9 +170,9 @@ static void print_help (int argv,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     Command line option beginning with a single '-'                                                                 *
-//                                                                                                                     *
+//
+//     Command line option beginning with a single '-'                                           
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void option_beginning_with_single_minus_sign (const char * inCommand,
@@ -214,9 +212,9 @@ static void option_beginning_with_single_minus_sign (const char * inCommand,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     Command line option beginning with '--'                                                                         *
-//                                                                                                                     *
+//
+//     Command line option beginning with '--'                                                   
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void option_beginning_with_double_minus_sign (const char * inCommand,
@@ -245,9 +243,9 @@ static void option_beginning_with_double_minus_sign (const char * inCommand,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     analyze_one_option                                                                                              *
-//                                                                                                                     *
+//
+//     analyze_one_option                                                                        
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void analyze_one_option (const char * inCommand,
@@ -359,9 +357,9 @@ static void analyze_one_option (const char * inCommand,
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     F_Analyze_CLI_Options                                                                                           *
-//                                                                                                                     *
+//
+//     F_Analyze_CLI_Options                                                                     
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void F_Analyze_CLI_Options (const int argv,

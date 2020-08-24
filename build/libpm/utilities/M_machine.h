@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  Collection of macros for determining machine and compiler.                                                         *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 1997, ..., 2017 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  Collection of macros for determining machine and compiler.                                   
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 1997, ..., 2017 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #pragma once
@@ -32,17 +30,17 @@
 #include <stdint.h>
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                  P L A T F O R M   D E T E C T I O N                                                                *
-//                                                                                                                     *
-// * WIN32 is defined when compiling for Microsoft Windows                                                             *
-// * __APPLE__is defined, but __NEXT_RUNTIME__ is not when compiling for                                               *
-//   OS X Darwin (command line tools)                                                                                  *
-// * __APPLE__and __NEXT_RUNTIME__ are both defined when compiling for                                                 *
-//   OS X Cocoa (GUI applications)                                                                                     *
-// * __MINGW32__ is defined when compiling by MinGW (for Windows)                                                      *
-// * __linux is defined when compiling by GCC (for Linux)                                                              *
-//                                                                                                                     *
+//
+//                  P L A T F O R M   D E T E C T I O N                                          
+//
+// * WIN32 is defined when compiling for Microsoft Windows                                       
+// * __APPLE__is defined, but __NEXT_RUNTIME__ is not when compiling for                         
+//   OS X Darwin (command line tools)                                                            
+// * __APPLE__and __NEXT_RUNTIME__ are both defined when compiling for                           
+//   OS X Cocoa (GUI applications)                                                               
+// * __MINGW32__ is defined when compiling by MinGW (for Windows)                                
+// * __linux is defined when compiling by GCC (for Linux)                                        
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifdef __MINGW32__
@@ -58,9 +56,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//             M I N ,    M A X    F U N C T I O N S                                                                   *
-//                                                                                                                     *
+//
+//             M I N ,    M A X    F U N C T I O N S                                             
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static inline uint32_t uimin32 (const uint32_t inA, const uint32_t inB) {
@@ -74,9 +72,9 @@ static inline uint32_t uimax32 (const uint32_t inA, const uint32_t inB) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                      U T F 3 2    T Y P E                                                                           *
-//                                                                                                                     *
+//
+//                      U T F 3 2    T Y P E                                                     
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS

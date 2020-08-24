@@ -1,16 +1,16 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   G E N E R I C     A R R A Y                                                                                       *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
+//
+//   G E N E R I C     A R R A Y                                                                 
+//
+//  This file is part of libpm library                                                           
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
 //----------------------------------------------------------------------------------------------------------------------
 
 #pragma once
@@ -25,17 +25,17 @@
 #include "collections/TC_UniqueArray.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Template class predeclaration                                                                                     *
-//                                                                                                                     *
+//
+//   Template class predeclaration                                                               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> class TC_Array ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   swap function for TC_Array <TYPE> classes                                                                         *
-//                                                                                                                     *
+//
+//   swap function for TC_Array <TYPE> classes                                                   
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void swap (TC_Array <TYPE> & ioOperand1,
@@ -70,9 +70,9 @@ template <typename TYPE> class cSharedArray : public C_SharedObject, public TC_U
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Template class declaration                                                                                        *
-//                                                                                                                     *
+//
+//   Template class declaration                                                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> class TC_Array {
@@ -189,9 +189,9 @@ template <typename TYPE> class TC_Array {
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Default Constructor                                                                                               *
-//                                                                                                                     *
+//
+//   Default Constructor                                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> TC_Array <TYPE>::TC_Array (void) :
@@ -199,9 +199,9 @@ mSharedArray (NULL) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Destructor                                                                                                        *
-//                                                                                                                     *
+//
+//   Destructor                                                                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> TC_Array <TYPE>::~ TC_Array (void) {
@@ -209,9 +209,9 @@ template <typename TYPE> TC_Array <TYPE>::~ TC_Array (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Allocation Constructor                                                                                            *
-//                                                                                                                     *
+//
+//   Allocation Constructor                                                                      
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> TC_Array <TYPE>::TC_Array (const int inCapacity COMMA_LOCATION_ARGS) :
@@ -220,9 +220,9 @@ mSharedArray (NULL) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Allocation Constructor                                                                                            *
-//                                                                                                                     *
+//
+//   Allocation Constructor                                                                      
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> TC_Array <TYPE>:: TC_Array (const int inCount, const TYPE & inValue COMMA_LOCATION_ARGS) :
@@ -231,9 +231,9 @@ mSharedArray (NULL) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Copy Constructor                                                                                                  *
-//                                                                                                                     *
+//
+//   Copy Constructor                                                                            
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> TC_Array <TYPE>::TC_Array (const TC_Array <TYPE> & inOperand) :
@@ -242,9 +242,9 @@ mSharedArray (NULL) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Assignment Operator                                                                                               *
-//                                                                                                                     *
+//
+//   Assignment Operator                                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> TC_Array <TYPE> & TC_Array <TYPE>::operator = (const TC_Array <TYPE> & inOperand) {
@@ -255,9 +255,9 @@ template <typename TYPE> TC_Array <TYPE> & TC_Array <TYPE>::operator = (const TC
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   swap function for TC_Array <TYPE> classes                                                                         *
-//                                                                                                                     *
+//
+//   swap function for TC_Array <TYPE> classes                                                   
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void swap (TC_Array <TYPE> & ioOperand1,
@@ -266,9 +266,9 @@ template <typename TYPE> void swap (TC_Array <TYPE> & ioOperand1,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Count                                                                                                             *
-//                                                                                                                     *
+//
+//   Count                                                                                       
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> int32_t TC_Array <TYPE>::count (void) const {
@@ -280,9 +280,9 @@ template <typename TYPE> int32_t TC_Array <TYPE>::count (void) const {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   unsafeArrayPointer                                                                                                *
-//                                                                                                                     *
+//
+//   unsafeArrayPointer                                                                          
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> const TYPE * TC_Array <TYPE>::unsafeArrayPointer (void) const {
@@ -294,9 +294,9 @@ template <typename TYPE> const TYPE * TC_Array <TYPE>::unsafeArrayPointer (void)
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   insulate                                                                                                          *
-//                                                                                                                     *
+//
+//   insulate                                                                                    
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::insulate (void) {
@@ -310,9 +310,9 @@ template <typename TYPE> void TC_Array <TYPE>::insulate (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   appendObject (inValue is copied)                                                                                     *
-//                                                                                                                     *
+//
+//   appendObject (inValue is copied)                                                               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::appendObject (const TYPE & inValue) {
@@ -325,9 +325,9 @@ template <typename TYPE> void TC_Array <TYPE>::appendObject (const TYPE & inValu
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   free (remove all objects and deallocate)                                                                          *
-//                                                                                                                     *
+//
+//   free (remove all objects and deallocate)                                                    
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::free (void) {
@@ -335,9 +335,9 @@ template <typename TYPE> void TC_Array <TYPE>::free (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   CALL operators                                                                                                    *
-//                                                                                                                     *
+//
+//   CALL operators                                                                              
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> TYPE & TC_Array <TYPE>::operator () (const int32_t inIndex COMMA_LOCATION_ARGS) {
@@ -365,9 +365,9 @@ template <typename TYPE> const TYPE TC_Array <TYPE>::operator () (const int32_t 
 }    
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Last object access (with index checking)                                                                          *
-//                                                                                                                     *
+//
+//   Last object access (with index checking)                                                    
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> const TYPE TC_Array <TYPE>::lastObject (LOCATION_ARGS) const {
@@ -383,9 +383,9 @@ template <typename TYPE> const TYPE TC_Array <TYPE>::lastObject (LOCATION_ARGS) 
 //}    
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Remove last object                                                                                                *
-//                                                                                                                     *
+//
+//   Remove last object                                                                          
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::removeLastObject (LOCATION_ARGS) {
@@ -395,9 +395,9 @@ template <typename TYPE> void TC_Array <TYPE>::removeLastObject (LOCATION_ARGS) 
 }    
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Remove last objects                                                                                               *
-//                                                                                                                     *
+//
+//   Remove last objects                                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::removeLastObjects (const int32_t inCount COMMA_LOCATION_ARGS) {
@@ -407,9 +407,9 @@ template <typename TYPE> void TC_Array <TYPE>::removeLastObjects (const int32_t 
 }    
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Set Count To zero                                                                                                 *
-//                                                                                                                     *
+//
+//   Set Count To zero                                                                           
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::setCountToZero (void) {
@@ -420,9 +420,9 @@ template <typename TYPE> void TC_Array <TYPE>::setCountToZero (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   ==                                                                                                                *
-//                                                                                                                     *
+//
+//   ==                                                                                          
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> bool TC_Array <TYPE>::operator == (const TC_Array <TYPE> & inOperand) const {
@@ -434,9 +434,9 @@ template <typename TYPE> bool TC_Array <TYPE>::operator == (const TC_Array <TYPE
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   setDataFromPointer                                                                                                *
-//                                                                                                                     *
+//
+//   setDataFromPointer                                                                          
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::setDataFromPointer (TYPE * & ioDataPtr,
@@ -449,9 +449,9 @@ template <typename TYPE> void TC_Array <TYPE>::setDataFromPointer (TYPE * & ioDa
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   appendDataFromPointer                                                                                             *
-//                                                                                                                     *
+//
+//   appendDataFromPointer                                                                       
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::appendDataFromPointer (const TYPE * inDataPtr,
@@ -465,9 +465,9 @@ template <typename TYPE> void TC_Array <TYPE>::appendDataFromPointer (const TYPE
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   setCapacity                                                                                                       *
-//                                                                                                                     *
+//
+//   setCapacity                                                                                 
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::setCapacity (const int32_t inNewCapacity) {
@@ -480,9 +480,9 @@ template <typename TYPE> void TC_Array <TYPE>::setCapacity (const int32_t inNewC
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Remove objects at index (0 <= index < count)                                                                      *
-//                                                                                                                     *
+//
+//   Remove objects at index (0 <= index < count)                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::removeObjectAtIndex (const int32_t inIndex
@@ -503,9 +503,9 @@ template <typename TYPE> void TC_Array <TYPE>::removeObjectsAtIndex (const int32
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   setObjectAtIndex                                                                                                  *
-//                                                                                                                     *
+//
+//   setObjectAtIndex                                                                            
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::setObjectAtIndex (const TYPE & inObject,
@@ -517,9 +517,9 @@ template <typename TYPE> void TC_Array <TYPE>::setObjectAtIndex (const TYPE & in
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   insertObjectAtIndex                                                                                               *
-//                                                                                                                     *
+//
+//   insertObjectAtIndex                                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::insertObjectAtIndex (const TYPE & inObject,
@@ -535,9 +535,9 @@ template <typename TYPE> void TC_Array <TYPE>::insertObjectAtIndex (const TYPE &
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   appendUniqueObjectInOrderedArray                                                                                     *
-//                                                                                                                     *
+//
+//   appendUniqueObjectInOrderedArray                                                               
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::appendUniqueObjectInOrderedArray (const TYPE & inKey) {
@@ -551,9 +551,9 @@ template <typename TYPE> void TC_Array <TYPE>::appendUniqueObjectInOrderedArray 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   removeObjectFromOrderedArray                                                                                      *
-//                                                                                                                     *
+//
+//   removeObjectFromOrderedArray                                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::removeObjectFromOrderedArray (const TYPE & inKey) {
@@ -565,9 +565,9 @@ template <typename TYPE> void TC_Array <TYPE>::removeObjectFromOrderedArray (con
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   indexOfObjectInOrderedArray                                                                                       *
-//                                                                                                                     *
+//
+//   indexOfObjectInOrderedArray                                                                 
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> int32_t TC_Array <TYPE>::indexOfObjectInOrderedArray (const TYPE & inKey) const {
@@ -580,9 +580,9 @@ template <typename TYPE> int32_t TC_Array <TYPE>::indexOfObjectInOrderedArray (c
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   intersectionOfOrderedArraies                                                                                      *
-//                                                                                                                     *
+//
+//   intersectionOfOrderedArraies                                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::intersectionOfOrderedArraies (const TC_Array<TYPE> & inOperand,
@@ -602,9 +602,9 @@ template <typename TYPE> void TC_Array <TYPE>::intersectionOfOrderedArraies (con
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   unionOfOrderedArraies                                                                                             *
-//                                                                                                                     *
+//
+//   unionOfOrderedArraies                                                                       
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::unionOfOrderedArraies (const TC_Array<TYPE> & inOperand,
@@ -628,9 +628,9 @@ template <typename TYPE> void TC_Array <TYPE>::unionOfOrderedArraies (const TC_A
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   substractOfOrderedArraies                                                                                         *
-//                                                                                                                     *
+//
+//   substractOfOrderedArraies                                                                   
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> void TC_Array <TYPE>::substractOfOrderedArraies (const TC_Array<TYPE> & inSubstractedSet,

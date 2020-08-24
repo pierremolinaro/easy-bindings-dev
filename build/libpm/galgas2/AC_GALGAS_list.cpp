@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  AC_GALGAS_list : Base class for GALGAS list                                                                        *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2008, ..., 2016 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  AC_GALGAS_list : Base class for GALGAS list                                                  
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2008, ..., 2016 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
@@ -68,7 +66,7 @@ void AC_GALGAS_list::removeLastObject (capCollectionElement & outAttributes,
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    AC_GALGAS_list                                                                                                   *
+//    AC_GALGAS_list                                                                             
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_list::AC_GALGAS_list (void) :
@@ -294,9 +292,9 @@ typeComparisonResult AC_GALGAS_list::objectCompare (const AC_GALGAS_list & inOpe
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  c L i s t M a p N o d e                                                                                            *
-//                                                                                                                     *
+//
+//  c L i s t M a p N o d e                                                                      
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class cListMapNode {
@@ -336,9 +334,9 @@ cListMapNode::~ cListMapNode (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  cSharedListMapRoot                                                                                                 *
-//                                                                                                                     *
+//
+//  cSharedListMapRoot                                                                           
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class cSharedListMapRoot : public C_SharedObject {
@@ -868,9 +866,9 @@ void cListMapElement::description (C_String & /* ioString */,
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                 'GALGAS_stringset::cEnumerator' class                                                               *
-//                                                                                                                     *
+//
+//                 'GALGAS_stringset::cEnumerator' class                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static void enterAscendingEnumeration (const cListMapNode * inNode,

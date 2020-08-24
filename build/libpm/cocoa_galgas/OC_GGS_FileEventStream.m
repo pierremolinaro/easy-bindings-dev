@@ -3,8 +3,6 @@
 //  galgas-developer-v3
 //
 //  Created by Pierre Molinaro on 14/07/2015.
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//
 //----------------------------------------------------------------------------------------------------------------------
 
 // https://stackoverflow.com/questions/22981497/fseventstream-filter-events-generated-from-my-own-application

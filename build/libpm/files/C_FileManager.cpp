@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  'C_FileManager' : a class for handling files, independantly from platform                                          *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2012, ..., 2018 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  'C_FileManager' : a class for handling files, independantly from platform                    
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2012, ..., 2018 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "files/C_FileManager.h"
@@ -50,9 +48,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Converting into Unix Path                                                                                         *
-//                                                                                                                     *
+//
+//   Converting into Unix Path                                                                   
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 //--- On Unix: do nothing
@@ -98,9 +96,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   Converting into Native Path                                                                                       *
-//                                                                                                                     *
+//
+//   Converting into Native Path                                                                 
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 //--- On Unix: do nothing
@@ -985,9 +983,9 @@ C_String C_FileManager::relativePathFromPath (const C_String & inPath,
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  Delete file                                                                                                        *
-//                                                                                                                     *
+//
+//  Delete file                                                                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 C_String C_FileManager::deleteFile (const C_String & inFilePath) {

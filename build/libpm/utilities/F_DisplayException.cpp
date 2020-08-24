@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  Routine 'F_default_display_exception'.                                                                             *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 1997, ..., 2008 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  Routine 'F_default_display_exception'.                                                       
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 1997, ..., 2008 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "utilities/F_DisplayException.h"
@@ -39,9 +37,9 @@
 #include <stdio.h>
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         'F_default_display_exception' for WIN 32                                                                    *
-//                                                                                                                     *
+//
+//         'F_default_display_exception' for WIN 32                                              
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #if COMPILE_FOR_WINDOWS == 1
@@ -54,9 +52,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         'F_default_display_exception' for UNIX                                                                      *
-//                                                                                                                     *
+//
+//         'F_default_display_exception' for UNIX                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #if COMPILE_FOR_WINDOWS == 0
@@ -67,9 +65,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     'F_default_display_unknown_exception' for WIN 32                                                                *
-//                                                                                                                     *
+//
+//     'F_default_display_unknown_exception' for WIN 32                                          
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #if COMPILE_FOR_WINDOWS == 1
@@ -82,9 +80,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     'F_default_display_unknown_exception' for UNIX                                                                  *
-//                                                                                                                     *
+//
+//     'F_default_display_unknown_exception' for UNIX                                            
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #if COMPILE_FOR_WINDOWS == 0

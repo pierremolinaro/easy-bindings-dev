@@ -1,21 +1,19 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2011, ..., 2020 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2011, ..., 2020 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #import "OC_GGS_TextSyntaxColoring.h"
@@ -734,9 +732,9 @@
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//           C O M M E N T R A N G E                                                                                   *
-//                                                                                                                     *
+//
+//           C O M M E N T R A N G E                                                             
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (NSRange) commentRange: (NSRange) inSelectedRangeValue {
@@ -785,23 +783,23 @@
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                       U N C O M M E N T R A N G E                                                                   *
-//                                                                                                                     *
-// Cette méthode a plusieurs rôles :                                                                                   *
+//
+//                       U N C O M M E N T R A N G E                                             
+//
+// Cette méthode a plusieurs rôles :                                                             
 //   - supprimer les marques de commentaires des lignes concernées par la sélection, uniquement quand le               *
-//     commentaire commence une ligne ;                                                                                *
+//     commentaire commence une ligne ;                                                          
 //   - ajuster la sélection en conséquence ; en effet, dès que la méthode replaceCharactersInRange:withString: est     *
 //     appelée, Cocoa ramène la sélection à un point d'insertion. La sélection est ajustée et maintenue dans la        *
-//     variable finalSelectedRange.                                                                                    *
-//                                                                                                                     *
-// Le plus difficile est l'ajustement de la sélection. Pour cela, on calcule :                                         *
+//     variable finalSelectedRange.                                                              
+//
+// Le plus difficile est l'ajustement de la sélection. Pour cela, on calcule :                   
 //   - le nombre beforeSelectionCharacterCount de caractères du commentaire supprimé qui sont avant la sélection ; si  *
 //     ce nombre est > 0, on le début de la sélection du min entre ce nombre et le nombre de caractères du             *
-//     commentaire ;                                                                                                   *
+//     commentaire ;                                                                             
 //   - le nombre withinSelectionCharacterCount de caractères du commentaire supprimé qui sont à l'intérieur de la      *
-//     sélection ; si ce nombre est > 0, on le retranche de la longueur de la sélection.                               *
-//                                                                                                                     *
+//     sélection ; si ce nombre est > 0, on le retranche de la longueur de la sélection.         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 // #define DEBUG_UNCOMMENTRANGE

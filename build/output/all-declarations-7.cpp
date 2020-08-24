@@ -3,351 +3,15 @@
 #include "galgas2/C_galgas_CLI_Options.h"
 #include "utilities/C_PrologueEpilogue.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-declarations-7.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                 Overriding extension method '@tableViewControllerDeclarationAST thirdAnalysisPhase'                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void extensionMethod_tableViewControllerDeclarationAST_thirdAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
-                                                                                  GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                                                                  GALGAS_generationStruct & ioArgument_ioGeneration,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_tableViewControllerDeclarationAST * object = (const cPtr_tableViewControllerDeclarationAST *) inObject ;
-  macroValidSharedObject (object, cPtr_tableViewControllerDeclarationAST) ;
-  GALGAS_propertyMap var_preferencesPropertyMap_10040 ;
-  GALGAS_classKind joker_10007 ; // Joker input parameter
-  GALGAS_actionMap joker_10046_2 ; // Joker input parameter
-  GALGAS_propertyGenerationList joker_10046_1 ; // Joker input parameter
-  ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 266)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("table-view-controller.galgas", 266))  COMMA_SOURCE_FILE ("table-view-controller.galgas", 266)), joker_10007, var_preferencesPropertyMap_10040, joker_10046_2, joker_10046_1, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 265)) ;
-  GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("table-view-controller.galgas", 272)) ;
-  temp_0.addAssign_operation (GALGAS_string ("allowsEmptySelection")  COMMA_SOURCE_FILE ("table-view-controller.galgas", 272)) ;
-  temp_0.addAssign_operation (GALGAS_string ("allowsMultipleSelection")  COMMA_SOURCE_FILE ("table-view-controller.galgas", 272)) ;
-  GALGAS_stringset var_attributes_10165 = temp_0 ;
-  GALGAS_typeKindList temp_1 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("table-view-controller.galgas", 273)) ;
-  temp_1.addAssign_operation (GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("table-view-controller.galgas", 273))  COMMA_SOURCE_FILE ("table-view-controller.galgas", 273)) ;
-  GALGAS_typeKindList var_allowedTypes_10251 = temp_1 ;
-  GALGAS_stringset var_definedAttributes_10311 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("table-view-controller.galgas", 274)) ;
-  GALGAS__32_stringlist var_attributeListForGeneration_10358 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("table-view-controller.galgas", 275)) ;
-  cEnumerator_tableViewControllerAttributListAST enumerator_10421 (object->mProperty_mTableViewControllerAttributListAST, kENUMERATION_UP) ;
-  while (enumerator_10421.hasCurrentObject ()) {
-    enumGalgasBool test_2 = kBoolTrue ;
-    if (kBoolTrue == test_2) {
-      test_2 = var_attributes_10165.getter_hasKey (enumerator_10421.current_mAttributeName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("table-view-controller.galgas", 277)).operator_not (SOURCE_FILE ("table-view-controller.galgas", 277)).boolEnum () ;
-      if (kBoolTrue == test_2) {
-        TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_10421.current_mAttributeName (HERE).getter_location (SOURCE_FILE ("table-view-controller.galgas", 278)), GALGAS_string ("unknown attribute"), fixItArray3  COMMA_SOURCE_FILE ("table-view-controller.galgas", 278)) ;
-      }
-    }
-    if (kBoolFalse == test_2) {
-      enumGalgasBool test_4 = kBoolTrue ;
-      if (kBoolTrue == test_4) {
-        test_4 = var_definedAttributes_10311.getter_hasKey (enumerator_10421.current_mAttributeName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("table-view-controller.galgas", 279)).boolEnum () ;
-        if (kBoolTrue == test_4) {
-          TC_Array <C_FixItDescription> fixItArray5 ;
-          inCompiler->emitSemanticError (enumerator_10421.current_mAttributeName (HERE).getter_location (SOURCE_FILE ("table-view-controller.galgas", 280)), GALGAS_string ("attribute multiply defined"), fixItArray5  COMMA_SOURCE_FILE ("table-view-controller.galgas", 280)) ;
-        }
-      }
-      if (kBoolFalse == test_4) {
-        var_definedAttributes_10311.addAssign_operation (enumerator_10421.current_mAttributeName (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 282)) ;
-      }
-    }
-    GALGAS_string var_valueAsString_10764 ;
-    callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_10421.current_mAttributeValue (HERE).ptr (), var_allowedTypes_10251, var_preferencesPropertyMap_10040, var_valueAsString_10764, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 284)) ;
-    var_attributeListForGeneration_10358.addAssign_operation (enumerator_10421.current_mAttributeName (HERE).getter_string (HERE), var_valueAsString_10764  COMMA_SOURCE_FILE ("table-view-controller.galgas", 285)) ;
-    enumerator_10421.gotoNextObject () ;
-  }
-  cEnumerator_stringset enumerator_10855 (var_attributes_10165, kENUMERATION_UP) ;
-  while (enumerator_10855.hasCurrentObject ()) {
-    enumGalgasBool test_6 = kBoolTrue ;
-    if (kBoolTrue == test_6) {
-      test_6 = var_definedAttributes_10311.getter_hasKey (enumerator_10855.current (HERE) COMMA_SOURCE_FILE ("table-view-controller.galgas", 288)).operator_not (SOURCE_FILE ("table-view-controller.galgas", 288)).boolEnum () ;
-      if (kBoolTrue == test_6) {
-        TC_Array <C_FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (object->mProperty_mControllerName.getter_location (SOURCE_FILE ("table-view-controller.galgas", 289)), GALGAS_string ("attribute '").add_operation (enumerator_10855.current (HERE), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 289)).add_operation (GALGAS_string ("' not defined"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 289)), fixItArray7  COMMA_SOURCE_FILE ("table-view-controller.galgas", 289)) ;
-      }
-    }
-    enumerator_10855.gotoNextObject () ;
-  }
-  GALGAS_propertyMap var_boundModelPropertyMap_11029 ;
-  enumGalgasBool test_8 = kBoolTrue ;
-  if (kBoolTrue == test_8) {
-    test_8 = object->mProperty_mIsRoot.boolEnum () ;
-    if (kBoolTrue == test_8) {
-      GALGAS_classKind joker_11123 ; // Joker input parameter
-      GALGAS_actionMap joker_11164_2 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_11164_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mRootEntityName, joker_11123, var_boundModelPropertyMap_11029, joker_11164_2, joker_11164_1, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 295)) ;
-    }
-  }
-  if (kBoolFalse == test_8) {
-    GALGAS_classKind joker_11251 ; // Joker input parameter
-    GALGAS_actionMap joker_11292_2 ; // Joker input parameter
-    GALGAS_propertyGenerationList joker_11292_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (object->mProperty_mClassName, joker_11251, var_boundModelPropertyMap_11029, joker_11292_2, joker_11292_1, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 302)) ;
-  }
-  GALGAS_propertyKind var_boundModelClassKind_11414 ;
-  GALGAS_actionMap joker_11421_2 ; // Joker input parameter
-  GALGAS_bool joker_11421_1 ; // Joker input parameter
-  var_boundModelPropertyMap_11029.method_searchKey (object->mProperty_mToManyPropertyName, var_boundModelClassKind_11414, joker_11421_2, joker_11421_1, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 309)) ;
-  GALGAS_actionMap var_actionMap_11537 ;
-  GALGAS_propertyMap var_propertyMap_11564 ;
-  GALGAS_tableViewControllerModelKind var_arrayControllerModelKind_11621 ;
-  GALGAS_bool var_graphic_11637 ;
-  GALGAS_string var_elementTypeName_11663 ;
-  switch (var_boundModelClassKind_11414.enumValue ()) {
-  case GALGAS_propertyKind::kNotBuilt:
-    break ;
-  case GALGAS_propertyKind::kEnum_property:
-    {
-      TC_Array <C_FixItDescription> fixItArray9 ;
-      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("table-view-controller.galgas", 322)), GALGAS_string ("a toMany property is required here"), fixItArray9  COMMA_SOURCE_FILE ("table-view-controller.galgas", 322)) ;
-      var_graphic_11637.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_11621.drop () ; // Release error dropped variable
-      var_propertyMap_11564.drop () ; // Release error dropped variable
-      var_actionMap_11537.drop () ; // Release error dropped variable
-      var_elementTypeName_11663.drop () ; // Release error dropped variable
-    }
-    break ;
-  case GALGAS_propertyKind::kEnum_toMany:
-    {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_12186 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_boundModelClassKind_11414.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_typeName = extractPtr_12186->mAssociatedValue0 ;
-      const GALGAS_propertyAccessibility extractedValue_accessibility = extractPtr_12186->mAssociatedValue1 ;
-      const GALGAS_bool extractedValue_isGraphic = extractPtr_12186->mAssociatedValue2 ;
-      var_elementTypeName_11663 = extractedValue_typeName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 326)) ;
-      var_graphic_11637 = extractedValue_isGraphic ;
-      GALGAS_tableViewControllerModelKind temp_10 ;
-      const enumGalgasBool test_11 = extractedValue_accessibility.getter_isTransient (SOURCE_FILE ("table-view-controller.galgas", 328)).boolEnum () ;
-      if (kBoolTrue == test_11) {
-        temp_10 = GALGAS_tableViewControllerModelKind::constructor_transientArray (SOURCE_FILE ("table-view-controller.galgas", 329)) ;
-      }else if (kBoolFalse == test_11) {
-        temp_10 = GALGAS_tableViewControllerModelKind::constructor_entityArray (SOURCE_FILE ("table-view-controller.galgas", 330)) ;
-      }
-      var_arrayControllerModelKind_11621 = temp_10 ;
-      GALGAS_classKind joker_12157 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_12184 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_typeName, joker_12157, var_propertyMap_11564, var_actionMap_11537, joker_12184, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 332)) ;
-    }
-    break ;
-  case GALGAS_propertyKind::kEnum_toOne:
-    {
-      TC_Array <C_FixItDescription> fixItArray12 ;
-      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("table-view-controller.galgas", 334)), GALGAS_string ("a toMany property is required here"), fixItArray12  COMMA_SOURCE_FILE ("table-view-controller.galgas", 334)) ;
-      var_graphic_11637.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_11621.drop () ; // Release error dropped variable
-      var_propertyMap_11564.drop () ; // Release error dropped variable
-      var_actionMap_11537.drop () ; // Release error dropped variable
-      var_elementTypeName_11663.drop () ; // Release error dropped variable
-    }
-    break ;
-  case GALGAS_propertyKind::kEnum_arrayController:
-    {
-      TC_Array <C_FixItDescription> fixItArray13 ;
-      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("table-view-controller.galgas", 338)), GALGAS_string ("a toMany property is required here"), fixItArray13  COMMA_SOURCE_FILE ("table-view-controller.galgas", 338)) ;
-      var_graphic_11637.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_11621.drop () ; // Release error dropped variable
-      var_propertyMap_11564.drop () ; // Release error dropped variable
-      var_actionMap_11537.drop () ; // Release error dropped variable
-      var_elementTypeName_11663.drop () ; // Release error dropped variable
-    }
-    break ;
-  case GALGAS_propertyKind::kEnum_selectionController:
-    {
-      TC_Array <C_FixItDescription> fixItArray14 ;
-      inCompiler->emitSemanticError (object->mProperty_mToManyPropertyName.getter_location (SOURCE_FILE ("table-view-controller.galgas", 342)), GALGAS_string ("a toMany property is required here"), fixItArray14  COMMA_SOURCE_FILE ("table-view-controller.galgas", 342)) ;
-      var_graphic_11637.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_11621.drop () ; // Release error dropped variable
-      var_propertyMap_11564.drop () ; // Release error dropped variable
-      var_actionMap_11537.drop () ; // Release error dropped variable
-      var_elementTypeName_11663.drop () ; // Release error dropped variable
-    }
-    break ;
-  }
-  GALGAS_tableViewControllerBoundColumnListForGeneration var_arrayControllerBoundColumnListForGeneration_12844 = GALGAS_tableViewControllerBoundColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("table-view-controller.galgas", 346)) ;
-  GALGAS_tableViewControllerSortedColumnListForGeneration var_arrayControllerSortedColumnListForGeneration_12946 = GALGAS_tableViewControllerSortedColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("table-view-controller.galgas", 347)) ;
-  cEnumerator_tableViewControllerBoundColumnListAST enumerator_13002 (object->mProperty_mTableViewControllerBoundColumnListAST, kENUMERATION_UP) ;
-  while (enumerator_13002.hasCurrentObject ()) {
-    enumGalgasBool test_15 = kBoolTrue ;
-    if (kBoolTrue == test_15) {
-      test_15 = GALGAS_bool (kIsNotEqual, enumerator_13002.current_mColumnBindingAST (HERE).getter_mRunActionName (HERE).getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_15) {
-        var_actionMap_11537.method_searchKey (enumerator_13002.current_mColumnBindingAST (HERE).getter_mRunActionName (HERE), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 351)) ;
-      }
-    }
-    GALGAS_propertyMap var_preferencesPropertyMap_13341 ;
-    GALGAS_classKind joker_13306 ; // Joker input parameter
-    GALGAS_actionMap joker_13349_2 ; // Joker input parameter
-    GALGAS_propertyGenerationList joker_13349_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 355)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("table-view-controller.galgas", 355))  COMMA_SOURCE_FILE ("table-view-controller.galgas", 355)), joker_13306, var_preferencesPropertyMap_13341, joker_13349_2, joker_13349_1, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 354)) ;
-    GALGAS_regularBindingsGenerationList var_regularBindingsGenerationList_13422 = GALGAS_regularBindingsGenerationList::constructor_emptyList (SOURCE_FILE ("table-view-controller.galgas", 360)) ;
-    {
-    routine_analyzeRegularBinding (GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("table-view-controller.galgas", 362)), var_preferencesPropertyMap_13341, ioArgument_ioSemanticContext, var_propertyMap_11564, enumerator_13002.current_mColumnOutletTypeName (HERE), GALGAS_string ("<<not used>>"), enumerator_13002.current_mColumnBindingAST (HERE).getter_mRegularBindingList (HERE), GALGAS_string ("object"), var_regularBindingsGenerationList_13422, inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 361)) ;
-    }
-    enumGalgasBool test_16 = kBoolTrue ;
-    if (kBoolTrue == test_16) {
-      test_16 = GALGAS_bool (kIsNotEqual, enumerator_13002.current_mSortPropertyName (HERE).getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_16) {
-        GALGAS_propertyKind var_sortPropertyKind_13884 ;
-        GALGAS_actionMap joker_13894_2 ; // Joker input parameter
-        GALGAS_bool joker_13894_1 ; // Joker input parameter
-        var_propertyMap_11564.method_searchKey (enumerator_13002.current_mSortPropertyName (HERE), var_sortPropertyKind_13884, joker_13894_2, joker_13894_1, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 374)) ;
-        enumGalgasBool test_17 = kBoolTrue ;
-        if (kBoolTrue == test_17) {
-          test_17 = extensionGetter_isComparable (var_sortPropertyKind_13884, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 379)).operator_not (SOURCE_FILE ("table-view-controller.galgas", 379)).boolEnum () ;
-          if (kBoolTrue == test_17) {
-            TC_Array <C_FixItDescription> fixItArray18 ;
-            inCompiler->emitSemanticError (enumerator_13002.current_mSortPropertyName (HERE).getter_location (SOURCE_FILE ("table-view-controller.galgas", 380)), GALGAS_string ("this property is not comparable"), fixItArray18  COMMA_SOURCE_FILE ("table-view-controller.galgas", 380)) ;
-          }
-        }
-        var_arrayControllerSortedColumnListForGeneration_12946.addAssign_operation (enumerator_13002.current_mColumnName (HERE).getter_string (HERE), var_sortPropertyKind_13884, enumerator_13002.current_mSortPropertyName (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 382)) ;
-      }
-    }
-    var_arrayControllerBoundColumnListForGeneration_12844.addAssign_operation (enumerator_13002.current_mColumnName (HERE).getter_string (HERE), enumerator_13002.current_mColumnOutletTypeName (HERE).getter_string (HERE), enumerator_13002.current_mColumnBindingAST (HERE).getter_mRunActionName (HERE).getter_string (HERE), var_regularBindingsGenerationList_13422  COMMA_SOURCE_FILE ("table-view-controller.galgas", 388)) ;
-    GALGAS_bool var_outletClassIsUserDefined_14553 ;
-    GALGAS_lstring joker_14521_6 ; // Joker input parameter
-    GALGAS_bool joker_14521_5 ; // Joker input parameter
-    GALGAS_bool joker_14521_4 ; // Joker input parameter
-    GALGAS_bool joker_14521_3 ; // Joker input parameter
-    GALGAS_bool joker_14521_2 ; // Joker input parameter
-    GALGAS_bool joker_14521_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.getter_mOutletClassMap (HERE).method_searchKey (enumerator_13002.current_mColumnOutletTypeName (HERE), joker_14521_6, joker_14521_5, joker_14521_4, joker_14521_3, joker_14521_2, joker_14521_1, var_outletClassIsUserDefined_14553, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 394)) ;
-    enumGalgasBool test_19 = kBoolTrue ;
-    if (kBoolTrue == test_19) {
-      test_19 = var_outletClassIsUserDefined_14553.operator_not (SOURCE_FILE ("table-view-controller.galgas", 395)).boolEnum () ;
-      if (kBoolTrue == test_19) {
-        ioArgument_ioGeneration.mProperty_mNeededOutletClasses.addAssign_operation (enumerator_13002.current_mColumnOutletTypeName (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 396)) ;
-      }
-    }
-    enumerator_13002.gotoNextObject () ;
-  }
-  GALGAS_string temp_20 ;
-  const enumGalgasBool test_21 = object->mProperty_mIsRoot.boolEnum () ;
-  if (kBoolTrue == test_21) {
-    temp_20 = GALGAS_string ("self.rootObject.").add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 400)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 400)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 400)) ;
-  }else if (kBoolFalse == test_21) {
-    temp_20 = GALGAS_string ("self.").add_operation (object->mProperty_mToManyPropertyName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 401)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 401)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 401)) ;
-  }
-  GALGAS_string var_modelString_14700 = temp_20 ;
-  ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_tableViewControllerGeneration::constructor_new (object->mProperty_mClassName.getter_string (SOURCE_FILE ("table-view-controller.galgas", 405)), object->mProperty_mControllerName, var_modelString_14700, var_arrayControllerBoundColumnListForGeneration_12844, var_arrayControllerSortedColumnListForGeneration_12946, GALGAS_string ("ReadWriteArrayOf_").add_operation (var_elementTypeName_11663, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 410)), var_arrayControllerModelKind_11621, var_elementTypeName_11663, var_graphic_11637, var_attributeListForGeneration_10358  COMMA_SOURCE_FILE ("table-view-controller.galgas", 404))  COMMA_SOURCE_FILE ("table-view-controller.galgas", 404)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineExtensionMethod_tableViewControllerDeclarationAST_thirdAnalysisPhase (void) {
-  enterExtensionMethod_thirdAnalysisPhase (kTypeDescriptor_GALGAS_tableViewControllerDeclarationAST.mSlotID,
-                                           extensionMethod_tableViewControllerDeclarationAST_thirdAnalysisPhase) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gMethod_tableViewControllerDeclarationAST_thirdAnalysisPhase (defineExtensionMethod_tableViewControllerDeclarationAST_thirdAnalysisPhase, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//            Overriding extension getter '@tableViewControllerPropertyGeneration propertyDeclarationCode'             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
-                                                                                                    const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_result ; // Returned variable
-  const cPtr_tableViewControllerPropertyGeneration * object = (const cPtr_tableViewControllerPropertyGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_tableViewControllerPropertyGeneration) ;
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 431)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 431)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 431)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   Array controller: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 432)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 432)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 432)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("table-view-controller.galgas", 433)), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 433)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 433)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 433)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 434)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 434)).add_operation (object->mProperty_mOwnerName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 434)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 434)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 434)).add_operation (GALGAS_string (" ()\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 434)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 434)) ;
-//---
-  return result_result ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineExtensionGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode (void) {
-  enterExtensionGetter_propertyDeclarationCode (kTypeDescriptor_GALGAS_tableViewControllerPropertyGeneration.mSlotID,
-                                                extensionGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode (defineExtensionGetter_tableViewControllerPropertyGeneration_propertyDeclarationCode, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//               Overriding extension getter '@tableViewControllerPropertyGeneration configurationCode'                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_configurationCode (const cPtr_propertyGeneration * inObject,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_result ; // Returned variable
-  const cPtr_tableViewControllerPropertyGeneration * object = (const cPtr_tableViewControllerPropertyGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_tableViewControllerPropertyGeneration) ;
-  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 440)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 440)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 441)).add_operation (GALGAS_string (".bind_model (self."), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 441)).add_operation (object->mProperty_mModelString, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 441)).add_operation (GALGAS_string ("_property, self.ebUndoManager)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 441)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 441)) ;
-//---
-  return result_result ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineExtensionGetter_tableViewControllerPropertyGeneration_configurationCode (void) {
-  enterExtensionGetter_configurationCode (kTypeDescriptor_GALGAS_tableViewControllerPropertyGeneration.mSlotID,
-                                          extensionGetter_tableViewControllerPropertyGeneration_configurationCode) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gGetter_tableViewControllerPropertyGeneration_configurationCode (defineExtensionGetter_tableViewControllerPropertyGeneration_configurationCode, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding extension getter '@tableViewControllerPropertyGeneration populateExplorerWindowCode'           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_populateExplorerWindowCode (const cPtr_propertyGeneration * inObject,
-                                                                                                       C_Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string result_result ; // Returned variable
-  const cPtr_tableViewControllerPropertyGeneration * object = (const cPtr_tableViewControllerPropertyGeneration *) inObject ;
-  macroValidSharedObject (object, cPtr_tableViewControllerPropertyGeneration) ;
-  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 447)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 447)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 448)).add_operation (GALGAS_string (".addExplorer (name: \""), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 448)).add_operation (object->mProperty_mPropertyName, inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 448)).add_operation (GALGAS_string ("\", y:&y, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("table-view-controller.galgas", 448)), inCompiler  COMMA_SOURCE_FILE ("table-view-controller.galgas", 448)) ;
-//---
-  return result_result ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-static void defineExtensionGetter_tableViewControllerPropertyGeneration_populateExplorerWindowCode (void) {
-  enterExtensionGetter_populateExplorerWindowCode (kTypeDescriptor_GALGAS_tableViewControllerPropertyGeneration.mSlotID,
-                                                   extensionGetter_tableViewControllerPropertyGeneration_populateExplorerWindowCode) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-C_PrologueEpilogue gGetter_tableViewControllerPropertyGeneration_populateExplorerWindowCode (defineExtensionGetter_tableViewControllerPropertyGeneration_populateExplorerWindowCode, NULL) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                Overriding extension getter '@tableViewControllerPropertyGeneration terminationCode'                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@tableViewControllerPropertyGeneration terminationCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_terminationCode (const cPtr_propertyGeneration * inObject,
                                                                                             C_Compiler * inCompiler
@@ -362,22 +26,22 @@ static GALGAS_string extensionGetter_tableViewControllerPropertyGeneration_termi
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionGetter_tableViewControllerPropertyGeneration_terminationCode (void) {
   enterExtensionGetter_terminationCode (kTypeDescriptor_GALGAS_tableViewControllerPropertyGeneration.mSlotID,
                                         extensionGetter_tableViewControllerPropertyGeneration_terminationCode) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gGetter_tableViewControllerPropertyGeneration_terminationCode (defineExtensionGetter_tableViewControllerPropertyGeneration_terminationCode, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Filewrapper 'tableViewControllerGenerationTemplate'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'tableViewControllerGenerationTemplate'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- All files of '' directory
 
@@ -402,11 +66,11 @@ const cDirectoryWrapper gWrapperDirectory_0_tableViewControllerGenerationTemplat
 ) ;
 
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//        Filewrapper template 'tableViewControllerGenerationTemplate tableViewControllerImplementationInSwift'        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'tableViewControllerGenerationTemplate tableViewControllerImplementationInSwift'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableViewControllerImplementationInSwift (C_Compiler * inCompiler,
                                                                                                                   const GALGAS_string & in_OWNER_5F_NAME,
@@ -1124,11 +788,11 @@ GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableVie
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding extension method '@tableViewControllerGeneration generateCode'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@tableViewControllerGeneration generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_tableViewControllerGeneration_generateCode (const cPtr_abstractFileGeneration * inObject,
                                                                         const GALGAS_string constinArgument_inOutputDirectory,
@@ -1149,22 +813,22 @@ static void extensionMethod_tableViewControllerGeneration_generateCode (const cP
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_tableViewControllerGeneration_generateCode (void) {
   enterExtensionMethod_generateCode (kTypeDescriptor_GALGAS_tableViewControllerGeneration.mSlotID,
                                      extensionMethod_tableViewControllerGeneration_generateCode) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_tableViewControllerGeneration_generateCode (defineExtensionMethod_tableViewControllerGeneration_generateCode, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//               Overriding extension method '@selectionControllerDeclarationAST enterInPrecedenceGraph'               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@selectionControllerDeclarationAST enterInPrecedenceGraph'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_selectionControllerDeclarationAST_enterInPrecedenceGraph (const cPtr_abstractDeclarationAST * inObject,
                                                                                       GALGAS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -1182,22 +846,22 @@ static void extensionMethod_selectionControllerDeclarationAST_enterInPrecedenceG
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_selectionControllerDeclarationAST_enterInPrecedenceGraph (void) {
   enterExtensionMethod_enterInPrecedenceGraph (kTypeDescriptor_GALGAS_selectionControllerDeclarationAST.mSlotID,
                                                extensionMethod_selectionControllerDeclarationAST_enterInPrecedenceGraph) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_selectionControllerDeclarationAST_enterInPrecedenceGraph (defineExtensionMethod_selectionControllerDeclarationAST_enterInPrecedenceGraph, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding extension getter '@selectionControllerDeclarationAST nodeKey'                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@selectionControllerDeclarationAST nodeKey'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_lstring extensionGetter_selectionControllerDeclarationAST_nodeKey (const cPtr_abstractDeclarationAST * inObject,
                                                                                  C_Compiler * inCompiler
@@ -1211,22 +875,22 @@ static GALGAS_lstring extensionGetter_selectionControllerDeclarationAST_nodeKey 
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionGetter_selectionControllerDeclarationAST_nodeKey (void) {
   enterExtensionGetter_nodeKey (kTypeDescriptor_GALGAS_selectionControllerDeclarationAST.mSlotID,
                                 extensionGetter_selectionControllerDeclarationAST_nodeKey) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gGetter_selectionControllerDeclarationAST_nodeKey (defineExtensionGetter_selectionControllerDeclarationAST_nodeKey, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                 Overriding extension method '@selectionControllerDeclarationAST firstAnalysisPhase'                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@selectionControllerDeclarationAST firstAnalysisPhase'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_selectionControllerDeclarationAST_firstAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
                                                                                   GALGAS_semanticContext & ioArgument_ioSemanticContext,
@@ -1290,22 +954,22 @@ static void extensionMethod_selectionControllerDeclarationAST_firstAnalysisPhase
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_selectionControllerDeclarationAST_firstAnalysisPhase (void) {
   enterExtensionMethod_firstAnalysisPhase (kTypeDescriptor_GALGAS_selectionControllerDeclarationAST.mSlotID,
                                            extensionMethod_selectionControllerDeclarationAST_firstAnalysisPhase) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_selectionControllerDeclarationAST_firstAnalysisPhase (defineExtensionMethod_selectionControllerDeclarationAST_firstAnalysisPhase, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                Overriding extension method '@selectionControllerDeclarationAST fourthAnalysisPhase'                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@selectionControllerDeclarationAST fourthAnalysisPhase'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_selectionControllerDeclarationAST_fourthAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
                                                                                    GALGAS_semanticContext & ioArgument_ioSemanticContext,
@@ -1415,22 +1079,22 @@ static void extensionMethod_selectionControllerDeclarationAST_fourthAnalysisPhas
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_selectionControllerDeclarationAST_fourthAnalysisPhase (void) {
   enterExtensionMethod_fourthAnalysisPhase (kTypeDescriptor_GALGAS_selectionControllerDeclarationAST.mSlotID,
                                             extensionMethod_selectionControllerDeclarationAST_fourthAnalysisPhase) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_selectionControllerDeclarationAST_fourthAnalysisPhase (defineExtensionMethod_selectionControllerDeclarationAST_fourthAnalysisPhase, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//            Overriding extension getter '@selectionControllerPropertyGeneration propertyDeclarationCode'             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@selectionControllerPropertyGeneration propertyDeclarationCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_string extensionGetter_selectionControllerPropertyGeneration_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
                                                                                                     const GALGAS_stringset /* constinArgument_inOverriddenTransients */,
@@ -1450,22 +1114,22 @@ static GALGAS_string extensionGetter_selectionControllerPropertyGeneration_prope
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionGetter_selectionControllerPropertyGeneration_propertyDeclarationCode (void) {
   enterExtensionGetter_propertyDeclarationCode (kTypeDescriptor_GALGAS_selectionControllerPropertyGeneration.mSlotID,
                                                 extensionGetter_selectionControllerPropertyGeneration_propertyDeclarationCode) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gGetter_selectionControllerPropertyGeneration_propertyDeclarationCode (defineExtensionGetter_selectionControllerPropertyGeneration_propertyDeclarationCode, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//               Overriding extension getter '@selectionControllerPropertyGeneration configurationCode'                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@selectionControllerPropertyGeneration configurationCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_string extensionGetter_selectionControllerPropertyGeneration_configurationCode (const cPtr_propertyGeneration * inObject,
                                                                                               C_Compiler * inCompiler
@@ -1480,22 +1144,22 @@ static GALGAS_string extensionGetter_selectionControllerPropertyGeneration_confi
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionGetter_selectionControllerPropertyGeneration_configurationCode (void) {
   enterExtensionGetter_configurationCode (kTypeDescriptor_GALGAS_selectionControllerPropertyGeneration.mSlotID,
                                           extensionGetter_selectionControllerPropertyGeneration_configurationCode) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gGetter_selectionControllerPropertyGeneration_configurationCode (defineExtensionGetter_selectionControllerPropertyGeneration_configurationCode, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//           Overriding extension getter '@selectionControllerPropertyGeneration populateExplorerWindowCode'           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@selectionControllerPropertyGeneration populateExplorerWindowCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_string extensionGetter_selectionControllerPropertyGeneration_populateExplorerWindowCode (const cPtr_propertyGeneration * inObject,
                                                                                                        C_Compiler * inCompiler
@@ -1510,22 +1174,22 @@ static GALGAS_string extensionGetter_selectionControllerPropertyGeneration_popul
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionGetter_selectionControllerPropertyGeneration_populateExplorerWindowCode (void) {
   enterExtensionGetter_populateExplorerWindowCode (kTypeDescriptor_GALGAS_selectionControllerPropertyGeneration.mSlotID,
                                                    extensionGetter_selectionControllerPropertyGeneration_populateExplorerWindowCode) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gGetter_selectionControllerPropertyGeneration_populateExplorerWindowCode (defineExtensionGetter_selectionControllerPropertyGeneration_populateExplorerWindowCode, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                Overriding extension getter '@selectionControllerPropertyGeneration terminationCode'                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@selectionControllerPropertyGeneration terminationCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_string extensionGetter_selectionControllerPropertyGeneration_terminationCode (const cPtr_propertyGeneration * inObject,
                                                                                             C_Compiler * inCompiler
@@ -1540,22 +1204,22 @@ static GALGAS_string extensionGetter_selectionControllerPropertyGeneration_termi
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionGetter_selectionControllerPropertyGeneration_terminationCode (void) {
   enterExtensionGetter_terminationCode (kTypeDescriptor_GALGAS_selectionControllerPropertyGeneration.mSlotID,
                                         extensionGetter_selectionControllerPropertyGeneration_terminationCode) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gGetter_selectionControllerPropertyGeneration_terminationCode (defineExtensionGetter_selectionControllerPropertyGeneration_terminationCode, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Filewrapper 'selectionControllerGenerationTemplate'                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'selectionControllerGenerationTemplate'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- All files of '' directory
 
@@ -1580,11 +1244,11 @@ const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplat
 ) ;
 
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Filewrapper template 'selectionControllerGenerationTemplate baseSelectionControllerImplementation'          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'selectionControllerGenerationTemplate baseSelectionControllerImplementation'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelectionControllerImplementation (C_Compiler * inCompiler,
                                                                                                                const GALGAS_string & in_OWNER_5F_NAME,
@@ -1976,11 +1640,11 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//        Filewrapper template 'selectionControllerGenerationTemplate derivedSelectionControllerImplementation'        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'selectionControllerGenerationTemplate derivedSelectionControllerImplementation'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (C_Compiler * inCompiler,
                                                                                                                   const GALGAS_string & in_OWNER_5F_NAME,
@@ -2252,11 +1916,11 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
   return GALGAS_string (result) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       Routine 'generateSelectionControllers'                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateSelectionControllers'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateSelectionControllers (const GALGAS_selectionControllerForGeneration constinArgument_inArrayControllerListForGeneration,
                                            const GALGAS_string constinArgument_inOutputDirectory,
@@ -2302,11 +1966,11 @@ void routine_generateSelectionControllers (const GALGAS_selectionControllerForGe
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                      Overriding extension method '@boolAsDefaultValue analyzeDefaultValueType'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@boolAsDefaultValue analyzeDefaultValueType'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_boolAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
                                                                         const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -2384,22 +2048,22 @@ static void extensionMethod_boolAsDefaultValue_analyzeDefaultValueType (const cP
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_boolAsDefaultValue_analyzeDefaultValueType (void) {
   enterExtensionMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_boolAsDefaultValue.mSlotID,
                                                 extensionMethod_boolAsDefaultValue_analyzeDefaultValueType) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_boolAsDefaultValue_analyzeDefaultValueType (defineExtensionMethod_boolAsDefaultValue_analyzeDefaultValueType, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                    Overriding extension method '@integerAsDefaultValue analyzeDefaultValueType'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@integerAsDefaultValue analyzeDefaultValueType'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_integerAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
                                                                            const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -2495,22 +2159,22 @@ static void extensionMethod_integerAsDefaultValue_analyzeDefaultValueType (const
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_integerAsDefaultValue_analyzeDefaultValueType (void) {
   enterExtensionMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_integerAsDefaultValue.mSlotID,
                                                 extensionMethod_integerAsDefaultValue_analyzeDefaultValueType) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_integerAsDefaultValue_analyzeDefaultValueType (defineExtensionMethod_integerAsDefaultValue_analyzeDefaultValueType, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding extension method '@doubleAsDefaultValue analyzeDefaultValueType'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@doubleAsDefaultValue analyzeDefaultValueType'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_doubleAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
                                                                           const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -2581,22 +2245,22 @@ static void extensionMethod_doubleAsDefaultValue_analyzeDefaultValueType (const 
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_doubleAsDefaultValue_analyzeDefaultValueType (void) {
   enterExtensionMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_doubleAsDefaultValue.mSlotID,
                                                 extensionMethod_doubleAsDefaultValue_analyzeDefaultValueType) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_doubleAsDefaultValue_analyzeDefaultValueType (defineExtensionMethod_doubleAsDefaultValue_analyzeDefaultValueType, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding extension method '@stringAsDefaultValue analyzeDefaultValueType'                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@stringAsDefaultValue analyzeDefaultValueType'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_stringAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
                                                                           const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -2667,22 +2331,22 @@ static void extensionMethod_stringAsDefaultValue_analyzeDefaultValueType (const 
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_stringAsDefaultValue_analyzeDefaultValueType (void) {
   enterExtensionMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_stringAsDefaultValue.mSlotID,
                                                 extensionMethod_stringAsDefaultValue_analyzeDefaultValueType) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_stringAsDefaultValue_analyzeDefaultValueType (defineExtensionMethod_stringAsDefaultValue_analyzeDefaultValueType, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           Once function 'predefinedDates'                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Once function 'predefinedDates'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_stringset onceFunction_predefinedDates (C_Compiler * /* inCompiler */
                                                       COMMA_UNUSED_LOCATION_ARGS) {
@@ -2696,14 +2360,14 @@ static GALGAS_stringset onceFunction_predefinedDates (C_Compiler * /* inCompiler
 
 
 
-//---------------------------------------------------------------------------------------------------------------------*
-//  Function implementation                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//  Function implementation                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 static bool gOnceFunctionResultAvailable_predefinedDates = false ;
 static GALGAS_stringset gOnceFunctionResult_predefinedDates ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
               COMMA_LOCATION_ARGS) {
@@ -2714,26 +2378,26 @@ GALGAS_stringset function_predefinedDates (class C_Compiler * inCompiler
   return gOnceFunctionResult_predefinedDates ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void releaseOnceFunctionResult_predefinedDates (void) {
   gOnceFunctionResult_predefinedDates.drop () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gEpilogueForOnceFunction_predefinedDates (NULL,
                                                              releaseOnceFunctionResult_predefinedDates) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//  Function introspection                                                                       
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_predefinedDates [1] = {
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_predefinedDates (C_Compiler * inCompiler,
                                                                 const cObjectArray & /* inEffectiveParameterArray */,
@@ -2742,7 +2406,7 @@ static GALGAS_object functionWithGenericHeader_predefinedDates (C_Compiler * inC
   return function_predefinedDates (inCompiler COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_predefinedDates ("predefinedDates",
                                                                  functionWithGenericHeader_predefinedDates,
@@ -2750,11 +2414,11 @@ C_galgas_function_descriptor functionDescriptor_predefinedDates ("predefinedDate
                                                                  0,
                                                                  functionArgs_predefinedDates) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          Once function 'predefinedColors'                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Once function 'predefinedColors'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_stringset onceFunction_predefinedColors (C_Compiler * /* inCompiler */
                                                        COMMA_UNUSED_LOCATION_ARGS) {
@@ -2807,14 +2471,14 @@ static GALGAS_stringset onceFunction_predefinedColors (C_Compiler * /* inCompile
 
 
 
-//---------------------------------------------------------------------------------------------------------------------*
-//  Function implementation                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//  Function implementation                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 static bool gOnceFunctionResultAvailable_predefinedColors = false ;
 static GALGAS_stringset gOnceFunctionResult_predefinedColors ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
               COMMA_LOCATION_ARGS) {
@@ -2825,26 +2489,26 @@ GALGAS_stringset function_predefinedColors (class C_Compiler * inCompiler
   return gOnceFunctionResult_predefinedColors ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void releaseOnceFunctionResult_predefinedColors (void) {
   gOnceFunctionResult_predefinedColors.drop () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gEpilogueForOnceFunction_predefinedColors (NULL,
                                                               releaseOnceFunctionResult_predefinedColors) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//  Function introspection                                                                                             *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//  Function introspection                                                                       
+//----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_predefinedColors [1] = {
   NULL
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_object functionWithGenericHeader_predefinedColors (C_Compiler * inCompiler,
                                                                  const cObjectArray & /* inEffectiveParameterArray */,
@@ -2853,7 +2517,7 @@ static GALGAS_object functionWithGenericHeader_predefinedColors (C_Compiler * in
   return function_predefinedColors (inCompiler COMMA_THERE).getter_object (THERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_predefinedColors ("predefinedColors",
                                                                   functionWithGenericHeader_predefinedColors,
@@ -2861,11 +2525,11 @@ C_galgas_function_descriptor functionDescriptor_predefinedColors ("predefinedCol
                                                                   0,
                                                                   functionArgs_predefinedColors) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                   Overriding extension method '@identifierAsDefaultValue analyzeDefaultValueType'                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@identifierAsDefaultValue analyzeDefaultValueType'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
                                                                               const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -3074,22 +2738,22 @@ static void extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (co
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_identifierAsDefaultValue_analyzeDefaultValueType (void) {
   enterExtensionMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_identifierAsDefaultValue.mSlotID,
                                                 extensionMethod_identifierAsDefaultValue_analyzeDefaultValueType) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_identifierAsDefaultValue_analyzeDefaultValueType (defineExtensionMethod_identifierAsDefaultValue_analyzeDefaultValueType, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Overriding extension method '@prefsAsDefaultValue analyzeDefaultValueType'                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@prefsAsDefaultValue analyzeDefaultValueType'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_prefsAsDefaultValue_analyzeDefaultValueType (const cPtr_abstractDefaultValue * inObject,
                                                                          const GALGAS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -3160,22 +2824,22 @@ static void extensionMethod_prefsAsDefaultValue_analyzeDefaultValueType (const c
   outArgument_outSwiftDefaultValueAsString = GALGAS_string ("g_Preferences!.").add_operation (object->mProperty_mPrefPropertyName.getter_string (SOURCE_FILE ("explicit-default-value.galgas", 391)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas", 391)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_prefsAsDefaultValue_analyzeDefaultValueType (void) {
   enterExtensionMethod_analyzeDefaultValueType (kTypeDescriptor_GALGAS_prefsAsDefaultValue.mSlotID,
                                                 extensionMethod_prefsAsDefaultValue_analyzeDefaultValueType) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_prefsAsDefaultValue_analyzeDefaultValueType (defineExtensionMethod_prefsAsDefaultValue_analyzeDefaultValueType, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                   Overriding extension method '@prefsAsDefaultValue enterDefaultValuePrecedence'                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@prefsAsDefaultValue enterDefaultValuePrecedence'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 static void extensionMethod_prefsAsDefaultValue_enterDefaultValuePrecedence (const cPtr_abstractDefaultValue * inObject,
                                                                              const GALGAS_lstring constinArgument_inNode,
@@ -3190,22 +2854,22 @@ static void extensionMethod_prefsAsDefaultValue_enterDefaultValuePrecedence (con
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 static void defineExtensionMethod_prefsAsDefaultValue_enterDefaultValuePrecedence (void) {
   enterExtensionMethod_enterDefaultValuePrecedence (kTypeDescriptor_GALGAS_prefsAsDefaultValue.mSlotID,
                                                     extensionMethod_prefsAsDefaultValue_enterDefaultValuePrecedence) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_prefsAsDefaultValue_enterDefaultValuePrecedence (defineExtensionMethod_prefsAsDefaultValue_enterDefaultValuePrecedence, NULL) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                               Routine 'generateCode'                                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateCode (const GALGAS_string constinArgument_inXcodeProjectString,
                            const GALGAS_generationStruct constinArgument_inGeneration,
@@ -3257,11 +2921,11 @@ void routine_generateCode (const GALGAS_string constinArgument_inXcodeProjectStr
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                             Filewrapper 'swift_sources'                                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'swift_sources'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- File '/Application.swift'
 
@@ -5571,6 +5235,16 @@ const char * gWrapperFileContent_11_swift_5F_sources = "//----------------------
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "  //  Cursor\n"
+  "  //  @objc dynamic before func is required in order to allow function overriding in extensions\n"
+  "  //  Only types that can be represented in Objective-C are accepted\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
+  "\n"
+  "  @objc dynamic func cursorForKnob (knob inKnobIndex: Int) -> NSCursor\? {\n"
+  "    return nil // Uses default cursor\n"
+  "  }\n"
+  "\n"
+  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "  //  Translation\n"
   "  //  @objc dynamic before func is required in order to allow function overriding in extensions\n"
   "  //  Only types that can be represented in Objective-C are accepted\n"
@@ -5828,7 +5502,7 @@ const cRegularFileWrapper gWrapperFile_11_swift_5F_sources (
   "EBGraphicManagedObject.swift",
   "swift",
   true, // Text file
-  13360, // Text length
+  13898, // Text length
   gWrapperFileContent_11_swift_5F_sources
 ) ;
 
@@ -7879,12 +7553,6 @@ const char * gWrapperFileContent_22_swift_5F_sources = "//----------------------
   "      x: mouseDraggedCanariAlignedLocation.x - self.mLastMouseDraggedAlignedLocation.x,\n"
   "      y: mouseDraggedCanariAlignedLocation.y - self.mLastMouseDraggedAlignedLocation.y\n"
   "    )\n"
-  "//    if inGraphicView.mDraggingObjectsIsAlignedOnArrowKeyMagnitude {\n"
-  "//      Swift.print (\"\\(proposedTranslation.x) \\(proposedTranslation.y) inGraphicView.shiftArrowKeyMagnitude \\(inGraphicView.shiftArrowKeyMagnitude)\")"
-  "\n"
-  "// //     proposedTranslation = proposedTranslation.point (alignedOnGrid: inGraphicView.shiftArrowKeyMagnitude)\n"
-  "//      Swift.print (\"\\(proposedTranslation.x) \\(proposedTranslation.y)\")\n"
-  "//    }\n"
   "    inGraphicView.guideFor (objectIndexes: [self.mObjectIndex])\n"
   "    inGraphicView.drag (\n"
   "      possibleKnob: inModifierFlags.contains(.command) \? nil : self.mPossibleKnobIndex,\n"
@@ -8004,7 +7672,7 @@ const cRegularFileWrapper gWrapperFile_22_swift_5F_sources (
   "EBGraphicView-mouse-down-behaviours.swift",
   "swift",
   true, // Text file
-  11438, // Text length
+  11023, // Text length
   gWrapperFileContent_22_swift_5F_sources
 ) ;
 
@@ -8043,6 +7711,16 @@ const char * gWrapperFileContent_104_swift_5F_sources = "\n"
   "      )\n"
   "      self.mControlKeyHiliteRectangle = r\n"
   "    }\n"
+  "  //--- Set cursor\n"
+  "    let (possibleObjectIndex, possibleKnobIndex) = self.indexOfFrontObject (at: locationInView)\n"
+  "    var cursor = NSCursor.arrow\n"
+  "    if let objectIndex = possibleObjectIndex,\n"
+  "       let knobIndex = possibleKnobIndex,\n"
+  "       let object = self.viewController\?.graphicObjectArray [objectIndex],\n"
+  "       let newCursor = object.cursorForKnob (knob: knobIndex) {\n"
+  "         cursor = newCursor\n"
+  "    }\n"
+  "    cursor.set ()\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -8064,7 +7742,7 @@ const cRegularFileWrapper gWrapperFile_104_swift_5F_sources (
   "EBGraphicView-mouse-moved-exited.swift",
   "swift",
   true, // Text file
-  1992, // Text length
+  2418, // Text length
   gWrapperFileContent_104_swift_5F_sources
 ) ;
 
@@ -8997,12 +8675,6 @@ const char * gWrapperFileContent_4_swift_5F_sources = "//-----------------------
   "  // MARK: -\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  // final var mDraggingObjectsIsAlignedOnArrowKeyMagnitude = false\n"
-  "\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "  // MARK: -\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "\n"
   "  final private var mPasteboardType : NSPasteboard.PasteboardType\? = nil\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -9364,7 +9036,7 @@ const cRegularFileWrapper gWrapperFile_4_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  33260, // Text length
+  32935, // Text length
   gWrapperFileContent_4_swift_5F_sources
 ) ;
 

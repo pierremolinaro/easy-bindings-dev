@@ -1,24 +1,22 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  'C_HTML_FileWrite' : a class for stream writing html text files                                                    *
-//    (with facility for outputing C++ code)                                                                           *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2003, ..., 2014 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  'C_HTML_FileWrite' : a class for stream writing html text files                              
+//    (with facility for outputing C++ code)                                                     
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2003, ..., 2014 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "files/C_HTML_FileWrite.h"
@@ -58,7 +56,7 @@ C_TextFileWrite (inFileName) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                     Close                                                   *
+//                     Close                             
 //----------------------------------------------------------------------------------------------------------------------
 
 bool C_HTML_FileWrite::close (void) {
@@ -132,7 +130,7 @@ void C_HTML_FileWrite::performActualUnicodeArrayOutput (const utf32 * inCharArra
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                 Comments as a table                                         *
+//                 Comments as a table                   
 //----------------------------------------------------------------------------------------------------------------------
 
 void C_HTML_FileWrite::appendCppTitleComment (const C_String & inCommentString,

@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  Declaration of macros and routines for handling dynamic allocation checking.                                       *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 1994, ..., 2012 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Num�rique de Nantes, ECN, �cole Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  Declaration of macros and routines for handling dynamic allocation checking.                 
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 1994, ..., 2012 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #pragma once
@@ -31,9 +29,9 @@
 #include <stdlib.h>
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         User macros for allocation                                                                                  *
-//                                                                                                                     *
+//
+//         User macros for allocation                                                            
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS 
@@ -145,9 +143,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         User macros for deallocation                                                                                *
-//                                                                                                                     *
+//
+//         User macros for deallocation                                                          
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -187,9 +185,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         Assertion macros for checking pointers                                                                      *
-//                                                                                                                     *
+//
+//         Assertion macros for checking pointers                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -207,9 +205,9 @@
 #endif 
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         Assertion for checking if a pointer is void                                                                 *
-//                                                                                                                     *
+//
+//         Assertion for checking if a pointer is void                                           
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -227,17 +225,17 @@
 #endif 
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         Routine to call for displaying currently allocated pointers                                                 *
-//                                                                                                                     *
+//
+//         Routine to call for displaying currently allocated pointers                           
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void displayAllocatedBlocksInfo (void) ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         Internal routines (do not call them directly)                                                               *
-//                                                                                                                     *
+//
+//         Internal routines (do not call them directly)                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS 

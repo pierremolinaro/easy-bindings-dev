@@ -1,18 +1,18 @@
 #pragma once
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-declarations-0.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    Phase 1: @tableViewBindingGenerationList list                                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @tableViewBindingGenerationList list
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_tableViewBindingGenerationList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -142,9 +142,9 @@ class GALGAS_tableViewBindingGenerationList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_tableViewBindingGenerationList class
 
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumerator_tableViewBindingGenerationList : public cGenericAbstractEnumerator {
   public : cEnumerator_tableViewBindingGenerationList (const GALGAS_tableViewBindingGenerationList & inEnumeratedObject,
@@ -157,15 +157,15 @@ class cEnumerator_tableViewBindingGenerationList : public cGenericAbstractEnumer
   public : class GALGAS_tableViewBindingGenerationList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewBindingGenerationList ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Phase 1: @tableViewBindingGenerationList_2D_element struct                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @tableViewBindingGenerationList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_tableViewBindingGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -230,15 +230,15 @@ class GALGAS_tableViewBindingGenerationList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_tableViewBindingGenerationList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewBindingGenerationList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Phase 1: @ebViewGraphicControllerBindingGenerationList list                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @ebViewGraphicControllerBindingGenerationList list
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_ebViewGraphicControllerBindingGenerationList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -368,9 +368,9 @@ class GALGAS_ebViewGraphicControllerBindingGenerationList : public AC_GALGAS_lis
  
 } ; // End of GALGAS_ebViewGraphicControllerBindingGenerationList class
 
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumerator_ebViewGraphicControllerBindingGenerationList : public cGenericAbstractEnumerator {
   public : cEnumerator_ebViewGraphicControllerBindingGenerationList (const GALGAS_ebViewGraphicControllerBindingGenerationList & inEnumeratedObject,
@@ -383,15 +383,15 @@ class cEnumerator_ebViewGraphicControllerBindingGenerationList : public cGeneric
   public : class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                       Phase 1: @ebViewGraphicControllerBindingGenerationList_2D_element struct                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @ebViewGraphicControllerBindingGenerationList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -456,15 +456,15 @@ class GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element : public AC
 } ; // End of GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                  Phase 1: @mainXibDescriptorList_2D_element struct                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @mainXibDescriptorList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_mainXibDescriptorList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -523,15 +523,15 @@ class GALGAS_mainXibDescriptorList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_mainXibDescriptorList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibDescriptorList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       Phase 1: @preferencesForGeneration class                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @preferencesForGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
@@ -631,15 +631,15 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 } ; // End of GALGAS_preferencesForGeneration class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_preferencesForGeneration ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Phase 2: pointer class for @preferencesForGeneration class                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @preferencesForGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
@@ -697,11 +697,11 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
 
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Phase 1: @controllerBindingOptionList_2D_element struct                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @controllerBindingOptionList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_controllerBindingOptionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -766,15 +766,15 @@ class GALGAS_controllerBindingOptionList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_controllerBindingOptionList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOptionList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Phase 1: @outletClassBindingSpecificationModelList_2D_element struct                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @outletClassBindingSpecificationModelList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_outletClassBindingSpecificationModelList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -839,15 +839,15 @@ class GALGAS_outletClassBindingSpecificationModelList_2D_element : public AC_GAL
 } ; // End of GALGAS_outletClassBindingSpecificationModelList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Phase 1: @controllerBindingOptionDecoratedList list                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @controllerBindingOptionDecoratedList list
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_controllerBindingOptionDecoratedList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -977,9 +977,9 @@ class GALGAS_controllerBindingOptionDecoratedList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_controllerBindingOptionDecoratedList class
 
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumerator_controllerBindingOptionDecoratedList : public cGenericAbstractEnumerator {
   public : cEnumerator_controllerBindingOptionDecoratedList (const GALGAS_controllerBindingOptionDecoratedList & inEnumeratedObject,
@@ -992,15 +992,15 @@ class cEnumerator_controllerBindingOptionDecoratedList : public cGenericAbstract
   public : class GALGAS_controllerBindingOptionDecoratedList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOptionDecoratedList ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                  Phase 1: @outletBindingSpecificationModelList list                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @outletBindingSpecificationModelList list
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_outletBindingSpecificationModelList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -1130,9 +1130,9 @@ class GALGAS_outletBindingSpecificationModelList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_outletBindingSpecificationModelList class
 
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumerator_outletBindingSpecificationModelList : public cGenericAbstractEnumerator {
   public : cEnumerator_outletBindingSpecificationModelList (const GALGAS_outletBindingSpecificationModelList & inEnumeratedObject,
@@ -1145,15 +1145,15 @@ class cEnumerator_outletBindingSpecificationModelList : public cGenericAbstractE
   public : class GALGAS_outletBindingSpecificationModelList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationModelList ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                          Phase 2: class for element of '@outletBindingSpecificationMap' map                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: class for element of '@outletBindingSpecificationMap' map
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cMapElement_outletBindingSpecificationMap : public cMapElement {
 //--- Map attributes
@@ -1179,11 +1179,11 @@ class cMapElement_outletBindingSpecificationMap : public cMapElement {
  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Phase 1: @outletBindingSpecificationMap_2D_element struct                              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @outletBindingSpecificationMap_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_outletBindingSpecificationMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -1254,15 +1254,15 @@ class GALGAS_outletBindingSpecificationMap_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_outletBindingSpecificationMap_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationMap_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Phase 1: @outletBindingSpecificationModelList_2D_element struct                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @outletBindingSpecificationModelList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_outletBindingSpecificationModelList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -1324,15 +1324,15 @@ class GALGAS_outletBindingSpecificationModelList_2D_element : public AC_GALGAS_r
 } ; // End of GALGAS_outletBindingSpecificationModelList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationModelList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Phase 1: @controllerBindingOptionDecoratedList_2D_element struct                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @controllerBindingOptionDecoratedList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_controllerBindingOptionDecoratedList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -1394,15 +1394,15 @@ class GALGAS_controllerBindingOptionDecoratedList_2D_element : public AC_GALGAS_
 } ; // End of GALGAS_controllerBindingOptionDecoratedList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOptionDecoratedList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    Phase 1: @bindingOptionList_2D_element struct                                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @bindingOptionList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_bindingOptionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -1464,15 +1464,15 @@ class GALGAS_bindingOptionList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_bindingOptionList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingOptionList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    Phase 1: @regularBindingList_2D_element struct                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @regularBindingList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_regularBindingList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -1543,15 +1543,15 @@ class GALGAS_regularBindingList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_regularBindingList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        Phase 1: @outletBindingModelList list                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @outletBindingModelList list
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_outletBindingModelList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -1681,9 +1681,9 @@ class GALGAS_outletBindingModelList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_outletBindingModelList class
 
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumerator_outletBindingModelList : public cGenericAbstractEnumerator {
   public : cEnumerator_outletBindingModelList (const GALGAS_outletBindingModelList & inEnumeratedObject,
@@ -1696,15 +1696,15 @@ class cEnumerator_outletBindingModelList : public cGenericAbstractEnumerator {
   public : class GALGAS_outletBindingModelList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingModelList ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
+//----------------------------------------------------------------------------------------------------------------------
+//
 //                                         Phase 1: @propertyAccessibility enum                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_propertyAccessibility : public AC_GALGAS_root {
 //--------------------------------- Default constructor
@@ -1775,15 +1775,15 @@ class GALGAS_propertyAccessibility : public AC_GALGAS_root {
 } ; // End of GALGAS_propertyAccessibility class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyAccessibility ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
+//----------------------------------------------------------------------------------------------------------------------
+//
 //                                             Phase 1: @propertyKind enum                                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_propertyKind : public AC_GALGAS_root {
 //--------------------------------- Default constructor
@@ -1905,15 +1905,15 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
 } ; // End of GALGAS_propertyKind class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyKind ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    Phase 2: @propertyKind enum, associated values                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: @propertyKind enum, associated values
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_propertyKind_property : public cEnumAssociatedValues {
   public : const GALGAS_typeKind mAssociatedValue0 ;
@@ -1931,7 +1931,7 @@ class cEnumAssociatedValues_propertyKind_property : public cEnumAssociatedValues
   public : virtual ~ cEnumAssociatedValues_propertyKind_property (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_propertyKind_toMany : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
@@ -1953,7 +1953,7 @@ class cEnumAssociatedValues_propertyKind_toMany : public cEnumAssociatedValues {
   public : virtual ~ cEnumAssociatedValues_propertyKind_toMany (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_propertyKind_toOne : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
@@ -1975,7 +1975,7 @@ class cEnumAssociatedValues_propertyKind_toOne : public cEnumAssociatedValues {
   public : virtual ~ cEnumAssociatedValues_propertyKind_toOne (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_propertyKind_arrayController : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
@@ -1993,7 +1993,7 @@ class cEnumAssociatedValues_propertyKind_arrayController : public cEnumAssociate
   public : virtual ~ cEnumAssociatedValues_propertyKind_arrayController (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_propertyKind_selectionController : public cEnumAssociatedValues {
   public : const GALGAS_string mAssociatedValue0 ;
@@ -2009,11 +2009,11 @@ class cEnumAssociatedValues_propertyKind_selectionController : public cEnumAssoc
   public : virtual ~ cEnumAssociatedValues_propertyKind_selectionController (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                  Phase 1: @outletBindingModelList_2D_element struct                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @outletBindingModelList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_outletBindingModelList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -2075,15 +2075,15 @@ class GALGAS_outletBindingModelList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_outletBindingModelList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingModelList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     Phase 1: @boundObjectList_2D_element struct                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @boundObjectList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_boundObjectList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -2145,15 +2145,15 @@ class GALGAS_boundObjectList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_boundObjectList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boundObjectList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                  Phase 1: @observablePropertyList_2D_element struct                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @observablePropertyList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_observablePropertyList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -2209,56 +2209,56 @@ class GALGAS_observablePropertyList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_observablePropertyList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                     Extension getter '@observablePropertyAST modelStringForSelf' (as function)                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@observablePropertyAST modelStringForSelf' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_modelStringForSelf (const class GALGAS_observablePropertyAST & inObject,
                                                         const class GALGAS_string & constinArgument0,
                                                         class C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                 Extension getter '@observablePropertyAST modelStringFunctionArgument' (as function)                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@observablePropertyAST modelStringFunctionArgument' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_modelStringFunctionArgument (const class GALGAS_observablePropertyAST & inObject,
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                        Extension getter '@observablePropertyAST needs_unwSelf' (as function)                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@observablePropertyAST needs_unwSelf' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_observablePropertyAST & inObject,
                                                     class C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                          Extension getter '@observablePropertyAST location' (as function)                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@observablePropertyAST location' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_location extensionGetter_location (const class GALGAS_observablePropertyAST & inObject,
                                                 class C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                         Extension method '@observablePropertyAST analyzeObservableProperty'                         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension method '@observablePropertyAST analyzeObservableProperty'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void extensionMethod_analyzeObservableProperty (const class GALGAS_observablePropertyAST inObject,
                                                 const class GALGAS_propertyMap constin_inRootPropertyMap,
@@ -2269,11 +2269,11 @@ void extensionMethod_analyzeObservableProperty (const class GALGAS_observablePro
                                                 class C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     Phase 2: @classKind enum, associated values                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: @classKind enum, associated values
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_classKind_atomic : public cEnumAssociatedValues {
   public : const GALGAS_typeKind mAssociatedValue0 ;
@@ -2289,7 +2289,7 @@ class cEnumAssociatedValues_classKind_atomic : public cEnumAssociatedValues {
   public : virtual ~ cEnumAssociatedValues_classKind_atomic (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_classKind_document : public cEnumAssociatedValues {
   public : const GALGAS_lstring mAssociatedValue0 ;
@@ -2305,7 +2305,7 @@ class cEnumAssociatedValues_classKind_document : public cEnumAssociatedValues {
   public : virtual ~ cEnumAssociatedValues_classKind_document (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_classKind_entity : public cEnumAssociatedValues {
   public : const GALGAS_string mAssociatedValue0 ;
@@ -2325,11 +2325,11 @@ class cEnumAssociatedValues_classKind_entity : public cEnumAssociatedValues {
   public : virtual ~ cEnumAssociatedValues_classKind_entity (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Phase 2: @propertyAccessibility enum, associated values                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: @propertyAccessibility enum, associated values
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumAssociatedValues_propertyAccessibility_transient : public cEnumAssociatedValues {
   public : const GALGAS_bool mAssociatedValue0 ;
@@ -2345,31 +2345,31 @@ class cEnumAssociatedValues_propertyAccessibility_transient : public cEnumAssoci
   public : virtual ~ cEnumAssociatedValues_propertyAccessibility_transient (void) {}
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Extension getter '@propertyKind swiftTypeName' (as function)                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@propertyKind swiftTypeName' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_swiftTypeName (const class GALGAS_propertyKind & inObject,
                                                    class C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                              Extension getter '@typeKind swiftTypeName' (as function)                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@typeKind swiftTypeName' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_swiftTypeName (const class GALGAS_typeKind & inObject,
                                                    class C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    Phase 2: class for element of '@actionMap' map                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: class for element of '@actionMap' map
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cMapElement_actionMap : public cMapElement {
 //--- Map attributes
@@ -2391,11 +2391,11 @@ class cMapElement_actionMap : public cMapElement {
  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                   Phase 2: class for element of '@propertyMap' map                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: class for element of '@propertyMap' map
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cMapElement_propertyMap : public cMapElement {
 //--- Map attributes
@@ -2423,11 +2423,11 @@ class cMapElement_propertyMap : public cMapElement {
  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           Phase 1: @semanticContext struct                                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @semanticContext struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_semanticContext : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -2498,15 +2498,15 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
 } ; // End of GALGAS_semanticContext class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_semanticContext ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                 Phase 1: @transientDependencyListForGeneration list                                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @transientDependencyListForGeneration list
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_transientDependencyListForGeneration : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -2654,9 +2654,9 @@ class GALGAS_transientDependencyListForGeneration : public AC_GALGAS_list {
  
 } ; // End of GALGAS_transientDependencyListForGeneration class
 
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumerator_transientDependencyListForGeneration : public cGenericAbstractEnumerator {
   public : cEnumerator_transientDependencyListForGeneration (const GALGAS_transientDependencyListForGeneration & inEnumeratedObject,
@@ -2670,15 +2670,15 @@ class cEnumerator_transientDependencyListForGeneration : public cGenericAbstract
   public : class GALGAS_transientDependencyListForGeneration_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDependencyListForGeneration ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                           Phase 1: @transientDependencyListForGeneration_2D_element struct                          *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @transientDependencyListForGeneration_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_transientDependencyListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -2746,15 +2746,15 @@ class GALGAS_transientDependencyListForGeneration_2D_element : public AC_GALGAS_
 } ; // End of GALGAS_transientDependencyListForGeneration_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDependencyListForGeneration_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                    Phase 1: @transientPropertyGenerationList list                                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @transientPropertyGenerationList list
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_transientPropertyGenerationList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -2866,9 +2866,9 @@ class GALGAS_transientPropertyGenerationList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_transientPropertyGenerationList class
 
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumerator_transientPropertyGenerationList : public cGenericAbstractEnumerator {
   public : cEnumerator_transientPropertyGenerationList (const GALGAS_transientPropertyGenerationList & inEnumeratedObject,
@@ -2880,15 +2880,15 @@ class cEnumerator_transientPropertyGenerationList : public cGenericAbstractEnume
   public : class GALGAS_transientPropertyGenerationList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGenerationList ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     Phase 1: @transientPropertyGeneration class                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @transientPropertyGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_transientPropertyGeneration : public GALGAS_propertyGeneration {
 //--- Constructor
@@ -2956,15 +2956,15 @@ class GALGAS_transientPropertyGeneration : public GALGAS_propertyGeneration {
 } ; // End of GALGAS_transientPropertyGeneration class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGeneration ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Phase 2: pointer class for @transientPropertyGeneration class                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @transientPropertyGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
 //--- Attributes
@@ -3003,11 +3003,11 @@ class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
 
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                             Phase 1: @transientPropertyGenerationList_2D_element struct                             *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @transientPropertyGenerationList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_transientPropertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -3063,15 +3063,15 @@ class GALGAS_transientPropertyGenerationList_2D_element : public AC_GALGAS_root 
 } ; // End of GALGAS_transientPropertyGenerationList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGenerationList_2D_element ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//         Extension getter '@transientDependencyListForGeneration transientComputeFunctionCall' (as function)         *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@transientDependencyListForGeneration transientComputeFunctionCall' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GALGAS_transientDependencyListForGeneration & inObject,
                                                                   const class GALGAS_string & constinArgument0,
@@ -3079,41 +3079,41 @@ class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GA
                                                                   class C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                Extension getter '@transientDependencyListForGeneration needs_unwSelf' (as function)                 *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@transientDependencyListForGeneration needs_unwSelf' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_transientDependencyListForGeneration & inObject,
                                                     class C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                   Extension getter '@observablePropertyAST generateAddObserverCall' (as function)                   *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@observablePropertyAST generateAddObserverCall' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_generateAddObserverCall (const class GALGAS_observablePropertyAST & inObject,
                                                              class C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                 Extension getter '@observablePropertyAST generateRemoveObserverCall' (as function)                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@observablePropertyAST generateRemoveObserverCall' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_generateRemoveObserverCall (const class GALGAS_observablePropertyAST & inObject,
                                                                 class C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                     Phase 1: @ptransientRoutineGeneration class                                     *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @ptransientRoutineGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_ptransientRoutineGeneration : public GALGAS_abstractFileGeneration {
 //--- Constructor
@@ -3180,15 +3180,15 @@ class GALGAS_ptransientRoutineGeneration : public GALGAS_abstractFileGeneration 
 } ; // End of GALGAS_ptransientRoutineGeneration class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ptransientRoutineGeneration ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                            Phase 2: pointer class for @ptransientRoutineGeneration class                            *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @ptransientRoutineGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ptransientRoutineGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
@@ -3226,11 +3226,11 @@ class cPtr_ptransientRoutineGeneration : public cPtr_abstractFileGeneration {
 
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                        Phase 1: @toManyProxyGeneration class                                        *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @toManyProxyGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_toManyProxyGeneration : public GALGAS_propertyGeneration {
 //--- Constructor
@@ -3298,15 +3298,15 @@ class GALGAS_toManyProxyGeneration : public GALGAS_propertyGeneration {
 } ; // End of GALGAS_toManyProxyGeneration class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGeneration ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                               Phase 2: pointer class for @toManyProxyGeneration class                               *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @toManyProxyGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
 //--- Attributes
@@ -3345,11 +3345,11 @@ class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
 
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                       Phase 1: @toManyProxyGenerationList list                                      *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @toManyProxyGenerationList list
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_toManyProxyGenerationList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -3461,9 +3461,9 @@ class GALGAS_toManyProxyGenerationList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_toManyProxyGenerationList class
 
-//---------------------------------------------------------------------------------------------------------------------*
-//   Enumerator declaration                                                                                            *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
 
 class cEnumerator_toManyProxyGenerationList : public cGenericAbstractEnumerator {
   public : cEnumerator_toManyProxyGenerationList (const GALGAS_toManyProxyGenerationList & inEnumeratedObject,
@@ -3475,15 +3475,15 @@ class cEnumerator_toManyProxyGenerationList : public cGenericAbstractEnumerator 
   public : class GALGAS_toManyProxyGenerationList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGenerationList ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                Phase 1: @toManyProxyGenerationList_2D_element struct                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @toManyProxyGenerationList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_toManyProxyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -3539,7 +3539,126 @@ class GALGAS_toManyProxyGenerationList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_toManyProxyGenerationList_2D_element class
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGenerationList_2D_element ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @atomicProxyGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_atomicProxyGeneration : public GALGAS_propertyGeneration {
+//--- Constructor
+  public : GALGAS_atomicProxyGeneration (void) ;
+
+//---
+  public : inline const class cPtr_atomicProxyGeneration * ptr (void) const { return (const cPtr_atomicProxyGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_atomicProxyGeneration (const cPtr_atomicProxyGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_atomicProxyGeneration extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_atomicProxyGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                      const class GALGAS_proxyKind & inOperand1,
+                                                                      const class GALGAS_typeKind & inOperand2,
+                                                                      const class GALGAS_string & inOperand3,
+                                                                      const class GALGAS_string & inOperand4
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_atomicProxyGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMObservedPropertyName (class GALGAS_string inArgument0
+                                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMObservedRelationshipName (class GALGAS_string inArgument0
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMProxyKind (class GALGAS_proxyKind inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMType (class GALGAS_typeKind inArgument0
+                                                  COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedPropertyName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedRelationshipName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_atomicProxyGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @atomicProxyGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_atomicProxyGeneration : public cPtr_propertyGeneration {
+//--- Attributes
+  public : GALGAS_proxyKind mProperty_mProxyKind ;
+  public : GALGAS_typeKind mProperty_mType ;
+  public : GALGAS_string mProperty_mObservedRelationshipName ;
+  public : GALGAS_string mProperty_mObservedPropertyName ;
+
+//--- Constructor
+  public : cPtr_atomicProxyGeneration (const GALGAS_string & in_mPropertyName,
+                                       const GALGAS_proxyKind & in_mProxyKind,
+                                       const GALGAS_typeKind & in_mType,
+                                       const GALGAS_string & in_mObservedRelationshipName,
+                                       const GALGAS_string & in_mObservedPropertyName
+                                       COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMProxyKind (GALGAS_proxyKind inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_typeKind getter_mType (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMType (GALGAS_typeKind inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedRelationshipName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMObservedRelationshipName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMObservedPropertyName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
 

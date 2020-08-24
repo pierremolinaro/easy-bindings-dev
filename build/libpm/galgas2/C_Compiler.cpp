@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  'C_Compiler' : the compiler base class ;                                                                           *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2009, ..., 2015 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  'C_Compiler' : the compiler base class ;                                                     
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2009, ..., 2015 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "command_line_interface/F_Analyze_CLI_Options.h"
@@ -31,9 +29,9 @@
 #include "galgas2/F_verbose_output.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//        Syntax error message for 'end of source':                                                                    *
-//                                                                                                                     *
+//
+//        Syntax error message for 'end of source':                                              
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 const char * C_Compiler::kEndOfSourceLexicalErrorMessage = "end of source" ;
@@ -58,9 +56,9 @@ bool C_Compiler::performLogFileRead (void) {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//        Constructor and destructor                                                                                   *
-//                                                                                                                     *
+//
+//        Constructor and destructor                                                             
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 C_Compiler::C_Compiler (C_Compiler * inCallerCompiler
@@ -508,9 +506,9 @@ GALGAS_location C_Compiler::next (void) const {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//   C H E C K    A N D    G E N E R A T E   F I L E                                                                   *
-//                                                                                                                     *
+//
+//   C H E C K    A N D    G E N E R A T E   F I L E                                             
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 static const char START_OF_USER_ZONE_1 [] =  "--- START OF USER ZONE 1\n" ;

@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  AC_GALGAS_map : Base class for GALGAS map                                                                          *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2008, ..., 2016 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  AC_GALGAS_map : Base class for GALGAS map                                                    
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2008, ..., 2016 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
@@ -33,9 +31,9 @@
 class cMapNode ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  c S h a r e d M a p R o o t                                                                                        *
-//                                                                                                                     *
+//
+//  c S h a r e d M a p R o o t                                                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class cSharedMapRoot : public C_SharedObject {
@@ -158,9 +156,9 @@ class cSharedMapRoot : public C_SharedObject {
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  c M a p N o d e                                                                                                    *
-//                                                                                                                     *
+//
+//  c M a p N o d e                                                                              
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class cMapNode {

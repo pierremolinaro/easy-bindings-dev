@@ -3,8 +3,6 @@
 //  galgas-developer
 //
 //  Created by Pierre Molinaro on 22/05/14.
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "bdd/C_Relation.h"
@@ -212,7 +210,7 @@ uint64_t C_Relation::value64Count (void) const {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//   getArray                                                                  *
+//   getArray                                            
 //----------------------------------------------------------------------------------------------------------------------
 
 void C_Relation::getArray (TC_UniqueArray <TC_UniqueArray <uint64_t> > & outArray

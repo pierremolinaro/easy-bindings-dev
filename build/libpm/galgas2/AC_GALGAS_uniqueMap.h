@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  AC_GALGAS_uniqueMap : Base class for GALGAS map                                                                    *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2008, ..., 2014 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  AC_GALGAS_uniqueMap : Base class for GALGAS map                                              
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2008, ..., 2014 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #pragma once
@@ -51,9 +49,9 @@ class cUniqueMapNode ;
 class cSharedProxy ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                    Data structures for map automaton                                                                *
-//                                                                                                                     *
+//
+//                    Data structures for map automaton                                          
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef enum {
@@ -105,9 +103,9 @@ typedef struct {
 }cOverrideStateDescriptor ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     M A P    P R O X Y                                                                                              *
-//                                                                                                                     *
+//
+//     M A P    P R O X Y                                                                        
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class AC_GALGAS_uniqueMapProxy : public AC_GALGAS_root {
@@ -190,9 +188,9 @@ class AC_GALGAS_uniqueMapProxy : public AC_GALGAS_root {
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//     M A P                                                                                                           *
-//                                                                                                                     *
+//
+//     M A P                                                                                     
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class AC_GALGAS_uniqueMap : public AC_GALGAS_root {

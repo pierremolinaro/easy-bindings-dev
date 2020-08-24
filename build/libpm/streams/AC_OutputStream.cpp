@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  AC_OutputStream : an abstract output stream class                                                                  *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 1997, ..., 2019 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  AC_OutputStream : an abstract output stream class                                            
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 1997, ..., 2019 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "streams/AC_OutputStream.h"
@@ -198,10 +196,10 @@ void AC_OutputStream::appendDouble (const double inValue) {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  WARNING: in gcc 3.x printf for 64-bit integer crashes!                                                             *
-//  So we use an auxiliary function printfUINT64 and only 32-bit printing                                              *
-//                                                                                                                     *
+//
+//  WARNING: in gcc 3.x printf for 64-bit integer crashes!                                       
+//  So we use an auxiliary function printfUINT64 and only 32-bit printing                        
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 //static void printfUINT64 (char ioString [],
@@ -381,7 +379,7 @@ void AC_OutputStream::writeStringMultiple (const C_String & inString, const int3
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                          Comments                                                                                   *
+//                          Comments                                                             
 //----------------------------------------------------------------------------------------------------------------------
 
 static const int32_t kCommentMaxLength = 119 ;
@@ -451,7 +449,7 @@ void AC_OutputStream::appendCppHyphenLineComment (const C_String & inLineComment
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                          C Comments                                                                                 *
+//                          C Comments                                                           
 //----------------------------------------------------------------------------------------------------------------------
 
 void AC_OutputStream::append_C_HyphenLineComment (void) {
@@ -473,7 +471,7 @@ void AC_OutputStream::append_C_SpaceLineComment (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                        C++ Comments                                                                                 *
+//                        C++ Comments                                                           
 //----------------------------------------------------------------------------------------------------------------------
 
 void AC_OutputStream::appendCppHyphenLineCommentWithoutExtraBlankLine (void) {
@@ -687,19 +685,19 @@ void AC_OutputStream::appendFileHeaderComment (const C_String & inLineCommentPre
     appendCppCenterJustifiedComment (subTitle) ;
     if (inIncludeLGPLtext) {
       appendCppSpaceLineComment () ;
-      *this << inLineCommentPrefix << " This file is free software; you can redistribute it and/or modify it                                              *\n"
-            << inLineCommentPrefix << " under the terms of the GNU Lesser General Public License as published                                             *\n"
-            << inLineCommentPrefix << " by the Free Software Foundation; either version 2 of the License, or                                              *\n"
-            << inLineCommentPrefix << " (at your option) any later version.                                                                               *\n"
-            << inLineCommentPrefix << "                                                                                                                   *\n"
-            << inLineCommentPrefix << " This file is distributed in the hope it will be useful, but WITHOUT                                               *\n"
-            << inLineCommentPrefix << " ANY WARRANTY; without even the implied warranty of MERCHANDIBILITY or                                             *\n"
-            << inLineCommentPrefix << " FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public                                               *\n"
-            << inLineCommentPrefix << " License for more details.                                                                                         *\n"
-            << inLineCommentPrefix << "                                                                                                                   *\n"
-            << inLineCommentPrefix << " You should have received a copy of the GNU General Public License along                                           *\n"
-            << inLineCommentPrefix << " with this program; if not, write to the Free Software Foundation                                                  *\n"
-            << inLineCommentPrefix << " Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA                                                    *\n" ;
+      *this << inLineCommentPrefix << " This file is free software; you can redistribute it and/or modify it                        \n"
+            << inLineCommentPrefix << " under the terms of the GNU Lesser General Public License as published                       \n"
+            << inLineCommentPrefix << " by the Free Software Foundation; either version 2 of the License, or                        \n"
+            << inLineCommentPrefix << " (at your option) any later version.                                                         \n"
+            << inLineCommentPrefix << "                                                                                             \n"
+            << inLineCommentPrefix << " This file is distributed in the hope it will be useful, but WITHOUT                         \n"
+            << inLineCommentPrefix << " ANY WARRANTY; without even the implied warranty of MERCHANDIBILITY or                       \n"
+            << inLineCommentPrefix << " FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public                         \n"
+            << inLineCommentPrefix << " License for more details.                                                                   \n"
+            << inLineCommentPrefix << "                                                                                             \n"
+            << inLineCommentPrefix << " You should have received a copy of the GNU General Public License along                     \n"
+            << inLineCommentPrefix << " with this program; if not, write to the Free Software Foundation                            \n"
+            << inLineCommentPrefix << " Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA                              \n" ;
     }
     appendCppSpaceLineComment () ;
     appendCppHyphenLineComment () ;

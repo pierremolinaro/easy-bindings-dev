@@ -3,8 +3,6 @@
 //  galgas-developer
 //
 //  Created by Pierre Molinaro on 22/05/14.
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//
 //----------------------------------------------------------------------------------------------------------------------
 
 #pragma once

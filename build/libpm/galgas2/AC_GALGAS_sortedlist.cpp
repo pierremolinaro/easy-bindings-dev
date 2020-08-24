@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  AC_GALGAS_sortedlist                                                                                               *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2005, ..., 2016 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  AC_GALGAS_sortedlist                                                                         
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2005, ..., 2016 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "galgas2/AC_GALGAS_sortedlist.h"
@@ -28,9 +26,9 @@
 #include "galgas2/C_Compiler.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  c S t r i n g s e t N o d e                                                                                        *
-//                                                                                                                     *
+//
+//  c S t r i n g s e t N o d e                                                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class cSortedListNode {
@@ -99,9 +97,9 @@ static void disposeNodes (cSortedListNode * inNode) {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    cSharedSortedListRoot                                                                                            *
-//                                                                                                                     *
+//
+//    cSharedSortedListRoot                                                                      
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 class cSharedSortedListRoot : public C_SharedObject {
@@ -886,9 +884,9 @@ void AC_GALGAS_sortedlist::greatestObjectAttributeList (capSortedListElement & o
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                 'AC_GALGAS_sortedlist::cEnumerator' class                                                           *
-//                                                                                                                     *
+//
+//                 'AC_GALGAS_sortedlist::cEnumerator' class                                     
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 void cSharedSortedListRoot::populateEnumerationArray (capCollectionElementArray & inEnumerationArray) const {

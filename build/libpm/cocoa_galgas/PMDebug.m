@@ -1,21 +1,19 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2011, ..., 2014 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2011, ..., 2014 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #import "PMDebug.h"
@@ -85,7 +83,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    init                                                                                                             *
+//    init                                                                                       
 //----------------------------------------------------------------------------------------------------------------------
 
 - (instancetype) init {
@@ -107,7 +105,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    awakeFromNib                                                                                                     *
+//    awakeFromNib                                                                               
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) awakeFromNib {
@@ -157,7 +155,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    applicationWillTerminateAction:                                                                                  *
+//    applicationWillTerminateAction:                                                            
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) applicationWillTerminateAction: (NSNotification *) inNotification {
@@ -175,7 +173,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    triggerRefreshAllocationStatsDisplay                                                                             *
+//    triggerRefreshAllocationStatsDisplay                                                       
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) triggerRefreshAllocationStatsDisplay {
@@ -208,7 +206,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    refreshAllocationStats                                                                                           *
+//    refreshAllocationStats                                                                     
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) refreshAllocationStats {
@@ -241,7 +239,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    refreshTimerDidFire:                                                                                             *
+//    refreshTimerDidFire:                                                                       
 //----------------------------------------------------------------------------------------------------------------------
 
 #if ! __has_feature(objc_arc)
@@ -252,7 +250,7 @@ void showAllocationStatsWindow (void) {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//    collectExhaustively:                                                                                             *
+//    collectExhaustively:                                                                       
 //----------------------------------------------------------------------------------------------------------------------
 
 #if ! __has_feature(objc_arc)
@@ -262,7 +260,7 @@ void showAllocationStatsWindow (void) {
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//    didChangeValueForKey:                                                                                            *
+//    didChangeValueForKey:                                                                      
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) didChangeValueForKey: (NSString *) inKey {
@@ -273,7 +271,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    pmNoteObjectAllocation:                                                                                          *
+//    pmNoteObjectAllocation:                                                                    
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) pmNoteObjectAllocation: (NSObject *) inObject {
@@ -288,7 +286,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    pmNoteObjectDeallocation:                                                                                        *
+//    pmNoteObjectDeallocation:                                                                  
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) pmNoteObjectDeallocation: (NSObject *) inObject {
@@ -301,7 +299,7 @@ void showAllocationStatsWindow (void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//    T A B L E   V I E W    D A T A    S O U R C E                                                                    *
+//    T A B L E   V I E W    D A T A    S O U R C E                                              
 //----------------------------------------------------------------------------------------------------------------------
 
 - (id) tableView: (NSTableView *) aTableView

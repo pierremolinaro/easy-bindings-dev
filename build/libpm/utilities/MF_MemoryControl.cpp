@@ -1,23 +1,21 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  Implementation of routines for handling dynamic allocation checking.                                               *
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 1994, ..., 2016 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  Implementation of routines for handling dynamic allocation checking.                         
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 1994, ..., 2016 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "utilities/M_machine.h"
@@ -29,9 +27,9 @@
 #include <stdio.h>
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//         Enum for describing a pointer                                                                               *
-//                                                                                                                     *
+//
+//         Enum for describing a pointer                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -134,9 +132,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//          Localisation de l'appel du deallocateur 'delete'                                                           *
-//                                                                                                                     *
+//
+//          Localisation de l'appel du deallocateur 'delete'                                     
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -206,9 +204,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//                Comparaison de deux clefs                                                                            *
-//                                                                                                                     *
+//
+//                Comparaison de deux clefs                                                      
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -216,7 +214,7 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//   Prototypes                                                                                                        *
+//   Prototypes                                                                                  
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -256,7 +254,7 @@
 #endif 
 
 //----------------------------------------------------------------------------------------------------------------------
-//     Rotations elementaires de reequilibrage d'un ioRoot binaire                                                     *
+//     Rotations elementaires de reequilibrage d'un ioRoot binaire                               
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -304,7 +302,7 @@
 #endif
  
 //----------------------------------------------------------------------------------------------------------------------
-//    Suppression d'un element dans un ioRoot binaire equilibre                                                        *
+//    Suppression d'un element dans un ioRoot binaire equilibre                                  
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -632,9 +630,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//             Routine garantissant la nullite d'un pointeur                                                           *
-//                                                                                                                     *
+//
+//             Routine garantissant la nullite d'un pointeur                                     
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -646,9 +644,9 @@
 #endif
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//            Routine garantissant la validite d'un pointeur                                                           *
-//                                                                                                                     *
+//
+//            Routine garantissant la validite d'un pointeur                                     
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #ifndef DO_NOT_GENERATE_CHECKINGS

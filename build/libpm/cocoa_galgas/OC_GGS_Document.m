@@ -1,21 +1,19 @@
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  This file is part of libpm library                                                                                 *
-//                                                                                                                     *
-//  Copyright (C) 2003, ..., 2019 Pierre Molinaro.                                                                     *
-//                                                                                                                     *
-//  e-mail : pierre.molinaro@ec-nantes.fr                                                                              *
-//                                                                                                                     *
-//  LS2N, Laboratoire des Sciences du Numérique de Nantes, ECN, École Centrale de Nantes (France)                      *
-//                                                                                                                     *
-//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General  *
-//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)  *
-//  any later version.                                                                                                 *
-//                                                                                                                     *
-//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied      *
-//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for            *
-//  more details.                                                                                                      *
-//                                                                                                                     *
+//
+//  This file is part of libpm library                                                           
+//
+//  Copyright (C) 2003, ..., 2019 Pierre Molinaro.
+//
+//  e-mail : pcmolinaro@free.fr
+//
+//  This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General
+//  Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option)
+//  any later version.
+//
+//  This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//  warranty of MERCHANDIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+//  more details.
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 #import "OC_GGS_Document.h"
@@ -48,9 +46,9 @@
 @synthesize mBuildTaskIsRunning ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//       I N I T                                                                                                       *
-//                                                                                                                     *
+//
+//       I N I T                                                                                 
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (instancetype) init {
@@ -104,9 +102,9 @@
 #pragma mark Nib relative Actions
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//       W I N D O W    N I B    N A M E                                                                               *
-//                                                                                                                     *
+//
+//       W I N D O W    N I B    N A M E                                                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (NSString *) windowNibName {
@@ -117,9 +115,9 @@
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//       W I N D O W    C O N T R O L L E R    D I D    L O A D    N I B                                               *
-//                                                                                                                     *
+//
+//       W I N D O W    C O N T R O L L E R    D I D    L O A D    N I B                         
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) windowControllerDidLoadNib: (NSWindowController *) inWindowController {
@@ -582,9 +580,9 @@
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//        S H E E T    D I D    E N D    ( G O T O    L I N E )                                                        *
-//                                                                                                                     *
+//
+//        S H E E T    D I D    E N D    ( G O T O    L I N E )                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) sheetDidEnd: (NSWindow *) inSheet
@@ -737,9 +735,9 @@
 #pragma mark Document Actions
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    P R I N T                                                                                                        *
-//                                                                                                                     *
+//
+//    P R I N T                                                                                  
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) printDocument: (id) sender {
@@ -868,9 +866,9 @@
 #pragma mark Document Save
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    S A V E    D O C U M E N T                                                                                       *
-//                                                                                                                     *
+//
+//    S A V E    D O C U M E N T                                                                 
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) saveDocument:(id) inSender {
@@ -885,9 +883,9 @@
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    W R I T E    T O    F I L E                                                                                      *
-//                                                                                                                     *
+//
+//    W R I T E    T O    F I L E                                                                
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (BOOL) writeToURL: (NSURL *) inAbsoluteURL
@@ -901,9 +899,9 @@
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//  S A V I N G    H F S    T Y P E    A N D    C R E A T O R    C O D E S                                             *
-//                                                                                                                     *
+//
+//  S A V I N G    H F S    T Y P E    A N D    C R E A T O R    C O D E S                       
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (NSDictionary *) fileAttributesToWriteToURL:(NSURL *) inDocumentURL
@@ -997,9 +995,9 @@
 #pragma mark Document Read
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    R E A D    F R O M    F I L E                                                                                    *
-//                                                                                                                     *
+//
+//    R E A D    F R O M    F I L E                                                              
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (BOOL) readFromURL:(NSURL *) inAbsoluteURL
@@ -1023,9 +1021,9 @@
 #pragma mark Build
 
 //----------------------------------------------------------------------------------------------------------------------
-//                                                                                                                     *
-//    C O M P I L E                                                                                                    *
-//                                                                                                                     *
+//
+//    C O M P I L E                                                                              
+//
 //----------------------------------------------------------------------------------------------------------------------
 
 - (IBAction) stopBuild: (id) sender {
@@ -2235,7 +2233,7 @@ static const utf32 COCOA_ERROR_ID   = TO_UNICODE (4) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//   DRAG AND DROP                                                                                                     *
+//   DRAG AND DROP                                                                               
 //----------------------------------------------------------------------------------------------------------------------
 
 #pragma mark Drag and Drop in source table View
