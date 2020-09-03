@@ -67,9 +67,13 @@ end
     return UInt32 (self.rawValue)
   }
 
+  //····················································································································
+
   func convertToNSObject () -> NSObject {
     return NSNumber (value: self.rawValue)
   }
+
+  //····················································································································
 
   static func convertFromNSObject (object : NSObject) -> %!ENUM_TYPE_NAME% {
     var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%
@@ -77,6 +81,16 @@ end
       result = v
     }
     return result
+  }
+
+  //····················································································································
+
+  static func unarchiveFromDataRange (_ inData : Data, _ inRange : NSRange) -> %!ENUM_TYPE_NAME%? {
+    if let rawValue = inData.base62EncodedInt (range: inRange), let enumValue = %!ENUM_TYPE_NAME% (rawValue: rawValue) {
+      return enumValue
+    }else{
+      return nil
+    }
   }
 
   //····················································································································

@@ -102,11 +102,11 @@ static NSMutableArray * gFileEventStreamArray = nil ;
 
   - (BOOL) tryToAddDocument: (OC_GGS_DocumentData *) inDocument {
     NSString * path = inDocument.fileURL.path.stringByDeletingLastPathComponent ;
-    OC_GGS_DocumentData * firstDocument = [mDocuments objectAtIndex:0] ;
+    OC_GGS_DocumentData * firstDocument = [mDocuments objectAtIndex: 0] ;
     NSString * referencePath = firstDocument.fileURL.path.stringByDeletingLastPathComponent ;
-    const BOOL result = [path isEqualToString:referencePath] ;
+    const BOOL result = [path isEqualToString: referencePath] ;
     if (result) {
-      [mDocuments addObject:inDocument] ;
+      [mDocuments addObject: inDocument] ;
     }
     return result ;
   }
