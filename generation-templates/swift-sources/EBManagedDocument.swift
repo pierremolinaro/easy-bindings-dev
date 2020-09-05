@@ -30,7 +30,19 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   private var mReadMetadataStatus : UInt8 = 0
   private var mMetadataDictionary = [String : Any] ()
   private var mUndoManager = EBUndoManager ()
-  var mManagedDocumentFileFormat : EBManagedDocumentFileFormat = .binary
+
+  //····················································································································
+  //    Document File Format
+  //····················································································································
+
+  var mManagedDocumentFileFormat : EBManagedDocumentFileFormat = .binary {
+    didSet {
+      if self.mManagedDocumentFileFormat != oldValue {
+        self.ebUndoManager.registerUndo (withTarget: self) { $0.mManagedDocumentFileFormat = oldValue }
+      }
+    }
+  }
+
 
   //····················································································································
   //    init
@@ -154,10 +166,10 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   override func read (from data : Data, ofType typeName : String) throws {
     self.ebUndoManager.disableUndoRegistration ()
   //--- Load file
-    let startLoadFile = Date ()
+    // let startLoadFile = Date ()
     let documentData = try loadEasyBindingFile (fromData: data, undoManager: self.ebUndoManager)
     self.mManagedDocumentFileFormat = documentData.documentFileFormat
-    Swift.print ("Load File \(Date ().timeIntervalSince (startLoadFile) * 1000.0) ms, format \(documentData.documentFileFormat)")
+    // Swift.print ("Load File \(Date ().timeIntervalSince (startLoadFile) * 1000.0) ms, format \(documentData.documentFileFormat)")
   //--- Store Status
     self.mReadMetadataStatus = documentData.documentMetadataStatus
   //--- Store metadata dictionary

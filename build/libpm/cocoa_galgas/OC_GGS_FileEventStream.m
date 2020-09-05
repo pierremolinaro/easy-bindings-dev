@@ -78,19 +78,23 @@ static NSMutableArray * gFileEventStreamArray = nil ;
         CFRelease,
         CFCopyDescription
       } ;
-      mFSEventStream = FSEventStreamCreate (
+      const FSEventStreamCreateFlags creationFlags =
+          kFSEventStreamCreateFlagNoDefer
+        | kFSEventStreamCreateFlagUseCFTypes
+        | kFSEventStreamCreateFlagWatchRoot
+        | kFSEventStreamCreateFlagFileEvents
+        | kFSEventStreamCreateFlagMarkSelf // §§
+        | kFSEventStreamCreateFlagIgnoreSelf // Do not report events from current application
+      ;
+//      const FSEventStreamCreateFlags creationFlags = kFSEventStreamCreateFlagNone ;
+       mFSEventStream = FSEventStreamCreate (
         NULL,
         mycallback,
         & context,
         (__bridge CFArrayRef) pathsToWatch,
         kFSEventStreamEventIdSinceNow,
         latency,
-        kFSEventStreamCreateFlagNoDefer
-        | kFSEventStreamCreateFlagUseCFTypes
-        | kFSEventStreamCreateFlagWatchRoot
-        | kFSEventStreamCreateFlagFileEvents
-        | kFSEventStreamCreateFlagMarkSelf // §§
-        | kFSEventStreamCreateFlagIgnoreSelf // Do not report events from current application
+        creationFlags
       ) ;
       FSEventStreamScheduleWithRunLoop (mFSEventStream, CFRunLoopGetMain(), kCFRunLoopDefaultMode);
       FSEventStreamStart (mFSEventStream) ;

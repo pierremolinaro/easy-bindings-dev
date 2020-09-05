@@ -179,7 +179,15 @@ private proc generateSwiftApplicationFiles
     !"multiple-binding-controllers",
     !"Application",
     !"model-events",
-    !"outlet-events"
+    !"outlet-events",
+    !"file-format-binary",
+    !"file-metadata-binary-format",
+    !"file-format-text-utilities",
+    !"file-metadata-get",
+    !"file-format-text",
+    !"file-metadata-text-format",
+    !"file-format-utilities",
+    !"file-operations-facade"
   }
   if inHasEntities then
     swiftFiles += !"EBManagedObject"
