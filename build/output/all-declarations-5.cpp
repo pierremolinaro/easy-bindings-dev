@@ -174,7 +174,6 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "transient property class EBShape ;\n"
     "\n"
     "extern outlet class EBGraphicView : NSView $graphicController ;\n"
-    "binding EBGraphicView $controlKeyHiliteDiameter : transient Double ;\n"
     "binding EBGraphicView $underObjectsDisplay : transient EBShape ;\n"
     "binding EBGraphicView $overObjectsDisplay : transient EBShape ;\n"
     "binding EBGraphicView $arrowKeyMagnitude : transient Int ;\n"

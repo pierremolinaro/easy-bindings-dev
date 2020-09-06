@@ -200,7 +200,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBScrollView"
     swiftFiles += !"EBFocusRingView"
     swiftFiles += !"EBGraphicView"
-    swiftFiles += !"EBGraphicView-binding-control-key-hilite-diameter"
+#    swiftFiles += !"EBGraphicView-binding-control-key-hilite-diameter"
     swiftFiles += !"EBGraphicView-binding-arrowKeyMagnitude"
     swiftFiles += !"EBGraphicView-binding-backColor"
     swiftFiles += !"EBGraphicView-binding-gridCrossColor"
