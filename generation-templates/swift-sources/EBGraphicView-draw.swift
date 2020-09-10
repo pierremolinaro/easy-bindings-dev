@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-fileprivate let GRID_WIDTH : CGFloat = 0.0 // 1.0 / 20.0
+fileprivate let GRID_WIDTH : CGFloat = 0.0
 
 //----------------------------------------------------------------------------------------------------------------------
 //   EBGraphicView
@@ -41,7 +41,7 @@ extension EBGraphicView {
     self.drawIssue (inDirtyRect)
     self.drawGuideBezierPath (inDirtyRect)
     self.drawSelectionRectangle (inDirtyRect)
-    if let shape = self.mOptionalMouseMovedOrFlagsChangedShape {
+    if let shape = self.mOptionalFrontShape {
       shape.draw (inDirtyRect)
     }
   }

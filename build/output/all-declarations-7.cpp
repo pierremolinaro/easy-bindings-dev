@@ -6803,7 +6803,7 @@ const char * gWrapperFileContent_49_swift_5F_sources = "//----------------------
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "fileprivate let GRID_WIDTH : CGFloat = 0.0 // 1.0 / 20.0\n"
+  "fileprivate let GRID_WIDTH : CGFloat = 0.0\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "//   EBGraphicView\n"
@@ -6838,7 +6838,7 @@ const char * gWrapperFileContent_49_swift_5F_sources = "//----------------------
   "    self.drawIssue (inDirtyRect)\n"
   "    self.drawGuideBezierPath (inDirtyRect)\n"
   "    self.drawSelectionRectangle (inDirtyRect)\n"
-  "    if let shape = self.mOptionalMouseMovedOrFlagsChangedShape {\n"
+  "    if let shape = self.mOptionalFrontShape {\n"
   "      shape.draw (inDirtyRect)\n"
   "    }\n"
   "  }\n"
@@ -7006,7 +7006,7 @@ const cRegularFileWrapper gWrapperFile_49_swift_5F_sources (
   "EBGraphicView-draw.swift",
   "swift",
   true, // Text file
-  7789, // Text length
+  7756, // Text length
   gWrapperFileContent_49_swift_5F_sources
 ) ;
 
@@ -7803,7 +7803,7 @@ const char * gWrapperFileContent_111_swift_5F_sources = "\n"
   "    let locationOnGridInView = locationInView.aligned (onGrid: canariUnitToCocoa (self.mouseGridInCanariUnit))\n"
   "    self.updateXYplacards (locationOnGridInView)\n"
   "    if self.window\?.firstResponder == self, self.visibleRect.contains (locationInView) {\n"
-  "      self.mOptionalMouseMovedOrFlagsChangedShape = self.mMouseMovedOrFlagsChangedCallback\? (locationInView)\n"
+  "      self.mMouseMovedOrFlagsChangedCallback\? (locationInView)\n"
   "    }else{\n"
   "      self.mMouseExitCallback\? ()\n"
   "    }\n"
@@ -7817,7 +7817,7 @@ const char * gWrapperFileContent_111_swift_5F_sources = "\n"
   "    super.mouseExited (with: inEvent)\n"
   "    self.clearXYplacards ()\n"
   "    self.mMouseExitCallback\? ()\n"
-  "    self.mOptionalMouseMovedOrFlagsChangedShape = nil\n"
+  "    self.mOptionalFrontShape = nil\n"
   "    NSCursor.arrow.set ()\n"
   "  }\n"
   "\n"
@@ -7831,7 +7831,7 @@ const cRegularFileWrapper gWrapperFile_111_swift_5F_sources (
   "EBGraphicView-mouse-moved-exited.swift",
   "swift",
   true, // Text file
-  1864, // Text length
+  1799, // Text length
   gWrapperFileContent_111_swift_5F_sources
 ) ;
 
@@ -7854,7 +7854,6 @@ const char * gWrapperFileContent_82_swift_5F_sources = "//----------------------
   "      NSCursor.arrow.set ()\n"
   "      let unalignedMouseDownLocation = self.convert (inEvent.locationInWindow, from:nil)\n"
   "      let canariUnalignedMouseDownLocation = unalignedMouseDownLocation.canariPoint\n"
-  "//      self.mMouseMovedOrFlagsChangedCallback\? (unalignedMouseDownLocation)\n"
   "      let modifierFlags = inEvent.modifierFlags\n"
   "      let modifierFlagsContainsControl = modifierFlags.contains (.control)\n"
   "      let modifierFlagsContainsShift = modifierFlags.contains (.shift)\n"
@@ -7865,15 +7864,15 @@ const char * gWrapperFileContent_82_swift_5F_sources = "//----------------------
   "        if let theMenu = self.mPopulateContextualMenuClosure\? (canariUnalignedMouseDownLocation) {\n"
   "          NSMenu.popUpContextMenu (theMenu, with: inEvent, for: self)\n"
   "        }\n"
-  "      case (false, false, true) : // Option Key On\n"
+  "      case (false, true, false) : // Shift Key\n"
+  "        self.guideFor (possibleObjectIndex: possibleObjectIndex)\n"
+  "        self.mMouseDownBehaviour = ShiftMouseDownBehaviour (unalignedMouseDownLocation, possibleObjectIndex, viewController)\n"
+  "      case (_, _, true) : // Option Key On\n"
   "        if let pbType = self.pasteboardType {\n"
   "          self.ebStartDragging (with: inEvent, dragType: pbType)\n"
   "        }else{\n"
   "          self.mMouseDownBehaviour = OptionMouseDownBehaviour (unalignedMouseDownLocation, self, viewController)\n"
   "        }\n"
-  "      case (false, true, false) : // Shif Key\n"
-  "        self.guideFor (possibleObjectIndex: possibleObjectIndex)\n"
-  "        self.mMouseDownBehaviour = ShiftMouseDownBehaviour (unalignedMouseDownLocation, possibleObjectIndex, viewController)\n"
   "      case (false, false, false) : // No Modifier Key\n"
   "        self.guideFor (possibleObjectIndex: possibleObjectIndex)\n"
   "        if let objectIndex = possibleObjectIndex {\n"
@@ -8025,7 +8024,7 @@ const char * gWrapperFileContent_82_swift_5F_sources = "//----------------------
   "\n"
   "  final override func flagsChanged (with inEvent : NSEvent) {\n"
   "    let unalignedLocationInView = self.convert (inEvent.locationInWindow, from: nil)\n"
-  "    self.mOptionalMouseMovedOrFlagsChangedShape = self.mMouseMovedOrFlagsChangedCallback\? (unalignedLocationInView)\n"
+  "    self.mMouseMovedOrFlagsChangedCallback\? (unalignedLocationInView)\n"
   "    self.mMouseDownBehaviour.onMouseDraggedOrModifierFlagsChanged (unalignedLocationInView, NSEvent.modifierFlags, self)\n"
   "    super.flagsChanged (with: inEvent)\n"
   "  }\n"
@@ -8054,7 +8053,7 @@ const cRegularFileWrapper gWrapperFile_82_swift_5F_sources (
   "EBGraphicView-mouse.swift",
   "swift",
   true, // Text file
-  9319, // Text length
+  9189, // Text length
   gWrapperFileContent_82_swift_5F_sources
 ) ;
 
@@ -8506,11 +8505,11 @@ const char * gWrapperFileContent_5_swift_5F_sources = "//-----------------------
   "  // MARK: -\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  final internal var mMouseMovedOrFlagsChangedCallback : Optional < (_ inMouseUnalignedLocation : NSPoint) -> EBShape\?> = nil\n"
+  "  final internal var mMouseMovedOrFlagsChangedCallback : Optional < (_ inMouseUnalignedLocation : NSPoint) -> Void> = nil\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  final func setMouseMovedOrFlagsChangedCallback (_ inCallback : @escaping (_ inMouseUnalignedLocation : NSPoint) -> EBShape\?) {\n"
+  "  final func setMouseMovedOrFlagsChangedCallback (_ inCallback : @escaping (_ inMouseUnalignedLocation : NSPoint) -> Void) {\n"
   "    self.mMouseMovedOrFlagsChangedCallback = inCallback\n"
   "  }\n"
   "\n"
@@ -8518,13 +8517,13 @@ const char * gWrapperFileContent_5_swift_5F_sources = "//-----------------------
   "  // MARK: -\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  final internal var mOptionalMouseMovedOrFlagsChangedShape : EBShape\? = nil {\n"
+  "  final internal var mOptionalFrontShape : EBShape\? = nil {\n"
   "    didSet {\n"
-  "      if self.mOptionalMouseMovedOrFlagsChangedShape != oldValue {\n"
+  "      if self.mOptionalFrontShape != oldValue {\n"
   "        if let oldBox = oldValue\?.boundingBox {\n"
   "          self.setNeedsDisplay (oldBox)\n"
   "        }\n"
-  "        if let newBox = self.mOptionalMouseMovedOrFlagsChangedShape\?.boundingBox {\n"
+  "        if let newBox = self.mOptionalFrontShape\?.boundingBox {\n"
   "          self.setNeedsDisplay (newBox)\n"
   "        }\n"
   "      }\n"
@@ -9120,7 +9119,7 @@ const cRegularFileWrapper gWrapperFile_5_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  32771, // Text length
+  32706, // Text length
   gWrapperFileContent_5_swift_5F_sources
 ) ;
 
@@ -16348,49 +16347,13 @@ const char * gWrapperFileContent_22_swift_5F_sources = "//----------------------
   "  return fileBinaryData\n"
   "}\n"
   "\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//     loadEasyRootObjectDictionary (fromBinaryDataScanner:)\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
-  "\n"
-  "func loadEasyRootObjectDictionary (fromBinaryDataScanner ioDataScanner : inout EBDataScanner) throws -> EBDocumentRootObjectDictionary {\n"
-  "//--- Read Status\n"
-  "  _ = ioDataScanner.parseByte ()\n"
-  "//--- if ok, check byte is 1\n"
-  "  ioDataScanner.acceptRequired (byte: 1)\n"
-  "//--- Read metadata dictionary\n"
-  "  _ = ioDataScanner.parseAutosizedData ()\n"
-  "//--- Read data\n"
-  "  let dataFormat = ioDataScanner.parseByte ()\n"
-  "  let fileData = ioDataScanner.parseAutosizedData ()\n"
-  "//--- if ok, check final byte (0)\n"
-  "  ioDataScanner.acceptRequired (byte: 0)\n"
-  "//--- Scanner error \?\n"
-  "  if !ioDataScanner.ok () {\n"
-  "    let dictionary = [\n"
-  "      \"Cannot Open Document\" : NSLocalizedDescriptionKey,\n"
-  "      \"The file has an invalid format\" : NSLocalizedRecoverySuggestionErrorKey\n"
-  "    ]\n"
-  "    throw NSError (domain: Bundle.main.bundleIdentifier!, code: 1, userInfo: dictionary)\n"
-  "  }\n"
-  "//--- Analyze read data\n"
-  "  if dataFormat == 0x06, let dictionaryArray = try PropertyListSerialization.propertyList (from: fileData, options: [], format: nil) as\? [[String : An"
-  "y]] {\n"
-  "    return dictionaryArray [0]\n"
-  "  }\n"
-  "  let dictionary = [\n"
-  "    \"Cannot Open Document\" :  NSLocalizedDescriptionKey,\n"
-  "    \"Unkown data format: \\(dataFormat)\" :  NSLocalizedRecoverySuggestionErrorKey\n"
-  "  ]\n"
-  "  throw NSError (domain: Bundle.main.bundleIdentifier!, code: 1, userInfo: dictionary)\n"
-  "}\n"
-  "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n" ;
 
 const cRegularFileWrapper gWrapperFile_22_swift_5F_sources (
   "file-format-binary.swift",
   "swift",
   true, // Text file
-  7421, // Text length
+  5819, // Text length
   gWrapperFileContent_22_swift_5F_sources
 ) ;
 
@@ -17065,25 +17028,13 @@ const char * gWrapperFileContent_10_swift_5F_sources = "//----------------------
   "  return fileStringData\n"
   "}\n"
   "\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//     loadEasyRootObjectDictionary (fromTextDataScanner:)\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
-  "\n"
-  "func loadEasyRootObjectDictionary (fromTextDataScanner ioDataScanner : inout EBDataScanner) throws -> EBDocumentRootObjectDictionary {\n"
-  "  let documentData = try loadEasyBindingTextFile (nil, from: &ioDataScanner)\n"
-  "  let rootObject = documentData.documentRootObject\n"
-  "  let propertyDictionary = NSMutableDictionary ()\n"
-  "  rootObject.saveIntoDictionary (propertyDictionary)\n"
-  "  return propertyDictionary as! EBDocumentRootObjectDictionary\n"
-  "}\n"
-  "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n" ;
 
 const cRegularFileWrapper gWrapperFile_10_swift_5F_sources (
   "file-format-text.swift",
   "swift",
   true, // Text file
-  8506, // Text length
+  7772, // Text length
   gWrapperFileContent_10_swift_5F_sources
 ) ;
 
@@ -17495,25 +17446,6 @@ const char * gWrapperFileContent_94_swift_5F_sources = "//----------------------
   "}\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//     loadEasyRootObjectDictionary\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
-  "\n"
-  "func loadEasyRootObjectDictionary (from inData : Data) throws -> EBDocumentRootObjectDictionary {\n"
-  "  var dataScanner = EBDataScanner (data: inData)\n"
-  "  if dataScanner.testString (string: PM_BINARY_FORMAT_SIGNATURE) {\n"
-  "    return try loadEasyRootObjectDictionary (fromBinaryDataScanner: &dataScanner)\n"
-  "  }else if dataScanner.testString (string: PM_TEXTUAL_FORMAT_SIGNATURE) {\n"
-  "    return try loadEasyRootObjectDictionary (fromTextDataScanner: &dataScanner)\n"
-  "  }else{\n"
-  "    let dictionary = [\n"
-  "      \"Cannot Open Document\" : NSLocalizedDescriptionKey,\n"
-  "      \"The file has an invalid format\" : NSLocalizedRecoverySuggestionErrorKey\n"
-  "    ]\n"
-  "    throw NSError (domain: Bundle.main.bundleIdentifier!, code: 1, userInfo: dictionary)\n"
-  "  }\n"
-  "}\n"
-  "\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
   "//     dataForSaveOperation\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
@@ -17541,7 +17473,7 @@ const cRegularFileWrapper gWrapperFile_94_swift_5F_sources (
   "file-operations-facade.swift",
   "swift",
   true, // Text file
-  5116, // Text length
+  4116, // Text length
   gWrapperFileContent_94_swift_5F_sources
 ) ;
 
