@@ -11,8 +11,8 @@ import Foundation
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc (A) class A : NSObject {
-  func myFonction () {
+class A : NSObject {
+  @objc dynamic func myFonction () {
     print ("A::\(#function)")
   }
 }
@@ -20,7 +20,7 @@ import Foundation
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension A {
-  func otherFonction () {
+  @objc func otherFonction () {
     print ("A::\(#function)")
   }
 }
@@ -33,7 +33,7 @@ class B : A {
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension B {
-  override func otherFonction () {
+  @objc override func otherFonction () {
     print ("B::\(#function)")
   }
 }

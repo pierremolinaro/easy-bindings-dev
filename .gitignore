@@ -236,3 +236,9 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+autres-projets-auxiliaires/ExempleTransientMultipleDependances-solution/build/**
+autres-projets-auxiliaires/ExempleTransientMultipleDependances/build/**
+autres-projets-auxiliaires/MyEntityManager/build/**
+autres-projets-auxiliaires/binary-flat-file-analyzer/build/**
+autres-projets-auxiliaires/binding-introspection/build/**
+autres-projets-auxiliaires/override-in-extension/build/**

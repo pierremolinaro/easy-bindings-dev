@@ -4311,7 +4311,7 @@ class GALGAS_bool extensionGetter_isEnumType (const class GALGAS_propertyKind & 
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_prefKeyDefinitionCode) (const class cPtr_propertyGeneration * inObject,
                                                                                               C_Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_prefKeyDefinitionCode (const int32_t inClassIndex,
@@ -4332,7 +4332,7 @@ class GALGAS_string callExtensionGetter_prefKeyDefinitionCode (const cPtr_proper
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_declarationInSelectionControllerCode) (const class cPtr_propertyGeneration * inObject,
                                                                                                              C_Compiler * inCompiler
                                                                                                              COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_declarationInSelectionControllerCode (const int32_t inClassIndex,
@@ -4353,7 +4353,7 @@ class GALGAS_string callExtensionGetter_declarationInSelectionControllerCode (co
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_bindPropertyInSelectionController) (const class cPtr_propertyGeneration * inObject,
                                                                                                           C_Compiler * inCompiler
                                                                                                           COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_bindPropertyInSelectionController (const int32_t inClassIndex,
@@ -4418,7 +4418,7 @@ class GALGAS_string callExtensionGetter_configurationCode (const class cPtr_prop
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_terminationCode) (const class cPtr_propertyGeneration * inObject,
                                                                                         C_Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_terminationCode (const int32_t inClassIndex,
@@ -4439,7 +4439,7 @@ class GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGene
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_setupAtomicPropertyFromDictionaryCode) (const class cPtr_propertyGeneration * inObject,
                                                                                                               C_Compiler * inCompiler
                                                                                                               COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_setupAtomicPropertyFromDictionaryCode (const int32_t inClassIndex,
@@ -4460,7 +4460,7 @@ class GALGAS_string callExtensionGetter_setupAtomicPropertyFromDictionaryCode (c
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_setupRelationshipFromDictionaryCode) (const class cPtr_propertyGeneration * inObject,
                                                                                                             C_Compiler * inCompiler
                                                                                                             COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_setupRelationshipFromDictionaryCode (const int32_t inClassIndex,
@@ -4481,7 +4481,7 @@ class GALGAS_string callExtensionGetter_setupRelationshipFromDictionaryCode (con
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_saveIntoDictionaryCode) (const class cPtr_propertyGeneration * inObject,
                                                                                                C_Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_saveIntoDictionaryCode (const int32_t inClassIndex,
@@ -4502,7 +4502,7 @@ class GALGAS_string callExtensionGetter_saveIntoDictionaryCode (const cPtr_prope
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_objectAccessibilityCode) (const class cPtr_propertyGeneration * inObject,
                                                                                                 C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_objectAccessibilityCode (const int32_t inClassIndex,
@@ -4523,7 +4523,7 @@ class GALGAS_string callExtensionGetter_objectAccessibilityCode (const cPtr_prop
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_objectAccessibilityCodeForSaveOperation) (const class cPtr_propertyGeneration * inObject,
                                                                                                                 C_Compiler * inCompiler
                                                                                                                 COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_objectAccessibilityCodeForSaveOperation (const int32_t inClassIndex,
@@ -4544,7 +4544,7 @@ class GALGAS_string callExtensionGetter_objectAccessibilityCodeForSaveOperation 
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_populateExplorerWindowCode) (const class cPtr_propertyGeneration * inObject,
                                                                                                    C_Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_populateExplorerWindowCode (const int32_t inClassIndex,
@@ -4565,7 +4565,7 @@ class GALGAS_string callExtensionGetter_populateExplorerWindowCode (const cPtr_p
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_clearObjectExplorerCode) (const class cPtr_propertyGeneration * inObject,
                                                                                                 C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_clearObjectExplorerCode (const int32_t inClassIndex,
@@ -4586,7 +4586,7 @@ class GALGAS_string callExtensionGetter_clearObjectExplorerCode (const cPtr_prop
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_resetToManyRelationships) (const class cPtr_propertyGeneration * inObject,
                                                                                                  C_Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_resetToManyRelationships (const int32_t inClassIndex,
