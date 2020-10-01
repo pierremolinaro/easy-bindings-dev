@@ -2241,6 +2241,7 @@ class GALGAS_string extensionGetter_modelStringFunctionArgument (const class GAL
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_observablePropertyAST & inObject,
+                                                    const class GALGAS_bool & constinArgument0,
                                                     class C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -3074,8 +3075,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGe
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GALGAS_transientDependencyListForGeneration & inObject,
-                                                                  const class GALGAS_string & constinArgument0,
+                                                                  const class GALGAS_bool & constinArgument0,
                                                                   const class GALGAS_string & constinArgument1,
+                                                                  const class GALGAS_string & constinArgument2,
                                                                   class C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
@@ -3086,6 +3088,7 @@ class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GA
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_transientDependencyListForGeneration & inObject,
+                                                    const class GALGAS_bool & constinArgument0,
                                                     class C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -3106,6 +3109,7 @@ class GALGAS_string extensionGetter_generateGetProperty (const class GALGAS_obse
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_generateAddObserverCall (const class GALGAS_observablePropertyAST & inObject,
+                                                             const class GALGAS_bool & constinArgument0,
                                                              class C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 

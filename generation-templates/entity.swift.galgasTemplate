@@ -46,7 +46,7 @@ end
 
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty propertyDeclarationCode !OVERRIDEN_TRANSIENTS]
+  ![mProperty propertyDeclarationCode !false !OVERRIDEN_TRANSIENTS]
 end
 %  //····················································································································
   //    init
@@ -66,7 +66,7 @@ end
   private final func configureObject () {
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty configurationCode]
+  ![mProperty configurationCode !false]
 end
 %  //--- Install undoers and opposite setter for relationships
 %
@@ -101,7 +101,7 @@ end
     super.removeAllObservers ()
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty terminationCode]
+  ![mProperty terminationCode !false]
 end
 for () in TO_MANY_RELATIONSHIP_LIST do
   switch [mProperty mOption]

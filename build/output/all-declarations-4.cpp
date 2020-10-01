@@ -15371,16 +15371,16 @@ GALGAS_bool extensionGetter_isAbstract (const GALGAS_propertyMap_2D_element & in
   if (kBoolTrue == test_0) {
     test_0 = inObject.mProperty_mKind.getter_isProperty (SOURCE_FILE ("semantic-analysis.galgas", 146)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_propertyAccessibility var_accessibility_6295 ;
-      GALGAS_typeKind joker_6237_1 ; // Joker input parameter
-      inObject.mProperty_mKind.method_property (joker_6237_1, var_accessibility_6295, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 147)) ;
+      GALGAS_propertyAccessibility var_accessibility_6377 ;
+      GALGAS_typeKind joker_6319_1 ; // Joker input parameter
+      inObject.mProperty_mKind.method_property (joker_6319_1, var_accessibility_6377, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 147)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = var_accessibility_6295.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 148)).boolEnum () ;
+        test_1 = var_accessibility_6377.getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas", 148)).boolEnum () ;
         if (kBoolTrue == test_1) {
-          GALGAS_bool var_ab_6387 ;
-          var_accessibility_6295.method_transient (var_ab_6387, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 149)) ;
-          result_result = var_ab_6387 ;
+          GALGAS_bool var_ab_6469 ;
+          var_accessibility_6377.method_transient (var_ab_6469, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas", 149)) ;
+          result_result = var_ab_6469 ;
         }
       }
     }

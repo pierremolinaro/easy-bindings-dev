@@ -158,7 +158,10 @@ class @selectionControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override getter @selectionControllerPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
+override getter @selectionControllerPropertyGeneration propertyDeclarationCode
+   ?let @bool unused inPreferences
+   ?let @stringset unused inOverriddenTransients -> @string
+{
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Selection controller: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
@@ -167,7 +170,7 @@ override getter @selectionControllerPropertyGeneration propertyDeclarationCode ?
 
 #·······················································································································
 
-override getter @selectionControllerPropertyGeneration configurationCode -> @string {
+override getter @selectionControllerPropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
   result  = "  //--- Selection controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".bind_selection (model: self." + mModelControllerName
     + "." + mModelControllerPropertyName + "_property, file: #file, line: #line)\n"
@@ -188,7 +191,7 @@ override getter @selectionControllerPropertyGeneration populateExplorerWindowCod
 
 #·······················································································································
 
-override getter @selectionControllerPropertyGeneration terminationCode -> @string {
+override getter @selectionControllerPropertyGeneration terminationCode ?let @bool unused inPreferences -> @string {
   result  = "  //--- Selection controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".unbind_selection ()\n"
 }

@@ -165,6 +165,7 @@ list @ebViewGraphicControllerBindingGenerationList {
 #·······················································································································
 
 proc analyzeOutlets
+  ?let @bool inPreferences
   ?let @propertyMap inRootObservablePropertyMap
   ?let @propertyMap inPreferencesPropertyMap
   ?let @string unused inRootEntityName
@@ -296,7 +297,7 @@ proc analyzeOutlets
         [controllerActionMap searchKey !action]
         outTargetActionList +=
           !outlet_mOutletName.string
-          !target.string
+          !if inPreferences then "prefs_" else "" end + target.string
           !action.string
           !"Controller_" + inReceiverSwiftTypeName + "_" + target
       end
@@ -306,6 +307,7 @@ proc analyzeOutlets
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
+        !inPreferences
         !inRootObservablePropertyMap
         !inSemanticContext
         !inObservablePropertyMap
@@ -329,6 +331,7 @@ proc analyzeOutlets
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
+        !inPreferences
         !inRootObservablePropertyMap
         !inSemanticContext
         !inObservablePropertyMap
@@ -356,7 +359,7 @@ proc analyzeOutlets
       !outlet_mOutletTypeName
       !outlet_mOutletName.string
       !outlet_mRegularBindingList
-      !"self"
+      !if inPreferences then "prefs_" else "self." end
       !?outRegularBindingsGenerationList
     )
   end

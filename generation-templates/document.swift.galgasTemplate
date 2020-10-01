@@ -10,7 +10,7 @@ import Cocoa
 
 %
 for () in DOCUMENT_PROPERTY_LIST do
-  ![mProperty propertyDeclarationCode ![@stringset emptySet]]
+  ![mProperty propertyDeclarationCode !false ![@stringset emptySet]]
 end
 %
   //····················································································································
@@ -112,7 +112,7 @@ end
     var opIdx = 0
 %
 for () in DOCUMENT_PROPERTY_LIST do
-  ![mProperty configurationCode]
+  ![mProperty configurationCode !false]
 %    if LOG_OPERATION_DURATION {
       Swift.print ("  op\(opIdx) \(Int (Date ().timeIntervalSince (start) * 1000.0)) ms")
       opIdx += 1
@@ -232,7 +232,7 @@ for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
 end
 for () in DOCUMENT_PROPERTY_LIST do
-  ![mProperty terminationCode]
+  ![mProperty terminationCode !false]
 end
 %  //--------------------------- Remove targets / actions
 %for () in TARGET_ACTION_LIST do

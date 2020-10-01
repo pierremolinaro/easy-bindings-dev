@@ -388,7 +388,7 @@ override method @prefsAsDefaultValue analyzeDefaultValueType
   case selectionController (*) :
     error mPrefPropertyName : "an atomic property is required here"
   end
-  outSwiftDefaultValueAsString = "g_Preferences!." + mPrefPropertyName
+  outSwiftDefaultValueAsString = "prefs_" + mPrefPropertyName
 }
 
 #·······················································································································

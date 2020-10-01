@@ -127,6 +127,7 @@ override method @documentDeclarationAST fourthAnalysisPhase
   ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
+    !false
     !rootPropertyMap
     !preferencesPropertyMap
     !mRootEntityName.string
@@ -150,6 +151,7 @@ override method @documentDeclarationAST fourthAnalysisPhase
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
+        !false
         !rootPropertyMap
         !ioSemanticContext
         !documentPropertyMap

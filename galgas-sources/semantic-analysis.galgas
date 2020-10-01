@@ -29,11 +29,11 @@ getter @propertyGeneration bindPropertyInSelectionController -> @string { result
 
 #·······················································································································
 
-abstract getter @propertyGeneration propertyDeclarationCode ?let @stringset inOverriddenTransients -> @string
+abstract getter @propertyGeneration propertyDeclarationCode ?let @bool inPreferences ?let @stringset inOverriddenTransients -> @string
 
 #·······················································································································
 
-abstract getter @propertyGeneration configurationCode -> @string
+abstract getter @propertyGeneration configurationCode ?let @bool inPreferences -> @string
 
 #·······················································································································
 
@@ -41,7 +41,7 @@ abstract getter @propertyGeneration initCode -> @string
 
 #·······················································································································
 
-getter @propertyGeneration terminationCode -> @string { result = "" }
+getter @propertyGeneration terminationCode ?let @bool unused inPreferences -> @string { result = "" }
 
 #·······················································································································
 

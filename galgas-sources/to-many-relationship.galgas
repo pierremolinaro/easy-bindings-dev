@@ -190,32 +190,63 @@ list @toManyPropertyGenerationList {
 
 #·······················································································································
 
-override getter @toManyPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   To many property: " + mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+override getter @toManyPropertyGeneration propertyDeclarationCode
+   ?let @bool unused inPreferences
+   ?let @stringset unused inOverriddenTransients -> @string
+{
   if [mOption isHasDependance] then
+    result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "  //   To many property: " + mPropertyName + "\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     [mOption hasDependance ?1* ?masterPropertySwiftTypeName: let masterPropertyTypeName]
     result += "  final let " + mPropertyName + "_property = TransientArrayOfSuperOf_" + [mRelationshipType swiftTypeName]
            + " <" + masterPropertyTypeName + "> ()\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  final var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
+    result += "    return self." + mPropertyName + "_property.prop\n"
+    result += "  }\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  final var " + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
+    result += "    get { return self." + mPropertyName + "_property.propval }\n"
+    if not [mOption isHasDependance] then
+      result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
+    end
+    result += "  }\n\n"
   elsif mInPreferences then
-    result += "  final let " + mPropertyName + "_property = PreferencesArrayOf_" + [mRelationshipType swiftTypeName]
-           + " (prefKey: Preferences_" + mPropertyName + ")\n\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "//   To many property: " + mPropertyName + "\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  let prefs_" + mPropertyName + "_property = PreferencesArrayOf_" + [mRelationshipType swiftTypeName]
+    result += " (prefKey: Preferences_" + mPropertyName + ")\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var prefs_" + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
+    result += "    return prefs_" + mPropertyName + "_property.prop\n"
+    result += "  }\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var prefs_" + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
+    result += "    get { return prefs_" + mPropertyName + "_property.propval }\n"
+    if not [mOption isHasDependance] then
+      result += "    set { prefs_" + mPropertyName + "_property.setProp (newValue) }\n"
+    end
+    result += "  }\n\n"
   else
+    result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "  //   To many property: " + mPropertyName + "\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  final let " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName]
     result += " (usedForSignature: " + [mUsedForSignature cString] + ")\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  final var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
+    result += "    return self." + mPropertyName + "_property.prop\n"
+    result += "  }\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  final var " + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
+    result += "    get { return self." + mPropertyName + "_property.propval }\n"
+    if not [mOption isHasDependance] then
+      result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
+    end
+    result += "  }\n\n"
   end
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
-  result += "    return self." + mPropertyName + "_property.prop\n"
-  result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
-  result += "    get { return self." + mPropertyName + "_property.propval }\n"
-  if not [mOption isHasDependance] then
-    result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
-  end
-  result += "  }\n\n"
 }
 
 #·······················································································································
@@ -232,17 +263,18 @@ override getter @toManyPropertyGeneration prefKeyDefinitionCode -> @string {
 
 #·······················································································································
 
-override getter @toManyPropertyGeneration configurationCode -> @string {
+override getter @toManyPropertyGeneration configurationCode ?let @bool inPreferences -> @string {
+  let prefix = if inPreferences then "prefs_" else "self." end
   switch mOption
   case none :
     result  = "  //--- To many property: " + mPropertyName + " (no option)\n"
-    result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    " + prefix + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
   case hasDependance (2*) :
     result = ""
   case hasOpposite (@string oppositeName) :
     result  = "  //--- To many property: " + mPropertyName + " (has opposite relationship)\n"
-    result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
-    result += "    self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
+    result += "    " + prefix + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    " + prefix + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
     result += "      setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.setProp (me) } },\n"
     result += "      resetter: { inObject in inObject." + oppositeName + "_property.setProp (nil) }\n"
     result += "    )\n"
@@ -332,7 +364,7 @@ override getter @toManyPropertyGeneration resetToManyRelationships -> @string {
 }
 #·······················································································································
 
-override getter @toManyPropertyGeneration terminationCode -> @string {
+override getter @toManyPropertyGeneration terminationCode ?let @bool unused inPreferences -> @string {
   switch mOption 
   case hasDependance (masterPropertyName *) :
     result  = "  //--- To many property: " + mPropertyName + "\n"

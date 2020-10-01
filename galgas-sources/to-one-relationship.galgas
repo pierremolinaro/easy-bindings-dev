@@ -171,7 +171,10 @@ list @toOnePropertyGenerationList {
 
 #·······················································································································
 
-override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
+override getter @toOnePropertyGeneration propertyDeclarationCode
+   ?let @bool unused inPreferences
+   ?let @stringset unused inOverriddenTransients -> @string
+{
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   To one property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
@@ -211,7 +214,7 @@ override getter @toOnePropertyGeneration initCode -> @string {
 
 #·······················································································································
 
-override getter @toOnePropertyGeneration configurationCode -> @string {
+override getter @toOnePropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
   switch mOpposite
   case oppositeIsToMany (oppositeName) :
     result  = "  //--- To one property: " + mPropertyName + " (has opposite to many relationship: " + oppositeName + ")\n"

@@ -4,24 +4,26 @@
 
 import Cocoa
 
-//--------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 
-//--------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------
 
 %for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty prefKeyDefinitionCode]
 end
 %
-//--------------------------------------------------------------------------------------------------------------------*
+%
+for () in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty propertyDeclarationCode !true ![@stringset emptySet]]
+end
+%
+//----------------------------------------------------------------------------------------------------------------------
 
 @objc(%!preferencesName ()%) class %!preferencesName ()% : EBObject, NSWindowDelegate {
 
-%for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty propertyDeclarationCode ![@stringset emptySet]]
-end
-%  //····················································································································
+  //····················································································································
   //    Outlets
   //····················································································································
 
@@ -65,7 +67,7 @@ end
   //--- Read from preferences
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty configurationCode]
+  ![mProperty configurationCode !true]
 end
 %  //--- Notify application will terminate
     NotificationCenter.default.addObserver (self,
@@ -130,10 +132,10 @@ end
 %  //--------------------------- Array controller
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
+  %    prefs_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
 end
 for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %    self.%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
+  %    prefs_%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -157,13 +159,13 @@ end
   //--------------------------- Array controller
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    self.%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
+  %    prefs_%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
 for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
+  %    prefs_%!mArrayControllerControllerName%.unbind_ebView (prefs_%!mEBViewOutletName%)\n%
 end
 for () in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty terminationCode]
+  ![mProperty terminationCode !true]
 end
 %  }
 

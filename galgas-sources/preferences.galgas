@@ -135,6 +135,7 @@ override method @prefsDeclarationAST fourthAnalysisPhase
   ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
+    !true
     !{} # No root entity
     !preferencesPropertyMap
     !"" # No root entity

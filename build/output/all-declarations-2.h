@@ -2517,12 +2517,13 @@ class cPtr_comparisonMultipleBindingExpressionForGeneration : public cPtr_abstra
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpressionAST_analyzeExpressionForMultipleBinding) (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                                                                                          const class GALGAS_propertyMap constinArgument0,
-                                                                                                                          const class GALGAS_semanticContext constinArgument1,
-                                                                                                                          const class GALGAS_propertyMap constinArgument2,
-                                                                                                                          class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument3,
-                                                                                                                          class GALGAS_typeKind & outArgument4,
-                                                                                                                          class GALGAS_location & outArgument5,
+                                                                                                                          const class GALGAS_bool constinArgument0,
+                                                                                                                          const class GALGAS_propertyMap constinArgument1,
+                                                                                                                          const class GALGAS_semanticContext constinArgument2,
+                                                                                                                          const class GALGAS_propertyMap constinArgument3,
+                                                                                                                          class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument4,
+                                                                                                                          class GALGAS_typeKind & outArgument5,
+                                                                                                                          class GALGAS_location & outArgument6,
                                                                                                                           class C_Compiler * inCompiler
                                                                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -2534,6 +2535,7 @@ void enterExtensionMethod_analyzeExpressionForMultipleBinding (const int32_t inC
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeExpressionForMultipleBinding (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                              const GALGAS_bool constin_inPreferences,
                                                               const GALGAS_propertyMap constin_inRootObservablePropertyMap,
                                                               const GALGAS_semanticContext constin_inSemanticContext,
                                                               const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
@@ -4491,7 +4493,8 @@ class GALGAS_string callExtensionGetter_bindPropertyInSelectionController (const
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_propertyDeclarationCode) (const class cPtr_propertyGeneration * inObject,
-                                                                                                const class GALGAS_stringset constinArgument0,
+                                                                                                const class GALGAS_bool constinArgument0,
+                                                                                                const class GALGAS_stringset constinArgument1,
                                                                                                 class C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
@@ -4503,6 +4506,7 @@ void enterExtensionGetter_propertyDeclarationCode (const int32_t inClassIndex,
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_propertyDeclarationCode (const class cPtr_propertyGeneration * inObject,
+                                                                 const GALGAS_bool constin_inPreferences,
                                                                  const GALGAS_stringset constin_inOverriddenTransients,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
@@ -4514,6 +4518,7 @@ class GALGAS_string callExtensionGetter_propertyDeclarationCode (const class cPt
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_configurationCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                          const class GALGAS_bool constinArgument0,
                                                                                           class C_Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -4525,6 +4530,7 @@ void enterExtensionGetter_configurationCode (const int32_t inClassIndex,
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_configurationCode (const class cPtr_propertyGeneration * inObject,
+                                                           const GALGAS_bool constin_inPreferences,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
@@ -4556,6 +4562,7 @@ class GALGAS_string callExtensionGetter_initCode (const class cPtr_propertyGener
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_terminationCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                        const class GALGAS_bool constinArgument0,
                                                                                         C_Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
  
@@ -4567,6 +4574,7 @@ void enterExtensionGetter_terminationCode (const int32_t inClassIndex,
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGeneration * inObject,
+                                                         const GALGAS_bool constin_inPreferences,
                                                          class C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 

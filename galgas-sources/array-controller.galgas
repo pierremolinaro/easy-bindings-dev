@@ -246,11 +246,21 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Array controller: " + mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+override getter @arrayControllerPropertyGeneration propertyDeclarationCode
+   ?let @bool inPreferences
+   ?let @stringset unused inOverriddenTransients -> @string
+{
+  if inPreferences then
+    result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "//   Array controller: " + mPropertyName + "\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var prefs_" + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+  else
+    result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "  //   Array controller: " + mPropertyName + "\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var " + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+  end
 }
 
 #·······················································································································
@@ -261,7 +271,7 @@ override getter @arrayControllerPropertyGeneration initCode -> @string {
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration configurationCode -> @string {
+override getter @arrayControllerPropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property, self.ebUndoManager)\n"
 }
@@ -275,9 +285,10 @@ override getter @arrayControllerPropertyGeneration populateExplorerWindowCode ->
 
 #·······················································································································
 
-override getter @arrayControllerPropertyGeneration terminationCode -> @string {
+override getter @arrayControllerPropertyGeneration terminationCode ?let @bool inPreferences -> @string {
+  let prefix = if inPreferences then "prefs_" else "self." end
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + ".unbind_model ()\n"
+  result += "    " + prefix + mPropertyName + ".unbind_model ()\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

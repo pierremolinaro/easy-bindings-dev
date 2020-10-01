@@ -256,14 +256,28 @@ override getter @atomicPropertyGeneration bindPropertyInSelectionController -> @
 
 #·······················································································································
 
-override getter @atomicPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Atomic property: " + mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+override getter @atomicPropertyGeneration propertyDeclarationCode
+   ?let @bool unused inPreferences
+   ?let @stringset unused inOverriddenTransients -> @string
+{
   if mInPreferences then
-    result += "  final let " + mPropertyName + "_property = EBPreferencesProperty_" + [mType swiftTypeName]
+    result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "//   Atomic property: " + mPropertyName + "\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  let prefs_" + mPropertyName + "_property = EBPreferencesProperty_" + [mType swiftTypeName]
     result += " (defaultValue: " + mDefaultValueInSwift + ", prefKey: Preferences_" + mPropertyName  + ")\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var prefs_" + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
+    result += "    get { return prefs_" + mPropertyName + "_property.propval }\n"
+    result += "    set { prefs_" + mPropertyName + "_property.setProp (newValue) }\n"
+    result += "  }\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var prefs_" + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
+    result += "> { return prefs_" + mPropertyName + "_property.prop }\n\n"
   else
+    result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "  //   Atomic property: " + mPropertyName + "\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  // final let " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
     result += " (defaultValue: " + mDefaultValueInSwift + ")\n\n"
     result += "  final let " + mPropertyName + "_property : EBStoredProperty_" + [mType swiftTypeName] + "\n\n"
@@ -271,15 +285,15 @@ override getter @atomicPropertyGeneration propertyDeclarationCode ?let @stringse
     result += "  final func reset_" + mPropertyName + "_toDefaultValue () {\n"
     result += "    self." + mPropertyName + " = " + mDefaultValueInSwift + "\n"
     result += "  }\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  final var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
+    result += "    get { return self." + mPropertyName + "_property.propval }\n"
+    result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
+    result += "  }\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  final var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
+    result += "> { return self." + mPropertyName + "_property.prop }\n\n"
   end
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
-  result += "    get { return self." + mPropertyName + "_property.propval }\n"
-  result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
-  result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
-  result += "> { return self." + mPropertyName + "_property.prop }\n\n"
   if mNeedsValidation then
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  final func " + mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [mType swiftTypeName] + ", windowForSheet inWindow : NSWindow?) -> Bool {\n"
@@ -297,7 +311,7 @@ override getter @atomicPropertyGeneration initCode -> @string {
 
 #·······················································································································
 
-override getter @atomicPropertyGeneration configurationCode -> @string {
+override getter @atomicPropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
   result = ""
   if mNeedsValidation then
     result += "  //--- Atomic property: " + mPropertyName + "\n"

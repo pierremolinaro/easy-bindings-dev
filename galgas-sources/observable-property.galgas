@@ -175,37 +175,37 @@ syntax extension easyBindings_syntax {
 getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string outResult {
   switch self
   case rootProperty (@lstring propertyName) :
-    outResult = inSelf + ".rootObject." + propertyName + "_property"
+    outResult = inSelf + "rootObject." + propertyName + "_property"
   case rootPropertyNone (@lstring propertyName) :
-    outResult = inSelf + ".rootObject." + propertyName + "_none"
+    outResult = inSelf + "rootObject." + propertyName + "_none"
   case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = inSelf + ".rootObject." + propertyName + "_property" + "." + optionName + "_property"
+    outResult = inSelf + "rootObject." + propertyName + "_property" + "." + optionName + "_property"
   case rootPropertyRelationship (@lstring relationshipName *) :
-    outResult = inSelf + ".rootObject." + relationshipName + "_property"
+    outResult = inSelf + "rootObject." + relationshipName + "_property"
   case selfWithoutProperty (*) :
-    outResult = inSelf + ".ebObjectIndex"
+    outResult = inSelf + "ebObjectIndex"
   case selfProperty (@lstring propertyName) :
-    outResult = inSelf + "." + propertyName + "_property"
+    outResult = inSelf + propertyName + "_property"
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = inSelf + "." + propertyName + "_property" + "." + optionName + "_property"
+    outResult = inSelf + propertyName + "_property" + "." + optionName + "_property"
   case selfPropertyArray (@lstring propertyName @lstring unused elementPropertyName) :
-    outResult = inSelf + "." + propertyName + "_property"
+    outResult = inSelf + propertyName + "_property"
   case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) :
-    outResult = inSelf + "." + propertyName + "_property." + elementPropertyName + "_property"
+    outResult = inSelf + propertyName + "_property." + elementPropertyName + "_property"
   case selfPropertyNone (@lstring propertyName) :
-    outResult = inSelf + "." + propertyName + "_none"
+    outResult = inSelf + propertyName + "_none"
   case prefsProperty (@lstring propertyName) :
-    outResult = "g_" + preferencesName () + "!." + propertyName + "_property"
+    outResult = "prefs_" + propertyName + "_property"
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = "g_" + preferencesName () + "!." + propertyName + "_property" + "." + optionName + "_property"
+    outResult = "prefs_" + propertyName + "_property" + "." + optionName + "_property"
   case selfControllerProperty (@lstring controllerName @lstring propertyName) :
-    outResult = inSelf + "." + controllerName + "." + propertyName + "_property"
+    outResult = inSelf + controllerName + "." + propertyName + "_property"
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
-    outResult = inSelf + "." + controllerName + "." + propertyName + "_property" + "." + secondaryPropertyName + "_property"
+    outResult = inSelf + controllerName + "." + propertyName + "_property" + "." + secondaryPropertyName + "_property"
   case selfControllerAllProperties (@lstring controllerName @lstring propertyName *) :
-    outResult = inSelf + "." + controllerName + "." + propertyName + "_property"
+    outResult = inSelf + controllerName + "." + propertyName + "_property"
   case selfControllerOneProperty (@lstring controllerName @lstring propertyName) :
-    outResult = inSelf + "." + controllerName + "." + propertyName + "_property"
+    outResult = inSelf + controllerName + "." + propertyName + "_property"
   case signatureProperty (*) :
     outResult = "self.signatureObserver_property"
   case versionProperty (*) :
@@ -213,7 +213,7 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   case versionShouldChangeProperty (*) :
     outResult = "self.versionShouldChangeObserver_property"
   case superProperty (* @lstring propertyName) :
-    outResult = inSelf + "." + propertyName + "_property"
+    outResult = inSelf + propertyName + "_property"
   end  
 }
 
@@ -266,7 +266,7 @@ getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
 
 #·······················································································································
 
-getter @observablePropertyAST needs_unwSelf -> @bool outResult {
+getter @observablePropertyAST needs_unwSelf ?let @bool inPreferences -> @bool outResult {
   switch self
   case rootProperty (*) :
     outResult = true
@@ -279,15 +279,15 @@ getter @observablePropertyAST needs_unwSelf -> @bool outResult {
   case selfWithoutProperty (*) :
     outResult = true
   case selfProperty (*) :
-    outResult = true
+    outResult = not inPreferences
   case selfPropertyWithOption (* *) :
-    outResult = true
+    outResult = not inPreferences
   case selfPropertyArray (* *) :
-    outResult = true
+    outResult = not inPreferences
   case selfPropertyObject (* *) :
-    outResult = true
+    outResult = not inPreferences
   case selfPropertyNone (*) :
-    outResult = true
+    outResult = not inPreferences
   case prefsProperty (*) :
     outResult = false
   case prefsPropertyWithOption (* *) :

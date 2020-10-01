@@ -7516,6 +7516,7 @@ C_PrologueEpilogue gMethod_abstractBooleanMultipleBindingExpressionAST_analyzeEx
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeExpressionForMultipleBinding (const cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                              const GALGAS_bool constin_inPreferences,
                                                               const GALGAS_propertyMap constin_inRootObservablePropertyMap,
                                                               const GALGAS_semanticContext constin_inSemanticContext,
                                                               const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
@@ -7550,7 +7551,7 @@ void callExtensionMethod_analyzeExpressionForMultipleBinding (const cPtr_abstrac
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inRootObservablePropertyMap, constin_inSemanticContext, constin_inCurrentObservablePropertyMap, out_outEnableExpression, out_outType, out_outErrorLocation, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inSemanticContext, constin_inCurrentObservablePropertyMap, out_outEnableExpression, out_outType, out_outErrorLocation, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -13548,6 +13549,7 @@ C_PrologueEpilogue gGetter_propertyGeneration_propertyDeclarationCode (NULL,
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string callExtensionGetter_propertyDeclarationCode (const cPtr_propertyGeneration * inObject,
+                                                           const GALGAS_bool in_inPreferences,
                                                            const GALGAS_stringset in_inOverriddenTransients,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
@@ -13574,7 +13576,7 @@ GALGAS_string callExtensionGetter_propertyDeclarationCode (const cPtr_propertyGe
     if (NULL == f) {
       fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      result = f (inObject, in_inOverriddenTransients, inCompiler COMMA_THERE) ;
+      result = f (inObject, in_inPreferences, in_inOverriddenTransients, inCompiler COMMA_THERE) ;
     }
   }
   return result ;
@@ -13609,6 +13611,7 @@ C_PrologueEpilogue gGetter_propertyGeneration_configurationCode (NULL,
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string callExtensionGetter_configurationCode (const cPtr_propertyGeneration * inObject,
+                                                     const GALGAS_bool in_inPreferences,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) {
   GALGAS_string result ;
@@ -13634,7 +13637,7 @@ GALGAS_string callExtensionGetter_configurationCode (const cPtr_propertyGenerati
     if (NULL == f) {
       fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      result = f (inObject, inCompiler COMMA_THERE) ;
+      result = f (inObject, in_inPreferences, inCompiler COMMA_THERE) ;
     }
   }
   return result ;
@@ -13718,6 +13721,7 @@ void enterExtensionGetter_terminationCode (const int32_t inClassIndex,
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGeneration * inObject,
+                                                   const GALGAS_bool in_inPreferences,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) {
   GALGAS_string result ;
@@ -13743,7 +13747,7 @@ GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGeneration
     if (NULL == f) {
       fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      result = f (inObject, inCompiler COMMA_THERE) ;
+      result = f (inObject, in_inPreferences, inCompiler COMMA_THERE) ;
     }
   }
   return result ;
@@ -13752,6 +13756,7 @@ GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGeneration
 //----------------------------------------------------------------------------------------------------------------------
 
 static GALGAS_string extensionGetter_propertyGeneration_terminationCode (const cPtr_propertyGeneration * /* inObject */,
+                                                                         const GALGAS_bool /* constinArgument_inPreferences */,
                                                                          C_Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_result ; // Returned variable

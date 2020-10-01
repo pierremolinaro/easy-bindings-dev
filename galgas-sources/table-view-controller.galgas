@@ -366,7 +366,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
       !mColumnOutletTypeName
       !"<<not used>>"
       !mColumnBindingAST.mRegularBindingList
-      !"object"
+      !"object."
       !?regularBindingsGenerationList
     )
   #-------- Sort property
@@ -427,18 +427,29 @@ class @tableViewControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration propertyDeclarationCode ?let @stringset unused inOverriddenTransients -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Array controller: " + mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+override getter @tableViewControllerPropertyGeneration propertyDeclarationCode
+   ?let @bool inPreferences
+   ?let @stringset unused inOverriddenTransients -> @string
+{
+  if inPreferences then
+    result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "//   Array controller: " + mPropertyName + "\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var prefs_" + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+  else
+    result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
+    result += "  //   Array controller: " + mPropertyName + "\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  var " + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+  end
 }
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration configurationCode -> @string {
+override getter @tableViewControllerPropertyGeneration configurationCode ?let @bool inPreferences -> @string {
+  let prefix = if inPreferences then "prefs_" else "self." end
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property, self.ebUndoManager)\n"
+  result += "    " + prefix + mPropertyName + ".bind_model (" + prefix + mModelString + "_property, self.ebUndoManager)\n"
 }
 
 #·······················································································································
@@ -456,9 +467,10 @@ override getter @tableViewControllerPropertyGeneration populateExplorerWindowCod
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration terminationCode -> @string {
+override getter @tableViewControllerPropertyGeneration terminationCode ?let @bool inPreferences -> @string {
+  let prefix = if inPreferences then "prefs_" else "self." end
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + ".unbind_model ()\n"
+  result += "    " + prefix + mPropertyName + ".unbind_model ()\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
