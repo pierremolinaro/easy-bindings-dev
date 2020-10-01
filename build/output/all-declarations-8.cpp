@@ -353,45 +353,45 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     "\n"
     "typealias EBReadOnlyProperty_" ;
   result << in_CLASS_5F_NAME.stringValue () ;
-  result << "       = EBReadOnlyClassProperty <" ;
+  result << "       = EBReadOnlyValueProperty <" ;
   result << in_CLASS_5F_NAME.stringValue () ;
   result << ">\n"
     "typealias EBTransientProperty_" ;
   result << in_CLASS_5F_NAME.stringValue () ;
-  result << "      = EBTransientClassProperty <" ;
+  result << "      = EBTransientValueProperty <" ;
   result << in_CLASS_5F_NAME.stringValue () ;
   result << ">\n" ;
   const enumGalgasBool test_1 = in_TRANSIENT.boolEnum () ;
   if (kBoolTrue == test_1) {
     result << "typealias EBReadOnlyPropertyArray_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "  = EBReadOnlyClassProperty <[" ;
+    result << "  = EBReadOnlyValueProperty <[" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "]>\n"
       "typealias EBTransientPropertyArray_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << " = EBTransientClassProperty <[" ;
+    result << " = EBTransientValueProperty <[" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "]>\n" ;
   }else if (kBoolFalse == test_1) {
     result << "typealias EBReadWriteProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "   = EBReadWriteClassProperty <" ;
+    result << "   = EBReadWriteValueProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n"
       "typealias EBPropertyProxy_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "       = EBPropertyClassProxy <" ;
+    result << "       = EBPropertyValueProxy <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n"
       "typealias EBStoredProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "      = EBStoredClassProperty <" ;
+    result << "      = EBStoredValueProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n"
       "typealias EBPreferencesProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << " = EBPreferencesClassProperty <" ;
+    result << " = EBPreferencesValueProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n" ;
   }
