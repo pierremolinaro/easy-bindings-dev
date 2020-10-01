@@ -196,21 +196,21 @@ override getter @toManyPropertyGeneration propertyDeclarationCode ?let @stringse
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   if [mOption isHasDependance] then
     [mOption hasDependance ?1* ?masterPropertySwiftTypeName: let masterPropertyTypeName]
-    result += "  let " + mPropertyName + "_property = TransientArrayOfSuperOf_" + [mRelationshipType swiftTypeName]
+    result += "  final let " + mPropertyName + "_property = TransientArrayOfSuperOf_" + [mRelationshipType swiftTypeName]
            + " <" + masterPropertyTypeName + "> ()\n\n"
   elsif mInPreferences then
-    result += "  let " + mPropertyName + "_property = PreferencesArrayOf_" + [mRelationshipType swiftTypeName]
+    result += "  final let " + mPropertyName + "_property = PreferencesArrayOf_" + [mRelationshipType swiftTypeName]
            + " (prefKey: Preferences_" + mPropertyName + ")\n\n"
   else
-    result += "  let " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName]
+    result += "  final let " + mPropertyName + "_property = StoredArrayOf_" + [mRelationshipType swiftTypeName]
     result += " (usedForSignature: " + [mUsedForSignature cString] + ")\n\n"
   end
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
+  result += "  final var " + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
   result += "    return self." + mPropertyName + "_property.prop\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
+  result += "  final var " + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
   result += "    get { return self." + mPropertyName + "_property.propval }\n"
   if not [mOption isHasDependance] then
     result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
@@ -251,12 +251,6 @@ override getter @toManyPropertyGeneration setupRelationshipFromDictionaryCode ->
   elsif mCustomStore then
     result  = "  //--- To many property: " + mPropertyName + " (Custom store)\n"
     result += "    self." + mPropertyName + "_property.setProp (customRead_" + [mRelationshipType swiftTypeName] + "_" + mPropertyName + " (from: inDictionary, with: self.ebUndoManager))\n"
-
-    result += "    /* self." + mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
-    result += "      inRelationshipName: \"" + mPropertyName + "\",\n"
-    result += "      inDictionary: inDictionary,\n"
-    result += "      managedObjectArray: &managedObjectArray\n"
-    result += "    ) as! [" + [mRelationshipType swiftTypeName] + "]) */\n"
   else
     result  = "  //--- To many property: " + mPropertyName + "\n"
     result += "    self." + mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"

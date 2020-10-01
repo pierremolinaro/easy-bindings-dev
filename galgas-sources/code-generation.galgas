@@ -152,7 +152,7 @@ private proc generateSwiftApplicationFiles
     !"extension-Double-ValuePropertyProtocol",
     !"extension-NSBezierPath-ClassPropertyProtocol",
     !"EBValidationResult",
-    !"EBUserClassNameProtocol",
+#    !"EBUserClassNameProtocol",
     !"EBObject",
     !"extension-Int-ValuePropertyProtocol",
     !"extension-UInt32-ValuePropertyProtocol",
