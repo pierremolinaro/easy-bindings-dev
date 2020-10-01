@@ -215,6 +215,12 @@ override getter @toManyProxyGeneration declarationInSelectionControllerCode -> @
 
 #·······················································································································
 
+override getter @toManyProxyGeneration initCode -> @string {
+  result = ""
+}
+
+#·······················································································································
+
 override getter @toManyProxyGeneration bindPropertyInSelectionController -> @string {
   result = ""
 }
@@ -309,6 +315,12 @@ override getter @atomicProxyGeneration declarationInSelectionControllerCode -> @
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
   result += "    return self." + mPropertyName + "_property.prop\n"
   result += "  }\n\n"
+}
+
+#·······················································································································
+
+override getter @atomicProxyGeneration initCode -> @string {
+  result = ""
 }
 
 #·······················································································································

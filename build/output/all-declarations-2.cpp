@@ -13331,6 +13331,66 @@ GALGAS_string callExtensionGetter_configurationCode (const cPtr_propertyGenerati
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Abstract extension getter '@propertyGeneration initCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static TC_UniqueArray <enterExtensionGetter_propertyGeneration_initCode> gExtensionGetterTable_propertyGeneration_initCode ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void enterExtensionGetter_initCode (const int32_t inClassIndex,
+                                    enterExtensionGetter_propertyGeneration_initCode inGetter) {
+  gExtensionGetterTable_propertyGeneration_initCode.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void freeExtensionGetter_propertyGeneration_initCode (void) {
+  gExtensionGetterTable_propertyGeneration_initCode.free () ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_propertyGeneration_initCode (NULL,
+                                                        freeExtensionGetter_propertyGeneration_initCode) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string callExtensionGetter_initCode (const cPtr_propertyGeneration * inObject,
+                                            C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
+  GALGAS_string result ;
+//--- Find Reader
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_propertyGeneration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    enterExtensionGetter_propertyGeneration_initCode f = NULL ;
+    if (classIndex < gExtensionGetterTable_propertyGeneration_initCode.count ()) {
+      f = gExtensionGetterTable_propertyGeneration_initCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionGetterTable_propertyGeneration_initCode.count ()) {
+           f = gExtensionGetterTable_propertyGeneration_initCode (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionGetterTable_propertyGeneration_initCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      result = f (inObject, inCompiler COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Extension getter '@propertyGeneration terminationCode'
 //
 //----------------------------------------------------------------------------------------------------------------------

@@ -4411,6 +4411,27 @@ class GALGAS_string callExtensionGetter_configurationCode (const class cPtr_prop
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Abstract extension getter '@propertyGeneration initCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+typedef class GALGAS_string (*enterExtensionGetter_propertyGeneration_initCode) (const class cPtr_propertyGeneration * inObject,
+                                                                                 class C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void enterExtensionGetter_initCode (const int32_t inClassIndex,
+                                    enterExtensionGetter_propertyGeneration_initCode inMethod) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_string callExtensionGetter_initCode (const class cPtr_propertyGeneration * inObject,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Extension getter '@propertyGeneration terminationCode'
 //
 //----------------------------------------------------------------------------------------------------------------------

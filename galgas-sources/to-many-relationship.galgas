@@ -220,6 +220,12 @@ override getter @toManyPropertyGeneration propertyDeclarationCode ?let @stringse
 
 #·······················································································································
 
+override getter @toManyPropertyGeneration initCode -> @string {
+  result = ""
+}
+
+#·······················································································································
+
 override getter @toManyPropertyGeneration prefKeyDefinitionCode -> @string {
   result = "let Preferences_" + mPropertyName + " = \"Preferences:" + mPropertyName + "\"\n"
 }

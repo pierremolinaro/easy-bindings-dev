@@ -289,6 +289,12 @@ override getter @transientPropertyGeneration declarationInSelectionControllerCod
 
 #·······················································································································
 
+override getter @transientPropertyGeneration initCode -> @string {
+  result  = ""
+}
+
+#·······················································································································
+
 override getter @transientPropertyGeneration bindPropertyInSelectionController -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  private final func bind_property_" + mPropertyName + " () {\n"

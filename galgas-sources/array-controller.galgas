@@ -255,6 +255,12 @@ override getter @arrayControllerPropertyGeneration propertyDeclarationCode ?let 
 
 #·······················································································································
 
+override getter @arrayControllerPropertyGeneration initCode -> @string {
+  result = ""
+}
+
+#·······················································································································
+
 override getter @arrayControllerPropertyGeneration configurationCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".bind_model (self." + mModelString + "_property, self.ebUndoManager)\n"

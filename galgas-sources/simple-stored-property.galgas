@@ -174,7 +174,7 @@ override getter @atomicPropertyGeneration declarationInSelectionControllerCode -
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Selection observable property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n\n"
+  result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
   result += "    return self." + mPropertyName + "_property.prop\n"
   result += "  }\n\n"
@@ -262,14 +262,15 @@ override getter @atomicPropertyGeneration propertyDeclarationCode ?let @stringse
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   if mInPreferences then
     result += "  final let " + mPropertyName + "_property = EBPreferencesProperty_" + [mType swiftTypeName]
-           + " (defaultValue: " + mDefaultValueInSwift + ", prefKey: Preferences_" + mPropertyName  + ")\n\n"
+    result += " (defaultValue: " + mDefaultValueInSwift + ", prefKey: Preferences_" + mPropertyName  + ")\n\n"
   else
-   result += "  final let " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
-           + " (defaultValue: " + mDefaultValueInSwift + ")\n\n"
-   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-   result += "  final func reset_" + mPropertyName + "_toDefaultValue () {\n"
-           + "    self." + mPropertyName + " = " + mDefaultValueInSwift + "\n"
-           + "  }\n\n"
+    result += "  // final let " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
+    result += " (defaultValue: " + mDefaultValueInSwift + ")\n\n"
+    result += "  final let " + mPropertyName + "_property : EBStoredProperty_" + [mType swiftTypeName] + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+    result += "  final func reset_" + mPropertyName + "_toDefaultValue () {\n"
+    result += "    self." + mPropertyName + " = " + mDefaultValueInSwift + "\n"
+    result += "  }\n\n"
   end
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  final var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
@@ -289,13 +290,20 @@ override getter @atomicPropertyGeneration propertyDeclarationCode ?let @stringse
 
 #·······················································································································
 
+override getter @atomicPropertyGeneration initCode -> @string {
+  result  = "    self." + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
+  result += " (defaultValue: " + mDefaultValueInSwift + ", undoManager: ebUndoManager)\n"
+}
+
+#·······················································································································
+
 override getter @atomicPropertyGeneration configurationCode -> @string {
-  result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+  result = ""
   if mNeedsValidation then
+    result += "  //--- Atomic property: " + mPropertyName + "\n"
     result += "    self." + mPropertyName + "_property.validationFunction = { [weak self] in\n"
-              "      return self?.validate_" + mPropertyName + " (currentValue: $0, proposedValue: $1) ?? .rejectWithBeep\n"
-              "    }\n"
+    result += "      return self?.validate_" + mPropertyName + " (currentValue: $0, proposedValue: $1) ?? .rejectWithBeep\n"
+    result += "    }\n"
   end
 }
 

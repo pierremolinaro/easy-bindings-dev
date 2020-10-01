@@ -443,6 +443,12 @@ override getter @tableViewControllerPropertyGeneration configurationCode -> @str
 
 #·······················································································································
 
+override getter @tableViewControllerPropertyGeneration initCode -> @string {
+  result  = ""
+}
+
+#·······················································································································
+
 override getter @tableViewControllerPropertyGeneration populateExplorerWindowCode -> @string {
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".addExplorer (name: \"" + mPropertyName + "\", y:&y, view:view)\n"

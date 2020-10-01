@@ -205,6 +205,12 @@ override getter @toOnePropertyGeneration propertyDeclarationCode ?let @stringset
 
 #·······················································································································
 
+override getter @toOnePropertyGeneration initCode -> @string {
+  result = ""
+}
+
+#·······················································································································
+
 override getter @toOnePropertyGeneration configurationCode -> @string {
   switch mOpposite
   case oppositeIsToMany (oppositeName) :
