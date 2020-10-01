@@ -154,7 +154,7 @@ private proc generateSwiftApplicationFiles
     !"EBPropertyEnumProxy",
     !"EBReadWriteEnumProperty",
     !"EBReadOnlyEnumProperty",
-    !"EBAbstractEnumProperty",
+    !"EBObservableObjectProtocol",
     !"EnumPropertyProtocol",
     !"EBEnumProtocol",
     !"EBTransientValueProperty",

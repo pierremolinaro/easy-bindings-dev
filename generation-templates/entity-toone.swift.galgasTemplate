@@ -455,7 +455,7 @@ final class ProxyObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME% {
 //    StoredObject_%!ENTITY_NAME% 
 //----------------------------------------------------------------------------------------------------------------------
 
-final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSignatureObserverProtocol {
+final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSignatureObserverProtocol, EBObservableObjectProtocol {
 
  //····················································································································
 
