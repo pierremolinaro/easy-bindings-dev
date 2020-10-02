@@ -143,7 +143,7 @@ final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
   //····················································································································
 
   private func updateOutlet () {
-    switch self.mObject.prop {
+    switch self.mObject.selection {
     case .empty :
       self.mOutlet.enableFromValueBinding (false)
     case .single (let v) :

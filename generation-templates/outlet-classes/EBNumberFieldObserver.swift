@@ -75,7 +75,7 @@ final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
   //····················································································································
 
   override func sendUpdateEvent () {
-    switch self.mObject.prop {
+    switch self.mObject.selection {
     case .empty :
       self.mOutlet.enableFromValueBinding (false)
       self.mOutlet.stringValue = "-"

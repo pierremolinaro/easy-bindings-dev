@@ -72,7 +72,7 @@ end
 
   //····················································································································
 
-  var selectedArray_property_selection : EBSelection <[%!ELEMENT_TYPE_NAME%]> { return self.selectedArray_property.prop }
+  var selectedArray_property_selection : EBSelection <[%!ELEMENT_TYPE_NAME%]> { return self.selectedArray_property.selection }
  
   //····················································································································
   //   Init
@@ -397,7 +397,7 @@ case entityArray :
 
   func select (object inObject : %!ELEMENT_TYPE_NAME%) {
     if let model = self.mModel {
-      switch model.prop {
+      switch model.selection {
       case .empty, .multiple :
         break
       case .single (let objectArray) :
@@ -414,7 +414,7 @@ case entityArray :
 
    @objc func add (_ sender : Any) {
     if let model = self.mModel {
-      switch model.prop {
+      switch model.selection {
       case .empty, .multiple :
         break
       case .single (let v) :
@@ -434,7 +434,7 @@ case entityArray :
 
   @objc func remove (_ sender : Any) {
     if let model = self.mModel {
-      switch model.prop {
+      switch model.selection {
       case .empty, .multiple :
         break
       case .single (let model_prop) :

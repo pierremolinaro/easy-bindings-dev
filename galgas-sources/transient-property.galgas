@@ -283,7 +283,7 @@ override getter @transientPropertyGeneration declarationInSelectionControllerCod
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  let " + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-  result += "    return self." + mPropertyName + "_property.prop\n"
+  result += "    return self." + mPropertyName + "_property.selection\n"
   result += "  }\n\n"
 }
 
@@ -301,7 +301,7 @@ override getter @transientPropertyGeneration bindPropertyInSelectionController -
   result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
   result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
-  result += "        switch model.prop {\n"
+  result += "        switch model.selection {\n"
   result += "        case .empty :\n"
   result += "          return .empty\n"
   result += "        case .multiple :\n"
@@ -351,7 +351,7 @@ override getter @transientPropertyGeneration propertyDeclarationCode
       result += "  let prefs_" + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  var prefs_" + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-      result += "    return prefs_" + mPropertyName + "_property.prop\n"
+      result += "    return prefs_" + mPropertyName + "_property.selection\n"
       result += "  }\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  var prefs_" + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
@@ -369,7 +369,7 @@ override getter @transientPropertyGeneration propertyDeclarationCode
       result += "  final let " + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  final var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-      result += "    return self." + mPropertyName + "_property.prop\n"
+      result += "    return self." + mPropertyName + "_property.selection\n"
       result += "  }\n\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  final var " + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
@@ -392,14 +392,14 @@ override getter @transientPropertyGeneration configurationCode ?let @bool inPref
   if [mDependencyList length] > 0 then
     let needs_unwSelf = [mDependencyList needs_unwSelf !inPreferences]
     result += "  //--- Atomic property: " + mPropertyName + "\n"
-    result += "    // " + prefix + mPropertyName + "_property.configure ("
-    for () in mDependencyList do
-      let s = [mDependency generateGetProperty]
-      if s != "" then
-        result += s + ", "
-      end
-    end
-    result += "transient_" + mClassName + "_" + mPropertyName + ")\n"
+#    result += "    // " + prefix + mPropertyName + "_property.defineTransientDependancy" + [mDependencyList length] + " ("
+#    for () in mDependencyList do
+#      let s = [mDependency generateGetProperty]
+#      if s != "" then
+#        result += s + ", "
+#      end
+#    end
+#    result += "transient_" + mClassName + "_" + mPropertyName + ")\n"
     if needs_unwSelf then
       result += "    " + prefix + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
       result += "      if let unwSelf = self {\n"
@@ -519,11 +519,11 @@ getter @transientDependencyListForGeneration needs_unwSelf ?let @bool inPreferen
 getter @observablePropertyAST generateGetProperty -> @string outResult {
   switch self
   case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = "self." + controllerName.string + "." + propertyName + "_property"
+    outResult = "self." + controllerName.string + ".addEBObserverOf_" + propertyName
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property"
+    outResult = "self." + controllerName.string + "." + propertyName + ".addEBObserverOf_" + secondaryPropertyName
   case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName  + "_property"
+    outResult = "self." + controllerName.string + "." + propertyName + "addEBObserverOf_" + secondaryPropertyName
   case selfControllerOneProperty (@lstring controllerName @lstring propertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property <<4>>" 
   case selfWithoutProperty (*) :
@@ -533,9 +533,9 @@ getter @observablePropertyAST generateGetProperty -> @string outResult {
   case selfPropertyWithOption (@lstring masterName *) :
     outResult = "self." + masterName.string + "_property"
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
-    outResult = "self." + masterName.string + "_property." + elementPropertyName + "_property"
+    outResult = "self." + masterName.string + ".addEBObserverOf_" + elementPropertyName
   case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
-    outResult = "self." + masterName.string + "_property." + elementPropertyName + "_property"
+    outResult = "self." + masterName.string + ".addEBObserverOf_" + elementPropertyName 
   case selfPropertyNone (@lstring masterName) :
     outResult = "self." + masterName.string + "_property"
   case prefsProperty (@lstring propertyName) :
@@ -583,7 +583,7 @@ getter @observablePropertyAST generateAddObserverCall ?let @bool inPreferences -
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
     outResult = prefix + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
   case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
-    outResult = prefix + masterName.string + "_property." + elementPropertyName + "_property.addEBObserver"
+    outResult = prefix + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
   case selfPropertyNone (@lstring masterName) :
     outResult = prefix + masterName.string + "_property.addEBObserver"
   case prefsProperty (@lstring propertyName) :

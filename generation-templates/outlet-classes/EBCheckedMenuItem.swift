@@ -71,7 +71,7 @@ final class Controller_EBCheckedMenuItem_check : EBSimpleController {
   //····················································································································
 
   private func updateOutlet () {
-    switch self.mIsChecked.prop {
+    switch self.mIsChecked.selection {
     case .empty :
       self.mOutlet.isEnabled = false
       self.mOutlet.state = sw34_OffState

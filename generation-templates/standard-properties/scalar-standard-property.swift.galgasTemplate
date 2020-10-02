@@ -13,16 +13,16 @@ typealias EBPreferencesProperty_%!TYPE% = EBPreferencesValueProperty <%!TYPE%>
 //----------------------------------------------------------------------------------------------------------------------
 
 func compare_%!TYPE%_properties (_ left : EBReadOnlyProperty_%!TYPE%, _ right : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
-  switch left.prop {
+  switch left.selection {
   case .empty :
-    switch right.prop {
+    switch right.selection {
     case .empty :
       return .orderedSame
     default:
       return .orderedAscending
     }
   case .multiple :
-    switch right.prop {
+    switch right.selection {
     case .empty :
       return .orderedDescending
     case .multiple :
@@ -31,7 +31,7 @@ func compare_%!TYPE%_properties (_ left : EBReadOnlyProperty_%!TYPE%, _ right : 
       return .orderedAscending
    }
  case .single (let currentValue) :
-    switch right.prop {
+    switch right.selection {
     case .empty, .multiple :
       return .orderedDescending
     case .single (let otherValue) :

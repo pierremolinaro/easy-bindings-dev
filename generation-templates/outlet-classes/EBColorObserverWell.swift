@@ -70,7 +70,7 @@ final class Controller_EBColorObserverWell_color : EBSimpleController {
   //····················································································································
 
   private func updateOutlet () {
-    switch self.mObject.prop {
+    switch self.mObject.selection {
     case .empty, .multiple :
       self.mOutlet.color = NSColor.white
     case .single (let v) :

@@ -49,7 +49,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch self.prop {
+    switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -64,7 +64,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch self.prop {
+    switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -109,7 +109,7 @@ for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch self.prop {
+    switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -124,7 +124,7 @@ for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch self.prop {
+    switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -169,7 +169,7 @@ for () in PROXY_LIST_FOR_GENERATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch self.prop {
+    switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -184,7 +184,7 @@ for () in PROXY_LIST_FOR_GENERATION do
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch self.prop {
+    switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -229,7 +229,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.addEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch self.prop {
+    switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -244,7 +244,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.removeEBObserver (inObserver)
     self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch self.prop {
+    switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -360,7 +360,7 @@ final class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
       self.mModelArrayShouldBeComputed = false
       let newArray : [%!ENTITY_NAME%] 
       if let dataProvider = self.mDataProvider {
-        switch dataProvider.prop {
+        switch dataProvider.selection {
         case .empty :
           newArray = []
           self.mTransientKind = .empty
@@ -385,7 +385,7 @@ final class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  override var prop : EBSelection < [%!ENTITY_NAME%] > {
+  override var selection : EBSelection < [%!ENTITY_NAME%] > {
     self.computeModelArray ()
     switch self.mTransientKind {
     case .empty :
@@ -452,7 +452,7 @@ final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : R
       self.mModelArrayShouldBeComputed = false
       var newModelArray : [SUPER] 
       if let dataProvider = self.mDataProvider {
-        switch dataProvider.prop {
+        switch dataProvider.selection {
         case .empty :
           newModelArray = []
           self.mTransientKind = .empty
@@ -479,7 +479,7 @@ final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : R
 
   //····················································································································
 
-  override var prop : EBSelection < [%!ENTITY_NAME%] > {
+  override var selection : EBSelection < [%!ENTITY_NAME%] > {
     self.computeModelArray ()
     switch self.mTransientKind {
     case .empty :
@@ -538,7 +538,7 @@ final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
   override func notifyModelDidChange () {
     let newModelArray : [%!ENTITY_NAME%]
     if let model = self.mModel {
-      switch model.prop {
+      switch model.selection {
       case .empty :
         newModelArray = []
       case .single (let v) :
@@ -561,9 +561,9 @@ final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  override var prop : EBSelection < [%!ENTITY_NAME%] > {
+  override var selection : EBSelection < [%!ENTITY_NAME%] > {
     if let model = self.mModel {
-      return model.prop
+      return model.selection
     }else{
       return .empty
     }
@@ -573,7 +573,7 @@ final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
   override var propval : [%!ENTITY_NAME%] {
     if let model = self.mModel {
-      switch model.prop {
+      switch model.selection {
       case .empty, .multiple :
         return []
       case .single (let v) :
@@ -633,7 +633,7 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
   var mValueExplorer : NSPopUpButton? {
     didSet {
       if let unwrappedExplorer = self.mValueExplorer {
-        switch self.prop {
+        switch self.selection {
         case .empty, .multiple :
           break ;
         case .single (let v) :
@@ -693,7 +693,7 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
  
   //····················································································································
 
-  override var prop : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue) }
+  override var selection : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue) }
 
   //····················································································································
 
@@ -782,7 +782,7 @@ final class StandAloneArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  override var prop : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue) }
+  override var selection : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue) }
 
   //····················································································································
 

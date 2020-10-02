@@ -274,16 +274,16 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     result << ", _ right : EBReadOnlyProperty_" ;
     result << in_TYPE.stringValue () ;
     result << ") -> ComparisonResult {\n"
-      "  switch left.prop {\n"
+      "  switch left.selection {\n"
       "  case .empty :\n"
-      "    switch right.prop {\n"
+      "    switch right.selection {\n"
       "    case .empty :\n"
       "      return .orderedSame\n"
       "    default:\n"
       "      return .orderedAscending\n"
       "    }\n"
       "  case .multiple :\n"
-      "    switch right.prop {\n"
+      "    switch right.selection {\n"
       "    case .empty :\n"
       "      return .orderedDescending\n"
       "    case .multiple :\n"
@@ -292,7 +292,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
       "      return .orderedAscending\n"
       "   }\n"
       " case .single (let currentValue) :\n"
-      "    switch right.prop {\n"
+      "    switch right.selection {\n"
       "    case .empty, .multiple :\n"
       "      return .orderedDescending\n"
       "    case .single (let otherValue) :\n" ;

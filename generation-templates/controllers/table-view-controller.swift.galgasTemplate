@@ -156,7 +156,7 @@ end
 
   //····················································································································
 
-  var selectedArray_property_selection : EBSelection <[%!ELEMENT_TYPE_NAME%]> { return self.selectedArray_property.prop }
+  var selectedArray_property_selection : EBSelection <[%!ELEMENT_TYPE_NAME%]> { return self.selectedArray_property.selection }
  
   //····················································································································
 
@@ -284,7 +284,7 @@ end
  //····················································································································
 
   func selectedObjectIndexSet () -> NSIndexSet {
-    switch self.sortedArray_property.prop {
+    switch self.sortedArray_property.selection {
     case .empty, .multiple :
        return NSIndexSet ()
     case .single (let v) :
@@ -308,7 +308,7 @@ end
   //····················································································································
 
   func numberOfRows (in _ : NSTableView) -> Int {
-    switch self.sortedArray_property.prop {
+    switch self.sortedArray_property.selection {
     case .empty, .multiple :
       return 0
     case .single (let v) :
@@ -321,7 +321,7 @@ end
   //····················································································································
 
   func tableViewSelectionDidChange (_ notification : Notification) {
-    switch self.sortedArray_property.prop {
+    switch self.sortedArray_property.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
@@ -359,7 +359,7 @@ end
 %if [BOUND_COLUMNS length] == 0 then
   %    return nil \n%
 else
-%    switch self.sortedArray_property.prop {
+%    switch self.sortedArray_property.selection {
     case .empty, .multiple :
       return nil
     case .single (let v) :
@@ -421,7 +421,7 @@ case entityArray :
 
   func select (object inObject: %!ELEMENT_TYPE_NAME%) {
     if let model = self.mModel {
-      switch model.prop {
+      switch model.selection {
       case .empty, .multiple :
         break
       case .single (let objectArray) :
@@ -438,7 +438,7 @@ case entityArray :
 
    @objc func add (_ sender : Any) {
     if let model = self.mModel {
-      switch model.prop {
+      switch model.selection {
       case .empty, .multiple :
         break
       case .single (let v) :
@@ -458,11 +458,11 @@ case entityArray :
 
   @objc func remove (_ sender : Any) {
     if let model = self.mModel {
-      switch model.prop {
+      switch model.selection {
       case .empty, .multiple :
         break
       case .single (let model_prop) :
-        switch self.sortedArray_property.prop {
+        switch self.sortedArray_property.selection {
         case .empty, .multiple :
           break
         case .single (let sortedArray_prop) :

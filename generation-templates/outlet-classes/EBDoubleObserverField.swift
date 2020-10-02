@@ -97,7 +97,7 @@ final class Controller_EBDoubleObserverField_valueObserver : EBSimpleController 
   //····················································································································
 
   private func updateOutlet () {
-    switch self.mObject.prop {
+    switch self.mObject.selection {
     case .empty :
       self.mOutlet.enableFromValueBinding (false)
       self.mOutlet.stringValue = "-"

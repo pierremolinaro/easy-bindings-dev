@@ -240,7 +240,7 @@ override getter @toManyProxyGeneration propertyDeclarationCode
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + " : [" + mToManyTypeName + "] {\n"
   result += "    get {\n"
-  result += "      switch self." + mPropertyName + "_property.prop {\n"
+  result += "      switch self." + mPropertyName + "_property.selection {\n"
   result += "      case .empty, .multiple :\n"
   result += "        return []\n"
   result += "      case .single (let v) :\n"
@@ -253,7 +253,7 @@ override getter @toManyProxyGeneration propertyDeclarationCode
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <[" + mToManyTypeName + "]> {\n"
-  result += "    return self." + mPropertyName + "_property.prop\n"
+  result += "    return self." + mPropertyName + "_property.selection\n"
   result += "  }\n\n"
 }
 
@@ -316,7 +316,7 @@ override getter @atomicProxyGeneration declarationInSelectionControllerCode -> @
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-  result += "    return self." + mPropertyName + "_property.prop\n"
+  result += "    return self." + mPropertyName + "_property.selection\n"
   result += "  }\n\n"
 }
 
@@ -334,7 +334,7 @@ override getter @atomicProxyGeneration bindPropertyInSelectionController -> @str
   result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
   result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
-  result += "        switch model.prop {\n"
+  result += "        switch model.selection {\n"
   result += "        case .empty :\n"
   result += "          return .empty\n"
   result += "        case .multiple :\n"
@@ -369,7 +369,7 @@ override getter @atomicProxyGeneration bindPropertyInSelectionController -> @str
 
   result += "    self." + mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [mType swiftTypeName] + ") in\n"
   result += "      if let model = self?.selectedArray_property {\n"
-  result += "        switch model.prop {\n"
+  result += "        switch model.selection {\n"
   result += "        case .empty, .multiple :\n"
   result += "          break\n"
   result += "        case .single (let v) :\n"
@@ -381,7 +381,7 @@ override getter @atomicProxyGeneration bindPropertyInSelectionController -> @str
   result += "    }\n"
   result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " + [mType swiftTypeName] + ", windowForSheet : NSWindow?) in\n"
   result += "      if let model = self?.selectedArray_property {\n"
-  result += "        switch model.prop {\n"
+  result += "        switch model.selection {\n"
   result += "        case .empty, .multiple :\n"
   result += "          return false\n"
   result += "        case .single (let v) :\n"
@@ -413,7 +413,7 @@ override getter @atomicProxyGeneration propertyDeclarationCode
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
   result += "    get {\n"
-  result += "      switch self." + mPropertyName + "_property.prop {\n"
+  result += "      switch self." + mPropertyName + "_property.selection {\n"
   result += "      case .empty, .multiple :\n"
   result += "        return nil\n"
   result += "      case .single (let v) :\n"
@@ -428,7 +428,7 @@ override getter @atomicProxyGeneration propertyDeclarationCode
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
-  result += "> { return self." + mPropertyName + "_property.prop }\n\n"
+  result += "> { return self." + mPropertyName + "_property.selection }\n\n"
 }
 
 #·······················································································································
@@ -448,8 +448,8 @@ override getter @atomicProxyGeneration configurationCode ?let @bool unused inPre
   result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (_ inValue : " + [mType swiftTypeName] + ", _ inWindow : NSWindow?) -> Bool in\n"
   result += "      return self?." + mObservedRelationshipName + "?." + mObservedPropertyName + "_property.validateAndSetProp (inValue, windowForSheet: inWindow) ?? false\n"
   result += "    }\n"
-  result += "    self." + mObservedRelationshipName + "_property." + mObservedPropertyName
-     + "_property.addEBObserver (self." + mPropertyName + "_property)\n"
+  result += "    self." + mObservedRelationshipName + "_property.addEBObserverOf_" + mObservedPropertyName
+  result += " (self." + mPropertyName + "_property)\n"
 }
 
 #·······················································································································
@@ -459,8 +459,8 @@ override getter @atomicProxyGeneration terminationCode ?let @bool unused inPrefe
   result += "    self." + mPropertyName + "_property.mReadModelFunction = nil\n"
   result += "    self." + mPropertyName + "_property.mWriteModelFunction = nil\n"
   result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = nil\n"
-  result += "    self." + mObservedRelationshipName + "_property." + mObservedPropertyName
-  result += "_property.removeEBObserver (self." + mPropertyName + "_property)\n"
+  result += "    self." + mObservedRelationshipName + "_property.removeEBObserverOf_" + mObservedPropertyName
+  result += " (self." + mPropertyName + "_property)\n"
 }
 
 #·······················································································································
