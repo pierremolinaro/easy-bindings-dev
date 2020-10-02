@@ -523,9 +523,9 @@ getter @observablePropertyAST generateGetProperty -> @string outResult {
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property"
   case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = "self." + controllerName.string + "." + propertyName + "_property.addEBObserverOf_" + secondaryPropertyName 
+    outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName  + "_property"
   case selfControllerOneProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = "self." + controllerName.string + "." + propertyName + "_property.addEBObserverOf_<<4>>" 
+    outResult = "self." + controllerName.string + "." + propertyName + "_property <<4>>" 
   case selfWithoutProperty (*) :
     outResult = "" # Do not generate add observer
   case selfProperty (@lstring masterName) :
@@ -533,9 +533,9 @@ getter @observablePropertyAST generateGetProperty -> @string outResult {
   case selfPropertyWithOption (@lstring masterName *) :
     outResult = "self." + masterName.string + "_property"
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
-    outResult = "self." + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
+    outResult = "self." + masterName.string + "_property." + elementPropertyName + "_property"
   case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
-    outResult = "self." + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
+    outResult = "self." + masterName.string + "_property." + elementPropertyName + "_property"
   case selfPropertyNone (@lstring masterName) :
     outResult = "self." + masterName.string + "_property"
   case prefsProperty (@lstring propertyName) :
@@ -549,7 +549,7 @@ getter @observablePropertyAST generateGetProperty -> @string outResult {
   case rootPropertyWithOption (@lstring masterName @lstring optionName) :
     outResult = "self.rootObject." + masterName + "_property." + optionName + "_property"
   case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
-    outResult = "self.rootObject." + relationshipName + "_property.addEBObserverOf_" + propertyName
+    outResult = "self.rootObject." + relationshipName + "_property." + propertyName + "_property"
   case signatureProperty (*) :
     outResult = "<< ligne 530 >>"
   case versionProperty (*) :
@@ -567,13 +567,13 @@ getter @observablePropertyAST generateAddObserverCall ?let @bool inPreferences -
   let prefix = if inPreferences then "prefs_" else "self." end
   switch self
   case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = prefix + controllerName.string + "." + propertyName + "_property.addEBObserver"
+    outResult = prefix + controllerName.string + ".addEBObserverOf_" + propertyName
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = prefix + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.addEBObserver"
   case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = prefix + controllerName.string + "." + propertyName + "_property.addEBObserverOf_" + secondaryPropertyName 
   case selfControllerOneProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = prefix + controllerName.string + "." + propertyName + "_property.addEBObserverOf_<<4>>" 
+    outResult = prefix + controllerName.string + "." + propertyName + "_property.<<4>>" 
   case selfWithoutProperty (*) :
     outResult = "" # Do not generate add observer
   case selfProperty (@lstring masterName) :
@@ -583,7 +583,7 @@ getter @observablePropertyAST generateAddObserverCall ?let @bool inPreferences -
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
     outResult = prefix + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
   case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
-    outResult = prefix + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
+    outResult = prefix + masterName.string + "_property." + elementPropertyName + "_property.addEBObserver"
   case selfPropertyNone (@lstring masterName) :
     outResult = prefix + masterName.string + "_property.addEBObserver"
   case prefsProperty (@lstring propertyName) :
@@ -630,7 +630,7 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
     outResult = "self." + masterName.string + "_property.removeEBObserverOf_" + elementPropertyName
   case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
-    outResult = "self." + masterName.string + "_property.removeEBObserverOf_" + elementPropertyName
+    outResult = "self." + masterName.string + "_property." + elementPropertyName + "_property.removeEBObserver"
   case selfPropertyNone (@lstring masterName) :
     outResult = "self." + masterName.string + "_property.removeEBObserver"
   case prefsProperty (@lstring propertyName) :

@@ -448,8 +448,8 @@ override getter @atomicProxyGeneration configurationCode ?let @bool unused inPre
   result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (_ inValue : " + [mType swiftTypeName] + ", _ inWindow : NSWindow?) -> Bool in\n"
   result += "      return self?." + mObservedRelationshipName + "?." + mObservedPropertyName + "_property.validateAndSetProp (inValue, windowForSheet: inWindow) ?? false\n"
   result += "    }\n"
-  result += "    self." + mObservedRelationshipName + "_property.addEBObserverOf_" + mObservedPropertyName
-     + " (self." + mPropertyName + "_property)\n"
+  result += "    self." + mObservedRelationshipName + "_property." + mObservedPropertyName
+     + "_property.addEBObserver (self." + mPropertyName + "_property)\n"
 }
 
 #·······················································································································
@@ -459,8 +459,8 @@ override getter @atomicProxyGeneration terminationCode ?let @bool unused inPrefe
   result += "    self." + mPropertyName + "_property.mReadModelFunction = nil\n"
   result += "    self." + mPropertyName + "_property.mWriteModelFunction = nil\n"
   result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = nil\n"
-  result += "    self." + mObservedRelationshipName + "_property.removeEBObserverOf_" + mObservedPropertyName
-     + " (self." + mPropertyName + "_property)\n"
+  result += "    self." + mObservedRelationshipName + "_property." + mObservedPropertyName
+  result += "_property.removeEBObserver (self." + mPropertyName + "_property)\n"
 }
 
 #·······················································································································
