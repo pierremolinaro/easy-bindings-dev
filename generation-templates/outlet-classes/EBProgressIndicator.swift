@@ -21,12 +21,9 @@ class EBProgressIndicator : NSProgressIndicator, EBUserClassNameProtocol {
     super.init (frame: frame)
     noteObjectAllocation (self)
   }
-  
+
   //····················································································································
 
-  deinit {
-    noteObjectDeallocation (self)
-  }
 }
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -21,12 +21,6 @@ class EBColorWell : NSColorWell, EBUserClassNameProtocol {
     super.init (frame: frame)
     noteObjectAllocation (self)
   }
-  
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
 
   //····················································································································
   //  color binding
@@ -84,7 +78,7 @@ final class Controller_EBColorWell_color : EBSimpleController {
   }
 
   //····················································································································
-  
+
   override func unregister () {
     super.unregister ()
     self.mOutlet.target = nil

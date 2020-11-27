@@ -58,14 +58,6 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
   }
 
   //····················································································································
-  //    deinit
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
-
-  //····················································································································
   //    ebUndoManager
   //····················································································································
 
@@ -163,7 +155,9 @@ class EBManagedDocument : NSDocument, EBUserClassNameProtocol {
     let startLoadFile = Date ()
     let documentData = try loadEasyBindingFile (fromData: data, undoManager: self.ebUndoManager)
     self.mManagedDocumentFileFormat = documentData.documentFileFormat
-    Swift.print ("Load File \(Date ().timeIntervalSince (startLoadFile) * 1000.0) ms, format \(documentData.documentFileFormat.string)")
+    if LOG_OPERATION_DURATION {
+      Swift.print ("Load File \(Date ().timeIntervalSince (startLoadFile) * 1000.0) ms, format \(documentData.documentFileFormat.string)")
+    }
   //--- Store Status
     self.mReadMetadataStatus = documentData.documentMetadataStatus
   //--- Store metadata dictionary

@@ -47,6 +47,21 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
     if !self.wantsLayer {
       presentErrorWindow (#file, #line, "EBGraphicView requires layer")
     }
+    self.installPlacards ()
+    self.addEndLiveMagnificationObserver ()
+    self.updateViewFrameAndBounds ()
+  //--- Track flags changed events, event if view is not first responder
+    self.mEventMonitor = NSEvent.addLocalMonitorForEvents (matching: .flagsChanged) { [weak self] inEvent in
+      if let me = self {
+        let unalignedLocationInView = me.convert (inEvent.locationInWindow, from: nil)
+        if me.bounds.contains (unalignedLocationInView), let isKeyWindow = me.window?.isKeyWindow, isKeyWindow {
+          me.flagsChanged (with: inEvent)
+        }else{
+          me.removeXYHelperWindow ()
+        }
+      }
+      return inEvent
+    }
   }
 
   //····················································································································
@@ -59,12 +74,6 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
       name: NSView.frameDidChangeNotification,
       object: self
     )
-  }
-
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
   }
 
   //····················································································································
@@ -86,6 +95,10 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   //····················································································································
 
   final var mDrawFrameIssue = true
+
+  //····················································································································
+
+  private var mEventMonitor : Any? = nil // For tracking option key change
 
   //····················································································································
   // MARK: -
@@ -472,8 +485,10 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   //····················································································································
 
   final internal var mZoomPopUpButton : NSPopUpButton? = nil
-  final internal var mXPlacard : NSTextField? = nil
-  final internal var mYPlacard : NSTextField? = nil
+  final internal var mZoomToFitButton : NSButton? = nil
+  final internal var mHelperTextField : NSTextField? = nil
+  final var mHelperStringForOptionModifier : String? = nil
+  final internal var mXYwindow : NSWindow? = nil
 
   //····················································································································
   // MARK: -

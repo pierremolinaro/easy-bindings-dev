@@ -23,12 +23,6 @@ import Cocoa
     self.isEditable = false
     noteObjectAllocation (self)
   }
-  
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
 
   //····················································································································
   //  $valueObserver binding
@@ -87,7 +81,7 @@ final class Controller_EBDoubleObserverField_valueObserver : EBSimpleController 
   }
 
   //····················································································································
-  
+
   override func unregister () {
     super.unregister ()
     self.mOutlet.target = nil

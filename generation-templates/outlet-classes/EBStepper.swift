@@ -23,12 +23,6 @@ class EBStepper : NSStepper, EBUserClassNameProtocol {
     super.init (frame: frame)
     noteObjectAllocation (self)
   }
-  
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
 
   //····················································································································
 

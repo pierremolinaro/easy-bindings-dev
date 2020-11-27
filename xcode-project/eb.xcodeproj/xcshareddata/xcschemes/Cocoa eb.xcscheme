@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1170"
+   LastUpgradeVersion = "1230"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "48FAC1B4A0F97AA554886EC8"
+               BlueprintIdentifier = "472EC9115B10C292EF8BC986"
                BuildableName = "CocoaEb.app"
                BlueprintName = "Cocoa eb"
                ReferencedContainer = "container:eb.xcodeproj">
@@ -30,7 +30,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "48FAC1B4A0F97AA554886EC8"
+            BlueprintIdentifier = "472EC9115B10C292EF8BC986"
             BuildableName = "CocoaEb.app"
             BlueprintName = "Cocoa eb"
             ReferencedContainer = "container:eb.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "48FAC1B4A0F97AA554886EC8"
+            BlueprintIdentifier = "472EC9115B10C292EF8BC986"
             BuildableName = "CocoaEb.app"
             BlueprintName = "Cocoa eb"
             ReferencedContainer = "container:eb.xcodeproj">
@@ -72,7 +72,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "48FAC1B4A0F97AA554886EC8"
+            BlueprintIdentifier = "472EC9115B10C292EF8BC986"
             BuildableName = "CocoaEb.app"
             BlueprintName = "Cocoa eb"
             ReferencedContainer = "container:eb.xcodeproj">

@@ -25,12 +25,6 @@ class EBScrollView : NSScrollView, EBUserClassNameProtocol {
   }
 
   //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
-
-  //····················································································································
   // MARK: -
   //····················································································································
 
@@ -51,7 +45,15 @@ class EBScrollView : NSScrollView, EBUserClassNameProtocol {
   // MARK: -
   //····················································································································
 
-  internal var mPlacardArray = [NSView] ()
+//  final override func tile () { // tile is called during live resizing
+//    super.tile ()
+//    if let graphicView = self.documentView as? EBGraphicView {
+//      graphicView.scrollViewIsLiveResizing ()
+//    }
+//    if let focusView = self.superview as? EBFocusRingView {
+//      focusView.viewIsLiveResing ()
+//    }
+//  }
 
   //····················································································································
   // MARK: -

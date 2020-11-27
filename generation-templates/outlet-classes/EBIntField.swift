@@ -27,12 +27,6 @@ class EBIntField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
   }
 
   //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
-
-  //····················································································································
   //    NSTextFieldDelegate delegate function
   //····················································································································
 
@@ -58,7 +52,7 @@ class EBIntField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
   //····················································································································
   //    NSTextFieldDelegate delegate function
   //····················································································································
-  
+
   func control (_ control : NSControl,
                 didFailToFormatString string : String,
                 errorDescription error : String?) -> Bool {
@@ -169,7 +163,7 @@ final class Controller_EBIntField_value : EBSimpleController {
   }
 
   //····················································································································
-  
+
   override func unregister () {
     super.unregister ()
     self.mOutlet.target = nil

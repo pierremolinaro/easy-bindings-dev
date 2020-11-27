@@ -278,8 +278,6 @@ override getter @atomicPropertyGeneration propertyDeclarationCode
     result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
     result += "  //   Atomic property: " + mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  // final let " + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
-    result += " (defaultValue: " + mDefaultValueInSwift + ")\n\n"
     result += "  final let " + mPropertyName + "_property : EBStoredProperty_" + [mType swiftTypeName] + "\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  final func reset_" + mPropertyName + "_toDefaultValue () {\n"

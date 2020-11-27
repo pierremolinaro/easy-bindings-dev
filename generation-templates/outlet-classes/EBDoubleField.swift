@@ -23,12 +23,6 @@ class EBDoubleField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate 
     self.delegate = self
     noteObjectAllocation (self)
   }
-  
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
-  }
 
   //····················································································································
   //    NSTextFieldDelegate delegate function
@@ -56,7 +50,7 @@ class EBDoubleField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate 
   //····················································································································
   //    NSTextFieldDelegate delegate function
   //····················································································································
-  
+
   func control (_ control: NSControl,
                 didFailToFormatString string: String,
                 errorDescription error: String?) -> Bool {
@@ -153,7 +147,7 @@ final class Controller_EBDoubleField_value : EBSimpleController {
   }
 
   //····················································································································
-  
+
   override func unregister () {
     super.unregister ()
     self.mOutlet.target = nil

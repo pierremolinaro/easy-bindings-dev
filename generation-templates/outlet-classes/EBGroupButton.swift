@@ -10,7 +10,7 @@ import Cocoa
   @IBOutlet private var mMasterView : NSView? = nil
   @IBOutlet private var mView : NSView? = nil
   private var mWindowDefaultTitle : String = ""
-  
+
   //····················································································································
 
   required init? (coder : NSCoder) {
@@ -33,7 +33,7 @@ import Cocoa
     super.init (frame: frame)
     noteObjectAllocation (self)
   }
-  
+
   //····················································································································
 
   override func sendAction (_ action : Selector?, to : Any?) -> Bool {
@@ -74,12 +74,6 @@ import Cocoa
         masterView.window!.setFrame (r, display:true, animate:true)
       }
     }
-  }
-
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
   }
 
   //····················································································································

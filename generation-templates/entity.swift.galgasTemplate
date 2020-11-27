@@ -58,12 +58,6 @@ for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty initCode]
 end
 %    super.init (ebUndoManager)
-    self.configureObject ()
-  }
-  
-  //····················································································································
-
-  private final func configureObject () {
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !false]

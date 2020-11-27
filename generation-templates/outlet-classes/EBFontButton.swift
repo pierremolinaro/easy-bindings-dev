@@ -8,7 +8,7 @@ import Cocoa
 
 class EBFontButton : NSButton, EBUserClassNameProtocol {
   private var mFont : NSFont? = nil
-  
+
   //····················································································································
 
   required init? (coder : NSCoder) {
@@ -22,7 +22,7 @@ class EBFontButton : NSButton, EBUserClassNameProtocol {
     super.init (frame: frame)
     noteObjectAllocation (self)
   }
-  
+
   //····················································································································
 
   override func sendAction (_ action : Selector?, to : Any?) -> Bool {
@@ -57,12 +57,6 @@ class EBFontButton : NSButton, EBUserClassNameProtocol {
     self.mFont = font
     let newTitle = String (format:"%@ - %g pt.", font.displayName!, font.pointSize)
     self.title = newTitle
-  }
-
-  //····················································································································
-
-  deinit {
-    noteObjectDeallocation (self)
   }
 
   //····················································································································
@@ -115,7 +109,7 @@ class Controller_EBFontButton_fontValue : EBSimpleController {
   }
 
   //····················································································································
-  
+
   override func unregister () {
     super.unregister ()
     self.mOutlet.target = nil

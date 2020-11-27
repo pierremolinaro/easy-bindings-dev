@@ -123,8 +123,6 @@ func dataForBinarySaveOperation (from inDocumentData : EBDocumentData) throws ->
     object.saveIntoDictionary (d)
     saveDataArray.append (d)
   }
-
-//  let dataArray = self.dataForSavingFromRootObject ()
   let documentData = try PropertyListSerialization.data (fromPropertyList: saveDataArray, format: .binary, options: 0)
   fileBinaryData.append (6)
   fileBinaryData.appendAutosizedData (documentData)
