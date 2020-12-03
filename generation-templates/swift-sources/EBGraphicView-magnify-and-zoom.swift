@@ -13,7 +13,7 @@ extension EBGraphicView {
   final func applyZoom () {
     if let scrollView = self.enclosingScrollView {
       if self.mZoomPropertyCache == 0 {
-        let box = self.objectsAndIssueBoundingBox
+        let box = self.bounds
         if !box.isEmpty {
           scrollView.magnify (toFit: box)
         }
@@ -53,21 +53,6 @@ extension EBGraphicView {
     let newZoom = Int ((self.actualScale * 100.0).rounded (.toNearestOrEven))
     self.mZoomController?.updateModel (self, newZoom)
   }
-
-  //····················································································································
-  //  Live Resize
-  //····················································································································
-
-//  final internal func scrollViewIsLiveResizing () {
-//    if self.mZoomPropertyCache == 0, let scrollView = self.enclosingScrollView {
-//      let box = self.objectsAndIssueBoundingBox
-//      if !box.isEmpty {
-//        scrollView.magnify (toFit: box)
-//      }
-//      let zoomTitle = "\(Int ((self.actualScale * 100.0).rounded (.toNearestOrEven))) %"
-//      self.mZoomPopUpButton?.menu?.item (at:0)?.title = zoomTitle
-//    }
-//  }
 
   //····················································································································
 

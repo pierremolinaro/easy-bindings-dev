@@ -121,7 +121,8 @@ private proc generateSwiftApplicationFiles
 {
   @stringlist swiftFiles = {
     !"main",
-    !"EBAllocationDebug",
+    !"EBAllocationDebug-debug",
+    !"EBAllocationDebug-release",
     !"EBUndoManager",
     !"property-explorer",
     !"EBSignatureObserverProtocol",

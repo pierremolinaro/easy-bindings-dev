@@ -10,20 +10,28 @@ class DefaultBehaviourOnMouseDown {
 
   //····················································································································
 
-  public func onMouseDraggedOrModifierFlagsChanged (_ inMouseDraggedUnalignedLocation : NSPoint,
-                                                    _ inModifierFlags : NSEvent.ModifierFlags,
-                                                    _ inGraphicView : EBGraphicView) {
+  func onMouseDraggedOrModifierFlagsChanged (mouseDraggedUnalignedLocation inMouseDraggedUnalignedLocation : NSPoint,
+                                             _ inModifierFlags : NSEvent.ModifierFlags,
+                                             _ inGraphicView : EBGraphicView) {
   }
 
   //····················································································································
 
-  public func abortOperation (_ inGraphicView : EBGraphicView) {
+  func abortMouseOperation (_ inGraphicView : EBGraphicView) {
   }
 
   //····················································································································
 
-  public func onMouseUp (_ inUnalignedMouseUpLocation : NSPoint,
-                         _ inGraphicView : EBGraphicView) {
+  func helperString (_ inMouseDraggedUnalignedLocation : NSPoint,
+                     _ inModifierFlags : NSEvent.ModifierFlags,
+                     _ inGraphicView : EBGraphicView) -> String {
+    return inGraphicView.defaultHelperString (with: inMouseDraggedUnalignedLocation, inModifierFlags)
+  }
+
+  //····················································································································
+
+  func onMouseUp (_ inUnalignedMouseUpLocation : NSPoint,
+                  _ inGraphicView : EBGraphicView) {
   }
 
   //····················································································································
@@ -36,23 +44,47 @@ final class MouseDownOutsideAnyObjectBehaviour : DefaultBehaviourOnMouseDown { /
   //····················································································································
 
   private let mMouseDownUnalignedLocation : NSPoint
+  private var mOperationInProgress : Bool
 
   //····················································································································
 
-  public init (_ inUnalignedLocation : NSPoint, _ inViewController : EBGraphicViewControllerProtocol) {
+  init (_ inUnalignedLocation : NSPoint, _ inViewController : EBGraphicViewControllerProtocol) {
     self.mMouseDownUnalignedLocation = inUnalignedLocation
+    self.mOperationInProgress = true
     inViewController.clearSelection ()
   }
 
   //····················································································································
 
-  public override func onMouseDraggedOrModifierFlagsChanged (_ inMouseDraggedUnalignedLocation : NSPoint,
-                                                             _ inModifierFlags : NSEvent.ModifierFlags,
-                                                             _ inGraphicView : EBGraphicView) {
-    let r = NSRect (point: self.mMouseDownUnalignedLocation, point: inMouseDraggedUnalignedLocation)
-    inGraphicView.mSelectionRectangle = r
-    let indexSet : Set <Int> = inGraphicView.indexesOfObjects (intersecting: r)
-    inGraphicView.viewController?.setSelection (objectsWithIndexes: Array (indexSet))
+  override func onMouseDraggedOrModifierFlagsChanged (mouseDraggedUnalignedLocation inMouseDraggedUnalignedLocation : NSPoint,
+                                                      _ inModifierFlags : NSEvent.ModifierFlags,
+                                                      _ inGraphicView : EBGraphicView) {
+    if self.mOperationInProgress {
+      let r = NSRect (point: self.mMouseDownUnalignedLocation, point: inMouseDraggedUnalignedLocation)
+      inGraphicView.mSelectionRectangle = r
+      let indexSet : Set <Int> = inGraphicView.indexesOfObjects (intersecting: r)
+      inGraphicView.viewController?.setSelection (objectsWithIndexes: Array (indexSet))
+    }
+  }
+
+  //····················································································································
+
+  override func helperString (_ inMouseDraggedUnalignedLocation : NSPoint,
+                              _ inModifierFlags : NSEvent.ModifierFlags,
+                              _ inGraphicView : EBGraphicView) -> String {
+    if self.mOperationInProgress {
+      return "Dragging mouse selects objects intersection selection rectangle; ESC cancels the operation"
+    }else{
+      return "Operation has been cancelled"
+    }
+  }
+
+  //····················································································································
+
+  override func abortMouseOperation (_ inGraphicView : EBGraphicView) {
+    self.mOperationInProgress = false
+    inGraphicView.mSelectionRectangle = nil
+    inGraphicView.viewController?.setSelection (objectsWithIndexes: [])
   }
 
   //····················································································································
@@ -65,6 +97,7 @@ final class MouseDownOnObjectBehaviour : DefaultBehaviourOnMouseDown { // Mouse 
 
   //····················································································································
 
+  private var mLastMouseDraggedUnalignedLocation : NSPoint
   private var mLastMouseDraggedAlignedLocation : CanariPoint
   private let mObjectIndex : Int
   private let mPossibleKnobIndex : Int? //  knob index
@@ -72,11 +105,12 @@ final class MouseDownOnObjectBehaviour : DefaultBehaviourOnMouseDown { // Mouse 
 
   //····················································································································
 
-  public init (_ inUnalignedLocation : NSPoint,
-               objectIndex inObjectIndex : Int,
-               possibleKnobIndex inPossibleKnobIndex : Int?,
-               _ inGraphicView : EBGraphicView,
-               _ inViewController : EBGraphicViewControllerProtocol) {
+  init (_ inUnalignedLocation : NSPoint,
+        objectIndex inObjectIndex : Int,
+        possibleKnobIndex inPossibleKnobIndex : Int?,
+        _ inGraphicView : EBGraphicView,
+        _ inViewController : EBGraphicViewControllerProtocol) {
+    self.mLastMouseDraggedUnalignedLocation = inUnalignedLocation
     self.mLastMouseDraggedAlignedLocation = inUnalignedLocation.canariPointAligned (onCanariGrid: inGraphicView.mouseGridInCanariUnit)
     self.mObjectIndex = inObjectIndex
     let objectWasSelected = inViewController.selectedIndexesSet.contains (inObjectIndex)
@@ -90,11 +124,15 @@ final class MouseDownOnObjectBehaviour : DefaultBehaviourOnMouseDown { // Mouse 
 
   //····················································································································
 
-  public override func onMouseDraggedOrModifierFlagsChanged (_ inMouseDraggedUnalignedLocation : NSPoint,
-                                                             _ inModifierFlags : NSEvent.ModifierFlags,
-                                                             _ inGraphicView : EBGraphicView) {
+  override func onMouseDraggedOrModifierFlagsChanged (mouseDraggedUnalignedLocation inMouseDraggedUnalignedLocation : NSPoint,
+                                                      _ inModifierFlags : NSEvent.ModifierFlags,
+                                                      _ inGraphicView : EBGraphicView) {
+    let proposedUnalignedTranslation = NSPoint (
+      x: inMouseDraggedUnalignedLocation.x - self.mLastMouseDraggedUnalignedLocation.x,
+      y: inMouseDraggedUnalignedLocation.y - self.mLastMouseDraggedUnalignedLocation.y
+    )
     let mouseDraggedCanariAlignedLocation = inMouseDraggedUnalignedLocation.canariPointAligned (onCanariGrid: inGraphicView.mouseGridInCanariUnit)
-    let proposedTranslation = CanariPoint (
+    let proposedAlignedTranslation = CanariPoint (
       x: mouseDraggedCanariAlignedLocation.x - self.mLastMouseDraggedAlignedLocation.x,
       y: mouseDraggedCanariAlignedLocation.y - self.mLastMouseDraggedAlignedLocation.y
     )
@@ -103,19 +141,29 @@ final class MouseDownOnObjectBehaviour : DefaultBehaviourOnMouseDown { // Mouse 
       inGraphicView.viewController?.ebUndoManager?.beginUndoGrouping ()
     }
     inGraphicView.guideFor (objectIndexes: [self.mObjectIndex])
-    inGraphicView.drag (
-      possibleKnob: inModifierFlags.contains(.command) ? nil : self.mPossibleKnobIndex,
+    inGraphicView.dragObject (
+      possibleKnob: inModifierFlags.contains (.command) ? nil : self.mPossibleKnobIndex,
       objectIndex: self.mObjectIndex,
-      proposedTranslation,
-      self.mLastMouseDraggedAlignedLocation
+      proposedUnalignedTranslation: proposedUnalignedTranslation.canariPoint,
+      proposedAlignedTranslation: proposedAlignedTranslation,
+      alignedLastMouseDraggedLocation: self.mLastMouseDraggedAlignedLocation,
+      unalignedLastMouseDraggedLocation: inMouseDraggedUnalignedLocation.canariPoint
     )
     self.mLastMouseDraggedAlignedLocation = mouseDraggedCanariAlignedLocation
   }
 
   //····················································································································
 
-  override public func onMouseUp (_ inUnalignedMouseUpLocation : NSPoint,
-                                  _ inGraphicView : EBGraphicView) {
+  override func helperString (_ inMouseDraggedUnalignedLocation : NSPoint,
+                              _ inModifierFlags : NSEvent.ModifierFlags,
+                              _ inGraphicView : EBGraphicView) -> String {
+    return "Dragging mouse inverts selection of objects intersecting selection rectangle"
+  }
+
+  //····················································································································
+
+  override func onMouseUp (_ inUnalignedMouseUpLocation : NSPoint,
+                           _ inGraphicView : EBGraphicView) {
     if self.mBeginUndoGroupingDone {
       inGraphicView.viewController?.ebUndoManager?.endUndoGrouping ()
     }
@@ -127,7 +175,7 @@ final class MouseDownOnObjectBehaviour : DefaultBehaviourOnMouseDown { // Mouse 
 
 //----------------------------------------------------------------------------------------------------------------------
 
-final class ShiftMouseDownBehaviour : DefaultBehaviourOnMouseDown { // Mouse down without only shift modifier
+final class ShiftMouseDownBehaviour : DefaultBehaviourOnMouseDown { // Mouse down with only shift modifier
 
   //····················································································································
 
@@ -137,7 +185,7 @@ final class ShiftMouseDownBehaviour : DefaultBehaviourOnMouseDown { // Mouse dow
 
   //····················································································································
 
-  public init (_ inUnalignedLocation : NSPoint, _ inPossibleObjectIndex : Int?, _ inViewController : EBGraphicViewControllerProtocol) {
+  init (_ inUnalignedLocation : NSPoint, _ inPossibleObjectIndex : Int?, _ inViewController : EBGraphicViewControllerProtocol) {
     self.mMouseDownUnalignedLocation = inUnalignedLocation
     self.mSelectedObjectIndexSet = inViewController.selectedIndexesSet
     self.mPossibleObjectIndex = inPossibleObjectIndex
@@ -148,13 +196,21 @@ final class ShiftMouseDownBehaviour : DefaultBehaviourOnMouseDown { // Mouse dow
 
   //····················································································································
 
-  public override func onMouseDraggedOrModifierFlagsChanged (_ inMouseDraggedUnalignedLocation : NSPoint,
-                                                             _ inModifierFlags : NSEvent.ModifierFlags,
-                                                             _ inGraphicView : EBGraphicView) {
+  override func onMouseDraggedOrModifierFlagsChanged (mouseDraggedUnalignedLocation inMouseDraggedUnalignedLocation : NSPoint,
+                                                      _ inModifierFlags : NSEvent.ModifierFlags,
+                                                      _ inGraphicView : EBGraphicView) {
     let r = NSRect (point: self.mMouseDownUnalignedLocation, point: inMouseDraggedUnalignedLocation)
     inGraphicView.mSelectionRectangle = r
     let indexSet : Set <Int> = inGraphicView.indexesOfObjects (intersecting: r)
     inGraphicView.viewController?.setSelection (objectsWithIndexes: Array (indexSet.symmetricDifference (self.mSelectedObjectIndexSet)))
+  }
+
+  //····················································································································
+
+  override func helperString (_ inMouseDraggedUnalignedLocation : NSPoint,
+                              _ inModifierFlags : NSEvent.ModifierFlags,
+                              _ inGraphicView : EBGraphicView) -> String {
+    return "Dragging mouse inverts selection of objects intersecting selection rectangle"
   }
 
   //····················································································································
@@ -171,9 +227,9 @@ final class OptionMouseDownBehaviour : DefaultBehaviourOnMouseDown { // Mouse do
 
   //····················································································································
 
-  public init (_ inUnalignedLocation : NSPoint,
-               _ inGraphicView : EBGraphicView,
-               _ inViewController : EBGraphicViewControllerProtocol) {
+  init (_ inUnalignedLocation : NSPoint,
+        _ inGraphicView : EBGraphicView,
+        _ inViewController : EBGraphicViewControllerProtocol) {
     self.mOperationInProgress = true
     inViewController.ebUndoManager?.beginUndoGrouping ()
     inGraphicView.mStartOptionMouseDownCallback? (inUnalignedLocation)
@@ -181,9 +237,9 @@ final class OptionMouseDownBehaviour : DefaultBehaviourOnMouseDown { // Mouse do
 
   //····················································································································
 
-  public override func onMouseDraggedOrModifierFlagsChanged (_ inMouseDraggedUnalignedLocation : NSPoint,
-                                                             _ inModifierFlags : NSEvent.ModifierFlags,
-                                                             _ inGraphicView : EBGraphicView) {
+  override func onMouseDraggedOrModifierFlagsChanged (mouseDraggedUnalignedLocation inMouseDraggedUnalignedLocation : NSPoint,
+                                                      _ inModifierFlags : NSEvent.ModifierFlags,
+                                                      _ inGraphicView : EBGraphicView) {
     if self.mOperationInProgress {
       inGraphicView.mContinueOptionMouseDraggedCallback? (inMouseDraggedUnalignedLocation, inModifierFlags)
     }
@@ -191,7 +247,7 @@ final class OptionMouseDownBehaviour : DefaultBehaviourOnMouseDown { // Mouse do
 
   //····················································································································
 
-  override public func abortOperation (_ inGraphicView : EBGraphicView) {
+  override func abortMouseOperation (_ inGraphicView : EBGraphicView) {
     if self.mOperationInProgress {
       self.mOperationInProgress = false
       inGraphicView.mAbortOptionMouseOperationCallback? ()
@@ -202,8 +258,22 @@ final class OptionMouseDownBehaviour : DefaultBehaviourOnMouseDown { // Mouse do
 
   //····················································································································
 
-  override public func onMouseUp (_ inUnalignedMouseUpLocation : NSPoint,
-                                  _ inGraphicView : EBGraphicView) {
+  override func helperString (_ inMouseDraggedUnalignedLocation : NSPoint,
+                              _ inModifierFlags : NSEvent.ModifierFlags,
+                              _ inGraphicView : EBGraphicView) -> String {
+    if !self.mOperationInProgress {
+      return "Operation has been cancelled"
+    }else if let str = inGraphicView.mHelperStringOptionMouseOperationCallback? (inModifierFlags) {
+      return str
+    }else{
+      return "Operation in progress"
+    }
+  }
+
+  //····················································································································
+
+  override func onMouseUp (_ inUnalignedMouseUpLocation : NSPoint,
+                           _ inGraphicView : EBGraphicView) {
     if self.mOperationInProgress {
       let accepts = inGraphicView.mStopOptionMouseUpCallback? (inUnalignedMouseUpLocation) ?? true
       inGraphicView.viewController?.ebUndoManager?.endUndoGrouping ()
@@ -228,16 +298,16 @@ final class ZoomRegionBehaviour : DefaultBehaviourOnMouseDown { // Mouse down wi
 
   //····················································································································
 
-  public init (_ inUnalignedLocation : NSPoint, _ inViewController : EBGraphicViewControllerProtocol) {
+  init (_ inUnalignedLocation : NSPoint, _ inViewController : EBGraphicViewControllerProtocol) {
     self.mMouseDownUnalignedLocation = inUnalignedLocation
     self.mOperationInProgress = true
   }
 
   //····················································································································
 
-  public override func onMouseDraggedOrModifierFlagsChanged (_ inMouseDraggedUnalignedLocation : NSPoint,
-                                                             _ inModifierFlags : NSEvent.ModifierFlags,
-                                                             _ inGraphicView : EBGraphicView) {
+  override func onMouseDraggedOrModifierFlagsChanged (mouseDraggedUnalignedLocation inMouseDraggedUnalignedLocation : NSPoint,
+                                                      _ inModifierFlags : NSEvent.ModifierFlags,
+                                                      _ inGraphicView : EBGraphicView) {
     if self.mOperationInProgress {
       let r = NSRect (point: self.mMouseDownUnalignedLocation, point: inMouseDraggedUnalignedLocation)
       inGraphicView.mSelectionRectangle = r
@@ -246,7 +316,7 @@ final class ZoomRegionBehaviour : DefaultBehaviourOnMouseDown { // Mouse down wi
 
   //····················································································································
 
-  override public func abortOperation (_ inGraphicView : EBGraphicView) {
+  override func abortMouseOperation (_ inGraphicView : EBGraphicView) {
     if self.mOperationInProgress {
       self.mOperationInProgress = false
       inGraphicView.mSelectionRectangle = nil
@@ -255,8 +325,20 @@ final class ZoomRegionBehaviour : DefaultBehaviourOnMouseDown { // Mouse down wi
 
   //····················································································································
 
-  override public func onMouseUp (_ inUnalignedMouseUpLocation : NSPoint,
-                                  _ inGraphicView : EBGraphicView) {
+  override func helperString (_ inMouseDraggedUnalignedLocation : NSPoint,
+                              _ inModifierFlags : NSEvent.ModifierFlags,
+                              _ inGraphicView : EBGraphicView) -> String {
+    if self.mOperationInProgress {
+      return "Dragging mouse defines zoomed region; ESC cancels the operation"
+    }else{
+      return "Operation has been cancelled"
+    }
+  }
+
+  //····················································································································
+
+  override func onMouseUp (_ inUnalignedMouseUpLocation : NSPoint,
+                           _ inGraphicView : EBGraphicView) {
     if self.mOperationInProgress,
           let scrollView = inGraphicView.enclosingScrollView,
           let r = inGraphicView.mSelectionRectangle { //, r.size.width > 0.0, r.size.height > 0.0 {

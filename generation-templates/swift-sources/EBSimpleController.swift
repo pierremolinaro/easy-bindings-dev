@@ -17,7 +17,7 @@ class EBSimpleController : EBOutletEvent {
   //····················································································································
 
   init (observedObjects : [EBObservableObjectProtocol], callBack: @escaping () -> Void) {
-    mPrivateObservedObjects = observedObjects
+    self.mPrivateObservedObjects = observedObjects
     super.init ()
     self.mEventCallBack = callBack
     for object in observedObjects {
@@ -36,11 +36,11 @@ class EBSimpleController : EBOutletEvent {
 
   //····················································································································
 
-  override func computeAsynchronously (_ inOperationQueue : OperationQueue) {
-    for object in self.mPrivateObservedObjects {
-      object.computePropertyAsynchronously (inOperationQueue)
-    }
-  }
+//  override func computeAsynchronously (_ inOperationQueue : OperationQueue) {
+//    for object in self.mPrivateObservedObjects {
+//      object.computePropertyAsynchronously (inOperationQueue)
+//    }
+//  }
 
   //····················································································································
 

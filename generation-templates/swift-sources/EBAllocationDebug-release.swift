@@ -5,23 +5,28 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
+//    EBUserClassNameProtocol protocol
+//----------------------------------------------------------------------------------------------------------------------
 
-protocol EBObservableObjectProtocol {
-  func addEBObserver (_ inObserver : EBEvent)
-  func removeEBObserver (_ inObserver : EBEvent)
-//  func computePropertyAsynchronously (_ inOperationQueue : OperationQueue)
+protocol EBUserClassNameProtocol : class {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//    Public routines
+//----------------------------------------------------------------------------------------------------------------------
+
+func noteObjectAllocation (_ inObject : EBUserClassNameProtocol) {  // NOT ALWAYS IN MAIN THREAD
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-protocol EBReadObservableEnumProtocol : EBObservableObjectProtocol {
-  func rawValue () -> Int?
+func reuseTableViewCells () -> Bool {
+  return true
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-protocol EBReadWriteObservableEnumProtocol : EBReadObservableEnumProtocol {
-  func setFrom (rawValue : Int)
+func addItemToDebugMenu (_ item : NSMenuItem) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------

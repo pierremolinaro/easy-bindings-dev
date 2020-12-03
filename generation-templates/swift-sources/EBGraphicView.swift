@@ -121,6 +121,7 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   final internal var mStartOptionMouseDownCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Void > = nil
   final internal var mContinueOptionMouseDraggedCallback : Optional < (_ inUnalignedMouseLocation : NSPoint, _ inModifierFlags : NSEvent.ModifierFlags) -> Void > = nil
   final internal var mAbortOptionMouseOperationCallback : Optional < () -> Void > = nil
+  final internal var mHelperStringOptionMouseOperationCallback : Optional < (_ inModifierFlags : NSEvent.ModifierFlags) -> String? > = nil
   final internal var mStopOptionMouseUpCallback : Optional < (_ inUnalignedMouseLocation : NSPoint) -> Bool > = nil
 
   //····················································································································
@@ -128,10 +129,12 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   final func setOptionMouseCallbacks (start inStartCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Void,
                                       continue inContinueCallback : @escaping (_ inUnalignedMouseLocation : NSPoint, _ inModifierFlags : NSEvent.ModifierFlags) -> Void,
                                       abort inAbortCallback : @escaping () -> Void,
+                                      helper inHelperCallback : @escaping (_ inModifierFlags : NSEvent.ModifierFlags) -> String?,
                                       stop inStopCallback : @escaping (_ inUnalignedMouseLocation : NSPoint) -> Bool) {
     self.mStartOptionMouseDownCallback = inStartCallback
     self.mContinueOptionMouseDraggedCallback = inContinueCallback
     self.mAbortOptionMouseOperationCallback = inAbortCallback
+    self.mHelperStringOptionMouseOperationCallback = inHelperCallback
     self.mStopOptionMouseUpCallback = inStopCallback
   }
 
@@ -202,6 +205,12 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
 
   final func set (controller inController : EBGraphicViewControllerProtocol?) {
     self.mViewController = inController
+  }
+
+  //····················································································································
+
+  final func objectWithIndexIsSelected (_ inIndex : Int) -> Bool {
+    return self.mViewController?.selectedIndexesSet.contains (inIndex) ?? false
   }
 
   //····················································································································
@@ -453,7 +462,7 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
     if !self.mDeferredUpdateViewFrameAndBoundsRegistered && (NSEvent.pressedMouseButtons == 0) {
       var candidateBounds = NSRect () // For including point (0, 0)
       candidateBounds = candidateBounds.union (self.objectsAndIssueBoundingBox)
-      candidateBounds = candidateBounds.union (self.mMinimumRectangle)
+//      candidateBounds = candidateBounds.union (self.mMinimumRectangle)
       if let ciImage = self.mBackgroundImage {
         let bp = NSBezierPath (rect: ciImage.extent)
         let transformedBP = self.mBackgroundImageAffineTransform.transform (bp)
@@ -465,7 +474,7 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
           self.mDeferredUpdateViewFrameAndBoundsRegistered = false
           var newBounds = NSRect () // For including point (0, 0)
           newBounds = newBounds.union (self.objectsAndIssueBoundingBox)
-          newBounds = newBounds.union (self.mMinimumRectangle)
+//          newBounds = newBounds.union (self.mMinimumRectangle)
           if let ciImage = self.mBackgroundImage {
             let bp = NSBezierPath (rect: ciImage.extent)
             let transformedBP = self.mBackgroundImageAffineTransform.transform (bp)
@@ -473,7 +482,7 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
           }
           self.frame.size = newBounds.size
           self.bounds = newBounds
-          self.setNeedsDisplay (self.frame)
+          self.needsDisplay = true
           self.applyZoom ()
         }
       }
@@ -526,16 +535,16 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   // MARK: -
   //····················································································································
 
-  final private var mMinimumRectangle = NSRect ()
+//  final private var mMinimumRectangle = NSRect ()
 
   //····················································································································
 
-  final func set (minimumRectangle inRect : NSRect) {
-    if self.mMinimumRectangle != inRect {
-      self.mMinimumRectangle = inRect
-      self.updateViewFrameAndBounds ()
-    }
-  }
+//  final func set (minimumRectangle inRect : NSRect) {
+//    if self.mMinimumRectangle != inRect {
+//      self.mMinimumRectangle = inRect
+//      self.updateViewFrameAndBounds ()
+//    }
+//  }
 
   //····················································································································
   // MARK: -
@@ -728,20 +737,23 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   // MARK: -
   //····················································································································
 
-  final var mBackgroundImage : CIImage? = nil
+  final var mBackgroundImage : CIImage? = nil {
+    didSet {
+      self.updateViewFrameAndBounds ()
+      self.needsDisplay = true
+    }
+  }
+
   final var mBackgroundImageDataController : EBSimpleController? = nil
 
   final var mBackgroundImageOpacity : CGFloat = 1.0
   final var mBackgroundImageOpacityController : EBSimpleController? = nil
 
-  final var mBackgroundImageAffineTransform = NSAffineTransform ()
-
-  //····················································································································
-
-  final func set (backgroundImageAffineTransform inAffineTransform : NSAffineTransform) {
-    self.mBackgroundImageAffineTransform = inAffineTransform
-    self.updateViewFrameAndBounds ()
-    self.needsDisplay = true
+  final var mBackgroundImageAffineTransform = NSAffineTransform () {
+    didSet {
+      self.updateViewFrameAndBounds ()
+      self.needsDisplay = true
+    }
   }
 
   //····················································································································

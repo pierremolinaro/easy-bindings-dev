@@ -611,7 +611,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
        let X = dataDictionary ["X"] as? Int,
        let Y = dataDictionary ["Y"] as? Int {
       var newObjects = [%!ELEMENT_TYPE_NAME%] ()
-      let userSet = OCObjectSet ()
+      let userSet = ObjcObjectSet ()
       for dictionary in array {
         if let object = makeManagedObjectFromDictionary (self.ebUndoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
           object.operationAfterPasting ()
@@ -894,7 +894,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   var canRotate90_property = EBTransientProperty_Bool ()
-  private var mRotate90PointSet = OCCanariPointSet ()
+  private var mRotate90PointSet = ObjcCanariPointSet ()
 
  //····················································································································
 
@@ -916,9 +916,9 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   func rotate90Clockwise () {
     let r = CanariRect (points: Array (self.mRotate90PointSet.points))
-    let userSet = OCObjectSet ()
+    let userSet = ObjcObjectSet ()
     for object in self.selectedArray {
-      object.rotate90Clockwise (from: OCCanariPoint (r.center), userSet: userSet)
+      object.rotate90Clockwise (from: ObjcCanariPoint (canariPoint: r.center), userSet: userSet)
     }
   }
 
@@ -926,9 +926,9 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   func rotate90CounterClockwise () {
     let r = CanariRect (points: Array (self.mRotate90PointSet.points))
-    let userSet = OCObjectSet ()
+    let userSet = ObjcObjectSet ()
     for object in self.selectedArray {
-      object.rotate90CounterClockwise (from: OCCanariPoint (r.center), userSet: userSet)
+      object.rotate90CounterClockwise (from: ObjcCanariPoint (canariPoint: r.center), userSet: userSet)
     }
   }
 
