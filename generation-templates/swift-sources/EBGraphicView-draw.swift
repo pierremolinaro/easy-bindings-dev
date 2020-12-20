@@ -26,7 +26,7 @@ extension EBGraphicView {
       graphicContext?.saveGraphicsState ()
       self.mBackgroundImageAffineTransform.concat ()
       let rImage = ciImage.extent
-      ciImage.draw (at: rImage.origin, from: rImage, operation: .copy, fraction: self.mBackgroundImageOpacity)
+      ciImage.draw (at: rImage.origin, from: rImage, operation: .sourceOver, fraction: self.mBackgroundImageOpacity)
       graphicContext?.restoreGraphicsState ()
     }
     self.drawGrid (inDirtyRect)
@@ -39,6 +39,14 @@ extension EBGraphicView {
       shape.draw (inDirtyRect)
     }
     self.drawIssue (inDirtyRect)
+    if let ciImage = self.mForegroundImage {
+      let graphicContext = NSGraphicsContext.current
+      graphicContext?.saveGraphicsState ()
+      self.mForegroundImageAffineTransform.concat ()
+      let rImage = ciImage.extent
+      ciImage.draw (at: rImage.origin, from: rImage, operation: .sourceOver, fraction: self.mForegroundImageOpacity)
+      graphicContext?.restoreGraphicsState ()
+    }
     self.drawGuideBezierPath (inDirtyRect)
     self.drawSelectionRectangle (inDirtyRect)
     if let shape = self.mOptionalFrontShape {

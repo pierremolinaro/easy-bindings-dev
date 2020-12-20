@@ -194,6 +194,8 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicView"
     swiftFiles += !"EBGraphicView-binding-arrowKeyMagnitude"
     swiftFiles += !"EBGraphicView-binding-backColor"
+    swiftFiles += !"EBGraphicView-binding-backgroundImage"
+    swiftFiles += !"EBGraphicView-binding-foregroundImage"
     swiftFiles += !"EBGraphicView-binding-gridCrossColor"
     swiftFiles += !"EBGraphicView-binding-gridDisplayFactor"
     swiftFiles += !"EBGraphicView-binding-gridLineColor"

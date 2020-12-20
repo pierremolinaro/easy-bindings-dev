@@ -131,17 +131,20 @@ extension EBGraphicView {
       self.addPopupButtonItemForZoom (500, inScrollView)
       self.addPopupButtonItemForZoom (600, inScrollView)
       self.addPopupButtonItemForZoom (800, inScrollView)
-      self.addPopupButtonItemForZoom (1000, inScrollView)
-      self.addPopupButtonItemForZoom (1200, inScrollView)
-      self.addPopupButtonItemForZoom (1500, inScrollView)
-      self.addPopupButtonItemForZoom (1700, inScrollView)
-      self.addPopupButtonItemForZoom (2000, inScrollView)
-      self.addPopupButtonItemForZoom (2500, inScrollView)
-      self.addPopupButtonItemForZoom (3000, inScrollView)
-      self.addPopupButtonItemForZoom (3500, inScrollView)
-      self.addPopupButtonItemForZoom (4000, inScrollView)
-      self.addPopupButtonItemForZoom (4500, inScrollView)
-      self.addPopupButtonItemForZoom (5000, inScrollView)
+      self.addPopupButtonItemForZoom (1_000, inScrollView)
+      self.addPopupButtonItemForZoom (1_200, inScrollView)
+      self.addPopupButtonItemForZoom (1_500, inScrollView)
+      self.addPopupButtonItemForZoom (1_700, inScrollView)
+      self.addPopupButtonItemForZoom (2_000, inScrollView)
+      self.addPopupButtonItemForZoom (2_500, inScrollView)
+      self.addPopupButtonItemForZoom (3_000, inScrollView)
+      self.addPopupButtonItemForZoom (3_500, inScrollView)
+      self.addPopupButtonItemForZoom (4_000, inScrollView)
+      self.addPopupButtonItemForZoom (5_000, inScrollView)
+      self.addPopupButtonItemForZoom (8_000, inScrollView)
+      self.addPopupButtonItemForZoom (10_000, inScrollView)
+      self.addPopupButtonItemForZoom (15_000, inScrollView)
+      self.addPopupButtonItemForZoom (20_000, inScrollView)
       helperView.addHelperView (zoomPopUpButton)
     }
   }
@@ -184,18 +187,20 @@ extension EBGraphicView {
 
   //····················································································································
 
-  final internal func updateXYHelperWindow (_ inLocationInView : NSPoint) {
+  final internal func updateXYHelperWindow (mouseLocationInView inLocationInView : NSPoint) {
     let commandKey = NSEvent.modifierFlags.contains (.command)
-  //  Swift.print ("commandKey \(commandKey)")
-    if commandKey, let myWindow = self.window {
+    if commandKey, let myWindow = self.window, self.visibleRect.contains (inLocationInView) {
       let xyWindow : NSWindow
-      if let popover = self.mXYwindow {
-        xyWindow = popover
+      if let window = self.mXYwindow {
+        xyWindow = window
       }else{
         xyWindow = buildXYHelperWindow ()
         self.mXYwindow = xyWindow
       }
-      if let view = xyWindow.contentView, view.subviews.count == 2, let placardX = view.subviews [0] as? NSTextField, let placardY = view.subviews [1] as? NSTextField {
+      if let view = xyWindow.contentView,
+         view.subviews.count == 2,
+         let placardX = view.subviews [0] as? NSTextField,
+         let placardY = view.subviews [1] as? NSTextField {
         placardX.stringValue = "X = " + stringFrom (valueInCocoaUnit: inLocationInView.x, displayUnit: self.mXPlacardUnit)
         placardY.stringValue = "Y = " + stringFrom (valueInCocoaUnit: inLocationInView.y, displayUnit: self.mYPlacardUnit)
         placardX.sizeToFit ()
@@ -216,9 +221,11 @@ extension EBGraphicView {
         frameOrigin.y -= view.frame.size.height / 2.0
         xyWindow.setFrameOrigin (frameOrigin)
         xyWindow.setContentSize (s)
+      }else{
+        self.removeXYHelperWindow ()
       }
     }else{
-      removeXYHelperWindow ()
+      self.removeXYHelperWindow ()
     }
   }
 
@@ -256,7 +263,7 @@ extension EBGraphicView {
       let rectInWindow = myWindow.convertFromScreen (rectInScreen)
       let mouseLocationInView = self.convert (rectInWindow.origin, from: nil)
       let locationOnGridInView = mouseLocationInView.aligned (onGrid: canariUnitToCocoa (self.arrowKeyMagnitude))
-      self.updateXYHelperWindow (locationOnGridInView)
+      self.updateXYHelperWindow (mouseLocationInView: locationOnGridInView)
     }
   }
 

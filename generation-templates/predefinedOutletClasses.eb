@@ -30,6 +30,8 @@ binding EBGraphicView $xPlacardUnit : transient Int ;
 binding EBGraphicView $yPlacardUnit : transient Int ;
 binding EBGraphicView $backgroundImageData : transient Data ;
 binding EBGraphicView $backgroundImageOpacity : transient Double ;
+binding EBGraphicView $foregroundImageData : transient Data ;
+binding EBGraphicView $foregroundImageOpacity : transient Double ;
 
 extern outlet class NSView $hidden ;
 

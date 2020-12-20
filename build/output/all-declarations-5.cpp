@@ -192,6 +192,8 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (C_Compiler
     "binding EBGraphicView $yPlacardUnit : transient Int ;\n"
     "binding EBGraphicView $backgroundImageData : transient Data ;\n"
     "binding EBGraphicView $backgroundImageOpacity : transient Double ;\n"
+    "binding EBGraphicView $foregroundImageData : transient Data ;\n"
+    "binding EBGraphicView $foregroundImageOpacity : transient Double ;\n"
     "\n"
     "extern outlet class NSView $hidden ;\n"
     "\n"

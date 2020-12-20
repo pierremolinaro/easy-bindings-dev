@@ -28,6 +28,17 @@ class EBScrollView : NSScrollView, EBUserClassNameProtocol {
   // MARK: -
   //····················································································································
 
+  override func tile () {
+    super.tile ()
+    if let graphicView = self.documentView as? EBGraphicView {
+      graphicView.scrollViewIsLiveResizing ()
+    }
+  }
+
+  //····················································································································
+  // MARK: -
+  //····················································································································
+
   fileprivate weak var mDocument : EBManagedDocument? = nil // For handling drag destination
 
   //····················································································································
@@ -40,20 +51,6 @@ class EBScrollView : NSScrollView, EBUserClassNameProtocol {
     self.mDocument = document
     self.registerForDraggedTypes (draggedTypes)
   }
-
-  //····················································································································
-  // MARK: -
-  //····················································································································
-
-//  final override func tile () { // tile is called during live resizing
-//    super.tile ()
-//    if let graphicView = self.documentView as? EBGraphicView {
-//      graphicView.scrollViewIsLiveResizing ()
-//    }
-//    if let focusView = self.superview as? EBFocusRingView {
-//      focusView.viewIsLiveResing ()
-//    }
-//  }
 
   //····················································································································
   // MARK: -
