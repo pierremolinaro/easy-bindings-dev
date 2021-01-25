@@ -69,6 +69,7 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   override func ebCleanUp () {
     super.ebCleanUp ()
     self.mViewController = nil
+    self.removeXYHelperWindow ()
     NotificationCenter.default.removeObserver (
       self,
       name: NSView.frameDidChangeNotification,
@@ -90,7 +91,14 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
 
   //····················································································································
 
-  final internal var mZoomPropertyCache = 0 // Used in EBGraphicView-magnify-and-zoom.swift
+  final internal var mZoomPropertyCache = 0 { // Used in EBGraphicView-magnify-and-zoom.swift
+    didSet {
+      if self.mZoomPropertyCache != oldValue {
+        self.mZoomController?.updateModel (self, self.mZoomPropertyCache)
+        self.applyZoom ()
+      }
+    }
+  }
 
   //····················································································································
 
@@ -540,21 +548,6 @@ class EBGraphicView : NSView, EBUserClassNameProtocol, EBGraphicViewScaleProvide
   //····················································································································
 
   final internal var mYPlacardUnitController : EBSimpleController? = nil
-
-  //····················································································································
-  // MARK: -
-  //····················································································································
-
-//  final private var mMinimumRectangle = NSRect ()
-
-  //····················································································································
-
-//  final func set (minimumRectangle inRect : NSRect) {
-//    if self.mMinimumRectangle != inRect {
-//      self.mMinimumRectangle = inRect
-//      self.updateViewFrameAndBounds ()
-//    }
-//  }
 
   //····················································································································
   // MARK: -

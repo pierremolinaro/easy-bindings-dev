@@ -5,7 +5,7 @@
 class @entityDeclarationAST : @abstractDeclarationAST {
   @bool mIsAbstract
   @lstring mSuperEntityName
-  @simpleStoredPropertyList mSimpleStoredAttributeList
+  @simpleStoredPropertyList mSimpleStoredPropertyList
   @stringset mSignatureList
   @lstringlist mActionDeclarationList
   @lstringlist mObsoleteEntityNames
@@ -73,14 +73,14 @@ syntax extension easyBindings_syntax {
       $Identifier$ ? superEntityName
     end
     ${$
-    @simpleStoredPropertyList simpleStoredAttributeList = {}
+    @simpleStoredPropertyList simpleStoredPropertyList = {}
     @stringset signatureList = {}
     @lstringlist actionDeclarationList = {}
     @externSwiftDelegateList externSwiftDelegateList = {}
     @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     repeat
     while
-      <simple_stored_declaration> !entityName !?simpleStoredAttributeList !?signatureList !?ioDeclarationAST
+      <simple_stored_declaration> !entityName !?simpleStoredPropertyList !?signatureList !?ioDeclarationAST
     while
       <transient_declaration> !entityName !["" nowhere] !?ioDeclarationAST
     while
@@ -99,7 +99,7 @@ syntax extension easyBindings_syntax {
       !entityName
       !isAbstract
       !superEntityName
-      !simpleStoredAttributeList
+      !simpleStoredPropertyList
       !signatureList
       !actionDeclarationList
       !obsoleteEntityNames

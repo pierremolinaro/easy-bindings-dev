@@ -2320,8 +2320,8 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG void setter_setMSignatureList (class GALGAS_stringset inArgument0
                                                            COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMSimpleStoredAttributeList (class GALGAS_simpleStoredPropertyList inArgument0
-                                                                       COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void setter_setMSimpleStoredPropertyList (class GALGAS_simpleStoredPropertyList inArgument0
+                                                                      COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMSuperEntityName (class GALGAS_lstring inArgument0
                                                              COMMA_LOCATION_ARGS) ;
@@ -2343,7 +2343,7 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyList getter_mSimpleStoredAttributeList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_simpleStoredPropertyList getter_mSimpleStoredPropertyList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSuperEntityName (LOCATION_ARGS) const ;
 
@@ -2695,7 +2695,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Attributes
   public : GALGAS_bool mProperty_mIsAbstract ;
   public : GALGAS_lstring mProperty_mSuperEntityName ;
-  public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
+  public : GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredPropertyList ;
   public : GALGAS_stringset mProperty_mSignatureList ;
   public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
   public : GALGAS_lstringlist mProperty_mObsoleteEntityNames ;
@@ -2706,7 +2706,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
   public : cPtr_entityDeclarationAST (const GALGAS_lstring & in_mClassName,
                                       const GALGAS_bool & in_mIsAbstract,
                                       const GALGAS_lstring & in_mSuperEntityName,
-                                      const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
+                                      const GALGAS_simpleStoredPropertyList & in_mSimpleStoredPropertyList,
                                       const GALGAS_stringset & in_mSignatureList,
                                       const GALGAS_lstringlist & in_mActionDeclarationList,
                                       const GALGAS_lstringlist & in_mObsoleteEntityNames,
@@ -2722,8 +2722,8 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
   public : VIRTUAL_IN_DEBUG void setter_setMIsAbstract (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mSuperEntityName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMSuperEntityName (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_simpleStoredPropertyList getter_mSimpleStoredAttributeList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMSimpleStoredAttributeList (GALGAS_simpleStoredPropertyList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_simpleStoredPropertyList getter_mSimpleStoredPropertyList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMSimpleStoredPropertyList (GALGAS_simpleStoredPropertyList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_stringset getter_mSignatureList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMSignatureList (GALGAS_stringset inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;

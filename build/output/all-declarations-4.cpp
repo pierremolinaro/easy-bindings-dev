@@ -1679,7 +1679,7 @@ typeComparisonResult cPtr_entityDeclarationAST::dynamicObjectCompare (const acPt
     result = mProperty_mSuperEntityName.objectCompare (p->mProperty_mSuperEntityName) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mSimpleStoredAttributeList.objectCompare (p->mProperty_mSimpleStoredAttributeList) ;
+    result = mProperty_mSimpleStoredPropertyList.objectCompare (p->mProperty_mSimpleStoredPropertyList) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mSignatureList.objectCompare (p->mProperty_mSignatureList) ;
@@ -1751,7 +1751,7 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 GALGAS_entityDeclarationAST GALGAS_entityDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
                                                                           const GALGAS_bool & inAttribute_mIsAbstract,
                                                                           const GALGAS_lstring & inAttribute_mSuperEntityName,
-                                                                          const GALGAS_simpleStoredPropertyList & inAttribute_mSimpleStoredAttributeList,
+                                                                          const GALGAS_simpleStoredPropertyList & inAttribute_mSimpleStoredPropertyList,
                                                                           const GALGAS_stringset & inAttribute_mSignatureList,
                                                                           const GALGAS_lstringlist & inAttribute_mActionDeclarationList,
                                                                           const GALGAS_lstringlist & inAttribute_mObsoleteEntityNames,
@@ -1759,8 +1759,8 @@ GALGAS_entityDeclarationAST GALGAS_entityDeclarationAST::constructor_new (const 
                                                                           const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList
                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_entityDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mIsAbstract.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mSimpleStoredAttributeList.isValid () && inAttribute_mSignatureList.isValid () && inAttribute_mActionDeclarationList.isValid () && inAttribute_mObsoleteEntityNames.isValid () && inAttribute_mIsGraphicEntity.isValid () && inAttribute_mExternSwiftDelegateList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_entityDeclarationAST (inAttribute_mClassName, inAttribute_mIsAbstract, inAttribute_mSuperEntityName, inAttribute_mSimpleStoredAttributeList, inAttribute_mSignatureList, inAttribute_mActionDeclarationList, inAttribute_mObsoleteEntityNames, inAttribute_mIsGraphicEntity, inAttribute_mExternSwiftDelegateList COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mIsAbstract.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mSimpleStoredPropertyList.isValid () && inAttribute_mSignatureList.isValid () && inAttribute_mActionDeclarationList.isValid () && inAttribute_mObsoleteEntityNames.isValid () && inAttribute_mIsGraphicEntity.isValid () && inAttribute_mExternSwiftDelegateList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_entityDeclarationAST (inAttribute_mClassName, inAttribute_mIsAbstract, inAttribute_mSuperEntityName, inAttribute_mSimpleStoredPropertyList, inAttribute_mSignatureList, inAttribute_mActionDeclarationList, inAttribute_mObsoleteEntityNames, inAttribute_mIsGraphicEntity, inAttribute_mExternSwiftDelegateList COMMA_THERE)) ;
   }
   return result ;
 }
@@ -1803,20 +1803,20 @@ GALGAS_lstring cPtr_entityDeclarationAST::getter_mSuperEntityName (UNUSED_LOCATI
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_simpleStoredPropertyList GALGAS_entityDeclarationAST::getter_mSimpleStoredAttributeList (UNUSED_LOCATION_ARGS) const {
+GALGAS_simpleStoredPropertyList GALGAS_entityDeclarationAST::getter_mSimpleStoredPropertyList (UNUSED_LOCATION_ARGS) const {
   GALGAS_simpleStoredPropertyList result ;
   if (NULL != mObjectPtr) {
     const cPtr_entityDeclarationAST * p = (const cPtr_entityDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_entityDeclarationAST) ;
-    result = p->mProperty_mSimpleStoredAttributeList ;
+    result = p->mProperty_mSimpleStoredPropertyList ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_simpleStoredPropertyList cPtr_entityDeclarationAST::getter_mSimpleStoredAttributeList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mSimpleStoredAttributeList ;
+GALGAS_simpleStoredPropertyList cPtr_entityDeclarationAST::getter_mSimpleStoredPropertyList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSimpleStoredPropertyList ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1949,21 +1949,21 @@ void cPtr_entityDeclarationAST::setter_setMSuperEntityName (GALGAS_lstring inVal
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_entityDeclarationAST::setter_setMSimpleStoredAttributeList (GALGAS_simpleStoredPropertyList inValue
-                                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_entityDeclarationAST::setter_setMSimpleStoredPropertyList (GALGAS_simpleStoredPropertyList inValue
+                                                                       COMMA_LOCATION_ARGS) {
   if (NULL != mObjectPtr) {
     insulate (THERE) ;
     cPtr_entityDeclarationAST * p = (cPtr_entityDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_entityDeclarationAST) ;
-    p->mProperty_mSimpleStoredAttributeList = inValue ;
+    p->mProperty_mSimpleStoredPropertyList = inValue ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void cPtr_entityDeclarationAST::setter_setMSimpleStoredAttributeList (GALGAS_simpleStoredPropertyList inValue
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mSimpleStoredAttributeList = inValue ;
+void cPtr_entityDeclarationAST::setter_setMSimpleStoredPropertyList (GALGAS_simpleStoredPropertyList inValue
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mSimpleStoredPropertyList = inValue ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2068,7 +2068,7 @@ void cPtr_entityDeclarationAST::setter_setMExternSwiftDelegateList (GALGAS_exter
 cPtr_entityDeclarationAST::cPtr_entityDeclarationAST (const GALGAS_lstring & in_mClassName,
                                                       const GALGAS_bool & in_mIsAbstract,
                                                       const GALGAS_lstring & in_mSuperEntityName,
-                                                      const GALGAS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
+                                                      const GALGAS_simpleStoredPropertyList & in_mSimpleStoredPropertyList,
                                                       const GALGAS_stringset & in_mSignatureList,
                                                       const GALGAS_lstringlist & in_mActionDeclarationList,
                                                       const GALGAS_lstringlist & in_mObsoleteEntityNames,
@@ -2078,7 +2078,7 @@ cPtr_entityDeclarationAST::cPtr_entityDeclarationAST (const GALGAS_lstring & in_
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
 mProperty_mIsAbstract (in_mIsAbstract),
 mProperty_mSuperEntityName (in_mSuperEntityName),
-mProperty_mSimpleStoredAttributeList (in_mSimpleStoredAttributeList),
+mProperty_mSimpleStoredPropertyList (in_mSimpleStoredPropertyList),
 mProperty_mSignatureList (in_mSignatureList),
 mProperty_mActionDeclarationList (in_mActionDeclarationList),
 mProperty_mObsoleteEntityNames (in_mObsoleteEntityNames),
@@ -2101,7 +2101,7 @@ void cPtr_entityDeclarationAST::description (C_String & ioString,
   ioString << ", " ;
   mProperty_mSuperEntityName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mSimpleStoredAttributeList.description (ioString, inIndentation+1) ;
+  mProperty_mSimpleStoredPropertyList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mSignatureList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
@@ -2119,7 +2119,7 @@ void cPtr_entityDeclarationAST::description (C_String & ioString,
 
 acPtr_class * cPtr_entityDeclarationAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_entityDeclarationAST (mProperty_mClassName, mProperty_mIsAbstract, mProperty_mSuperEntityName, mProperty_mSimpleStoredAttributeList, mProperty_mSignatureList, mProperty_mActionDeclarationList, mProperty_mObsoleteEntityNames, mProperty_mIsGraphicEntity, mProperty_mExternSwiftDelegateList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_entityDeclarationAST (mProperty_mClassName, mProperty_mIsAbstract, mProperty_mSuperEntityName, mProperty_mSimpleStoredPropertyList, mProperty_mSignatureList, mProperty_mActionDeclarationList, mProperty_mObsoleteEntityNames, mProperty_mIsGraphicEntity, mProperty_mExternSwiftDelegateList COMMA_THERE)) ;
   return ptr ;
 }
 
