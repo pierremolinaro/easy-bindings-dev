@@ -31,7 +31,10 @@ end
     self.selectedArray_property.setDataProvider (model)
 %
   for () in PROPERTY_GENERATION_LIST do
-    if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) | (mProperty is == @atomicProxyGeneration) then
+    if (mProperty is == @atomicPropertyGeneration)
+     | (mProperty is == @transientPropertyGeneration)
+     | (mProperty is == @computedPropertyGeneration)
+     | (mProperty is == @atomicProxyGeneration) then
       %    self.bind_property_%![mProperty mPropertyName]% ()\n%
     end
   end
@@ -45,18 +48,19 @@ end
     self.selectedArray_property.setDataProvider (nil)
 %
   for () in PROPERTY_GENERATION_LIST do
-    if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration) then
+    if (mProperty is == @atomicPropertyGeneration)
+     | (mProperty is == @computedPropertyGeneration) 
+     | (mProperty is == @transientPropertyGeneration) then
       %  //--- %![mProperty mPropertyName]%\n%
       %    self.%![mProperty mPropertyName]%_property.mReadModelFunction = nil \n%
-      if mProperty is == @atomicPropertyGeneration then
+      if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @computedPropertyGeneration)  then
         %    self.%![mProperty mPropertyName]%_property.mWriteModelFunction = nil \n%
         %    self.%![mProperty mPropertyName]%_property.mValidateAndWriteModelFunction = nil \n%
        end
       %    self.selectedArray_property.removeEBObserverOf_%![mProperty mPropertyName]% (self.%![mProperty mPropertyName]%_property)\n%
     end
   end
-%  //---
-  }
+%  }
 
   //····················································································································
   //    Explorer

@@ -5,37 +5,16 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   EBSimpleController
+//   EBGenericReadOnlyProperty <T>
 //----------------------------------------------------------------------------------------------------------------------
 
-class EBSimpleController : EBOutletEvent {
+class EBGenericReadOnlyProperty <T> : EBAbstractProperty, EBObservableObjectProtocol where T : Equatable {
 
   //····················································································································
 
-  private let mPrivateObservedObjects : [EBObservableObjectProtocol]
+  var selection : EBSelection <T> { return .empty } // Abstract method
 
   //····················································································································
-
-  init (observedObjects : [EBObservableObjectProtocol], callBack: @escaping () -> Void) {
-    self.mPrivateObservedObjects = observedObjects
-    super.init ()
-    self.mEventCallBack = callBack
-    for object in observedObjects {
-      object.addEBObserver (self)
-    }
-  }
-
-  //····················································································································
-
-  override func unregister () {
-    super.unregister ()
-    for object in self.mPrivateObservedObjects {
-      object.removeEBObserver (self)
-    }
-  }
-
-  //····················································································································
-
 }
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -48,7 +48,7 @@ import Cocoa
 //   Controller_EBNumberField_readOnlyValue
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBNumberField_readOnlyValue : EBSimpleController {
+final class Controller_EBNumberField_readOnlyValue : EBReadOnlyPropertyController {
 
   private let mObject : EBReadOnlyProperty_Int
   private let mOutlet : EBNumberFieldObserver

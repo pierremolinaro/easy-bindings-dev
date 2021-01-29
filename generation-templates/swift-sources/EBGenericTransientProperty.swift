@@ -5,32 +5,54 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   EBPreferencesValueProperty <T>
+//   EBGenericTransientProperty <T>
 //----------------------------------------------------------------------------------------------------------------------
 
-final class EBPreferencesValueProperty <T : EBPropertyProtocol> : EBStoredValueProperty <T> {
+class EBGenericTransientProperty <T> : EBGenericReadOnlyProperty <T> where T : Equatable {
 
   //····················································································································
 
-  private var mPreferenceKey : String
+  private var mValueCache : EBSelection <T>? = nil
+  var mReadModelFunction : Optional<() -> EBSelection <T> > = nil
 
   //····················································································································
 
-  init (defaultValue inValue : T, prefKey inPreferenceKey : String) {
-    mPreferenceKey = inPreferenceKey
-    super.init (defaultValue: inValue, undoManager: nil)
-  //--- Read from preferences
-    let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)
-    if let value = possibleValue as? NSObject {
-      setProp (T.convertFromNSObject (object: value))
+  var mValueExplorer : NSTextField? {
+    didSet {
+      if let valueCache = self.mValueCache {
+        self.mValueExplorer?.stringValue = "\(valueCache)"
+      }else{
+        self.mValueExplorer?.stringValue = "nil"
+      }
     }
   }
 
   //····················································································································
 
+  override var selection : EBSelection <T> {
+    if self.mValueCache == nil {
+      self.mValueCache = self.mReadModelFunction? ()
+      if self.mValueCache == nil {
+        self.mValueCache = .empty
+      }
+      self.mValueExplorer?.stringValue = "\(self.mValueCache!)"
+    }
+    return self.mValueCache!
+  }
+
+  //····················································································································
+
   override func postEvent () {
-    UserDefaults.standard.set (self.propval.convertToNSObject (), forKey: self.mPreferenceKey)
-    super.postEvent ()
+    if self.mValueCache != nil {
+      self.mValueCache = nil
+      self.mValueExplorer?.stringValue = "nil"
+      if logEvents () {
+        appendMessageString ("Transient \(explorerIndexString (self.ebObjectIndex)) propagation\n")
+      }
+      super.postEvent ()
+    }else if logEvents () {
+      appendMessageString ("Transient \(explorerIndexString (self.ebObjectIndex)) nil\n")
+    }
   }
 
   //····················································································································

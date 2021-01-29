@@ -5,15 +5,15 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   EBTransientValueProperty <T>
+//   EBGenericComputedProperty <T>
 //----------------------------------------------------------------------------------------------------------------------
 
-class EBTransientValueProperty <T> : EBReadOnlyValueProperty <T> where T : Equatable {
+class EBGenericComputedProperty <T : EBPropertyProtocol> : EBGenericReadWriteProperty <T> {
 
   //····················································································································
 
   private var mValueCache : EBSelection <T>? = nil
-  var mReadModelFunction : Optional<() -> EBSelection <T> > = nil
+  var mReadModelFunction : Optional < () -> EBSelection <T> > = nil
 
   //····················································································································
 
@@ -57,6 +57,20 @@ class EBTransientValueProperty <T> : EBReadOnlyValueProperty <T> where T : Equat
 
   //····················································································································
 
+  var mStoreFunction : Optional < (_ candidateValue : T, _ inWindow : NSWindow?) -> Bool > = nil
+
+   //····················································································································
+
+  override func validateAndSetProp (_ inCandidateValue : T,
+                                    windowForSheet inWindow : NSWindow?) -> Bool {
+    var result = true
+    if let storeFunction = self.mStoreFunction {
+      result = storeFunction (inCandidateValue, inWindow)
+    }
+    return result
+  }
+
+  //····················································································································
 }
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -96,6 +96,7 @@ map @classMap {
 
 enum @propertyAccessibility {
   case stored
+  case computed
   case transient (@bool isAbstract)
 }
 

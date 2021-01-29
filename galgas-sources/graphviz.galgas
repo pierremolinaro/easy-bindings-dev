@@ -63,6 +63,7 @@ private proc graphvizRootEntityAnalysis
         case stored :
           node += "|" + [type swiftTypeName] + " " + propertyName
         case transient (*) :
+        case computed :
         end
       case arrayController (2*) :
       case selectionController (*) :

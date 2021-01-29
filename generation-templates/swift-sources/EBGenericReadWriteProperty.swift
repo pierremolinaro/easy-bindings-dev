@@ -5,26 +5,22 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   EBReadOnlyEnumProperty <T>
+//   EBGenericReadWriteProperty <T> (abstract class)
 //----------------------------------------------------------------------------------------------------------------------
 
-class EBReadOnlyEnumProperty <T : EBEnumProtocol> : EBReadOnlyValueProperty <T>, EBReadObservableEnumProtocol where T : Equatable {
-
-  func setFrom (rawValue : Int) {}  // Abstract method
+class EBGenericReadWriteProperty <T> : EBGenericReadOnlyProperty <T> where T : Equatable {
 
   //····················································································································
 
-  func rawValue () -> Int? {
-    switch self.selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      return v.rawValue
-    }
-  }
+  func setProp (_ value : T) { } // Abstract method
 
   //····················································································································
 
+  func validateAndSetProp (_ candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
+    return false
+  } // Abstract method
+
+  //····················································································································
 }
 
 //----------------------------------------------------------------------------------------------------------------------

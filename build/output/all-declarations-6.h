@@ -51,6 +51,40 @@ void routine_analyzeRegularBinding (const class GALGAS_propertyMap constinArgume
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Filewrapper 'computedPropertyManager'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_1_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_2_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_4_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_5_computedPropertyManager ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'computedPropertyManager computedComputationFunctionFile'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (class C_Compiler * inCompiler,
+                                                                                           const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                           const class GALGAS_string & in_COMPUTED_5F_PROPERTY_5F_NAME,
+                                                                                           const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
+                                                                                           COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Filewrapper 'transientManager'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -81,7 +115,8 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
                                                                                      const class GALGAS_string & in_OWNER_5F_NAME,
                                                                                      const class GALGAS_string & in_TRANSIENT_5F_NAME,
                                                                                      const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
-                                                                                     const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE
+                                                                                     const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE,
+                                                                                     const class GALGAS_string & in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

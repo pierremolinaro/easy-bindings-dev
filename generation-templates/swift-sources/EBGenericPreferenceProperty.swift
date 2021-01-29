@@ -5,22 +5,36 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   EBReadWriteValueProperty <T> (abstract class)
+//   EBGenericPreferenceProperty <T>
 //----------------------------------------------------------------------------------------------------------------------
 
-class EBReadWriteValueProperty <T> : EBReadOnlyValueProperty <T> where T : Equatable {
+final class EBGenericPreferenceProperty <T : EBPropertyProtocol> : EBGenericStoredProperty <T> {
 
   //····················································································································
 
-  func setProp (_ value : T) { } // Abstract method
+  private var mPreferenceKey : String
 
   //····················································································································
 
-  func validateAndSetProp (_ candidateValue : T, windowForSheet inWindow:NSWindow?) -> Bool {
-    return false
-  } // Abstract method
+  init (defaultValue inValue : T, prefKey inPreferenceKey : String) {
+    mPreferenceKey = inPreferenceKey
+    super.init (defaultValue: inValue, undoManager: nil)
+  //--- Read from preferences
+    let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)
+    if let value = possibleValue as? NSObject {
+      setProp (T.convertFromNSObject (object: value))
+    }
+  }
 
   //····················································································································
+
+  override func postEvent () {
+    UserDefaults.standard.set (self.propval.convertToNSObject (), forKey: self.mPreferenceKey)
+    super.postEvent ()
+  }
+
+  //····················································································································
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------

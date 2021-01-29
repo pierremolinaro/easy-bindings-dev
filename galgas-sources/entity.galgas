@@ -293,6 +293,7 @@ override method @entityForGeneration generateCode
 {
   @atomicPropertyGenerationList atomicPropertyGenerationList = {}
   @transientPropertyGenerationList transientPropertyGenerationList = {}
+  @computedPropertyGenerationList computedPropertyGenerationList = {}
   @toOnePropertyGenerationList toOnePropertyGenerationList = {}
   @toManyPropertyGenerationList toManyPropertyGenerationList = {}
   @atomicProxyGenerationList proxyGenerationList = {}
@@ -302,6 +303,8 @@ override method @entityForGeneration generateCode
       atomicPropertyGenerationList += !atomicProperty
     elsif let transientProperty = property as @transientPropertyGeneration then
       transientPropertyGenerationList += !transientProperty
+    elsif let computedProperty = property as @computedPropertyGeneration then
+      computedPropertyGenerationList += !computedProperty
     elsif let toManyProxy = property as @toManyProxyGeneration then
       toManyProxyGenerationList += !toManyProxy
     elsif let proxyProperty = property as @atomicProxyGeneration then
@@ -328,6 +331,7 @@ override method @entityForGeneration generateCode
     !toManyProxyGenerationList
     !atomicPropertyGenerationList
     !transientPropertyGenerationList
+    !computedPropertyGenerationList
     !toOnePropertyGenerationList
     !toManyPropertyGenerationList
     !mSignatureSet
@@ -352,6 +356,7 @@ override method @entityForGeneration generateCode
     !toManyProxyGenerationList
     !atomicPropertyGenerationList
     !transientPropertyGenerationList
+    !computedPropertyGenerationList
     !toOnePropertyGenerationList
     !toManyPropertyGenerationList
     !mSignatureSet
@@ -376,6 +381,7 @@ override method @entityForGeneration generateCode
     !toManyProxyGenerationList
     !atomicPropertyGenerationList
     !transientPropertyGenerationList
+    !computedPropertyGenerationList
     !toOnePropertyGenerationList
     !toManyPropertyGenerationList
     !mSignatureSet
@@ -428,6 +434,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION
     ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST
     ?@toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST
     ?@stringset SIGNATURE_SET
@@ -444,6 +451,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION
     ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST
     ?@toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST
     ?@stringset SIGNATURE_SET
@@ -460,6 +468,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION
     ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
     ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
+    ?@computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION
     ?@toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST
     ?@toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST
     ?@stringset SIGNATURE_SET

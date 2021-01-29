@@ -54,7 +54,7 @@ import Cocoa
 //   Controller_EBDoubleObserverField_valueObserver
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBDoubleObserverField_valueObserver : EBSimpleController {
+final class Controller_EBDoubleObserverField_valueObserver : EBReadOnlyPropertyController {
 
   private let mObject : EBReadOnlyProperty_Double
   private let mOutlet : EBDoubleObserverField

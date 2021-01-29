@@ -21,12 +21,18 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    inOldValue?.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
 end
+for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
+  %    inOldValue?.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Computed property\n%
+end
 %  //--- Add observers to added objects
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %    self.mInternalValue?.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %    self.mInternalValue?.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
+end
+for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
+  %    self.mInternalValue?.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Computed property\n%
 end
 %  }
 
@@ -180,6 +186,78 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //····················································································································
   //   Observers of '%![mProperty mPropertyName]%' transient property
+  //····················································································································
+
+  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+
+  //····················································································································
+
+  var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
+    if let model = self.propval {
+      switch (model.%![mProperty mPropertyName]%_property_selection) {
+      case .empty :
+        return .empty
+      case .multiple :
+        return .multiple
+      case .single (let v) :
+        return .single (v)
+      }
+    }else{
+      return .single (nil)
+    }
+  }
+
+  //····················································································································
+
+  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
+    self.addEBObserver (inObserver)
+    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
+    switch self.selection {
+    case .empty, .multiple :
+      break
+    case .single (let v) :
+      v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
+    self.removeEBObserver (inObserver)
+    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
+    switch self.selection {
+    case .empty, .multiple :
+      break
+    case .single (let v) :
+      v?.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
+    }
+  }
+
+  //····················································································································
+
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+    for managedObject in inSet {
+      self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
+        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
+      }
+    }
+  }
+
+  //····················································································································
+
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+    for managedObject in inSet {
+      self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
+        managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
+      }
+    }
+  }
+
+%
+end
+for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
+%  //····················································································································
+  //   Observers of '%![mProperty mPropertyName]%' computed property
   //····················································································································
 
   private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()

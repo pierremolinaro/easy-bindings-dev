@@ -47,7 +47,7 @@ import Cocoa
 //   Controller_EBColorObserverWell_color
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBColorObserverWell_color : EBSimpleController {
+final class Controller_EBColorObserverWell_color : EBReadOnlyPropertyController {
 
   private let mObject : EBReadOnlyProperty_NSColor
   private let mOutlet : EBColorObserverWell

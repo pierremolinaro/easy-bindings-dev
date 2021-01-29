@@ -122,7 +122,7 @@ import Cocoa
 //   Controller_EBSegmentedControl_selectedIndex
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBSegmentedControl_selectedIndex : EBSimpleController {
+final class Controller_EBSegmentedControl_selectedIndex : EBReadOnlyPropertyController {
 
   private let mObject : EBReadWriteProperty_Int
   private let mOutlet : EBSegmentedControl

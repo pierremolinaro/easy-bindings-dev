@@ -38,7 +38,7 @@ import Cocoa
 //   Controller_EBCheckedMenuItem_check
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBCheckedMenuItem_check : EBSimpleController {
+final class Controller_EBCheckedMenuItem_check : EBReadOnlyPropertyController {
 
   private let mIsChecked : EBReadWriteProperty_Bool
   private let mOutlet : EBCheckedMenuItem

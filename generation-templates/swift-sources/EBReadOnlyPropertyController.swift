@@ -5,37 +5,32 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   EBGraphicView
+//   EBReadOnlyPropertyController
 //----------------------------------------------------------------------------------------------------------------------
 
-extension EBGraphicView {
+class EBReadOnlyPropertyController : EBOutletEvent {
 
   //····················································································································
 
-  final func bind_arrowKeyMagnitude (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
-    self.mArrowKeyMagnitudeController = EBReadOnlyPropertyController (
-      observedObjects: [model],
-      callBack: { [weak self] in self?.updateArrowKeyMagnitude (from: model) }
-    )
+  private let mPrivateObservedObjects : [EBObservableObjectProtocol]
+
+  //····················································································································
+
+  init (observedObjects : [EBObservableObjectProtocol], callBack: @escaping () -> Void) {
+    self.mPrivateObservedObjects = observedObjects
+    super.init ()
+    self.mEventCallBack = callBack
+    for object in observedObjects {
+      object.addEBObserver (self)
+    }
   }
 
   //····················································································································
 
-  final func unbind_arrowKeyMagnitude () {
-    self.mArrowKeyMagnitudeController?.unregister ()
-    self.mArrowKeyMagnitudeController = nil
-  }
-
-  //····················································································································
-
-  final private func updateArrowKeyMagnitude (from model : EBReadOnlyProperty_Int) {
-    switch model.selection {
-    case .empty :
-      break
-    case .single (let v) :
-      self.set (arrowKeyMagnitude: v)
-    case .multiple :
-      break
+  override func unregister () {
+    super.unregister ()
+    for object in self.mPrivateObservedObjects {
+      object.removeEBObserver (self)
     }
   }
 

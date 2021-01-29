@@ -5,38 +5,24 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   EBGraphicView
-//----------------------------------------------------------------------------------------------------------------------
 
-extension EBGraphicView {
+class EBGenericReadWritePropertyController <T> : EBReadOnlyPropertyController where T : Equatable {
 
   //····················································································································
 
-  final func bind_arrowKeyMagnitude (_ model : EBReadOnlyProperty_Int, file : String, line : Int) {
-    self.mArrowKeyMagnitudeController = EBReadOnlyPropertyController (
-      observedObjects: [model],
-      callBack: { [weak self] in self?.updateArrowKeyMagnitude (from: model) }
-    )
+  private let mObject : EBGenericReadWriteProperty <T>
+
+  //····················································································································
+
+  init (observedObject inObject : EBGenericReadWriteProperty <T>, callBack inCallBack : @escaping () -> Void) {
+    self.mObject = inObject
+    super.init (observedObjects : [inObject], callBack : inCallBack)
   }
 
   //····················································································································
 
-  final func unbind_arrowKeyMagnitude () {
-    self.mArrowKeyMagnitudeController?.unregister ()
-    self.mArrowKeyMagnitudeController = nil
-  }
-
-  //····················································································································
-
-  final private func updateArrowKeyMagnitude (from model : EBReadOnlyProperty_Int) {
-    switch model.selection {
-    case .empty :
-      break
-    case .single (let v) :
-      self.set (arrowKeyMagnitude: v)
-    case .multiple :
-      break
-    }
+  func updateModel (withCandidateValue inValue : T, windowForSheet inWindow : NSWindow?) -> Bool {
+    return mObject.validateAndSetProp (inValue, windowForSheet: inWindow)
   }
 
   //····················································································································

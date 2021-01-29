@@ -10,6 +10,45 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Extension getter '@propertyMap-element isAbstract' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_bool extensionGetter_isAbstract (const class GALGAS_propertyMap_2D_element & inObject,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//                               Bool options                                                    
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+extern C_BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDependencyGraph ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//                               UInt options                                                    
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//                              String options                                                   
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//                              String List options                                              
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Filewrapper 'predefinedOutletClasses'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -141,6 +180,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
                                                                                         const class GALGAS_toManyProxyGenerationList & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                         const class GALGAS_atomicPropertyGenerationList & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                         const class GALGAS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                        const class GALGAS_computedPropertyGenerationList & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                         const class GALGAS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
                                                                                         const class GALGAS_toManyPropertyGenerationList & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
                                                                                         const class GALGAS_stringset & in_SIGNATURE_5F_SET,
@@ -164,6 +204,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
                                                                                               const class GALGAS_toManyProxyGenerationList & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                               const class GALGAS_atomicPropertyGenerationList & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                               const class GALGAS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                              const class GALGAS_computedPropertyGenerationList & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                               const class GALGAS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
                                                                                               const class GALGAS_toManyPropertyGenerationList & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
                                                                                               const class GALGAS_stringset & in_SIGNATURE_5F_SET,
@@ -187,6 +228,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
                                                                                              const class GALGAS_toManyProxyGenerationList & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                              const class GALGAS_atomicPropertyGenerationList & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                              const class GALGAS_transientPropertyGenerationList & in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
+                                                                                             const class GALGAS_computedPropertyGenerationList & in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                              const class GALGAS_toOnePropertyGenerationList & in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST,
                                                                                              const class GALGAS_toManyPropertyGenerationList & in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST,
                                                                                              const class GALGAS_stringset & in_SIGNATURE_5F_SET,
@@ -300,124 +342,126 @@ void routine_generateEBManagedDocumentSwift (const class GALGAS_string constinAr
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-extern const char * gWrapperFileContent_63_swift_5F_sources ;
+extern const char * gWrapperFileContent_62_swift_5F_sources ;
 extern const char * gWrapperFileContent_34_swift_5F_sources ;
 extern const char * gWrapperFileContent_30_swift_5F_sources ;
 extern const char * gWrapperFileContent_28_swift_5F_sources ;
-extern const char * gWrapperFileContent_77_swift_5F_sources ;
+extern const char * gWrapperFileContent_78_swift_5F_sources ;
 extern const char * gWrapperFileContent_55_swift_5F_sources ;
+extern const char * gWrapperFileContent_63_swift_5F_sources ;
+extern const char * gWrapperFileContent_105_swift_5F_sources ;
+extern const char * gWrapperFileContent_49_swift_5F_sources ;
 extern const char * gWrapperFileContent_64_swift_5F_sources ;
-extern const char * gWrapperFileContent_103_swift_5F_sources ;
-extern const char * gWrapperFileContent_65_swift_5F_sources ;
+extern const char * gWrapperFileContent_115_swift_5F_sources ;
+extern const char * gWrapperFileContent_6_swift_5F_sources ;
+extern const char * gWrapperFileContent_12_swift_5F_sources ;
+extern const char * gWrapperFileContent_84_swift_5F_sources ;
 extern const char * gWrapperFileContent_38_swift_5F_sources ;
-extern const char * gWrapperFileContent_11_swift_5F_sources ;
+extern const char * gWrapperFileContent_92_swift_5F_sources ;
+extern const char * gWrapperFileContent_77_swift_5F_sources ;
+extern const char * gWrapperFileContent_7_swift_5F_sources ;
+extern const char * gWrapperFileContent_114_swift_5F_sources ;
+extern const char * gWrapperFileContent_16_swift_5F_sources ;
+extern const char * gWrapperFileContent_98_swift_5F_sources ;
+extern const char * gWrapperFileContent_50_swift_5F_sources ;
+extern const char * gWrapperFileContent_67_swift_5F_sources ;
+extern const char * gWrapperFileContent_13_swift_5F_sources ;
 extern const char * gWrapperFileContent_70_swift_5F_sources ;
 extern const char * gWrapperFileContent_73_swift_5F_sources ;
-extern const char * gWrapperFileContent_113_swift_5F_sources ;
-extern const char * gWrapperFileContent_5_swift_5F_sources ;
+extern const char * gWrapperFileContent_117_swift_5F_sources ;
+extern const char * gWrapperFileContent_4_swift_5F_sources ;
 extern const char * gWrapperFileContent_86_swift_5F_sources ;
 extern const char * gWrapperFileContent_59_swift_5F_sources ;
-extern const char * gWrapperFileContent_50_swift_5F_sources ;
-extern const char * gWrapperFileContent_2_swift_5F_sources ;
-extern const char * gWrapperFileContent_37_swift_5F_sources ;
-extern const char * gWrapperFileContent_4_swift_5F_sources ;
-extern const char * gWrapperFileContent_105_swift_5F_sources ;
-extern const char * gWrapperFileContent_40_swift_5F_sources ;
+extern const char * gWrapperFileContent_51_swift_5F_sources ;
 extern const char * gWrapperFileContent_1_swift_5F_sources ;
-extern const char * gWrapperFileContent_95_swift_5F_sources ;
-extern const char * gWrapperFileContent_78_swift_5F_sources ;
-extern const char * gWrapperFileContent_29_swift_5F_sources ;
-extern const char * gWrapperFileContent_7_swift_5F_sources ;
-extern const char * gWrapperFileContent_90_swift_5F_sources ;
+extern const char * gWrapperFileContent_37_swift_5F_sources ;
+extern const char * gWrapperFileContent_3_swift_5F_sources ;
+extern const char * gWrapperFileContent_107_swift_5F_sources ;
+extern const char * gWrapperFileContent_40_swift_5F_sources ;
+extern const char * gWrapperFileContent_0_swift_5F_sources ;
 extern const char * gWrapperFileContent_96_swift_5F_sources ;
+extern const char * gWrapperFileContent_79_swift_5F_sources ;
+extern const char * gWrapperFileContent_29_swift_5F_sources ;
+extern const char * gWrapperFileContent_8_swift_5F_sources ;
+extern const char * gWrapperFileContent_90_swift_5F_sources ;
+extern const char * gWrapperFileContent_97_swift_5F_sources ;
 extern const char * gWrapperFileContent_44_swift_5F_sources ;
 extern const char * gWrapperFileContent_88_swift_5F_sources ;
 extern const char * gWrapperFileContent_72_swift_5F_sources ;
-extern const char * gWrapperFileContent_21_swift_5F_sources ;
+extern const char * gWrapperFileContent_23_swift_5F_sources ;
 extern const char * gWrapperFileContent_27_swift_5F_sources ;
 extern const char * gWrapperFileContent_58_swift_5F_sources ;
-extern const char * gWrapperFileContent_16_swift_5F_sources ;
-extern const char * gWrapperFileContent_67_swift_5F_sources ;
-extern const char * gWrapperFileContent_20_swift_5F_sources ;
-extern const char * gWrapperFileContent_104_swift_5F_sources ;
-extern const char * gWrapperFileContent_71_swift_5F_sources ;
-extern const char * gWrapperFileContent_109_swift_5F_sources ;
-extern const char * gWrapperFileContent_26_swift_5F_sources ;
-extern const char * gWrapperFileContent_6_swift_5F_sources ;
-extern const char * gWrapperFileContent_98_swift_5F_sources ;
-extern const char * gWrapperFileContent_12_swift_5F_sources ;
-extern const char * gWrapperFileContent_69_swift_5F_sources ;
-extern const char * gWrapperFileContent_84_swift_5F_sources ;
-extern const char * gWrapperFileContent_118_swift_5F_sources ;
-extern const char * gWrapperFileContent_115_swift_5F_sources ;
-extern const char * gWrapperFileContent_112_swift_5F_sources ;
-extern const char * gWrapperFileContent_57_swift_5F_sources ;
-extern const char * gWrapperFileContent_23_swift_5F_sources ;
-extern const char * gWrapperFileContent_41_swift_5F_sources ;
-extern const char * gWrapperFileContent_83_swift_5F_sources ;
-extern const char * gWrapperFileContent_60_swift_5F_sources ;
-extern const char * gWrapperFileContent_47_swift_5F_sources ;
 extern const char * gWrapperFileContent_19_swift_5F_sources ;
-extern const char * gWrapperFileContent_85_swift_5F_sources ;
-extern const char * gWrapperFileContent_49_swift_5F_sources ;
-extern const char * gWrapperFileContent_116_swift_5F_sources ;
-extern const char * gWrapperFileContent_33_swift_5F_sources ;
-extern const char * gWrapperFileContent_97_swift_5F_sources ;
-extern const char * gWrapperFileContent_14_swift_5F_sources ;
-extern const char * gWrapperFileContent_53_swift_5F_sources ;
-extern const char * gWrapperFileContent_108_swift_5F_sources ;
 extern const char * gWrapperFileContent_66_swift_5F_sources ;
 extern const char * gWrapperFileContent_22_swift_5F_sources ;
-extern const char * gWrapperFileContent_54_swift_5F_sources ;
-extern const char * gWrapperFileContent_24_swift_5F_sources ;
-extern const char * gWrapperFileContent_94_swift_5F_sources ;
-extern const char * gWrapperFileContent_0_swift_5F_sources ;
-extern const char * gWrapperFileContent_117_swift_5F_sources ;
-extern const char * gWrapperFileContent_76_swift_5F_sources ;
-extern const char * gWrapperFileContent_114_swift_5F_sources ;
-extern const char * gWrapperFileContent_36_swift_5F_sources ;
-extern const char * gWrapperFileContent_80_swift_5F_sources ;
-extern const char * gWrapperFileContent_52_swift_5F_sources ;
-extern const char * gWrapperFileContent_74_swift_5F_sources ;
-extern const char * gWrapperFileContent_100_swift_5F_sources ;
-extern const char * gWrapperFileContent_46_swift_5F_sources ;
-extern const char * gWrapperFileContent_62_swift_5F_sources ;
-extern const char * gWrapperFileContent_61_swift_5F_sources ;
-extern const char * gWrapperFileContent_111_swift_5F_sources ;
-extern const char * gWrapperFileContent_39_swift_5F_sources ;
-extern const char * gWrapperFileContent_18_swift_5F_sources ;
-extern const char * gWrapperFileContent_89_swift_5F_sources ;
-extern const char * gWrapperFileContent_107_swift_5F_sources ;
-extern const char * gWrapperFileContent_79_swift_5F_sources ;
-extern const char * gWrapperFileContent_82_swift_5F_sources ;
-extern const char * gWrapperFileContent_75_swift_5F_sources ;
-extern const char * gWrapperFileContent_93_swift_5F_sources ;
-extern const char * gWrapperFileContent_92_swift_5F_sources ;
-extern const char * gWrapperFileContent_99_swift_5F_sources ;
 extern const char * gWrapperFileContent_106_swift_5F_sources ;
-extern const char * gWrapperFileContent_15_swift_5F_sources ;
-extern const char * gWrapperFileContent_13_swift_5F_sources ;
+extern const char * gWrapperFileContent_71_swift_5F_sources ;
+extern const char * gWrapperFileContent_111_swift_5F_sources ;
+extern const char * gWrapperFileContent_26_swift_5F_sources ;
+extern const char * gWrapperFileContent_5_swift_5F_sources ;
+extern const char * gWrapperFileContent_100_swift_5F_sources ;
+extern const char * gWrapperFileContent_14_swift_5F_sources ;
+extern const char * gWrapperFileContent_69_swift_5F_sources ;
+extern const char * gWrapperFileContent_85_swift_5F_sources ;
+extern const char * gWrapperFileContent_120_swift_5F_sources ;
+extern const char * gWrapperFileContent_119_swift_5F_sources ;
+extern const char * gWrapperFileContent_116_swift_5F_sources ;
+extern const char * gWrapperFileContent_57_swift_5F_sources ;
+extern const char * gWrapperFileContent_24_swift_5F_sources ;
+extern const char * gWrapperFileContent_41_swift_5F_sources ;
+extern const char * gWrapperFileContent_47_swift_5F_sources ;
+extern const char * gWrapperFileContent_32_swift_5F_sources ;
+extern const char * gWrapperFileContent_99_swift_5F_sources ;
+extern const char * gWrapperFileContent_17_swift_5F_sources ;
+extern const char * gWrapperFileContent_54_swift_5F_sources ;
 extern const char * gWrapperFileContent_110_swift_5F_sources ;
-extern const char * gWrapperFileContent_42_swift_5F_sources ;
+extern const char * gWrapperFileContent_65_swift_5F_sources ;
+extern const char * gWrapperFileContent_95_swift_5F_sources ;
+extern const char * gWrapperFileContent_76_swift_5F_sources ;
+extern const char * gWrapperFileContent_118_swift_5F_sources ;
+extern const char * gWrapperFileContent_36_swift_5F_sources ;
 extern const char * gWrapperFileContent_81_swift_5F_sources ;
+extern const char * gWrapperFileContent_53_swift_5F_sources ;
+extern const char * gWrapperFileContent_74_swift_5F_sources ;
+extern const char * gWrapperFileContent_102_swift_5F_sources ;
+extern const char * gWrapperFileContent_46_swift_5F_sources ;
+extern const char * gWrapperFileContent_61_swift_5F_sources ;
+extern const char * gWrapperFileContent_60_swift_5F_sources ;
+extern const char * gWrapperFileContent_113_swift_5F_sources ;
+extern const char * gWrapperFileContent_39_swift_5F_sources ;
+extern const char * gWrapperFileContent_21_swift_5F_sources ;
+extern const char * gWrapperFileContent_89_swift_5F_sources ;
+extern const char * gWrapperFileContent_109_swift_5F_sources ;
+extern const char * gWrapperFileContent_80_swift_5F_sources ;
+extern const char * gWrapperFileContent_83_swift_5F_sources ;
+extern const char * gWrapperFileContent_75_swift_5F_sources ;
+extern const char * gWrapperFileContent_94_swift_5F_sources ;
+extern const char * gWrapperFileContent_93_swift_5F_sources ;
+extern const char * gWrapperFileContent_101_swift_5F_sources ;
+extern const char * gWrapperFileContent_108_swift_5F_sources ;
+extern const char * gWrapperFileContent_18_swift_5F_sources ;
+extern const char * gWrapperFileContent_15_swift_5F_sources ;
+extern const char * gWrapperFileContent_112_swift_5F_sources ;
+extern const char * gWrapperFileContent_42_swift_5F_sources ;
+extern const char * gWrapperFileContent_82_swift_5F_sources ;
 extern const char * gWrapperFileContent_48_swift_5F_sources ;
 extern const char * gWrapperFileContent_56_swift_5F_sources ;
 extern const char * gWrapperFileContent_25_swift_5F_sources ;
-extern const char * gWrapperFileContent_17_swift_5F_sources ;
-extern const char * gWrapperFileContent_32_swift_5F_sources ;
-extern const char * gWrapperFileContent_10_swift_5F_sources ;
+extern const char * gWrapperFileContent_20_swift_5F_sources ;
+extern const char * gWrapperFileContent_33_swift_5F_sources ;
+extern const char * gWrapperFileContent_11_swift_5F_sources ;
 extern const char * gWrapperFileContent_35_swift_5F_sources ;
 extern const char * gWrapperFileContent_43_swift_5F_sources ;
 extern const char * gWrapperFileContent_68_swift_5F_sources ;
-extern const char * gWrapperFileContent_3_swift_5F_sources ;
+extern const char * gWrapperFileContent_2_swift_5F_sources ;
 extern const char * gWrapperFileContent_87_swift_5F_sources ;
-extern const char * gWrapperFileContent_9_swift_5F_sources ;
-extern const char * gWrapperFileContent_51_swift_5F_sources ;
-extern const char * gWrapperFileContent_102_swift_5F_sources ;
-extern const char * gWrapperFileContent_101_swift_5F_sources ;
+extern const char * gWrapperFileContent_10_swift_5F_sources ;
+extern const char * gWrapperFileContent_52_swift_5F_sources ;
+extern const char * gWrapperFileContent_104_swift_5F_sources ;
+extern const char * gWrapperFileContent_103_swift_5F_sources ;
 extern const char * gWrapperFileContent_91_swift_5F_sources ;
 extern const char * gWrapperFileContent_31_swift_5F_sources ;
-extern const char * gWrapperFileContent_8_swift_5F_sources ;
+extern const char * gWrapperFileContent_9_swift_5F_sources ;
 extern const char * gWrapperFileContent_45_swift_5F_sources ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -544,6 +588,8 @@ extern const cRegularFileWrapper gWrapperFile_115_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_116_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_117_swift_5F_sources ;
 extern const cRegularFileWrapper gWrapperFile_118_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_119_swift_5F_sources ;
+extern const cRegularFileWrapper gWrapperFile_120_swift_5F_sources ;
 
 //----------------------------------------------------------------------------------------------------------------------
 

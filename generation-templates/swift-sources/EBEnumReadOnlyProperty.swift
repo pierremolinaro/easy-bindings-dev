@@ -5,16 +5,26 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   EBReadOnlyValueProperty <T>
+//   EBReadOnlyEnumProperty <T>
 //----------------------------------------------------------------------------------------------------------------------
 
-class EBReadOnlyValueProperty <T> : EBAbstractProperty, EBObservableObjectProtocol where T : Equatable {
+class EBReadOnlyEnumProperty <T : EBEnumProtocol> : EBGenericReadOnlyProperty <T>, EBReadObservableEnumProtocol where T : Equatable {
+
+  func setFrom (rawValue : Int) {}  // Abstract method
 
   //····················································································································
 
-  var selection : EBSelection <T> { return .empty } // Abstract method
+  func rawValue () -> Int? {
+    switch self.selection {
+    case .empty, .multiple :
+      return nil
+    case .single (let v) :
+      return v.rawValue
+    }
+  }
 
   //····················································································································
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------

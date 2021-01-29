@@ -82,12 +82,15 @@ class EBIntField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
     switch object.selection {
     case .empty :
       self.enableFromValueBinding (false)
-      self.stringValue = "-"
+      self.placeholderString = "No Selection"
+      self.stringValue = ""
     case .single (let v) :
       self.enableFromValueBinding (true)
+      self.placeholderString = nil
       self.integerValue = v
     case .multiple :
-      self.stringValue = "multiple"
+      self.placeholderString = "Multiple Selection"
+      self.stringValue = ""
       self.enableFromValueBinding (true)
     }
   }
@@ -134,7 +137,7 @@ class EBIntField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
 //   Controller_EBIntField_value
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBIntField_value : EBSimpleController {
+final class Controller_EBIntField_value : EBReadOnlyPropertyController {
 
   private let mObject : EBReadWriteProperty_Int
   private let mOutlet : EBIntField

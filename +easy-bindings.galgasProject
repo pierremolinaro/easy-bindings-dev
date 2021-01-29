@@ -33,6 +33,7 @@ project (0:0:1) -> "eb" {
 
 #--- Properties
   "galgas-sources/observable-property.galgas"
+  "galgas-sources/computed-property.galgas"
   "galgas-sources/transient-property.galgas"
   "galgas-sources/proxy.galgas"
   "galgas-sources/simple-stored-property.galgas"

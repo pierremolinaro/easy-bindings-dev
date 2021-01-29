@@ -80,12 +80,15 @@ class EBDoubleField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate 
     switch object.selection {
     case .empty :
       self.enableFromValueBinding (false)
-      self.stringValue = "-"
+      self.placeholderString = "No Selection"
+      self.stringValue = ""
     case .single (let v) :
       self.enableFromValueBinding (true)
+      self.placeholderString = nil
       self.doubleValue = v
     case .multiple :
-      self.stringValue = "multiple"
+      self.placeholderString = "Multiple Selection"
+      self.stringValue = ""
       self.enableFromValueBinding (true)
     }
   }
@@ -118,7 +121,7 @@ class EBDoubleField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate 
 //   Controller_EBDoubleField_value
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBDoubleField_value : EBSimpleController {
+final class Controller_EBDoubleField_value : EBReadOnlyPropertyController {
 
   private let mObject : EBReadWriteProperty_Double
   private let mOutlet : EBDoubleField

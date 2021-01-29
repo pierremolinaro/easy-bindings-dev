@@ -24,6 +24,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "class",
   "classForSwift",
   "column",
+  "computed",
   "default",
   "dependsFrom",
   "document",

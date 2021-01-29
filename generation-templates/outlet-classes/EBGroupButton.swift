@@ -120,7 +120,7 @@ import Cocoa
 //   Controller_EBGroupButton_selectedIndex
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBGroupButton_selectedIndex : EBSimpleController {
+final class Controller_EBGroupButton_selectedIndex : EBReadOnlyPropertyController {
 
   private let mObject : EBReadWriteProperty_Int
   private let mOutlet : EBGroupButton

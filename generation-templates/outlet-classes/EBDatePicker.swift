@@ -42,7 +42,7 @@ import Cocoa
 //   Controller_EBDatePicker_date
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_EBDatePicker_date : EBSimpleController {
+final class Controller_EBDatePicker_date : EBReadOnlyPropertyController {
 
   private let mObject : EBReadWriteProperty_Date
   private let mOutlet: EBDatePicker
