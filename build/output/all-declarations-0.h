@@ -86,7 +86,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_computed,
    kToken_default,
    kToken_dependsFrom,
-   kToken_document,
+   kToken_xibdocument,
    kToken_enum,
    kToken_entity,
    kToken_extern,

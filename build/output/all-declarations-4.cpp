@@ -10268,7 +10268,7 @@ GALGAS_generationStruct::GALGAS_generationStruct (void) :
 mProperty_mValidationStubRoutineListForGeneration (),
 mProperty_mFileGenerationList (),
 mProperty_mEntityListForGeneration (),
-mProperty_mGenerateEBManagedDocumentSwift (),
+mProperty_mGenerateEBManagedXibDocumentSwift (),
 mProperty_mNeededOutletClasses (),
 mProperty_mMainXibDescriptorList (),
 mProperty_mSelectionControllerListForGeneration (),
@@ -10295,7 +10295,7 @@ GALGAS_generationStruct::GALGAS_generationStruct (const GALGAS_validationStubRou
 mProperty_mValidationStubRoutineListForGeneration (inOperand0),
 mProperty_mFileGenerationList (inOperand1),
 mProperty_mEntityListForGeneration (inOperand2),
-mProperty_mGenerateEBManagedDocumentSwift (inOperand3),
+mProperty_mGenerateEBManagedXibDocumentSwift (inOperand3),
 mProperty_mNeededOutletClasses (inOperand4),
 mProperty_mMainXibDescriptorList (inOperand5),
 mProperty_mSelectionControllerListForGeneration (inOperand6),
@@ -10350,7 +10350,7 @@ typeComparisonResult GALGAS_generationStruct::objectCompare (const GALGAS_genera
     result = mProperty_mEntityListForGeneration.objectCompare (inOperand.mProperty_mEntityListForGeneration) ;
   }
   if (result == kOperandEqual) {
-    result = mProperty_mGenerateEBManagedDocumentSwift.objectCompare (inOperand.mProperty_mGenerateEBManagedDocumentSwift) ;
+    result = mProperty_mGenerateEBManagedXibDocumentSwift.objectCompare (inOperand.mProperty_mGenerateEBManagedXibDocumentSwift) ;
   }
   if (result == kOperandEqual) {
     result = mProperty_mNeededOutletClasses.objectCompare (inOperand.mProperty_mNeededOutletClasses) ;
@@ -10373,7 +10373,7 @@ typeComparisonResult GALGAS_generationStruct::objectCompare (const GALGAS_genera
 //----------------------------------------------------------------------------------------------------------------------
 
 bool GALGAS_generationStruct::isValid (void) const {
-  return mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mFileGenerationList.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mGenerateEBManagedDocumentSwift.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
+  return mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mFileGenerationList.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mGenerateEBManagedXibDocumentSwift.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10382,7 +10382,7 @@ void GALGAS_generationStruct::drop (void) {
   mProperty_mValidationStubRoutineListForGeneration.drop () ;
   mProperty_mFileGenerationList.drop () ;
   mProperty_mEntityListForGeneration.drop () ;
-  mProperty_mGenerateEBManagedDocumentSwift.drop () ;
+  mProperty_mGenerateEBManagedXibDocumentSwift.drop () ;
   mProperty_mNeededOutletClasses.drop () ;
   mProperty_mMainXibDescriptorList.drop () ;
   mProperty_mSelectionControllerListForGeneration.drop () ;
@@ -10404,7 +10404,7 @@ void GALGAS_generationStruct::description (C_String & ioString,
     ioString << ", " ;
     mProperty_mEntityListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;
-    mProperty_mGenerateEBManagedDocumentSwift.description (ioString, inIndentation+1) ;
+    mProperty_mGenerateEBManagedXibDocumentSwift.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mNeededOutletClasses.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -10439,8 +10439,8 @@ GALGAS_entityListForGeneratingEBManagedObjectContext GALGAS_generationStruct::ge
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_generationStruct::getter_mGenerateEBManagedDocumentSwift (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mGenerateEBManagedDocumentSwift ;
+GALGAS_bool GALGAS_generationStruct::getter_mGenerateEBManagedXibDocumentSwift (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mGenerateEBManagedXibDocumentSwift ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

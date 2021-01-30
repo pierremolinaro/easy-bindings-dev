@@ -134,8 +134,8 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_default = "the '
 //--- Syntax error message for terminal '$dependsFrom$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_dependsFrom = "the 'dependsFrom' keyword" ;
 
-//--- Syntax error message for terminal '$document$' :
-static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_document = "the 'document' keyword" ;
+//--- Syntax error message for terminal '$xibdocument$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_xibdocument = "the 'xibdocument' keyword" ;
 
 //--- Syntax error message for terminal '$enum$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_enum = "the 'enum' keyword" ;
@@ -341,7 +341,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_computed,
         gSyntaxErrorMessage_easyBindings_5F_lexique_default,
         gSyntaxErrorMessage_easyBindings_5F_lexique_dependsFrom,
-        gSyntaxErrorMessage_easyBindings_5F_lexique_document,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_xibdocument,
         gSyntaxErrorMessage_easyBindings_5F_lexique_enum,
         gSyntaxErrorMessage_easyBindings_5F_lexique_entity,
         gSyntaxErrorMessage_easyBindings_5F_lexique_extern,
@@ -683,19 +683,6 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_dependsFrom [] = {
   TO_UNICODE ('r'),
   TO_UNICODE ('o'),
   TO_UNICODE ('m'),
-  TO_UNICODE (0)
-} ;
-
-//--- Unicode string for '$document$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_document [] = {
-  TO_UNICODE ('d'),
-  TO_UNICODE ('o'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('u'),
-  TO_UNICODE ('m'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('n'),
-  TO_UNICODE ('t'),
   TO_UNICODE (0)
 } ;
 
@@ -1172,6 +1159,22 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_xcodeproject [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$xibdocument$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique_xibdocument [] = {
+  TO_UNICODE ('x'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('b'),
+  TO_UNICODE ('d'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('c'),
+  TO_UNICODE ('u'),
+  TO_UNICODE ('m'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('n'),
+  TO_UNICODE ('t'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$yes$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique_yes [] = {
   TO_UNICODE ('y'),
@@ -1270,7 +1273,6 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_abstract, 8, C_Lexique_easyBindings_5F_lexique::kToken_abstract),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_calledBy, 8, C_Lexique_easyBindings_5F_lexique::kToken_calledBy),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_computed, 8, C_Lexique_easyBindings_5F_lexique::kToken_computed),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_document, 8, C_Lexique_easyBindings_5F_lexique::kToken_document),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_graphviz, 8, C_Lexique_easyBindings_5F_lexique::kToken_graphviz),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_override, 8, C_Lexique_easyBindings_5F_lexique::kToken_override),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_property, 8, C_Lexique_easyBindings_5F_lexique::kToken_property),
@@ -1278,6 +1280,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_transient, 9, C_Lexique_easyBindings_5F_lexique::kToken_transient),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externFunc, 10, C_Lexique_easyBindings_5F_lexique::kToken_externFunc),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_dependsFrom, 11, C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_xibdocument, 11, C_Lexique_easyBindings_5F_lexique::kToken_xibdocument),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_xcodeproject, 12, C_Lexique_easyBindings_5F_lexique::kToken_xcodeproject),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_classForSwift, 13, C_Lexique_easyBindings_5F_lexique::kToken_classForSwift),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externDelegate, 14, C_Lexique_easyBindings_5F_lexique::kToken_externDelegate),
@@ -1452,9 +1455,9 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString ("dependsFrom") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
-    case kToken_document:
+    case kToken_xibdocument:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendCString ("document") ;
+      s.appendCString ("xibdocument") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_enum:
@@ -2098,7 +2101,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("computed") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("default") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("dependsFrom") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("document") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("xibdocument") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("enum") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("entity") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("extern") COMMA_THERE) ;
@@ -2231,7 +2234,6 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("abstract") ;
     ioList.appendObject ("calledBy") ;
     ioList.appendObject ("computed") ;
-    ioList.appendObject ("document") ;
     ioList.appendObject ("graphviz") ;
     ioList.appendObject ("override") ;
     ioList.appendObject ("property") ;
@@ -2239,6 +2241,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("transient") ;
     ioList.appendObject ("externFunc") ;
     ioList.appendObject ("dependsFrom") ;
+    ioList.appendObject ("xibdocument") ;
     ioList.appendObject ("xcodeproject") ;
     ioList.appendObject ("classForSwift") ;
     ioList.appendObject ("externDelegate") ;
@@ -2293,7 +2296,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_computed */,
     1 /* easyBindings_lexique_1_default */,
     1 /* easyBindings_lexique_1_dependsFrom */,
-    1 /* easyBindings_lexique_1_document */,
+    1 /* easyBindings_lexique_1_xibdocument */,
     1 /* easyBindings_lexique_1_enum */,
     1 /* easyBindings_lexique_1_entity */,
     1 /* easyBindings_lexique_1_extern */,
@@ -2842,32 +2845,32 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i6_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                               C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_document COMMA_SOURCE_FILE ("document.galgas", 34)) ;
-  GALGAS_lstring var_documentName_1565 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_xibdocument COMMA_SOURCE_FILE ("document.galgas", 34)) ;
+  GALGAS_lstring var_documentName_1568 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document.galgas", 35)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("document.galgas", 36)) ;
-  GALGAS_lstring var_rootEntityName_1622 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_rootEntityName_1625 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document.galgas", 37)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("document.galgas", 38)) ;
-  GALGAS_outletDeclarationList var_outletDeclarationList_1679 = GALGAS_outletDeclarationList::constructor_emptyList (SOURCE_FILE ("document.galgas", 39)) ;
-  GALGAS_regularBindingList var_bindingList_1720 = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("document.galgas", 40)) ;
-  GALGAS_lstringlist var_actionDeclarationList_1764 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("document.galgas", 41)) ;
-  GALGAS_stringset var_signatureList_1798 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("document.galgas", 42)) ;
-  GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_1868 = GALGAS_arrayControllerBindingListAST::constructor_emptyList (SOURCE_FILE ("document.galgas", 43)) ;
+  GALGAS_outletDeclarationList var_outletDeclarationList_1682 = GALGAS_outletDeclarationList::constructor_emptyList (SOURCE_FILE ("document.galgas", 39)) ;
+  GALGAS_regularBindingList var_bindingList_1723 = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("document.galgas", 40)) ;
+  GALGAS_lstringlist var_actionDeclarationList_1767 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("document.galgas", 41)) ;
+  GALGAS_stringset var_signatureList_1801 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("document.galgas", 42)) ;
+  GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_1871 = GALGAS_arrayControllerBindingListAST::constructor_emptyList (SOURCE_FILE ("document.galgas", 43)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_9 (inCompiler)) {
     case 2: {
-      nt_action_5F_declaration_ (var_actionDeclarationList_1764, inCompiler) ;
+      nt_action_5F_declaration_ (var_actionDeclarationList_1767, inCompiler) ;
     } break ;
     case 3: {
-      nt_transient_5F_declaration_ (var_documentName_1565, var_rootEntityName_1622, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_transient_5F_declaration_ (var_documentName_1568, var_rootEntityName_1625, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 4: {
-      nt_outlet_5F_declaration_ (var_outletDeclarationList_1679, inCompiler) ;
+      nt_outlet_5F_declaration_ (var_outletDeclarationList_1682, inCompiler) ;
     } break ;
     case 5: {
-      nt_controller_5F_declaration_ (var_documentName_1565, var_rootEntityName_1622, var_arrayControllerBindingListAST_1868, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_controller_5F_declaration_ (var_documentName_1568, var_rootEntityName_1625, var_arrayControllerBindingListAST_1871, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -2875,14 +2878,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document.galgas", 54)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_documentDeclarationAST::constructor_new (var_documentName_1565, var_rootEntityName_1622, var_outletDeclarationList_1679, var_actionDeclarationList_1764, var_arrayControllerBindingListAST_1868  COMMA_SOURCE_FILE ("document.galgas", 55))  COMMA_SOURCE_FILE ("document.galgas", 55)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientDeclarationAST::constructor_new (var_documentName_1565, var_rootEntityName_1622, GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 65)), GALGAS_string ("documentFilePath").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 66)), GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("document.galgas", 67)), GALGAS_bool (false)  COMMA_SOURCE_FILE ("document.galgas", 62))  COMMA_SOURCE_FILE ("document.galgas", 62)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_documentDeclarationAST::constructor_new (var_documentName_1568, var_rootEntityName_1625, var_outletDeclarationList_1682, var_actionDeclarationList_1767, var_arrayControllerBindingListAST_1871  COMMA_SOURCE_FILE ("document.galgas", 55))  COMMA_SOURCE_FILE ("document.galgas", 55)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientDeclarationAST::constructor_new (var_documentName_1568, var_rootEntityName_1625, GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 65)), GALGAS_string ("documentFilePath").getter_here (inCompiler COMMA_SOURCE_FILE ("document.galgas", 66)), GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("document.galgas", 67)), GALGAS_bool (false)  COMMA_SOURCE_FILE ("document.galgas", 62))  COMMA_SOURCE_FILE ("document.galgas", 62)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i6_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_document COMMA_SOURCE_FILE ("document.galgas", 34)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_xibdocument COMMA_SOURCE_FILE ("document.galgas", 34)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document.galgas", 35)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("document.galgas", 36)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document.galgas", 37)) ;

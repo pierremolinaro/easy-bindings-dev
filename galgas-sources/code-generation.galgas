@@ -30,7 +30,7 @@ struct @generationStruct {
   @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
   @fileGenerationList mFileGenerationList
   @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
-  @bool mGenerateEBManagedDocumentSwift
+  @bool mGenerateEBManagedXibDocumentSwift
   @stringset mNeededOutletClasses
   @mainXibDescriptorList mMainXibDescriptorList
 
@@ -66,8 +66,8 @@ proc generateCode
     !fileOutputDirectory
     !?generatedFileSet
   )
-  if inGeneration.mGenerateEBManagedDocumentSwift then
-    generateEBManagedDocumentSwift (!fileOutputDirectory !?generatedFileSet)
+  if inGeneration.mGenerateEBManagedXibDocumentSwift then
+    generateEBManagedXibDocumentSwift (!fileOutputDirectory !?generatedFileSet)
   end
   generateSelectionControllers (
     !inGeneration.mSelectionControllerListForGeneration

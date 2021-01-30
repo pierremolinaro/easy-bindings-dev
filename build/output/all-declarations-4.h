@@ -91,7 +91,7 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 
   public : GALGAS_entityListForGeneratingEBManagedObjectContext mProperty_mEntityListForGeneration ;
 
-  public : GALGAS_bool mProperty_mGenerateEBManagedDocumentSwift ;
+  public : GALGAS_bool mProperty_mGenerateEBManagedXibDocumentSwift ;
 
   public : GALGAS_stringset mProperty_mNeededOutletClasses ;
 
@@ -120,7 +120,7 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
   public : GALGAS_generationStruct (const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration,
                                     const GALGAS_fileGenerationList & in_mFileGenerationList,
                                     const GALGAS_entityListForGeneratingEBManagedObjectContext & in_mEntityListForGeneration,
-                                    const GALGAS_bool & in_mGenerateEBManagedDocumentSwift,
+                                    const GALGAS_bool & in_mGenerateEBManagedXibDocumentSwift,
                                     const GALGAS_stringset & in_mNeededOutletClasses,
                                     const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
                                     const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
@@ -165,7 +165,7 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_fileGenerationList getter_mFileGenerationList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mGenerateEBManagedDocumentSwift (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mGenerateEBManagedXibDocumentSwift (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_mainXibDescriptorList getter_mMainXibDescriptorList (LOCATION_ARGS) const ;
 

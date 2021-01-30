@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : EBManagedDocument {
+@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : EBManagedXibDocument {
 
 %
 for () in DOCUMENT_PROPERTY_LIST do

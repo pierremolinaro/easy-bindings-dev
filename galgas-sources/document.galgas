@@ -31,7 +31,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <document_declaration> ?!@astDeclarationStruct ioDeclarationAST {
-    $document$
+    $xibdocument$
     $Identifier$ ?let @lstring documentName
     $root$
     $Identifier$ ?let @lstring rootEntityName
@@ -169,7 +169,7 @@ override method @documentDeclarationAST fourthAnalysisPhase
     end
   end
 #--- Code generation
-  ioGeneration.mGenerateEBManagedDocumentSwift = true
+  ioGeneration.mGenerateEBManagedXibDocumentSwift = true
 #---
   ioGeneration.mFileGenerationList += !@documentFileGeneration.new {
     !mClassName.string
@@ -212,15 +212,12 @@ override method @documentFileGeneration generateCode
     !mDocumentName
     !mRootEntityName
     !mDocumentPropertyGenearionList
-#    !mTransientListForGeneration
     !mOutletMap
-#    !mArrayControllerForGeneration
     !mTargetActionList
     !mRegularBindingsGenerationList
     !multipleBindingGenerationList
     !mTableViewBindingGenerationList
     !mEBViewBindingGenerationList
-#    !mSelectionControllerListForGeneration
   ]
   let fileName = mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -236,7 +233,7 @@ override method @documentFileGeneration generateCode
 private filewrapper documentGenerationTemplate in "../generation-templates" {
 }{
 }{
-  template documentImplementation "document.swift.galgasTemplate"
+  template documentImplementation "xibdocument.swift.galgasTemplate"
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
     ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
@@ -250,11 +247,11 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-proc generateEBManagedDocumentSwift
+proc generateEBManagedXibDocumentSwift
   ?let @string inOutputDirectory
   ?!@stringset ioGeneratedFileSet
 {
-  let fileName = "EBManagedDocument.swift"
+  let fileName = "EBManagedXibDocument.swift"
   var fw = [filewrapper swift_sources]
   let contents = [fw textFileContentsAtPath !fileName]
   ioGeneratedFileSet += !fileName
