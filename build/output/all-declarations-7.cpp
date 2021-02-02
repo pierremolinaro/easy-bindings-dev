@@ -8530,13 +8530,13 @@ const char * gWrapperFileContent_91_swift_5F_sources = "//----------------------
   "  init (zoom : EBReadWriteProperty_Int, outlet : EBGraphicView) {\n"
   "    self.mZoomProperty = zoom\n"
   "    self.mOutlet = outlet\n"
-  "    super.init (observedObjects:[zoom], callBack: { outlet.updateOutlet (zoom) })\n"
+  "    super.init (observedObjects: [zoom], callBack: { outlet.updateOutlet (zoom) })\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  func updateModel (_ sender : EBGraphicView, _ inNewZoom : Int) {\n"
-  "    _ = self.mZoomProperty.validateAndSetProp (inNewZoom, windowForSheet:sender.window)\n"
+  "    _ = self.mZoomProperty.validateAndSetProp (inNewZoom, windowForSheet: sender.window)\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -8549,7 +8549,7 @@ const cRegularFileWrapper gWrapperFile_91_swift_5F_sources (
   "EBGraphicView-binding-zoom.swift",
   "swift",
   true, // Text file
-  2995, // Text length
+  2997, // Text length
   gWrapperFileContent_91_swift_5F_sources
 ) ;
 
@@ -9486,7 +9486,7 @@ const char * gWrapperFileContent_59_swift_5F_sources = "//----------------------
   "  final func applyZoom () {\n"
   "    if let scrollView = self.enclosingScrollView {\n"
   "      if self.mZoomPropertyCache == 0 {\n"
-  "        let box = self.bounds\n"
+  "        let box = self.objectsAndIssueBoundingBox\n"
   "        if !box.isEmpty {\n"
   "          scrollView.magnify (toFit: box)\n"
   "        }\n"
@@ -9552,7 +9552,7 @@ const cRegularFileWrapper gWrapperFile_59_swift_5F_sources (
   "EBGraphicView-magnify-and-zoom.swift",
   "swift",
   true, // Text file
-  3217, // Text length
+  3237, // Text length
   gWrapperFileContent_59_swift_5F_sources
 ) ;
 
@@ -10127,11 +10127,6 @@ const char * gWrapperFileContent_22_swift_5F_sources = "//----------------------
   "      scrollView.magnify (toFit: r)\n"
   "    //--- Update zoom value\n"
   "      inGraphicView.mZoomPropertyCache = Int ((inGraphicView.actualScale * 100.0).rounded (.toNearestOrEven))\n"
-  "  //    inGraphicView.mZoomController\?.updateModel (inGraphicView, inGraphicView.mZoomPropertyCache)\n"
-  "//      Swift.print (\"ZOOM \\(inGraphicView.mZoomPropertyCache)\")\n"
-  "   //--- set zoom up button title to actual zoom\n"
-  "//      let zoomTitle = \"\\(inGraphicView.mZoomPropertyCache) %\"\n"
-  "//      inGraphicView.mZoomPopUpButton\?.menu\?.item (at:0)\?.title = zoomTitle\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -10145,7 +10140,7 @@ const cRegularFileWrapper gWrapperFile_22_swift_5F_sources (
   "EBGraphicView-mouse-down-behaviours.swift",
   "swift",
   true, // Text file
-  18269, // Text length
+  17913, // Text length
   gWrapperFileContent_22_swift_5F_sources
 ) ;
 
@@ -10913,7 +10908,7 @@ const char * gWrapperFileContent_5_swift_5F_sources = "//-----------------------
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  final var objectsAndIssueBoundingBox : NSRect {\n"
-  "    var r = NSRect.null\n"
+  "    var r = NSRect ()\n"
   "    for shape in self.mObjectDisplayArray {\n"
   "      r = r.union (shape.boundingBox)\n"
   "    }\n"
@@ -11339,7 +11334,7 @@ const cRegularFileWrapper gWrapperFile_5_swift_5F_sources (
   "EBGraphicView.swift",
   "swift",
   true, // Text file
-  35092, // Text length
+  35090, // Text length
   gWrapperFileContent_5_swift_5F_sources
 ) ;
 
