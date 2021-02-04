@@ -63,7 +63,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
     while
       <outlet_class_declaration> !?ioDeclarationAST
     while
-      <binding_specification> !?ioDeclarationAST.mBindingSpecificationListMap
+      <outlet_binding_specification> !?ioDeclarationAST.mBindingSpecificationListMap
     while
       <xcode_project> !?ioDeclarationAST.mXcodeProject
     while

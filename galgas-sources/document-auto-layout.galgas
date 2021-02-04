@@ -182,7 +182,20 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
   @viewGenerationList viewGenerationList = {}
   for (viewName viewDeclaration) in mViewDeclarationList do
     [!?viewDeclarationMap insertKey !viewName]
-    [viewDeclaration check !viewName !viewDeclarationMap !ioSemanticContext.mAutolayoutViewClassMap ?let viewGeneration]
+    [viewDeclaration check
+      !viewName
+      !viewDeclarationMap
+      !ioSemanticContext.mAutolayoutViewClassMap
+      !ioSemanticContext.mAutoLayoutBindingSpecificationMap
+      !false
+      !rootPropertyMap
+      !preferencesPropertyMap
+      !ioSemanticContext
+      !documentPropertyMap
+      !documentActionMap
+      !mClassName
+      ?let viewGeneration
+    ]
     viewGenerationList += !viewName !viewGeneration
   end
   [viewDeclarationMap searchKey !mMainViewName]

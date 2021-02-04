@@ -46,12 +46,38 @@ syntax extension easyBindings_syntax {
     $outlet$
     $Identifier$ ?let outletTypeName
     $identifier$ ?let outletName
-    var tableValueBinding = @tableValueBinding.noTableValueBinding 
-    var runActionDescriptor = @runActionDescriptor.noAction 
-    var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
-    var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
-    var graphicController = @graphicController.none
-    @regularBindingList regularBindingList = {}
+    <outlet_binding> ?let @tableValueBinding tableValueBinding
+                     ?let @runActionDescriptor runActionDescriptor
+                     ?let @multipleBindingDescriptor enabledBindingDescriptor
+                     ?let @multipleBindingDescriptor hiddenBindingDescriptor
+                     ?let @graphicController graphicController
+                     ?let @regularBindingList regularBindingList
+    $;$
+    ioOutletDeclarationList +=
+      !outletTypeName
+      !outletName
+      !tableValueBinding
+      !runActionDescriptor
+      !enabledBindingDescriptor
+      !hiddenBindingDescriptor
+      !regularBindingList
+      !graphicController
+  }
+ 
+ #·······················································································································
+
+  rule <outlet_binding> !@tableValueBinding tableValueBinding
+                        !@runActionDescriptor runActionDescriptor
+                        !@multipleBindingDescriptor enabledBindingDescriptor
+                        !@multipleBindingDescriptor hiddenBindingDescriptor
+                        !@graphicController graphicController
+                        !@regularBindingList regularBindingList {
+    tableValueBinding = @tableValueBinding.noTableValueBinding 
+    runActionDescriptor = @runActionDescriptor.noAction 
+    enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
+    hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
+    graphicController = @graphicController.none
+    regularBindingList = {}
     repeat
     while
       $tableValue$
@@ -122,17 +148,6 @@ syntax extension easyBindings_syntax {
         error graphicControllerName : "binding already defined" ;
       end   
     end
-  #---
-    $;$
-    ioOutletDeclarationList +=
-      !outletTypeName
-      !outletName
-      !tableValueBinding
-      !runActionDescriptor
-      !enabledBindingDescriptor
-      !hiddenBindingDescriptor
-      !regularBindingList
-      !graphicController
   }
   
   #·······················································································································

@@ -32,7 +32,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <binding_specification> ?!@outletClassBindingSpecificationList ioControllerTemplateList {
+  rule <outlet_binding_specification> ?!@outletClassBindingSpecificationList ioControllerTemplateList {
     $binding$
     $Identifier$ ?let @lstring outletClassName
     $bindingName$ ?let @lstring bindingName

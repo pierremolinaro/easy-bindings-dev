@@ -20,7 +20,6 @@ syntax extension easyBindings_syntax {
   rule <auto_layout_view_binding_specification> ?let @lstring inClassName 
                                                 ?!@autoLayoutViewClassBindingSpecificationList ioBindingList {
     $bindingName$ ?let @lstring bindingName
-    $:$
     @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
     repeat
       @bool modelShouldBeWritableProperty
@@ -56,7 +55,6 @@ syntax extension easyBindings_syntax {
       end
       $}$
     end
-    $;$
     ioBindingList +=
       !inClassName
       !bindingName

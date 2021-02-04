@@ -42,133 +42,133 @@ void routine_buildBindingSpecificationMap (GALGAS_semanticContext & ioArgument_i
                                            const GALGAS_outletClassBindingSpecificationList constinArgument_inBindingSpecificationListMap,
                                            C_Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_outletClassBindingSpecificationList enumerator_4515 (constinArgument_inBindingSpecificationListMap, kENUMERATION_UP) ;
-  while (enumerator_4515.hasCurrentObject ()) {
-    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_4595 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("outlet-binding-specification.galgas", 129)) ;
-    cEnumerator_outletClassBindingSpecificationModelList enumerator_4656 (enumerator_4515.current_mOutletClassBindingSpecificationModelList (HERE), kENUMERATION_UP) ;
-    while (enumerator_4656.hasCurrentObject ()) {
+  cEnumerator_outletClassBindingSpecificationList enumerator_4522 (constinArgument_inBindingSpecificationListMap, kENUMERATION_UP) ;
+  while (enumerator_4522.hasCurrentObject ()) {
+    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_4602 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("outlet-binding-specification.galgas", 129)) ;
+    cEnumerator_outletClassBindingSpecificationModelList enumerator_4663 (enumerator_4522.current_mOutletClassBindingSpecificationModelList (HERE), kENUMERATION_UP) ;
+    while (enumerator_4663.hasCurrentObject ()) {
       enumGalgasBool test_0 = kBoolTrue ;
       if (kBoolTrue == test_0) {
-        test_0 = GALGAS_bool (kIsEqual, enumerator_4656.current_mModelTypeName (HERE).getter_string (HERE).objectCompare (GALGAS_string ("enum"))).boolEnum () ;
+        test_0 = GALGAS_bool (kIsEqual, enumerator_4663.current_mModelTypeName (HERE).getter_string (HERE).objectCompare (GALGAS_string ("enum"))).boolEnum () ;
         if (kBoolTrue == test_0) {
-          var_outletBindingSpecificationModelList_4595.addAssign_operation (GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("outlet-binding-specification.galgas", 133))  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 133)), enumerator_4656.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 132)) ;
+          var_outletBindingSpecificationModelList_4602.addAssign_operation (GALGAS_typeKind::constructor_enumType (GALGAS_string::makeEmptyString (), GALGAS_enumConstantMap::constructor_emptyMap (SOURCE_FILE ("outlet-binding-specification.galgas", 133))  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 133)), enumerator_4663.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 132)) ;
         }
       }
       if (kBoolFalse == test_0) {
-        GALGAS_classKind var_classKind_4968 ;
-        GALGAS_propertyMap joker_4970_3 ; // Joker input parameter
-        GALGAS_actionMap joker_4970_2 ; // Joker input parameter
-        GALGAS_propertyGenerationList joker_4970_1 ; // Joker input parameter
-        ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (enumerator_4656.current_mModelTypeName (HERE), var_classKind_4968, joker_4970_3, joker_4970_2, joker_4970_1, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 136)) ;
-        GALGAS_typeKind var_typeKind_5000 ;
-        switch (var_classKind_4968.enumValue ()) {
+        GALGAS_classKind var_classKind_4975 ;
+        GALGAS_propertyMap joker_4977_3 ; // Joker input parameter
+        GALGAS_actionMap joker_4977_2 ; // Joker input parameter
+        GALGAS_propertyGenerationList joker_4977_1 ; // Joker input parameter
+        ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (enumerator_4663.current_mModelTypeName (HERE), var_classKind_4975, joker_4977_3, joker_4977_2, joker_4977_1, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 136)) ;
+        GALGAS_typeKind var_typeKind_5007 ;
+        switch (var_classKind_4975.enumValue ()) {
         case GALGAS_classKind::kNotBuilt:
           break ;
         case GALGAS_classKind::kEnum_prefs:
           {
             TC_Array <C_FixItDescription> fixItArray1 ;
-            inCompiler->emitSemanticError (enumerator_4656.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 140)), GALGAS_string ("an atomic class is required here"), fixItArray1  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 140)) ;
-            var_typeKind_5000.drop () ; // Release error dropped variable
+            inCompiler->emitSemanticError (enumerator_4663.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 140)), GALGAS_string ("an atomic class is required here"), fixItArray1  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 140)) ;
+            var_typeKind_5007.drop () ; // Release error dropped variable
           }
           break ;
         case GALGAS_classKind::kEnum_atomic:
           {
-            const cEnumAssociatedValues_classKind_atomic * extractPtr_5190 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_4968.unsafePointer ()) ;
-            const GALGAS_typeKind extractedValue_kind = extractPtr_5190->mAssociatedValue0 ;
-            var_typeKind_5000 = extractedValue_kind ;
+            const cEnumAssociatedValues_classKind_atomic * extractPtr_5197 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_4975.unsafePointer ()) ;
+            const GALGAS_typeKind extractedValue_kind = extractPtr_5197->mAssociatedValue0 ;
+            var_typeKind_5007 = extractedValue_kind ;
           }
           break ;
         case GALGAS_classKind::kEnum_document:
           {
             TC_Array <C_FixItDescription> fixItArray2 ;
-            inCompiler->emitSemanticError (enumerator_4656.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 144)), GALGAS_string ("an atomic class is required here"), fixItArray2  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 144)) ;
-            var_typeKind_5000.drop () ; // Release error dropped variable
+            inCompiler->emitSemanticError (enumerator_4663.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 144)), GALGAS_string ("an atomic class is required here"), fixItArray2  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 144)) ;
+            var_typeKind_5007.drop () ; // Release error dropped variable
           }
           break ;
         case GALGAS_classKind::kEnum_entity:
           {
             TC_Array <C_FixItDescription> fixItArray3 ;
-            inCompiler->emitSemanticError (enumerator_4656.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 146)), GALGAS_string ("an atomic class is required here"), fixItArray3  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 146)) ;
-            var_typeKind_5000.drop () ; // Release error dropped variable
+            inCompiler->emitSemanticError (enumerator_4663.current_mModelTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 146)), GALGAS_string ("an atomic class is required here"), fixItArray3  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 146)) ;
+            var_typeKind_5007.drop () ; // Release error dropped variable
           }
           break ;
         }
-        var_outletBindingSpecificationModelList_4595.addAssign_operation (var_typeKind_5000, enumerator_4656.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 148)) ;
+        var_outletBindingSpecificationModelList_4602.addAssign_operation (var_typeKind_5007, enumerator_4663.current_mModelShouldBeWritableProperty (HERE)  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 148)) ;
       }
-      enumerator_4656.gotoNextObject () ;
+      enumerator_4663.gotoNextObject () ;
     }
-    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_5601 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("outlet-binding-specification.galgas", 151)) ;
-    cEnumerator_controllerBindingOptionList enumerator_5639 (enumerator_4515.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
-    while (enumerator_5639.hasCurrentObject ()) {
-      GALGAS_classKind var_classKind_5730 ;
-      GALGAS_propertyMap joker_5732_3 ; // Joker input parameter
-      GALGAS_actionMap joker_5732_2 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_5732_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (enumerator_5639.current_mOptionTypeName (HERE), var_classKind_5730, joker_5732_3, joker_5732_2, joker_5732_1, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 153)) ;
-      GALGAS_typeKind var_typeKind_5760 ;
-      switch (var_classKind_5730.enumValue ()) {
+    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_5608 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("outlet-binding-specification.galgas", 151)) ;
+    cEnumerator_controllerBindingOptionList enumerator_5646 (enumerator_4522.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
+    while (enumerator_5646.hasCurrentObject ()) {
+      GALGAS_classKind var_classKind_5737 ;
+      GALGAS_propertyMap joker_5739_3 ; // Joker input parameter
+      GALGAS_actionMap joker_5739_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_5739_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mClassMap (HERE).method_searchKey (enumerator_5646.current_mOptionTypeName (HERE), var_classKind_5737, joker_5739_3, joker_5739_2, joker_5739_1, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 153)) ;
+      GALGAS_typeKind var_typeKind_5767 ;
+      switch (var_classKind_5737.enumValue ()) {
       case GALGAS_classKind::kNotBuilt:
         break ;
       case GALGAS_classKind::kEnum_prefs:
         {
           TC_Array <C_FixItDescription> fixItArray4 ;
-          inCompiler->emitSemanticError (enumerator_5639.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 157)), GALGAS_string ("an atomic class is required here"), fixItArray4  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 157)) ;
-          var_typeKind_5760.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_5646.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 157)), GALGAS_string ("an atomic class is required here"), fixItArray4  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 157)) ;
+          var_typeKind_5767.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_classKind::kEnum_atomic:
         {
-          const cEnumAssociatedValues_classKind_atomic * extractPtr_5941 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_5730.unsafePointer ()) ;
-          const GALGAS_typeKind extractedValue_kind = extractPtr_5941->mAssociatedValue0 ;
-          var_typeKind_5760 = extractedValue_kind ;
+          const cEnumAssociatedValues_classKind_atomic * extractPtr_5948 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_5737.unsafePointer ()) ;
+          const GALGAS_typeKind extractedValue_kind = extractPtr_5948->mAssociatedValue0 ;
+          var_typeKind_5767 = extractedValue_kind ;
         }
         break ;
       case GALGAS_classKind::kEnum_document:
         {
           TC_Array <C_FixItDescription> fixItArray5 ;
-          inCompiler->emitSemanticError (enumerator_5639.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 161)), GALGAS_string ("an atomic class is required here"), fixItArray5  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 161)) ;
-          var_typeKind_5760.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_5646.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 161)), GALGAS_string ("an atomic class is required here"), fixItArray5  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 161)) ;
+          var_typeKind_5767.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_classKind::kEnum_entity:
         {
           TC_Array <C_FixItDescription> fixItArray6 ;
-          inCompiler->emitSemanticError (enumerator_5639.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 163)), GALGAS_string ("an atomic class is required here"), fixItArray6  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 163)) ;
-          var_typeKind_5760.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (enumerator_5646.current_mOptionTypeName (HERE).getter_location (SOURCE_FILE ("outlet-binding-specification.galgas", 163)), GALGAS_string ("an atomic class is required here"), fixItArray6  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 163)) ;
+          var_typeKind_5767.drop () ; // Release error dropped variable
         }
         break ;
       }
-      var_controllerBindingOptionDecoratedList_5601.addAssign_operation (var_typeKind_5760, enumerator_5639.current_mOptionName (HERE)  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 165)) ;
-      enumerator_5639.gotoNextObject () ;
+      var_controllerBindingOptionDecoratedList_5608.addAssign_operation (var_typeKind_5767, enumerator_5646.current_mOptionName (HERE)  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 165)) ;
+      enumerator_5646.gotoNextObject () ;
     }
-    GALGAS_outletBindingSpecificationMap var_bindingMap_6310 ;
-    GALGAS_lstring var_outletSuperClassName_6344 ;
+    GALGAS_outletBindingSpecificationMap var_bindingMap_6317 ;
+    GALGAS_lstring var_outletSuperClassName_6351 ;
     enumGalgasBool test_7 = kBoolTrue ;
     if (kBoolTrue == test_7) {
-      test_7 = ioArgument_ioSemanticContext.getter_mBindingSpecificationMap (HERE).getter_hasKey (enumerator_4515.current_mOutletClassName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 170)).boolEnum () ;
+      test_7 = ioArgument_ioSemanticContext.getter_mBindingSpecificationMap (HERE).getter_hasKey (enumerator_4522.current_mOutletClassName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 170)).boolEnum () ;
       if (kBoolTrue == test_7) {
         {
-        ioArgument_ioSemanticContext.mProperty_mBindingSpecificationMap.setter_removeKey (enumerator_4515.current_mOutletClassName (HERE), var_outletSuperClassName_6344, var_bindingMap_6310, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 171)) ;
+        ioArgument_ioSemanticContext.mProperty_mBindingSpecificationMap.setter_removeKey (enumerator_4522.current_mOutletClassName (HERE), var_outletSuperClassName_6351, var_bindingMap_6317, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 171)) ;
         }
       }
     }
     if (kBoolFalse == test_7) {
-      var_bindingMap_6310 = GALGAS_outletBindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("outlet-binding-specification.galgas", 173)) ;
-      GALGAS_bool joker_6672_6 ; // Joker input parameter
-      GALGAS_bool joker_6672_5 ; // Joker input parameter
-      GALGAS_bool joker_6672_4 ; // Joker input parameter
-      GALGAS_bool joker_6672_3 ; // Joker input parameter
-      GALGAS_bool joker_6672_2 ; // Joker input parameter
-      GALGAS_bool joker_6672_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.getter_mOutletClassMap (HERE).method_searchKey (enumerator_4515.current_mOutletClassName (HERE), var_outletSuperClassName_6344, joker_6672_6, joker_6672_5, joker_6672_4, joker_6672_3, joker_6672_2, joker_6672_1, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 174)) ;
+      var_bindingMap_6317 = GALGAS_outletBindingSpecificationMap::constructor_emptyMap (SOURCE_FILE ("outlet-binding-specification.galgas", 173)) ;
+      GALGAS_bool joker_6679_6 ; // Joker input parameter
+      GALGAS_bool joker_6679_5 ; // Joker input parameter
+      GALGAS_bool joker_6679_4 ; // Joker input parameter
+      GALGAS_bool joker_6679_3 ; // Joker input parameter
+      GALGAS_bool joker_6679_2 ; // Joker input parameter
+      GALGAS_bool joker_6679_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.getter_mOutletClassMap (HERE).method_searchKey (enumerator_4522.current_mOutletClassName (HERE), var_outletSuperClassName_6351, joker_6679_6, joker_6679_5, joker_6679_4, joker_6679_3, joker_6679_2, joker_6679_1, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 174)) ;
     }
     {
-    var_bindingMap_6310.setter_insertKey (enumerator_4515.current_mBindingName (HERE), var_outletBindingSpecificationModelList_4595, var_controllerBindingOptionDecoratedList_5601, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 176)) ;
+    var_bindingMap_6317.setter_insertKey (enumerator_4522.current_mBindingName (HERE), var_outletBindingSpecificationModelList_4602, var_controllerBindingOptionDecoratedList_5608, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 176)) ;
     }
     {
-    ioArgument_ioSemanticContext.mProperty_mBindingSpecificationMap.setter_insertKey (enumerator_4515.current_mOutletClassName (HERE), var_outletSuperClassName_6344, var_bindingMap_6310, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 181)) ;
+    ioArgument_ioSemanticContext.mProperty_mBindingSpecificationMap.setter_insertKey (enumerator_4522.current_mOutletClassName (HERE), var_outletSuperClassName_6351, var_bindingMap_6317, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 181)) ;
     }
-    enumerator_4515.gotoNextObject () ;
+    enumerator_4522.gotoNextObject () ;
   }
 }
 
@@ -203,33 +203,33 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
   outArgument_outletMap.drop () ; // Release 'out' argument
   outArgument_outTableViewBindingGenerationList.drop () ; // Release 'out' argument
   outArgument_outEBViewGraphicControllerBindingGenerationList.drop () ; // Release 'out' argument
-  outArgument_outRegularBindingsGenerationList = GALGAS_regularBindingsGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 185)) ;
-  outArgument_outTargetActionList = GALGAS_actionBindingListForGeneration::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 186)) ;
-  outArgument_outMultipleBindingGenerationList = GALGAS_multipleBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 187)) ;
-  outArgument_outletMap = GALGAS_decoratedOutletMap::constructor_emptyMap (SOURCE_FILE ("outlet-declaration.galgas", 188)) ;
-  outArgument_outTableViewBindingGenerationList = GALGAS_tableViewBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 189)) ;
-  outArgument_outEBViewGraphicControllerBindingGenerationList = GALGAS_ebViewGraphicControllerBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 190)) ;
-  cEnumerator_outletDeclarationList enumerator_7037 (constinArgument_inOutletDeclarationList, kENUMERATION_UP) ;
-  while (enumerator_7037.hasCurrentObject ()) {
+  outArgument_outRegularBindingsGenerationList = GALGAS_regularBindingsGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 200)) ;
+  outArgument_outTargetActionList = GALGAS_actionBindingListForGeneration::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 201)) ;
+  outArgument_outMultipleBindingGenerationList = GALGAS_multipleBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 202)) ;
+  outArgument_outletMap = GALGAS_decoratedOutletMap::constructor_emptyMap (SOURCE_FILE ("outlet-declaration.galgas", 203)) ;
+  outArgument_outTableViewBindingGenerationList = GALGAS_tableViewBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 204)) ;
+  outArgument_outEBViewGraphicControllerBindingGenerationList = GALGAS_ebViewGraphicControllerBindingGenerationList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 205)) ;
+  cEnumerator_outletDeclarationList enumerator_7941 (constinArgument_inOutletDeclarationList, kENUMERATION_UP) ;
+  while (enumerator_7941.hasCurrentObject ()) {
     {
-    outArgument_outletMap.setter_insertKey (enumerator_7037.current_mOutletName (HERE), enumerator_7037.current_mOutletTypeName (HERE).getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 192)) ;
+    outArgument_outletMap.setter_insertKey (enumerator_7941.current_mOutletName (HERE), enumerator_7941.current_mOutletTypeName (HERE).getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 207)) ;
     }
-    GALGAS_bool var_handlesRunAction_7241 ;
-    GALGAS_bool var_handlesTableViewBinding_7282 ;
-    GALGAS_bool var_handlesEnabledBinding_7321 ;
-    GALGAS_bool var_handlesHiddenBinding_7359 ;
-    GALGAS_bool var_handleGraphicControllerBinding_7407 ;
-    GALGAS_bool var_outletClassIsUserDefined_7449 ;
-    GALGAS_lstring joker_7206 ; // Joker input parameter
-    constinArgument_inSemanticContext.getter_mOutletClassMap (HERE).method_searchKey (enumerator_7037.current_mOutletTypeName (HERE), joker_7206, var_handlesRunAction_7241, var_handlesTableViewBinding_7282, var_handlesEnabledBinding_7321, var_handlesHiddenBinding_7359, var_handleGraphicControllerBinding_7407, var_outletClassIsUserDefined_7449, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 193)) ;
+    GALGAS_bool var_handlesRunAction_8145 ;
+    GALGAS_bool var_handlesTableViewBinding_8186 ;
+    GALGAS_bool var_handlesEnabledBinding_8225 ;
+    GALGAS_bool var_handlesHiddenBinding_8263 ;
+    GALGAS_bool var_handleGraphicControllerBinding_8311 ;
+    GALGAS_bool var_outletClassIsUserDefined_8353 ;
+    GALGAS_lstring joker_8110 ; // Joker input parameter
+    constinArgument_inSemanticContext.getter_mOutletClassMap (HERE).method_searchKey (enumerator_7941.current_mOutletTypeName (HERE), joker_8110, var_handlesRunAction_8145, var_handlesTableViewBinding_8186, var_handlesEnabledBinding_8225, var_handlesHiddenBinding_8263, var_handleGraphicControllerBinding_8311, var_outletClassIsUserDefined_8353, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 208)) ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = var_outletClassIsUserDefined_7449.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 203)).boolEnum () ;
+      test_0 = var_outletClassIsUserDefined_8353.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 218)).boolEnum () ;
       if (kBoolTrue == test_0) {
-        ioArgument_ioGeneration.mProperty_mNeededOutletClasses.addAssign_operation (enumerator_7037.current_mOutletTypeName (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 204)) ;
+        ioArgument_ioGeneration.mProperty_mNeededOutletClasses.addAssign_operation (enumerator_7941.current_mOutletTypeName (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 219)) ;
       }
     }
-    switch (enumerator_7037.current_mGraphicController (HERE).enumValue ()) {
+    switch (enumerator_7941.current_mGraphicController (HERE).enumValue ()) {
     case GALGAS_graphicController::kNotBuilt:
       break ;
     case GALGAS_graphicController::kEnum_none:
@@ -238,92 +238,92 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
       break ;
     case GALGAS_graphicController::kEnum_defined:
       {
-        const cEnumAssociatedValues_graphicController_defined * extractPtr_9915 = (const cEnumAssociatedValues_graphicController_defined *) (enumerator_7037.current_mGraphicController (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_controllerName = extractPtr_9915->mAssociatedValue0 ;
-        const GALGAS_lstring extractedValue_propertyName = extractPtr_9915->mAssociatedValue1 ;
+        const cEnumAssociatedValues_graphicController_defined * extractPtr_10819 = (const cEnumAssociatedValues_graphicController_defined *) (enumerator_7941.current_mGraphicController (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_controllerName = extractPtr_10819->mAssociatedValue0 ;
+        const GALGAS_lstring extractedValue_propertyName = extractPtr_10819->mAssociatedValue1 ;
         enumGalgasBool test_1 = kBoolTrue ;
         if (kBoolTrue == test_1) {
-          test_1 = var_handleGraphicControllerBinding_7407.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 210)).boolEnum () ;
+          test_1 = var_handleGraphicControllerBinding_8311.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 225)).boolEnum () ;
           if (kBoolTrue == test_1) {
             TC_Array <C_FixItDescription> fixItArray2 ;
-            inCompiler->emitSemanticError (enumerator_7037.current_mOutletTypeName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 211)), GALGAS_string ("the '").add_operation (enumerator_7037.current_mOutletTypeName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 211)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 211)).add_operation (GALGAS_string ("' type does not handle the $graphicController binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 211)), fixItArray2  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 211)) ;
+            inCompiler->emitSemanticError (enumerator_7941.current_mOutletTypeName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 226)), GALGAS_string ("the '").add_operation (enumerator_7941.current_mOutletTypeName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)).add_operation (GALGAS_string ("' type does not handle the $graphicController binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)), fixItArray2  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 226)) ;
           }
         }
         if (kBoolFalse == test_1) {
-          GALGAS_propertyKind var_kind_8017 ;
-          GALGAS_actionMap joker_8029_2 ; // Joker input parameter
-          GALGAS_bool joker_8029_1 ; // Joker input parameter
-          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_kind_8017, joker_8029_2, joker_8029_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 213)) ;
-          switch (var_kind_8017.enumValue ()) {
+          GALGAS_propertyKind var_kind_8921 ;
+          GALGAS_actionMap joker_8933_2 ; // Joker input parameter
+          GALGAS_bool joker_8933_1 ; // Joker input parameter
+          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_kind_8921, joker_8933_2, joker_8933_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 228)) ;
+          switch (var_kind_8921.enumValue ()) {
           case GALGAS_propertyKind::kNotBuilt:
             break ;
           case GALGAS_propertyKind::kEnum_property:
             {
               TC_Array <C_FixItDescription> fixItArray3 ;
-              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 220)), GALGAS_string ("the bound model should be an array controller"), fixItArray3  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 220)) ;
+              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 235)), GALGAS_string ("the bound model should be an array controller"), fixItArray3  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 235)) ;
             }
             break ;
           case GALGAS_propertyKind::kEnum_toMany:
             {
               TC_Array <C_FixItDescription> fixItArray4 ;
-              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 222)), GALGAS_string ("the bound model should be an array controller"), fixItArray4  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 222)) ;
+              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 237)), GALGAS_string ("the bound model should be an array controller"), fixItArray4  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 237)) ;
             }
             break ;
           case GALGAS_propertyKind::kEnum_toOne:
             {
               TC_Array <C_FixItDescription> fixItArray5 ;
-              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 224)), GALGAS_string ("the bound model should be an array controller"), fixItArray5  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 224)) ;
+              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 239)), GALGAS_string ("the bound model should be an array controller"), fixItArray5  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 239)) ;
             }
             break ;
           case GALGAS_propertyKind::kEnum_arrayController:
             {
-              const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_9664 = (const cEnumAssociatedValues_propertyKind_arrayController *) (var_kind_8017.unsafePointer ()) ;
-              const GALGAS_lstring extractedValue_entityName = extractPtr_9664->mAssociatedValue0 ;
-              const GALGAS_bool extractedValue_graphic = extractPtr_9664->mAssociatedValue1 ;
+              const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_10568 = (const cEnumAssociatedValues_propertyKind_arrayController *) (var_kind_8921.unsafePointer ()) ;
+              const GALGAS_lstring extractedValue_entityName = extractPtr_10568->mAssociatedValue0 ;
+              const GALGAS_bool extractedValue_graphic = extractPtr_10568->mAssociatedValue1 ;
               enumGalgasBool test_6 = kBoolTrue ;
               if (kBoolTrue == test_6) {
                 test_6 = GALGAS_bool (kIsEqual, extractedValue_propertyName.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
                 if (kBoolTrue == test_6) {
                   enumGalgasBool test_7 = kBoolTrue ;
                   if (kBoolTrue == test_7) {
-                    test_7 = extractedValue_graphic.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 227)).boolEnum () ;
+                    test_7 = extractedValue_graphic.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 242)).boolEnum () ;
                     if (kBoolTrue == test_7) {
                       TC_Array <C_FixItDescription> fixItArray8 ;
-                      inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 228)), GALGAS_string ("the controlled entity (").add_operation (extractedValue_entityName.getter_string (SOURCE_FILE ("outlet-declaration.galgas", 228)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 228)).add_operation (GALGAS_string (") should be a graphic entity"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 228)), fixItArray8  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 228)) ;
+                      inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 243)), GALGAS_string ("the controlled entity (").add_operation (extractedValue_entityName.getter_string (SOURCE_FILE ("outlet-declaration.galgas", 243)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)).add_operation (GALGAS_string (") should be a graphic entity"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)), fixItArray8  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)) ;
                     }
                   }
                 }
               }
               if (kBoolFalse == test_6) {
-                GALGAS_propertyMap var_observablePropertyMap_8790 ;
-                GALGAS_classKind joker_8748 ; // Joker input parameter
-                GALGAS_actionMap joker_8806_2 ; // Joker input parameter
-                GALGAS_propertyGenerationList joker_8806_1 ; // Joker input parameter
-                constinArgument_inSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_entityName, joker_8748, var_observablePropertyMap_8790, joker_8806_2, joker_8806_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 231)) ;
-                GALGAS_propertyKind var_propertyKind_8899 ;
-                GALGAS_actionMap joker_8901_2 ; // Joker input parameter
-                GALGAS_bool joker_8901_1 ; // Joker input parameter
-                var_observablePropertyMap_8790.method_searchKey (extractedValue_propertyName, var_propertyKind_8899, joker_8901_2, joker_8901_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 237)) ;
-                switch (var_propertyKind_8899.enumValue ()) {
+                GALGAS_propertyMap var_observablePropertyMap_9694 ;
+                GALGAS_classKind joker_9652 ; // Joker input parameter
+                GALGAS_actionMap joker_9710_2 ; // Joker input parameter
+                GALGAS_propertyGenerationList joker_9710_1 ; // Joker input parameter
+                constinArgument_inSemanticContext.getter_mClassMap (HERE).method_searchKey (extractedValue_entityName, joker_9652, var_observablePropertyMap_9694, joker_9710_2, joker_9710_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 246)) ;
+                GALGAS_propertyKind var_propertyKind_9803 ;
+                GALGAS_actionMap joker_9805_2 ; // Joker input parameter
+                GALGAS_bool joker_9805_1 ; // Joker input parameter
+                var_observablePropertyMap_9694.method_searchKey (extractedValue_propertyName, var_propertyKind_9803, joker_9805_2, joker_9805_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 252)) ;
+                switch (var_propertyKind_9803.enumValue ()) {
                 case GALGAS_propertyKind::kNotBuilt:
                   break ;
                 case GALGAS_propertyKind::kEnum_property:
                   {
                     TC_Array <C_FixItDescription> fixItArray9 ;
-                    inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 240)), GALGAS_string ("the bound model should be a toMany property"), fixItArray9  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 240)) ;
+                    inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 255)), GALGAS_string ("the bound model should be a toMany property"), fixItArray9  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 255)) ;
                   }
                   break ;
                 case GALGAS_propertyKind::kEnum_toMany:
                   {
-                    const cEnumAssociatedValues_propertyKind_toMany * extractPtr_9273 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_propertyKind_8899.unsafePointer ()) ;
-                    const GALGAS_lstring extractedValue_kEntityName = extractPtr_9273->mAssociatedValue0 ;
-                    const GALGAS_bool extractedValue_isGraphic = extractPtr_9273->mAssociatedValue2 ;
+                    const cEnumAssociatedValues_propertyKind_toMany * extractPtr_10177 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_propertyKind_9803.unsafePointer ()) ;
+                    const GALGAS_lstring extractedValue_kEntityName = extractPtr_10177->mAssociatedValue0 ;
+                    const GALGAS_bool extractedValue_isGraphic = extractPtr_10177->mAssociatedValue2 ;
                     enumGalgasBool test_10 = kBoolTrue ;
                     if (kBoolTrue == test_10) {
-                      test_10 = extractedValue_isGraphic.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 242)).boolEnum () ;
+                      test_10 = extractedValue_isGraphic.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 257)).boolEnum () ;
                       if (kBoolTrue == test_10) {
                         TC_Array <C_FixItDescription> fixItArray11 ;
-                        inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 243)), GALGAS_string ("the controlled entity (").add_operation (extractedValue_kEntityName.getter_string (SOURCE_FILE ("outlet-declaration.galgas", 243)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)).add_operation (GALGAS_string (") should be a graphic entity"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)), fixItArray11  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 243)) ;
+                        inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 258)), GALGAS_string ("the controlled entity (").add_operation (extractedValue_kEntityName.getter_string (SOURCE_FILE ("outlet-declaration.galgas", 258)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 258)).add_operation (GALGAS_string (") should be a graphic entity"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 258)), fixItArray11  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 258)) ;
                       }
                     }
                   }
@@ -331,19 +331,19 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
                 case GALGAS_propertyKind::kEnum_toOne:
                   {
                     TC_Array <C_FixItDescription> fixItArray12 ;
-                    inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 246)), GALGAS_string ("the bound model should be a toMany property"), fixItArray12  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 246)) ;
+                    inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 261)), GALGAS_string ("the bound model should be a toMany property"), fixItArray12  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 261)) ;
                   }
                   break ;
                 case GALGAS_propertyKind::kEnum_arrayController:
                   {
                     TC_Array <C_FixItDescription> fixItArray13 ;
-                    inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 248)), GALGAS_string ("the bound model should be a toMany property"), fixItArray13  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 248)) ;
+                    inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 263)), GALGAS_string ("the bound model should be a toMany property"), fixItArray13  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 263)) ;
                   }
                   break ;
                 case GALGAS_propertyKind::kEnum_selectionController:
                   {
                     TC_Array <C_FixItDescription> fixItArray14 ;
-                    inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 250)), GALGAS_string ("the bound model should be a toMany property"), fixItArray14  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 250)) ;
+                    inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 265)), GALGAS_string ("the bound model should be a toMany property"), fixItArray14  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 265)) ;
                   }
                   break ;
                 }
@@ -353,16 +353,16 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
           case GALGAS_propertyKind::kEnum_selectionController:
             {
               TC_Array <C_FixItDescription> fixItArray15 ;
-              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 254)), GALGAS_string ("the bound model should be an array controller"), fixItArray15  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 254)) ;
+              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 269)), GALGAS_string ("the bound model should be an array controller"), fixItArray15  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 269)) ;
             }
             break ;
           }
-          outArgument_outEBViewGraphicControllerBindingGenerationList.addAssign_operation (enumerator_7037.current_mOutletName (HERE).getter_string (HERE), extractedValue_controllerName.getter_string (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 256)) ;
+          outArgument_outEBViewGraphicControllerBindingGenerationList.addAssign_operation (enumerator_7941.current_mOutletName (HERE).getter_string (HERE), extractedValue_controllerName.getter_string (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 271)) ;
         }
       }
       break ;
     }
-    switch (enumerator_7037.current_mTableValueBindingDescriptor (HERE).enumValue ()) {
+    switch (enumerator_7941.current_mTableValueBindingDescriptor (HERE).enumValue ()) {
     case GALGAS_tableValueBinding::kNotBuilt:
       break ;
     case GALGAS_tableValueBinding::kEnum_noTableValueBinding:
@@ -371,35 +371,35 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
       break ;
     case GALGAS_tableValueBinding::kEnum_tableValueBinding:
       {
-        const cEnumAssociatedValues_tableValueBinding_tableValueBinding * extractPtr_10626 = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) (enumerator_7037.current_mTableValueBindingDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_controllerName = extractPtr_10626->mAssociatedValue0 ;
+        const cEnumAssociatedValues_tableValueBinding_tableValueBinding * extractPtr_11530 = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) (enumerator_7941.current_mTableValueBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_controllerName = extractPtr_11530->mAssociatedValue0 ;
         enumGalgasBool test_16 = kBoolTrue ;
         if (kBoolTrue == test_16) {
-          test_16 = var_handlesTableViewBinding_7282.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 263)).boolEnum () ;
+          test_16 = var_handlesTableViewBinding_8186.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 278)).boolEnum () ;
           if (kBoolTrue == test_16) {
             TC_Array <C_FixItDescription> fixItArray17 ;
-            inCompiler->emitSemanticError (enumerator_7037.current_mOutletTypeName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 264)), GALGAS_string ("the '").add_operation (enumerator_7037.current_mOutletTypeName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 264)).add_operation (GALGAS_string ("' type does not handle the $tableView binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 264)), fixItArray17  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 264)) ;
+            inCompiler->emitSemanticError (enumerator_7941.current_mOutletTypeName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 279)), GALGAS_string ("the '").add_operation (enumerator_7941.current_mOutletTypeName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 279)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)).add_operation (GALGAS_string ("' type does not handle the $tableView binding"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)), fixItArray17  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 279)) ;
           }
         }
         if (kBoolFalse == test_16) {
-          GALGAS_propertyKind var_kind_10359 ;
-          GALGAS_actionMap joker_10371_2 ; // Joker input parameter
-          GALGAS_bool joker_10371_1 ; // Joker input parameter
-          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_kind_10359, joker_10371_2, joker_10371_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 266)) ;
+          GALGAS_propertyKind var_kind_11263 ;
+          GALGAS_actionMap joker_11275_2 ; // Joker input parameter
+          GALGAS_bool joker_11275_1 ; // Joker input parameter
+          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_controllerName, var_kind_11263, joker_11275_2, joker_11275_1, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 281)) ;
           enumGalgasBool test_18 = kBoolTrue ;
           if (kBoolTrue == test_18) {
-            test_18 = var_kind_10359.getter_isArrayController (SOURCE_FILE ("outlet-declaration.galgas", 271)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 271)).boolEnum () ;
+            test_18 = var_kind_11263.getter_isArrayController (SOURCE_FILE ("outlet-declaration.galgas", 286)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 286)).boolEnum () ;
             if (kBoolTrue == test_18) {
               TC_Array <C_FixItDescription> fixItArray19 ;
-              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 272)), GALGAS_string ("the bound model should be an array controller"), fixItArray19  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 272)) ;
+              inCompiler->emitSemanticError (extractedValue_controllerName.getter_location (SOURCE_FILE ("outlet-declaration.galgas", 287)), GALGAS_string ("the bound model should be an array controller"), fixItArray19  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 287)) ;
             }
           }
-          outArgument_outTableViewBindingGenerationList.addAssign_operation (enumerator_7037.current_mOutletName (HERE).getter_string (HERE), extractedValue_controllerName.getter_string (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 274)) ;
+          outArgument_outTableViewBindingGenerationList.addAssign_operation (enumerator_7941.current_mOutletName (HERE).getter_string (HERE), extractedValue_controllerName.getter_string (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 289)) ;
         }
       }
       break ;
     }
-    switch (enumerator_7037.current_mRunDescriptor (HERE).enumValue ()) {
+    switch (enumerator_7941.current_mRunDescriptor (HERE).enumValue ()) {
     case GALGAS_runActionDescriptor::kNotBuilt:
       break ;
     case GALGAS_runActionDescriptor::kEnum_noAction:
@@ -408,15 +408,15 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
       break ;
     case GALGAS_runActionDescriptor::kEnum_action:
       {
-        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_11585 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_7037.current_mRunDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_lstring extractedValue_target = extractPtr_11585->mAssociatedValue0 ;
-        const GALGAS_lstring extractedValue_action = extractPtr_11585->mAssociatedValue1 ;
+        const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_12489 = (const cEnumAssociatedValues_runActionDescriptor_action *) (enumerator_7941.current_mRunDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_lstring extractedValue_target = extractPtr_12489->mAssociatedValue0 ;
+        const GALGAS_lstring extractedValue_action = extractPtr_12489->mAssociatedValue1 ;
         enumGalgasBool test_20 = kBoolTrue ;
         if (kBoolTrue == test_20) {
-          test_20 = var_handlesRunAction_7241.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 281)).boolEnum () ;
+          test_20 = var_handlesRunAction_8145.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 296)).boolEnum () ;
           if (kBoolTrue == test_20) {
             TC_Array <C_FixItDescription> fixItArray21 ;
-            inCompiler->emitSemanticError (enumerator_7037.current_mOutletTypeName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 282)), GALGAS_string ("the '").add_operation (enumerator_7037.current_mOutletTypeName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 282)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 282)).add_operation (GALGAS_string ("' type does not handle run action"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 282)), fixItArray21  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 282)) ;
+            inCompiler->emitSemanticError (enumerator_7941.current_mOutletTypeName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 297)), GALGAS_string ("the '").add_operation (enumerator_7941.current_mOutletTypeName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 297)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 297)).add_operation (GALGAS_string ("' type does not handle run action"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 297)), fixItArray21  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 297)) ;
           }
         }
         if (kBoolFalse == test_20) {
@@ -424,16 +424,16 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
           if (kBoolTrue == test_22) {
             test_22 = GALGAS_bool (kIsEqual, extractedValue_target.getter_string (HERE).objectCompare (GALGAS_string ("self"))).boolEnum () ;
             if (kBoolTrue == test_22) {
-              constinArgument_inActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 284)) ;
-              outArgument_outTargetActionList.addAssign_operation (enumerator_7037.current_mOutletName (HERE).getter_string (HERE), GALGAS_string ("self"), extractedValue_action.getter_string (HERE), constinArgument_inReceiverSwiftTypeName  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 285)) ;
+              constinArgument_inActionMap.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 299)) ;
+              outArgument_outTargetActionList.addAssign_operation (enumerator_7941.current_mOutletName (HERE).getter_string (HERE), GALGAS_string ("self"), extractedValue_action.getter_string (HERE), constinArgument_inReceiverSwiftTypeName  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 300)) ;
             }
           }
           if (kBoolFalse == test_22) {
-            GALGAS_actionMap var_controllerActionMap_11275 ;
-            GALGAS_propertyKind joker_11228 ; // Joker input parameter
-            GALGAS_bool joker_11287 ; // Joker input parameter
-            constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_11228, var_controllerActionMap_11275, joker_11287, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 291)) ;
-            var_controllerActionMap_11275.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 297)) ;
+            GALGAS_actionMap var_controllerActionMap_12179 ;
+            GALGAS_propertyKind joker_12132 ; // Joker input parameter
+            GALGAS_bool joker_12191 ; // Joker input parameter
+            constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_12132, var_controllerActionMap_12179, joker_12191, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 306)) ;
+            var_controllerActionMap_12179.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 312)) ;
             GALGAS_string temp_23 ;
             const enumGalgasBool test_24 = constinArgument_inPreferences.boolEnum () ;
             if (kBoolTrue == test_24) {
@@ -441,13 +441,13 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
             }else if (kBoolFalse == test_24) {
               temp_23 = GALGAS_string::makeEmptyString () ;
             }
-            outArgument_outTargetActionList.addAssign_operation (enumerator_7037.current_mOutletName (HERE).getter_string (HERE), temp_23.add_operation (extractedValue_target.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 300)), extractedValue_action.getter_string (HERE), GALGAS_string ("Controller_").add_operation (constinArgument_inReceiverSwiftTypeName, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 302)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 302)).add_operation (extractedValue_target.getter_string (SOURCE_FILE ("outlet-declaration.galgas", 302)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 302))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 298)) ;
+            outArgument_outTargetActionList.addAssign_operation (enumerator_7941.current_mOutletName (HERE).getter_string (HERE), temp_23.add_operation (extractedValue_target.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 315)), extractedValue_action.getter_string (HERE), GALGAS_string ("Controller_").add_operation (constinArgument_inReceiverSwiftTypeName, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 317)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 317)).add_operation (extractedValue_target.getter_string (SOURCE_FILE ("outlet-declaration.galgas", 317)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 317))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 313)) ;
           }
         }
       }
       break ;
     }
-    switch (enumerator_7037.current_mEnabledBindingDescriptor (HERE).enumValue ()) {
+    switch (enumerator_7941.current_mEnabledBindingDescriptor (HERE).enumValue ()) {
     case GALGAS_multipleBindingDescriptor::kNotBuilt:
       break ;
     case GALGAS_multipleBindingDescriptor::kEnum_noBinding:
@@ -456,33 +456,33 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
       break ;
     case GALGAS_multipleBindingDescriptor::kEnum_binding:
       {
-        const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_12435 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (enumerator_7037.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_12435->mAssociatedValue0 ;
-        GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression_12009 ;
-        GALGAS_typeKind var_type_12037 ;
-        GALGAS_location var_errorLocation_12074 ;
-        callExtensionMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_enableExpression_12009, var_type_12037, var_errorLocation_12074, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 309)) ;
+        const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_13339 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (enumerator_7941.current_mEnabledBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_13339->mAssociatedValue0 ;
+        GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression_12913 ;
+        GALGAS_typeKind var_type_12941 ;
+        GALGAS_location var_errorLocation_12978 ;
+        callExtensionMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_enableExpression_12913, var_type_12941, var_errorLocation_12978, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 324)) ;
         enumGalgasBool test_25 = kBoolTrue ;
         if (kBoolTrue == test_25) {
-          test_25 = var_handlesEnabledBinding_7321.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 318)).boolEnum () ;
+          test_25 = var_handlesEnabledBinding_8225.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 333)).boolEnum () ;
           if (kBoolTrue == test_25) {
             TC_Array <C_FixItDescription> fixItArray26 ;
-            inCompiler->emitSemanticError (var_errorLocation_12074, GALGAS_string ("cet outlet n'accepte pas le binding $enabled"), fixItArray26  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 319)) ;
+            inCompiler->emitSemanticError (var_errorLocation_12978, GALGAS_string ("cet outlet n'accepte pas le binding $enabled"), fixItArray26  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 334)) ;
           }
         }
         enumGalgasBool test_27 = kBoolTrue ;
         if (kBoolTrue == test_27) {
-          test_27 = var_type_12037.getter_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 321)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 321)).boolEnum () ;
+          test_27 = var_type_12941.getter_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 336)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 336)).boolEnum () ;
           if (kBoolTrue == test_27) {
             TC_Array <C_FixItDescription> fixItArray28 ;
-            inCompiler->emitSemanticError (var_errorLocation_12074, GALGAS_string ("expression is not boolean"), fixItArray28  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 322)) ;
+            inCompiler->emitSemanticError (var_errorLocation_12978, GALGAS_string ("expression is not boolean"), fixItArray28  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 337)) ;
           }
         }
-        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_7037.current_mOutletName (HERE).getter_string (HERE), GALGAS_string ("enabled"), var_enableExpression_12009  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 324)) ;
+        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_7941.current_mOutletName (HERE).getter_string (HERE), GALGAS_string ("enabled"), var_enableExpression_12913  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 339)) ;
       }
       break ;
     }
-    switch (enumerator_7037.current_mHiddenBindingDescriptor (HERE).enumValue ()) {
+    switch (enumerator_7941.current_mHiddenBindingDescriptor (HERE).enumValue ()) {
     case GALGAS_multipleBindingDescriptor::kNotBuilt:
       break ;
     case GALGAS_multipleBindingDescriptor::kEnum_noBinding:
@@ -491,29 +491,29 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
       break ;
     case GALGAS_multipleBindingDescriptor::kEnum_binding:
       {
-        const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_13280 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (enumerator_7037.current_mHiddenBindingDescriptor (HERE).unsafePointer ()) ;
-        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_13280->mAssociatedValue0 ;
-        GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_hiddenExpression_12857 ;
-        GALGAS_typeKind var_type_12885 ;
-        GALGAS_location var_errorLocation_12922 ;
-        callExtensionMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_hiddenExpression_12857, var_type_12885, var_errorLocation_12922, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 333)) ;
+        const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_14184 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (enumerator_7941.current_mHiddenBindingDescriptor (HERE).unsafePointer ()) ;
+        const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_14184->mAssociatedValue0 ;
+        GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_hiddenExpression_13761 ;
+        GALGAS_typeKind var_type_13789 ;
+        GALGAS_location var_errorLocation_13826 ;
+        callExtensionMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_hiddenExpression_13761, var_type_13789, var_errorLocation_13826, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 348)) ;
         enumGalgasBool test_29 = kBoolTrue ;
         if (kBoolTrue == test_29) {
-          test_29 = var_type_12885.getter_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 342)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 342)).boolEnum () ;
+          test_29 = var_type_13789.getter_isBoolType (SOURCE_FILE ("outlet-declaration.galgas", 357)).operator_not (SOURCE_FILE ("outlet-declaration.galgas", 357)).boolEnum () ;
           if (kBoolTrue == test_29) {
             TC_Array <C_FixItDescription> fixItArray30 ;
-            inCompiler->emitSemanticError (var_errorLocation_12922, GALGAS_string ("expression is not boolean"), fixItArray30  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 343)) ;
+            inCompiler->emitSemanticError (var_errorLocation_13826, GALGAS_string ("expression is not boolean"), fixItArray30  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 358)) ;
           }
         }
         enumGalgasBool test_31 = kBoolTrue ;
         if (kBoolTrue == test_31) {
-          test_31 = var_handlesHiddenBinding_7359.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 345)).boolEnum () ;
+          test_31 = var_handlesHiddenBinding_8263.operator_not (SOURCE_FILE ("outlet-declaration.galgas", 360)).boolEnum () ;
           if (kBoolTrue == test_31) {
             TC_Array <C_FixItDescription> fixItArray32 ;
-            inCompiler->emitSemanticError (var_errorLocation_12922, GALGAS_string ("cet outlet n'accepte pas le binding $hidden"), fixItArray32  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 346)) ;
+            inCompiler->emitSemanticError (var_errorLocation_13826, GALGAS_string ("cet outlet n'accepte pas le binding $hidden"), fixItArray32  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 361)) ;
           }
         }
-        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_7037.current_mOutletName (HERE).getter_string (HERE), GALGAS_string ("hidden"), var_hiddenExpression_12857  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 348)) ;
+        outArgument_outMultipleBindingGenerationList.addAssign_operation (enumerator_7941.current_mOutletName (HERE).getter_string (HERE), GALGAS_string ("hidden"), var_hiddenExpression_13761  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 363)) ;
       }
       break ;
     }
@@ -525,9 +525,9 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
     }else if (kBoolFalse == test_34) {
       temp_33 = GALGAS_string ("self.") ;
     }
-    routine_analyzeRegularBinding (constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, enumerator_7037.current_mOutletTypeName (HERE), enumerator_7037.current_mOutletName (HERE).getter_string (HERE), enumerator_7037.current_mRegularBindingList (HERE), temp_33, outArgument_outRegularBindingsGenerationList, inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 354)) ;
+    routine_analyzeRegularBinding (constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, enumerator_7941.current_mOutletTypeName (HERE), enumerator_7941.current_mOutletName (HERE).getter_string (HERE), enumerator_7941.current_mRegularBindingList (HERE), temp_33, outArgument_outRegularBindingsGenerationList, inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 369)) ;
     }
-    enumerator_7037.gotoNextObject () ;
+    enumerator_7941.gotoNextObject () ;
   }
 }
 
@@ -549,16 +549,16 @@ void routine_analyzeRegularBinding (const GALGAS_propertyMap constinArgument_inR
                                     GALGAS_regularBindingsGenerationList & ioArgument_ioRegularBindingsGenerationList,
                                     C_Compiler * inCompiler
                                     COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_regularBindingList enumerator_14262 (constinArgument_inRegularBindingList, kENUMERATION_UP) ;
-  while (enumerator_14262.hasCurrentObject ()) {
-    GALGAS_outletBindingModelList var_boundModelTypeList_14333 = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 383)) ;
-    GALGAS_boundObjectList var_boundModelListForGeneration_14387 = GALGAS_boundObjectList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 384)) ;
-    cEnumerator_observablePropertyList enumerator_14430 (enumerator_14262.current_mObservablePropertyList (HERE), kENUMERATION_UP) ;
-    while (enumerator_14430.hasCurrentObject ()) {
-      GALGAS_propertyKind var_kind_14601 ;
-      GALGAS_string var_swiftTypeStringForTransientFunctionArgument_14673 ;
-      extensionMethod_analyzeObservableProperty (enumerator_14430.current_mObservableProperty (HERE), constinArgument_inRootPropertyMap, constinArgument_inSemanticContext, constinArgument_inBoundModelPropertyMap, var_kind_14601, var_swiftTypeStringForTransientFunctionArgument_14673, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 386)) ;
-      switch (var_kind_14601.enumValue ()) {
+  cEnumerator_regularBindingList enumerator_15166 (constinArgument_inRegularBindingList, kENUMERATION_UP) ;
+  while (enumerator_15166.hasCurrentObject ()) {
+    GALGAS_outletBindingModelList var_boundModelTypeList_15237 = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 398)) ;
+    GALGAS_boundObjectList var_boundModelListForGeneration_15291 = GALGAS_boundObjectList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 399)) ;
+    cEnumerator_observablePropertyList enumerator_15334 (enumerator_15166.current_mObservablePropertyList (HERE), kENUMERATION_UP) ;
+    while (enumerator_15334.hasCurrentObject ()) {
+      GALGAS_propertyKind var_kind_15505 ;
+      GALGAS_string var_swiftTypeStringForTransientFunctionArgument_15577 ;
+      extensionMethod_analyzeObservableProperty (enumerator_15334.current_mObservableProperty (HERE), constinArgument_inRootPropertyMap, constinArgument_inSemanticContext, constinArgument_inBoundModelPropertyMap, var_kind_15505, var_swiftTypeStringForTransientFunctionArgument_15577, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 401)) ;
+      switch (var_kind_15505.enumValue ()) {
       case GALGAS_propertyKind::kNotBuilt:
         break ;
       case GALGAS_propertyKind::kEnum_property:
@@ -568,106 +568,106 @@ void routine_analyzeRegularBinding (const GALGAS_propertyMap constinArgument_inR
       case GALGAS_propertyKind::kEnum_toMany:
         {
           TC_Array <C_FixItDescription> fixItArray0 ;
-          inCompiler->emitSemanticError (extensionGetter_location (enumerator_14430.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 396)), GALGAS_string ("a toMany property cannot be bound"), fixItArray0  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 396)) ;
+          inCompiler->emitSemanticError (extensionGetter_location (enumerator_15334.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 411)), GALGAS_string ("a toMany property cannot be bound"), fixItArray0  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 411)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
         {
           TC_Array <C_FixItDescription> fixItArray1 ;
-          inCompiler->emitSemanticError (extensionGetter_location (enumerator_14430.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 398)), GALGAS_string ("a toOne property cannot be bound"), fixItArray1  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 398)) ;
+          inCompiler->emitSemanticError (extensionGetter_location (enumerator_15334.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 413)), GALGAS_string ("a toOne property cannot be bound"), fixItArray1  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 413)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
         {
           TC_Array <C_FixItDescription> fixItArray2 ;
-          inCompiler->emitSemanticError (extensionGetter_location (enumerator_14430.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 400)), GALGAS_string ("an array controller cannot be bound"), fixItArray2  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 400)) ;
+          inCompiler->emitSemanticError (extensionGetter_location (enumerator_15334.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 415)), GALGAS_string ("an array controller cannot be bound"), fixItArray2  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 415)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_selectionController:
         {
           TC_Array <C_FixItDescription> fixItArray3 ;
-          inCompiler->emitSemanticError (extensionGetter_location (enumerator_14430.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 402)), GALGAS_string ("a selection controller cannot be bound"), fixItArray3  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 402)) ;
+          inCompiler->emitSemanticError (extensionGetter_location (enumerator_15334.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 417)), GALGAS_string ("a selection controller cannot be bound"), fixItArray3  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 417)) ;
         }
         break ;
       }
-      var_boundModelListForGeneration_14387.addAssign_operation (extensionGetter_modelStringForSelf (enumerator_14430.current_mObservableProperty (HERE), constinArgument_inSelfSwiftName, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 404)), var_kind_14601  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 404)) ;
-      var_boundModelTypeList_14333.addAssign_operation (var_kind_14601, extensionGetter_location (enumerator_14430.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 405))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 405)) ;
-      enumerator_14430.gotoNextObject () ;
+      var_boundModelListForGeneration_15291.addAssign_operation (extensionGetter_modelStringForSelf (enumerator_15334.current_mObservableProperty (HERE), constinArgument_inSelfSwiftName, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 419)), var_kind_15505  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 419)) ;
+      var_boundModelTypeList_15237.addAssign_operation (var_kind_15505, extensionGetter_location (enumerator_15334.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 420))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 420)) ;
+      enumerator_15334.gotoNextObject () ;
     }
-    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_15474 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 408)) ;
-    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_15558 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 409)) ;
-    GALGAS_lstring var_outletTypeName_15586 = constinArgument_inOutletTypeName ;
-    GALGAS_bool var_continues_15623 = GALGAS_bool (true) ;
-    if (constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).getter_count (SOURCE_FILE ("outlet-declaration.galgas", 412)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 412)).isValid ()) {
-      uint32_t variant_15639 = constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).getter_count (SOURCE_FILE ("outlet-declaration.galgas", 412)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 412)).uintValue () ;
-      bool loop_15639 = true ;
-      while (loop_15639) {
-        loop_15639 = GALGAS_bool (kIsNotEqual, var_outletTypeName_15586.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (var_continues_15623 COMMA_SOURCE_FILE ("outlet-declaration.galgas", 412)).isValid () ;
-        if (loop_15639) {
-          loop_15639 = GALGAS_bool (kIsNotEqual, var_outletTypeName_15586.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (var_continues_15623 COMMA_SOURCE_FILE ("outlet-declaration.galgas", 412)).boolValue () ;
+    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_16378 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 423)) ;
+    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_16462 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 424)) ;
+    GALGAS_lstring var_outletTypeName_16490 = constinArgument_inOutletTypeName ;
+    GALGAS_bool var_continues_16527 = GALGAS_bool (true) ;
+    if (constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).getter_count (SOURCE_FILE ("outlet-declaration.galgas", 427)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 427)).isValid ()) {
+      uint32_t variant_16543 = constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).getter_count (SOURCE_FILE ("outlet-declaration.galgas", 427)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 427)).uintValue () ;
+      bool loop_16543 = true ;
+      while (loop_16543) {
+        loop_16543 = GALGAS_bool (kIsNotEqual, var_outletTypeName_16490.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (var_continues_16527 COMMA_SOURCE_FILE ("outlet-declaration.galgas", 427)).isValid () ;
+        if (loop_16543) {
+          loop_16543 = GALGAS_bool (kIsNotEqual, var_outletTypeName_16490.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (var_continues_16527 COMMA_SOURCE_FILE ("outlet-declaration.galgas", 427)).boolValue () ;
         }
-        if (loop_15639 && (0 == variant_15639)) {
-          loop_15639 = false ;
-          inCompiler->loopRunTimeVariantError (SOURCE_FILE ("outlet-declaration.galgas", 412)) ;
+        if (loop_16543 && (0 == variant_16543)) {
+          loop_16543 = false ;
+          inCompiler->loopRunTimeVariantError (SOURCE_FILE ("outlet-declaration.galgas", 427)) ;
         }
-        if (loop_15639) {
-          variant_15639 -- ;
-          var_continues_15623 = GALGAS_bool (false) ;
-          GALGAS_lstring var_superOutletClassName_15889 ;
-          GALGAS_outletBindingSpecificationMap var_bindingMap_15944 ;
-          constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).method_searchKey (var_outletTypeName_15586, var_superOutletClassName_15889, var_bindingMap_15944, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 414)) ;
+        if (loop_16543) {
+          variant_16543 -- ;
+          var_continues_16527 = GALGAS_bool (false) ;
+          GALGAS_lstring var_superOutletClassName_16793 ;
+          GALGAS_outletBindingSpecificationMap var_bindingMap_16848 ;
+          constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).method_searchKey (var_outletTypeName_16490, var_superOutletClassName_16793, var_bindingMap_16848, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 429)) ;
           enumGalgasBool test_4 = kBoolTrue ;
           if (kBoolTrue == test_4) {
-            test_4 = var_bindingMap_15944.getter_hasKey (enumerator_14262.current_mBindingName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 419)).boolEnum () ;
+            test_4 = var_bindingMap_16848.getter_hasKey (enumerator_15166.current_mBindingName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("outlet-declaration.galgas", 434)).boolEnum () ;
             if (kBoolTrue == test_4) {
-              var_bindingMap_15944.method_searchKey (enumerator_14262.current_mBindingName (HERE), var_outletBindingSpecificationModelList_15474, var_controllerBindingOptionDecoratedList_15558, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 420)) ;
+              var_bindingMap_16848.method_searchKey (enumerator_15166.current_mBindingName (HERE), var_outletBindingSpecificationModelList_16378, var_controllerBindingOptionDecoratedList_16462, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 435)) ;
             }
           }
           if (kBoolFalse == test_4) {
-            var_continues_15623 = GALGAS_bool (true) ;
-            var_outletTypeName_15586 = var_superOutletClassName_15889 ;
+            var_continues_16527 = GALGAS_bool (true) ;
+            var_outletTypeName_16490 = var_superOutletClassName_16793 ;
           }
         }
       }
     }
     enumGalgasBool test_5 = kBoolTrue ;
     if (kBoolTrue == test_5) {
-      test_5 = var_continues_15623.boolEnum () ;
+      test_5 = var_continues_16527.boolEnum () ;
       if (kBoolTrue == test_5) {
         TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (enumerator_14262.current_mBindingName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 431)), GALGAS_string ("this binding is not defined"), fixItArray6  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 431)) ;
+        inCompiler->emitSemanticError (enumerator_15166.current_mBindingName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 446)), GALGAS_string ("this binding is not defined"), fixItArray6  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 446)) ;
       }
     }
     if (kBoolFalse == test_5) {
       enumGalgasBool test_7 = kBoolTrue ;
       if (kBoolTrue == test_7) {
-        test_7 = GALGAS_bool (kIsNotEqual, var_boundModelTypeList_14333.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 432)).objectCompare (var_outletBindingSpecificationModelList_15474.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 432)))).boolEnum () ;
+        test_7 = GALGAS_bool (kIsNotEqual, var_boundModelTypeList_15237.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 447)).objectCompare (var_outletBindingSpecificationModelList_16378.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 447)))).boolEnum () ;
         if (kBoolTrue == test_7) {
           TC_Array <C_FixItDescription> fixItArray8 ;
-          inCompiler->emitSemanticError (enumerator_14262.current_mBindingName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 433)), var_outletBindingSpecificationModelList_15474.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 434)).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 434)).add_operation (GALGAS_string (" model(s) required for this binding (found: "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 434)).add_operation (var_boundModelTypeList_14333.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 436)).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 435)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 435)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 436)), fixItArray8  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 433)) ;
+          inCompiler->emitSemanticError (enumerator_15166.current_mBindingName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 448)), var_outletBindingSpecificationModelList_16378.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 449)).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 449)).add_operation (GALGAS_string (" model(s) required for this binding (found: "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 449)).add_operation (var_boundModelTypeList_15237.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 451)).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 450)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 450)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 451)), fixItArray8  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 448)) ;
         }
       }
       if (kBoolFalse == test_7) {
-        cEnumerator_outletBindingSpecificationModelList enumerator_16695 (var_outletBindingSpecificationModelList_15474, kENUMERATION_UP) ;
-        cEnumerator_outletBindingModelList enumerator_16728 (var_boundModelTypeList_14333, kENUMERATION_UP) ;
-        while (enumerator_16695.hasCurrentObject () && enumerator_16728.hasCurrentObject ()) {
+        cEnumerator_outletBindingSpecificationModelList enumerator_17599 (var_outletBindingSpecificationModelList_16378, kENUMERATION_UP) ;
+        cEnumerator_outletBindingModelList enumerator_17632 (var_boundModelTypeList_15237, kENUMERATION_UP) ;
+        while (enumerator_17599.hasCurrentObject () && enumerator_17632.hasCurrentObject ()) {
           enumGalgasBool test_9 = kBoolTrue ;
           if (kBoolTrue == test_9) {
-            GALGAS_bool test_10 = enumerator_16695.current_mModelShouldBeWritableProperty (HERE) ;
+            GALGAS_bool test_10 = enumerator_17599.current_mModelShouldBeWritableProperty (HERE) ;
             if (kBoolTrue == test_10.boolEnum ()) {
-              test_10 = extensionGetter_isTransient (enumerator_16728.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 439)) ;
+              test_10 = extensionGetter_isTransient (enumerator_17632.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 454)) ;
             }
             test_9 = test_10.boolEnum () ;
             if (kBoolTrue == test_9) {
               TC_Array <C_FixItDescription> fixItArray11 ;
-              inCompiler->emitSemanticError (enumerator_16728.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model"), fixItArray11  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 440)) ;
+              inCompiler->emitSemanticError (enumerator_17632.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model"), fixItArray11  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 455)) ;
             }
           }
           enumGalgasBool test_12 = kBoolTrue ;
           if (kBoolTrue == test_12) {
-            GALGAS_bool test_13 = enumerator_16695.current_mModelType (HERE).getter_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 442)) ;
+            GALGAS_bool test_13 = enumerator_17599.current_mModelType (HERE).getter_isEnumType (SOURCE_FILE ("outlet-declaration.galgas", 457)) ;
             if (kBoolTrue == test_13.boolEnum ()) {
-              test_13 = extensionGetter_isEnumType (enumerator_16728.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 442)) ;
+              test_13 = extensionGetter_isEnumType (enumerator_17632.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 457)) ;
             }
             test_12 = test_13.boolEnum () ;
             if (kBoolTrue == test_12) {
@@ -676,67 +676,67 @@ void routine_analyzeRegularBinding (const GALGAS_propertyMap constinArgument_inR
           if (kBoolFalse == test_12) {
             enumGalgasBool test_14 = kBoolTrue ;
             if (kBoolTrue == test_14) {
-              test_14 = GALGAS_bool (kIsNotEqual, extensionGetter_swiftTypeName (enumerator_16695.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 443)).objectCompare (extensionGetter_swiftTypeName (enumerator_16728.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 443)))).boolEnum () ;
+              test_14 = GALGAS_bool (kIsNotEqual, extensionGetter_swiftTypeName (enumerator_17599.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 458)).objectCompare (extensionGetter_swiftTypeName (enumerator_17632.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 458)))).boolEnum () ;
               if (kBoolTrue == test_14) {
                 TC_Array <C_FixItDescription> fixItArray15 ;
-                inCompiler->emitSemanticError (enumerator_16728.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (extensionGetter_swiftTypeName (enumerator_16695.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 444)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 444)), fixItArray15  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 444)) ;
+                inCompiler->emitSemanticError (enumerator_17632.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (extensionGetter_swiftTypeName (enumerator_17599.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 459)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 459)), fixItArray15  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 459)) ;
               }
             }
           }
-          enumerator_16695.gotoNextObject () ;
-          enumerator_16728.gotoNextObject () ;
+          enumerator_17599.gotoNextObject () ;
+          enumerator_17632.gotoNextObject () ;
         }
       }
     }
-    GALGAS_string var_bindingOptionString_17287 = GALGAS_string::makeEmptyString () ;
+    GALGAS_string var_bindingOptionString_18191 = GALGAS_string::makeEmptyString () ;
     enumGalgasBool test_16 = kBoolTrue ;
     if (kBoolTrue == test_16) {
-      test_16 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList_15558.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 450)).objectCompare (enumerator_14262.current_mBindingOptionList (HERE).getter_length (SOURCE_FILE ("outlet-declaration.galgas", 450)))).boolEnum () ;
+      test_16 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList_16462.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 465)).objectCompare (enumerator_15166.current_mBindingOptionList (HERE).getter_length (SOURCE_FILE ("outlet-declaration.galgas", 465)))).boolEnum () ;
       if (kBoolTrue == test_16) {
-        GALGAS_string var_s_17397 ;
+        GALGAS_string var_s_18301 ;
         enumGalgasBool test_17 = kBoolTrue ;
         if (kBoolTrue == test_17) {
-          test_17 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList_15558.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 452)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+          test_17 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList_16462.getter_length (SOURCE_FILE ("outlet-declaration.galgas", 467)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
           if (kBoolTrue == test_17) {
-            var_s_17397 = GALGAS_string ("this binding has no option") ;
+            var_s_18301 = GALGAS_string ("this binding has no option") ;
           }
         }
         if (kBoolFalse == test_17) {
-          var_s_17397 = GALGAS_string ("this binding requires the following options:") ;
-          cEnumerator_controllerBindingOptionDecoratedList enumerator_17629 (var_controllerBindingOptionDecoratedList_15558, kENUMERATION_UP) ;
-          while (enumerator_17629.hasCurrentObject ()) {
-            var_s_17397.plusAssign_operation(GALGAS_string ("\n"
-              "  - ").add_operation (enumerator_17629.current_mOptionName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 457)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 457)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 457)).add_operation (extensionGetter_swiftTypeName (enumerator_17629.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 457)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 457)), inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 457)) ;
-            enumerator_17629.gotoNextObject () ;
+          var_s_18301 = GALGAS_string ("this binding requires the following options:") ;
+          cEnumerator_controllerBindingOptionDecoratedList enumerator_18533 (var_controllerBindingOptionDecoratedList_16462, kENUMERATION_UP) ;
+          while (enumerator_18533.hasCurrentObject ()) {
+            var_s_18301.plusAssign_operation(GALGAS_string ("\n"
+              "  - ").add_operation (enumerator_18533.current_mOptionName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 472)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 472)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 472)).add_operation (extensionGetter_swiftTypeName (enumerator_18533.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 472)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 472)), inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 472)) ;
+            enumerator_18533.gotoNextObject () ;
           }
         }
         TC_Array <C_FixItDescription> fixItArray18 ;
-        inCompiler->emitSemanticError (enumerator_14262.current_mBindingName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 460)), var_s_17397, fixItArray18  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 460)) ;
+        inCompiler->emitSemanticError (enumerator_15166.current_mBindingName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 475)), var_s_18301, fixItArray18  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 475)) ;
       }
     }
     if (kBoolFalse == test_16) {
-      cEnumerator_controllerBindingOptionDecoratedList enumerator_17833 (var_controllerBindingOptionDecoratedList_15558, kENUMERATION_UP) ;
-      cEnumerator_bindingOptionList enumerator_17868 (enumerator_14262.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
-      while (enumerator_17833.hasCurrentObject () && enumerator_17868.hasCurrentObject ()) {
+      cEnumerator_controllerBindingOptionDecoratedList enumerator_18737 (var_controllerBindingOptionDecoratedList_16462, kENUMERATION_UP) ;
+      cEnumerator_bindingOptionList enumerator_18772 (enumerator_15166.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
+      while (enumerator_18737.hasCurrentObject () && enumerator_18772.hasCurrentObject ()) {
         enumGalgasBool test_19 = kBoolTrue ;
         if (kBoolTrue == test_19) {
-          test_19 = GALGAS_bool (kIsNotEqual, enumerator_17833.current_mOptionName (HERE).getter_string (HERE).objectCompare (enumerator_17868.current_mOptionName (HERE).getter_string (HERE))).boolEnum () ;
+          test_19 = GALGAS_bool (kIsNotEqual, enumerator_18737.current_mOptionName (HERE).getter_string (HERE).objectCompare (enumerator_18772.current_mOptionName (HERE).getter_string (HERE))).boolEnum () ;
           if (kBoolTrue == test_19) {
             TC_Array <C_FixItDescription> fixItArray20 ;
-            inCompiler->emitSemanticError (enumerator_17868.current_mOptionName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 464)), GALGAS_string ("the option name should be '").add_operation (enumerator_17833.current_mOptionName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 464)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 464)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 464)), fixItArray20  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 464)) ;
+            inCompiler->emitSemanticError (enumerator_18772.current_mOptionName (HERE).getter_location (SOURCE_FILE ("outlet-declaration.galgas", 479)), GALGAS_string ("the option name should be '").add_operation (enumerator_18737.current_mOptionName (HERE).getter_string (SOURCE_FILE ("outlet-declaration.galgas", 479)), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 479)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 479)), fixItArray20  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 479)) ;
           }
         }
-        GALGAS_string var_optionValueAsString_18229 ;
-        GALGAS_typeKindList temp_21 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 467)) ;
-        temp_21.addAssign_operation (enumerator_17833.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 467)) ;
-        callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_17868.current_mOptionValue (HERE).ptr (), temp_21, constinArgument_inPreferencesPropertyMap, var_optionValueAsString_18229, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 466)) ;
-        var_bindingOptionString_17287.plusAssign_operation(GALGAS_string (", ").add_operation (enumerator_17833.current_mOptionName (HERE).getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 471)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 471)).add_operation (var_optionValueAsString_18229, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 471)), inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 471)) ;
-        enumerator_17833.gotoNextObject () ;
-        enumerator_17868.gotoNextObject () ;
+        GALGAS_string var_optionValueAsString_19133 ;
+        GALGAS_typeKindList temp_21 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 482)) ;
+        temp_21.addAssign_operation (enumerator_18737.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 482)) ;
+        callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_18772.current_mOptionValue (HERE).ptr (), temp_21, constinArgument_inPreferencesPropertyMap, var_optionValueAsString_19133, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 481)) ;
+        var_bindingOptionString_18191.plusAssign_operation(GALGAS_string (", ").add_operation (enumerator_18737.current_mOptionName (HERE).getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 486)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 486)).add_operation (var_optionValueAsString_19133, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 486)), inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 486)) ;
+        enumerator_18737.gotoNextObject () ;
+        enumerator_18772.gotoNextObject () ;
       }
     }
-    ioArgument_ioRegularBindingsGenerationList.addAssign_operation (constinArgument_inOutletName, enumerator_14262.current_mBindingName (HERE).getter_string (HERE), var_boundModelListForGeneration_14387, var_bindingOptionString_17287  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 475)) ;
-    enumerator_14262.gotoNextObject () ;
+    ioArgument_ioRegularBindingsGenerationList.addAssign_operation (constinArgument_inOutletName, enumerator_15166.current_mBindingName (HERE).getter_string (HERE), var_boundModelListForGeneration_15291, var_bindingOptionString_18191  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 490)) ;
+    enumerator_15166.gotoNextObject () ;
   }
 }
 

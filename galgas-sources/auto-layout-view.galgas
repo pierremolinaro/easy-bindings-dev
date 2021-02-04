@@ -74,6 +74,12 @@ class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
   @lstring mAutoLayoutViewClassName
   @astAutoLayoutViewInstructionParameterList mParameterList
   @astAutoLayoutViewFunctionCallList mFunctionCallList
+  @tableValueBinding mTableValueBinding
+  @runActionDescriptor mRunActionDescriptor
+  @multipleBindingDescriptor mEnabledBindingDescriptor
+  @multipleBindingDescriptor mHiddenBindingDescriptor
+  @graphicController mGraphicController
+  @regularBindingList mRegularBindingList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -162,7 +168,8 @@ syntax extension easyBindings_syntax {
  
   rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
     $space$
-    ioInstructionList += !@astSpaceViewInstruction.new
+    $;$
+   ioInstructionList += !@astSpaceViewInstruction.new
     <view_instruction_list> !?ioInstructionList
   }
   
@@ -171,6 +178,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
     $view$
     $identifier$ ?let localViewName
+    $;$
     ioInstructionList += !@astLocalViewInstruction.new {!localViewName}
     <view_instruction_list> !?ioInstructionList
   }
@@ -183,12 +191,28 @@ syntax extension easyBindings_syntax {
     @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList = {}
     repeat
     while
-       $.$
        $identifier$ ?let functionName
        <view_actual_parameter_list> ?let actualParameterList
        autoLayoutViewFunctionCallList += !functionName !actualParameterList
     end
-    ioInstructionList += !@astComputedViewInstruction.new {!viewClassName !instanciationParameterList !autoLayoutViewFunctionCallList}
+    <outlet_binding> ?let @tableValueBinding tableValueBinding
+                     ?let @runActionDescriptor runActionDescriptor
+                     ?let @multipleBindingDescriptor enabledBindingDescriptor
+                     ?let @multipleBindingDescriptor hiddenBindingDescriptor
+                     ?let @graphicController graphicController
+                     ?let @regularBindingList regularBindingList
+    $;$
+    ioInstructionList += !@astComputedViewInstruction.new {
+      !viewClassName
+      !instanciationParameterList
+      !autoLayoutViewFunctionCallList
+      !tableValueBinding
+      !runActionDescriptor
+      !enabledBindingDescriptor
+      !hiddenBindingDescriptor
+      !graphicController
+      !regularBindingList
+    }
     <view_instruction_list> !?ioInstructionList
   }
   
@@ -292,35 +316,78 @@ abstract method @astAbstractViewDeclaration check
   ?let @string inViewName
   ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
   ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+  ?let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @propertyMap inPreferencesPropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inObservablePropertyMap
+  ?let @actionMap inActionMap
+  ?let @string inReceiverSwiftTypeName
   !@abstractViewGeneration outGeneration
 
 #·······················································································································
 
 override method @astHorizontalStackViewDeclaration check ?let @string unused inViewName
-                                             ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                             ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
-                                             !@abstractViewGeneration outGeneration {
+                                ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+                                ?let @bool unused inPreferences
+                                ?let @propertyMap unused inRootObservablePropertyMap
+                                ?let @propertyMap unused inPreferencesPropertyMap
+                                ?let @semanticContext unused inSemanticContext
+                                ?let @propertyMap unused inObservablePropertyMap
+                                ?let @actionMap unused inActionMap
+                                ?let @string unused inReceiverSwiftTypeName
+                                !@abstractViewGeneration outGeneration {
   outGeneration = @newHorizontalStackViewGeneration.new {!mMargin}
 }
 
 #·······················································································································
 
 override method @astVerticalStackViewDeclaration check ?let @string unused inViewName
-                                             ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                             ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
-                                             !@abstractViewGeneration outGeneration {
+                                  ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                  ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+                                  ?let @bool unused inPreferences
+                                  ?let @propertyMap unused inRootObservablePropertyMap
+                                  ?let @propertyMap unused inPreferencesPropertyMap
+                                  ?let @semanticContext unused inSemanticContext
+                                  ?let @propertyMap unused inObservablePropertyMap
+                                  ?let @actionMap unused inActionMap
+                                  ?let @string unused inReceiverSwiftTypeName
+                                  !@abstractViewGeneration outGeneration {
   outGeneration = @newVerticalStackViewGeneration.new {!mMargin}
 }
 
 #·······················································································································
 
 override method @astComputedHorizontalViewDeclaration check ?let @string unused inViewName
-                                                  ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
-                                                  !@abstractViewGeneration outGeneration {
+                                  ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                                  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+                                  ?let @bool inPreferences
+                                  ?let @propertyMap inRootObservablePropertyMap
+                                  ?let @propertyMap inPreferencesPropertyMap
+                                  ?let @semanticContext inSemanticContext
+                                  ?let @propertyMap inObservablePropertyMap
+                                  ?let @actionMap inActionMap
+                                  ?let @string inReceiverSwiftTypeName
+                                  !@abstractViewGeneration outGeneration {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   for (instruction) in mInstructionList do
-    [instruction generateCode !inViewDeclarationMap !inAutolayoutViewClassMap ?let generatedInstruction]
+    [instruction generateCode
+      !inViewDeclarationMap
+      !inAutolayoutViewClassMap
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inPreferencesPropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      !inActionMap
+      !inReceiverSwiftTypeName
+      ?let generatedInstruction
+    ]
     instructionList += !generatedInstruction
   end
   outGeneration = @computedHorizontalViewGeneration.new {!mMargin !instructionList}
@@ -329,12 +396,31 @@ override method @astComputedHorizontalViewDeclaration check ?let @string unused 
 #·······················································································································
 
 override method @astComputedVerticalViewDeclaration check ?let @string unused inViewName
-                                                  ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
-                                                  !@abstractViewGeneration outGeneration {
+                                  ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                                  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+                                  ?let @bool inPreferences
+                                  ?let @propertyMap inRootObservablePropertyMap
+                                  ?let @propertyMap inPreferencesPropertyMap
+                                  ?let @semanticContext inSemanticContext
+                                  ?let @propertyMap inObservablePropertyMap
+                                  ?let @actionMap inActionMap
+                                  ?let @string inReceiverSwiftTypeName
+                                  !@abstractViewGeneration outGeneration {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   for (instruction) in mInstructionList do
-    [instruction generateCode !inViewDeclarationMap !inAutolayoutViewClassMap ?let generatedInstruction]
+   [instruction generateCode
+      !inViewDeclarationMap
+      !inAutolayoutViewClassMap
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inPreferencesPropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      !inActionMap
+      !inReceiverSwiftTypeName
+      ?let generatedInstruction
+    ]
     instructionList += !generatedInstruction
   end
   outGeneration = @computedVerticalViewGeneration.new {!mMargin !instructionList}
@@ -344,30 +430,61 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
 
 abstract method @astAbstractViewInstructionDeclaration generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
                                                        ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                                      ?let @bool inPreferences
+                                                      ?let @propertyMap inRootObservablePropertyMap
+                                                      ?let @propertyMap inPreferencesPropertyMap
+                                                      ?let @semanticContext inSemanticContext
+                                                      ?let @propertyMap inObservablePropertyMap
+                                                      ?let @actionMap inActionMap
+                                                      ?let @string inReceiverSwiftTypeName
                                                        !@abstractViewInstructionGeneration outInstruction
 
 #·······················································································································
 
-override method @astSpaceViewInstruction generateCode ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                             ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
-                                                      !@abstractViewInstructionGeneration outInstruction {
+override method @astSpaceViewInstruction generateCode
+                                ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                ?let @bool unused inPreferences
+                                ?let @propertyMap unused inRootObservablePropertyMap
+                                ?let @propertyMap unused inPreferencesPropertyMap
+                                ?let @semanticContext unused inSemanticContext
+                                ?let @propertyMap unused inObservablePropertyMap
+                                ?let @actionMap unused inActionMap
+                                ?let @string unused inReceiverSwiftTypeName
+                                !@abstractViewInstructionGeneration outInstruction {
   outInstruction = @autoLayoutSpaceViewInstructionGeneration.new
 }
 
 #·······················································································································
 
-override method @astLocalViewInstruction generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                                      ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
-                                                      !@abstractViewInstructionGeneration outInstruction {
+override method @astLocalViewInstruction generateCode
+                                ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                ?let @bool unused inPreferences
+                                ?let @propertyMap unused inRootObservablePropertyMap
+                                ?let @propertyMap unused inPreferencesPropertyMap
+                                ?let @semanticContext unused inSemanticContext
+                                ?let @propertyMap unused inObservablePropertyMap
+                                ?let @actionMap unused inActionMap
+                                ?let @string unused inReceiverSwiftTypeName
+                                !@abstractViewInstructionGeneration outInstruction {
   [inViewDeclarationMap searchKey !mLocalView]
   outInstruction = @autoLayoutLocalViewInstructionGeneration.new {!mLocalView.string}
 }
 
 #·······················································································································
 
-override method @astComputedViewInstruction generateCode ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                                         ?let @autolayoutViewClassMap inAutolayoutViewClassMap
-                                                         !@abstractViewInstructionGeneration outInstruction {
+override method @astComputedViewInstruction generateCode
+                                ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                                ?let @bool inPreferences
+                                ?let @propertyMap inRootObservablePropertyMap
+                                ?let @propertyMap inPreferencesPropertyMap
+                                ?let @semanticContext inSemanticContext
+                                ?let @propertyMap inObservablePropertyMap
+                                ?let @actionMap inActionMap
+                                ?let @string inReceiverSwiftTypeName
+                                !@abstractViewInstructionGeneration outInstruction {
   [inAutolayoutViewClassMap searchKey !mAutoLayoutViewClassName ?7* ?let formalParameterList]
   @autoLayoutViewInstructionGenerationParameterList parameterList = {}
   if [formalParameterList length] != [mParameterList length] then
@@ -384,17 +501,385 @@ override method @astComputedViewInstruction generateCode ?let @autoLayoutViewDec
       parameterList += !name !value
     end
   end
-  outInstruction = @autoLayoutViewInstructionGeneration.new {!mAutoLayoutViewClassName !parameterList !mFunctionCallList}
+#--- Bindings
+  analyzeAutoLayoutBinding (
+    !inPreferences
+    !inRootObservablePropertyMap
+    !inPreferencesPropertyMap
+    !inSemanticContext
+    !inObservablePropertyMap
+    !inActionMap
+    !inReceiverSwiftTypeName
+
+    !mAutoLayoutViewClassName # ?let @lstring inTypeName
+
+    ! mTableValueBinding
+    ! mRunActionDescriptor
+    ! mEnabledBindingDescriptor
+    ! mHiddenBindingDescriptor
+    ! mGraphicController
+    ! mRegularBindingList
+
+    ?let @autoLayoutRegularBindingsGenerationList regularBindingsGenerationList
+    ?let @multipleBindingGenerationList multipleBindingGenerationList
+    ?let @actionBindingListForGeneration targetActionList
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
+  )
+#---  
+  outInstruction = @autoLayoutComputedViewInstructionGeneration.new {
+    !mAutoLayoutViewClassName
+    !parameterList
+    !mFunctionCallList
+    !regularBindingsGenerationList
+    !multipleBindingGenerationList
+    !targetActionList
+    !tableViewBindingGenerationList
+    !ebViewGraphicControllerBindingGenerationList
+  }
 }
 
 #·······················································································································
 
-override method @astHStackViewInstructionDeclaration generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                                           ?let @autolayoutViewClassMap inAutolayoutViewClassMap
-                                                           !@abstractViewInstructionGeneration outInstruction {
+proc analyzeAutoLayoutBinding
+  ?let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @propertyMap inPreferencesPropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inObservablePropertyMap
+  ?let @actionMap inActionMap
+  ?let @string inReceiverSwiftTypeName
+
+  ?let @lstring inTypeName
+
+  ?let @tableValueBinding inTableValueBinding
+  ?let @runActionDescriptor inRunActionDescriptor
+  ?let @multipleBindingDescriptor inEnabledBindingDescriptor
+  ?let @multipleBindingDescriptor inHiddenBindingDescriptor
+  ?let @graphicController inGraphicController
+  ?let @regularBindingList inRegularBindingList
+
+  !@autoLayoutRegularBindingsGenerationList outRegularBindingsGenerationList
+  !@multipleBindingGenerationList outMultipleBindingGenerationList
+  !@actionBindingListForGeneration outTargetActionList
+  !@tableViewBindingGenerationList outTableViewBindingGenerationList
+  !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList
+{
+  outRegularBindingsGenerationList = {}
+  outTargetActionList = {}
+  outMultipleBindingGenerationList = {}
+  outTableViewBindingGenerationList = {}
+  outEBViewGraphicControllerBindingGenerationList = {}
+  [inSemanticContext.mAutolayoutViewClassMap searchKey
+    !inTypeName
+    ?*
+    ?let @bool handlesRunAction
+    ?let @bool handlesTableViewBinding
+    ?let @bool handlesEnabledBinding
+    ?let @bool handlesHiddenBinding
+    ?let @bool handleGraphicControllerBinding
+    ?2*
+  ]
+#--- $graphicController
+  switch inGraphicController
+  case none :
+  case defined (@lstring controllerName @lstring propertyName) :
+    if not handleGraphicControllerBinding then
+      error inTypeName : "the '" + inTypeName + "' type does not handle the $graphicController binding"
+    else
+      [inObservablePropertyMap searchKey
+        !controllerName
+        ?let @propertyKind kind
+        ?2*
+      ]
+      switch kind 
+      case property (2*) :
+        error controllerName : "the bound model should be an array controller"
+      case toMany (4*) :
+        error controllerName : "the bound model should be an array controller"
+      case toOne (4*) :
+        error controllerName : "the bound model should be an array controller"
+      case arrayController (entityName graphic) :
+        if propertyName.string == "" then
+          if not graphic then
+            error controllerName : "the controlled entity (" + entityName + ") should be a graphic entity"
+          end
+        else
+          [inSemanticContext.mClassMap searchKey
+            !entityName
+            ?*
+            ?let observablePropertyMap
+            ?2*
+          ]
+          [observablePropertyMap searchKey !propertyName ?let propertyKind ?2*]
+          switch propertyKind 
+          case property (2*) :
+            error controllerName : "the bound model should be a toMany property"
+          case toMany (kEntityName * isGraphic *) :
+            if not isGraphic then
+              error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
+            end
+          case toOne (4*) :
+            error controllerName : "the bound model should be a toMany property"
+          case arrayController (2*) :
+            error controllerName : "the bound model should be a toMany property"
+          case selectionController (*) :
+            error controllerName : "the bound model should be a toMany property"
+          end
+       end
+      case selectionController (*) :
+        error controllerName : "the bound model should be an array controller"
+      end
+      outEBViewGraphicControllerBindingGenerationList += !"<<1>>" !controllerName.string
+    end
+  end
+#--- $tableView
+  switch inTableValueBinding
+  case noTableValueBinding :
+  case tableValueBinding (@lstring controllerName) :
+    if not handlesTableViewBinding then
+      error inTypeName : "the '" + inTypeName + "' type does not handle the $tableView binding"
+    else
+      [inObservablePropertyMap searchKey
+        !controllerName
+        ?let @propertyKind unused kind
+        ?2*
+      ]
+      if not [kind isArrayController] then
+        error controllerName : "the bound model should be an array controller"
+      end
+      outTableViewBindingGenerationList += !"<<2>>" !controllerName.string
+    end
+  end
+#--- $run
+  switch inRunActionDescriptor
+  case noAction :
+  case action (@lstring target @lstring action) :
+    if not handlesRunAction then
+      error inTypeName : "the '" + inTypeName + "' type does not handle run action"
+    elsif target.string == "self" then
+      [inActionMap searchKey !action]
+      outTargetActionList +=
+        !"<<3>>"
+        !"self"
+        !action.string
+        !inReceiverSwiftTypeName
+    else # It is a controller
+      [inObservablePropertyMap searchKey
+        !target
+        ?*
+        ?let @actionMap controllerActionMap
+        ?*
+      ]
+      [controllerActionMap searchKey !action]
+      outTargetActionList +=
+        !"<<4>>"
+        !if inPreferences then "prefs_" else "" end + target.string
+        !action.string
+        !"Controller_" + inReceiverSwiftTypeName + "_" + target
+    end
+  end
+#--- Enabled
+  switch inEnabledBindingDescriptor
+  case noBinding :
+  case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+    [expression analyzeExpressionForMultipleBinding
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
+      ?let @typeKind type
+      ?let @location errorLocation
+    ]
+    if not handlesEnabledBinding then
+      error errorLocation : "cet outlet n'accepte pas le binding $enabled"
+    end
+    if not [type isBoolType] then
+      error errorLocation : "expression is not boolean"
+    end
+    outMultipleBindingGenerationList +=
+      !"<<5>>"
+      !"enabled"
+      !enableExpression
+  end
+#--- Hidden
+  switch inHiddenBindingDescriptor
+  case noBinding :
+  case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+    [expression analyzeExpressionForMultipleBinding
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+      ?let @typeKind type
+      ?let @location errorLocation
+    ]
+    if not [type isBoolType] then
+      error errorLocation : "expression is not boolean"
+    end
+    if not handlesHiddenBinding then
+      error errorLocation : "cet outlet n'accepte pas le binding $hidden"
+    end
+    outMultipleBindingGenerationList +=
+      !"<<6>>"
+      !"hidden"
+      !hiddenExpression
+  end
+#---------------------------------- Regular bindings
+  analyzeAutoLayoutRegularBinding (
+    !inRootObservablePropertyMap
+    !inPreferencesPropertyMap
+    !inSemanticContext
+    !inObservablePropertyMap
+    !inTypeName
+    !inRegularBindingList
+    !if inPreferences then "prefs_" else "self." end
+    !?outRegularBindingsGenerationList
+  )
+}
+
+#·······················································································································
+
+proc analyzeAutoLayoutRegularBinding
+  ?let @propertyMap inRootPropertyMap
+  ?let @propertyMap inPreferencesPropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inBoundModelPropertyMap
+  ?let @lstring inOutletTypeName
+  ?let @regularBindingList inRegularBindingList
+  ?let @string inSelfSwiftName
+  ?!@autoLayoutRegularBindingsGenerationList ioRegularBindingsGenerationList
+{
+  for () in inRegularBindingList do
+  #--- Analyze model
+    @outletBindingModelList boundModelTypeList = {}
+    @boundObjectList boundModelListForGeneration = {}
+    for () in mObservablePropertyList do
+      [mObservableProperty analyzeObservableProperty
+        !inRootPropertyMap
+        !inSemanticContext
+        !inBoundModelPropertyMap
+        ?@propertyKind kind
+        ?let @string unused swiftTypeStringForTransientFunctionArgument
+      ]
+      switch kind
+      case property (2*) : # Ok
+      case toMany (4*) :
+        error [mObservableProperty location]:"a toMany property cannot be bound"
+      case toOne (4*) :
+        error [mObservableProperty location]:"a toOne property cannot be bound"
+      case arrayController (2*) :
+        error [mObservableProperty location]:"an array controller cannot be bound"
+      case selectionController (*) :
+        error [mObservableProperty location]:"a selection controller cannot be bound"
+      end
+      boundModelListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName] !kind
+      boundModelTypeList += !kind ![mObservableProperty location]
+    end
+  #--- Analyze outlet binding
+    @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    var outletTypeName = inOutletTypeName
+    var continues = true
+    loop ([inSemanticContext.mBindingSpecificationMap count] + 1) while (outletTypeName.string != "") & continues do
+      continues = false
+      [inSemanticContext.mAutoLayoutBindingSpecificationMap searchKey
+        !outletTypeName
+        ?let superOutletClassName
+        ?let bindingMap
+      ]
+      if [bindingMap hasKey !mBindingName.string] then
+        [bindingMap searchKey
+          !mBindingName
+          ?outletBindingSpecificationModelList
+          ?controllerBindingOptionDecoratedList
+        ]
+      else
+        continues = true
+        outletTypeName = superOutletClassName
+      end
+    end
+    if continues then
+      error mBindingName : "this binding is not defined"
+    elsif [boundModelTypeList length] != [outletBindingSpecificationModelList length] then
+      error mBindingName
+      : [[outletBindingSpecificationModelList length] string]
+        + " model(s) required for this binding (found: "
+        + [boundModelTypeList length] + ")"
+    else
+      for () required_ in outletBindingSpecificationModelList, () found_ in boundModelTypeList do
+        if required_mModelShouldBeWritableProperty && [found_mKind isTransient] then
+          error found_mErrorLocation : "the model is transient and the binding requires an writable model"
+        end
+        if [required_mModelType isEnumType] && [found_mKind isEnumType] then # Ok
+        elsif [required_mModelType swiftTypeName] != [found_mKind swiftTypeName] then
+          error found_mErrorLocation : "the model type should be " + [required_mModelType swiftTypeName]
+        end
+      end
+    end
+  #--- Check options
+    var bindingOptionString = ""
+    if [controllerBindingOptionDecoratedList length] != [mBindingOptionList length] then
+      @string s
+      if [controllerBindingOptionDecoratedList length] == 0 then
+        s = "this binding has no option"
+      else 
+        s = "this binding requires the following options:"
+        for () in controllerBindingOptionDecoratedList do
+          s += "\n  - " + mOptionName + " : " + [mOptionType swiftTypeName]
+        end
+      end
+      error mBindingName : s
+    else
+      for () controller_ in controllerBindingOptionDecoratedList, () binding_ in mBindingOptionList do
+        if controller_mOptionName.string != binding_mOptionName.string then
+          error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
+        end
+        [binding_mOptionValue analyzeDefaultValueType 
+          !{!controller_mOptionType}
+          !inPreferencesPropertyMap
+          ?let @string optionValueAsString
+        ]
+        bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
+      end
+    end
+  #--- Generate binding
+    ioRegularBindingsGenerationList +=
+      !mBindingName.string
+      !boundModelListForGeneration
+      !bindingOptionString
+  end
+}
+
+#·······················································································································
+
+override method @astHStackViewInstructionDeclaration generateCode
+                        ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                        ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                        ?let @bool inPreferences
+                        ?let @propertyMap inRootObservablePropertyMap
+                        ?let @propertyMap inPreferencesPropertyMap
+                        ?let @semanticContext inSemanticContext
+                        ?let @propertyMap inObservablePropertyMap
+                        ?let @actionMap inActionMap
+                        ?let @string inReceiverSwiftTypeName
+                        !@abstractViewInstructionGeneration outInstruction {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   for (instruction) in mInstructionList do
-    [instruction generateCode !inViewDeclarationMap !inAutolayoutViewClassMap ?let generatedInstruction]
+   [instruction generateCode
+      !inViewDeclarationMap
+      !inAutolayoutViewClassMap
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inPreferencesPropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      !inActionMap
+      !inReceiverSwiftTypeName
+      ?let generatedInstruction
+    ]
     instructionList += !generatedInstruction
   end
   outInstruction = @hStackViewInstructionGeneration.new {!mMargin !instructionList}
@@ -402,12 +887,31 @@ override method @astHStackViewInstructionDeclaration generateCode ?let @autoLayo
 
 #·······················································································································
 
-override method @astVStackViewInstructionDeclaration generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                                        ?let @autolayoutViewClassMap inAutolayoutViewClassMap
-                                                        !@abstractViewInstructionGeneration outInstruction {
+override method @astVStackViewInstructionDeclaration generateCode
+                        ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                        ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                        ?let @bool inPreferences
+                        ?let @propertyMap inRootObservablePropertyMap
+                        ?let @propertyMap inPreferencesPropertyMap
+                        ?let @semanticContext inSemanticContext
+                        ?let @propertyMap inObservablePropertyMap
+                        ?let @actionMap inActionMap
+                        ?let @string inReceiverSwiftTypeName
+                        !@abstractViewInstructionGeneration outInstruction {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   for (instruction) in mInstructionList do
-    [instruction generateCode !inViewDeclarationMap !inAutolayoutViewClassMap ?let generatedInstruction]
+   [instruction generateCode
+      !inViewDeclarationMap
+      !inAutolayoutViewClassMap
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inPreferencesPropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      !inActionMap
+      !inReceiverSwiftTypeName
+      ?let generatedInstruction
+    ]
     instructionList += !generatedInstruction
   end
   outInstruction = @vStackViewInstructionGeneration.new {!mMargin !instructionList}
@@ -483,12 +987,25 @@ class @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGenera
   @string mLocalView
 }
 
+#·······················································································································
+
+list @autoLayoutRegularBindingsGenerationList {
+  @string mBindingName
+  @boundObjectList mBoundObjectList
+  @string mBindingOptionsString
+}
+
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @autoLayoutViewInstructionGeneration : @abstractViewInstructionGeneration {
+class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGeneration {
   @lstring mAutoLayoutViewClassName
   @autoLayoutViewInstructionGenerationParameterList mParameterList
   @astAutoLayoutViewFunctionCallList mFunctionCallList
+  @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
+  @multipleBindingGenerationList mMultipleBindingGenerationList
+  @actionBindingListForGeneration mTargetActionList
+  @tableViewBindingGenerationList mTableViewBindingGenerationList
+  @ebViewGraphicControllerBindingGenerationList mEBViewGraphicControllerBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -524,7 +1041,7 @@ override getter @newVerticalStackViewGeneration generate ?let @string inViewName
 
 override getter @computedHorizontalViewGeneration generate ?let @string inViewName -> @string {
   result = "  lazy var " + inViewName + " = self." + inViewName + "_make ()\n\n"
-  result += "  fileprivate final func " + inViewName + "_make () -> NSView {\n"
+  result += "  fileprivate final func " + inViewName + "_make () -> AutoLayoutStackView {\n"
   result += "    let view = AutoLayoutHorizontalStackView (margin: " + mMargin + ") {\n"
   for (instruction) in mInstructionList do
     result += "      " + [instruction generate !"    "]
@@ -566,7 +1083,7 @@ override getter @autoLayoutLocalViewInstructionGeneration generate ?let @string 
 
 #·······················································································································
 
-override getter @autoLayoutViewInstructionGeneration generate ?let @string inIndentation -> @string {
+override getter @autoLayoutComputedViewInstructionGeneration generate ?let @string inIndentation -> @string {
   result = mAutoLayoutViewClassName.string + ".make ("
   for parameter in mParameterList
   do
@@ -584,6 +1101,14 @@ override getter @autoLayoutViewInstructionGeneration generate ?let @string inInd
       result += ", "
     end
     result += ")\n"
+  end
+  for (bindingName boundObjectList optionListString) in mRegularBindingsGenerationList do
+    result += inIndentation + "    .bind_" + bindingName + " ("
+    for (boundObjectString *) in boundObjectList
+      do result += boundObjectString
+      between result += ", "
+    end
+    result += optionListString + ")\n"
   end
 }
 

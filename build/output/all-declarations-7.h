@@ -475,6 +475,51 @@ void routine_buildAutoLayoutBindingSpecificationMap (class GALGAS_semanticContex
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Routine 'analyzeAutoLayoutBinding'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_analyzeAutoLayoutBinding (const class GALGAS_bool constinArgument0,
+                                       const class GALGAS_propertyMap constinArgument1,
+                                       const class GALGAS_propertyMap constinArgument2,
+                                       const class GALGAS_semanticContext constinArgument3,
+                                       const class GALGAS_propertyMap constinArgument4,
+                                       const class GALGAS_actionMap constinArgument5,
+                                       const class GALGAS_string constinArgument6,
+                                       const class GALGAS_lstring constinArgument7,
+                                       const class GALGAS_tableValueBinding constinArgument8,
+                                       const class GALGAS_runActionDescriptor constinArgument9,
+                                       const class GALGAS_multipleBindingDescriptor constinArgument10,
+                                       const class GALGAS_multipleBindingDescriptor constinArgument11,
+                                       const class GALGAS_graphicController constinArgument12,
+                                       const class GALGAS_regularBindingList constinArgument13,
+                                       class GALGAS_autoLayoutRegularBindingsGenerationList & outArgument14,
+                                       class GALGAS_multipleBindingGenerationList & outArgument15,
+                                       class GALGAS_actionBindingListForGeneration & outArgument16,
+                                       class GALGAS_tableViewBindingGenerationList & outArgument17,
+                                       class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument18,
+                                       class C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeAutoLayoutRegularBinding'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_analyzeAutoLayoutRegularBinding (const class GALGAS_propertyMap constinArgument0,
+                                              const class GALGAS_propertyMap constinArgument1,
+                                              const class GALGAS_semanticContext constinArgument2,
+                                              const class GALGAS_propertyMap constinArgument3,
+                                              const class GALGAS_lstring constinArgument4,
+                                              const class GALGAS_regularBindingList constinArgument5,
+                                              const class GALGAS_string constinArgument6,
+                                              class GALGAS_autoLayoutRegularBindingsGenerationList & ioArgument7,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Filewrapper 'outletClassGeneration'
 //
 //----------------------------------------------------------------------------------------------------------------------
