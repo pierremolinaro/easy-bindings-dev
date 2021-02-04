@@ -1,0 +1,282 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST   
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
+  @bool mUserDefined
+  @lstring mSuperClassName
+  @bool mHasRunAction
+  @bool mHasEnabled
+  @bool mHandlesTableValueBinding
+  @bool mHandlesGraphicControllerBinding
+  @bool mHasHidden
+  @autoLayoutClassParameterList mParameterList
+  @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
+}
+
+#·······················································································································
+
+enum @autoLayoutClassParameterType {
+  case typeString
+  case typeInt
+  case typeBool
+  case typeView
+}
+
+#·······················································································································
+
+getter @autoLayoutClassParameterType string -> @string {
+  switch self
+  case typeString : result = "String"
+  case typeInt : result = "Int"
+  case typeBool : result = "Bool"
+  case typeView : result = "a view"
+  end
+}
+
+#·······················································································································
+
+list @autoLayoutClassParameterList {
+  @lstring mParameterName
+  @autoLayoutClassParameterType mParameterType
+}
+
+#·······················································································································
+
+map @astAutoLayoutViewFunctionMap {
+  @autoLayoutClassParameterList mFomalParameterList
+  insert insertKey error message "the '%K' function is already declared in %L"
+  search searchKey error message "there is no '%K' function"
+}
+
+#·······················································································································
+
+override method @autoLayoutViewClassDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+  if mSuperClassName.string != "" then
+    [!?ioGraph addEdge !mClassName !mSuperClassName]
+  end
+}
+
+#·······················································································································
+
+override getter @autoLayoutViewClassDeclarationAST nodeKey -> @lstring {
+  result = mClassName
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <autolayout_view_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
+    @bool userDefined
+    select
+      $extern$
+      userDefined = true
+    or
+      userDefined = false
+    end
+    $autolayout$
+    $class$
+    $Identifier$ ?let @lstring outletClassName
+    <autolayout_formal_parameter_list> ?let parameterList
+    @lstring superClassName
+    select
+      superClassName = ["" here]
+    or
+      $:$
+      $Identifier$ ?superClassName
+    end
+    @bool hasRunAction = false
+    @bool hasEnabled = false
+    @bool hasHidden = false
+    @bool handlesTableViewBinding = false
+    @bool handlesGraphicControllerBinding = false
+    repeat
+    while
+      $tableValue$
+      handlesTableViewBinding = true
+    while
+      $run$
+      hasRunAction = true
+    while
+      $enabled$
+      hasEnabled = true
+    while
+      $hidden$
+      hasHidden = true
+    while
+      $graphicController$
+      handlesGraphicControllerBinding = true
+    end
+    @astAutoLayoutViewFunctionMap astAutoLayoutViewFunctionMap = {}
+    ${$
+    repeat
+    while
+      $func$
+      $identifier$ ?let functionName
+      <autolayout_formal_parameter_list> ?let parameterList
+      [!?astAutoLayoutViewFunctionMap insertKey !functionName !parameterList]
+    while
+      <auto_layout_view_binding_specification> !outletClassName !?ioDeclarationAST.mAutoLayoutBindingSpecificationList
+    end
+    $}$
+    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutViewClassDeclarationAST.new {
+      !outletClassName
+      !userDefined
+      !superClassName
+      !hasRunAction
+      !hasEnabled
+      !handlesTableViewBinding
+      !handlesGraphicControllerBinding
+      !hasHidden
+      !parameterList
+      !astAutoLayoutViewFunctionMap
+    }
+ }
+
+ #·····················································································································
+  
+  rule <autolayout_formal_parameter_list> !@autoLayoutClassParameterList ioParameterList {
+    ioParameterList = {}
+    select
+    or
+      $($
+      repeat
+        $identifier$ ?let parameterName
+        $:$
+        select
+          $view$
+          ioParameterList += !parameterName !.typeView
+        or
+         $Identifier$ ?let parameterTypeName
+         if parameterTypeName.string == "String" then
+           ioParameterList += !parameterName !.typeString
+         elsif parameterTypeName.string == "Int" then
+           ioParameterList += !parameterName !.typeInt
+         elsif parameterTypeName.string == "Bool" then
+           ioParameterList += !parameterName !.typeBool
+         else
+           error parameterTypeName : "the type 'String', 'Int' or 'Bool' is required here"
+         end
+        end
+      while
+        $,$
+      end
+      $)$
+    end
+  }
+
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SEMANTIC ANALYSIS                       
+#-----------------------------------------------------------------------------------------------------------------------
+
+override method @autoLayoutViewClassDeclarationAST firstAnalysisPhase
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct unused ioGeneration
+{
+  if mSuperClassName.string == "" then
+    [!?ioSemanticContext.mAutolayoutViewClassMap insertKey
+      !mClassName
+      !["" nowhere]  # No super class
+      !mHasRunAction
+      !mHandlesTableValueBinding
+      !mHasEnabled
+      !mHasHidden
+      !mHandlesGraphicControllerBinding
+      !mUserDefined
+      !mParameterList
+    ]
+  else
+    [ioSemanticContext.mAutolayoutViewClassMap searchKey
+      !mSuperClassName
+      ?*
+      ?let hasRunAction
+      ?let handlesTableValueBinding
+      ?let hasEnabled
+      ?let hasHidden
+      ?let handlesGraphicControllerBinding
+      ?2*
+    ]
+    if mHasRunAction & hasRunAction then
+      error mClassName : "$run binding already defined in superclass"
+    end
+    if mHandlesTableValueBinding & handlesTableValueBinding then
+      error mClassName : "$tableview binding already defined in superclass"
+    end
+    if mHasEnabled & hasEnabled then
+      error mClassName : "$enabled binding already defined in superclass"
+    end
+    if mHasHidden & hasHidden then
+      error mClassName : "$hidden binding already defined in superclass"
+    end
+    if mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
+      error mClassName : "$graphicController binding already defined in superclass"
+    end
+  #---
+    [!?ioSemanticContext.mAutolayoutViewClassMap insertKey
+      !mClassName
+      !mSuperClassName
+      !mHasRunAction | hasRunAction
+      !mHandlesTableValueBinding | handlesTableValueBinding
+      !mHasEnabled | hasEnabled
+      !mHasHidden | hasHidden
+      !mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
+      !mUserDefined
+      !mParameterList
+    ]
+  end
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#  SEMANTIC TYPE                          
+#-----------------------------------------------------------------------------------------------------------------------
+
+map @autolayoutViewClassMap {
+  @lstring mSuperClassName
+  @bool mHandlesRunAction
+  @bool mHandlesTableValueBinding
+  @bool mHandleEnabledBinding
+  @bool mHandleHiddenBinding
+  @bool mHandleGraphicControllerBinding
+  @bool mUserDefined
+  @autoLayoutClassParameterList mParameterList
+  insert insertKey error message "the '%K' outlet class is already declared in %L"
+  search searchKey error message "there is no '%K' outlet class"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#  CODE GENERATION                        
+#-----------------------------------------------------------------------------------------------------------------------
+
+#filewrapper outletClassGeneration in "../generation-templates/outlet-classes" {
+#  "swift"
+#}{
+#}{
+#}
+
+#----------------------------------------------------------------------------------------------------------------------*
+
+#proc generateOutletClasses
+#  ?let @stringset inNeededOutletClasses
+#  ?let @string inOutputDirectory
+#  ?!@stringset ioGeneratedFileSet
+#{
+#  let @filewrapper w = [filewrapper outletClassGeneration]
+#  for key in inNeededOutletClasses do
+#    let s = [w textFileContentsAtPath !"/" + key + ".swift"]
+#    let fileName = key + ".swift"
+#    ioGeneratedFileSet += !fileName
+#    [@string generateFile !inOutputDirectory !fileName !s]
+#  end
+#}
+
+#-----------------------------------------------------------------------------------------------------------------------

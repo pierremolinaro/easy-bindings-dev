@@ -1,0 +1,612 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST
+#-----------------------------------------------------------------------------------------------------------------------
+
+abstract class @astAbstractViewDeclaration {
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astHorizontalStackViewDeclaration : @astAbstractViewDeclaration {
+  @uint mMargin
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astVerticalStackViewDeclaration : @astAbstractViewDeclaration {
+  @uint mMargin
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
+  @uint mMargin
+  @astViewInstructionList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
+  @uint mMargin
+  @astViewInstructionList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @astViewDeclarationList {
+  @lstring mViewName
+  @astAbstractViewDeclaration mView
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+abstract class @astAbstractViewInstructionDeclaration {
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+  @uint mMargin
+  @astViewInstructionList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+  @uint mMargin
+  @astViewInstructionList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astSpaceViewInstruction : @astAbstractViewInstructionDeclaration {
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astLocalViewInstruction : @astAbstractViewInstructionDeclaration {
+  @lstring mLocalView
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
+  @lstring mAutoLayoutViewClassName
+  @astAutoLayoutViewInstructionParameterList mParameterList
+  @astAutoLayoutViewFunctionCallList mFunctionCallList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @astAutoLayoutViewFunctionCallList {
+  @lstring mFunctionName
+  @astAutoLayoutViewInstructionParameterList mParameterList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @astAutoLayoutViewInstructionParameterList {
+  @lstring mParameterName
+  @autoLayoutClassParameterType mParameterType
+  @string mParameterValue
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @astViewInstructionList {
+  @astAbstractViewInstructionDeclaration mInstruction
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+   #·····················································································································
+  
+  rule <view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
+    $view$
+    $identifier$ ?let viewName
+    $:$
+    select
+      $hStack$
+      <margin> ?let margin
+      ioViewDeclarationList += !viewName !@astHorizontalStackViewDeclaration.new {!margin}
+    or
+      $vStack$
+      <margin> ?let margin
+      ioViewDeclarationList += !viewName !@astVerticalStackViewDeclaration.new {!margin}
+    end
+    $;$
+  }
+ 
+  #·····················································································································
+  
+  rule <view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
+    $view$
+    $identifier$ ?let viewName
+    $vStack$
+    <margin> ?let margin
+    ${$
+    var instructionList = @astViewInstructionList {}
+    <view_instruction_list> !?instructionList
+    $}$
+    ioViewDeclarationList +=
+      !viewName
+      !@astComputedVerticalViewDeclaration.new {!margin !instructionList}
+  }
+ 
+ #·····················································································································
+  
+  rule <view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
+    $view$
+    $identifier$ ?let viewName
+    $hStack$
+    <margin> ?let margin
+    ${$
+    var instructionList = @astViewInstructionList {}
+    <view_instruction_list> !?instructionList
+    $}$
+    ioViewDeclarationList +=
+      !viewName
+      !@astComputedHorizontalViewDeclaration.new {!margin !instructionList}
+  }
+ 
+  #·····················································································································
+ 
+  rule <view_instruction_list> ?!@astViewInstructionList unused ioInstructionList {
+  }
+  
+  #·····················································································································
+ 
+  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+    $space$
+    ioInstructionList += !@astSpaceViewInstruction.new
+    <view_instruction_list> !?ioInstructionList
+  }
+  
+  #·····················································································································
+ 
+  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+    $view$
+    $identifier$ ?let localViewName
+    ioInstructionList += !@astLocalViewInstruction.new {!localViewName}
+    <view_instruction_list> !?ioInstructionList
+  }
+  
+ #·····················································································································
+ 
+  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+    $Identifier$ ? let viewClassName
+    <view_actual_parameter_list> ?let instanciationParameterList
+    @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList = {}
+    repeat
+    while
+       $.$
+       $identifier$ ?let functionName
+       <view_actual_parameter_list> ?let actualParameterList
+       autoLayoutViewFunctionCallList += !functionName !actualParameterList
+    end
+    ioInstructionList += !@astComputedViewInstruction.new {!viewClassName !instanciationParameterList !autoLayoutViewFunctionCallList}
+    <view_instruction_list> !?ioInstructionList
+  }
+  
+ #·····················································································································
+ 
+  rule <view_actual_parameter_list> !@astAutoLayoutViewInstructionParameterList outParameterList {
+    outParameterList = {}
+    select
+    or
+      $($
+      repeat
+        $identifier$ ?let parameterName
+        $:$
+        select
+          $identifier$ ?let viewName
+          outParameterList += !parameterName !.typeView !"self." + viewName.string
+        or
+          $yes$
+          outParameterList += !parameterName !.typeBool !"true"
+        or
+          $no$
+          outParameterList += !parameterName !.typeBool !"false"
+        or
+          $literal_integer$ ?let uint32
+          outParameterList += !parameterName !.typeInt ![uint32.uint string]
+        or
+          $-$
+          $literal_integer$ ?let uint32
+          outParameterList += !parameterName !.typeInt !"-" + [uint32.uint string]
+        or
+          $literal_string$ ?let literalString
+          outParameterList += !parameterName !.typeString ![literalString.string cStringRepresentation]
+        end
+      while
+        $,$
+      end
+      $)$
+    end
+  }
+  
+  #·····················································································································
+ 
+  rule <margin> !@uint outMargin {
+    select
+      outMargin = 0
+    or
+      $($
+      $identifier$ ?let parameterName
+      if parameterName.string != "margin" then
+        error parameterName : "'margin' is required here"
+      end
+      $:$
+      $literal_integer$ ?let v
+      $)$
+      outMargin = v.uint
+    end
+  }
+  
+  #·····················································································································
+ 
+  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+    $vStack$
+    <margin> ?let margin
+    ${$
+    var instructionList = @astViewInstructionList {}
+    <view_instruction_list> !?instructionList
+    ioInstructionList += !@astVStackViewInstructionDeclaration.new {!margin !instructionList}
+    $}$
+    <view_instruction_list> !?ioInstructionList
+  }
+  
+  #·····················································································································
+ 
+  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+    $hStack$
+    <margin> ?let margin
+    ${$
+    var instructionList = @astViewInstructionList {}
+    <view_instruction_list> !?instructionList
+    ioInstructionList += !@astHStackViewInstructionDeclaration.new {!margin !instructionList}
+    $}$
+    <view_instruction_list> !?ioInstructionList
+  }
+  
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SEMANTIC ANALYSIS                            
+#-----------------------------------------------------------------------------------------------------------------------
+
+map @autoLayoutViewDeclarationMap {
+  insert insertKey error message "the '%K' view is already declared in %L"
+  search searchKey error message "there is no '%K' view"
+}
+
+#·······················································································································
+
+abstract method @astAbstractViewDeclaration check
+  ?let @string inViewName
+  ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+  ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+  !@abstractViewGeneration outGeneration
+
+#·······················································································································
+
+override method @astHorizontalStackViewDeclaration check ?let @string unused inViewName
+                                             ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                             ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                             !@abstractViewGeneration outGeneration {
+  outGeneration = @newHorizontalStackViewGeneration.new {!mMargin}
+}
+
+#·······················································································································
+
+override method @astVerticalStackViewDeclaration check ?let @string unused inViewName
+                                             ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                             ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                             !@abstractViewGeneration outGeneration {
+  outGeneration = @newVerticalStackViewGeneration.new {!mMargin}
+}
+
+#·······················································································································
+
+override method @astComputedHorizontalViewDeclaration check ?let @string unused inViewName
+                                                  ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                                                  !@abstractViewGeneration outGeneration {
+  @autoLayoutViewInstructionGenerationList instructionList = {}
+  for (instruction) in mInstructionList do
+    [instruction generateCode !inViewDeclarationMap !inAutolayoutViewClassMap ?let generatedInstruction]
+    instructionList += !generatedInstruction
+  end
+  outGeneration = @computedHorizontalViewGeneration.new {!mMargin !instructionList}
+}
+
+#·······················································································································
+
+override method @astComputedVerticalViewDeclaration check ?let @string unused inViewName
+                                                  ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                                                  !@abstractViewGeneration outGeneration {
+  @autoLayoutViewInstructionGenerationList instructionList = {}
+  for (instruction) in mInstructionList do
+    [instruction generateCode !inViewDeclarationMap !inAutolayoutViewClassMap ?let generatedInstruction]
+    instructionList += !generatedInstruction
+  end
+  outGeneration = @computedVerticalViewGeneration.new {!mMargin !instructionList}
+}
+
+#·······················································································································
+
+abstract method @astAbstractViewInstructionDeclaration generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                                       ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                                       !@abstractViewInstructionGeneration outInstruction
+
+#·······················································································································
+
+override method @astSpaceViewInstruction generateCode ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                             ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                                      !@abstractViewInstructionGeneration outInstruction {
+  outInstruction = @autoLayoutSpaceViewInstructionGeneration.new
+}
+
+#·······················································································································
+
+override method @astLocalViewInstruction generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                                      ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+                                                      !@abstractViewInstructionGeneration outInstruction {
+  [inViewDeclarationMap searchKey !mLocalView]
+  outInstruction = @autoLayoutLocalViewInstructionGeneration.new {!mLocalView.string}
+}
+
+#·······················································································································
+
+override method @astComputedViewInstruction generateCode ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                                         ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                                                         !@abstractViewInstructionGeneration outInstruction {
+  [inAutolayoutViewClassMap searchKey !mAutoLayoutViewClassName ?7* ?let formalParameterList]
+  @autoLayoutViewInstructionGenerationParameterList parameterList = {}
+  if [formalParameterList length] != [mParameterList length] then
+    error mAutoLayoutViewClassName 
+    : [[formalParameterList length] string] + " parameter(s) required, " + [mParameterList length] + " provided"
+  else
+    for (name type value) in mParameterList, (formalName formalType) in formalParameterList do
+      if type != formalType then
+        error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
+      end
+      if name.string != formalName.string then
+        error name : "the parameter name should be '" + formalName + "'"
+      end
+      parameterList += !name !value
+    end
+  end
+  outInstruction = @autoLayoutViewInstructionGeneration.new {!mAutoLayoutViewClassName !parameterList !mFunctionCallList}
+}
+
+#·······················································································································
+
+override method @astHStackViewInstructionDeclaration generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                                           ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                                                           !@abstractViewInstructionGeneration outInstruction {
+  @autoLayoutViewInstructionGenerationList instructionList = {}
+  for (instruction) in mInstructionList do
+    [instruction generateCode !inViewDeclarationMap !inAutolayoutViewClassMap ?let generatedInstruction]
+    instructionList += !generatedInstruction
+  end
+  outInstruction = @hStackViewInstructionGeneration.new {!mMargin !instructionList}
+}
+
+#·······················································································································
+
+override method @astVStackViewInstructionDeclaration generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                                        ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+                                                        !@abstractViewInstructionGeneration outInstruction {
+  @autoLayoutViewInstructionGenerationList instructionList = {}
+  for (instruction) in mInstructionList do
+    [instruction generateCode !inViewDeclarationMap !inAutolayoutViewClassMap ?let generatedInstruction]
+    instructionList += !generatedInstruction
+  end
+  outInstruction = @vStackViewInstructionGeneration.new {!mMargin !instructionList}
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   GENERATION                            
+#-----------------------------------------------------------------------------------------------------------------------
+
+abstract class @abstractViewGeneration {
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @newHorizontalStackViewGeneration : @abstractViewGeneration {
+  @uint mMargin
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @newVerticalStackViewGeneration : @abstractViewGeneration {
+  @uint mMargin
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @computedHorizontalViewGeneration : @abstractViewGeneration {
+  @uint mMargin
+  @autoLayoutViewInstructionGenerationList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @computedVerticalViewGeneration : @abstractViewGeneration {
+  @uint mMargin
+  @autoLayoutViewInstructionGenerationList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @viewGenerationList {
+  @string mViewName
+  @abstractViewGeneration mView
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+abstract class @abstractViewInstructionGeneration {
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
+  @uint mMargin
+  @autoLayoutViewInstructionGenerationList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
+  @uint mMargin
+  @autoLayoutViewInstructionGenerationList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGeneration {
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGeneration {
+  @string mLocalView
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @autoLayoutViewInstructionGeneration : @abstractViewInstructionGeneration {
+  @lstring mAutoLayoutViewClassName
+  @autoLayoutViewInstructionGenerationParameterList mParameterList
+  @astAutoLayoutViewFunctionCallList mFunctionCallList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @autoLayoutViewInstructionGenerationParameterList {
+  @lstring mParameterName
+  @string mParameterValue
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @autoLayoutViewInstructionGenerationList {
+  @abstractViewInstructionGeneration mInstruction
+}
+
+#·······················································································································
+
+abstract getter @abstractViewGeneration generate ?let @string inViewName -> @string
+
+#·······················································································································
+
+override getter @newHorizontalStackViewGeneration generate ?let @string inViewName -> @string {
+  result = "  let " + inViewName + " : AutoLayoutStackView = AutoLayoutHorizontalStackView (margin: " + mMargin + ")\n\n"
+}
+
+#·······················································································································
+
+override getter @newVerticalStackViewGeneration generate ?let @string inViewName -> @string {
+  result = "  let " + inViewName + " : AutoLayoutStackView = AutoLayoutVerticalStackView (margin: " + mMargin + ")\n\n"
+}
+
+#·······················································································································
+
+override getter @computedHorizontalViewGeneration generate ?let @string inViewName -> @string {
+  result = "  lazy var " + inViewName + " = self." + inViewName + "_make ()\n\n"
+  result += "  fileprivate final func " + inViewName + "_make () -> NSView {\n"
+  result += "    let view = AutoLayoutHorizontalStackView (margin: " + mMargin + ") {\n"
+  for (instruction) in mInstructionList do
+    result += "      " + [instruction generate !"    "]
+  end
+  result += "    }\n"
+  result += "    return view\n"
+  result += "  }\n\n"
+}
+
+#·······················································································································
+
+override getter @computedVerticalViewGeneration generate ?let @string inViewName -> @string {
+  result = "  lazy var " + inViewName + " = self." + inViewName + "_make ()\n\n"
+  result += "  fileprivate final func " + inViewName + "_make () -> AutoLayoutStackView {\n"
+  result += "    let view = AutoLayoutVerticalStackView (margin: " + mMargin + ") {\n"
+  for (instruction) in mInstructionList do
+    result += "      " + [instruction generate !"    "]
+  end
+  result += "    }\n"
+  result += "    return view\n"
+  result += "  }\n\n"
+}
+
+#·······················································································································
+
+abstract getter  @abstractViewInstructionGeneration generate ?let @string inIndentation -> @string
+
+#·······················································································································
+
+override getter @autoLayoutSpaceViewInstructionGeneration generate ?let @string unused inIndentation -> @string {
+  result = "space ()\n"
+}
+
+#·······················································································································
+
+override getter @autoLayoutLocalViewInstructionGeneration generate ?let @string unused inIndentation -> @string {
+  result = "addAutoLayoutView (self." + mLocalView + ")\n"
+}
+
+#·······················································································································
+
+override getter @autoLayoutViewInstructionGeneration generate ?let @string inIndentation -> @string {
+  result = mAutoLayoutViewClassName.string + ".make ("
+  for parameter in mParameterList
+  do
+    result += parameter.mParameterName.string + ": " + parameter.mParameterValue
+  between
+    result += ", "
+  end
+  result += ")\n"
+  for (functionName actualParameters) in mFunctionCallList do
+    result += inIndentation + "    ." + functionName.string + " ("
+    for parameter in actualParameters
+    do
+      result += parameter.mParameterName.string + ": " + parameter.mParameterValue
+    between
+      result += ", "
+    end
+    result += ")\n"
+  end
+}
+
+#·······················································································································
+
+override getter @hStackViewInstructionGeneration generate ?let @string inIndentation -> @string {
+  result = "hStack (margin: " + mMargin + ") {\n"
+  let indentation = inIndentation + "  "
+  for (instruction) in mInstructionList do
+     result += indentation + "  " + [instruction generate !indentation] 
+  end
+  result += indentation + "}\n"
+}
+
+#·······················································································································
+
+override getter @vStackViewInstructionGeneration generate ?let @string inIndentation -> @string {
+  result = "vStack (margin: " + mMargin + ") {\n"
+  let indentation = inIndentation + "  "
+  for (instruction) in mInstructionList do
+     result += indentation + "  " + [instruction generate !indentation] 
+  end
+  result += indentation + "}\n"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

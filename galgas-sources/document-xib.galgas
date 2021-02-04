@@ -1,0 +1,265 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @xibDocumentDeclarationAST : @abstractDeclarationAST {
+  @lstring mRootEntityName
+  @outletDeclarationList mOutletDeclarationList
+  @lstringlist mActionDeclarationList
+  @arrayControllerBindingListAST mArrayControllerBindingListAST
+}
+
+#·······················································································································
+
+override method @xibDocumentDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+  [!?ioGraph addNode !mClassName !self]
+  [!?ioGraph addEdge !mClassName !mRootEntityName]
+}
+
+#·······················································································································
+
+override getter @xibDocumentDeclarationAST nodeKey -> @lstring {
+  result = mClassName
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <document_declaration> ?!@astDeclarationStruct ioDeclarationAST {
+    $xibdocument$
+    $Identifier$ ?let @lstring documentName
+    $root$
+    $Identifier$ ?let @lstring rootEntityName
+    ${$
+    @outletDeclarationList outletDeclarationList = {}
+    @regularBindingList bindingList = {}
+    @lstringlist actionDeclarationList = {}
+    @stringset signatureList = {}
+    @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    repeat
+    while
+      <action_declaration> !?actionDeclarationList
+    while
+      <transient_declaration> !documentName !rootEntityName !?ioDeclarationAST
+    while
+      <outlet_declaration> !?outletDeclarationList
+    while
+      <controller_declaration> !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
+    end
+    $}$
+    ioDeclarationAST.mUnifiedDeclarationList += !@xibDocumentDeclarationAST.new {
+      !documentName
+      !rootEntityName
+      !outletDeclarationList
+      !actionDeclarationList
+      !arrayControllerBindingListAST
+    }
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
+      !documentName
+      !rootEntityName
+      !["String" here]
+      !["documentFilePath" here]
+      !{}
+      !false
+    }
+  }
+
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#-----------------------------------------------------------------------------------------------------------------------
+
+override method @xibDocumentDeclarationAST firstAnalysisPhase
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration
+{
+  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  [!?ioSemanticContext.mClassMap insertKey
+    !mClassName
+    !.document {!rootEntityName: mRootEntityName}
+    !{}
+    !actionMap
+    !{}
+  ]
+  for () in actionMap do
+    ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
+      !mClassName.string
+      !lkey.string
+    }
+  end
+}
+
+#·······················································································································
+
+override method @xibDocumentDeclarationAST fourthAnalysisPhase
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration
+{
+  [ioSemanticContext.mClassMap searchKey
+    !.new {!preferencesName () !.nowhere}
+    ?*
+    ?let preferencesPropertyMap
+    ?2*
+  ]
+#--- Get document property map
+  [ioSemanticContext.mClassMap searchKey
+    !.new {!mClassName !.nowhere}
+    ?*
+    ?let documentPropertyMap
+    ?let documentActionMap
+    ?let documentPropertyGenerationList
+  ]
+#--- Get root entity property map
+  [ioSemanticContext.mClassMap searchKey
+    !mRootEntityName
+    ?*
+    ?let rootPropertyMap
+    ?let unused rootActionMap
+    ?let unused rootPropertyGenerationList
+  ]
+#--- Analyze outlets and bindings
+  analyzeOutlets (
+    !false
+    !rootPropertyMap
+    !preferencesPropertyMap
+    !mRootEntityName.string
+    !ioSemanticContext
+    !mOutletDeclarationList
+    !documentPropertyMap
+    !documentActionMap
+    !mClassName
+    !?ioGeneration
+    ?let @regularBindingsGenerationList regularBindingsGenerationList
+    ?@multipleBindingGenerationList multipleBindingGenerationList
+    ?let @actionBindingListForGeneration actionBindingListForGeneration
+    ?let @decoratedOutletMap outletMap
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
+  )
+#--- Analyze controller bindings
+  for (controllerName hiddenBinding) in mArrayControllerBindingListAST do
+  #--- Hidden
+    switch hiddenBinding
+    case noBinding :
+    case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+      [expression analyzeExpressionForMultipleBinding
+        !false
+        !rootPropertyMap
+        !ioSemanticContext
+        !documentPropertyMap
+        ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+        ?let @typeKind type
+        ?let @location errorLocation
+      ]
+      if not [type isBoolType] then
+        error errorLocation : "expression is not boolean"
+      end
+      multipleBindingGenerationList +=
+        !controllerName.string
+        !"hidden"
+        !hiddenExpression
+    end
+  end
+#--- Code generation
+  ioGeneration.mGenerateEBManagedXibDocumentSwift = true
+#---
+  ioGeneration.mFileGenerationList += !@xibDocumentFileGeneration.new {
+    !mClassName.string
+    !mRootEntityName.string
+    !documentPropertyGenerationList
+    !outletMap
+    !actionBindingListForGeneration
+    !regularBindingsGenerationList
+    !multipleBindingGenerationList
+    !tableViewBindingGenerationList
+    !ebViewGraphicControllerBindingGenerationList
+  }
+}
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   GENERATION                            
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @xibDocumentFileGeneration : @abstractFileGeneration {
+  @string mDocumentName
+  @string mRootEntityName
+  @propertyGenerationList mDocumentPropertyGenearionList
+  @decoratedOutletMap mOutletMap
+  @actionBindingListForGeneration mTargetActionList 
+  @regularBindingsGenerationList mRegularBindingsGenerationList 
+  @multipleBindingGenerationList multipleBindingGenerationList
+  @tableViewBindingGenerationList mTableViewBindingGenerationList
+  @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+}
+
+#·······················································································································
+
+override method @xibDocumentFileGeneration generateCode
+    ?let @string inOutputDirectory
+    ?!@stringset ioGeneratedFileSet
+{
+  let s = [filewrapper xibDocumentGenerationTemplate.documentImplementation
+    !mDocumentName
+    !mRootEntityName
+    !mDocumentPropertyGenearionList
+    !mOutletMap
+    !mTargetActionList
+    !mRegularBindingsGenerationList
+    !multipleBindingGenerationList
+    !mTableViewBindingGenerationList
+    !mEBViewBindingGenerationList
+  ]
+  let fileName = mDocumentName + ".swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !s
+  ]
+}
+
+#·······················································································································
+
+private filewrapper xibDocumentGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template documentImplementation "document-xib.swift.galgasTemplate"
+    ?@string DOCUMENT_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
+    ?@decoratedOutletMap OUTLET_GENERATION_MAP
+    ?@actionBindingListForGeneration TARGET_ACTION_LIST
+    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
+    ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
+    ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
+    ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+proc generateEBManagedXibDocumentSwift
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
+  let fileName = "EBManagedXibDocument.swift"
+  var fw = [filewrapper swift_sources]
+  let contents = [fw textFileContentsAtPath !fileName]
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !contents
+  ]
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

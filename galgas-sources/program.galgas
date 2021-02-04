@@ -6,6 +6,8 @@ struct @semanticContext {
   @classMap mClassMap
   @outletClassMap mOutletClassMap
   @bindingSpecificationMap mBindingSpecificationMap
+  @autolayoutViewClassMap mAutolayoutViewClassMap
+  @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -44,6 +46,12 @@ case . "eb"
     buildBindingSpecificationMap (
       !?semanticContext
       !declarationStruct.mBindingSpecificationListMap
+    )
+  end
+  if @uint.errorCount == 0 then
+    buildAutoLayoutBindingSpecificationMap (
+      !?semanticContext
+      !declarationStruct.mAutoLayoutBindingSpecificationList
     )
   end
 #----------------------------------------- Semantic Analysis, second phase

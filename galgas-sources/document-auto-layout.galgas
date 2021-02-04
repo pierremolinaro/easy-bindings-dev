@@ -2,23 +2,25 @@
 #   AST
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @documentDeclarationAST : @abstractDeclarationAST {
+class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   @lstring mRootEntityName
+  @lstring mMainViewName
   @outletDeclarationList mOutletDeclarationList
   @lstringlist mActionDeclarationList
   @arrayControllerBindingListAST mArrayControllerBindingListAST
+  @astViewDeclarationList mViewDeclarationList
 }
 
 #·······················································································································
 
-override method @documentDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+override method @autoLayoutDocumentDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
   [!?ioGraph addNode !mClassName !self]
   [!?ioGraph addEdge !mClassName !mRootEntityName]
 }
 
 #·······················································································································
 
-override getter @documentDeclarationAST nodeKey -> @lstring {
+override getter @autoLayoutDocumentDeclarationAST nodeKey -> @lstring {
   result = mClassName
 }
 
@@ -31,17 +33,22 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <document_declaration> ?!@astDeclarationStruct ioDeclarationAST {
-    $xibdocument$
+    $autoLayoutDocument$
     $Identifier$ ?let @lstring documentName
     $root$
     $Identifier$ ?let @lstring rootEntityName
+    $view$
+    $identifier$ ?let @lstring mainViewName
     ${$
     @outletDeclarationList outletDeclarationList = {}
     @regularBindingList bindingList = {}
     @lstringlist actionDeclarationList = {}
     @stringset signatureList = {}
     @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    @astViewDeclarationList viewDeclarationList = {}
     repeat
+    while
+      <view_declaration> !?viewDeclarationList
     while
       <action_declaration> !?actionDeclarationList
     while
@@ -52,12 +59,14 @@ syntax extension easyBindings_syntax {
       <controller_declaration> !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@documentDeclarationAST.new {
+    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutDocumentDeclarationAST.new {
       !documentName
       !rootEntityName
+      !mainViewName
       !outletDeclarationList
       !actionDeclarationList
       !arrayControllerBindingListAST
+      !viewDeclarationList
     }
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
       !documentName
@@ -77,7 +86,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override method @documentDeclarationAST firstAnalysisPhase
+override method @autoLayoutDocumentDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -99,7 +108,7 @@ override method @documentDeclarationAST firstAnalysisPhase
 
 #·······················································································································
 
-override method @documentDeclarationAST fourthAnalysisPhase
+override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -168,12 +177,22 @@ override method @documentDeclarationAST fourthAnalysisPhase
         !hiddenExpression
     end
   end
+#--- Check auto layout view declarations
+  @autoLayoutViewDeclarationMap viewDeclarationMap = {}
+  @viewGenerationList viewGenerationList = {}
+  for (viewName viewDeclaration) in mViewDeclarationList do
+    [!?viewDeclarationMap insertKey !viewName]
+    [viewDeclaration check !viewName !viewDeclarationMap !ioSemanticContext.mAutolayoutViewClassMap ?let viewGeneration]
+    viewGenerationList += !viewName !viewGeneration
+  end
+  [viewDeclarationMap searchKey !mMainViewName]
 #--- Code generation
-  ioGeneration.mGenerateEBManagedXibDocumentSwift = true
+  ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
 #---
-  ioGeneration.mFileGenerationList += !@documentFileGeneration.new {
+  ioGeneration.mFileGenerationList += !@autoLayoutDocumentFileGeneration.new {
     !mClassName.string
     !mRootEntityName.string
+    !mMainViewName.string
     !documentPropertyGenerationList
     !outletMap
     !actionBindingListForGeneration
@@ -181,18 +200,18 @@ override method @documentDeclarationAST fourthAnalysisPhase
     !multipleBindingGenerationList
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGenerationList
+    !viewGenerationList
   }
 }
-
-
 
 #-----------------------------------------------------------------------------------------------------------------------
 #   GENERATION                            
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @documentFileGeneration : @abstractFileGeneration {
+class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   @string mDocumentName
   @string mRootEntityName
+  @string mMainViewName
   @propertyGenerationList mDocumentPropertyGenearionList
   @decoratedOutletMap mOutletMap
   @actionBindingListForGeneration mTargetActionList 
@@ -200,17 +219,19 @@ class @documentFileGeneration : @abstractFileGeneration {
   @multipleBindingGenerationList multipleBindingGenerationList
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  @viewGenerationList mViewDeclarationList
 }
 
 #·······················································································································
 
-override method @documentFileGeneration generateCode
+override method @autoLayoutDocumentFileGeneration generateCode
     ?let @string inOutputDirectory
     ?!@stringset ioGeneratedFileSet
 {
-  let s = [filewrapper documentGenerationTemplate.documentImplementation
+  let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentImplementation
     !mDocumentName
     !mRootEntityName
+    !mMainViewName
     !mDocumentPropertyGenearionList
     !mOutletMap
     !mTargetActionList
@@ -218,6 +239,7 @@ override method @documentFileGeneration generateCode
     !multipleBindingGenerationList
     !mTableViewBindingGenerationList
     !mEBViewBindingGenerationList
+    !mViewDeclarationList
   ]
   let fileName = mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -230,12 +252,13 @@ override method @documentFileGeneration generateCode
 
 #·······················································································································
 
-private filewrapper documentGenerationTemplate in "../generation-templates" {
+private filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templates" {
 }{
 }{
-  template documentImplementation "xibdocument.swift.galgasTemplate"
+  template documentImplementation "document-auto-layout.swift.galgasTemplate"
     ?@string DOCUMENT_NAME
     ?@string ROOT_ENTITY_NAME
+    ?@string MAIN_VIEW_NAME
     ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
@@ -243,15 +266,16 @@ private filewrapper documentGenerationTemplate in "../generation-templates" {
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
+    ?@viewGenerationList VIEW_GENERATION_LIST
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-proc generateEBManagedXibDocumentSwift
+proc generateAutoLayoutManagedDocumentSwift
   ?let @string inOutputDirectory
   ?!@stringset ioGeneratedFileSet
 {
-  let fileName = "EBManagedXibDocument.swift"
+  let fileName = "EBAutoLayoutManagedDocument.swift"
   var fw = [filewrapper swift_sources]
   let contents = [fw textFileContentsAtPath !fileName]
   ioGeneratedFileSet += !fileName

@@ -16,6 +16,7 @@ grammar easyBindings_grammar "SLR" {
 struct @astDeclarationStruct {
   @declarationListAST mUnifiedDeclarationList
   @outletClassBindingSpecificationList mBindingSpecificationListMap
+  @autoLayoutViewClassBindingSpecificationList mAutoLayoutBindingSpecificationList
   @prefDeclaration mPreferences
   @lstring mXcodeProject
   @lstringlist mGraphvizList ;
@@ -46,6 +47,8 @@ syntax easyBindings_syntax (easyBindings_lexique) {
         !?ioDeclarationAST
         ?*
     while
+      <autolayout_view_class_declaration> !?ioDeclarationAST
+   while
       <graphviz_declaration> !?ioDeclarationAST
     while
       <enum_declaration> !?ioDeclarationAST

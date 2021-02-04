@@ -22,13 +22,19 @@ project (0:0:1) -> "eb" {
   "galgas-sources/enumeration.galgas"
   "galgas-sources/atomic-class.galgas"
   "galgas-sources/entity.galgas"
-  "galgas-sources/document.galgas"
+  "galgas-sources/document-xib.galgas"
+  "galgas-sources/document-auto-layout.galgas"
   "galgas-sources/preferences.galgas"
   "galgas-sources/graphviz.galgas"
 
-#--- Oulet classes
+#--- Auto Layout
+  "galgas-sources/auto-layout-view-class.galgas"
+  "galgas-sources/auto-layout-view-binding-specification.galgas"
+  "galgas-sources/auto-layout-view.galgas"
+  
+#--- Outlet classes
   "galgas-sources/outlet-class.galgas"
-  "galgas-sources/binding-specification.galgas"
+  "galgas-sources/outlet-binding-specification.galgas"
   "galgas-sources/outlet-declaration.galgas"
 
 #--- Properties
