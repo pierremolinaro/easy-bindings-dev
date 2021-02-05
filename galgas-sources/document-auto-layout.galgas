@@ -9,6 +9,14 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   @lstringlist mActionDeclarationList
   @arrayControllerBindingListAST mArrayControllerBindingListAST
   @astViewDeclarationList mViewDeclarationList
+  @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
+}
+
+#·······················································································································
+
+list @astAutoLayoutToolbarItemList {
+  @lstring mTitle
+  @astAbstractViewInstructionDeclaration mInstruction
 }
 
 #·······················································································································
@@ -46,6 +54,7 @@ syntax extension easyBindings_syntax {
     @stringset signatureList = {}
     @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     @astViewDeclarationList viewDeclarationList = {}
+    @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
     repeat
     while
       <view_declaration> !?viewDeclarationList
@@ -57,6 +66,12 @@ syntax extension easyBindings_syntax {
       <outlet_declaration> !?outletDeclarationList
     while
       <controller_declaration> !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
+    while
+      $toolbarItem$
+      $literal_string$ ?let tittle
+      $:$
+      <view_instruction> ?let @astAbstractViewInstructionDeclaration instruction
+      autoLayoutToolbarItemList += !tittle !instruction
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutDocumentDeclarationAST.new {
@@ -67,6 +82,7 @@ syntax extension easyBindings_syntax {
       !actionDeclarationList
       !arrayControllerBindingListAST
       !viewDeclarationList
+      !autoLayoutToolbarItemList
     }
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
       !documentName
@@ -185,8 +201,6 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     [viewDeclaration check
       !viewName
       !viewDeclarationMap
-      !ioSemanticContext.mAutolayoutViewClassMap
-      !ioSemanticContext.mAutoLayoutBindingSpecificationMap
       !false
       !rootPropertyMap
       !preferencesPropertyMap
@@ -199,6 +213,22 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     viewGenerationList += !viewName !viewGeneration
   end
   [viewDeclarationMap searchKey !mMainViewName]
+#--- Analyze toolbar item declarations
+  @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = {}
+  for (itemTitle itemInstruction) in mAutoLayoutToolbarItemList do
+    [itemInstruction generateCode
+      !viewDeclarationMap
+      !false
+      !rootPropertyMap
+      !preferencesPropertyMap
+      !ioSemanticContext
+      !documentPropertyMap
+      !documentActionMap
+      !mClassName
+      ?let @abstractViewInstructionGeneration generatedInstruction
+    ]
+    autoLayoutToolbarItemGenerationList += !itemTitle.string !generatedInstruction
+  end
 #--- Code generation
   ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
 #---
@@ -214,6 +244,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGenerationList
     !viewGenerationList
+    !autoLayoutToolbarItemGenerationList
   }
 }
 
@@ -233,6 +264,14 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
   @viewGenerationList mViewDeclarationList
+  @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
+}
+
+#·······················································································································
+
+list @autoLayoutToolbarItemGenerationList {
+  @string mTitle
+  @abstractViewInstructionGeneration mInstruction
 }
 
 #·······················································································································
@@ -253,6 +292,7 @@ override method @autoLayoutDocumentFileGeneration generateCode
     !mTableViewBindingGenerationList
     !mEBViewBindingGenerationList
     !mViewDeclarationList
+    !mAutoLayoutToolbarItemGenerationList
   ]
   let fileName = mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -280,6 +320,7 @@ private filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templ
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
     ?@viewGenerationList VIEW_GENERATION_LIST
+    ?@autoLayoutToolbarItemGenerationList TOOLBAR_ITEM_LIST
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

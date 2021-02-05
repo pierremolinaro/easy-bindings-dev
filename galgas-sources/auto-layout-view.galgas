@@ -161,31 +161,34 @@ syntax extension easyBindings_syntax {
  
   #·····················································································································
  
-  rule <view_instruction_list> ?!@astViewInstructionList unused ioInstructionList {
+  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+    repeat
+    while
+      <view_instruction> ?let instruction
+      ioInstructionList += !instruction
+    end
   }
   
   #·····················································································································
  
-  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+  rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $space$
     $;$
-   ioInstructionList += !@astSpaceViewInstruction.new
-    <view_instruction_list> !?ioInstructionList
+    outInstruction = @astSpaceViewInstruction.new
   }
   
   #·····················································································································
  
-  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+  rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $view$
     $identifier$ ?let localViewName
     $;$
-    ioInstructionList += !@astLocalViewInstruction.new {!localViewName}
-    <view_instruction_list> !?ioInstructionList
+    outInstruction = @astLocalViewInstruction.new {!localViewName}
   }
   
  #·····················································································································
  
-  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+  rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $Identifier$ ? let viewClassName
     <view_actual_parameter_list> ?let instanciationParameterList
     @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList = {}
@@ -202,7 +205,7 @@ syntax extension easyBindings_syntax {
                      ?let @graphicController graphicController
                      ?let @regularBindingList regularBindingList
     $;$
-    ioInstructionList += !@astComputedViewInstruction.new {
+    outInstruction = @astComputedViewInstruction.new {
       !viewClassName
       !instanciationParameterList
       !autoLayoutViewFunctionCallList
@@ -213,7 +216,6 @@ syntax extension easyBindings_syntax {
       !graphicController
       !regularBindingList
     }
-    <view_instruction_list> !?ioInstructionList
   }
   
  #·····················································································································
@@ -273,28 +275,26 @@ syntax extension easyBindings_syntax {
   
   #·····················································································································
  
-  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+  rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $vStack$
     <margin> ?let margin
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> !?instructionList
-    ioInstructionList += !@astVStackViewInstructionDeclaration.new {!margin !instructionList}
+    outInstruction = @astVStackViewInstructionDeclaration.new {!margin !instructionList}
     $}$
-    <view_instruction_list> !?ioInstructionList
   }
   
   #·····················································································································
  
-  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+  rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $hStack$
     <margin> ?let margin
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> !?instructionList
-    ioInstructionList += !@astHStackViewInstructionDeclaration.new {!margin !instructionList}
+    outInstruction = @astHStackViewInstructionDeclaration.new {!margin !instructionList}
     $}$
-    <view_instruction_list> !?ioInstructionList
   }
   
   #·····················································································································
@@ -315,8 +315,8 @@ map @autoLayoutViewDeclarationMap {
 abstract method @astAbstractViewDeclaration check
   ?let @string inViewName
   ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-  ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
-  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+#  ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+#  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
   ?let @bool inPreferences
   ?let @propertyMap inRootObservablePropertyMap
   ?let @propertyMap inPreferencesPropertyMap
@@ -330,8 +330,8 @@ abstract method @astAbstractViewDeclaration check
 
 override method @astHorizontalStackViewDeclaration check ?let @string unused inViewName
                                 ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
-                                ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+#                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+#                                ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
                                 ?let @bool unused inPreferences
                                 ?let @propertyMap unused inRootObservablePropertyMap
                                 ?let @propertyMap unused inPreferencesPropertyMap
@@ -347,8 +347,8 @@ override method @astHorizontalStackViewDeclaration check ?let @string unused inV
 
 override method @astVerticalStackViewDeclaration check ?let @string unused inViewName
                                   ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                  ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
-                                  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+#                                  ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+#                                  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
                                   ?let @bool unused inPreferences
                                   ?let @propertyMap unused inRootObservablePropertyMap
                                   ?let @propertyMap unused inPreferencesPropertyMap
@@ -364,8 +364,8 @@ override method @astVerticalStackViewDeclaration check ?let @string unused inVie
 
 override method @astComputedHorizontalViewDeclaration check ?let @string unused inViewName
                                   ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
-                                  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
+#                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+#                                  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
                                   ?let @bool inPreferences
                                   ?let @propertyMap inRootObservablePropertyMap
                                   ?let @propertyMap inPreferencesPropertyMap
@@ -378,7 +378,7 @@ override method @astComputedHorizontalViewDeclaration check ?let @string unused 
   for (instruction) in mInstructionList do
     [instruction generateCode
       !inViewDeclarationMap
-      !inAutolayoutViewClassMap
+#      !inAutolayoutViewClassMap
       !inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
@@ -397,8 +397,6 @@ override method @astComputedHorizontalViewDeclaration check ?let @string unused 
 
 override method @astComputedVerticalViewDeclaration check ?let @string unused inViewName
                                   ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                  ?let @autolayoutViewClassMap inAutolayoutViewClassMap
-                                  ?let @autoLayoutBindingSpecificationMap unused inAutoLayoutBindingSpecificationMap
                                   ?let @bool inPreferences
                                   ?let @propertyMap inRootObservablePropertyMap
                                   ?let @propertyMap inPreferencesPropertyMap
@@ -411,7 +409,6 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
   for (instruction) in mInstructionList do
    [instruction generateCode
       !inViewDeclarationMap
-      !inAutolayoutViewClassMap
       !inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
@@ -429,7 +426,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
 #·······················································································································
 
 abstract method @astAbstractViewInstructionDeclaration generateCode ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                                       ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+#                                                       ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
                                                       ?let @bool inPreferences
                                                       ?let @propertyMap inRootObservablePropertyMap
                                                       ?let @propertyMap inPreferencesPropertyMap
@@ -443,7 +440,7 @@ abstract method @astAbstractViewInstructionDeclaration generateCode ?let @autoLa
 
 override method @astSpaceViewInstruction generateCode
                                 ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+#                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
                                 ?let @bool unused inPreferences
                                 ?let @propertyMap unused inRootObservablePropertyMap
                                 ?let @propertyMap unused inPreferencesPropertyMap
@@ -459,7 +456,7 @@ override method @astSpaceViewInstruction generateCode
 
 override method @astLocalViewInstruction generateCode
                                 ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
+#                                ?let @autolayoutViewClassMap unused inAutolayoutViewClassMap
                                 ?let @bool unused inPreferences
                                 ?let @propertyMap unused inRootObservablePropertyMap
                                 ?let @propertyMap unused inPreferencesPropertyMap
@@ -476,7 +473,7 @@ override method @astLocalViewInstruction generateCode
 
 override method @astComputedViewInstruction generateCode
                                 ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+#                                ?let @autolayoutViewClassMap inAutolayoutViewClassMap
                                 ?let @bool inPreferences
                                 ?let @propertyMap inRootObservablePropertyMap
                                 ?let @propertyMap inPreferencesPropertyMap
@@ -485,7 +482,7 @@ override method @astComputedViewInstruction generateCode
                                 ?let @actionMap inActionMap
                                 ?let @string inReceiverSwiftTypeName
                                 !@abstractViewInstructionGeneration outInstruction {
-  [inAutolayoutViewClassMap searchKey !mAutoLayoutViewClassName ?7* ?let formalParameterList]
+  [inSemanticContext.mAutolayoutViewClassMap searchKey !mAutoLayoutViewClassName ?7* ?let formalParameterList]
   @autoLayoutViewInstructionGenerationParameterList parameterList = {}
   if [formalParameterList length] != [mParameterList length] then
     error mAutoLayoutViewClassName 
@@ -857,7 +854,7 @@ proc analyzeAutoLayoutRegularBinding
 
 override method @astHStackViewInstructionDeclaration generateCode
                         ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                        ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+#                        ?let @autolayoutViewClassMap inAutolayoutViewClassMap
                         ?let @bool inPreferences
                         ?let @propertyMap inRootObservablePropertyMap
                         ?let @propertyMap inPreferencesPropertyMap
@@ -870,7 +867,7 @@ override method @astHStackViewInstructionDeclaration generateCode
   for (instruction) in mInstructionList do
    [instruction generateCode
       !inViewDeclarationMap
-      !inAutolayoutViewClassMap
+#      !inAutolayoutViewClassMap
       !inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
@@ -889,7 +886,7 @@ override method @astHStackViewInstructionDeclaration generateCode
 
 override method @astVStackViewInstructionDeclaration generateCode
                         ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                        ?let @autolayoutViewClassMap inAutolayoutViewClassMap
+#                        ?let @autolayoutViewClassMap inAutolayoutViewClassMap
                         ?let @bool inPreferences
                         ?let @propertyMap inRootObservablePropertyMap
                         ?let @propertyMap inPreferencesPropertyMap
@@ -902,7 +899,7 @@ override method @astVStackViewInstructionDeclaration generateCode
   for (instruction) in mInstructionList do
    [instruction generateCode
       !inViewDeclarationMap
-      !inAutolayoutViewClassMap
+#      !inAutolayoutViewClassMap
       !inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
@@ -1044,7 +1041,7 @@ override getter @computedHorizontalViewGeneration generate ?let @string inViewNa
   result += "  fileprivate final func " + inViewName + "_make () -> AutoLayoutStackView {\n"
   result += "    let view = AutoLayoutHorizontalStackView (margin: " + mMargin + ") {\n"
   for (instruction) in mInstructionList do
-    result += "      " + [instruction generate !"    "]
+    result += "      " + [instruction generate !make: true !"    "]
   end
   result += "    }\n"
   result += "    return view\n"
@@ -1058,7 +1055,7 @@ override getter @computedVerticalViewGeneration generate ?let @string inViewName
   result += "  fileprivate final func " + inViewName + "_make () -> AutoLayoutStackView {\n"
   result += "    let view = AutoLayoutVerticalStackView (margin: " + mMargin + ") {\n"
   for (instruction) in mInstructionList do
-    result += "      " + [instruction generate !"    "]
+    result += "      " + [instruction generate !make: true !"    "]
   end
   result += "    }\n"
   result += "    return view\n"
@@ -1067,24 +1064,28 @@ override getter @computedVerticalViewGeneration generate ?let @string inViewName
 
 #·······················································································································
 
-abstract getter  @abstractViewInstructionGeneration generate ?let @string inIndentation -> @string
+abstract getter  @abstractViewInstructionGeneration generate ?make: let @bool inGenerateMake ?let @string inIndentation -> @string
 
 #·······················································································································
 
-override getter @autoLayoutSpaceViewInstructionGeneration generate ?let @string unused inIndentation -> @string {
+override getter @autoLayoutSpaceViewInstructionGeneration generate ?make: let @bool unused inGenerateMake ?let @string unused inIndentation -> @string {
   result = "space ()\n"
 }
 
 #·······················································································································
 
-override getter @autoLayoutLocalViewInstructionGeneration generate ?let @string unused inIndentation -> @string {
+override getter @autoLayoutLocalViewInstructionGeneration generate ?make: let @bool unused inGenerateMake ?let @string unused inIndentation -> @string {
   result = "addAutoLayoutView (self." + mLocalView + ")\n"
 }
 
 #·······················································································································
 
-override getter @autoLayoutComputedViewInstructionGeneration generate ?let @string inIndentation -> @string {
-  result = mAutoLayoutViewClassName.string + ".make ("
+override getter @autoLayoutComputedViewInstructionGeneration generate ?make: let @bool inGenerateMake ?let @string inIndentation -> @string {
+  result = mAutoLayoutViewClassName.string
+  if inGenerateMake then
+    result += ".make"
+  end
+  result += " ("
   for parameter in mParameterList
   do
     result += parameter.mParameterName.string + ": " + parameter.mParameterValue
@@ -1114,22 +1115,22 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
 
 #·······················································································································
 
-override getter @hStackViewInstructionGeneration generate ?let @string inIndentation -> @string {
+override getter @hStackViewInstructionGeneration generate ?make: let @bool inGenerateMake ?let @string inIndentation -> @string {
   result = "hStack (margin: " + mMargin + ") {\n"
   let indentation = inIndentation + "  "
   for (instruction) in mInstructionList do
-     result += indentation + "  " + [instruction generate !indentation] 
+     result += indentation + "  " + [instruction generate !make: inGenerateMake !indentation] 
   end
   result += indentation + "}\n"
 }
 
 #·······················································································································
 
-override getter @vStackViewInstructionGeneration generate ?let @string inIndentation -> @string {
+override getter @vStackViewInstructionGeneration generate ?make: let @bool inGenerateMake ?let @string inIndentation -> @string {
   result = "vStack (margin: " + mMargin + ") {\n"
   let indentation = inIndentation + "  "
   for (instruction) in mInstructionList do
-     result += indentation + "  " + [instruction generate !indentation] 
+     result += indentation + "  " + [instruction generate !make: inGenerateMake !indentation] 
   end
   result += indentation + "}\n"
 }

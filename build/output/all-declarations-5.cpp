@@ -3594,6 +3594,9 @@ typeComparisonResult cPtr_autoLayoutDocumentDeclarationAST::dynamicObjectCompare
   if (kOperandEqual == result) {
     result = mProperty_mViewDeclarationList.objectCompare (p->mProperty_mViewDeclarationList) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mAutoLayoutToolbarItemList.objectCompare (p->mProperty_mAutoLayoutToolbarItemList) ;
+  }
   return result ;
 }
 
@@ -3631,7 +3634,8 @@ GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST:
                                                                    GALGAS_outletDeclarationList::constructor_emptyList (HERE),
                                                                    GALGAS_lstringlist::constructor_emptyList (HERE),
                                                                    GALGAS_arrayControllerBindingListAST::constructor_emptyList (HERE),
-                                                                   GALGAS_astViewDeclarationList::constructor_emptyList (HERE)
+                                                                   GALGAS_astViewDeclarationList::constructor_emptyList (HERE),
+                                                                   GALGAS_astAutoLayoutToolbarItemList::constructor_emptyList (HERE)
                                                                    COMMA_THERE) ;
 }
 
@@ -3650,11 +3654,12 @@ GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST:
                                                                                                   const GALGAS_outletDeclarationList & inAttribute_mOutletDeclarationList,
                                                                                                   const GALGAS_lstringlist & inAttribute_mActionDeclarationList,
                                                                                                   const GALGAS_arrayControllerBindingListAST & inAttribute_mArrayControllerBindingListAST,
-                                                                                                  const GALGAS_astViewDeclarationList & inAttribute_mViewDeclarationList
+                                                                                                  const GALGAS_astViewDeclarationList & inAttribute_mViewDeclarationList,
+                                                                                                  const GALGAS_astAutoLayoutToolbarItemList & inAttribute_mAutoLayoutToolbarItemList
                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutDocumentDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mMainViewName.isValid () && inAttribute_mOutletDeclarationList.isValid () && inAttribute_mActionDeclarationList.isValid () && inAttribute_mArrayControllerBindingListAST.isValid () && inAttribute_mViewDeclarationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentDeclarationAST (inAttribute_mClassName, inAttribute_mRootEntityName, inAttribute_mMainViewName, inAttribute_mOutletDeclarationList, inAttribute_mActionDeclarationList, inAttribute_mArrayControllerBindingListAST, inAttribute_mViewDeclarationList COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mMainViewName.isValid () && inAttribute_mOutletDeclarationList.isValid () && inAttribute_mActionDeclarationList.isValid () && inAttribute_mArrayControllerBindingListAST.isValid () && inAttribute_mViewDeclarationList.isValid () && inAttribute_mAutoLayoutToolbarItemList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentDeclarationAST (inAttribute_mClassName, inAttribute_mRootEntityName, inAttribute_mMainViewName, inAttribute_mOutletDeclarationList, inAttribute_mActionDeclarationList, inAttribute_mArrayControllerBindingListAST, inAttribute_mViewDeclarationList, inAttribute_mAutoLayoutToolbarItemList COMMA_THERE)) ;
   }
   return result ;
 }
@@ -3765,6 +3770,24 @@ GALGAS_astViewDeclarationList GALGAS_autoLayoutDocumentDeclarationAST::getter_mV
 
 GALGAS_astViewDeclarationList cPtr_autoLayoutDocumentDeclarationAST::getter_mViewDeclarationList (UNUSED_LOCATION_ARGS) const {
   return mProperty_mViewDeclarationList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAutoLayoutToolbarItemList GALGAS_autoLayoutDocumentDeclarationAST::getter_mAutoLayoutToolbarItemList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_astAutoLayoutToolbarItemList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_autoLayoutDocumentDeclarationAST * p = (const cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
+    result = p->mProperty_mAutoLayoutToolbarItemList ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAutoLayoutToolbarItemList cPtr_autoLayoutDocumentDeclarationAST::getter_mAutoLayoutToolbarItemList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mAutoLayoutToolbarItemList ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3882,6 +3905,25 @@ void cPtr_autoLayoutDocumentDeclarationAST::setter_setMViewDeclarationList (GALG
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutDocumentDeclarationAST::setter_setMAutoLayoutToolbarItemList (GALGAS_astAutoLayoutToolbarItemList inValue
+                                                                                    COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
+    p->mProperty_mAutoLayoutToolbarItemList = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void cPtr_autoLayoutDocumentDeclarationAST::setter_setMAutoLayoutToolbarItemList (GALGAS_astAutoLayoutToolbarItemList inValue
+                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mAutoLayoutToolbarItemList = inValue ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 //Pointer class for @autoLayoutDocumentDeclarationAST class
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3891,7 +3933,8 @@ cPtr_autoLayoutDocumentDeclarationAST::cPtr_autoLayoutDocumentDeclarationAST (co
                                                                               const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
                                                                               const GALGAS_lstringlist & in_mActionDeclarationList,
                                                                               const GALGAS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
-                                                                              const GALGAS_astViewDeclarationList & in_mViewDeclarationList
+                                                                              const GALGAS_astViewDeclarationList & in_mViewDeclarationList,
+                                                                              const GALGAS_astAutoLayoutToolbarItemList & in_mAutoLayoutToolbarItemList
                                                                               COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
 mProperty_mRootEntityName (in_mRootEntityName),
@@ -3899,7 +3942,8 @@ mProperty_mMainViewName (in_mMainViewName),
 mProperty_mOutletDeclarationList (in_mOutletDeclarationList),
 mProperty_mActionDeclarationList (in_mActionDeclarationList),
 mProperty_mArrayControllerBindingListAST (in_mArrayControllerBindingListAST),
-mProperty_mViewDeclarationList (in_mViewDeclarationList) {
+mProperty_mViewDeclarationList (in_mViewDeclarationList),
+mProperty_mAutoLayoutToolbarItemList (in_mAutoLayoutToolbarItemList) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3924,6 +3968,8 @@ void cPtr_autoLayoutDocumentDeclarationAST::description (C_String & ioString,
   mProperty_mArrayControllerBindingListAST.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mViewDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mAutoLayoutToolbarItemList.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -3931,7 +3977,7 @@ void cPtr_autoLayoutDocumentDeclarationAST::description (C_String & ioString,
 
 acPtr_class * cPtr_autoLayoutDocumentDeclarationAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_autoLayoutDocumentDeclarationAST (mProperty_mClassName, mProperty_mRootEntityName, mProperty_mMainViewName, mProperty_mOutletDeclarationList, mProperty_mActionDeclarationList, mProperty_mArrayControllerBindingListAST, mProperty_mViewDeclarationList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_autoLayoutDocumentDeclarationAST (mProperty_mClassName, mProperty_mRootEntityName, mProperty_mMainViewName, mProperty_mOutletDeclarationList, mProperty_mActionDeclarationList, mProperty_mArrayControllerBindingListAST, mProperty_mViewDeclarationList, mProperty_mAutoLayoutToolbarItemList COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -4020,6 +4066,9 @@ typeComparisonResult cPtr_autoLayoutDocumentFileGeneration::dynamicObjectCompare
   if (kOperandEqual == result) {
     result = mProperty_mViewDeclarationList.objectCompare (p->mProperty_mViewDeclarationList) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mAutoLayoutToolbarItemGenerationList.objectCompare (p->mProperty_mAutoLayoutToolbarItemGenerationList) ;
+  }
   return result ;
 }
 
@@ -4061,7 +4110,8 @@ GALGAS_autoLayoutDocumentFileGeneration GALGAS_autoLayoutDocumentFileGeneration:
                                                                    GALGAS_multipleBindingGenerationList::constructor_emptyList (HERE),
                                                                    GALGAS_tableViewBindingGenerationList::constructor_emptyList (HERE),
                                                                    GALGAS_ebViewGraphicControllerBindingGenerationList::constructor_emptyList (HERE),
-                                                                   GALGAS_viewGenerationList::constructor_emptyList (HERE)
+                                                                   GALGAS_viewGenerationList::constructor_emptyList (HERE),
+                                                                   GALGAS_autoLayoutToolbarItemGenerationList::constructor_emptyList (HERE)
                                                                    COMMA_THERE) ;
 }
 
@@ -4084,11 +4134,12 @@ GALGAS_autoLayoutDocumentFileGeneration GALGAS_autoLayoutDocumentFileGeneration:
                                                                                                   const GALGAS_multipleBindingGenerationList & inAttribute_multipleBindingGenerationList,
                                                                                                   const GALGAS_tableViewBindingGenerationList & inAttribute_mTableViewBindingGenerationList,
                                                                                                   const GALGAS_ebViewGraphicControllerBindingGenerationList & inAttribute_mEBViewBindingGenerationList,
-                                                                                                  const GALGAS_viewGenerationList & inAttribute_mViewDeclarationList
+                                                                                                  const GALGAS_viewGenerationList & inAttribute_mViewDeclarationList,
+                                                                                                  const GALGAS_autoLayoutToolbarItemGenerationList & inAttribute_mAutoLayoutToolbarItemGenerationList
                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutDocumentFileGeneration result ;
-  if (inAttribute_mDocumentName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mMainViewName.isValid () && inAttribute_mDocumentPropertyGenearionList.isValid () && inAttribute_mOutletMap.isValid () && inAttribute_mTargetActionList.isValid () && inAttribute_mRegularBindingsGenerationList.isValid () && inAttribute_multipleBindingGenerationList.isValid () && inAttribute_mTableViewBindingGenerationList.isValid () && inAttribute_mEBViewBindingGenerationList.isValid () && inAttribute_mViewDeclarationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentFileGeneration (inAttribute_mDocumentName, inAttribute_mRootEntityName, inAttribute_mMainViewName, inAttribute_mDocumentPropertyGenearionList, inAttribute_mOutletMap, inAttribute_mTargetActionList, inAttribute_mRegularBindingsGenerationList, inAttribute_multipleBindingGenerationList, inAttribute_mTableViewBindingGenerationList, inAttribute_mEBViewBindingGenerationList, inAttribute_mViewDeclarationList COMMA_THERE)) ;
+  if (inAttribute_mDocumentName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mMainViewName.isValid () && inAttribute_mDocumentPropertyGenearionList.isValid () && inAttribute_mOutletMap.isValid () && inAttribute_mTargetActionList.isValid () && inAttribute_mRegularBindingsGenerationList.isValid () && inAttribute_multipleBindingGenerationList.isValid () && inAttribute_mTableViewBindingGenerationList.isValid () && inAttribute_mEBViewBindingGenerationList.isValid () && inAttribute_mViewDeclarationList.isValid () && inAttribute_mAutoLayoutToolbarItemGenerationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentFileGeneration (inAttribute_mDocumentName, inAttribute_mRootEntityName, inAttribute_mMainViewName, inAttribute_mDocumentPropertyGenearionList, inAttribute_mOutletMap, inAttribute_mTargetActionList, inAttribute_mRegularBindingsGenerationList, inAttribute_multipleBindingGenerationList, inAttribute_mTableViewBindingGenerationList, inAttribute_mEBViewBindingGenerationList, inAttribute_mViewDeclarationList, inAttribute_mAutoLayoutToolbarItemGenerationList COMMA_THERE)) ;
   }
   return result ;
 }
@@ -4289,6 +4340,24 @@ GALGAS_viewGenerationList GALGAS_autoLayoutDocumentFileGeneration::getter_mViewD
 
 GALGAS_viewGenerationList cPtr_autoLayoutDocumentFileGeneration::getter_mViewDeclarationList (UNUSED_LOCATION_ARGS) const {
   return mProperty_mViewDeclarationList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutToolbarItemGenerationList GALGAS_autoLayoutDocumentFileGeneration::getter_mAutoLayoutToolbarItemGenerationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutToolbarItemGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_autoLayoutDocumentFileGeneration * p = (const cPtr_autoLayoutDocumentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_autoLayoutDocumentFileGeneration) ;
+    result = p->mProperty_mAutoLayoutToolbarItemGenerationList ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutToolbarItemGenerationList cPtr_autoLayoutDocumentFileGeneration::getter_mAutoLayoutToolbarItemGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mAutoLayoutToolbarItemGenerationList ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4501,6 +4570,25 @@ void cPtr_autoLayoutDocumentFileGeneration::setter_setMViewDeclarationList (GALG
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutDocumentFileGeneration::setter_setMAutoLayoutToolbarItemGenerationList (GALGAS_autoLayoutToolbarItemGenerationList inValue
+                                                                                              COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_autoLayoutDocumentFileGeneration * p = (cPtr_autoLayoutDocumentFileGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_autoLayoutDocumentFileGeneration) ;
+    p->mProperty_mAutoLayoutToolbarItemGenerationList = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void cPtr_autoLayoutDocumentFileGeneration::setter_setMAutoLayoutToolbarItemGenerationList (GALGAS_autoLayoutToolbarItemGenerationList inValue
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mAutoLayoutToolbarItemGenerationList = inValue ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 //Pointer class for @autoLayoutDocumentFileGeneration class
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4514,7 +4602,8 @@ cPtr_autoLayoutDocumentFileGeneration::cPtr_autoLayoutDocumentFileGeneration (co
                                                                               const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
                                                                               const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                                                               const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                                                              const GALGAS_viewGenerationList & in_mViewDeclarationList
+                                                                              const GALGAS_viewGenerationList & in_mViewDeclarationList,
+                                                                              const GALGAS_autoLayoutToolbarItemGenerationList & in_mAutoLayoutToolbarItemGenerationList
                                                                               COMMA_LOCATION_ARGS) :
 cPtr_abstractFileGeneration (THERE),
 mProperty_mDocumentName (in_mDocumentName),
@@ -4527,7 +4616,8 @@ mProperty_mRegularBindingsGenerationList (in_mRegularBindingsGenerationList),
 mProperty_multipleBindingGenerationList (in_multipleBindingGenerationList),
 mProperty_mTableViewBindingGenerationList (in_mTableViewBindingGenerationList),
 mProperty_mEBViewBindingGenerationList (in_mEBViewBindingGenerationList),
-mProperty_mViewDeclarationList (in_mViewDeclarationList) {
+mProperty_mViewDeclarationList (in_mViewDeclarationList),
+mProperty_mAutoLayoutToolbarItemGenerationList (in_mAutoLayoutToolbarItemGenerationList) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4560,6 +4650,8 @@ void cPtr_autoLayoutDocumentFileGeneration::description (C_String & ioString,
   mProperty_mEBViewBindingGenerationList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mViewDeclarationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mAutoLayoutToolbarItemGenerationList.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -4567,7 +4659,7 @@ void cPtr_autoLayoutDocumentFileGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_autoLayoutDocumentFileGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_autoLayoutDocumentFileGeneration (mProperty_mDocumentName, mProperty_mRootEntityName, mProperty_mMainViewName, mProperty_mDocumentPropertyGenearionList, mProperty_mOutletMap, mProperty_mTargetActionList, mProperty_mRegularBindingsGenerationList, mProperty_multipleBindingGenerationList, mProperty_mTableViewBindingGenerationList, mProperty_mEBViewBindingGenerationList, mProperty_mViewDeclarationList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_autoLayoutDocumentFileGeneration (mProperty_mDocumentName, mProperty_mRootEntityName, mProperty_mMainViewName, mProperty_mDocumentPropertyGenearionList, mProperty_mOutletMap, mProperty_mTargetActionList, mProperty_mRegularBindingsGenerationList, mProperty_multipleBindingGenerationList, mProperty_mTableViewBindingGenerationList, mProperty_mEBViewBindingGenerationList, mProperty_mViewDeclarationList, mProperty_mAutoLayoutToolbarItemGenerationList COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -14868,151 +14960,4 @@ void extensionSetter_getReferenceKey (GALGAS_XcodeProjectDescriptor & ioObject,
   ioObject.mProperty_mSequenceNumber.increment_operation (inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 355)) ;
 }
 
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension method '@XcodeProjectDescriptor generateAtPath'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void extensionMethod_generateAtPath (const GALGAS_XcodeProjectDescriptor inObject,
-                                     const GALGAS_string constinArgument_inPath,
-                                     const GALGAS_string constinArgument_inCacheFilePath,
-                                     C_Compiler * inCompiler
-                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents_15931 = GALGAS_string (filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (inCompiler, inObject.mProperty_mProjectObjectReference, inObject.mProperty_mMainGroupReference, inObject.mProperty_mGroupList, inObject.mProperty_mMainGroupChildrenRefs, inObject.mProperty_mToolTargetList, inObject.mProperty_mAppTargetList, inObject.mProperty_mCppFileList, inObject.mProperty_m_5F_M_5F_FileList, inObject.mProperty_m_5F_MM_5F_FileList, inObject.mProperty_m_5F_SwiftFileList, inObject.mProperty_mFrameworkFileList, inObject.mProperty_mHeaderFileList, inObject.mProperty_mInfoPlistFileList, inObject.mProperty_mTIFF_5F_fileList, inObject.mProperty_mICNS_5F_fileList, inObject.mProperty_mXIB_5F_fileList, inObject.mProperty_mBuildFileList, inObject.mProperty_mDefaultConfigurationRef, inObject.mProperty_mDefaultConfigurationSettingList, inObject.mProperty_mProjectBuildConfigurationRef COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 419))) ;
-  GALGAS_string var_projectCoreFile_16482 = constinArgument_inPath.add_operation (GALGAS_string ("/project.pbxproj"), inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 441)) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    GALGAS_bool test_1 = var_projectCoreFile_16482.getter_fileExists (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).operator_not (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)) ;
-    if (kBoolTrue != test_1.boolEnum ()) {
-      test_1 = constinArgument_inCacheFilePath.getter_fileExists (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).operator_not (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)) ;
-    }
-    GALGAS_bool test_2 = test_1 ;
-    if (kBoolTrue != test_2.boolEnum ()) {
-      test_2 = GALGAS_bool (kIsNotEqual, GALGAS_string::constructor_stringWithContentsOfFile (constinArgument_inCacheFilePath, inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).objectCompare (var_contents_15931)) ;
-    }
-    test_0 = test_2.boolEnum () ;
-    if (kBoolTrue == test_0) {
-      GALGAS_bool joker_16732 ; // Joker input parameter
-      var_contents_15931.method_writeToFileWhenDifferentContents (constinArgument_inCacheFilePath, joker_16732, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 443)) ;
-      var_contents_15931.method_makeDirectoryAndWriteToFile (var_projectCoreFile_16482, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 444)) ;
-    }
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_declarationListAST_2D_element::GALGAS_declarationListAST_2D_element (void) :
-mProperty_mPropertyDeclaration () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_declarationListAST_2D_element::~ GALGAS_declarationListAST_2D_element (void) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_declarationListAST_2D_element::GALGAS_declarationListAST_2D_element (const GALGAS_abstractDeclarationAST & inOperand0) :
-mProperty_mPropertyDeclaration (inOperand0) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_declarationListAST_2D_element GALGAS_declarationListAST_2D_element::constructor_new (const GALGAS_abstractDeclarationAST & inOperand0 
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_declarationListAST_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_declarationListAST_2D_element (inOperand0) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult GALGAS_declarationListAST_2D_element::objectCompare (const GALGAS_declarationListAST_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mProperty_mPropertyDeclaration.objectCompare (inOperand.mProperty_mPropertyDeclaration) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-bool GALGAS_declarationListAST_2D_element::isValid (void) const {
-  return mProperty_mPropertyDeclaration.isValid () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_declarationListAST_2D_element::drop (void) {
-  mProperty_mPropertyDeclaration.drop () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_declarationListAST_2D_element::description (C_String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString << "<struct @declarationListAST-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mProperty_mPropertyDeclaration.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_abstractDeclarationAST GALGAS_declarationListAST_2D_element::getter_mPropertyDeclaration (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mPropertyDeclaration ;
-}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//@declarationListAST-element type
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_declarationListAST_2D_element ("declarationListAST-element",
-                                                      NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_declarationListAST_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_declarationListAST_2D_element ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_declarationListAST_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_declarationListAST_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_declarationListAST_2D_element GALGAS_declarationListAST_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_declarationListAST_2D_element result ;
-  const GALGAS_declarationListAST_2D_element * p = (const GALGAS_declarationListAST_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_declarationListAST_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("declarationListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
 

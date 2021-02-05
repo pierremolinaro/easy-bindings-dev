@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : EBAutoLayoutManagedDocument {
+@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : EBAutoLayoutManagedDocument, NSToolbarDelegate {
 
 %
 for () in DOCUMENT_PROPERTY_LIST do
@@ -93,11 +93,65 @@ end
   //    Build User Interface
   //····················································································································
 
-  override func ebBuildUserInterface () -> NSView {
+  override func ebBuildUserInterface () {
+  %if [TOOLBAR_ITEM_LIST length] > 0 then%//--- Build tool bar
+    let toolbar = NSToolbar (identifier: NSToolbar.Identifier ("%!DOCUMENT_NAME%"))
+    toolbar.allowsUserCustomization = false
+    toolbar.displayMode = .default
+    toolbar.delegate = self
+    self.windowForSheet?.toolbar = toolbar
+  %end%//--- Build window content view
     // showDebugBackground ()
-    return self.%!MAIN_VIEW_NAME%
+    self.windowForSheet?.contentView = self.%!MAIN_VIEW_NAME%
   }
   
+  //····················································································································
+  //    Toolbar
+  //····················································································································
+  
+  func toolbarAllowedItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+    return [%
+    for () in TOOLBAR_ITEM_LIST
+      do index idx !"NSToolbarItem.Identifier (\"" ![idx string] !"\")"
+      between !", "
+    end
+    %]
+  }
+
+  //····················································································································
+
+  func toolbarDefaultItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+    return [%
+    for () in TOOLBAR_ITEM_LIST
+      do index idx !"NSToolbarItem.Identifier (\"" ![idx string] !"\")"
+      between !", "
+    end
+    %]
+  }
+
+  //····················································································································
+
+  func toolbar(_ toolbar: NSToolbar,
+               itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
+               willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+    switch itemIdentifier.rawValue {
+    %for () in TOOLBAR_ITEM_LIST do index idx
+    %case %!"\"" + idx +"\""% :
+      let itemId = NSToolbarItem.Identifier ("%![idx string]%")
+      let toolbarItem = NSToolbarItem (itemIdentifier: itemId)
+      toolbarItem.label = %![mTitle utf8Representation]%
+      // toolbarItem.paletteLabel = String("Open File")
+      // toolbarItem.toolTip = String("Open file to be handled")
+      toolbarItem.isEnabled = true
+      //toolbarItem.view = AutoLayoutSignatureField ().bind_signature (self.signatureObserver_property)
+      toolbarItem.view = %![mInstruction generate !make: false !"  "]%
+      return toolbarItem
+    %end
+    %default :
+      return nil
+    }
+  }
+
   //····················································································································
   //    check outlet connections
   //····················································································································

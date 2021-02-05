@@ -832,13 +832,17 @@ class GALGAS_autoLayoutDocumentFileGeneration : public GALGAS_abstractFileGenera
                                                                                  const class GALGAS_multipleBindingGenerationList & inOperand7,
                                                                                  const class GALGAS_tableViewBindingGenerationList & inOperand8,
                                                                                  const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand9,
-                                                                                 const class GALGAS_viewGenerationList & inOperand10
+                                                                                 const class GALGAS_viewGenerationList & inOperand10,
+                                                                                 const class GALGAS_autoLayoutToolbarItemGenerationList & inOperand11
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_autoLayoutDocumentFileGeneration & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutToolbarItemGenerationList (class GALGAS_autoLayoutToolbarItemGenerationList inArgument0
+                                                                                 COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_setMDocumentName (class GALGAS_string inArgument0
                                                           COMMA_LOCATION_ARGS) ;
 
@@ -877,6 +881,8 @@ class GALGAS_autoLayoutDocumentFileGeneration : public GALGAS_abstractFileGenera
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutToolbarItemGenerationList getter_mAutoLayoutToolbarItemGenerationList (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
@@ -931,6 +937,7 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
   public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
   public : GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
   public : GALGAS_viewGenerationList mProperty_mViewDeclarationList ;
+  public : GALGAS_autoLayoutToolbarItemGenerationList mProperty_mAutoLayoutToolbarItemGenerationList ;
 
 //--- Constructor
   public : cPtr_autoLayoutDocumentFileGeneration (const GALGAS_string & in_mDocumentName,
@@ -943,7 +950,8 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
                                                   const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
                                                   const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                                   const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                                  const GALGAS_viewGenerationList & in_mViewDeclarationList
+                                                  const GALGAS_viewGenerationList & in_mViewDeclarationList,
+                                                  const GALGAS_autoLayoutToolbarItemGenerationList & in_mAutoLayoutToolbarItemGenerationList
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -972,6 +980,8 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
   public : VIRTUAL_IN_DEBUG void setter_setMEBViewBindingGenerationList (GALGAS_ebViewGraphicControllerBindingGenerationList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_viewGenerationList getter_mViewDeclarationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMViewDeclarationList (GALGAS_viewGenerationList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutToolbarItemGenerationList getter_mAutoLayoutToolbarItemGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutToolbarItemGenerationList (GALGAS_autoLayoutToolbarItemGenerationList inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2071,62 +2081,4 @@ void extensionSetter_addSettingsToDefaultConfiguration (class GALGAS_XcodeProjec
                                                         const class GALGAS_stringlist constin_inSettingList,
                                                         class C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension method '@XcodeProjectDescriptor generateAtPath'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void extensionMethod_generateAtPath (const class GALGAS_XcodeProjectDescriptor inObject,
-                                     const class GALGAS_string constin_inPath,
-                                     const class GALGAS_string constin_inCacheFilePath,
-                                     class C_Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper 'xcodeProjectGenerationFilewrapper'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_xcodeProjectGenerationFilewrapper ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'xcodeProjectGenerationFilewrapper xcodeproj'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (class C_Compiler * inCompiler,
-                                                                               const class GALGAS_string & in_PROJECT_5F_REF,
-                                                                               const class GALGAS_string & in_MAIN_5F_GROUP_5F_REF,
-                                                                               const class GALGAS_XCodeGroupList & in_GROUPS,
-                                                                               const class GALGAS_stringlist & in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS,
-                                                                               const class GALGAS_XCodeToolTargetList & in_TOOL_5F_TARGET_5F_LIST,
-                                                                               const class GALGAS_XCodeAppTargetList & in_APP_5F_TARGET_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_CPP_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_M_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_MM_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_SWIFT_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_FRAMEWORK_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_HEADER_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_PLIST_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_TIFF_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_ICNS_5F_FILE_5F_LIST,
-                                                                               const class GALGAS__32_stringlist & in_XIB_5F_FILE_5F_LIST,
-                                                                               const class GALGAS_BuildFileList & in_BUILD_5F_FILE_5F_LIST,
-                                                                               const class GALGAS_string & in_DEFAULT_5F_CONFIGURATION_5F_REF,
-                                                                               const class GALGAS_stringlist & in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST,
-                                                                               const class GALGAS_string & in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF
-                                                                               COMMA_LOCATION_ARGS) ;
 

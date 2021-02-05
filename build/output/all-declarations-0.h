@@ -117,6 +117,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_struct,
    kToken_super,
    kToken_toMany,
+   kToken_toolbarItem,
    kToken_toOne,
    kToken_transient,
    kToken_version,
@@ -189,7 +190,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 88 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 89 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -406,6 +407,11 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual void nt_view_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
+  protected : virtual void nt_view_5F_instruction_ (class GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                    class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
+
+  protected : virtual void nt_view_5F_instruction_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
+
   protected : virtual void nt_view_5F_instruction_5F_list_ (class GALGAS_astViewInstructionList & ioArgument0,
                                                             class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -505,20 +511,20 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i16_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i17_ (GALGAS_astViewInstructionList & ioArgument0,
-                                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i17_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i17_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i17_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_ (GALGAS_astViewInstructionList & ioArgument0,
-                                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i18_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i18_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i19_ (GALGAS_astViewInstructionList & ioArgument0,
-                                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i19_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i19_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i19_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i20_ (GALGAS_astAutoLayoutViewInstructionParameterList & outArgument0,
                                                                                          C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -530,15 +536,15 @@ class cParser_easyBindings_5F_syntax {
 
   protected : void rule_easyBindings_5F_syntax_margin_i21_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i22_ (GALGAS_astViewInstructionList & ioArgument0,
-                                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i22_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i22_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i22_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i23_ (GALGAS_astViewInstructionList & ioArgument0,
-                                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i23_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i23_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected : void rule_easyBindings_5F_syntax_view_5F_instruction_i23_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected : void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i24_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                                                     C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -876,6 +882,8 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_78 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_79 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_80 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -1409,6 +1417,77 @@ class cPtr_arrayControllerDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @astAbstractViewInstructionDeclaration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astAbstractViewInstructionDeclaration : public AC_GALGAS_class {
+//--- Constructor
+  public : GALGAS_astAbstractViewInstructionDeclaration (void) ;
+
+//---
+  public : inline const class cPtr_astAbstractViewInstructionDeclaration * ptr (void) const { return (const cPtr_astAbstractViewInstructionDeclaration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_astAbstractViewInstructionDeclaration (const cPtr_astAbstractViewInstructionDeclaration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_astAbstractViewInstructionDeclaration extractObject (const GALGAS_object & inObject,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_astAbstractViewInstructionDeclaration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astAbstractViewInstructionDeclaration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @astAbstractViewInstructionDeclaration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_astAbstractViewInstructionDeclaration : public acPtr_class {
+//--- Attributes
+
+//--- Constructor
+  public : cPtr_astAbstractViewInstructionDeclaration (LOCATION_ARGS) ;
+
+//--- Attribute accessors
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const = 0 ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @astAbstractViewDeclaration class
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -1809,77 +1888,6 @@ class cPtr_astComputedVerticalViewDeclaration : public cPtr_astAbstractViewDecla
   public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
 
   public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @astAbstractViewInstructionDeclaration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_astAbstractViewInstructionDeclaration : public AC_GALGAS_class {
-//--- Constructor
-  public : GALGAS_astAbstractViewInstructionDeclaration (void) ;
-
-//---
-  public : inline const class cPtr_astAbstractViewInstructionDeclaration * ptr (void) const { return (const cPtr_astAbstractViewInstructionDeclaration *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_astAbstractViewInstructionDeclaration (const cPtr_astAbstractViewInstructionDeclaration * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_astAbstractViewInstructionDeclaration extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_astAbstractViewInstructionDeclaration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_astAbstractViewInstructionDeclaration class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @astAbstractViewInstructionDeclaration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_astAbstractViewInstructionDeclaration : public acPtr_class {
-//--- Attributes
-
-//--- Constructor
-  public : cPtr_astAbstractViewInstructionDeclaration (LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const = 0 ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
 
 } ;
 
@@ -3656,7 +3664,8 @@ class GALGAS_autoLayoutDocumentDeclarationAST : public GALGAS_abstractDeclaratio
                                                                                  const class GALGAS_outletDeclarationList & inOperand3,
                                                                                  const class GALGAS_lstringlist & inOperand4,
                                                                                  const class GALGAS_arrayControllerBindingListAST & inOperand5,
-                                                                                 const class GALGAS_astViewDeclarationList & inOperand6
+                                                                                 const class GALGAS_astViewDeclarationList & inOperand6,
+                                                                                 const class GALGAS_astAutoLayoutToolbarItemList & inOperand7
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3668,6 +3677,9 @@ class GALGAS_autoLayoutDocumentDeclarationAST : public GALGAS_abstractDeclaratio
 
   public : VIRTUAL_IN_DEBUG void setter_setMArrayControllerBindingListAST (class GALGAS_arrayControllerBindingListAST inArgument0
                                                                            COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutToolbarItemList (class GALGAS_astAutoLayoutToolbarItemList inArgument0
+                                                                       COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMMainViewName (class GALGAS_lstring inArgument0
                                                           COMMA_LOCATION_ARGS) ;
@@ -3689,6 +3701,8 @@ class GALGAS_autoLayoutDocumentDeclarationAST : public GALGAS_abstractDeclaratio
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mActionDeclarationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBindingListAST getter_mArrayControllerBindingListAST (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutToolbarItemList getter_mAutoLayoutToolbarItemList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mMainViewName (LOCATION_ARGS) const ;
 
@@ -3863,6 +3877,159 @@ class cEnumerator_arrayControllerBindingListAST : public cGenericAbstractEnumera
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBindingListAST ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astAutoLayoutToolbarItemList list
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astAutoLayoutToolbarItemList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public : GALGAS_astAutoLayoutToolbarItemList (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public : GALGAS_astAutoLayoutToolbarItemList (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                  const class GALGAS_lstring & in_mTitle,
+                                                  const class GALGAS_astAbstractViewInstructionDeclaration & in_mInstruction
+                                                  COMMA_LOCATION_ARGS) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_astAutoLayoutToolbarItemList extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_astAutoLayoutToolbarItemList constructor_emptyList (LOCATION_ARGS) ;
+
+  public : static class GALGAS_astAutoLayoutToolbarItemList constructor_listWithValue (const class GALGAS_lstring & inOperand0,
+                                                                                       const class GALGAS_astAbstractViewInstructionDeclaration & inOperand1
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public : VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_astAutoLayoutToolbarItemList inOperand,
+                                                       class C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
+                                                      const class GALGAS_astAbstractViewInstructionDeclaration & inOperand1
+                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public : VIRTUAL_IN_DEBUG GALGAS_astAutoLayoutToolbarItemList add_operation (const GALGAS_astAutoLayoutToolbarItemList & inOperand,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_astAutoLayoutToolbarItemList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
+                                                       class GALGAS_astAbstractViewInstructionDeclaration constinArgument1,
+                                                       class GALGAS_uint constinArgument2,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
+                                                  class GALGAS_astAbstractViewInstructionDeclaration & outArgument1,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
+                                                 class GALGAS_astAbstractViewInstructionDeclaration & outArgument1,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
+                                                       class GALGAS_astAbstractViewInstructionDeclaration & outArgument1,
+                                                       class GALGAS_uint constinArgument2,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionAtIndex (class GALGAS_astAbstractViewInstructionDeclaration constinArgument0,
+                                                                class GALGAS_uint constinArgument1,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMTitleAtIndex (class GALGAS_lstring constinArgument0,
+                                                          class GALGAS_uint constinArgument1,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
+                                               class GALGAS_astAbstractViewInstructionDeclaration & outArgument1,
+                                               C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
+                                              class GALGAS_astAbstractViewInstructionDeclaration & outArgument1,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAbstractViewInstructionDeclaration getter_mInstructionAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                           C_Compiler * inCompiler
+                                                                                                           COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTitleAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutToolbarItemList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutToolbarItemList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                             C_Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutToolbarItemList getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_astAutoLayoutToolbarItemList ;
+ 
+} ; // End of GALGAS_astAutoLayoutToolbarItemList class
+
+//----------------------------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//----------------------------------------------------------------------------------------------------------------------
+
+class cEnumerator_astAutoLayoutToolbarItemList : public cGenericAbstractEnumerator {
+  public : cEnumerator_astAutoLayoutToolbarItemList (const GALGAS_astAutoLayoutToolbarItemList & inEnumeratedObject,
+                                                     const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public : class GALGAS_lstring current_mTitle (LOCATION_ARGS) const ;
+  public : class GALGAS_astAbstractViewInstructionDeclaration current_mInstruction (LOCATION_ARGS) const ;
+//--- Current element access
+  public : class GALGAS_astAutoLayoutToolbarItemList_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutToolbarItemList ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -4298,6 +4465,7 @@ class cPtr_autoLayoutDocumentDeclarationAST : public cPtr_abstractDeclarationAST
   public : GALGAS_lstringlist mProperty_mActionDeclarationList ;
   public : GALGAS_arrayControllerBindingListAST mProperty_mArrayControllerBindingListAST ;
   public : GALGAS_astViewDeclarationList mProperty_mViewDeclarationList ;
+  public : GALGAS_astAutoLayoutToolbarItemList mProperty_mAutoLayoutToolbarItemList ;
 
 //--- Constructor
   public : cPtr_autoLayoutDocumentDeclarationAST (const GALGAS_lstring & in_mClassName,
@@ -4306,7 +4474,8 @@ class cPtr_autoLayoutDocumentDeclarationAST : public cPtr_abstractDeclarationAST
                                                   const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
                                                   const GALGAS_lstringlist & in_mActionDeclarationList,
                                                   const GALGAS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
-                                                  const GALGAS_astViewDeclarationList & in_mViewDeclarationList
+                                                  const GALGAS_astViewDeclarationList & in_mViewDeclarationList,
+                                                  const GALGAS_astAutoLayoutToolbarItemList & in_mAutoLayoutToolbarItemList
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -4325,6 +4494,8 @@ class cPtr_autoLayoutDocumentDeclarationAST : public cPtr_abstractDeclarationAST
   public : VIRTUAL_IN_DEBUG void setter_setMArrayControllerBindingListAST (GALGAS_arrayControllerBindingListAST inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_astViewDeclarationList getter_mViewDeclarationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMViewDeclarationList (GALGAS_astViewDeclarationList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_astAutoLayoutToolbarItemList getter_mAutoLayoutToolbarItemList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutToolbarItemList (GALGAS_astAutoLayoutToolbarItemList inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -9819,6 +9990,14 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual void nt_view_5F_declaration_ (GALGAS_astViewDeclarationList & ioArgument0,
                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
+//------------------------------------- 'view_instruction' non terminal
+//--- 'parse' label
+  public : virtual void nt_view_5F_instruction_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
+
+//----------- '' label
+  public : virtual void nt_view_5F_instruction_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                 C_Lexique_easyBindings_5F_lexique * inCompiler) ;
+
 //------------------------------------- 'view_instruction_list' non terminal
 //--- 'parse' label
   public : virtual void nt_view_5F_instruction_5F_list_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -9994,6 +10173,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_78 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_79 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_80 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
