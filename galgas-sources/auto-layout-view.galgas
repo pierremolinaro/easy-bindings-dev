@@ -189,6 +189,13 @@ syntax extension easyBindings_syntax {
  #·····················································································································
  
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
+    <computed_view_instruction> ?let instruction
+    outInstruction = instruction
+  }
+  
+  #·····················································································································
+ 
+  rule <computed_view_instruction> !@astComputedViewInstruction outInstruction {
     $Identifier$ ? let viewClassName
     <view_actual_parameter_list> ?let instanciationParameterList
     @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList = {}

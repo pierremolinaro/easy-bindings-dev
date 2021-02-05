@@ -8,6 +8,75 @@
 #include "all-declarations-2.h"
 
 //----------------------------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@astAbstractViewInstructionDeclaration generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static TC_UniqueArray <extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode> gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void enterExtensionMethod_generateCode (const int32_t inClassIndex,
+                                        extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode inMethod) {
+  gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void freeExtensionMethod_astAbstractViewInstructionDeclaration_generateCode (void) {
+  gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.free () ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_astAbstractViewInstructionDeclaration_generateCode (NULL,
+                                                                               freeExtensionMethod_astAbstractViewInstructionDeclaration_generateCode) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_generateCode (const cPtr_astAbstractViewInstructionDeclaration * inObject,
+                                       const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
+                                       const GALGAS_bool constin_inPreferences,
+                                       const GALGAS_propertyMap constin_inRootObservablePropertyMap,
+                                       const GALGAS_propertyMap constin_inPreferencesPropertyMap,
+                                       const GALGAS_semanticContext constin_inSemanticContext,
+                                       const GALGAS_propertyMap constin_inObservablePropertyMap,
+                                       const GALGAS_actionMap constin_inActionMap,
+                                       const GALGAS_string constin_inReceiverSwiftTypeName,
+                                       GALGAS_abstractViewInstructionGeneration & out_outInstruction,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) {
+//--- Drop output arguments
+  out_outInstruction.drop () ;
+//--- Find method
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_astAbstractViewInstructionDeclaration) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode f = NULL ;
+    if (classIndex < gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.count ()) {
+      f = gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+      while ((NULL == f) && (NULL != p)) {
+        if (p->mSlotID < gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.count ()) {
+          f = gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode (p->mSlotID COMMA_HERE) ;
+        }
+        p = p->mSuperclassDescriptor ;
+      }
+      gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      f (inObject, constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, out_outInstruction, inCompiler COMMA_THERE) ;
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 //   Object comparison                                                                           
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1060,6 +1129,93 @@ GALGAS_computedVerticalViewGeneration GALGAS_computedVerticalViewGeneration::ext
       result = *p ;
     }else{
       inCompiler->castError ("computedVerticalViewGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//   Object comparison                                                                           
+//----------------------------------------------------------------------------------------------------------------------
+
+
+
+typeComparisonResult GALGAS_abstractViewInstructionGeneration::objectCompare (const GALGAS_abstractViewInstructionGeneration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_abstractViewInstructionGeneration::GALGAS_abstractViewInstructionGeneration (void) :
+AC_GALGAS_class (false) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_abstractViewInstructionGeneration::GALGAS_abstractViewInstructionGeneration (const cPtr_abstractViewInstructionGeneration * inSourcePtr) :
+AC_GALGAS_class (inSourcePtr, false) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_abstractViewInstructionGeneration) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//Pointer class for @abstractViewInstructionGeneration class
+//----------------------------------------------------------------------------------------------------------------------
+
+cPtr_abstractViewInstructionGeneration::cPtr_abstractViewInstructionGeneration (LOCATION_ARGS) :
+acPtr_class (THERE) {
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//@abstractViewInstructionGeneration type
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_abstractViewInstructionGeneration ("abstractViewInstructionGeneration",
+                                                          NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_abstractViewInstructionGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_abstractViewInstructionGeneration ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_abstractViewInstructionGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_abstractViewInstructionGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_abstractViewInstructionGeneration GALGAS_abstractViewInstructionGeneration::extractObject (const GALGAS_object & inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_abstractViewInstructionGeneration result ;
+  const GALGAS_abstractViewInstructionGeneration * p = (const GALGAS_abstractViewInstructionGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_abstractViewInstructionGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("abstractViewInstructionGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

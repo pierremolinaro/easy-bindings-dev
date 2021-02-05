@@ -14,9 +14,15 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
+enum @astAutoLayoutToolbarItem {
+  case view (@lstring title @astComputedViewInstruction instruction)
+  case space
+}
+
+#·······················································································································
+
 list @astAutoLayoutToolbarItemList {
-  @lstring mTitle
-  @astAbstractViewInstructionDeclaration mInstruction
+  @astAutoLayoutToolbarItem mItem
 }
 
 #·······················································································································
@@ -68,10 +74,16 @@ syntax extension easyBindings_syntax {
       <controller_declaration> !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
     while
       $toolbarItem$
-      $literal_string$ ?let tittle
-      $:$
-      <view_instruction> ?let @astAbstractViewInstructionDeclaration instruction
-      autoLayoutToolbarItemList += !tittle !instruction
+      select
+        $space$
+        $;$
+        autoLayoutToolbarItemList += !.space
+      or
+        $literal_string$ ?let title
+        $:$
+        <computed_view_instruction> ?let instruction
+        autoLayoutToolbarItemList += !.view {!title: title !instruction: instruction}
+      end
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutDocumentDeclarationAST.new {
@@ -215,19 +227,24 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
   [viewDeclarationMap searchKey !mMainViewName]
 #--- Analyze toolbar item declarations
   @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = {}
-  for (itemTitle itemInstruction) in mAutoLayoutToolbarItemList do
-    [itemInstruction generateCode
-      !viewDeclarationMap
-      !false
-      !rootPropertyMap
-      !preferencesPropertyMap
-      !ioSemanticContext
-      !documentPropertyMap
-      !documentActionMap
-      !mClassName
-      ?let @abstractViewInstructionGeneration generatedInstruction
-    ]
-    autoLayoutToolbarItemGenerationList += !itemTitle.string !generatedInstruction
+  for (item) in mAutoLayoutToolbarItemList do
+    switch item
+    case space :
+      autoLayoutToolbarItemGenerationList += !.space
+    case view (title instruction) :
+      [instruction generateCode
+        !viewDeclarationMap
+        !false
+        !rootPropertyMap
+        !preferencesPropertyMap
+        !ioSemanticContext
+        !documentPropertyMap
+        !documentActionMap
+        !mClassName
+        ?let @abstractViewInstructionGeneration generatedInstruction
+      ]
+      autoLayoutToolbarItemGenerationList += !.view {!title: title.string !instruction: generatedInstruction}
+    end
   end
 #--- Code generation
   ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
@@ -269,9 +286,15 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
+enum @autoLayoutToolbarItemGeneration {
+  case view (@string title @abstractViewInstructionGeneration instruction)
+  case space
+}
+
+#·······················································································································
+
 list @autoLayoutToolbarItemGenerationList {
-  @string mTitle
-  @abstractViewInstructionGeneration mInstruction
+  @autoLayoutToolbarItemGeneration mItem
 }
 
 #·······················································································································

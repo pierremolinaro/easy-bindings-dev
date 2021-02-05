@@ -110,12 +110,7 @@ end
   //····················································································································
   
   func toolbarAllowedItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-    return [%
-    for () in TOOLBAR_ITEM_LIST
-      do index idx !"NSToolbarItem.Identifier (\"" ![idx string] !"\")"
-      between !", "
-    end
-    %]
+    return self.toolbarDefaultItemIdentifiers (toolbar)
   }
 
   //····················································································································
@@ -123,7 +118,13 @@ end
   func toolbarDefaultItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
     return [%
     for () in TOOLBAR_ITEM_LIST
-      do index idx !"NSToolbarItem.Identifier (\"" ![idx string] !"\")"
+      do index idx
+        switch mItem
+        case space :
+          !".flexibleSpace"
+        case view (2*) :
+          !"NSToolbarItem.Identifier (\"" ![idx string] !"\")"
+        end
       between !", "
     end
     %]
@@ -135,22 +136,26 @@ end
                itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
                willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
     switch itemIdentifier.rawValue {
-    %for () in TOOLBAR_ITEM_LIST do index idx
-    %case %!"\"" + idx +"\""% :
-      let itemId = NSToolbarItem.Identifier ("%![idx string]%")
-      let toolbarItem = NSToolbarItem (itemIdentifier: itemId)
-      toolbarItem.label = %![mTitle utf8Representation]%
-      // toolbarItem.paletteLabel = String("Open File")
-      // toolbarItem.toolTip = String("Open file to be handled")
-      toolbarItem.isEnabled = true
-  %![mInstruction generate !"view" !"    "]
-%      toolbarItem.view = view
-      return toolbarItem
-    %end
-    %default :
-      return nil
-    }
-  }
+%for () in TOOLBAR_ITEM_LIST do index idx
+      switch mItem
+      case space :
+%    case NSToolbarItem.Identifier.flexibleSpace.rawValue :\n%
+%      return NSToolbarItem (itemIdentifier: .flexibleSpace)\n%
+case view (title instruction) :
+%    case "%![idx string]%" :\n%
+%      let itemId = NSToolbarItem.Identifier ("%![idx string]%")\n%
+%      let toolbarItem = NSToolbarItem (itemIdentifier: itemId)\n%
+%      toolbarItem.label = %![title utf8Representation]%\n%
+%      toolbarItem.isEnabled = true\n%
+![instruction generate !"view" !"      "]
+%      toolbarItem.view = view\n%
+%      return toolbarItem\n%
+    end
+  end
+%    default :\n%
+%      return nil\n%
+%    }\n%
+%  }
 
   //····················································································································
   //    check outlet connections

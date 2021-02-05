@@ -1948,9 +1948,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astViewDeclarationL
 
 class GALGAS_astAutoLayoutToolbarItemList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
-  public : GALGAS_lstring mProperty_mTitle ;
-
-  public : GALGAS_astAbstractViewInstructionDeclaration mProperty_mInstruction ;
+  public : GALGAS_astAutoLayoutToolbarItem mProperty_mItem ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1963,8 +1961,7 @@ class GALGAS_astAutoLayoutToolbarItemList_2D_element : public AC_GALGAS_root {
   public : virtual ~ GALGAS_astAutoLayoutToolbarItemList_2D_element (void) ;
 
 //--------------------------------- Native constructor
-  public : GALGAS_astAutoLayoutToolbarItemList_2D_element (const GALGAS_lstring & in_mTitle,
-                                                           const GALGAS_astAbstractViewInstructionDeclaration & in_mInstruction) ;
+  public : GALGAS_astAutoLayoutToolbarItemList_2D_element (const GALGAS_astAutoLayoutToolbarItem & in_mItem) ;
 
 //-- Start of generic part --*
 
@@ -1977,8 +1974,7 @@ class GALGAS_astAutoLayoutToolbarItemList_2D_element : public AC_GALGAS_root {
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_astAutoLayoutToolbarItemList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                        const class GALGAS_astAbstractViewInstructionDeclaration & inOperand1
+  public : static class GALGAS_astAutoLayoutToolbarItemList_2D_element constructor_new (const class GALGAS_astAutoLayoutToolbarItem & inOperand0
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -1993,9 +1989,7 @@ class GALGAS_astAutoLayoutToolbarItemList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_astAbstractViewInstructionDeclaration getter_mInstruction (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTitle (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutToolbarItem getter_mItem (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
@@ -2319,8 +2313,7 @@ class GALGAS_autoLayoutToolbarItemGenerationList : public AC_GALGAS_list {
 
 //--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_string & in_mTitle,
-                                                  const class GALGAS_abstractViewInstructionGeneration & in_mInstruction
+                                                  const class GALGAS_autoLayoutToolbarItemGeneration & in_mItem
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -2336,8 +2329,7 @@ class GALGAS_autoLayoutToolbarItemGenerationList : public AC_GALGAS_list {
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_autoLayoutToolbarItemGenerationList constructor_emptyList (LOCATION_ARGS) ;
 
-  public : static class GALGAS_autoLayoutToolbarItemGenerationList constructor_listWithValue (const class GALGAS_string & inOperand0,
-                                                                                              const class GALGAS_abstractViewInstructionGeneration & inOperand1
+  public : static class GALGAS_autoLayoutToolbarItemGenerationList constructor_listWithValue (const class GALGAS_autoLayoutToolbarItemGeneration & inOperand0
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -2346,8 +2338,7 @@ class GALGAS_autoLayoutToolbarItemGenerationList : public AC_GALGAS_list {
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
-                                                      const class GALGAS_abstractViewInstructionGeneration & inOperand1
+  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_autoLayoutToolbarItemGeneration & inOperand0
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutToolbarItemGenerationList add_operation (const GALGAS_autoLayoutToolbarItemGenerationList & inOperand,
@@ -2360,60 +2351,45 @@ class GALGAS_autoLayoutToolbarItemGenerationList : public AC_GALGAS_list {
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
-                                                       class GALGAS_abstractViewInstructionGeneration constinArgument1,
-                                                       class GALGAS_uint constinArgument2,
+  public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_autoLayoutToolbarItemGeneration constinArgument0,
+                                                       class GALGAS_uint constinArgument1,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_string & outArgument0,
-                                                  class GALGAS_abstractViewInstructionGeneration & outArgument1,
+  public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_autoLayoutToolbarItemGeneration & outArgument0,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_string & outArgument0,
-                                                 class GALGAS_abstractViewInstructionGeneration & outArgument1,
+  public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_autoLayoutToolbarItemGeneration & outArgument0,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_string & outArgument0,
-                                                       class GALGAS_abstractViewInstructionGeneration & outArgument1,
-                                                       class GALGAS_uint constinArgument2,
+  public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_autoLayoutToolbarItemGeneration & outArgument0,
+                                                       class GALGAS_uint constinArgument1,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMInstructionAtIndex (class GALGAS_abstractViewInstructionGeneration constinArgument0,
-                                                                class GALGAS_uint constinArgument1,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMTitleAtIndex (class GALGAS_string constinArgument0,
-                                                          class GALGAS_uint constinArgument1,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void setter_setMItemAtIndex (class GALGAS_autoLayoutToolbarItemGeneration constinArgument0,
+                                                         class GALGAS_uint constinArgument1,
+                                                         C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_string & outArgument0,
-                                               class GALGAS_abstractViewInstructionGeneration & outArgument1,
+  public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_autoLayoutToolbarItemGeneration & outArgument0,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_string & outArgument0,
-                                              class GALGAS_abstractViewInstructionGeneration & outArgument1,
+  public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_autoLayoutToolbarItemGeneration & outArgument0,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractViewInstructionGeneration getter_mInstructionAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                       C_Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mTitleAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutToolbarItemGeneration getter_mItemAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutToolbarItemGenerationList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
                                                                                                       C_Compiler * inCompiler
@@ -2447,8 +2423,7 @@ class cEnumerator_autoLayoutToolbarItemGenerationList : public cGenericAbstractE
                                                             const typeEnumerationOrder inOrder) ;
 
 //--- Current element access
-  public : class GALGAS_string current_mTitle (LOCATION_ARGS) const ;
-  public : class GALGAS_abstractViewInstructionGeneration current_mInstruction (LOCATION_ARGS) const ;
+  public : class GALGAS_autoLayoutToolbarItemGeneration current_mItem (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_autoLayoutToolbarItemGenerationList_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -2507,25 +2482,105 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractViewInstruc
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 2: pointer class for @abstractViewInstructionGeneration class
+//                                    Phase 1: @autoLayoutToolbarItemGeneration enum                                   *
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class cPtr_abstractViewInstructionGeneration : public acPtr_class {
-//--- Attributes
+class GALGAS_autoLayoutToolbarItemGeneration : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public : GALGAS_autoLayoutToolbarItemGeneration (void) ;
+
+//--------------------------------- Enumeration
+  public : typedef enum {
+    kNotBuilt,
+    kEnum_view,
+    kEnum_space
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private : AC_GALGAS_enumAssociatedValues mAssociatedValues ;
+  public : VIRTUAL_IN_DEBUG const cEnumAssociatedValues * unsafePointer (void) const {
+    return mAssociatedValues.unsafePointer () ;
+  }
+
+  private : enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
+  public : VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public : inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_autoLayoutToolbarItemGeneration extractObject (const GALGAS_object & inObject,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_autoLayoutToolbarItemGeneration constructor_space (LOCATION_ARGS) ;
+
+  public : static class GALGAS_autoLayoutToolbarItemGeneration constructor_view (const class GALGAS_string & inOperand0,
+                                                                                 const class GALGAS_abstractViewInstructionGeneration & inOperand1
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_autoLayoutToolbarItemGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_view (class GALGAS_string & outArgument0,
+                                              class GALGAS_abstractViewInstructionGeneration & outArgument1,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSpace (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isView (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_autoLayoutToolbarItemGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutToolbarItemGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: @autoLayoutToolbarItemGeneration enum, associated values
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view : public cEnumAssociatedValues {
+  public : const GALGAS_string mAssociatedValue0 ;
+  public : const GALGAS_abstractViewInstructionGeneration mAssociatedValue1 ;
 
 //--- Constructor
-  public : cPtr_abstractViewInstructionGeneration (LOCATION_ARGS) ;
+  public : cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view (const GALGAS_string & inAssociatedValue0,
+                                                                       const GALGAS_abstractViewInstructionGeneration & inAssociatedValue1
+                                                                       COMMA_LOCATION_ARGS) ;
 
-//--- Attribute accessors
-//--- Description
   public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const = 0 ;
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
-
+  public : virtual ~ cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view (void) {}
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2536,9 +2591,7 @@ class cPtr_abstractViewInstructionGeneration : public acPtr_class {
 
 class GALGAS_autoLayoutToolbarItemGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
-  public : GALGAS_string mProperty_mTitle ;
-
-  public : GALGAS_abstractViewInstructionGeneration mProperty_mInstruction ;
+  public : GALGAS_autoLayoutToolbarItemGeneration mProperty_mItem ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2551,8 +2604,7 @@ class GALGAS_autoLayoutToolbarItemGenerationList_2D_element : public AC_GALGAS_r
   public : virtual ~ GALGAS_autoLayoutToolbarItemGenerationList_2D_element (void) ;
 
 //--------------------------------- Native constructor
-  public : GALGAS_autoLayoutToolbarItemGenerationList_2D_element (const GALGAS_string & in_mTitle,
-                                                                  const GALGAS_abstractViewInstructionGeneration & in_mInstruction) ;
+  public : GALGAS_autoLayoutToolbarItemGenerationList_2D_element (const GALGAS_autoLayoutToolbarItemGeneration & in_mItem) ;
 
 //-- Start of generic part --*
 
@@ -2565,8 +2617,7 @@ class GALGAS_autoLayoutToolbarItemGenerationList_2D_element : public AC_GALGAS_r
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_autoLayoutToolbarItemGenerationList_2D_element constructor_new (const class GALGAS_string & inOperand0,
-                                                                                               const class GALGAS_abstractViewInstructionGeneration & inOperand1
+  public : static class GALGAS_autoLayoutToolbarItemGenerationList_2D_element constructor_new (const class GALGAS_autoLayoutToolbarItemGeneration & inOperand0
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -2581,9 +2632,7 @@ class GALGAS_autoLayoutToolbarItemGenerationList_2D_element : public AC_GALGAS_r
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractViewInstructionGeneration getter_mInstruction (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mTitle (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutToolbarItemGeneration getter_mItem (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
@@ -4488,43 +4537,4 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_semanticContext ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@astAbstractViewInstructionDeclaration generateCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-typedef void (*extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode) (const class cPtr_astAbstractViewInstructionDeclaration * inObject,
-                                                                                             const class GALGAS_autoLayoutViewDeclarationMap constinArgument0,
-                                                                                             const class GALGAS_bool constinArgument1,
-                                                                                             const class GALGAS_propertyMap constinArgument2,
-                                                                                             const class GALGAS_propertyMap constinArgument3,
-                                                                                             const class GALGAS_semanticContext constinArgument4,
-                                                                                             const class GALGAS_propertyMap constinArgument5,
-                                                                                             const class GALGAS_actionMap constinArgument6,
-                                                                                             const class GALGAS_string constinArgument7,
-                                                                                             class GALGAS_abstractViewInstructionGeneration & outArgument8,
-                                                                                             class C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_generateCode (const int32_t inClassIndex,
-                                        extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_generateCode (const class cPtr_astAbstractViewInstructionDeclaration * inObject,
-                                       const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
-                                       const GALGAS_bool constin_inPreferences,
-                                       const GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                       const GALGAS_propertyMap constin_inPreferencesPropertyMap,
-                                       const GALGAS_semanticContext constin_inSemanticContext,
-                                       const GALGAS_propertyMap constin_inObservablePropertyMap,
-                                       const GALGAS_actionMap constin_inActionMap,
-                                       const GALGAS_string constin_inReceiverSwiftTypeName,
-                                       GALGAS_abstractViewInstructionGeneration & out_outInstruction,
-                                       C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
 

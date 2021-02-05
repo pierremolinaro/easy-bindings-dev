@@ -4661,8 +4661,7 @@ class cCollectionElement_astAutoLayoutToolbarItemList : public cCollectionElemen
   public : GALGAS_astAutoLayoutToolbarItemList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_astAutoLayoutToolbarItemList (const GALGAS_lstring & in_mTitle,
-                                                            const GALGAS_astAbstractViewInstructionDeclaration & in_mInstruction
+  public : cCollectionElement_astAutoLayoutToolbarItemList (const GALGAS_astAutoLayoutToolbarItem & in_mItem
                                                             COMMA_LOCATION_ARGS) ;
   public : cCollectionElement_astAutoLayoutToolbarItemList (const GALGAS_astAutoLayoutToolbarItemList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
@@ -4681,18 +4680,17 @@ class cCollectionElement_astAutoLayoutToolbarItemList : public cCollectionElemen
 
 //----------------------------------------------------------------------------------------------------------------------
 
-cCollectionElement_astAutoLayoutToolbarItemList::cCollectionElement_astAutoLayoutToolbarItemList (const GALGAS_lstring & in_mTitle,
-                                                                                                  const GALGAS_astAbstractViewInstructionDeclaration & in_mInstruction
+cCollectionElement_astAutoLayoutToolbarItemList::cCollectionElement_astAutoLayoutToolbarItemList (const GALGAS_astAutoLayoutToolbarItem & in_mItem
                                                                                                   COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mTitle, in_mInstruction) {
+mObject (in_mItem) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement_astAutoLayoutToolbarItemList::cCollectionElement_astAutoLayoutToolbarItemList (const GALGAS_astAutoLayoutToolbarItemList_2D_element & inElement COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (inElement.mProperty_mTitle, inElement.mProperty_mInstruction) {
+mObject (inElement.mProperty_mItem) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4705,7 +4703,7 @@ bool cCollectionElement_astAutoLayoutToolbarItemList::isValid (void) const {
 
 cCollectionElement * cCollectionElement_astAutoLayoutToolbarItemList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_astAutoLayoutToolbarItemList (mObject.mProperty_mTitle, mObject.mProperty_mInstruction COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_astAutoLayoutToolbarItemList (mObject.mProperty_mItem COMMA_HERE)) ;
   return result ;
 }
 
@@ -4714,12 +4712,8 @@ cCollectionElement * cCollectionElement_astAutoLayoutToolbarItemList::copy (void
 void cCollectionElement_astAutoLayoutToolbarItemList::description (C_String & ioString, const int32_t inIndentation) const {
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mTitle" ":" ;
-  mObject.mProperty_mTitle.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mInstruction" ":" ;
-  mObject.mProperty_mInstruction.description (ioString, inIndentation) ;
+  ioString << "mItem" ":" ;
+  mObject.mProperty_mItem.description (ioString, inIndentation) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4750,14 +4744,13 @@ GALGAS_astAutoLayoutToolbarItemList GALGAS_astAutoLayoutToolbarItemList::constru
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutToolbarItemList GALGAS_astAutoLayoutToolbarItemList::constructor_listWithValue (const GALGAS_lstring & inOperand0,
-                                                                                                    const GALGAS_astAbstractViewInstructionDeclaration & inOperand1
+GALGAS_astAutoLayoutToolbarItemList GALGAS_astAutoLayoutToolbarItemList::constructor_listWithValue (const GALGAS_astAutoLayoutToolbarItem & inOperand0
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_astAutoLayoutToolbarItemList result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
+  if (inOperand0.isValid ()) {
     result = GALGAS_astAutoLayoutToolbarItemList (capCollectionElementArray ()) ;
     capCollectionElement attributes ;
-    GALGAS_astAutoLayoutToolbarItemList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
+    GALGAS_astAutoLayoutToolbarItemList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
     result.appendObject (attributes) ;
   }
   return result ;
@@ -4766,24 +4759,21 @@ GALGAS_astAutoLayoutToolbarItemList GALGAS_astAutoLayoutToolbarItemList::constru
 //----------------------------------------------------------------------------------------------------------------------
 
 void GALGAS_astAutoLayoutToolbarItemList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                     const GALGAS_lstring & in_mTitle,
-                                                                     const GALGAS_astAbstractViewInstructionDeclaration & in_mInstruction
+                                                                     const GALGAS_astAutoLayoutToolbarItem & in_mItem
                                                                      COMMA_LOCATION_ARGS) {
   cCollectionElement_astAutoLayoutToolbarItemList * p = NULL ;
-  macroMyNew (p, cCollectionElement_astAutoLayoutToolbarItemList (in_mTitle,
-                                                                  in_mInstruction COMMA_THERE)) ;
+  macroMyNew (p, cCollectionElement_astAutoLayoutToolbarItemList (in_mItem COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutToolbarItemList::addAssign_operation (const GALGAS_lstring & inOperand0,
-                                                               const GALGAS_astAbstractViewInstructionDeclaration & inOperand1
+void GALGAS_astAutoLayoutToolbarItemList::addAssign_operation (const GALGAS_astAutoLayoutToolbarItem & inOperand0
                                                                COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+  if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_astAutoLayoutToolbarItemList (inOperand0, inOperand1 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_astAutoLayoutToolbarItemList (inOperand0 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -4808,14 +4798,13 @@ void GALGAS_astAutoLayoutToolbarItemList::setter_append (GALGAS_astAutoLayoutToo
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutToolbarItemList::setter_insertAtIndex (const GALGAS_lstring inOperand0,
-                                                                const GALGAS_astAbstractViewInstructionDeclaration inOperand1,
+void GALGAS_astAutoLayoutToolbarItemList::setter_insertAtIndex (const GALGAS_astAutoLayoutToolbarItem inOperand0,
                                                                 const GALGAS_uint inInsertionIndex,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_astAutoLayoutToolbarItemList (inOperand0, inOperand1 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_astAutoLayoutToolbarItemList (inOperand0 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -4825,8 +4814,7 @@ void GALGAS_astAutoLayoutToolbarItemList::setter_insertAtIndex (const GALGAS_lst
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutToolbarItemList::setter_removeAtIndex (GALGAS_lstring & outOperand0,
-                                                                GALGAS_astAbstractViewInstructionDeclaration & outOperand1,
+void GALGAS_astAutoLayoutToolbarItemList::setter_removeAtIndex (GALGAS_astAutoLayoutToolbarItem & outOperand0,
                                                                 const GALGAS_uint inRemoveIndex,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) {
@@ -4836,19 +4824,16 @@ void GALGAS_astAutoLayoutToolbarItemList::setter_removeAtIndex (GALGAS_lstring &
     cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) attributes.ptr () ;
     if (NULL == p) {
       outOperand0.drop () ;
-      outOperand1.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-      outOperand0 = p->mObject.mProperty_mTitle ;
-      outOperand1 = p->mObject.mProperty_mInstruction ;
+      outOperand0 = p->mObject.mProperty_mItem ;
     }
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutToolbarItemList::setter_popFirst (GALGAS_lstring & outOperand0,
-                                                           GALGAS_astAbstractViewInstructionDeclaration & outOperand1,
+void GALGAS_astAutoLayoutToolbarItemList::setter_popFirst (GALGAS_astAutoLayoutToolbarItem & outOperand0,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -4856,18 +4841,15 @@ void GALGAS_astAutoLayoutToolbarItemList::setter_popFirst (GALGAS_lstring & outO
   cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
-    outOperand1.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-    outOperand0 = p->mObject.mProperty_mTitle ;
-    outOperand1 = p->mObject.mProperty_mInstruction ;
+    outOperand0 = p->mObject.mProperty_mItem ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutToolbarItemList::setter_popLast (GALGAS_lstring & outOperand0,
-                                                          GALGAS_astAbstractViewInstructionDeclaration & outOperand1,
+void GALGAS_astAutoLayoutToolbarItemList::setter_popLast (GALGAS_astAutoLayoutToolbarItem & outOperand0,
                                                           C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -4875,18 +4857,15 @@ void GALGAS_astAutoLayoutToolbarItemList::setter_popLast (GALGAS_lstring & outOp
   cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
-    outOperand1.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-    outOperand0 = p->mObject.mProperty_mTitle ;
-    outOperand1 = p->mObject.mProperty_mInstruction ;
+    outOperand0 = p->mObject.mProperty_mItem ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutToolbarItemList::method_first (GALGAS_lstring & outOperand0,
-                                                        GALGAS_astAbstractViewInstructionDeclaration & outOperand1,
+void GALGAS_astAutoLayoutToolbarItemList::method_first (GALGAS_astAutoLayoutToolbarItem & outOperand0,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -4894,18 +4873,15 @@ void GALGAS_astAutoLayoutToolbarItemList::method_first (GALGAS_lstring & outOper
   cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
-    outOperand1.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-    outOperand0 = p->mObject.mProperty_mTitle ;
-    outOperand1 = p->mObject.mProperty_mInstruction ;
+    outOperand0 = p->mObject.mProperty_mItem ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutToolbarItemList::method_last (GALGAS_lstring & outOperand0,
-                                                       GALGAS_astAbstractViewInstructionDeclaration & outOperand1,
+void GALGAS_astAutoLayoutToolbarItemList::method_last (GALGAS_astAutoLayoutToolbarItem & outOperand0,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -4913,11 +4889,9 @@ void GALGAS_astAutoLayoutToolbarItemList::method_last (GALGAS_lstring & outOpera
   cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
-    outOperand1.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-    outOperand0 = p->mObject.mProperty_mTitle ;
-    outOperand1 = p->mObject.mProperty_mInstruction ;
+    outOperand0 = p->mObject.mProperty_mItem ;
   }
 }
 
@@ -4974,58 +4948,29 @@ void GALGAS_astAutoLayoutToolbarItemList::plusAssign_operation (const GALGAS_ast
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutToolbarItemList::setter_setMTitleAtIndex (GALGAS_lstring inOperand,
-                                                                   GALGAS_uint inIndex,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_astAutoLayoutToolbarItemList::setter_setMItemAtIndex (GALGAS_astAutoLayoutToolbarItem inOperand,
+                                                                  GALGAS_uint inIndex,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
   cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
     macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mTitle = inOperand ;
+    p->mObject.mProperty_mItem = inOperand ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_lstring GALGAS_astAutoLayoutToolbarItemList::getter_mTitleAtIndex (const GALGAS_uint & inIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const {
+GALGAS_astAutoLayoutToolbarItem GALGAS_astAutoLayoutToolbarItemList::getter_mItemAtIndex (const GALGAS_uint & inIndex,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) attributes.ptr () ;
-  GALGAS_lstring result ;
+  GALGAS_astAutoLayoutToolbarItem result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-    result = p->mObject.mProperty_mTitle ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_astAutoLayoutToolbarItemList::setter_setMInstructionAtIndex (GALGAS_astAbstractViewInstructionDeclaration inOperand,
-                                                                         GALGAS_uint inIndex,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
-  cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mInstruction = inOperand ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAbstractViewInstructionDeclaration GALGAS_astAutoLayoutToolbarItemList::getter_mInstructionAtIndex (const GALGAS_uint & inIndex,
-                                                                                                              C_Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_astAutoLayoutToolbarItemList * p = (cCollectionElement_astAutoLayoutToolbarItemList *) attributes.ptr () ;
-  GALGAS_astAbstractViewInstructionDeclaration result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-    result = p->mObject.mProperty_mInstruction ;
+    result = p->mObject.mProperty_mItem ;
   }
   return result ;
 }
@@ -5051,18 +4996,10 @@ GALGAS_astAutoLayoutToolbarItemList_2D_element cEnumerator_astAutoLayoutToolbarI
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_lstring cEnumerator_astAutoLayoutToolbarItemList::current_mTitle (LOCATION_ARGS) const {
+GALGAS_astAutoLayoutToolbarItem cEnumerator_astAutoLayoutToolbarItemList::current_mItem (LOCATION_ARGS) const {
   const cCollectionElement_astAutoLayoutToolbarItemList * p = (const cCollectionElement_astAutoLayoutToolbarItemList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-  return p->mObject.mProperty_mTitle ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAbstractViewInstructionDeclaration cEnumerator_astAutoLayoutToolbarItemList::current_mInstruction (LOCATION_ARGS) const {
-  const cCollectionElement_astAutoLayoutToolbarItemList * p = (const cCollectionElement_astAutoLayoutToolbarItemList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_astAutoLayoutToolbarItemList) ;
-  return p->mObject.mProperty_mInstruction ;
+  return p->mObject.mProperty_mItem ;
 }
 
 
@@ -5112,87 +5049,173 @@ GALGAS_astAutoLayoutToolbarItemList GALGAS_astAutoLayoutToolbarItemList::extract
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//   Object comparison                                                                           
+
+cEnumAssociatedValues_astAutoLayoutToolbarItem_view::cEnumAssociatedValues_astAutoLayoutToolbarItem_view (const GALGAS_lstring & inAssociatedValue0,
+                                                                                                          const GALGAS_astComputedViewInstruction & inAssociatedValue1
+                                                                                                          COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues (THERE),
+mAssociatedValue0 (inAssociatedValue0),
+mAssociatedValue1 (inAssociatedValue1) {
+} ;
+
 //----------------------------------------------------------------------------------------------------------------------
 
+void cEnumAssociatedValues_astAutoLayoutToolbarItem_view::description (C_String & ioString,
+                                                                       const int32_t inIndentation) const {
+  ioString << "(\n" ;
+  mAssociatedValue0.description (ioString, inIndentation) ;
+  mAssociatedValue1.description (ioString, inIndentation) ;
+  ioString << ")" ;
+}
 
+//----------------------------------------------------------------------------------------------------------------------
 
-typeComparisonResult GALGAS_astAbstractViewInstructionDeclaration::objectCompare (const GALGAS_astAbstractViewInstructionDeclaration & inOperand) const {
+typeComparisonResult cEnumAssociatedValues_astAutoLayoutToolbarItem_view::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_astAutoLayoutToolbarItem_view * ptr = dynamic_cast<const cEnumAssociatedValues_astAutoLayoutToolbarItem_view *> (inOperand) ;
+  macroValidPointer (ptr) ;
+  typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAssociatedValue1.objectCompare (ptr->mAssociatedValue1) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAutoLayoutToolbarItem::GALGAS_astAutoLayoutToolbarItem (void) :
+mAssociatedValues (),
+mEnum (kNotBuilt) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAutoLayoutToolbarItem GALGAS_astAutoLayoutToolbarItem::constructor_view (const GALGAS_lstring & inAssociatedValue0,
+                                                                                   const GALGAS_astComputedViewInstruction & inAssociatedValue1
+                                                                                   COMMA_LOCATION_ARGS) {
+  GALGAS_astAutoLayoutToolbarItem result ;
+  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
+    result.mEnum = kEnum_view ;
+    cEnumAssociatedValues * ptr = NULL ;
+    macroMyNew (ptr, cEnumAssociatedValues_astAutoLayoutToolbarItem_view (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
+    result.mAssociatedValues.setPointer (ptr) ;
+    macroDetachSharedObject (ptr) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAutoLayoutToolbarItem GALGAS_astAutoLayoutToolbarItem::constructor_space (UNUSED_LOCATION_ARGS) {
+  GALGAS_astAutoLayoutToolbarItem result ;
+  result.mEnum = kEnum_space ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_astAutoLayoutToolbarItem::method_view (GALGAS_lstring & outAssociatedValue0,
+                                                   GALGAS_astComputedViewInstruction & outAssociatedValue1,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_view) {
+    outAssociatedValue0.drop () ;
+    outAssociatedValue1.drop () ;
+    C_String s ;
+    s << "method @astAutoLayoutToolbarItem view invoked with an invalid enum value" ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const cEnumAssociatedValues_astAutoLayoutToolbarItem_view * ptr = (const cEnumAssociatedValues_astAutoLayoutToolbarItem_view *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+    outAssociatedValue1 = ptr->mAssociatedValue1 ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static const char * gEnumNameArrayFor_astAutoLayoutToolbarItem [3] = {
+  "(not built)",
+  "view",
+  "space"
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_astAutoLayoutToolbarItem::getter_isView (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_view == mEnum) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_astAutoLayoutToolbarItem::getter_isSpace (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_space == mEnum) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_astAutoLayoutToolbarItem::description (C_String & ioString,
+                                                   const int32_t inIndentation) const {
+  ioString << "<enum @astAutoLayoutToolbarItem: " << gEnumNameArrayFor_astAutoLayoutToolbarItem [mEnum] ;
+  mAssociatedValues.description (ioString, inIndentation) ;
+  ioString << ">" ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+typeComparisonResult GALGAS_astAutoLayoutToolbarItem::objectCompare (const GALGAS_astAutoLayoutToolbarItem & inOperand) const {
   typeComparisonResult result = kOperandNotValid ;
   if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
+    if (mEnum < inOperand.mEnum) {
       result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
+    }else if (mEnum > inOperand.mEnum) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
     }
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAbstractViewInstructionDeclaration::GALGAS_astAbstractViewInstructionDeclaration (void) :
-AC_GALGAS_class (false) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAbstractViewInstructionDeclaration::GALGAS_astAbstractViewInstructionDeclaration (const cPtr_astAbstractViewInstructionDeclaration * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr, false) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_astAbstractViewInstructionDeclaration) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @astAbstractViewInstructionDeclaration class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_astAbstractViewInstructionDeclaration::cPtr_astAbstractViewInstructionDeclaration (LOCATION_ARGS) :
-acPtr_class (THERE) {
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
 //
-//@astAbstractViewInstructionDeclaration type
+//@astAutoLayoutToolbarItem type
 //
 //----------------------------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration ("astAbstractViewInstructionDeclaration",
-                                                              NULL) ;
+kTypeDescriptor_GALGAS_astAutoLayoutToolbarItem ("astAutoLayoutToolbarItem",
+                                                 NULL) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor * GALGAS_astAbstractViewInstructionDeclaration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration ;
+const C_galgas_type_descriptor * GALGAS_astAutoLayoutToolbarItem::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astAutoLayoutToolbarItem ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-AC_GALGAS_root * GALGAS_astAbstractViewInstructionDeclaration::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_astAutoLayoutToolbarItem::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_astAbstractViewInstructionDeclaration (*this)) ;
+    macroMyNew (result, GALGAS_astAutoLayoutToolbarItem (*this)) ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_astAbstractViewInstructionDeclaration GALGAS_astAbstractViewInstructionDeclaration::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_astAbstractViewInstructionDeclaration result ;
-  const GALGAS_astAbstractViewInstructionDeclaration * p = (const GALGAS_astAbstractViewInstructionDeclaration *) inObject.embeddedObject () ;
+GALGAS_astAutoLayoutToolbarItem GALGAS_astAutoLayoutToolbarItem::extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_astAutoLayoutToolbarItem result ;
+  const GALGAS_astAutoLayoutToolbarItem * p = (const GALGAS_astAutoLayoutToolbarItem *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astAbstractViewInstructionDeclaration *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_astAutoLayoutToolbarItem *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("astAbstractViewInstructionDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("astAutoLayoutToolbarItem", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -5668,8 +5691,7 @@ class cCollectionElement_autoLayoutToolbarItemGenerationList : public cCollectio
   public : GALGAS_autoLayoutToolbarItemGenerationList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_autoLayoutToolbarItemGenerationList (const GALGAS_string & in_mTitle,
-                                                                   const GALGAS_abstractViewInstructionGeneration & in_mInstruction
+  public : cCollectionElement_autoLayoutToolbarItemGenerationList (const GALGAS_autoLayoutToolbarItemGeneration & in_mItem
                                                                    COMMA_LOCATION_ARGS) ;
   public : cCollectionElement_autoLayoutToolbarItemGenerationList (const GALGAS_autoLayoutToolbarItemGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
@@ -5688,18 +5710,17 @@ class cCollectionElement_autoLayoutToolbarItemGenerationList : public cCollectio
 
 //----------------------------------------------------------------------------------------------------------------------
 
-cCollectionElement_autoLayoutToolbarItemGenerationList::cCollectionElement_autoLayoutToolbarItemGenerationList (const GALGAS_string & in_mTitle,
-                                                                                                                const GALGAS_abstractViewInstructionGeneration & in_mInstruction
+cCollectionElement_autoLayoutToolbarItemGenerationList::cCollectionElement_autoLayoutToolbarItemGenerationList (const GALGAS_autoLayoutToolbarItemGeneration & in_mItem
                                                                                                                 COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mTitle, in_mInstruction) {
+mObject (in_mItem) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement_autoLayoutToolbarItemGenerationList::cCollectionElement_autoLayoutToolbarItemGenerationList (const GALGAS_autoLayoutToolbarItemGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (inElement.mProperty_mTitle, inElement.mProperty_mInstruction) {
+mObject (inElement.mProperty_mItem) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5712,7 +5733,7 @@ bool cCollectionElement_autoLayoutToolbarItemGenerationList::isValid (void) cons
 
 cCollectionElement * cCollectionElement_autoLayoutToolbarItemGenerationList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_autoLayoutToolbarItemGenerationList (mObject.mProperty_mTitle, mObject.mProperty_mInstruction COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_autoLayoutToolbarItemGenerationList (mObject.mProperty_mItem COMMA_HERE)) ;
   return result ;
 }
 
@@ -5721,12 +5742,8 @@ cCollectionElement * cCollectionElement_autoLayoutToolbarItemGenerationList::cop
 void cCollectionElement_autoLayoutToolbarItemGenerationList::description (C_String & ioString, const int32_t inIndentation) const {
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mTitle" ":" ;
-  mObject.mProperty_mTitle.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mInstruction" ":" ;
-  mObject.mProperty_mInstruction.description (ioString, inIndentation) ;
+  ioString << "mItem" ":" ;
+  mObject.mProperty_mItem.description (ioString, inIndentation) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5757,14 +5774,13 @@ GALGAS_autoLayoutToolbarItemGenerationList GALGAS_autoLayoutToolbarItemGeneratio
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutToolbarItemGenerationList GALGAS_autoLayoutToolbarItemGenerationList::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                                  const GALGAS_abstractViewInstructionGeneration & inOperand1
+GALGAS_autoLayoutToolbarItemGenerationList GALGAS_autoLayoutToolbarItemGenerationList::constructor_listWithValue (const GALGAS_autoLayoutToolbarItemGeneration & inOperand0
                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutToolbarItemGenerationList result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
+  if (inOperand0.isValid ()) {
     result = GALGAS_autoLayoutToolbarItemGenerationList (capCollectionElementArray ()) ;
     capCollectionElement attributes ;
-    GALGAS_autoLayoutToolbarItemGenerationList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
+    GALGAS_autoLayoutToolbarItemGenerationList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
     result.appendObject (attributes) ;
   }
   return result ;
@@ -5773,24 +5789,21 @@ GALGAS_autoLayoutToolbarItemGenerationList GALGAS_autoLayoutToolbarItemGeneratio
 //----------------------------------------------------------------------------------------------------------------------
 
 void GALGAS_autoLayoutToolbarItemGenerationList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                            const GALGAS_string & in_mTitle,
-                                                                            const GALGAS_abstractViewInstructionGeneration & in_mInstruction
+                                                                            const GALGAS_autoLayoutToolbarItemGeneration & in_mItem
                                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement_autoLayoutToolbarItemGenerationList * p = NULL ;
-  macroMyNew (p, cCollectionElement_autoLayoutToolbarItemGenerationList (in_mTitle,
-                                                                         in_mInstruction COMMA_THERE)) ;
+  macroMyNew (p, cCollectionElement_autoLayoutToolbarItemGenerationList (in_mItem COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutToolbarItemGenerationList::addAssign_operation (const GALGAS_string & inOperand0,
-                                                                      const GALGAS_abstractViewInstructionGeneration & inOperand1
+void GALGAS_autoLayoutToolbarItemGenerationList::addAssign_operation (const GALGAS_autoLayoutToolbarItemGeneration & inOperand0
                                                                       COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+  if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_autoLayoutToolbarItemGenerationList (inOperand0, inOperand1 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_autoLayoutToolbarItemGenerationList (inOperand0 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -5815,14 +5828,13 @@ void GALGAS_autoLayoutToolbarItemGenerationList::setter_append (GALGAS_autoLayou
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutToolbarItemGenerationList::setter_insertAtIndex (const GALGAS_string inOperand0,
-                                                                       const GALGAS_abstractViewInstructionGeneration inOperand1,
+void GALGAS_autoLayoutToolbarItemGenerationList::setter_insertAtIndex (const GALGAS_autoLayoutToolbarItemGeneration inOperand0,
                                                                        const GALGAS_uint inInsertionIndex,
                                                                        C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_autoLayoutToolbarItemGenerationList (inOperand0, inOperand1 COMMA_THERE)) ;
+    macroMyNew (p, cCollectionElement_autoLayoutToolbarItemGenerationList (inOperand0 COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -5832,8 +5844,7 @@ void GALGAS_autoLayoutToolbarItemGenerationList::setter_insertAtIndex (const GAL
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutToolbarItemGenerationList::setter_removeAtIndex (GALGAS_string & outOperand0,
-                                                                       GALGAS_abstractViewInstructionGeneration & outOperand1,
+void GALGAS_autoLayoutToolbarItemGenerationList::setter_removeAtIndex (GALGAS_autoLayoutToolbarItemGeneration & outOperand0,
                                                                        const GALGAS_uint inRemoveIndex,
                                                                        C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) {
@@ -5843,19 +5854,16 @@ void GALGAS_autoLayoutToolbarItemGenerationList::setter_removeAtIndex (GALGAS_st
     cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) attributes.ptr () ;
     if (NULL == p) {
       outOperand0.drop () ;
-      outOperand1.drop () ;
     }else{
       macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-      outOperand0 = p->mObject.mProperty_mTitle ;
-      outOperand1 = p->mObject.mProperty_mInstruction ;
+      outOperand0 = p->mObject.mProperty_mItem ;
     }
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutToolbarItemGenerationList::setter_popFirst (GALGAS_string & outOperand0,
-                                                                  GALGAS_abstractViewInstructionGeneration & outOperand1,
+void GALGAS_autoLayoutToolbarItemGenerationList::setter_popFirst (GALGAS_autoLayoutToolbarItemGeneration & outOperand0,
                                                                   C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -5863,18 +5871,15 @@ void GALGAS_autoLayoutToolbarItemGenerationList::setter_popFirst (GALGAS_string 
   cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
-    outOperand1.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-    outOperand0 = p->mObject.mProperty_mTitle ;
-    outOperand1 = p->mObject.mProperty_mInstruction ;
+    outOperand0 = p->mObject.mProperty_mItem ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutToolbarItemGenerationList::setter_popLast (GALGAS_string & outOperand0,
-                                                                 GALGAS_abstractViewInstructionGeneration & outOperand1,
+void GALGAS_autoLayoutToolbarItemGenerationList::setter_popLast (GALGAS_autoLayoutToolbarItemGeneration & outOperand0,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -5882,18 +5887,15 @@ void GALGAS_autoLayoutToolbarItemGenerationList::setter_popLast (GALGAS_string &
   cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
-    outOperand1.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-    outOperand0 = p->mObject.mProperty_mTitle ;
-    outOperand1 = p->mObject.mProperty_mInstruction ;
+    outOperand0 = p->mObject.mProperty_mItem ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutToolbarItemGenerationList::method_first (GALGAS_string & outOperand0,
-                                                               GALGAS_abstractViewInstructionGeneration & outOperand1,
+void GALGAS_autoLayoutToolbarItemGenerationList::method_first (GALGAS_autoLayoutToolbarItemGeneration & outOperand0,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -5901,18 +5903,15 @@ void GALGAS_autoLayoutToolbarItemGenerationList::method_first (GALGAS_string & o
   cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
-    outOperand1.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-    outOperand0 = p->mObject.mProperty_mTitle ;
-    outOperand1 = p->mObject.mProperty_mInstruction ;
+    outOperand0 = p->mObject.mProperty_mItem ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutToolbarItemGenerationList::method_last (GALGAS_string & outOperand0,
-                                                              GALGAS_abstractViewInstructionGeneration & outOperand1,
+void GALGAS_autoLayoutToolbarItemGenerationList::method_last (GALGAS_autoLayoutToolbarItemGeneration & outOperand0,
                                                               C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -5920,11 +5919,9 @@ void GALGAS_autoLayoutToolbarItemGenerationList::method_last (GALGAS_string & ou
   cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
-    outOperand1.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-    outOperand0 = p->mObject.mProperty_mTitle ;
-    outOperand1 = p->mObject.mProperty_mInstruction ;
+    outOperand0 = p->mObject.mProperty_mItem ;
   }
 }
 
@@ -5981,58 +5978,29 @@ void GALGAS_autoLayoutToolbarItemGenerationList::plusAssign_operation (const GAL
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutToolbarItemGenerationList::setter_setMTitleAtIndex (GALGAS_string inOperand,
-                                                                          GALGAS_uint inIndex,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutToolbarItemGenerationList::setter_setMItemAtIndex (GALGAS_autoLayoutToolbarItemGeneration inOperand,
+                                                                         GALGAS_uint inIndex,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
   cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
     macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mTitle = inOperand ;
+    p->mObject.mProperty_mItem = inOperand ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_string GALGAS_autoLayoutToolbarItemGenerationList::getter_mTitleAtIndex (const GALGAS_uint & inIndex,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) const {
+GALGAS_autoLayoutToolbarItemGeneration GALGAS_autoLayoutToolbarItemGenerationList::getter_mItemAtIndex (const GALGAS_uint & inIndex,
+                                                                                                        C_Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) attributes.ptr () ;
-  GALGAS_string result ;
+  GALGAS_autoLayoutToolbarItemGeneration result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-    result = p->mObject.mProperty_mTitle ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutToolbarItemGenerationList::setter_setMInstructionAtIndex (GALGAS_abstractViewInstructionGeneration inOperand,
-                                                                                GALGAS_uint inIndex,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mInstruction = inOperand ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_abstractViewInstructionGeneration GALGAS_autoLayoutToolbarItemGenerationList::getter_mInstructionAtIndex (const GALGAS_uint & inIndex,
-                                                                                                                 C_Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_autoLayoutToolbarItemGenerationList * p = (cCollectionElement_autoLayoutToolbarItemGenerationList *) attributes.ptr () ;
-  GALGAS_abstractViewInstructionGeneration result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-    result = p->mObject.mProperty_mInstruction ;
+    result = p->mObject.mProperty_mItem ;
   }
   return result ;
 }
@@ -6058,18 +6026,10 @@ GALGAS_autoLayoutToolbarItemGenerationList_2D_element cEnumerator_autoLayoutTool
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_string cEnumerator_autoLayoutToolbarItemGenerationList::current_mTitle (LOCATION_ARGS) const {
+GALGAS_autoLayoutToolbarItemGeneration cEnumerator_autoLayoutToolbarItemGenerationList::current_mItem (LOCATION_ARGS) const {
   const cCollectionElement_autoLayoutToolbarItemGenerationList * p = (const cCollectionElement_autoLayoutToolbarItemGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-  return p->mObject.mProperty_mTitle ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_abstractViewInstructionGeneration cEnumerator_autoLayoutToolbarItemGenerationList::current_mInstruction (LOCATION_ARGS) const {
-  const cCollectionElement_autoLayoutToolbarItemGenerationList * p = (const cCollectionElement_autoLayoutToolbarItemGenerationList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_autoLayoutToolbarItemGenerationList) ;
-  return p->mObject.mProperty_mInstruction ;
+  return p->mObject.mProperty_mItem ;
 }
 
 
@@ -6119,87 +6079,173 @@ GALGAS_autoLayoutToolbarItemGenerationList GALGAS_autoLayoutToolbarItemGeneratio
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//   Object comparison                                                                           
+
+cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view::cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view (const GALGAS_string & inAssociatedValue0,
+                                                                                                                        const GALGAS_abstractViewInstructionGeneration & inAssociatedValue1
+                                                                                                                        COMMA_LOCATION_ARGS) :
+cEnumAssociatedValues (THERE),
+mAssociatedValue0 (inAssociatedValue0),
+mAssociatedValue1 (inAssociatedValue1) {
+} ;
+
 //----------------------------------------------------------------------------------------------------------------------
 
+void cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view::description (C_String & ioString,
+                                                                              const int32_t inIndentation) const {
+  ioString << "(\n" ;
+  mAssociatedValue0.description (ioString, inIndentation) ;
+  mAssociatedValue1.description (ioString, inIndentation) ;
+  ioString << ")" ;
+}
 
+//----------------------------------------------------------------------------------------------------------------------
 
-typeComparisonResult GALGAS_abstractViewInstructionGeneration::objectCompare (const GALGAS_abstractViewInstructionGeneration & inOperand) const {
+typeComparisonResult cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view::compare (const cEnumAssociatedValues * inOperand) const {
+  const cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view * ptr = dynamic_cast<const cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view *> (inOperand) ;
+  macroValidPointer (ptr) ;
+  typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAssociatedValue1.objectCompare (ptr->mAssociatedValue1) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutToolbarItemGeneration::GALGAS_autoLayoutToolbarItemGeneration (void) :
+mAssociatedValues (),
+mEnum (kNotBuilt) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutToolbarItemGeneration GALGAS_autoLayoutToolbarItemGeneration::constructor_view (const GALGAS_string & inAssociatedValue0,
+                                                                                                 const GALGAS_abstractViewInstructionGeneration & inAssociatedValue1
+                                                                                                 COMMA_LOCATION_ARGS) {
+  GALGAS_autoLayoutToolbarItemGeneration result ;
+  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
+    result.mEnum = kEnum_view ;
+    cEnumAssociatedValues * ptr = NULL ;
+    macroMyNew (ptr, cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
+    result.mAssociatedValues.setPointer (ptr) ;
+    macroDetachSharedObject (ptr) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutToolbarItemGeneration GALGAS_autoLayoutToolbarItemGeneration::constructor_space (UNUSED_LOCATION_ARGS) {
+  GALGAS_autoLayoutToolbarItemGeneration result ;
+  result.mEnum = kEnum_space ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutToolbarItemGeneration::method_view (GALGAS_string & outAssociatedValue0,
+                                                          GALGAS_abstractViewInstructionGeneration & outAssociatedValue1,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
+  if (mEnum != kEnum_view) {
+    outAssociatedValue0.drop () ;
+    outAssociatedValue1.drop () ;
+    C_String s ;
+    s << "method @autoLayoutToolbarItemGeneration view invoked with an invalid enum value" ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view * ptr = (const cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+    outAssociatedValue1 = ptr->mAssociatedValue1 ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static const char * gEnumNameArrayFor_autoLayoutToolbarItemGeneration [3] = {
+  "(not built)",
+  "view",
+  "space"
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutToolbarItemGeneration::getter_isView (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_view == mEnum) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutToolbarItemGeneration::getter_isSpace (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_space == mEnum) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutToolbarItemGeneration::description (C_String & ioString,
+                                                          const int32_t inIndentation) const {
+  ioString << "<enum @autoLayoutToolbarItemGeneration: " << gEnumNameArrayFor_autoLayoutToolbarItemGeneration [mEnum] ;
+  mAssociatedValues.description (ioString, inIndentation) ;
+  ioString << ">" ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+typeComparisonResult GALGAS_autoLayoutToolbarItemGeneration::objectCompare (const GALGAS_autoLayoutToolbarItemGeneration & inOperand) const {
   typeComparisonResult result = kOperandNotValid ;
   if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
+    if (mEnum < inOperand.mEnum) {
       result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
+    }else if (mEnum > inOperand.mEnum) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
     }
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_abstractViewInstructionGeneration::GALGAS_abstractViewInstructionGeneration (void) :
-AC_GALGAS_class (false) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_abstractViewInstructionGeneration::GALGAS_abstractViewInstructionGeneration (const cPtr_abstractViewInstructionGeneration * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr, false) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_abstractViewInstructionGeneration) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @abstractViewInstructionGeneration class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_abstractViewInstructionGeneration::cPtr_abstractViewInstructionGeneration (LOCATION_ARGS) :
-acPtr_class (THERE) {
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
 //
-//@abstractViewInstructionGeneration type
+//@autoLayoutToolbarItemGeneration type
 //
 //----------------------------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_abstractViewInstructionGeneration ("abstractViewInstructionGeneration",
-                                                          NULL) ;
+kTypeDescriptor_GALGAS_autoLayoutToolbarItemGeneration ("autoLayoutToolbarItemGeneration",
+                                                        NULL) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor * GALGAS_abstractViewInstructionGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_abstractViewInstructionGeneration ;
+const C_galgas_type_descriptor * GALGAS_autoLayoutToolbarItemGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_autoLayoutToolbarItemGeneration ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-AC_GALGAS_root * GALGAS_abstractViewInstructionGeneration::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_autoLayoutToolbarItemGeneration::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_abstractViewInstructionGeneration (*this)) ;
+    macroMyNew (result, GALGAS_autoLayoutToolbarItemGeneration (*this)) ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_abstractViewInstructionGeneration GALGAS_abstractViewInstructionGeneration::extractObject (const GALGAS_object & inObject,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_abstractViewInstructionGeneration result ;
-  const GALGAS_abstractViewInstructionGeneration * p = (const GALGAS_abstractViewInstructionGeneration *) inObject.embeddedObject () ;
+GALGAS_autoLayoutToolbarItemGeneration GALGAS_autoLayoutToolbarItemGeneration::extractObject (const GALGAS_object & inObject,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_autoLayoutToolbarItemGeneration result ;
+  const GALGAS_autoLayoutToolbarItemGeneration * p = (const GALGAS_autoLayoutToolbarItemGeneration *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_abstractViewInstructionGeneration *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_autoLayoutToolbarItemGeneration *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("abstractViewInstructionGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("autoLayoutToolbarItemGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -11109,6 +11155,93 @@ GALGAS_astComputedVerticalViewDeclaration GALGAS_astComputedVerticalViewDeclarat
 //   Object comparison                                                                           
 //----------------------------------------------------------------------------------------------------------------------
 
+
+
+typeComparisonResult GALGAS_astAbstractViewInstructionDeclaration::objectCompare (const GALGAS_astAbstractViewInstructionDeclaration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAbstractViewInstructionDeclaration::GALGAS_astAbstractViewInstructionDeclaration (void) :
+AC_GALGAS_class (false) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAbstractViewInstructionDeclaration::GALGAS_astAbstractViewInstructionDeclaration (const cPtr_astAbstractViewInstructionDeclaration * inSourcePtr) :
+AC_GALGAS_class (inSourcePtr, false) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_astAbstractViewInstructionDeclaration) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//Pointer class for @astAbstractViewInstructionDeclaration class
+//----------------------------------------------------------------------------------------------------------------------
+
+cPtr_astAbstractViewInstructionDeclaration::cPtr_astAbstractViewInstructionDeclaration (LOCATION_ARGS) :
+acPtr_class (THERE) {
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//@astAbstractViewInstructionDeclaration type
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration ("astAbstractViewInstructionDeclaration",
+                                                              NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_astAbstractViewInstructionDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_astAbstractViewInstructionDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_astAbstractViewInstructionDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAbstractViewInstructionDeclaration GALGAS_astAbstractViewInstructionDeclaration::extractObject (const GALGAS_object & inObject,
+                                                                                                          C_Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_astAbstractViewInstructionDeclaration result ;
+  const GALGAS_astAbstractViewInstructionDeclaration * p = (const GALGAS_astAbstractViewInstructionDeclaration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_astAbstractViewInstructionDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astAbstractViewInstructionDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//   Object comparison                                                                           
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_astHStackViewInstructionDeclaration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_astHStackViewInstructionDeclaration * p = (const cPtr_astHStackViewInstructionDeclaration *) inOperandPtr ;
@@ -14135,75 +14268,6 @@ void callExtensionMethod_check (const cPtr_astAbstractViewDeclaration * inObject
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
       f (inObject, constin_inViewName, constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, out_outGeneration, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@astAbstractViewInstructionDeclaration generateCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static TC_UniqueArray <extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode> gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_generateCode (const int32_t inClassIndex,
-                                        extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode inMethod) {
-  gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void freeExtensionMethod_astAbstractViewInstructionDeclaration_generateCode (void) {
-  gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.free () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_astAbstractViewInstructionDeclaration_generateCode (NULL,
-                                                                               freeExtensionMethod_astAbstractViewInstructionDeclaration_generateCode) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_generateCode (const cPtr_astAbstractViewInstructionDeclaration * inObject,
-                                       const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
-                                       const GALGAS_bool constin_inPreferences,
-                                       const GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                       const GALGAS_propertyMap constin_inPreferencesPropertyMap,
-                                       const GALGAS_semanticContext constin_inSemanticContext,
-                                       const GALGAS_propertyMap constin_inObservablePropertyMap,
-                                       const GALGAS_actionMap constin_inActionMap,
-                                       const GALGAS_string constin_inReceiverSwiftTypeName,
-                                       GALGAS_abstractViewInstructionGeneration & out_outInstruction,
-                                       C_Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outInstruction.drop () ;
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_astAbstractViewInstructionDeclaration) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode f = NULL ;
-    if (classIndex < gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.count ()) {
-      f = gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.count ()) {
-          f = gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, out_outInstruction, inCompiler COMMA_THERE) ;
     }
   }
 }

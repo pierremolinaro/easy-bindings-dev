@@ -10,6 +10,68 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Abstract extension method '@astAbstractViewInstructionDeclaration generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+typedef void (*extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode) (const class cPtr_astAbstractViewInstructionDeclaration * inObject,
+                                                                                             const class GALGAS_autoLayoutViewDeclarationMap constinArgument0,
+                                                                                             const class GALGAS_bool constinArgument1,
+                                                                                             const class GALGAS_propertyMap constinArgument2,
+                                                                                             const class GALGAS_propertyMap constinArgument3,
+                                                                                             const class GALGAS_semanticContext constinArgument4,
+                                                                                             const class GALGAS_propertyMap constinArgument5,
+                                                                                             const class GALGAS_actionMap constinArgument6,
+                                                                                             const class GALGAS_string constinArgument7,
+                                                                                             class GALGAS_abstractViewInstructionGeneration & outArgument8,
+                                                                                             class C_Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void enterExtensionMethod_generateCode (const int32_t inClassIndex,
+                                        extensionMethodSignature_astAbstractViewInstructionDeclaration_generateCode inMethod) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_generateCode (const class cPtr_astAbstractViewInstructionDeclaration * inObject,
+                                       const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
+                                       const GALGAS_bool constin_inPreferences,
+                                       const GALGAS_propertyMap constin_inRootObservablePropertyMap,
+                                       const GALGAS_propertyMap constin_inPreferencesPropertyMap,
+                                       const GALGAS_semanticContext constin_inSemanticContext,
+                                       const GALGAS_propertyMap constin_inObservablePropertyMap,
+                                       const GALGAS_actionMap constin_inActionMap,
+                                       const GALGAS_string constin_inReceiverSwiftTypeName,
+                                       GALGAS_abstractViewInstructionGeneration & out_outInstruction,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @abstractViewInstructionGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_abstractViewInstructionGeneration : public acPtr_class {
+//--- Attributes
+
+//--- Constructor
+  public : cPtr_abstractViewInstructionGeneration (LOCATION_ARGS) ;
+
+//--- Attribute accessors
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const = 0 ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @newHorizontalStackViewGeneration class
 //
 //----------------------------------------------------------------------------------------------------------------------

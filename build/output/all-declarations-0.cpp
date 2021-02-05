@@ -3132,70 +3132,81 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i7_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                               C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.galgas", 44)) ;
-  GALGAS_lstring var_documentName_1970 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 45)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("document-auto-layout.galgas", 46)) ;
-  GALGAS_lstring var_rootEntityName_2027 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 47)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("document-auto-layout.galgas", 48)) ;
-  GALGAS_lstring var_mainViewName_2082 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 49)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 50)) ;
-  GALGAS_outletDeclarationList var_outletDeclarationList_2139 = GALGAS_outletDeclarationList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 51)) ;
-  GALGAS_regularBindingList var_bindingList_2180 = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 52)) ;
-  GALGAS_lstringlist var_actionDeclarationList_2224 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 53)) ;
-  GALGAS_stringset var_signatureList_2258 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("document-auto-layout.galgas", 54)) ;
-  GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2328 = GALGAS_arrayControllerBindingListAST::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 55)) ;
-  GALGAS_astViewDeclarationList var_viewDeclarationList_2381 = GALGAS_astViewDeclarationList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 56)) ;
-  GALGAS_astAutoLayoutToolbarItemList var_autoLayoutToolbarItemList_2446 = GALGAS_astAutoLayoutToolbarItemList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 57)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.galgas", 50)) ;
+  GALGAS_lstring var_documentName_2172 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 51)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("document-auto-layout.galgas", 52)) ;
+  GALGAS_lstring var_rootEntityName_2229 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 53)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("document-auto-layout.galgas", 54)) ;
+  GALGAS_lstring var_mainViewName_2284 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 55)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 56)) ;
+  GALGAS_outletDeclarationList var_outletDeclarationList_2341 = GALGAS_outletDeclarationList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 57)) ;
+  GALGAS_regularBindingList var_bindingList_2382 = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 58)) ;
+  GALGAS_lstringlist var_actionDeclarationList_2426 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 59)) ;
+  GALGAS_stringset var_signatureList_2460 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("document-auto-layout.galgas", 60)) ;
+  GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2530 = GALGAS_arrayControllerBindingListAST::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 61)) ;
+  GALGAS_astViewDeclarationList var_viewDeclarationList_2583 = GALGAS_astViewDeclarationList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 62)) ;
+  GALGAS_astAutoLayoutToolbarItemList var_autoLayoutToolbarItemList_2648 = GALGAS_astAutoLayoutToolbarItemList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 63)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
     case 2: {
-      nt_view_5F_declaration_ (var_viewDeclarationList_2381, inCompiler) ;
+      nt_view_5F_declaration_ (var_viewDeclarationList_2583, inCompiler) ;
     } break ;
     case 3: {
-      nt_action_5F_declaration_ (var_actionDeclarationList_2224, inCompiler) ;
+      nt_action_5F_declaration_ (var_actionDeclarationList_2426, inCompiler) ;
     } break ;
     case 4: {
-      nt_transient_5F_declaration_ (var_documentName_1970, var_rootEntityName_2027, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_transient_5F_declaration_ (var_documentName_2172, var_rootEntityName_2229, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 5: {
-      nt_outlet_5F_declaration_ (var_outletDeclarationList_2139, inCompiler) ;
+      nt_outlet_5F_declaration_ (var_outletDeclarationList_2341, inCompiler) ;
     } break ;
     case 6: {
-      nt_controller_5F_declaration_ (var_documentName_1970, var_rootEntityName_2027, var_arrayControllerBindingListAST_2328, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_controller_5F_declaration_ (var_documentName_2172, var_rootEntityName_2229, var_arrayControllerBindingListAST_2530, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 7: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toolbarItem COMMA_SOURCE_FILE ("document-auto-layout.galgas", 70)) ;
-      GALGAS_lstring var_tittle_2917 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("document-auto-layout.galgas", 71)) ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 72)) ;
-      GALGAS_astAbstractViewInstructionDeclaration var_instruction_3008 ;
-      nt_view_5F_instruction_ (var_instruction_3008, inCompiler) ;
-      var_autoLayoutToolbarItemList_2446.addAssign_operation (var_tittle_2917, var_instruction_3008  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 74)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toolbarItem COMMA_SOURCE_FILE ("document-auto-layout.galgas", 76)) ;
+      switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
+      case 1: {
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_space COMMA_SOURCE_FILE ("document-auto-layout.galgas", 78)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 79)) ;
+        var_autoLayoutToolbarItemList_2648.addAssign_operation (GALGAS_astAutoLayoutToolbarItem::constructor_space (SOURCE_FILE ("document-auto-layout.galgas", 80))  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 80)) ;
+      } break ;
+      case 2: {
+        GALGAS_lstring var_title_3215 = inCompiler->synthetizedAttribute_tokenString () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("document-auto-layout.galgas", 82)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 83)) ;
+        GALGAS_astComputedViewInstruction var_instruction_3280 ;
+        nt_computed_5F_view_5F_instruction_ (var_instruction_3280, inCompiler) ;
+        var_autoLayoutToolbarItemList_2648.addAssign_operation (GALGAS_astAutoLayoutToolbarItem::constructor_view (var_title_3215, var_instruction_3280  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 85))  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 85)) ;
+      } break ;
+      default:
+        break ;
+      }
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 76)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_autoLayoutDocumentDeclarationAST::constructor_new (var_documentName_1970, var_rootEntityName_2027, var_mainViewName_2082, var_outletDeclarationList_2139, var_actionDeclarationList_2224, var_arrayControllerBindingListAST_2328, var_viewDeclarationList_2381, var_autoLayoutToolbarItemList_2446  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 77))  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 77)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientDeclarationAST::constructor_new (var_documentName_1970, var_rootEntityName_2027, GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 90)), GALGAS_string ("documentFilePath").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 91)), GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 92)), GALGAS_bool (false)  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 87))  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 87)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 88)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_autoLayoutDocumentDeclarationAST::constructor_new (var_documentName_2172, var_rootEntityName_2229, var_mainViewName_2284, var_outletDeclarationList_2341, var_actionDeclarationList_2426, var_arrayControllerBindingListAST_2530, var_viewDeclarationList_2583, var_autoLayoutToolbarItemList_2648  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 89))  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 89)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_transientDeclarationAST::constructor_new (var_documentName_2172, var_rootEntityName_2229, GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 102)), GALGAS_string ("documentFilePath").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 103)), GALGAS_observablePropertyList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 104)), GALGAS_bool (false)  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 99))  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 99)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i7_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.galgas", 44)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 45)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("document-auto-layout.galgas", 46)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 47)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("document-auto-layout.galgas", 48)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 49)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 50)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.galgas", 50)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 51)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("document-auto-layout.galgas", 52)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 53)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("document-auto-layout.galgas", 54)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("document-auto-layout.galgas", 55)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 56)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
@@ -3215,17 +3226,27 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
       nt_controller_5F_declaration_parse (inCompiler) ;
     } break ;
     case 7: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toolbarItem COMMA_SOURCE_FILE ("document-auto-layout.galgas", 70)) ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("document-auto-layout.galgas", 71)) ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 72)) ;
-      nt_view_5F_instruction_parse (inCompiler) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toolbarItem COMMA_SOURCE_FILE ("document-auto-layout.galgas", 76)) ;
+      switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
+      case 1: {
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_space COMMA_SOURCE_FILE ("document-auto-layout.galgas", 78)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 79)) ;
+      } break ;
+      case 2: {
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("document-auto-layout.galgas", 82)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 83)) ;
+        nt_computed_5F_view_5F_instruction_parse (inCompiler) ;
+      } break ;
+      default:
+        break ;
+      }
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 76)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document-auto-layout.galgas", 88)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -3240,7 +3261,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2107 = GALGAS_arrayControllerBindingListAST::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 51)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
     case 2: {
       nt_action_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mActionDeclarationList, inCompiler) ;
     } break ;
@@ -3281,7 +3302,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.galgas", 49)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
     case 2: {
       nt_action_5F_declaration_parse (inCompiler) ;
     } break ;
@@ -3337,7 +3358,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_dec
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_view_5F_class_5F_declaration_i10_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                                   C_Lexique_easyBindings_5F_lexique * inCompiler) {
   GALGAS_bool var_userDefined_2894 ;
-  switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 78)) ;
     var_userDefined_2894 = GALGAS_bool (true) ;
@@ -3355,7 +3376,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_v
   GALGAS_autoLayoutClassParameterList var_parameterList_3120 ;
   nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_parameterList_3120, inCompiler) ;
   GALGAS_lstring var_superClassName_3148 ;
-  switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
   case 1: {
     var_superClassName_3148 = GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 89)) ;
   } break ;
@@ -3374,7 +3395,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_v
   GALGAS_bool var_handlesGraphicControllerBinding_3424 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 101)) ;
       var_handlesTableViewBinding_3374 = GALGAS_bool (true) ;
@@ -3404,7 +3425,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_v
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 117)) ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
-    switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 120)) ;
       GALGAS_lstring var_functionName_3891 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3430,7 +3451,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_v
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_view_5F_class_5F_declaration_i10_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 78)) ;
   } break ;
@@ -3443,7 +3464,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_v
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 84)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 85)) ;
   nt_autolayout_5F_formal_5F_parameter_5F_list_parse (inCompiler) ;
-  switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3455,7 +3476,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_v
   }
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 101)) ;
     } break ;
@@ -3479,7 +3500,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_v
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 117)) ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
-    switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 120)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 121)) ;
@@ -3503,7 +3524,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
                                                                                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_ioParameterList.drop () ; // Release 'out' argument
   outArgument_ioParameterList = GALGAS_autoLayoutClassParameterList::constructor_emptyList (SOURCE_FILE ("auto-layout-view-class.galgas", 145)) ;
-  switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3513,7 +3534,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
       GALGAS_lstring var_parameterName_4840 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 150)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 151)) ;
-      switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 153)) ;
         outArgument_ioParameterList.addAssign_operation (var_parameterName_4840, GALGAS_autoLayoutClassParameterType::constructor_typeView (SOURCE_FILE ("auto-layout-view-class.galgas", 154))  COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 154)) ;
@@ -3554,7 +3575,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
       default:
         break ;
       }
-      switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 168)) ;
       } break ;
@@ -3573,7 +3594,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i11_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3582,7 +3603,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
     while (repeatFlag_0) {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 150)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 151)) ;
-      switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 153)) ;
       } break ;
@@ -3592,7 +3613,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
       default:
         break ;
       }
-      switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-class.galgas", 168)) ;
       } break ;
@@ -3620,7 +3641,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     GALGAS_bool var_modelShouldBeWritableProperty_1285 ;
-    switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 27)) ;
       var_modelShouldBeWritableProperty_1285 = GALGAS_bool (true) ;
@@ -3633,7 +3654,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
       break ;
     }
     GALGAS_lstring var_modelTypeName_1476 ;
-    switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
     case 1: {
       var_modelTypeName_1476 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 35)) ;
@@ -3646,7 +3667,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
       break ;
     }
     var_outletClassBindingSpecificationModelList_1227.addAssign_operation (var_modelTypeName_1476, var_modelShouldBeWritableProperty_1285  COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 40)) ;
-    switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 42)) ;
     } break ;
@@ -3656,7 +3677,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
     }
   }
   GALGAS_controllerBindingOptionList var_bindingOptionList_1780 = GALGAS_controllerBindingOptionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 44)) ;
-  switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3669,7 +3690,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
       GALGAS_lstring var_optionType_1930 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 51)) ;
       var_bindingOptionList_1780.addAssign_operation (var_optionName_1872, var_optionType_1930  COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 52)) ;
-      switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 54)) ;
       } break ;
@@ -3692,7 +3713,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_bindingName COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 22)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 27)) ;
     } break ;
@@ -3702,7 +3723,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 35)) ;
     } break ;
@@ -3712,7 +3733,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 42)) ;
     } break ;
@@ -3721,7 +3742,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
       break ;
     }
   }
-  switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -3731,7 +3752,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 49)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 50)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 51)) ;
-      switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.galgas", 54)) ;
       } break ;
@@ -3756,7 +3777,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_declara
   GALGAS_lstring var_viewName_4496 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 116)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 117)) ;
-  switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 119)) ;
     GALGAS_uint var_margin_4557 ;
@@ -3781,7 +3802,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_declara
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view.galgas", 115)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 116)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 117)) ;
-  switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 119)) ;
     nt_margin_parse (inCompiler) ;
@@ -3863,7 +3884,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
                                                                                                    C_Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_26 (inCompiler)) {
     case 2: {
       GALGAS_astAbstractViewInstructionDeclaration var_instruction_6112 ;
       nt_view_5F_instruction_ (var_instruction_6112, inCompiler) ;
@@ -3881,7 +3902,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i16_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_26 (inCompiler)) {
     case 2: {
       nt_view_5F_instruction_parse (inCompiler) ;
     } break ;
@@ -3937,47 +3958,64 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i19_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
                                                                                            C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
-  GALGAS_lstring var_viewClassName_7027 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 192)) ;
-  GALGAS_astAutoLayoutViewInstructionParameterList var_instanciationParameterList_7092 ;
-  nt_view_5F_actual_5F_parameter_5F_list_ (var_instanciationParameterList_7092, inCompiler) ;
-  GALGAS_astAutoLayoutViewFunctionCallList var_autoLayoutViewFunctionCallList_7162 = GALGAS_astAutoLayoutViewFunctionCallList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 194)) ;
+  GALGAS_astComputedViewInstruction var_instruction_7039 ;
+  nt_computed_5F_view_5F_instruction_ (var_instruction_7039, inCompiler) ;
+  outArgument_outInstruction = var_instruction_7039 ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i19_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  nt_computed_5F_view_5F_instruction_parse (inCompiler) ;
+  inCompiler->resetTemplateString () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i20_ (GALGAS_astComputedViewInstruction & outArgument_outInstruction,
+                                                                                                       C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  outArgument_outInstruction.drop () ; // Release 'out' argument
+  GALGAS_lstring var_viewClassName_7320 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 199)) ;
+  GALGAS_astAutoLayoutViewInstructionParameterList var_instanciationParameterList_7385 ;
+  nt_view_5F_actual_5F_parameter_5F_list_ (var_instanciationParameterList_7385, inCompiler) ;
+  GALGAS_astAutoLayoutViewFunctionCallList var_autoLayoutViewFunctionCallList_7455 = GALGAS_astAutoLayoutViewFunctionCallList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 201)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_26 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
     case 2: {
-      GALGAS_lstring var_functionName_7226 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 197)) ;
-      GALGAS_astAutoLayoutViewInstructionParameterList var_actualParameterList_7287 ;
-      nt_view_5F_actual_5F_parameter_5F_list_ (var_actualParameterList_7287, inCompiler) ;
-      var_autoLayoutViewFunctionCallList_7162.addAssign_operation (var_functionName_7226, var_actualParameterList_7287  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 199)) ;
+      GALGAS_lstring var_functionName_7519 = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 204)) ;
+      GALGAS_astAutoLayoutViewInstructionParameterList var_actualParameterList_7580 ;
+      nt_view_5F_actual_5F_parameter_5F_list_ (var_actualParameterList_7580, inCompiler) ;
+      var_autoLayoutViewFunctionCallList_7455.addAssign_operation (var_functionName_7519, var_actualParameterList_7580  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 206)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  GALGAS_tableValueBinding var_tableValueBinding_7434 ;
-  GALGAS_runActionDescriptor var_runActionDescriptor_7501 ;
-  GALGAS_multipleBindingDescriptor var_enabledBindingDescriptor_7579 ;
-  GALGAS_multipleBindingDescriptor var_hiddenBindingDescriptor_7656 ;
-  GALGAS_graphicController var_graphicController_7719 ;
-  GALGAS_regularBindingList var_regularBindingList_7784 ;
-  nt_outlet_5F_binding_ (var_tableValueBinding_7434, var_runActionDescriptor_7501, var_enabledBindingDescriptor_7579, var_hiddenBindingDescriptor_7656, var_graphicController_7719, var_regularBindingList_7784, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 207)) ;
-  outArgument_outInstruction = GALGAS_astComputedViewInstruction::constructor_new (var_viewClassName_7027, var_instanciationParameterList_7092, var_autoLayoutViewFunctionCallList_7162, var_tableValueBinding_7434, var_runActionDescriptor_7501, var_enabledBindingDescriptor_7579, var_hiddenBindingDescriptor_7656, var_graphicController_7719, var_regularBindingList_7784  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 208)) ;
+  GALGAS_tableValueBinding var_tableValueBinding_7727 ;
+  GALGAS_runActionDescriptor var_runActionDescriptor_7794 ;
+  GALGAS_multipleBindingDescriptor var_enabledBindingDescriptor_7872 ;
+  GALGAS_multipleBindingDescriptor var_hiddenBindingDescriptor_7949 ;
+  GALGAS_graphicController var_graphicController_8012 ;
+  GALGAS_regularBindingList var_regularBindingList_8077 ;
+  nt_outlet_5F_binding_ (var_tableValueBinding_7727, var_runActionDescriptor_7794, var_enabledBindingDescriptor_7872, var_hiddenBindingDescriptor_7949, var_graphicController_8012, var_regularBindingList_8077, inCompiler) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 214)) ;
+  outArgument_outInstruction = GALGAS_astComputedViewInstruction::constructor_new (var_viewClassName_7320, var_instanciationParameterList_7385, var_autoLayoutViewFunctionCallList_7455, var_tableValueBinding_7727, var_runActionDescriptor_7794, var_enabledBindingDescriptor_7872, var_hiddenBindingDescriptor_7949, var_graphicController_8012, var_regularBindingList_8077  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 215)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i19_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 192)) ;
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i20_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 199)) ;
   nt_view_5F_actual_5F_parameter_5F_list_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_26 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 197)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 204)) ;
       nt_view_5F_actual_5F_parameter_5F_list_parse (inCompiler) ;
     } break ;
     default:
@@ -3986,69 +4024,69 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
     }
   }
   nt_outlet_5F_binding_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 207)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 214)) ;
   inCompiler->resetTemplateString () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i20_ (GALGAS_astAutoLayoutViewInstructionParameterList & outArgument_outParameterList,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i21_ (GALGAS_astAutoLayoutViewInstructionParameterList & outArgument_outParameterList,
                                                                                                            C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outParameterList.drop () ; // Release 'out' argument
-  outArgument_outParameterList = GALGAS_astAutoLayoutViewInstructionParameterList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 224)) ;
-  switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
+  outArgument_outParameterList = GALGAS_astAutoLayoutViewInstructionParameterList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 231)) ;
+  switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 227)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 234)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      GALGAS_lstring var_parameterName_8447 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 229)) ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 230)) ;
-      switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
+      GALGAS_lstring var_parameterName_8740 = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 236)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 237)) ;
+      switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
       case 1: {
-        GALGAS_lstring var_viewName_8511 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 232)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_8447, GALGAS_autoLayoutClassParameterType::constructor_typeView (SOURCE_FILE ("auto-layout-view.galgas", 233)), GALGAS_string ("self.").add_operation (var_viewName_8511.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 233))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 233)) ;
+        GALGAS_lstring var_viewName_8804 = inCompiler->synthetizedAttribute_tokenString () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 239)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_8740, GALGAS_autoLayoutClassParameterType::constructor_typeView (SOURCE_FILE ("auto-layout-view.galgas", 240)), GALGAS_string ("self.").add_operation (var_viewName_8804.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 240))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 240)) ;
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.galgas", 235)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_8447, GALGAS_autoLayoutClassParameterType::constructor_typeBool (SOURCE_FILE ("auto-layout-view.galgas", 236)), GALGAS_string ("true")  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 236)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.galgas", 242)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_8740, GALGAS_autoLayoutClassParameterType::constructor_typeBool (SOURCE_FILE ("auto-layout-view.galgas", 243)), GALGAS_string ("true")  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 243)) ;
       } break ;
       case 3: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.galgas", 238)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_8447, GALGAS_autoLayoutClassParameterType::constructor_typeBool (SOURCE_FILE ("auto-layout-view.galgas", 239)), GALGAS_string ("false")  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 239)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.galgas", 245)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_8740, GALGAS_autoLayoutClassParameterType::constructor_typeBool (SOURCE_FILE ("auto-layout-view.galgas", 246)), GALGAS_string ("false")  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 246)) ;
       } break ;
       case 4: {
-        GALGAS_luint var_uint_33__32__8827 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 241)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_8447, GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-view.galgas", 242)), var_uint_33__32__8827.getter_uint (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 242))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 242)) ;
+        GALGAS_luint var_uint_33__32__9120 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 248)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_8740, GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-view.galgas", 249)), var_uint_33__32__9120.getter_uint (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 249))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 249)) ;
       } break ;
       case 5: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 244)) ;
-        GALGAS_luint var_uint_33__32__8969 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 245)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_8447, GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-view.galgas", 246)), GALGAS_string ("-").add_operation (var_uint_33__32__8969.getter_uint (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 246)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 246))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 246)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 251)) ;
+        GALGAS_luint var_uint_33__32__9262 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_8740, GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-view.galgas", 253)), GALGAS_string ("-").add_operation (var_uint_33__32__9262.getter_uint (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 253)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 253))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 253)) ;
       } break ;
       case 6: {
-        GALGAS_lstring var_literalString_9109 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.galgas", 248)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_8447, GALGAS_autoLayoutClassParameterType::constructor_typeString (SOURCE_FILE ("auto-layout-view.galgas", 249)), var_literalString_9109.getter_string (HERE).getter_cStringRepresentation (SOURCE_FILE ("auto-layout-view.galgas", 249))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 249)) ;
+        GALGAS_lstring var_literalString_9402 = inCompiler->synthetizedAttribute_tokenString () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.galgas", 255)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_8740, GALGAS_autoLayoutClassParameterType::constructor_typeString (SOURCE_FILE ("auto-layout-view.galgas", 256)), var_literalString_9402.getter_string (HERE).getter_cStringRepresentation (SOURCE_FILE ("auto-layout-view.galgas", 256))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 256)) ;
       } break ;
       default:
         break ;
       }
-      switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 259)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
         break ;
       }
     }
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 254)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 261)) ;
   } break ;
   default:
     break ;
@@ -4057,49 +4095,49 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i20_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i21_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 227)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 234)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 229)) ;
-      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 230)) ;
-      switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 236)) ;
+      inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 237)) ;
+      switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
       case 1: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 232)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 239)) ;
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.galgas", 235)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.galgas", 242)) ;
       } break ;
       case 3: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.galgas", 238)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.galgas", 245)) ;
       } break ;
       case 4: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 241)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 248)) ;
       } break ;
       case 5: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 244)) ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 245)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 251)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252)) ;
       } break ;
       case 6: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.galgas", 248)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.galgas", 255)) ;
       } break ;
       default:
         break ;
       }
-      switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_29 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 259)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
         break ;
       }
     }
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 254)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 261)) ;
   } break ;
   default:
     break ;
@@ -4109,30 +4147,30 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_margin_i21_ (GALGAS_uint & outArgument_outMargin,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_margin_i22_ (GALGAS_uint & outArgument_outMargin,
                                                                               C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outMargin.drop () ; // Release 'out' argument
-  switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
   case 1: {
     outArgument_outMargin = GALGAS_uint ((uint32_t) 0U) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 264)) ;
-    GALGAS_lstring var_parameterName_9528 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 265)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 271)) ;
+    GALGAS_lstring var_parameterName_9821 = inCompiler->synthetizedAttribute_tokenString () ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 272)) ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsNotEqual, var_parameterName_9528.getter_string (HERE).objectCompare (GALGAS_string ("margin"))).boolEnum () ;
+      test_0 = GALGAS_bool (kIsNotEqual, var_parameterName_9821.getter_string (HERE).objectCompare (GALGAS_string ("margin"))).boolEnum () ;
       if (kBoolTrue == test_0) {
         TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (var_parameterName_9528.getter_location (SOURCE_FILE ("auto-layout-view.galgas", 267)), GALGAS_string ("'margin' is required here"), fixItArray1  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 267)) ;
+        inCompiler->emitSemanticError (var_parameterName_9821.getter_location (SOURCE_FILE ("auto-layout-view.galgas", 274)), GALGAS_string ("'margin' is required here"), fixItArray1  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 274)) ;
       }
     }
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 269)) ;
-    GALGAS_luint var_v_9684 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 270)) ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 271)) ;
-    outArgument_outMargin = var_v_9684.getter_uint (HERE) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 276)) ;
+    GALGAS_luint var_v_9977 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 277)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 278)) ;
+    outArgument_outMargin = var_v_9977.getter_uint (HERE) ;
   } break ;
   default:
     break ;
@@ -4141,46 +4179,20 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_margin_i21_ (GA
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_margin_i21_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_margin_i22_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 264)) ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 265)) ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 269)) ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 270)) ;
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 271)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 271)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 272)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 276)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 277)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 278)) ;
   } break ;
   default:
     break ;
   }
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i22_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
-                                                                                           C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  outArgument_outInstruction.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 279)) ;
-  GALGAS_uint var_margin_9978 ;
-  nt_margin_ (var_margin_9978, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 281)) ;
-  GALGAS_astViewInstructionList var_instructionList_10010 = GALGAS_astViewInstructionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 282)) ;
-  nt_view_5F_instruction_5F_list_ (var_instructionList_10010, inCompiler) ;
-  outArgument_outInstruction = GALGAS_astVStackViewInstructionDeclaration::constructor_new (var_margin_9978, var_instructionList_10010  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 284)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 285)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i22_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 279)) ;
-  nt_margin_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 281)) ;
-  nt_view_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 285)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -4189,33 +4201,59 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i23_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
                                                                                            C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 291)) ;
-  GALGAS_uint var_margin_10433 ;
-  nt_margin_ (var_margin_10433, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 293)) ;
-  GALGAS_astViewInstructionList var_instructionList_10465 = GALGAS_astViewInstructionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 294)) ;
-  nt_view_5F_instruction_5F_list_ (var_instructionList_10465, inCompiler) ;
-  outArgument_outInstruction = GALGAS_astHStackViewInstructionDeclaration::constructor_new (var_margin_10433, var_instructionList_10465  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 296)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 297)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 286)) ;
+  GALGAS_uint var_margin_10271 ;
+  nt_margin_ (var_margin_10271, inCompiler) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 288)) ;
+  GALGAS_astViewInstructionList var_instructionList_10303 = GALGAS_astViewInstructionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 289)) ;
+  nt_view_5F_instruction_5F_list_ (var_instructionList_10303, inCompiler) ;
+  outArgument_outInstruction = GALGAS_astVStackViewInstructionDeclaration::constructor_new (var_margin_10271, var_instructionList_10303  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 291)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 292)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i23_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 291)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 286)) ;
   nt_margin_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 293)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 288)) ;
   nt_view_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 297)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 292)) ;
   inCompiler->resetTemplateString () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i24_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i24_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
+                                                                                           C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  outArgument_outInstruction.drop () ; // Release 'out' argument
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 298)) ;
+  GALGAS_uint var_margin_10726 ;
+  nt_margin_ (var_margin_10726, inCompiler) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 300)) ;
+  GALGAS_astViewInstructionList var_instructionList_10758 = GALGAS_astViewInstructionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 301)) ;
+  nt_view_5F_instruction_5F_list_ (var_instructionList_10758, inCompiler) ;
+  outArgument_outInstruction = GALGAS_astHStackViewInstructionDeclaration::constructor_new (var_margin_10726, var_instructionList_10758  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 303)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 304)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i24_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 298)) ;
+  nt_margin_parse (inCompiler) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 300)) ;
+  nt_view_5F_instruction_5F_list_parse (inCompiler) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 304)) ;
+  inCompiler->resetTemplateString () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                       C_Lexique_easyBindings_5F_lexique * inCompiler) {
   GALGAS_bool var_userDefined_1598 ;
-  switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("outlet-class.galgas", 41)) ;
     var_userDefined_1598 = GALGAS_bool (true) ;
@@ -4231,7 +4269,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   GALGAS_lstring var_outletClassName_1762 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.galgas", 48)) ;
   GALGAS_lstring var_superClassName_1790 ;
-  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
   case 1: {
     var_superClassName_1790 = GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("outlet-class.galgas", 51)) ;
   } break ;
@@ -4250,7 +4288,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   GALGAS_bool var_handlesGraphicControllerBinding_2066 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.galgas", 63)) ;
       var_handlesTableViewBinding_2016 = GALGAS_bool (true) ;
@@ -4282,8 +4320,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i24_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("outlet-class.galgas", 41)) ;
   } break ;
@@ -4295,7 +4333,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-class.galgas", 46)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("outlet-class.galgas", 47)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.galgas", 48)) ;
-  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -4307,7 +4345,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   }
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_33 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.galgas", 63)) ;
     } break ;
@@ -4334,7 +4372,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i25_ (GALGAS_outletClassBindingSpecificationList & ioArgument_ioControllerTemplateList,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_ (GALGAS_outletClassBindingSpecificationList & ioArgument_ioControllerTemplateList,
                                                                                                           C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_binding COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 36)) ;
   GALGAS_lstring var_outletClassName_1518 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -4346,7 +4384,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     GALGAS_bool var_modelShouldBeWritableProperty_1715 ;
-    switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 44)) ;
       var_modelShouldBeWritableProperty_1715 = GALGAS_bool (true) ;
@@ -4359,7 +4397,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       break ;
     }
     GALGAS_lstring var_modelTypeName_1906 ;
-    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
     case 1: {
       var_modelTypeName_1906 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 52)) ;
@@ -4372,7 +4410,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       break ;
     }
     var_outletClassBindingSpecificationModelList_1657.addAssign_operation (var_modelTypeName_1906, var_modelShouldBeWritableProperty_1715  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 57)) ;
-    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 59)) ;
     } break ;
@@ -4382,7 +4420,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     }
   }
   GALGAS_controllerBindingOptionList var_bindingOptionList_2210 = GALGAS_controllerBindingOptionList::constructor_emptyList (SOURCE_FILE ("outlet-binding-specification.galgas", 61)) ;
-  switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -4395,7 +4433,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       GALGAS_lstring var_optionType_2360 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 68)) ;
       var_bindingOptionList_2210.addAssign_operation (var_optionName_2302, var_optionType_2360  COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 69)) ;
-      switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 71)) ;
       } break ;
@@ -4415,14 +4453,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i25_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_binding COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 36)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 37)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_bindingName COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 38)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 39)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 44)) ;
     } break ;
@@ -4432,7 +4470,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 52)) ;
     } break ;
@@ -4442,7 +4480,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_34 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 59)) ;
     } break ;
@@ -4451,7 +4489,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       break ;
     }
   }
-  switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -4461,7 +4499,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 66)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 67)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 68)) ;
-      switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-binding-specification.galgas", 71)) ;
       } break ;
@@ -4481,7 +4519,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i26_ (GALGAS_outletDeclarationList & ioArgument_ioOutletDeclarationList,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_ (GALGAS_outletDeclarationList & ioArgument_ioOutletDeclarationList,
                                                                                              C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-declaration.galgas", 46)) ;
   GALGAS_lstring var_outletTypeName_1821 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -4501,7 +4539,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i26_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-declaration.galgas", 46)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-declaration.galgas", 47)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-declaration.galgas", 48)) ;
@@ -4512,7 +4550,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i27_ (GALGAS_tableValueBinding & outArgument_tableValueBinding,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i28_ (GALGAS_tableValueBinding & outArgument_tableValueBinding,
                                                                                          GALGAS_runActionDescriptor & outArgument_runActionDescriptor,
                                                                                          GALGAS_multipleBindingDescriptor & outArgument_enabledBindingDescriptor,
                                                                                          GALGAS_multipleBindingDescriptor & outArgument_hiddenBindingDescriptor,
@@ -4533,7 +4571,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   outArgument_regularBindingList = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.galgas", 80)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-declaration.galgas", 83)) ;
       enumGalgasBool test_1 = kBoolTrue ;
@@ -4559,7 +4597,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
         }
       }
       GALGAS_lstring var_runTargetName_3829 ;
-      switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
       case 1: {
         var_runTargetName_3829 = GALGAS_lstring::constructor_new (GALGAS_string ("self"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 96))  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 96)) ;
       } break ;
@@ -4612,7 +4650,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
         GALGAS_observablePropertyAST var_observableProperty_4996 ;
         nt_observable_5F_property_ (var_observableProperty_4996, inCompiler) ;
         var_observablePropertyList_4901.addAssign_operation (var_observableProperty_4996  COMMA_SOURCE_FILE ("outlet-declaration.galgas", 125)) ;
-        switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
         case 2: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-declaration.galgas", 127)) ;
         } break ;
@@ -4630,7 +4668,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       GALGAS_lstring var_graphicControllerName_5366 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("outlet-declaration.galgas", 137)) ;
       GALGAS_lstring var_propertyName_5394 ;
-      switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
       case 1: {
         var_propertyName_5394 = GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("outlet-declaration.galgas", 140)) ;
       } break ;
@@ -4663,17 +4701,17 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i27_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i28_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-declaration.galgas", 83)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("outlet-declaration.galgas", 87)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-declaration.galgas", 90)) ;
-      switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
@@ -4698,7 +4736,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         nt_observable_5F_property_parse (inCompiler) ;
-        switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
         case 2: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-declaration.galgas", 127)) ;
         } break ;
@@ -4712,7 +4750,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     case 7: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_graphicController COMMA_SOURCE_FILE ("outlet-declaration.galgas", 136)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("outlet-declaration.galgas", 137)) ;
-      switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
@@ -4733,22 +4771,22 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i28_ (GALGAS_observablePropertyAST & outArgument_outObservablePropertyAST,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i29_ (GALGAS_observablePropertyAST & outArgument_outObservablePropertyAST,
                                                                                               C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outObservablePropertyAST.drop () ; // Release 'out' argument
-  switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("observable-property.galgas", 44)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 45)) ;
     GALGAS_lstring var_propertyName_2292 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 46)) ;
-    switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
     case 1: {
       outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_rootProperty (var_propertyName_2292  COMMA_SOURCE_FILE ("observable-property.galgas", 48)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 50)) ;
-      switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
       case 1: {
         GALGAS_lstring var_optionName_2458 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 52)) ;
@@ -4775,7 +4813,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("observable-property.galgas", 67)) ;
-    switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
     case 1: {
       outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_selfWithoutProperty (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("observable-property.galgas", 69))  COMMA_SOURCE_FILE ("observable-property.galgas", 69)) ;
     } break ;
@@ -4783,13 +4821,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 71)) ;
       GALGAS_lstring var_propertyName_3131 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 72)) ;
-      switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
       case 1: {
         outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_selfProperty (var_propertyName_3131  COMMA_SOURCE_FILE ("observable-property.galgas", 74)) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 76)) ;
-        switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
         case 1: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_all COMMA_SOURCE_FILE ("observable-property.galgas", 78)) ;
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 79)) ;
@@ -4830,7 +4868,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 104)) ;
     GALGAS_lstring var_propertyName_4183 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 105)) ;
-    switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
     case 1: {
       outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_prefsProperty (var_propertyName_4183  COMMA_SOURCE_FILE ("observable-property.galgas", 107)) ;
     } break ;
@@ -4848,7 +4886,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     GALGAS_lstring var_controllerName_4507 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("observable-property.galgas", 114)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 115)) ;
-    switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_51 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_one COMMA_SOURCE_FILE ("observable-property.galgas", 117)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 118)) ;
@@ -4859,7 +4897,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     case 2: {
       GALGAS_lstring var_propertyName_4765 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 122)) ;
-      switch (select_easyBindings_5F_syntax_51 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_52 (inCompiler)) {
       case 1: {
         outArgument_outObservablePropertyAST = GALGAS_observablePropertyAST::constructor_selfControllerProperty (var_controllerName_4507, var_propertyName_4765  COMMA_SOURCE_FILE ("observable-property.galgas", 124)) ;
       } break ;
@@ -4914,18 +4952,18 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i28_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i29_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("observable-property.galgas", 44)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 45)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 46)) ;
-    switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
     case 1: {
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 50)) ;
-      switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 52)) ;
       } break ;
@@ -4947,18 +4985,18 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("observable-property.galgas", 67)) ;
-    switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
     case 1: {
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 71)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 72)) ;
-      switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 76)) ;
-        switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
         case 1: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_all COMMA_SOURCE_FILE ("observable-property.galgas", 78)) ;
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 79)) ;
@@ -4991,7 +5029,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("observable-property.galgas", 103)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 104)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 105)) ;
-    switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
     case 1: {
     } break ;
     case 2: {
@@ -5005,7 +5043,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
   case 4: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("observable-property.galgas", 114)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 115)) ;
-    switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_51 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_one COMMA_SOURCE_FILE ("observable-property.galgas", 117)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.galgas", 118)) ;
@@ -5013,7 +5051,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.galgas", 122)) ;
-      switch (select_easyBindings_5F_syntax_51 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_52 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
@@ -5058,7 +5096,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i29_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i30_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                 const GALGAS_lstring constinArgument_inRootEntity,
                                                                                                 GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                 C_Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -5074,7 +5112,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
     GALGAS_observablePropertyAST var_observablePropertyAST_6066 ;
     nt_observable_5F_property_ (var_observablePropertyAST_6066, inCompiler) ;
     var_dependanceList_5972.addAssign_operation (var_observablePropertyAST_6066  COMMA_SOURCE_FILE ("computed-property.galgas", 125)) ;
-    switch (select_easyBindings_5F_syntax_52 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_53 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("computed-property.galgas", 127)) ;
     } break ;
@@ -5089,7 +5127,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i29_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i30_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_computed COMMA_SOURCE_FILE ("computed-property.galgas", 118)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("computed-property.galgas", 119)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("computed-property.galgas", 120)) ;
@@ -5097,7 +5135,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     nt_observable_5F_property_parse (inCompiler) ;
-    switch (select_easyBindings_5F_syntax_52 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_53 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("computed-property.galgas", 127)) ;
     } break ;
@@ -5112,7 +5150,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i30_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i31_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                 const GALGAS_lstring constinArgument_inRootEntity,
                                                                                                 GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                 C_Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -5128,7 +5166,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i30_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i31_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_abstract COMMA_SOURCE_FILE ("transient-property.galgas", 90)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.galgas", 91)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.galgas", 92)) ;
@@ -5139,12 +5177,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i31_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i32_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                 const GALGAS_lstring constinArgument_inRootEntity,
                                                                                                 GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                 C_Lexique_easyBindings_5F_lexique * inCompiler) {
   GALGAS_bool var_isOverriding_5622 ;
-  switch (select_easyBindings_5F_syntax_53 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_54 (inCompiler)) {
   case 1: {
     var_isOverriding_5622 = GALGAS_bool (false) ;
   } break ;
@@ -5167,7 +5205,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
     GALGAS_observablePropertyAST var_observablePropertyAST_5974 ;
     nt_observable_5F_property_ (var_observablePropertyAST_5974, inCompiler) ;
     var_dependanceList_5880.addAssign_operation (var_observablePropertyAST_5974  COMMA_SOURCE_FILE ("transient-property.galgas", 126)) ;
-    switch (select_easyBindings_5F_syntax_54 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_55 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.galgas", 128)) ;
     } break ;
@@ -5182,8 +5220,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i31_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_53 (inCompiler)) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i32_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  switch (select_easyBindings_5F_syntax_54 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -5199,7 +5237,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     nt_observable_5F_property_parse (inCompiler) ;
-    switch (select_easyBindings_5F_syntax_54 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_55 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.galgas", 128)) ;
     } break ;
@@ -5214,13 +5252,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i32_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i33_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                  const GALGAS_lstring /* constinArgument_inRootEntity */,
                                                                                                  GALGAS_arrayControllerBindingListAST & /* ioArgument_ioArrayControllerBindingListAST */,
                                                                                                  GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) {
   GALGAS_proxyKind var_proxyKind_2024 ;
-  switch (select_easyBindings_5F_syntax_55 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_56 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("proxy.galgas", 51)) ;
     var_proxyKind_2024 = GALGAS_proxyKind::constructor_propertyProxy (SOURCE_FILE ("proxy.galgas", 52)) ;
@@ -5249,8 +5287,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i32_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_55 (inCompiler)) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i33_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  switch (select_easyBindings_5F_syntax_56 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("proxy.galgas", 51)) ;
   } break ;
@@ -5273,7 +5311,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i33_ (const GALGAS_lstring constinArgument_inClassName,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_ (const GALGAS_lstring constinArgument_inClassName,
                                                                                                        GALGAS_simpleStoredPropertyList & ioArgument_ioAttributeList,
                                                                                                        GALGAS_stringset & ioArgument_ioSignatureList,
                                                                                                        GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
@@ -5283,7 +5321,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   GALGAS_bool var_needsValidation_2194 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_56 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_57 (inCompiler)) {
     case 2: {
       GALGAS_lstring var_attributeName_2261 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.galgas", 56)) ;
@@ -5354,11 +5392,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i33_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.galgas", 51)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_56 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_57 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.galgas", 56)) ;
     } break ;
@@ -5377,14 +5415,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i34_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                              GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                              C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.galgas", 44)) ;
   GALGAS_bool var_usedForSignature_2047 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_57 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_58 (inCompiler)) {
     case 2: {
       GALGAS_lstring var_attributeName_2114 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-one-relationship.galgas", 48)) ;
@@ -5420,13 +5458,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   GALGAS_lstring var_relationshipName_2523 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.galgas", 59)) ;
   GALGAS_toOneOppositeRelationship var_opposite_2563 ;
-  switch (select_easyBindings_5F_syntax_58 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_59 (inCompiler)) {
   case 1: {
     var_opposite_2563 = GALGAS_toOneOppositeRelationship::constructor_none (SOURCE_FILE ("to-one-relationship.galgas", 62)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-one-relationship.galgas", 64)) ;
-    switch (select_easyBindings_5F_syntax_59 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_60 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.galgas", 66)) ;
       GALGAS_lstring var_inverseRelationshipName_2699 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -5452,11 +5490,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i34_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.galgas", 44)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_57 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_58 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-one-relationship.galgas", 48)) ;
     } break ;
@@ -5467,12 +5505,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-one-relationship.galgas", 58)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.galgas", 59)) ;
-  switch (select_easyBindings_5F_syntax_58 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_59 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-one-relationship.galgas", 64)) ;
-    switch (select_easyBindings_5F_syntax_59 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_60 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.galgas", 66)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.galgas", 67)) ;
@@ -5494,7 +5532,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i35_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                               GALGAS_stringset & ioArgument_ioSignatureList,
                                                                                               GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                               C_Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -5503,7 +5541,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
   GALGAS_bool var_customStore_2421 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_60 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_61 (inCompiler)) {
     case 2: {
       GALGAS_lstring var_attributeName_2488 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-many-relationship.galgas", 61)) ;
@@ -5565,7 +5603,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
     }
   }
   GALGAS_toManyRelationshipOptionAST var_toManyRelationshipOption_3241 ;
-  switch (select_easyBindings_5F_syntax_61 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_62 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-many-relationship.galgas", 83)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-many-relationship.galgas", 84)) ;
@@ -5593,11 +5631,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i35_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-many-relationship.galgas", 56)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_60 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_61 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-many-relationship.galgas", 61)) ;
     } break ;
@@ -5608,7 +5646,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-many-relationship.galgas", 76)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.galgas", 77)) ;
-  switch (select_easyBindings_5F_syntax_61 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_62 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-many-relationship.galgas", 83)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-many-relationship.galgas", 84)) ;
@@ -5631,7 +5669,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_declaration_i36_ (GALGAS_lstringlist & ioArgument_ioActionDeclarationList,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_declaration_i37_ (GALGAS_lstringlist & ioArgument_ioActionDeclarationList,
                                                                                              C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_action COMMA_SOURCE_FILE ("run-action.galgas", 19)) ;
   GALGAS_lstring var_actionName_891 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -5642,7 +5680,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_decla
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_declaration_i36_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_declaration_i37_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_action COMMA_SOURCE_FILE ("run-action.galgas", 19)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("run-action.galgas", 20)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("run-action.galgas", 21)) ;
@@ -5651,13 +5689,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_decla
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i37_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                         C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   nt_booleanMultipleBindingComparison_ (outArgument_outBinding, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_62 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_63 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 75)) ;
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_3134 ;
@@ -5673,11 +5711,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i37_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingComparison_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_62 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_63 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 75)) ;
       nt_booleanMultipleBindingComparison_parse (inCompiler) ;
@@ -5692,11 +5730,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i38_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                         C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   nt_booleanMultipleBindingTerm_ (outArgument_outBinding, inCompiler) ;
-  switch (select_easyBindings_5F_syntax_63 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_64 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -5742,9 +5780,9 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i38_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  switch (select_easyBindings_5F_syntax_63 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_64 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -5779,13 +5817,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i39_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                   C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   nt_booleanMultipleBindingOperand_ (outArgument_outBinding, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_64 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_65 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 121)) ;
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_4974 ;
@@ -5807,11 +5845,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i39_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingOperand_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_64 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_65 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 121)) ;
       nt_booleanMultipleBindingOperand_parse (inCompiler) ;
@@ -5830,7 +5868,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i40_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   GALGAS_observablePropertyAST var_observablePropertyAST_5585 ;
@@ -5840,14 +5878,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i40_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_observable_5F_property_parse (inCompiler) ;
   inCompiler->resetTemplateString () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i42_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 145)) ;
@@ -5858,7 +5896,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i42_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 145)) ;
   nt_booleanMultipleBindingOperand_parse (inCompiler) ;
   inCompiler->resetTemplateString () ;
@@ -5866,7 +5904,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i42_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i43_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 155)) ;
@@ -5876,7 +5914,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i42_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i43_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 155)) ;
   nt_booleanMultipleBindingExpression_parse (inCompiler) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.galgas", 157)) ;
@@ -5885,7 +5923,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i43_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i44_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   GALGAS_luint var_value_6667 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
@@ -5895,18 +5933,18 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i43_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i44_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.galgas", 165)) ;
   inCompiler->resetTemplateString () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i44_ (GALGAS_bindingOptionList & outArgument_outBindingOptions,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_ (GALGAS_bindingOptionList & outArgument_outBindingOptions,
                                                                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBindingOptions.drop () ; // Release 'out' argument
   outArgument_outBindingOptions = GALGAS_bindingOptionList::constructor_emptyList (SOURCE_FILE ("regular-binding.galgas", 20)) ;
-  switch (select_easyBindings_5F_syntax_65 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_66 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -5919,7 +5957,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
       GALGAS_abstractDefaultValue var_optionValue_1073 ;
       nt_explicit_5F_value_ (var_optionValue_1073, inCompiler) ;
       outArgument_outBindingOptions.addAssign_operation (var_optionName_997, var_optionValue_1073  COMMA_SOURCE_FILE ("regular-binding.galgas", 28)) ;
-      switch (select_easyBindings_5F_syntax_66 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_67 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("regular-binding.galgas", 30)) ;
       } break ;
@@ -5937,8 +5975,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i44_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_65 (inCompiler)) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  switch (select_easyBindings_5F_syntax_66 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -5948,7 +5986,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("regular-binding.galgas", 25)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("regular-binding.galgas", 26)) ;
       nt_explicit_5F_value_parse (inCompiler) ;
-      switch (select_easyBindings_5F_syntax_66 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_67 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("regular-binding.galgas", 30)) ;
       } break ;
@@ -5967,7 +6005,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i45_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i46_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                  const GALGAS_lstring constinArgument_inRootEntity,
                                                                                                  GALGAS_arrayControllerBindingListAST & ioArgument_ioArrayControllerBindingListAST,
                                                                                                  GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
@@ -5977,7 +6015,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("array-controller.galgas", 62)) ;
   GALGAS_arrayControllerBoundModelAST var_model_2801 ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("array-controller.galgas", 65)) ;
-  switch (select_easyBindings_5F_syntax_67 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_68 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("array-controller.galgas", 67)) ;
     var_model_2801 = GALGAS_arrayControllerBoundModelAST::constructor_rootToManyRelationship (constinArgument_inRootEntity  COMMA_SOURCE_FILE ("array-controller.galgas", 68)) ;
@@ -5992,7 +6030,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("array-controller.galgas", 73)) ;
   GALGAS_lstring var_relationshipName_3025 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("array-controller.galgas", 74)) ;
-  switch (select_easyBindings_5F_syntax_68 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_69 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -6011,11 +6049,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i45_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i46_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_arrayController COMMA_SOURCE_FILE ("array-controller.galgas", 61)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("array-controller.galgas", 62)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("array-controller.galgas", 65)) ;
-  switch (select_easyBindings_5F_syntax_67 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_68 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("array-controller.galgas", 67)) ;
   } break ;
@@ -6027,7 +6065,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("array-controller.galgas", 73)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("array-controller.galgas", 74)) ;
-  switch (select_easyBindings_5F_syntax_68 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_69 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
@@ -6043,7 +6081,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i46_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i47_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                  const GALGAS_lstring constinArgument_inRootEntity,
                                                                                                  GALGAS_arrayControllerBindingListAST & /* ioArgument_ioArrayControllerBindingListAST */,
                                                                                                  GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
@@ -6061,7 +6099,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     GALGAS_abstractDefaultValue var_attributeValue_3457 ;
     nt_explicit_5F_value_ (var_attributeValue_3457, inCompiler) ;
     var_arrayControllerAttributListAST_3311.addAssign_operation (var_attributeName_3382, var_attributeValue_3457  COMMA_SOURCE_FILE ("table-view-controller.galgas", 80)) ;
-    switch (select_easyBindings_5F_syntax_69 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_70 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 82)) ;
     } break ;
@@ -6072,7 +6110,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 84)) ;
   GALGAS_bool var_isRoot_3594 ;
-  switch (select_easyBindings_5F_syntax_70 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_71 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("table-view-controller.galgas", 88)) ;
     var_isRoot_3594 = GALGAS_bool (true) ;
@@ -6088,7 +6126,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   GALGAS_lstring var_relationshipName_3743 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("table-view-controller.galgas", 95)) ;
   GALGAS_tableViewControllerBoundColumnListAST var_arrayControllerBoundColumnListAST_3820 = GALGAS_tableViewControllerBoundColumnListAST::constructor_emptyList (SOURCE_FILE ("table-view-controller.galgas", 96)) ;
-  switch (select_easyBindings_5F_syntax_71 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_72 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 98)) ;
   } break ;
@@ -6096,13 +6134,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 100)) ;
     bool repeatFlag_1 = true ;
     while (repeatFlag_1) {
-      switch (select_easyBindings_5F_syntax_72 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_73 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_column COMMA_SOURCE_FILE ("table-view-controller.galgas", 103)) ;
         GALGAS_lstring var_columnName_3946 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("table-view-controller.galgas", 104)) ;
         GALGAS_lstring var_sortPropertyName_3980 ;
-        switch (select_easyBindings_5F_syntax_73 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_74 (inCompiler)) {
         case 1: {
           var_sortPropertyName_3980 = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("table-view-controller.galgas", 107)) ;
         } break ;
@@ -6135,7 +6173,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i46_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i47_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_tableViewController COMMA_SOURCE_FILE ("table-view-controller.galgas", 72)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("table-view-controller.galgas", 73)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 75)) ;
@@ -6144,7 +6182,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("table-view-controller.galgas", 77)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 78)) ;
     nt_explicit_5F_value_parse (inCompiler) ;
-    switch (select_easyBindings_5F_syntax_69 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_70 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 82)) ;
     } break ;
@@ -6154,7 +6192,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 84)) ;
-  switch (select_easyBindings_5F_syntax_70 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_71 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("table-view-controller.galgas", 88)) ;
   } break ;
@@ -6166,7 +6204,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 94)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("table-view-controller.galgas", 95)) ;
-  switch (select_easyBindings_5F_syntax_71 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_72 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 98)) ;
   } break ;
@@ -6174,11 +6212,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 100)) ;
     bool repeatFlag_1 = true ;
     while (repeatFlag_1) {
-      switch (select_easyBindings_5F_syntax_72 (inCompiler)) {
+      switch (select_easyBindings_5F_syntax_73 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_column COMMA_SOURCE_FILE ("table-view-controller.galgas", 103)) ;
         inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("table-view-controller.galgas", 104)) ;
-        switch (select_easyBindings_5F_syntax_73 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_74 (inCompiler)) {
         case 1: {
         } break ;
         case 2: {
@@ -6206,7 +6244,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindings_i47_ (GALGAS_tableViewColumnBindingAST & outArgument_outColumnBindingAST,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindings_i48_ (GALGAS_tableViewColumnBindingAST & outArgument_outColumnBindingAST,
                                                                                           C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outColumnBindingAST.drop () ; // Release 'out' argument
   GALGAS_lstring var_runActionDescriptor_4936 = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("table-view-controller.galgas", 136)) ;
@@ -6215,7 +6253,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
   GALGAS_regularBindingList var_regularBindingList_5137 = GALGAS_regularBindingList::constructor_emptyList (SOURCE_FILE ("table-view-controller.galgas", 139)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_74 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_75 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("table-view-controller.galgas", 142)) ;
       enumGalgasBool test_1 = kBoolTrue ;
@@ -6266,7 +6304,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
         GALGAS_observablePropertyAST var_observableProperty_6220 ;
         nt_observable_5F_property_ (var_observableProperty_6220, inCompiler) ;
         var_observablePropertyList_6125.addAssign_operation (var_observableProperty_6220  COMMA_SOURCE_FILE ("table-view-controller.galgas", 169)) ;
-        switch (select_easyBindings_5F_syntax_75 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_76 (inCompiler)) {
         case 2: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 171)) ;
         } break ;
@@ -6289,10 +6327,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindings_i47_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindings_i48_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_74 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_75 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("table-view-controller.galgas", 142)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("table-view-controller.galgas", 146)) ;
@@ -6310,7 +6348,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         nt_observable_5F_property_parse (inCompiler) ;
-        switch (select_easyBindings_5F_syntax_75 (inCompiler)) {
+        switch (select_easyBindings_5F_syntax_76 (inCompiler)) {
         case 2: {
           inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("table-view-controller.galgas", 171)) ;
         } break ;
@@ -6331,7 +6369,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_column_5F_bindi
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i48_ (const GALGAS_lstring constinArgument_inCurrentEntity,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i49_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                  const GALGAS_lstring /* constinArgument_inRootEntity */,
                                                                                                  GALGAS_arrayControllerBindingListAST & /* ioArgument_ioArrayControllerBindingListAST */,
                                                                                                  GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
@@ -6353,7 +6391,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i48_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i49_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_selectionController COMMA_SOURCE_FILE ("selection-controller.galgas", 40)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("selection-controller.galgas", 41)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("selection-controller.galgas", 42)) ;
@@ -6367,10 +6405,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i49_ (GALGAS_abstractDefaultValue & outArgument_outDefaultValue,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i50_ (GALGAS_abstractDefaultValue & outArgument_outDefaultValue,
                                                                                          C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outDefaultValue.drop () ; // Release 'out' argument
-  switch (select_easyBindings_5F_syntax_76 (inCompiler)) {
+  switch (select_easyBindings_5F_syntax_77 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.galgas", 55)) ;
     outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::constructor_new (GALGAS_lbool::constructor_new (GALGAS_bool (true), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 56))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 56))  COMMA_SOURCE_FILE ("explicit-default-value.galgas", 56)) ;
@@ -6419,8 +6457,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i49_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_76 (inCompiler)) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i50_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+  switch (select_easyBindings_5F_syntax_77 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.galgas", 55)) ;
   } break ;
@@ -6456,7 +6494,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i50_ (GALGAS_lstring & ioArgument_ioXcodeProjectString,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i51_ (GALGAS_lstring & ioArgument_ioXcodeProjectString,
                                                                                         C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_xcodeproject COMMA_SOURCE_FILE ("xcode-project.galgas", 12)) ;
   GALGAS_lstring var_xcodeProjectString_434 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -6487,7 +6525,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i50_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i51_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_xcodeproject COMMA_SOURCE_FILE ("xcode-project.galgas", 12)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("xcode-project.galgas", 13)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("xcode-project.galgas", 14)) ;
@@ -6496,13 +6534,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51_ (GALGAS_mainXibDescriptorList & ioArgument_ioElementList,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i52_ (GALGAS_mainXibDescriptorList & ioArgument_ioElementList,
                                                                                    C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_mainxib COMMA_SOURCE_FILE ("main-xib.galgas", 33)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("main-xib.galgas", 34)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_78 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_79 (inCompiler)) {
     case 1: {
       GALGAS_lstring var_outletType_1313 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.galgas", 37)) ;
@@ -6529,7 +6567,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_77 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_78 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.galgas", 52)) ;
     } break ;
@@ -6543,12 +6581,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i52_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_mainxib COMMA_SOURCE_FILE ("main-xib.galgas", 33)) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("main-xib.galgas", 34)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_78 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_79 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.galgas", 37)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("main-xib.galgas", 38)) ;
@@ -6564,7 +6602,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_77 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_78 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.galgas", 52)) ;
     } break ;
@@ -6579,13 +6617,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_ (GALGAS_mainXibLineDescriptorList & outArgument_outLineDescription,
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i53_ (GALGAS_mainXibLineDescriptorList & outArgument_outLineDescription,
                                                                                            C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outLineDescription.drop () ; // Release 'out' argument
   outArgument_outLineDescription = GALGAS_mainXibLineDescriptorList::constructor_emptyList (SOURCE_FILE ("main-xib.galgas", 62)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_80 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_81 (inCompiler)) {
     case 1: {
       GALGAS_lstring var_outletType_2057 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.galgas", 65)) ;
@@ -6601,7 +6639,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_79 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_80 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.galgas", 74)) ;
     } break ;
@@ -6614,10 +6652,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
+void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i53_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_80 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_81 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.galgas", 65)) ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("main-xib.galgas", 66)) ;
@@ -6628,7 +6666,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
     default:
       break ;
     }
-    switch (select_easyBindings_5F_syntax_79 (inCompiler)) {
+    switch (select_easyBindings_5F_syntax_80 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.galgas", 74)) ;
     } break ;
