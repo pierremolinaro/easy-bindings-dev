@@ -143,8 +143,8 @@ end
       // toolbarItem.paletteLabel = String("Open File")
       // toolbarItem.toolTip = String("Open file to be handled")
       toolbarItem.isEnabled = true
-      //toolbarItem.view = AutoLayoutSignatureField ().bind_signature (self.signatureObserver_property)
-      toolbarItem.view = %![mInstruction generate !make: false !"  "]%
+  %![mInstruction generate !"view" !"    "]
+%      toolbarItem.view = view
       return toolbarItem
     %end
     %default :

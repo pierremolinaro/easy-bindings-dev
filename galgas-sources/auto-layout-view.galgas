@@ -1039,12 +1039,13 @@ override getter @newVerticalStackViewGeneration generate ?let @string inViewName
 override getter @computedHorizontalViewGeneration generate ?let @string inViewName -> @string {
   result = "  lazy var " + inViewName + " = self." + inViewName + "_make ()\n\n"
   result += "  fileprivate final func " + inViewName + "_make () -> AutoLayoutStackView {\n"
-  result += "    let view = AutoLayoutHorizontalStackView (margin: " + mMargin + ") {\n"
-  for (instruction) in mInstructionList do
-    result += "      " + [instruction generate !make: true !"    "]
+  result += "    let hStackView = AutoLayoutHorizontalStackView (margin: " + mMargin + ")\n"
+  for (instruction) in mInstructionList do (index)
+    let name = "view_" + index
+    result += [instruction generate !name !"    "]
+    result += "    hStackView.addView (" + name + ", in: .leading)\n"
   end
-  result += "    }\n"
-  result += "    return view\n"
+  result += "    return hStackView\n"
   result += "  }\n\n"
 }
 
@@ -1053,39 +1054,36 @@ override getter @computedHorizontalViewGeneration generate ?let @string inViewNa
 override getter @computedVerticalViewGeneration generate ?let @string inViewName -> @string {
   result = "  lazy var " + inViewName + " = self." + inViewName + "_make ()\n\n"
   result += "  fileprivate final func " + inViewName + "_make () -> AutoLayoutStackView {\n"
-  result += "    let view = AutoLayoutVerticalStackView (margin: " + mMargin + ") {\n"
-  for (instruction) in mInstructionList do
-    result += "      " + [instruction generate !make: true !"    "]
+  result += "    let vStackView = AutoLayoutVerticalStackView (margin: " + mMargin + ")\n"
+  for (instruction) in mInstructionList do (index)
+    let name = "view_" + index
+    result += [instruction generate !name !"    "]
+    result += "    vStackView.addView (" + name + ", in: .leading)\n"
   end
-  result += "    }\n"
-  result += "    return view\n"
+  result += "    return vStackView\n"
   result += "  }\n\n"
 }
 
 #·······················································································································
 
-abstract getter  @abstractViewInstructionGeneration generate ?make: let @bool inGenerateMake ?let @string inIndentation -> @string
+abstract getter  @abstractViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string
 
 #·······················································································································
 
-override getter @autoLayoutSpaceViewInstructionGeneration generate ?make: let @bool unused inGenerateMake ?let @string unused inIndentation -> @string {
-  result = "space ()\n"
+override getter @autoLayoutSpaceViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
+  result = inIndentation + "let " + inName + " = AutoLayoutFlexibleSpaceView ()\n"
 }
 
 #·······················································································································
 
-override getter @autoLayoutLocalViewInstructionGeneration generate ?make: let @bool unused inGenerateMake ?let @string unused inIndentation -> @string {
-  result = "addAutoLayoutView (self." + mLocalView + ")\n"
+override getter @autoLayoutLocalViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
+  result = inIndentation + "let " + inName + " = self." + mLocalView + "\n"
 }
 
 #·······················································································································
 
-override getter @autoLayoutComputedViewInstructionGeneration generate ?make: let @bool inGenerateMake ?let @string inIndentation -> @string {
-  result = mAutoLayoutViewClassName.string
-  if inGenerateMake then
-    result += ".make"
-  end
-  result += " ("
+override getter @autoLayoutComputedViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
+  result = inIndentation + "let " + inName + " = " + mAutoLayoutViewClassName.string + " ("
   for parameter in mParameterList
   do
     result += parameter.mParameterName.string + ": " + parameter.mParameterValue
@@ -1115,24 +1113,30 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?make: let
 
 #·······················································································································
 
-override getter @hStackViewInstructionGeneration generate ?make: let @bool inGenerateMake ?let @string inIndentation -> @string {
-  result = "hStack (margin: " + mMargin + ") {\n"
+override getter @hStackViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
+  result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView (margin: " + mMargin + ")\n"
+  result += inIndentation + "do{\n"
   let indentation = inIndentation + "  "
-  for (instruction) in mInstructionList do
-     result += indentation + "  " + [instruction generate !make: inGenerateMake !indentation] 
+  for (instruction) in mInstructionList do (index)
+     let name = inName + "_" + index
+     result += [instruction generate !name !indentation]
+     result += indentation + inName + ".addView (" + name + ", in: .leading)\n"
   end
-  result += indentation + "}\n"
+  result += inIndentation + "}\n"
 }
 
 #·······················································································································
 
-override getter @vStackViewInstructionGeneration generate ?make: let @bool inGenerateMake ?let @string inIndentation -> @string {
-  result = "vStack (margin: " + mMargin + ") {\n"
+override getter @vStackViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
+  result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView (margin: " + mMargin + ")\n"
+  result += inIndentation + "do{\n"
   let indentation = inIndentation + "  "
-  for (instruction) in mInstructionList do
-     result += indentation + "  " + [instruction generate !make: inGenerateMake !indentation] 
+  for (instruction) in mInstructionList do (index)
+     let name = inName + "_" + index
+     result += [instruction generate !name !indentation]
+     result += indentation + inName + ".addView (" + name + ", in: .leading)\n"
   end
-  result += indentation + "}\n"
+  result += inIndentation + "}\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

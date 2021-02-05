@@ -3343,7 +3343,7 @@ C_PrologueEpilogue gGetter_abstractViewInstructionGeneration_generate (NULL,
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string callExtensionGetter_generate (const cPtr_abstractViewInstructionGeneration * inObject,
-                                            const GALGAS_bool in_inGenerateMake,
+                                            const GALGAS_string in_inName,
                                             const GALGAS_string in_inIndentation,
                                             C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) {
@@ -3370,7 +3370,7 @@ GALGAS_string callExtensionGetter_generate (const cPtr_abstractViewInstructionGe
     if (NULL == f) {
       fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      result = f (inObject, in_inGenerateMake, in_inIndentation, inCompiler COMMA_THERE) ;
+      result = f (inObject, in_inName, in_inIndentation, inCompiler COMMA_THERE) ;
     }
   }
   return result ;

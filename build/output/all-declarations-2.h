@@ -1617,7 +1617,7 @@ class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewG
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef class GALGAS_string (*enterExtensionGetter_abstractViewInstructionGeneration_generate) (const class cPtr_abstractViewInstructionGeneration * inObject,
-                                                                                                const class GALGAS_bool constinArgument0,
+                                                                                                const class GALGAS_string constinArgument0,
                                                                                                 const class GALGAS_string constinArgument1,
                                                                                                 class C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
@@ -1630,7 +1630,7 @@ void enterExtensionGetter_generate (const int32_t inClassIndex,
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewInstructionGeneration * inObject,
-                                                  const GALGAS_bool constin_inGenerateMake,
+                                                  const GALGAS_string constin_inName,
                                                   const GALGAS_string constin_inIndentation,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
