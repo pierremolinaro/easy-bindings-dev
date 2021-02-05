@@ -5075,12 +5075,14 @@ const char * gWrapperFileContent_93_swift_5F_sources = "//----------------------
   "    let windowController = NSWindowController (window: window)\n"
   "    self.addWindowController (windowController)\n"
   "  //--- Build temporary view\n"
-  "    let view = vStack (margin: 0) {\n"
-  "      space ()\n"
-  "      hStack (margin: 0) { space () ; AutoLayoutSpinningProgressIndicator.make () ; space () }\n"
-  "      space ()\n"
-  "    }\n"
-  "    window.contentView = view\n"
+  "    let vStackView = AutoLayoutVerticalStackView ()\n"
+  "    vStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    let hStackView = AutoLayoutHorizontalStackView ()\n"
+  "    hStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    hStackView.appendView (AutoLayoutSpinningProgressIndicator ())\n"
+  "    hStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    vStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    window.contentView = vStackView\n"
   "  //--- Build user interface\n"
   "//    let deadline = DispatchTime.now () + DispatchTimeInterval.seconds (3)\n"
   "//    DispatchQueue.main.asyncAfter (deadline: deadline) {\n"
@@ -5096,12 +5098,14 @@ const char * gWrapperFileContent_93_swift_5F_sources = "//----------------------
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  func ebBuildUserInterface () {\n"
-  "    let view = vStack (margin: 0) {\n"
-  "      space ()\n"
-  "      hStack (margin: 0) { space () ; ALLabel.make (\"Undefined User Interface\") ; space () }\n"
-  "      space ()\n"
-  "    }\n"
-  "    self.windowForSheet\?.contentView = view\n"
+  "    let vStackView = AutoLayoutVerticalStackView ()\n"
+  "    vStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    let hStackView = AutoLayoutHorizontalStackView ()\n"
+  "    hStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    hStackView.appendView (AutoLayoutStaticLabel (title: \"Undefined User Interface\", bold: true, small: false))\n"
+  "    hStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    vStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    self.windowForSheet\?.contentView = vStackView\n"
   "  }\n"
   "  \n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -5470,7 +5474,7 @@ const cRegularFileWrapper gWrapperFile_93_swift_5F_sources (
   "EBAutoLayoutManagedDocument.swift",
   "swift",
   true, // Text file
-  27158, // Text length
+  27701, // Text length
   gWrapperFileContent_93_swift_5F_sources
 ) ;
 

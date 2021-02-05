@@ -72,7 +72,29 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <autolayout_view_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
+  rule <autolayout_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
+    $vStack$
+    $func$
+    $identifier$ ?let functionName
+    <autolayout_formal_parameter_list> !functionName ?let parameterList ?let mangledName
+    $;$
+    [!?ioDeclarationAST.mAutoLayoutVStackFunctionMap insertKey !mangledName !parameterList]
+  }
+  
+ #·····················································································································
+  
+  rule <autolayout_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
+    $hStack$
+    $func$
+    $identifier$ ?let functionName
+    <autolayout_formal_parameter_list> !functionName ?let parameterList ?let mangledName
+    $;$
+    [!?ioDeclarationAST.mAutoLayoutHStackFunctionMap insertKey !mangledName !parameterList]
+  }
+  
+  #·····················································································································
+  
+  rule <autolayout_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     @bool userDefined
     select
       $extern$
@@ -83,7 +105,7 @@ syntax extension easyBindings_syntax {
     $autolayout$
     $class$
     $Identifier$ ?let @lstring outletClassName
-    <autolayout_formal_parameter_list> ?let parameterList
+    <autolayout_formal_parameter_list> !["" nowhere] ?let parameterList ?*
     @lstring superClassName
     select
       superClassName = ["" here]
@@ -119,8 +141,8 @@ syntax extension easyBindings_syntax {
     while
       $func$
       $identifier$ ?let functionName
-      <autolayout_formal_parameter_list> ?let parameterList
-      [!?astAutoLayoutViewFunctionMap insertKey !functionName !parameterList]
+      <autolayout_formal_parameter_list> !functionName ?let parameterList ?let mangledName
+      [!?astAutoLayoutViewFunctionMap insertKey !mangledName !parameterList]
     while
       <auto_layout_view_binding_specification> !outletClassName !?ioDeclarationAST.mAutoLayoutBindingSpecificationList
     end
@@ -141,13 +163,17 @@ syntax extension easyBindings_syntax {
 
  #·····················································································································
   
-  rule <autolayout_formal_parameter_list> !@autoLayoutClassParameterList ioParameterList {
+  rule <autolayout_formal_parameter_list> ?let @lstring inFunctionName 
+                                          !@autoLayoutClassParameterList ioParameterList
+                                          !@lstring outMangledName {
     ioParameterList = {}
+    var mangledName = inFunctionName.string + "("
     select
     or
       $($
       repeat
         $identifier$ ?let parameterName
+        mangledName += parameterName.string + ":"
         $:$
         select
           $view$
@@ -169,6 +195,8 @@ syntax extension easyBindings_syntax {
       end
       $)$
     end
+    mangledName += ")"
+    outMangledName = .new {!mangledName !inFunctionName.location}
   }
 
   #·····················································································································
@@ -194,6 +222,7 @@ override method @autoLayoutViewClassDeclarationAST firstAnalysisPhase
       !mHandlesGraphicControllerBinding
       !mUserDefined
       !mParameterList
+      !mAutoLayoutViewFunctionMap
     ]
   else
     [ioSemanticContext.mAutolayoutViewClassMap searchKey
@@ -204,7 +233,7 @@ override method @autoLayoutViewClassDeclarationAST firstAnalysisPhase
       ?let hasEnabled
       ?let hasHidden
       ?let handlesGraphicControllerBinding
-      ?2*
+      ?3*
     ]
     if mHasRunAction & hasRunAction then
       error mClassName : "$run binding already defined in superclass"
@@ -232,6 +261,7 @@ override method @autoLayoutViewClassDeclarationAST firstAnalysisPhase
       !mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
       !mUserDefined
       !mParameterList
+      !mAutoLayoutViewFunctionMap
     ]
   end
 }
@@ -249,6 +279,7 @@ map @autolayoutViewClassMap {
   @bool mHandleGraphicControllerBinding
   @bool mUserDefined
   @autoLayoutClassParameterList mParameterList
+  @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
 }

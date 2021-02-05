@@ -8,6 +8,8 @@ struct @semanticContext {
   @bindingSpecificationMap mBindingSpecificationMap
   @autolayoutViewClassMap mAutolayoutViewClassMap
   @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap
+  @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap
+  @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -37,6 +39,8 @@ case . "eb"
   sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let sortedDeclarationListAST)
 #----------------------------------------- Semantic Analysis, first phase
   @semanticContext semanticContext = .default
+  semanticContext.mAutoLayoutVStackFunctionMap = declarationStruct.mAutoLayoutVStackFunctionMap
+  semanticContext.mAutoLayoutHStackFunctionMap = declarationStruct.mAutoLayoutHStackFunctionMap
   @generationStruct generation = .default
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     [declaration firstAnalysisPhase !?semanticContext !?generation]

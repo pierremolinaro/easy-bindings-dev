@@ -139,7 +139,7 @@ proc buildAutoLayoutBindingSpecificationMap
       [!?ioSemanticContext.mAutoLayoutBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
     else
       bindingMap = {}
-      [ioSemanticContext.mAutolayoutViewClassMap searchKey !mOutletClassName ?outletSuperClassName ?7*]
+      [ioSemanticContext.mAutolayoutViewClassMap searchKey !mOutletClassName ?outletSuperClassName ?8*]
     end
     [!?bindingMap insertKey
       !mBindingName

@@ -20,6 +20,8 @@ struct @astDeclarationStruct {
   @prefDeclaration mPreferences
   @lstring mXcodeProject
   @lstringlist mGraphvizList ;
+  @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap
+  @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -47,7 +49,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
         !?ioDeclarationAST
         ?*
     while
-      <autolayout_view_class_declaration> !?ioDeclarationAST
+      <autolayout_class_declaration> !?ioDeclarationAST
    while
       <graphviz_declaration> !?ioDeclarationAST
     while

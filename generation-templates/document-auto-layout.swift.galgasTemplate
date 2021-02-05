@@ -102,6 +102,7 @@ end
     self.windowForSheet?.toolbar = toolbar
   %end%//--- Build window content view
     // showDebugBackground ()
+    self.configureProperties ()
     self.windowForSheet?.contentView = self.%!MAIN_VIEW_NAME%
   }
   
@@ -174,7 +175,7 @@ end
   
   //····················································································································
   
-/*  final private func configureProperties () {
+  final private func configureProperties () {
     let start = Date ()
     var opIdx = 0
 %
@@ -189,7 +190,7 @@ for () in DOCUMENT_PROPERTY_LIST do
       let durationMS = Int (Date ().timeIntervalSince (start) * 1000.0)
       Swift.print ("Configure properties \(durationMS) ms")
     }
-  } */
+  }
 
   //····················································································································
   
