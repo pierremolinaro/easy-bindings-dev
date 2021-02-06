@@ -10,6 +10,82 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @astAutoLayoutViewInstructionParameterList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astAutoLayoutViewInstructionParameterList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public : GALGAS_lstring mProperty_mParameterName ;
+
+  public : GALGAS_autoLayoutClassParameterType mProperty_mParameterType ;
+
+  public : GALGAS_astAutoLayoutViewInstructionParameterValue mProperty_mParameter ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public : VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public : GALGAS_astAutoLayoutViewInstructionParameterList_2D_element (void) ;
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public : virtual ~ GALGAS_astAutoLayoutViewInstructionParameterList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public : GALGAS_astAutoLayoutViewInstructionParameterList_2D_element (const GALGAS_lstring & in_mParameterName,
+                                                                        const GALGAS_autoLayoutClassParameterType & in_mParameterType,
+                                                                        const GALGAS_astAutoLayoutViewInstructionParameterValue & in_mParameter) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_astAutoLayoutViewInstructionParameterList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                             C_Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_astAutoLayoutViewInstructionParameterList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                                     const class GALGAS_autoLayoutClassParameterType & inOperand1,
+                                                                                                     const class GALGAS_astAutoLayoutViewInstructionParameterValue & inOperand2
+                                                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_astAutoLayoutViewInstructionParameterList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue getter_mParameter (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mParameterName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutClassParameterType getter_mParameterType (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astAutoLayoutViewInstructionParameterList_2D_element class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterList_2D_element ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @regularBindingList_2D_element struct
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -291,7 +367,8 @@ typedef void (*extensionMethodSignature_astAbstractViewDeclaration_check) (const
                                                                            const class GALGAS_propertyMap constinArgument6,
                                                                            const class GALGAS_actionMap constinArgument7,
                                                                            const class GALGAS_string constinArgument8,
-                                                                           class GALGAS_abstractViewGeneration & outArgument9,
+                                                                           class GALGAS_implicitViewFunctionGenerationList & ioArgument9,
+                                                                           class GALGAS_abstractViewGeneration & outArgument10,
                                                                            class C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
@@ -312,6 +389,7 @@ void callExtensionMethod_check (const class cPtr_astAbstractViewDeclaration * in
                                 const GALGAS_propertyMap constin_inObservablePropertyMap,
                                 const GALGAS_actionMap constin_inActionMap,
                                 const GALGAS_string constin_inReceiverSwiftTypeName,
+                                GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
                                 GALGAS_abstractViewGeneration & out_outGeneration,
                                 C_Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) ;
@@ -621,7 +699,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_semanticContext ;
 
 void extensionMethod_check (const class GALGAS_astAutoLayoutViewFunctionCallList inObject,
                             const class GALGAS_astAutoLayoutViewFunctionMap constin_inFunctionMap,
-                            const class GALGAS_classMap constin_inClassMap,
+                            const class GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
+                            const class GALGAS_bool constin_inPreferences,
+                            const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
+                            const class GALGAS_propertyMap constin_inPreferencesPropertyMap,
+                            const class GALGAS_semanticContext constin_inSemanticContext,
+                            const class GALGAS_propertyMap constin_inObservablePropertyMap,
+                            const class GALGAS_actionMap constin_inActionMap,
+                            const class GALGAS_string constin_inReceiverSwiftTypeName,
+                            class GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
                             class GALGAS_autoLayoutViewInstructionGenerationFuncCallList & out_outFuncCallList,
                             class C_Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
@@ -1003,7 +1089,8 @@ typedef void (*extensionMethodSignature_astAbstractViewInstructionDeclaration_ge
                                                                                              const class GALGAS_propertyMap constinArgument5,
                                                                                              const class GALGAS_actionMap constinArgument6,
                                                                                              const class GALGAS_string constinArgument7,
-                                                                                             class GALGAS_abstractViewInstructionGeneration & outArgument8,
+                                                                                             class GALGAS_implicitViewFunctionGenerationList & ioArgument8,
+                                                                                             class GALGAS_abstractViewInstructionGeneration & outArgument9,
                                                                                              class C_Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
@@ -1023,32 +1110,10 @@ void callExtensionMethod_generateCode (const class cPtr_astAbstractViewInstructi
                                        const GALGAS_propertyMap constin_inObservablePropertyMap,
                                        const GALGAS_actionMap constin_inActionMap,
                                        const GALGAS_string constin_inReceiverSwiftTypeName,
+                                       GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
                                        GALGAS_abstractViewInstructionGeneration & out_outInstruction,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @abstractViewInstructionGeneration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_abstractViewInstructionGeneration : public acPtr_class {
-//--- Attributes
-
-//--- Constructor
-  public : cPtr_abstractViewInstructionGeneration (LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const = 0 ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
-
-} ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -4080,50 +4145,4 @@ class GALGAS_transientPropertyGenerationList_2D_element : public AC_GALGAS_root 
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGenerationList_2D_element ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@transientDependencyListForGeneration transientComputeFunctionCall' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string extensionGetter_transientComputeFunctionCall (const class GALGAS_transientDependencyListForGeneration & inObject,
-                                                                  const class GALGAS_bool & constinArgument0,
-                                                                  const class GALGAS_string & constinArgument1,
-                                                                  const class GALGAS_string & constinArgument2,
-                                                                  const class GALGAS_string & constinArgument3,
-                                                                  class C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@transientDependencyListForGeneration needs_unwSelf' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_transientDependencyListForGeneration & inObject,
-                                                    const class GALGAS_bool & constinArgument0,
-                                                    class C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@observablePropertyAST generateGetProperty' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string extensionGetter_generateGetProperty (const class GALGAS_observablePropertyAST & inObject,
-                                                         class C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@observablePropertyAST generateAddObserverCall' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string extensionGetter_generateAddObserverCall (const class GALGAS_observablePropertyAST & inObject,
-                                                             const class GALGAS_bool & constinArgument0,
-                                                             class C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
 

@@ -107,7 +107,12 @@ syntax extension easyBindings_syntax {
     $autolayout$
     $class$
     $Identifier$ ?let @lstring outletClassName
-    <autolayout_formal_parameter_list> !["" nowhere] ?let parameterList ?*
+    @autoLayoutClassParameterList parameterList
+    select
+      parameterList = {}
+    or
+      <autolayout_formal_parameter_list> !["" nowhere] ?parameterList ?*
+    end
     @lstring superClassName
     select
       superClassName = ["" here]
@@ -170,9 +175,9 @@ syntax extension easyBindings_syntax {
                                           !@lstring outMangledName {
     ioParameterList = {}
     var mangledName = inFunctionName.string + "("
+    $($
     select
     or
-      $($
       repeat
         $identifier$ ?let parameterName
         mangledName += parameterName.string + ":"
@@ -197,8 +202,8 @@ syntax extension easyBindings_syntax {
       while
         $,$
       end
-      $)$
     end
+    $)$
     mangledName += ")"
     outMangledName = .new {!mangledName !inFunctionName.location}
   }

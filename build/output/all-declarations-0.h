@@ -921,6 +921,12 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_81 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected : virtual int32_t select_easyBindings_5F_syntax_82 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_83 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_84 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -9583,7 +9589,8 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
   public : typedef enum {
     kNotBuilt,
     kEnum_string,
-    kEnum_enumFunc
+    kEnum_enumFunc,
+    kEnum_viewFunc
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -9617,6 +9624,9 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
   public : static class GALGAS_astAutoLayoutViewInstructionParameterValue constructor_string (const class GALGAS_string & inOperand0
                                                                                               COMMA_LOCATION_ARGS) ;
 
+  public : static class GALGAS_astAutoLayoutViewInstructionParameterValue constructor_viewFunc (const class GALGAS_astAbstractViewInstructionDeclaration & inOperand0
+                                                                                                COMMA_LOCATION_ARGS) ;
+
 //--------------------------------- Implementation of getter 'description'
   public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
                                               const int32_t inIndentation) const ;
@@ -9635,12 +9645,18 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG void method_viewFunc (class GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEnumFunc (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isString (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isViewFunc (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
@@ -9691,6 +9707,22 @@ class cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_enumFunc 
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_enumFunc (void) {}
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_viewFunc : public cEnumAssociatedValues {
+  public : const GALGAS_astAbstractViewInstructionDeclaration mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_viewFunc (const GALGAS_astAbstractViewInstructionDeclaration & inAssociatedValue0
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_viewFunc (void) {}
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10444,6 +10476,12 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_80 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_81 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_82 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_83 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_84 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15948,244 +15986,5 @@ class cPtr_abstractFileGeneration : public acPtr_class {
 
   public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
 
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//                                               Phase 1: @typeKind enum                                               *
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_typeKind : public AC_GALGAS_root {
-//--------------------------------- Default constructor
-  public : GALGAS_typeKind (void) ;
-
-//--------------------------------- Enumeration
-  public : typedef enum {
-    kNotBuilt,
-    kEnum_boolType,
-    kEnum_integerType,
-    kEnum_uint_33__32_Type,
-    kEnum_doubleType,
-    kEnum_stringType,
-    kEnum_dataType,
-    kEnum_dateType,
-    kEnum_fontType,
-    kEnum_colorType,
-    kEnum_bezierPathType,
-    kEnum_bezierPathArrayType,
-    kEnum_enumType,
-    kEnum_entityType,
-    kEnum_classType,
-    kEnum_transientPropertyExternType
-  } enumeration ;
-  
-//--------------------------------- Private data member
-  private : AC_GALGAS_enumAssociatedValues mAssociatedValues ;
-  public : VIRTUAL_IN_DEBUG const cEnumAssociatedValues * unsafePointer (void) const {
-    return mAssociatedValues.unsafePointer () ;
-  }
-
-  private : enumeration mEnum ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
-  public : VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
-  public : inline enumeration enumValue (void) const { return mEnum ; }
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_typeKind extractObject (const GALGAS_object & inObject,
-                                                 C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_typeKind constructor_bezierPathArrayType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_bezierPathType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_boolType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_classType (const class GALGAS_string & inOperand0
-                                                               COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_colorType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_dataType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_dateType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_doubleType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_entityType (const class GALGAS_string & inOperand0,
-                                                                const class GALGAS_bool & inOperand1
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_enumType (const class GALGAS_string & inOperand0,
-                                                              const class GALGAS_enumConstantMap & inOperand1,
-                                                              const class GALGAS_enumFuncMap & inOperand2
-                                                              COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_fontType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_integerType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_stringType (LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_transientPropertyExternType (const class GALGAS_string & inOperand0
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-  public : static class GALGAS_typeKind constructor_uint_33__32_Type (LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_typeKind & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_classType (class GALGAS_string & outArgument0,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_entityType (class GALGAS_string & outArgument0,
-                                                    class GALGAS_bool & outArgument1,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_enumType (class GALGAS_string & outArgument0,
-                                                  class GALGAS_enumConstantMap & outArgument1,
-                                                  class GALGAS_enumFuncMap & outArgument2,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG void method_transientPropertyExternType (class GALGAS_string & outArgument0,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBezierPathArrayType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBezierPathType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBoolType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isClassType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isColorType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isDataType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isDateType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isDoubleType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntityType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEnumType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isFontType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isIntegerType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isStringType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientPropertyExternType (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isUint_33__32_Type (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_typeKind class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: @typeKind enum, associated values
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cEnumAssociatedValues_typeKind_enumType : public cEnumAssociatedValues {
-  public : const GALGAS_string mAssociatedValue0 ;
-  public : const GALGAS_enumConstantMap mAssociatedValue1 ;
-  public : const GALGAS_enumFuncMap mAssociatedValue2 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_typeKind_enumType (const GALGAS_string & inAssociatedValue0,
-                                                    const GALGAS_enumConstantMap & inAssociatedValue1,
-                                                    const GALGAS_enumFuncMap & inAssociatedValue2
-                                                    COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_typeKind_enumType (void) {}
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-class cEnumAssociatedValues_typeKind_entityType : public cEnumAssociatedValues {
-  public : const GALGAS_string mAssociatedValue0 ;
-  public : const GALGAS_bool mAssociatedValue1 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_typeKind_entityType (const GALGAS_string & inAssociatedValue0,
-                                                      const GALGAS_bool & inAssociatedValue1
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_typeKind_entityType (void) {}
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-class cEnumAssociatedValues_typeKind_classType : public cEnumAssociatedValues {
-  public : const GALGAS_string mAssociatedValue0 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_typeKind_classType (const GALGAS_string & inAssociatedValue0
-                                                     COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_typeKind_classType (void) {}
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-class cEnumAssociatedValues_typeKind_transientPropertyExternType : public cEnumAssociatedValues {
-  public : const GALGAS_string mAssociatedValue0 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_typeKind_transientPropertyExternType (const GALGAS_string & inAssociatedValue0
-                                                                       COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_typeKind_transientPropertyExternType (void) {}
 } ;
 

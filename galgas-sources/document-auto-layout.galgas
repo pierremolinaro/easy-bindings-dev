@@ -208,6 +208,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
 #--- Check auto layout view declarations
   @autoLayoutViewDeclarationMap viewDeclarationMap = {}
   @viewGenerationList viewGenerationList = {}
+  @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
   for (viewName viewDeclaration) in mViewDeclarationList do
     [!?viewDeclarationMap insertKey !viewName]
     [viewDeclaration check
@@ -220,6 +221,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
       !documentPropertyMap
       !documentActionMap
       !mClassName
+      !?implicitViewFunctionGenerationList
       ?let viewGeneration
     ]
     viewGenerationList += !viewName !viewGeneration
@@ -241,6 +243,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
         !documentPropertyMap
         !documentActionMap
         !mClassName
+        !?implicitViewFunctionGenerationList
         ?let @abstractViewInstructionGeneration generatedInstruction
       ]
       autoLayoutToolbarItemGenerationList += !.view {!title: title.string !instruction: generatedInstruction}
@@ -262,6 +265,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     !ebViewGraphicControllerBindingGenerationList
     !viewGenerationList
     !autoLayoutToolbarItemGenerationList
+    !implicitViewFunctionGenerationList
   }
 }
 
@@ -282,6 +286,7 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
   @viewGenerationList mViewDeclarationList
   @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
+  @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
 }
 
 #·······················································································································
@@ -316,6 +321,7 @@ override method @autoLayoutDocumentFileGeneration generateCode
     !mEBViewBindingGenerationList
     !mViewDeclarationList
     !mAutoLayoutToolbarItemGenerationList
+    !mImplicitViewFunctionGenerationList
   ]
   let fileName = mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -344,6 +350,7 @@ private filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templ
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
     ?@viewGenerationList VIEW_GENERATION_LIST
     ?@autoLayoutToolbarItemGenerationList TOOLBAR_ITEM_LIST
+    ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

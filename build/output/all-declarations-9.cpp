@@ -5076,12 +5076,12 @@ const char * gWrapperFileContent_93_swift_5F_sources = "//----------------------
   "    self.addWindowController (windowController)\n"
   "  //--- Build temporary view\n"
   "    let vStackView = AutoLayoutVerticalStackView ()\n"
-  "    vStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    vStackView.appendView (AutoLayoutFlexibleSpace ())\n"
   "    let hStackView = AutoLayoutHorizontalStackView ()\n"
-  "    hStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    hStackView.appendView (AutoLayoutFlexibleSpace ())\n"
   "    hStackView.appendView (AutoLayoutSpinningProgressIndicator ())\n"
-  "    hStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
-  "    vStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    hStackView.appendView (AutoLayoutFlexibleSpace ())\n"
+  "    vStackView.appendView (AutoLayoutFlexibleSpace ())\n"
   "    window.contentView = vStackView\n"
   "  //--- Build user interface\n"
   "//    let deadline = DispatchTime.now () + DispatchTimeInterval.seconds (3)\n"
@@ -5099,12 +5099,12 @@ const char * gWrapperFileContent_93_swift_5F_sources = "//----------------------
   "\n"
   "  func ebBuildUserInterface () {\n"
   "    let vStackView = AutoLayoutVerticalStackView ()\n"
-  "    vStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    vStackView.appendView (AutoLayoutFlexibleSpace ())\n"
   "    let hStackView = AutoLayoutHorizontalStackView ()\n"
-  "    hStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    hStackView.appendView (AutoLayoutFlexibleSpace ())\n"
   "    hStackView.appendView (AutoLayoutStaticLabel (title: \"Undefined User Interface\", bold: true, small: false))\n"
-  "    hStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
-  "    vStackView.appendView (AutoLayoutFlexibleSpaceView ())\n"
+  "    hStackView.appendView (AutoLayoutFlexibleSpace ())\n"
+  "    vStackView.appendView (AutoLayoutFlexibleSpace ())\n"
   "    self.windowForSheet\?.contentView = vStackView\n"
   "  }\n"
   "  \n"
@@ -5474,7 +5474,7 @@ const cRegularFileWrapper gWrapperFile_93_swift_5F_sources (
   "EBAutoLayoutManagedDocument.swift",
   "swift",
   true, // Text file
-  27688, // Text length
+  27656, // Text length
   gWrapperFileContent_93_swift_5F_sources
 ) ;
 

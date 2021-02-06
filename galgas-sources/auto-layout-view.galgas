@@ -94,6 +94,7 @@ list @astAutoLayoutViewFunctionCallList {
 enum @astAutoLayoutViewInstructionParameterValue {
   case string (@string value)
   case enumFunc (@lstring enumTypeName @lstring enumFuncName)
+  case viewFunc (@astAbstractViewInstructionDeclaration instruction)
 }
 #-----------------------------------------------------------------------------------------------------------------------
 
@@ -191,7 +192,6 @@ syntax extension easyBindings_syntax {
  
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $space$
-    $;$
     outInstruction = @astSpaceViewInstruction.new
   }
   
@@ -200,7 +200,6 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $view$
     $identifier$ ?let localViewName
-    $;$
     outInstruction = @astLocalViewInstruction.new {!localViewName}
   }
   
@@ -215,15 +214,38 @@ syntax extension easyBindings_syntax {
  
   rule <computed_view_instruction> !@astComputedViewInstruction outInstruction {
     $Identifier$ ? let viewClassName
-    <view_actual_parameter_list> ?let instanciationParameterList
-    <auto_layout_func_call_list> ?let autoLayoutViewFunctionCallList
-    <outlet_binding> ?let @tableValueBinding tableValueBinding
-                     ?let @runActionDescriptor runActionDescriptor
-                     ?let @multipleBindingDescriptor enabledBindingDescriptor
-                     ?let @multipleBindingDescriptor hiddenBindingDescriptor
-                     ?let @graphicController graphicController
-                     ?let @regularBindingList regularBindingList
-    $;$
+    @astAutoLayoutViewInstructionParameterList instanciationParameterList
+    select
+      instanciationParameterList = {}
+    or
+      <view_actual_parameter_list> ?instanciationParameterList
+    end
+    @tableValueBinding tableValueBinding
+    @runActionDescriptor runActionDescriptor
+    @multipleBindingDescriptor enabledBindingDescriptor
+    @multipleBindingDescriptor hiddenBindingDescriptor
+    @graphicController graphicController
+    @regularBindingList regularBindingList
+    @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList
+    select
+      tableValueBinding = .noTableValueBinding
+      runActionDescriptor = .noAction
+      enabledBindingDescriptor = .noBinding
+      hiddenBindingDescriptor = .noBinding
+      graphicController = .none
+      regularBindingList = {}
+      autoLayoutViewFunctionCallList = {}
+    or
+      ${$
+      <auto_layout_func_call_list> ?autoLayoutViewFunctionCallList
+      <outlet_binding> ?tableValueBinding
+                       ?runActionDescriptor
+                       ?enabledBindingDescriptor
+                       ?hiddenBindingDescriptor
+                       ?graphicController
+                       ?regularBindingList
+      $}$
+    end
     outInstruction = @astComputedViewInstruction.new {
       !viewClassName
       !instanciationParameterList
@@ -241,13 +263,18 @@ syntax extension easyBindings_syntax {
  
   rule <view_actual_parameter_list> !@astAutoLayoutViewInstructionParameterList outParameterList {
     outParameterList = {}
+    $($
     select
     or
-      $($
       repeat
         $identifier$ ?let parameterName
         $:$
         select
+          ${$
+          <view_instruction> ?let @astAbstractViewInstructionDeclaration instruction
+          outParameterList += !parameterName !.typeView !.viewFunc {!instruction: instruction}
+          $}$
+        or
           $view$
           $identifier$ ?let viewName
           outParameterList += !parameterName !.typeView !.string {!value: "self." + viewName.string}
@@ -268,6 +295,7 @@ syntax extension easyBindings_syntax {
           $literal_string$ ?let literalString
           outParameterList += !parameterName !.typeString !.string {!value: [literalString.string cStringRepresentation]}
         or
+          $enum$
           $Identifier$ ?let enumTypeName
           $.$
           $identifier$ ?let enumFuncName
@@ -276,8 +304,8 @@ syntax extension easyBindings_syntax {
       while
         $,$
       end
-      $)$
     end
+    $)$
   }
   
   #·····················································································································
@@ -319,6 +347,12 @@ map @autoLayoutViewDeclarationMap {
 
 #·······················································································································
 
+list @implicitViewFunctionGenerationList {
+  @abstractViewInstructionGeneration mInstruction
+}
+
+#·······················································································································
+
 abstract method @astAbstractViewDeclaration check
   ?let @string inViewName
   ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
@@ -329,13 +363,23 @@ abstract method @astAbstractViewDeclaration check
   ?let @propertyMap inObservablePropertyMap
   ?let @actionMap inActionMap
   ?let @string inReceiverSwiftTypeName
+  ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
   !@abstractViewGeneration outGeneration
 
 #·······················································································································
 
-method @astAutoLayoutViewFunctionCallList check ?let @astAutoLayoutViewFunctionMap inFunctionMap
-                                                ?let @classMap inClassMap
-                                                !@autoLayoutViewInstructionGenerationFuncCallList outFuncCallList {
+method @astAutoLayoutViewFunctionCallList check
+                                ?let @astAutoLayoutViewFunctionMap inFunctionMap
+                                ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                ?let @bool inPreferences
+                                ?let @propertyMap inRootObservablePropertyMap
+                                ?let @propertyMap inPreferencesPropertyMap
+                                ?let @semanticContext inSemanticContext
+                                ?let @propertyMap inObservablePropertyMap
+                                ?let @actionMap inActionMap
+                                ?let @string inReceiverSwiftTypeName
+                                ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
+                                !@autoLayoutViewInstructionGenerationFuncCallList outFuncCallList {
   outFuncCallList = {}
   for (functionName actualParameterList) in self do
     var mangleName = functionName.string + "("
@@ -357,10 +401,25 @@ method @astAutoLayoutViewFunctionCallList check ?let @astAutoLayoutViewFunctionM
           error name : "the parameter name should be '" + formalName + "'"
         end
         switch value
+        case viewFunc (instruction) :
+          [instruction generateCode 
+            !inViewDeclarationMap
+            !inPreferences
+            !inRootObservablePropertyMap
+            !inPreferencesPropertyMap
+            !inSemanticContext
+            !inObservablePropertyMap
+            !inActionMap
+            !inReceiverSwiftTypeName
+            !?ioImplicitViewFunctionGenerationList
+            ?let @abstractViewInstructionGeneration viewInstruction
+          ]
+          parameterList += !name !"self.computeImplicitView_" + [ioImplicitViewFunctionGenerationList length] + " ()"
+          ioImplicitViewFunctionGenerationList += !viewInstruction
         case string (stringValue) :
           parameterList += !name !stringValue
         case enumFunc (enumTypeName funcName) :
-          [inClassMap searchKey !enumTypeName ?let type ?3*]
+          [inSemanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
           if not [type isAtomic] then
             error enumTypeName : "this type should be an enum type"
           else
@@ -383,18 +442,27 @@ method @astAutoLayoutViewFunctionCallList check ?let @astAutoLayoutViewFunctionM
 #·······················································································································
 
 override method @astHorizontalStackViewDeclaration check ?let @string unused inViewName
-                                ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                ?let @bool unused inPreferences
-                                ?let @propertyMap unused inRootObservablePropertyMap
-                                ?let @propertyMap unused inPreferencesPropertyMap
+                                ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                ?let @bool inPreferences
+                                ?let @propertyMap inRootObservablePropertyMap
+                                ?let @propertyMap inPreferencesPropertyMap
                                 ?let @semanticContext inSemanticContext
-                                ?let @propertyMap unused inObservablePropertyMap
-                                ?let @actionMap unused inActionMap
-                                ?let @string unused inReceiverSwiftTypeName
+                                ?let @propertyMap inObservablePropertyMap
+                                ?let @actionMap inActionMap
+                                ?let @string inReceiverSwiftTypeName
+                                ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutHStackFunctionMap
-     !inSemanticContext.mClassMap
+     !inViewDeclarationMap
+     !inPreferences
+     !inRootObservablePropertyMap
+     !inPreferencesPropertyMap
+     !inSemanticContext
+     !inObservablePropertyMap
+     !inActionMap
+     !inReceiverSwiftTypeName
+     !?ioImplicitViewFunctionGenerationList
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   outGeneration = @newHorizontalStackViewGeneration.new {!funcCallList}
@@ -403,18 +471,27 @@ override method @astHorizontalStackViewDeclaration check ?let @string unused inV
 #·······················································································································
 
 override method @astVerticalStackViewDeclaration check ?let @string unused inViewName
-                                  ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                  ?let @bool unused inPreferences
-                                  ?let @propertyMap unused inRootObservablePropertyMap
-                                  ?let @propertyMap unused inPreferencesPropertyMap
+                                  ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                  ?let @bool inPreferences
+                                  ?let @propertyMap inRootObservablePropertyMap
+                                  ?let @propertyMap inPreferencesPropertyMap
                                   ?let @semanticContext inSemanticContext
-                                  ?let @propertyMap unused inObservablePropertyMap
-                                  ?let @actionMap unused inActionMap
-                                  ?let @string unused inReceiverSwiftTypeName
+                                  ?let @propertyMap inObservablePropertyMap
+                                  ?let @actionMap inActionMap
+                                  ?let @string inReceiverSwiftTypeName
+                                  ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
-     !inSemanticContext.mClassMap
+     !inViewDeclarationMap
+     !inPreferences
+     !inRootObservablePropertyMap
+     !inPreferencesPropertyMap
+     !inSemanticContext
+     !inObservablePropertyMap
+     !inActionMap
+     !inReceiverSwiftTypeName
+     !?ioImplicitViewFunctionGenerationList
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   outGeneration = @newVerticalStackViewGeneration.new {!funcCallList}
@@ -432,10 +509,19 @@ override method @astComputedHorizontalViewDeclaration check
                                   ?let @propertyMap inObservablePropertyMap
                                   ?let @actionMap inActionMap
                                   ?let @string inReceiverSwiftTypeName
+                                  ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
-     !inSemanticContext.mClassMap
+     !inViewDeclarationMap
+     !inPreferences
+     !inRootObservablePropertyMap
+     !inPreferencesPropertyMap
+     !inSemanticContext
+     !inObservablePropertyMap
+     !inActionMap
+     !inReceiverSwiftTypeName
+     !?ioImplicitViewFunctionGenerationList
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   @autoLayoutViewInstructionGenerationList instructionList = {}
@@ -449,6 +535,7 @@ override method @astComputedHorizontalViewDeclaration check
       !inObservablePropertyMap
       !inActionMap
       !inReceiverSwiftTypeName
+      !?ioImplicitViewFunctionGenerationList
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -467,11 +554,20 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
                                   ?let @propertyMap inObservablePropertyMap
                                   ?let @actionMap inActionMap
                                   ?let @string inReceiverSwiftTypeName
+                                  ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   !@abstractViewGeneration outGeneration {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
-     !inSemanticContext.mClassMap
+     !inViewDeclarationMap
+     !inPreferences
+     !inRootObservablePropertyMap
+     !inPreferencesPropertyMap
+     !inSemanticContext
+     !inObservablePropertyMap
+     !inActionMap
+     !inReceiverSwiftTypeName
+     !?ioImplicitViewFunctionGenerationList
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do
@@ -484,6 +580,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
       !inObservablePropertyMap
       !inActionMap
       !inReceiverSwiftTypeName
+      !?ioImplicitViewFunctionGenerationList
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -501,6 +598,7 @@ abstract method @astAbstractViewInstructionDeclaration generateCode ?let @autoLa
                                                       ?let @propertyMap inObservablePropertyMap
                                                       ?let @actionMap inActionMap
                                                       ?let @string inReceiverSwiftTypeName
+                                ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                                        !@abstractViewInstructionGeneration outInstruction
 
 #·······················································································································
@@ -514,6 +612,7 @@ override method @astSpaceViewInstruction generateCode
                                 ?let @propertyMap unused inObservablePropertyMap
                                 ?let @actionMap unused inActionMap
                                 ?let @string unused inReceiverSwiftTypeName
+                                ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
                                 !@abstractViewInstructionGeneration outInstruction {
   outInstruction = @autoLayoutSpaceViewInstructionGeneration.new
 }
@@ -529,6 +628,7 @@ override method @astLocalViewInstruction generateCode
                                 ?let @propertyMap unused inObservablePropertyMap
                                 ?let @actionMap unused inActionMap
                                 ?let @string unused inReceiverSwiftTypeName
+                                ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
                                 !@abstractViewInstructionGeneration outInstruction {
   [inViewDeclarationMap searchKey !mLocalView]
   outInstruction = @autoLayoutLocalViewInstructionGeneration.new {!mLocalView.string}
@@ -537,7 +637,7 @@ override method @astLocalViewInstruction generateCode
 #·······················································································································
 
 override method @astComputedViewInstruction generateCode
-                                ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
                                 ?let @bool inPreferences
                                 ?let @propertyMap inRootObservablePropertyMap
                                 ?let @propertyMap inPreferencesPropertyMap
@@ -545,6 +645,7 @@ override method @astComputedViewInstruction generateCode
                                 ?let @propertyMap inObservablePropertyMap
                                 ?let @actionMap inActionMap
                                 ?let @string inReceiverSwiftTypeName
+                                ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 !@abstractViewInstructionGeneration outInstruction {
   [inSemanticContext.mAutolayoutViewClassMap searchKey !mAutoLayoutViewClassName
      ?7*
@@ -564,6 +665,21 @@ override method @astComputedViewInstruction generateCode
         error name : "the parameter name should be '" + formalName + "'"
       end
       switch value
+        case viewFunc (instruction) :
+          [instruction generateCode 
+            !inViewDeclarationMap
+            !inPreferences
+            !inRootObservablePropertyMap
+            !inPreferencesPropertyMap
+            !inSemanticContext
+            !inObservablePropertyMap
+            !inActionMap
+            !inReceiverSwiftTypeName
+            !?ioImplicitViewFunctionGenerationList
+            ?let @abstractViewInstructionGeneration viewInstruction
+          ]
+          parameterList += !name !"self.computeImplicitView_" + [ioImplicitViewFunctionGenerationList length] + " ()"
+          ioImplicitViewFunctionGenerationList += !viewInstruction
       case string (stringValue) :
         parameterList += !name !stringValue
       case enumFunc (enumTypeName funcName) :
@@ -593,7 +709,7 @@ override method @astComputedViewInstruction generateCode
     !inActionMap
     !inReceiverSwiftTypeName
 
-    !mAutoLayoutViewClassName # ?let @lstring inTypeName
+    !mAutoLayoutViewClassName
 
     ! mTableValueBinding
     ! mRunActionDescriptor
@@ -610,7 +726,15 @@ override method @astComputedViewInstruction generateCode
   )
   [mFunctionCallList check
      !functionMap
-     !inSemanticContext.mClassMap
+     !inViewDeclarationMap
+     !inPreferences
+     !inRootObservablePropertyMap
+     !inPreferencesPropertyMap
+     !inSemanticContext
+     !inObservablePropertyMap
+     !inActionMap
+     !inReceiverSwiftTypeName
+     !?ioImplicitViewFunctionGenerationList
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
 #---  
@@ -951,11 +1075,20 @@ override method @astHStackViewInstructionDeclaration generateCode
                         ?let @propertyMap inObservablePropertyMap
                         ?let @actionMap inActionMap
                         ?let @string inReceiverSwiftTypeName
+                        ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                         !@abstractViewInstructionGeneration outInstruction {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutHStackFunctionMap
-     !inSemanticContext.mClassMap
+     !inViewDeclarationMap
+     !inPreferences
+     !inRootObservablePropertyMap
+     !inPreferencesPropertyMap
+     !inSemanticContext
+     !inObservablePropertyMap
+     !inActionMap
+     !inReceiverSwiftTypeName
+     !?ioImplicitViewFunctionGenerationList
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do
@@ -968,6 +1101,7 @@ override method @astHStackViewInstructionDeclaration generateCode
       !inObservablePropertyMap
       !inActionMap
       !inReceiverSwiftTypeName
+      !?ioImplicitViewFunctionGenerationList
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -986,11 +1120,20 @@ override method @astVStackViewInstructionDeclaration generateCode
                         ?let @propertyMap inObservablePropertyMap
                         ?let @actionMap inActionMap
                         ?let @string inReceiverSwiftTypeName
+                        ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                         !@abstractViewInstructionGeneration outInstruction {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
-     !inSemanticContext.mClassMap
+     !inViewDeclarationMap
+     !inPreferences
+     !inRootObservablePropertyMap
+     !inPreferencesPropertyMap
+     !inSemanticContext
+     !inObservablePropertyMap
+     !inActionMap
+     !inReceiverSwiftTypeName
+     !?ioImplicitViewFunctionGenerationList
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do
@@ -1003,6 +1146,7 @@ override method @astVStackViewInstructionDeclaration generateCode
       !inObservablePropertyMap
       !inActionMap
       !inReceiverSwiftTypeName
+      !?ioImplicitViewFunctionGenerationList
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -1193,7 +1337,7 @@ abstract getter  @abstractViewInstructionGeneration generate ?let @string inName
 #·······················································································································
 
 override getter @autoLayoutSpaceViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
-  result = inIndentation + "let " + inName + " = AutoLayoutFlexibleSpaceView ()\n"
+  result = inIndentation + "let " + inName + " = AutoLayoutFlexibleSpace ()\n"
 }
 
 #·······················································································································
@@ -1205,7 +1349,7 @@ override getter @autoLayoutLocalViewInstructionGeneration generate ?let @string 
 #·······················································································································
 
 override getter @autoLayoutComputedViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
-  result = inIndentation + "let " + inName + " = " + mAutoLayoutViewClassName.string + " ("
+  result = inIndentation + "let " + inName + " = AutoLayout" + mAutoLayoutViewClassName.string + " ("
   for parameter in mParameterList
   do
     result += parameter.mParameterName + ": " + parameter.mParameterValue

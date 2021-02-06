@@ -843,7 +843,8 @@ class GALGAS_autoLayoutDocumentFileGeneration : public GALGAS_abstractFileGenera
                                                                                  const class GALGAS_tableViewBindingGenerationList & inOperand8,
                                                                                  const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand9,
                                                                                  const class GALGAS_viewGenerationList & inOperand10,
-                                                                                 const class GALGAS_autoLayoutToolbarItemGenerationList & inOperand11
+                                                                                 const class GALGAS_autoLayoutToolbarItemGenerationList & inOperand11,
+                                                                                 const class GALGAS_implicitViewFunctionGenerationList & inOperand12
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -861,6 +862,9 @@ class GALGAS_autoLayoutDocumentFileGeneration : public GALGAS_abstractFileGenera
 
   public : VIRTUAL_IN_DEBUG void setter_setMEBViewBindingGenerationList (class GALGAS_ebViewGraphicControllerBindingGenerationList inArgument0
                                                                          COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMImplicitViewFunctionGenerationList (class GALGAS_implicitViewFunctionGenerationList inArgument0
+                                                                                COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMMainViewName (class GALGAS_string inArgument0
                                                           COMMA_LOCATION_ARGS) ;
@@ -898,6 +902,8 @@ class GALGAS_autoLayoutDocumentFileGeneration : public GALGAS_abstractFileGenera
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_implicitViewFunctionGenerationList getter_mImplicitViewFunctionGenerationList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mMainViewName (LOCATION_ARGS) const ;
 
@@ -948,6 +954,7 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
   public : GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
   public : GALGAS_viewGenerationList mProperty_mViewDeclarationList ;
   public : GALGAS_autoLayoutToolbarItemGenerationList mProperty_mAutoLayoutToolbarItemGenerationList ;
+  public : GALGAS_implicitViewFunctionGenerationList mProperty_mImplicitViewFunctionGenerationList ;
 
 //--- Constructor
   public : cPtr_autoLayoutDocumentFileGeneration (const GALGAS_string & in_mDocumentName,
@@ -961,7 +968,8 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
                                                   const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                                   const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
                                                   const GALGAS_viewGenerationList & in_mViewDeclarationList,
-                                                  const GALGAS_autoLayoutToolbarItemGenerationList & in_mAutoLayoutToolbarItemGenerationList
+                                                  const GALGAS_autoLayoutToolbarItemGenerationList & in_mAutoLayoutToolbarItemGenerationList,
+                                                  const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -992,6 +1000,8 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
   public : VIRTUAL_IN_DEBUG void setter_setMViewDeclarationList (GALGAS_viewGenerationList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutToolbarItemGenerationList getter_mAutoLayoutToolbarItemGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutToolbarItemGenerationList (GALGAS_autoLayoutToolbarItemGenerationList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_implicitViewFunctionGenerationList getter_mImplicitViewFunctionGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMImplicitViewFunctionGenerationList (GALGAS_implicitViewFunctionGenerationList inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2127,36 +2137,4 @@ void extensionSetter_addGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
                                class GALGAS_string & out_outGroupRef,
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension setter '@XcodeProjectDescriptor addGroupWithFiles'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void extensionSetter_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                        const class GALGAS_string constin_inGroupName,
-                                        const class GALGAS_string constin_inGroupPath,
-                                        const class GALGAS_stringset constin_inFileNames,
-                                        class GALGAS_stringlist & io_ioCppFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioMFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioMMFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioSwiftFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioFrameWorkFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioResourceFileBuildRefs,
-                                        class GALGAS_string & out_outGroupRef,
-                                        class C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension setter '@XcodeProjectDescriptor addICNS_file'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void extensionSetter_addICNS_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                      const class GALGAS_string constin_inFileName,
-                                      class GALGAS_string & out_outFileRef,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
 
