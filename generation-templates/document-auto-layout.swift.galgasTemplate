@@ -276,8 +276,17 @@ end
   //   removeUserInterface
   //····················································································································
 
-/*  override func removeUserInterface () {
+  override func removeUserInterface () {
     super.removeUserInterface ()
+  //--------------------------- Clean up auto layout views
+%
+for () in VIEW_GENERATION_LIST do
+  %    self.%!mViewName%.ebCleanUp ()\n%
+end
+%    let toolbarItems = self.windowForSheet?.toolbar?.items ?? []
+    for item in toolbarItems {
+      item.view?.ebCleanUp ()
+    }
   //--------------------------- Unbind regular bindings
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
@@ -287,9 +296,9 @@ end
 %
 for () in MULTIPLE_BINDING_GENERATION_LIST do
   for () in [mBoundObjectExpression observedModelSet] do
-  %    %!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
+  % //   %!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
   end
-  %    self.mController_%!mOutletName%_%!mBindingName% = nil\n%
+  % //   self.mController_%!mOutletName%_%!mBindingName% = nil\n%
 end
 %  //--------------------------- Unbind array controllers
 %
@@ -316,7 +325,7 @@ end
 for () in OUTLET_GENERATION_MAP do
    %    self.%!lkey.string% = nil\n%
 end
-%  } */
+%  }
 
   //····················································································································
 

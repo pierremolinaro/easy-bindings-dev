@@ -18,6 +18,7 @@ class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
 
 enum @autoLayoutClassParameterType {
   case typeString
+  case typeStringArray
   case typeInt
   case typeBool
   case typeView
@@ -28,6 +29,7 @@ enum @autoLayoutClassParameterType {
 getter @autoLayoutClassParameterType string -> @string {
   switch self
   case typeString : result = "String"
+  case typeStringArray : result = "String array"
   case typeInt : result = "Int"
   case typeBool : result = "Bool"
   case typeView : result = "a view"
@@ -182,6 +184,8 @@ syntax extension easyBindings_syntax {
          $Identifier$ ?let parameterTypeName
          if parameterTypeName.string == "String" then
            ioParameterList += !parameterName !.typeString
+         elsif parameterTypeName.string == "StringArray" then
+           ioParameterList += !parameterName !.typeStringArray
          elsif parameterTypeName.string == "Int" then
            ioParameterList += !parameterName !.typeInt
          elsif parameterTypeName.string == "Bool" then

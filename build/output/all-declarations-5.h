@@ -304,7 +304,8 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_enumForGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                  const class GALGAS_lstringlist & inOperand1
+                                                                  const class GALGAS_lstringlist & inOperand1,
+                                                                  const class GALGAS_enumFuncMap & inOperand2
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -313,6 +314,9 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- Setters
   public : VIRTUAL_IN_DEBUG void setter_setMEnumConstantList (class GALGAS_lstringlist inArgument0
                                                               COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMEnumFuncMap (class GALGAS_enumFuncMap inArgument0
+                                                         COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMEnumName (class GALGAS_string inArgument0
                                                       COMMA_LOCATION_ARGS) ;
@@ -323,6 +327,8 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mEnumConstantList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_enumFuncMap getter_mEnumFuncMap (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEnumName (LOCATION_ARGS) const ;
 
@@ -349,10 +355,12 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 //--- Attributes
   public : GALGAS_string mProperty_mEnumName ;
   public : GALGAS_lstringlist mProperty_mEnumConstantList ;
+  public : GALGAS_enumFuncMap mProperty_mEnumFuncMap ;
 
 //--- Constructor
   public : cPtr_enumForGeneration (const GALGAS_string & in_mEnumName,
-                                   const GALGAS_lstringlist & in_mEnumConstantList
+                                   const GALGAS_lstringlist & in_mEnumConstantList,
+                                   const GALGAS_enumFuncMap & in_mEnumFuncMap
                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -363,6 +371,8 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG void setter_setMEnumName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mEnumConstantList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMEnumConstantList (GALGAS_lstringlist inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_enumFuncMap getter_mEnumFuncMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMEnumFuncMap (GALGAS_enumFuncMap inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -1436,96 +1446,6 @@ class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractVie
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @booleanMultipleBindingLiteralIntForGeneration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_booleanMultipleBindingLiteralIntForGeneration : public GALGAS_abstractBooleanMultipleBindingExpressionForGeneration {
-//--- Constructor
-  public : GALGAS_booleanMultipleBindingLiteralIntForGeneration (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_booleanMultipleBindingLiteralIntForGeneration constructor_default (LOCATION_ARGS) ;
-
-//---
-  public : inline const class cPtr_booleanMultipleBindingLiteralIntForGeneration * ptr (void) const { return (const cPtr_booleanMultipleBindingLiteralIntForGeneration *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_booleanMultipleBindingLiteralIntForGeneration (const cPtr_booleanMultipleBindingLiteralIntForGeneration * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_booleanMultipleBindingLiteralIntForGeneration extractObject (const GALGAS_object & inObject,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_booleanMultipleBindingLiteralIntForGeneration constructor_new (const class GALGAS_uint & inOperand0
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_booleanMultipleBindingLiteralIntForGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_uint inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mValue (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_booleanMultipleBindingLiteralIntForGeneration class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_booleanMultipleBindingLiteralIntForGeneration ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @booleanMultipleBindingLiteralIntForGeneration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_booleanMultipleBindingLiteralIntForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
-//--- Attributes
-  public : GALGAS_uint mProperty_mValue ;
-
-//--- Constructor
-  public : cPtr_booleanMultipleBindingLiteralIntForGeneration (const GALGAS_uint & in_mValue
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mValue (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMValue (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 // Phase 1: @arrayControllerGeneration class
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -2193,4 +2113,50 @@ void extensionSetter_addAppTarget (class GALGAS_XcodeProjectDescriptor & ioObjec
                                    class GALGAS_string & out_outProductFileRef,
                                    class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension setter '@XcodeProjectDescriptor addGroup'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionSetter_addGroup (class GALGAS_XcodeProjectDescriptor & ioObject,
+                               const class GALGAS_string constin_inGroupName,
+                               const class GALGAS_string constin_inGroupPath,
+                               const class GALGAS_stringlist constin_inChildrenRefs,
+                               class GALGAS_string & out_outGroupRef,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension setter '@XcodeProjectDescriptor addGroupWithFiles'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionSetter_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                        const class GALGAS_string constin_inGroupName,
+                                        const class GALGAS_string constin_inGroupPath,
+                                        const class GALGAS_stringset constin_inFileNames,
+                                        class GALGAS_stringlist & io_ioCppFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioMFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioMMFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioSwiftFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioFrameWorkFileBuildRefs,
+                                        class GALGAS_stringlist & io_ioResourceFileBuildRefs,
+                                        class GALGAS_string & out_outGroupRef,
+                                        class C_Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension setter '@XcodeProjectDescriptor addICNS_file'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionSetter_addICNS_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
+                                      const class GALGAS_string constin_inFileName,
+                                      class GALGAS_string & out_outFileRef,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
 

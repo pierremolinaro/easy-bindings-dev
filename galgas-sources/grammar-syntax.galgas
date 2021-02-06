@@ -22,6 +22,7 @@ struct @astDeclarationStruct {
   @lstringlist mGraphvizList ;
   @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap
   @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap
+  @enumerationFunctionListAST mEnumerationFunctionListAST
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -54,6 +55,8 @@ syntax easyBindings_syntax (easyBindings_lexique) {
       <graphviz_declaration> !?ioDeclarationAST
     while
       <enum_declaration> !?ioDeclarationAST
+   while
+      <enum_function_declaration> !?ioDeclarationAST
     while
       <entity_declaration>  !?ioDeclarationAST
     while

@@ -91,10 +91,16 @@ list @astAutoLayoutViewFunctionCallList {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+enum @astAutoLayoutViewInstructionParameterValue {
+  case string (@string value)
+  case enumFunc (@lstring enumTypeName @lstring enumFuncName)
+}
+#-----------------------------------------------------------------------------------------------------------------------
+
 list @astAutoLayoutViewInstructionParameterList {
   @lstring mParameterName
   @autoLayoutClassParameterType mParameterType
-  @string mParameterValue
+  @astAutoLayoutViewInstructionParameterValue mParameter
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -243,23 +249,28 @@ syntax extension easyBindings_syntax {
         $:$
         select
           $identifier$ ?let viewName
-          outParameterList += !parameterName !.typeView !"self." + viewName.string
+          outParameterList += !parameterName !.typeView !.string {!value: "self." + viewName.string}
         or
           $yes$
-          outParameterList += !parameterName !.typeBool !"true"
+          outParameterList += !parameterName !.typeBool !.string {!value: "true"}
         or
           $no$
-          outParameterList += !parameterName !.typeBool !"false"
+          outParameterList += !parameterName !.typeBool !.string {!value: "false"}
         or
           $literal_integer$ ?let uint32
-          outParameterList += !parameterName !.typeInt ![uint32.uint string]
+          outParameterList += !parameterName !.typeInt !.string {!value: [uint32.uint string]}
         or
           $-$
           $literal_integer$ ?let uint32
-          outParameterList += !parameterName !.typeInt !"-" + [uint32.uint string]
+          outParameterList += !parameterName !.typeInt !.string {!value: "-" + [uint32.uint string]}
         or
           $literal_string$ ?let literalString
-          outParameterList += !parameterName !.typeString ![literalString.string cStringRepresentation]
+          outParameterList += !parameterName !.typeString !.string {!value: [literalString.string cStringRepresentation]}
+        or
+          $Identifier$ ?let enumTypeName
+          $.$
+          $identifier$ ?let enumFuncName
+          outParameterList += !parameterName !.typeStringArray !.enumFunc {!enumTypeName: enumTypeName !enumFuncName: enumFuncName}
         end
       while
         $,$
@@ -322,6 +333,7 @@ abstract method @astAbstractViewDeclaration check
 #·······················································································································
 
 method @astAutoLayoutViewFunctionCallList check ?let @astAutoLayoutViewFunctionMap inFunctionMap
+                                                ?let @classMap inClassMap
                                                 !@autoLayoutViewInstructionGenerationFuncCallList outFuncCallList {
   outFuncCallList = {}
   for (functionName actualParameterList) in self do
@@ -343,7 +355,24 @@ method @astAutoLayoutViewFunctionCallList check ?let @astAutoLayoutViewFunctionM
         if name.string != formalName.string then
           error name : "the parameter name should be '" + formalName + "'"
         end
-        parameterList += !name !value
+        switch value
+        case string (stringValue) :
+          parameterList += !name !stringValue
+        case enumFunc (enumTypeName funcName) :
+          [inClassMap searchKey !enumTypeName ?let type ?3*]
+          if not [type isAtomic] then
+            error enumTypeName : "this type should be an enum type"
+          else
+            [type atomic ?kind:let typeKind]
+            if [typeKind isEnumType] then
+              [typeKind enumType ?2* ?funcMap:let funcMap]
+              [funcMap searchKey !funcName ?*]
+            else
+              error enumTypeName : "this type should be an enum type"
+            end
+          end
+          parameterList += !name !enumTypeName.string + "." + funcName + " ()"
+        end
       end
     end
     outFuncCallList += !functionName.string !parameterList
@@ -364,6 +393,7 @@ override method @astHorizontalStackViewDeclaration check ?let @string unused inV
                                 !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutHStackFunctionMap
+     !inSemanticContext.mClassMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   outGeneration = @newHorizontalStackViewGeneration.new {!funcCallList}
@@ -383,6 +413,7 @@ override method @astVerticalStackViewDeclaration check ?let @string unused inVie
                                   !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
+     !inSemanticContext.mClassMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   outGeneration = @newVerticalStackViewGeneration.new {!funcCallList}
@@ -403,28 +434,9 @@ override method @astComputedHorizontalViewDeclaration check
                                   !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
+     !inSemanticContext.mClassMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-#  @autoLayoutViewInstructionGenerationFuncCallList funcCallList = {}
-#  for (functionName actualParameterList) in mFunctionCallList do
-#    [inSemanticContext.mAutoLayoutVStackFunctionMap searchKey !functionName ?let formalParameterList]
-#    @autoLayoutViewInstructionGenerationParameterList parameterList = {}
-#    if [formalParameterList length] != [actualParameterList length] then
-#      error functionName 
-#      : [[formalParameterList length] string] + " parameter(s) required, " + [actualParameterList length] + " provided"
-#    else
-#      for (name type value) in actualParameterList, (formalName formalType) in formalParameterList do
-#        if type != formalType then
-#          error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
-#        end
-#        if name.string != formalName.string then
-#          error name : "the parameter name should be '" + formalName + "'"
-#        end
-#        parameterList += !name !value
-#      end
-#    end
-#    funcCallList += !functionName.string !parameterList
-#  end
   @autoLayoutViewInstructionGenerationList instructionList = {}
   for (instruction) in mInstructionList do
     [instruction generateCode
@@ -458,6 +470,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
+     !inSemanticContext.mClassMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do
@@ -549,7 +562,24 @@ override method @astComputedViewInstruction generateCode
       if name.string != formalName.string then
         error name : "the parameter name should be '" + formalName + "'"
       end
-      parameterList += !name !value
+      switch value
+      case string (stringValue) :
+        parameterList += !name !stringValue
+      case enumFunc (enumTypeName funcName) :
+        [inSemanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
+        if not [type isAtomic] then
+          error enumTypeName : "this type should be an enum type"
+        else
+          [type atomic ?kind:let typeKind]
+          if [typeKind isEnumType] then
+            [typeKind enumType ?2* ?funcMap:let funcMap]
+            [funcMap searchKey !funcName ?*]
+          else
+            error enumTypeName : "this type should be an enum type"
+          end
+        end
+        parameterList += !name !enumTypeName.string + "." + funcName + " ()"
+      end
     end
   end
 #--- Bindings
@@ -579,6 +609,7 @@ override method @astComputedViewInstruction generateCode
   )
   [mFunctionCallList check
      !functionMap
+     !inSemanticContext.mClassMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
 #---  
@@ -923,6 +954,7 @@ override method @astHStackViewInstructionDeclaration generateCode
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutHStackFunctionMap
+     !inSemanticContext.mClassMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do
@@ -957,6 +989,7 @@ override method @astVStackViewInstructionDeclaration generateCode
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
+     !inSemanticContext.mClassMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do

@@ -26,7 +26,7 @@ getter @typeKind typeName -> @string {
     result = "NSBezierPath"
   case bezierPathArrayType :
     result = "BezierPathArray"
-  case enumType (typeName *) :
+  case enumType (typeName 2*) :
     result = typeName
   case entityType (typeName *) :
     result = typeName
@@ -45,7 +45,7 @@ getter @typeKind isComparable -> @bool outResult {
     outResult = true
   case fontType, colorType, bezierPathType, bezierPathArrayType :
     outResult = false
-  case enumType (* *) :
+  case enumType (3*) :
     outResult = false
   case entityType (2*) :
     outResult = false
@@ -65,7 +65,7 @@ getter @typeKind isGraphic -> @bool outResult {
     outResult = false
   case fontType, colorType :
     outResult = false
-  case enumType (* *) :
+  case enumType (3*) :
     outResult = false
   case entityType (* isGraphic) :
     outResult = isGraphic
@@ -132,7 +132,7 @@ getter @typeKind swiftTypeName -> @string outResult {
   case bezierPathType : outResult = "NSBezierPath"
   case bezierPathArrayType : outResult = "BezierPathArray"
   case entityType (@string entityName *) : outResult = entityName
-  case enumType (@string enumTypeName *) : outResult = enumTypeName
+  case enumType (@string enumTypeName 2*) : outResult = enumTypeName
   case classType (@string classTypeName) : outResult = classTypeName
   case transientPropertyExternType (@string classTypeName) : outResult = classTypeName
   end

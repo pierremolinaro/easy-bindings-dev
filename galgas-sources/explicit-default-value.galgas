@@ -119,7 +119,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
          stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
     case classType (*) :
-    case enumType (* *) :
+    case enumType (3*) :
     case transientPropertyExternType (*) :
     end
   end
@@ -154,7 +154,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
       found = true
     case boolType, dateType, dataType, doubleType, stringType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
-    case enumType (* *) :
+    case enumType (3*) :
     case classType (*) :
     case transientPropertyExternType (*) :
     end
@@ -182,7 +182,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     case boolType, dateType, dataType, integerType, uint32Type,
          stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
-    case enumType (* *) :
+    case enumType (3*) :
     case classType (*) :
     case transientPropertyExternType (*) :
     end
@@ -210,7 +210,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     case boolType, dateType, dataType, integerType, uint32Type, doubleType,
          fontType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
-    case enumType (* *) :
+    case enumType (3*) :
     case classType (*) :
     case transientPropertyExternType (*) :
     end
@@ -313,7 +313,7 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
       else
         error mValue : "only 'empty' is accepted as default BezierPathArray"  
       end
-    case enumType (@string enumTypeName @enumConstantMap constantMap) :
+    case enumType (@string enumTypeName @enumConstantMap constantMap *) :
       found = true
       if [constantMap hasKey !mValue.string] then
         outSwiftDefaultValueAsString = enumTypeName + "." + mValue.string

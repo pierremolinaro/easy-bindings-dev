@@ -130,7 +130,7 @@ proc buildBindingSpecificationMap
     for () in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         outletBindingSpecificationModelList +=
-          !.enumType {!enumTypeName: "" !constantMap: {}} # Any enum type
+          !.enumType {!enumTypeName: "" !constantMap: {} !funcMap: {}} # Any enum type
           !mModelShouldBeWritableProperty
       else
         [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]
