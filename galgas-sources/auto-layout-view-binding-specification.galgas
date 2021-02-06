@@ -44,7 +44,7 @@ syntax extension easyBindings_syntax {
     @controllerBindingOptionList bindingOptionList = {}
     select
     or
-      ${$
+      $($
       repeat
         $identifier$ ?let @lstring optionName
         $:$
@@ -53,7 +53,7 @@ syntax extension easyBindings_syntax {
       while
         $,$
       end
-      $}$
+      $)$
     end
     ioBindingList +=
       !inClassName

@@ -20,7 +20,7 @@ syntax extension easyBindings_syntax {
     outBindingOptions = {}
     select
     or
-      ${$
+      $($
       repeat
         $identifier$ ?let @lstring optionName
         $:$
@@ -29,7 +29,7 @@ syntax extension easyBindings_syntax {
       while
         $,$
       end
-      $}$
+      $)$
     end
   }
 
