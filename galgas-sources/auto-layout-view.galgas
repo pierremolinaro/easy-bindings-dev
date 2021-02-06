@@ -248,6 +248,7 @@ syntax extension easyBindings_syntax {
         $identifier$ ?let parameterName
         $:$
         select
+          $view$
           $identifier$ ?let viewName
           outParameterList += !parameterName !.typeView !.string {!value: "self." + viewName.string}
         or
@@ -1142,6 +1143,7 @@ abstract getter @abstractViewGeneration generate ?let @string inViewName -> @str
 override getter @newHorizontalStackViewGeneration generate ?let @string inViewName -> @string {
   result = "  let " + inViewName + " : AutoLayoutStackView = AutoLayoutHorizontalStackView ()\n"
   [mFuncCallList generate !"    " !?result]
+  result += "\n"
 }
 
 #·······················································································································
@@ -1149,6 +1151,7 @@ override getter @newHorizontalStackViewGeneration generate ?let @string inViewNa
 override getter @newVerticalStackViewGeneration generate ?let @string inViewName -> @string {
   result = "  let " + inViewName + " : AutoLayoutStackView = AutoLayoutVerticalStackView ()\n"
   [mFuncCallList generate !"    " !?result]
+  result += "\n"
 }
 
 #·······················································································································

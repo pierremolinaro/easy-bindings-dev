@@ -4204,55 +4204,56 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 249)) ;
       switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
       case 1: {
-        GALGAS_lstring var_viewName_9733 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 251)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeView (SOURCE_FILE ("auto-layout-view.galgas", 252)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (GALGAS_string ("self.").add_operation (var_viewName_9733.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view.galgas", 251)) ;
+        GALGAS_lstring var_viewName_9750 = inCompiler->synthetizedAttribute_tokenString () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeView (SOURCE_FILE ("auto-layout-view.galgas", 253)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (GALGAS_string ("self.").add_operation (var_viewName_9750.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 253))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 253))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 253)) ;
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.galgas", 254)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeBool (SOURCE_FILE ("auto-layout-view.galgas", 255)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (GALGAS_string ("true")  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 255))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 255)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.galgas", 255)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeBool (SOURCE_FILE ("auto-layout-view.galgas", 256)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (GALGAS_string ("true")  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 256))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 256)) ;
       } break ;
       case 3: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.galgas", 257)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeBool (SOURCE_FILE ("auto-layout-view.galgas", 258)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (GALGAS_string ("false")  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 258))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 258)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.galgas", 258)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeBool (SOURCE_FILE ("auto-layout-view.galgas", 259)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (GALGAS_string ("false")  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 259))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 259)) ;
       } break ;
       case 4: {
-        GALGAS_luint var_uint_33__32__10103 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 260)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-view.galgas", 261)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (var_uint_33__32__10103.getter_uint (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 261))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 261))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 261)) ;
+        GALGAS_luint var_uint_33__32__10120 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 261)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-view.galgas", 262)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (var_uint_33__32__10120.getter_uint (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 262))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 262))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 262)) ;
       } break ;
       case 5: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 263)) ;
-        GALGAS_luint var_uint_33__32__10263 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 264)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-view.galgas", 265)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (GALGAS_string ("-").add_operation (var_uint_33__32__10263.getter_uint (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 265)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 265))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 265))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 265)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 264)) ;
+        GALGAS_luint var_uint_33__32__10280 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 265)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-view.galgas", 266)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (GALGAS_string ("-").add_operation (var_uint_33__32__10280.getter_uint (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 266)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 266))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 266))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 266)) ;
       } break ;
       case 6: {
-        GALGAS_lstring var_literalString_10421 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.galgas", 267)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeString (SOURCE_FILE ("auto-layout-view.galgas", 268)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (var_literalString_10421.getter_string (HERE).getter_cStringRepresentation (SOURCE_FILE ("auto-layout-view.galgas", 268))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 268))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 268)) ;
+        GALGAS_lstring var_literalString_10438 = inCompiler->synthetizedAttribute_tokenString () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.galgas", 268)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeString (SOURCE_FILE ("auto-layout-view.galgas", 269)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_string (var_literalString_10438.getter_string (HERE).getter_cStringRepresentation (SOURCE_FILE ("auto-layout-view.galgas", 269))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 269))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 269)) ;
       } break ;
       case 7: {
-        GALGAS_lstring var_enumTypeName_10595 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 270)) ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 271)) ;
-        GALGAS_lstring var_enumFuncName_10650 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 272)) ;
-        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeStringArray (SOURCE_FILE ("auto-layout-view.galgas", 273)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_enumFunc (var_enumTypeName_10595, var_enumFuncName_10650  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 273))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 273)) ;
+        GALGAS_lstring var_enumTypeName_10612 = inCompiler->synthetizedAttribute_tokenString () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 271)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 272)) ;
+        GALGAS_lstring var_enumFuncName_10667 = inCompiler->synthetizedAttribute_tokenString () ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 273)) ;
+        outArgument_outParameterList.addAssign_operation (var_parameterName_9669, GALGAS_autoLayoutClassParameterType::constructor_typeStringArray (SOURCE_FILE ("auto-layout-view.galgas", 274)), GALGAS_astAutoLayoutViewInstructionParameterValue::constructor_enumFunc (var_enumTypeName_10612, var_enumFuncName_10667  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 274))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 274)) ;
       } break ;
       default:
         break ;
       }
       switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 276)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 277)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
         break ;
       }
     }
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 278)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 279)) ;
   } break ;
   default:
     break ;
@@ -4273,42 +4274,43 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 249)) ;
       switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
       case 1: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 251)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view.galgas", 251)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 252)) ;
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.galgas", 254)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.galgas", 255)) ;
       } break ;
       case 3: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.galgas", 257)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.galgas", 258)) ;
       } break ;
       case 4: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 260)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 261)) ;
       } break ;
       case 5: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 263)) ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 264)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 264)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.galgas", 265)) ;
       } break ;
       case 6: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.galgas", 267)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.galgas", 268)) ;
       } break ;
       case 7: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 270)) ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 271)) ;
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 272)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 271)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 272)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.galgas", 273)) ;
       } break ;
       default:
         break ;
       }
       switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 276)) ;
+        inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 277)) ;
       } break ;
       default:
         repeatFlag_0 = false ;
         break ;
       }
     }
-    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 278)) ;
+    inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 279)) ;
   } break ;
   default:
     break ;
@@ -4321,24 +4323,24 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i26_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
                                                                                            C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 285)) ;
-  GALGAS_astAutoLayoutViewFunctionCallList var_functionCallList_11127 ;
-  nt_auto_5F_layout_5F_func_5F_call_5F_list_ (var_functionCallList_11127, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 287)) ;
-  GALGAS_astViewInstructionList var_instructionList_11159 = GALGAS_astViewInstructionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 288)) ;
-  nt_view_5F_instruction_5F_list_ (var_instructionList_11159, inCompiler) ;
-  outArgument_outInstruction = GALGAS_astVStackViewInstructionDeclaration::constructor_new (var_functionCallList_11127, var_instructionList_11159  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 290)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 291)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 286)) ;
+  GALGAS_astAutoLayoutViewFunctionCallList var_functionCallList_11144 ;
+  nt_auto_5F_layout_5F_func_5F_call_5F_list_ (var_functionCallList_11144, inCompiler) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 288)) ;
+  GALGAS_astViewInstructionList var_instructionList_11176 = GALGAS_astViewInstructionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 289)) ;
+  nt_view_5F_instruction_5F_list_ (var_instructionList_11176, inCompiler) ;
+  outArgument_outInstruction = GALGAS_astVStackViewInstructionDeclaration::constructor_new (var_functionCallList_11144, var_instructionList_11176  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 291)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 292)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i26_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 285)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 286)) ;
   nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 287)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 288)) ;
   nt_view_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 291)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 292)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -4347,24 +4349,24 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i27_ (GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
                                                                                            C_Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 297)) ;
-  GALGAS_astAutoLayoutViewFunctionCallList var_functionCallList_11622 ;
-  nt_auto_5F_layout_5F_func_5F_call_5F_list_ (var_functionCallList_11622, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 299)) ;
-  GALGAS_astViewInstructionList var_instructionList_11654 = GALGAS_astViewInstructionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 300)) ;
-  nt_view_5F_instruction_5F_list_ (var_instructionList_11654, inCompiler) ;
-  outArgument_outInstruction = GALGAS_astHStackViewInstructionDeclaration::constructor_new (var_functionCallList_11622, var_instructionList_11654  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 302)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 303)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 298)) ;
+  GALGAS_astAutoLayoutViewFunctionCallList var_functionCallList_11639 ;
+  nt_auto_5F_layout_5F_func_5F_call_5F_list_ (var_functionCallList_11639, inCompiler) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 300)) ;
+  GALGAS_astViewInstructionList var_instructionList_11671 = GALGAS_astViewInstructionList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 301)) ;
+  nt_view_5F_instruction_5F_list_ (var_instructionList_11671, inCompiler) ;
+  outArgument_outInstruction = GALGAS_astHStackViewInstructionDeclaration::constructor_new (var_functionCallList_11639, var_instructionList_11671  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 303)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 304)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i27_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 297)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.galgas", 298)) ;
   nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 299)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 300)) ;
   nt_view_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 303)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.galgas", 304)) ;
   inCompiler->resetTemplateString () ;
 }
 
