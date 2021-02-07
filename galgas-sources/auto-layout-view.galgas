@@ -118,8 +118,8 @@ syntax extension easyBindings_syntax {
 
    #·····················································································································
   
-  rule <view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
-    $view$
+  rule <stack_view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
+    $stackView$
     $identifier$ ?let viewName
     $:$
     select
@@ -136,8 +136,8 @@ syntax extension easyBindings_syntax {
  
   #·····················································································································
   
-  rule <view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
-    $view$
+  rule <stack_view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
+    $stackView$
     $identifier$ ?let viewName
     $vStack$
     <auto_layout_func_call_list> ?let functionCallList
@@ -164,8 +164,8 @@ syntax extension easyBindings_syntax {
    
   #·····················································································································
   
-  rule <view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
-    $view$
+  rule <stack_view_declaration> ?!@astViewDeclarationList ioViewDeclarationList {
+    $stackView$
     $identifier$ ?let viewName
     $hStack$
     <auto_layout_func_call_list> ?let functionCallList
@@ -270,12 +270,10 @@ syntax extension easyBindings_syntax {
         $identifier$ ?let parameterName
         $:$
         select
-          ${$
           <view_instruction> ?let @astAbstractViewInstructionDeclaration instruction
           outParameterList += !parameterName !.typeView !.viewFunc {!instruction: instruction}
-          $}$
         or
-          $view$
+          $stackView$
           $identifier$ ?let viewName
           outParameterList += !parameterName !.typeView !.string {!value: "self." + viewName.string}
         or
@@ -299,7 +297,9 @@ syntax extension easyBindings_syntax {
           $Identifier$ ?let enumTypeName
           $.$
           $identifier$ ?let enumFuncName
-          outParameterList += !parameterName !.typeStringArray !.enumFunc {!enumTypeName: enumTypeName !enumFuncName: enumFuncName}
+          outParameterList +=
+           !parameterName 
+           !.typeStringArray !.enumFunc {!enumTypeName: enumTypeName !enumFuncName: enumFuncName}
         end
       while
         $,$
@@ -719,8 +719,8 @@ override method @astComputedViewInstruction generateCode
     ! mRegularBindingList
 
     ?let @autoLayoutRegularBindingsGenerationList regularBindingsGenerationList
-    ?let @multipleBindingGenerationList multipleBindingGenerationList
-    ?let @actionBindingListForGeneration targetActionList
+    ?let @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList
+    ?let @autolayoutRunBindingListForGeneration targetActionList
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
@@ -771,8 +771,8 @@ proc analyzeAutoLayoutBinding
   ?let @regularBindingList inRegularBindingList
 
   !@autoLayoutRegularBindingsGenerationList outRegularBindingsGenerationList
-  !@multipleBindingGenerationList outMultipleBindingGenerationList
-  !@actionBindingListForGeneration outTargetActionList
+  !@autoLayoutMultipleBindingGenerationList outMultipleBindingGenerationList
+  !@autolayoutRunBindingListForGeneration outTargetActionList
   !@tableViewBindingGenerationList outTableViewBindingGenerationList
   !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList
 {
@@ -871,7 +871,6 @@ proc analyzeAutoLayoutBinding
     elsif target.string == "self" then
       [inActionMap searchKey !action]
       outTargetActionList +=
-        !"<<3>>"
         !"self"
         !action.string
         !inReceiverSwiftTypeName
@@ -884,7 +883,6 @@ proc analyzeAutoLayoutBinding
       ]
       [controllerActionMap searchKey !action]
       outTargetActionList +=
-        !"<<4>>"
         !if inPreferences then "prefs_" else "" end + target.string
         !action.string
         !"Controller_" + inReceiverSwiftTypeName + "_" + target
@@ -910,7 +908,6 @@ proc analyzeAutoLayoutBinding
       error errorLocation : "expression is not boolean"
     end
     outMultipleBindingGenerationList +=
-      !"<<5>>"
       !"enabled"
       !enableExpression
   end
@@ -934,7 +931,6 @@ proc analyzeAutoLayoutBinding
       error errorLocation : "cet outlet n'accepte pas le binding $hidden"
     end
     outMultipleBindingGenerationList +=
-      !"<<6>>"
       !"hidden"
       !hiddenExpression
   end
@@ -1234,13 +1230,28 @@ list @autoLayoutRegularBindingsGenerationList {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+list @autoLayoutMultipleBindingGenerationList {
+  @string mBindingName
+  @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
+}
+
+#·······················································································································
+
+list @autolayoutRunBindingListForGeneration {
+  @string mTargetName
+  @string mActionName
+  @string mTargetTypeName
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
 class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGeneration {
   @lstring mAutoLayoutViewClassName
   @autoLayoutViewInstructionGenerationParameterList mParameterList
   @autoLayoutViewInstructionGenerationFuncCallList mFunctionCallList
   @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
-  @multipleBindingGenerationList mMultipleBindingGenerationList
-  @actionBindingListForGeneration mTargetActionList
+  @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  @autolayoutRunBindingListForGeneration mRunBindingGenerationList
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewGraphicControllerBindingGenerationList
 }
@@ -1359,12 +1370,29 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
   result += ")\n"
   [mFunctionCallList generate !inIndentation !?result]
   for (bindingName boundObjectList optionListString) in mRegularBindingsGenerationList do
-    result += inIndentation + "    .bind_" + bindingName + " ("
+    result += inIndentation + "  .bind_" + bindingName + " ("
     for (boundObjectString *) in boundObjectList
       do result += boundObjectString
       between result += ", "
     end
     result += optionListString + ")\n"
+  end
+  for (bindingName binding) in mMultipleBindingGenerationList do 
+    result += inIndentation + "  .bind_" + bindingName + " (\n"
+    result += inIndentation + "    observedObjects: ["
+    for () in [binding observedModelSet]
+      do result += key
+      between result += ", "
+    end
+    result += "],\n"
+    result += inIndentation + "    computeFunction: { return " + [binding expressionString] + " }\n"
+    result += inIndentation + "  )\n"
+  end
+  for (targetName actionName targetTypeName) in mRunBindingGenerationList do
+    result += inIndentation + "  .bind_run (\n"
+    result += inIndentation + "    target: " + targetName + ",\n"
+    result += inIndentation + "    selector: #selector (" + targetTypeName + "." + actionName + " (_:))\n"
+    result += inIndentation + "  )\n"
   end
 }
 

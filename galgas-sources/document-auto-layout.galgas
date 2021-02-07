@@ -51,7 +51,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ ?let @lstring documentName
     $root$
     $Identifier$ ?let @lstring rootEntityName
-    $view$
+    $stackView$
     $identifier$ ?let @lstring mainViewName
     ${$
     @outletDeclarationList outletDeclarationList = {}
@@ -63,7 +63,7 @@ syntax extension easyBindings_syntax {
     @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
     repeat
     while
-      <view_declaration> !?viewDeclarationList
+      <stack_view_declaration> !?viewDeclarationList
     while
       <action_declaration> !?actionDeclarationList
     while
