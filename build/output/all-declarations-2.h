@@ -714,6 +714,105 @@ void extensionMethod_check (const class GALGAS_astAutoLayoutViewFunctionCallList
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//                                 Phase 1: @autolayoutEnabledBindingForGeneration enum                                *
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_autolayoutEnabledBindingForGeneration : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public : GALGAS_autolayoutEnabledBindingForGeneration (void) ;
+
+//--------------------------------- Enumeration
+  public : typedef enum {
+    kNotBuilt,
+    kEnum_none,
+    kEnum_enabled
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private : AC_GALGAS_enumAssociatedValues mAssociatedValues ;
+  public : VIRTUAL_IN_DEBUG const cEnumAssociatedValues * unsafePointer (void) const {
+    return mAssociatedValues.unsafePointer () ;
+  }
+
+  private : enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
+  public : VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public : inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_autolayoutEnabledBindingForGeneration extractObject (const GALGAS_object & inObject,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_autolayoutEnabledBindingForGeneration constructor_enabled (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_autolayoutEnabledBindingForGeneration constructor_none (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_autolayoutEnabledBindingForGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_enabled (class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument0,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEnabled (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_autolayoutEnabledBindingForGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autolayoutEnabledBindingForGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: @autolayoutEnabledBindingForGeneration enum, associated values
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cEnumAssociatedValues_autolayoutEnabledBindingForGeneration_enabled : public cEnumAssociatedValues {
+  public : const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_autolayoutEnabledBindingForGeneration_enabled (const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inAssociatedValue0
+                                                                                COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_autolayoutEnabledBindingForGeneration_enabled (void) {}
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //                                   Phase 1: @autolayoutRunBindingForGeneration enum                                  *
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -725,7 +824,7 @@ class GALGAS_autolayoutRunBindingForGeneration : public AC_GALGAS_root {
 //--------------------------------- Enumeration
   public : typedef enum {
     kNotBuilt,
-    kEnum_noAction,
+    kEnum_none,
     kEnum_run
   } enumeration ;
   
@@ -753,7 +852,7 @@ class GALGAS_autolayoutRunBindingForGeneration : public AC_GALGAS_root {
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_autolayoutRunBindingForGeneration constructor_noAction (LOCATION_ARGS) ;
+  public : static class GALGAS_autolayoutRunBindingForGeneration constructor_none (LOCATION_ARGS) ;
 
   public : static class GALGAS_autolayoutRunBindingForGeneration constructor_run (const class GALGAS_string & inOperand0,
                                                                                   const class GALGAS_string & inOperand1,
@@ -778,7 +877,7 @@ class GALGAS_autolayoutRunBindingForGeneration : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNoAction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRun (LOCATION_ARGS) const ;
 
@@ -874,6 +973,48 @@ class cEnumAssociatedValues_classKind_entity : public cEnumAssociatedValues {
 
   public : virtual ~ cEnumAssociatedValues_classKind_entity (void) {}
 } ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Abstract extension getter '@abstractBooleanMultipleBindingExpressionForGeneration expressionString'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+typedef class GALGAS_string (*enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_expressionString) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                                                                            class C_Compiler * inCompiler
+                                                                                                                            COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void enterExtensionGetter_expressionString (const int32_t inClassIndex,
+                                            enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_expressionString inMethod) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_string callExtensionGetter_expressionString (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Abstract extension getter '@abstractBooleanMultipleBindingExpressionForGeneration observedModelSet'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+typedef class GALGAS_stringset (*enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                                                                                               class C_Compiler * inCompiler
+                                                                                                                               COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void enterExtensionGetter_observedModelSet (const int32_t inClassIndex,
+                                            enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet inMethod) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_stringset callExtensionGetter_observedModelSet (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -1221,6 +1362,22 @@ void callExtensionMethod_generateCode (const class cPtr_astAbstractViewInstructi
                                        GALGAS_abstractViewInstructionGeneration & out_outInstruction,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeAutoLayoutEnableBinding'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_analyzeAutoLayoutEnableBinding (const class GALGAS_multipleBindingDescriptor constinArgument0,
+                                             const class GALGAS_bool constinArgument1,
+                                             const class GALGAS_bool constinArgument2,
+                                             const class GALGAS_propertyMap constinArgument3,
+                                             const class GALGAS_semanticContext constinArgument4,
+                                             const class GALGAS_propertyMap constinArgument5,
+                                             class GALGAS_autolayoutEnabledBindingForGeneration & outArgument6,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //

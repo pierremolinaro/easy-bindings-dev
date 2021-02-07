@@ -933,6 +933,8 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_86 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected : virtual int32_t select_easyBindings_5F_syntax_87 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -9629,7 +9631,8 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
                                                                                                 COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_astAutoLayoutViewInstructionParameterValue constructor_menuItem (const class GALGAS_string & inOperand0,
-                                                                                                const class GALGAS_runActionDescriptor & inOperand1
+                                                                                                const class GALGAS_runActionDescriptor & inOperand1,
+                                                                                                const class GALGAS_multipleBindingDescriptor & inOperand2
                                                                                                 COMMA_LOCATION_ARGS) ;
 
   public : static class GALGAS_astAutoLayoutViewInstructionParameterValue constructor_string (const class GALGAS_string & inOperand0
@@ -9654,6 +9657,7 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
 
   public : VIRTUAL_IN_DEBUG void method_menuItem (class GALGAS_string & outArgument0,
                                                   class GALGAS_runActionDescriptor & outArgument1,
+                                                  class GALGAS_multipleBindingDescriptor & outArgument2,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const ;
 
@@ -9714,10 +9718,12 @@ class cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_string : 
 class cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_menuItem : public cEnumAssociatedValues {
   public : const GALGAS_string mAssociatedValue0 ;
   public : const GALGAS_runActionDescriptor mAssociatedValue1 ;
+  public : const GALGAS_multipleBindingDescriptor mAssociatedValue2 ;
 
 //--- Constructor
   public : cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_menuItem (const GALGAS_string & inAssociatedValue0,
-                                                                                      const GALGAS_runActionDescriptor & inAssociatedValue1
+                                                                                      const GALGAS_runActionDescriptor & inAssociatedValue1,
+                                                                                      const GALGAS_multipleBindingDescriptor & inAssociatedValue2
                                                                                       COMMA_LOCATION_ARGS) ;
 
   public : virtual void description (C_String & ioString,
@@ -10527,6 +10533,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_85 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_86 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_87 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------

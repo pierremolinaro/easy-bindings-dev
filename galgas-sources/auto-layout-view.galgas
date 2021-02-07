@@ -93,7 +93,7 @@ list @astAutoLayoutViewFunctionCallList {
 
 enum @astAutoLayoutViewInstructionParameterValue {
   case string (@string value)
-  case menuItem (@string title @runActionDescriptor run)
+  case menuItem (@string title @runActionDescriptor run @multipleBindingDescriptor enabled)
   case enumFunc (@lstring enumTypeName @lstring enumFuncName)
   case viewFunc (@astAbstractViewInstructionDeclaration instruction)
 }
@@ -291,7 +291,18 @@ syntax extension easyBindings_syntax {
             $identifier$ ?let @lstring runActionName
             runActionDescriptor = .action {!target:runTargetName !action:runActionName}
           end
-          outParameterList += !parameterName !.menuItem !.menuItem {!title: menuItemTitle !run: runActionDescriptor}
+          @multipleBindingDescriptor enabledBindingDescriptor = .noBinding
+          select
+            enabledBindingDescriptor = .noBinding
+          or
+            $enabled$
+            <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+            enabledBindingDescriptor = .binding {!expression:bindingExpression}
+          end
+          outParameterList +=
+           !parameterName
+           !.menuItem
+           !.menuItem {!title: menuItemTitle !run: runActionDescriptor !enabled: enabledBindingDescriptor}
         or
           $stackView$
           $identifier$ ?let viewName
@@ -438,7 +449,7 @@ method @astAutoLayoutViewFunctionCallList check
           ioImplicitViewFunctionGenerationList += !viewInstruction
         case string (stringValue) :
           parameterList += !name !stringValue
-        case menuItem (title run) :
+        case menuItem (title run enabledBinding) :
           analyzeAutoLayoutRunBinding (
             !run
             !handlesRunAction: true
@@ -449,12 +460,32 @@ method @astAutoLayoutViewFunctionCallList check
             !inReceiverSwiftTypeName
             ?let runBindingGeneration
           )
+          analyzeAutoLayoutEnableBinding (
+            !enabledBinding
+            !handlesEnabledBinding: true
+            !inPreferences
+            !inRootObservablePropertyMap
+            !inSemanticContext
+            !inObservablePropertyMap
+            ?let enabledBindingGeneration
+          )
           var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
           switch runBindingGeneration 
-          case noAction :
+          case none :
             s += ", target: nil, selector: nil"
           case run (targetName actionName runTargetName) :
             s += ", target: " + targetName + ", selector: #selector (" + runTargetName + "." + actionName + " (_:))"
+          end
+          switch enabledBindingGeneration 
+          case none :
+            s += ", observedObjects: [], computeFunction: { return .empty }"
+          case enabled (binding) :
+            s += ", observedObjects: ["
+            for () in [binding observedModelSet]
+              do s += key
+              between s += ", "
+            end
+            s += "], computeFunction: { return " + [binding expressionString] + " }"
           end
           s += ")"
           parameterList += !name !s
@@ -722,7 +753,7 @@ override method @astComputedViewInstruction generateCode
           ioImplicitViewFunctionGenerationList += !viewInstruction
       case string (stringValue) :
         parameterList += !name !stringValue
-      case menuItem (title run) :
+      case menuItem (title run enabledBinding) :
         analyzeAutoLayoutRunBinding (
           !run
           !handlesRunAction: true
@@ -733,12 +764,32 @@ override method @astComputedViewInstruction generateCode
           !inReceiverSwiftTypeName
           ?let runBindingGeneration
         )
+        analyzeAutoLayoutEnableBinding (
+          !enabledBinding
+          !handlesEnabledBinding: true
+          !inPreferences
+          !inRootObservablePropertyMap
+          !inSemanticContext
+          !inObservablePropertyMap
+          ?let enabledBindingGeneration
+        )
         var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
         switch runBindingGeneration 
-        case noAction :
+        case none :
           s += ", target: nil, selector: nil"
         case run (targetName actionName runTargetName) :
           s += ", target: " + targetName + ", selector: #selector (" + runTargetName + "." + actionName + " (_:))"
+        end
+        switch enabledBindingGeneration 
+        case none :
+          s += ", observedObjects: [], computeFunction: { return .empty }"
+        case enabled (binding) :
+          s += ", observedObjects: ["
+          for () in [binding observedModelSet]
+            do s += key
+            between s += ", "
+          end
+          s += "], computeFunction: { return " + [binding expressionString] + " }"
         end
         s += ")"
         parameterList += !name !s
@@ -933,28 +984,42 @@ proc analyzeAutoLayoutBinding
     ?outRunBindingGeneration
   )
 #--- Enabled
-  switch inEnabledBindingDescriptor
-  case noBinding :
-  case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
-    [expression analyzeExpressionForMultipleBinding
-      !inPreferences
-      !inRootObservablePropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
-      ?let @typeKind type
-      ?let @location errorLocation
-    ]
-    if not handlesEnabledBinding then
-      error errorLocation : "cet outlet n'accepte pas le binding $enabled"
-    end
-    if not [type isBoolType] then
-      error errorLocation : "expression is not boolean"
-    end
-    outMultipleBindingGenerationList +=
-      !"enabled"
-      !enableExpression
+  analyzeAutoLayoutEnableBinding (
+    !inEnabledBindingDescriptor
+    !handlesEnabledBinding: handlesEnabledBinding
+    !inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inObservablePropertyMap
+    ?let enabledBindingGeneration
+  )
+  switch enabledBindingGeneration
+  case none :
+  case enabled (binding) :
+    outMultipleBindingGenerationList += !"enabled" !binding
   end
+#  switch inEnabledBindingDescriptor
+#  case noBinding :
+#  case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+#    [expression analyzeExpressionForMultipleBinding
+#      !inPreferences
+#      !inRootObservablePropertyMap
+#      !inSemanticContext
+#      !inObservablePropertyMap
+#      ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
+#      ?let @typeKind type
+#      ?let @location errorLocation
+#    ]
+#    if not handlesEnabledBinding then
+#      error errorLocation : "cet outlet n'accepte pas le binding $enabled"
+#    end
+#    if not [type isBoolType] then
+#      error errorLocation : "expression is not boolean"
+#    end
+#    outMultipleBindingGenerationList +=
+#      !"enabled"
+#      !enableExpression
+#  end
 #--- Hidden
   switch inHiddenBindingDescriptor
   case noBinding :
@@ -993,6 +1058,40 @@ proc analyzeAutoLayoutBinding
 
 #·······················································································································
 
+proc analyzeAutoLayoutEnableBinding
+  ?let @multipleBindingDescriptor inEnabledBindingDescriptor
+  ?handlesEnabledBinding: let @bool inHandlesEnabledBinding
+  ?let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inObservablePropertyMap
+  !@autolayoutEnabledBindingForGeneration outEnabledBindingGeneration
+{
+  switch inEnabledBindingDescriptor
+  case noBinding :
+    outEnabledBindingGeneration = .none
+  case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+    [expression analyzeExpressionForMultipleBinding
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
+      ?let @typeKind type
+      ?let @location errorLocation
+    ]
+    if not inHandlesEnabledBinding then
+      error errorLocation : "cet outlet n'accepte pas le binding $enabled"
+    end
+    if not [type isBoolType] then
+      error errorLocation : "expression is not boolean"
+    end
+    outEnabledBindingGeneration = .enabled {!binding: enableExpression}
+  end
+}
+
+#·······················································································································
+
 proc analyzeAutoLayoutRunBinding
   ?let @runActionDescriptor inRunActionDescriptor
   ?handlesRunAction: let @bool inHandlesRunAction
@@ -1005,7 +1104,7 @@ proc analyzeAutoLayoutRunBinding
 {
   switch inRunActionDescriptor
   case noAction :
-    outRunBindingGeneration = .noAction
+    outRunBindingGeneration = .none
   case action (@lstring target @lstring action) :
     if not inHandlesRunAction then
       error inTypeName : "the '" + inTypeName + "' type does not handle run action" : outRunBindingGeneration
@@ -1324,8 +1423,15 @@ list @autoLayoutMultipleBindingGenerationList {
 #·······················································································································
 
 enum @autolayoutRunBindingForGeneration {
-  case noAction
+  case none
   case run (@string targetName @string actionName @string targetTypeName)
+}
+
+#·······················································································································
+
+enum @autolayoutEnabledBindingForGeneration {
+  case none
+  case enabled (@abstractBooleanMultipleBindingExpressionForGeneration binding)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1474,7 +1580,7 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
     result += inIndentation + "  )\n"
   end
   switch mRunBindingGeneration
-  case noAction :
+  case none :
   case run (targetName actionName targetTypeName) :
     result += inIndentation + "  .bind_run (\n"
     result += inIndentation + "    target: " + targetName + ",\n"
