@@ -10,6 +10,77 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @abstractFileGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_abstractFileGeneration : public AC_GALGAS_class {
+//--- Constructor
+  public : GALGAS_abstractFileGeneration (void) ;
+
+//---
+  public : inline const class cPtr_abstractFileGeneration * ptr (void) const { return (const cPtr_abstractFileGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_abstractFileGeneration (const cPtr_abstractFileGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_abstractFileGeneration extractObject (const GALGAS_object & inObject,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_abstractFileGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_abstractFileGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractFileGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @abstractFileGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_abstractFileGeneration : public acPtr_class {
+//--- Attributes
+
+//--- Constructor
+  public : cPtr_abstractFileGeneration (LOCATION_ARGS) ;
+
+//--- Attribute accessors
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const = 0 ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //                                               Phase 1: @typeKind enum                                               *
 //
 //----------------------------------------------------------------------------------------------------------------------

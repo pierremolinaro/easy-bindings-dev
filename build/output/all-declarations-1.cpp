@@ -8,6 +8,93 @@
 #include "all-declarations-1.h"
 
 //----------------------------------------------------------------------------------------------------------------------
+//   Object comparison                                                                           
+//----------------------------------------------------------------------------------------------------------------------
+
+
+
+typeComparisonResult GALGAS_abstractFileGeneration::objectCompare (const GALGAS_abstractFileGeneration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_abstractFileGeneration::GALGAS_abstractFileGeneration (void) :
+AC_GALGAS_class (false) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_abstractFileGeneration::GALGAS_abstractFileGeneration (const cPtr_abstractFileGeneration * inSourcePtr) :
+AC_GALGAS_class (inSourcePtr, false) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_abstractFileGeneration) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//Pointer class for @abstractFileGeneration class
+//----------------------------------------------------------------------------------------------------------------------
+
+cPtr_abstractFileGeneration::cPtr_abstractFileGeneration (LOCATION_ARGS) :
+acPtr_class (THERE) {
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//@abstractFileGeneration type
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_abstractFileGeneration ("abstractFileGeneration",
+                                               NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_abstractFileGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_abstractFileGeneration ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_abstractFileGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_abstractFileGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_abstractFileGeneration GALGAS_abstractFileGeneration::extractObject (const GALGAS_object & inObject,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_abstractFileGeneration result ;
+  const GALGAS_abstractFileGeneration * p = (const GALGAS_abstractFileGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_abstractFileGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("abstractFileGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 
 cEnumAssociatedValues_typeKind_enumType::cEnumAssociatedValues_typeKind_enumType (const GALGAS_string & inAssociatedValue0,
                                                                                   const GALGAS_enumConstantMap & inAssociatedValue1,
@@ -10084,13 +10171,22 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::constru
 
 //----------------------------------------------------------------------------------------------------------------------
 
-static const char * gEnumNameArrayFor_autoLayoutClassParameterType [6] = {
+GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::constructor_menuItem (UNUSED_LOCATION_ARGS) {
+  GALGAS_autoLayoutClassParameterType result ;
+  result.mEnum = kEnum_menuItem ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static const char * gEnumNameArrayFor_autoLayoutClassParameterType [7] = {
   "(not built)",
   "typeString",
   "typeStringArray",
   "typeInt",
   "typeBool",
-  "typeView"
+  "typeView",
+  "menuItem"
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10121,6 +10217,12 @@ GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeBool (UNUSED_LOCAT
 
 GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeView (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_typeView == mEnum) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isMenuItem (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_menuItem == mEnum) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10227,6 +10329,11 @@ GALGAS_string extensionGetter_string (const GALGAS_autoLayoutClassParameterType 
   case GALGAS_autoLayoutClassParameterType::kEnum_typeView:
     {
       result_result = GALGAS_string ("a view") ;
+    }
+    break ;
+  case GALGAS_autoLayoutClassParameterType::kEnum_menuItem:
+    {
+      result_result = GALGAS_string ("a menu item") ;
     }
     break ;
   }

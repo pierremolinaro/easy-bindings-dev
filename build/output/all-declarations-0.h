@@ -100,6 +100,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_include,
    kToken_inverse,
    kToken_mainxib,
+   kToken_menuItem,
    kToken_no,
    kToken_none,
    kToken_one,
@@ -191,7 +192,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 90 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 91 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -927,6 +928,10 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_83 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_84 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_85 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_86 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -9590,6 +9595,7 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
   public : typedef enum {
     kNotBuilt,
     kEnum_string,
+    kEnum_menuItem,
     kEnum_enumFunc,
     kEnum_viewFunc
   } enumeration ;
@@ -9622,6 +9628,10 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
                                                                                                 const class GALGAS_lstring & inOperand1
                                                                                                 COMMA_LOCATION_ARGS) ;
 
+  public : static class GALGAS_astAutoLayoutViewInstructionParameterValue constructor_menuItem (const class GALGAS_string & inOperand0,
+                                                                                                const class GALGAS_runActionDescriptor & inOperand1
+                                                                                                COMMA_LOCATION_ARGS) ;
+
   public : static class GALGAS_astAutoLayoutViewInstructionParameterValue constructor_string (const class GALGAS_string & inOperand0
                                                                                               COMMA_LOCATION_ARGS) ;
 
@@ -9642,6 +9652,11 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG void method_menuItem (class GALGAS_string & outArgument0,
+                                                  class GALGAS_runActionDescriptor & outArgument1,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG void method_string (class GALGAS_string & outArgument0,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) const ;
@@ -9654,6 +9669,8 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEnumFunc (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMenuItem (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isString (LOCATION_ARGS) const ;
 
@@ -9690,6 +9707,24 @@ class cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_string : 
   public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public : virtual ~ cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_string (void) {}
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_menuItem : public cEnumAssociatedValues {
+  public : const GALGAS_string mAssociatedValue0 ;
+  public : const GALGAS_runActionDescriptor mAssociatedValue1 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_menuItem (const GALGAS_string & inAssociatedValue0,
+                                                                                      const GALGAS_runActionDescriptor & inAssociatedValue1
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_menuItem (void) {}
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9743,7 +9778,8 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
     kEnum_typeStringArray,
     kEnum_typeInt,
     kEnum_typeBool,
-    kEnum_typeView
+    kEnum_typeView,
+    kEnum_menuItem
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -9765,6 +9801,8 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
+  public : static class GALGAS_autoLayoutClassParameterType constructor_menuItem (LOCATION_ARGS) ;
+
   public : static class GALGAS_autoLayoutClassParameterType constructor_typeBool (LOCATION_ARGS) ;
 
   public : static class GALGAS_autoLayoutClassParameterType constructor_typeInt (LOCATION_ARGS) ;
@@ -9787,6 +9825,8 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMenuItem (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeBool (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeInt (LOCATION_ARGS) const ;
@@ -10483,6 +10523,10 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_83 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_84 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_85 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_86 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15917,75 +15961,4 @@ class GALGAS_enumFuncMap_2D_element : public AC_GALGAS_root {
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumFuncMap_2D_element ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @abstractFileGeneration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_abstractFileGeneration : public AC_GALGAS_class {
-//--- Constructor
-  public : GALGAS_abstractFileGeneration (void) ;
-
-//---
-  public : inline const class cPtr_abstractFileGeneration * ptr (void) const { return (const cPtr_abstractFileGeneration *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_abstractFileGeneration (const cPtr_abstractFileGeneration * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_abstractFileGeneration extractObject (const GALGAS_object & inObject,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_abstractFileGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_abstractFileGeneration class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractFileGeneration ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @abstractFileGeneration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_abstractFileGeneration : public acPtr_class {
-//--- Attributes
-
-//--- Constructor
-  public : cPtr_abstractFileGeneration (LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const = 0 ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
-
-} ;
 

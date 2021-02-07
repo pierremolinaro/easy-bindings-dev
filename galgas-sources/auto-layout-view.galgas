@@ -93,6 +93,7 @@ list @astAutoLayoutViewFunctionCallList {
 
 enum @astAutoLayoutViewInstructionParameterValue {
   case string (@string value)
+  case menuItem (@string title @runActionDescriptor run)
   case enumFunc (@lstring enumTypeName @lstring enumFuncName)
   case viewFunc (@astAbstractViewInstructionDeclaration instruction)
 }
@@ -273,6 +274,25 @@ syntax extension easyBindings_syntax {
           <view_instruction> ?let @astAbstractViewInstructionDeclaration instruction
           outParameterList += !parameterName !.typeView !.viewFunc {!instruction: instruction}
         or
+          $menuItem$
+          $literal_string$ ?let menuItemTitle
+          @runActionDescriptor runActionDescriptor
+          select
+            runActionDescriptor = .noAction
+          or
+            $run$
+            @lstring runTargetName
+            select
+              runTargetName = @lstring.new {!"self" !.here}
+            or
+              $controllerName$ ?runTargetName
+              $.$
+            end
+            $identifier$ ?let @lstring runActionName
+            runActionDescriptor = .action {!target:runTargetName !action:runActionName}
+          end
+          outParameterList += !parameterName !.menuItem !.menuItem {!title: menuItemTitle !run: runActionDescriptor}
+        or
           $stackView$
           $identifier$ ?let viewName
           outParameterList += !parameterName !.typeView !.string {!value: "self." + viewName.string}
@@ -418,6 +438,26 @@ method @astAutoLayoutViewFunctionCallList check
           ioImplicitViewFunctionGenerationList += !viewInstruction
         case string (stringValue) :
           parameterList += !name !stringValue
+        case menuItem (title run) :
+          analyzeAutoLayoutRunBinding (
+            !run
+            !handlesRunAction: true
+            !inPreferences
+            !["" nowhere] # mAutoLayoutViewClassName # inTypeName
+            !inActionMap
+            !inObservablePropertyMap
+            !inReceiverSwiftTypeName
+            ?let runBindingGeneration
+          )
+          var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
+          switch runBindingGeneration 
+          case noAction :
+            s += ", target: nil, selector: nil"
+          case run (targetName actionName runTargetName) :
+            s += ", target: " + targetName + ", selector: #selector (" + runTargetName + "." + actionName + " (_:))"
+          end
+          s += ")"
+          parameterList += !name !s
         case enumFunc (enumTypeName funcName) :
           [inSemanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
           if not [type isAtomic] then
@@ -682,6 +722,26 @@ override method @astComputedViewInstruction generateCode
           ioImplicitViewFunctionGenerationList += !viewInstruction
       case string (stringValue) :
         parameterList += !name !stringValue
+      case menuItem (title run) :
+        analyzeAutoLayoutRunBinding (
+          !run
+          !handlesRunAction: true
+          !inPreferences
+          !["" nowhere] # mAutoLayoutViewClassName # inTypeName
+          !inActionMap
+          !inObservablePropertyMap
+          !inReceiverSwiftTypeName
+          ?let runBindingGeneration
+        )
+        var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
+        switch runBindingGeneration 
+        case noAction :
+          s += ", target: nil, selector: nil"
+        case run (targetName actionName runTargetName) :
+          s += ", target: " + targetName + ", selector: #selector (" + runTargetName + "." + actionName + " (_:))"
+        end
+        s += ")"
+        parameterList += !name !s
       case enumFunc (enumTypeName funcName) :
         [inSemanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
         if not [type isAtomic] then
@@ -720,7 +780,7 @@ override method @astComputedViewInstruction generateCode
 
     ?let @autoLayoutRegularBindingsGenerationList regularBindingsGenerationList
     ?let @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList
-    ?let @autolayoutRunBindingListForGeneration targetActionList
+    ?let @autolayoutRunBindingForGeneration runBindingGeneration
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
@@ -744,7 +804,7 @@ override method @astComputedViewInstruction generateCode
     !funcCallList
     !regularBindingsGenerationList
     !multipleBindingGenerationList
-    !targetActionList
+    !runBindingGeneration
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGenerationList
   }
@@ -772,12 +832,11 @@ proc analyzeAutoLayoutBinding
 
   !@autoLayoutRegularBindingsGenerationList outRegularBindingsGenerationList
   !@autoLayoutMultipleBindingGenerationList outMultipleBindingGenerationList
-  !@autolayoutRunBindingListForGeneration outTargetActionList
+  !@autolayoutRunBindingForGeneration outRunBindingGeneration
   !@tableViewBindingGenerationList outTableViewBindingGenerationList
   !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList
 {
   outRegularBindingsGenerationList = {}
-  outTargetActionList = {}
   outMultipleBindingGenerationList = {}
   outTableViewBindingGenerationList = {}
   outEBViewGraphicControllerBindingGenerationList = {}
@@ -863,31 +922,16 @@ proc analyzeAutoLayoutBinding
     end
   end
 #--- $run
-  switch inRunActionDescriptor
-  case noAction :
-  case action (@lstring target @lstring action) :
-    if not handlesRunAction then
-      error inTypeName : "the '" + inTypeName + "' type does not handle run action"
-    elsif target.string == "self" then
-      [inActionMap searchKey !action]
-      outTargetActionList +=
-        !"self"
-        !action.string
-        !inReceiverSwiftTypeName
-    else # It is a controller
-      [inObservablePropertyMap searchKey
-        !target
-        ?*
-        ?let @actionMap controllerActionMap
-        ?*
-      ]
-      [controllerActionMap searchKey !action]
-      outTargetActionList +=
-        !if inPreferences then "prefs_" else "" end + target.string
-        !action.string
-        !"Controller_" + inReceiverSwiftTypeName + "_" + target
-    end
-  end
+  analyzeAutoLayoutRunBinding (
+    !inRunActionDescriptor
+    !handlesRunAction: handlesRunAction
+    !inPreferences
+    !inTypeName
+    !inActionMap
+    !inObservablePropertyMap
+    !inReceiverSwiftTypeName
+    ?outRunBindingGeneration
+  )
 #--- Enabled
   switch inEnabledBindingDescriptor
   case noBinding :
@@ -945,6 +989,48 @@ proc analyzeAutoLayoutBinding
     !if inPreferences then "prefs_" else "self." end
     !?outRegularBindingsGenerationList
   )
+}
+
+#·······················································································································
+
+proc analyzeAutoLayoutRunBinding
+  ?let @runActionDescriptor inRunActionDescriptor
+  ?handlesRunAction: let @bool inHandlesRunAction
+  ?let @bool inPreferences
+  ?let @lstring inTypeName
+  ?let @actionMap inActionMap
+  ?let @propertyMap inObservablePropertyMap
+  ?let @string inReceiverSwiftTypeName
+  !@autolayoutRunBindingForGeneration outRunBindingGeneration
+{
+  switch inRunActionDescriptor
+  case noAction :
+    outRunBindingGeneration = .noAction
+  case action (@lstring target @lstring action) :
+    if not inHandlesRunAction then
+      error inTypeName : "the '" + inTypeName + "' type does not handle run action" : outRunBindingGeneration
+    elsif target.string == "self" then
+      [inActionMap searchKey !action]
+      outRunBindingGeneration = .run {
+        !targetName: "self"
+        !actionName: action.string
+        !targetTypeName: inReceiverSwiftTypeName
+      }
+    else # It is a controller
+      [inObservablePropertyMap searchKey
+        !target
+        ?*
+        ?let @actionMap controllerActionMap
+        ?*
+      ]
+      [controllerActionMap searchKey !action]
+      outRunBindingGeneration = .run {
+        !targetName: if inPreferences then "prefs_" else "" end + target.string
+        !actionName: action.string
+        !targetTypeName: "Controller_" + inReceiverSwiftTypeName + "_" + target
+      }
+    end
+  end
 }
 
 #·······················································································································
@@ -1237,10 +1323,9 @@ list @autoLayoutMultipleBindingGenerationList {
 
 #·······················································································································
 
-list @autolayoutRunBindingListForGeneration {
-  @string mTargetName
-  @string mActionName
-  @string mTargetTypeName
+enum @autolayoutRunBindingForGeneration {
+  case noAction
+  case run (@string targetName @string actionName @string targetTypeName)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1251,7 +1336,7 @@ class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGen
   @autoLayoutViewInstructionGenerationFuncCallList mFunctionCallList
   @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
   @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
-  @autolayoutRunBindingListForGeneration mRunBindingGenerationList
+  @autolayoutRunBindingForGeneration mRunBindingGeneration
   @tableViewBindingGenerationList mTableViewBindingGenerationList
   @ebViewGraphicControllerBindingGenerationList mEBViewGraphicControllerBindingGenerationList
 }
@@ -1388,7 +1473,9 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
     result += inIndentation + "    computeFunction: { return " + [binding expressionString] + " }\n"
     result += inIndentation + "  )\n"
   end
-  for (targetName actionName targetTypeName) in mRunBindingGenerationList do
+  switch mRunBindingGeneration
+  case noAction :
+  case run (targetName actionName targetTypeName) :
     result += inIndentation + "  .bind_run (\n"
     result += inIndentation + "    target: " + targetName + ",\n"
     result += inIndentation + "    selector: #selector (" + targetTypeName + "." + actionName + " (_:))\n"

@@ -22,6 +22,7 @@ enum @autoLayoutClassParameterType {
   case typeInt
   case typeBool
   case typeView
+  case menuItem
 }
 
 #·······················································································································
@@ -33,6 +34,7 @@ getter @autoLayoutClassParameterType string -> @string {
   case typeInt : result = "Int"
   case typeBool : result = "Bool"
   case typeView : result = "a view"
+  case menuItem : result = "a menu item"
   end
 }
 
@@ -185,6 +187,9 @@ syntax extension easyBindings_syntax {
         select
           $view$
           ioParameterList += !parameterName !.typeView
+        or
+          $menuItem$
+          ioParameterList += !parameterName !.menuItem
         or
          $Identifier$ ?let parameterTypeName
          if parameterTypeName.string == "String" then

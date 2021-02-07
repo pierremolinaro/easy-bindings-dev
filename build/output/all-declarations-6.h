@@ -10,38 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Extension setter '@XcodeProjectDescriptor addGroupWithFiles'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void extensionSetter_addGroupWithFiles (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                        const class GALGAS_string constin_inGroupName,
-                                        const class GALGAS_string constin_inGroupPath,
-                                        const class GALGAS_stringset constin_inFileNames,
-                                        class GALGAS_stringlist & io_ioCppFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioMFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioMMFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioSwiftFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioFrameWorkFileBuildRefs,
-                                        class GALGAS_stringlist & io_ioResourceFileBuildRefs,
-                                        class GALGAS_string & out_outGroupRef,
-                                        class C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension setter '@XcodeProjectDescriptor addICNS_file'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void extensionSetter_addICNS_5F_file (class GALGAS_XcodeProjectDescriptor & ioObject,
-                                      const class GALGAS_string constin_inFileName,
-                                      class GALGAS_string & out_outFileRef,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Extension setter '@XcodeProjectDescriptor placeGroupAsMainGroup'
 //
 //----------------------------------------------------------------------------------------------------------------------

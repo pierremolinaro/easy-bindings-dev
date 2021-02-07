@@ -41,6 +41,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "include",
   "inverse",
   "mainxib",
+  "menuItem",
   "no",
   "none",
   "one",
