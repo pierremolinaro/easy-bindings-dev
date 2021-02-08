@@ -231,7 +231,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicView-tracking-areas"
     swiftFiles += !"EBGraphicViewControllerProtocol"
     swiftFiles += !"EBGraphicViewScaleProvider"
-    swiftFiles += !"EBHelperView"
+    swiftFiles += !"EBEnclosingGraphicView"
     swiftFiles += !"NSControl-extension-enable-binding"
   #--- Extensions
     swiftFiles += !"extension-CGPoint-NSPoint"

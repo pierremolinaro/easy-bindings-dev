@@ -33,6 +33,28 @@ binding EBGraphicView $backgroundImageOpacity : transient Double ;
 binding EBGraphicView $foregroundImageData : transient Data ;
 binding EBGraphicView $foregroundImageOpacity : transient Double ;
 
+extern outlet class EBEnclosingGraphicView : NSView $graphicController ;
+binding EBEnclosingGraphicView $underObjectsDisplay : transient EBShape ;
+binding EBEnclosingGraphicView $overObjectsDisplay : transient EBShape ;
+binding EBEnclosingGraphicView $arrowKeyMagnitude : transient Int ;
+binding EBEnclosingGraphicView $shiftArrowKeyMagnitude : transient Int ;
+binding EBEnclosingGraphicView $backColor : transient NSColor ;
+binding EBEnclosingGraphicView $mouseGrid : transient Int ;
+binding EBEnclosingGraphicView $gridStep : transient Int ;
+binding EBEnclosingGraphicView $gridStyle : transient GridStyle ;
+binding EBEnclosingGraphicView $gridDisplayFactor : transient Int ;
+binding EBEnclosingGraphicView $gridLineColor : transient NSColor ;
+binding EBEnclosingGraphicView $gridCrossColor : transient NSColor ;
+binding EBEnclosingGraphicView $zoom : property Int ;
+binding EBEnclosingGraphicView $horizontalFlip : transient Bool ;
+binding EBEnclosingGraphicView $verticalFlip : transient Bool ;
+binding EBEnclosingGraphicView $xPlacardUnit : transient Int ;
+binding EBEnclosingGraphicView $yPlacardUnit : transient Int ;
+binding EBEnclosingGraphicView $backgroundImageData : transient Data ;
+binding EBEnclosingGraphicView $backgroundImageOpacity : transient Double ;
+binding EBEnclosingGraphicView $foregroundImageData : transient Data ;
+binding EBEnclosingGraphicView $foregroundImageOpacity : transient Double ;
+
 extern outlet class NSView $hidden ;
 
 extern outlet class NSControl : NSView $enabled $run ;
