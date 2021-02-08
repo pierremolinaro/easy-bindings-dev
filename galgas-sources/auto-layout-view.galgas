@@ -1569,7 +1569,7 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
   result += ")\n"
   [mFunctionCallList generate !inIndentation !?result]
   for (bindingName boundObjectList optionListString) in mRegularBindingsGenerationList do
-    result += inIndentation + "  .bind_" + bindingName + " ("
+    result += inIndentation + "  .bind__" + bindingName + " ("
     for (boundObjectString *) in boundObjectList
       do result += boundObjectString
       between result += ", "
@@ -1577,7 +1577,7 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
     result += optionListString + ")\n"
   end
   for (bindingName binding) in mMultipleBindingGenerationList do 
-    result += inIndentation + "  .bind_" + bindingName + " (\n"
+    result += inIndentation + "  .bind__" + bindingName + " (\n"
     result += inIndentation + "    observedObjects: ["
     for () in [binding observedModelSet]
       do result += key
@@ -1590,7 +1590,7 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
   switch mRunBindingGeneration
   case none :
   case run (targetName actionName targetTypeName) :
-    result += inIndentation + "  .bind_run (\n"
+    result += inIndentation + "  .bind__run (\n"
     result += inIndentation + "    target: " + targetName + ",\n"
     result += inIndentation + "    selector: #selector (" + targetTypeName + "." + actionName + " (_:))\n"
     result += inIndentation + "  )\n"
@@ -1598,7 +1598,7 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
   switch mEBViewGraphicControllerBindingGeneration
   case none :
   case binding (controllerName) :
-    result += inIndentation + "  .bind_graphic_controller (self." + controllerName + ")\n"
+    result += inIndentation + "  .bind__graphic_controller (self." + controllerName + ")\n"
   end
 }
 
