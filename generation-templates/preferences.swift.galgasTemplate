@@ -108,10 +108,11 @@ end
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
   %    %!mOutletName%?.bind_%!mBindingName% (%
-  for () in mBoundObjectList do
-    !mBoundObjectString%, %
+  for () in mBoundObjectList
+    do !mBoundObjectString
+    between %, %
   end
-  %file: #file, line: #line%!mBindingOptionsString%)\n%
+  !mBindingOptionsString%)\n%
 end
 %  //--------------------------- Install multiple bindings
 %
@@ -132,7 +133,7 @@ end
 %  //--------------------------- Array controller
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    prefs_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
+  %    prefs_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
 for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    prefs_%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%

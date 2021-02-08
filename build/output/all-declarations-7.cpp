@@ -582,89 +582,90 @@ GALGAS_string filewrapperTemplate_xibDocumentGenerationTemplate_documentImplemen
       result << enumerator_5490.current_mTableValueBindingControllerName (HERE).stringValue () ;
       result << ".bind_tableView (self." ;
       result << enumerator_5490.current_mTableValueBindingOutletName (HERE).stringValue () ;
-      result << ", file: #file, line: #line)\n" ;
+      result << ")\n" ;
       index_5490_.increment () ;
       enumerator_5490.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Install ebView bindings\n" ;
-  GALGAS_uint index_5748_ (0) ;
+  GALGAS_uint index_5722_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_5748 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5748.hasCurrentObject ()) {
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_5722 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5722.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_5748.current_mArrayControllerControllerName (HERE).stringValue () ;
+      result << enumerator_5722.current_mArrayControllerControllerName (HERE).stringValue () ;
       result << ".bind_ebView (self." ;
-      result << enumerator_5748.current_mEBViewOutletName (HERE).stringValue () ;
+      result << enumerator_5722.current_mEBViewOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_5748_.increment () ;
-      enumerator_5748.gotoNextObject () ;
+      index_5722_.increment () ;
+      enumerator_5722.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Install regular bindings\n" ;
-  GALGAS_uint index_5947_ (0) ;
+  GALGAS_uint index_5921_ (0) ;
   if (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_regularBindingsGenerationList enumerator_5947 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5947.hasCurrentObject ()) {
+    cEnumerator_regularBindingsGenerationList enumerator_5921 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5921.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_5947.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_5921.current_mOutletName (HERE).stringValue () ;
       result << "\?.bind_" ;
-      result << enumerator_5947.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_5921.current_mBindingName (HERE).stringValue () ;
       result << " (" ;
-      GALGAS_uint index_6031_ (0) ;
-      if (enumerator_5947.current_mBoundObjectList (HERE).isValid ()) {
-        cEnumerator_boundObjectList enumerator_6031 (enumerator_5947.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
-        while (enumerator_6031.hasCurrentObject ()) {
-          result << enumerator_6031.current_mBoundObjectString (HERE).stringValue () ;
-          result << ", " ;
-          index_6031_.increment () ;
-          enumerator_6031.gotoNextObject () ;
+      GALGAS_uint index_6009_ (0) ;
+      if (enumerator_5921.current_mBoundObjectList (HERE).isValid ()) {
+        cEnumerator_boundObjectList enumerator_6009 (enumerator_5921.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
+        while (enumerator_6009.hasCurrentObject ()) {
+          result << enumerator_6009.current_mBoundObjectString (HERE).stringValue () ;
+          if (enumerator_6009.hasNextObject ()) {
+            result << ", " ;
+          }
+          index_6009_.increment () ;
+          enumerator_6009.gotoNextObject () ;
         }
       }
-      result << "file: #file, line: #line" ;
-      result << enumerator_5947.current_mBindingOptionsString (HERE).stringValue () ;
+      result << enumerator_5921.current_mBindingOptionsString (HERE).stringValue () ;
       result << ")\n" ;
-      index_5947_.increment () ;
-      enumerator_5947.gotoNextObject () ;
+      index_5921_.increment () ;
+      enumerator_5921.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Install multiple bindings\n" ;
-  GALGAS_uint index_6232_ (0) ;
+  GALGAS_uint index_6193_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_multipleBindingGenerationList enumerator_6232 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_6232.hasCurrentObject ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_6193 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_6193.hasCurrentObject ()) {
       result << "    do{\n"
         "      let controller = MultipleBindingController_" ;
-      result << enumerator_6232.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_6193.current_mBindingName (HERE).stringValue () ;
       result << " (\n"
         "        computeFunction: {\n"
         "          return " ;
-      result << callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6232.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 156)).stringValue () ;
+      result << callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6193.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 157)).stringValue () ;
       result << "\n"
         "        },\n"
         "        outlet: self." ;
-      result << enumerator_6232.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_6193.current_mOutletName (HERE).stringValue () ;
       result << "\n"
         "      )\n" ;
-      GALGAS_uint index_6550_ (0) ;
-      if (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6232.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 160)).isValid ()) {
-        cEnumerator_stringset enumerator_6550 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6232.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 160)), kENUMERATION_UP) ;
-        while (enumerator_6550.hasCurrentObject ()) {
+      GALGAS_uint index_6511_ (0) ;
+      if (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6193.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 161)).isValid ()) {
+        cEnumerator_stringset enumerator_6511 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6193.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 161)), kENUMERATION_UP) ;
+        while (enumerator_6511.hasCurrentObject ()) {
           result << "      " ;
-          result << enumerator_6550.current_key (HERE).stringValue () ;
+          result << enumerator_6511.current_key (HERE).stringValue () ;
           result << ".addEBObserver (controller)\n" ;
-          index_6550_.increment () ;
-          enumerator_6550.gotoNextObject () ;
+          index_6511_.increment () ;
+          enumerator_6511.gotoNextObject () ;
         }
       }
       result << "      self.mController_" ;
-      result << enumerator_6232.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_6193.current_mOutletName (HERE).stringValue () ;
       result << "_" ;
-      result << enumerator_6232.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_6193.current_mBindingName (HERE).stringValue () ;
       result << " = controller\n"
         "    }\n" ;
-      index_6232_.increment () ;
-      enumerator_6232.gotoNextObject () ;
+      index_6193_.increment () ;
+      enumerator_6193.gotoNextObject () ;
     }
   }
   result << "    if LOG_OPERATION_DURATION {\n"
@@ -678,24 +679,24 @@ GALGAS_string filewrapperTemplate_xibDocumentGenerationTemplate_documentImplemen
     "  final private func setTargetsAndActions () {\n"
     "     let start = Date ()\n"
     "   //--------------------------- Set targets / actions\n" ;
-  GALGAS_uint index_7147_ (0) ;
+  GALGAS_uint index_7108_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_7147 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_7147.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_7108 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_7108.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_7147.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_7108.current_mOutletName (HERE).stringValue () ;
       result << "\?.target = " ;
-      result << enumerator_7147.current_mTargetName (HERE).stringValue () ;
+      result << enumerator_7108.current_mTargetName (HERE).stringValue () ;
       result << "\n"
         "    self." ;
-      result << enumerator_7147.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_7108.current_mOutletName (HERE).stringValue () ;
       result << "\?.action = #selector (" ;
-      result << enumerator_7147.current_mTargetTypeName (HERE).stringValue () ;
+      result << enumerator_7108.current_mTargetTypeName (HERE).stringValue () ;
       result << "." ;
-      result << enumerator_7147.current_mActionName (HERE).stringValue () ;
+      result << enumerator_7108.current_mActionName (HERE).stringValue () ;
       result << " (_:))\n" ;
-      index_7147_.increment () ;
-      enumerator_7147.gotoNextObject () ;
+      index_7108_.increment () ;
+      enumerator_7108.gotoNextObject () ;
     }
   }
   result << "    if LOG_OPERATION_DURATION {\n"
@@ -731,118 +732,118 @@ GALGAS_string filewrapperTemplate_xibDocumentGenerationTemplate_documentImplemen
     "  override func removeUserInterface () {\n"
     "    super.removeUserInterface ()\n"
     "  //--------------------------- Unbind regular bindings\n" ;
-  GALGAS_uint index_8734_ (0) ;
+  GALGAS_uint index_8695_ (0) ;
   if (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_regularBindingsGenerationList enumerator_8734 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_8734.hasCurrentObject ()) {
+    cEnumerator_regularBindingsGenerationList enumerator_8695 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_8695.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_8734.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_8695.current_mOutletName (HERE).stringValue () ;
       result << "\?.unbind_" ;
-      result << enumerator_8734.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_8695.current_mBindingName (HERE).stringValue () ;
       result << " ()\n" ;
-      index_8734_.increment () ;
-      enumerator_8734.gotoNextObject () ;
+      index_8695_.increment () ;
+      enumerator_8695.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Unbind multiple bindings\n" ;
-  GALGAS_uint index_8901_ (0) ;
+  GALGAS_uint index_8862_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_multipleBindingGenerationList enumerator_8901 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_8901.hasCurrentObject ()) {
-      GALGAS_uint index_8958_ (0) ;
-      if (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_8901.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 221)).isValid ()) {
-        cEnumerator_stringset enumerator_8958 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_8901.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 221)), kENUMERATION_UP) ;
-        while (enumerator_8958.hasCurrentObject ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_8862 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_8862.hasCurrentObject ()) {
+      GALGAS_uint index_8919_ (0) ;
+      if (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_8862.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 222)).isValid ()) {
+        cEnumerator_stringset enumerator_8919 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_8862.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 222)), kENUMERATION_UP) ;
+        while (enumerator_8919.hasCurrentObject ()) {
           result << "    " ;
-          result << enumerator_8958.current_key (HERE).stringValue () ;
+          result << enumerator_8919.current_key (HERE).stringValue () ;
           result << ".removeEBObserver (self.mController_" ;
-          result << enumerator_8901.current_mOutletName (HERE).stringValue () ;
+          result << enumerator_8862.current_mOutletName (HERE).stringValue () ;
           result << "_" ;
-          result << enumerator_8901.current_mBindingName (HERE).stringValue () ;
+          result << enumerator_8862.current_mBindingName (HERE).stringValue () ;
           result << "!)\n" ;
-          index_8958_.increment () ;
-          enumerator_8958.gotoNextObject () ;
+          index_8919_.increment () ;
+          enumerator_8919.gotoNextObject () ;
         }
       }
       result << "    self.mController_" ;
-      result << enumerator_8901.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_8862.current_mOutletName (HERE).stringValue () ;
       result << "_" ;
-      result << enumerator_8901.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_8862.current_mBindingName (HERE).stringValue () ;
       result << " = nil\n" ;
-      index_8901_.increment () ;
-      enumerator_8901.gotoNextObject () ;
+      index_8862_.increment () ;
+      enumerator_8862.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Unbind array controllers\n" ;
-  GALGAS_uint index_9226_ (0) ;
+  GALGAS_uint index_9187_ (0) ;
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_tableViewBindingGenerationList enumerator_9226 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_9226.hasCurrentObject ()) {
+    cEnumerator_tableViewBindingGenerationList enumerator_9187 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_9187.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_9226.current_mTableValueBindingControllerName (HERE).stringValue () ;
+      result << enumerator_9187.current_mTableValueBindingControllerName (HERE).stringValue () ;
       result << ".unbind_tableView (self." ;
-      result << enumerator_9226.current_mTableValueBindingOutletName (HERE).stringValue () ;
+      result << enumerator_9187.current_mTableValueBindingOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_9226_.increment () ;
-      enumerator_9226.gotoNextObject () ;
+      index_9187_.increment () ;
+      enumerator_9187.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_9401_ (0) ;
+  GALGAS_uint index_9362_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_9401 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_9401.hasCurrentObject ()) {
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_9362 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_9362.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_9401.current_mArrayControllerControllerName (HERE).stringValue () ;
+      result << enumerator_9362.current_mArrayControllerControllerName (HERE).stringValue () ;
       result << ".unbind_ebView (self." ;
-      result << enumerator_9401.current_mEBViewOutletName (HERE).stringValue () ;
+      result << enumerator_9362.current_mEBViewOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_9401_.increment () ;
-      enumerator_9401.gotoNextObject () ;
+      index_9362_.increment () ;
+      enumerator_9362.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_9532_ (0) ;
+  GALGAS_uint index_9493_ (0) ;
   if (in_DOCUMENT_5F_PROPERTY_5F_LIST.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_9532 (in_DOCUMENT_5F_PROPERTY_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_9532.hasCurrentObject ()) {
-      result << callExtensionGetter_terminationCode ((const cPtr_propertyGeneration *) enumerator_9532.current_mProperty (HERE).ptr (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 235)).stringValue () ;
-      index_9532_.increment () ;
-      enumerator_9532.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_9493 (in_DOCUMENT_5F_PROPERTY_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_9493.hasCurrentObject ()) {
+      result << callExtensionGetter_terminationCode ((const cPtr_propertyGeneration *) enumerator_9493.current_mProperty (HERE).ptr (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-xib.swift.galgasTemplate", 236)).stringValue () ;
+      index_9493_.increment () ;
+      enumerator_9493.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Remove targets / actions\n" ;
-  GALGAS_uint index_9665_ (0) ;
+  GALGAS_uint index_9626_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_9665 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_9665.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_9626 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_9626.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_9665.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_9626.current_mOutletName (HERE).stringValue () ;
       result << "\?.target = nil\n" ;
-      index_9665_.increment () ;
-      enumerator_9665.gotoNextObject () ;
+      index_9626_.increment () ;
+      enumerator_9626.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Clean up outlets\n" ;
-  GALGAS_uint index_9798_ (0) ;
+  GALGAS_uint index_9759_ (0) ;
   if (in_OUTLET_5F_GENERATION_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_9798 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_9798.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_9759 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_9759.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_9798.current_lkey (HERE).getter_string (HERE).stringValue () ;
+      result << enumerator_9759.current_lkey (HERE).getter_string (HERE).stringValue () ;
       result << "\?.ebCleanUp ()\n" ;
-      index_9798_.increment () ;
-      enumerator_9798.gotoNextObject () ;
+      index_9759_.increment () ;
+      enumerator_9759.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Detach outlets\n" ;
-  GALGAS_uint index_9932_ (0) ;
+  GALGAS_uint index_9893_ (0) ;
   if (in_OUTLET_5F_GENERATION_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_9932 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_9932.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_9893 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_9893.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_9932.current_lkey (HERE).getter_string (HERE).stringValue () ;
+      result << enumerator_9893.current_lkey (HERE).getter_string (HERE).stringValue () ;
       result << " = nil\n" ;
-      index_9932_.increment () ;
-      enumerator_9932.gotoNextObject () ;
+      index_9893_.increment () ;
+      enumerator_9893.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -2528,17 +2529,18 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
       result << "\?.bind_" ;
       result << enumerator_4396.current_mBindingName (HERE).stringValue () ;
       result << " (" ;
-      GALGAS_uint index_4475_ (0) ;
+      GALGAS_uint index_4479_ (0) ;
       if (enumerator_4396.current_mBoundObjectList (HERE).isValid ()) {
-        cEnumerator_boundObjectList enumerator_4475 (enumerator_4396.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
-        while (enumerator_4475.hasCurrentObject ()) {
-          result << enumerator_4475.current_mBoundObjectString (HERE).stringValue () ;
-          result << ", " ;
-          index_4475_.increment () ;
-          enumerator_4475.gotoNextObject () ;
+        cEnumerator_boundObjectList enumerator_4479 (enumerator_4396.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
+        while (enumerator_4479.hasCurrentObject ()) {
+          result << enumerator_4479.current_mBoundObjectString (HERE).stringValue () ;
+          if (enumerator_4479.hasNextObject ()) {
+            result << ", " ;
+          }
+          index_4479_.increment () ;
+          enumerator_4479.gotoNextObject () ;
         }
       }
-      result << "file: #file, line: #line" ;
       result << enumerator_4396.current_mBindingOptionsString (HERE).stringValue () ;
       result << ")\n" ;
       index_4396_.increment () ;
@@ -2546,106 +2548,106 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
     }
   }
   result << "  //--------------------------- Install multiple bindings\n" ;
-  GALGAS_uint index_4676_ (0) ;
+  GALGAS_uint index_4663_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_multipleBindingGenerationList enumerator_4676 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_4676.hasCurrentObject ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_4663 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_4663.hasCurrentObject ()) {
       result << "    do{\n"
         "      let controller = MultipleBindingController_" ;
-      result << enumerator_4676.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_4663.current_mBindingName (HERE).stringValue () ;
       result << " (\n"
         "        computeFunction: {\n"
         "          return " ;
-      result << callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_4676.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 122)).stringValue () ;
+      result << callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_4663.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 123)).stringValue () ;
       result << "\n"
         "        },\n"
         "        outlet: self." ;
-      result << enumerator_4676.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_4663.current_mOutletName (HERE).stringValue () ;
       result << "\n"
         "      )\n" ;
-      GALGAS_uint index_4994_ (0) ;
-      if (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_4676.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 126)).isValid ()) {
-        cEnumerator_stringset enumerator_4994 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_4676.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 126)), kENUMERATION_UP) ;
-        while (enumerator_4994.hasCurrentObject ()) {
+      GALGAS_uint index_4981_ (0) ;
+      if (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_4663.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 127)).isValid ()) {
+        cEnumerator_stringset enumerator_4981 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_4663.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 127)), kENUMERATION_UP) ;
+        while (enumerator_4981.hasCurrentObject ()) {
           result << "      " ;
-          result << enumerator_4994.current_key (HERE).stringValue () ;
+          result << enumerator_4981.current_key (HERE).stringValue () ;
           result << ".addEBObserver (controller)\n" ;
-          index_4994_.increment () ;
-          enumerator_4994.gotoNextObject () ;
+          index_4981_.increment () ;
+          enumerator_4981.gotoNextObject () ;
         }
       }
       result << "      self.mController_" ;
-      result << enumerator_4676.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_4663.current_mOutletName (HERE).stringValue () ;
       result << "_" ;
-      result << enumerator_4676.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_4663.current_mBindingName (HERE).stringValue () ;
       result << " = controller\n"
         "    }\n" ;
-      index_4676_.increment () ;
-      enumerator_4676.gotoNextObject () ;
+      index_4663_.increment () ;
+      enumerator_4663.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Array controller\n" ;
-  GALGAS_uint index_5236_ (0) ;
+  GALGAS_uint index_5223_ (0) ;
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_tableViewBindingGenerationList enumerator_5236 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5236.hasCurrentObject ()) {
+    cEnumerator_tableViewBindingGenerationList enumerator_5223 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5223.hasCurrentObject ()) {
       result << "    prefs_" ;
-      result << enumerator_5236.current_mTableValueBindingControllerName (HERE).stringValue () ;
+      result << enumerator_5223.current_mTableValueBindingControllerName (HERE).stringValue () ;
       result << ".bind_tableView (self." ;
-      result << enumerator_5236.current_mTableValueBindingOutletName (HERE).stringValue () ;
-      result << ", file: #file, line: #line)\n" ;
-      index_5236_.increment () ;
-      enumerator_5236.gotoNextObject () ;
+      result << enumerator_5223.current_mTableValueBindingOutletName (HERE).stringValue () ;
+      result << ")\n" ;
+      index_5223_.increment () ;
+      enumerator_5223.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_5436_ (0) ;
+  GALGAS_uint index_5397_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_5436 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5436.hasCurrentObject ()) {
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_5397 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5397.hasCurrentObject ()) {
       result << "    prefs_" ;
-      result << enumerator_5436.current_mArrayControllerControllerName (HERE).stringValue () ;
+      result << enumerator_5397.current_mArrayControllerControllerName (HERE).stringValue () ;
       result << ".bind_ebView (self." ;
-      result << enumerator_5436.current_mEBViewOutletName (HERE).stringValue () ;
+      result << enumerator_5397.current_mEBViewOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_5436_.increment () ;
-      enumerator_5436.gotoNextObject () ;
+      index_5397_.increment () ;
+      enumerator_5397.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Set targets / actions\n" ;
-  GALGAS_uint index_5618_ (0) ;
+  GALGAS_uint index_5579_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_5618 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5618.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_5579 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5579.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_5618.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_5579.current_mOutletName (HERE).stringValue () ;
       result << "\?.target = " ;
-      result << enumerator_5618.current_mTargetName (HERE).stringValue () ;
+      result << enumerator_5579.current_mTargetName (HERE).stringValue () ;
       result << "\n"
         "    self." ;
-      result << enumerator_5618.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_5579.current_mOutletName (HERE).stringValue () ;
       result << "\?.action = #selector (" ;
-      result << enumerator_5618.current_mTargetTypeName (HERE).stringValue () ;
+      result << enumerator_5579.current_mTargetTypeName (HERE).stringValue () ;
       result << "." ;
-      result << enumerator_5618.current_mActionName (HERE).stringValue () ;
+      result << enumerator_5579.current_mActionName (HERE).stringValue () ;
       result << " (_:))\n" ;
-      index_5618_.increment () ;
-      enumerator_5618.gotoNextObject () ;
+      index_5579_.increment () ;
+      enumerator_5579.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Extern functions\n" ;
-  GALGAS_uint index_5858_ (0) ;
+  GALGAS_uint index_5819_ (0) ;
   if (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST.isValid ()) {
-    cEnumerator_externSwiftFunctionList enumerator_5858 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5858.hasCurrentObject ()) {
-      const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, enumerator_5858.current_mCallerName (HERE).getter_string (HERE).objectCompare (GALGAS_string ("awakeFromNib"))).boolEnum () ;
+    cEnumerator_externSwiftFunctionList enumerator_5819 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5819.hasCurrentObject ()) {
+      const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, enumerator_5819.current_mCallerName (HERE).getter_string (HERE).objectCompare (GALGAS_string ("awakeFromNib"))).boolEnum () ;
       if (kBoolTrue == test_2) {
         result << "    self." ;
-        result << enumerator_5858.current_mExternSwiftFunctionName (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_5819.current_mExternSwiftFunctionName (HERE).getter_string (HERE).stringValue () ;
         result << " ()\n" ;
       }else if (kBoolFalse == test_2) {
       }
-      index_5858_.increment () ;
-      enumerator_5858.gotoNextObject () ;
+      index_5819_.increment () ;
+      enumerator_5819.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -2656,39 +2658,39 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
     "\n"
     "  @objc func applicationWillTerminateAction (_ : NSNotification) {\n"
     "  //--------------------------- Array controller\n" ;
-  GALGAS_uint index_6433_ (0) ;
+  GALGAS_uint index_6394_ (0) ;
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_tableViewBindingGenerationList enumerator_6433 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_6433.hasCurrentObject ()) {
+    cEnumerator_tableViewBindingGenerationList enumerator_6394 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_6394.hasCurrentObject ()) {
       result << "    prefs_" ;
-      result << enumerator_6433.current_mTableValueBindingControllerName (HERE).stringValue () ;
+      result << enumerator_6394.current_mTableValueBindingControllerName (HERE).stringValue () ;
       result << ".unbind_tableView (self." ;
-      result << enumerator_6433.current_mTableValueBindingOutletName (HERE).stringValue () ;
+      result << enumerator_6394.current_mTableValueBindingOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_6433_.increment () ;
-      enumerator_6433.gotoNextObject () ;
+      index_6394_.increment () ;
+      enumerator_6394.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_6609_ (0) ;
+  GALGAS_uint index_6570_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_6609 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_6609.hasCurrentObject ()) {
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_6570 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_6570.hasCurrentObject ()) {
       result << "    prefs_" ;
-      result << enumerator_6609.current_mArrayControllerControllerName (HERE).stringValue () ;
+      result << enumerator_6570.current_mArrayControllerControllerName (HERE).stringValue () ;
       result << ".unbind_ebView (prefs_" ;
-      result << enumerator_6609.current_mEBViewOutletName (HERE).stringValue () ;
+      result << enumerator_6570.current_mEBViewOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_6609_.increment () ;
-      enumerator_6609.gotoNextObject () ;
+      index_6570_.increment () ;
+      enumerator_6570.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_6748_ (0) ;
+  GALGAS_uint index_6709_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_6748 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_6748.hasCurrentObject ()) {
-      result << callExtensionGetter_terminationCode ((const cPtr_propertyGeneration *) enumerator_6748.current_mProperty (HERE).ptr (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 168)).stringValue () ;
-      index_6748_.increment () ;
-      enumerator_6748.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_6709 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_6709.hasCurrentObject ()) {
+      result << callExtensionGetter_terminationCode ((const cPtr_propertyGeneration *) enumerator_6709.current_mProperty (HERE).ptr (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 169)).stringValue () ;
+      index_6709_.increment () ;
+      enumerator_6709.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -5077,7 +5079,7 @@ const char * gWrapperFileContent_20_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_title (_ object : EBReadOnlyProperty_String, file : String, line : Int) {\n"
+  "  func bind_title (_ object : EBReadOnlyProperty_String) {\n"
   "    self.mTitleController = EBReadOnlyPropertyController (\n"
   "      observedObjects: [object],\n"
   "      callBack: { self.updateTitle (object) }\n"
@@ -5133,7 +5135,7 @@ const cRegularFileWrapper gWrapperFile_20_outletClassGeneration (
   "EBButton.swift",
   "swift",
   true, // Text file
-  3945, // Text length
+  3918, // Text length
   gWrapperFileContent_20_outletClassGeneration
 ) ;
 
@@ -5378,7 +5380,7 @@ const char * gWrapperFileContent_6_outletClassGeneration = "//------------------
   "  private var mValueController : Controller_EBColorWell_color\? = nil\n"
   "  var mSendContinously = false\n"
   "\n"
-  "  func bind_color (_ object : EBReadWriteProperty_NSColor, file : String, line : Int, sendContinously : Bool) {\n"
+  "  func bind_color (_ object : EBReadWriteProperty_NSColor, sendContinously : Bool) {\n"
   "    NSColorPanel.shared.showsAlpha = true\n"
   "    self.mSendContinously = sendContinously\n"
   "    self.mValueController = Controller_EBColorWell_color (object:object, outlet:self)\n"
@@ -5433,7 +5435,7 @@ const cRegularFileWrapper gWrapperFile_6_outletClassGeneration (
   "EBColorWell.swift",
   "swift",
   true, // Text file
-  3843, // Text length
+  3816, // Text length
   gWrapperFileContent_6_outletClassGeneration
 ) ;
 
@@ -5643,13 +5645,11 @@ const char * gWrapperFileContent_5_outletClassGeneration = "//------------------
   "  private var mValueController : Controller_EBDoubleField_value\?\n"
   "  private var mSendContinously : Bool = false\n"
   "\n"
-  "  func bind_value (_ object:EBReadWriteProperty_Double, file:String, line:Int, sendContinously:Bool, autoFormatter:Bool) {\n"
+  "  func bind_value (_ object : EBReadWriteProperty_Double, sendContinously : Bool, autoFormatter : Bool) {\n"
   "    mSendContinously = sendContinously\n"
   "    mValueController = Controller_EBDoubleField_value (\n"
   "      object:object,\n"
   "      outlet:self,\n"
-  "      file:file,\n"
-  "      line:line,\n"
   "      sendContinously:sendContinously,\n"
   "      autoFormatter:autoFormatter\n"
   "    )\n"
@@ -5675,8 +5675,6 @@ const char * gWrapperFileContent_5_outletClassGeneration = "//------------------
   "\n"
   "  init (object : EBReadWriteProperty_Double,\n"
   "        outlet : EBDoubleField,\n"
-  "        file : String,\n"
-  "        line : Int,\n"
   "        sendContinously : Bool,\n"
   "        autoFormatter : Bool) {\n"
   "    mObject = object\n"
@@ -5688,9 +5686,9 @@ const char * gWrapperFileContent_5_outletClassGeneration = "//------------------
   "      let formatter = NumberFormatter ()\n"
   "      self.mOutlet.formatter = formatter\n"
   "    }else if self.mOutlet.formatter == nil {\n"
-  "      presentErrorWindow (file, line, \"the outlet has no formatter\")\n"
+  "      presentErrorWindow (#file, #line, \"the outlet has no formatter\")\n"
   "    }else if !(mOutlet.formatter is NumberFormatter) {\n"
-  "      presentErrorWindow (file, line, \"the formatter should be an NSNumberFormatter\")\n"
+  "      presentErrorWindow (#file, #line, \"the formatter should be an NSNumberFormatter\")\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -5717,7 +5715,7 @@ const cRegularFileWrapper gWrapperFile_5_outletClassGeneration (
   "EBDoubleField.swift",
   "swift",
   true, // Text file
-  6647, // Text length
+  6557, // Text length
   gWrapperFileContent_5_outletClassGeneration
 ) ;
 
@@ -5924,7 +5922,7 @@ const char * gWrapperFileContent_9_outletClassGeneration = "//------------------
   "\n"
   "  private var mValueController : Controller_EBFontButton_fontValue\? = nil\n"
   "\n"
-  "  func bind_fontValue (_ object : EBReadWriteProperty_NSFont, file : String, line : Int) {\n"
+  "  func bind_fontValue (_ object : EBReadWriteProperty_NSFont) {\n"
   "    self.mValueController = Controller_EBFontButton_fontValue (object: object, outlet: self)\n"
   "  }\n"
   "\n"
@@ -5977,7 +5975,7 @@ const cRegularFileWrapper gWrapperFile_9_outletClassGeneration (
   "EBFontButton.swift",
   "swift",
   true, // Text file
-  5055, // Text length
+  5028, // Text length
   gWrapperFileContent_9_outletClassGeneration
 ) ;
 
@@ -6206,7 +6204,7 @@ const char * gWrapperFileContent_0_outletClassGeneration = "//------------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_image (_ object : EBReadOnlyProperty_NSImage, file : String, line : Int) {\n"
+  "  func bind_image (_ object : EBReadOnlyProperty_NSImage) {\n"
   "    self.mImageController = EBReadOnlyPropertyController (observedObjects: [object], callBack: { self.updateImage (object) } )\n"
   "  }\n"
   "\n"
@@ -6241,7 +6239,7 @@ const char * gWrapperFileContent_0_outletClassGeneration = "//------------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_tooltip (_ object : EBReadOnlyProperty_String, file : String, line : Int) {\n"
+  "  func bind_tooltip (_ object : EBReadOnlyProperty_String) {\n"
   "    self.mTooltipController = EBReadOnlyPropertyController (observedObjects: [object], callBack : { self.updateTooltip (object) })\n"
   "  }\n"
   "\n"
@@ -6287,7 +6285,7 @@ const cRegularFileWrapper gWrapperFile_0_outletClassGeneration (
   "EBImageObserverView.swift",
   "swift",
   true, // Text file
-  5417, // Text length
+  5363, // Text length
   gWrapperFileContent_0_outletClassGeneration
 ) ;
 
@@ -6398,20 +6396,16 @@ const char * gWrapperFileContent_1_outletClassGeneration = "//------------------
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  func bind_value (_ object : EBReadWriteProperty_Int,\n"
-  "                   file : String,\n"
-  "                   line : Int,\n"
   "                   sendContinously : Bool,\n"
   "                   autoFormatter : Bool) {\n"
   "    if self.cell\?.sendsActionOnEndEditing \?\? true {\n"
-  "      presentErrorWindow (file, line, \"In IB, \\\"Action\\\" should be set to \\\"Send On Enter Only\\\"\")\n"
+  "      presentErrorWindow (#file, #line, \"In IB, \\\"Action\\\" should be set to \\\"Send On Enter Only\\\"\")\n"
   "    }\n"
   "    self.cell\?.sendsActionOnEndEditing = false\n"
   "    self.mSendContinously = sendContinously\n"
   "    self.mValueController = Controller_EBIntField_value (\n"
   "      object: object,\n"
   "      outlet: self,\n"
-  "      file: file,\n"
-  "      line: line,\n"
   "      sendContinously: sendContinously,\n"
   "      autoFormatter: autoFormatter\n"
   "    )\n"
@@ -6441,8 +6435,6 @@ const char * gWrapperFileContent_1_outletClassGeneration = "//------------------
   "\n"
   "  init (object : EBReadWriteProperty_Int,\n"
   "        outlet : EBIntField,\n"
-  "        file : String,\n"
-  "        line : Int,\n"
   "        sendContinously : Bool,\n"
   "        autoFormatter : Bool) {\n"
   "    self.mObject = object\n"
@@ -6454,9 +6446,9 @@ const char * gWrapperFileContent_1_outletClassGeneration = "//------------------
   "      let formatter = NumberFormatter ()\n"
   "      self.mOutlet.formatter = formatter\n"
   "    }else if self.mOutlet.formatter == nil {\n"
-  "      presentErrorWindow (file, line, \"the outlet has no formatter\")\n"
+  "      presentErrorWindow (#file, #line, \"the outlet has no formatter\")\n"
   "    }else if !(mOutlet.formatter is NumberFormatter) {\n"
-  "      presentErrorWindow (file, line, \"the formatter should be an NSNumberFormatter\")\n"
+  "      presentErrorWindow (#file, #line, \"the formatter should be an NSNumberFormatter\")\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -6507,7 +6499,7 @@ const cRegularFileWrapper gWrapperFile_1_outletClassGeneration (
   "EBIntField.swift",
   "swift",
   true, // Text file
-  8533, // Text length
+  8395, // Text length
   gWrapperFileContent_1_outletClassGeneration
 ) ;
 
@@ -6569,12 +6561,10 @@ const char * gWrapperFileContent_26_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_valueObserver (_ object : EBReadOnlyProperty_Int, file : String, line : Int, autoFormatter : Bool) {\n"
+  "  func bind_valueObserver (_ object : EBReadOnlyProperty_Int, autoFormatter : Bool) {\n"
   "    self.mValueController = Controller_EBIntObserverField_readOnlyValue (\n"
   "      object: object,\n"
   "      outlet: self,\n"
-  "      file: file,\n"
-  "      line: line,\n"
   "      autoFormatter: autoFormatter\n"
   "    )\n"
   "  }\n"
@@ -6602,16 +6592,16 @@ const char * gWrapperFileContent_26_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  init (object : EBReadOnlyProperty_Int, outlet : EBIntObserverField, file : String, line : Int, autoFormatter : Bool) {\n"
+  "  init (object : EBReadOnlyProperty_Int, outlet : EBIntObserverField, autoFormatter : Bool) {\n"
   "    mObject = object\n"
   "    mOutlet = outlet\n"
   "    super.init (observedObjects: [object], callBack: { outlet.updateOutlet (object) })\n"
   "    if autoFormatter {\n"
   "      self.mOutlet.formatter = NumberFormatter ()\n"
   "    }else if self.mOutlet.formatter == nil {\n"
-  "      presentErrorWindow (file, line, \"the outlet has no formatter\")\n"
+  "      presentErrorWindow (#file, #line, \"the outlet has no formatter\")\n"
   "    }else if !(self.mOutlet.formatter is NumberFormatter) {\n"
-  "      presentErrorWindow (file, line, \"the formatter should be an NSNumberFormatter\")\n"
+  "      presentErrorWindow (#file, #line, \"the formatter should be an NSNumberFormatter\")\n"
   "    }\n"
   "  }\n"
   "\n"
@@ -6650,7 +6640,7 @@ const cRegularFileWrapper gWrapperFile_26_outletClassGeneration (
   "EBIntObserverField.swift",
   "swift",
   true, // Text file
-  5603, // Text length
+  5517, // Text length
   gWrapperFileContent_26_outletClassGeneration
 ) ;
 
@@ -6986,7 +6976,7 @@ const char * gWrapperFileContent_8_outletClassGeneration = "//------------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_selectedTag (_ object : EBReadWriteProperty_Int, file : String, line : Int) {\n"
+  "  func bind_selectedTag (_ object : EBReadWriteProperty_Int) {\n"
   "    self.mSelectedTagController = Controller_EBPopUpButton_selectedTag (object: object, outlet: self)\n"
   "  }\n"
   "\n"
@@ -7033,7 +7023,7 @@ const char * gWrapperFileContent_8_outletClassGeneration = "//------------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_selectedIndex (_ object : EBReadWriteObservableEnumProtocol, file : String, line : Int) {\n"
+  "  func bind_selectedIndex (_ object : EBReadWriteObservableEnumProtocol) {\n"
   "    self.mSelectedIndexController = Controller_EBPopUpButton_Index (object: object, outlet: self)\n"
   "  }\n"
   "\n"
@@ -7110,7 +7100,7 @@ const cRegularFileWrapper gWrapperFile_8_outletClassGeneration (
   "EBPopUpButton.swift",
   "swift",
   true, // Text file
-  7822, // Text length
+  7768, // Text length
   gWrapperFileContent_8_outletClassGeneration
 ) ;
 
@@ -7386,7 +7376,7 @@ const char * gWrapperFileContent_27_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_doubleValue (_ object : EBReadWriteProperty_Double, file : String, line : Int, sendContinously : Bool) {\n"
+  "  func bind_doubleValue (_ object : EBReadWriteProperty_Double, sendContinously : Bool) {\n"
   "    self.mDoubleValueController = Controller_EBSlider_doubleValue (object: object, outlet: self)\n"
   "    self.isContinuous = sendContinously\n"
   "  }\n"
@@ -7419,7 +7409,7 @@ const char * gWrapperFileContent_27_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_intValue (_ object : EBReadWriteProperty_Int, file : String, line : Int, sendContinously : Bool) {\n"
+  "  func bind_intValue (_ object : EBReadWriteProperty_Int, sendContinously : Bool) {\n"
   "    self.mIntValueController = Controller_EBSlider_intValue (object:object, outlet:self)\n"
   "    self.isContinuous = sendContinously\n"
   "  }\n"
@@ -7494,7 +7484,7 @@ const cRegularFileWrapper gWrapperFile_27_outletClassGeneration (
   "EBSlider.swift",
   "swift",
   true, // Text file
-  6854, // Text length
+  6800, // Text length
   gWrapperFileContent_27_outletClassGeneration
 ) ;
 
@@ -7555,7 +7545,7 @@ const char * gWrapperFileContent_7_outletClassGeneration = "//------------------
   "\n"
   "  private var mIntValueController : Controller_EBStepper_value\?\n"
   "\n"
-  "  func bind_value (_ object:EBReadWriteProperty_Int, file:String, line:Int, sendContinously:Bool) {\n"
+  "  func bind_value (_ object:EBReadWriteProperty_Int, sendContinously:Bool) {\n"
   "    self.mIntValueController = Controller_EBStepper_value (object: object, outlet: self)\n"
   "    self.isContinuous = sendContinously\n"
   "  }\n"
@@ -7601,7 +7591,7 @@ const cRegularFileWrapper gWrapperFile_7_outletClassGeneration (
   "EBStepper.swift",
   "swift",
   true, // Text file
-  3981, // Text length
+  3958, // Text length
   gWrapperFileContent_7_outletClassGeneration
 ) ;
 
@@ -7666,7 +7656,7 @@ const char * gWrapperFileContent_21_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_value (_ inObject : EBReadWriteProperty_Bool, file : String, line : Int) {\n"
+  "  func bind_value (_ inObject : EBReadWriteProperty_Bool) {\n"
   "    self.mValueController = Controller_EBSwitch_value (object: inObject, outlet: self)\n"
   "  }\n"
   "\n"
@@ -7742,7 +7732,7 @@ const cRegularFileWrapper gWrapperFile_21_outletClassGeneration (
   "EBSwitch.swift",
   "swift",
   true, // Text file
-  5458, // Text length
+  5431, // Text length
   gWrapperFileContent_21_outletClassGeneration
 ) ;
 
@@ -8014,7 +8004,7 @@ const char * gWrapperFileContent_2_outletClassGeneration = "//------------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_value (_ inObject : EBReadWriteProperty_String, file : String, line : Int, sendContinously : Bool) {\n"
+  "  func bind_value (_ inObject : EBReadWriteProperty_String, sendContinously : Bool) {\n"
   "    self.mSendContinously = sendContinously\n"
   "    self.mValueController = EBGenericReadWritePropertyController <String> (\n"
   "      observedObject: inObject,\n"
@@ -8080,7 +8070,7 @@ const cRegularFileWrapper gWrapperFile_2_outletClassGeneration (
   "EBTextField.swift",
   "swift",
   true, // Text file
-  6256, // Text length
+  6229, // Text length
   gWrapperFileContent_2_outletClassGeneration
 ) ;
 
@@ -8141,9 +8131,9 @@ const char * gWrapperFileContent_12_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_valueObserver (_ object : EBReadOnlyProperty_String, file : String, line : Int) {\n"
+  "  func bind_valueObserver (_ object : EBReadOnlyProperty_String) {\n"
   "    if self.formatter != nil {\n"
-  "      presentErrorWindow (file, line, \"the EBTextObserverField outlet has a formatter\")\n"
+  "      presentErrorWindow (#file, #line, \"the EBTextObserverField outlet has a formatter\")\n"
   "    }\n"
   "    self.mValueController = EBReadOnlyPropertyController (observedObjects: [object], callBack: { self.updateValue (object) } )\n"
   "  }\n"
@@ -8175,7 +8165,7 @@ const char * gWrapperFileContent_12_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_backColor (_ object : EBReadOnlyProperty_NSColor, file : String, line : Int) {\n"
+  "  func bind_backColor (_ object : EBReadOnlyProperty_NSColor) {\n"
   "    self.mBackColorController = EBReadOnlyPropertyController (observedObjects: [object], callBack: { [weak self] in self\?.updateBackColor (object) } )"
   "\n"
   "  }\n"
@@ -8224,7 +8214,7 @@ const cRegularFileWrapper gWrapperFile_12_outletClassGeneration (
   "EBTextObserverField.swift",
   "swift",
   true, // Text file
-  5592, // Text length
+  5540, // Text length
   gWrapperFileContent_12_outletClassGeneration
 ) ;
 
@@ -8275,7 +8265,7 @@ const char * gWrapperFileContent_13_outletClassGeneration = "//-----------------
   "\n"
   "  private var mValueController : EBReadOnlyPropertyController\? = nil\n"
   "\n"
-  "  func bind_valueObserver (_ object : EBReadOnlyProperty_String, file : String, line : Int) {\n"
+  "  func bind_valueObserver (_ object : EBReadOnlyProperty_String) {\n"
   "    self.mValueController = EBReadOnlyPropertyController (\n"
   "      observedObjects: [object],\n"
   "      callBack: { self.updateTextValue (object) }\n"
@@ -8299,7 +8289,7 @@ const cRegularFileWrapper gWrapperFile_13_outletClassGeneration (
   "EBTextObserverView.swift",
   "swift",
   true, // Text file
-  2585, // Text length
+  2558, // Text length
   gWrapperFileContent_13_outletClassGeneration
 ) ;
 
@@ -8347,7 +8337,7 @@ const char * gWrapperFileContent_14_outletClassGeneration = "//-----------------
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func bind_value (_ object : EBReadWriteProperty_String, file : String, line : Int) {\n"
+  "  func bind_value (_ object : EBReadWriteProperty_String) {\n"
   "    self.mValueController = Controller_EBTextView_value (object: object, outlet: self)\n"
   "  }\n"
   "\n"
@@ -8403,7 +8393,7 @@ const cRegularFileWrapper gWrapperFile_14_outletClassGeneration (
   "EBTextView.swift",
   "swift",
   true, // Text file
-  3938, // Text length
+  3911, // Text length
   gWrapperFileContent_14_outletClassGeneration
 ) ;
 

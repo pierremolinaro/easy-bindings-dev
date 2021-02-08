@@ -27,7 +27,7 @@ end
 
   //····················································································································
 
-  func bind_selection (model : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%, file : String, line : Int) {
+  func bind_selection (model : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%) {
     self.selectedArray_property.setDataProvider (model)
 %
   for () in PROPERTY_GENERATION_LIST do

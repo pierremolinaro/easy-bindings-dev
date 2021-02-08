@@ -131,7 +131,7 @@ for () in DOCUMENT_PROPERTY_LIST do
   //--------------------------- Install table view bindings
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
+  %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
 %  //--------------------------- Install ebView bindings
 %
@@ -142,10 +142,11 @@ end
 %
 for () in REGULAR_BINDINGS_GENERATION_LIST do
   %    self.%!mOutletName%?.bind_%!mBindingName% (%
-  for () in mBoundObjectList do
-    !mBoundObjectString%, %
+  for () in mBoundObjectList
+    do !mBoundObjectString
+    between %, %
   end
-  %file: #file, line: #line%!mBindingOptionsString%)\n%
+  !mBindingOptionsString%)\n%
 end
 %  //--------------------------- Install multiple bindings
 %

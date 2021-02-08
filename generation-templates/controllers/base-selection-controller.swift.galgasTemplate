@@ -33,7 +33,7 @@ end
 
   //····················································································································
 
-  func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%, file:String, line:Int) {
+  func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {
     self.mModel = model
 %for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mKind isEntityType] then

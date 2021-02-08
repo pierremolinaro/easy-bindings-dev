@@ -234,7 +234,7 @@ end
 
   //····················································································································
 
-  func bind_tableView (_ inTableView : EBTableView?, file : String, line : Int) {
+  func bind_tableView (_ inTableView : EBTableView?) {
     if let tableView = inTableView {
       tableView.allowsEmptySelection = allowsEmptySelection
       tableView.allowsMultipleSelection = allowsMultipleSelection
@@ -253,7 +253,7 @@ end
       if let column : NSTableColumn = tableView.tableColumn (withIdentifier: NSUserInterfaceItemIdentifier (rawValue: "%!mColumnName%")) {
         column.sortDescriptorPrototype = nil
       }else{
-        presentErrorWindow (file, line, "\"%!mColumnName%\" column view unknown")
+        presentErrorWindow (#file, #line, "\"%!mColumnName%\" column view unknown")
       }
 %
 end
@@ -389,10 +389,11 @@ for () in BOUND_COLUMNS
     end
     for () in mRegularBindingsGenerationList do
     %          cell.mCellOutlet?.bind_%!mBindingName% (%
-      for () in mBoundObjectList do
-        !mBoundObjectString%, %
+      for () in mBoundObjectList
+        do !mBoundObjectString
+        between %, %
       end
-      %file: #file, line: #line%!mBindingOptionsString%)\n%
+      !mBindingOptionsString%)\n%
       %          cell.update ()\n%
     end
     %        %

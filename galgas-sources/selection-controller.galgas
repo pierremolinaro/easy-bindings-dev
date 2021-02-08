@@ -173,7 +173,7 @@ override getter @selectionControllerPropertyGeneration propertyDeclarationCode
 override getter @selectionControllerPropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
   result  = "  //--- Selection controller property: " + mPropertyName + "\n"
   result += "    self." + mPropertyName + ".bind_selection (model: self." + mModelControllerName
-    + "." + mModelControllerPropertyName + "_property, file: #file, line: #line)\n"
+    + "." + mModelControllerPropertyName + "_property)\n"
 }
 
 #·······················································································································
