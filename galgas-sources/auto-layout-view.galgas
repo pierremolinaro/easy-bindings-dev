@@ -833,7 +833,7 @@ override method @astComputedViewInstruction generateCode
     ?let @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList
     ?let @autolayoutRunBindingForGeneration runBindingGeneration
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList
-    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
+    ?let @autoLayoutViewGraphicControllerBindingGeneration ebViewGraphicControllerBindingGeneration
   )
   [mFunctionCallList check
      !functionMap
@@ -857,7 +857,7 @@ override method @astComputedViewInstruction generateCode
     !multipleBindingGenerationList
     !runBindingGeneration
     !tableViewBindingGenerationList
-    !ebViewGraphicControllerBindingGenerationList
+    !ebViewGraphicControllerBindingGeneration
   }
 }
 
@@ -885,12 +885,12 @@ proc analyzeAutoLayoutBinding
   !@autoLayoutMultipleBindingGenerationList outMultipleBindingGenerationList
   !@autolayoutRunBindingForGeneration outRunBindingGeneration
   !@tableViewBindingGenerationList outTableViewBindingGenerationList
-  !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList
+  !@autoLayoutViewGraphicControllerBindingGeneration outEBViewGraphicControllerBindingGeneration
 {
   outRegularBindingsGenerationList = {}
   outMultipleBindingGenerationList = {}
   outTableViewBindingGenerationList = {}
-  outEBViewGraphicControllerBindingGenerationList = {}
+#  outEBViewGraphicControllerBindingGenerationList = {}
   [inSemanticContext.mAutolayoutViewClassMap searchKey
     !inTypeName
     ?*
@@ -902,6 +902,7 @@ proc analyzeAutoLayoutBinding
     ?3*
   ]
 #--- $graphicController
+  outEBViewGraphicControllerBindingGeneration = .none
   switch inGraphicController
   case none :
   case defined (@lstring controllerName @lstring propertyName) :
@@ -951,7 +952,7 @@ proc analyzeAutoLayoutBinding
       case selectionController (*) :
         error controllerName : "the bound model should be an array controller"
       end
-      outEBViewGraphicControllerBindingGenerationList += !"<<1>>" !controllerName.string
+      outEBViewGraphicControllerBindingGeneration = .binding {!arrayControllerControllerName: controllerName.string}
     end
   end
 #--- $tableView
@@ -1429,6 +1430,13 @@ enum @autolayoutRunBindingForGeneration {
 
 #·······················································································································
 
+enum @autoLayoutViewGraphicControllerBindingGeneration {
+  case none
+  case binding (@string arrayControllerControllerName)
+}
+
+#·······················································································································
+
 enum @autolayoutEnabledBindingForGeneration {
   case none
   case enabled (@abstractBooleanMultipleBindingExpressionForGeneration binding)
@@ -1443,8 +1451,8 @@ class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGen
   @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
   @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
   @autolayoutRunBindingForGeneration mRunBindingGeneration
-  @tableViewBindingGenerationList mTableViewBindingGenerationList
-  @ebViewGraphicControllerBindingGenerationList mEBViewGraphicControllerBindingGenerationList
+  @tableViewBindingGenerationList mTableViewBindingGeneration
+  @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1586,6 +1594,11 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
     result += inIndentation + "    target: " + targetName + ",\n"
     result += inIndentation + "    selector: #selector (" + targetTypeName + "." + actionName + " (_:))\n"
     result += inIndentation + "  )\n"
+  end
+  switch mEBViewGraphicControllerBindingGeneration
+  case none :
+  case binding (controllerName) :
+    result += inIndentation + "  .bind_graphic_controller (self." + controllerName + ")\n"
   end
 }
 

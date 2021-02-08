@@ -7114,10 +7114,10 @@ typeComparisonResult cPtr_autoLayoutComputedViewInstructionGeneration::dynamicOb
     result = mProperty_mRunBindingGeneration.objectCompare (p->mProperty_mRunBindingGeneration) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mTableViewBindingGenerationList.objectCompare (p->mProperty_mTableViewBindingGenerationList) ;
+    result = mProperty_mTableViewBindingGeneration.objectCompare (p->mProperty_mTableViewBindingGeneration) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mEBViewGraphicControllerBindingGenerationList.objectCompare (p->mProperty_mEBViewGraphicControllerBindingGenerationList) ;
+    result = mProperty_mEBViewGraphicControllerBindingGeneration.objectCompare (p->mProperty_mEBViewGraphicControllerBindingGeneration) ;
   }
   return result ;
 }
@@ -7162,12 +7162,12 @@ GALGAS_autoLayoutComputedViewInstructionGeneration GALGAS_autoLayoutComputedView
                                                                                                                         const GALGAS_autoLayoutRegularBindingsGenerationList & inAttribute_mRegularBindingsGenerationList,
                                                                                                                         const GALGAS_autoLayoutMultipleBindingGenerationList & inAttribute_mMultipleBindingGenerationList,
                                                                                                                         const GALGAS_autolayoutRunBindingForGeneration & inAttribute_mRunBindingGeneration,
-                                                                                                                        const GALGAS_tableViewBindingGenerationList & inAttribute_mTableViewBindingGenerationList,
-                                                                                                                        const GALGAS_ebViewGraphicControllerBindingGenerationList & inAttribute_mEBViewGraphicControllerBindingGenerationList
+                                                                                                                        const GALGAS_tableViewBindingGenerationList & inAttribute_mTableViewBindingGeneration,
+                                                                                                                        const GALGAS_autoLayoutViewGraphicControllerBindingGeneration & inAttribute_mEBViewGraphicControllerBindingGeneration
                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutComputedViewInstructionGeneration result ;
-  if (inAttribute_mAutoLayoutViewClassName.isValid () && inAttribute_mParameterList.isValid () && inAttribute_mFunctionCallList.isValid () && inAttribute_mRegularBindingsGenerationList.isValid () && inAttribute_mMultipleBindingGenerationList.isValid () && inAttribute_mRunBindingGeneration.isValid () && inAttribute_mTableViewBindingGenerationList.isValid () && inAttribute_mEBViewGraphicControllerBindingGenerationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_autoLayoutComputedViewInstructionGeneration (inAttribute_mAutoLayoutViewClassName, inAttribute_mParameterList, inAttribute_mFunctionCallList, inAttribute_mRegularBindingsGenerationList, inAttribute_mMultipleBindingGenerationList, inAttribute_mRunBindingGeneration, inAttribute_mTableViewBindingGenerationList, inAttribute_mEBViewGraphicControllerBindingGenerationList COMMA_THERE)) ;
+  if (inAttribute_mAutoLayoutViewClassName.isValid () && inAttribute_mParameterList.isValid () && inAttribute_mFunctionCallList.isValid () && inAttribute_mRegularBindingsGenerationList.isValid () && inAttribute_mMultipleBindingGenerationList.isValid () && inAttribute_mRunBindingGeneration.isValid () && inAttribute_mTableViewBindingGeneration.isValid () && inAttribute_mEBViewGraphicControllerBindingGeneration.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_autoLayoutComputedViewInstructionGeneration (inAttribute_mAutoLayoutViewClassName, inAttribute_mParameterList, inAttribute_mFunctionCallList, inAttribute_mRegularBindingsGenerationList, inAttribute_mMultipleBindingGenerationList, inAttribute_mRunBindingGeneration, inAttribute_mTableViewBindingGeneration, inAttribute_mEBViewGraphicControllerBindingGeneration COMMA_THERE)) ;
   }
   return result ;
 }
@@ -7282,38 +7282,38 @@ GALGAS_autolayoutRunBindingForGeneration cPtr_autoLayoutComputedViewInstructionG
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewBindingGenerationList GALGAS_autoLayoutComputedViewInstructionGeneration::getter_mTableViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+GALGAS_tableViewBindingGenerationList GALGAS_autoLayoutComputedViewInstructionGeneration::getter_mTableViewBindingGeneration (UNUSED_LOCATION_ARGS) const {
   GALGAS_tableViewBindingGenerationList result ;
   if (NULL != mObjectPtr) {
     const cPtr_autoLayoutComputedViewInstructionGeneration * p = (const cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    result = p->mProperty_mTableViewBindingGenerationList ;
+    result = p->mProperty_mTableViewBindingGeneration ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewBindingGenerationList cPtr_autoLayoutComputedViewInstructionGeneration::getter_mTableViewBindingGenerationList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mTableViewBindingGenerationList ;
+GALGAS_tableViewBindingGenerationList cPtr_autoLayoutComputedViewInstructionGeneration::getter_mTableViewBindingGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mTableViewBindingGeneration ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ebViewGraphicControllerBindingGenerationList GALGAS_autoLayoutComputedViewInstructionGeneration::getter_mEBViewGraphicControllerBindingGenerationList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_ebViewGraphicControllerBindingGenerationList result ;
+GALGAS_autoLayoutViewGraphicControllerBindingGeneration GALGAS_autoLayoutComputedViewInstructionGeneration::getter_mEBViewGraphicControllerBindingGeneration (UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutViewGraphicControllerBindingGeneration result ;
   if (NULL != mObjectPtr) {
     const cPtr_autoLayoutComputedViewInstructionGeneration * p = (const cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    result = p->mProperty_mEBViewGraphicControllerBindingGenerationList ;
+    result = p->mProperty_mEBViewGraphicControllerBindingGeneration ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ebViewGraphicControllerBindingGenerationList cPtr_autoLayoutComputedViewInstructionGeneration::getter_mEBViewGraphicControllerBindingGenerationList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mEBViewGraphicControllerBindingGenerationList ;
+GALGAS_autoLayoutViewGraphicControllerBindingGeneration cPtr_autoLayoutComputedViewInstructionGeneration::getter_mEBViewGraphicControllerBindingGeneration (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mEBViewGraphicControllerBindingGeneration ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7432,40 +7432,40 @@ void cPtr_autoLayoutComputedViewInstructionGeneration::setter_setMRunBindingGene
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutComputedViewInstructionGeneration::setter_setMTableViewBindingGenerationList (GALGAS_tableViewBindingGenerationList inValue
-                                                                                                    COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutComputedViewInstructionGeneration::setter_setMTableViewBindingGeneration (GALGAS_tableViewBindingGenerationList inValue
+                                                                                                COMMA_LOCATION_ARGS) {
   if (NULL != mObjectPtr) {
     insulate (THERE) ;
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    p->mProperty_mTableViewBindingGenerationList = inValue ;
+    p->mProperty_mTableViewBindingGeneration = inValue ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void cPtr_autoLayoutComputedViewInstructionGeneration::setter_setMTableViewBindingGenerationList (GALGAS_tableViewBindingGenerationList inValue
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mTableViewBindingGenerationList = inValue ;
+void cPtr_autoLayoutComputedViewInstructionGeneration::setter_setMTableViewBindingGeneration (GALGAS_tableViewBindingGenerationList inValue
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mTableViewBindingGeneration = inValue ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutComputedViewInstructionGeneration::setter_setMEBViewGraphicControllerBindingGenerationList (GALGAS_ebViewGraphicControllerBindingGenerationList inValue
-                                                                                                                  COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutComputedViewInstructionGeneration::setter_setMEBViewGraphicControllerBindingGeneration (GALGAS_autoLayoutViewGraphicControllerBindingGeneration inValue
+                                                                                                              COMMA_LOCATION_ARGS) {
   if (NULL != mObjectPtr) {
     insulate (THERE) ;
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_autoLayoutComputedViewInstructionGeneration) ;
-    p->mProperty_mEBViewGraphicControllerBindingGenerationList = inValue ;
+    p->mProperty_mEBViewGraphicControllerBindingGeneration = inValue ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void cPtr_autoLayoutComputedViewInstructionGeneration::setter_setMEBViewGraphicControllerBindingGenerationList (GALGAS_ebViewGraphicControllerBindingGenerationList inValue
-                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mEBViewGraphicControllerBindingGenerationList = inValue ;
+void cPtr_autoLayoutComputedViewInstructionGeneration::setter_setMEBViewGraphicControllerBindingGeneration (GALGAS_autoLayoutViewGraphicControllerBindingGeneration inValue
+                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mEBViewGraphicControllerBindingGeneration = inValue ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7478,8 +7478,8 @@ cPtr_autoLayoutComputedViewInstructionGeneration::cPtr_autoLayoutComputedViewIns
                                                                                                     const GALGAS_autoLayoutRegularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                                                                                     const GALGAS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
                                                                                                     const GALGAS_autolayoutRunBindingForGeneration & in_mRunBindingGeneration,
-                                                                                                    const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
-                                                                                                    const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewGraphicControllerBindingGenerationList
+                                                                                                    const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGeneration,
+                                                                                                    const GALGAS_autoLayoutViewGraphicControllerBindingGeneration & in_mEBViewGraphicControllerBindingGeneration
                                                                                                     COMMA_LOCATION_ARGS) :
 cPtr_abstractViewInstructionGeneration (THERE),
 mProperty_mAutoLayoutViewClassName (in_mAutoLayoutViewClassName),
@@ -7488,8 +7488,8 @@ mProperty_mFunctionCallList (in_mFunctionCallList),
 mProperty_mRegularBindingsGenerationList (in_mRegularBindingsGenerationList),
 mProperty_mMultipleBindingGenerationList (in_mMultipleBindingGenerationList),
 mProperty_mRunBindingGeneration (in_mRunBindingGeneration),
-mProperty_mTableViewBindingGenerationList (in_mTableViewBindingGenerationList),
-mProperty_mEBViewGraphicControllerBindingGenerationList (in_mEBViewGraphicControllerBindingGenerationList) {
+mProperty_mTableViewBindingGeneration (in_mTableViewBindingGeneration),
+mProperty_mEBViewGraphicControllerBindingGeneration (in_mEBViewGraphicControllerBindingGeneration) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7513,9 +7513,9 @@ void cPtr_autoLayoutComputedViewInstructionGeneration::description (C_String & i
   ioString << ", " ;
   mProperty_mRunBindingGeneration.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mTableViewBindingGenerationList.description (ioString, inIndentation+1) ;
+  mProperty_mTableViewBindingGeneration.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mEBViewGraphicControllerBindingGenerationList.description (ioString, inIndentation+1) ;
+  mProperty_mEBViewGraphicControllerBindingGeneration.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -7523,7 +7523,7 @@ void cPtr_autoLayoutComputedViewInstructionGeneration::description (C_String & i
 
 acPtr_class * cPtr_autoLayoutComputedViewInstructionGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_autoLayoutComputedViewInstructionGeneration (mProperty_mAutoLayoutViewClassName, mProperty_mParameterList, mProperty_mFunctionCallList, mProperty_mRegularBindingsGenerationList, mProperty_mMultipleBindingGenerationList, mProperty_mRunBindingGeneration, mProperty_mTableViewBindingGenerationList, mProperty_mEBViewGraphicControllerBindingGenerationList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_autoLayoutComputedViewInstructionGeneration (mProperty_mAutoLayoutViewClassName, mProperty_mParameterList, mProperty_mFunctionCallList, mProperty_mRegularBindingsGenerationList, mProperty_mMultipleBindingGenerationList, mProperty_mRunBindingGeneration, mProperty_mTableViewBindingGeneration, mProperty_mEBViewGraphicControllerBindingGeneration COMMA_THERE)) ;
   return ptr ;
 }
 
