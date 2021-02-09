@@ -98,11 +98,11 @@ extern const char * gWrapperFileContent_79_swift_5F_sources ;
 extern const char * gWrapperFileContent_57_swift_5F_sources ;
 extern const char * gWrapperFileContent_93_swift_5F_sources ;
 extern const char * gWrapperFileContent_65_swift_5F_sources ;
-extern const char * gWrapperFileContent_107_swift_5F_sources ;
+extern const char * gWrapperFileContent_106_swift_5F_sources ;
 extern const char * gWrapperFileContent_42_swift_5F_sources ;
 extern const char * gWrapperFileContent_51_swift_5F_sources ;
 extern const char * gWrapperFileContent_66_swift_5F_sources ;
-extern const char * gWrapperFileContent_117_swift_5F_sources ;
+extern const char * gWrapperFileContent_116_swift_5F_sources ;
 extern const char * gWrapperFileContent_6_swift_5F_sources ;
 extern const char * gWrapperFileContent_12_swift_5F_sources ;
 extern const char * gWrapperFileContent_85_swift_5F_sources ;
@@ -110,7 +110,7 @@ extern const char * gWrapperFileContent_39_swift_5F_sources ;
 extern const char * gWrapperFileContent_94_swift_5F_sources ;
 extern const char * gWrapperFileContent_78_swift_5F_sources ;
 extern const char * gWrapperFileContent_7_swift_5F_sources ;
-extern const char * gWrapperFileContent_116_swift_5F_sources ;
+extern const char * gWrapperFileContent_115_swift_5F_sources ;
 extern const char * gWrapperFileContent_16_swift_5F_sources ;
 extern const char * gWrapperFileContent_100_swift_5F_sources ;
 extern const char * gWrapperFileContent_52_swift_5F_sources ;
@@ -118,7 +118,7 @@ extern const char * gWrapperFileContent_69_swift_5F_sources ;
 extern const char * gWrapperFileContent_13_swift_5F_sources ;
 extern const char * gWrapperFileContent_71_swift_5F_sources ;
 extern const char * gWrapperFileContent_74_swift_5F_sources ;
-extern const char * gWrapperFileContent_119_swift_5F_sources ;
+extern const char * gWrapperFileContent_118_swift_5F_sources ;
 extern const char * gWrapperFileContent_4_swift_5F_sources ;
 extern const char * gWrapperFileContent_87_swift_5F_sources ;
 extern const char * gWrapperFileContent_61_swift_5F_sources ;
@@ -126,7 +126,7 @@ extern const char * gWrapperFileContent_53_swift_5F_sources ;
 extern const char * gWrapperFileContent_1_swift_5F_sources ;
 extern const char * gWrapperFileContent_38_swift_5F_sources ;
 extern const char * gWrapperFileContent_3_swift_5F_sources ;
-extern const char * gWrapperFileContent_109_swift_5F_sources ;
+extern const char * gWrapperFileContent_108_swift_5F_sources ;
 extern const char * gWrapperFileContent_41_swift_5F_sources ;
 extern const char * gWrapperFileContent_0_swift_5F_sources ;
 extern const char * gWrapperFileContent_98_swift_5F_sources ;
@@ -144,53 +144,53 @@ extern const char * gWrapperFileContent_60_swift_5F_sources ;
 extern const char * gWrapperFileContent_19_swift_5F_sources ;
 extern const char * gWrapperFileContent_68_swift_5F_sources ;
 extern const char * gWrapperFileContent_22_swift_5F_sources ;
-extern const char * gWrapperFileContent_108_swift_5F_sources ;
+extern const char * gWrapperFileContent_107_swift_5F_sources ;
 extern const char * gWrapperFileContent_72_swift_5F_sources ;
-extern const char * gWrapperFileContent_113_swift_5F_sources ;
+extern const char * gWrapperFileContent_112_swift_5F_sources ;
 extern const char * gWrapperFileContent_26_swift_5F_sources ;
 extern const char * gWrapperFileContent_5_swift_5F_sources ;
-extern const char * gWrapperFileContent_102_swift_5F_sources ;
+extern const char * gWrapperFileContent_101_swift_5F_sources ;
 extern const char * gWrapperFileContent_14_swift_5F_sources ;
 extern const char * gWrapperFileContent_86_swift_5F_sources ;
 extern const char * gWrapperFileContent_121_swift_5F_sources ;
+extern const char * gWrapperFileContent_120_swift_5F_sources ;
 extern const char * gWrapperFileContent_29_swift_5F_sources ;
-extern const char * gWrapperFileContent_118_swift_5F_sources ;
+extern const char * gWrapperFileContent_117_swift_5F_sources ;
 extern const char * gWrapperFileContent_59_swift_5F_sources ;
 extern const char * gWrapperFileContent_24_swift_5F_sources ;
 extern const char * gWrapperFileContent_43_swift_5F_sources ;
 extern const char * gWrapperFileContent_49_swift_5F_sources ;
 extern const char * gWrapperFileContent_33_swift_5F_sources ;
-extern const char * gWrapperFileContent_101_swift_5F_sources ;
 extern const char * gWrapperFileContent_17_swift_5F_sources ;
 extern const char * gWrapperFileContent_56_swift_5F_sources ;
-extern const char * gWrapperFileContent_112_swift_5F_sources ;
+extern const char * gWrapperFileContent_111_swift_5F_sources ;
 extern const char * gWrapperFileContent_67_swift_5F_sources ;
 extern const char * gWrapperFileContent_97_swift_5F_sources ;
 extern const char * gWrapperFileContent_77_swift_5F_sources ;
-extern const char * gWrapperFileContent_120_swift_5F_sources ;
+extern const char * gWrapperFileContent_119_swift_5F_sources ;
 extern const char * gWrapperFileContent_37_swift_5F_sources ;
 extern const char * gWrapperFileContent_82_swift_5F_sources ;
 extern const char * gWrapperFileContent_55_swift_5F_sources ;
 extern const char * gWrapperFileContent_75_swift_5F_sources ;
-extern const char * gWrapperFileContent_104_swift_5F_sources ;
+extern const char * gWrapperFileContent_103_swift_5F_sources ;
 extern const char * gWrapperFileContent_48_swift_5F_sources ;
 extern const char * gWrapperFileContent_63_swift_5F_sources ;
 extern const char * gWrapperFileContent_62_swift_5F_sources ;
-extern const char * gWrapperFileContent_115_swift_5F_sources ;
+extern const char * gWrapperFileContent_114_swift_5F_sources ;
 extern const char * gWrapperFileContent_40_swift_5F_sources ;
 extern const char * gWrapperFileContent_21_swift_5F_sources ;
 extern const char * gWrapperFileContent_90_swift_5F_sources ;
-extern const char * gWrapperFileContent_111_swift_5F_sources ;
+extern const char * gWrapperFileContent_110_swift_5F_sources ;
 extern const char * gWrapperFileContent_81_swift_5F_sources ;
 extern const char * gWrapperFileContent_84_swift_5F_sources ;
 extern const char * gWrapperFileContent_76_swift_5F_sources ;
 extern const char * gWrapperFileContent_96_swift_5F_sources ;
 extern const char * gWrapperFileContent_95_swift_5F_sources ;
-extern const char * gWrapperFileContent_103_swift_5F_sources ;
-extern const char * gWrapperFileContent_110_swift_5F_sources ;
+extern const char * gWrapperFileContent_102_swift_5F_sources ;
+extern const char * gWrapperFileContent_109_swift_5F_sources ;
 extern const char * gWrapperFileContent_18_swift_5F_sources ;
 extern const char * gWrapperFileContent_15_swift_5F_sources ;
-extern const char * gWrapperFileContent_114_swift_5F_sources ;
+extern const char * gWrapperFileContent_113_swift_5F_sources ;
 extern const char * gWrapperFileContent_44_swift_5F_sources ;
 extern const char * gWrapperFileContent_83_swift_5F_sources ;
 extern const char * gWrapperFileContent_50_swift_5F_sources ;
@@ -206,8 +206,8 @@ extern const char * gWrapperFileContent_2_swift_5F_sources ;
 extern const char * gWrapperFileContent_88_swift_5F_sources ;
 extern const char * gWrapperFileContent_10_swift_5F_sources ;
 extern const char * gWrapperFileContent_54_swift_5F_sources ;
-extern const char * gWrapperFileContent_106_swift_5F_sources ;
 extern const char * gWrapperFileContent_105_swift_5F_sources ;
+extern const char * gWrapperFileContent_104_swift_5F_sources ;
 extern const char * gWrapperFileContent_92_swift_5F_sources ;
 extern const char * gWrapperFileContent_32_swift_5F_sources ;
 extern const char * gWrapperFileContent_9_swift_5F_sources ;
@@ -374,7 +374,7 @@ extern const cDirectoryWrapper gWrapperDirectory_5_autoLayoutDocumentGenerationT
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImplementation (class C_Compiler * inCompiler,
-                                                                                               const class GALGAS_string & in_DOCUMENT_5F_NAME,
+                                                                                               const class GALGAS_string & in_DOCUMENT_5F_CLASS_5F_NAME,
                                                                                                const class GALGAS_string & in_ROOT_5F_ENTITY_5F_NAME,
                                                                                                const class GALGAS_string & in_MAIN_5F_VIEW_5F_NAME,
                                                                                                const class GALGAS_propertyGenerationList & in_DOCUMENT_5F_PROPERTY_5F_LIST,
@@ -386,7 +386,8 @@ GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentI
                                                                                                const class GALGAS_ebViewGraphicControllerBindingGenerationList & in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST,
                                                                                                const class GALGAS_viewGenerationList & in_VIEW_5F_GENERATION_5F_LIST,
                                                                                                const class GALGAS_autoLayoutToolbarItemGenerationList & in_TOOLBAR_5F_ITEM_5F_LIST,
-                                                                                               const class GALGAS_implicitViewFunctionGenerationList & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST
+                                                                                               const class GALGAS_implicitViewFunctionGenerationList & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST,
+                                                                                               const class GALGAS_string & in_DOCUMENT_5F_SUPER_5F_CLASS_5F_NAME
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -133,6 +133,17 @@ void routine_generateCode (const class GALGAS_string constinArgument0,
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Routine 'generateEBManagedDocumentSwift'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_generateEBManagedDocumentSwift (const class GALGAS_string constinArgument0,
+                                             class GALGAS_stringset & ioArgument1,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Routine 'generateStandardProperties'
 //
 //----------------------------------------------------------------------------------------------------------------------

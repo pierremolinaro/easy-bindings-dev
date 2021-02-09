@@ -10,6 +10,7 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   @arrayControllerBindingListAST mArrayControllerBindingListAST
   @astViewDeclarationList mViewDeclarationList
   @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
+  @string mCustomSuperClassName # Empty String if no custom superclass
 }
 
 #·······················································································································
@@ -49,6 +50,14 @@ syntax extension easyBindings_syntax {
   rule <document_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $autoLayoutDocument$
     $Identifier$ ?let @lstring documentName
+    @string customSuperClassName
+    select
+      customSuperClassName = ""
+    or
+      $:$
+      $Identifier$ ?let name
+      customSuperClassName = name.string
+    end
     $root$
     $Identifier$ ?let @lstring rootEntityName
     $stackView$
@@ -95,6 +104,7 @@ syntax extension easyBindings_syntax {
       !arrayControllerBindingListAST
       !viewDeclarationList
       !autoLayoutToolbarItemList
+      !customSuperClassName
     }
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
       !documentName
@@ -270,6 +280,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     !autoLayoutToolbarItemGenerationList
     !implicitViewFunctionGenerationList
     !configuratorMap
+    !mCustomSuperClassName # Empty String if no custom superclass
   }
 }
 
@@ -292,6 +303,7 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
   @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
   @autoLayoutConfiguratorMap mConfiguratorMap
+  @string mCustomSuperClassName # Empty String if no custom superclass
 }
 
 #·······················································································································
@@ -327,6 +339,7 @@ override method @autoLayoutDocumentFileGeneration generateCode
     !mViewDeclarationList
     !mAutoLayoutToolbarItemGenerationList
     !mImplicitViewFunctionGenerationList
+    !if mCustomSuperClassName == "" then "EBAutoLayoutManagedDocument" else mCustomSuperClassName end
   ]
   let fileName = mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -346,7 +359,7 @@ override method @autoLayoutDocumentFileGeneration generateCode
       "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n\n"
       + "import Cocoa\n\n"
       + "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n\n"
-    let fileName = mDocumentName + "-configurator-" + outletName + ".swift"
+    let fileName = "configurator-" + mDocumentName + "-" + outletName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
       !startPath: inOutputDirectory
@@ -368,7 +381,7 @@ private filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templ
 }{
 }{
   template documentImplementation "document-auto-layout.swift.galgasTemplate"
-    ?@string DOCUMENT_NAME
+    ?@string DOCUMENT_CLASS_NAME
     ?@string ROOT_ENTITY_NAME
     ?@string MAIN_VIEW_NAME
     ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
@@ -381,6 +394,7 @@ private filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templ
     ?@viewGenerationList VIEW_GENERATION_LIST
     ?@autoLayoutToolbarItemGenerationList TOOLBAR_ITEM_LIST
     ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
+    ?@string DOCUMENT_SUPER_CLASS_NAME
 
   template documentOutletConfiguratorImplementation "configure-auto-layout-outlet.swift.galgasTemplate"
     ?@string DOCUMENT_TYPE_NAME

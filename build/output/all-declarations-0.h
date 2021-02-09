@@ -937,6 +937,8 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_88 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected : virtual int32_t select_easyBindings_5F_syntax_89 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -3727,7 +3729,8 @@ class GALGAS_autoLayoutDocumentDeclarationAST : public GALGAS_abstractDeclaratio
                                                                                  const class GALGAS_lstringlist & inOperand4,
                                                                                  const class GALGAS_arrayControllerBindingListAST & inOperand5,
                                                                                  const class GALGAS_astViewDeclarationList & inOperand6,
-                                                                                 const class GALGAS_astAutoLayoutToolbarItemList & inOperand7
+                                                                                 const class GALGAS_astAutoLayoutToolbarItemList & inOperand7,
+                                                                                 const class GALGAS_string & inOperand8
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3742,6 +3745,9 @@ class GALGAS_autoLayoutDocumentDeclarationAST : public GALGAS_abstractDeclaratio
 
   public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutToolbarItemList (class GALGAS_astAutoLayoutToolbarItemList inArgument0
                                                                        COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMCustomSuperClassName (class GALGAS_string inArgument0
+                                                                  COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMMainViewName (class GALGAS_lstring inArgument0
                                                           COMMA_LOCATION_ARGS) ;
@@ -3765,6 +3771,8 @@ class GALGAS_autoLayoutDocumentDeclarationAST : public GALGAS_abstractDeclaratio
   public : VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBindingListAST getter_mArrayControllerBindingListAST (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutToolbarItemList getter_mAutoLayoutToolbarItemList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mCustomSuperClassName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mMainViewName (LOCATION_ARGS) const ;
 
@@ -4509,6 +4517,7 @@ class cPtr_autoLayoutDocumentDeclarationAST : public cPtr_abstractDeclarationAST
   public : GALGAS_arrayControllerBindingListAST mProperty_mArrayControllerBindingListAST ;
   public : GALGAS_astViewDeclarationList mProperty_mViewDeclarationList ;
   public : GALGAS_astAutoLayoutToolbarItemList mProperty_mAutoLayoutToolbarItemList ;
+  public : GALGAS_string mProperty_mCustomSuperClassName ;
 
 //--- Constructor
   public : cPtr_autoLayoutDocumentDeclarationAST (const GALGAS_lstring & in_mClassName,
@@ -4518,7 +4527,8 @@ class cPtr_autoLayoutDocumentDeclarationAST : public cPtr_abstractDeclarationAST
                                                   const GALGAS_lstringlist & in_mActionDeclarationList,
                                                   const GALGAS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
                                                   const GALGAS_astViewDeclarationList & in_mViewDeclarationList,
-                                                  const GALGAS_astAutoLayoutToolbarItemList & in_mAutoLayoutToolbarItemList
+                                                  const GALGAS_astAutoLayoutToolbarItemList & in_mAutoLayoutToolbarItemList,
+                                                  const GALGAS_string & in_mCustomSuperClassName
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -4539,6 +4549,8 @@ class cPtr_autoLayoutDocumentDeclarationAST : public cPtr_abstractDeclarationAST
   public : VIRTUAL_IN_DEBUG void setter_setMViewDeclarationList (GALGAS_astViewDeclarationList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_astAutoLayoutToolbarItemList getter_mAutoLayoutToolbarItemList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutToolbarItemList (GALGAS_astAutoLayoutToolbarItemList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mCustomSuperClassName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMCustomSuperClassName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -10549,6 +10561,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_87 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_88 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_89 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------

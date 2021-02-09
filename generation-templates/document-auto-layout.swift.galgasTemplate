@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : EBAutoLayoutManagedDocument, NSToolbarDelegate {
+@objc(%!DOCUMENT_CLASS_NAME%) class %!DOCUMENT_CLASS_NAME% : %!DOCUMENT_SUPER_CLASS_NAME%, NSToolbarDelegate {
 
 %
 for () in DOCUMENT_PROPERTY_LIST do
@@ -104,7 +104,7 @@ end
 
   override func ebBuildUserInterface () {
   %if [TOOLBAR_ITEM_LIST length] > 0 then%//--- Build tool bar
-    let toolbar = NSToolbar (identifier: NSToolbar.Identifier ("%!DOCUMENT_NAME%"))
+    let toolbar = NSToolbar (identifier: NSToolbar.Identifier ("%!DOCUMENT_CLASS_NAME%"))
     toolbar.allowsUserCustomization = false
     toolbar.displayMode = .default
     toolbar.delegate = self

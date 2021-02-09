@@ -67,6 +67,9 @@ proc generateCode
     !fileOutputDirectory
     !?generatedFileSet
   )
+  if inGeneration.mGenerateEBManagedXibDocumentSwift || inGeneration.mGenerateEBManagedAutoLayoutDocumentSwift then
+    generateEBManagedDocumentSwift (!fileOutputDirectory !?generatedFileSet)
+  end
   if inGeneration.mGenerateEBManagedXibDocumentSwift then
     generateEBManagedXibDocumentSwift (!fileOutputDirectory !?generatedFileSet)
   end
@@ -106,6 +109,23 @@ proc generateCode
     !inGeneration.mMainXibDescriptorList
     !outputDirectory
   )
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+proc generateEBManagedDocumentSwift
+  ?let @string inOutputDirectory
+  ?!@stringset ioGeneratedFileSet
+{
+  let fileName = "EBManagedDocument.swift"
+  var fw = [filewrapper swift_sources]
+  let contents = [fw textFileContentsAtPath !fileName]
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !contents
+  ]
 }
 
 #·······················································································································
@@ -194,7 +214,6 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBGraphicManagedObject"
     swiftFiles += !"buildPDFimage"
   #--- EBGraphicView
-    swiftFiles += !"EBScrollView-dragging-destination"
     swiftFiles += !"EBScrollView"
     swiftFiles += !"EBFocusRingView"
     swiftFiles += !"EBGraphicView"
