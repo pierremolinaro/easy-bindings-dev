@@ -341,7 +341,7 @@ override method @autoLayoutDocumentFileGeneration generateCode
     !mImplicitViewFunctionGenerationList
     !if mCustomSuperClassName == "" then "EBAutoLayoutManagedDocument" else mCustomSuperClassName end
   ]
-  let fileName = mDocumentName + ".swift"
+  let fileName = "document-" + mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
     !inOutputDirectory
