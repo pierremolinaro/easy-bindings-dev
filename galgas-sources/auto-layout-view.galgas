@@ -1052,7 +1052,7 @@ proc analyzeAutoLayoutBinding
     !inObservablePropertyMap
     !inTypeName
     !inRegularBindingList
-    !if inPreferences then "prefs_" else "self." end
+    !if inPreferences then "preferences_" else "self." end
     !?outRegularBindingsGenerationList
   )
 }
@@ -1125,7 +1125,7 @@ proc analyzeAutoLayoutRunBinding
       ]
       [controllerActionMap searchKey !action]
       outRunBindingGeneration = .run {
-        !targetName: if inPreferences then "prefs_" else "" end + target.string
+        !targetName: if inPreferences then "preferences_" else "" end + target.string
         !actionName: action.string
         !targetTypeName: "Controller_" + inReceiverSwiftTypeName + "_" + target
       }

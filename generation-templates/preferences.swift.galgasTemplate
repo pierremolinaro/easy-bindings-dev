@@ -133,10 +133,10 @@ end
 %  //--------------------------- Array controller
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    prefs_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
+  %    preferences_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
 for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %    prefs_%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
+  %    preferences_%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
 end
 %  //--------------------------- Set targets / actions
 %for () in TARGET_ACTION_LIST do
@@ -160,10 +160,10 @@ end
   //--------------------------- Array controller
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    prefs_%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
+  %    preferences_%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
 for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %    prefs_%!mArrayControllerControllerName%.unbind_ebView (prefs_%!mEBViewOutletName%)\n%
+  %    preferences_%!mArrayControllerControllerName%.unbind_ebView (preferences_%!mEBViewOutletName%)\n%
 end
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty terminationCode !true]

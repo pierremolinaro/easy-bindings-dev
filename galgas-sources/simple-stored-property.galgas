@@ -264,16 +264,16 @@ override getter @atomicPropertyGeneration propertyDeclarationCode
     result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
     result += "//   Atomic property: " + mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  let prefs_" + mPropertyName + "_property = EBPreferencesProperty_" + [mType swiftTypeName]
+    result += "  let preferences_" + mPropertyName + "_property = EBPreferencesProperty_" + [mType swiftTypeName]
     result += " (defaultValue: " + mDefaultValueInSwift + ", prefKey: Preferences_" + mPropertyName  + ")\n\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var prefs_" + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
-    result += "    get { return prefs_" + mPropertyName + "_property.propval }\n"
-    result += "    set { prefs_" + mPropertyName + "_property.setProp (newValue) }\n"
+    result += "  var preferences_" + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
+    result += "    get { return preferences_" + mPropertyName + "_property.propval }\n"
+    result += "    set { preferences_" + mPropertyName + "_property.setProp (newValue) }\n"
     result += "  }\n\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var prefs_" + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
-    result += "> { return prefs_" + mPropertyName + "_property.selection }\n\n"
+    result += "  var preferences_" + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
+    result += "> { return preferences_" + mPropertyName + "_property.selection }\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
     result += "  //   Atomic property: " + mPropertyName + "\n"

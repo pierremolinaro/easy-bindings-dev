@@ -385,14 +385,14 @@ override getter @computedPropertyGeneration propertyDeclarationCode
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
       result += "//   Transient property: " + mPropertyName + "\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  let prefs_" + mPropertyName + "_property = EBComputedProperty_" + [mType swiftTypeName] + " ()\n\n"
+      result += "  let preferences_" + mPropertyName + "_property = EBComputedProperty_" + [mType swiftTypeName] + " ()\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  var prefs_" + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-      result += "    return prefs_" + mPropertyName + "_property.selection\n"
+      result += "  var preferences_" + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
+      result += "    return preferences_" + mPropertyName + "_property.selection\n"
       result += "  }\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  var prefs_" + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
-      result += "    switch prefs_" + mPropertyName + "_property_selection {\n"
+      result += "  var preferences_" + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
+      result += "    switch preferences_" + mPropertyName + "_property_selection {\n"
       result += "    case .empty, .multiple :\n"
       result += "      return nil\n"
       result += "    case .single (let v) :\n"
@@ -424,7 +424,7 @@ override getter @computedPropertyGeneration propertyDeclarationCode
 #·······················································································································
 
 override getter @computedPropertyGeneration configurationCode ?let @bool inPreferences -> @string {
-  let prefix = if inPreferences then "prefs_" else "self." end
+  let prefix = if inPreferences then "preferences_" else "self." end
   result  = ""
   if [mDependencyList length] > 0 then
     let needs_unwSelf = [mDependencyList needs_unwSelf !inPreferences]

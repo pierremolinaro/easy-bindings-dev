@@ -280,7 +280,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     error [mProperty location] : "only an atomic property can be observed" : outType
   end
   outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new {
-    ![mProperty modelStringForSelf !if inPreferences then "prefs_" else "self." end]
+    ![mProperty modelStringForSelf !if inPreferences then "preferences_" else "self." end]
   }
   outErrorLocation = [mProperty location]
 }

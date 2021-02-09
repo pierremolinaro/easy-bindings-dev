@@ -2591,7 +2591,7 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_tableViewBindingGenerationList enumerator_5223 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_5223.hasCurrentObject ()) {
-      result << "    prefs_" ;
+      result << "    preferences_" ;
       result << enumerator_5223.current_mTableValueBindingControllerName (HERE).stringValue () ;
       result << ".bind_tableView (self." ;
       result << enumerator_5223.current_mTableValueBindingOutletName (HERE).stringValue () ;
@@ -2600,54 +2600,54 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
       enumerator_5223.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_5397_ (0) ;
+  GALGAS_uint index_5403_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_5397 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5397.hasCurrentObject ()) {
-      result << "    prefs_" ;
-      result << enumerator_5397.current_mArrayControllerControllerName (HERE).stringValue () ;
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_5403 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5403.hasCurrentObject ()) {
+      result << "    preferences_" ;
+      result << enumerator_5403.current_mArrayControllerControllerName (HERE).stringValue () ;
       result << ".bind_ebView (self." ;
-      result << enumerator_5397.current_mEBViewOutletName (HERE).stringValue () ;
+      result << enumerator_5403.current_mEBViewOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_5397_.increment () ;
-      enumerator_5397.gotoNextObject () ;
+      index_5403_.increment () ;
+      enumerator_5403.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Set targets / actions\n" ;
-  GALGAS_uint index_5579_ (0) ;
+  GALGAS_uint index_5591_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_5579 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5579.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_5591 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5591.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_5579.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_5591.current_mOutletName (HERE).stringValue () ;
       result << "\?.target = " ;
-      result << enumerator_5579.current_mTargetName (HERE).stringValue () ;
+      result << enumerator_5591.current_mTargetName (HERE).stringValue () ;
       result << "\n"
         "    self." ;
-      result << enumerator_5579.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_5591.current_mOutletName (HERE).stringValue () ;
       result << "\?.action = #selector (" ;
-      result << enumerator_5579.current_mTargetTypeName (HERE).stringValue () ;
+      result << enumerator_5591.current_mTargetTypeName (HERE).stringValue () ;
       result << "." ;
-      result << enumerator_5579.current_mActionName (HERE).stringValue () ;
+      result << enumerator_5591.current_mActionName (HERE).stringValue () ;
       result << " (_:))\n" ;
-      index_5579_.increment () ;
-      enumerator_5579.gotoNextObject () ;
+      index_5591_.increment () ;
+      enumerator_5591.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Extern functions\n" ;
-  GALGAS_uint index_5819_ (0) ;
+  GALGAS_uint index_5831_ (0) ;
   if (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST.isValid ()) {
-    cEnumerator_externSwiftFunctionList enumerator_5819 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5819.hasCurrentObject ()) {
-      const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, enumerator_5819.current_mCallerName (HERE).getter_string (HERE).objectCompare (GALGAS_string ("awakeFromNib"))).boolEnum () ;
+    cEnumerator_externSwiftFunctionList enumerator_5831 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5831.hasCurrentObject ()) {
+      const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, enumerator_5831.current_mCallerName (HERE).getter_string (HERE).objectCompare (GALGAS_string ("awakeFromNib"))).boolEnum () ;
       if (kBoolTrue == test_2) {
         result << "    self." ;
-        result << enumerator_5819.current_mExternSwiftFunctionName (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_5831.current_mExternSwiftFunctionName (HERE).getter_string (HERE).stringValue () ;
         result << " ()\n" ;
       }else if (kBoolFalse == test_2) {
       }
-      index_5819_.increment () ;
-      enumerator_5819.gotoNextObject () ;
+      index_5831_.increment () ;
+      enumerator_5831.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -2658,39 +2658,39 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (C_Compile
     "\n"
     "  @objc func applicationWillTerminateAction (_ : NSNotification) {\n"
     "  //--------------------------- Array controller\n" ;
-  GALGAS_uint index_6394_ (0) ;
+  GALGAS_uint index_6406_ (0) ;
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_tableViewBindingGenerationList enumerator_6394 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_6394.hasCurrentObject ()) {
-      result << "    prefs_" ;
-      result << enumerator_6394.current_mTableValueBindingControllerName (HERE).stringValue () ;
+    cEnumerator_tableViewBindingGenerationList enumerator_6406 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_6406.hasCurrentObject ()) {
+      result << "    preferences_" ;
+      result << enumerator_6406.current_mTableValueBindingControllerName (HERE).stringValue () ;
       result << ".unbind_tableView (self." ;
-      result << enumerator_6394.current_mTableValueBindingOutletName (HERE).stringValue () ;
+      result << enumerator_6406.current_mTableValueBindingOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_6394_.increment () ;
-      enumerator_6394.gotoNextObject () ;
+      index_6406_.increment () ;
+      enumerator_6406.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_6570_ (0) ;
+  GALGAS_uint index_6588_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_6570 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_6570.hasCurrentObject ()) {
-      result << "    prefs_" ;
-      result << enumerator_6570.current_mArrayControllerControllerName (HERE).stringValue () ;
-      result << ".unbind_ebView (prefs_" ;
-      result << enumerator_6570.current_mEBViewOutletName (HERE).stringValue () ;
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_6588 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_6588.hasCurrentObject ()) {
+      result << "    preferences_" ;
+      result << enumerator_6588.current_mArrayControllerControllerName (HERE).stringValue () ;
+      result << ".unbind_ebView (preferences_" ;
+      result << enumerator_6588.current_mEBViewOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_6570_.increment () ;
-      enumerator_6570.gotoNextObject () ;
+      index_6588_.increment () ;
+      enumerator_6588.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_6709_ (0) ;
+  GALGAS_uint index_6739_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_6709 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_6709.hasCurrentObject ()) {
-      result << callExtensionGetter_terminationCode ((const cPtr_propertyGeneration *) enumerator_6709.current_mProperty (HERE).ptr (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 169)).stringValue () ;
-      index_6709_.increment () ;
-      enumerator_6709.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_6739 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_6739.hasCurrentObject ()) {
+      result << callExtensionGetter_terminationCode ((const cPtr_propertyGeneration *) enumerator_6739.current_mProperty (HERE).ptr (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 169)).stringValue () ;
+      index_6739_.increment () ;
+      enumerator_6739.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -4025,7 +4025,7 @@ void routine_analyzeAutoLayoutBinding (const GALGAS_bool constinArgument_inPrefe
   GALGAS_string temp_23 ;
   const enumGalgasBool test_24 = constinArgument_inPreferences.boolEnum () ;
   if (kBoolTrue == test_24) {
-    temp_23 = GALGAS_string ("prefs_") ;
+    temp_23 = GALGAS_string ("preferences_") ;
   }else if (kBoolFalse == test_24) {
     temp_23 = GALGAS_string ("self.") ;
   }
@@ -4060,29 +4060,29 @@ void routine_analyzeAutoLayoutEnableBinding (const GALGAS_multipleBindingDescrip
     break ;
   case GALGAS_multipleBindingDescriptor::kEnum_binding:
     {
-      const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_45385 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (constinArgument_inEnabledBindingDescriptor.unsafePointer ()) ;
-      const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_45385->mAssociatedValue0 ;
-      GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression_45025 ;
-      GALGAS_typeKind var_type_45051 ;
-      GALGAS_location var_errorLocation_45086 ;
-      callExtensionMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_enableExpression_45025, var_type_45051, var_errorLocation_45086, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1075)) ;
+      const cEnumAssociatedValues_multipleBindingDescriptor_binding * extractPtr_45391 = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) (constinArgument_inEnabledBindingDescriptor.unsafePointer ()) ;
+      const GALGAS_abstractBooleanMultipleBindingExpressionAST extractedValue_expression = extractPtr_45391->mAssociatedValue0 ;
+      GALGAS_abstractBooleanMultipleBindingExpressionForGeneration var_enableExpression_45031 ;
+      GALGAS_typeKind var_type_45057 ;
+      GALGAS_location var_errorLocation_45092 ;
+      callExtensionMethod_analyzeExpressionForMultipleBinding ((const cPtr_abstractBooleanMultipleBindingExpressionAST *) extractedValue_expression.ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, var_enableExpression_45031, var_type_45057, var_errorLocation_45092, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1075)) ;
       enumGalgasBool test_0 = kBoolTrue ;
       if (kBoolTrue == test_0) {
         test_0 = constinArgument_inHandlesEnabledBinding.operator_not (SOURCE_FILE ("auto-layout-view.galgas", 1084)).boolEnum () ;
         if (kBoolTrue == test_0) {
           TC_Array <C_FixItDescription> fixItArray1 ;
-          inCompiler->emitSemanticError (var_errorLocation_45086, GALGAS_string ("cet outlet n'accepte pas le binding $enabled"), fixItArray1  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1085)) ;
+          inCompiler->emitSemanticError (var_errorLocation_45092, GALGAS_string ("cet outlet n'accepte pas le binding $enabled"), fixItArray1  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1085)) ;
         }
       }
       enumGalgasBool test_2 = kBoolTrue ;
       if (kBoolTrue == test_2) {
-        test_2 = var_type_45051.getter_isBoolType (SOURCE_FILE ("auto-layout-view.galgas", 1087)).operator_not (SOURCE_FILE ("auto-layout-view.galgas", 1087)).boolEnum () ;
+        test_2 = var_type_45057.getter_isBoolType (SOURCE_FILE ("auto-layout-view.galgas", 1087)).operator_not (SOURCE_FILE ("auto-layout-view.galgas", 1087)).boolEnum () ;
         if (kBoolTrue == test_2) {
           TC_Array <C_FixItDescription> fixItArray3 ;
-          inCompiler->emitSemanticError (var_errorLocation_45086, GALGAS_string ("expression is not boolean"), fixItArray3  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1088)) ;
+          inCompiler->emitSemanticError (var_errorLocation_45092, GALGAS_string ("expression is not boolean"), fixItArray3  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1088)) ;
         }
       }
-      outArgument_outEnabledBindingGeneration = GALGAS_autolayoutEnabledBindingForGeneration::constructor_enabled (var_enableExpression_45025  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1090)) ;
+      outArgument_outEnabledBindingGeneration = GALGAS_autolayoutEnabledBindingForGeneration::constructor_enabled (var_enableExpression_45031  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1090)) ;
     }
     break ;
   }
@@ -4116,9 +4116,9 @@ void routine_analyzeAutoLayoutRunBinding (const GALGAS_runActionDescriptor const
     break ;
   case GALGAS_runActionDescriptor::kEnum_action:
     {
-      const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_46853 = (const cEnumAssociatedValues_runActionDescriptor_action *) (constinArgument_inRunActionDescriptor.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_target = extractPtr_46853->mAssociatedValue0 ;
-      const GALGAS_lstring extractedValue_action = extractPtr_46853->mAssociatedValue1 ;
+      const cEnumAssociatedValues_runActionDescriptor_action * extractPtr_46865 = (const cEnumAssociatedValues_runActionDescriptor_action *) (constinArgument_inRunActionDescriptor.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_target = extractPtr_46865->mAssociatedValue0 ;
+      const GALGAS_lstring extractedValue_action = extractPtr_46865->mAssociatedValue1 ;
       enumGalgasBool test_0 = kBoolTrue ;
       if (kBoolTrue == test_0) {
         test_0 = constinArgument_inHandlesRunAction.operator_not (SOURCE_FILE ("auto-layout-view.galgas", 1110)).boolEnum () ;
@@ -4138,15 +4138,15 @@ void routine_analyzeAutoLayoutRunBinding (const GALGAS_runActionDescriptor const
           }
         }
         if (kBoolFalse == test_2) {
-          GALGAS_actionMap var_controllerActionMap_46538 ;
-          GALGAS_propertyKind joker_46493 ; // Joker input parameter
-          GALGAS_bool joker_46548 ; // Joker input parameter
-          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_46493, var_controllerActionMap_46538, joker_46548, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1120)) ;
-          var_controllerActionMap_46538.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1126)) ;
+          GALGAS_actionMap var_controllerActionMap_46544 ;
+          GALGAS_propertyKind joker_46499 ; // Joker input parameter
+          GALGAS_bool joker_46554 ; // Joker input parameter
+          constinArgument_inObservablePropertyMap.method_searchKey (extractedValue_target, joker_46499, var_controllerActionMap_46544, joker_46554, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1120)) ;
+          var_controllerActionMap_46544.method_searchKey (extractedValue_action, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1126)) ;
           GALGAS_string temp_3 ;
           const enumGalgasBool test_4 = constinArgument_inPreferences.boolEnum () ;
           if (kBoolTrue == test_4) {
-            temp_3 = GALGAS_string ("prefs_") ;
+            temp_3 = GALGAS_string ("preferences_") ;
           }else if (kBoolFalse == test_4) {
             temp_3 = GALGAS_string::makeEmptyString () ;
           }
@@ -4175,16 +4175,16 @@ void routine_analyzeAutoLayoutRegularBinding (const GALGAS_propertyMap constinAr
                                               GALGAS_autoLayoutRegularBindingsGenerationList & ioArgument_ioRegularBindingsGenerationList,
                                               C_Compiler * inCompiler
                                               COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_regularBindingList enumerator_47414 (constinArgument_inRegularBindingList, kENUMERATION_UP) ;
-  while (enumerator_47414.hasCurrentObject ()) {
-    GALGAS_outletBindingModelList var_boundModelTypeList_47485 = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1150)) ;
-    GALGAS_boundObjectList var_boundModelListForGeneration_47539 = GALGAS_boundObjectList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1151)) ;
-    cEnumerator_observablePropertyList enumerator_47582 (enumerator_47414.current_mObservablePropertyList (HERE), kENUMERATION_UP) ;
-    while (enumerator_47582.hasCurrentObject ()) {
-      GALGAS_propertyKind var_kind_47753 ;
-      GALGAS_string var_swiftTypeStringForTransientFunctionArgument_47825 ;
-      extensionMethod_analyzeObservableProperty (enumerator_47582.current_mObservableProperty (HERE), constinArgument_inRootPropertyMap, constinArgument_inSemanticContext, constinArgument_inBoundModelPropertyMap, var_kind_47753, var_swiftTypeStringForTransientFunctionArgument_47825, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1153)) ;
-      switch (var_kind_47753.enumValue ()) {
+  cEnumerator_regularBindingList enumerator_47426 (constinArgument_inRegularBindingList, kENUMERATION_UP) ;
+  while (enumerator_47426.hasCurrentObject ()) {
+    GALGAS_outletBindingModelList var_boundModelTypeList_47497 = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1150)) ;
+    GALGAS_boundObjectList var_boundModelListForGeneration_47551 = GALGAS_boundObjectList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1151)) ;
+    cEnumerator_observablePropertyList enumerator_47594 (enumerator_47426.current_mObservablePropertyList (HERE), kENUMERATION_UP) ;
+    while (enumerator_47594.hasCurrentObject ()) {
+      GALGAS_propertyKind var_kind_47765 ;
+      GALGAS_string var_swiftTypeStringForTransientFunctionArgument_47837 ;
+      extensionMethod_analyzeObservableProperty (enumerator_47594.current_mObservableProperty (HERE), constinArgument_inRootPropertyMap, constinArgument_inSemanticContext, constinArgument_inBoundModelPropertyMap, var_kind_47765, var_swiftTypeStringForTransientFunctionArgument_47837, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1153)) ;
+      switch (var_kind_47765.enumValue ()) {
       case GALGAS_propertyKind::kNotBuilt:
         break ;
       case GALGAS_propertyKind::kEnum_property:
@@ -4194,106 +4194,106 @@ void routine_analyzeAutoLayoutRegularBinding (const GALGAS_propertyMap constinAr
       case GALGAS_propertyKind::kEnum_toMany:
         {
           TC_Array <C_FixItDescription> fixItArray0 ;
-          inCompiler->emitSemanticError (extensionGetter_location (enumerator_47582.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1163)), GALGAS_string ("a toMany property cannot be bound"), fixItArray0  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1163)) ;
+          inCompiler->emitSemanticError (extensionGetter_location (enumerator_47594.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1163)), GALGAS_string ("a toMany property cannot be bound"), fixItArray0  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1163)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
         {
           TC_Array <C_FixItDescription> fixItArray1 ;
-          inCompiler->emitSemanticError (extensionGetter_location (enumerator_47582.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1165)), GALGAS_string ("a toOne property cannot be bound"), fixItArray1  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1165)) ;
+          inCompiler->emitSemanticError (extensionGetter_location (enumerator_47594.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1165)), GALGAS_string ("a toOne property cannot be bound"), fixItArray1  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1165)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
         {
           TC_Array <C_FixItDescription> fixItArray2 ;
-          inCompiler->emitSemanticError (extensionGetter_location (enumerator_47582.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1167)), GALGAS_string ("an array controller cannot be bound"), fixItArray2  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1167)) ;
+          inCompiler->emitSemanticError (extensionGetter_location (enumerator_47594.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1167)), GALGAS_string ("an array controller cannot be bound"), fixItArray2  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1167)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_selectionController:
         {
           TC_Array <C_FixItDescription> fixItArray3 ;
-          inCompiler->emitSemanticError (extensionGetter_location (enumerator_47582.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1169)), GALGAS_string ("a selection controller cannot be bound"), fixItArray3  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1169)) ;
+          inCompiler->emitSemanticError (extensionGetter_location (enumerator_47594.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1169)), GALGAS_string ("a selection controller cannot be bound"), fixItArray3  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1169)) ;
         }
         break ;
       }
-      var_boundModelListForGeneration_47539.addAssign_operation (extensionGetter_modelStringForSelf (enumerator_47582.current_mObservableProperty (HERE), constinArgument_inSelfSwiftName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1171)), var_kind_47753  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1171)) ;
-      var_boundModelTypeList_47485.addAssign_operation (var_kind_47753, extensionGetter_location (enumerator_47582.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1172))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1172)) ;
-      enumerator_47582.gotoNextObject () ;
+      var_boundModelListForGeneration_47551.addAssign_operation (extensionGetter_modelStringForSelf (enumerator_47594.current_mObservableProperty (HERE), constinArgument_inSelfSwiftName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1171)), var_kind_47765  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1171)) ;
+      var_boundModelTypeList_47497.addAssign_operation (var_kind_47765, extensionGetter_location (enumerator_47594.current_mObservableProperty (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1172))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1172)) ;
+      enumerator_47594.gotoNextObject () ;
     }
-    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_48626 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1175)) ;
-    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_48710 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1176)) ;
-    GALGAS_lstring var_outletTypeName_48738 = constinArgument_inOutletTypeName ;
-    GALGAS_bool var_continues_48775 = GALGAS_bool (true) ;
+    GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_48638 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1175)) ;
+    GALGAS_controllerBindingOptionDecoratedList var_controllerBindingOptionDecoratedList_48722 = GALGAS_controllerBindingOptionDecoratedList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1176)) ;
+    GALGAS_lstring var_outletTypeName_48750 = constinArgument_inOutletTypeName ;
+    GALGAS_bool var_continues_48787 = GALGAS_bool (true) ;
     if (constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).getter_count (SOURCE_FILE ("auto-layout-view.galgas", 1179)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1179)).isValid ()) {
-      uint32_t variant_48791 = constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).getter_count (SOURCE_FILE ("auto-layout-view.galgas", 1179)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1179)).uintValue () ;
-      bool loop_48791 = true ;
-      while (loop_48791) {
-        loop_48791 = GALGAS_bool (kIsNotEqual, var_outletTypeName_48738.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (var_continues_48775 COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1179)).isValid () ;
-        if (loop_48791) {
-          loop_48791 = GALGAS_bool (kIsNotEqual, var_outletTypeName_48738.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (var_continues_48775 COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1179)).boolValue () ;
+      uint32_t variant_48803 = constinArgument_inSemanticContext.getter_mBindingSpecificationMap (HERE).getter_count (SOURCE_FILE ("auto-layout-view.galgas", 1179)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1179)).uintValue () ;
+      bool loop_48803 = true ;
+      while (loop_48803) {
+        loop_48803 = GALGAS_bool (kIsNotEqual, var_outletTypeName_48750.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (var_continues_48787 COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1179)).isValid () ;
+        if (loop_48803) {
+          loop_48803 = GALGAS_bool (kIsNotEqual, var_outletTypeName_48750.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (var_continues_48787 COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1179)).boolValue () ;
         }
-        if (loop_48791 && (0 == variant_48791)) {
-          loop_48791 = false ;
+        if (loop_48803 && (0 == variant_48803)) {
+          loop_48803 = false ;
           inCompiler->loopRunTimeVariantError (SOURCE_FILE ("auto-layout-view.galgas", 1179)) ;
         }
-        if (loop_48791) {
-          variant_48791 -- ;
-          var_continues_48775 = GALGAS_bool (false) ;
-          GALGAS_lstring var_superOutletClassName_49051 ;
-          GALGAS_autoLayoutViewBindingSpecificationMap var_bindingMap_49075 ;
-          constinArgument_inSemanticContext.getter_mAutoLayoutBindingSpecificationMap (HERE).method_searchKey (var_outletTypeName_48738, var_superOutletClassName_49051, var_bindingMap_49075, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1181)) ;
+        if (loop_48803) {
+          variant_48803 -- ;
+          var_continues_48787 = GALGAS_bool (false) ;
+          GALGAS_lstring var_superOutletClassName_49063 ;
+          GALGAS_autoLayoutViewBindingSpecificationMap var_bindingMap_49087 ;
+          constinArgument_inSemanticContext.getter_mAutoLayoutBindingSpecificationMap (HERE).method_searchKey (var_outletTypeName_48750, var_superOutletClassName_49063, var_bindingMap_49087, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1181)) ;
           enumGalgasBool test_4 = kBoolTrue ;
           if (kBoolTrue == test_4) {
-            test_4 = var_bindingMap_49075.getter_hasKey (enumerator_47414.current_mBindingName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1186)).boolEnum () ;
+            test_4 = var_bindingMap_49087.getter_hasKey (enumerator_47426.current_mBindingName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1186)).boolEnum () ;
             if (kBoolTrue == test_4) {
-              var_bindingMap_49075.method_searchKey (enumerator_47414.current_mBindingName (HERE), var_outletBindingSpecificationModelList_48626, var_controllerBindingOptionDecoratedList_48710, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1187)) ;
+              var_bindingMap_49087.method_searchKey (enumerator_47426.current_mBindingName (HERE), var_outletBindingSpecificationModelList_48638, var_controllerBindingOptionDecoratedList_48722, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1187)) ;
             }
           }
           if (kBoolFalse == test_4) {
-            var_continues_48775 = GALGAS_bool (true) ;
-            var_outletTypeName_48738 = var_superOutletClassName_49051 ;
+            var_continues_48787 = GALGAS_bool (true) ;
+            var_outletTypeName_48750 = var_superOutletClassName_49063 ;
           }
         }
       }
     }
     enumGalgasBool test_5 = kBoolTrue ;
     if (kBoolTrue == test_5) {
-      test_5 = var_continues_48775.boolEnum () ;
+      test_5 = var_continues_48787.boolEnum () ;
       if (kBoolTrue == test_5) {
         TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (enumerator_47414.current_mBindingName (HERE).getter_location (SOURCE_FILE ("auto-layout-view.galgas", 1198)), GALGAS_string ("this binding is not defined"), fixItArray6  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1198)) ;
+        inCompiler->emitSemanticError (enumerator_47426.current_mBindingName (HERE).getter_location (SOURCE_FILE ("auto-layout-view.galgas", 1198)), GALGAS_string ("this binding is not defined"), fixItArray6  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1198)) ;
       }
     }
     if (kBoolFalse == test_5) {
       enumGalgasBool test_7 = kBoolTrue ;
       if (kBoolTrue == test_7) {
-        test_7 = GALGAS_bool (kIsNotEqual, var_boundModelTypeList_47485.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1199)).objectCompare (var_outletBindingSpecificationModelList_48626.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1199)))).boolEnum () ;
+        test_7 = GALGAS_bool (kIsNotEqual, var_boundModelTypeList_47497.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1199)).objectCompare (var_outletBindingSpecificationModelList_48638.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1199)))).boolEnum () ;
         if (kBoolTrue == test_7) {
           TC_Array <C_FixItDescription> fixItArray8 ;
-          inCompiler->emitSemanticError (enumerator_47414.current_mBindingName (HERE).getter_location (SOURCE_FILE ("auto-layout-view.galgas", 1200)), var_outletBindingSpecificationModelList_48626.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1201)).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1201)).add_operation (GALGAS_string (" model(s) required for this binding (found: "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1201)).add_operation (var_boundModelTypeList_47485.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1203)).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1202)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1202)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1203)), fixItArray8  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1200)) ;
+          inCompiler->emitSemanticError (enumerator_47426.current_mBindingName (HERE).getter_location (SOURCE_FILE ("auto-layout-view.galgas", 1200)), var_outletBindingSpecificationModelList_48638.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1201)).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1201)).add_operation (GALGAS_string (" model(s) required for this binding (found: "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1201)).add_operation (var_boundModelTypeList_47497.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1203)).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1202)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1202)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1203)), fixItArray8  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1200)) ;
         }
       }
       if (kBoolFalse == test_7) {
-        cEnumerator_outletBindingSpecificationModelList enumerator_49826 (var_outletBindingSpecificationModelList_48626, kENUMERATION_UP) ;
-        cEnumerator_outletBindingModelList enumerator_49859 (var_boundModelTypeList_47485, kENUMERATION_UP) ;
-        while (enumerator_49826.hasCurrentObject () && enumerator_49859.hasCurrentObject ()) {
+        cEnumerator_outletBindingSpecificationModelList enumerator_49838 (var_outletBindingSpecificationModelList_48638, kENUMERATION_UP) ;
+        cEnumerator_outletBindingModelList enumerator_49871 (var_boundModelTypeList_47497, kENUMERATION_UP) ;
+        while (enumerator_49838.hasCurrentObject () && enumerator_49871.hasCurrentObject ()) {
           enumGalgasBool test_9 = kBoolTrue ;
           if (kBoolTrue == test_9) {
-            GALGAS_bool test_10 = enumerator_49826.current_mModelShouldBeWritableProperty (HERE) ;
+            GALGAS_bool test_10 = enumerator_49838.current_mModelShouldBeWritableProperty (HERE) ;
             if (kBoolTrue == test_10.boolEnum ()) {
-              test_10 = extensionGetter_isTransient (enumerator_49859.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1206)) ;
+              test_10 = extensionGetter_isTransient (enumerator_49871.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1206)) ;
             }
             test_9 = test_10.boolEnum () ;
             if (kBoolTrue == test_9) {
               TC_Array <C_FixItDescription> fixItArray11 ;
-              inCompiler->emitSemanticError (enumerator_49859.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model"), fixItArray11  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1207)) ;
+              inCompiler->emitSemanticError (enumerator_49871.current_mErrorLocation (HERE), GALGAS_string ("the model is transient and the binding requires an writable model"), fixItArray11  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1207)) ;
             }
           }
           enumGalgasBool test_12 = kBoolTrue ;
           if (kBoolTrue == test_12) {
-            GALGAS_bool test_13 = enumerator_49826.current_mModelType (HERE).getter_isEnumType (SOURCE_FILE ("auto-layout-view.galgas", 1209)) ;
+            GALGAS_bool test_13 = enumerator_49838.current_mModelType (HERE).getter_isEnumType (SOURCE_FILE ("auto-layout-view.galgas", 1209)) ;
             if (kBoolTrue == test_13.boolEnum ()) {
-              test_13 = extensionGetter_isEnumType (enumerator_49859.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1209)) ;
+              test_13 = extensionGetter_isEnumType (enumerator_49871.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1209)) ;
             }
             test_12 = test_13.boolEnum () ;
             if (kBoolTrue == test_12) {
@@ -4302,67 +4302,67 @@ void routine_analyzeAutoLayoutRegularBinding (const GALGAS_propertyMap constinAr
           if (kBoolFalse == test_12) {
             enumGalgasBool test_14 = kBoolTrue ;
             if (kBoolTrue == test_14) {
-              test_14 = GALGAS_bool (kIsNotEqual, extensionGetter_swiftTypeName (enumerator_49826.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1210)).objectCompare (extensionGetter_swiftTypeName (enumerator_49859.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1210)))).boolEnum () ;
+              test_14 = GALGAS_bool (kIsNotEqual, extensionGetter_swiftTypeName (enumerator_49838.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1210)).objectCompare (extensionGetter_swiftTypeName (enumerator_49871.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1210)))).boolEnum () ;
               if (kBoolTrue == test_14) {
                 TC_Array <C_FixItDescription> fixItArray15 ;
-                inCompiler->emitSemanticError (enumerator_49859.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (extensionGetter_swiftTypeName (enumerator_49826.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1211)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1211)), fixItArray15  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1211)) ;
+                inCompiler->emitSemanticError (enumerator_49871.current_mErrorLocation (HERE), GALGAS_string ("the model type should be ").add_operation (extensionGetter_swiftTypeName (enumerator_49838.current_mModelType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1211)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1211)), fixItArray15  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1211)) ;
               }
             }
           }
-          enumerator_49826.gotoNextObject () ;
-          enumerator_49859.gotoNextObject () ;
+          enumerator_49838.gotoNextObject () ;
+          enumerator_49871.gotoNextObject () ;
         }
       }
     }
-    GALGAS_string var_bindingOptionString_50418 = GALGAS_string::makeEmptyString () ;
+    GALGAS_string var_bindingOptionString_50430 = GALGAS_string::makeEmptyString () ;
     enumGalgasBool test_16 = kBoolTrue ;
     if (kBoolTrue == test_16) {
-      test_16 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList_48710.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1217)).objectCompare (enumerator_47414.current_mBindingOptionList (HERE).getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1217)))).boolEnum () ;
+      test_16 = GALGAS_bool (kIsNotEqual, var_controllerBindingOptionDecoratedList_48722.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1217)).objectCompare (enumerator_47426.current_mBindingOptionList (HERE).getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1217)))).boolEnum () ;
       if (kBoolTrue == test_16) {
-        GALGAS_string var_s_50528 ;
+        GALGAS_string var_s_50540 ;
         enumGalgasBool test_17 = kBoolTrue ;
         if (kBoolTrue == test_17) {
-          test_17 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList_48710.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1219)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+          test_17 = GALGAS_bool (kIsEqual, var_controllerBindingOptionDecoratedList_48722.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 1219)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
           if (kBoolTrue == test_17) {
-            var_s_50528 = GALGAS_string ("this binding has no option") ;
+            var_s_50540 = GALGAS_string ("this binding has no option") ;
           }
         }
         if (kBoolFalse == test_17) {
-          var_s_50528 = GALGAS_string ("this binding requires the following options:") ;
-          cEnumerator_controllerBindingOptionDecoratedList enumerator_50760 (var_controllerBindingOptionDecoratedList_48710, kENUMERATION_UP) ;
-          while (enumerator_50760.hasCurrentObject ()) {
-            var_s_50528.plusAssign_operation(GALGAS_string ("\n"
-              "  - ").add_operation (enumerator_50760.current_mOptionName (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1224)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)).add_operation (extensionGetter_swiftTypeName (enumerator_50760.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)) ;
-            enumerator_50760.gotoNextObject () ;
+          var_s_50540 = GALGAS_string ("this binding requires the following options:") ;
+          cEnumerator_controllerBindingOptionDecoratedList enumerator_50772 (var_controllerBindingOptionDecoratedList_48722, kENUMERATION_UP) ;
+          while (enumerator_50772.hasCurrentObject ()) {
+            var_s_50540.plusAssign_operation(GALGAS_string ("\n"
+              "  - ").add_operation (enumerator_50772.current_mOptionName (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1224)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)).add_operation (extensionGetter_swiftTypeName (enumerator_50772.current_mOptionType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1224)) ;
+            enumerator_50772.gotoNextObject () ;
           }
         }
         TC_Array <C_FixItDescription> fixItArray18 ;
-        inCompiler->emitSemanticError (enumerator_47414.current_mBindingName (HERE).getter_location (SOURCE_FILE ("auto-layout-view.galgas", 1227)), var_s_50528, fixItArray18  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1227)) ;
+        inCompiler->emitSemanticError (enumerator_47426.current_mBindingName (HERE).getter_location (SOURCE_FILE ("auto-layout-view.galgas", 1227)), var_s_50540, fixItArray18  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1227)) ;
       }
     }
     if (kBoolFalse == test_16) {
-      cEnumerator_controllerBindingOptionDecoratedList enumerator_50964 (var_controllerBindingOptionDecoratedList_48710, kENUMERATION_UP) ;
-      cEnumerator_bindingOptionList enumerator_50999 (enumerator_47414.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
-      while (enumerator_50964.hasCurrentObject () && enumerator_50999.hasCurrentObject ()) {
+      cEnumerator_controllerBindingOptionDecoratedList enumerator_50976 (var_controllerBindingOptionDecoratedList_48722, kENUMERATION_UP) ;
+      cEnumerator_bindingOptionList enumerator_51011 (enumerator_47426.current_mBindingOptionList (HERE), kENUMERATION_UP) ;
+      while (enumerator_50976.hasCurrentObject () && enumerator_51011.hasCurrentObject ()) {
         enumGalgasBool test_19 = kBoolTrue ;
         if (kBoolTrue == test_19) {
-          test_19 = GALGAS_bool (kIsNotEqual, enumerator_50964.current_mOptionName (HERE).getter_string (HERE).objectCompare (enumerator_50999.current_mOptionName (HERE).getter_string (HERE))).boolEnum () ;
+          test_19 = GALGAS_bool (kIsNotEqual, enumerator_50976.current_mOptionName (HERE).getter_string (HERE).objectCompare (enumerator_51011.current_mOptionName (HERE).getter_string (HERE))).boolEnum () ;
           if (kBoolTrue == test_19) {
             TC_Array <C_FixItDescription> fixItArray20 ;
-            inCompiler->emitSemanticError (enumerator_50999.current_mOptionName (HERE).getter_location (SOURCE_FILE ("auto-layout-view.galgas", 1231)), GALGAS_string ("the option name should be '").add_operation (enumerator_50964.current_mOptionName (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1231)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1231)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1231)), fixItArray20  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1231)) ;
+            inCompiler->emitSemanticError (enumerator_51011.current_mOptionName (HERE).getter_location (SOURCE_FILE ("auto-layout-view.galgas", 1231)), GALGAS_string ("the option name should be '").add_operation (enumerator_50976.current_mOptionName (HERE).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1231)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1231)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1231)), fixItArray20  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1231)) ;
           }
         }
-        GALGAS_string var_optionValueAsString_51360 ;
+        GALGAS_string var_optionValueAsString_51372 ;
         GALGAS_typeKindList temp_21 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1234)) ;
-        temp_21.addAssign_operation (enumerator_50964.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1234)) ;
-        callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_50999.current_mOptionValue (HERE).ptr (), temp_21, constinArgument_inPreferencesPropertyMap, var_optionValueAsString_51360, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1233)) ;
-        var_bindingOptionString_50418.plusAssign_operation(GALGAS_string (", ").add_operation (enumerator_50964.current_mOptionName (HERE).getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1238)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1238)).add_operation (var_optionValueAsString_51360, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1238)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1238)) ;
-        enumerator_50964.gotoNextObject () ;
-        enumerator_50999.gotoNextObject () ;
+        temp_21.addAssign_operation (enumerator_50976.current_mOptionType (HERE)  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1234)) ;
+        callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) enumerator_51011.current_mOptionValue (HERE).ptr (), temp_21, constinArgument_inPreferencesPropertyMap, var_optionValueAsString_51372, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1233)) ;
+        var_bindingOptionString_50430.plusAssign_operation(GALGAS_string (", ").add_operation (enumerator_50976.current_mOptionName (HERE).getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1238)).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1238)).add_operation (var_optionValueAsString_51372, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1238)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1238)) ;
+        enumerator_50976.gotoNextObject () ;
+        enumerator_51011.gotoNextObject () ;
       }
     }
-    ioArgument_ioRegularBindingsGenerationList.addAssign_operation (enumerator_47414.current_mBindingName (HERE).getter_string (HERE), var_boundModelListForGeneration_47539, var_bindingOptionString_50418  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1242)) ;
-    enumerator_47414.gotoNextObject () ;
+    ioArgument_ioRegularBindingsGenerationList.addAssign_operation (enumerator_47426.current_mBindingName (HERE).getter_string (HERE), var_boundModelListForGeneration_47551, var_bindingOptionString_50430  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1242)) ;
+    enumerator_47426.gotoNextObject () ;
   }
 }
 
@@ -4388,17 +4388,17 @@ static void extensionMethod_astHStackViewInstructionDeclaration_generateCode (co
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_astHStackViewInstructionDeclaration * object = (const cPtr_astHStackViewInstructionDeclaration *) inObject ;
   macroValidSharedObject (object, cPtr_astHStackViewInstructionDeclaration) ;
-  GALGAS_autoLayoutViewInstructionGenerationList var_instructionList_52577 = GALGAS_autoLayoutViewInstructionGenerationList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1262)) ;
-  GALGAS_autoLayoutViewInstructionGenerationFuncCallList var_funcCallList_52992 ;
-  extensionMethod_check (object->mProperty_mFunctionCallList, constinArgument_inSemanticContext.getter_mAutoLayoutHStackFunctionMap (HERE), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, ioArgument_ioImplicitViewFunctionGenerationList, var_funcCallList_52992, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1263)) ;
-  cEnumerator_astViewInstructionList enumerator_53036 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
-  while (enumerator_53036.hasCurrentObject ()) {
-    GALGAS_abstractViewInstructionGeneration var_generatedInstruction_53367 ;
-    callExtensionMethod_generateCode ((const cPtr_astAbstractViewInstructionDeclaration *) enumerator_53036.current_mInstruction (HERE).ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, ioArgument_ioImplicitViewFunctionGenerationList, var_generatedInstruction_53367, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1277)) ;
-    var_instructionList_52577.addAssign_operation (var_generatedInstruction_53367  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1289)) ;
-    enumerator_53036.gotoNextObject () ;
+  GALGAS_autoLayoutViewInstructionGenerationList var_instructionList_52589 = GALGAS_autoLayoutViewInstructionGenerationList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1262)) ;
+  GALGAS_autoLayoutViewInstructionGenerationFuncCallList var_funcCallList_53004 ;
+  extensionMethod_check (object->mProperty_mFunctionCallList, constinArgument_inSemanticContext.getter_mAutoLayoutHStackFunctionMap (HERE), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, ioArgument_ioImplicitViewFunctionGenerationList, var_funcCallList_53004, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1263)) ;
+  cEnumerator_astViewInstructionList enumerator_53048 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
+  while (enumerator_53048.hasCurrentObject ()) {
+    GALGAS_abstractViewInstructionGeneration var_generatedInstruction_53379 ;
+    callExtensionMethod_generateCode ((const cPtr_astAbstractViewInstructionDeclaration *) enumerator_53048.current_mInstruction (HERE).ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, ioArgument_ioImplicitViewFunctionGenerationList, var_generatedInstruction_53379, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1277)) ;
+    var_instructionList_52589.addAssign_operation (var_generatedInstruction_53379  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1289)) ;
+    enumerator_53048.gotoNextObject () ;
   }
-  outArgument_outInstruction = GALGAS_hStackViewInstructionGeneration::constructor_new (var_funcCallList_52992, var_instructionList_52577  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1291)) ;
+  outArgument_outInstruction = GALGAS_hStackViewInstructionGeneration::constructor_new (var_funcCallList_53004, var_instructionList_52589  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1291)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4433,17 +4433,17 @@ static void extensionMethod_astVStackViewInstructionDeclaration_generateCode (co
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_astVStackViewInstructionDeclaration * object = (const cPtr_astVStackViewInstructionDeclaration *) inObject ;
   macroValidSharedObject (object, cPtr_astVStackViewInstructionDeclaration) ;
-  GALGAS_autoLayoutViewInstructionGenerationList var_instructionList_54448 = GALGAS_autoLayoutViewInstructionGenerationList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1307)) ;
-  GALGAS_autoLayoutViewInstructionGenerationFuncCallList var_funcCallList_54863 ;
-  extensionMethod_check (object->mProperty_mFunctionCallList, constinArgument_inSemanticContext.getter_mAutoLayoutVStackFunctionMap (HERE), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, ioArgument_ioImplicitViewFunctionGenerationList, var_funcCallList_54863, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1308)) ;
-  cEnumerator_astViewInstructionList enumerator_54907 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
-  while (enumerator_54907.hasCurrentObject ()) {
-    GALGAS_abstractViewInstructionGeneration var_generatedInstruction_55238 ;
-    callExtensionMethod_generateCode ((const cPtr_astAbstractViewInstructionDeclaration *) enumerator_54907.current_mInstruction (HERE).ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, ioArgument_ioImplicitViewFunctionGenerationList, var_generatedInstruction_55238, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1322)) ;
-    var_instructionList_54448.addAssign_operation (var_generatedInstruction_55238  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1334)) ;
-    enumerator_54907.gotoNextObject () ;
+  GALGAS_autoLayoutViewInstructionGenerationList var_instructionList_54460 = GALGAS_autoLayoutViewInstructionGenerationList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.galgas", 1307)) ;
+  GALGAS_autoLayoutViewInstructionGenerationFuncCallList var_funcCallList_54875 ;
+  extensionMethod_check (object->mProperty_mFunctionCallList, constinArgument_inSemanticContext.getter_mAutoLayoutVStackFunctionMap (HERE), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, ioArgument_ioImplicitViewFunctionGenerationList, var_funcCallList_54875, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1308)) ;
+  cEnumerator_astViewInstructionList enumerator_54919 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
+  while (enumerator_54919.hasCurrentObject ()) {
+    GALGAS_abstractViewInstructionGeneration var_generatedInstruction_55250 ;
+    callExtensionMethod_generateCode ((const cPtr_astAbstractViewInstructionDeclaration *) enumerator_54919.current_mInstruction (HERE).ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, ioArgument_ioImplicitViewFunctionGenerationList, var_generatedInstruction_55250, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1322)) ;
+    var_instructionList_54460.addAssign_operation (var_generatedInstruction_55250  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1334)) ;
+    enumerator_54919.gotoNextObject () ;
   }
-  outArgument_outInstruction = GALGAS_vStackViewInstructionGeneration::constructor_new (var_funcCallList_54863, var_instructionList_54448  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1336)) ;
+  outArgument_outInstruction = GALGAS_vStackViewInstructionGeneration::constructor_new (var_funcCallList_54875, var_instructionList_54460  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1336)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4539,14 +4539,14 @@ static GALGAS_string extensionGetter_computedHorizontalViewGeneration_generate (
   result_result.plusAssign_operation(GALGAS_string ("  fileprivate final func ").add_operation (constinArgument_inViewName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1515)).add_operation (GALGAS_string ("_make () -> AutoLayoutStackView {\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1515)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1515)) ;
   result_result.plusAssign_operation(GALGAS_string ("    let hStackView = AutoLayoutHorizontalStackView ()\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1516)) ;
   extensionMethod_generate (object->mProperty_mFuncCallList, GALGAS_string ("    "), result_result, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1517)) ;
-  cEnumerator_autoLayoutViewInstructionGenerationList enumerator_63149 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
-  GALGAS_uint index_63115 ((uint32_t) 0) ;
-  while (enumerator_63149.hasCurrentObject ()) {
-    GALGAS_string var_name_63173 = GALGAS_string ("view_").add_operation (index_63115.getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1519)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1519)) ;
-    result_result.plusAssign_operation(callExtensionGetter_generate ((const cPtr_abstractViewInstructionGeneration *) enumerator_63149.current_mInstruction (HERE).ptr (), var_name_63173, GALGAS_string ("    "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1520)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1520)) ;
-    result_result.plusAssign_operation(GALGAS_string ("    hStackView.appendView (").add_operation (var_name_63173, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1521)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1521)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1521)) ;
-    enumerator_63149.gotoNextObject () ;
-    index_63115.increment_operation (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1518)) ;
+  cEnumerator_autoLayoutViewInstructionGenerationList enumerator_63161 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
+  GALGAS_uint index_63127 ((uint32_t) 0) ;
+  while (enumerator_63161.hasCurrentObject ()) {
+    GALGAS_string var_name_63185 = GALGAS_string ("view_").add_operation (index_63127.getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1519)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1519)) ;
+    result_result.plusAssign_operation(callExtensionGetter_generate ((const cPtr_abstractViewInstructionGeneration *) enumerator_63161.current_mInstruction (HERE).ptr (), var_name_63185, GALGAS_string ("    "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1520)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1520)) ;
+    result_result.plusAssign_operation(GALGAS_string ("    hStackView.appendView (").add_operation (var_name_63185, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1521)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1521)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1521)) ;
+    enumerator_63161.gotoNextObject () ;
+    index_63127.increment_operation (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1518)) ;
   }
   result_result.plusAssign_operation(GALGAS_string ("    return hStackView\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1523)) ;
   result_result.plusAssign_operation(GALGAS_string ("  }\n"
@@ -4585,14 +4585,14 @@ static GALGAS_string extensionGetter_computedVerticalViewGeneration_generate (co
   result_result.plusAssign_operation(GALGAS_string ("  fileprivate final func ").add_operation (constinArgument_inViewName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1531)).add_operation (GALGAS_string ("_make () -> AutoLayoutStackView {\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1531)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1531)) ;
   result_result.plusAssign_operation(GALGAS_string ("    let vStackView = AutoLayoutVerticalStackView ()\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1532)) ;
   extensionMethod_generate (object->mProperty_mFuncCallList, GALGAS_string ("    "), result_result, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1533)) ;
-  cEnumerator_autoLayoutViewInstructionGenerationList enumerator_63912 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
-  GALGAS_uint index_63878 ((uint32_t) 0) ;
-  while (enumerator_63912.hasCurrentObject ()) {
-    GALGAS_string var_name_63936 = GALGAS_string ("view_").add_operation (index_63878.getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1535)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1535)) ;
-    result_result.plusAssign_operation(callExtensionGetter_generate ((const cPtr_abstractViewInstructionGeneration *) enumerator_63912.current_mInstruction (HERE).ptr (), var_name_63936, GALGAS_string ("    "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1536)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1536)) ;
-    result_result.plusAssign_operation(GALGAS_string ("    vStackView.appendView (").add_operation (var_name_63936, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1537)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1537)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1537)) ;
-    enumerator_63912.gotoNextObject () ;
-    index_63878.increment_operation (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1534)) ;
+  cEnumerator_autoLayoutViewInstructionGenerationList enumerator_63924 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
+  GALGAS_uint index_63890 ((uint32_t) 0) ;
+  while (enumerator_63924.hasCurrentObject ()) {
+    GALGAS_string var_name_63948 = GALGAS_string ("view_").add_operation (index_63890.getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1535)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1535)) ;
+    result_result.plusAssign_operation(callExtensionGetter_generate ((const cPtr_abstractViewInstructionGeneration *) enumerator_63924.current_mInstruction (HERE).ptr (), var_name_63948, GALGAS_string ("    "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1536)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1536)) ;
+    result_result.plusAssign_operation(GALGAS_string ("    vStackView.appendView (").add_operation (var_name_63948, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1537)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1537)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1537)) ;
+    enumerator_63924.gotoNextObject () ;
+    index_63890.increment_operation (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1534)) ;
   }
   result_result.plusAssign_operation(GALGAS_string ("    return vStackView\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1539)) ;
   result_result.plusAssign_operation(GALGAS_string ("  }\n"
@@ -4688,46 +4688,46 @@ static GALGAS_string extensionGetter_autoLayoutComputedViewInstructionGeneration
   const cPtr_autoLayoutComputedViewInstructionGeneration * object = (const cPtr_autoLayoutComputedViewInstructionGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_autoLayoutComputedViewInstructionGeneration) ;
   result_result = constinArgument_inIndentation.add_operation (GALGAS_string ("let "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1562)).add_operation (constinArgument_inName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1562)).add_operation (GALGAS_string (" = AutoLayout"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1562)).add_operation (object->mProperty_mAutoLayoutViewClassName.getter_string (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1562)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1562)) ;
-  cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_65422 (object->mProperty_mParameterList, kENUMERATION_UP) ;
-  while (enumerator_65422.hasCurrentObject ()) {
-    result_result.plusAssign_operation(enumerator_65422.current (HERE).getter_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1565)).add_operation (enumerator_65422.current (HERE).getter_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1565)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1565)) ;
-    if (enumerator_65422.hasNextObject ()) {
+  cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_65434 (object->mProperty_mParameterList, kENUMERATION_UP) ;
+  while (enumerator_65434.hasCurrentObject ()) {
+    result_result.plusAssign_operation(enumerator_65434.current (HERE).getter_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1565)).add_operation (enumerator_65434.current (HERE).getter_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1565)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1565)) ;
+    if (enumerator_65434.hasNextObject ()) {
       result_result.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1567)) ;
     }
-    enumerator_65422.gotoNextObject () ;
+    enumerator_65434.gotoNextObject () ;
   }
   result_result.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1569)) ;
   extensionMethod_generate (object->mProperty_mFunctionCallList, constinArgument_inIndentation, result_result, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1570)) ;
-  cEnumerator_autoLayoutRegularBindingsGenerationList enumerator_65696 (object->mProperty_mRegularBindingsGenerationList, kENUMERATION_UP) ;
-  while (enumerator_65696.hasCurrentObject ()) {
-    result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  .bind_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1572)).add_operation (enumerator_65696.current_mBindingName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1572)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1572)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1572)) ;
-    cEnumerator_boundObjectList enumerator_65810 (enumerator_65696.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
-    while (enumerator_65810.hasCurrentObject ()) {
-      result_result.plusAssign_operation(enumerator_65810.current_mBoundObjectString (HERE), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1574)) ;
-      if (enumerator_65810.hasNextObject ()) {
+  cEnumerator_autoLayoutRegularBindingsGenerationList enumerator_65708 (object->mProperty_mRegularBindingsGenerationList, kENUMERATION_UP) ;
+  while (enumerator_65708.hasCurrentObject ()) {
+    result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  .bind_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1572)).add_operation (enumerator_65708.current_mBindingName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1572)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1572)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1572)) ;
+    cEnumerator_boundObjectList enumerator_65822 (enumerator_65708.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
+    while (enumerator_65822.hasCurrentObject ()) {
+      result_result.plusAssign_operation(enumerator_65822.current_mBoundObjectString (HERE), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1574)) ;
+      if (enumerator_65822.hasNextObject ()) {
         result_result.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1575)) ;
       }
-      enumerator_65810.gotoNextObject () ;
+      enumerator_65822.gotoNextObject () ;
     }
-    result_result.plusAssign_operation(enumerator_65696.current_mBindingOptionsString (HERE).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1577)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1577)) ;
-    enumerator_65696.gotoNextObject () ;
+    result_result.plusAssign_operation(enumerator_65708.current_mBindingOptionsString (HERE).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1577)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1577)) ;
+    enumerator_65708.gotoNextObject () ;
   }
-  cEnumerator_autoLayoutMultipleBindingGenerationList enumerator_65991 (object->mProperty_mMultipleBindingGenerationList, kENUMERATION_UP) ;
-  while (enumerator_65991.hasCurrentObject ()) {
-    result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  .bind_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1580)).add_operation (enumerator_65991.current_mBindingName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1580)).add_operation (GALGAS_string (" (\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1580)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1580)) ;
+  cEnumerator_autoLayoutMultipleBindingGenerationList enumerator_66003 (object->mProperty_mMultipleBindingGenerationList, kENUMERATION_UP) ;
+  while (enumerator_66003.hasCurrentObject ()) {
+    result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  .bind_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1580)).add_operation (enumerator_66003.current_mBindingName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1580)).add_operation (GALGAS_string (" (\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1580)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1580)) ;
     result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("    observedObjects: ["), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1581)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1581)) ;
-    cEnumerator_stringset enumerator_66155 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_65991.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1582)), kENUMERATION_UP) ;
-    while (enumerator_66155.hasCurrentObject ()) {
-      result_result.plusAssign_operation(enumerator_66155.current_key (HERE), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1583)) ;
-      if (enumerator_66155.hasNextObject ()) {
+    cEnumerator_stringset enumerator_66167 (callExtensionGetter_observedModelSet ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_66003.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1582)), kENUMERATION_UP) ;
+    while (enumerator_66167.hasCurrentObject ()) {
+      result_result.plusAssign_operation(enumerator_66167.current_key (HERE), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1583)) ;
+      if (enumerator_66167.hasNextObject ()) {
         result_result.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1584)) ;
       }
-      enumerator_66155.gotoNextObject () ;
+      enumerator_66167.gotoNextObject () ;
     }
     result_result.plusAssign_operation(GALGAS_string ("],\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1586)) ;
-    result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("    computeFunction: { return "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)).add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_65991.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)).add_operation (GALGAS_string (" }\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)) ;
+    result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("    computeFunction: { return "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)).add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_66003.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)).add_operation (GALGAS_string (" }\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1587)) ;
     result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  )\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1588)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1588)) ;
-    enumerator_65991.gotoNextObject () ;
+    enumerator_66003.gotoNextObject () ;
   }
   switch (object->mProperty_mRunBindingGeneration.enumValue ()) {
   case GALGAS_autolayoutRunBindingForGeneration::kNotBuilt:
@@ -4738,10 +4738,10 @@ static GALGAS_string extensionGetter_autoLayoutComputedViewInstructionGeneration
     break ;
   case GALGAS_autolayoutRunBindingForGeneration::kEnum_run:
     {
-      const cEnumAssociatedValues_autolayoutRunBindingForGeneration_run * extractPtr_66737 = (const cEnumAssociatedValues_autolayoutRunBindingForGeneration_run *) (object->mProperty_mRunBindingGeneration.unsafePointer ()) ;
-      const GALGAS_string extractedValue_targetName = extractPtr_66737->mAssociatedValue0 ;
-      const GALGAS_string extractedValue_actionName = extractPtr_66737->mAssociatedValue1 ;
-      const GALGAS_string extractedValue_targetTypeName = extractPtr_66737->mAssociatedValue2 ;
+      const cEnumAssociatedValues_autolayoutRunBindingForGeneration_run * extractPtr_66749 = (const cEnumAssociatedValues_autolayoutRunBindingForGeneration_run *) (object->mProperty_mRunBindingGeneration.unsafePointer ()) ;
+      const GALGAS_string extractedValue_targetName = extractPtr_66749->mAssociatedValue0 ;
+      const GALGAS_string extractedValue_actionName = extractPtr_66749->mAssociatedValue1 ;
+      const GALGAS_string extractedValue_targetTypeName = extractPtr_66749->mAssociatedValue2 ;
       result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  .bind_run (\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1593)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1593)) ;
       result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("    target: "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1594)).add_operation (extractedValue_targetName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1594)).add_operation (GALGAS_string (",\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1594)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1594)) ;
       result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("    selector: #selector ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1595)).add_operation (extractedValue_targetTypeName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1595)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1595)).add_operation (extractedValue_actionName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1595)).add_operation (GALGAS_string (" (_:))\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1595)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1595)) ;
@@ -4758,8 +4758,8 @@ static GALGAS_string extensionGetter_autoLayoutComputedViewInstructionGeneration
     break ;
   case GALGAS_autoLayoutViewGraphicControllerBindingGeneration::kEnum_binding:
     {
-      const cEnumAssociatedValues_autoLayoutViewGraphicControllerBindingGeneration_binding * extractPtr_66933 = (const cEnumAssociatedValues_autoLayoutViewGraphicControllerBindingGeneration_binding *) (object->mProperty_mEBViewGraphicControllerBindingGeneration.unsafePointer ()) ;
-      const GALGAS_string extractedValue_controllerName = extractPtr_66933->mAssociatedValue0 ;
+      const cEnumAssociatedValues_autoLayoutViewGraphicControllerBindingGeneration_binding * extractPtr_66945 = (const cEnumAssociatedValues_autoLayoutViewGraphicControllerBindingGeneration_binding *) (object->mProperty_mEBViewGraphicControllerBindingGeneration.unsafePointer ()) ;
+      const GALGAS_string extractedValue_controllerName = extractPtr_66945->mAssociatedValue0 ;
       result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  .bind_graphic_controller (self."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1601)).add_operation (extractedValue_controllerName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1601)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1601)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1601)) ;
     }
     break ;
@@ -4797,15 +4797,15 @@ static GALGAS_string extensionGetter_hStackViewInstructionGeneration_generate (c
   result_result = constinArgument_inIndentation.add_operation (GALGAS_string ("let "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1608)).add_operation (constinArgument_inName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1608)).add_operation (GALGAS_string (" = AutoLayoutHorizontalStackView ()\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1608)) ;
   extensionMethod_generate (object->mProperty_mFuncCallList, constinArgument_inIndentation, result_result, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1609)) ;
   result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("do{\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1610)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1610)) ;
-  GALGAS_string var_indentation_67372 = constinArgument_inIndentation.add_operation (GALGAS_string ("  "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1611)) ;
-  cEnumerator_autoLayoutViewInstructionGenerationList enumerator_67435 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
-  GALGAS_uint index_67401 ((uint32_t) 0) ;
-  while (enumerator_67435.hasCurrentObject ()) {
-    GALGAS_string var_name_67460 = constinArgument_inName.add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1613)).add_operation (index_67401.getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1613)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1613)) ;
-    result_result.plusAssign_operation(callExtensionGetter_generate ((const cPtr_abstractViewInstructionGeneration *) enumerator_67435.current_mInstruction (HERE).ptr (), var_name_67460, var_indentation_67372, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1614)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1614)) ;
-    result_result.plusAssign_operation(var_indentation_67372.add_operation (constinArgument_inName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)).add_operation (GALGAS_string (".appendView ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)).add_operation (var_name_67460, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)) ;
-    enumerator_67435.gotoNextObject () ;
-    index_67401.increment_operation (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1612)) ;
+  GALGAS_string var_indentation_67384 = constinArgument_inIndentation.add_operation (GALGAS_string ("  "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1611)) ;
+  cEnumerator_autoLayoutViewInstructionGenerationList enumerator_67447 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
+  GALGAS_uint index_67413 ((uint32_t) 0) ;
+  while (enumerator_67447.hasCurrentObject ()) {
+    GALGAS_string var_name_67472 = constinArgument_inName.add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1613)).add_operation (index_67413.getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1613)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1613)) ;
+    result_result.plusAssign_operation(callExtensionGetter_generate ((const cPtr_abstractViewInstructionGeneration *) enumerator_67447.current_mInstruction (HERE).ptr (), var_name_67472, var_indentation_67384, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1614)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1614)) ;
+    result_result.plusAssign_operation(var_indentation_67384.add_operation (constinArgument_inName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)).add_operation (GALGAS_string (".appendView ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)).add_operation (var_name_67472, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1615)) ;
+    enumerator_67447.gotoNextObject () ;
+    index_67413.increment_operation (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1612)) ;
   }
   result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1617)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1617)) ;
 //---
@@ -4841,15 +4841,15 @@ static GALGAS_string extensionGetter_vStackViewInstructionGeneration_generate (c
   result_result = constinArgument_inIndentation.add_operation (GALGAS_string ("let "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1623)).add_operation (constinArgument_inName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1623)).add_operation (GALGAS_string (" = AutoLayoutVerticalStackView ()\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1623)) ;
   extensionMethod_generate (object->mProperty_mFuncCallList, constinArgument_inIndentation, result_result, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1624)) ;
   result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("do{\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1625)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1625)) ;
-  GALGAS_string var_indentation_68080 = constinArgument_inIndentation.add_operation (GALGAS_string ("  "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1626)) ;
-  cEnumerator_autoLayoutViewInstructionGenerationList enumerator_68143 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
-  GALGAS_uint index_68109 ((uint32_t) 0) ;
-  while (enumerator_68143.hasCurrentObject ()) {
-    GALGAS_string var_name_68168 = constinArgument_inName.add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1628)).add_operation (index_68109.getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1628)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1628)) ;
-    result_result.plusAssign_operation(callExtensionGetter_generate ((const cPtr_abstractViewInstructionGeneration *) enumerator_68143.current_mInstruction (HERE).ptr (), var_name_68168, var_indentation_68080, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1629)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1629)) ;
-    result_result.plusAssign_operation(var_indentation_68080.add_operation (constinArgument_inName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)).add_operation (GALGAS_string (".appendView ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)).add_operation (var_name_68168, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)) ;
-    enumerator_68143.gotoNextObject () ;
-    index_68109.increment_operation (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1627)) ;
+  GALGAS_string var_indentation_68092 = constinArgument_inIndentation.add_operation (GALGAS_string ("  "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1626)) ;
+  cEnumerator_autoLayoutViewInstructionGenerationList enumerator_68155 (object->mProperty_mInstructionList, kENUMERATION_UP) ;
+  GALGAS_uint index_68121 ((uint32_t) 0) ;
+  while (enumerator_68155.hasCurrentObject ()) {
+    GALGAS_string var_name_68180 = constinArgument_inName.add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1628)).add_operation (index_68121.getter_string (SOURCE_FILE ("auto-layout-view.galgas", 1628)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1628)) ;
+    result_result.plusAssign_operation(callExtensionGetter_generate ((const cPtr_abstractViewInstructionGeneration *) enumerator_68155.current_mInstruction (HERE).ptr (), var_name_68180, var_indentation_68092, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1629)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1629)) ;
+    result_result.plusAssign_operation(var_indentation_68092.add_operation (constinArgument_inName, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)).add_operation (GALGAS_string (".appendView ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)).add_operation (var_name_68180, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1630)) ;
+    enumerator_68155.gotoNextObject () ;
+    index_68121.increment_operation (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1627)) ;
   }
   result_result.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1632)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1632)) ;
 //---

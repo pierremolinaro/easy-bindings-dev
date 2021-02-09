@@ -312,7 +312,7 @@ proc analyzeOutlets
         [controllerActionMap searchKey !action]
         outTargetActionList +=
           !outlet_mOutletName.string
-          !if inPreferences then "prefs_" else "" end + target.string
+          !if inPreferences then "preferences_" else "" end + target.string
           !action.string
           !"Controller_" + inReceiverSwiftTypeName + "_" + target
       end
@@ -374,7 +374,7 @@ proc analyzeOutlets
       !outlet_mOutletTypeName
       !outlet_mOutletName.string
       !outlet_mRegularBindingList
-      !if inPreferences then "prefs_" else "self." end
+      !if inPreferences then "preferences_" else "self." end
       !?outRegularBindingsGenerationList
     )
   end

@@ -254,7 +254,7 @@ override getter @arrayControllerPropertyGeneration propertyDeclarationCode
     result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
     result += "//   Array controller: " + mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var prefs_" + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+    result += "  var preferences_" + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
     result += "  //   Array controller: " + mPropertyName + "\n"
@@ -286,7 +286,7 @@ override getter @arrayControllerPropertyGeneration populateExplorerWindowCode ->
 #·······················································································································
 
 override getter @arrayControllerPropertyGeneration terminationCode ?let @bool inPreferences -> @string {
-  let prefix = if inPreferences then "prefs_" else "self." end
+  let prefix = if inPreferences then "preferences_" else "self." end
   result  = "  //--- Array controller property: " + mPropertyName + "\n"
   result += "    " + prefix + mPropertyName + ".unbind_model ()\n"
 }

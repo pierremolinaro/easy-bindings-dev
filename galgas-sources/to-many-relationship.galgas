@@ -216,17 +216,17 @@ override getter @toManyPropertyGeneration propertyDeclarationCode
     result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
     result += "//   To many property: " + mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  let prefs_" + mPropertyName + "_property = PreferencesArrayOf_" + [mRelationshipType swiftTypeName]
+    result += "  let preferences_" + mPropertyName + "_property = PreferencesArrayOf_" + [mRelationshipType swiftTypeName]
     result += " (prefKey: Preferences_" + mPropertyName + ")\n\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var prefs_" + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
-    result += "    return prefs_" + mPropertyName + "_property.selection\n"
+    result += "  var preferences_" + mPropertyName + "_property_selection : EBSelection < [" + [mRelationshipType swiftTypeName] + "] > {\n"
+    result += "    return preferences_" + mPropertyName + "_property.selection\n"
     result += "  }\n\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var prefs_" + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
-    result += "    get { return prefs_" + mPropertyName + "_property.propval }\n"
+    result += "  var preferences_" + mPropertyName + " : [" + [mRelationshipType swiftTypeName] + "] {\n"
+    result += "    get { return preferences_" + mPropertyName + "_property.propval }\n"
     if not [mOption isHasDependance] then
-      result += "    set { prefs_" + mPropertyName + "_property.setProp (newValue) }\n"
+      result += "    set { preferences_" + mPropertyName + "_property.setProp (newValue) }\n"
     end
     result += "  }\n\n"
   else
@@ -264,7 +264,7 @@ override getter @toManyPropertyGeneration prefKeyDefinitionCode -> @string {
 #·······················································································································
 
 override getter @toManyPropertyGeneration configurationCode ?let @bool inPreferences -> @string {
-  let prefix = if inPreferences then "prefs_" else "self." end
+  let prefix = if inPreferences then "preferences_" else "self." end
   switch mOption
   case none :
     result  = "  //--- To many property: " + mPropertyName + " (no option)\n"

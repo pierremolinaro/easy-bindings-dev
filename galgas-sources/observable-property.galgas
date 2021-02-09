@@ -195,9 +195,9 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   case selfPropertyNone (@lstring propertyName) :
     outResult = inSelf + propertyName + "_none"
   case prefsProperty (@lstring propertyName) :
-    outResult = "prefs_" + propertyName + "_property"
+    outResult = "preferences_" + propertyName + "_property"
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
-    outResult = "prefs_" + propertyName + "_property" + "." + optionName + "_property"
+    outResult = "preferences_" + propertyName + "_property" + "." + optionName + "_property"
   case selfControllerProperty (@lstring controllerName @lstring propertyName) :
     outResult = inSelf + controllerName + "." + propertyName + "_property"
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
