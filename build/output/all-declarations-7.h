@@ -391,6 +391,18 @@ GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentI
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Filewrapper template 'autoLayoutDocumentGenerationTemplate documentOutletConfiguratorImplementation'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutletConfiguratorImplementation (class C_Compiler * inCompiler,
+                                                                                                                 const class GALGAS_string & in_DOCUMENT_5F_TYPE_5F_NAME,
+                                                                                                                 const class GALGAS_string & in_OUTLET_5F_NAME,
+                                                                                                                 const class GALGAS_string & in_OUTLET_5F_TYPE_5F_NAME
+                                                                                                                 COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Routine 'generateAutoLayoutManagedDocumentSwift'
 //
 //----------------------------------------------------------------------------------------------------------------------

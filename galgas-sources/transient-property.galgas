@@ -1,4 +1,3 @@
-
 #-----------------------------------------------------------------------------------------------------------------------
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
@@ -691,7 +690,7 @@ override method @transientRoutineGeneration generateCode
       !defaultUserZone1:"\n\n" # Defaut user zone1
       !generatedZone2:s
       !defaultUserZone2:"\n" # Defaut user zone2
-      !generatedZone3:"}\n\n//----------------------------------------------------------------------------------------------------------------------\n"
+      !generatedZone3:"}\n\n//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n"
       !makeExecutable:false
     ]
   end

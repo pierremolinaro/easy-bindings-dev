@@ -935,6 +935,8 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_87 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected : virtual int32_t select_easyBindings_5F_syntax_88 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -2129,7 +2131,8 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
                                                                            const class GALGAS_multipleBindingDescriptor & inOperand5,
                                                                            const class GALGAS_multipleBindingDescriptor & inOperand6,
                                                                            const class GALGAS_graphicController & inOperand7,
-                                                                           const class GALGAS_regularBindingList & inOperand8
+                                                                           const class GALGAS_regularBindingList & inOperand8,
+                                                                           const class GALGAS_lstring & inOperand9
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2138,6 +2141,9 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
 //--------------------------------- Setters
   public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutViewClassName (class GALGAS_lstring inArgument0
                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMConfiguratorName (class GALGAS_lstring inArgument0
+                                                              COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMEnabledBindingDescriptor (class GALGAS_multipleBindingDescriptor inArgument0
                                                                       COMMA_LOCATION_ARGS) ;
@@ -2169,6 +2175,8 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
 
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mAutoLayoutViewClassName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mConfiguratorName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor getter_mEnabledBindingDescriptor (LOCATION_ARGS) const ;
 
@@ -2964,6 +2972,7 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
   public : GALGAS_multipleBindingDescriptor mProperty_mHiddenBindingDescriptor ;
   public : GALGAS_graphicController mProperty_mGraphicController ;
   public : GALGAS_regularBindingList mProperty_mRegularBindingList ;
+  public : GALGAS_lstring mProperty_mConfiguratorName ;
 
 //--- Constructor
   public : cPtr_astComputedViewInstruction (const GALGAS_lstring & in_mAutoLayoutViewClassName,
@@ -2974,7 +2983,8 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
                                             const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
                                             const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
                                             const GALGAS_graphicController & in_mGraphicController,
-                                            const GALGAS_regularBindingList & in_mRegularBindingList
+                                            const GALGAS_regularBindingList & in_mRegularBindingList,
+                                            const GALGAS_lstring & in_mConfiguratorName
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -2999,6 +3009,8 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
   public : VIRTUAL_IN_DEBUG void setter_setMGraphicController (GALGAS_graphicController inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_regularBindingList getter_mRegularBindingList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMRegularBindingList (GALGAS_regularBindingList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mConfiguratorName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMConfiguratorName (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -10535,6 +10547,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_86 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_87 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_88 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
