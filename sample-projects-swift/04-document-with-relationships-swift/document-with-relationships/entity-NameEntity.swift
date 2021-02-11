@@ -391,13 +391,13 @@ class TransientArrayOf_NameEntity : ReadOnlyArrayOf_NameEntity {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol NameEntity_name : class {
+protocol NameEntity_name : AnyObject {
   var name : String { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol NameEntity_aValue : class {
+protocol NameEntity_aValue : AnyObject {
   var aValue : Int { get }
 }
 

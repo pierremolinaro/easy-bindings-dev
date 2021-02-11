@@ -6,19 +6,19 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_docString : class {
+protocol MyRootEntity_docString : AnyObject {
   var docString : String { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_otherTransientConcatString : class {
+protocol MyRootEntity_otherTransientConcatString : AnyObject {
   var otherTransientConcatString : String? { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_transientConcatString : class {
+protocol MyRootEntity_transientConcatString : AnyObject {
   var transientConcatString : String? { get }
 }
 

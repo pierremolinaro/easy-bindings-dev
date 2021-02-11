@@ -8,7 +8,7 @@ import Cocoa
 //   EBViewControllerProtocol
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol EBViewControllerProtocol : class {
+protocol EBViewControllerProtocol : AnyObject {
 
   var objectCount : Int { get }
 

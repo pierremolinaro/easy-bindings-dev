@@ -1536,8 +1536,7 @@ override getter @newVerticalStackViewGeneration generate ?let @string inViewName
 #·······················································································································
 
 override getter @computedHorizontalViewGeneration generate ?let @string inViewName -> @string {
-  result = "  lazy var " + inViewName + " = self." + inViewName + "_make ()\n\n"
-  result += "  fileprivate final func " + inViewName + "_make () -> AutoLayoutStackView {\n"
+  result = "  lazy var " + inViewName + " : AutoLayoutHorizontalStackView = {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
   [mFuncCallList generate !"    " !?result]
   for (instruction) in mInstructionList do (index)
@@ -1546,14 +1545,13 @@ override getter @computedHorizontalViewGeneration generate ?let @string inViewNa
     result += "    hStackView.appendView (" + name + ")\n"
   end
   result += "    return hStackView\n"
-  result += "  }\n\n"
+  result += "  } ()\n\n"
 }
 
 #·······················································································································
 
 override getter @computedVerticalViewGeneration generate ?let @string inViewName -> @string {
-  result = "  lazy var " + inViewName + " = self." + inViewName + "_make ()\n\n"
-  result += "  fileprivate final func " + inViewName + "_make () -> AutoLayoutStackView {\n"
+  result = "  lazy var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
   [mFuncCallList generate !"    " !?result]
   for (instruction) in mInstructionList do (index)
@@ -1562,7 +1560,7 @@ override getter @computedVerticalViewGeneration generate ?let @string inViewName
     result += "    vStackView.appendView (" + name + ")\n"
   end
   result += "    return vStackView\n"
-  result += "  }\n\n"
+  result += "  } ()\n\n"
 }
 
 #·······················································································································

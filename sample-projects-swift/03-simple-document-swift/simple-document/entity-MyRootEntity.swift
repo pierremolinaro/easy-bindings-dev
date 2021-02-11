@@ -6,31 +6,31 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_myString : class {
+protocol MyRootEntity_myString : AnyObject {
   var myString : String { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_myColor : class {
+protocol MyRootEntity_myColor : AnyObject {
   var myColor : NSColor { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_myStringMaj : class {
+protocol MyRootEntity_myStringMaj : AnyObject {
   var myStringMaj : String? { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_myStringMin : class {
+protocol MyRootEntity_myStringMin : AnyObject {
   var myStringMin : String? { get }
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_myStringConcat : class {
+protocol MyRootEntity_myStringConcat : AnyObject {
   var myStringConcat : String? { get }
 }
 

@@ -6,7 +6,7 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol MyRootEntity_docBool : class {
+protocol MyRootEntity_docBool : AnyObject {
   var docBool : Bool { get }
 }
 

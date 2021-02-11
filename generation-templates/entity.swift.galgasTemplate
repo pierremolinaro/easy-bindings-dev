@@ -8,7 +8,7 @@ import Cocoa
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//----------------------------------------------------------------------------------------------------------------------
 
-protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : class {
+protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : AnyObject {
   var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]% { get }
 }
 
@@ -17,7 +17,7 @@ end
 for () in PROXY_LIST_FOR_GENERATION do
 %//----------------------------------------------------------------------------------------------------------------------
 
-protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : class {
+protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : AnyObject {
   var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]%? { get }
 }
 
@@ -26,7 +26,7 @@ end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//----------------------------------------------------------------------------------------------------------------------
 
-protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : class {
+protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : AnyObject {
   var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]%? { get }
 }
 

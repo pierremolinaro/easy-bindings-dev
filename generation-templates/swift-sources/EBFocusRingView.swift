@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-protocol EBFocusRingViewProtocol : class {
+protocol EBFocusRingViewProtocol : AnyObject {
   func setFocusRing (_ inValue : Bool)
 }
 
@@ -33,6 +33,12 @@ final class EBFocusRingView : NSView, EBUserClassNameProtocol, EBFocusRingViewPr
   override init (frame : NSRect) {
     super.init (frame: frame)
     noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  deinit {
+    noteObjectDeallocation (self)
   }
 
   //····················································································································

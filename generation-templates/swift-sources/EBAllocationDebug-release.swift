@@ -8,7 +8,7 @@ import Cocoa
 //    EBUserClassNameProtocol protocol
 //----------------------------------------------------------------------------------------------------------------------
 
-protocol EBUserClassNameProtocol : class {
+protocol EBUserClassNameProtocol : AnyObject {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -16,6 +16,11 @@ protocol EBUserClassNameProtocol : class {
 //----------------------------------------------------------------------------------------------------------------------
 
 func noteObjectAllocation (_ inObject : EBUserClassNameProtocol) {  // NOT ALWAYS IN MAIN THREAD
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+func noteObjectDeallocation (_ inObject : EBUserClassNameProtocol) {  // NOT ALWAYS IN MAIN THREAD
 }
 
 //----------------------------------------------------------------------------------------------------------------------
