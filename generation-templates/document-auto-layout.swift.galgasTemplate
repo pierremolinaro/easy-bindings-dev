@@ -111,16 +111,29 @@ end
   //····················································································································
 
   override func ebBuildUserInterface () {
-  %if [TOOLBAR_ITEM_LIST length] > 0 then%//--- Build tool bar
+  %if [TOOLBAR_ITEM_LIST length] > 0 then
+  %//--- Build tool bar
     let toolbar = NSToolbar (identifier: NSToolbar.Identifier ("%!DOCUMENT_CLASS_NAME%"))
     toolbar.allowsUserCustomization = false
     toolbar.displayMode = .default
     toolbar.delegate = self
     self.windowForSheet?.toolbar = toolbar
-  %end%//--- Build window content view
+  %end
+  %//--- Build window content view
     // showDebugBackground ()
     self.configureProperties ()
-    self.windowForSheet?.contentView = self.%!MAIN_VIEW_NAME%
+    let mainView = self.%!MAIN_VIEW_NAME%
+  //--- Call outlet linkers\n%
+     for () in AUTO_LAYOUT_LINKER_LIST do
+     %    self.linker_%!mLinkerName% (%
+       for () in mOutletNameAndTypeNameList
+       do %self.% !mValue0
+       between %, %
+       end
+     %)\n%
+     end
+%  //--- Assign main view to window
+    self.windowForSheet?.contentView = mainView
   }
   
   //····················································································································
@@ -266,26 +279,6 @@ end
 %    if LOG_OPERATION_DURATION {
       let durationMS = Int (Date ().timeIntervalSince (start) * 1000.0)
       Swift.print ("Set target and actions \(durationMS) ms")
-    }
-  } */
-
-  //····················································································································
-  //    windowControllerDidLoadNib
-  //····················································································································
-
-/*  override func windowControllerDidLoadNib (_ aController: NSWindowController) {
-    super.windowControllerDidLoadNib (aController)
-    self.checkOutletConnections ()
-    self.configureProperties ()
-    self.installBindings ()
-    self.setTargetsAndActions ()
-  //--------------------------- Read documentFilePath model 
-    self.documentFilePath_property.mReadModelFunction = { [weak self] in
-      if let r = self?.computeTransient_documentFilePath () {
-        return .single (r)
-      }else{
-        return .empty
-      }
     }
   } */
 

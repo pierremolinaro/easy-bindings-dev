@@ -17,12 +17,12 @@ void routine_generateAutoLayoutManagedDocumentSwift (const GALGAS_string constin
                                                      GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                                      C_Compiler * inCompiler
                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_fileName_15274 = GALGAS_string ("EBAutoLayoutManagedDocument.swift") ;
-  GALGAS_filewrapper var_fw_15321 = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  GALGAS_string var_contents_15366 = var_fw_15321.getter_textFileContentsAtPath (var_fileName_15274, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 420)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_15274  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 421)) ;
+  GALGAS_string var_fileName_18371 = GALGAS_string ("EBAutoLayoutManagedDocument.swift") ;
+  GALGAS_filewrapper var_fw_18418 = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
+  GALGAS_string var_contents_18463 = var_fw_18418.getter_textFileContentsAtPath (var_fileName_18371, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 499)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_18371  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 500)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_15274, var_contents_15366, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 422)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_18371, var_contents_18463, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 501)) ;
   }
 }
 

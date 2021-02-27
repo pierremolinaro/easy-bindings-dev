@@ -641,7 +641,8 @@ GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentI
                                                                                                const class GALGAS_viewGenerationList & in_VIEW_5F_GENERATION_5F_LIST,
                                                                                                const class GALGAS_autoLayoutToolbarItemGenerationList & in_TOOLBAR_5F_ITEM_5F_LIST,
                                                                                                const class GALGAS_implicitViewFunctionGenerationList & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST,
-                                                                                               const class GALGAS_string & in_DOCUMENT_5F_SUPER_5F_CLASS_5F_NAME
+                                                                                               const class GALGAS_string & in_DOCUMENT_5F_SUPER_5F_CLASS_5F_NAME,
+                                                                                               const class GALGAS_autoLayoutOutletLinkerGenerationList & in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -655,4 +656,16 @@ GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentO
                                                                                                                  const class GALGAS_string & in_OUTLET_5F_NAME,
                                                                                                                  const class GALGAS_string & in_OUTLET_5F_TYPE_5F_NAME
                                                                                                                  COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'autoLayoutDocumentGenerationTemplate outletLinkerImplementation'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_outletLinkerImplementation (class C_Compiler * inCompiler,
+                                                                                                   const class GALGAS_string & in_DOCUMENT_5F_TYPE_5F_NAME,
+                                                                                                   const class GALGAS_string & in_LINKER_5F_NAME,
+                                                                                                   const class GALGAS__32_stringlist & in_OUTLET_5F_NAME_5F_AND_5F_TYPE_5F_NAME_5F_LIST
+                                                                                                   COMMA_LOCATION_ARGS) ;
 

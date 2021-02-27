@@ -11,6 +11,7 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   @astViewDeclarationList mViewDeclarationList
   @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
   @string mCustomSuperClassName # Empty String if no custom superclass
+  @astAutoLayoutOutletLinkerList mOutletLinkerList
 }
 
 #·······················································································································
@@ -24,6 +25,20 @@ enum @astAutoLayoutToolbarItem {
 
 list @astAutoLayoutToolbarItemList {
   @astAutoLayoutToolbarItem mItem
+}
+
+#·······················································································································
+
+list @astAutoLayoutOutletLinkerList {
+  @lstring mLinkerName
+  @lstringlist mOutletNameList
+}
+
+#·······················································································································
+
+list @autoLayoutOutletLinkerGenerationList {
+  @string mLinkerName
+  @2stringlist mOutletNameAndTypeNameList
 }
 
 #·······················································································································
@@ -70,6 +85,7 @@ syntax extension easyBindings_syntax {
     @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     @astViewDeclarationList viewDeclarationList = {}
     @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
+    @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = {}
     repeat
     while
       <stack_view_declaration> !?viewDeclarationList
@@ -93,6 +109,19 @@ syntax extension easyBindings_syntax {
         <computed_view_instruction> ?let instruction
         autoLayoutToolbarItemList += !.view {!title: title !instruction: instruction}
       end
+    while
+      $linker$
+      $identifier$ ?let linkerName
+      $($
+      @lstringlist outletNameList = {}
+      repeat
+        $identifier$ ?let outletName
+        outletNameList += !outletName
+      while
+        $,$
+      end
+      $)$
+      autoLayoutOutletLinkerList += !linkerName !outletNameList
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutDocumentDeclarationAST.new {
@@ -105,6 +134,7 @@ syntax extension easyBindings_syntax {
       !viewDeclarationList
       !autoLayoutToolbarItemList
       !customSuperClassName
+      !autoLayoutOutletLinkerList
     }
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
       !documentName
@@ -267,6 +297,21 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
   end
 #--- Code generation
   ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
+#--- Check outlet linker
+  @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = {}
+  @stringset linkerNameSet = {}
+  for (linkerName ouletNameList) in mOutletLinkerList do
+    if [linkerNameSet hasKey !linkerName.string] then
+      error linkerName : "duplicated linker name"
+    end
+    linkerNameSet += !linkerName.string
+    @2stringlist outletNameAndTypeNameList = {}
+    for (outletName) in ouletNameList do
+      [autoLayoutOutletMap searchKey !outletName ?let outletTypeName]
+      outletNameAndTypeNameList += !outletName.string !outletTypeName
+    end
+    outletLinkerGenerationList += !linkerName.string !outletNameAndTypeNameList
+  end
 #---
   ioGeneration.mFileGenerationList += !@autoLayoutDocumentFileGeneration.new {
     !mClassName.string
@@ -285,6 +330,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     !implicitViewFunctionGenerationList
     !configuratorMap
     !mCustomSuperClassName # Empty String if no custom superclass
+    !outletLinkerGenerationList
   }
 }
 
@@ -309,6 +355,7 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
   @autoLayoutConfiguratorMap mConfiguratorMap
   @string mCustomSuperClassName # Empty String if no custom superclass
+  @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
 }
 
 #·······················································································································
@@ -346,6 +393,7 @@ override method @autoLayoutDocumentFileGeneration generateCode
     !mAutoLayoutToolbarItemGenerationList
     !mImplicitViewFunctionGenerationList
     !if mCustomSuperClassName == "" then "EBAutoLayoutManagedDocument" else mCustomSuperClassName end
+    !mOutletLinkerGenerationList
   ]
   let fileName = "document-" + mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -366,6 +414,31 @@ override method @autoLayoutDocumentFileGeneration generateCode
       + "import Cocoa\n\n"
       + "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n\n"
     let fileName = "configurator-" + mDocumentName + "-" + outletName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFileWithPattern
+      !startPath: inOutputDirectory
+      !fileName: fileName
+      !lineComment:"//"
+      !header:header
+      !defaultUserZone1:"\n\n" # Defaut user zone1
+      !generatedZone2:s
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n" # Defaut user zone2
+      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n"
+      !makeExecutable:false
+    ]
+  end
+  for (linkerName outletNameAndTypeNameList) in mOutletLinkerGenerationList do
+    let s = [filewrapper autoLayoutDocumentGenerationTemplate.outletLinkerImplementation
+      !mDocumentName
+      !linkerName
+      !outletNameAndTypeNameList
+    ]
+    let header = "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n"
+      "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
+      "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n\n"
+      + "import Cocoa\n\n"
+      + "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n\n"
+    let fileName = "linker-" + mDocumentName + "-" + linkerName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
       !startPath: inOutputDirectory
@@ -402,11 +475,17 @@ private filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templ
     ?@autoLayoutToolbarItemGenerationList TOOLBAR_ITEM_LIST
     ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
     ?@string DOCUMENT_SUPER_CLASS_NAME
+    ?@autoLayoutOutletLinkerGenerationList AUTO_LAYOUT_LINKER_LIST
 
   template documentOutletConfiguratorImplementation "configure-auto-layout-outlet.swift.galgasTemplate"
     ?@string DOCUMENT_TYPE_NAME
     ?@string OUTLET_NAME
     ?@string OUTLET_TYPE_NAME
+
+  template outletLinkerImplementation "linker-auto-layout-outlet.swift.galgasTemplate"
+    ?@string DOCUMENT_TYPE_NAME
+    ?@string LINKER_NAME
+    ?@2stringlist OUTLET_NAME_AND_TYPE_NAME_LIST
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
