@@ -85,6 +85,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_classForSwift,
    kToken_column,
    kToken_computed,
+   kToken_configurator,
    kToken_default,
    kToken_dependsFrom,
    kToken_autoLayoutDocument,
@@ -192,7 +193,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 91 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 92 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -938,6 +939,10 @@ class cParser_easyBindings_5F_syntax {
   protected : virtual int32_t select_easyBindings_5F_syntax_88 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected : virtual int32_t select_easyBindings_5F_syntax_89 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_90 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_91 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -2134,7 +2139,8 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
                                                                            const class GALGAS_multipleBindingDescriptor & inOperand6,
                                                                            const class GALGAS_graphicController & inOperand7,
                                                                            const class GALGAS_regularBindingList & inOperand8,
-                                                                           const class GALGAS_lstring & inOperand9
+                                                                           const class GALGAS_lstring & inOperand9,
+                                                                           const class GALGAS_lstring & inOperand10
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2158,6 +2164,9 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
 
   public : VIRTUAL_IN_DEBUG void setter_setMHiddenBindingDescriptor (class GALGAS_multipleBindingDescriptor inArgument0
                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMOutletName (class GALGAS_lstring inArgument0
+                                                        COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMParameterList (class GALGAS_astAutoLayoutViewInstructionParameterList inArgument0
                                                            COMMA_LOCATION_ARGS) ;
@@ -2187,6 +2196,8 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
   public : VIRTUAL_IN_DEBUG class GALGAS_graphicController getter_mGraphicController (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor getter_mHiddenBindingDescriptor (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOutletName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterList getter_mParameterList (LOCATION_ARGS) const ;
 
@@ -2975,6 +2986,7 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
   public : GALGAS_graphicController mProperty_mGraphicController ;
   public : GALGAS_regularBindingList mProperty_mRegularBindingList ;
   public : GALGAS_lstring mProperty_mConfiguratorName ;
+  public : GALGAS_lstring mProperty_mOutletName ;
 
 //--- Constructor
   public : cPtr_astComputedViewInstruction (const GALGAS_lstring & in_mAutoLayoutViewClassName,
@@ -2986,7 +2998,8 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
                                             const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
                                             const GALGAS_graphicController & in_mGraphicController,
                                             const GALGAS_regularBindingList & in_mRegularBindingList,
-                                            const GALGAS_lstring & in_mConfiguratorName
+                                            const GALGAS_lstring & in_mConfiguratorName,
+                                            const GALGAS_lstring & in_mOutletName
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3013,6 +3026,8 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
   public : VIRTUAL_IN_DEBUG void setter_setMRegularBindingList (GALGAS_regularBindingList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mConfiguratorName (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMConfiguratorName (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mOutletName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOutletName (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -10563,6 +10578,10 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_88 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_89 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_90 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_91 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------

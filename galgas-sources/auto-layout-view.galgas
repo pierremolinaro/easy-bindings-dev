@@ -81,6 +81,7 @@ class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
   @graphicController mGraphicController
   @regularBindingList mRegularBindingList
   @lstring mConfiguratorName # Empty string if no configurator
+  @lstring mOutletName # Empty string if no configurator
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -216,17 +217,32 @@ syntax extension easyBindings_syntax {
  
   rule <computed_view_instruction> !@astComputedViewInstruction outInstruction {
     $Identifier$ ? let viewClassName
-    @lstring configuratorName
-    select
-      configuratorName = ["" nowhere]
-    or
-      $identifier$ ?configuratorName
-    end
     @astAutoLayoutViewInstructionParameterList instanciationParameterList
     select
       instanciationParameterList = {}
     or
       <view_actual_parameter_list> ?instanciationParameterList
+    end
+    @lstring configuratorName
+    @lstring outletName
+    select
+      outletName = ["" nowhere]
+      configuratorName = ["" nowhere]
+    or
+      $[$
+      select
+        outletName = ["" nowhere]
+      or
+        $outlet$
+        $identifier$ ?outletName
+      end
+      select
+        configuratorName = ["" nowhere]
+      or
+        $configurator$
+        $identifier$ ?configuratorName
+      end
+      $]$
     end
     @tableValueBinding tableValueBinding
     @runActionDescriptor runActionDescriptor
@@ -265,6 +281,7 @@ syntax extension easyBindings_syntax {
       !graphicController
       !regularBindingList
       !configuratorName
+      !outletName
     }
   }
   
@@ -387,9 +404,17 @@ map @autoLayoutViewDeclarationMap {
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @autoLayoutConfiguratorMap {
-  @string mAutoLayoutOutletTypeMame
+  @string mAutoLayoutOutletTypeName
   insert insertKey error message "the '%K' configurator is already declared in %L"
   search searchKey error message "there is no '%K' configurator"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+map @autoLayoutOutletMap {
+  @string mAutoLayoutOutletTypeName
+  insert insertKey error message "the '%K' outlet is already declared in %L"
+  search searchKey error message "there is no '%K' outlet"
 }
 
 #·······················································································································
@@ -412,6 +437,7 @@ abstract method @astAbstractViewDeclaration check
   ?let @string inReceiverSwiftTypeName
   ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+  ?!@autoLayoutOutletMap ioOutletMap
   !@abstractViewGeneration outGeneration
 
 #·······················································································································
@@ -428,6 +454,7 @@ method @astAutoLayoutViewFunctionCallList check
                                 ?let @string inReceiverSwiftTypeName
                                 ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                                ?!@autoLayoutOutletMap ioOutletMap
                                 !@autoLayoutViewInstructionGenerationFuncCallList outFuncCallList {
   outFuncCallList = {}
   for (functionName actualParameterList) in self do
@@ -462,6 +489,7 @@ method @astAutoLayoutViewFunctionCallList check
             !inReceiverSwiftTypeName
             !?ioImplicitViewFunctionGenerationList
             !?ioConfiguratorMap
+            !?ioOutletMap
             ?let @abstractViewInstructionGeneration viewInstruction
           ]
           parameterList += !name !"self.computeImplicitView_" + [ioImplicitViewFunctionGenerationList length] + " ()"
@@ -542,6 +570,7 @@ override method @astHorizontalStackViewDeclaration check ?let @string unused inV
                                 ?let @string inReceiverSwiftTypeName
                                 ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                                ?!@autoLayoutOutletMap ioOutletMap
                                 !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutHStackFunctionMap
@@ -555,6 +584,7 @@ override method @astHorizontalStackViewDeclaration check ?let @string unused inV
      !inReceiverSwiftTypeName
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
+     !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   outGeneration = @newHorizontalStackViewGeneration.new {!funcCallList}
@@ -573,6 +603,7 @@ override method @astVerticalStackViewDeclaration check ?let @string unused inVie
                                   ?let @string inReceiverSwiftTypeName
                                   ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                                  ?!@autoLayoutOutletMap ioOutletMap
                                   !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
@@ -586,6 +617,7 @@ override method @astVerticalStackViewDeclaration check ?let @string unused inVie
      !inReceiverSwiftTypeName
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
+     !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   outGeneration = @newVerticalStackViewGeneration.new {!funcCallList}
@@ -605,6 +637,7 @@ override method @astComputedHorizontalViewDeclaration check
                                   ?let @string inReceiverSwiftTypeName
                                   ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                                  ?!@autoLayoutOutletMap ioOutletMap
                                   !@abstractViewGeneration outGeneration {
   [mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
@@ -618,6 +651,7 @@ override method @astComputedHorizontalViewDeclaration check
      !inReceiverSwiftTypeName
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
+     !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   @autoLayoutViewInstructionGenerationList instructionList = {}
@@ -633,6 +667,7 @@ override method @astComputedHorizontalViewDeclaration check
       !inReceiverSwiftTypeName
       !?ioImplicitViewFunctionGenerationList
       !?ioConfiguratorMap
+      !?ioOutletMap
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -653,6 +688,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
                                   ?let @string inReceiverSwiftTypeName
                                   ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                                  ?!@autoLayoutOutletMap ioOutletMap
                                   !@abstractViewGeneration outGeneration {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
@@ -667,6 +703,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
      !inReceiverSwiftTypeName
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
+     !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do
@@ -681,6 +718,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
       !inReceiverSwiftTypeName
       !?ioImplicitViewFunctionGenerationList
       !?ioConfiguratorMap
+      !?ioOutletMap
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -701,6 +739,7 @@ abstract method @astAbstractViewInstructionDeclaration generateCode
                                 ?let @string inReceiverSwiftTypeName
                                 ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                                ?!@autoLayoutOutletMap ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction
 
 #·······················································································································
@@ -716,6 +755,7 @@ override method @astSpaceViewInstruction generateCode
                                 ?let @string unused inReceiverSwiftTypeName
                                 ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
+                                ?!@autoLayoutOutletMap unused ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction {
   outInstruction = @autoLayoutSpaceViewInstructionGeneration.new
 }
@@ -733,6 +773,7 @@ override method @astLocalViewInstruction generateCode
                                 ?let @string unused inReceiverSwiftTypeName
                                 ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
+                                ?!@autoLayoutOutletMap unused ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction {
   [inViewDeclarationMap searchKey !mLocalView]
   outInstruction = @autoLayoutLocalViewInstructionGeneration.new {!mLocalView.string}
@@ -751,6 +792,7 @@ override method @astComputedViewInstruction generateCode
                                 ?let @string inReceiverSwiftTypeName
                                 ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                                ?!@autoLayoutOutletMap ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction {
   [inSemanticContext.mAutolayoutViewClassMap searchKey !mAutoLayoutViewClassName
      ?7*
@@ -782,6 +824,7 @@ override method @astComputedViewInstruction generateCode
             !inReceiverSwiftTypeName
             !?ioImplicitViewFunctionGenerationList
             !?ioConfiguratorMap
+            !?ioOutletMap
             ?let @abstractViewInstructionGeneration viewInstruction
           ]
           parameterList += !name !"self.computeImplicitView_" + [ioImplicitViewFunctionGenerationList length] + " ()"
@@ -882,8 +925,13 @@ override method @astComputedViewInstruction generateCode
      !inReceiverSwiftTypeName
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
+     !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
+#--- Check outlet
+  if mOutletName.string != "" then
+    [!?ioOutletMap insertKey !mOutletName !mAutoLayoutViewClassName]
+  end
 #--- Check configurator
   if mConfiguratorName.string != "" then
     [!?ioConfiguratorMap insertKey !mConfiguratorName !mAutoLayoutViewClassName]
@@ -899,6 +947,7 @@ override method @astComputedViewInstruction generateCode
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGeneration
     !mConfiguratorName.string
+    !mOutletName.string
   }
 }
 
@@ -1277,6 +1326,7 @@ override method @astHStackViewInstructionDeclaration generateCode
                         ?let @string inReceiverSwiftTypeName
                         ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                        ?!@autoLayoutOutletMap ioOutletMap
                         !@abstractViewInstructionGeneration outInstruction {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
@@ -1291,6 +1341,7 @@ override method @astHStackViewInstructionDeclaration generateCode
      !inReceiverSwiftTypeName
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
+     !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do
@@ -1305,6 +1356,7 @@ override method @astHStackViewInstructionDeclaration generateCode
       !inReceiverSwiftTypeName
       !?ioImplicitViewFunctionGenerationList
       !?ioConfiguratorMap
+      !?ioOutletMap
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -1325,6 +1377,7 @@ override method @astVStackViewInstructionDeclaration generateCode
                         ?let @string inReceiverSwiftTypeName
                         ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                        ?!@autoLayoutOutletMap ioOutletMap
                         !@abstractViewInstructionGeneration outInstruction {
   @autoLayoutViewInstructionGenerationList instructionList = {}
   [mFunctionCallList check
@@ -1339,6 +1392,7 @@ override method @astVStackViewInstructionDeclaration generateCode
      !inReceiverSwiftTypeName
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
+     !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in mInstructionList do
@@ -1353,6 +1407,7 @@ override method @astVStackViewInstructionDeclaration generateCode
       !inReceiverSwiftTypeName
       !?ioImplicitViewFunctionGenerationList
       !?ioConfiguratorMap
+      !?ioOutletMap
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -1478,6 +1533,7 @@ class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGen
   @tableViewBindingGenerationList mTableViewBindingGeneration
   @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
   @string mConfiguratorName # Empty string if no configurator
+  @string mOutletName # Empty string if no configurator
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1623,8 +1679,11 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
   case binding (controllerName) :
     result += inIndentation + "  .bind_graphic_controller (self." + controllerName + ")\n"
   end
+  if mOutletName != "" then
+    result += inIndentation + "self." + mOutletName + " = " + inName + " // Outlet\n"
+  end
   if mConfiguratorName != "" then
-    result += inIndentation + "self.configure_" + mConfiguratorName + " (" + inName + ")\n"
+    result += inIndentation + "self.configure_" + mConfiguratorName + " (" + inName + ") // Configurator\n"
   end
 }
 

@@ -220,6 +220,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
   @viewGenerationList viewGenerationList = {}
   @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
   @autoLayoutConfiguratorMap configuratorMap = {}
+  @autoLayoutOutletMap autoLayoutOutletMap = {}
   for (viewName viewDeclaration) in mViewDeclarationList do
     [!?viewDeclarationMap insertKey !viewName]
     [viewDeclaration check
@@ -234,6 +235,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
       !mClassName
       !?implicitViewFunctionGenerationList
       !?configuratorMap
+      !?autoLayoutOutletMap
       ?let viewGeneration
     ]
     viewGenerationList += !viewName !viewGeneration
@@ -257,6 +259,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
         !mClassName
         !?implicitViewFunctionGenerationList
         !?configuratorMap
+        !?autoLayoutOutletMap
         ?let @abstractViewInstructionGeneration generatedInstruction
       ]
       autoLayoutToolbarItemGenerationList += !.view {!title: title.string !instruction: generatedInstruction}
@@ -271,6 +274,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     !mMainViewName.string
     !documentPropertyGenerationList
     !outletMap
+    !autoLayoutOutletMap
     !actionBindingListForGeneration
     !regularBindingsGenerationList
     !multipleBindingGenerationList
@@ -294,6 +298,7 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   @string mMainViewName
   @propertyGenerationList mDocumentPropertyGenearionList
   @decoratedOutletMap mOutletMap
+  @autoLayoutOutletMap mAutoLayoutOutletMap
   @actionBindingListForGeneration mTargetActionList 
   @regularBindingsGenerationList mRegularBindingsGenerationList 
   @multipleBindingGenerationList multipleBindingGenerationList
@@ -331,6 +336,7 @@ override method @autoLayoutDocumentFileGeneration generateCode
     !mMainViewName
     !mDocumentPropertyGenearionList
     !mOutletMap
+    !mAutoLayoutOutletMap
     !mTargetActionList
     !mRegularBindingsGenerationList
     !multipleBindingGenerationList
@@ -386,6 +392,7 @@ private filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templ
     ?@string MAIN_VIEW_NAME
     ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
     ?@decoratedOutletMap OUTLET_GENERATION_MAP
+    ?@autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP
     ?@actionBindingListForGeneration TARGET_ACTION_LIST
     ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
     ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST

@@ -12,6 +12,14 @@ import Cocoa
 for () in DOCUMENT_PROPERTY_LIST do
   ![mProperty propertyDeclarationCode !false ![@stringset emptySet]]
 end
+%  //····················································································································
+  //    Outlets
+  //····················································································································
+
+%
+for () in AUTO_LAYOUT_OUTLET_MAP do
+%  weak var %!lkey.string% : AutoLayout%!mAutoLayoutOutletTypeName%? = nil\n%
+end
 %
   //····················································································································
   //    Outlets
