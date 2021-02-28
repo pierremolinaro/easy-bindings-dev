@@ -48,7 +48,7 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //   Observers of '%![mProperty mPropertyName]%' stored property
   //····················································································································
 
-  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
@@ -108,7 +108,7 @@ for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
   //   Observers of '%![mProperty mPropertyName]%' toMany proxy
   //····················································································································
 
-  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
@@ -168,7 +168,7 @@ for () in PROXY_LIST_FOR_GENERATION do
   //   Observers of '%![mProperty mPropertyName]%' proxy property
   //····················································································································
 
-  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
@@ -228,7 +228,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%![mProperty mPropertyName]%' transient property
   //····················································································································
 
-  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
@@ -287,7 +287,7 @@ for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%![mProperty mPropertyName]%' computed property
   //····················································································································
 
-  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
@@ -662,7 +662,7 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
   //····················································································································
 
   init (usedForSignature inUsedForSignature : Bool) {
-    mUsedForSignature = inUsedForSignature
+    self.mUsedForSignature = inUsedForSignature
     super.init ()
   }
 
@@ -670,32 +670,32 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
   //   Signature ?
   //····················································································································
 
-  private let mUsedForSignature : Bool
+  private final let mUsedForSignature : Bool
   
   //····················································································································
   //   Undo manager
   //····················································································································
 
-  weak var ebUndoManager : EBUndoManager? = nil // SOULD BE WEAK
+  weak final var ebUndoManager : EBUndoManager? = nil // SOULD BE WEAK
 
   //····················································································································
   //   Opposite relationship management
   //····················································································································
 
-  private var mSetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
-  private var mResetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
+  private final var mSetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
+  private final var mResetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
 
   //····················································································································
 
-  func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void,
-                                         resetter inResetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void) {
+  final func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void,
+                                               resetter inResetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void) {
     self.mSetOppositeRelationship = inSetter
     self.mResetOppositeRelationship = inResetter
   }
   
   //····················································································································
 
-  var mValueExplorer : NSPopUpButton? {
+  final var mValueExplorer : NSPopUpButton? {
     didSet {
       if let unwrappedExplorer = self.mValueExplorer {
         switch self.selection {
@@ -738,7 +738,7 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
   // Update observers 
   //····················································································································
 
-  internal override func updateObservers (removedSet inRemovedSet : Set <%!ENTITY_NAME%>, addedSet inAddedSet : Set <%!ENTITY_NAME%>) {
+  override func updateObservers (removedSet inRemovedSet : Set <%!ENTITY_NAME%>, addedSet inAddedSet : Set <%!ENTITY_NAME%>) {
     for managedObject in inRemovedSet {
       if self.mUsedForSignature {
         managedObject.setSignatureObserver (observer: nil)
@@ -758,7 +758,7 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
  
   //····················································································································
 
-  override var selection : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue) }
+  override final var selection : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue) }
 
   //····················································································································
 
@@ -766,11 +766,11 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
 
   //····················································································································
 
-  override var propval : [%!ENTITY_NAME%] { return self.mInternalArrayValue }
+  override final var propval : [%!ENTITY_NAME%] { return self.mInternalArrayValue }
 
   //····················································································································
 
-  func remove (_ object : %!ENTITY_NAME%) {
+  final func remove (_ object : %!ENTITY_NAME%) {
     if let idx = self.mInternalArrayValue.firstIndex (of: object) {
       self.mInternalArrayValue.remove (at: idx)
     }
@@ -778,7 +778,7 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
   
   //····················································································································
 
-  func add (_ object : %!ENTITY_NAME%) {
+  final func add (_ object : %!ENTITY_NAME%) {
     if !self.internalSetValue.contains (object) {
       self.mInternalArrayValue.append (object)
     }
@@ -788,11 +788,11 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
   //   signature
   //····················································································································
 
-  private weak var mSignatureObserver : EBSignatureObserverProtocol? = nil // SOULD BE WEAK
+  private weak final var mSignatureObserver : EBSignatureObserverProtocol? = nil // SOULD BE WEAK
 
   //····················································································································
 
-  private var mSignatureCache : UInt32? = nil
+  private final var mSignatureCache : UInt32? = nil
 
   //····················································································································
 

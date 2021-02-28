@@ -42,11 +42,11 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //   Observers of '%![mProperty mPropertyName]%' stored property
   //····················································································································
 
-  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
-  var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
+  final var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
     if let model = self.propval {
       switch (model.%![mProperty mPropertyName]%_property_selection) {
       case .empty :
@@ -115,7 +115,7 @@ for () in PROXY_LIST_FOR_GENERATION do
   //   Observers of '%![mProperty mPropertyName]%' proxy property
   //····················································································································
 
-/*  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+/*  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
@@ -188,11 +188,11 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%![mProperty mPropertyName]%' transient property
   //····················································································································
 
-  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
-  var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
+  final var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
     if let model = self.propval {
       switch (model.%![mProperty mPropertyName]%_property_selection) {
       case .empty :
@@ -260,11 +260,11 @@ for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%![mProperty mPropertyName]%' computed property
   //····················································································································
 
-  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
-  var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
+  final var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
     if let model = self.propval {
       switch (model.%![mProperty mPropertyName]%_property_selection) {
       case .empty :
@@ -331,9 +331,9 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   %  //····················································································································\n%
   %  //   Observable toMany property: %![mProperty mPropertyName]%\n%
   %  //····················································································································\n\n%
-  %  private var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()\n\n%
+  %  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()\n\n%
   %  //····················································································································\n\n%
-  %  var %![mProperty mPropertyName]%_property_selection : EBSelection <[%![[mProperty mRelationshipType] swiftTypeName]%]> {\n%
+  %  final var %![mProperty mPropertyName]%_property_selection : EBSelection <[%![[mProperty mRelationshipType] swiftTypeName]%]> {\n%
   %    if let model = self.propval {\n%
   %      switch (model.%![mProperty mPropertyName]%_property_selection) {\n%
   %      case .empty :\n%
@@ -552,7 +552,7 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
   //   Undo manager
   //····················································································································
 
-  weak var ebUndoManager : EBUndoManager? = nil // SOULD BE WEAK
+  weak final var ebUndoManager : EBUndoManager? = nil // SOULD BE WEAK
 
  //····················································································································
   //   Opposite relationship management

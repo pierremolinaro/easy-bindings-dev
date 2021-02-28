@@ -247,6 +247,14 @@ override method @entityDeclarationAST fourthAnalysisPhase
       end
     end
   end
+#--- Search for a subclass
+  var hasSubClass = false
+  for classDeclaration in ioSemanticContext.mClassMap while not hasSubClass do
+    if [classDeclaration.mClassKind isEntity] then
+      [classDeclaration.mClassKind entity ?superEntityName: let superEntityName ?2*]
+      hasSubClass = mClassName.string == superEntityName
+    end 
+  end
 #--- Generation    
   ioGeneration.mEntityListForGeneration +=
     !mClassName.string
@@ -260,6 +268,7 @@ override method @entityDeclarationAST fourthAnalysisPhase
     !mIsAbstract
     !overridenTransients
     !mExternSwiftDelegateList
+    !hasSubClass
   }
 }
 
@@ -276,6 +285,7 @@ class @entityForGeneration : @abstractFileGeneration {
   @bool mIsAbstract
   @stringset mOverridenTransients
   @externSwiftDelegateList mExternSwiftDelegateList
+  @bool mHasSubEntity
 }
 
 #·······················································································································
@@ -339,7 +349,7 @@ override method @entityForGeneration generateCode
     !mIsAbstract
     !mOverridenTransients
     !mExternSwiftDelegateList
-
+    !mHasSubEntity
   ]
   var fileName = "entity-" + mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -442,6 +452,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@bool IS_ABSTRACT
     ?@stringset OVERRIDEN_TRANSIENTS
     ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
+    ?@bool HAS_SUB_ENTITY
 
   template entityToManyImplementationInSwift "entity-tomany.swift.galgasTemplate"
     ?@string ENTITY_NAME

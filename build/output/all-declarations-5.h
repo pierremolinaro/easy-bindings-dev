@@ -509,7 +509,8 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
                                                                     const class GALGAS_bool & inOperand4,
                                                                     const class GALGAS_bool & inOperand5,
                                                                     const class GALGAS_stringset & inOperand6,
-                                                                    const class GALGAS_externSwiftDelegateList & inOperand7
+                                                                    const class GALGAS_externSwiftDelegateList & inOperand7,
+                                                                    const class GALGAS_bool & inOperand8
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -521,6 +522,9 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 
   public : VIRTUAL_IN_DEBUG void setter_setMExternSwiftDelegateList (class GALGAS_externSwiftDelegateList inArgument0
                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMHasSubEntity (class GALGAS_bool inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMIsAbstract (class GALGAS_bool inArgument0
                                                         COMMA_LOCATION_ARGS) ;
@@ -548,6 +552,8 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasSubEntity (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsAbstract (LOCATION_ARGS) const ;
 
@@ -590,6 +596,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public : GALGAS_bool mProperty_mIsAbstract ;
   public : GALGAS_stringset mProperty_mOverridenTransients ;
   public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
+  public : GALGAS_bool mProperty_mHasSubEntity ;
 
 //--- Constructor
   public : cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
@@ -599,7 +606,8 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
                                      const GALGAS_bool & in_mIsGraphicEntity,
                                      const GALGAS_bool & in_mIsAbstract,
                                      const GALGAS_stringset & in_mOverridenTransients,
-                                     const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
+                                     const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                     const GALGAS_bool & in_mHasSubEntity
                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -622,6 +630,8 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG void setter_setMOverridenTransients (GALGAS_stringset inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMExternSwiftDelegateList (GALGAS_externSwiftDelegateList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mHasSubEntity (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMHasSubEntity (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

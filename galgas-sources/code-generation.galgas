@@ -153,7 +153,6 @@ private proc generateSwiftApplicationFiles
     !"EBWeakEventSet",
     !"EBModelNotifierEvent",
     !"EBAbstractProperty",
-    !"EBObserver",
     !"func-presentErrorWindow",
     !"func-checkOutletConnection",
     !"ReadOnlyAbstractGenericRelationshipProperty",

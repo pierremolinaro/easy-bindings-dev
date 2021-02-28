@@ -36,7 +36,11 @@ end
 //    %!"Entity: " + ENTITY_NAME%
 //----------------------------------------------------------------------------------------------------------------------
 
-class %!ENTITY_NAME% : %!SUPER_CLASS_NAME
+%
+if not HAS_SUB_ENTITY then
+  %final %
+end
+%class %!ENTITY_NAME% : %!SUPER_CLASS_NAME
 for () in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration)  | (mProperty is == @atomicProxyGeneration) then
     %,\n         %!ENTITY_NAME%_%![mProperty mPropertyName]

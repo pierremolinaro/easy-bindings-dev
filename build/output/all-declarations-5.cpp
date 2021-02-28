@@ -13542,6 +13542,9 @@ typeComparisonResult cPtr_entityForGeneration::dynamicObjectCompare (const acPtr
   if (kOperandEqual == result) {
     result = mProperty_mExternSwiftDelegateList.objectCompare (p->mProperty_mExternSwiftDelegateList) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mHasSubEntity.objectCompare (p->mProperty_mHasSubEntity) ;
+  }
   return result ;
 }
 
@@ -13580,7 +13583,8 @@ GALGAS_entityForGeneration GALGAS_entityForGeneration::constructor_default (LOCA
                                                       GALGAS_bool::constructor_default (HERE),
                                                       GALGAS_bool::constructor_default (HERE),
                                                       GALGAS_stringset::constructor_emptySet (HERE),
-                                                      GALGAS_externSwiftDelegateList::constructor_emptyList (HERE)
+                                                      GALGAS_externSwiftDelegateList::constructor_emptyList (HERE),
+                                                      GALGAS_bool::constructor_default (HERE)
                                                       COMMA_THERE) ;
 }
 
@@ -13600,11 +13604,12 @@ GALGAS_entityForGeneration GALGAS_entityForGeneration::constructor_new (const GA
                                                                         const GALGAS_bool & inAttribute_mIsGraphicEntity,
                                                                         const GALGAS_bool & inAttribute_mIsAbstract,
                                                                         const GALGAS_stringset & inAttribute_mOverridenTransients,
-                                                                        const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList
+                                                                        const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList,
+                                                                        const GALGAS_bool & inAttribute_mHasSubEntity
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_entityForGeneration result ;
-  if (inAttribute_mEntityName.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mPropertyGenerationList.isValid () && inAttribute_mSignatureSet.isValid () && inAttribute_mIsGraphicEntity.isValid () && inAttribute_mIsAbstract.isValid () && inAttribute_mOverridenTransients.isValid () && inAttribute_mExternSwiftDelegateList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_entityForGeneration (inAttribute_mEntityName, inAttribute_mSuperEntityName, inAttribute_mPropertyGenerationList, inAttribute_mSignatureSet, inAttribute_mIsGraphicEntity, inAttribute_mIsAbstract, inAttribute_mOverridenTransients, inAttribute_mExternSwiftDelegateList COMMA_THERE)) ;
+  if (inAttribute_mEntityName.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mPropertyGenerationList.isValid () && inAttribute_mSignatureSet.isValid () && inAttribute_mIsGraphicEntity.isValid () && inAttribute_mIsAbstract.isValid () && inAttribute_mOverridenTransients.isValid () && inAttribute_mExternSwiftDelegateList.isValid () && inAttribute_mHasSubEntity.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_entityForGeneration (inAttribute_mEntityName, inAttribute_mSuperEntityName, inAttribute_mPropertyGenerationList, inAttribute_mSignatureSet, inAttribute_mIsGraphicEntity, inAttribute_mIsAbstract, inAttribute_mOverridenTransients, inAttribute_mExternSwiftDelegateList, inAttribute_mHasSubEntity COMMA_THERE)) ;
   }
   return result ;
 }
@@ -13751,6 +13756,24 @@ GALGAS_externSwiftDelegateList GALGAS_entityForGeneration::getter_mExternSwiftDe
 
 GALGAS_externSwiftDelegateList cPtr_entityForGeneration::getter_mExternSwiftDelegateList (UNUSED_LOCATION_ARGS) const {
   return mProperty_mExternSwiftDelegateList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_entityForGeneration::getter_mHasSubEntity (UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_entityForGeneration * p = (const cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    result = p->mProperty_mHasSubEntity ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool cPtr_entityForGeneration::getter_mHasSubEntity (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mHasSubEntity ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13906,6 +13929,25 @@ void cPtr_entityForGeneration::setter_setMExternSwiftDelegateList (GALGAS_extern
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_entityForGeneration::setter_setMHasSubEntity (GALGAS_bool inValue
+                                                          COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_entityForGeneration * p = (cPtr_entityForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_entityForGeneration) ;
+    p->mProperty_mHasSubEntity = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void cPtr_entityForGeneration::setter_setMHasSubEntity (GALGAS_bool inValue
+                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mHasSubEntity = inValue ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 //Pointer class for @entityForGeneration class
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13916,7 +13958,8 @@ cPtr_entityForGeneration::cPtr_entityForGeneration (const GALGAS_string & in_mEn
                                                     const GALGAS_bool & in_mIsGraphicEntity,
                                                     const GALGAS_bool & in_mIsAbstract,
                                                     const GALGAS_stringset & in_mOverridenTransients,
-                                                    const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList
+                                                    const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                                    const GALGAS_bool & in_mHasSubEntity
                                                     COMMA_LOCATION_ARGS) :
 cPtr_abstractFileGeneration (THERE),
 mProperty_mEntityName (in_mEntityName),
@@ -13926,7 +13969,8 @@ mProperty_mSignatureSet (in_mSignatureSet),
 mProperty_mIsGraphicEntity (in_mIsGraphicEntity),
 mProperty_mIsAbstract (in_mIsAbstract),
 mProperty_mOverridenTransients (in_mOverridenTransients),
-mProperty_mExternSwiftDelegateList (in_mExternSwiftDelegateList) {
+mProperty_mExternSwiftDelegateList (in_mExternSwiftDelegateList),
+mProperty_mHasSubEntity (in_mHasSubEntity) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13953,6 +13997,8 @@ void cPtr_entityForGeneration::description (C_String & ioString,
   mProperty_mOverridenTransients.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mExternSwiftDelegateList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mHasSubEntity.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -13960,7 +14006,7 @@ void cPtr_entityForGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_entityForGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_entityForGeneration (mProperty_mEntityName, mProperty_mSuperEntityName, mProperty_mPropertyGenerationList, mProperty_mSignatureSet, mProperty_mIsGraphicEntity, mProperty_mIsAbstract, mProperty_mOverridenTransients, mProperty_mExternSwiftDelegateList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_entityForGeneration (mProperty_mEntityName, mProperty_mSuperEntityName, mProperty_mPropertyGenerationList, mProperty_mSignatureSet, mProperty_mIsGraphicEntity, mProperty_mIsAbstract, mProperty_mOverridenTransients, mProperty_mExternSwiftDelegateList, mProperty_mHasSubEntity COMMA_THERE)) ;
   return ptr ;
 }
 

@@ -19,7 +19,7 @@ end
 
 %
 for () in OUTLET_GENERATION_MAP do
-%  @IBOutlet var %!lkey.string% : %!mOutletTypeName%? = nil\n%
+%  @IBOutlet final var %!lkey.string% : %!mOutletTypeName%? = nil\n%
 end
 %
   //····················································································································
@@ -27,7 +27,7 @@ end
   //····················································································································
 
 %for () in MULTIPLE_BINDING_GENERATION_LIST do
-  %  var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%? = nil\n%
+  %  final var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%? = nil\n%
 end
 %
   //····················································································································
@@ -35,7 +35,7 @@ end
   //····················································································································
   // Cette méthode est appelée après tout enregistrement, qu'il y ait changement de nom ou pas.
 
-  override var fileModificationDate : Date? {
+  override final var fileModificationDate : Date? {
     get {
       return super.fileModificationDate
     }
@@ -47,7 +47,7 @@ end
 
   //····················································································································
 
-  func computeTransient_documentFilePath () -> String {
+  final func computeTransient_documentFilePath () -> String {
     var documentFilePath = ""
     if let url = self.fileURL {
       documentFilePath = url.path
@@ -72,7 +72,7 @@ end
   //    windowNibName
   //····················································································································
 
-  override var windowNibName : NSNib.Name? {
+  override final var windowNibName : NSNib.Name? {
     return NSNib.Name ("%!DOCUMENT_NAME%")
   }
   
@@ -80,7 +80,7 @@ end
   //    rootEntityClassName
   //····················································································································
 
-  override func rootEntityClassName () -> String {
+  override final func rootEntityClassName () -> String {
     return "%!ROOT_ENTITY_NAME%"
   }
 
@@ -88,7 +88,7 @@ end
   //    rootObject
   //····················································································································
 
-  var rootObject : %!ROOT_ENTITY_NAME% { return self.mRootObject as! %!ROOT_ENTITY_NAME% }
+  final var rootObject : %!ROOT_ENTITY_NAME% { return self.mRootObject as! %!ROOT_ENTITY_NAME% }
 
   //····················································································································
   //    check outlet connections

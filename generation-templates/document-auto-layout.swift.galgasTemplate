@@ -18,7 +18,7 @@ end
 
 %
 for () in AUTO_LAYOUT_OUTLET_MAP do
-%  weak var %!lkey.string% : AutoLayout%!mAutoLayoutOutletTypeName%? = nil\n%
+%  weak final var %!lkey.string% : AutoLayout%!mAutoLayoutOutletTypeName%? = nil\n%
 end
 %
   //····················································································································
@@ -27,7 +27,7 @@ end
 
 %
 for () in OUTLET_GENERATION_MAP do
-%  @IBOutlet var %!lkey.string% : %!mOutletTypeName%? = nil\n%
+%  @IBOutlet final var %!lkey.string% : %!mOutletTypeName%? = nil\n%
 end
 %
   //····················································································································
@@ -43,7 +43,7 @@ end
   //····················································································································
   // Cette méthode est appelée après tout enregistrement, qu'il y ait changement de nom ou pas.
 
-  override var fileModificationDate : Date? {
+  override final var fileModificationDate : Date? {
     get {
       return super.fileModificationDate
     }
@@ -55,7 +55,7 @@ end
 
   //····················································································································
 
-  func computeTransient_documentFilePath () -> String {
+  final func computeTransient_documentFilePath () -> String {
     var documentFilePath = ""
     if let url = self.fileURL {
       documentFilePath = url.path
@@ -80,7 +80,7 @@ end
   //    rootEntityClassName
   //····················································································································
 
-  override func rootEntityClassName () -> String {
+  override final func rootEntityClassName () -> String {
     return "%!ROOT_ENTITY_NAME%"
   }
 
@@ -88,7 +88,7 @@ end
   //    rootObject
   //····················································································································
 
-  var rootObject : %!ROOT_ENTITY_NAME% { return self.mRootObject as! %!ROOT_ENTITY_NAME% }
+  final var rootObject : %!ROOT_ENTITY_NAME% { return self.mRootObject as! %!ROOT_ENTITY_NAME% }
 
 %
 for () in VIEW_GENERATION_LIST do
@@ -140,13 +140,13 @@ end
   //    Toolbar
   //····················································································································
   
-  func toolbarAllowedItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+  final func toolbarAllowedItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
     return self.toolbarDefaultItemIdentifiers (toolbar)
   }
 
   //····················································································································
 
-  func toolbarDefaultItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+  final func toolbarDefaultItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
     return [%
     for () in TOOLBAR_ITEM_LIST
       do index idx
@@ -163,9 +163,9 @@ end
 
   //····················································································································
 
-  func toolbar(_ toolbar: NSToolbar,
-               itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
-               willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+  final func toolbar (_ toolbar: NSToolbar,
+                      itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
+                      willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
     switch itemIdentifier.rawValue {
 %for () in TOOLBAR_ITEM_LIST do index idx
       switch mItem
