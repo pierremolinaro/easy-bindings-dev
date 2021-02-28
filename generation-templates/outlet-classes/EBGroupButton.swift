@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(EBGroupButton) class EBGroupButton : NSButton, EBUserClassNameProtocol {
+@objc(EBGroupButton) final class EBGroupButton : NSButton, EBUserClassNameProtocol {
   @IBOutlet private var mMasterView : NSView? = nil
   @IBOutlet private var mView : NSView? = nil
   private var mWindowDefaultTitle : String = ""

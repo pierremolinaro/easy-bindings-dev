@@ -8,7 +8,7 @@ import Cocoa
 //   EBColorObserverWell
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(EBColorObserverWell) class EBColorObserverWell : NSColorWell, EBUserClassNameProtocol {
+@objc(EBColorObserverWell) final class EBColorObserverWell : NSColorWell, EBUserClassNameProtocol {
 
   //····················································································································
 

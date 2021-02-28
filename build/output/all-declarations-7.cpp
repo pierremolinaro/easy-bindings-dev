@@ -6380,12 +6380,12 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
     "}\n"
     "\n"
     "//----------------------------------------------------------------------------------------------------------------------\n"
-    "//    TransientObject " ;
+    "//   TransientObject " ;
   result << in_ENTITY_5F_NAME.stringValue () ;
   result << "\n"
     "//----------------------------------------------------------------------------------------------------------------------\n"
     "\n"
-    "class TransientObject_" ;
+    "final class TransientObject_" ;
   result << in_ENTITY_5F_NAME.stringValue () ;
   result << " : ReadOnlyObject_" ;
   result << in_ENTITY_5F_NAME.stringValue () ;

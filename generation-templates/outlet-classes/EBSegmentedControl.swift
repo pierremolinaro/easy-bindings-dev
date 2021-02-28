@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(EBSegmentedControl) class EBSegmentedControl : NSSegmentedControl, EBUserClassNameProtocol {
+@objc(EBSegmentedControl) final class EBSegmentedControl : NSSegmentedControl, EBUserClassNameProtocol {
   @IBOutlet private var mMasterView : NSView?
   @IBOutlet private var mView0 : NSView?
   @IBOutlet private var mView1 : NSView?

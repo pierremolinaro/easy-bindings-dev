@@ -8,7 +8,7 @@ import Cocoa
 //   EBNumberField
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(EBNumberField) class EBNumberField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
+@objc(EBNumberField) final class EBNumberField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
 
   //····················································································································
 

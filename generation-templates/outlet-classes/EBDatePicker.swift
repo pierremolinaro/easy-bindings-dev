@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(EBDatePicker) class EBDatePicker : NSDatePicker, EBUserClassNameProtocol {
+@objc(EBDatePicker) final class EBDatePicker : NSDatePicker, EBUserClassNameProtocol {
 
   //····················································································································
 

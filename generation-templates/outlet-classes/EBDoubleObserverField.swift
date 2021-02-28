@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(EBDoubleObserverField) class EBDoubleObserverField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
+@objc(EBDoubleObserverField) final class EBDoubleObserverField : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
 
   //····················································································································
 

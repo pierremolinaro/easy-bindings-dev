@@ -6,7 +6,7 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(EBCheckedMenuItem) class EBCheckedMenuItem : NSMenuItem, EBUserClassNameProtocol {
+@objc(EBCheckedMenuItem) final class EBCheckedMenuItem : NSMenuItem, EBUserClassNameProtocol {
 
   //····················································································································
 

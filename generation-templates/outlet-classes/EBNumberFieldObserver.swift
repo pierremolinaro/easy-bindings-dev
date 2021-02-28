@@ -8,7 +8,7 @@ import Cocoa
 //   EBNumberFieldObserver
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(EBNumberFieldObserver) class EBNumberFieldObserver : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
+@objc(EBNumberFieldObserver) final class EBNumberFieldObserver : NSTextField, EBUserClassNameProtocol, NSTextFieldDelegate {
 
   //····················································································································
 
