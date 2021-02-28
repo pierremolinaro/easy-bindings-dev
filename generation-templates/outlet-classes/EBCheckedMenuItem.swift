@@ -21,11 +21,11 @@ import Cocoa
 
   private var mCheckedController : Controller_EBCheckedMenuItem_check? = nil
 
-  func bind_checked (_ checked : EBReadWriteProperty_Bool, file : String, line : Int) {
+  final func bind_checked (_ checked : EBReadWriteProperty_Bool, file : String, line : Int) {
     self.mCheckedController = Controller_EBCheckedMenuItem_check (checked:checked, outlet:self)
   }
 
-  func unbind_checked () {
+  final func unbind_checked () {
     self.mCheckedController?.unregister ()
     self.mCheckedController = nil
   }

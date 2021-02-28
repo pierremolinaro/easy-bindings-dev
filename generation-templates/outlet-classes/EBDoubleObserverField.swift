@@ -31,7 +31,7 @@ import Cocoa
   private var mValueController : Controller_EBDoubleObserverField_valueObserver? = nil
   private var mSendContinously : Bool = false
 
-  func bind_valueObserver (_ object:EBReadOnlyProperty_Double, file:String, line:Int, autoFormatter:Bool) {
+  final func bind_valueObserver (_ object:EBReadOnlyProperty_Double, file:String, line:Int, autoFormatter:Bool) {
     mValueController = Controller_EBDoubleObserverField_valueObserver (
       object:object,
       outlet:self,
@@ -41,7 +41,7 @@ import Cocoa
     )
   }
 
-  func unbind_valueObserver () {
+  final func unbind_valueObserver () {
     mValueController?.unregister ()
     mValueController = nil
   }

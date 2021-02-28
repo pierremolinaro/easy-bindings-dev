@@ -82,7 +82,7 @@ import Cocoa
 
   private var mValueController : Controller_EBGroupButton_selectedIndex? = nil
 
-  func bind_selectedIndex (_ object:EBReadWriteProperty_Int, file:String, line:Int) {
+  final func bind_selectedIndex (_ object:EBReadWriteProperty_Int, file:String, line:Int) {
   //--- Check tags
     if let masterView = mMasterView {
       var tagSet = Set<Int> ()
@@ -109,7 +109,7 @@ import Cocoa
     self.mValueController = Controller_EBGroupButton_selectedIndex (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_selectedIndex () {
+  final func unbind_selectedIndex () {
     self.mValueController?.unregister ()
     self.mValueController = nil
   }

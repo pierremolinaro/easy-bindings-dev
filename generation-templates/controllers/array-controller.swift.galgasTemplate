@@ -159,7 +159,7 @@ end
 
   //····················································································································
 
-  func bind_model (_ inModel : %!MODEL_TYPE_NAME%, _ inUndoManager : EBUndoManager?) {
+  final func bind_model (_ inModel : %!MODEL_TYPE_NAME%, _ inUndoManager : EBUndoManager?) {
     self.mModel = inModel
     self.mUndoManager = inUndoManager
     inModel.attachClient (self)
@@ -171,7 +171,7 @@ end%  }
 
   //····················································································································
 
-  func unbind_model () {
+  final func unbind_model () {
 %if ELEMENT_TYPE_IS_GRAPHIC then
   %    self.stopObservingObjectShape ()\n%
   %    self.stopObservingSelectionShape ()\n%

@@ -28,11 +28,11 @@ import Cocoa
 
   private var mValueController : Controller_EBDatePicker_date? = nil
 
-  func bind_date (_ object:EBReadWriteProperty_Date, file:String, line:Int) {
+  final func bind_date (_ object:EBReadWriteProperty_Date, file:String, line:Int) {
     self.mValueController = Controller_EBDatePicker_date (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_date () {
+  final func unbind_date () {
     self.mValueController?.unregister ()
     self.mValueController = nil
   }

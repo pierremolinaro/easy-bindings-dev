@@ -34,11 +34,11 @@ import Cocoa
 
   private var mValueController : Controller_EBNumberField_readOnlyValue?
 
-  func bind_valueObserver (_ object : EBReadOnlyProperty_Int, file : String, line : Int) {
+  final func bind_valueObserver (_ object : EBReadOnlyProperty_Int, file : String, line : Int) {
     self.mValueController = Controller_EBNumberField_readOnlyValue (object: object, outlet: self, file: file, line: line)
   }
 
-  func unbind_valueObserver () {
+  final func unbind_valueObserver () {
     self.mValueController?.unregister ()
     self.mValueController = nil
   }

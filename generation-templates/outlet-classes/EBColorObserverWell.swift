@@ -32,11 +32,11 @@ import Cocoa
 
   private var mValueController : Controller_EBColorObserverWell_color? = nil
 
-  func bind_colorObserver (_ object : EBReadOnlyProperty_NSColor, file : String, line : Int) {
+  final func bind_colorObserver (_ object : EBReadOnlyProperty_NSColor, file : String, line : Int) {
     self.mValueController = Controller_EBColorObserverWell_color (object:object, outlet:self)
   }
 
-  func unbind_colorObserver () {
+  final func unbind_colorObserver () {
     self.mValueController?.unregister ()
     self.mValueController = nil
   }

@@ -107,11 +107,11 @@ import Cocoa
 
   private var mValueController : Controller_EBSegmentedControl_selectedIndex?
 
-  func bind_selectedIndex (_ object:EBReadWriteProperty_Int, file:String, line:Int) {
+  final func bind_selectedIndex (_ object:EBReadWriteProperty_Int, file:String, line:Int) {
     mValueController = Controller_EBSegmentedControl_selectedIndex (object:object, outlet:self, file:file, line:line)
   }
 
-  func unbind_selectedIndex () {
+  final func unbind_selectedIndex () {
     mValueController?.unregister ()
     mValueController = nil
   }
