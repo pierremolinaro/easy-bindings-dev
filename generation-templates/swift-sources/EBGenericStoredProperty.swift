@@ -18,27 +18,27 @@ class EBGenericStoredProperty <T : EBPropertyProtocol> : EBGenericReadWritePrope
 
   final var mValueExplorer : NSTextField? {
     didSet {
-      self.mValueExplorer?.stringValue = "\(mValue)"
+      self.mValueExplorer?.stringValue = "\(mInternalValue)"
     }
   }
 
   //····················································································································
 
   init (defaultValue inValue : T, undoManager inEBUndoManager : EBUndoManager?) {
-    self.mValue = inValue
+    self.mInternalValue = inValue
     self.mEBUndoManager = inEBUndoManager
     super.init ()
   }
 
   //····················································································································
 
-  private final var mValue : T {
+  private final var mInternalValue : T {
     didSet {
-      if self.mValue != oldValue {
-        self.mValueExplorer?.stringValue = "\(mValue)"
-        self.mEBUndoManager?.registerUndo (withTarget: self) { $0.mValue = oldValue }
+      if self.mInternalValue != oldValue {
+        self.mValueExplorer?.stringValue = "\(mInternalValue)"
+        self.mEBUndoManager?.registerUndo (withTarget: self) { $0.mInternalValue = oldValue }
         if logEvents () {
-          appendMessageString ("Property \(explorerIndexString (self.ebObjectIndex)) did change value to \(mValue)\n")
+          appendMessageString ("Property \(explorerIndexString (self.ebObjectIndex)) did change value to \(mInternalValue)\n")
         }
         self.postEvent ()
         self.clearSignatureCache ()
@@ -48,15 +48,15 @@ class EBGenericStoredProperty <T : EBPropertyProtocol> : EBGenericReadWritePrope
 
   //····················································································································
 
-  override final var selection : EBSelection <T> { return .single (mValue) }
+  override final var selection : EBSelection <T> { return .single (mInternalValue) }
 
   //····················································································································
 
-  final var propval : T { return self.mValue }
+  final var propval : T { return self.mInternalValue }
 
   //····················································································································
 
-  override final func setProp (_ value : T) { self.mValue = value }
+  override final func setProp (_ value : T) { self.mInternalValue = value }
 
   //····················································································································
 
@@ -97,7 +97,7 @@ class EBGenericStoredProperty <T : EBPropertyProtocol> : EBGenericReadWritePrope
   //····················································································································
 
   func storeIn (dictionary : NSMutableDictionary, forKey inKey : String) {
-    dictionary.setValue (self.mValue.convertToNSObject (), forKey: inKey)
+    dictionary.setValue (self.mInternalValue.convertToNSObject (), forKey: inKey)
   }
 
   //····················································································································
@@ -148,6 +148,26 @@ class EBGenericStoredProperty <T : EBPropertyProtocol> : EBGenericReadWritePrope
   }
 
   //····················································································································
+  //  Façade
+  //····················································································································
+
+  private lazy var mFaçade = ReadWriteFaçade <T> (
+    getter: { [weak self] in
+      if let unwrappedSelf = self {
+        return .single (unwrappedSelf.mInternalValue)
+      }else{
+        return .empty
+      }
+    },
+    setter: { [weak self] in self?.mInternalValue = $0 }
+  )
+
+  //····················································································································
+
+  var projectedValue : ReadWriteFaçade <T> { self.mFaçade }
+
+  //····················································································································
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------

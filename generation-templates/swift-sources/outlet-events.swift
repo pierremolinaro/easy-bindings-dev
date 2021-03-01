@@ -8,7 +8,7 @@ import Cocoa
 //    EBOutletEvent class
 //----------------------------------------------------------------------------------------------------------------------
 
-fileprivate var gPendingOutletEvents = [EBOutletEvent] ()
+fileprivate var gPendingOutletEventsEx = [EBOutletEvent] ()
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ class EBOutletEvent : EBEvent {
 
   override func postEvent () {
     if logEvents () {
-      if gPendingOutletEvents.count == 0 {
+      if gPendingOutletEventsEx.count == 0 {
         appendMessageString ("Post events\n")
       }
       let str = "  " +  explorerIndexString (self.ebObjectIndex) + self.className + "\n"
@@ -39,7 +39,7 @@ class EBOutletEvent : EBEvent {
     }
     if !self.mEventIsPosted {
       self.mEventIsPosted = true
-      gPendingOutletEvents.append (self)
+      gPendingOutletEventsEx.append (self)
     }
   }
 
@@ -69,7 +69,7 @@ class EBOutletEvent : EBEvent {
 //----------------------------------------------------------------------------------------------------------------------
 
 func flushOutletEvents () {
-  if gPendingOutletEvents.count > 0 {
+  if gPendingOutletEventsEx.count > 0 {
     if logEvents () {
       appendMessageString ("Flush outlet events\n", color: NSColor.blue)
     }
@@ -84,9 +84,9 @@ func flushOutletEvents () {
 //      Swift.print ("Compute \(gPendingOutletEvents.count) transient properties: \(durationMS) ms")
 //    }
     let startFlushOutletEvent = Date ()
-    while gPendingOutletEvents.count > 0 {
-      let pendingOutletEvents = gPendingOutletEvents
-      gPendingOutletEvents.removeAll ()
+    while gPendingOutletEventsEx.count > 0 {
+      let pendingOutletEvents = gPendingOutletEventsEx
+      gPendingOutletEventsEx.removeAll ()
       for event in pendingOutletEvents {
         event.mEventIsPosted = false
       }
@@ -97,8 +97,8 @@ func flushOutletEvents () {
         }
         event.sendUpdateEvent ()
       }
-      if gPendingOutletEvents.count > 0 && logEvents () {
-        let message = String (gPendingOutletEvents.count) +  " outlet event(s) posted during flush\n"
+      if gPendingOutletEventsEx.count > 0 && logEvents () {
+        let message = String (gPendingOutletEventsEx.count) +  " outlet event(s) posted during flush\n"
         appendMessageString (message, color: NSColor.red)
       }
     }
@@ -142,4 +142,145 @@ func appendMessageString (_ message : String, color : NSColor) {
   theApp.mTransientEventExplorerTextView?.appendMessageString (message, color:color)
 }
 
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+protocol OutletEventProtocol : AnyObject {
+  func postEvent ()
+  func updateOutlets ()
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class ReadFaçade <T> : OutletEventProtocol, EBUserClassNameProtocol where T : Equatable {
+
+  //····················································································································
+
+  init (getter inGetter : @escaping () -> EBSelection <T>) {
+   self.mGetter = inGetter
+   noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  deinit {
+   noteObjectDeallocation (self)
+  }
+
+  //····················································································································
+
+  private final var mEvents = [OutletEventProtocol] ()
+  private final var mEventHasBeenSent = false
+
+  final func addEBObserver (_ inObserver : OutletEventProtocol) {
+    self.mEvents.append (inObserver)
+    inObserver.postEvent ()
+  }
+
+  final func removeEBObserver (_ inObserver : OutletEventProtocol) {
+    inObserver.postEvent ()
+    var idx = 0
+    while idx < self.mEvents.count {
+      if self.mEvents [idx] === inObserver {
+        self.mEvents.remove (at: idx)
+        idx = self.mEvents.count
+      }else{
+        idx += 1
+      }
+    }
+  }
+
+  final func postEvent () {
+    if !mEventHasBeenSent {
+      self.mEventHasBeenSent = true
+      for event in self.mEvents {
+        event.postEvent ()
+      }
+//      if self.mOutletCallBacks.count > 0 {
+        if gOutletEvents.isEmpty {
+          DispatchQueue.main.async { flushPendingOutletEvents () }
+        }
+        gOutletEvents.append (self)
+//      }
+    }
+  }
+
+  final let mGetter : () -> EBSelection <T>
+
+  final var selection : EBSelection <T> {
+    self.mEventHasBeenSent = false
+    return self.mGetter ()
+  }
+
+  private final var mOutletCallBacks = [ () -> Void]  ()
+
+  final func registerCallBack (_ inCallBack : @escaping () -> Void) {
+    self.mOutletCallBacks.append (inCallBack)
+    self.postEvent ()
+  }
+
+  final func updateOutlets () {
+    for callBack in self.mOutletCallBacks {
+      callBack ()
+    }
+  }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class ReadWriteFaçade <T> : ReadFaçade <T> where T : Equatable {
+
+  private final let mSetter : (T) -> Void
+
+  final func setProperty (_ inValue : T) {
+    self.mSetter (inValue)
+  }
+
+  init (getter inGetter : @escaping () -> EBSelection <T>, setter inSetter : @escaping (T) -> Void) {
+   self.mSetter = inSetter
+   super.init (getter: inGetter)
+  }
+}
+
 //----------------------------------------------------------------------------------------------------------------------
+
+fileprivate var gOutletEvents = [OutletEventProtocol] ()
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+//    flushPendingOutletEvents
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+func flushPendingOutletEvents () {
+  if gOutletEvents.count > 0 {
+    if logEvents () {
+      appendMessageString ("Flush outlet events\n", color: NSColor.blue)
+    }
+    let startFlushOutletEvent = Date ()
+    while gOutletEvents.count > 0 {
+      let pendingOutletEvents = gOutletEvents
+      gOutletEvents.removeAll ()
+      for event in pendingOutletEvents {
+        event.updateOutlets ()
+      }
+//      for event in pendingOutletEvents {
+//        if logEvents () {
+//          let message = "  " +  explorerIndexString (event.ebObjectIndex) + event.className + "\n"
+//          appendMessageString (message, color: NSColor.blue)
+//        }
+//        event.sendUpdateEvent ()
+//      }
+      if gOutletEvents.count > 0 && logEvents () {
+        let message = String (gOutletEvents.count) +  " outlet event(s) posted during flush\n"
+        appendMessageString (message, color: NSColor.red)
+      }
+    }
+    if LOG_OPERATION_DURATION {
+      let durationFlushMS = Int (Date ().timeIntervalSince (startFlushOutletEvent) * 1000.0)
+      Swift.print ("Flush Outlet Events \(durationFlushMS) ms")
+    }
+    if logEvents () {
+      appendMessageString ("--------------------------------------\n", color: NSColor.blue)
+    }
+  }
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

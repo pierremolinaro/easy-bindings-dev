@@ -12,8 +12,16 @@ final class EBGenericPropertyProxy <T : EBPropertyProtocol> : EBGenericReadWrite
 
   //····················································································································
 
-  var mReadModelFunction : Optional < () -> EBSelection <T> > = nil
-  var mWriteModelFunction : Optional < (T) -> Void > = nil
+  init (getter inGetter : @escaping () -> EBSelection <T>, setter inSetter : @escaping (T) -> Void) {
+    self.mReadModelFunction = inGetter
+    self.mWriteModelFunction = inSetter
+    super.init ()
+  }
+
+  //····················································································································
+
+  private var mReadModelFunction : () -> EBSelection <T>
+  private var mWriteModelFunction : (T) -> Void
   var mValidateAndWriteModelFunction : Optional < (T, NSWindow?) -> Bool > = nil
   private var mCachedValue : EBSelection <T>? = nil
 
@@ -59,8 +67,8 @@ final class EBGenericPropertyProxy <T : EBPropertyProtocol> : EBGenericReadWrite
   //····················································································································
 
   override var selection : EBSelection <T> {
-    if let unReadModelFunction = self.mReadModelFunction, self.mCachedValue == nil {
-      self.mCachedValue = unReadModelFunction ()
+    if self.mCachedValue == nil {
+      self.mCachedValue = self.mReadModelFunction ()
       self.updateValueExplorer (possibleValue: self.mCachedValue)
     }
     if self.mCachedValue == nil {
@@ -72,7 +80,7 @@ final class EBGenericPropertyProxy <T : EBPropertyProtocol> : EBGenericReadWrite
   //····················································································································
 
   override func setProp (_ value : T) {
-    self.mWriteModelFunction? (value)
+    self.mWriteModelFunction (value)
   }
 
   //····················································································································
@@ -85,6 +93,19 @@ final class EBGenericPropertyProxy <T : EBPropertyProtocol> : EBGenericReadWrite
     }
     return result
   }
+
+  //····················································································································
+  //  Façade
+  //····················································································································
+
+  private lazy var mFaçade = ReadWriteFaçade <T> (
+    getter: { [weak self] in return self?.selection ?? .empty },
+    setter: { [weak self] in self?.mWriteModelFunction ($0) }
+  )
+
+  //····················································································································
+
+  var projectedValue : ReadWriteFaçade <T> { self.mFaçade }
 
   //····················································································································
 

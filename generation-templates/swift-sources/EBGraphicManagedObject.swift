@@ -23,7 +23,7 @@ class EBGraphicManagedObject : EBManagedObject {
   //   Transient property: selectionDisplay
   //····················································································································
 
-  var selectionDisplay_property = EBTransientProperty_EBShape ()
+  final let selectionDisplay_property = EBTransientProperty_EBShape ()
 
   //····················································································································
 
@@ -46,7 +46,7 @@ class EBGraphicManagedObject : EBManagedObject {
   //   Transient property: objectDisplay
   //····················································································································
 
-  var objectDisplay_property = EBTransientProperty_EBShape ()
+  final let objectDisplay_property = EBTransientProperty_EBShape ()
 
   //····················································································································
 

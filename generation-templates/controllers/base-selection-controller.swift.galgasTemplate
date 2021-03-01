@@ -16,9 +16,56 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBO
 %  //····················································································································\n\n%
   if not [mKind isEntityType] then
     if [mKind isTransient] then
-      %  var %!lkey.string%_property = EBTransientProperty_%![mKind swiftTypeName]% ()\n\n%
+      %  final let %!lkey.string%_property = EBGenericTransientProperty <%![mKind swiftTypeName]%> ()\n\n%
     else
-      %  var %!lkey.string%_property = EBPropertyProxy_%![mKind swiftTypeName]% ()\n\n%
+      %  final lazy var %!lkey.string%_property = EBPropertyProxy_%![mKind swiftTypeName]% (\n%
+      %    getter: { [weak self] in\n%
+      %      if let model = self?.mModel {\n%
+      %        switch model.selection {\n%
+      %        case .empty :\n%
+      %          return .empty\n%
+      %        case .multiple :\n%
+      %          return .multiple\n%
+      %        case .single (let v) :\n%
+      %          var s = Set <%![mKind swiftTypeName]%> ()\n%
+      %          var isMultipleSelection = false\n%
+      %          for object in v {\n%
+      %            switch object.%!lkey.string%_property_selection {\n%
+      %            case .empty :\n%
+      %              return .empty\n%
+      %            case .multiple :\n%
+      %              isMultipleSelection = true\n%
+      %            case .single (let vProp) :\n%
+      %              s.insert (vProp)\n%
+      %            }\n%
+      %          }\n%
+      %          if isMultipleSelection {\n%
+      %            return .multiple\n%
+      %          }else if s.count == 0 {\n%
+      %            return .empty\n%
+      %          }else if s.count == 1 {\n%
+      %            return .single (s.first!)\n%
+      %          }else{\n%
+      %            return .multiple\n%
+      %          }\n%
+      %        }\n%
+      %      }else{\n%
+      %        return .empty\n%
+      %      }\n%
+      %    },\n%
+      %    setter: { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
+      %      if let model = self?.mModel {\n%
+      %        switch model.selection {\n%
+      %        case .empty, .multiple :\n%
+      %          break\n%
+      %        case .single (let v) :\n%
+      %          for object in v {\n%
+      %            object.%!lkey.string%_property.setProp (inValue)\n%
+      %          }\n%
+      %        }\n%
+      %      }\n%
+      %    }\n%
+      %  )\n\n%
     end
       %  var %!lkey.string%_property_selection : EBSelection <%![mKind swiftTypeName]%> {\n%
       %    return self.%!lkey.string%_property.selection\n%
@@ -51,9 +98,11 @@ end
   for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
     if not [mKind isEntityType] then
       %  //--- %!lkey.string%\n%
-      %    self.%!lkey.string%_property.mReadModelFunction = nil \n%
-      if not [mKind isTransient] then
-        %    self.%!lkey.string%_property.mWriteModelFunction = nil \n%
+      if [mKind isTransient] then
+        %    self.%!lkey.string%_property.mReadModelFunction = nil \n%
+      else
+        %    // self.%!lkey.string%_property.mReadModelFunction = nil \n%
+        %    // self.%!lkey.string%_property.mWriteModelFunction = nil \n%
         %    self.%!lkey.string%_property.mValidateAndWriteModelFunction = nil \n%
        end
       %    self.mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
@@ -167,6 +216,7 @@ if not [mKind isEntityType] then
   %  //···················································································································*\n\n% 
   %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
   %    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
+if [mKind isTransient] then
   %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
   %      if let model = self?.mModel {\n%
   %        switch model.selection {\n%
@@ -201,8 +251,42 @@ if not [mKind isEntityType] then
   %        return .empty\n%
   %      }\n%
   %    }\n%
-if not [mKind isTransient] then
-%    self.%!lkey.string%_property.mWriteModelFunction = { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
+else
+  % /*   self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
+  %      if let model = self?.mModel {\n%
+  %        switch model.selection {\n%
+  %        case .empty :\n%
+  %          return .empty\n%
+  %        case .multiple :\n%
+  %          return .multiple\n%
+  %        case .single (let v) :\n%
+  %          var s = Set <%![mKind swiftTypeName]%> ()\n%
+  %          var isMultipleSelection = false\n%
+  %          for object in v {\n%
+  %            switch object.%!lkey.string%_property_selection {\n%
+  %            case .empty :\n%
+  %              return .empty\n%
+  %            case .multiple :\n%
+  %              isMultipleSelection = true\n%
+  %            case .single (let vProp) :\n%
+  %              s.insert (vProp)\n%
+  %            }\n%
+  %          }\n%
+  %          if isMultipleSelection {\n%
+  %            return .multiple\n%
+  %          }else if s.count == 0 {\n%
+  %            return .empty\n%
+  %          }else if s.count == 1 {\n%
+  %            return .single (s.first!)\n%
+  %          }else{\n%
+  %            return .multiple\n%
+  %          }\n%
+  %        }\n%
+  %      }else{\n%
+  %        return .empty\n%
+  %      }\n%
+  %    } */\n%
+%/*    self.%!lkey.string%_property.mWriteModelFunction = { [weak self] (inValue : %![mKind swiftTypeName]%) in\n%
 %      if let model = self?.mModel {\n%
 %        switch model.selection {\n%
 %        case .empty, .multiple :\n%
@@ -213,7 +297,7 @@ if not [mKind isTransient] then
 %          }\n%
 %        }\n%
 %      }\n%
-%    }\n%
+%    } */\n%
 %    self.%!lkey.string%_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
 %      if let model = self?.mModel {\n%
 %        switch model.selection {\n%

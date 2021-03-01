@@ -217,6 +217,51 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   end  
 }
 
+#getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string outResult {
+#  switch self
+#  case rootProperty (@lstring propertyName) :
+#    outResult = inSelf + "rootObject." + propertyName + "_property.projectedValue"
+#  case rootPropertyNone (@lstring propertyName) :
+#    outResult = inSelf + "rootObject." + propertyName + "_none"
+#  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+#    outResult = inSelf + "rootObject." + propertyName + "_property" + "." + optionName + "_property.projectedValue"
+#  case rootPropertyRelationship (@lstring relationshipName *) :
+#    outResult = inSelf + "rootObject." + relationshipName + "_property.projectedValue"
+#  case selfWithoutProperty (*) :
+#    outResult = inSelf + "ebObjectIndex"
+#  case selfProperty (@lstring propertyName) :
+#    outResult = inSelf + propertyName + "_property.projectedValue"
+#  case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+#    outResult = inSelf + propertyName + "_property" + "." + optionName + "_property.projectedValue"
+#  case selfPropertyArray (@lstring propertyName @lstring unused elementPropertyName) :
+#    outResult = inSelf + propertyName + "_property"
+#  case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) :
+#    outResult = inSelf + propertyName + "_property." + elementPropertyName + "_property.projectedValue"
+#  case selfPropertyNone (@lstring propertyName) :
+#    outResult = inSelf + propertyName + "_none"
+#  case prefsProperty (@lstring propertyName) :
+#    outResult = "preferences_" + propertyName + "_property.projectedValue"
+#  case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+#    outResult = "preferences_" + propertyName + "_property" + "." + optionName + "_property.projectedValue"
+#  case selfControllerProperty (@lstring controllerName @lstring propertyName) :
+#    outResult = inSelf + controllerName + "." + propertyName + "_property.projectedValue"
+#  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+#    outResult = inSelf + controllerName + "." + propertyName + "_property" + "." + secondaryPropertyName + "_property.projectedValue"
+#  case selfControllerAllProperties (@lstring controllerName @lstring propertyName *) :
+#    outResult = inSelf + controllerName + "." + propertyName + "_property.projectedValue"
+#  case selfControllerOneProperty (@lstring controllerName @lstring propertyName) :
+#    outResult = inSelf + controllerName + "." + propertyName + "_property.projectedValue"
+#  case signatureProperty (*) :
+#    outResult = "self.signatureObserver_property.projectedValue"
+#  case versionProperty (*) :
+#    outResult = "self.versionObserver_property.projectedValue"
+#  case versionShouldChangeProperty (*) :
+#    outResult = "self.versionShouldChangeObserver_property.projectedValue"
+#  case superProperty (* @lstring propertyName) :
+#    outResult = inSelf + propertyName + "_property.projectedValue"
+#  end  
+#}
+
 #-----------------------------------------------------------------------------------------------------------------------
 
 getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {

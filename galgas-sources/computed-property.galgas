@@ -287,25 +287,8 @@ override getter @computedPropertyGeneration declarationInSelectionControllerCode
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Selection observable property: " + mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-  result += "    return self." + mPropertyName + "_property.selection\n"
-  result += "  }\n\n"
-}
-
-#·······················································································································
-
-override getter @computedPropertyGeneration initCode -> @string {
-  result  = ""
-}
-
-#·······················································································································
-
-override getter @computedPropertyGeneration bindPropertyInSelectionController -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  private final func bind_property_" + mPropertyName + " () {\n"
-  result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
-  result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
+  result += "  final lazy var " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " (\n"
+  result += "    getter: { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty :\n"
@@ -338,9 +321,8 @@ override getter @computedPropertyGeneration bindPropertyInSelectionController ->
   result += "      }else{\n"
   result += "        return .empty\n"
   result += "      }\n"
-  result += "    }\n"
-
-  result += "    self." + mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [mType swiftTypeName] + ") in\n"
+  result += "    },\n"
+  result += "    setter: { [weak self] (inValue : " + [mType swiftTypeName] + ") in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty, .multiple :\n"
@@ -352,6 +334,70 @@ override getter @computedPropertyGeneration bindPropertyInSelectionController ->
   result += "        }\n"
   result += "      }\n"
   result += "    }\n"
+  result += "  )\n\n"
+  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
+  result += "    return self." + mPropertyName + "_property.selection\n"
+  result += "  }\n\n"
+}
+
+#·······················································································································
+
+override getter @computedPropertyGeneration initCode -> @string {
+  result  = ""
+}
+
+#·······················································································································
+
+override getter @computedPropertyGeneration bindPropertyInSelectionController -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+  result += "  private final func bind_property_" + mPropertyName + " () {\n"
+  result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
+  result += "   /* self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
+  result += "      if let model = self?.selectedArray_property {\n"
+  result += "        switch model.selection {\n"
+  result += "        case .empty :\n"
+  result += "          return .empty\n"
+  result += "        case .multiple :\n"
+  result += "          return .multiple\n"
+  result += "        case .single (let v) :\n"
+  result += "          var s = Set <" + [mType swiftTypeName] + "> ()\n"
+  result += "          var isMultipleSelection = false\n"
+  result += "          for object in v {\n"
+  result += "            switch object." + mPropertyName + "_property_selection {\n"
+  result += "            case .empty :\n"
+  result += "              return .empty\n"
+  result += "            case .multiple :\n"
+  result += "              isMultipleSelection = true\n"
+  result += "            case .single (let vProp) :\n"
+  result += "              s.insert (vProp)\n"
+  result += "            }\n"
+  result += "          }\n"
+  result += "          if isMultipleSelection {\n"
+  result += "            return .multiple\n"
+  result += "          }else if s.count == 0 {\n"
+  result += "            return .empty\n"
+  result += "          }else if s.count == 1 {\n"
+  result += "            return .single (s.first!)\n"
+  result += "          }else{\n"
+  result += "            return .multiple\n"
+  result += "          }\n"
+  result += "        }\n"
+  result += "      }else{\n"
+  result += "        return .empty\n"
+  result += "      }\n"
+  result += "    } */\n"
+  result += "    /* self." + mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [mType swiftTypeName] + ") in\n"
+  result += "      if let model = self?.selectedArray_property {\n"
+  result += "        switch model.selection {\n"
+  result += "        case .empty, .multiple :\n"
+  result += "          break\n"
+  result += "        case .single (let v) :\n"
+  result += "          for object in v {\n"
+  result += "            object." + mPropertyName + "_property.setProp (inValue)\n"
+  result += "          }\n"
+  result += "        }\n"
+  result += "      }\n"
+  result += "    } */\n"
   result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " + [mType swiftTypeName] + ", windowForSheet : NSWindow?) in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"

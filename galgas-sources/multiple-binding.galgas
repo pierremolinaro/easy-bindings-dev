@@ -552,7 +552,7 @@ override getter @booleanMultipleBindingLiteralIntForGeneration expressionString
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = mObservedModelString + "_selection"
+  outExpressionString = mObservedModelString + "_selection" # §
 }
 
 #·······················································································································

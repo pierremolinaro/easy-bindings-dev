@@ -745,8 +745,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-  var canBringForward_property = EBTransientProperty_Bool ()
-
+  final let canBringForward_property = EBGenericTransientProperty <Bool> ()
+  
   //····················································································································
 
   var canBringForward : Bool {
@@ -777,8 +777,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-  var canBringToFront_property = EBTransientProperty_Bool ()
-
+  final let canBringToFront_property = EBGenericTransientProperty <Bool> ()
+  
   //····················································································································
 
   var canBringToFront : Bool {
@@ -811,10 +811,9 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   //····················································································································
   // SEND BACKWARD
-   // MARK: -
  //····················································································································
 
-  var canSendBackward_property = EBTransientProperty_Bool ()
+  final let canSendBackward_property = EBGenericTransientProperty <Bool> ()
 
   //····················································································································
 
@@ -846,7 +845,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-  var canSendToBack_property = EBTransientProperty_Bool ()
+  final let canSendToBack_property = EBGenericTransientProperty <Bool> ()
 
   //····················································································································
 
@@ -909,8 +908,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-  var canFlipHorizontally_property = EBTransientProperty_Bool ()
-
+  final let canFlipHorizontally_property = EBGenericTransientProperty <Bool> ()
+  
   //····················································································································
 
   func flipHorizontally () {
@@ -935,8 +934,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-  var canFlipVertically_property = EBTransientProperty_Bool ()
-
+  final let canFlipVertically_property = EBGenericTransientProperty <Bool> ()
+  
   //····················································································································
 
   func flipVertically () {
@@ -961,7 +960,8 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // MARK: -
   //····················································································································
 
-  var canRotate90_property = EBTransientProperty_Bool ()
+  final let canRotate90_property = EBGenericTransientProperty <Bool> ()
+
   private var mRotate90PointSet = ObjcCanariPointSet ()
 
  //····················································································································

@@ -17,7 +17,7 @@ final class EBGenericPreferenceProperty <T : EBPropertyProtocol> : EBGenericStor
   //····················································································································
 
   init (defaultValue inValue : T, prefKey inPreferenceKey : String) {
-    mPreferenceKey = inPreferenceKey
+    self.mPreferenceKey = inPreferenceKey
     super.init (defaultValue: inValue, undoManager: nil)
   //--- Read from preferences
     let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)
@@ -32,6 +32,25 @@ final class EBGenericPreferenceProperty <T : EBPropertyProtocol> : EBGenericStor
     UserDefaults.standard.set (self.propval.convertToNSObject (), forKey: self.mPreferenceKey)
     super.postEvent ()
   }
+
+  //····················································································································
+  //  Façade
+  //····················································································································
+
+  private lazy var mFaçade = ReadWriteFaçade <T> (
+    getter: { [weak self] in
+      if let unwrappedSelf = self {
+        return .single (unwrappedSelf.propval)
+      }else{
+        return .empty
+      }
+    },
+    setter: { [weak self] in self?.setProp ($0) }
+  )
+
+  //····················································································································
+
+  override var projectedValue : ReadWriteFaçade <T> { self.mFaçade }
 
   //····················································································································
 

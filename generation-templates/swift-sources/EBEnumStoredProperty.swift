@@ -19,14 +19,14 @@ final class EBStoredEnumProperty <T : EnumPropertyProtocol> : EBReadWriteEnumPro
 
   var mValueExplorer : NSTextField? {
     didSet {
-      self.mValueExplorer?.stringValue = "\(mValue)"
+      self.mValueExplorer?.stringValue = "\(mInternalValue)"
     }
   }
 
   //····················································································································
 
   init (defaultValue inValue : T, undoManager inEBUndoManager : EBUndoManager?) {
-    self.mValue = inValue
+    self.mInternalValue = inValue
     self.mPreferenceKey = nil
     self.mEBUndoManager = inEBUndoManager
     super.init ()
@@ -35,8 +35,8 @@ final class EBStoredEnumProperty <T : EnumPropertyProtocol> : EBReadWriteEnumPro
   //····················································································································
 
   init (defaultValue inValue : T, prefKey inPreferenceKey : String) {
-    mValue = inValue
-    mPreferenceKey = inPreferenceKey
+    self.mInternalValue = inValue
+    self.mPreferenceKey = inPreferenceKey
     super.init ()
   //--- Read from preferences
     let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)
@@ -47,16 +47,16 @@ final class EBStoredEnumProperty <T : EnumPropertyProtocol> : EBReadWriteEnumPro
 
   //····················································································································
 
-  private var mValue : T {
+  private var mInternalValue : T {
     didSet {
-      if self.mValue != oldValue {
+      if self.mInternalValue != oldValue {
         if let prefKey = self.mPreferenceKey {
-          UserDefaults.standard.set (mValue.convertToNSObject (), forKey:prefKey)
+          UserDefaults.standard.set (mInternalValue.convertToNSObject (), forKey:prefKey)
         }
-        self.mValueExplorer?.stringValue = "\(mValue)"
-        self.mEBUndoManager?.registerUndo (withTarget: self) { $0.mValue = oldValue }
+        self.mValueExplorer?.stringValue = "\(mInternalValue)"
+        self.mEBUndoManager?.registerUndo (withTarget: self) { $0.mInternalValue = oldValue }
         if logEvents () {
-          appendMessageString ("Property \(explorerIndexString (self.ebObjectIndex)) did change value to \(mValue)\n")
+          appendMessageString ("Property \(explorerIndexString (self.ebObjectIndex)) did change value to \(mInternalValue)\n")
         }
         self.postEvent ()
         self.clearSignatureCache ()
@@ -66,15 +66,15 @@ final class EBStoredEnumProperty <T : EnumPropertyProtocol> : EBReadWriteEnumPro
 
   //····················································································································
 
-  override var selection : EBSelection<T> { return .single (mValue) }
+  override var selection : EBSelection<T> { return .single (mInternalValue) }
 
   //····················································································································
 
-  var propval : T { return self.mValue }
+  var propval : T { return self.mInternalValue }
 
   //····················································································································
 
-  override func setProp (_ value : T) { self.mValue = value }
+  override func setProp (_ value : T) { self.mInternalValue = value }
 
   //····················································································································
 
@@ -115,7 +115,7 @@ final class EBStoredEnumProperty <T : EnumPropertyProtocol> : EBReadWriteEnumPro
   //····················································································································
 
   func storeIn (dictionary : NSMutableDictionary, forKey inKey : String) {
-    dictionary.setValue (mValue.convertToNSObject (), forKey:inKey)
+    dictionary.setValue (mInternalValue.convertToNSObject (), forKey:inKey)
   }
 
   //····················································································································
@@ -164,6 +164,25 @@ final class EBStoredEnumProperty <T : EnumPropertyProtocol> : EBReadWriteEnumPro
     }
     return computedSignature
   }
+
+  //····················································································································
+  //  Façade
+  //····················································································································
+
+  private lazy var mFaçade = ReadWriteFaçade <T> (
+    getter: { [weak self] in
+      if let unwrappedSelf = self {
+        return .single (unwrappedSelf.mInternalValue)
+      }else{
+        return .empty
+      }
+    },
+    setter: { [weak self] in self?.mInternalValue = $0 }
+  )
+
+  //····················································································································
+
+  var projectedValue : ReadWriteFaçade <T> { self.mFaçade }
 
   //····················································································································
 }
