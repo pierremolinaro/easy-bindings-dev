@@ -144,8 +144,7 @@ map @propertyMap {
 
 getter @propertyMap-element isAbstract -> @bool {
   result = false
-  if [mKind isProperty] then
-    [mKind property ?1* ?accessibility:let @propertyAccessibility accessibility]
+  if let [mKind property ?1* ?accessibility:let @propertyAccessibility accessibility] then
     if [accessibility isTransient] then
       [accessibility transient ?isAbstract: let ab]
       result = ab

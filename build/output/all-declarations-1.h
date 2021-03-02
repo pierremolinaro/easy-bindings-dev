@@ -443,6 +443,39 @@ class GALGAS_typeKind : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_bezierPathArrayType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_bezierPathType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_boolType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_classType (class GALGAS_string & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_colorType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_dataType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_dateType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_doubleType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_entityType (class GALGAS_string & outOperand0,
+                                                      class GALGAS_bool & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_enumType (class GALGAS_string & outOperand0,
+                                                    class GALGAS_enumConstantMap & outOperand1,
+                                                    class GALGAS_enumFuncMap & outOperand2) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_fontType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_integerType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_stringType () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_transientPropertyExternType (class GALGAS_string & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_uint_33__32_Type () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -4031,6 +4064,11 @@ class GALGAS_autoLayoutToolbarItemGeneration : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_space () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_view (class GALGAS_string & outOperand0,
+                                                class GALGAS_abstractViewInstructionGeneration & outOperand1) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;

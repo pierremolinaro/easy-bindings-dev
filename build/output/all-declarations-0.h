@@ -1407,6 +1407,10 @@ class GALGAS_arrayControllerBoundModelAST : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_rootToManyRelationship (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfToManyRelationship () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -2293,6 +2297,11 @@ class GALGAS_graphicController : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_defined (class GALGAS_lstring & outOperand0,
+                                                   class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_none () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -2394,6 +2403,10 @@ class GALGAS_multipleBindingDescriptor : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_binding (class GALGAS_abstractBooleanMultipleBindingExpressionAST & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_noBinding () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -2495,6 +2508,11 @@ class GALGAS_runActionDescriptor : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_action (class GALGAS_lstring & outOperand0,
+                                                  class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_noAction () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -2596,6 +2614,10 @@ class GALGAS_tableValueBinding : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_noTableValueBinding () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_tableValueBinding (class GALGAS_lstring & outOperand0) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -5441,6 +5463,18 @@ class GALGAS_multipleBindingComparisonAST : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_equal () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_greater () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_greaterOrEqual () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_lower () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_lowerOrEqual () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_notEqual () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -7118,6 +7152,59 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_prefsProperty (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_prefsPropertyWithOption (class GALGAS_lstring & outOperand0,
+                                                                   class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_rootProperty (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_rootPropertyNone (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_rootPropertyRelationship (class GALGAS_lstring & outOperand0,
+                                                                    class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_rootPropertyWithOption (class GALGAS_lstring & outOperand0,
+                                                                  class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfControllerAllProperties (class GALGAS_lstring & outOperand0,
+                                                                       class GALGAS_lstring & outOperand1,
+                                                                       class GALGAS_lstring & outOperand2) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfControllerOneProperty (class GALGAS_lstring & outOperand0,
+                                                                     class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfControllerProperty (class GALGAS_lstring & outOperand0,
+                                                                  class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfControllerSecondaryProperty (class GALGAS_lstring & outOperand0,
+                                                                           class GALGAS_lstring & outOperand1,
+                                                                           class GALGAS_lstring & outOperand2) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfProperty (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfPropertyArray (class GALGAS_lstring & outOperand0,
+                                                             class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfPropertyNone (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfPropertyObject (class GALGAS_lstring & outOperand0,
+                                                              class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfPropertyWithOption (class GALGAS_lstring & outOperand0,
+                                                                  class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selfWithoutProperty (class GALGAS_location & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_signatureProperty (class GALGAS_location & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_superProperty (class GALGAS_lstring & outOperand0,
+                                                         class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_versionProperty (class GALGAS_location & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_versionShouldChangeProperty (class GALGAS_location & outOperand0) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -7988,6 +8075,10 @@ class GALGAS_proxyKind : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_propertyProxy () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_toManyProxy () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -8904,6 +8995,12 @@ class GALGAS_toManyRelationshipOptionAST : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_hasDependance (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_hasOpposite (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_none () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -9152,6 +9249,12 @@ class GALGAS_toOneOppositeRelationship : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_none () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_oppositeIsToMany (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_oppositeIsToOne (class GALGAS_lstring & outOperand0) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -9755,6 +9858,11 @@ class GALGAS_astAutoLayoutToolbarItem : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_space () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_view (class GALGAS_lstring & outOperand0,
+                                                class GALGAS_astComputedViewInstruction & outOperand1) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -9887,6 +9995,17 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_enumFunc (class GALGAS_lstring & outOperand0,
+                                                    class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_menuItem (class GALGAS_string & outOperand0,
+                                                    class GALGAS_runActionDescriptor & outOperand1,
+                                                    class GALGAS_multipleBindingDescriptor & outOperand2) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_string (class GALGAS_string & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_viewFunc (class GALGAS_astAbstractViewInstructionDeclaration & outOperand0) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -10050,6 +10169,18 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_menuItem () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_typeBool () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_typeInt () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_typeString () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_typeStringArray () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_typeView () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -10136,6 +10267,11 @@ class GALGAS_mainXibElement : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_outlet (class GALGAS_lstring & outOperand0,
+                                                  class GALGAS_lstring & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_text (class GALGAS_lstring & outOperand0) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -13244,6 +13380,16 @@ class GALGAS_classKind : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_atomic (class GALGAS_typeKind & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_document (class GALGAS_lstring & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_entity (class GALGAS_string & outOperand0,
+                                                  class GALGAS_bool & outOperand1,
+                                                  class GALGAS_bool & outOperand2) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_prefs () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;

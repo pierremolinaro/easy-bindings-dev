@@ -732,6 +732,137 @@ void GALGAS_typeKind::method_transientPropertyExternType (GALGAS_string & outAss
 
 //----------------------------------------------------------------------------------------------------------------------
 
+bool GALGAS_typeKind::optional_boolType () const {
+  const bool ok = mEnum == kEnum_boolType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_integerType () const {
+  const bool ok = mEnum == kEnum_integerType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_uint_33__32_Type () const {
+  const bool ok = mEnum == kEnum_uint_33__32_Type ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_doubleType () const {
+  const bool ok = mEnum == kEnum_doubleType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_stringType () const {
+  const bool ok = mEnum == kEnum_stringType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_dataType () const {
+  const bool ok = mEnum == kEnum_dataType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_dateType () const {
+  const bool ok = mEnum == kEnum_dateType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_fontType () const {
+  const bool ok = mEnum == kEnum_fontType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_colorType () const {
+  const bool ok = mEnum == kEnum_colorType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_bezierPathType () const {
+  const bool ok = mEnum == kEnum_bezierPathType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_bezierPathArrayType () const {
+  const bool ok = mEnum == kEnum_bezierPathArrayType ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_enumType (GALGAS_string & outAssociatedValue0,
+                                         GALGAS_enumConstantMap & outAssociatedValue1,
+                                         GALGAS_enumFuncMap & outAssociatedValue2) const {
+  const bool ok = mEnum == kEnum_enumType ;
+  if (ok) {
+    const auto * ptr = (const cEnumAssociatedValues_typeKind_enumType *) unsafePointer () ;
+    // const cEnumAssociatedValues_typeKind_enumType * ptr = (const cEnumAssociatedValues_typeKind_enumType *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+    outAssociatedValue1 = ptr->mAssociatedValue1 ;
+    outAssociatedValue2 = ptr->mAssociatedValue2 ;
+  }
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_entityType (GALGAS_string & outAssociatedValue0,
+                                           GALGAS_bool & outAssociatedValue1) const {
+  const bool ok = mEnum == kEnum_entityType ;
+  if (ok) {
+    const auto * ptr = (const cEnumAssociatedValues_typeKind_entityType *) unsafePointer () ;
+    // const cEnumAssociatedValues_typeKind_entityType * ptr = (const cEnumAssociatedValues_typeKind_entityType *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+    outAssociatedValue1 = ptr->mAssociatedValue1 ;
+  }
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_classType (GALGAS_string & outAssociatedValue0) const {
+  const bool ok = mEnum == kEnum_classType ;
+  if (ok) {
+    const auto * ptr = (const cEnumAssociatedValues_typeKind_classType *) unsafePointer () ;
+    // const cEnumAssociatedValues_typeKind_classType * ptr = (const cEnumAssociatedValues_typeKind_classType *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+  }
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_typeKind::optional_transientPropertyExternType (GALGAS_string & outAssociatedValue0) const {
+  const bool ok = mEnum == kEnum_transientPropertyExternType ;
+  if (ok) {
+    const auto * ptr = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) unsafePointer () ;
+    // const cEnumAssociatedValues_typeKind_transientPropertyExternType * ptr = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+  }
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static const char * gEnumNameArrayFor_typeKind [16] = {
   "(not built)",
   "boolType",
@@ -7940,6 +8071,27 @@ void GALGAS_astAutoLayoutToolbarItem::method_view (GALGAS_lstring & outAssociate
 
 //----------------------------------------------------------------------------------------------------------------------
 
+bool GALGAS_astAutoLayoutToolbarItem::optional_view (GALGAS_lstring & outAssociatedValue0,
+                                                     GALGAS_astComputedViewInstruction & outAssociatedValue1) const {
+  const bool ok = mEnum == kEnum_view ;
+  if (ok) {
+    const auto * ptr = (const cEnumAssociatedValues_astAutoLayoutToolbarItem_view *) unsafePointer () ;
+    // const cEnumAssociatedValues_astAutoLayoutToolbarItem_view * ptr = (const cEnumAssociatedValues_astAutoLayoutToolbarItem_view *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+    outAssociatedValue1 = ptr->mAssociatedValue1 ;
+  }
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_astAutoLayoutToolbarItem::optional_space () const {
+  const bool ok = mEnum == kEnum_space ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static const char * gEnumNameArrayFor_astAutoLayoutToolbarItem [3] = {
   "(not built)",
   "view",
@@ -10369,6 +10521,27 @@ void GALGAS_autoLayoutToolbarItemGeneration::method_view (GALGAS_string & outAss
 
 //----------------------------------------------------------------------------------------------------------------------
 
+bool GALGAS_autoLayoutToolbarItemGeneration::optional_view (GALGAS_string & outAssociatedValue0,
+                                                            GALGAS_abstractViewInstructionGeneration & outAssociatedValue1) const {
+  const bool ok = mEnum == kEnum_view ;
+  if (ok) {
+    const auto * ptr = (const cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view *) unsafePointer () ;
+    // const cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view * ptr = (const cEnumAssociatedValues_autoLayoutToolbarItemGeneration_view *) unsafePointer () ;
+    outAssociatedValue0 = ptr->mAssociatedValue0 ;
+    outAssociatedValue1 = ptr->mAssociatedValue1 ;
+  }
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_autoLayoutToolbarItemGeneration::optional_space () const {
+  const bool ok = mEnum == kEnum_space ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static const char * gEnumNameArrayFor_autoLayoutToolbarItemGeneration [3] = {
   "(not built)",
   "view",
@@ -11908,6 +12081,48 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::constru
   GALGAS_autoLayoutClassParameterType result ;
   result.mEnum = kEnum_menuItem ;
   return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_autoLayoutClassParameterType::optional_typeString () const {
+  const bool ok = mEnum == kEnum_typeString ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_autoLayoutClassParameterType::optional_typeStringArray () const {
+  const bool ok = mEnum == kEnum_typeStringArray ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_autoLayoutClassParameterType::optional_typeInt () const {
+  const bool ok = mEnum == kEnum_typeInt ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_autoLayoutClassParameterType::optional_typeBool () const {
+  const bool ok = mEnum == kEnum_typeBool ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_autoLayoutClassParameterType::optional_typeView () const {
+  const bool ok = mEnum == kEnum_typeView ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_autoLayoutClassParameterType::optional_menuItem () const {
+  const bool ok = mEnum == kEnum_menuItem ;
+  return ok ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

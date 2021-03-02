@@ -680,6 +680,24 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_arrayController (class GALGAS_lstring & outOperand0,
+                                                           class GALGAS_bool & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_property (class GALGAS_typeKind & outOperand0,
+                                                    class GALGAS_propertyAccessibility & outOperand1) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_selectionController (class GALGAS_string & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_toMany (class GALGAS_lstring & outOperand0,
+                                                  class GALGAS_propertyAccessibility & outOperand1,
+                                                  class GALGAS_bool & outOperand2,
+                                                  class GALGAS_toManyRelationshipOptionAST & outOperand3) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_toOne (class GALGAS_lstring & outOperand0,
+                                                 class GALGAS_propertyAccessibility & outOperand1,
+                                                 class GALGAS_bool & outOperand2,
+                                                 class GALGAS_toOneOppositeRelationship & outOperand3) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -923,6 +941,10 @@ class GALGAS_autolayoutEnabledBindingForGeneration : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_enabled (class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_none () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -1026,6 +1048,12 @@ class GALGAS_autolayoutRunBindingForGeneration : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_none () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_run (class GALGAS_string & outOperand0,
+                                               class GALGAS_string & outOperand1,
+                                               class GALGAS_string & outOperand2) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -2698,6 +2726,12 @@ class GALGAS_propertyAccessibility : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_computed () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_stored () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_transient (class GALGAS_bool & outOperand0) const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -3170,6 +3204,10 @@ class GALGAS_autoLayoutViewGraphicControllerBindingGeneration : public AC_GALGAS
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_binding (class GALGAS_string & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_none () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -3820,80 +3858,4 @@ class GALGAS_string extensionGetter_modelStringForSelf (const class GALGAS_obser
 class GALGAS_string extensionGetter_modelStringFunctionArgument (const class GALGAS_observablePropertyAST & inObject,
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@observablePropertyAST needs_unwSelf' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_bool extensionGetter_needs_5F_unwSelf (const class GALGAS_observablePropertyAST & inObject,
-                                                    const class GALGAS_bool & constinArgument0,
-                                                    class C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@observablePropertyAST location' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_location extensionGetter_location (const class GALGAS_observablePropertyAST & inObject,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension method '@observablePropertyAST analyzeObservableProperty'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void extensionMethod_analyzeObservableProperty (const class GALGAS_observablePropertyAST inObject,
-                                                const class GALGAS_propertyMap constin_inRootPropertyMap,
-                                                const class GALGAS_semanticContext constin_inSemanticContext,
-                                                const class GALGAS_propertyMap constin_inBoundModelPropertyMap,
-                                                class GALGAS_propertyKind & out_outKind,
-                                                class GALGAS_string & out_outSwiftTypeStringForTransientFunctionArgument,
-                                                class C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: @propertyAccessibility enum, associated values
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cEnumAssociatedValues_propertyAccessibility_transient : public cEnumAssociatedValues {
-  public : const GALGAS_bool mAssociatedValue0 ;
-
-//--- Constructor
-  public : cEnumAssociatedValues_propertyAccessibility_transient (const GALGAS_bool & inAssociatedValue0
-                                                                  COMMA_LOCATION_ARGS) ;
-
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
-
-  public : virtual ~ cEnumAssociatedValues_propertyAccessibility_transient (void) {}
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyKind swiftTypeName' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string extensionGetter_swiftTypeName (const class GALGAS_propertyKind & inObject,
-                                                   class C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@typeKind swiftTypeName' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string extensionGetter_swiftTypeName (const class GALGAS_typeKind & inObject,
-                                                   class C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
 

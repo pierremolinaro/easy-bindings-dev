@@ -509,53 +509,6 @@ getter @transientDependencyListForGeneration needs_unwSelf ?let @bool inPreferen
 #   GENERATION                            
 #-----------------------------------------------------------------------------------------------------------------------
 
-getter @observablePropertyAST generateGetProperty -> @string outResult {
-  switch self
-  case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = "self." + controllerName.string + ".addEBObserverOf_" + propertyName
-  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = "self." + controllerName.string + "." + propertyName + ".addEBObserverOf_" + secondaryPropertyName
-  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
-    outResult = "self." + controllerName.string + "." + propertyName + "addEBObserverOf_" + secondaryPropertyName
-  case selfControllerOneProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = "self." + controllerName.string + "." + propertyName + "_property <<4>>" 
-  case selfWithoutProperty (*) :
-    outResult = "" # Do not generate add observer
-  case selfProperty (@lstring masterName) :
-    outResult = "self." + masterName.string + "_property"
-  case selfPropertyWithOption (@lstring masterName *) :
-    outResult = "self." + masterName.string + "_property"
-  case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
-    outResult = "self." + masterName.string + ".addEBObserverOf_" + elementPropertyName
-  case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
-    outResult = "self." + masterName.string + ".addEBObserverOf_" + elementPropertyName 
-  case selfPropertyNone (@lstring masterName) :
-    outResult = "self." + masterName.string + "_property"
-  case prefsProperty (@lstring propertyName) :
-    outResult = "preferences_"  + propertyName + "_property"
-  case prefsPropertyWithOption (@lstring propertyName *) :
-    outResult = "preferences_"  + propertyName + "_property"
-  case rootProperty (@lstring masterName) :
-    outResult = "self.rootObject." + masterName + "_property"
-  case rootPropertyNone (@lstring masterName) :
-    outResult = "self.rootObject." + masterName + "_property"
-  case rootPropertyWithOption (@lstring masterName @lstring optionName) :
-    outResult = "self.rootObject." + masterName + "_property." + optionName + "_property"
-  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
-    outResult = "self.rootObject." + relationshipName + "_property." + propertyName + "_property"
-  case signatureProperty (*) :
-    outResult = "<< ligne 530 >>"
-  case versionProperty (*) :
-    outResult = "<< ligne 532 >>"
-  case versionShouldChangeProperty (*) :
-    outResult = "<< ligne 534 >>"
-  case superProperty (* @lstring propertyName) :
-    outResult = "self." + propertyName.string + "_property"
-  end
-}
-
-#-----------------------------------------------------------------------------------------------------------------------
-
 getter @observablePropertyAST generateAddObserverCall ?let @bool inPreferences -> @string outResult {
   let prefix = if inPreferences then "preferences_" else "self." end
   switch self
