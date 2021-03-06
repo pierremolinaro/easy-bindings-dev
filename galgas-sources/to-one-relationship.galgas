@@ -20,16 +20,16 @@ class @toOneRelationshipAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @toOneRelationshipAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  let node = @lstring.new {!mClassName.string + " " + mToOneRelationshipName !mToOneRelationshipName.location}
+  let node = @lstring.new {!self.mClassName.string + " " + self.mToOneRelationshipName !self.mToOneRelationshipName.location}
   [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !mClassName]
-  [!?ioGraph addEdge !node !mDestinationEntityName]
+  [!?ioGraph addEdge !node !self.mClassName]
+  [!?ioGraph addEdge !node !self.mDestinationEntityName]
 }
 
 #·······················································································································
 
 override getter @toOneRelationshipAST nodeKey -> @lstring {
-  result = @lstring.new {!mClassName.string + " " + mToOneRelationshipName !mToOneRelationshipName.location}
+  result = @lstring.new {!self.mClassName.string + " " + self.mToOneRelationshipName !self.mToOneRelationshipName.location}
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -94,25 +94,25 @@ override method @toOneRelationshipAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  with mClassName in !?ioSemanticContext.mClassMap 
+  with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !mDestinationEntityName ?let classKind ?3*]
+    [ioSemanticContext.mClassMap searchKey !self.mDestinationEntityName ?let classKind ?3*]
     switch classKind
     case prefs :
-      error mDestinationEntityName : "an entity is required here"
+      error self.mDestinationEntityName : "an entity is required here"
     case atomic (*) :
-      error mDestinationEntityName : "an entity is required here"
+      error self.mDestinationEntityName : "an entity is required here"
     case document (*) :
-      error mDestinationEntityName : "an entity is required here"
+      error self.mDestinationEntityName : "an entity is required here"
     case entity (* graphic *) :
       let kind = @propertyKind.toOne {
-        !typeName: mDestinationEntityName
+        !typeName: self.mDestinationEntityName
         !accessibility: .stored
         !graphic: graphic
-        !opposite: mOpposite
+        !opposite: self.mOpposite
       }
-      [!?mPropertyMap insertKey !mToOneRelationshipName !kind !{} !false]
+      [!?mPropertyMap insertKey !self.mToOneRelationshipName !kind !{} !false]
     end
   end
 }
@@ -123,29 +123,29 @@ override method @toOneRelationshipAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  with mClassName in !?ioSemanticContext.mClassMap 
+  with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !mDestinationEntityName ?let classKind ?let destinationEntityPropertyMap ?2*]
+    [ioSemanticContext.mClassMap searchKey !self.mDestinationEntityName ?let classKind ?let destinationEntityPropertyMap ?2*]
     switch classKind
     case prefs :
     case atomic (*) :
     case document (*) :
     case entity (* graphic *) :
       let kind = @propertyKind.toOne {
-        !typeName: mDestinationEntityName
+        !typeName: self.mDestinationEntityName
         !accessibility: .stored
         !graphic: graphic
-        !opposite: mOpposite
+        !opposite: self.mOpposite
       }
     #--- Code Generation
       mPropertyGenerationList += !@toOnePropertyGeneration.new {
-        !mToOneRelationshipName.string
-        !mClassName
+        !self.mToOneRelationshipName.string
+        !self.mClassName
         !kind
-        !mOpposite
+        !self.mOpposite
         !destinationEntityPropertyMap
-        !mUsedForSignature
+        !self.mUsedForSignature
       }
     end
   end
@@ -176,33 +176,33 @@ override getter @toOnePropertyGeneration propertyDeclarationCode
    ?let @stringset unused inOverriddenTransients -> @string
 {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   To one property: " + mPropertyName + "\n"
+  result += "  //   To one property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final let " + mPropertyName + "_property = StoredObject_" + [mRelationshipType swiftTypeName]
-  result +=            " (usedForSignature: " + [mUsedForSignature cString] + ")\n\n"
+  result += "  final let " + self.mPropertyName + "_property = StoredObject_" + [self.mRelationshipType swiftTypeName]
+  result +=            " (usedForSignature: " + [self.mUsedForSignature cString] + ")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + mPropertyName + "_property_selection : EBSelection <" + [mRelationshipType swiftTypeName] + "?> {\n"
-  result += "    return .single (self." + mPropertyName + "_property.propval)\n"
+  result += "  final var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mRelationshipType swiftTypeName] + "?> {\n"
+  result += "    return .single (self." + self.mPropertyName + "_property.propval)\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + mPropertyName + " : " + [mRelationshipType swiftTypeName] + "? {\n"
+  result += "  final var " + self.mPropertyName + " : " + [self.mRelationshipType swiftTypeName] + "? {\n"
   result += "    get {\n"
-  result += "      return self." + mPropertyName + "_property.propval\n"
+  result += "      return self." + self.mPropertyName + "_property.propval\n"
   result += "    }\n"
   result += "    set {\n"
-  result += "      if self." + mPropertyName + "_property.propval != nil {\n"
-  result += "        self." + mPropertyName + "_property.setProp (nil)\n"
+  result += "      if self." + self.mPropertyName + "_property.propval != nil {\n"
+  result += "        self." + self.mPropertyName + "_property.setProp (nil)\n"
   result += "      }\n"
   result += "      if newValue != nil {\n"
-  result += "        self." + mPropertyName + "_property.setProp (newValue)\n"
+  result += "        self." + self.mPropertyName + "_property.setProp (newValue)\n"
   result += "      }\n"
   result += "    }\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + mPropertyName + "_none : StoredObject_" + [mRelationshipType swiftTypeName] + " { return self." + mPropertyName + "_property }\n\n"
+  result += "  final var " + self.mPropertyName + "_none : StoredObject_" + [self.mRelationshipType swiftTypeName] + " { return self." + self.mPropertyName + "_property }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + mPropertyName + "_none_selection : EBSelection <Bool> {\n"
-  result += "    return .single (self." + mPropertyName + "_property.propval == nil)\n"
+  result += "  final var " + self.mPropertyName + "_none_selection : EBSelection <Bool> {\n"
+  result += "    return .single (self." + self.mPropertyName + "_property.propval == nil)\n"
   result += "  }\n\n"
 }
 
@@ -215,21 +215,21 @@ override getter @toOnePropertyGeneration initCode -> @string {
 #·······················································································································
 
 override getter @toOnePropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
-  switch mOpposite
+  switch self.mOpposite
   case oppositeIsToMany (oppositeName) :
-    result  = "  //--- To one property: " + mPropertyName + " (has opposite to many relationship: " + oppositeName + ")\n"
-    result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
-    result += "    self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
+    result  = "  //--- To one property: " + self.mPropertyName + " (has opposite to many relationship: " + oppositeName + ")\n"
+    result += "    self." + self.mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    self." + self.mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
     result += "      setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.add (me) } },\n"
     result += "      resetter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.remove (me) } }\n"
     result += "    )\n"
   case none :
-    result  = "  //--- To one property: " + mPropertyName + "\n"
-    result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result  = "  //--- To one property: " + self.mPropertyName + "\n"
+    result += "    self." + self.mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
   case oppositeIsToOne (oppositeName) :
-    result  = "  //--- To one property: " + mPropertyName + " (has opposite to one relationship: " + oppositeName + ")\n"
-    result += "    self." + mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
-    result += "    self." + mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
+    result  = "  //--- To one property: " + self.mPropertyName + " (has opposite to one relationship: " + oppositeName + ")\n"
+    result += "    self." + self.mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    self." + self.mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
     result += "      setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.setProp (me) } },\n"
     result += "      resetter: { inObject in inObject." + oppositeName + "_property.setProp (nil) }\n"
     result += "    )\n"
@@ -241,15 +241,15 @@ override getter @toOnePropertyGeneration configurationCode ?let @bool unused inP
 override getter @toOnePropertyGeneration setupRelationshipFromDictionaryCode -> @string {
   result  = ""
 #  if [mInverseRelationMultiplicity isSingle] then
-    result += "  //--- To one property: " + mPropertyName + "\n"
+    result += "  //--- To one property: " + self.mPropertyName + "\n"
     result += "    do{\n"
     result += "      let possibleEntity = readEntityFromDictionary (\n"
-    result += "        inRelationshipName: \"" + mPropertyName + "\",\n"
+    result += "        inRelationshipName: \"" + self.mPropertyName + "\",\n"
     result += "        inDictionary: inDictionary,\n"
     result += "        managedObjectArray: &managedObjectArray\n"
     result += "      )\n"
-    result += "      if let entity = possibleEntity as? " + [mRelationshipType swiftTypeName] + " {\n"
-    result += "        self." + mPropertyName + "_property.setProp (entity)\n"
+    result += "      if let entity = possibleEntity as? " + [self.mRelationshipType swiftTypeName] + " {\n"
+    result += "        self." + self.mPropertyName + "_property.setProp (entity)\n"
     result += "      }\n"
     result += "    }\n"
 #  end
@@ -259,17 +259,17 @@ override getter @toOnePropertyGeneration setupRelationshipFromDictionaryCode -> 
 
 override getter @toOnePropertyGeneration saveIntoDictionaryCode -> @string {
   result  = ""
-  switch mOpposite
+  switch self.mOpposite
   case oppositeIsToMany (*) :
   case none :
-    result +="  //--- To one property: " + mPropertyName + "\n"
-    result += "    self.store (managedObject:self." + mPropertyName + "_property.propval,\n"
-    result += "      relationshipName: \"" + mPropertyName + "\",\n"
+    result +="  //--- To one property: " + self.mPropertyName + "\n"
+    result += "    self.store (managedObject:self." + self.mPropertyName + "_property.propval,\n"
+    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
     result += "      intoDictionary: ioDictionary)\n"
   case oppositeIsToOne (oppositeName) :
-    result +="  //--- To one property: " + mPropertyName + " // Opposite is toOne " + oppositeName + "\n"
-    result += "    self.store (managedObject:self." + mPropertyName + "_property.propval,\n"
-    result += "      relationshipName: \"" + mPropertyName + "\",\n"
+    result +="  //--- To one property: " + self.mPropertyName + " // Opposite is toOne " + oppositeName + "\n"
+    result += "    self.store (managedObject:self." + self.mPropertyName + "_property.propval,\n"
+    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
     result += "      intoDictionary: ioDictionary)\n"
   end
 }
@@ -277,8 +277,8 @@ override getter @toOnePropertyGeneration saveIntoDictionaryCode -> @string {
 #·······················································································································
 
 override getter @toOnePropertyGeneration objectAccessibilityCode -> @string {
-  result  = "  //--- To one property: " + mPropertyName + "\n"
-  result += "    if let object = self." + mPropertyName + " {\n"
+  result  = "  //--- To one property: " + self.mPropertyName + "\n"
+  result += "    if let object = self." + self.mPropertyName + " {\n"
   result += "      objects.append (object)\n"
   result += "    }\n"
 }
@@ -286,8 +286,8 @@ override getter @toOnePropertyGeneration objectAccessibilityCode -> @string {
 #·······················································································································
 
 override getter @toOnePropertyGeneration objectAccessibilityCodeForSaveOperation -> @string {
-  result  = "  //--- To one property: " + mPropertyName + "\n"
-  result += "    if let object = self." + mPropertyName + " {\n"
+  result  = "  //--- To one property: " + self.mPropertyName + "\n"
+  result += "    if let object = self." + self.mPropertyName + " {\n"
   result += "      objects.append (object)\n"
   result += "    }\n"
 }
@@ -295,9 +295,9 @@ override getter @toOnePropertyGeneration objectAccessibilityCodeForSaveOperation
 #·······················································································································
 
 override getter @toOnePropertyGeneration clearObjectExplorerCode -> @string {
-  result  = "  //--- To one property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.mObserverExplorer = nil\n"
-  result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
+  result  = "  //--- To one property: " + self.mPropertyName + "\n"
+  result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
+  result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

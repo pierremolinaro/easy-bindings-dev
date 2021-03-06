@@ -10,6 +10,31 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Routine 'analyzeOutlets'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_analyzeOutlets (const class GALGAS_bool constinArgument0,
+                             const class GALGAS_propertyMap constinArgument1,
+                             const class GALGAS_propertyMap constinArgument2,
+                             const class GALGAS_string constinArgument3,
+                             const class GALGAS_semanticContext constinArgument4,
+                             const class GALGAS_outletDeclarationList constinArgument5,
+                             const class GALGAS_propertyMap constinArgument6,
+                             const class GALGAS_actionMap constinArgument7,
+                             const class GALGAS_string constinArgument8,
+                             class GALGAS_generationStruct & ioArgument9,
+                             class GALGAS_regularBindingsGenerationList & outArgument10,
+                             class GALGAS_multipleBindingGenerationList & outArgument11,
+                             class GALGAS_actionBindingListForGeneration & outArgument12,
+                             class GALGAS_decoratedOutletMap & outArgument13,
+                             class GALGAS_tableViewBindingGenerationList & outArgument14,
+                             class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument15,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Filewrapper 'xibDocumentGenerationTemplate'
 //
 //----------------------------------------------------------------------------------------------------------------------

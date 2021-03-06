@@ -244,9 +244,9 @@ override method @literalIntMultipleBindingExpressionAST analyzeExpressionForMult
   !@typeKind outType
   !@location outErrorLocation
 {
-  outEnableExpression = @booleanMultipleBindingLiteralIntForGeneration.new {!mValue.uint}
+  outEnableExpression = @booleanMultipleBindingLiteralIntForGeneration.new {!self.mValue.uint}
   outType = .integerType
-  outErrorLocation = mValue.location
+  outErrorLocation = self.mValue.location
 }
 
 #·······················································································································
@@ -260,7 +260,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
   !@typeKind outType
   !@location outErrorLocation
 {
-  [mProperty analyzeObservableProperty
+  [self.mProperty analyzeObservableProperty
     !inRootObservablePropertyMap
     !inSemanticContext
     !inCurrentObservablePropertyMap
@@ -271,18 +271,18 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
   case property (type *) :
     outType = type
   case toMany (4*) :
-    error [mProperty location] : "only an atomic property can be observed" : outType
+    error [self.mProperty location] : "only an atomic property can be observed" : outType
   case toOne (4*) :
-    error [mProperty location] : "only an atomic property can be observed" : outType
+    error [self.mProperty location] : "only an atomic property can be observed" : outType
   case arrayController (2*) :
-    error [mProperty location] : "only an atomic property can be observed" : outType
+    error [self.mProperty location] : "only an atomic property can be observed" : outType
   case selectionController (*) :
-    error [mProperty location] : "only an atomic property can be observed" : outType
+    error [self.mProperty location] : "only an atomic property can be observed" : outType
   end
   outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new {
-    ![mProperty modelStringForSelf !if inPreferences then "preferences_" else "self." end]
+    ![self.mProperty modelStringForSelf !if inPreferences then "preferences_" else "self." end]
   }
-  outErrorLocation = [mProperty location]
+  outErrorLocation = [self.mProperty location]
 }
 
 #·······················································································································
@@ -296,7 +296,7 @@ override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForM
   !@typeKind outType
   !@location outErrorLocation
 {
-  [mBinding analyzeExpressionForMultipleBinding
+  [self.mBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -322,7 +322,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMulti
   !@typeKind outType
   !@location outErrorLocation
 {
-  [mLeftBinding analyzeExpressionForMultipleBinding
+  [self.mLeftBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -334,7 +334,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMulti
   if not [outLeftType isBoolType] then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
-  [mRightBinding analyzeExpressionForMultipleBinding
+  [self.mRightBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -362,7 +362,7 @@ override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMult
   !@typeKind outType
   !@location outErrorLocation
 {
-  [mLeftBinding analyzeExpressionForMultipleBinding
+  [self.mLeftBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -374,7 +374,7 @@ override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMult
   if not [outLeftType isBoolType] then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
-  [mRightBinding analyzeExpressionForMultipleBinding
+  [self.mRightBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -402,7 +402,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMult
   !@typeKind outType
   !@location outErrorLocation
 {
-  [mLeftBinding analyzeExpressionForMultipleBinding
+  [self.mLeftBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -414,7 +414,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMult
   if not [outLeftType isBoolType] then
     error outLeftLocation : "cannot apply 'and': left operand is not boolean"
   end
-  [mRightBinding analyzeExpressionForMultipleBinding
+  [self.mRightBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -442,7 +442,7 @@ override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMult
   !@typeKind outType
   !@location outErrorLocation
 {
-  [mLeftBinding analyzeExpressionForMultipleBinding
+  [self.mLeftBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -451,7 +451,7 @@ override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMult
     ?let outLeftType
     ?let outLeftLocation
   ]
-  [mRightBinding analyzeExpressionForMultipleBinding
+  [self.mRightBinding analyzeExpressionForMultipleBinding
     !inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
@@ -470,7 +470,7 @@ override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMult
   outErrorLocation = outRightLocation
   outEnableExpression = @comparisonMultipleBindingExpressionForGeneration. new {
     !leftExpression
-    !mOperator
+    !self.mOperator
     !rightExpression
   }
 }
@@ -493,7 +493,7 @@ override getter @booleanMultipleBindingLiteralIntForGeneration observedModelSet
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
-  outObservedModelSet = {!mObservedModelString}
+  outObservedModelSet = {!self.mObservedModelString}
 }
 
 #·······················································································································
@@ -501,7 +501,7 @@ override getter @observablePropertyAsBooleanMultipleBindingExpressionForGenerati
 override getter @negateBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
-  outObservedModelSet = [mBinding observedModelSet]
+  outObservedModelSet = [self.mBinding observedModelSet]
 }
 
 #·······················································································································
@@ -509,7 +509,7 @@ override getter @negateBooleanMultipleBindingExpressionForGeneration observedMod
 override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
-  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
+  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
 }
 
 #·······················································································································
@@ -517,7 +517,7 @@ override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSe
 override getter @xorBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
-  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
+  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
 }
 
 #·······················································································································
@@ -525,7 +525,7 @@ override getter @xorBooleanMultipleBindingExpressionForGeneration observedModelS
 override getter @andBooleanMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
-  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
+  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
 }
 
 #·······················································································································
@@ -533,7 +533,7 @@ override getter @andBooleanMultipleBindingExpressionForGeneration observedModelS
 override getter @comparisonMultipleBindingExpressionForGeneration observedModelSet
   -> @stringset outObservedModelSet
 {
-  outObservedModelSet = {[mLeftBinding observedModelSet], [mRightBinding observedModelSet]}
+  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
 }
 
 #·······················································································································
@@ -545,50 +545,50 @@ abstract getter @abstractBooleanMultipleBindingExpressionForGeneration expressio
 
 override getter @booleanMultipleBindingLiteralIntForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "EBSelection.single (" + [mValue string] + ")"
+  outExpressionString = "EBSelection.single (" + [self.mValue string] + ")"
 }
 
 #·······················································································································
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = mObservedModelString + "_selection"
+  outExpressionString = self.mObservedModelString + "_selection"
 }
 
 #·······················································································································
 
 override getter @negateBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "!" + [mBinding expressionString]
+  outExpressionString = "!" + [self.mBinding expressionString]
 }
 
 #·······················································································································
 
 override getter @orBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "(" + [mLeftBinding expressionString] +  " || " + [mRightBinding expressionString] + ")"
+  outExpressionString = "(" + [self.mLeftBinding expressionString] +  " || " + [self.mRightBinding expressionString] + ")"
 }
 
 #·······················································································································
 
 override getter @xorBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "(" + [mLeftBinding expressionString] +  " ^ " + [mRightBinding expressionString] + ")"
+  outExpressionString = "(" + [self.mLeftBinding expressionString] +  " ^ " + [self.mRightBinding expressionString] + ")"
 }
 
 #·······················································································································
 
 override getter @andBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "(" + [mLeftBinding expressionString] +  " && " + [mRightBinding expressionString] + ")"
+  outExpressionString = "(" + [self.mLeftBinding expressionString] +  " && " + [self.mRightBinding expressionString] + ")"
 }
 
 #·······················································································································
 
 override getter @comparisonMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "(" + [mLeftBinding expressionString] + " "
-  switch mOperator
+  outExpressionString = "(" + [self.mLeftBinding expressionString] + " "
+  switch self.mOperator
   case equal : outExpressionString += "=="
   case notEqual : outExpressionString += "!="
   case lower : outExpressionString += "<"
@@ -596,7 +596,7 @@ override getter @comparisonMultipleBindingExpressionForGeneration expressionStri
   case greater : outExpressionString += ">"
   case greaterOrEqual : outExpressionString += ">="
   end
-  outExpressionString += " " + [mRightBinding expressionString] + ")"
+  outExpressionString += " " + [self.mRightBinding expressionString] + ")"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

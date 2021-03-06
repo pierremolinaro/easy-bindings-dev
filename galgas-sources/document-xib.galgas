@@ -12,14 +12,14 @@ class @xibDocumentDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @xibDocumentDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  [!?ioGraph addNode !mClassName !self]
-  [!?ioGraph addEdge !mClassName !mRootEntityName]
+  [!?ioGraph addNode !self.mClassName !self]
+  [!?ioGraph addEdge !self.mClassName !self.mRootEntityName]
 }
 
 #·······················································································································
 
 override getter @xibDocumentDeclarationAST nodeKey -> @lstring {
-  result = mClassName
+  result = self.mClassName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -81,17 +81,17 @@ override method @xibDocumentDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  buildActionMap (!self.mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
-    !mClassName
-    !.document {!rootEntityName: mRootEntityName}
+    !self.mClassName
+    !.document {!rootEntityName: self.mRootEntityName}
     !{}
     !actionMap
     !{}
   ]
   for () in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
-      !mClassName.string
+      !self.mClassName.string
       !lkey.string
     }
   end
@@ -111,7 +111,7 @@ override method @xibDocumentDeclarationAST fourthAnalysisPhase
   ]
 #--- Get document property map
   [ioSemanticContext.mClassMap searchKey
-    !.new {!mClassName !.nowhere}
+    !.new {!self.mClassName !.nowhere}
     ?*
     ?let documentPropertyMap
     ?let documentActionMap
@@ -119,7 +119,7 @@ override method @xibDocumentDeclarationAST fourthAnalysisPhase
   ]
 #--- Get root entity property map
   [ioSemanticContext.mClassMap searchKey
-    !mRootEntityName
+    !self.mRootEntityName
     ?*
     ?let rootPropertyMap
     ?let unused rootActionMap
@@ -130,12 +130,12 @@ override method @xibDocumentDeclarationAST fourthAnalysisPhase
     !false
     !rootPropertyMap
     !preferencesPropertyMap
-    !mRootEntityName.string
+    !self.mRootEntityName.string
     !ioSemanticContext
-    !mOutletDeclarationList
+    !self.mOutletDeclarationList
     !documentPropertyMap
     !documentActionMap
-    !mClassName
+    !self.mClassName
     !?ioGeneration
     ?let @regularBindingsGenerationList regularBindingsGenerationList
     ?@multipleBindingGenerationList multipleBindingGenerationList
@@ -145,7 +145,7 @@ override method @xibDocumentDeclarationAST fourthAnalysisPhase
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 #--- Analyze controller bindings
-  for (controllerName hiddenBinding) in mArrayControllerBindingListAST do
+  for (controllerName hiddenBinding) in self.mArrayControllerBindingListAST do
   #--- Hidden
     switch hiddenBinding
     case noBinding :
@@ -172,8 +172,8 @@ override method @xibDocumentDeclarationAST fourthAnalysisPhase
   ioGeneration.mGenerateEBManagedXibDocumentSwift = true
 #---
   ioGeneration.mFileGenerationList += !@xibDocumentFileGeneration.new {
-    !mClassName.string
-    !mRootEntityName.string
+    !self.mClassName.string
+    !self.mRootEntityName.string
     !documentPropertyGenerationList
     !outletMap
     !actionBindingListForGeneration
@@ -209,17 +209,17 @@ override method @xibDocumentFileGeneration generateCode
     ?!@stringset ioGeneratedFileSet
 {
   let s = [filewrapper xibDocumentGenerationTemplate.documentImplementation
-    !mDocumentName
-    !mRootEntityName
-    !mDocumentPropertyGenearionList
-    !mOutletMap
-    !mTargetActionList
-    !mRegularBindingsGenerationList
-    !multipleBindingGenerationList
-    !mTableViewBindingGenerationList
-    !mEBViewBindingGenerationList
+    !self.mDocumentName
+    !self.mRootEntityName
+    !self.mDocumentPropertyGenearionList
+    !self.mOutletMap
+    !self.mTargetActionList
+    !self.mRegularBindingsGenerationList
+    !self.multipleBindingGenerationList
+    !self.mTableViewBindingGenerationList
+    !self.mEBViewBindingGenerationList
   ]
-  let fileName = mDocumentName + ".swift"
+  let fileName = self.mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
     !inOutputDirectory

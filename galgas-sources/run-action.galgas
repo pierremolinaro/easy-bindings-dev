@@ -65,10 +65,10 @@ override method @actionFileGeneration generateCode
     ?!@stringset ioGeneratedFileSet
 {
  let s = [filewrapper actionGenerationTemplate.actionGeneration
-    !mClassName
-    !mActionName
+    !self.mClassName
+    !self.mActionName
   ]
-  let fileName = "action-" + mClassName + "-" + mActionName + ".swift"
+  let fileName = "action-" + self.mClassName + "-" + self.mActionName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFileWithPattern
     !startPath:inOutputDirectory

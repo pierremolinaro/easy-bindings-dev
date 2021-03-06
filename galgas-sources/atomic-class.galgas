@@ -9,13 +9,13 @@ class @atomicClassDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @atomicClassDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  [!?ioGraph addNode !mClassName !self]
+  [!?ioGraph addNode !self.mClassName !self]
 }
 
 #·······················································································································
 
 override getter @atomicClassDeclarationAST nodeKey -> @lstring {
-  result = mClassName
+  result = self.mClassName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -46,8 +46,8 @@ override method @atomicClassDeclarationAST firstAnalysisPhase
        ?!@generationStruct unused ioGeneration
 {
   [!?ioSemanticContext.mClassMap insertKey
-    !mClassName
-    !.atomic {!kind: mKind}
+    !self.mClassName
+    !.atomic {!kind: self.mKind}
     !{}
     !{}
     !{}

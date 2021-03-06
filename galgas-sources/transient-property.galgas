@@ -13,51 +13,51 @@ class @transientDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @transientDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  let node = @lstring.new {!mClassName.string + " " + mTransientName !mTransientName.location}
+  let node = @lstring.new {!self.mClassName.string + " " + self.mTransientName !self.mTransientName.location}
   [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !mClassName]
-  [!?ioGraph addEdge !node !mTransientTypeName]
-  for dependency in mDependencyList do
+  [!?ioGraph addEdge !node !self.mClassName]
+  [!?ioGraph addEdge !node !self.mTransientTypeName]
+  for dependency in self.mDependencyList do
     switch dependency.mObservableProperty
     case rootProperty (propertyName) :
-      if mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + propertyName !propertyName.location}]
+      if self.mRootEntityName.string != "" then
+        [!?ioGraph addEdge !node !.new {!self.mRootEntityName.string + " " + propertyName !propertyName.location}]
       end
     case rootPropertyWithOption (propertyName *) :
-      if mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + propertyName !propertyName.location}]
+      if self.mRootEntityName.string != "" then
+        [!?ioGraph addEdge !node !.new {!self.mRootEntityName.string + " " + propertyName !propertyName.location}]
       end
     case rootPropertyRelationship (relationshipName *) :
-      if mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + relationshipName !relationshipName.location}]
+      if self.mRootEntityName.string != "" then
+        [!?ioGraph addEdge !node !.new {!self.mRootEntityName.string + " " + relationshipName !relationshipName.location}]
       end
     case rootPropertyNone (relationshipName) :
-      if mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + relationshipName !relationshipName.location}]
+      if self.mRootEntityName.string != "" then
+        [!?ioGraph addEdge !node !.new {!self.mRootEntityName.string + " " + relationshipName !relationshipName.location}]
       end
     case selfWithoutProperty (*) :
     case selfProperty (propertyName) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string + " " + propertyName !propertyName.location}]
     case selfPropertyWithOption (@lstring propertyName *) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string + " " + propertyName !propertyName.location}]
     case selfPropertyArray (@lstring propertyName *) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string + " " + propertyName !propertyName.location}]
     case selfPropertyObject (@lstring propertyName *) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string + " " + propertyName !propertyName.location}]
     case selfPropertyNone (@lstring propertyName) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string + " " + propertyName !propertyName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string + " " + propertyName !propertyName.location}]
     case prefsProperty (@lstring propertyName) :
       [!?ioGraph addEdge !node !.new {!preferencesName () + " " + propertyName !propertyName.location}]
     case prefsPropertyWithOption (@lstring propertyName *) :
       [!?ioGraph addEdge !node !.new {!preferencesName () + " " + propertyName !propertyName.location}]
     case selfControllerProperty (@lstring controllerName unused propertyName) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string  + " " + controllerName !controllerName.location}]
     case selfControllerSecondaryProperty (@lstring controllerName unused propertyName unused secondaryPropertyName) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string  + " " + controllerName !controllerName.location}]
     case selfControllerAllProperties (@lstring controllerName unused propertyName unused secondaryPropertyName) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string  + " " + controllerName !controllerName.location}]
     case selfControllerOneProperty (@lstring controllerName unused propertyName) :
-      [!?ioGraph addEdge !node !.new {!mClassName.string  + " " + controllerName !controllerName.location}]
+      [!?ioGraph addEdge !node !.new {!self.mClassName.string  + " " + controllerName !controllerName.location}]
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
@@ -70,7 +70,7 @@ override method @transientDeclarationAST enterInPrecedenceGraph ?!@declarationPr
 #·······················································································································
 
 override getter @transientDeclarationAST nodeKey -> @lstring {
-  result = @lstring.new {!mClassName.string + " " + mTransientName !mTransientName.location}
+  result = @lstring.new {!self.mClassName.string + " " + self.mTransientName !self.mTransientName.location}
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -146,24 +146,24 @@ override method @transientDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  with mClassName in !?ioSemanticContext.mClassMap 
+  with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !mTransientTypeName ?let classKind ?3*]
+    [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName ?let classKind ?3*]
     switch classKind
     case prefs :
-      error mTransientTypeName : "an atomic class is required here"
+      error self.mTransientTypeName : "an atomic class is required here"
     case atomic (kind) :
       [!?mPropertyMap insertKey
-        !mTransientName
-        !.property {!type: kind !accessibility: .transient {!isAbstract:[mDependencyList length] == 0}}
+        !self.mTransientName
+        !.property {!type: kind !accessibility: .transient {!isAbstract:[self.mDependencyList length] == 0}}
         !{}
-        !mIsOverriding
+        !self.mIsOverriding
       ]
     case document (*) :
-      error mTransientTypeName : "an atomic class is required here"
+      error self.mTransientTypeName : "an atomic class is required here"
     case entity (3*) :
-      error mTransientTypeName : "an atomic class is required here"
+      error self.mTransientTypeName : "an atomic class is required here"
     end
   end
 }
@@ -177,31 +177,31 @@ override method @transientDeclarationAST thirdAnalysisPhase
        ?!@generationStruct ioGeneration
 {
 #--- Property type
-  [ioSemanticContext.mClassMap searchKey !mTransientTypeName ?let classKind ?3*]
+  [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName ?let classKind ?3*]
 #--- Check type
   @typeKind typeKind
   switch classKind
   case prefs :
-    error mTransientTypeName: "an atomic class is required here" : typeKind
+    error self.mTransientTypeName: "an atomic class is required here" : typeKind
   case atomic (@typeKind kind) :
     typeKind = kind
   case document (*) :
-    error mTransientTypeName: "an atomic class is required here" : typeKind
+    error self.mTransientTypeName: "an atomic class is required here" : typeKind
   case entity (3*) :
-    error mTransientTypeName: "an atomic class is required here" : typeKind
+    error self.mTransientTypeName: "an atomic class is required here" : typeKind
   end
 #--- Root properties
   @propertyMap rootProperties
-  if mRootEntityName.string == "" then
+  if self.mRootEntityName.string == "" then
     rootProperties = {}
   else
-    [ioSemanticContext.mClassMap searchKey !mRootEntityName ?* ?rootProperties ?2*]
+    [ioSemanticContext.mClassMap searchKey !self.mRootEntityName ?* ?rootProperties ?2*]
   end
 #--- Current class properties
-  [ioSemanticContext.mClassMap searchKey !mClassName ?let currentClassKind ?let properties ?2*]
+  [ioSemanticContext.mClassMap searchKey !self.mClassName ?let currentClassKind ?let properties ?2*]
 #--- Analyse master properties
   @transientDependencyListForGeneration dependencies = {}
-  for () in mDependencyList do
+  for () in self.mDependencyList do
     [mObservableProperty analyzeObservableProperty
       !rootProperties
       !ioSemanticContext
@@ -224,13 +224,13 @@ override method @transientDeclarationAST thirdAnalysisPhase
       !swiftTypeStringForTransientFunctionArgument
   end
   ioGeneration.mFileGenerationList += !@transientRoutineGeneration.new {
-    !mClassName
-    !mTransientName.string
+    !self.mClassName
+    !self.mTransientName.string
     !typeKind
     !"transient"
     !dependencies
   }
-  with mClassName in !?ioSemanticContext.mClassMap 
+  with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
     @bool generate
@@ -243,14 +243,14 @@ override method @transientDeclarationAST thirdAnalysisPhase
       generate = true
     case entity (* graphic *):
       if graphic then
-        generate = (mTransientName.string != "selectionDisplay") & (mTransientName.string != "objectDisplay")
+        generate = (self.mTransientName.string != "selectionDisplay") & (self.mTransientName.string != "objectDisplay")
       else
         generate = true
       end
     end
     mPropertyGenerationList += !@transientPropertyGeneration.new {
-      !mTransientName.string
-      !mClassName.string
+      !self.mTransientName.string
+      !self.mClassName.string
       !typeKind
       !dependencies
       !generate
@@ -279,11 +279,11 @@ list @transientPropertyGenerationList {
 
 override getter @transientPropertyGeneration declarationInSelectionControllerCode -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Selection observable property: " + mPropertyName + "\n"
+  result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  let " + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-  result += "    return self." + mPropertyName + "_property.selection\n"
+  result += "  let " + self.mPropertyName + "_property = EBTransientProperty_" + [self.mType swiftTypeName] + " ()\n\n"
+  result += "  var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
+  result += "    return self." + self.mPropertyName + "_property.selection\n"
   result += "  }\n\n"
 }
 
@@ -297,9 +297,9 @@ override getter @transientPropertyGeneration initCode -> @string {
 
 override getter @transientPropertyGeneration bindPropertyInSelectionController -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  private final func bind_property_" + mPropertyName + " () {\n"
-  result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
-  result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
+  result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
+  result += "    self.selectedArray_property.addEBObserverOf_" + self.mPropertyName + " (self." + self.mPropertyName + "_property)\n"
+  result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty :\n"
@@ -307,10 +307,10 @@ override getter @transientPropertyGeneration bindPropertyInSelectionController -
   result += "        case .multiple :\n"
   result += "          return .multiple\n"
   result += "        case .single (let v) :\n"
-  result += "          var s = Set <" + [mType swiftTypeName] + "> ()\n"
+  result += "          var s = Set <" + [self.mType swiftTypeName] + "> ()\n"
   result += "          var isMultipleSelection = false\n"
   result += "          for object in v {\n"
-  result += "            switch object." + mPropertyName + "_property_selection {\n"
+  result += "            switch object." + self.mPropertyName + "_property_selection {\n"
   result += "            case .empty :\n"
   result += "              return .empty\n"
   result += "            case .multiple :\n"
@@ -343,19 +343,19 @@ override getter @transientPropertyGeneration propertyDeclarationCode
    ?let @stringset inOverriddenTransients -> @string
 {
   result  = ""
-  if mGenerate & not [inOverriddenTransients hasKey !mPropertyName] then
+  if self.mGenerate & not [inOverriddenTransients hasKey !self.mPropertyName] then
     if inPreferences then
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-      result += "//   Transient property: " + mPropertyName + "\n"
+      result += "//   Transient property: " + self.mPropertyName + "\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  let preferences_" + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
+      result += "  let preferences_" + self.mPropertyName + "_property = EBTransientProperty_" + [self.mType swiftTypeName] + " ()\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  var preferences_" + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-      result += "    return preferences_" + mPropertyName + "_property.selection\n"
+      result += "  var preferences_" + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
+      result += "    return preferences_" + self.mPropertyName + "_property.selection\n"
       result += "  }\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  var preferences_" + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
-      result += "    switch preferences_" + mPropertyName + "_property_selection {\n"
+      result += "  var preferences_" + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
+      result += "    switch preferences_" + self.mPropertyName + "_property_selection {\n"
       result += "    case .empty, .multiple :\n"
       result += "      return nil\n"
       result += "    case .single (let v) :\n"
@@ -364,16 +364,16 @@ override getter @transientPropertyGeneration propertyDeclarationCode
       result += "  }\n\n"
     else
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-      result += "  //   Transient property: " + mPropertyName + "\n"
+      result += "  //   Transient property: " + self.mPropertyName + "\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  final let " + mPropertyName + "_property = EBTransientProperty_" + [mType swiftTypeName] + " ()\n\n"
+      result += "  final let " + self.mPropertyName + "_property = EBTransientProperty_" + [self.mType swiftTypeName] + " ()\n\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  final var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-      result += "    return self." + mPropertyName + "_property.selection\n"
+      result += "  final var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
+      result += "    return self." + self.mPropertyName + "_property.selection\n"
       result += "  }\n\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  final var " + mPropertyName + " : " + [mType swiftTypeName] + "? {\n"
-      result += "    switch self." + mPropertyName + "_property_selection {\n"
+      result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
+      result += "    switch self." + self.mPropertyName + "_property_selection {\n"
       result += "    case .empty, .multiple :\n"
       result += "      return nil\n"
       result += "    case .single (let v) :\n"
@@ -389,25 +389,25 @@ override getter @transientPropertyGeneration propertyDeclarationCode
 override getter @transientPropertyGeneration configurationCode ?let @bool inPreferences -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = ""
-  if [mDependencyList length] > 0 then
-    let needs_unwSelf = [mDependencyList needs_unwSelf !inPreferences]
-    result += "  //--- Atomic property: " + mPropertyName + "\n"
+  if [self.mDependencyList length] > 0 then
+    let needs_unwSelf = [self.mDependencyList needs_unwSelf !inPreferences]
+    result += "  //--- Atomic property: " + self.mPropertyName + "\n"
     if needs_unwSelf then
-      result += "    " + prefix + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
+      result += "    " + prefix + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
       result += "      if let unwSelf = self {\n"
-      result += [mDependencyList transientComputeFunctionCall !inPreferences !mClassName !mPropertyName !"transient"]
+      result += [self.mDependencyList transientComputeFunctionCall !inPreferences !self.mClassName !self.mPropertyName !"transient"]
       result += "      }else{\n"
       result += "        return .empty\n"
       result += "      }\n"
     else
-      result += "    " + prefix + mPropertyName + "_property.mReadModelFunction = {\n"
-      result += [mDependencyList transientComputeFunctionCall !inPreferences !mClassName !mPropertyName !"transient"]
+      result += "    " + prefix + self.mPropertyName + "_property.mReadModelFunction = {\n"
+      result += [self.mDependencyList transientComputeFunctionCall !inPreferences !self.mClassName !self.mPropertyName !"transient"]
     end
     result += "    }\n"
-    for () in mDependencyList do
+    for () in self.mDependencyList do
       let s = [mDependency generateAddObserverCall !inPreferences]
       if s != "" then
-        result += "    " + s + " (" + prefix + mPropertyName + "_property)\n"
+        result += "    " + s + " (" + prefix + self.mPropertyName + "_property)\n"
       end
     end
   end
@@ -417,10 +417,10 @@ override getter @transientPropertyGeneration configurationCode ?let @bool inPref
 
 override getter @transientPropertyGeneration terminationCode ?let @bool unused inPreferences -> @string {
   result = ""
-  for () in mDependencyList do
+  for () in self.mDependencyList do
     let s = [mDependency generateRemoveObserverCall]
     if s != "" then
-      result += "    // " + s + " (self." + mPropertyName + "_property)\n"
+      result += "    // " + s + " (self." + self.mPropertyName + "_property)\n"
     end
   end
 }
@@ -620,20 +620,20 @@ override method @transientRoutineGeneration generateCode
     ?let @string inOutputDirectory
     ?!@stringset ioGeneratedFileSet
 {
-  if [mDependencyList length] > 0 then
+  if [self.mDependencyList length] > 0 then
     let s = [filewrapper transientManager.transientComputationFunctionFile
-      !mOwnerName
-      !mTransientName
-      !mDependencyList
-      !mTransientType
-      !mGeneratedFunctionNamePrefix
+      !self.mOwnerName
+      !self.mTransientName
+      !self.mDependencyList
+      !self.mTransientType
+      !self.mGeneratedFunctionNamePrefix
     ]
     let header = "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n"
       "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
       "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n\n"
       + "import Cocoa\n\n"
       + "//" + @string.stringWithSequenceOfCharacters {!'-' !118} + "\n\n"
-   let fileName = mGeneratedFunctionNamePrefix + "-" + mOwnerName + "-" + mTransientName + ".swift"
+   let fileName = self.mGeneratedFunctionNamePrefix + "-" + self.mOwnerName + "-" + self.mTransientName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
       !startPath:inOutputDirectory

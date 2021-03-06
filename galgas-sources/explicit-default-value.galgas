@@ -113,7 +113,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
   for () in  inAttributeActualTypeList while not found do
     switch mType
     case boolType :
-      outSwiftDefaultValueAsString = if mValue.bool then "true" else "false" end
+      outSwiftDefaultValueAsString = if self.mValue.bool then "true" else "false" end
       found = true
     case integerType, uint32Type, dataType, dateType, doubleType,
          stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
@@ -124,7 +124,7 @@ override method @boolAsDefaultValue analyzeDefaultValueType
     end
   end
   if not found then
-    error mValue
+    error self.mValue
     : "only a boolean attribute can be initialized by YES or NO"  
   end
 }
@@ -141,16 +141,16 @@ override method @integerAsDefaultValue analyzeDefaultValueType
   for () in  inAttributeActualTypeList while not found do
     switch mType
     case integerType :
-      outSwiftDefaultValueAsString = if mNegative then "-" else "" end + [mValue.uint string]
+      outSwiftDefaultValueAsString = if self.mNegative then "-" else "" end + [self.mValue.uint string]
       found = true
     case uint32Type :
-      if mNegative then
-        error mValue : "Uint32 value should be ≥ 0"
+      if self.mNegative then
+        error self.mValue : "Uint32 value should be ≥ 0"
       end
-      outSwiftDefaultValueAsString = [mValue.uint string]
+      outSwiftDefaultValueAsString = [self.mValue.uint string]
       found = true
     case fontType :
-      outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + mValue.uint + ".0)"
+      outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + self.mValue.uint + ".0)"
       found = true
     case boolType, dateType, dataType, doubleType, stringType, colorType, bezierPathType, bezierPathArrayType :
     case entityType (2*) :
@@ -160,7 +160,7 @@ override method @integerAsDefaultValue analyzeDefaultValueType
     end
   end
   if not found then
-    error mValue
+    error self.mValue
     : "only an integer attribute can be initialized by an integer constant"  
   end
 }
@@ -177,7 +177,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
   for () in  inAttributeActualTypeList while not found do
     switch mType
     case doubleType :
-      outSwiftDefaultValueAsString = [mValue.double string]
+      outSwiftDefaultValueAsString = [self.mValue.double string]
       found = true
     case boolType, dateType, dataType, integerType, uint32Type,
          stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
@@ -188,7 +188,7 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
     end
   end
   if not found then
-    error mValue
+    error self.mValue
     : "only a double attribute can be initialized by a floating point constant"  
   end
 }
@@ -205,7 +205,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
   for () in  inAttributeActualTypeList while not found do
     switch mType
     case stringType :
-      outSwiftDefaultValueAsString = "\""+ mValue.string + "\""
+      outSwiftDefaultValueAsString = "\""+ self.mValue.string + "\""
       found = true
     case boolType, dateType, dataType, integerType, uint32Type, doubleType,
          fontType, colorType, bezierPathType, bezierPathArrayType :
@@ -216,7 +216,7 @@ override method @stringAsDefaultValue analyzeDefaultValueType
     end
   end
   if not found then
-    error mValue
+    error self.mValue
     : "only a string attribute can be initialized by a string constant"  
   end
 }
@@ -288,77 +288,77 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
     switch mType 
     case dateType :
       found = true
-      if [predefinedDates () hasKey !mValue.string] then
-        if mValue.string == "now" then
+      if [predefinedDates () hasKey !self.mValue.string] then
+        if self.mValue.string == "now" then
           outSwiftDefaultValueAsString = "Date ()"
-        elsif mValue.string == "distantPast" then
+        elsif self.mValue.string == "distantPast" then
           outSwiftDefaultValueAsString = "Date.distantPast"
         else
-          error mValue : "unknown predefined date" 
+          error self.mValue : "unknown predefined date" 
         end 
       else
-        error mValue : "unknown predefined date"  
+        error self.mValue : "unknown predefined date"  
       end
     case bezierPathType :
       found = true
-      if mValue.string == "empty" then
+      if self.mValue.string == "empty" then
         outSwiftDefaultValueAsString = "NSBezierPath ()"
       else
-        error mValue : "only 'empty' is accepted as default NSBezierPath"  
+        error self.mValue : "only 'empty' is accepted as default NSBezierPath"  
       end
     case bezierPathArrayType :
       found = true
-      if mValue.string == "empty" then
+      if self.mValue.string == "empty" then
         outSwiftDefaultValueAsString = "BezierPathArray ()"
       else
-        error mValue : "only 'empty' is accepted as default BezierPathArray"  
+        error self.mValue : "only 'empty' is accepted as default BezierPathArray"  
       end
     case enumType (@string enumTypeName @enumConstantMap constantMap *
     ) :
       found = true
-      if [constantMap hasKey !mValue.string] then
-        outSwiftDefaultValueAsString = enumTypeName + "." + mValue.string
+      if [constantMap hasKey !self.mValue.string] then
+        outSwiftDefaultValueAsString = enumTypeName + "." + self.mValue.string
       else
-        error mValue
-        : "the '" + enumTypeName + "' enumeration does not define '" + mValue + "' constant"
+        error self.mValue
+        : "the '" + enumTypeName + "' enumeration does not define '" + self.mValue + "' constant"
         : outSwiftDefaultValueAsString  
       end
     case entityType (2*) :
-      error mValue : "invalid entity type"  
+      error self.mValue : "invalid entity type"  
     case classType (*) :
-      error mValue : "invalid class type"  
+      error self.mValue : "invalid class type"  
     case boolType :
-      error mValue : "invalid bool type"  
+      error self.mValue : "invalid bool type"  
     case dataType :
       found = true
-      if mValue.string == "empty" then
+      if self.mValue.string == "empty" then
         outSwiftDefaultValueAsString = "Data ()"
       else
-        error mValue : "only 'empty' is accepted as default Data"  
+        error self.mValue : "only 'empty' is accepted as default Data"  
       end
     case doubleType :
-      error mValue : "invalid double type"  
+      error self.mValue : "invalid double type"  
     case integerType :
-      error mValue : "invalid integer type"  
+      error self.mValue : "invalid integer type"  
     case uint32Type :
-      error mValue : "invalid UInt32 type"  
+      error self.mValue : "invalid UInt32 type"  
     case stringType :
-      error mValue : "invalid string type"  
+      error self.mValue : "invalid string type"  
     case fontType :
-      error mValue : "invalid font type"
+      error self.mValue : "invalid font type"
     case colorType :
-      if [predefinedColors () hasKey !mValue.string] then
-        outSwiftDefaultValueAsString = "NSColor." + mValue.string
+      if [predefinedColors () hasKey !self.mValue.string] then
+        outSwiftDefaultValueAsString = "NSColor." + self.mValue.string
         found = true
       else
-        error mValue : "unknown predefined color"  
+        error self.mValue : "unknown predefined color"  
       end
     case transientPropertyExternType (*) :
-      error mValue : "invalid image type"  
+      error self.mValue : "invalid image type"  
     end
   end
   if not found then
-    error mValue
+    error self.mValue
     : "unknow type for this identifier"  
   end
 }
@@ -370,7 +370,7 @@ override method @prefsAsDefaultValue analyzeDefaultValueType
   ?let @propertyMap inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString
 {
-  [inPreferencesPropertyMap searchKey !mPrefPropertyName ?let @propertyKind kind ?2*]
+  [inPreferencesPropertyMap searchKey !self.mPrefPropertyName ?let @propertyKind kind ?2*]
   switch kind
   case property (@typeKind type *) :
     var found = false
@@ -378,18 +378,18 @@ override method @prefsAsDefaultValue analyzeDefaultValueType
       found = type == t
     end
     if not found then
-      error mPrefPropertyName : "the atomic property type is not compatible"
+      error self.mPrefPropertyName : "the atomic property type is not compatible"
     end
   case toMany (4*) :
-    error mPrefPropertyName : "an atomic property is required here"
+    error self.mPrefPropertyName : "an atomic property is required here"
   case toOne (4*) :
-    error mPrefPropertyName : "an atomic property is required here"
+    error self.mPrefPropertyName : "an atomic property is required here"
   case arrayController (2*) :
-    error mPrefPropertyName : "an atomic property is required here"
+    error self.mPrefPropertyName : "an atomic property is required here"
   case selectionController (*) :
-    error mPrefPropertyName : "an atomic property is required here"
+    error self.mPrefPropertyName : "an atomic property is required here"
   end
-  outSwiftDefaultValueAsString = "preferences_" + mPrefPropertyName
+  outSwiftDefaultValueAsString = "preferences_" + self.mPrefPropertyName
 }
 
 #·······················································································································
@@ -398,7 +398,7 @@ override method @prefsAsDefaultValue enterDefaultValuePrecedence
    ?let @lstring inNode
    ?!@declarationPrecedenceGraph ioGraph
 {
-  let p = @lstring.new {!preferencesName () + " " + mPrefPropertyName.string !mPrefPropertyName.location}
+  let p = @lstring.new {!preferencesName () + " " + self.mPrefPropertyName.string !self.mPrefPropertyName.location}
   [!?ioGraph addEdge !inNode !p]
 }
 

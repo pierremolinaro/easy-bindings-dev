@@ -12622,23 +12622,43 @@ void extensionMethod_generateAtPath (const GALGAS_XcodeProjectDescriptor inObjec
                                      const GALGAS_string constinArgument_inCacheFilePath,
                                      C_Compiler * inCompiler
                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents_15931 = GALGAS_string (filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (inCompiler, inObject.mProperty_mProjectObjectReference, inObject.mProperty_mMainGroupReference, inObject.mProperty_mGroupList, inObject.mProperty_mMainGroupChildrenRefs, inObject.mProperty_mToolTargetList, inObject.mProperty_mAppTargetList, inObject.mProperty_mCppFileList, inObject.mProperty_m_5F_M_5F_FileList, inObject.mProperty_m_5F_MM_5F_FileList, inObject.mProperty_m_5F_SwiftFileList, inObject.mProperty_mFrameworkFileList, inObject.mProperty_mHeaderFileList, inObject.mProperty_mInfoPlistFileList, inObject.mProperty_mTIFF_5F_fileList, inObject.mProperty_mICNS_5F_fileList, inObject.mProperty_mXIB_5F_fileList, inObject.mProperty_mBuildFileList, inObject.mProperty_mDefaultConfigurationRef, inObject.mProperty_mDefaultConfigurationSettingList, inObject.mProperty_mProjectBuildConfigurationRef COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 419))) ;
-  GALGAS_string var_projectCoreFile_16482 = constinArgument_inPath.add_operation (GALGAS_string ("/project.pbxproj"), inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 441)) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    GALGAS_bool test_1 = var_projectCoreFile_16482.getter_fileExists (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).operator_not (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)) ;
-    if (kBoolTrue != test_1.boolEnum ()) {
-      test_1 = constinArgument_inCacheFilePath.getter_fileExists (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).operator_not (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)) ;
+  const GALGAS_XcodeProjectDescriptor temp_0 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_1 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_2 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_3 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_4 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_5 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_6 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_7 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_8 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_9 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_10 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_11 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_12 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_13 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_14 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_15 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_16 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_17 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_18 = inObject ;
+  const GALGAS_XcodeProjectDescriptor temp_19 = inObject ;
+  GALGAS_string var_contents_15931 = GALGAS_string (filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (inCompiler, temp_0.getter_mProjectObjectReference (HERE), temp_1.getter_mMainGroupReference (HERE), temp_2.getter_mGroupList (HERE), temp_3.getter_mMainGroupChildrenRefs (HERE), temp_4.getter_mToolTargetList (HERE), temp_5.getter_mAppTargetList (HERE), temp_6.getter_mCppFileList (HERE), temp_7.getter_m_5F_M_5F_FileList (HERE), temp_8.getter_m_5F_MM_5F_FileList (HERE), temp_9.getter_m_5F_SwiftFileList (HERE), temp_10.getter_mFrameworkFileList (HERE), temp_11.getter_mHeaderFileList (HERE), temp_12.getter_mInfoPlistFileList (HERE), temp_13.getter_mTIFF_5F_fileList (HERE), temp_14.getter_mICNS_5F_fileList (HERE), temp_15.getter_mXIB_5F_fileList (HERE), temp_16.getter_mBuildFileList (HERE), temp_17.getter_mDefaultConfigurationRef (HERE), temp_18.getter_mDefaultConfigurationSettingList (HERE), temp_19.getter_mProjectBuildConfigurationRef (HERE) COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 419))) ;
+  GALGAS_string var_projectCoreFile_16582 = constinArgument_inPath.add_operation (GALGAS_string ("/project.pbxproj"), inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 441)) ;
+  enumGalgasBool test_20 = kBoolTrue ;
+  if (kBoolTrue == test_20) {
+    GALGAS_bool test_21 = var_projectCoreFile_16582.getter_fileExists (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).operator_not (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)) ;
+    if (kBoolTrue != test_21.boolEnum ()) {
+      test_21 = constinArgument_inCacheFilePath.getter_fileExists (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).operator_not (SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)) ;
     }
-    GALGAS_bool test_2 = test_1 ;
-    if (kBoolTrue != test_2.boolEnum ()) {
-      test_2 = GALGAS_bool (kIsNotEqual, GALGAS_string::constructor_stringWithContentsOfFile (constinArgument_inCacheFilePath, inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).objectCompare (var_contents_15931)) ;
+    GALGAS_bool test_22 = test_21 ;
+    if (kBoolTrue != test_22.boolEnum ()) {
+      test_22 = GALGAS_bool (kIsNotEqual, GALGAS_string::constructor_stringWithContentsOfFile (constinArgument_inCacheFilePath, inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 442)).objectCompare (var_contents_15931)) ;
     }
-    test_0 = test_2.boolEnum () ;
-    if (kBoolTrue == test_0) {
-      GALGAS_bool joker_16732 ; // Joker input parameter
-      var_contents_15931.method_writeToFileWhenDifferentContents (constinArgument_inCacheFilePath, joker_16732, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 443)) ;
-      var_contents_15931.method_makeDirectoryAndWriteToFile (var_projectCoreFile_16482, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 444)) ;
+    test_20 = test_22.boolEnum () ;
+    if (kBoolTrue == test_20) {
+      GALGAS_bool joker_16832 ; // Joker input parameter
+      var_contents_15931.method_writeToFileWhenDifferentContents (constinArgument_inCacheFilePath, joker_16832, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 443)) ;
+      var_contents_15931.method_makeDirectoryAndWriteToFile (var_projectCoreFile_16582, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.galgas", 444)) ;
     }
   }
 }

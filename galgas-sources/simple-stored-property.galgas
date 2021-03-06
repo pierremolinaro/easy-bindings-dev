@@ -21,17 +21,17 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @atomicPropertyDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  let node = @lstring.new {!mClassName.string + " " + mPropertyName !mPropertyName.location}
+  let node = @lstring.new {!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location}
   [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !mClassName]
-  [!?ioGraph addEdge !node !mPropertyTypeName]
-  [mDefaultValue enterDefaultValuePrecedence !node !?ioGraph]
+  [!?ioGraph addEdge !node !self.mClassName]
+  [!?ioGraph addEdge !node !self.mPropertyTypeName]
+  [self.mDefaultValue enterDefaultValuePrecedence !node !?ioGraph]
 }
 
 #·······················································································································
 
 override getter @atomicPropertyDeclarationAST nodeKey -> @lstring {
-  result = @lstring.new {!mClassName.string + " " + mPropertyName !mPropertyName.location}
+  result = @lstring.new {!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location}
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -103,10 +103,10 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  with mClassName in !?ioSemanticContext.mClassMap 
+  with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !mPropertyTypeName ?let classKind ?3*]
+    [ioSemanticContext.mClassMap searchKey !self.mPropertyTypeName ?let classKind ?3*]
     [ioSemanticContext.mClassMap searchKey
       !.new {!preferencesName () !.nowhere}
       ?*
@@ -115,31 +115,31 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
     ]
     switch classKind
     case prefs :
-      error mPropertyTypeName : "an atomic class is required here"
+      error self.mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
-      [!?mPropertyMap insertKey !mPropertyName !.property {!type: kind !accessibility: .stored} !{} !false]
+      [!?mPropertyMap insertKey !self.mPropertyName !.property {!type: kind !accessibility: .stored} !{} !false]
     #--- Analyze default value
-      [mDefaultValue analyzeDefaultValueType !{!kind} !preferencesPropertyMap ?let @string swiftDefaultValueAsString]
+      [self.mDefaultValue analyzeDefaultValueType !{!kind} !preferencesPropertyMap ?let @string swiftDefaultValueAsString]
     #--- Code Generation
       mPropertyGenerationList += !@atomicPropertyGeneration.new {
-        !mPropertyName.string
-        !mNeedsValidation
+        !self.mPropertyName.string
+        !self.mNeedsValidation
         !kind
         !false
         !swiftDefaultValueAsString
-        !mClassName.string == preferencesName ()
+        !self.mClassName.string == preferencesName ()
       }
     #--- Needs validation ?
-      if mNeedsValidation then
+      if self.mNeedsValidation then
         ioGeneration.mValidationStubRoutineListForGeneration +=
-          !mClassName
-          !mPropertyName.string
+          !self.mClassName
+          !self.mPropertyName.string
           ![kind swiftTypeName]
       end
     case document (*) :
-      error mPropertyTypeName : "an atomic class is required here"
+      error self.mPropertyTypeName : "an atomic class is required here"
     case entity (3*) :
-      error mPropertyTypeName : "an atomic class is required here"
+      error self.mPropertyTypeName : "an atomic class is required here"
     end
   end
 }
@@ -165,18 +165,18 @@ list @atomicPropertyGenerationList {
 #·······················································································································
 
 override getter @atomicPropertyGeneration prefKeyDefinitionCode -> @string {
-  result = "let Preferences_" + mPropertyName + " = \"Preferences:" + mPropertyName + "\"\n"
+  result = "let Preferences_" + self.mPropertyName + " = \"Preferences:" + self.mPropertyName + "\"\n"
 }
 
 #·······················································································································
 
 override getter @atomicPropertyGeneration declarationInSelectionControllerCode -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Selection observable property: " + mPropertyName + "\n"
+  result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  let " + mPropertyName + "_property = EBPropertyProxy_" + [mType swiftTypeName] + " ()\n"
-  result += "  var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName] + "> {\n"
-  result += "    return self." + mPropertyName + "_property.selection\n"
+  result += "  let " + self.mPropertyName + "_property = EBPropertyProxy_" + [self.mType swiftTypeName] + " ()\n"
+  result += "  var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
+  result += "    return self." + self.mPropertyName + "_property.selection\n"
   result += "  }\n\n"
 }
 
@@ -184,9 +184,9 @@ override getter @atomicPropertyGeneration declarationInSelectionControllerCode -
 
 override getter @atomicPropertyGeneration bindPropertyInSelectionController -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  private final func bind_property_" + mPropertyName + " () {\n"
-  result += "    self.selectedArray_property.addEBObserverOf_" + mPropertyName + " (self." + mPropertyName + "_property)\n"
-  result += "    self." + mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
+  result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
+  result += "    self.selectedArray_property.addEBObserverOf_" + self.mPropertyName + " (self." + self.mPropertyName + "_property)\n"
+  result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty :\n"
@@ -194,10 +194,10 @@ override getter @atomicPropertyGeneration bindPropertyInSelectionController -> @
   result += "        case .multiple :\n"
   result += "          return .multiple\n"
   result += "        case .single (let v) :\n"
-  result += "          var s = Set <" + [mType swiftTypeName] + "> ()\n"
+  result += "          var s = Set <" + [self.mType swiftTypeName] + "> ()\n"
   result += "          var isMultipleSelection = false\n"
   result += "          for object in v {\n"
-  result += "            switch object." + mPropertyName + "_property_selection {\n"
+  result += "            switch object." + self.mPropertyName + "_property_selection {\n"
   result += "            case .empty :\n"
   result += "              return .empty\n"
   result += "            case .multiple :\n"
@@ -221,26 +221,26 @@ override getter @atomicPropertyGeneration bindPropertyInSelectionController -> @
   result += "      }\n"
   result += "    }\n"
 
-  result += "    self." + mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [mType swiftTypeName] + ") in\n"
+  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [self.mType swiftTypeName] + ") in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty, .multiple :\n"
   result += "          break\n"
   result += "        case .single (let v) :\n"
   result += "          for object in v {\n"
-  result += "            object." + mPropertyName + "_property.setProp (inValue)\n"
+  result += "            object." + self.mPropertyName + "_property.setProp (inValue)\n"
   result += "          }\n"
   result += "        }\n"
   result += "      }\n"
   result += "    }\n"
-  result += "    self." + mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " + [mType swiftTypeName] + ", windowForSheet : NSWindow?) in\n"
+  result += "    self." + self.mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " + [self.mType swiftTypeName] + ", windowForSheet : NSWindow?) in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty, .multiple :\n"
   result += "          return false\n"
   result += "        case .single (let v) :\n"
   result += "          for object in v {\n"
-  result += "            let result = object." + mPropertyName + "_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
+  result += "            let result = object." + self.mPropertyName + "_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
   result += "            if !result {\n"
   result += "              return false\n"
   result += "            }\n"
@@ -260,42 +260,42 @@ override getter @atomicPropertyGeneration propertyDeclarationCode
    ?let @bool unused inPreferences
    ?let @stringset unused inOverriddenTransients -> @string
 {
-  if mInPreferences then
+  if self.mInPreferences then
     result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-    result += "//   Atomic property: " + mPropertyName + "\n"
+    result += "//   Atomic property: " + self.mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  let preferences_" + mPropertyName + "_property = EBPreferencesProperty_" + [mType swiftTypeName]
-    result += " (defaultValue: " + mDefaultValueInSwift + ", prefKey: Preferences_" + mPropertyName  + ")\n\n"
+    result += "  let preferences_" + self.mPropertyName + "_property = EBPreferencesProperty_" + [self.mType swiftTypeName]
+    result += " (defaultValue: " + self.mDefaultValueInSwift + ", prefKey: Preferences_" + self.mPropertyName  + ")\n\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var preferences_" + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
-    result += "    get { return preferences_" + mPropertyName + "_property.propval }\n"
-    result += "    set { preferences_" + mPropertyName + "_property.setProp (newValue) }\n"
+    result += "  var preferences_" + self.mPropertyName + " : " + [self.mType swiftTypeName] + " {\n"
+    result += "    get { return preferences_" + self.mPropertyName + "_property.propval }\n"
+    result += "    set { preferences_" + self.mPropertyName + "_property.setProp (newValue) }\n"
     result += "  }\n\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var preferences_" + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
-    result += "> { return preferences_" + mPropertyName + "_property.selection }\n\n"
+    result += "  var preferences_" + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName]
+    result += "> { return preferences_" + self.mPropertyName + "_property.selection }\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-    result += "  //   Atomic property: " + mPropertyName + "\n"
+    result += "  //   Atomic property: " + self.mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final let " + mPropertyName + "_property : EBStoredProperty_" + [mType swiftTypeName] + "\n\n"
+    result += "  final let " + self.mPropertyName + "_property : EBStoredProperty_" + [self.mType swiftTypeName] + "\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final func reset_" + mPropertyName + "_toDefaultValue () {\n"
-    result += "    self." + mPropertyName + " = " + mDefaultValueInSwift + "\n"
+    result += "  final func reset_" + self.mPropertyName + "_toDefaultValue () {\n"
+    result += "    self." + self.mPropertyName + " = " + self.mDefaultValueInSwift + "\n"
     result += "  }\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final var " + mPropertyName + " : " + [mType swiftTypeName] + " {\n"
-    result += "    get { return self." + mPropertyName + "_property.propval }\n"
-    result += "    set { self." + mPropertyName + "_property.setProp (newValue) }\n"
+    result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + " {\n"
+    result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
+    result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
     result += "  }\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final var " + mPropertyName + "_property_selection : EBSelection <" + [mType swiftTypeName]
-    result += "> { return self." + mPropertyName + "_property.selection }\n\n"
+    result += "  final var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName]
+    result += "> { return self." + self.mPropertyName + "_property.selection }\n\n"
   end
-  if mNeedsValidation then
+  if self.mNeedsValidation then
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final func " + mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [mType swiftTypeName] + ", windowForSheet inWindow : NSWindow?) -> Bool {\n"
-    result += "    return self." + mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet: inWindow)\n"
+    result += "  final func " + self.mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [self.mType swiftTypeName] + ", windowForSheet inWindow : NSWindow?) -> Bool {\n"
+    result += "    return self." + self.mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet: inWindow)\n"
     result += "  }\n\n"
   end
 }
@@ -303,18 +303,18 @@ override getter @atomicPropertyGeneration propertyDeclarationCode
 #·······················································································································
 
 override getter @atomicPropertyGeneration initCode -> @string {
-  result  = "    self." + mPropertyName + "_property = EBStoredProperty_" + [mType swiftTypeName]
-  result += " (defaultValue: " + mDefaultValueInSwift + ", undoManager: ebUndoManager)\n"
+  result  = "    self." + self.mPropertyName + "_property = EBStoredProperty_" + [self.mType swiftTypeName]
+  result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: ebUndoManager)\n"
 }
 
 #·······················································································································
 
 override getter @atomicPropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
   result = ""
-  if mNeedsValidation then
-    result += "  //--- Atomic property: " + mPropertyName + "\n"
-    result += "    self." + mPropertyName + "_property.validationFunction = { [weak self] in\n"
-    result += "      return self?.validate_" + mPropertyName + " (currentValue: $0, proposedValue: $1) ?? .rejectWithBeep\n"
+  if self.mNeedsValidation then
+    result += "  //--- Atomic property: " + self.mPropertyName + "\n"
+    result += "    self." + self.mPropertyName + "_property.validationFunction = { [weak self] in\n"
+    result += "      return self?.validate_" + self.mPropertyName + " (currentValue: $0, proposedValue: $1) ?? .rejectWithBeep\n"
     result += "    }\n"
   end
 }
@@ -322,23 +322,23 @@ override getter @atomicPropertyGeneration configurationCode ?let @bool unused in
 #·······················································································································
 
 override getter @atomicPropertyGeneration setupAtomicPropertyFromDictionaryCode -> @string {
-  result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey: \"" + mPropertyName + "\")\n"
+  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
+  result += "    self." + self.mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey: \"" + self.mPropertyName + "\")\n"
 }
 
 #·······················································································································
 
 override getter @atomicPropertyGeneration saveIntoDictionaryCode -> @string {
-  result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey: \"" + mPropertyName + "\")\n"
+  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
+  result += "    self." + self.mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
 }
 
 #·······················································································································
 
 override getter @atomicPropertyGeneration clearObjectExplorerCode -> @string {
-  result  = "  //--- Atomic property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + "_property.mObserverExplorer = nil\n"
-  result += "    self." + mPropertyName + "_property.mValueExplorer = nil\n"
+  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
+  result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
+  result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

@@ -12,15 +12,15 @@ class @selectionControllerDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @selectionControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  let node = @lstring.new {!mClassName.string + " " + mSelectionControllerName !mSelectionControllerName.location}
+  let node = @lstring.new {!self.mClassName.string + " " + self.mSelectionControllerName !self.mSelectionControllerName.location}
   [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mModelControllerName !mModelControllerName.location}]
+  [!?ioGraph addEdge !node !.new {!self.mClassName.string + " " + self.mModelControllerName !self.mModelControllerName.location}]
 }
 
 #·······················································································································
 
 override getter @selectionControllerDeclarationAST nodeKey -> @lstring {
-  result = @lstring.new {!mClassName.string + " " + mSelectionControllerName !mSelectionControllerName.location}
+  result = @lstring.new {!self.mClassName.string + " " + self.mSelectionControllerName !self.mSelectionControllerName.location}
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -66,30 +66,30 @@ override method @selectionControllerDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  with mClassName in !?ioSemanticContext.mClassMap 
+  with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [mPropertyMap searchKey !mModelControllerName ?let propertyKind ?2*]
+    [mPropertyMap searchKey !self.mModelControllerName ?let propertyKind ?2*]
     switch propertyKind
     case property (2*) :
-      error mModelControllerName : "an array controller is required here"
+      error self.mModelControllerName : "an array controller is required here"
     case toMany (4*) :
-      error mModelControllerName : "an array controller is required here"
+      error self.mModelControllerName : "an array controller is required here"
     case toOne (4*) :
-      error mModelControllerName : "an array controller is required here"
+      error self.mModelControllerName : "an array controller is required here"
     case selectionController (*) :
-      error mModelControllerName : "an array controller is required here"
+      error self.mModelControllerName : "an array controller is required here"
     case arrayController (2*) :
-      if mModelControllerPropertyName.string != "selectedArray" then
-        error mModelControllerPropertyName : "'selectedArray' is required here"
+      if self.mModelControllerPropertyName.string != "selectedArray" then
+        error self.mModelControllerPropertyName : "'selectedArray' is required here"
       end
-      let kind = @propertyKind.selectionController {!typeName: mSelectionEntityName}
-      [!?mPropertyMap insertKey !mSelectionControllerName !kind !{} !false]
+      let kind = @propertyKind.selectionController {!typeName: self.mSelectionEntityName}
+      [!?mPropertyMap insertKey !self.mSelectionControllerName !kind !{} !false]
       mPropertyGenerationList += !@selectionControllerPropertyGeneration.new {
-        !mSelectionControllerName.string
-        !mClassName
-        !mModelControllerName.string
-        !mModelControllerPropertyName.string
+        !self.mSelectionControllerName.string
+        !self.mClassName
+        !self.mModelControllerName.string
+        !self.mModelControllerPropertyName.string
       }
     end
   end
@@ -101,8 +101,8 @@ override method @selectionControllerDeclarationAST fourthAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  [ioSemanticContext.mClassMap searchKey !mClassName ?let superClassKind ?let propertyMap ?2*]
-  [propertyMap searchKey !mModelControllerName ?let propertyKind ?2*]
+  [ioSemanticContext.mClassMap searchKey !self.mClassName ?let superClassKind ?let propertyMap ?2*]
+  [propertyMap searchKey !self.mModelControllerName ?let propertyKind ?2*]
    switch propertyKind
    case property (2*) :
    case toMany (4*) :
@@ -110,24 +110,24 @@ override method @selectionControllerDeclarationAST fourthAnalysisPhase
    case selectionController (*) :
    case arrayController (typeName *) :
      [ioSemanticContext.mClassMap searchKey
-       !mSelectionEntityName
+       !self.mSelectionEntityName
        ?*
        ?let selectionObservablePropertyMap
        ?*
        ?let selectionGenerationList
      ]
      ioGeneration.mSelectionControllerListForGeneration +=
-       !mClassName
-       !mSelectionControllerName.string
-       !mModelControllerName.string
-       !mModelControllerPropertyName.string
+       !self.mClassName
+       !self.mSelectionControllerName.string
+       !self.mModelControllerName.string
+       !self.mModelControllerPropertyName.string
        !typeName
-       !mSelectionEntityName.string
+       !self.mSelectionEntityName.string
        !selectionObservablePropertyMap
        !selectionGenerationList
-     var testedTypeName = mSelectionEntityName.string
+     var testedTypeName = self.mSelectionEntityName.string
      loop (@uint.max) while (typeName.string != testedTypeName) & (testedTypeName != "") do
-       if typeName.string != mSelectionEntityName.string then
+       if typeName.string != self.mSelectionEntityName.string then
          switch superClassKind
          case prefs :
            testedTypeName = ""
@@ -138,7 +138,7 @@ override method @selectionControllerDeclarationAST fourthAnalysisPhase
          case entity (@string superOfSuperEntity 2*) :
             testedTypeName = superOfSuperEntity
             if testedTypeName == "" then
-              error mSelectionEntityName : "This entity is not descendant of " + typeName
+              error self.mSelectionEntityName : "This entity is not descendant of " + typeName
             end
          end
        end
@@ -163,17 +163,17 @@ override getter @selectionControllerPropertyGeneration propertyDeclarationCode
    ?let @stringset unused inOverriddenTransients -> @string
 {
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-  result += "  //   Selection controller: " + mPropertyName + "\n"
+  result += "  //   Selection controller: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + mPropertyName + " = SelectionController_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+  result += "  var " + self.mPropertyName + " = SelectionController_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
 }
 
 #·······················································································································
 
 override getter @selectionControllerPropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
-  result  = "  //--- Selection controller property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + ".bind_selection (model: self." + mModelControllerName
-    + "." + mModelControllerPropertyName + "_property)\n"
+  result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
+  result += "    self." + self.mPropertyName + ".bind_selection (model: self." + self.mModelControllerName
+    + "." + self.mModelControllerPropertyName + "_property)\n"
 }
 
 #·······················································································································
@@ -185,15 +185,15 @@ override getter @selectionControllerPropertyGeneration initCode -> @string {
 #·······················································································································
 
 override getter @selectionControllerPropertyGeneration populateExplorerWindowCode -> @string {
-  result  = "  //--- Selection controller property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + ".addExplorer (name: \"" + mPropertyName + "\", y:&y, view:view)\n"
+  result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
+  result += "    self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································
 
 override getter @selectionControllerPropertyGeneration terminationCode ?let @bool unused inPreferences -> @string {
-  result  = "  //--- Selection controller property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + ".unbind_selection ()\n"
+  result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
+  result += "    self." + self.mPropertyName + ".unbind_selection ()\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

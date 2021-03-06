@@ -39,20 +39,20 @@ class @tableViewControllerDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @tableViewControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  let node = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
+  let node = @lstring.new {!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location}
   [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !mClassName]
-  if not mIsRoot then
-    [!?ioGraph addEdge !node !.new {!mClassName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
-  elsif mRootEntityName.string != "" then
-    [!?ioGraph addEdge !node !.new {!mRootEntityName.string + " " + mToManyPropertyName !mToManyPropertyName.location}]
+  [!?ioGraph addEdge !node !self.mClassName]
+  if not self.mIsRoot then
+    [!?ioGraph addEdge !node !.new {!self.mClassName.string + " " + self.mToManyPropertyName !self.mToManyPropertyName.location}]
+  elsif self.mRootEntityName.string != "" then
+    [!?ioGraph addEdge !node !.new {!self.mRootEntityName.string + " " + self.mToManyPropertyName !self.mToManyPropertyName.location}]
   end
 }
 
 #·······················································································································
 
 override getter @tableViewControllerDeclarationAST nodeKey -> @lstring {
-  result = @lstring.new {!mClassName.string + " " + mControllerName !mControllerName.location}
+  result = @lstring.new {!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location}
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -197,58 +197,58 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  with mClassName in !?ioSemanticContext.mClassMap 
+  with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
     let @actionMap controllerActions = {!["add" nowhere], !["remove" nowhere] }
-    if mIsRoot then
-      [ioSemanticContext.mClassMap searchKey !mRootEntityName ?* ?let rootProperties ?2*]
-      [rootProperties searchKey !mToManyPropertyName ?let classKind ?2*]
+    if self.mIsRoot then
+      [ioSemanticContext.mClassMap searchKey !self.mRootEntityName ?* ?let rootProperties ?2*]
+      [rootProperties searchKey !self.mToManyPropertyName ?let classKind ?2*]
       switch classKind
       case property (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error self.mRootEntityName : "a toMany relationship is required here"
       case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
           !graphic: graphic
         }
-        [!?mPropertyMap insertKey !mControllerName !kind !controllerActions !false]
+        [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
       mPropertyGenerationList += !@tableViewControllerPropertyGeneration.new {
-        !mControllerName.string
-        !"rootObject." + mToManyPropertyName
-        !mClassName
+        !self.mControllerName.string
+        !"rootObject." + self.mToManyPropertyName
+        !self.mClassName
       }
       case toOne (4*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error self.mRootEntityName : "a toMany relationship is required here"
       case arrayController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error self.mRootEntityName : "a toMany relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error self.mRootEntityName : "a toMany relationship is required here"
       end
     else
-      [mPropertyMap searchKey !mToManyPropertyName ?let classKind ?2*]
+      [mPropertyMap searchKey !self.mToManyPropertyName ?let classKind ?2*]
       switch classKind
       case property (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error self.mRootEntityName : "a toMany relationship is required here"
       case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController {
           !typeName: typeName
           !graphic: graphic
         }
-        [!?mPropertyMap insertKey !mControllerName !kind !controllerActions !false]
+        [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
       mPropertyGenerationList += !@tableViewControllerPropertyGeneration.new {
-        !mControllerName.string
-        !mToManyPropertyName
-        !mClassName
+        !self.mControllerName.string
+        !self.mToManyPropertyName
+        !self.mClassName
       }
       case toOne (4*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error self.mRootEntityName : "a toMany relationship is required here"
       case arrayController (2*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error self.mRootEntityName : "a toMany relationship is required here"
       case selectionController (*) :
-        error mRootEntityName : "a toMany relationship is required here"
+        error self.mRootEntityName : "a toMany relationship is required here"
       end
     end
   end
@@ -273,7 +273,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
   let allowedTypes = @typeKindList {!.boolType}
   @stringset definedAttributes = {}
   @2stringlist attributeListForGeneration = {}
-  for (name value) in mTableViewControllerAttributListAST do
+  for (name value) in self.mTableViewControllerAttributListAST do
     if not [attributes hasKey !name.string] then
       error name : "unknown attribute"
     elsif [definedAttributes hasKey !name.string] then
@@ -286,28 +286,28 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
   end
   for s in attributes do
     if not [definedAttributes hasKey !s] then
-      error mControllerName : "attribute '" + s + "' not defined"
+      error self.mControllerName : "attribute '" + s + "' not defined"
     end
   end
 #------
   @propertyMap boundModelPropertyMap
-  if mIsRoot then
+  if self.mIsRoot then
     [ioSemanticContext.mClassMap searchKey
-       !mRootEntityName
+       !self.mRootEntityName
        ?*
        ?boundModelPropertyMap 
        ?2*
      ]
   else
     [ioSemanticContext.mClassMap searchKey
-       !mClassName
+       !self.mClassName
        ?*
        ?boundModelPropertyMap 
        ?2*
      ]  
   end
   [boundModelPropertyMap searchKey
-     !mToManyPropertyName
+     !self.mToManyPropertyName
      ?let @propertyKind boundModelClassKind
      ?2*
   ]
@@ -319,7 +319,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
   @string elementTypeName
   switch boundModelClassKind
   case property (2*) :
-    error mToManyPropertyName
+    error self.mToManyPropertyName
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   case toMany (typeName accessibility isGraphic *) :
@@ -331,21 +331,21 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
     end
     [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?actionMap ?*]
   case toOne (4*) :
-    error mToManyPropertyName
+    error self.mToManyPropertyName
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   case arrayController (2*) :
-    error mToManyPropertyName
+    error self.mToManyPropertyName
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   case selectionController (*) :
-    error mToManyPropertyName
+    error self.mToManyPropertyName
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
   @tableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
   @tableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
-  for () in mTableViewControllerBoundColumnListAST do
+  for () in self.mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
     if mColumnBindingAST.mRunActionName.string != "" then
       [actionMap searchKey !mColumnBindingAST.mRunActionName]
@@ -396,14 +396,14 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
       ioGeneration.mNeededOutletClasses += !mColumnOutletTypeName.string
     end
   end
-  let modelString = if mIsRoot
-    then "self.rootObject." + mToManyPropertyName + "_property"
-    else "self." + mToManyPropertyName + "_property"
+  let modelString = if self.mIsRoot
+    then "self.rootObject." + self.mToManyPropertyName + "_property"
+    else "self." + self.mToManyPropertyName + "_property"
   end
 #---
   ioGeneration.mFileGenerationList += !@tableViewControllerGeneration.new {
-    !mClassName
-    !mControllerName
+    !self.mClassName
+    !self.mControllerName
     !modelString
     !arrayControllerBoundColumnListForGeneration
     !arrayControllerSortedColumnListForGeneration
@@ -433,14 +433,14 @@ override getter @tableViewControllerPropertyGeneration propertyDeclarationCode
 {
   if inPreferences then
     result  = "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-    result += "//   Array controller: " + mPropertyName + "\n"
+    result += "//   Array controller: " + self.mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var preferences_" + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+    result += "  var preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
-    result += "  //   Array controller: " + mPropertyName + "\n"
+    result += "  //   Array controller: " + self.mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var " + mPropertyName + " = Controller_" + mOwnerName + "_" + mPropertyName + " ()\n\n"
+    result += "  var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }
 
@@ -448,8 +448,8 @@ override getter @tableViewControllerPropertyGeneration propertyDeclarationCode
 
 override getter @tableViewControllerPropertyGeneration configurationCode ?let @bool inPreferences -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
-  result  = "  //--- Array controller property: " + mPropertyName + "\n"
-  result += "    " + prefix + mPropertyName + ".bind_model (" + prefix + mModelString + "_property, self.ebUndoManager)\n"
+  result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
+  result += "    " + prefix + self.mPropertyName + ".bind_model (" + prefix + self.mModelString + "_property, self.ebUndoManager)\n"
 }
 
 #·······················································································································
@@ -461,16 +461,16 @@ override getter @tableViewControllerPropertyGeneration initCode -> @string {
 #·······················································································································
 
 override getter @tableViewControllerPropertyGeneration populateExplorerWindowCode -> @string {
-  result  = "  //--- Array controller property: " + mPropertyName + "\n"
-  result += "    self." + mPropertyName + ".addExplorer (name: \"" + mPropertyName + "\", y:&y, view:view)\n"
+  result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
+  result += "    self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································
 
 override getter @tableViewControllerPropertyGeneration terminationCode ?let @bool inPreferences -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
-  result  = "  //--- Array controller property: " + mPropertyName + "\n"
-  result += "    " + prefix + mPropertyName + ".unbind_model ()\n"
+  result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
+  result += "    " + prefix + self.mPropertyName + ".unbind_model ()\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -543,24 +543,24 @@ override method @tableViewControllerGeneration generateCode
 {
 #--- Build observed property set (for sorting and filtering)
   @stringset observedProperties = {}
-  for () in mTableViewControllerSortedColumnListForGeneration do
+  for () in self.mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end
   let s = [filewrapper tableViewControllerGenerationTemplate.tableViewControllerImplementationInSwift
-    !mOwnerName
-    !mControllerName
-    !mModelString
-    !mTableViewControllerModelKind
-    !mModelTypeName
-    !mTableViewControllerBoundColumnListForGeneration
-    !mTableViewControllerSortedColumnListForGeneration
-    !mElementTypeName
+    !self.mOwnerName
+    !self.mControllerName
+    !self.mModelString
+    !self.mTableViewControllerModelKind
+    !self.mModelTypeName
+    !self.mTableViewControllerBoundColumnListForGeneration
+    !self.mTableViewControllerSortedColumnListForGeneration
+    !self.mElementTypeName
     !observedProperties
-    !mAttributeListForGeneration
+    !self.mAttributeListForGeneration
   ]
   [@string generateFile
     !inOutputDirectory
-    !"controller-table-view-" + mOwnerName + "-" +  mControllerName + ".swift"
+    !"controller-table-view-" + self.mOwnerName + "-" +  self.mControllerName + ".swift"
     !s
   ]
 }

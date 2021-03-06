@@ -16,16 +16,16 @@ class @entityDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @entityDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  [!?ioGraph addNode !mClassName !self]
-  if mSuperEntityName.string != "" then
-    [!?ioGraph addEdge !mClassName !mSuperEntityName]
+  [!?ioGraph addNode !self.mClassName !self]
+  if self.mSuperEntityName.string != "" then
+    [!?ioGraph addEdge !self.mClassName !self.mSuperEntityName]
   end
 }
 
 #·······················································································································
 
 override getter @entityDeclarationAST nodeKey -> @lstring {
-  result = mClassName
+  result = self.mClassName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -138,10 +138,10 @@ override method @entityDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  buildActionMap (!mActionDeclarationList ?let @actionMap actionMap)
+  buildActionMap (!self.mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
-    !mClassName
-    !.entity {!superEntityName: mSuperEntityName.string !isGraphic: mIsGraphicEntity !isAbstract: mIsAbstract}
+    !self.mClassName
+    !.entity {!superEntityName: self.mSuperEntityName.string !isGraphic: self.mIsGraphicEntity !isAbstract: self.mIsAbstract}
     !{}
     !actionMap
     !{}
@@ -154,10 +154,10 @@ override method @entityDeclarationAST secondAnalysisPhase
     ?!@semanticContext ioSemanticContext
     ?!@generationStruct unused ioGeneration
 {
-  if mSuperEntityName.string != "" then
+  if self.mSuperEntityName.string != "" then
   #--- Search for super entity property map
     [ioSemanticContext.mClassMap searchKey
-      !mSuperEntityName
+      !self.mSuperEntityName
       ?*
       ?let @propertyMap inheritedPropertyMap
       ?2*
@@ -166,7 +166,7 @@ override method @entityDeclarationAST secondAnalysisPhase
 #    message "  Super entity '" + mSuperEntityName + "' has " + [inheritedPropertyMap count] + " properties\n"
   #--- Search for current entity property map
     [ioSemanticContext.mClassMap searchKey
-      !mClassName
+      !self.mClassName
       ?*
       ?let @propertyMap propertyMap
       ?2*
@@ -185,7 +185,7 @@ override method @entityDeclarationAST secondAnalysisPhase
       end
     end
   #--- Replace property map
-    with mClassName in !?ioSemanticContext.mClassMap 
+    with self.mClassName in !?ioSemanticContext.mClassMap 
       error message searchKey
     do
       mPropertyMap = newPropertyMap
@@ -200,7 +200,7 @@ override method @entityDeclarationAST fourthAnalysisPhase
        ?!@generationStruct ioGeneration
 {
   [ioSemanticContext.mClassMap searchKey
-    !mClassName
+    !self.mClassName
     ?*
     ?let @propertyMap propertyMap
     ?*
@@ -208,25 +208,25 @@ override method @entityDeclarationAST fourthAnalysisPhase
   ]
 #--- If super entity is abstract, and current is not, check all transient properties are implemented
   @stringset overridenTransients = {}
-  if (mSuperEntityName.string != "") & not mIsAbstract then
+  if (self.mSuperEntityName.string != "") & not self.mIsAbstract then
     [ioSemanticContext.mClassMap searchKey
-      !mSuperEntityName
+      !self.mSuperEntityName
       ?let @classKind superClassKind
       ?let @propertyMap superPropertyMap
       ?2*
     ]
     switch superClassKind
     case prefs :
-      error mSuperEntityName : "prefs cannot be a super entity"
+      error self.mSuperEntityName : "prefs cannot be a super entity"
     case atomic (*) :
-      error mSuperEntityName : "an atomic class cannot be a super entity"
+      error self.mSuperEntityName : "an atomic class cannot be a super entity"
     case document (*) :
-      error mSuperEntityName : "a document cannot be a super entity"
+      error self.mSuperEntityName : "a document cannot be a super entity"
     case entity (* @bool isGraphic @bool isAbstract) :
-      if isGraphic & not mIsGraphicEntity then
-        error mClassName : "this entity should be declared with 'graphic', as super entity is graphic"
+      if isGraphic & not self.mIsGraphicEntity then
+        error self.mClassName : "this entity should be declared with 'graphic', as super entity is graphic"
       end
-      if isAbstract & not mIsAbstract then # Check all abstract properties are defined
+      if isAbstract & not self.mIsAbstract then # Check all abstract properties are defined
         for superProperty in superPropertyMap do
           if [superProperty isAbstract] then
             if [propertyMap hasKey !superProperty.lkey.string] then
@@ -239,7 +239,7 @@ override method @entityDeclarationAST fourthAnalysisPhase
                   : "type '" + superTypeName + "' is required by declaration in super entity"
               end
             else
-              error mClassName
+              error self.mClassName
                 : "transient '" + superProperty.lkey + "' should be defined, it is declared abstract in super entity"
             end
           end
@@ -252,22 +252,22 @@ override method @entityDeclarationAST fourthAnalysisPhase
   for classDeclaration in ioSemanticContext.mClassMap while not hasSubClass do
     if [classDeclaration.mClassKind isEntity] then
       [classDeclaration.mClassKind entity ?superEntityName: let superEntityName ?2*]
-      hasSubClass = mClassName.string == superEntityName
+      hasSubClass = self.mClassName.string == superEntityName
     end 
   end
 #--- Generation    
   ioGeneration.mEntityListForGeneration +=
-    !mClassName.string
-    !mObsoleteEntityNames
+    !self.mClassName.string
+    !self.mObsoleteEntityNames
   ioGeneration.mFileGenerationList += !@entityForGeneration.new {
-    !mClassName.string
-    !mSuperEntityName.string
+    !self.mClassName.string
+    !self.mSuperEntityName.string
     !propertyGenerationList
-    !mSignatureList
-    !mIsGraphicEntity
-    !mIsAbstract
+    !self.mSignatureList
+    !self.mIsGraphicEntity
+    !self.mIsAbstract
     !overridenTransients
-    !mExternSwiftDelegateList
+    !self.mExternSwiftDelegateList
     !hasSubClass
   }
 }
@@ -308,7 +308,7 @@ override method @entityForGeneration generateCode
   @toManyPropertyGenerationList toManyPropertyGenerationList = {}
   @atomicProxyGenerationList proxyGenerationList = {}
   @toManyProxyGenerationList toManyProxyGenerationList = {}
-  for (property) in mPropertyGenerationList do
+  for (property) in self.mPropertyGenerationList do
     if let atomicProperty = property as @atomicPropertyGeneration then
       atomicPropertyGenerationList += !atomicProperty
     elsif let transientProperty = property as @transientPropertyGeneration then
@@ -326,17 +326,17 @@ override method @entityForGeneration generateCode
     end
   end
   var superEntityName = ""
-  if mSuperEntityName != "" then
-    superEntityName = mSuperEntityName
-  elsif mIsGraphicEntity then
+  if self.mSuperEntityName != "" then
+    superEntityName = self.mSuperEntityName
+  elsif self.mIsGraphicEntity then
     superEntityName = "EBGraphicManagedObject"
   else
     superEntityName = "EBManagedObject"
   end
   var s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
-    !mEntityName
+    !self.mEntityName
     !superEntityName
-    !mPropertyGenerationList
+    !self.mPropertyGenerationList
     !proxyGenerationList
     !toManyProxyGenerationList
     !atomicPropertyGenerationList
@@ -344,14 +344,14 @@ override method @entityForGeneration generateCode
     !computedPropertyGenerationList
     !toOnePropertyGenerationList
     !toManyPropertyGenerationList
-    !mSignatureSet
-    !mIsGraphicEntity
-    !mIsAbstract
-    !mOverridenTransients
-    !mExternSwiftDelegateList
-    !mHasSubEntity
+    !self.mSignatureSet
+    !self.mIsGraphicEntity
+    !self.mIsAbstract
+    !self.mOverridenTransients
+    !self.mExternSwiftDelegateList
+    !self.mHasSubEntity
   ]
-  var fileName = "entity-" + mEntityName + ".swift"
+  var fileName = "entity-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
     !inOutputDirectory
@@ -359,9 +359,9 @@ override method @entityForGeneration generateCode
     !s
   ]
   s = [filewrapper entityGenerationTemplate.entityToOneImplementationInSwift
-    !mEntityName
+    !self.mEntityName
     !superEntityName
-    !mPropertyGenerationList
+    !self.mPropertyGenerationList
     !proxyGenerationList
     !toManyProxyGenerationList
     !atomicPropertyGenerationList
@@ -369,14 +369,14 @@ override method @entityForGeneration generateCode
     !computedPropertyGenerationList
     !toOnePropertyGenerationList
     !toManyPropertyGenerationList
-    !mSignatureSet
-    !mIsGraphicEntity
-    !mIsAbstract
-    !mOverridenTransients
-    !mExternSwiftDelegateList
+    !self.mSignatureSet
+    !self.mIsGraphicEntity
+    !self.mIsAbstract
+    !self.mOverridenTransients
+    !self.mExternSwiftDelegateList
 
   ]
-  fileName = "toone-" + mEntityName + ".swift"
+  fileName = "toone-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
     !inOutputDirectory
@@ -384,9 +384,9 @@ override method @entityForGeneration generateCode
     !s
   ]
   s = [filewrapper entityGenerationTemplate.entityToManyImplementationInSwift
-    !mEntityName
+    !self.mEntityName
     !superEntityName
-    !mPropertyGenerationList
+    !self.mPropertyGenerationList
     !proxyGenerationList
     !toManyProxyGenerationList
     !atomicPropertyGenerationList
@@ -394,14 +394,14 @@ override method @entityForGeneration generateCode
     !computedPropertyGenerationList
     !toOnePropertyGenerationList
     !toManyPropertyGenerationList
-    !mSignatureSet
-    !mIsGraphicEntity
-    !mIsAbstract
-    !mOverridenTransients
-    !mExternSwiftDelegateList
+    !self.mSignatureSet
+    !self.mIsGraphicEntity
+    !self.mIsAbstract
+    !self.mOverridenTransients
+    !self.mExternSwiftDelegateList
 
   ]
-  fileName = "tomany-" + mEntityName + ".swift"
+  fileName = "tomany-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
     !inOutputDirectory

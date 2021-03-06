@@ -9,13 +9,13 @@ class @transientClassDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @transientClassDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  [!?ioGraph addNode !mClassName !self]
+  [!?ioGraph addNode !self.mClassName !self]
 }
 
 #·······················································································································
 
 override getter @transientClassDeclarationAST nodeKey -> @lstring {
-  result = mClassName
+  result = self.mClassName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -58,13 +58,13 @@ override method @transientClassDeclarationAST firstAnalysisPhase
        ?!@generationStruct ioGeneration
 {
   [!?ioSemanticContext.mClassMap insertKey
-    !mClassName
-    !.atomic {!kind: .transientPropertyExternType {!externTypeName: mClassName}}
+    !self.mClassName
+    !.atomic {!kind: .transientPropertyExternType {!externTypeName: self.mClassName}}
     !{}
     !{}
     !{}
   ]
-  ioGeneration.mTransientPropertyTypeList += !mClassName.string !mIsClass
+  ioGeneration.mTransientPropertyTypeList += !self.mClassName.string !self.mIsClass
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

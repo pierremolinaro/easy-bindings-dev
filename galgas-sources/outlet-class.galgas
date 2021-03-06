@@ -15,16 +15,16 @@ class @outletClassDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @outletClassDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  [!?ioGraph addNode !mClassName !self]
-  if mSuperClassName.string != "" then
-    [!?ioGraph addEdge !mClassName !mSuperClassName]
+  [!?ioGraph addNode !self.mClassName !self]
+  if self.mSuperClassName.string != "" then
+    [!?ioGraph addEdge !self.mClassName !self.mSuperClassName]
   end
 }
 
 #·······················································································································
 
 override getter @outletClassDeclarationAST nodeKey -> @lstring {
-  result = mClassName
+  result = self.mClassName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -100,20 +100,20 @@ override method @outletClassDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
-  if mSuperClassName.string == "" then
+  if self.mSuperClassName.string == "" then
     [!?ioSemanticContext.mOutletClassMap insertKey
-      !mClassName
+      !self.mClassName
       !["" nowhere]  # No super class
-      !mHasRunAction
-      !mHandlesTableValueBinding
-      !mHasEnabled
-      !mHasHidden
-      !mHandlesGraphicControllerBinding
-      !mUserDefined
+      !self.mHasRunAction
+      !self.mHandlesTableValueBinding
+      !self.mHasEnabled
+      !self.mHasHidden
+      !self.mHandlesGraphicControllerBinding
+      !self.mUserDefined
     ]
   else
     [ioSemanticContext.mOutletClassMap searchKey
-      !mSuperClassName
+      !self.mSuperClassName
       ?*
       ?let hasRunAction
       ?let handlesTableValueBinding
@@ -122,30 +122,30 @@ override method @outletClassDeclarationAST firstAnalysisPhase
       ?let handlesGraphicControllerBinding
       ?*
     ]
-    if mHasRunAction & hasRunAction then
-      error mClassName : "$run binding already defined in superclass"
+    if self.mHasRunAction & hasRunAction then
+      error self.mClassName : "$run binding already defined in superclass"
     end
-    if mHandlesTableValueBinding & handlesTableValueBinding then
-      error mClassName : "$tableview binding already defined in superclass"
+    if self.mHandlesTableValueBinding & handlesTableValueBinding then
+      error self.mClassName : "$tableview binding already defined in superclass"
     end
-    if mHasEnabled & hasEnabled then
-      error mClassName : "$enabled binding already defined in superclass"
+    if self.mHasEnabled & hasEnabled then
+      error self.mClassName : "$enabled binding already defined in superclass"
     end
-    if mHasHidden & hasHidden then
-      error mClassName : "$hidden binding already defined in superclass"
+    if self.mHasHidden & hasHidden then
+      error self.mClassName : "$hidden binding already defined in superclass"
     end
-    if mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
-      error mClassName : "$graphicController binding already defined in superclass"
+    if self.mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
+      error self.mClassName : "$graphicController binding already defined in superclass"
     end
     [!?ioSemanticContext.mOutletClassMap insertKey
-      !mClassName
-      !mSuperClassName
-      !mHasRunAction | hasRunAction
-      !mHandlesTableValueBinding | handlesTableValueBinding
-      !mHasEnabled | hasEnabled
-      !mHasHidden | hasHidden
-      !mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
-      !mUserDefined
+      !self.mClassName
+      !self.mSuperClassName
+      !self.mHasRunAction | hasRunAction
+      !self.mHandlesTableValueBinding | handlesTableValueBinding
+      !self.mHasEnabled | hasEnabled
+      !self.mHasHidden | hasHidden
+      !self.mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
+      !self.mUserDefined
     ]
   end
 }

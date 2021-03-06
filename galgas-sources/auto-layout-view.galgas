@@ -572,7 +572,7 @@ override method @astHorizontalStackViewDeclaration check ?let @string unused inV
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                 ?!@autoLayoutOutletMap ioOutletMap
                                 !@abstractViewGeneration outGeneration {
-  [mFunctionCallList check
+  [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutHStackFunctionMap
      !inViewDeclarationMap
      !inPreferences
@@ -605,7 +605,7 @@ override method @astVerticalStackViewDeclaration check ?let @string unused inVie
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                   ?!@autoLayoutOutletMap ioOutletMap
                                   !@abstractViewGeneration outGeneration {
-  [mFunctionCallList check
+  [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
      !inViewDeclarationMap
      !inPreferences
@@ -639,7 +639,7 @@ override method @astComputedHorizontalViewDeclaration check
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                   ?!@autoLayoutOutletMap ioOutletMap
                                   !@abstractViewGeneration outGeneration {
-  [mFunctionCallList check
+  [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
      !inViewDeclarationMap
      !inPreferences
@@ -655,7 +655,7 @@ override method @astComputedHorizontalViewDeclaration check
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   @autoLayoutViewInstructionGenerationList instructionList = {}
-  for (instruction) in mInstructionList do
+  for (instruction) in self.mInstructionList do
     [instruction generateCode
       !inViewDeclarationMap
       !inPreferences
@@ -691,7 +691,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
                                   ?!@autoLayoutOutletMap ioOutletMap
                                   !@abstractViewGeneration outGeneration {
   @autoLayoutViewInstructionGenerationList instructionList = {}
-  [mFunctionCallList check
+  [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
      !inViewDeclarationMap
      !inPreferences
@@ -706,7 +706,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  for (instruction) in mInstructionList do
+  for (instruction) in self.mInstructionList do
    [instruction generateCode
       !inViewDeclarationMap
       !inPreferences
@@ -775,8 +775,8 @@ override method @astLocalViewInstruction generateCode
                                 ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
                                 ?!@autoLayoutOutletMap unused ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction {
-  [inViewDeclarationMap searchKey !mLocalView]
-  outInstruction = @autoLayoutLocalViewInstructionGeneration.new {!mLocalView.string}
+  [inViewDeclarationMap searchKey !self.mLocalView]
+  outInstruction = @autoLayoutLocalViewInstructionGeneration.new {!self.mLocalView.string}
 }
 
 #·······················································································································
@@ -794,17 +794,17 @@ override method @astComputedViewInstruction generateCode
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                 ?!@autoLayoutOutletMap ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction {
-  [inSemanticContext.mAutolayoutViewClassMap searchKey !mAutoLayoutViewClassName
+  [inSemanticContext.mAutolayoutViewClassMap searchKey !self.mAutoLayoutViewClassName
      ?7*
      ?let formalParameterList
      ?let functionMap
   ]
   @autoLayoutViewInstructionGenerationParameterList parameterList = {}
-  if [formalParameterList length] != [mParameterList length] then
-    error mAutoLayoutViewClassName 
-    : [[formalParameterList length] string] + " parameter(s) required, " + [mParameterList length] + " provided"
+  if [formalParameterList length] != [self.mParameterList length] then
+    error self.mAutoLayoutViewClassName 
+    : [[formalParameterList length] string] + " parameter(s) required, " + [self.mParameterList length] + " provided"
   else
-    for (name type value) in mParameterList, (formalName formalType) in formalParameterList do
+    for (name type value) in self.mParameterList, (formalName formalType) in formalParameterList do
       if type != formalType then
         error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
       end
@@ -898,14 +898,14 @@ override method @astComputedViewInstruction generateCode
     !inActionMap
     !inReceiverSwiftTypeName
 
-    !mAutoLayoutViewClassName
+    !self.mAutoLayoutViewClassName
 
-    ! mTableValueBinding
-    ! mRunActionDescriptor
-    ! mEnabledBindingDescriptor
-    ! mHiddenBindingDescriptor
-    ! mGraphicController
-    ! mRegularBindingList
+    ! self.mTableValueBinding
+    ! self.mRunActionDescriptor
+    ! self.mEnabledBindingDescriptor
+    ! self.mHiddenBindingDescriptor
+    ! self.mGraphicController
+    ! self.mRegularBindingList
 
     ?let @autoLayoutRegularBindingsGenerationList regularBindingsGenerationList
     ?let @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList
@@ -913,7 +913,7 @@ override method @astComputedViewInstruction generateCode
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList
     ?let @autoLayoutViewGraphicControllerBindingGeneration ebViewGraphicControllerBindingGeneration
   )
-  [mFunctionCallList check
+  [self.mFunctionCallList check
      !functionMap
      !inViewDeclarationMap
      !inPreferences
@@ -929,16 +929,16 @@ override method @astComputedViewInstruction generateCode
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
 #--- Check outlet
-  if mOutletName.string != "" then
-    [!?ioOutletMap insertKey !mOutletName !mAutoLayoutViewClassName]
+  if self.mOutletName.string != "" then
+    [!?ioOutletMap insertKey !self.mOutletName !self.mAutoLayoutViewClassName]
   end
 #--- Check configurator
-  if mConfiguratorName.string != "" then
-    [!?ioConfiguratorMap insertKey !mConfiguratorName !mAutoLayoutViewClassName]
+  if self.mConfiguratorName.string != "" then
+    [!?ioConfiguratorMap insertKey !self.mConfiguratorName !self.mAutoLayoutViewClassName]
   end
 #---  
   outInstruction = @autoLayoutComputedViewInstructionGeneration.new {
-    !mAutoLayoutViewClassName
+    !self.mAutoLayoutViewClassName
     !parameterList
     !funcCallList
     !regularBindingsGenerationList
@@ -946,8 +946,8 @@ override method @astComputedViewInstruction generateCode
     !runBindingGeneration
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGeneration
-    !mConfiguratorName.string
-    !mOutletName.string
+    !self.mConfiguratorName.string
+    !self.mOutletName.string
   }
 }
 
@@ -1329,7 +1329,7 @@ override method @astHStackViewInstructionDeclaration generateCode
                         ?!@autoLayoutOutletMap ioOutletMap
                         !@abstractViewInstructionGeneration outInstruction {
   @autoLayoutViewInstructionGenerationList instructionList = {}
-  [mFunctionCallList check
+  [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutHStackFunctionMap
      !inViewDeclarationMap
      !inPreferences
@@ -1344,7 +1344,7 @@ override method @astHStackViewInstructionDeclaration generateCode
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  for (instruction) in mInstructionList do
+  for (instruction) in self.mInstructionList do
    [instruction generateCode
       !inViewDeclarationMap
       !inPreferences
@@ -1380,7 +1380,7 @@ override method @astVStackViewInstructionDeclaration generateCode
                         ?!@autoLayoutOutletMap ioOutletMap
                         !@abstractViewInstructionGeneration outInstruction {
   @autoLayoutViewInstructionGenerationList instructionList = {}
-  [mFunctionCallList check
+  [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
      !inViewDeclarationMap
      !inPreferences
@@ -1395,7 +1395,7 @@ override method @astVStackViewInstructionDeclaration generateCode
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  for (instruction) in mInstructionList do
+  for (instruction) in self.mInstructionList do
    [instruction generateCode
       !inViewDeclarationMap
       !inPreferences
@@ -1577,7 +1577,7 @@ abstract getter @abstractViewGeneration generate ?let @string inViewName -> @str
 
 override getter @newHorizontalStackViewGeneration generate ?let @string inViewName -> @string {
   result = "  let " + inViewName + " : AutoLayoutStackView = AutoLayoutHorizontalStackView ()\n"
-  [mFuncCallList generate !"    " !?result]
+  [self.mFuncCallList generate !"    " !?result]
   result += "\n"
 }
 
@@ -1585,7 +1585,7 @@ override getter @newHorizontalStackViewGeneration generate ?let @string inViewNa
 
 override getter @newVerticalStackViewGeneration generate ?let @string inViewName -> @string {
   result = "  let " + inViewName + " : AutoLayoutStackView = AutoLayoutVerticalStackView ()\n"
-  [mFuncCallList generate !"    " !?result]
+  [self.mFuncCallList generate !"    " !?result]
   result += "\n"
 }
 
@@ -1594,8 +1594,8 @@ override getter @newVerticalStackViewGeneration generate ?let @string inViewName
 override getter @computedHorizontalViewGeneration generate ?let @string inViewName -> @string {
   result = "  lazy var " + inViewName + " : AutoLayoutHorizontalStackView = {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
-  [mFuncCallList generate !"    " !?result]
-  for (instruction) in mInstructionList do (index)
+  [self.mFuncCallList generate !"    " !?result]
+  for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
     result += [instruction generate !name !"    "]
     result += "    hStackView.appendView (" + name + ")\n"
@@ -1609,8 +1609,8 @@ override getter @computedHorizontalViewGeneration generate ?let @string inViewNa
 override getter @computedVerticalViewGeneration generate ?let @string inViewName -> @string {
   result = "  lazy var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
-  [mFuncCallList generate !"    " !?result]
-  for (instruction) in mInstructionList do (index)
+  [self.mFuncCallList generate !"    " !?result]
+  for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
     result += [instruction generate !name !"    "]
     result += "    vStackView.appendView (" + name + ")\n"
@@ -1632,22 +1632,22 @@ override getter @autoLayoutSpaceViewInstructionGeneration generate ?let @string 
 #·······················································································································
 
 override getter @autoLayoutLocalViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
-  result = inIndentation + "let " + inName + " = self." + mLocalView + "\n"
+  result = inIndentation + "let " + inName + " = self." + self.mLocalView + "\n"
 }
 
 #·······················································································································
 
 override getter @autoLayoutComputedViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
-  result = inIndentation + "let " + inName + " = AutoLayout" + mAutoLayoutViewClassName.string + " ("
-  for parameter in mParameterList
+  result = inIndentation + "let " + inName + " = AutoLayout" + self.mAutoLayoutViewClassName.string + " ("
+  for parameter in self.mParameterList
   do
     result += parameter.mParameterName + ": " + parameter.mParameterValue
   between
     result += ", "
   end
   result += ")\n"
-  [mFunctionCallList generate !inIndentation !?result]
-  for (bindingName boundObjectList optionListString) in mRegularBindingsGenerationList do
+  [self.mFunctionCallList generate !inIndentation !?result]
+  for (bindingName boundObjectList optionListString) in self.mRegularBindingsGenerationList do
     result += inIndentation + "  .bind_" + bindingName + " ("
     for (boundObjectString *) in boundObjectList
       do result += boundObjectString
@@ -1655,7 +1655,7 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
     end
     result += optionListString + ")\n"
   end
-  for (bindingName binding) in mMultipleBindingGenerationList do 
+  for (bindingName binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (\n"
     result += inIndentation + "    observedObjects: ["
     for () in [binding observedModelSet]
@@ -1666,7 +1666,7 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
     result += inIndentation + "    computeFunction: { return " + [binding expressionString] + " }\n"
     result += inIndentation + "  )\n"
   end
-  switch mRunBindingGeneration
+  switch self.mRunBindingGeneration
   case none :
   case run (targetName actionName targetTypeName) :
     result += inIndentation + "  .bind_run (\n"
@@ -1674,16 +1674,16 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
     result += inIndentation + "    selector: #selector (" + targetTypeName + "." + actionName + " (_:))\n"
     result += inIndentation + "  )\n"
   end
-  switch mEBViewGraphicControllerBindingGeneration
+  switch self.mEBViewGraphicControllerBindingGeneration
   case none :
   case binding (controllerName) :
     result += inIndentation + "  .bind_graphic_controller (self." + controllerName + ")\n"
   end
-  if mOutletName != "" then
-    result += inIndentation + "self." + mOutletName + " = " + inName + " // Outlet\n"
+  if self.mOutletName != "" then
+    result += inIndentation + "self." + self.mOutletName + " = " + inName + " // Outlet\n"
   end
-  if mConfiguratorName != "" then
-    result += inIndentation + "self.configure_" + mConfiguratorName + " (" + inName + ") // Configurator\n"
+  if self.mConfiguratorName != "" then
+    result += inIndentation + "self.configure_" + self.mConfiguratorName + " (" + inName + ") // Configurator\n"
   end
 }
 
@@ -1691,10 +1691,10 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
 
 override getter @hStackViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView ()\n"
-  [mFuncCallList generate !inIndentation !?result]
+  [self.mFuncCallList generate !inIndentation !?result]
   result += inIndentation + "do{\n"
   let indentation = inIndentation + "  "
-  for (instruction) in mInstructionList do (index)
+  for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
      result += [instruction generate !name !indentation]
      result += indentation + inName + ".appendView (" + name + ")\n"
@@ -1706,10 +1706,10 @@ override getter @hStackViewInstructionGeneration generate ?let @string inName ?l
 
 override getter @vStackViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView ()\n"
-  [mFuncCallList generate !inIndentation !?result]
+  [self.mFuncCallList generate !inIndentation !?result]
   result += inIndentation + "do{\n"
   let indentation = inIndentation + "  "
-  for (instruction) in mInstructionList do (index)
+  for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
      result += [instruction generate !name !indentation]
      result += indentation + inName + ".appendView (" + name + ")\n"

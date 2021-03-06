@@ -20,13 +20,13 @@ class @prefsDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override method @prefsDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
-  [!?ioGraph addNode !mClassName !self]
+  [!?ioGraph addNode !self.mClassName !self]
 }
 
 #·······················································································································
 
 override getter @prefsDeclarationAST nodeKey -> @lstring {
-  result = mClassName
+  result = self.mClassName
 }
 
 #·······················································································································
@@ -87,7 +87,7 @@ override method @prefsDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  buildActionMap (!mDeclaration.mActionDeclarationList ?let @actionMap actionMap)
+  buildActionMap (!self.mDeclaration.mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
     !.new {!preferencesName () !.here}
     !.prefs
@@ -97,11 +97,11 @@ override method @prefsDeclarationAST firstAnalysisPhase
   ]
   for () in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
-      !mClassName.string
+      !self.mClassName.string
       !lkey.string
     }
   end
-  ioGeneration.mMainXibDescriptorList = mDeclaration.mMainXibDescriptorList
+  ioGeneration.mMainXibDescriptorList = self.mDeclaration.mMainXibDescriptorList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ override method @prefsDeclarationAST fourthAnalysisPhase
 #--- Analyze extern functions
   let @stringset availableCallers = {!"awakeFromNib", !"init"}
   @externFunctionMap externFunctionMap = {}
-  for () in mDeclaration.mExternSwiftFunctionList do
+  for () in self.mDeclaration.mExternSwiftFunctionList do
     [!?externFunctionMap insertKey !mExternSwiftFunctionName]
     if not [availableCallers hasKey !mCallerName.string] then
       var s = "invalid caller; available callers:"
@@ -140,7 +140,7 @@ override method @prefsDeclarationAST fourthAnalysisPhase
     !preferencesPropertyMap
     !"" # No root entity
     !ioSemanticContext
-    !mDeclaration.mOutletDeclarationList
+    !self.mDeclaration.mOutletDeclarationList
     !preferencesPropertyMap
     !actionMap
     !preferencesName ()
@@ -160,7 +160,7 @@ override method @prefsDeclarationAST fourthAnalysisPhase
     !multipleBindingGenerationList
     !actionBindingListForGeneration
     !outletMap
-    !mDeclaration.mExternSwiftFunctionList
+    !self.mDeclaration.mExternSwiftFunctionList
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGenerationList
   }
@@ -206,15 +206,15 @@ override method @preferencesForGeneration generateCode
     ?!@stringset ioGeneratedFileSet
 {
   let s = [filewrapper prefsGenerationTemplate.preferences
-    !mPropertyListForGeneration
-    !mMainXibDescriptorList
-    !mOutletMap
-    !mRegularBindingsGenerationList
-    !mActionBindingListForGeneration
-    !mMultipleBindingGenerationList
-    !mExternSwiftFunctionList
-    !mTableViewBindingGenerationList
-    !mEBViewBindingGenerationList
+    !self.mPropertyListForGeneration
+    !self.mMainXibDescriptorList
+    !self.mOutletMap
+    !self.mRegularBindingsGenerationList
+    !self.mActionBindingListForGeneration
+    !self.mMultipleBindingGenerationList
+    !self.mExternSwiftFunctionList
+    !self.mTableViewBindingGenerationList
+    !self.mEBViewBindingGenerationList
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName
