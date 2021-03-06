@@ -10,6 +10,176 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @xibDocumentFileGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_xibDocumentFileGeneration : public GALGAS_abstractFileGeneration {
+//--- Constructor
+  public : GALGAS_xibDocumentFileGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_xibDocumentFileGeneration constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_xibDocumentFileGeneration * ptr (void) const { return (const cPtr_xibDocumentFileGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_xibDocumentFileGeneration (const cPtr_xibDocumentFileGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_xibDocumentFileGeneration extractObject (const GALGAS_object & inObject,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_xibDocumentFileGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                          const class GALGAS_string & inOperand1,
+                                                                          const class GALGAS_propertyGenerationList & inOperand2,
+                                                                          const class GALGAS_decoratedOutletMap & inOperand3,
+                                                                          const class GALGAS_actionBindingListForGeneration & inOperand4,
+                                                                          const class GALGAS_regularBindingsGenerationList & inOperand5,
+                                                                          const class GALGAS_multipleBindingGenerationList & inOperand6,
+                                                                          const class GALGAS_tableViewBindingGenerationList & inOperand7,
+                                                                          const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand8
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_xibDocumentFileGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMDocumentName (class GALGAS_string inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMDocumentPropertyGenearionList (class GALGAS_propertyGenerationList inArgument0
+                                                                           COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMEBViewBindingGenerationList (class GALGAS_ebViewGraphicControllerBindingGenerationList inArgument0
+                                                                         COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMOutletMap (class GALGAS_decoratedOutletMap inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegularBindingsGenerationList (class GALGAS_regularBindingsGenerationList inArgument0
+                                                                           COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRootEntityName (class GALGAS_string inArgument0
+                                                            COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMTableViewBindingGenerationList (class GALGAS_tableViewBindingGenerationList inArgument0
+                                                                            COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMTargetActionList (class GALGAS_actionBindingListForGeneration inArgument0
+                                                              COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMultipleBindingGenerationList (class GALGAS_multipleBindingGenerationList inArgument0
+                                                                          COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_decoratedOutletMap getter_mOutletMap (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mRootEntityName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_actionBindingListForGeneration getter_mTargetActionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_multipleBindingGenerationList getter_multipleBindingGenerationList (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_xibDocumentFileGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xibDocumentFileGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @xibDocumentFileGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_xibDocumentFileGeneration : public cPtr_abstractFileGeneration {
+//--- Attributes
+  public : GALGAS_string mProperty_mDocumentName ;
+  public : GALGAS_string mProperty_mRootEntityName ;
+  public : GALGAS_propertyGenerationList mProperty_mDocumentPropertyGenearionList ;
+  public : GALGAS_decoratedOutletMap mProperty_mOutletMap ;
+  public : GALGAS_actionBindingListForGeneration mProperty_mTargetActionList ;
+  public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
+  public : GALGAS_multipleBindingGenerationList mProperty_multipleBindingGenerationList ;
+  public : GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
+  public : GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
+
+//--- Constructor
+  public : cPtr_xibDocumentFileGeneration (const GALGAS_string & in_mDocumentName,
+                                           const GALGAS_string & in_mRootEntityName,
+                                           const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
+                                           const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                           const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
+                                           const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                           const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
+                                           const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                           const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList
+                                           COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mDocumentName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMDocumentName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mRootEntityName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRootEntityName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_propertyGenerationList getter_mDocumentPropertyGenearionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMDocumentPropertyGenearionList (GALGAS_propertyGenerationList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_decoratedOutletMap getter_mOutletMap (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOutletMap (GALGAS_decoratedOutletMap inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_actionBindingListForGeneration getter_mTargetActionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMTargetActionList (GALGAS_actionBindingListForGeneration inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_regularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegularBindingsGenerationList (GALGAS_regularBindingsGenerationList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_multipleBindingGenerationList getter_multipleBindingGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMultipleBindingGenerationList (GALGAS_multipleBindingGenerationList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_tableViewBindingGenerationList getter_mTableViewBindingGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMTableViewBindingGenerationList (GALGAS_tableViewBindingGenerationList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_ebViewGraphicControllerBindingGenerationList getter_mEBViewBindingGenerationList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMEBViewBindingGenerationList (GALGAS_ebViewGraphicControllerBindingGenerationList inValue COMMA_LOCATION_ARGS) ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @autoLayoutDocumentFileGeneration class
 //
 //----------------------------------------------------------------------------------------------------------------------

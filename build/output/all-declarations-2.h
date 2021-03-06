@@ -3849,13 +3849,3 @@ class GALGAS_string extensionGetter_modelStringForSelf (const class GALGAS_obser
                                                         class C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@observablePropertyAST modelStringFunctionArgument' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string extensionGetter_modelStringFunctionArgument (const class GALGAS_observablePropertyAST & inObject,
-                                                                 class C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
