@@ -6,16 +6,16 @@ import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
 
-private let LOG_READ_DURATION = true
+private let LOG_READ_DURATION = false
 
 //----------------------------------------------------------------------------------------------------------------------
 
 final class ParallelObjectSetupContext {
   private let mOperationQueue = OperationQueue ()
-  private var mOperationQueueCount = 0
   private var mToOneSetUpOperationList = [() -> Void] ()
   private var mToManySetUpOperationList = [() -> Void] ()
   private let mMutex = DispatchSemaphore (value: 1)
+  private var mOperationQueueCount = 0
 
   //····················································································································
 
