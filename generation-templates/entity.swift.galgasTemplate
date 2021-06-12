@@ -344,7 +344,7 @@ if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TO_ONE_RELATIONSHIP_L
                                          _ inData : Data,
                                          _ inParallelObjectSetupContext : ParallelObjectSetupContext) {
     super.setUpWithTextDictionary (inDictionary, inObjectArray, inData, inParallelObjectSetupContext)
-    inParallelObjectSetupContext.mOperationQueue.addOperation {
+    inParallelObjectSetupContext.addOperation {
     //--- Atomic properties
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
@@ -355,9 +355,7 @@ end
 %    //--- To one relationships
 %for () in TO_ONE_RELATIONSHIP_LIST do
   %      if let range = inDictionary ["%![mProperty mPropertyName]%"], let objectIndex = inData.base62EncodedInt (range: range) {\n% 
-  %        inParallelObjectSetupContext.mMutex.wait ()\n%
-  %        inParallelObjectSetupContext.mToOneSetUpOperationList.append ({ self.%![mProperty mPropertyName]% = inObjectArray [objectIndex] as? %![[mProperty mRelationshipType] swiftTypeName]% })\n%
-  %        inParallelObjectSetupContext.mMutex.signal ()\n%
+  %        inParallelObjectSetupContext.addToOneSetupDeferredOperation ({ self.%![mProperty mPropertyName]% = inObjectArray [objectIndex] as? %![[mProperty mRelationshipType] swiftTypeName]% })\n%
   %      }\n% 
 end
 %    //--- To many relationships
@@ -369,9 +367,7 @@ end
     %        for idx in indexArray {\n%
     %          relationshipArray.append (inObjectArray [idx] as! %![[mProperty mRelationshipType] swiftTypeName]%)\n%
     %        }\n%
-    %        inParallelObjectSetupContext.mMutex.wait ()\n%
-    %        inParallelObjectSetupContext.mToManySetUpOperationList.append ({ self.%![mProperty mPropertyName]% = relationshipArray })\n%
-    %        inParallelObjectSetupContext.mMutex.signal ()\n%
+    %        inParallelObjectSetupContext.addToManySetupDeferredOperation ({ self.%![mProperty mPropertyName]% = relationshipArray })\n%
     %      }\n% 
   end
 end

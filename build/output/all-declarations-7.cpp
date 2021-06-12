@@ -6619,74 +6619,70 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
       "                                         _ inData : Data,\n"
       "                                         _ inParallelObjectSetupContext : ParallelObjectSetupContext) {\n"
       "    super.setUpWithTextDictionary (inDictionary, inObjectArray, inData, inParallelObjectSetupContext)\n"
-      "    inParallelObjectSetupContext.mOperationQueue.addOperation {\n"
+      "    inParallelObjectSetupContext.addOperation {\n"
       "    //--- Atomic properties\n" ;
-    GALGAS_uint index_14326_ (0) ;
+    GALGAS_uint index_14310_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-      cEnumerator_atomicPropertyGenerationList enumerator_14326 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-      while (enumerator_14326.hasCurrentObject ()) {
+      cEnumerator_atomicPropertyGenerationList enumerator_14310 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+      while (enumerator_14310.hasCurrentObject ()) {
         result << "      if let range = inDictionary [\"" ;
-        result << enumerator_14326.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 351)).stringValue () ;
+        result << enumerator_14310.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 351)).stringValue () ;
         result << "\"], let value = " ;
-        result << extensionGetter_swiftTypeName (enumerator_14326.current_mProperty (HERE).getter_mType (SOURCE_FILE ("entity.swift.galgasTemplate", 351)), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 351)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_14310.current_mProperty (HERE).getter_mType (SOURCE_FILE ("entity.swift.galgasTemplate", 351)), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 351)).stringValue () ;
         result << ".unarchiveFromDataRange (inData, range) {\n"
           "        self." ;
-        result << enumerator_14326.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 352)).stringValue () ;
+        result << enumerator_14310.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 352)).stringValue () ;
         result << " = value\n"
           "      }\n" ;
-        index_14326_.increment () ;
-        enumerator_14326.gotoNextObject () ;
+        index_14310_.increment () ;
+        enumerator_14310.gotoNextObject () ;
       }
     }
     result << "    //--- To one relationships\n" ;
-    GALGAS_uint index_14637_ (0) ;
+    GALGAS_uint index_14621_ (0) ;
     if (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-      cEnumerator_toOnePropertyGenerationList enumerator_14637 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-      while (enumerator_14637.hasCurrentObject ()) {
+      cEnumerator_toOnePropertyGenerationList enumerator_14621 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+      while (enumerator_14621.hasCurrentObject ()) {
         result << "      if let range = inDictionary [\"" ;
-        result << enumerator_14637.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 357)).stringValue () ;
+        result << enumerator_14621.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 357)).stringValue () ;
         result << "\"], let objectIndex = inData.base62EncodedInt (range: range) {\n"
-          "        inParallelObjectSetupContext.mMutex.wait ()\n"
-          "        inParallelObjectSetupContext.mToOneSetUpOperationList.append ({ self." ;
-        result << enumerator_14637.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 359)).stringValue () ;
+          "        inParallelObjectSetupContext.addToOneSetupDeferredOperation ({ self." ;
+        result << enumerator_14621.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 358)).stringValue () ;
         result << " = inObjectArray [objectIndex] as\? " ;
-        result << extensionGetter_swiftTypeName (enumerator_14637.current_mProperty (HERE).getter_mRelationshipType (SOURCE_FILE ("entity.swift.galgasTemplate", 359)), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 359)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_14621.current_mProperty (HERE).getter_mRelationshipType (SOURCE_FILE ("entity.swift.galgasTemplate", 358)), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 358)).stringValue () ;
         result << " })\n"
-          "        inParallelObjectSetupContext.mMutex.signal ()\n"
           "      }\n" ;
-        index_14637_.increment () ;
-        enumerator_14637.gotoNextObject () ;
+        index_14621_.increment () ;
+        enumerator_14621.gotoNextObject () ;
       }
     }
     result << "    //--- To many relationships\n" ;
-    GALGAS_uint index_15179_ (0) ;
+    GALGAS_uint index_15044_ (0) ;
     if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-      cEnumerator_toManyPropertyGenerationList enumerator_15179 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-      while (enumerator_15179.hasCurrentObject ()) {
-        const enumGalgasBool test_6 = enumerator_15179.current_mProperty (HERE).getter_mOption (SOURCE_FILE ("entity.swift.galgasTemplate", 365)).getter_isHasDependance (SOURCE_FILE ("entity.swift.galgasTemplate", 365)).operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 365)).boolEnum () ;
+      cEnumerator_toManyPropertyGenerationList enumerator_15044 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+      while (enumerator_15044.hasCurrentObject ()) {
+        const enumGalgasBool test_6 = enumerator_15044.current_mProperty (HERE).getter_mOption (SOURCE_FILE ("entity.swift.galgasTemplate", 363)).getter_isHasDependance (SOURCE_FILE ("entity.swift.galgasTemplate", 363)).operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 363)).boolEnum () ;
         if (kBoolTrue == test_6) {
           result << "      if let range = inDictionary [\"" ;
-          result << enumerator_15179.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 366)).stringValue () ;
+          result << enumerator_15044.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 364)).stringValue () ;
           result << "\"], range.length > 0 {\n"
             "        var relationshipArray = [" ;
-          result << extensionGetter_swiftTypeName (enumerator_15179.current_mProperty (HERE).getter_mRelationshipType (SOURCE_FILE ("entity.swift.galgasTemplate", 367)), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 367)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_15044.current_mProperty (HERE).getter_mRelationshipType (SOURCE_FILE ("entity.swift.galgasTemplate", 365)), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 365)).stringValue () ;
           result << "] ()\n"
             "        let indexArray = inData.base62EncodedIntArray (fromRange: range)\n"
             "        for idx in indexArray {\n"
             "          relationshipArray.append (inObjectArray [idx] as! " ;
-          result << extensionGetter_swiftTypeName (enumerator_15179.current_mProperty (HERE).getter_mRelationshipType (SOURCE_FILE ("entity.swift.galgasTemplate", 370)), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 370)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_15044.current_mProperty (HERE).getter_mRelationshipType (SOURCE_FILE ("entity.swift.galgasTemplate", 368)), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 368)).stringValue () ;
           result << ")\n"
             "        }\n"
-            "        inParallelObjectSetupContext.mMutex.wait ()\n"
-            "        inParallelObjectSetupContext.mToManySetUpOperationList.append ({ self." ;
-          result << enumerator_15179.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 373)).stringValue () ;
+            "        inParallelObjectSetupContext.addToManySetupDeferredOperation ({ self." ;
+          result << enumerator_15044.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("entity.swift.galgasTemplate", 370)).stringValue () ;
           result << " = relationshipArray })\n"
-            "        inParallelObjectSetupContext.mMutex.signal ()\n"
             "      }\n" ;
         }else if (kBoolFalse == test_6) {
         }
-        index_15179_.increment () ;
-        enumerator_15179.gotoNextObject () ;
+        index_15044_.increment () ;
+        enumerator_15044.gotoNextObject () ;
       }
     }
     result << "    }\n"
@@ -6701,13 +6697,13 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "\n"
     "  override func accessibleObjects (objects : inout [EBManagedObject]) {\n"
     "    super.accessibleObjects (objects: &objects)\n" ;
-  GALGAS_uint index_16453_ (0) ;
+  GALGAS_uint index_16195_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_16453 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_16453.hasCurrentObject ()) {
-      result << callExtensionGetter_objectAccessibilityCode ((const cPtr_propertyGeneration *) enumerator_16453.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 392)).stringValue () ;
-      index_16453_.increment () ;
-      enumerator_16453.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_16195 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_16195.hasCurrentObject ()) {
+      result << callExtensionGetter_objectAccessibilityCode ((const cPtr_propertyGeneration *) enumerator_16195.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 388)).stringValue () ;
+      index_16195_.increment () ;
+      enumerator_16195.gotoNextObject () ;
     }
   }
   result << "  }\n"
@@ -6718,18 +6714,18 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     "\n"
     "  override func accessibleObjectsForSaveOperation (objects : inout [EBManagedObject]) {\n"
     "    super.accessibleObjectsForSaveOperation (objects: &objects)\n" ;
-  GALGAS_uint index_16982_ (0) ;
+  GALGAS_uint index_16724_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_16982 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_16982.hasCurrentObject ()) {
-      result << callExtensionGetter_objectAccessibilityCodeForSaveOperation ((const cPtr_propertyGeneration *) enumerator_16982.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 404)).stringValue () ;
-      index_16982_.increment () ;
-      enumerator_16982.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_16724 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_16724.hasCurrentObject ()) {
+      result << callExtensionGetter_objectAccessibilityCodeForSaveOperation ((const cPtr_propertyGeneration *) enumerator_16724.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 400)).stringValue () ;
+      index_16724_.increment () ;
+      enumerator_16724.gotoNextObject () ;
     }
   }
   result << "  }\n"
     "\n" ;
-  const enumGalgasBool test_7 = GALGAS_bool (kIsStrictSup, in_SIGNATURE_5F_SET.getter_count (SOURCE_FILE ("entity.swift.galgasTemplate", 409)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  const enumGalgasBool test_7 = GALGAS_bool (kIsStrictSup, in_SIGNATURE_5F_SET.getter_count (SOURCE_FILE ("entity.swift.galgasTemplate", 405)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_7) {
     result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
       "  //   computeSignature\n"
@@ -6737,15 +6733,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
       "\n"
       "  override func computeSignature () -> UInt32 {\n"
       "    var crc = super.computeSignature ()\n" ;
-    GALGAS_uint index_17468_ (0) ;
+    GALGAS_uint index_17210_ (0) ;
     if (in_SIGNATURE_5F_SET.isValid ()) {
-      cEnumerator_stringset enumerator_17468 (in_SIGNATURE_5F_SET, kENUMERATION_UP) ;
-      while (enumerator_17468.hasCurrentObject ()) {
+      cEnumerator_stringset enumerator_17210 (in_SIGNATURE_5F_SET, kENUMERATION_UP) ;
+      while (enumerator_17210.hasCurrentObject ()) {
         result << "    crc.accumulateUInt32 (self." ;
-        result << enumerator_17468.current_key (HERE).stringValue () ;
+        result << enumerator_17210.current_key (HERE).stringValue () ;
         result << "_property.signature ())\n" ;
-        index_17468_.increment () ;
-        enumerator_17468.gotoNextObject () ;
+        index_17210_.increment () ;
+        enumerator_17210.gotoNextObject () ;
       }
     }
     result << "    return crc\n"
