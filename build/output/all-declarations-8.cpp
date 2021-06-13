@@ -9,6 +9,48 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Overriding extension method '@xibDocumentDeclarationAST firstAnalysisPhase'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_xibDocumentDeclarationAST_firstAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
+                                                                          GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                                          GALGAS_generationStruct & ioArgument_ioGeneration,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_xibDocumentDeclarationAST * object = (const cPtr_xibDocumentDeclarationAST *) inObject ;
+  macroValidSharedObject (object, cPtr_xibDocumentDeclarationAST) ;
+  GALGAS_actionMap var_actionMap_3355 ;
+  {
+  const GALGAS_xibDocumentDeclarationAST temp_0 = object ;
+  routine_buildActionMap (temp_0.getter_mActionDeclarationList (HERE), var_actionMap_3355, inCompiler  COMMA_SOURCE_FILE ("document-xib.galgas", 84)) ;
+  }
+  {
+  const GALGAS_xibDocumentDeclarationAST temp_1 = object ;
+  const GALGAS_xibDocumentDeclarationAST temp_2 = object ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_1.getter_mClassName (HERE), GALGAS_classKind::constructor_document (temp_2.getter_mRootEntityName (HERE)  COMMA_SOURCE_FILE ("document-xib.galgas", 87)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("document-xib.galgas", 88)), var_actionMap_3355, GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("document-xib.galgas", 90)), inCompiler COMMA_SOURCE_FILE ("document-xib.galgas", 85)) ;
+  }
+  cEnumerator_actionMap enumerator_3532 (var_actionMap_3355, kENUMERATION_UP) ;
+  while (enumerator_3532.hasCurrentObject ()) {
+    const GALGAS_xibDocumentDeclarationAST temp_3 = object ;
+    ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_actionFileGeneration::constructor_new (temp_3.getter_mClassName (HERE).getter_string (HERE), enumerator_3532.current_lkey (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("document-xib.galgas", 93))  COMMA_SOURCE_FILE ("document-xib.galgas", 93)) ;
+    enumerator_3532.gotoNextObject () ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_xibDocumentDeclarationAST_firstAnalysisPhase (void) {
+  enterExtensionMethod_firstAnalysisPhase (kTypeDescriptor_GALGAS_xibDocumentDeclarationAST.mSlotID,
+                                           extensionMethod_xibDocumentDeclarationAST_firstAnalysisPhase) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_xibDocumentDeclarationAST_firstAnalysisPhase (defineExtensionMethod_xibDocumentDeclarationAST_firstAnalysisPhase, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Overriding extension method '@xibDocumentDeclarationAST fourthAnalysisPhase'
 //
 //----------------------------------------------------------------------------------------------------------------------
