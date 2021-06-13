@@ -244,7 +244,7 @@ class EBGraphicManagedObject : EBManagedObject {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-final class ObjcCanariPoint : ObjcObject {
+@objc final class ObjcCanariPoint : EBObject {
 
   //····················································································································
 
@@ -306,7 +306,7 @@ final class ObjcCanariPoint : ObjcObject {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-final class ObjcCanariPointSet : ObjcObject {
+@objc final class ObjcCanariPointSet : EBObject {
 
   //····················································································································
 
@@ -346,21 +346,21 @@ final class ObjcCanariPointSet : ObjcObject {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-final class ObjcObjectSet : ObjcObject {
+@objc final class ObjcObjectSet : EBObject {
 
   //····················································································································
 
-  private var mObjects = Set <ObjcObject> ()
+  private var mObjects = Set <EBObject> ()
 
   //····················································································································
 
-  func insert (_ inObject : ObjcObject) {
+  func insert (_ inObject : EBObject) {
     self.mObjects.insert (inObject)
   }
 
   //····················································································································
 
-  func contains (_ inObject : ObjcObject) -> Bool {
+  func contains (_ inObject : EBObject) -> Bool {
     return self.mObjects.contains (inObject)
   }
 

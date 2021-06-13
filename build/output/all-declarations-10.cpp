@@ -2222,7 +2222,6 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
     "    view.addSubview (tf)\n"
     "    let valueExplorer = NSButton (frame:thirdColumn (y))\n"
     "    valueExplorer.font = font\n"
-    "    let className = String (describing: type (of: self))\n"
     "    valueExplorer.title = explorerIndexString (ebObjectIndex) + \" \" + className\n"
     "    valueExplorer.target = self\n"
     "    valueExplorer.action = #selector(SelectionController_" ;
@@ -2244,32 +2243,32 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
     "  //-------------------------------------------------- Adding properties\n"
     "    let view = NSView (frame:r)\n"
     "    var y : CGFloat = 0.0\n" ;
-  GALGAS_uint index_4963_ (0) ;
+  GALGAS_uint index_4906_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_propertyMap enumerator_4963 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_4963.hasCurrentObject ()) {
-      const enumGalgasBool test_5 = extensionGetter_isEntityType (enumerator_4963.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 104)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 104)).operator_and (extensionGetter_isTransient (enumerator_4963.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 104)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 104)) COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 104)).boolEnum () ;
+    cEnumerator_propertyMap enumerator_4906 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_4906.hasCurrentObject ()) {
+      const enumGalgasBool test_5 = extensionGetter_isEntityType (enumerator_4906.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 103)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 103)).operator_and (extensionGetter_isTransient (enumerator_4906.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 103)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 103)) COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 103)).boolEnum () ;
       if (kBoolTrue == test_5) {
         result << "    createEntryForPropertyNamed (\n"
           "      \"" ;
-        result << enumerator_4963.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_4906.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "\",\n"
           "      idx: self." ;
-        result << enumerator_4963.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_4906.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property.ebObjectIndex,\n"
           "      y: &y,\n"
           "      view: view,\n"
           "      observerExplorer: &self." ;
-        result << enumerator_4963.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_4906.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property.mObserverExplorer,\n"
           "      valueExplorer: &self." ;
-        result << enumerator_4963.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_4906.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property.mValueExplorer\n"
           "    )\n" ;
       }else if (kBoolFalse == test_5) {
       }
-      index_4963_.increment () ;
-      enumerator_4963.gotoNextObject () ;
+      index_4906_.increment () ;
+      enumerator_4906.gotoNextObject () ;
     }
   }
   result << "  //-------------------------------------------------- Finish Window construction\n"
@@ -2287,7 +2286,6 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
   result << in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue () ;
   result << ".deleteSelectionControllerWindowAction(_:))\n"
     "  //--- Set window title\n"
-    "    let className = String (describing: type (of: self))\n"
     "    let windowTitle = explorerIndexString (ebObjectIndex) + \" \" + className\n"
     "    mExplorerWindow!.title = windowTitle\n"
     "  //--- Add Scroll view\n"
@@ -2328,26 +2326,26 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
     "    mExplorerWindow = nil\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_7826_ (0) ;
+  GALGAS_uint index_7712_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_propertyMap enumerator_7826 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_7826.hasCurrentObject ()) {
-      const enumGalgasBool test_6 = extensionGetter_isEntityType (enumerator_7826.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 168)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 168)).boolEnum () ;
+    cEnumerator_propertyMap enumerator_7712 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_7712.hasCurrentObject ()) {
+      const enumGalgasBool test_6 = extensionGetter_isEntityType (enumerator_7712.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 166)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 166)).boolEnum () ;
       if (kBoolTrue == test_6) {
         result << "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""*\n"
           "\n"
           "  private final func bind_property_" ;
-        result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << " (model : ReadOnlyArrayOf_" ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
         result << ") {\n"
           "    model.addEBObserverOf_" ;
-        result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << " (self." ;
-        result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property)\n"
           "    self." ;
-        result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property.mReadModelFunction = { [weak self] in\n"
           "      if let model = self\?.mModel {\n"
           "        switch model.selection {\n"
@@ -2357,12 +2355,12 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           "          return .multiple\n"
           "        case .single (let v) :\n"
           "          var s = Set <" ;
-        result << extensionGetter_swiftTypeName (enumerator_7826.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 180)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_7712.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 178)).stringValue () ;
         result << "> ()\n"
           "          var isMultipleSelection = false\n"
           "          for object in v {\n"
           "            switch object." ;
-        result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+        result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
         result << "_property_selection {\n"
           "            case .empty :\n"
           "              return .empty\n"
@@ -2386,12 +2384,12 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           "        return .empty\n"
           "      }\n"
           "    }\n" ;
-        const enumGalgasBool test_7 = extensionGetter_isTransient (enumerator_7826.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 206)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 206)).boolEnum () ;
+        const enumGalgasBool test_7 = extensionGetter_isTransient (enumerator_7712.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 204)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 204)).boolEnum () ;
         if (kBoolTrue == test_7) {
           result << "    self." ;
-          result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
           result << "_property.mWriteModelFunction = { [weak self] (inValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7826.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 207)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7712.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 205)).stringValue () ;
           result << ") in\n"
             "      if let model = self\?.mModel {\n"
             "        switch model.selection {\n"
@@ -2400,16 +2398,16 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
             "        case .single (let v) :\n"
             "          for object in v {\n"
             "            object." ;
-          result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
           result << "_property.setProp (inValue)\n"
             "          }\n"
             "        }\n"
             "      }\n"
             "    }\n"
             "    self." ;
-          result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
           result << "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_7826.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 219)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_7712.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 217)).stringValue () ;
           result << ", windowForSheet : NSWindow\?) in\n"
             "      if let model = self\?.mModel {\n"
             "        switch model.selection {\n"
@@ -2418,7 +2416,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
             "        case .single (let v) :\n"
             "          for object in v {\n"
             "            let result = object." ;
-          result << enumerator_7826.current_lkey (HERE).getter_string (HERE).stringValue () ;
+          result << enumerator_7712.current_lkey (HERE).getter_string (HERE).stringValue () ;
           result << "_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
             "            if !result {\n"
             "              return false\n"
@@ -2436,8 +2434,8 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           "\n" ;
       }else if (kBoolFalse == test_6) {
       }
-      index_7826_.increment () ;
-      enumerator_7826.gotoNextObject () ;
+      index_7712_.increment () ;
+      enumerator_7712.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -2596,7 +2594,6 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
     "    view.addSubview (tf)\n"
     "    let valueExplorer = NSButton (frame: thirdColumn (y))\n"
     "    valueExplorer.font = font\n"
-    "    let className = String (describing: type (of: self))\n"
     "    valueExplorer.title = explorerIndexString (ebObjectIndex) + \" \" + className\n"
     "    valueExplorer.target = self\n"
     "    valueExplorer.action = #selector(SelectionController_" ;
@@ -2623,32 +2620,32 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
   }else if (kBoolFalse == test_3) {
     result << "    let y : CGFloat = 0.0\n" ;
   }
-  GALGAS_uint index_5299_ (0) ;
+  GALGAS_uint index_5242_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_5299 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5299.hasCurrentObject ()) {
-      const enumGalgasBool test_4 = GALGAS_bool (enumerator_5299.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).boolEnum () ;
+    cEnumerator_propertyGenerationList enumerator_5242 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5242.hasCurrentObject ()) {
+      const enumGalgasBool test_4 = GALGAS_bool (enumerator_5242.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).boolEnum () ;
       if (kBoolTrue == test_4) {
         result << "    createEntryForPropertyNamed (\n"
           "      \"" ;
-        result << enumerator_5299.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 110)).stringValue () ;
+        result << enumerator_5242.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 109)).stringValue () ;
         result << "\",\n"
           "      idx: self." ;
-        result << enumerator_5299.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 111)).stringValue () ;
+        result << enumerator_5242.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 110)).stringValue () ;
         result << "_property.ebObjectIndex,\n"
           "      y: &y,\n"
           "      view: view,\n"
           "      observerExplorer: &self." ;
-        result << enumerator_5299.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 114)).stringValue () ;
+        result << enumerator_5242.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 113)).stringValue () ;
         result << "_property.mObserverExplorer,\n"
           "      valueExplorer: &self." ;
-        result << enumerator_5299.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 115)).stringValue () ;
+        result << enumerator_5242.current_mProperty (HERE).getter_mPropertyName (SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 114)).stringValue () ;
         result << "_property.mValueExplorer\n"
           "    )\n" ;
       }else if (kBoolFalse == test_4) {
       }
-      index_5299_.increment () ;
-      enumerator_5299.gotoNextObject () ;
+      index_5242_.increment () ;
+      enumerator_5242.gotoNextObject () ;
     }
   }
   result << "  //-------------------------------------------------- Finish Window construction\n"
@@ -2666,7 +2663,6 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
   result << in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue () ;
   result << ".deleteSelectionControllerWindowAction(_:))\n"
     "  //--- Set window title\n"
-    "    let className = String (describing: type (of: self))\n"
     "    let windowTitle = explorerIndexString (ebObjectIndex) + \" \" + className\n"
     "    self.mExplorerWindow!.title = windowTitle\n"
     "  //--- Add Scroll view\n"
@@ -2708,13 +2704,13 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
     "    self.mExplorerWindow = nil\n"
     "  }\n"
     "\n" ;
-  GALGAS_uint index_8299_ (0) ;
+  GALGAS_uint index_8185_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_8299 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_8299.hasCurrentObject ()) {
-      result << callExtensionGetter_bindPropertyInSelectionController ((const cPtr_propertyGeneration *) enumerator_8299.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 173)).stringValue () ;
-      index_8299_.increment () ;
-      enumerator_8299.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_8185 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_8185.hasCurrentObject ()) {
+      result << callExtensionGetter_bindPropertyInSelectionController ((const cPtr_propertyGeneration *) enumerator_8185.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 171)).stringValue () ;
+      index_8185_.increment () ;
+      enumerator_8185.gotoNextObject () ;
     }
   }
   result << "\n"
@@ -3856,7 +3852,7 @@ const char * gWrapperFileContent_63_swift_5F_sources = "//----------------------
   "//    EBEvent class\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "class EBEvent : ObjcObject {\n"
+  "class EBEvent : EBObject {\n"
   "  func postEvent () {} // Abstract method\n"
   "}\n"
   "\n"
@@ -3934,7 +3930,7 @@ const cRegularFileWrapper gWrapperFile_63_swift_5F_sources (
   "Application.swift",
   "swift",
   true, // Text file
-  3892, // Text length
+  3890, // Text length
   gWrapperFileContent_63_swift_5F_sources
 ) ;
 
@@ -8608,7 +8604,7 @@ const char * gWrapperFileContent_13_swift_5F_sources = "//----------------------
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "final class ObjcCanariPoint : ObjcObject {\n"
+  "@objc final class ObjcCanariPoint : EBObject {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -8670,7 +8666,7 @@ const char * gWrapperFileContent_13_swift_5F_sources = "//----------------------
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "final class ObjcCanariPointSet : ObjcObject {\n"
+  "@objc final class ObjcCanariPointSet : EBObject {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -8710,21 +8706,21 @@ const char * gWrapperFileContent_13_swift_5F_sources = "//----------------------
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "final class ObjcObjectSet : ObjcObject {\n"
+  "@objc final class ObjcObjectSet : EBObject {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  private var mObjects = Set <ObjcObject> ()\n"
+  "  private var mObjects = Set <EBObject> ()\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func insert (_ inObject : ObjcObject) {\n"
+  "  func insert (_ inObject : EBObject) {\n"
   "    self.mObjects.insert (inObject)\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  func contains (_ inObject : ObjcObject) -> Bool {\n"
+  "  func contains (_ inObject : EBObject) -> Bool {\n"
   "    return self.mObjects.contains (inObject)\n"
   "  }\n"
   "\n"
@@ -8738,7 +8734,7 @@ const cRegularFileWrapper gWrapperFile_13_swift_5F_sources (
   "EBGraphicManagedObject.swift",
   "swift",
   true, // Text file
-  16555, // Text length
+  16561, // Text length
   gWrapperFileContent_13_swift_5F_sources
 ) ;
 
@@ -12984,7 +12980,7 @@ const char * gWrapperFileContent_119_swift_5F_sources = "//---------------------
   "//  EBManagedObject\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "class EBManagedObject : ObjcObject, EBSignatureObserverProtocol, EBManagedObject_alloc_index_protocol {\n"
+  "class EBManagedObject : EBObject, EBSignatureObserverProtocol, EBManagedObject_alloc_index_protocol {\n"
   "  private weak final var mEBUndoManager : EBUndoManager\? = nil // SOULD BE WEAK\n"
   "  final var savingIndex = 0\n"
   "\n"
@@ -13402,7 +13398,7 @@ const cRegularFileWrapper gWrapperFile_119_swift_5F_sources (
   "EBManagedObject.swift",
   "swift",
   true, // Text file
-  19939, // Text length
+  19937, // Text length
   gWrapperFileContent_119_swift_5F_sources
 ) ;
 
@@ -14033,14 +14029,14 @@ const char * gWrapperFileContent_58_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    ObjcObject class\n"
+  "//    EBObject class\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
   "private var gEasyBindingsObjectIndex = 0\n"
   "\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
+  "//\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "class ObjcObject : NSObject, EBUserClassNameProtocol {\n"
+  "class EBObject : NSObject, EBUserClassNameProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -14065,57 +14061,13 @@ const char * gWrapperFileContent_58_swift_5F_sources = "//----------------------
   "\n"
   "}\n"
   "\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    EBObject class\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
-  "\n"
-  "class EBObject : EBUserClassNameProtocol, Equatable, Hashable {\n"
-  "\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "\n"
-  "  final let ebObjectIndex : Int\n"
-  "\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "\n"
-  "  init () {\n"
-  "    self.ebObjectIndex = gEasyBindingsObjectIndex\n"
-  "    gEasyBindingsObjectIndex += 1\n"
-  "    noteObjectAllocation (self)\n"
-  "  }\n"
-  "\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "\n"
-  "  deinit {\n"
-  "    noteObjectDeallocation (self)\n"
-  "  }\n"
-  "\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "  // Equatable Protocol\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "\n"
-  "  static func == (_ left : EBObject, _ right : EBObject) -> Bool {\n"
-  "    return left.ebObjectIndex == right.ebObjectIndex\n"
-  "  }\n"
-  "\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "  // Hashable Protocol\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "\n"
-  "   func hash (into hasher: inout Hasher) {\n"
-  "    self.ebObjectIndex.hash (into: &hasher)\n"
-  "  }\n"
-  "\n"
-  "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
-  "\n"
-  "}\n"
-  "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n" ;
 
 const cRegularFileWrapper gWrapperFile_58_swift_5F_sources (
   "EBObject.swift",
   "swift",
   true, // Text file
-  3446, // Text length
+  1656, // Text length
   gWrapperFileContent_58_swift_5F_sources
 ) ;
 
@@ -18836,7 +18788,7 @@ const char * gWrapperFileContent_11_swift_5F_sources = "//----------------------
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "private let LOG_READ_DURATION = true\n"
+  "private let LOG_READ_DURATION = false\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
@@ -19089,7 +19041,7 @@ const cRegularFileWrapper gWrapperFile_11_swift_5F_sources (
   "file-format-text.swift",
   "swift",
   true, // Text file
-  11022, // Text length
+  11023, // Text length
   gWrapperFileContent_11_swift_5F_sources
 ) ;
 

@@ -21,7 +21,7 @@ end
 %
 //----------------------------------------------------------------------------------------------------------------------
 
-@objc(%!preferencesName ()%) final class %!preferencesName ()% : ObjcObject, NSWindowDelegate {
+@objc(%!preferencesName ()%) final class %!preferencesName ()% : EBObject, NSWindowDelegate {
 
   //····················································································································
   //    Outlets
