@@ -15,24 +15,32 @@ class ReadOnlyObject_%!ENTITY_NAME% : ReadOnlyAbstractObjectProperty <%!ENTITY_N
   internal override func notifyModelDidChangeFrom (oldValue inOldValue : %!ENTITY_NAME%?) {
     super.notifyModelDidChangeFrom (oldValue: inOldValue)
   //--- Remove observers from removed objects
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    inOldValue?.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
+%if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
+%    if let oldValue = inOldValue {\n%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %      oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    inOldValue?.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
+  %      oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
 end
 for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %    inOldValue?.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Computed property\n%
+  %      oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Computed property\n%
+end
+%    }\n%
 end
 %  //--- Add observers to added objects
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    self.mInternalValue?.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
+%if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
+%    if let newValue = self.mInternalValue {\n%
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %      newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    self.mInternalValue?.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
+  %      newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
 end
 for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %    self.mInternalValue?.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Computed property\n%
+  %      newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Computed property\n%
+end
+%    }\n%
 end
 %  }
 

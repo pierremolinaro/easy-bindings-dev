@@ -82,17 +82,19 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
-    for managedObject in inSet {
-      self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
-        managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
+    if !self.mObserversOf_%![mProperty mPropertyName]%.isEmpty {
+      for managedObject in inSet {
+        self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
+          managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
+        }
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
       observer.postEvent ()
       for managedObject in inSet {
@@ -142,7 +144,7 @@ for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     for managedObject in inSet {
       self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
@@ -152,7 +154,7 @@ for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
       observer.postEvent ()
       for managedObject in inSet {
@@ -202,7 +204,7 @@ for () in PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     for managedObject in inSet {
       self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
@@ -212,7 +214,7 @@ for () in PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
       observer.postEvent ()
       for managedObject in inSet {
@@ -262,7 +264,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     for managedObject in inSet {
       self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
@@ -272,7 +274,7 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     for managedObject in inSet {
       self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)
@@ -321,7 +323,7 @@ for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     for managedObject in inSet {
       self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.addEBObserver (observer)
@@ -331,7 +333,7 @@ for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set<%!ENTITY_NAME%>) {
+  final func removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (_ inSet : Set <%!ENTITY_NAME%>) {
     for managedObject in inSet {
       self.mObserversOf_%![mProperty mPropertyName]%.apply { (_ observer : EBEvent) in
         managedObject.%![mProperty mPropertyName]%_property.removeEBObserver (observer)

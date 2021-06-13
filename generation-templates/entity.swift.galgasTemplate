@@ -355,7 +355,8 @@ end
 %    //--- To one relationships
 %for () in TO_ONE_RELATIONSHIP_LIST do
   %      if let range = inDictionary ["%![mProperty mPropertyName]%"], let objectIndex = inData.base62EncodedInt (range: range) {\n% 
-  %        inParallelObjectSetupContext.addToOneSetupDeferredOperation ({ self.%![mProperty mPropertyName]% = inObjectArray [objectIndex] as? %![[mProperty mRelationshipType] swiftTypeName]% })\n%
+  %        let object = inObjectArray [objectIndex] as! %![[mProperty mRelationshipType] swiftTypeName]%\n%
+  %        inParallelObjectSetupContext.addToOneSetupDeferredOperation { self.%![mProperty mPropertyName]% = object }\n%
   %      }\n% 
 end
 %    //--- To many relationships
@@ -367,7 +368,7 @@ end
     %        for idx in indexArray {\n%
     %          relationshipArray.append (inObjectArray [idx] as! %![[mProperty mRelationshipType] swiftTypeName]%)\n%
     %        }\n%
-    %        inParallelObjectSetupContext.addToManySetupDeferredOperation ({ self.%![mProperty mPropertyName]% = relationshipArray })\n%
+    %        inParallelObjectSetupContext.addToManySetupDeferredOperation { self.%![mProperty mPropertyName]% = relationshipArray }\n%
     %      }\n% 
   end
 end
