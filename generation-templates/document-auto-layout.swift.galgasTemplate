@@ -120,7 +120,6 @@ end
     self.windowForSheet?.toolbar = toolbar
   %end
   %//--- Build window content view
-    // showDebugBackground ()
     self.configureProperties ()
     let mainView = self.%!MAIN_VIEW_NAME%
   //--- Call outlet linkers\n%

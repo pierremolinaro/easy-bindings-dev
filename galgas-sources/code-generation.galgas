@@ -205,7 +205,9 @@ private proc generateSwiftApplicationFiles
     !"file-format-text",
     !"file-metadata-text-format",
     !"file-format-utilities",
-    !"file-operations-facade"
+    !"file-log-operation-duration",
+    !"file-operations-facade",
+    !"show-debug-menu"
   }
   if inHasEntities then
     swiftFiles += !"EBManagedObject"
