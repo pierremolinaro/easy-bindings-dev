@@ -98,7 +98,9 @@ enum @astAutoLayoutViewInstructionParameterValue {
   case menuItem (@string title @runActionDescriptor run @multipleBindingDescriptor enabled)
   case enumFunc (@lstring enumTypeName @lstring enumFuncName)
   case viewFunc (@astAbstractViewInstructionDeclaration instruction)
+  case entity (@lstring entityName)
 }
+
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astAutoLayoutViewInstructionParameterList {
@@ -299,6 +301,10 @@ syntax extension easyBindings_syntax {
           <view_instruction> ?let @astAbstractViewInstructionDeclaration instruction
           outParameterList += !parameterName !.typeView !.viewFunc {!instruction: instruction}
         or
+          $entity$
+          $Identifier$ ?let entityName
+          outParameterList += !parameterName !.entity !.entity{!entityName: entityName}
+        or
           $menuItem$
           $literal_string$ ?let menuItemTitle
           @runActionDescriptor runActionDescriptor
@@ -435,6 +441,7 @@ abstract method @astAbstractViewDeclaration check
   ?let @propertyMap inObservablePropertyMap
   ?let @actionMap inActionMap
   ?let @string inReceiverSwiftTypeName
+  ?let @classMap inClassMap
   ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
   ?!@autoLayoutOutletMap ioOutletMap
@@ -452,6 +459,7 @@ method @astAutoLayoutViewFunctionCallList check
                                 ?let @propertyMap inObservablePropertyMap
                                 ?let @actionMap inActionMap
                                 ?let @string inReceiverSwiftTypeName
+                                ?let @classMap inClassMap
                                 ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                 ?!@autoLayoutOutletMap ioOutletMap
@@ -487,6 +495,7 @@ method @astAutoLayoutViewFunctionCallList check
             !inObservablePropertyMap
             !inActionMap
             !inReceiverSwiftTypeName
+             !inClassMap
             !?ioImplicitViewFunctionGenerationList
             !?ioConfiguratorMap
             !?ioOutletMap
@@ -496,6 +505,12 @@ method @astAutoLayoutViewFunctionCallList check
           ioImplicitViewFunctionGenerationList += !viewInstruction
         case string (stringValue) :
           parameterList += !name !stringValue
+        case entity (entityName) :
+          [inClassMap searchKey !entityName ?let classKind ?3*]
+          if not [classKind isEntity] then
+            error entityName: "an entity is required here"
+          end
+          parameterList += !name !entityName.string + ".self"
         case menuItem (title run enabledBinding) :
           analyzeAutoLayoutRunBinding (
             !run
@@ -568,6 +583,7 @@ override method @astHorizontalStackViewDeclaration check ?let @string unused inV
                                 ?let @propertyMap inObservablePropertyMap
                                 ?let @actionMap inActionMap
                                 ?let @string inReceiverSwiftTypeName
+                                ?let @classMap inClassMap
                                 ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                 ?!@autoLayoutOutletMap ioOutletMap
@@ -582,6 +598,7 @@ override method @astHorizontalStackViewDeclaration check ?let @string unused inV
      !inObservablePropertyMap
      !inActionMap
      !inReceiverSwiftTypeName
+     !inClassMap
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
      !?ioOutletMap
@@ -601,6 +618,7 @@ override method @astVerticalStackViewDeclaration check ?let @string unused inVie
                                   ?let @propertyMap inObservablePropertyMap
                                   ?let @actionMap inActionMap
                                   ?let @string inReceiverSwiftTypeName
+                                  ?let @classMap inClassMap
                                   ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                   ?!@autoLayoutOutletMap ioOutletMap
@@ -615,6 +633,7 @@ override method @astVerticalStackViewDeclaration check ?let @string unused inVie
      !inObservablePropertyMap
      !inActionMap
      !inReceiverSwiftTypeName
+     !inClassMap
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
      !?ioOutletMap
@@ -635,6 +654,7 @@ override method @astComputedHorizontalViewDeclaration check
                                   ?let @propertyMap inObservablePropertyMap
                                   ?let @actionMap inActionMap
                                   ?let @string inReceiverSwiftTypeName
+                                  ?let @classMap inClassMap
                                   ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                   ?!@autoLayoutOutletMap ioOutletMap
@@ -649,6 +669,7 @@ override method @astComputedHorizontalViewDeclaration check
      !inObservablePropertyMap
      !inActionMap
      !inReceiverSwiftTypeName
+     !inClassMap
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
      !?ioOutletMap
@@ -665,6 +686,7 @@ override method @astComputedHorizontalViewDeclaration check
       !inObservablePropertyMap
       !inActionMap
       !inReceiverSwiftTypeName
+      !inClassMap
       !?ioImplicitViewFunctionGenerationList
       !?ioConfiguratorMap
       !?ioOutletMap
@@ -686,6 +708,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
                                   ?let @propertyMap inObservablePropertyMap
                                   ?let @actionMap inActionMap
                                   ?let @string inReceiverSwiftTypeName
+                                  ?let @classMap inClassMap
                                   ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                   ?!@autoLayoutOutletMap ioOutletMap
@@ -701,6 +724,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
      !inObservablePropertyMap
      !inActionMap
      !inReceiverSwiftTypeName
+     !inClassMap
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
      !?ioOutletMap
@@ -716,6 +740,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
       !inObservablePropertyMap
       !inActionMap
       !inReceiverSwiftTypeName
+      !inClassMap
       !?ioImplicitViewFunctionGenerationList
       !?ioConfiguratorMap
       !?ioOutletMap
@@ -737,6 +762,7 @@ abstract method @astAbstractViewInstructionDeclaration generateCode
                                 ?let @propertyMap inObservablePropertyMap
                                 ?let @actionMap inActionMap
                                 ?let @string inReceiverSwiftTypeName
+                                ?let @classMap inClassMap
                                 ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                 ?!@autoLayoutOutletMap ioOutletMap
@@ -753,6 +779,7 @@ override method @astSpaceViewInstruction generateCode
                                 ?let @propertyMap unused inObservablePropertyMap
                                 ?let @actionMap unused inActionMap
                                 ?let @string unused inReceiverSwiftTypeName
+                                ?let @classMap unused inClassMap
                                 ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
                                 ?!@autoLayoutOutletMap unused ioOutletMap
@@ -771,6 +798,7 @@ override method @astLocalViewInstruction generateCode
                                 ?let @propertyMap unused inObservablePropertyMap
                                 ?let @actionMap unused inActionMap
                                 ?let @string unused inReceiverSwiftTypeName
+                                ?let @classMap unused inClassMap
                                 ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
                                 ?!@autoLayoutOutletMap unused ioOutletMap
@@ -790,6 +818,7 @@ override method @astComputedViewInstruction generateCode
                                 ?let @propertyMap inObservablePropertyMap
                                 ?let @actionMap inActionMap
                                 ?let @string inReceiverSwiftTypeName
+                                ?let @classMap inClassMap
                                 ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                 ?!@autoLayoutOutletMap ioOutletMap
@@ -822,6 +851,7 @@ override method @astComputedViewInstruction generateCode
             !inObservablePropertyMap
             !inActionMap
             !inReceiverSwiftTypeName
+            !inClassMap
             !?ioImplicitViewFunctionGenerationList
             !?ioConfiguratorMap
             !?ioOutletMap
@@ -829,6 +859,12 @@ override method @astComputedViewInstruction generateCode
           ]
           parameterList += !name !"self.computeImplicitView_" + [ioImplicitViewFunctionGenerationList length] + " ()"
           ioImplicitViewFunctionGenerationList += !viewInstruction
+      case entity (entityName) :
+        [inClassMap searchKey !entityName ?let classKind ?3*]
+        if not [classKind isEntity] then
+          error entityName: "an entity is required here"
+        end
+        parameterList += !name !entityName.string + ".self"
       case string (stringValue) :
         parameterList += !name !stringValue
       case menuItem (title run enabledBinding) :
@@ -923,6 +959,7 @@ override method @astComputedViewInstruction generateCode
      !inObservablePropertyMap
      !inActionMap
      !inReceiverSwiftTypeName
+     !inClassMap
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
      !?ioOutletMap
@@ -1324,6 +1361,7 @@ override method @astHStackViewInstructionDeclaration generateCode
                         ?let @propertyMap inObservablePropertyMap
                         ?let @actionMap inActionMap
                         ?let @string inReceiverSwiftTypeName
+                        ?let @classMap inClassMap
                         ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                         ?!@autoLayoutOutletMap ioOutletMap
@@ -1339,6 +1377,7 @@ override method @astHStackViewInstructionDeclaration generateCode
      !inObservablePropertyMap
      !inActionMap
      !inReceiverSwiftTypeName
+     !inClassMap
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
      !?ioOutletMap
@@ -1354,6 +1393,7 @@ override method @astHStackViewInstructionDeclaration generateCode
       !inObservablePropertyMap
       !inActionMap
       !inReceiverSwiftTypeName
+      !inClassMap
       !?ioImplicitViewFunctionGenerationList
       !?ioConfiguratorMap
       !?ioOutletMap
@@ -1375,6 +1415,7 @@ override method @astVStackViewInstructionDeclaration generateCode
                         ?let @propertyMap inObservablePropertyMap
                         ?let @actionMap inActionMap
                         ?let @string inReceiverSwiftTypeName
+                        ?let @classMap inClassMap
                         ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                         ?!@autoLayoutOutletMap ioOutletMap
@@ -1390,6 +1431,7 @@ override method @astVStackViewInstructionDeclaration generateCode
      !inObservablePropertyMap
      !inActionMap
      !inReceiverSwiftTypeName
+     !inClassMap
      !?ioImplicitViewFunctionGenerationList
      !?ioConfiguratorMap
      !?ioOutletMap
@@ -1405,6 +1447,7 @@ override method @astVStackViewInstructionDeclaration generateCode
       !inObservablePropertyMap
       !inActionMap
       !inReceiverSwiftTypeName
+      !inClassMap
       !?ioImplicitViewFunctionGenerationList
       !?ioConfiguratorMap
       !?ioOutletMap
@@ -1576,7 +1619,7 @@ abstract getter @abstractViewGeneration generate ?let @string inViewName -> @str
 #·······················································································································
 
 override getter @newHorizontalStackViewGeneration generate ?let @string inViewName -> @string {
-  result = "  let " + inViewName + " : AutoLayoutStackView = AutoLayoutHorizontalStackView ()\n"
+  result = "  let " + inViewName + " : AutoLayoutAbstractStackView = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   result += "\n"
 }
@@ -1584,7 +1627,7 @@ override getter @newHorizontalStackViewGeneration generate ?let @string inViewNa
 #·······················································································································
 
 override getter @newVerticalStackViewGeneration generate ?let @string inViewName -> @string {
-  result = "  let " + inViewName + " : AutoLayoutStackView = AutoLayoutVerticalStackView ()\n"
+  result = "  let " + inViewName + " : AutoLayoutAbstractStackView = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   result += "\n"
 }

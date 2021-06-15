@@ -12567,6 +12567,8 @@ const char * gWrapperFileContent_102_swift_5F_sources = "//---------------------
   "//--- Selection operations\n"
   "\n"
   "  func computeSelectionShape ()\n"
+  "\n"
+  "  var selectedArrayDidChange_property : EBAbstractProperty { get }\n"
   "  \n"
   "  var selectedGraphicObjectSet : Set <EBGraphicManagedObject> { get }\n"
   "\n"
@@ -12629,7 +12631,7 @@ const cRegularFileWrapper gWrapperFile_102_swift_5F_sources (
   "EBGraphicViewControllerProtocol.swift",
   "swift",
   true, // Text file
-  2735, // Text length
+  2803, // Text length
   gWrapperFileContent_102_swift_5F_sources
 ) ;
 
@@ -19128,7 +19130,7 @@ const char * gWrapperFileContent_101_swift_5F_sources = "//---------------------
   "\n"
   "func appendShowDocumentFileOperationDurationWindowMenuItem (_ inMenu : NSMenu) {\n"
   "  let menuItem = NSMenuItem (\n"
-  "    title: \"Document Operation Duration\",\n"
+  "    title: \"Show Document File Operation Duration Window\",\n"
   "    action: #selector (LogFileOperation.makeKeyAndOrderFront (_:)),\n"
   "    keyEquivalent: \"\"\n"
   "  )\n"
@@ -19151,7 +19153,7 @@ const char * gWrapperFileContent_101_swift_5F_sources = "//---------------------
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "fileprivate class LogFileOperation : EBObject {\n"
+  "fileprivate final class LogFileOperation : EBObject {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "  //  Properties\n"
@@ -19164,7 +19166,7 @@ const char * gWrapperFileContent_101_swift_5F_sources = "//---------------------
   "    defer: true\n"
   "  )\n"
   "\n"
-  "  private let mTextView = AutoLayoutTextView ()\n"
+  "  private let mTextView = AutoLayoutTextView (editable: false)\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "  //  Init\n"
@@ -19175,8 +19177,6 @@ const char * gWrapperFileContent_101_swift_5F_sources = "//---------------------
   "  //--- Configure Window\n"
   "    self.mWindow.title = \"Document Operation Duration\"\n"
   "    self.mWindow.isReleasedWhenClosed = false // Close button just hides the window, but do not release it\n"
-  "  //--- Configure textView\n"
-  "    self.mTextView.isEditable = false\n"
   "  //--- Build window contents\n"
   "    let vStack = AutoLayoutVerticalStackView ().set (margins: 8)\n"
   "    vStack.appendView (self.mTextView)\n"
@@ -19215,7 +19215,7 @@ const cRegularFileWrapper gWrapperFile_101_swift_5F_sources (
   "file-log-operation-duration.swift",
   "swift",
   true, // Text file
-  4042, // Text length
+  4015, // Text length
   gWrapperFileContent_101_swift_5F_sources
 ) ;
 
@@ -20361,6 +20361,7 @@ const char * gWrapperFileContent_43_swift_5F_sources = "//----------------------
   "    appendShowTransientEventLogWindowMenuItem (menu)\n"
   "    appendShowExploreDocumentWindowMenuItem (menu)\n"
   "    appendShowDocumentFileOperationDurationWindowMenuItem (menu)\n"
+  "    appendDebugAutoLayoutMenuItem (menu)\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -20379,16 +20380,13 @@ const char * gWrapperFileContent_43_swift_5F_sources = "//----------------------
   "\n"
   "}\n"
   "\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
-  "\n"
-  "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n" ;
 
 const cRegularFileWrapper gWrapperFile_43_swift_5F_sources (
   "show-debug-menu.swift",
   "swift",
   true, // Text file
-  3249, // Text length
+  3167, // Text length
   gWrapperFileContent_43_swift_5F_sources
 ) ;
 

@@ -504,10 +504,11 @@ typedef void (*extensionMethodSignature_astAbstractViewDeclaration_check) (const
                                                                            const class GALGAS_propertyMap constinArgument6,
                                                                            const class GALGAS_actionMap constinArgument7,
                                                                            const class GALGAS_string constinArgument8,
-                                                                           class GALGAS_implicitViewFunctionGenerationList & ioArgument9,
-                                                                           class GALGAS_autoLayoutConfiguratorMap & ioArgument10,
-                                                                           class GALGAS_autoLayoutOutletMap & ioArgument11,
-                                                                           class GALGAS_abstractViewGeneration & outArgument12,
+                                                                           const class GALGAS_classMap constinArgument9,
+                                                                           class GALGAS_implicitViewFunctionGenerationList & ioArgument10,
+                                                                           class GALGAS_autoLayoutConfiguratorMap & ioArgument11,
+                                                                           class GALGAS_autoLayoutOutletMap & ioArgument12,
+                                                                           class GALGAS_abstractViewGeneration & outArgument13,
                                                                            class C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
@@ -528,6 +529,7 @@ void callExtensionMethod_check (const class cPtr_astAbstractViewDeclaration * in
                                 const GALGAS_propertyMap constin_inObservablePropertyMap,
                                 const GALGAS_actionMap constin_inActionMap,
                                 const GALGAS_string constin_inReceiverSwiftTypeName,
+                                const GALGAS_classMap constin_inClassMap,
                                 GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
                                 GALGAS_autoLayoutConfiguratorMap & io_ioConfiguratorMap,
                                 GALGAS_autoLayoutOutletMap & io_ioOutletMap,
@@ -866,6 +868,7 @@ void extensionMethod_check (const class GALGAS_astAutoLayoutViewFunctionCallList
                             const class GALGAS_propertyMap constin_inObservablePropertyMap,
                             const class GALGAS_actionMap constin_inActionMap,
                             const class GALGAS_string constin_inReceiverSwiftTypeName,
+                            const class GALGAS_classMap constin_inClassMap,
                             class GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
                             class GALGAS_autoLayoutConfiguratorMap & io_ioConfiguratorMap,
                             class GALGAS_autoLayoutOutletMap & io_ioOutletMap,
@@ -1508,10 +1511,11 @@ typedef void (*extensionMethodSignature_astAbstractViewInstructionDeclaration_ge
                                                                                              const class GALGAS_propertyMap constinArgument5,
                                                                                              const class GALGAS_actionMap constinArgument6,
                                                                                              const class GALGAS_string constinArgument7,
-                                                                                             class GALGAS_implicitViewFunctionGenerationList & ioArgument8,
-                                                                                             class GALGAS_autoLayoutConfiguratorMap & ioArgument9,
-                                                                                             class GALGAS_autoLayoutOutletMap & ioArgument10,
-                                                                                             class GALGAS_abstractViewInstructionGeneration & outArgument11,
+                                                                                             const class GALGAS_classMap constinArgument8,
+                                                                                             class GALGAS_implicitViewFunctionGenerationList & ioArgument9,
+                                                                                             class GALGAS_autoLayoutConfiguratorMap & ioArgument10,
+                                                                                             class GALGAS_autoLayoutOutletMap & ioArgument11,
+                                                                                             class GALGAS_abstractViewInstructionGeneration & outArgument12,
                                                                                              class C_Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
@@ -1531,6 +1535,7 @@ void callExtensionMethod_generateCode (const class cPtr_astAbstractViewInstructi
                                        const GALGAS_propertyMap constin_inObservablePropertyMap,
                                        const GALGAS_actionMap constin_inActionMap,
                                        const GALGAS_string constin_inReceiverSwiftTypeName,
+                                       const GALGAS_classMap constin_inClassMap,
                                        GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
                                        GALGAS_autoLayoutConfiguratorMap & io_ioConfiguratorMap,
                                        GALGAS_autoLayoutOutletMap & io_ioOutletMap,

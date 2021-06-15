@@ -12519,6 +12519,14 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::constru
 
 //----------------------------------------------------------------------------------------------------------------------
 
+GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::constructor_entity (UNUSED_LOCATION_ARGS) {
+  GALGAS_autoLayoutClassParameterType result ;
+  result.mEnum = kEnum_entity ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 bool GALGAS_autoLayoutClassParameterType::optional_typeString () const {
   const bool ok = mEnum == kEnum_typeString ;
   return ok ;
@@ -12561,14 +12569,22 @@ bool GALGAS_autoLayoutClassParameterType::optional_menuItem () const {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-static const char * gEnumNameArrayFor_autoLayoutClassParameterType [7] = {
+bool GALGAS_autoLayoutClassParameterType::optional_entity () const {
+  const bool ok = mEnum == kEnum_entity ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static const char * gEnumNameArrayFor_autoLayoutClassParameterType [8] = {
   "(not built)",
   "typeString",
   "typeStringArray",
   "typeInt",
   "typeBool",
   "typeView",
-  "menuItem"
+  "menuItem",
+  "entity"
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12605,6 +12621,12 @@ GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeView (UNUSED_LOCAT
 
 GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isMenuItem (UNUSED_LOCATION_ARGS) const {
   return GALGAS_bool (kNotBuilt != mEnum, kEnum_menuItem == mEnum) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isEntity (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (kNotBuilt != mEnum, kEnum_entity == mEnum) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12716,6 +12738,11 @@ GALGAS_string extensionGetter_string (const GALGAS_autoLayoutClassParameterType 
   case GALGAS_autoLayoutClassParameterType::kEnum_menuItem:
     {
       result_result = GALGAS_string ("a menu item") ;
+    }
+    break ;
+  case GALGAS_autoLayoutClassParameterType::kEnum_entity:
+    {
+      result_result = GALGAS_string ("an entity name") ;
     }
     break ;
   }

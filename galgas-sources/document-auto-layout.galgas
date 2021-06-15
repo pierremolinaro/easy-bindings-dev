@@ -263,6 +263,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
       !documentPropertyMap
       !documentActionMap
       !self.mClassName
+      !ioSemanticContext.mClassMap
       !?implicitViewFunctionGenerationList
       !?configuratorMap
       !?autoLayoutOutletMap
@@ -287,6 +288,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
         !documentPropertyMap
         !documentActionMap
         !self.mClassName
+        !ioSemanticContext.mClassMap
         !?implicitViewFunctionGenerationList
         !?configuratorMap
         !?autoLayoutOutletMap

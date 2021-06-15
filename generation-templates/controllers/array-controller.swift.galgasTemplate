@@ -64,6 +64,7 @@ end
 
   //····················································································································
 
+  var selectedArrayDidChange_property : EBAbstractProperty { return self.mInternalSelectedArrayProperty } // EBGraphicViewControllerProtocol
   var selectedArray_property : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME% { return self.mInternalSelectedArrayProperty }
 
   //····················································································································

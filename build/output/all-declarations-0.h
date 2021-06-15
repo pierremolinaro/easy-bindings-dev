@@ -9912,7 +9912,8 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
     kEnum_string,
     kEnum_menuItem,
     kEnum_enumFunc,
-    kEnum_viewFunc
+    kEnum_viewFunc,
+    kEnum_entity
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -9939,6 +9940,9 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
+  public : static class GALGAS_astAutoLayoutViewInstructionParameterValue constructor_entity (const class GALGAS_lstring & inOperand0
+                                                                                              COMMA_LOCATION_ARGS) ;
+
   public : static class GALGAS_astAutoLayoutViewInstructionParameterValue constructor_enumFunc (const class GALGAS_lstring & inOperand0,
                                                                                                 const class GALGAS_lstring & inOperand1
                                                                                                 COMMA_LOCATION_ARGS) ;
@@ -9963,6 +9967,10 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_entity (class GALGAS_lstring & outArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG void method_enumFunc (class GALGAS_lstring & outArgument0,
                                                   class GALGAS_lstring & outArgument1,
                                                   C_Compiler * inCompiler
@@ -9985,6 +9993,8 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntity (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEnumFunc (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMenuItem (LOCATION_ARGS) const ;
@@ -9995,6 +10005,8 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_entity (class GALGAS_lstring & outOperand0) const ;
+
   public : VIRTUAL_IN_DEBUG bool optional_enumFunc (class GALGAS_lstring & outOperand0,
                                                     class GALGAS_lstring & outOperand1) const ;
 
@@ -10092,6 +10104,22 @@ class cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_viewFunc 
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
+
+class cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_entity : public cEnumAssociatedValues {
+  public : const GALGAS_lstring mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_entity (const GALGAS_lstring & inAssociatedValue0
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_entity (void) {}
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
 //
 //                                     Phase 1: @autoLayoutClassParameterType enum                                     *
 //
@@ -10109,7 +10137,8 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
     kEnum_typeInt,
     kEnum_typeBool,
     kEnum_typeView,
-    kEnum_menuItem
+    kEnum_menuItem,
+    kEnum_entity
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -10131,6 +10160,8 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
+  public : static class GALGAS_autoLayoutClassParameterType constructor_entity (LOCATION_ARGS) ;
+
   public : static class GALGAS_autoLayoutClassParameterType constructor_menuItem (LOCATION_ARGS) ;
 
   public : static class GALGAS_autoLayoutClassParameterType constructor_typeBool (LOCATION_ARGS) ;
@@ -10155,6 +10186,8 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntity (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMenuItem (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeBool (LOCATION_ARGS) const ;
@@ -10169,6 +10202,8 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_entity () const ;
+
   public : VIRTUAL_IN_DEBUG bool optional_menuItem () const ;
 
   public : VIRTUAL_IN_DEBUG bool optional_typeBool () const ;

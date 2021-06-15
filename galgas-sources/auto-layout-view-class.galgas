@@ -23,6 +23,7 @@ enum @autoLayoutClassParameterType {
   case typeBool
   case typeView
   case menuItem
+  case entity
 }
 
 #·······················································································································
@@ -35,6 +36,7 @@ getter @autoLayoutClassParameterType string -> @string {
   case typeBool : result = "Bool"
   case typeView : result = "a view"
   case menuItem : result = "a menu item"
+  case entity : result = "an entity name"
   end
 }
 
@@ -191,6 +193,9 @@ syntax extension easyBindings_syntax {
           $menuItem$
           ioParameterList += !parameterName !.menuItem
         or
+          $entity$
+          ioParameterList += !parameterName !.entity
+        or
          $Identifier$ ?let parameterTypeName
          if parameterTypeName.string == "String" then
            ioParameterList += !parameterName !.typeString
@@ -297,31 +302,5 @@ map @autolayoutViewClassMap {
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
 }
-
-#-----------------------------------------------------------------------------------------------------------------------
-#  CODE GENERATION                        
-#-----------------------------------------------------------------------------------------------------------------------
-
-#filewrapper outletClassGeneration in "../generation-templates/outlet-classes" {
-#  "swift"
-#}{
-#}{
-#}
-
-#----------------------------------------------------------------------------------------------------------------------*
-
-#proc generateOutletClasses
-#  ?let @stringset inNeededOutletClasses
-#  ?let @string inOutputDirectory
-#  ?!@stringset ioGeneratedFileSet
-#{
-#  let @filewrapper w = [filewrapper outletClassGeneration]
-#  for key in inNeededOutletClasses do
-#    let s = [w textFileContentsAtPath !"/" + key + ".swift"]
-#    let fileName = key + ".swift"
-#    ioGeneratedFileSet += !fileName
-#    [@string generateFile !inOutputDirectory !fileName !s]
-#  end
-#}
 
 #-----------------------------------------------------------------------------------------------------------------------
