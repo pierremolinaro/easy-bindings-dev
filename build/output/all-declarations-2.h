@@ -2239,6 +2239,96 @@ class cPtr_vStackViewInstructionGeneration : public cPtr_abstractViewInstruction
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @stackViewReferenceInstructionGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_stackViewReferenceInstructionGeneration : public GALGAS_abstractViewInstructionGeneration {
+//--- Constructor
+  public : GALGAS_stackViewReferenceInstructionGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_stackViewReferenceInstructionGeneration constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_stackViewReferenceInstructionGeneration * ptr (void) const { return (const cPtr_stackViewReferenceInstructionGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_stackViewReferenceInstructionGeneration (const cPtr_stackViewReferenceInstructionGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_stackViewReferenceInstructionGeneration extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_stackViewReferenceInstructionGeneration constructor_new (const class GALGAS_string & inOperand0
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_stackViewReferenceInstructionGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMStackViewName (class GALGAS_string inArgument0
+                                                           COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mStackViewName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_stackViewReferenceInstructionGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stackViewReferenceInstructionGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @stackViewReferenceInstructionGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_stackViewReferenceInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+//--- Attributes
+  public : GALGAS_string mProperty_mStackViewName ;
+
+//--- Constructor
+  public : cPtr_stackViewReferenceInstructionGeneration (const GALGAS_string & in_mStackViewName
+                                                         COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mStackViewName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMStackViewName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @autoLayoutSpaceViewInstructionGeneration class
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -3842,15 +3932,4 @@ class GALGAS_observablePropertyList_2D_element : public AC_GALGAS_root {
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyList_2D_element ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@observablePropertyAST modelStringForSelf' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string extensionGetter_modelStringForSelf (const class GALGAS_observablePropertyAST & inObject,
-                                                        const class GALGAS_string & constinArgument0,
-                                                        class C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
 

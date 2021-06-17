@@ -10,6 +10,17 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Extension getter '@observablePropertyAST modelStringForSelf' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_string extensionGetter_modelStringForSelf (const class GALGAS_observablePropertyAST & inObject,
+                                                        const class GALGAS_string & constinArgument0,
+                                                        class C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Extension getter '@observablePropertyAST modelStringFunctionArgument' (as function)
 //
 //----------------------------------------------------------------------------------------------------------------------

@@ -59,6 +59,12 @@ class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+class @astStackViewReferenceInstructionDeclaration  : @astAbstractViewInstructionDeclaration {
+  @lstring mStackViewName
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
 class @astSpaceViewInstruction : @astAbstractViewInstructionDeclaration {
 }
 
@@ -145,7 +151,7 @@ syntax extension easyBindings_syntax {
     $stackView$
     $identifier$ ?let viewName
     $vStack$
-    <auto_layout_func_call_list> ?let functionCallList
+     <auto_layout_func_call_list> ?let functionCallList
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> !?instructionList
@@ -368,6 +374,14 @@ syntax extension easyBindings_syntax {
       end
     end
     $)$
+  }
+  
+  #·····················································································································
+ 
+  rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
+    $stackViewRef$
+    $identifier$ ?let stackViewName
+    outInstruction = @astStackViewReferenceInstructionDeclaration.new {!stackViewName}
   }
   
   #·····················································································································
@@ -1458,6 +1472,25 @@ override method @astVStackViewInstructionDeclaration generateCode
   outInstruction = @vStackViewInstructionGeneration.new {!funcCallList !instructionList}
 }
 
+#·······················································································································
+
+override method @astStackViewReferenceInstructionDeclaration generateCode
+                        ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                        ?let @bool unused inPreferences
+                        ?let @propertyMap unused inRootObservablePropertyMap
+                        ?let @propertyMap unused inPreferencesPropertyMap
+                        ?let @semanticContext unused inSemanticContext
+                        ?let @propertyMap unused inObservablePropertyMap
+                        ?let @actionMap unused inActionMap
+                        ?let @string unused inReceiverSwiftTypeName
+                        ?let @classMap unused inClassMap
+                        ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
+                        ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
+                        ?!@autoLayoutOutletMap unused ioOutletMap
+                        !@abstractViewInstructionGeneration outInstruction {
+  outInstruction = @stackViewReferenceInstructionGeneration.new {!self.mStackViewName.string}
+}
+
 #-----------------------------------------------------------------------------------------------------------------------
 #   GENERATION                            
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1515,6 +1548,12 @@ class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
 class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @stackViewReferenceInstructionGeneration : @abstractViewInstructionGeneration {
+  @string mStackViewName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1652,6 +1691,9 @@ override getter @computedHorizontalViewGeneration generate ?let @string inViewNa
 override getter @computedVerticalViewGeneration generate ?let @string inViewName -> @string {
   result = "  lazy var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
+#  if self.mOutletName != "" then
+#    result += "    self." + self.mOutletName + " = vStackView\n"
+#  end
   [self.mFuncCallList generate !"    " !?result]
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
@@ -1758,6 +1800,12 @@ override getter @vStackViewInstructionGeneration generate ?let @string inName ?l
      result += indentation + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
+}
+
+#·······················································································································
+
+override getter @stackViewReferenceInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
+  result = inIndentation + "let " + inName + " = " + self.mStackViewName + "\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

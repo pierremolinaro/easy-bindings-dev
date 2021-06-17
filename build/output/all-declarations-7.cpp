@@ -9,6 +9,136 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
+GALGAS_astViewDeclarationList_2D_element::GALGAS_astViewDeclarationList_2D_element (void) :
+mProperty_mViewName (),
+mProperty_mView () {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astViewDeclarationList_2D_element::~ GALGAS_astViewDeclarationList_2D_element (void) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astViewDeclarationList_2D_element::GALGAS_astViewDeclarationList_2D_element (const GALGAS_lstring & inOperand0,
+                                                                                    const GALGAS_astAbstractViewDeclaration & inOperand1) :
+mProperty_mViewName (inOperand0),
+mProperty_mView (inOperand1) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astViewDeclarationList_2D_element GALGAS_astViewDeclarationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
+                                                                                                    const GALGAS_astAbstractViewDeclaration & inOperand1 
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_astViewDeclarationList_2D_element result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS_astViewDeclarationList_2D_element (inOperand0, inOperand1) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+typeComparisonResult GALGAS_astViewDeclarationList_2D_element::objectCompare (const GALGAS_astViewDeclarationList_2D_element & inOperand) const {
+   typeComparisonResult result = kOperandEqual ;
+  if (result == kOperandEqual) {
+    result = mProperty_mViewName.objectCompare (inOperand.mProperty_mViewName) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mView.objectCompare (inOperand.mProperty_mView) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_astViewDeclarationList_2D_element::isValid (void) const {
+  return mProperty_mViewName.isValid () && mProperty_mView.isValid () ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_astViewDeclarationList_2D_element::drop (void) {
+  mProperty_mViewName.drop () ;
+  mProperty_mView.drop () ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_astViewDeclarationList_2D_element::description (C_String & ioString,
+                                                            const int32_t inIndentation) const {
+  ioString << "<struct @astViewDeclarationList-element:" ;
+  if (! isValid ()) {
+    ioString << " not built" ;
+  }else{
+    mProperty_mViewName.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mView.description (ioString, inIndentation+1) ;
+  }
+  ioString << ">" ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS_astViewDeclarationList_2D_element::getter_mViewName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mViewName ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAbstractViewDeclaration GALGAS_astViewDeclarationList_2D_element::getter_mView (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mView ;
+}
+
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//@astViewDeclarationList-element type
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_astViewDeclarationList_2D_element ("astViewDeclarationList-element",
+                                                          NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_astViewDeclarationList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astViewDeclarationList_2D_element ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_astViewDeclarationList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_astViewDeclarationList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astViewDeclarationList_2D_element GALGAS_astViewDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_astViewDeclarationList_2D_element result ;
+  const GALGAS_astViewDeclarationList_2D_element * p = (const GALGAS_astViewDeclarationList_2D_element *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_astViewDeclarationList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astViewDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 GALGAS_astAutoLayoutViewFunctionCallList_2D_element::GALGAS_astAutoLayoutViewFunctionCallList_2D_element (void) :
 mProperty_mFunctionName (),
 mProperty_mParameterList () {
@@ -9288,111 +9418,4 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectFactory 
     "//----------------------------------------------------------------------------------------------------------------------\n" ;
   return GALGAS_string (result) ;
 }
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@xibDocumentDeclarationAST enterInPrecedenceGraph'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_xibDocumentDeclarationAST_enterInPrecedenceGraph (const cPtr_abstractDeclarationAST * inObject,
-                                                                              GALGAS_declarationPrecedenceGraph & ioArgument_ioGraph,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_xibDocumentDeclarationAST * object = (const cPtr_xibDocumentDeclarationAST *) inObject ;
-  macroValidSharedObject (object, cPtr_xibDocumentDeclarationAST) ;
-  {
-  const GALGAS_xibDocumentDeclarationAST temp_0 = object ;
-  const GALGAS_xibDocumentDeclarationAST temp_1 = object ;
-  ioArgument_ioGraph.setter_addNode (temp_0.getter_mClassName (HERE), temp_1, inCompiler COMMA_SOURCE_FILE ("document-xib.galgas", 15)) ;
-  }
-  {
-  const GALGAS_xibDocumentDeclarationAST temp_2 = object ;
-  const GALGAS_xibDocumentDeclarationAST temp_3 = object ;
-  ioArgument_ioGraph.setter_addEdge (temp_2.getter_mClassName (HERE), temp_3.getter_mRootEntityName (HERE) COMMA_SOURCE_FILE ("document-xib.galgas", 16)) ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_xibDocumentDeclarationAST_enterInPrecedenceGraph (void) {
-  enterExtensionMethod_enterInPrecedenceGraph (kTypeDescriptor_GALGAS_xibDocumentDeclarationAST.mSlotID,
-                                               extensionMethod_xibDocumentDeclarationAST_enterInPrecedenceGraph) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_xibDocumentDeclarationAST_enterInPrecedenceGraph (defineExtensionMethod_xibDocumentDeclarationAST_enterInPrecedenceGraph, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@xibDocumentDeclarationAST nodeKey'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_lstring extensionGetter_xibDocumentDeclarationAST_nodeKey (const cPtr_abstractDeclarationAST * inObject,
-                                                                         C_Compiler * /* inCompiler */
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_lstring result_result ; // Returned variable
-  const cPtr_xibDocumentDeclarationAST * object = (const cPtr_xibDocumentDeclarationAST *) inObject ;
-  macroValidSharedObject (object, cPtr_xibDocumentDeclarationAST) ;
-  const GALGAS_xibDocumentDeclarationAST temp_0 = object ;
-  result_result = temp_0.getter_mClassName (HERE) ;
-//---
-  return result_result ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_xibDocumentDeclarationAST_nodeKey (void) {
-  enterExtensionGetter_nodeKey (kTypeDescriptor_GALGAS_xibDocumentDeclarationAST.mSlotID,
-                                extensionGetter_xibDocumentDeclarationAST_nodeKey) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_xibDocumentDeclarationAST_nodeKey (defineExtensionGetter_xibDocumentDeclarationAST_nodeKey, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@xibDocumentDeclarationAST firstAnalysisPhase'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_xibDocumentDeclarationAST_firstAnalysisPhase (const cPtr_abstractDeclarationAST * inObject,
-                                                                          GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                                                          GALGAS_generationStruct & ioArgument_ioGeneration,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_xibDocumentDeclarationAST * object = (const cPtr_xibDocumentDeclarationAST *) inObject ;
-  macroValidSharedObject (object, cPtr_xibDocumentDeclarationAST) ;
-  GALGAS_actionMap var_actionMap_3355 ;
-  {
-  const GALGAS_xibDocumentDeclarationAST temp_0 = object ;
-  routine_buildActionMap (temp_0.getter_mActionDeclarationList (HERE), var_actionMap_3355, inCompiler  COMMA_SOURCE_FILE ("document-xib.galgas", 84)) ;
-  }
-  {
-  const GALGAS_xibDocumentDeclarationAST temp_1 = object ;
-  const GALGAS_xibDocumentDeclarationAST temp_2 = object ;
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_1.getter_mClassName (HERE), GALGAS_classKind::constructor_document (temp_2.getter_mRootEntityName (HERE)  COMMA_SOURCE_FILE ("document-xib.galgas", 87)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("document-xib.galgas", 88)), var_actionMap_3355, GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("document-xib.galgas", 90)), inCompiler COMMA_SOURCE_FILE ("document-xib.galgas", 85)) ;
-  }
-  cEnumerator_actionMap enumerator_3532 (var_actionMap_3355, kENUMERATION_UP) ;
-  while (enumerator_3532.hasCurrentObject ()) {
-    const GALGAS_xibDocumentDeclarationAST temp_3 = object ;
-    ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_actionFileGeneration::constructor_new (temp_3.getter_mClassName (HERE).getter_string (HERE), enumerator_3532.current_lkey (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("document-xib.galgas", 93))  COMMA_SOURCE_FILE ("document-xib.galgas", 93)) ;
-    enumerator_3532.gotoNextObject () ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_xibDocumentDeclarationAST_firstAnalysisPhase (void) {
-  enterExtensionMethod_firstAnalysisPhase (kTypeDescriptor_GALGAS_xibDocumentDeclarationAST.mSlotID,
-                                           extensionMethod_xibDocumentDeclarationAST_firstAnalysisPhase) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_xibDocumentDeclarationAST_firstAnalysisPhase (defineExtensionMethod_xibDocumentDeclarationAST_firstAnalysisPhase, NULL) ;
 

@@ -3153,6 +3153,182 @@ GALGAS_astComputedHorizontalViewDeclaration GALGAS_astComputedHorizontalViewDecl
 //   Object comparison                                                                           
 //----------------------------------------------------------------------------------------------------------------------
 
+typeComparisonResult cPtr_astStackViewReferenceInstructionDeclaration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_astStackViewReferenceInstructionDeclaration * p = (const cPtr_astStackViewReferenceInstructionDeclaration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_astStackViewReferenceInstructionDeclaration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mStackViewName.objectCompare (p->mProperty_mStackViewName) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+typeComparisonResult GALGAS_astStackViewReferenceInstructionDeclaration::objectCompare (const GALGAS_astStackViewReferenceInstructionDeclaration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astStackViewReferenceInstructionDeclaration::GALGAS_astStackViewReferenceInstructionDeclaration (void) :
+GALGAS_astAbstractViewInstructionDeclaration () {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astStackViewReferenceInstructionDeclaration GALGAS_astStackViewReferenceInstructionDeclaration::constructor_default (LOCATION_ARGS) {
+  return GALGAS_astStackViewReferenceInstructionDeclaration::constructor_new (GALGAS_lstring::constructor_default (HERE)
+                                                                              COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astStackViewReferenceInstructionDeclaration::GALGAS_astStackViewReferenceInstructionDeclaration (const cPtr_astStackViewReferenceInstructionDeclaration * inSourcePtr) :
+GALGAS_astAbstractViewInstructionDeclaration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_astStackViewReferenceInstructionDeclaration) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astStackViewReferenceInstructionDeclaration GALGAS_astStackViewReferenceInstructionDeclaration::constructor_new (const GALGAS_lstring & inAttribute_mStackViewName
+                                                                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_astStackViewReferenceInstructionDeclaration result ;
+  if (inAttribute_mStackViewName.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_astStackViewReferenceInstructionDeclaration (inAttribute_mStackViewName COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS_astStackViewReferenceInstructionDeclaration::getter_mStackViewName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_astStackViewReferenceInstructionDeclaration * p = (const cPtr_astStackViewReferenceInstructionDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astStackViewReferenceInstructionDeclaration) ;
+    result = p->mProperty_mStackViewName ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cPtr_astStackViewReferenceInstructionDeclaration::getter_mStackViewName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mStackViewName ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_astStackViewReferenceInstructionDeclaration::setter_setMStackViewName (GALGAS_lstring inValue
+                                                                                   COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_astStackViewReferenceInstructionDeclaration * p = (cPtr_astStackViewReferenceInstructionDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astStackViewReferenceInstructionDeclaration) ;
+    p->mProperty_mStackViewName = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void cPtr_astStackViewReferenceInstructionDeclaration::setter_setMStackViewName (GALGAS_lstring inValue
+                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mStackViewName = inValue ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//Pointer class for @astStackViewReferenceInstructionDeclaration class
+//----------------------------------------------------------------------------------------------------------------------
+
+cPtr_astStackViewReferenceInstructionDeclaration::cPtr_astStackViewReferenceInstructionDeclaration (const GALGAS_lstring & in_mStackViewName
+                                                                                                    COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (THERE),
+mProperty_mStackViewName (in_mStackViewName) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_astStackViewReferenceInstructionDeclaration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astStackViewReferenceInstructionDeclaration ;
+}
+
+void cPtr_astStackViewReferenceInstructionDeclaration::description (C_String & ioString,
+                                                                    const int32_t inIndentation) const {
+  ioString << "[@astStackViewReferenceInstructionDeclaration:" ;
+  mProperty_mStackViewName.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_astStackViewReferenceInstructionDeclaration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_astStackViewReferenceInstructionDeclaration (mProperty_mStackViewName COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//@astStackViewReferenceInstructionDeclaration type
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_astStackViewReferenceInstructionDeclaration ("astStackViewReferenceInstructionDeclaration",
+                                                                    & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_astStackViewReferenceInstructionDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astStackViewReferenceInstructionDeclaration ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_astStackViewReferenceInstructionDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_astStackViewReferenceInstructionDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astStackViewReferenceInstructionDeclaration GALGAS_astStackViewReferenceInstructionDeclaration::extractObject (const GALGAS_object & inObject,
+                                                                                                                      C_Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_astStackViewReferenceInstructionDeclaration result ;
+  const GALGAS_astStackViewReferenceInstructionDeclaration * p = (const GALGAS_astStackViewReferenceInstructionDeclaration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_astStackViewReferenceInstructionDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astStackViewReferenceInstructionDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//   Object comparison                                                                           
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_astLocalViewInstruction::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_astLocalViewInstruction * p = (const cPtr_astLocalViewInstruction *) inOperandPtr ;
@@ -14743,136 +14919,6 @@ GALGAS_autoLayoutViewBindingSpecificationMap_2D_element GALGAS_autoLayoutViewBin
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutViewBindingSpecificationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astViewDeclarationList_2D_element::GALGAS_astViewDeclarationList_2D_element (void) :
-mProperty_mViewName (),
-mProperty_mView () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astViewDeclarationList_2D_element::~ GALGAS_astViewDeclarationList_2D_element (void) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astViewDeclarationList_2D_element::GALGAS_astViewDeclarationList_2D_element (const GALGAS_lstring & inOperand0,
-                                                                                    const GALGAS_astAbstractViewDeclaration & inOperand1) :
-mProperty_mViewName (inOperand0),
-mProperty_mView (inOperand1) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astViewDeclarationList_2D_element GALGAS_astViewDeclarationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                    const GALGAS_astAbstractViewDeclaration & inOperand1 
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_astViewDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_astViewDeclarationList_2D_element (inOperand0, inOperand1) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult GALGAS_astViewDeclarationList_2D_element::objectCompare (const GALGAS_astViewDeclarationList_2D_element & inOperand) const {
-   typeComparisonResult result = kOperandEqual ;
-  if (result == kOperandEqual) {
-    result = mProperty_mViewName.objectCompare (inOperand.mProperty_mViewName) ;
-  }
-  if (result == kOperandEqual) {
-    result = mProperty_mView.objectCompare (inOperand.mProperty_mView) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-bool GALGAS_astViewDeclarationList_2D_element::isValid (void) const {
-  return mProperty_mViewName.isValid () && mProperty_mView.isValid () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_astViewDeclarationList_2D_element::drop (void) {
-  mProperty_mViewName.drop () ;
-  mProperty_mView.drop () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_astViewDeclarationList_2D_element::description (C_String & ioString,
-                                                            const int32_t inIndentation) const {
-  ioString << "<struct @astViewDeclarationList-element:" ;
-  if (! isValid ()) {
-    ioString << " not built" ;
-  }else{
-    mProperty_mViewName.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mProperty_mView.description (ioString, inIndentation+1) ;
-  }
-  ioString << ">" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_astViewDeclarationList_2D_element::getter_mViewName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mViewName ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAbstractViewDeclaration GALGAS_astViewDeclarationList_2D_element::getter_mView (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mView ;
-}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//@astViewDeclarationList-element type
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astViewDeclarationList_2D_element ("astViewDeclarationList-element",
-                                                          NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_astViewDeclarationList_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astViewDeclarationList_2D_element ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_astViewDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astViewDeclarationList_2D_element (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astViewDeclarationList_2D_element GALGAS_astViewDeclarationList_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_astViewDeclarationList_2D_element result ;
-  const GALGAS_astViewDeclarationList_2D_element * p = (const GALGAS_astViewDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astViewDeclarationList_2D_element *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astViewDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
