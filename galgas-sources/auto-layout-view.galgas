@@ -45,6 +45,12 @@ abstract class @astAbstractViewInstructionDeclaration {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+  @bool horizontal %selector
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
 class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
@@ -154,7 +160,7 @@ syntax extension easyBindings_syntax {
      <auto_layout_func_call_list> ?let functionCallList
     ${$
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> !?instructionList
+    <view_instruction_list> !horizontal: false !?instructionList
     $}$
     ioViewDeclarationList +=
       !viewName
@@ -182,7 +188,7 @@ syntax extension easyBindings_syntax {
     <auto_layout_func_call_list> ?let functionCallList
     ${$
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> !?instructionList
+    <view_instruction_list> !horizontal: true !?instructionList
     $}$
     ioViewDeclarationList +=
       !viewName
@@ -191,8 +197,12 @@ syntax extension easyBindings_syntax {
  
   #·····················································································································
  
-  rule <view_instruction_list> ?!@astViewInstructionList ioInstructionList {
+  rule <view_instruction_list> ?horizontal: @bool inHorizontal ?!@astViewInstructionList ioInstructionList {
     repeat
+    while
+      $separator$
+      ioInstructionList += !@astSeparatorInstructionDeclaration.new {!horizontal: inHorizontal}
+
     while
       <view_instruction> ?let instruction
       ioInstructionList += !instruction
@@ -391,7 +401,7 @@ syntax extension easyBindings_syntax {
     <auto_layout_func_call_list> ?let functionCallList
     ${$
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> !?instructionList
+    <view_instruction_list> !horizontal: false !?instructionList
     outInstruction = @astVStackViewInstructionDeclaration.new {!functionCallList !instructionList}
     $}$
   }
@@ -403,7 +413,7 @@ syntax extension easyBindings_syntax {
     <auto_layout_func_call_list> ?let functionCallList
     ${$
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> !?instructionList
+    <view_instruction_list> !horizontal: true !?instructionList
     outInstruction = @astHStackViewInstructionDeclaration.new {!functionCallList !instructionList}
     $}$
   }
@@ -799,6 +809,26 @@ override method @astSpaceViewInstruction generateCode
                                 ?!@autoLayoutOutletMap unused ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction {
   outInstruction = @autoLayoutSpaceViewInstructionGeneration.new
+}
+
+#·······················································································································
+
+override method @astSeparatorInstructionDeclaration generateCode
+                                ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+                                ?let @bool unused inPreferences
+                                ?let @propertyMap unused inRootObservablePropertyMap
+                                ?let @propertyMap unused inPreferencesPropertyMap
+                                ?let @semanticContext unused inSemanticContext
+                                ?let @propertyMap unused inObservablePropertyMap
+                                ?let @actionMap unused inActionMap
+                                ?let @string unused inReceiverSwiftTypeName
+                                ?let @classMap unused inClassMap
+                                ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
+                                ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
+                                ?!@autoLayoutOutletMap unused ioOutletMap
+                                !@abstractViewInstructionGeneration outInstruction {
+  outInstruction = @autoLayoutSeparatorInstructionGeneration.new {!horizontal: self.horizontal}
+
 }
 
 #·······················································································································
@@ -1563,6 +1593,12 @@ class @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGenera
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGeneration {
+  @bool horizontal %selector
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
 class @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGeneration {
   @string mLocalView
 }
@@ -1691,9 +1727,6 @@ override getter @computedHorizontalViewGeneration generate ?let @string inViewNa
 override getter @computedVerticalViewGeneration generate ?let @string inViewName -> @string {
   result = "  lazy var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
-#  if self.mOutletName != "" then
-#    result += "    self." + self.mOutletName + " = vStackView\n"
-#  end
   [self.mFuncCallList generate !"    " !?result]
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
@@ -1712,6 +1745,17 @@ abstract getter  @abstractViewInstructionGeneration generate ?let @string inName
 
 override getter @autoLayoutSpaceViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutFlexibleSpace ()\n"
+}
+
+#·······················································································································
+
+override getter @autoLayoutSeparatorInstructionGeneration generate
+                      ?let @string inName ?let @string inIndentation -> @string {
+  if self.horizontal then
+    result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView.VerticalSeparator ()\n"
+  else
+    result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView.HorizontalSeparator ()\n"
+  end
 }
 
 #·······················································································································
