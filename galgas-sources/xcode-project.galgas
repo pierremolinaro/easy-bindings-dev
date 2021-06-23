@@ -135,7 +135,7 @@ private proc generateXcodeProjectInternal
       !"GCC_PREPROCESSOR_DEFINITIONS = ()"
     }
     !dependantTargetList:{}
-    !productCopyList:{!"MainMenu.xib" !"EBAllocationDebug.xib"}
+    !productCopyList:{} # {!"MainMenu.xib" !"EBAllocationDebug.xib"}
     !infoPList:projectName + "/Info.plist"
     ?productFileRef:*
   ]

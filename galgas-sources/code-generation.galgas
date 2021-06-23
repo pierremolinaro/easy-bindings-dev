@@ -268,7 +268,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBLinePath"
     swiftFiles += !"EBShape"
   end
-  @stringlist xibFiles = {!"EBAllocationDebug"}
+  @stringlist xibFiles = {}
   let fw = [filewrapper swift_sources]
   for (@string s) in swiftFiles do
     let fileName = s + ".swift"
