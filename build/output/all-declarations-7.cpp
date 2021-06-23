@@ -1533,6 +1533,11 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
   result << " = EBPropertyEnumProxy <" ;
   result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
   result << ">\n"
+    "typealias EBPreferencesProperty_" ;
+  result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
+  result << " = EBStoredEnumProperty <" ;
+  result << in_ENUM_5F_TYPE_5F_NAME.stringValue () ;
+  result << ">\n"
     "\n"
     "//----------------------------------------------------------------------------------------------------------------------\n" ;
   return GALGAS_string (result) ;

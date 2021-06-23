@@ -125,5 +125,6 @@ typealias EBTransientProperty_%!ENUM_TYPE_NAME% = EBTransientEnumProperty <%!ENU
 typealias EBReadWriteProperty_%!ENUM_TYPE_NAME% = EBReadWriteEnumProperty <%!ENUM_TYPE_NAME%>
 typealias EBStoredProperty_%!ENUM_TYPE_NAME% = EBStoredEnumProperty <%!ENUM_TYPE_NAME%>
 typealias EBPropertyProxy_%!ENUM_TYPE_NAME% = EBPropertyEnumProxy <%!ENUM_TYPE_NAME%>
+typealias EBPreferencesProperty_%!ENUM_TYPE_NAME% = EBStoredEnumProperty <%!ENUM_TYPE_NAME%>
 
 //----------------------------------------------------------------------------------------------------------------------
