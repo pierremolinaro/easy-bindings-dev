@@ -545,58 +545,58 @@ abstract getter @abstractBooleanMultipleBindingExpressionForGeneration expressio
 
 override getter @booleanMultipleBindingLiteralIntForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "EBSelection.single (" + [self.mValue string] + ")"
+  outExpressionString = ".literalInt (" + [self.mValue string] + ")"
 }
 
 #·······················································································································
 
 override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = self.mObservedModelString + "_selection"
+  outExpressionString = ".id (" + self.mObservedModelString + ")"
 }
 
 #·······················································································································
 
 override getter @negateBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "!" + [self.mBinding expressionString]
+  outExpressionString = ".not (" + [self.mBinding expressionString] + ")"
 }
 
 #·······················································································································
 
 override getter @orBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "(" + [self.mLeftBinding expressionString] +  " || " + [self.mRightBinding expressionString] + ")"
+  outExpressionString = ".boolcmp (" + [self.mLeftBinding expressionString] +  ", .or, " + [self.mRightBinding expressionString] + ")"
 }
 
 #·······················································································································
 
 override getter @xorBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "(" + [self.mLeftBinding expressionString] +  " ^ " + [self.mRightBinding expressionString] + ")"
+  outExpressionString = ".boolcmp (" + [self.mLeftBinding expressionString] +  ", .xor, " + [self.mRightBinding expressionString] + ")"
 }
 
 #·······················································································································
 
 override getter @andBooleanMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "(" + [self.mLeftBinding expressionString] +  " && " + [self.mRightBinding expressionString] + ")"
+  outExpressionString = ".boolcmp (" + [self.mLeftBinding expressionString] +  ", .and, " + [self.mRightBinding expressionString] + ")"
 }
 
 #·······················································································································
 
 override getter @comparisonMultipleBindingExpressionForGeneration expressionString
   -> @string outExpressionString {
-  outExpressionString = "(" + [self.mLeftBinding expressionString] + " "
+  outExpressionString = ".intcmp (" + [self.mLeftBinding expressionString] + ", "
   switch self.mOperator
-  case equal : outExpressionString += "=="
-  case notEqual : outExpressionString += "!="
-  case lower : outExpressionString += "<"
-  case lowerOrEqual : outExpressionString += "<="
-  case greater : outExpressionString += ">"
-  case greaterOrEqual : outExpressionString += ">="
+  case equal : outExpressionString += ".eq"
+  case notEqual : outExpressionString += ".neq"
+  case lower : outExpressionString += ".lt"
+  case lowerOrEqual : outExpressionString += ".le"
+  case greater : outExpressionString += ".gt"
+  case greaterOrEqual : outExpressionString += ".ge"
   end
-  outExpressionString += " " + [self.mRightBinding expressionString] + ")"
+  outExpressionString += ", " + [self.mRightBinding expressionString] + ")"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

@@ -7075,27 +7075,6 @@ class GALGAS_string callExtensionGetter_expressionString (const class cPtr_abstr
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractBooleanMultipleBindingExpressionForGeneration observedModelSet'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-typedef class GALGAS_stringset (*enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                               class C_Compiler * inCompiler
-                                                                                                                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionGetter_observedModelSet (const int32_t inClassIndex,
-                                            enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_observedModelSet inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_stringset callExtensionGetter_observedModelSet (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutViewInstructionGenerationFuncCallList list
 //
 //----------------------------------------------------------------------------------------------------------------------

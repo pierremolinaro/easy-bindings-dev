@@ -249,9 +249,7 @@ end
 for () in MULTIPLE_BINDING_GENERATION_LIST do
   %    do{\n%
   %      let controller = MultipleBindingController_%!mBindingName% (\n%
-  %        computeFunction: {\n%
-  %          return %![mBoundObjectExpression expressionString]%\n%
-  %        },\n%
+  %        computeFunction: %![mBoundObjectExpression expressionString]%ø}\n%
   %        outlet: self.%!mOutletName%\n%
   %      )\n%
   for () in [mBoundObjectExpression observedModelSet] do

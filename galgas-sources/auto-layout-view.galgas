@@ -564,14 +564,9 @@ method @astAutoLayoutViewFunctionCallList check
           end
           switch enabledBindingGeneration 
           case none :
-            s += ", observedObjects: [], computeFunction: { return .empty }"
+            s += ", expression: .empty"
           case enabled (binding) :
-            s += ", observedObjects: ["
-            for () in [binding observedModelSet]
-              do s += key
-              between s += ", "
-            end
-            s += "], computeFunction: { return " + [binding expressionString] + " }"
+            s += ", expression: " + [binding expressionString]
           end
           s += ")"
           parameterList += !name !s
@@ -940,14 +935,9 @@ override method @astComputedViewInstruction generateCode
         end
         switch enabledBindingGeneration 
         case none :
-          s += ", observedObjects: [], computeFunction: { return .empty }"
+          s += ", expression: .empty"
         case enabled (binding) :
-          s += ", observedObjects: ["
-          for () in [binding observedModelSet]
-            do s += key
-            between s += ", "
-          end
-          s += "], computeFunction: { return " + [binding expressionString] + " }"
+          s += ", expression: " + [binding expressionString]
         end
         s += ")"
         parameterList += !name !s
@@ -1785,15 +1775,15 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
     result += optionListString + ")\n"
   end
   for (bindingName binding) in self.mMultipleBindingGenerationList do 
-    result += inIndentation + "  .bind_" + bindingName + " (\n"
-    result += inIndentation + "    observedObjects: ["
-    for () in [binding observedModelSet]
-      do result += key
-      between result += ", "
-    end
-    result += "],\n"
-    result += inIndentation + "    computeFunction: { return " + [binding expressionString] + " }\n"
-    result += inIndentation + "  )\n"
+    result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"
+#    result += inIndentation + "    observedObjects: ["
+#    for () in [binding observedModelSet]
+#      do result += key
+#      between result += ", "
+#    end
+#    result += "],\n"
+#    result += inIndentation + "    computeFunction: { return " + [binding expressionString] + " }\n"
+#    result += inIndentation + "  )\n"
   end
   switch self.mRunBindingGeneration
   case none :

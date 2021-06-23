@@ -63,6 +63,16 @@ for () in PROPERTY_LIST_FOR_GENERATION do
 end
 %    super.init (ebUndoManager)
 %
+for () in TO_ONE_RELATIONSHIP_LIST do
+%    self.%![mProperty mPropertyName]%_none.mReadModelFunction = { [weak self] in\n%
+%      if let uwSelf = self {\n%
+%        return .single (uwSelf.%![mProperty mPropertyName]%_property.propval == nil)\n%
+%      }else{\n%
+%        return .empty\n%
+%      }\n%
+%    }\n%
+%    self.%![mProperty mPropertyName]%_property.addEBObserver (self.%![mProperty mPropertyName]%_none)\n%
+end
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !false]
 end
