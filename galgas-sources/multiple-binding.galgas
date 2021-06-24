@@ -477,64 +477,64 @@ override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMult
 
 #·······················································································································
 
-abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedModelSet
-  -> @stringset
+#abstract getter @abstractBooleanMultipleBindingExpressionForGeneration observedModelSet
+#  -> @stringset
 
 #·······················································································································
 
-override getter @booleanMultipleBindingLiteralIntForGeneration observedModelSet
-  -> @stringset outObservedModelSet
-{
-  outObservedModelSet = {}
-}
+#override getter @booleanMultipleBindingLiteralIntForGeneration observedModelSet
+#  -> @stringset outObservedModelSet
+#{
+#  outObservedModelSet = {}
+#}
 
 #·······················································································································
 
-override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet
-  -> @stringset outObservedModelSet
-{
-  outObservedModelSet = {!self.mObservedModelString}
-}
+#override getter @observablePropertyAsBooleanMultipleBindingExpressionForGeneration observedModelSet
+#  -> @stringset outObservedModelSet
+#{
+#  outObservedModelSet = {!self.mObservedModelString}
+#}
 
 #·······················································································································
 
-override getter @negateBooleanMultipleBindingExpressionForGeneration observedModelSet
-  -> @stringset outObservedModelSet
-{
-  outObservedModelSet = [self.mBinding observedModelSet]
-}
+#override getter @negateBooleanMultipleBindingExpressionForGeneration observedModelSet
+#  -> @stringset outObservedModelSet
+#{
+#  outObservedModelSet = [self.mBinding observedModelSet]
+#}
 
 #·······················································································································
 
-override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSet
-  -> @stringset outObservedModelSet
-{
-  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
-}
+#override getter @orBooleanMultipleBindingExpressionForGeneration observedModelSet
+#  -> @stringset outObservedModelSet
+#{
+#  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
+#}
 
 #·······················································································································
 
-override getter @xorBooleanMultipleBindingExpressionForGeneration observedModelSet
-  -> @stringset outObservedModelSet
-{
-  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
-}
+#override getter @xorBooleanMultipleBindingExpressionForGeneration observedModelSet
+#  -> @stringset outObservedModelSet
+#{
+#  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
+#}
 
 #·······················································································································
 
-override getter @andBooleanMultipleBindingExpressionForGeneration observedModelSet
-  -> @stringset outObservedModelSet
-{
-  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
-}
+#override getter @andBooleanMultipleBindingExpressionForGeneration observedModelSet
+#  -> @stringset outObservedModelSet
+#{
+#  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
+#}
 
 #·······················································································································
 
-override getter @comparisonMultipleBindingExpressionForGeneration observedModelSet
-  -> @stringset outObservedModelSet
-{
-  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
-}
+#override getter @comparisonMultipleBindingExpressionForGeneration observedModelSet
+#  -> @stringset outObservedModelSet
+#{
+#  outObservedModelSet = {[self.mLeftBinding observedModelSet], [self.mRightBinding observedModelSet]}
+#}
 
 #·······················································································································
 

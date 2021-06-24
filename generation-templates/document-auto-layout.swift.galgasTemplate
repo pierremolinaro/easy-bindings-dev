@@ -252,9 +252,9 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %        computeFunction: %![mBoundObjectExpression expressionString]%ø}\n%
   %        outlet: self.%!mOutletName%\n%
   %      )\n%
-  for () in [mBoundObjectExpression observedModelSet] do
-  %      %!key%.addEBObserver (controller)\n%
-  end
+#  for () in [mBoundObjectExpression observedModelSet] do
+#  %      %!key%.addEBObserver (controller)\n%
+#  end
   %      self.mController_%!mOutletName%_%!mBindingName% = controller\n%
   %    }\n%
 end
@@ -302,10 +302,9 @@ end
 %  //--------------------------- Unbind multiple bindings
 %
 for () in MULTIPLE_BINDING_GENERATION_LIST do
-  for () in [mBoundObjectExpression observedModelSet] do
-  % //   %!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
-  end
-  % //   self.mController_%!mOutletName%_%!mBindingName% = nil\n%
+#  for () in [mBoundObjectExpression observedModelSet] do
+#  % //   %!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
+#  end
 end
 %  //--------------------------- Unbind array controllers
 %

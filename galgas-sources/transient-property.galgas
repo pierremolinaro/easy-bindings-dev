@@ -447,24 +447,24 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   let uwself = if inPreferences then "preferences_" else "unwSelf." end
   outResult = ""
   var ident = "        "
-  if [self length] == 1 then
-    [self first ?let @observablePropertyAST first ?2*]
-    outResult += ident + "let kind = " + [first modelStringForSelf !uwself] + "_selection.kind ()\n"
-  else
-    var dependencies = self
-    [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
-    outResult += ident + "var kind = " + [first modelStringForSelf !uwself] + "_selection.kind ()\n"
-    for () in dependencies do
-      outResult += ident + "kind &= " + [mDependency modelStringForSelf !uwself] + "_selection.kind ()\n"
-    end
-  end
-  outResult += ident + "switch kind {\n"
-  outResult += ident + "case .empty :\n"
-  outResult += ident + "  return .empty\n"
-  outResult += ident + "case .multiple :\n"
-  outResult += ident + "  return .multiple\n"
-  outResult += ident + "case .single :\n"
-  outResult += ident + "  switch ("
+#  if [self length] == 1 then
+#    [self first ?let @observablePropertyAST first ?2*]
+#    outResult += ident + "let kind = " + [first modelStringForSelf !uwself] + "_selection.kind ()\n"
+#  else
+#    var dependencies = self
+#    [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
+#    outResult += ident + "var kind = " + [first modelStringForSelf !uwself] + "_selection.kind ()\n"
+#    for () in dependencies do
+#      outResult += ident + "kind &= " + [mDependency modelStringForSelf !uwself] + "_selection.kind ()\n"
+#    end
+#  end
+#  outResult += ident + "switch kind {\n"
+#  outResult += ident + "case .empty :\n"
+#  outResult += ident + "  return .empty\n"
+#  outResult += ident + "case .multiple :\n"
+#  outResult += ident + "  return .multiple\n"
+#  outResult += ident + "case .single :\n"
+  outResult += ident + "switch ("
   for () in self
   do
     outResult += [mDependency modelStringForSelf !uwself] + "_selection"
@@ -472,7 +472,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
     outResult += ", "
   end
   outResult += ") {\n"
-  outResult += ident + "  case ("
+  outResult += ident + "case ("
   for () in self
   do (idx)
     outResult += ".single (let v" + idx + ")"
@@ -480,7 +480,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
     outResult += ", "
   end
   outResult += ") :\n"
-  outResult += ident + "    return .single ("
+  outResult += ident + "  return .single ("
   outResult += inFunctionNamePrefix + "_" + inOwnerName + "_" + inTransientName
   outResult += " ("
   for () in self
@@ -490,10 +490,19 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
     outResult += ", "
   end
   outResult += "))\n"
-  outResult += ident + "  default :\n"
-  outResult += ident + "    return .empty\n"
-  outResult += ident + "  }\n"
+  outResult += ident + "case ("
+  for () in self
+  do
+    outResult += ".multiple"
+  between
+    outResult += ", "
+  end
+  outResult += ") :\n"
+  outResult += ident + "  return .multiple\n"
+  outResult += ident + "default :\n"
+  outResult += ident + "  return .empty\n"
   outResult += ident + "}\n"
+#  outResult += ident + "}\n"
 }
 
 #·······················································································································

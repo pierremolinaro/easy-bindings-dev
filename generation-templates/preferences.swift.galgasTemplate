@@ -122,9 +122,6 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
   %        computeFunction: %![mBoundObjectExpression expressionString]%,\n%
   %        outlet: self.%!mOutletName%\n%
   %      )\n%
-  for () in [mBoundObjectExpression observedModelSet] do
-  %      %!key%.addEBObserver (controller)\n%
-  end
   %      self.mController_%!mOutletName%_%!mBindingName% = controller\n%
   %    }\n%
 end
