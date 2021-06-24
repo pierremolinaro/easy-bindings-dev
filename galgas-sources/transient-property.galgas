@@ -494,7 +494,7 @@ getter @observablePropertyAST generateAddObserverCall ?let @bool inPreferences -
   let prefix = if inPreferences then "preferences_" else "self." end
   switch self
   case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
-    outResult = prefix + controllerName.string + ".addEBObserverOf_" + propertyName
+    outResult = prefix + controllerName.string + "." + propertyName + "_property.addEBObserver"
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
     outResult = prefix + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.addEBObserver"
   case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
@@ -510,7 +510,7 @@ getter @observablePropertyAST generateAddObserverCall ?let @bool inPreferences -
   case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
     outResult = prefix + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
   case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
-    outResult = prefix + masterName.string + "_property.addEBObserverOf_" + elementPropertyName
+    outResult = prefix + masterName.string + "_property." + elementPropertyName + "_property.addEBObserver"
   case selfPropertyNone (@lstring masterName) :
     outResult = prefix + masterName.string + "_property.addEBObserver"
   case prefsProperty (@lstring propertyName) :

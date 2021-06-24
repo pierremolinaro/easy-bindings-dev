@@ -435,8 +435,8 @@ override getter @atomicProxyGeneration configurationCode ?let @bool unused inPre
   result += "    self." + self.mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (_ inValue : " + [self.mType swiftTypeName] + ", _ inWindow : NSWindow?) -> Bool in\n"
   result += "      return self?." + self.mObservedRelationshipName + "?." + self.mObservedPropertyName + "_property.validateAndSetProp (inValue, windowForSheet: inWindow) ?? false\n"
   result += "    }\n"
-  result += "    self." + self.mObservedRelationshipName + "_property.addEBObserverOf_" + self.mObservedPropertyName
-  result += " (self." + self.mPropertyName + "_property)\n"
+  result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName
+  result += "_property.addEBObserver (self." + self.mPropertyName + "_property)\n"
 }
 
 #·······················································································································

@@ -18,15 +18,12 @@ class ReadOnlyObject_%!ENTITY_NAME% : ReadOnlyAbstractObjectProperty <%!ENTITY_N
 %if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] +[COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %    if let oldValue = inOldValue {\n%
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  % //     oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
   %      oldValue.%![mProperty mPropertyName]%_property.removeEBObserver (self.%![mProperty mPropertyName]%_property) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  % //     oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
   %      oldValue.%![mProperty mPropertyName]%_property.removeEBObserver (self.%![mProperty mPropertyName]%_property) // Transient property\n%
 end
 for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %   //   oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Computed property\n%
   %      oldValue.%![mProperty mPropertyName]%_property.removeEBObserver (self.%![mProperty mPropertyName]%_property) // Computed property\n%
 end
 %    }\n%
@@ -35,15 +32,12 @@ end
 %if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] +[COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %    if let newValue = self.mInternalValue {\n%
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  % //     newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
   %      newValue.%![mProperty mPropertyName]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %  //    newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
   %      newValue.%![mProperty mPropertyName]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property) // Transient property\n%
 end
 for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %  //    newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Computed property\n%
   %      newValue.%![mProperty mPropertyName]%_property.addEBObserver (self.%![mProperty mPropertyName]%_property) // Computed property\n%
 end
 %    }\n%
@@ -58,12 +52,6 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //····················································································································
 
   final let %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
-
-  //····················································································································
-
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
-    self.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-  }
 
   //····················································································································
 
@@ -82,12 +70,6 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
-    self.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-  }
-
-  //····················································································································
-
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
   }
@@ -100,12 +82,6 @@ for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //····················································································································
 
   final let %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
-
-  //····················································································································
-
-  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
-    self.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-  }
 
   //····················································································································
 
