@@ -45,12 +45,13 @@ end
 %  }
 
 %
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do #private final var %![mProperty mPropertyName]%_property = EBGenericPropertyProxy <%![[mProperty mType] swiftTypeName]%?> ()
+for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
 %  //····················································································································
   //   Observers of '%![mProperty mPropertyName]%' stored property
   //····················································································································
 
+  private final var %![mProperty mPropertyName]%_property = EBGenericPropertyProxy <%![[mProperty mType] swiftTypeName]%?> ()
   private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
