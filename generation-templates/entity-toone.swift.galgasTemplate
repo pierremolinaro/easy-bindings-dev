@@ -15,10 +15,10 @@ class ReadOnlyObject_%!ENTITY_NAME% : ReadOnlyAbstractObjectProperty <%!ENTITY_N
   internal override func notifyModelDidChangeFrom (oldValue inOldValue : %!ENTITY_NAME%?) {
     super.notifyModelDidChangeFrom (oldValue: inOldValue)
   //--- Remove observers from removed objects
-%if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
+%if ([TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %    if let oldValue = inOldValue {\n%
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
+  % //     oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      oldValue.%![mProperty mPropertyName]%_property.removeEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
@@ -29,10 +29,10 @@ end
 %    }\n%
 end
 %  //--- Add observers to added objects
-%if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
+%if ([TRANSIENT_LIST_FOR_IMPLEMENTATION length] + [COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %    if let newValue = self.mInternalValue {\n%
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
+  % //     newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      newValue.%![mProperty mPropertyName]%_property.addEBObserversFrom (&self.mObserversOf_%![mProperty mPropertyName]%) // Transient property\n%
@@ -51,13 +51,14 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //   Observers of '%![mProperty mPropertyName]%' stored property
   //····················································································································
 
-//  private final var %![mProperty mPropertyName]%_property = EBGenericPropertyProxy <%![[mProperty mType] swiftTypeName]%?> ()
-  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
+  private final var %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
+//  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
 
   //····················································································································
 
-  final var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
-    if let model = self.propval {
+  final var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> { // §
+    return self.%![mProperty mPropertyName]%_property.selection
+/*    if let model = self.propval {
       switch (model.%![mProperty mPropertyName]%_property_selection) {
       case .empty :
         return .empty
@@ -68,33 +69,33 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
       }
     }else{
       return .single (nil)
-    }
+    } */
   }
 
   //····················································································································
 
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
-    self.addEBObserver (inObserver)
-    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
+    self.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
+/*    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
        v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-    }
+    } */
   }
 
   //····················································································································
 
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
-    self.removeEBObserver (inObserver)
-    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
+    self.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
+/*    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       v?.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-    }
+    } */
   }
 
 %
@@ -244,23 +245,27 @@ end
   //   INIT 
   //····················································································································
 
- // override init () {
-//    super.init ()
+  override init () {
+    super.init ()
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //--- Configure %![mProperty mPropertyName]% simple stored property\n%
-% /*   self.%![mProperty mPropertyName]%_property.mReadModelFunction = { [weak self] in\n%
-%      if let selection = self?.mInternalValue?.%![mProperty mPropertyName]%_property.selection {\n%
-%        return selection\n%
+%    self.%![mProperty mPropertyName]%_property.mReadModelFunction = { [weak self] in\n%
+%      if let model = self?.mInternalValue {\n%
+%        switch model.%![mProperty mPropertyName]%_property.selection {\n%
+%        case .empty :\n%
+%          return .empty\n%
+%        case .multiple :\n%
+%          return .multiple\n%
+%        case .single (let v) :\n%
+%          return .single (v)\n%
+%        }\n%
 %      }else{\n%
-%        return .empty\n%
+%        return .single (nil)\n%
 %      }\n%
 %    }\n%
-%    self.%![mProperty mPropertyName]%_property.mWriteModelFunction = { [weak self] in\n%
-%      self?.mInternalValue?.%![mProperty mPropertyName]%_property.setProp ($0)\n%
-%    }\n%
-%    self.none_property.addEBObserver (self.%![mProperty mPropertyName]%_property) */\n%
+%    self.none_property.addEBObserver (self.%![mProperty mPropertyName]%_property)\n%
 end
-% // }
+%  }
 
   //····················································································································
 
