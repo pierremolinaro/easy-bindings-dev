@@ -9,56 +9,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Routine 'generateAutoLayoutManagedDocumentSwift'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateAutoLayoutManagedDocumentSwift (const GALGAS_string constinArgument_inOutputDirectory,
-                                                     GALGAS_stringset & ioArgument_ioGeneratedFileSet,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_fileName_18683 = GALGAS_string ("EBAutoLayoutManagedDocument.swift") ;
-  GALGAS_filewrapper var_fw_18730 = GALGAS_filewrapper (gWrapperDirectory_0_swift_5F_sources) ;
-  GALGAS_string var_contents_18775 = var_fw_18730.getter_textFileContentsAtPath (var_fileName_18683, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 501)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_18683  COMMA_SOURCE_FILE ("document-auto-layout.galgas", 502)) ;
-  {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_18683, var_contents_18775, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.galgas", 503)) ;
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@prefsDeclarationAST enterInPrecedenceGraph'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_prefsDeclarationAST_enterInPrecedenceGraph (const cPtr_abstractDeclarationAST * inObject,
-                                                                        GALGAS_declarationPrecedenceGraph & ioArgument_ioGraph,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_prefsDeclarationAST * object = (const cPtr_prefsDeclarationAST *) inObject ;
-  macroValidSharedObject (object, cPtr_prefsDeclarationAST) ;
-  {
-  const GALGAS_prefsDeclarationAST temp_0 = object ;
-  const GALGAS_prefsDeclarationAST temp_1 = object ;
-  ioArgument_ioGraph.setter_addNode (temp_0.getter_mClassName (HERE), temp_1, inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 23)) ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_prefsDeclarationAST_enterInPrecedenceGraph (void) {
-  enterExtensionMethod_enterInPrecedenceGraph (kTypeDescriptor_GALGAS_prefsDeclarationAST.mSlotID,
-                                               extensionMethod_prefsDeclarationAST_enterInPrecedenceGraph) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_prefsDeclarationAST_enterInPrecedenceGraph (defineExtensionMethod_prefsDeclarationAST_enterInPrecedenceGraph, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Overriding extension getter '@prefsDeclarationAST nodeKey'
 //
 //----------------------------------------------------------------------------------------------------------------------
