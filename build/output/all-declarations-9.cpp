@@ -5093,7 +5093,7 @@ static GALGAS_string extensionGetter_toOnePropertyGeneration_propertyDeclaration
   result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 201)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 201)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 201)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 201)) ;
   const GALGAS_toOnePropertyGeneration temp_13 = object ;
-  result_result.plusAssign_operation(GALGAS_string ("  final let ").add_operation (temp_13.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 202)).add_operation (GALGAS_string ("_none = EBGenericTransientProperty <Bool> ()\n"
+  result_result.plusAssign_operation(GALGAS_string ("  final let ").add_operation (temp_13.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 202)).add_operation (GALGAS_string ("_none = EBGenericTransientProperty <Bool> () // \xC2""\xA7""\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 202)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 202)) ;
   result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint ((uint32_t) 116U)  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 203)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 203)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 203)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 203)) ;
@@ -5165,8 +5165,8 @@ static GALGAS_string extensionGetter_toOnePropertyGeneration_configurationCode (
     break ;
   case GALGAS_toOneOppositeRelationship::kEnum_oppositeIsToMany:
     {
-      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany * extractPtr_9735 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany *) (temp_0.getter_mOpposite (HERE).unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_oppositeName = extractPtr_9735->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany * extractPtr_9740 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany *) (temp_0.getter_mOpposite (HERE).unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_oppositeName = extractPtr_9740->mAssociatedValue0 ;
       const GALGAS_toOnePropertyGeneration temp_1 = object ;
       result_result = GALGAS_string ("  //--- To one property: ").add_operation (temp_1.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 220)).add_operation (GALGAS_string (" (has opposite to many relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 220)).add_operation (extractedValue_oppositeName.getter_string (SOURCE_FILE ("to-one-relationship.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 220)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 220)) ;
       const GALGAS_toOnePropertyGeneration temp_2 = object ;
@@ -5188,8 +5188,8 @@ static GALGAS_string extensionGetter_toOnePropertyGeneration_configurationCode (
     break ;
   case GALGAS_toOneOppositeRelationship::kEnum_oppositeIsToOne:
     {
-      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * extractPtr_10541 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) (temp_0.getter_mOpposite (HERE).unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_oppositeName = extractPtr_10541->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * extractPtr_10546 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) (temp_0.getter_mOpposite (HERE).unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_oppositeName = extractPtr_10546->mAssociatedValue0 ;
       const GALGAS_toOnePropertyGeneration temp_6 = object ;
       result_result = GALGAS_string ("  //--- To one property: ").add_operation (temp_6.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 230)).add_operation (GALGAS_string (" (has opposite to one relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 230)).add_operation (extractedValue_oppositeName.getter_string (SOURCE_FILE ("to-one-relationship.galgas", 230)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 230)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 230)) ;
       const GALGAS_toOnePropertyGeneration temp_7 = object ;
@@ -5296,8 +5296,8 @@ static GALGAS_string extensionGetter_toOnePropertyGeneration_saveIntoDictionaryC
     break ;
   case GALGAS_toOneOppositeRelationship::kEnum_oppositeIsToOne:
     {
-      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * extractPtr_12426 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) (temp_0.getter_mOpposite (HERE).unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_oppositeName = extractPtr_12426->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * extractPtr_12431 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) (temp_0.getter_mOpposite (HERE).unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_oppositeName = extractPtr_12431->mAssociatedValue0 ;
       const GALGAS_toOnePropertyGeneration temp_4 = object ;
       result_result.plusAssign_operation(GALGAS_string ("  //--- To one property: ").add_operation (temp_4.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 270)).add_operation (GALGAS_string (" // Opposite is toOne "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 270)).add_operation (extractedValue_oppositeName.getter_string (SOURCE_FILE ("to-one-relationship.galgas", 270)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 270)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.galgas", 270)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.galgas", 270)) ;
       const GALGAS_toOnePropertyGeneration temp_5 = object ;

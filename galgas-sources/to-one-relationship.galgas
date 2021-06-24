@@ -199,7 +199,7 @@ override getter @toOnePropertyGeneration propertyDeclarationCode
   result += "    }\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final let " + self.mPropertyName + "_none = EBGenericTransientProperty <Bool> ()\n\n"
+  result += "  final let " + self.mPropertyName + "_none = EBGenericTransientProperty <Bool> () // §\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  final var " + self.mPropertyName + "_none_selection : EBSelection <Bool> {\n"
   result += "     return .single (self." + self.mPropertyName + "_property.propval == nil)\n"
