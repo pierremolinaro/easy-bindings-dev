@@ -670,14 +670,3 @@ GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_outletLin
                                                                                                    const class GALGAS__32_stringlist & in_OUTLET_5F_NAME_5F_AND_5F_TYPE_5F_NAME_5F_LIST
                                                                                                    COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'generateAutoLayoutManagedDocumentSwift'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateAutoLayoutManagedDocumentSwift (const class GALGAS_string constinArgument0,
-                                                     class GALGAS_stringset & ioArgument1,
-                                                     class C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
