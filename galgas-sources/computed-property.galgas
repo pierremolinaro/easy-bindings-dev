@@ -471,7 +471,6 @@ class @computeRoutineGeneration : @abstractFileGeneration {
   @string mOwnerName
   @string mTransientName
   @typeKind mTransientType
-#  @string mGeneratedFunctionNamePrefix
   @transientDependencyListForGeneration mDependencyList
 }
 
