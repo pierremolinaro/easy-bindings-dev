@@ -310,7 +310,7 @@ override getter @transientPropertyGeneration bindPropertyInSelectionController -
   result += "          var s = Set <" + [self.mType swiftTypeName] + "> ()\n"
   result += "          var isMultipleSelection = false\n"
   result += "          for object in v {\n"
-  result += "            switch object." + self.mPropertyName + "_property_selection {\n"
+  result += "            switch object." + self.mPropertyName + "_property.selection {\n"
   result += "            case .empty :\n"
   result += "              return .empty\n"
   result += "            case .multiple :\n"
@@ -355,7 +355,7 @@ override getter @transientPropertyGeneration propertyDeclarationCode
       result += "  }\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  var preferences_" + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
-      result += "    switch preferences_" + self.mPropertyName + "_property_selection {\n"
+      result += "    switch preferences_" + self.mPropertyName + "_property.selection {\n"
       result += "    case .empty, .multiple :\n"
       result += "      return nil\n"
       result += "    case .single (let v) :\n"
@@ -373,7 +373,7 @@ override getter @transientPropertyGeneration propertyDeclarationCode
       result += "  }\n\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
-      result += "    switch self." + self.mPropertyName + "_property_selection {\n"
+      result += "    switch self." + self.mPropertyName + "_property.selection {\n"
       result += "    case .empty, .multiple :\n"
       result += "      return nil\n"
       result += "    case .single (let v) :\n"
@@ -447,27 +447,10 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   let uwself = if inPreferences then "preferences_" else "unwSelf." end
   outResult = ""
   var ident = "        "
-#  if [self length] == 1 then
-#    [self first ?let @observablePropertyAST first ?2*]
-#    outResult += ident + "let kind = " + [first modelStringForSelf !uwself] + "_selection.kind ()\n"
-#  else
-#    var dependencies = self
-#    [!?dependencies popFirst ?let @observablePropertyAST first ?* ?*]
-#    outResult += ident + "var kind = " + [first modelStringForSelf !uwself] + "_selection.kind ()\n"
-#    for () in dependencies do
-#      outResult += ident + "kind &= " + [mDependency modelStringForSelf !uwself] + "_selection.kind ()\n"
-#    end
-#  end
-#  outResult += ident + "switch kind {\n"
-#  outResult += ident + "case .empty :\n"
-#  outResult += ident + "  return .empty\n"
-#  outResult += ident + "case .multiple :\n"
-#  outResult += ident + "  return .multiple\n"
-#  outResult += ident + "case .single :\n"
   outResult += ident + "switch ("
   for () in self
   do
-    outResult += [mDependency modelStringForSelf !uwself] + "_selection"
+    outResult += [mDependency modelStringForSelf !uwself] + ".selection"
   between
     outResult += ", "
   end

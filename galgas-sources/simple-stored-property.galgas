@@ -197,7 +197,7 @@ override getter @atomicPropertyGeneration bindPropertyInSelectionController -> @
   result += "          var s = Set <" + [self.mType swiftTypeName] + "> ()\n"
   result += "          var isMultipleSelection = false\n"
   result += "          for object in v {\n"
-  result += "            switch object." + self.mPropertyName + "_property_selection {\n"
+  result += "            switch object." + self.mPropertyName + "_property.selection {\n"
   result += "            case .empty :\n"
   result += "              return .empty\n"
   result += "            case .multiple :\n"

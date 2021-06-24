@@ -178,7 +178,7 @@ if not [mKind isEntityType] then
   %          var s = Set <%![mKind swiftTypeName]%> ()\n%
   %          var isMultipleSelection = false\n%
   %          for object in v {\n%
-  %            switch object.%!lkey.string%_property_selection {\n%
+  %            switch object.%!lkey.string%_property.selection {\n%
   %            case .empty :\n%
   %              return .empty\n%
   %            case .multiple :\n%
