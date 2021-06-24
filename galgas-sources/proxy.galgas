@@ -446,8 +446,8 @@ override getter @atomicProxyGeneration terminationCode ?let @bool unused inPrefe
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = nil\n"
   result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = nil\n"
   result += "    self." + self.mPropertyName + "_property.mValidateAndWriteModelFunction = nil\n"
-  result += "    self." + self.mObservedRelationshipName + "_property.removeEBObserverOf_" + self.mObservedPropertyName
-  result += " (self." + self.mPropertyName + "_property)\n"
+  result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName
+  result += "_property.removeEBObserver (self." + self.mPropertyName + "_property)\n"
 }
 
 #·······················································································································

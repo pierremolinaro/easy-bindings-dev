@@ -53,12 +53,6 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   final let %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
 
-  //····················································································································
-
-  final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
-    self.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-  }
-
 %
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
@@ -68,12 +62,6 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final let %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
 
-  //····················································································································
-
-  final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
-    self.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-  }
-
 %
 end
 for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
@@ -82,12 +70,6 @@ for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //····················································································································
 
   final let %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
-
-  //····················································································································
-
-  final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
-    self.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-  }
 
 %
 end

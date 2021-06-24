@@ -4031,9 +4031,9 @@ static GALGAS_string extensionGetter_atomicProxyGeneration_terminationCode (cons
   result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_3.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 448)).add_operation (GALGAS_string ("_property.mValidateAndWriteModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 448)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 448)) ;
   const GALGAS_atomicProxyGeneration temp_4 = object ;
   const GALGAS_atomicProxyGeneration temp_5 = object ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_4.getter_mObservedRelationshipName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 449)).add_operation (GALGAS_string ("_property.removeEBObserverOf_"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 449)).add_operation (temp_5.getter_mObservedPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 449)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 449)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_4.getter_mObservedRelationshipName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 449)).add_operation (GALGAS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 449)).add_operation (temp_5.getter_mObservedPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 449)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 449)) ;
   const GALGAS_atomicProxyGeneration temp_6 = object ;
-  result_result.plusAssign_operation(GALGAS_string (" (self.").add_operation (temp_6.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 450)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 450)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 450)) ;
+  result_result.plusAssign_operation(GALGAS_string ("_property.removeEBObserver (self.").add_operation (temp_6.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 450)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 450)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 450)) ;
 //---
   return result_result ;
 }
