@@ -208,9 +208,6 @@ override getter @toManyProxyGeneration declarationInSelectionControllerCode -> @
   result += "  //   ToMany proxy: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  let " + self.mPropertyName + "_property = ProxyArrayOf_" + self.mToManyTypeName + " ()\n\n"
-  result += "  var " + self.mPropertyName + "_property_selection : EBSelection <[" + self.mToManyTypeName + "]> {\n"
-  result += "    return .single (self." + self.mPropertyName + "_property.propval)\n"
-  result += "  }\n\n"
 }
 
 #·······················································································································
@@ -250,10 +247,6 @@ override getter @toManyProxyGeneration propertyDeclarationCode
   result += "    set {\n"
   result += "      self." + self.mPropertyName + "_property.setProp (newValue)\n"
   result += "    }\n"
-  result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + self.mPropertyName + "_property_selection : EBSelection <[" + self.mToManyTypeName + "]> {\n"
-  result += "    return self." + self.mPropertyName + "_property.selection\n"
   result += "  }\n\n"
 }
 
@@ -315,9 +308,6 @@ override getter @atomicProxyGeneration declarationInSelectionControllerCode -> @
   result += "  //   Atomic proxy property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  let " + self.mPropertyName + "_property = EBPropertyProxy_" + [self.mType swiftTypeName] + " ()\n\n"
-  result += "  var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
-  result += "    return self." + self.mPropertyName + "_property.selection\n"
-  result += "  }\n\n"
 }
 
 #·······················································································································
@@ -426,9 +416,6 @@ override getter @atomicProxyGeneration propertyDeclarationCode
   result += "      }\n"
   result += "    }\n"
   result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName]
-  result += "> { return self." + self.mPropertyName + "_property.selection }\n\n"
 }
 
 #·······················································································································

@@ -175,9 +175,6 @@ override getter @atomicPropertyGeneration declarationInSelectionControllerCode -
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  let " + self.mPropertyName + "_property = EBPropertyProxy_" + [self.mType swiftTypeName] + " ()\n"
-  result += "  var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
-  result += "    return self." + self.mPropertyName + "_property.selection\n"
-  result += "  }\n\n"
 }
 
 #·······················································································································
@@ -271,9 +268,6 @@ override getter @atomicPropertyGeneration propertyDeclarationCode
     result += "    get { return preferences_" + self.mPropertyName + "_property.propval }\n"
     result += "    set { preferences_" + self.mPropertyName + "_property.setProp (newValue) }\n"
     result += "  }\n\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var preferences_" + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName]
-    result += "> { return preferences_" + self.mPropertyName + "_property.selection }\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
     result += "  //   Atomic property: " + self.mPropertyName + "\n"
@@ -288,9 +282,6 @@ override getter @atomicPropertyGeneration propertyDeclarationCode
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
     result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
     result += "  }\n\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName]
-    result += "> { return self." + self.mPropertyName + "_property.selection }\n\n"
   end
   if self.mNeedsValidation then
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"

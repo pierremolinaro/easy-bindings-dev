@@ -10,17 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Routine 'generateAutoLayoutManagedDocumentSwift'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateAutoLayoutManagedDocumentSwift (const class GALGAS_string constinArgument0,
-                                                     class GALGAS_stringset & ioArgument1,
-                                                     class C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'prefsGenerationTemplate'
 //
 //----------------------------------------------------------------------------------------------------------------------

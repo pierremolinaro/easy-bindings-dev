@@ -202,10 +202,6 @@ override getter @toManyPropertyGeneration propertyDeclarationCode
     result += "  final let " + self.mPropertyName + "_property = TransientArrayOfSuperOf_" + [self.mRelationshipType swiftTypeName]
            + " <" + masterPropertyTypeName + "> ()\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final var " + self.mPropertyName + "_property_selection : EBSelection < [" + [self.mRelationshipType swiftTypeName] + "] > {\n"
-    result += "    return self." + self.mPropertyName + "_property.selection\n"
-    result += "  }\n\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  final var " + self.mPropertyName + " : [" + [self.mRelationshipType swiftTypeName] + "] {\n"
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
     if not [self.mOption isHasDependance] then
@@ -218,11 +214,7 @@ override getter @toManyPropertyGeneration propertyDeclarationCode
     result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  let preferences_" + self.mPropertyName + "_property = PreferencesArrayOf_" + [self.mRelationshipType swiftTypeName]
     result += " (prefKey: Preferences_" + self.mPropertyName + ")\n\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var preferences_" + self.mPropertyName + "_property_selection : EBSelection < [" + [self.mRelationshipType swiftTypeName] + "] > {\n"
-    result += "    return preferences_" + self.mPropertyName + "_property.selection\n"
-    result += "  }\n\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+   result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  var preferences_" + self.mPropertyName + " : [" + [self.mRelationshipType swiftTypeName] + "] {\n"
     result += "    get { return preferences_" + self.mPropertyName + "_property.propval }\n"
     if not [self.mOption isHasDependance] then
@@ -236,9 +228,6 @@ override getter @toManyPropertyGeneration propertyDeclarationCode
     result += "  final let " + self.mPropertyName + "_property = StoredArrayOf_" + [self.mRelationshipType swiftTypeName]
     result += " (usedForSignature: " + [self.mUsedForSignature cString] + ")\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final var " + self.mPropertyName + "_property_selection : EBSelection < [" + [self.mRelationshipType swiftTypeName] + "] > {\n"
-    result += "    return self." + self.mPropertyName + "_property.selection\n"
-    result += "  }\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  final var " + self.mPropertyName + " : [" + [self.mRelationshipType swiftTypeName] + "] {\n"
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"

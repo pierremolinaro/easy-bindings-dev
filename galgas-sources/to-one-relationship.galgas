@@ -181,10 +181,6 @@ override getter @toOnePropertyGeneration propertyDeclarationCode
   result += "  final let " + self.mPropertyName + "_property = StoredObject_" + [self.mRelationshipType swiftTypeName]
   result +=            " (usedForSignature: " + [self.mUsedForSignature cString] + ")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mRelationshipType swiftTypeName] + "?> {\n"
-  result += "    return .single (self." + self.mPropertyName + "_property.propval)\n"
-  result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
   result += "  final var " + self.mPropertyName + " : " + [self.mRelationshipType swiftTypeName] + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.propval\n"
@@ -199,11 +195,7 @@ override getter @toOnePropertyGeneration propertyDeclarationCode
   result += "    }\n"
   result += "  }\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final let " + self.mPropertyName + "_none = EBGenericTransientProperty <Bool> () // §\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  final var " + self.mPropertyName + "_none_selection : EBSelection <Bool> {\n"
-  result += "     return .single (self." + self.mPropertyName + "_property.propval == nil)\n"
-  result += "  }\n\n"
+  result += "  final let " + self.mPropertyName + "_none = EBGenericTransientProperty <Bool> ()\n\n"
 }
 
 #·······················································································································

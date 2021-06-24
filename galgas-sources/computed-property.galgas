@@ -287,10 +287,7 @@ override getter @computedPropertyGeneration declarationInSelectionControllerCode
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  let " + self.mPropertyName + "_property = EBPropertyProxy_" + [self.mType swiftTypeName] + " ()\n\n"
-  result += "  var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
-  result += "    return self." + self.mPropertyName + "_property.selection\n"
-  result += "  }\n\n"
+  result += "  final let " + self.mPropertyName + "_property = EBPropertyProxy_" + [self.mType swiftTypeName] + " ()\n\n"
 }
 
 #·······················································································································
@@ -387,10 +384,6 @@ override getter @computedPropertyGeneration propertyDeclarationCode
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  let preferences_" + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  var preferences_" + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
-      result += "    return preferences_" + self.mPropertyName + "_property.selection\n"
-      result += "  }\n\n"
-      result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  var preferences_" + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
       result += "    switch preferences_" + self.mPropertyName + "_property.selection {\n"
       result += "    case .empty, .multiple :\n"
@@ -404,10 +397,6 @@ override getter @computedPropertyGeneration propertyDeclarationCode
       result += "  //   Transient property: " + self.mPropertyName + "\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
-      result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-      result += "  final var " + self.mPropertyName + "_property_selection : EBSelection <" + [self.mType swiftTypeName] + "> {\n"
-      result += "    return self." + self.mPropertyName + "_property.selection\n"
-      result += "  }\n\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
       result += "    switch self." + self.mPropertyName + "_property.selection {\n"

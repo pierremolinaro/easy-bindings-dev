@@ -58,38 +58,17 @@ for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //····················································································································
 
   final let %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
-//  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
-
-  //····················································································································
-
-  final var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> { // §
-    return self.%![mProperty mPropertyName]%_property.selection
-  }
 
   //····················································································································
 
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-/*    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch self.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-       v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-    } */
   }
 
   //····················································································································
 
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-/*    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch self.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      v?.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-    } */
   }
 
 %
@@ -100,38 +79,17 @@ for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //····················································································································
 
   final let %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
-//  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()
-
-  //····················································································································
-
-  final var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
-    return self.%![mProperty mPropertyName]%_property.selection
-  }
 
   //····················································································································
 
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-/*    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch self.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-    } */
   }
 
   //····················································································································
 
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-/*    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch self.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      v?.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-    }*/
   }
 
 %
@@ -142,38 +100,17 @@ for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //····················································································································
 
   final let %![mProperty mPropertyName]%_property = EBGenericTransientProperty <%![[mProperty mType] swiftTypeName]%?> ()
-//  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet () // §§
-
-  //····················································································································
-
-  final var %![mProperty mPropertyName]%_property_selection : EBSelection <%![[mProperty mType] swiftTypeName]%?> {
-    return self.%![mProperty mPropertyName]%_property.selection
-  }
 
   //····················································································································
 
   final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-/*    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)
-    switch self.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      v?.%![mProperty mPropertyName]%_property.addEBObserver (inObserver)
-    } */
   }
 
   //····················································································································
 
   final func removeEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {
     self.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-/*    self.mObserversOf_%![mProperty mPropertyName]%.remove (inObserver)
-    switch self.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      v?.%![mProperty mPropertyName]%_property.removeEBObserver (inObserver)
-    } */
   }
 
 %
@@ -183,21 +120,6 @@ for () in TO_MANY_RELATIONSHIP_LIST do
   %  //   Observable toMany property: %![mProperty mPropertyName]%\n%
   %  //····················································································································\n\n%
   %  private final var mObserversOf_%![mProperty mPropertyName]% = EBWeakEventSet ()\n\n%
-  %  //····················································································································\n\n%
-  %  final var %![mProperty mPropertyName]%_property_selection : EBSelection <[%![[mProperty mRelationshipType] swiftTypeName]%]> {\n%
-  %    if let model = self.propval {\n%
-  %      switch (model.%![mProperty mPropertyName]%_property.selection) {\n%
-  %      case .empty :\n%
-  %        return .empty\n%
-  %      case .multiple :\n%
-  %        return .multiple\n%
-  %      case .single (let v) :\n%
-  %        return .single (v)\n%
-  %      }\n%
-  %    }else{\n%
-  %      return .empty\n%
-  %    }\n%
-  %  }\n\n%
   %  //····················································································································\n\n%
   %  final func addEBObserverOf_%![mProperty mPropertyName]% (_ inObserver : EBEvent) {\n%
   %    self.mObserversOf_%![mProperty mPropertyName]%.insert (inObserver)\n%
