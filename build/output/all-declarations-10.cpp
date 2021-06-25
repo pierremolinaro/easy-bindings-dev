@@ -3829,16 +3829,43 @@ const char * gWrapperFileContent_63_swift_5F_sources = "//----------------------
   "let WINDOW_WIDTH_METADATADICTIONARY_KEY  = \"WindowWidth\"\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "\n"
-  "//var gDebugMenuItemsAdded = false\n"
-  "\n"
-  "//----------------------------------------------------------------------------------------------------------------------\n"
   "//    EBEvent class\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
   "class EBEvent : EBObject {\n"
   "  func postEvent () {} // Abstract method\n"
   "}\n"
+  "\n"
+  "//----------------------------------------------------------------------------------------------------------------------\n"
+  "\n"
+  "//fileprivate var gEventObjectIndex = 0\n"
+  "//\n"
+  "////----------------------------------------------------------------------------------------------------------------------\n"
+  "//\n"
+  "//class EBEvent : Hashable, EBUserClassNameProtocol {\n"
+  "//\n"
+  "//  let ebObjectIndex : Int\n"
+  "//\n"
+  "//  init () {\n"
+  "//    self.ebObjectIndex = gEventObjectIndex\n"
+  "//    gEventObjectIndex += 1\n"
+  "//    noteObjectAllocation (self)\n"
+  "//  }\n"
+  "//\n"
+  "//  deinit {\n"
+  "//    noteObjectDeallocation (self)\n"
+  "//  }\n"
+  "//\n"
+  "//  public static func == (lhs: EBEvent, rhs: EBEvent) -> Bool {\n"
+  "//    return lhs.ebObjectIndex == rhs.ebObjectIndex\n"
+  "//  }\n"
+  "//\n"
+  "//  public func hash (into hasher: inout Hasher) {\n"
+  "//    self.ebObjectIndex.hash (into: &hasher)\n"
+  "//  }\n"
+  "//\n"
+  "//  func postEvent () {} // Abstract method\n"
+  "//}\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "//    A P P L I C A T I O N    C L A S S\n"
@@ -3916,7 +3943,7 @@ const cRegularFileWrapper gWrapperFile_63_swift_5F_sources (
   "Application.swift",
   "swift",
   true, // Text file
-  3994, // Text length
+  4685, // Text length
   gWrapperFileContent_63_swift_5F_sources
 ) ;
 
@@ -3932,7 +3959,7 @@ const char * gWrapperFileContent_35_swift_5F_sources = "//----------------------
   "//    BezierPathArray\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "struct BezierPathArray : Hashable, Comparable, EBPropertyProtocol {\n"
+  "struct BezierPathArray : Hashable, Comparable, EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -4072,7 +4099,7 @@ const cRegularFileWrapper gWrapperFile_35_swift_5F_sources (
   "BezierPathArray.swift",
   "swift",
   true, // Text file
-  5449, // Text length
+  5455, // Text length
   gWrapperFileContent_35_swift_5F_sources
 ) ;
 
@@ -4153,7 +4180,7 @@ const char * gWrapperFileContent_31_swift_5F_sources = "//----------------------
   "      observerExplorer.addItem (withTitle: String (observerCount))\n"
   "      observerExplorer.isEnabled = observerCount > 0\n"
   "      self.mObservers.apply ( {(_ observer : EBEvent) in\n"
-  "        let stringValue = explorerIndexString (observer.ebObjectIndex) + \" - \" + observer.className\n"
+  "        let stringValue = explorerIndexString (observer.ebObjectIndex) + \" - \" + String (describing: type (of: observer))\n"
   "        observerExplorer.addItem (withTitle: stringValue)\n"
   "      })\n"
   "    }\n"
@@ -4169,7 +4196,7 @@ const cRegularFileWrapper gWrapperFile_31_swift_5F_sources (
   "EBAbstractProperty.swift",
   "swift",
   true, // Text file
-  3419, // Text length
+  3441, // Text length
   gWrapperFileContent_31_swift_5F_sources
 ) ;
 
@@ -7451,29 +7478,17 @@ const char * gWrapperFileContent_77_swift_5F_sources = "//----------------------
   "//   EBGenericPreferenceProperty <T>\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "final class EBGenericPreferenceProperty <T : EBPropertyProtocol> : EBGenericStoredProperty <T> {\n"
+  "final class EBGenericPreferenceProperty <T : EBStoredPropertyProtocol> : EBGenericStoredProperty <T> {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
-  "  // let fa\xC3""\xA7""ade = EBGenericPropertyProxy <T> ()\n"
-  "  private var mPreferenceKey : String\n"
+  "  private let mPreferenceKey : String\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
   "  init (defaultValue inValue : T, prefKey inPreferenceKey : String) {\n"
   "    self.mPreferenceKey = inPreferenceKey\n"
   "    super.init (defaultValue: inValue, undoManager: nil)\n"
-  "  //--- Configure fa\xC3""\xA7""ade\n"
-  "//    self.fa\xC3""\xA7""ade.mReadModelFunction = { [weak self] in\n"
-  "//      if let uwSelf = self {\n"
-  "//        return .single (uwSelf.propval)\n"
-  "//      }else{\n"
-  "//        return .empty\n"
-  "//      }\n"
-  "//    }\n"
-  "//    self.fa\xC3""\xA7""ade.mWriteModelFunction = { [weak self] in\n"
-  "//      self\?.setProp ($0)\n"
-  "//    }\n"
   "  //--- Read from preferences\n"
   "    let possibleValue = UserDefaults.standard.object (forKey: inPreferenceKey)\n"
   "    if let value = possibleValue as\? NSObject {\n"
@@ -7499,7 +7514,7 @@ const cRegularFileWrapper gWrapperFile_77_swift_5F_sources (
   "EBGenericPreferenceProperty.swift",
   "swift",
   true, // Text file
-  2245, // Text length
+  1900, // Text length
   gWrapperFileContent_77_swift_5F_sources
 ) ;
 
@@ -7730,7 +7745,7 @@ const char * gWrapperFileContent_52_swift_5F_sources = "//----------------------
   "//   EBGenericStoredProperty <T>\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "class EBGenericStoredProperty <T : EBPropertyProtocol> : EBGenericReadWriteProperty <T> {\n"
+  "class EBGenericStoredProperty <T : EBStoredPropertyProtocol> : EBGenericReadWriteProperty <T> {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -7878,7 +7893,7 @@ const cRegularFileWrapper gWrapperFile_52_swift_5F_sources (
   "EBGenericStoredProperty.swift",
   "swift",
   true, // Text file
-  6392, // Text length
+  6398, // Text length
   gWrapperFileContent_52_swift_5F_sources
 ) ;
 
@@ -13708,10 +13723,10 @@ const char * gWrapperFileContent_49_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//   Protocol EBPropertyProtocol\n"
+  "//   Protocol EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "protocol EBPropertyProtocol : Equatable {\n"
+  "protocol EBStoredPropertyProtocol : Equatable {\n"
   "\n"
   "  func ebHashValue () -> UInt32\n"
   "\n"
@@ -13729,7 +13744,7 @@ const cRegularFileWrapper gWrapperFile_49_swift_5F_sources (
   "EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  953, // Text length
+  965, // Text length
   gWrapperFileContent_49_swift_5F_sources
 ) ;
 
@@ -15276,7 +15291,7 @@ const char * gWrapperFileContent_81_swift_5F_sources = "//----------------------
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "protocol EnumPropertyProtocol : EBPropertyProtocol, EBEnumProtocol {\n"
+  "protocol EnumPropertyProtocol : EBStoredPropertyProtocol, EBEnumProtocol {\n"
   "}\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n" ;
@@ -15285,7 +15300,7 @@ const cRegularFileWrapper gWrapperFile_81_swift_5F_sources (
   "EnumPropertyProtocol.swift",
   "swift",
   true, // Text file
-  634, // Text length
+  640, // Text length
   gWrapperFileContent_81_swift_5F_sources
 ) ;
 
@@ -15744,10 +15759,10 @@ const char * gWrapperFileContent_114_swift_5F_sources = "//---------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension Bool : EBPropertyProtocol\n"
+  "//    extension Bool : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension Bool : EBPropertyProtocol {\n"
+  "extension Bool : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -15792,7 +15807,7 @@ const cRegularFileWrapper gWrapperFile_114_swift_5F_sources (
   "extension-Bool-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  1990, // Text length
+  2002, // Text length
   gWrapperFileContent_114_swift_5F_sources
 ) ;
 
@@ -16306,10 +16321,10 @@ const char * gWrapperFileContent_80_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension Data : EBPropertyProtocol\n"
+  "//    extension Data : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension Data : EBPropertyProtocol {\n"
+  "extension Data : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -16417,7 +16432,7 @@ const cRegularFileWrapper gWrapperFile_80_swift_5F_sources (
   "extension-Data-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  3892, // Text length
+  3904, // Text length
   gWrapperFileContent_80_swift_5F_sources
 ) ;
 
@@ -16492,10 +16507,10 @@ const char * gWrapperFileContent_75_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension Date : EBPropertyProtocol\n"
+  "//    extension Date : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension Date : EBPropertyProtocol {\n"
+  "extension Date : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -16529,7 +16544,7 @@ const cRegularFileWrapper gWrapperFile_75_swift_5F_sources (
   "extension-Date-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  1704, // Text length
+  1716, // Text length
   gWrapperFileContent_75_swift_5F_sources
 ) ;
 
@@ -16542,10 +16557,10 @@ const char * gWrapperFileContent_95_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension Double : EBPropertyProtocol\n"
+  "//    extension Double : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension Double : EBPropertyProtocol {\n"
+  "extension Double : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -16577,7 +16592,7 @@ const cRegularFileWrapper gWrapperFile_95_swift_5F_sources (
   "extension-Double-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  1649, // Text length
+  1661, // Text length
   gWrapperFileContent_95_swift_5F_sources
 ) ;
 
@@ -16590,10 +16605,10 @@ const char * gWrapperFileContent_94_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension Int : EBPropertyProtocol\n"
+  "//    extension Int : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension Int : EBPropertyProtocol {\n"
+  "extension Int : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -16640,7 +16655,7 @@ const cRegularFileWrapper gWrapperFile_94_swift_5F_sources (
   "extension-Int-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  2103, // Text length
+  2115, // Text length
   gWrapperFileContent_94_swift_5F_sources
 ) ;
 
@@ -16653,10 +16668,10 @@ const char * gWrapperFileContent_102_swift_5F_sources = "//---------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension NSBezierPath : EBPropertyProtocol\n"
+  "//    extension NSBezierPath : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension NSBezierPath : EBPropertyProtocol {\n"
+  "extension NSBezierPath : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -16837,7 +16852,7 @@ const cRegularFileWrapper gWrapperFile_102_swift_5F_sources (
   "extension-NSBezierPath-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  6057, // Text length
+  6069, // Text length
   gWrapperFileContent_102_swift_5F_sources
 ) ;
 
@@ -16909,10 +16924,10 @@ const char * gWrapperFileContent_18_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension NSColor : EBPropertyProtocol\n"
+  "//    extension NSColor : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension NSColor : EBPropertyProtocol {\n"
+  "extension NSColor : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -16978,7 +16993,7 @@ const cRegularFileWrapper gWrapperFile_18_swift_5F_sources (
   "extension-NSColor-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  2918, // Text length
+  2930, // Text length
   gWrapperFileContent_18_swift_5F_sources
 ) ;
 
@@ -16991,10 +17006,10 @@ const char * gWrapperFileContent_15_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension NSFont : EBPropertyProtocol\n"
+  "//    extension NSFont : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension NSFont : EBPropertyProtocol {\n"
+  "extension NSFont : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -17063,7 +17078,7 @@ const cRegularFileWrapper gWrapperFile_15_swift_5F_sources (
   "extension-NSFont-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  2947, // Text length
+  2959, // Text length
   gWrapperFileContent_15_swift_5F_sources
 ) ;
 
@@ -17206,10 +17221,10 @@ const char * gWrapperFileContent_82_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension String : EBPropertyProtocol\n"
+  "//    extension String : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension String : EBPropertyProtocol {\n"
+  "extension String : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -17244,7 +17259,7 @@ const cRegularFileWrapper gWrapperFile_82_swift_5F_sources (
   "extension-String-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  1634, // Text length
+  1646, // Text length
   gWrapperFileContent_82_swift_5F_sources
 ) ;
 
@@ -17421,10 +17436,10 @@ const char * gWrapperFileContent_57_swift_5F_sources = "//----------------------
   "import Cocoa\n"
   "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
-  "//    extension UInt32 : EBPropertyProtocol\n"
+  "//    extension UInt32 : EBStoredPropertyProtocol\n"
   "//----------------------------------------------------------------------------------------------------------------------\n"
   "\n"
-  "extension UInt32 : EBPropertyProtocol {\n"
+  "extension UInt32 : EBStoredPropertyProtocol {\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "\n"
@@ -17455,7 +17470,7 @@ const cRegularFileWrapper gWrapperFile_57_swift_5F_sources (
   "extension-UInt32-EBPropertyProtocol.swift",
   "swift",
   true, // Text file
-  1533, // Text length
+  1545, // Text length
   gWrapperFileContent_57_swift_5F_sources
 ) ;
 
@@ -19231,7 +19246,7 @@ const char * gWrapperFileContent_91_swift_5F_sources = "//----------------------
   "        }\n"
   "      }\n"
   "      if logEvents () {\n"
-  "        let str = \"  \" +  explorerIndexString (self.ebObjectIndex) + self.className + \"\\n\"\n"
+  "        let str = \"  \" +  explorerIndexString (self.ebObjectIndex) + String (describing: type (of: self)) + \"\\n\"\n"
   "        if !self.mEventIsPosted {\n"
   "          appendMessageString (str)\n"
   "        }else{ // Event already posted\n"
@@ -19274,7 +19289,7 @@ const char * gWrapperFileContent_91_swift_5F_sources = "//----------------------
   "      }\n"
   "      for event in pendingModelEvents {\n"
   "        if logEvents () {\n"
-  "          let message = \"  \" +  explorerIndexString (event.ebObjectIndex) + event.className + \"\\n\"\n"
+  "          let message = \"  \" +  explorerIndexString (event.ebObjectIndex) + String (describing: type (of: event)) + \"\\n\"\n"
   "          appendMessageString (message, color: NSColor.blue)\n"
   "        }\n"
   "        gCurrentModelEvent = event // For prevent event to be retriggerred during event handling\n"
@@ -19298,7 +19313,7 @@ const cRegularFileWrapper gWrapperFile_91_swift_5F_sources (
   "model-events.swift",
   "swift",
   true, // Text file
-  4121, // Text length
+  4165, // Text length
   gWrapperFileContent_91_swift_5F_sources
 ) ;
 
@@ -19577,7 +19592,7 @@ const char * gWrapperFileContent_9_swift_5F_sources = "//-----------------------
   "      if gPendingOutletEvents.count == 0 {\n"
   "        appendMessageString (\"Post events\\n\")\n"
   "      }\n"
-  "      let str = \"  \" +  explorerIndexString (self.ebObjectIndex) + self.className + \"\\n\"\n"
+  "      let str = \"  \" +  explorerIndexString (self.ebObjectIndex) + String (describing: type (of: self)) + \"\\n\"\n"
   "      if !self.mEventIsPosted {\n"
   "        appendMessageString (str)\n"
   "      }else{ // Event already posted\n"
@@ -19639,7 +19654,7 @@ const char * gWrapperFileContent_9_swift_5F_sources = "//-----------------------
   "      }\n"
   "      for event in pendingOutletEvents {\n"
   "        if logEvents () {\n"
-  "          let message = \"  \" +  explorerIndexString (event.ebObjectIndex) + event.className + \"\\n\"\n"
+  "          let message = \"  \" +  explorerIndexString (event.ebObjectIndex) + String (describing: type (of: event)) + \"\\n\"\n"
   "          appendMessageString (message, color: NSColor.blue)\n"
   "        }\n"
   "        event.sendUpdateEvent ()\n"
@@ -19695,7 +19710,7 @@ const cRegularFileWrapper gWrapperFile_9_swift_5F_sources (
   "outlet-events.swift",
   "swift",
   true, // Text file
-  6162, // Text length
+  6206, // Text length
   gWrapperFileContent_9_swift_5F_sources
 ) ;
 
