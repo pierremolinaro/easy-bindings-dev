@@ -5,10 +5,10 @@
 import Cocoa
 
 //----------------------------------------------------------------------------------------------------------------------
-//   Protocol EBPropertyProtocol
+//   Protocol EBStoredPropertyProtocol
 //----------------------------------------------------------------------------------------------------------------------
 
-protocol EBPropertyProtocol : Equatable {
+protocol EBStoredPropertyProtocol : Equatable {
 
   func ebHashValue () -> UInt32
 
