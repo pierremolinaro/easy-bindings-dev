@@ -24,6 +24,7 @@ enum @autoLayoutClassParameterType {
   case typeView
   case menuItem
   case entity
+  case typeEnum (@lstring name)
 }
 
 #·······················································································································
@@ -37,6 +38,7 @@ getter @autoLayoutClassParameterType string -> @string {
   case typeView : result = "a view"
   case menuItem : result = "a menu item"
   case entity : result = "an entity name"
+  case typeEnum (name) : result = "the " + name + " enum type"
   end
 }
 
@@ -206,7 +208,8 @@ syntax extension easyBindings_syntax {
          elsif parameterTypeName.string == "Bool" then
            ioParameterList += !parameterName !.typeBool
          else
-           error parameterTypeName : "the type 'String', 'Int' or 'Bool' is required here"
+           ioParameterList += !parameterName !.typeEnum {!name: parameterTypeName}
+#           error parameterTypeName : "the type 'String', 'Int' or 'Bool' is required here"
          end
         end
       while

@@ -371,6 +371,10 @@ syntax extension easyBindings_syntax {
           $literal_string$ ?let literalString
           outParameterList += !parameterName !.typeString !.string {!value: [literalString.string cStringRepresentation]}
         or
+          $.$
+          $identifier$ ?let enumConstantName
+          outParameterList += !parameterName !.typeEnum {!name: enumConstantName} !.string {!value: "." + enumConstantName}
+        or
           $enum$
           $Identifier$ ?let enumTypeName
           $.$
@@ -502,7 +506,14 @@ method @astAutoLayoutViewFunctionCallList check
       : [[formalParameterList length] string] + " parameter(s) required, " + [actualParameterList length] + " provided"
     else
       for (name type value) in actualParameterList, (formalName formalType) in formalParameterList do
-        if type != formalType then
+        if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
+          [inClassMap searchKey !enumTypeName ?let typeKind ?3*]
+          if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
+            [constantMap searchKey !constantName ?*]
+          else
+            error enumTypeName : "this type name is not an enum"
+          end
+        elsif type != formalType then
           error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
         end
         if name.string != formalName.string then

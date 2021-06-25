@@ -466,7 +466,10 @@ final class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  override var propval : [%!ENTITY_NAME%] { return self.mInternalArrayValue }
+  override var propval : [%!ENTITY_NAME%] {
+    self.computeModelArray ()
+    return self.mInternalArrayValue
+  }
 
   //····················································································································
 

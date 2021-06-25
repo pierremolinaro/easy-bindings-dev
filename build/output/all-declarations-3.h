@@ -10,6 +10,198 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//                                               Phase 1: @proxyKind enum                                              *
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_proxyKind : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public : GALGAS_proxyKind (void) ;
+
+//--------------------------------- Enumeration
+  public : typedef enum {
+    kNotBuilt,
+    kEnum_propertyProxy,
+    kEnum_toManyProxy
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private : enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
+  public : VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public : inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_proxyKind extractObject (const GALGAS_object & inObject,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_proxyKind constructor_propertyProxy (LOCATION_ARGS) ;
+
+  public : static class GALGAS_proxyKind constructor_toManyProxy (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_proxyKind & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPropertyProxy (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isToManyProxy (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_propertyProxy () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_toManyProxy () const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_proxyKind class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyKind ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @toManyProxyGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_toManyProxyGeneration : public GALGAS_propertyGeneration {
+//--- Constructor
+  public : GALGAS_toManyProxyGeneration (void) ;
+
+//---
+  public : inline const class cPtr_toManyProxyGeneration * ptr (void) const { return (const cPtr_toManyProxyGeneration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_toManyProxyGeneration (const cPtr_toManyProxyGeneration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_toManyProxyGeneration extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_toManyProxyGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                      const class GALGAS_proxyKind & inOperand1,
+                                                                      const class GALGAS_string & inOperand2,
+                                                                      const class GALGAS_string & inOperand3,
+                                                                      const class GALGAS_string & inOperand4
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_toManyProxyGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMObservedPropertyName (class GALGAS_string inArgument0
+                                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMObservedRelationshipName (class GALGAS_string inArgument0
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMProxyKind (class GALGAS_proxyKind inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMToManyTypeName (class GALGAS_string inArgument0
+                                                            COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedPropertyName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mObservedRelationshipName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mToManyTypeName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_toManyProxyGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @toManyProxyGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
+//--- Attributes
+  public : GALGAS_proxyKind mProperty_mProxyKind ;
+  public : GALGAS_string mProperty_mToManyTypeName ;
+  public : GALGAS_string mProperty_mObservedRelationshipName ;
+  public : GALGAS_string mProperty_mObservedPropertyName ;
+
+//--- Constructor
+  public : cPtr_toManyProxyGeneration (const GALGAS_string & in_mPropertyName,
+                                       const GALGAS_proxyKind & in_mProxyKind,
+                                       const GALGAS_string & in_mToManyTypeName,
+                                       const GALGAS_string & in_mObservedRelationshipName,
+                                       const GALGAS_string & in_mObservedPropertyName
+                                       COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_proxyKind getter_mProxyKind (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMProxyKind (GALGAS_proxyKind inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mToManyTypeName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMToManyTypeName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedRelationshipName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMObservedRelationshipName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mObservedPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMObservedPropertyName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @toManyProxyGenerationList list
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -5142,10 +5334,10 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
 
 //--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                  const class GALGAS_lstring & in_mColumnName,
+                                                  const class GALGAS_lstring & in_mPropertyName,
                                                   const class GALGAS_lstring & in_mColumnOutletTypeName,
                                                   const class GALGAS_autoLayoutTableViewColumnBindingAST & in_mColumnBindingAST,
-                                                  const class GALGAS_lstring & in_mSortPropertyName
+                                                  const class GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -5164,7 +5356,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
   public : static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST constructor_listWithValue (const class GALGAS_lstring & inOperand0,
                                                                                                           const class GALGAS_lstring & inOperand1,
                                                                                                           const class GALGAS_autoLayoutTableViewColumnBindingAST & inOperand2,
-                                                                                                          const class GALGAS_lstring & inOperand3
+                                                                                                          const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand3
                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -5176,7 +5368,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                       const class GALGAS_lstring & inOperand1,
                                                       const class GALGAS_autoLayoutTableViewColumnBindingAST & inOperand2,
-                                                      const class GALGAS_lstring & inOperand3
+                                                      const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand3
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutTableViewControllerBoundColumnListAST add_operation (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inOperand,
@@ -5192,7 +5384,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                        class GALGAS_lstring constinArgument1,
                                                        class GALGAS_autoLayoutTableViewColumnBindingAST constinArgument2,
-                                                       class GALGAS_lstring constinArgument3,
+                                                       class GALGAS_astAutoLayoutViewInstructionParameterList constinArgument3,
                                                        class GALGAS_uint constinArgument4,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
@@ -5200,21 +5392,21 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
   public : VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
                                                   class GALGAS_lstring & outArgument1,
                                                   class GALGAS_autoLayoutTableViewColumnBindingAST & outArgument2,
-                                                  class GALGAS_lstring & outArgument3,
+                                                  class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument3,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
                                                  class GALGAS_lstring & outArgument1,
                                                  class GALGAS_autoLayoutTableViewColumnBindingAST & outArgument2,
-                                                 class GALGAS_lstring & outArgument3,
+                                                 class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument3,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
                                                        class GALGAS_lstring & outArgument1,
                                                        class GALGAS_autoLayoutTableViewColumnBindingAST & outArgument2,
-                                                       class GALGAS_lstring & outArgument3,
+                                                       class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument3,
                                                        class GALGAS_uint constinArgument4,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
@@ -5224,34 +5416,34 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMColumnNameAtIndex (class GALGAS_lstring constinArgument0,
-                                                               class GALGAS_uint constinArgument1,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
   public : VIRTUAL_IN_DEBUG void setter_setMColumnOutletTypeNameAtIndex (class GALGAS_lstring constinArgument0,
                                                                          class GALGAS_uint constinArgument1,
                                                                          C_Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMSortPropertyNameAtIndex (class GALGAS_lstring constinArgument0,
-                                                                     class GALGAS_uint constinArgument1,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void setter_setMColumnParameterListASTAtIndex (class GALGAS_astAutoLayoutViewInstructionParameterList constinArgument0,
+                                                                           class GALGAS_uint constinArgument1,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMPropertyNameAtIndex (class GALGAS_lstring constinArgument0,
+                                                                 class GALGAS_uint constinArgument1,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
                                                class GALGAS_lstring & outArgument1,
                                                class GALGAS_autoLayoutTableViewColumnBindingAST & outArgument2,
-                                               class GALGAS_lstring & outArgument3,
+                                               class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
                                               class GALGAS_lstring & outArgument1,
                                               class GALGAS_autoLayoutTableViewColumnBindingAST & outArgument2,
-                                              class GALGAS_lstring & outArgument3,
+                                              class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -5262,17 +5454,17 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
                                                                                                               C_Compiler * inCompiler
                                                                                                               COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnOutletTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSortPropertyNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterList getter_mColumnParameterListASTAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                          C_Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutTableViewControllerBoundColumnListAST getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
                                                                                                                   C_Compiler * inCompiler
@@ -5306,10 +5498,10 @@ class cEnumerator_autoLayoutTableViewControllerBoundColumnListAST : public cGene
                                                                         const typeEnumerationOrder inOrder) ;
 
 //--- Current element access
-  public : class GALGAS_lstring current_mColumnName (LOCATION_ARGS) const ;
+  public : class GALGAS_lstring current_mPropertyName (LOCATION_ARGS) const ;
   public : class GALGAS_lstring current_mColumnOutletTypeName (LOCATION_ARGS) const ;
   public : class GALGAS_autoLayoutTableViewColumnBindingAST current_mColumnBindingAST (LOCATION_ARGS) const ;
-  public : class GALGAS_lstring current_mSortPropertyName (LOCATION_ARGS) const ;
+  public : class GALGAS_astAutoLayoutViewInstructionParameterList current_mColumnParameterListAST (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -5408,13 +5600,13 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableView
 
 class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
-  public : GALGAS_lstring mProperty_mColumnName ;
+  public : GALGAS_lstring mProperty_mPropertyName ;
 
   public : GALGAS_lstring mProperty_mColumnOutletTypeName ;
 
   public : GALGAS_autoLayoutTableViewColumnBindingAST mProperty_mColumnBindingAST ;
 
-  public : GALGAS_lstring mProperty_mSortPropertyName ;
+  public : GALGAS_astAutoLayoutViewInstructionParameterList mProperty_mColumnParameterListAST ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5427,10 +5619,10 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element : public
   public : virtual ~ GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (void) ;
 
 //--------------------------------- Native constructor
-  public : GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (const GALGAS_lstring & in_mColumnName,
+  public : GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (const GALGAS_lstring & in_mPropertyName,
                                                                               const GALGAS_lstring & in_mColumnOutletTypeName,
                                                                               const GALGAS_autoLayoutTableViewColumnBindingAST & in_mColumnBindingAST,
-                                                                              const GALGAS_lstring & in_mSortPropertyName) ;
+                                                                              const GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST) ;
 
 //-- Start of generic part --*
 
@@ -5446,7 +5638,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element : public
   public : static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                                                            const class GALGAS_lstring & inOperand1,
                                                                                                            const class GALGAS_autoLayoutTableViewColumnBindingAST & inOperand2,
-                                                                                                           const class GALGAS_lstring & inOperand3
+                                                                                                           const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand3
                                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -5463,11 +5655,11 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element : public
 //--------------------------------- Getters
   public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutTableViewColumnBindingAST getter_mColumnBindingAST (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnName (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mColumnOutletTypeName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSortPropertyName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterList getter_mColumnParameterListAST (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
@@ -5898,7 +6090,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                   const class GALGAS_string & in_mColumnName,
                                                   const class GALGAS_string & in_mColumnOutletTypeName,
                                                   const class GALGAS_string & in_mRunAction,
-                                                  const class GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList
+                                                  const class GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                                  const class GALGAS__32_stringlist & in_mActualParameterList
                                                   COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -5917,7 +6110,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
   public : static class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration constructor_listWithValue (const class GALGAS_string & inOperand0,
                                                                                                                     const class GALGAS_string & inOperand1,
                                                                                                                     const class GALGAS_string & inOperand2,
-                                                                                                                    const class GALGAS_regularBindingsGenerationList & inOperand3
+                                                                                                                    const class GALGAS_regularBindingsGenerationList & inOperand3,
+                                                                                                                    const class GALGAS__32_stringlist & inOperand4
                                                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -5929,7 +6123,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_string & inOperand0,
                                                       const class GALGAS_string & inOperand1,
                                                       const class GALGAS_string & inOperand2,
-                                                      const class GALGAS_regularBindingsGenerationList & inOperand3
+                                                      const class GALGAS_regularBindingsGenerationList & inOperand3,
+                                                      const class GALGAS__32_stringlist & inOperand4
                                                       COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration add_operation (const GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration & inOperand,
@@ -5946,7 +6141,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                        class GALGAS_string constinArgument1,
                                                        class GALGAS_string constinArgument2,
                                                        class GALGAS_regularBindingsGenerationList constinArgument3,
-                                                       class GALGAS_uint constinArgument4,
+                                                       class GALGAS__32_stringlist constinArgument4,
+                                                       class GALGAS_uint constinArgument5,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
@@ -5954,6 +6150,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                   class GALGAS_string & outArgument1,
                                                   class GALGAS_string & outArgument2,
                                                   class GALGAS_regularBindingsGenerationList & outArgument3,
+                                                  class GALGAS__32_stringlist & outArgument4,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -5961,6 +6158,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                  class GALGAS_string & outArgument1,
                                                  class GALGAS_string & outArgument2,
                                                  class GALGAS_regularBindingsGenerationList & outArgument3,
+                                                 class GALGAS__32_stringlist & outArgument4,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -5968,9 +6166,15 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                        class GALGAS_string & outArgument1,
                                                        class GALGAS_string & outArgument2,
                                                        class GALGAS_regularBindingsGenerationList & outArgument3,
-                                                       class GALGAS_uint constinArgument4,
+                                                       class GALGAS__32_stringlist & outArgument4,
+                                                       class GALGAS_uint constinArgument5,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMActualParameterListAtIndex (class GALGAS__32_stringlist constinArgument0,
+                                                                        class GALGAS_uint constinArgument1,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMColumnNameAtIndex (class GALGAS_string constinArgument0,
                                                                class GALGAS_uint constinArgument1,
@@ -5998,6 +6202,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                class GALGAS_string & outArgument1,
                                                class GALGAS_string & outArgument2,
                                                class GALGAS_regularBindingsGenerationList & outArgument3,
+                                               class GALGAS__32_stringlist & outArgument4,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -6005,12 +6210,17 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                               class GALGAS_string & outArgument1,
                                               class GALGAS_string & outArgument2,
                                               class GALGAS_regularBindingsGenerationList & outArgument3,
+                                              class GALGAS__32_stringlist & outArgument4,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS__32_stringlist getter_mActualParameterListAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
@@ -6063,6 +6273,7 @@ class cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration : pu
   public : class GALGAS_string current_mColumnOutletTypeName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mRunAction (LOCATION_ARGS) const ;
   public : class GALGAS_regularBindingsGenerationList current_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
+  public : class GALGAS__32_stringlist current_mActualParameterList (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -6087,6 +6298,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_elemen
 
   public : GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
 
+  public : GALGAS__32_stringlist mProperty_mActualParameterList ;
+
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
@@ -6104,7 +6317,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_elemen
   public : GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element (const GALGAS_string & in_mColumnName,
                                                                                         const GALGAS_string & in_mColumnOutletTypeName,
                                                                                         const GALGAS_string & in_mRunAction,
-                                                                                        const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList) ;
+                                                                                        const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                                                                        const GALGAS__32_stringlist & in_mActualParameterList) ;
 
 //-- Start of generic part --*
 
@@ -6120,7 +6334,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_elemen
   public : static class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
                                                                                                                      const class GALGAS_string & inOperand1,
                                                                                                                      const class GALGAS_string & inOperand2,
-                                                                                                                     const class GALGAS_regularBindingsGenerationList & inOperand3
+                                                                                                                     const class GALGAS_regularBindingsGenerationList & inOperand3,
+                                                                                                                     const class GALGAS__32_stringlist & inOperand4
                                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -6135,6 +6350,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_elemen
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS__32_stringlist getter_mActualParameterList (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnOutletTypeName (LOCATION_ARGS) const ;

@@ -13671,7 +13671,8 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::GAL
 mProperty_mColumnName (),
 mProperty_mColumnOutletTypeName (),
 mProperty_mRunAction (),
-mProperty_mRegularBindingsGenerationList () {
+mProperty_mRegularBindingsGenerationList (),
+mProperty_mActualParameterList () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13684,11 +13685,13 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::~ G
 GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element (const GALGAS_string & inOperand0,
                                                                                                                                                           const GALGAS_string & inOperand1,
                                                                                                                                                           const GALGAS_string & inOperand2,
-                                                                                                                                                          const GALGAS_regularBindingsGenerationList & inOperand3) :
+                                                                                                                                                          const GALGAS_regularBindingsGenerationList & inOperand3,
+                                                                                                                                                          const GALGAS__32_stringlist & inOperand4) :
 mProperty_mColumnName (inOperand0),
 mProperty_mColumnOutletTypeName (inOperand1),
 mProperty_mRunAction (inOperand2),
-mProperty_mRegularBindingsGenerationList (inOperand3) {
+mProperty_mRegularBindingsGenerationList (inOperand3),
+mProperty_mActualParameterList (inOperand4) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13697,7 +13700,8 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element GALG
   return GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element (GALGAS_string::constructor_default (HERE),
                                                                                       GALGAS_string::constructor_default (HERE),
                                                                                       GALGAS_string::constructor_default (HERE),
-                                                                                      GALGAS_regularBindingsGenerationList::constructor_emptyList (HERE)) ;
+                                                                                      GALGAS_regularBindingsGenerationList::constructor_emptyList (HERE),
+                                                                                      GALGAS__32_stringlist::constructor_emptyList (HERE)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13705,11 +13709,12 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element GALG
 GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::constructor_new (const GALGAS_string & inOperand0,
                                                                                                                                                                           const GALGAS_string & inOperand1,
                                                                                                                                                                           const GALGAS_string & inOperand2,
-                                                                                                                                                                          const GALGAS_regularBindingsGenerationList & inOperand3 
+                                                                                                                                                                          const GALGAS_regularBindingsGenerationList & inOperand3,
+                                                                                                                                                                          const GALGAS__32_stringlist & inOperand4 
                                                                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
+    result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
   }
   return result ;
 }
@@ -13730,13 +13735,16 @@ typeComparisonResult GALGAS_autoLayoutTableViewControllerBoundColumnListForGener
   if (result == kOperandEqual) {
     result = mProperty_mRegularBindingsGenerationList.objectCompare (inOperand.mProperty_mRegularBindingsGenerationList) ;
   }
+  if (result == kOperandEqual) {
+    result = mProperty_mActualParameterList.objectCompare (inOperand.mProperty_mActualParameterList) ;
+  }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 bool GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::isValid (void) const {
-  return mProperty_mColumnName.isValid () && mProperty_mColumnOutletTypeName.isValid () && mProperty_mRunAction.isValid () && mProperty_mRegularBindingsGenerationList.isValid () ;
+  return mProperty_mColumnName.isValid () && mProperty_mColumnOutletTypeName.isValid () && mProperty_mRunAction.isValid () && mProperty_mRegularBindingsGenerationList.isValid () && mProperty_mActualParameterList.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13746,6 +13754,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element
   mProperty_mColumnOutletTypeName.drop () ;
   mProperty_mRunAction.drop () ;
   mProperty_mRegularBindingsGenerationList.drop () ;
+  mProperty_mActualParameterList.drop () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13763,6 +13772,8 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element
     mProperty_mRunAction.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mActualParameterList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -13789,6 +13800,12 @@ GALGAS_string GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2
 
 GALGAS_regularBindingsGenerationList GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::getter_mRegularBindingsGenerationList (UNUSED_LOCATION_ARGS) const {
   return mProperty_mRegularBindingsGenerationList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_stringlist GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::getter_mActualParameterList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mActualParameterList ;
 }
 
 
