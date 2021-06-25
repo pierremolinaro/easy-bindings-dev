@@ -71,7 +71,8 @@ syntax extension easyBindings_syntax {
                         !@multipleBindingDescriptor enabledBindingDescriptor
                         !@multipleBindingDescriptor hiddenBindingDescriptor
                         !@graphicController graphicController
-                        !@regularBindingList regularBindingList {
+                        !@regularBindingList regularBindingList
+{
     tableValueBinding = @tableValueBinding.noTableValueBinding 
     runActionDescriptor = @runActionDescriptor.noAction 
     enabledBindingDescriptor = @multipleBindingDescriptor.noBinding

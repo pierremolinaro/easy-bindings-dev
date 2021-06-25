@@ -49,7 +49,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <controller_declaration> !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
+      <controller_declaration> !autoLayout: false !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@xibDocumentDeclarationAST.new {

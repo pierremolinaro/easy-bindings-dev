@@ -58,7 +58,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
    while
       <enum_function_declaration> !?ioDeclarationAST
     while
-      <entity_declaration>  !?ioDeclarationAST
+      <entity_declaration> !?ioDeclarationAST
     while
       <class_declaration>  !?ioDeclarationAST
     while

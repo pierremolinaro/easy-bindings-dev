@@ -55,6 +55,7 @@ project (0:0:1) -> "eb" {
 #--- Controllers
   "galgas-sources/array-controller.galgas"
   "galgas-sources/table-view-controller.galgas"
+  "galgas-sources/auto-layout-table-view-controller.galgas"
   "galgas-sources/selection-controller.galgas"
 
 #--- Semantics, code generation

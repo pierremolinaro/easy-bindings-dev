@@ -66,7 +66,7 @@ void routine_analyzeAutoLayoutBinding (const class GALGAS_bool constinArgument0,
                                        class GALGAS_autoLayoutRegularBindingsGenerationList & outArgument14,
                                        class GALGAS_autoLayoutMultipleBindingGenerationList & outArgument15,
                                        class GALGAS_autolayoutRunBindingForGeneration & outArgument16,
-                                       class GALGAS_tableViewBindingGenerationList & outArgument17,
+                                       class GALGAS_string & outArgument17,
                                        class GALGAS_autoLayoutViewGraphicControllerBindingGeneration & outArgument18,
                                        class C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;

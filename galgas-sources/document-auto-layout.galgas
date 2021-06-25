@@ -96,7 +96,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <controller_declaration> !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
+      <controller_declaration> !autoLayout: true !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
     while
       $toolbarItem$
       select

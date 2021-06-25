@@ -2,16 +2,16 @@
 #   AST
 #-----------------------------------------------------------------------------------------------------------------------
 
-list @tableViewControllerBoundColumnListAST {
+list @autoLayoutTableViewControllerBoundColumnListAST {
   @lstring mColumnName
   @lstring mColumnOutletTypeName
-  @tableViewColumnBindingAST mColumnBindingAST
+  @autoLayoutTableViewColumnBindingAST mColumnBindingAST
   @lstring mSortPropertyName
 }
 
 #·······················································································································
 
-struct @tableViewColumnBindingAST {
+struct @autoLayoutTableViewColumnBindingAST {
   @lstring mRunActionName # Empty string if no run binding
   @multipleBindingDescriptor mEnabledBindingDescriptor
   @multipleBindingDescriptor mHiddenBindingDescriptor
@@ -20,25 +20,25 @@ struct @tableViewColumnBindingAST {
 
 #·······················································································································
 
-list @tableViewControllerAttributListAST {
+list @autoLayoutTableViewControllerAttributListAST {
   @lstring mAttributeName
   @abstractDefaultValue mAttributeValue
 }
 
 #·······················································································································
 
-class @tableViewControllerDeclarationAST : @abstractDeclarationAST {
+class @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
   @bool mIsRoot
   @lstring mRootEntityName
   @lstring mToManyPropertyName
-  @tableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
-  @tableViewControllerAttributListAST mTableViewControllerAttributListAST
+  @autoLayoutTableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
+  @autoLayoutTableViewControllerAttributListAST mTableViewControllerAttributListAST
 }
 
 #·······················································································································
 
-override method @tableViewControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
+override method @autoLayoutTableViewControllerDeclarationAST enterInPrecedenceGraph ?!@declarationPrecedenceGraph ioGraph {
   let node = @lstring.new {!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location}
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
@@ -51,7 +51,7 @@ override method @tableViewControllerDeclarationAST enterInPrecedenceGraph ?!@dec
 
 #·······················································································································
 
-override getter @tableViewControllerDeclarationAST nodeKey -> @lstring {
+override getter @autoLayoutTableViewControllerDeclarationAST nodeKey -> @lstring {
   result = @lstring.new {!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location}
 }
 
@@ -70,12 +70,13 @@ syntax extension easyBindings_syntax {
             ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST
             ?!@astDeclarationStruct ioDeclarationAST
   {
-    $tableViewController$
-    if inAutoLayout then
-      error .here : "AutoLayout document requires 'autolayout' prefix"
+    $autolayout$
+    if not inAutoLayout then
+      error .here : "XIB document forbids 'autolayout' prefix"
     end
+    $tableViewController$
     $controllerName$ ?let @lstring controllerName
-    @tableViewControllerAttributListAST arrayControllerAttributListAST = {}
+    @autoLayoutTableViewControllerAttributListAST arrayControllerAttributListAST = {}
     ${$
     repeat
       $identifier$ ?let @lstring attributeName
@@ -97,7 +98,7 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ ?let @lstring relationshipName
-    @tableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
+    @autoLayoutTableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     select
       $;$
     or
@@ -114,7 +115,7 @@ syntax extension easyBindings_syntax {
           $identifier$ ?sortPropertyName
         end
         $Identifier$ ?let columnOutletTypeName
-        <column_bindings> ?let @tableViewColumnBindingAST columnBindingAST
+        <auto_layout_column_bindings> ?let @autoLayoutTableViewColumnBindingAST columnBindingAST
         arrayControllerBoundColumnListAST +=
           !columnName
           !columnOutletTypeName
@@ -123,7 +124,7 @@ syntax extension easyBindings_syntax {
       end
       $}$
     end
-    ioDeclarationAST.mUnifiedDeclarationList += !@tableViewControllerDeclarationAST.new {
+    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutTableViewControllerDeclarationAST.new {
       !inCurrentEntity
       !controllerName
       !isRoot
@@ -136,7 +137,7 @@ syntax extension easyBindings_syntax {
 
 #·······················································································································
 
-  rule <column_bindings> !@tableViewColumnBindingAST outColumnBindingAST {
+  rule <auto_layout_column_bindings> !@autoLayoutTableViewColumnBindingAST outColumnBindingAST {
     @lstring runActionDescriptor = ["" nowhere]
     var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
     var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
@@ -181,7 +182,7 @@ syntax extension easyBindings_syntax {
         !bindingOptions
     end
   #---
-    outColumnBindingAST = @tableViewColumnBindingAST.new {
+    outColumnBindingAST = @autoLayoutTableViewColumnBindingAST.new {
       !runActionDescriptor
       !enabledBindingDescriptor
       !hiddenBindingDescriptor
@@ -197,7 +198,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override method @tableViewControllerDeclarationAST firstAnalysisPhase 
+override method @autoLayoutTableViewControllerDeclarationAST firstAnalysisPhase 
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration
 {
@@ -218,7 +219,7 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         }
         [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
-      mPropertyGenerationList += !@tableViewControllerPropertyGeneration.new {
+      mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration.new {
         !self.mControllerName.string
         !"rootObject." + self.mToManyPropertyName
         !self.mClassName
@@ -242,7 +243,7 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
         }
         [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
-      mPropertyGenerationList += !@tableViewControllerPropertyGeneration.new {
+      mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration.new {
         !self.mControllerName.string
         !self.mToManyPropertyName
         !self.mClassName
@@ -262,7 +263,7 @@ override method @tableViewControllerDeclarationAST firstAnalysisPhase
 #   SECOND ANALYSIS PHASE
 #-----------------------------------------------------------------------------------------------------------------------
 
-override method @tableViewControllerDeclarationAST thirdAnalysisPhase
+override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
@@ -318,7 +319,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
 #------------------------------------------------------------ Check colum bound models
   @actionMap actionMap
   @propertyMap propertyMap
-  @tableViewControllerModelKind arrayControllerModelKind
+  @autoLayoutTableViewControllerModelKind arrayControllerModelKind
   @bool graphic
   @string elementTypeName
   switch boundModelClassKind
@@ -347,8 +348,8 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
-  @tableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
-  @tableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
+  @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
+  @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
   for () in self.mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
     if mColumnBindingAST.mRunActionName.string != "" then
@@ -405,7 +406,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
     else "self." + self.mToManyPropertyName + "_property"
   end
 #---
-  ioGeneration.mFileGenerationList += !@tableViewControllerGeneration.new {
+  ioGeneration.mFileGenerationList += !@autoLayoutTableViewControllerGeneration.new {
     !self.mClassName
     !self.mControllerName
     !modelString
@@ -424,14 +425,14 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
 #   CODE GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @tableViewControllerPropertyGeneration : @propertyGeneration {
+class @autoLayoutTableViewControllerPropertyGeneration : @propertyGeneration {
   @string mModelString
   @string mOwnerName
 }
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration propertyDeclarationCode
+override getter @autoLayoutTableViewControllerPropertyGeneration propertyDeclarationCode
    ?let @bool inPreferences
    ?let @stringset unused inOverriddenTransients -> @string
 {
@@ -450,7 +451,7 @@ override getter @tableViewControllerPropertyGeneration propertyDeclarationCode
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration configurationCode ?let @bool inPreferences -> @string {
+override getter @autoLayoutTableViewControllerPropertyGeneration configurationCode ?let @bool inPreferences -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    " + prefix + self.mPropertyName + ".bind_model (" + prefix + self.mModelString + "_property, self.ebUndoManager)\n"
@@ -458,20 +459,20 @@ override getter @tableViewControllerPropertyGeneration configurationCode ?let @b
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration initCode -> @string {
+override getter @autoLayoutTableViewControllerPropertyGeneration initCode -> @string {
   result  = ""
 }
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration populateExplorerWindowCode -> @string {
+override getter @autoLayoutTableViewControllerPropertyGeneration populateExplorerWindowCode -> @string {
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································
 
-override getter @tableViewControllerPropertyGeneration terminationCode ?let @bool inPreferences -> @string {
+override getter @autoLayoutTableViewControllerPropertyGeneration terminationCode ?let @bool inPreferences -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    " + prefix + self.mPropertyName + ".unbind_model ()\n"
@@ -481,7 +482,7 @@ override getter @tableViewControllerPropertyGeneration terminationCode ?let @boo
 #   GENERATION TYPES
 #-----------------------------------------------------------------------------------------------------------------------
 
-enum @tableViewControllerModelKind {
+enum @autoLayoutTableViewControllerModelKind {
   case entityArray
 
   case transientArray
@@ -489,14 +490,14 @@ enum @tableViewControllerModelKind {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @tableViewControllerGeneration : @abstractFileGeneration {
+class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
   @string mModelString
-  @tableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
-  @tableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
+  @autoLayoutTableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
+  @autoLayoutTableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
   @string mModelTypeName
-  @tableViewControllerModelKind mTableViewControllerModelKind
+  @autoLayoutTableViewControllerModelKind mTableViewControllerModelKind
   @string mElementTypeName
   @bool mElementTypeIsGraphic
   @2stringlist mAttributeListForGeneration
@@ -504,7 +505,7 @@ class @tableViewControllerGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-list @tableViewControllerBoundColumnListForGeneration {
+list @autoLayoutTableViewControllerBoundColumnListForGeneration {
   @string mColumnName
   @string mColumnOutletTypeName
   @string mRunAction # Empty string if no action
@@ -513,7 +514,7 @@ list @tableViewControllerBoundColumnListForGeneration {
 
 #·······················································································································
 
-list @tableViewControllerSortedColumnListForGeneration {
+list @autoLayoutTableViewControllerSortedColumnListForGeneration {
   @string mColumnName
   @propertyKind mSortPropertyKind
   @string mObservablePropertyForSorting
@@ -521,17 +522,17 @@ list @tableViewControllerSortedColumnListForGeneration {
 
 #·······················································································································
 
-private filewrapper tableViewControllerGenerationTemplate in "../generation-templates/controllers" {
+private filewrapper autoLayoutTableViewControllerGenerationTemplate in "../generation-templates/controllers" {
 }{
 }{
-  template tableViewControllerImplementationInSwift "table-view-controller.swift.galgasTemplate"
+  template autoLayoutTableViewControllerImplementation "auto-layout-table-view-controller.swift.galgasTemplate"
     ?@string OWNER_NAME
     ?@string TABLE_VIEW_CONTROLLER_NAME
     ?@string MODEL_STRING
-    ?@tableViewControllerModelKind MODEL_KIND
+    ?@autoLayoutTableViewControllerModelKind MODEL_KIND
     ?@string MODEL_TYPE_NAME
-    ?@tableViewControllerBoundColumnListForGeneration BOUND_COLUMNS
-    ?@tableViewControllerSortedColumnListForGeneration SORTED_COLUMNS
+    ?@autoLayoutTableViewControllerBoundColumnListForGeneration BOUND_COLUMNS
+    ?@autoLayoutTableViewControllerSortedColumnListForGeneration SORTED_COLUMNS
     ?@string ELEMENT_TYPE_NAME
     ?@stringset OBSERVED_PROPERTIES_FOR_SORTING
     ?@2stringlist ATTRIBUTE_VALUES
@@ -541,7 +542,7 @@ private filewrapper tableViewControllerGenerationTemplate in "../generation-temp
 #   GENERATION
 #-----------------------------------------------------------------------------------------------------------------------
 
-override method @tableViewControllerGeneration generateCode
+override method @autoLayoutTableViewControllerGeneration generateCode
     ?let @string inOutputDirectory
     ?!@stringset unused ioGeneratedFileSet
 {
@@ -550,7 +551,7 @@ override method @tableViewControllerGeneration generateCode
   for () in self.mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end
-  let s = [filewrapper tableViewControllerGenerationTemplate.tableViewControllerImplementationInSwift
+  let s = [filewrapper autoLayoutTableViewControllerGenerationTemplate.autoLayoutTableViewControllerImplementation
     !self.mOwnerName
     !self.mControllerName
     !self.mModelString

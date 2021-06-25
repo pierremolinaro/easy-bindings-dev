@@ -980,7 +980,7 @@ override method @astComputedViewInstruction generateCode
     ?let @autoLayoutRegularBindingsGenerationList regularBindingsGenerationList
     ?let @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList
     ?let @autolayoutRunBindingForGeneration runBindingGeneration
-    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    ?let @string inTableViewBindingGeneration
     ?let @autoLayoutViewGraphicControllerBindingGeneration ebViewGraphicControllerBindingGeneration
   )
   [self.mFunctionCallList check
@@ -1015,7 +1015,7 @@ override method @astComputedViewInstruction generateCode
     !regularBindingsGenerationList
     !multipleBindingGenerationList
     !runBindingGeneration
-    !tableViewBindingGenerationList
+    !inTableViewBindingGeneration
     !ebViewGraphicControllerBindingGeneration
     !self.mConfiguratorName.string
     !self.mOutletName.string
@@ -1045,12 +1045,12 @@ proc analyzeAutoLayoutBinding
   !@autoLayoutRegularBindingsGenerationList outRegularBindingsGenerationList
   !@autoLayoutMultipleBindingGenerationList outMultipleBindingGenerationList
   !@autolayoutRunBindingForGeneration outRunBindingGeneration
-  !@tableViewBindingGenerationList outTableViewBindingGenerationList
+  !@string outTableViewBindingGeneration
   !@autoLayoutViewGraphicControllerBindingGeneration outEBViewGraphicControllerBindingGeneration
 {
   outRegularBindingsGenerationList = {}
   outMultipleBindingGenerationList = {}
-  outTableViewBindingGenerationList = {}
+  outTableViewBindingGeneration = "" # Empty String means no binding
   [inSemanticContext.mAutolayoutViewClassMap searchKey
     !inTypeName
     ?*
@@ -1130,7 +1130,7 @@ proc analyzeAutoLayoutBinding
       if not [kind isArrayController] then
         error controllerName : "the bound model should be an array controller"
       end
-      outTableViewBindingGenerationList += !"<<2>>" !controllerName.string
+      outTableViewBindingGeneration = controllerName.string
     end
   end
 #--- $run
@@ -1638,7 +1638,7 @@ class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGen
   @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
   @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
   @autolayoutRunBindingForGeneration mRunBindingGeneration
-  @tableViewBindingGenerationList mTableViewBindingGeneration
+  @string mTableViewBindingGeneration # Bound controller name; empty string means no binding
   @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
   @string mConfiguratorName # Empty string if no configurator
   @string mOutletName # Empty string if no configurator
@@ -1776,14 +1776,6 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
   end
   for (bindingName binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"
-#    result += inIndentation + "    observedObjects: ["
-#    for () in [binding observedModelSet]
-#      do result += key
-#      between result += ", "
-#    end
-#    result += "],\n"
-#    result += inIndentation + "    computeFunction: { return " + [binding expressionString] + " }\n"
-#    result += inIndentation + "  )\n"
   end
   switch self.mRunBindingGeneration
   case none :
@@ -1797,6 +1789,9 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
   case none :
   case binding (controllerName) :
     result += inIndentation + "  .bind_graphic_controller (self." + controllerName + ")\n"
+  end
+  if self.mTableViewBindingGeneration != "" then
+    result += inIndentation + "self." + self.mTableViewBindingGeneration + ".bind_tableView (" + inName + ")\n"
   end
   if self.mOutletName != "" then
     result += inIndentation + "self." + self.mOutletName + " = " + inName + " // Outlet\n"
