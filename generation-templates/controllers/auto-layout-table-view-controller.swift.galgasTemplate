@@ -21,6 +21,13 @@ for () in ATTRIBUTE_VALUES do
 end
 %
   //····················································································································
+  //    Undo manager
+  //····················································································································
+
+  private var mUndoManager : EBUndoManager? = nil
+  var ebUndoManager : EBUndoManager? { return self.mUndoManager }
+
+  //····················································································································
   //   Sorted Array
   //····················································································································
 
@@ -31,6 +38,10 @@ end
   var sortedArray : [%!ELEMENT_TYPE_NAME%] { return self.sortedArray_property.propval }
 
   //····················································································································
+
+  private var mSortDescriptorArray = [NSSortDescriptor] ()
+
+  //····················································································································
   //    Model
   //····················································································································
 
@@ -38,23 +49,23 @@ end
 
   //····················································································································
 
-  var objects : [%!ELEMENT_TYPE_NAME%] {
+/*   var objects : [%!ELEMENT_TYPE_NAME%] {
     if let objects = self.mModel?.propval {
       return objects
     }else{
       return []
     }
-  }
+  } */
 
   //····················································································································
 
-  var objectCount : Int {
+/*  var objectCount : Int {
     if let objects = self.mModel?.propval {
       return objects.count
     }else{
       return 0
     }
-  }
+  } */
 
   //····················································································································
 
@@ -64,7 +75,7 @@ end
     self.sortedArray_property.setDataProvider (
       inModel,
 %if [SORTED_COLUMNS length] > 0 then
-  %      sortCallback: nil, // { (left, right) in self.isOrderedBefore (left, right) },\n%
+  %      sortCallback: { (left, right) in self.isOrderedBefore (left, right) },\n%
 else
   %      sortCallback: nil,\n%
 end
@@ -82,92 +93,11 @@ end
     inModel.attachClient (self)
   }
 
-  //····················································································································
-
-  final func unbind_model () {
-    self.sortedArray_property.resetDataProvider ()
-    self.mModel?.detachClient (self)
-//    for tvc in self.mTableViewDataSourceControllerArray {
-//      self.sortedArray_property.removeEBObserver (tvc)
-//    }
-//    for tvc in self.mTableViewSelectionControllerArray {
-//      self.mInternalSelectedArrayProperty.removeEBObserver (tvc)
-//    }
-  //---
-    self.mModel = nil
-    self.mUndoManager = nil
- }
-
-  //····················································································································
-  //    Observing model change
-  //····················································································································
-
-  override func notifyModelDidChange () {
-    super.notifyModelDidChange ()
- //   NSLog ("self.sortedArray \(self.sortedArray.count)")
-//    let oldSelectionSet = self.selectedSet
-//    var newSelectedArray = [%!ELEMENT_TYPE_NAME%] ()
-//    for object in self.sortedArray {
-//      if oldSelectionSet.contains (object) {
-//        newSelectedArray.append (object)
-//      }
-//    }
-//    self.mInternalSelectedArrayProperty.setProp (newSelectedArray)
-    for tableView in self.mTableViewArray {
-      tableView.reloadData ()
-    }
-  }
-
-  //····················································································································
-  //    Undo manager
-  //····················································································································
-
-  private var mUndoManager : EBUndoManager? = nil
-  var ebUndoManager : EBUndoManager? { return self.mUndoManager }
-
-  //····················································································································
-  //   Selected Array
-  //····················································································································
-
-  private let mInternalSelectedArrayProperty = StandAloneArrayOf_%!ELEMENT_TYPE_NAME% ()
-
-  //····················································································································
-
-  var selectedArray_property : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME% { return self.mInternalSelectedArrayProperty }
-
-  //····················································································································
-
-  var selectedArray : [%!ELEMENT_TYPE_NAME%] { return self.selectedArray_property.propval }
- 
-  //····················································································································
-
-  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> { return Set (self.selectedArray) }
-
-  //····················································································································
-
-  var selectedIndexesSet : Set <Int> {
-    var result = Set <Int> ()
-    var idx = 0
-    for object in self.objects {
-      if self.selectedSet.contains (object) {
-        result.insert (idx)
-      }
-      idx += 1
-    }
-    return result
-  }
-
-  //····················································································································
-
-/*  func setSelection (_ inObjects : [%!ELEMENT_TYPE_NAME%]) {
-    self.mInternalSelectedArrayProperty.setProp (inObjects)
-  } */
-
 %
 if [SORTED_COLUMNS length] > 0 then
 %  //····················································································································
 
-/*  func isOrderedBefore (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) -> Bool {
+  func isOrderedBefore (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) -> Bool {
     var order = ComparisonResult.orderedSame
     for sortDescriptor in self.mSortDescriptorArray {\n%
 for () in SORTED_COLUMNS
@@ -194,11 +124,78 @@ end
       }
     }
     return order == .orderedAscending
+  }
+%end
+%
+  //····················································································································
+
+  final func unbind_model () {
+    self.sortedArray_property.resetDataProvider ()
+    self.mModel?.detachClient (self)
+  //---
+    self.mModel = nil
+    self.mUndoManager = nil
+ }
+
+  //····················································································································
+  //    Observing model change
+  //····················································································································
+
+  override func notifyModelDidChange () {
+    super.notifyModelDidChange ()
+ //   NSLog ("self.sortedArray \(self.sortedArray.count)")
+//    let oldSelectionSet = self.selectedSet
+//    var newSelectedArray = [%!ELEMENT_TYPE_NAME%] ()
+//    for object in self.sortedArray {
+//      if oldSelectionSet.contains (object) {
+//        newSelectedArray.append (object)
+//      }
+//    }
+//    self.mInternalSelectedArrayProperty.setProp (newSelectedArray)
+    for tableView in self.mTableViewArray {
+      tableView.reloadData ()
+    }
+  }
+
+  //····················································································································
+  //   Selected Array
+  //····················································································································
+
+  private let mInternalSelectedArrayProperty = StandAloneArrayOf_%!ELEMENT_TYPE_NAME% ()
+
+  //····················································································································
+
+  var selectedArray_property : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME% { return self.mInternalSelectedArrayProperty }
+
+  //····················································································································
+
+  var selectedArray : [%!ELEMENT_TYPE_NAME%] { return self.selectedArray_property.propval }
+ 
+  //····················································································································
+
+  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> { return Set (self.selectedArray) }
+
+  //····················································································································
+
+  var selectedIndexesSet : Set <Int> {
+    var result = Set <Int> ()
+    var idx = 0
+    for object in self.mModel?.propval ?? [] {
+      if self.selectedSet.contains (object) {
+        result.insert (idx)
+      }
+      idx += 1
+    }
+    return result
+  }
+
+  //····················································································································
+
+/*  func setSelection (_ inObjects : [%!ELEMENT_TYPE_NAME%]) {
+    self.mInternalSelectedArrayProperty.setProp (inObjects)
   } */
 
-%
-end
-%  //····················································································································
+  //····················································································································
   //    Explorer
   //····················································································································
 
@@ -233,18 +230,25 @@ end
     %nil%
   end
 %,
-%for () in mActualParameterList
+                                   sortDescriptor: %
+if mSorted then 
+  %NSSortDescriptor (key: "%!mColumnName%", ascending: true)%
+else
+  %nil%
+end
+%,
+%
+for () in mActualParameterList
   do %                                   %!mValue0%: %!mValue1%%
   between %,\n%
 end
-%)
-      self.mModel?.addEBObserverOf_%!mColumnName% (self.mColumnObserver_%!mColumnName%)
+%
+    )
+    self.mModel?.addEBObserverOf_%!mColumnName% (self.mColumnObserver_%!mColumnName%)
     self.mColumnObserver_%!mColumnName%.mEventCallBack = { [weak self] in
-      // NSLog ("BEGIN reloadData \(self?.selectedArray)")
       for tableView in self?.mTableViewArray ?? [] {
         tableView.reloadData ()
       }
-      // NSLog ("END reloadData \(self?.selectedArray)")
     }
 %
 end
@@ -311,6 +315,14 @@ case entityArray :
       }
       self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
     }
+  }
+
+  //····················································································································
+
+  func sortDescriptorsDidChangeTo (_ inSortDescriptors : [NSSortDescriptor]) {
+    self.mSortDescriptorArray = inSortDescriptors
+ //   self.sortedArray_property.notifyModelDidChange ()
+    self.mModel?.notifyModelDidChange ()
   }
 
   //····················································································································

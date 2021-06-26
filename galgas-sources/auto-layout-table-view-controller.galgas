@@ -8,6 +8,7 @@ list @autoLayoutTableViewControllerBoundColumnListAST {
   @lstring mColumnOutletTypeName
   @autoLayoutTableViewColumnBindingAST mColumnBindingAST
   @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
+  @bool mSorted
 }
 
 #·······················································································································
@@ -106,6 +107,13 @@ syntax extension easyBindings_syntax {
       ${$
       repeat
       while
+        @bool sortedColumn
+        select
+          sortedColumn = false
+        or
+          $sort$
+          sortedColumn = true
+        end
         @bool editableColumn
         select
           $column$
@@ -117,13 +125,16 @@ syntax extension easyBindings_syntax {
         $identifier$ ?let propertyName
         <view_actual_parameter_list> ?let columnParameterListAST
         $Identifier$ ?let columnOutletTypeName
+        ${$
         <auto_layout_column_bindings> ?let @autoLayoutTableViewColumnBindingAST columnBindingAST
+        $}$
         arrayControllerBoundColumnListAST +=
           !editableColumn
           !propertyName
           !columnOutletTypeName
           !columnBindingAST
           !columnParameterListAST
+          !sortedColumn
       end
       $}$
     end
@@ -353,7 +364,7 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
   end
   @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
   @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
-  for (editable propertyName columnOutletTypeName columnBindings columnParameterList) in self.mTableViewControllerBoundColumnListAST do
+  for (editable propertyName columnOutletTypeName columnBindings columnParameterList sorted) in self.mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
     if columnBindings.mRunActionName.string != "" then
       [actionMap searchKey !columnBindings.mRunActionName]
@@ -407,6 +418,21 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
         end
       end
     end
+  #--- Sorted ?
+    if sorted then
+      [propertyMap searchKey
+        !propertyName
+        ?let sortPropertyKind
+        ?2*
+      ]
+      if not [sortPropertyKind isComparable] then
+        error propertyName : "this property is not comparable"
+      end 
+      arrayControllerSortedColumnListForGeneration +=    
+        !propertyName.string
+        !sortPropertyKind
+        !propertyName.string
+    end
 #    if mSortPropertyName.string != "" then
 #      [propertyMap searchKey
 #        !mSortPropertyName
@@ -421,9 +447,10 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
 #        !sortPropertyKind
 #        !mSortPropertyName.string
 #    end
-  #-------- Binding generation
+  #-------- Column generation
     arrayControllerBoundColumnListForGeneration +=
       !editable
+      !sorted
       !propertyName.string
       !columnOutletTypeName.string
       !columnBindings.mRunActionName.string
@@ -541,6 +568,7 @@ class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
 
 list @autoLayoutTableViewControllerBoundColumnListForGeneration {
   @bool mEditable
+  @bool mSorted
   @string mColumnName
   @string mColumnOutletTypeName
   @string mRunAction # Empty string if no action
