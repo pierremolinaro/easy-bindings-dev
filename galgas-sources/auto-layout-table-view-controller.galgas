@@ -3,6 +3,7 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutTableViewControllerBoundColumnListAST {
+  @bool mEditable
   @lstring mPropertyName
   @lstring mColumnOutletTypeName
   @autoLayoutTableViewColumnBindingAST mColumnBindingAST
@@ -105,12 +106,20 @@ syntax extension easyBindings_syntax {
       ${$
       repeat
       while
-        $column$
+        @bool editableColumn
+        select
+          $column$
+          editableColumn = false
+        or
+          $editableColumn$
+          editableColumn = true
+        end
         $identifier$ ?let propertyName
         <view_actual_parameter_list> ?let columnParameterListAST
         $Identifier$ ?let columnOutletTypeName
         <auto_layout_column_bindings> ?let @autoLayoutTableViewColumnBindingAST columnBindingAST
         arrayControllerBoundColumnListAST +=
+          !editableColumn
           !propertyName
           !columnOutletTypeName
           !columnBindingAST
@@ -344,7 +353,7 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
   end
   @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
   @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
-  for (propertyName columnOutletTypeName columnBindings columnParameterList) in self.mTableViewControllerBoundColumnListAST do
+  for (editable propertyName columnOutletTypeName columnBindings columnParameterList) in self.mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
     if columnBindings.mRunActionName.string != "" then
       [actionMap searchKey !columnBindings.mRunActionName]
@@ -414,6 +423,7 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
 #    end
   #-------- Binding generation
     arrayControllerBoundColumnListForGeneration +=
+      !editable
       !propertyName.string
       !columnOutletTypeName.string
       !columnBindings.mRunActionName.string
@@ -530,6 +540,7 @@ class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
 #·······················································································································
 
 list @autoLayoutTableViewControllerBoundColumnListForGeneration {
+  @bool mEditable
   @string mColumnName
   @string mColumnOutletTypeName
   @string mRunAction # Empty string if no action

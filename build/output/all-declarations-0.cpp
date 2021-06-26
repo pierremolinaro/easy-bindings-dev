@@ -110,8 +110,8 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_arrayController 
 //--- Syntax error message for terminal '$autolayout$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_autolayout = "the 'autolayout' keyword" ;
 
-//--- Syntax error message for terminal '$tableViewController$' :
-static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_tableViewController = "the 'tableViewController' keyword" ;
+//--- Syntax error message for terminal '$autoLayoutDocument$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_autoLayoutDocument = "the 'autoLayoutDocument' keyword" ;
 
 //--- Syntax error message for terminal '$binding$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_binding = "the 'binding' keyword" ;
@@ -140,14 +140,11 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_default = "the '
 //--- Syntax error message for terminal '$dependsFrom$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_dependsFrom = "the 'dependsFrom' keyword" ;
 
-//--- Syntax error message for terminal '$autoLayoutDocument$' :
-static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_autoLayoutDocument = "the 'autoLayoutDocument' keyword" ;
-
-//--- Syntax error message for terminal '$xibdocument$' :
-static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_xibdocument = "the 'xibdocument' keyword" ;
-
 //--- Syntax error message for terminal '$enum$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_enum = "the 'enum' keyword" ;
+
+//--- Syntax error message for terminal '$editableColumn$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_editableColumn = "the 'editableColumn' keyword" ;
 
 //--- Syntax error message for terminal '$entity$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_entity = "the 'entity' keyword" ;
@@ -242,6 +239,9 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_struct = "the 's
 //--- Syntax error message for terminal '$super$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_super = "the 'super' keyword" ;
 
+//--- Syntax error message for terminal '$tableViewController$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_tableViewController = "the 'tableViewController' keyword" ;
+
 //--- Syntax error message for terminal '$toMany$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_toMany = "the 'toMany' keyword" ;
 
@@ -271,6 +271,9 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_view = "the 'vie
 
 //--- Syntax error message for terminal '$xcodeproject$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_xcodeproject = "the 'xcodeproject' keyword" ;
+
+//--- Syntax error message for terminal '$xibdocument$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_xibdocument = "the 'xibdocument' keyword" ;
 
 //--- Syntax error message for terminal '$yes$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_yes = "the 'yes' keyword" ;
@@ -359,8 +362,8 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__2D_ = "the '-' 
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
   C_String result = "<unknown>" ;
-  if ((inTerminalIndex >= 0) && (inTerminalIndex < 96)) {
-    static const char * syntaxErrorMessageArray [96] = {kEndOfSourceLexicalErrorMessage,
+  if ((inTerminalIndex >= 0) && (inTerminalIndex < 97)) {
+    static const char * syntaxErrorMessageArray [97] = {kEndOfSourceLexicalErrorMessage,
         gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique__40_attribute,
@@ -375,7 +378,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_all,
         gSyntaxErrorMessage_easyBindings_5F_lexique_arrayController,
         gSyntaxErrorMessage_easyBindings_5F_lexique_autolayout,
-        gSyntaxErrorMessage_easyBindings_5F_lexique_tableViewController,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_autoLayoutDocument,
         gSyntaxErrorMessage_easyBindings_5F_lexique_binding,
         gSyntaxErrorMessage_easyBindings_5F_lexique_calledBy,
         gSyntaxErrorMessage_easyBindings_5F_lexique_class,
@@ -385,9 +388,8 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_configurator,
         gSyntaxErrorMessage_easyBindings_5F_lexique_default,
         gSyntaxErrorMessage_easyBindings_5F_lexique_dependsFrom,
-        gSyntaxErrorMessage_easyBindings_5F_lexique_autoLayoutDocument,
-        gSyntaxErrorMessage_easyBindings_5F_lexique_xibdocument,
         gSyntaxErrorMessage_easyBindings_5F_lexique_enum,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_editableColumn,
         gSyntaxErrorMessage_easyBindings_5F_lexique_entity,
         gSyntaxErrorMessage_easyBindings_5F_lexique_extern,
         gSyntaxErrorMessage_easyBindings_5F_lexique_externDelegate,
@@ -419,6 +421,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_stackViewRef,
         gSyntaxErrorMessage_easyBindings_5F_lexique_struct,
         gSyntaxErrorMessage_easyBindings_5F_lexique_super,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_tableViewController,
         gSyntaxErrorMessage_easyBindings_5F_lexique_toMany,
         gSyntaxErrorMessage_easyBindings_5F_lexique_toolbarItem,
         gSyntaxErrorMessage_easyBindings_5F_lexique_toOne,
@@ -429,6 +432,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_versionShouldChange,
         gSyntaxErrorMessage_easyBindings_5F_lexique_view,
         gSyntaxErrorMessage_easyBindings_5F_lexique_xcodeproject,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_xibdocument,
         gSyntaxErrorMessage_easyBindings_5F_lexique_yes,
         gSyntaxErrorMessage_easyBindings_5F_lexique_enabled,
         gSyntaxErrorMessage_easyBindings_5F_lexique_graphicController,
@@ -794,6 +798,25 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_dependsFrom [] = {
   TO_UNICODE ('r'),
   TO_UNICODE ('o'),
   TO_UNICODE ('m'),
+  TO_UNICODE (0)
+} ;
+
+//--- Unicode string for '$editableColumn$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique_editableColumn [] = {
+  TO_UNICODE ('e'),
+  TO_UNICODE ('d'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('a'),
+  TO_UNICODE ('b'),
+  TO_UNICODE ('l'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('C'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('l'),
+  TO_UNICODE ('u'),
+  TO_UNICODE ('m'),
+  TO_UNICODE ('n'),
   TO_UNICODE (0)
 } ;
 
@@ -1485,7 +1508,7 @@ int16_t C_Lexique_easyBindings_5F_lexique::search_into_delimitorsList (const C_S
 //             Key words table 'lowerCaseKeyWordList'      
 //----------------------------------------------------------------------------------------------------------------------
 
-static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 60 ;
+static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 61 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList] = {
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_no, 2, C_Lexique_easyBindings_5F_lexique::kToken_no),
@@ -1542,6 +1565,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_stackViewRef, 12, C_Lexique_easyBindings_5F_lexique::kToken_stackViewRef),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_xcodeproject, 12, C_Lexique_easyBindings_5F_lexique::kToken_xcodeproject),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_classForSwift, 13, C_Lexique_easyBindings_5F_lexique::kToken_classForSwift),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_editableColumn, 14, C_Lexique_easyBindings_5F_lexique::kToken_editableColumn),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externDelegate, 14, C_Lexique_easyBindings_5F_lexique::kToken_externDelegate),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_arrayController, 15, C_Lexique_easyBindings_5F_lexique::kToken_arrayController),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_autoLayoutDocument, 18, C_Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument),
@@ -1675,9 +1699,9 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString ("autolayout") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
-    case kToken_tableViewController:
+    case kToken_autoLayoutDocument:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendCString ("tableViewController") ;
+      s.appendCString ("autoLayoutDocument") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_binding:
@@ -1725,19 +1749,14 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString ("dependsFrom") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
-    case kToken_autoLayoutDocument:
-      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendCString ("autoLayoutDocument") ;
-      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      break ;
-    case kToken_xibdocument:
-      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendCString ("xibdocument") ;
-      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      break ;
     case kToken_enum:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("enum") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_editableColumn:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("editableColumn") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_entity:
@@ -1895,6 +1914,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString ("super") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
+    case kToken_tableViewController:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("tableViewController") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
     case kToken_toMany:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("toMany") ;
@@ -1943,6 +1967,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
     case kToken_xcodeproject:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("xcodeproject") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_xibdocument:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("xibdocument") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_yes:
@@ -2423,7 +2452,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("all") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("arrayController") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("autolayout") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("tableViewController") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("autoLayoutDocument") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("binding") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("calledBy") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("class") COMMA_THERE) ;
@@ -2433,9 +2462,8 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("configurator") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("default") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("dependsFrom") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("autoLayoutDocument") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("xibdocument") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("enum") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("editableColumn") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("entity") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("extern") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("externDelegate") COMMA_THERE) ;
@@ -2467,6 +2495,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("stackViewRef") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("struct") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("super") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("tableViewController") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("toMany") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("toolbarItem") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("toOne") COMMA_THERE) ;
@@ -2477,6 +2506,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("versionShouldChange") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("view") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("xcodeproject") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("xibdocument") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("yes") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("enabled") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("graphicController") COMMA_THERE) ;
@@ -2601,6 +2631,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("stackViewRef") ;
     ioList.appendObject ("xcodeproject") ;
     ioList.appendObject ("classForSwift") ;
+    ioList.appendObject ("editableColumn") ;
     ioList.appendObject ("externDelegate") ;
     ioList.appendObject ("arrayController") ;
     ioList.appendObject ("autoLayoutDocument") ;
@@ -2631,7 +2662,7 @@ __attribute__ ((unused)) (getKeywordLists_easyBindings_5F_lexique, getKeywordsFo
 //----------------------------------------------------------------------------------------------------------------------
 
 uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [96] = {0,
+  static const uint32_t kTerminalSymbolStyles [97] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
@@ -2646,7 +2677,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_all */,
     1 /* easyBindings_lexique_1_arrayController */,
     1 /* easyBindings_lexique_1_autolayout */,
-    1 /* easyBindings_lexique_1_tableViewController */,
+    1 /* easyBindings_lexique_1_autoLayoutDocument */,
     1 /* easyBindings_lexique_1_binding */,
     1 /* easyBindings_lexique_1_calledBy */,
     1 /* easyBindings_lexique_1_class */,
@@ -2656,9 +2687,8 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_configurator */,
     1 /* easyBindings_lexique_1_default */,
     1 /* easyBindings_lexique_1_dependsFrom */,
-    1 /* easyBindings_lexique_1_autoLayoutDocument */,
-    1 /* easyBindings_lexique_1_xibdocument */,
     1 /* easyBindings_lexique_1_enum */,
+    1 /* easyBindings_lexique_1_editableColumn */,
     1 /* easyBindings_lexique_1_entity */,
     1 /* easyBindings_lexique_1_extern */,
     1 /* easyBindings_lexique_1_externDelegate */,
@@ -2690,6 +2720,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_stackViewRef */,
     1 /* easyBindings_lexique_1_struct */,
     1 /* easyBindings_lexique_1_super */,
+    1 /* easyBindings_lexique_1_tableViewController */,
     1 /* easyBindings_lexique_1_toMany */,
     1 /* easyBindings_lexique_1_toolbarItem */,
     1 /* easyBindings_lexique_1_toOne */,
@@ -2700,6 +2731,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_versionShouldChange */,
     1 /* easyBindings_lexique_1_view */,
     1 /* easyBindings_lexique_1_xcodeproject */,
+    1 /* easyBindings_lexique_1_xibdocument */,
     1 /* easyBindings_lexique_1_yes */,
     6 /* easyBindings_lexique_1_enabled */,
     6 /* easyBindings_lexique_1_graphicController */,

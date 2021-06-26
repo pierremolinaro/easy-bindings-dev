@@ -8,7 +8,8 @@ import Cocoa
 //    Auto Layout Table View Controller %!OWNER_NAME% %!TABLE_VIEW_CONTROLLER_NAME%
 //----------------------------------------------------------------------------------------------------------------------
 
-final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : ReadOnlyAbstractGenericRelationshipProperty {
+final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME%
+                                       : ReadOnlyAbstractGenericRelationshipProperty, AutoLayoutTableViewDelegate {
  
   //····················································································································
   //    Constant properties
@@ -208,8 +209,6 @@ end
   //    bind_tableView
   //····················································································································
 
-//  private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
-//  private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
   private var mTableViewArray = [AutoLayoutTableView] ()
 
   //····················································································································
@@ -218,20 +217,18 @@ end
     inTableView.configure (
       allowsEmptySelection: allowsEmptySelection,
       allowsMultipleSelection: allowsMultipleSelection,
-      rowCountDelegate: { [weak self] in return self?.sortedArray.count },
-      selectionDidChangeDelegate: { [weak self] in self?.tableViewSelectionDidChange (selectedRows: $0) }
+      delegate: self
     )
-  //--- Set table view data source controller
-/*    let dataSourceTableViewController = DataSource_EBTableView_controller (delegate:self, tableView:tableView)
-    self.sortedArray_property.addEBObserver (dataSourceTableViewController)
-    self.mTableViewDataSourceControllerArray.append (dataSourceTableViewController)
-  //--- Set table view selection controller
-    let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)
-    self.mInternalSelectedArrayProperty.addEBObserver (selectionTableViewController)
-    self.mTableViewSelectionControllerArray.append (selectionTableViewController) */
-%for () in BOUND_COLUMNS do index idx
-%  //--- Check '%!mColumnName%' column (%![idx string]%)
-    _ = inTableView.addTextColumn (valueDelegate: { [weak self] in return self?.sortedArray [$0].%!mColumnName% },
+%for () in BOUND_COLUMNS do
+%  //--- Configure '%!mColumnName%' column
+    _ = inTableView.addTextColumn (valueGetterDelegate: { [weak self] in return self?.sortedArray [$0].%!mColumnName% },
+                                   valueSetterDelegate: %
+  if mEditable then
+   %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray [inRowIndex].name = inNewValue }%
+  else
+    %nil%
+  end
+%,
 %for () in mActualParameterList
   do %                                   %!mValue0%: %!mValue1%%
   between %,\n%
@@ -276,21 +273,6 @@ end
         }
       }
       return indexSet
-    }
-  }
-
-  //····················································································································
- 
-  private func tableViewSelectionDidChange (selectedRows inSelectedRows : IndexSet) {
-    switch self.sortedArray_property.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      var newSelectedObjects = [%!ELEMENT_TYPE_NAME%] ()
-      for index in inSelectedRows {
-        newSelectedObjects.append (v [index])
-      }
-      self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
     }
   }
  
@@ -411,6 +393,29 @@ case entityArray :
   }
 %end
 %
+  //····················································································································
+  // IMPLEMENTATION OF AutoLayoutTableViewDelegate
+  //····················································································································
+
+  func rowCount () -> Int {
+    return self.sortedArray.count
+  }
+
+  //····················································································································
+
+  func tableViewSelectionDidChange (selectedRows inSelectedRows : IndexSet) {
+    switch self.sortedArray_property.selection {
+    case .empty, .multiple :
+      break
+    case .single (let v) :
+      var newSelectedObjects = [ArtworkFileGenerationParameters] ()
+      for index in inSelectedRows {
+        newSelectedObjects.append (v [index])
+      }
+      self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
+    }
+  }
+
   //····················································································································
 
 }

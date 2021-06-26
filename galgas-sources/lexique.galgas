@@ -19,7 +19,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "all",
   "arrayController",
   "autolayout",
-  "tableViewController",
+  "autoLayoutDocument",
   "binding",
   "calledBy",
   "class",
@@ -29,9 +29,8 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "configurator",
   "default",
   "dependsFrom",
-  "autoLayoutDocument",
-  "xibdocument",
   "enum",
+  "editableColumn",
   "entity",
   "extern",
   "externDelegate",
@@ -63,6 +62,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "stackViewRef",
   "struct",
   "super",
+  "tableViewController",
   "toMany",
   "toolbarItem",
   "toOne",
@@ -73,6 +73,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "versionShouldChange",
   "view",
   "xcodeproject",
+  "xibdocument",
   "yes"
 }
 

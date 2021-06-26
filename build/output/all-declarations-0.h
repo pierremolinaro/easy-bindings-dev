@@ -78,7 +78,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_all,
    kToken_arrayController,
    kToken_autolayout,
-   kToken_tableViewController,
+   kToken_autoLayoutDocument,
    kToken_binding,
    kToken_calledBy,
    kToken_class,
@@ -88,9 +88,8 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_configurator,
    kToken_default,
    kToken_dependsFrom,
-   kToken_autoLayoutDocument,
-   kToken_xibdocument,
    kToken_enum,
+   kToken_editableColumn,
    kToken_entity,
    kToken_extern,
    kToken_externDelegate,
@@ -122,6 +121,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_stackViewRef,
    kToken_struct,
    kToken_super,
+   kToken_tableViewController,
    kToken_toMany,
    kToken_toolbarItem,
    kToken_toOne,
@@ -132,6 +132,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_versionShouldChange,
    kToken_view,
    kToken_xcodeproject,
+   kToken_xibdocument,
    kToken_yes,
    kToken_enabled,
    kToken_graphicController,
@@ -196,7 +197,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 95 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 96 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
