@@ -210,7 +210,11 @@ end
   //····················································································································
 
   private var mTableViewArray = [AutoLayoutTableView] ()
-
+%
+for () in BOUND_COLUMNS do
+  %  private var mColumnObserver_%!mColumnName% = EBOutletEvent ()\n%
+end
+%
   //····················································································································
 
   final func bind_tableView (_ inTableView : AutoLayoutTableView) {
@@ -234,6 +238,14 @@ end
   between %,\n%
 end
 %)
+      self.mModel?.addEBObserverOf_%!mColumnName% (self.mColumnObserver_%!mColumnName%)
+    self.mColumnObserver_%!mColumnName%.mEventCallBack = { [weak self] in
+      // NSLog ("BEGIN reloadData \(self?.selectedArray)")
+      for tableView in self?.mTableViewArray ?? [] {
+        tableView.reloadData ()
+      }
+      // NSLog ("END reloadData \(self?.selectedArray)")
+    }
 %
 end
 %  //---
@@ -254,28 +266,6 @@ end
     }
   } */
 
- //····················································································································
-
-  func selectedObjectIndexSet () -> NSIndexSet {
-    switch self.sortedArray_property.selection {
-    case .empty, .multiple :
-       return NSIndexSet ()
-    case .single (let v) :
-    //--- Dictionary of object indexes
-      var objectDictionary = [%!ELEMENT_TYPE_NAME% : Int] ()
-      for (index, object) in v.enumerated () {
-        objectDictionary [object] = index
-      }
-      let indexSet = NSMutableIndexSet ()
-      for object in self.selectedSet {
-        if let index = objectDictionary [object] {
-          indexSet.add (index)
-        }
-      }
-      return indexSet
-    }
-  }
- 
 %switch MODEL_KIND
 case transientArray :
 case entityArray :
@@ -283,28 +273,74 @@ case entityArray :
   //   Select a single object
   //····················································································································
 
-  func select (object inObject: %!ELEMENT_TYPE_NAME%) {
+/*  func select (object inObject: %!ELEMENT_TYPE_NAME%) {
     if let model = self.mModel {
       switch model.selection {
       case .empty, .multiple :
-        break
+        ()
       case .single (let objectArray) :
         if objectArray.contains (inObject) {
           self.mInternalSelectedArrayProperty.setProp ([inObject])
         }
       }
     }
+  } */
+
+  //····················································································································
+
+%end
+%
+  //····················································································································
+  // IMPLEMENTATION OF AutoLayoutTableViewDelegate
+  //····················································································································
+
+  func rowCount () -> Int {
+    return self.sortedArray.count
   }
 
   //····················································································································
-  //    add
+
+  func tableViewSelectionDidChange (selectedRows inSelectedRows : IndexSet) {
+    switch self.sortedArray_property.selection {
+    case .empty, .multiple :
+      ()
+    case .single (let v) :
+      var newSelectedObjects = [ArtworkFileGenerationParameters] ()
+      for index in inSelectedRows {
+        newSelectedObjects.append (v [index])
+      }
+      self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
+    }
+  }
+
   //····················································································································
 
-   @objc func add (_ sender : Any) {
+  func indexesOfSelectedObjects () -> IndexSet {
+    var indexSet = IndexSet ()
+    var idx = 0
+    let selectedObjectSet = Set (self.selectedArray)
+    for object in self.sortedArray {
+      if selectedObjectSet.contains (object) {
+        indexSet.insert (idx)
+      }
+      idx += 1
+    }
+    return indexSet
+  }
+
+  //····················································································································
+
+%switch MODEL_KIND
+case transientArray :
+%  final func addEntry () { // Transient array cannot add entry
+  }
+%
+case entityArray :
+%  final func addEntry () {
     if let model = self.mModel {
       switch model.selection {
       case .empty, .multiple :
-        break
+        ()
       case .single (let v) :
         let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
         var array = v
@@ -315,20 +351,24 @@ case entityArray :
       }
     }
   }
-
-  //····················································································································
-  //    remove
+%end%
   //····················································································································
 
-  @objc func remove (_ sender : Any) {
+%switch MODEL_KIND
+case transientArray :
+%  final func removeSelectedEntries () { // Transient array cannot remove entries
+  }
+%
+case entityArray :
+%  func removeSelectedEntries () {
     if let model = self.mModel {
       switch model.selection {
       case .empty, .multiple :
-        break
+        ()
       case .single (let model_prop) :
         switch self.sortedArray_property.selection {
         case .empty, .multiple :
-          break
+          ()
         case .single (let sortedArray_prop) :
         //------------- Find the object to be selected after selected object removing
         //--- Dictionary of object sorted indexes
@@ -349,7 +389,7 @@ case entityArray :
           var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1
           for index in indexArrayOfSelectedObjects {
             if newSelectionIndex < index {
-              break
+              ()
             }else{
               newSelectionIndex = index + 1
             }
@@ -391,31 +431,7 @@ case entityArray :
       }
     }
   }
-%end
-%
-  //····················································································································
-  // IMPLEMENTATION OF AutoLayoutTableViewDelegate
-  //····················································································································
-
-  func rowCount () -> Int {
-    return self.sortedArray.count
-  }
-
-  //····················································································································
-
-  func tableViewSelectionDidChange (selectedRows inSelectedRows : IndexSet) {
-    switch self.sortedArray_property.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      var newSelectedObjects = [ArtworkFileGenerationParameters] ()
-      for index in inSelectedRows {
-        newSelectedObjects.append (v [index])
-      }
-      self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
-    }
-  }
-
+%end%
   //····················································································································
 
 }
