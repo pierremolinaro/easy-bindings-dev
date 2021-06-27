@@ -172,7 +172,7 @@ end
       sortDelegate: %
 if mSorted then 
 %{ [weak self] (ascending) in
-        self?.mSortDescriptorArray.append ({ (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) in return compare_%!mColumnObjectTypeName%_values (left.name, ascending, right.name) })
+        self?.mSortDescriptorArray.append ({ (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) in return compare_%!mColumnObjectTypeName%_properties (left.%!mColumnName%_property, ascending, right.%!mColumnName%_property) })
       }%
 else
   %nil%

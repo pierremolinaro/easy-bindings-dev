@@ -13,31 +13,9 @@ typealias EBPreferencesProperty_%!TYPE% = EBGenericPreferenceProperty <%!TYPE%>
 
 //----------------------------------------------------------------------------------------------------------------------
 
-func compare_%!TYPE%_values (_ left : %!TYPE%, _ inAscending : Bool, _ right : %!TYPE%) -> ComparisonResult {
-%if COMPARISON_METHOD != "" then
-  %  let order = left.%!COMPARISON_METHOD% (right)\n%
-  %  switch order {\n%
-  %  case .orderedAscending :\n%
-  %    return inAscending ? .orderedAscending : .orderedDescending\n%
-  %  case .orderedSame :\n%
-  %    return .orderedSame\n%
-  %  case .orderedDescending :\n%
-  %    return inAscending ? .orderedDescending : .orderedAscending\n%
-  %  }\n%
-else
-  %  if left < right {\n%
-  %    return inAscending ? .orderedAscending : .orderedDescending\n%
-  %  }else if left > right {\n%
-  %    return inAscending ? .orderedDescending : .orderedAscending\n%
-  %  }else{\n%
-  %    return .orderedSame\n%
-  %  }\n%
-end
-%}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-func compare_%!TYPE%_properties (_ left : EBReadOnlyProperty_%!TYPE%, _ right : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
+func compare_%!TYPE%_properties (_ inLeft : EBReadOnlyProperty_%!TYPE%, _ inAscending : Bool, _ inRight : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
+  let left  = inAscending ? inLeft  : inRight
+  let right = inAscending ? inRight : inLeft
   switch left.selection {
   case .empty :
     switch right.selection {

@@ -190,21 +190,13 @@ for () in SORTED_COLUMNS
   %      %
   do
   %if sortDescriptor.key == "%!mColumnName%" {\n%
-  %        order = compare_%![mSortPropertyKind swiftTypeName]%_properties (left.%!mObservablePropertyForSorting%_property, right.%!mObservablePropertyForSorting%_property)\n%
+  %        order = compare_%![mSortPropertyKind swiftTypeName]%_properties (left.%!mObservablePropertyForSorting%_property, sortDescriptor.ascending, right.%!mObservablePropertyForSorting%_property)\n%
   between
   %      }else %
   after
   %      }\n%
 end
-%      // Swift.print ("key \(sortDescriptor.key), ascending \(sortDescriptor.ascending), order \(order.rawValue)")
-      if !sortDescriptor.ascending {
-        switch order {
-        case .orderedAscending : order = .orderedDescending
-        case .orderedSame : ()
-        case .orderedDescending : order = .orderedAscending
-        }
-      }
-      if order != .orderedSame {
+%      if order != .orderedSame {
         break // Exit from for
       }
     }
