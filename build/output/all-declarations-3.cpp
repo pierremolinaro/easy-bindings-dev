@@ -13528,7 +13528,7 @@ class cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGenerati
   public : cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (const GALGAS_bool & in_mEditable,
                                                                                          const GALGAS_bool & in_mSorted,
                                                                                          const GALGAS_string & in_mColumnName,
-                                                                                         const GALGAS_string & in_mColumnOutletTypeName,
+                                                                                         const GALGAS_string & in_mColumnObjectTypeName,
                                                                                          const GALGAS_string & in_mRunAction,
                                                                                          const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                                                                          const GALGAS__32_stringlist & in_mActualParameterList
@@ -13553,20 +13553,20 @@ class cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGenerati
 cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration::cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (const GALGAS_bool & in_mEditable,
                                                                                                                                                             const GALGAS_bool & in_mSorted,
                                                                                                                                                             const GALGAS_string & in_mColumnName,
-                                                                                                                                                            const GALGAS_string & in_mColumnOutletTypeName,
+                                                                                                                                                            const GALGAS_string & in_mColumnObjectTypeName,
                                                                                                                                                             const GALGAS_string & in_mRunAction,
                                                                                                                                                             const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                                                                                                                                             const GALGAS__32_stringlist & in_mActualParameterList
                                                                                                                                                             COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mEditable, in_mSorted, in_mColumnName, in_mColumnOutletTypeName, in_mRunAction, in_mRegularBindingsGenerationList, in_mActualParameterList) {
+mObject (in_mEditable, in_mSorted, in_mColumnName, in_mColumnObjectTypeName, in_mRunAction, in_mRegularBindingsGenerationList, in_mActualParameterList) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration::cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (const GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element & inElement COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (inElement.mProperty_mEditable, inElement.mProperty_mSorted, inElement.mProperty_mColumnName, inElement.mProperty_mColumnOutletTypeName, inElement.mProperty_mRunAction, inElement.mProperty_mRegularBindingsGenerationList, inElement.mProperty_mActualParameterList) {
+mObject (inElement.mProperty_mEditable, inElement.mProperty_mSorted, inElement.mProperty_mColumnName, inElement.mProperty_mColumnObjectTypeName, inElement.mProperty_mRunAction, inElement.mProperty_mRegularBindingsGenerationList, inElement.mProperty_mActualParameterList) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13579,7 +13579,7 @@ bool cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneratio
 
 cCollectionElement * cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (mObject.mProperty_mEditable, mObject.mProperty_mSorted, mObject.mProperty_mColumnName, mObject.mProperty_mColumnOutletTypeName, mObject.mProperty_mRunAction, mObject.mProperty_mRegularBindingsGenerationList, mObject.mProperty_mActualParameterList COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (mObject.mProperty_mEditable, mObject.mProperty_mSorted, mObject.mProperty_mColumnName, mObject.mProperty_mColumnObjectTypeName, mObject.mProperty_mRunAction, mObject.mProperty_mRegularBindingsGenerationList, mObject.mProperty_mActualParameterList COMMA_HERE)) ;
   return result ;
 }
 
@@ -13600,8 +13600,8 @@ void cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneratio
   mObject.mProperty_mColumnName.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mColumnOutletTypeName" ":" ;
-  mObject.mProperty_mColumnOutletTypeName.description (ioString, inIndentation) ;
+  ioString << "mColumnObjectTypeName" ":" ;
+  mObject.mProperty_mColumnObjectTypeName.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mRunAction" ":" ;
@@ -13668,7 +13668,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::makeAttri
                                                                                                   const GALGAS_bool & in_mEditable,
                                                                                                   const GALGAS_bool & in_mSorted,
                                                                                                   const GALGAS_string & in_mColumnName,
-                                                                                                  const GALGAS_string & in_mColumnOutletTypeName,
+                                                                                                  const GALGAS_string & in_mColumnObjectTypeName,
                                                                                                   const GALGAS_string & in_mRunAction,
                                                                                                   const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                                                                                   const GALGAS__32_stringlist & in_mActualParameterList
@@ -13677,7 +13677,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::makeAttri
   macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (in_mEditable,
                                                                                                in_mSorted,
                                                                                                in_mColumnName,
-                                                                                               in_mColumnOutletTypeName,
+                                                                                               in_mColumnObjectTypeName,
                                                                                                in_mRunAction,
                                                                                                in_mRegularBindingsGenerationList,
                                                                                                in_mActualParameterList COMMA_THERE)) ;
@@ -13785,7 +13785,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::setter_re
         outOperand0 = p->mObject.mProperty_mEditable ;
         outOperand1 = p->mObject.mProperty_mSorted ;
         outOperand2 = p->mObject.mProperty_mColumnName ;
-        outOperand3 = p->mObject.mProperty_mColumnOutletTypeName ;
+        outOperand3 = p->mObject.mProperty_mColumnObjectTypeName ;
         outOperand4 = p->mObject.mProperty_mRunAction ;
         outOperand5 = p->mObject.mProperty_mRegularBindingsGenerationList ;
         outOperand6 = p->mObject.mProperty_mActualParameterList ;
@@ -13838,7 +13838,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::setter_po
     outOperand0 = p->mObject.mProperty_mEditable ;
     outOperand1 = p->mObject.mProperty_mSorted ;
     outOperand2 = p->mObject.mProperty_mColumnName ;
-    outOperand3 = p->mObject.mProperty_mColumnOutletTypeName ;
+    outOperand3 = p->mObject.mProperty_mColumnObjectTypeName ;
     outOperand4 = p->mObject.mProperty_mRunAction ;
     outOperand5 = p->mObject.mProperty_mRegularBindingsGenerationList ;
     outOperand6 = p->mObject.mProperty_mActualParameterList ;
@@ -13872,7 +13872,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::setter_po
     outOperand0 = p->mObject.mProperty_mEditable ;
     outOperand1 = p->mObject.mProperty_mSorted ;
     outOperand2 = p->mObject.mProperty_mColumnName ;
-    outOperand3 = p->mObject.mProperty_mColumnOutletTypeName ;
+    outOperand3 = p->mObject.mProperty_mColumnObjectTypeName ;
     outOperand4 = p->mObject.mProperty_mRunAction ;
     outOperand5 = p->mObject.mProperty_mRegularBindingsGenerationList ;
     outOperand6 = p->mObject.mProperty_mActualParameterList ;
@@ -13906,7 +13906,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::method_fi
     outOperand0 = p->mObject.mProperty_mEditable ;
     outOperand1 = p->mObject.mProperty_mSorted ;
     outOperand2 = p->mObject.mProperty_mColumnName ;
-    outOperand3 = p->mObject.mProperty_mColumnOutletTypeName ;
+    outOperand3 = p->mObject.mProperty_mColumnObjectTypeName ;
     outOperand4 = p->mObject.mProperty_mRunAction ;
     outOperand5 = p->mObject.mProperty_mRegularBindingsGenerationList ;
     outOperand6 = p->mObject.mProperty_mActualParameterList ;
@@ -13940,7 +13940,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::method_la
     outOperand0 = p->mObject.mProperty_mEditable ;
     outOperand1 = p->mObject.mProperty_mSorted ;
     outOperand2 = p->mObject.mProperty_mColumnName ;
-    outOperand3 = p->mObject.mProperty_mColumnOutletTypeName ;
+    outOperand3 = p->mObject.mProperty_mColumnObjectTypeName ;
     outOperand4 = p->mObject.mProperty_mRunAction ;
     outOperand5 = p->mObject.mProperty_mRegularBindingsGenerationList ;
     outOperand6 = p->mObject.mProperty_mActualParameterList ;
@@ -14087,7 +14087,7 @@ GALGAS_string GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::setter_setMColumnOutletTypeNameAtIndex (GALGAS_string inOperand,
+void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::setter_setMColumnObjectTypeNameAtIndex (GALGAS_string inOperand,
                                                                                                                GALGAS_uint inIndex,
                                                                                                                C_Compiler * inCompiler
                                                                                                                COMMA_LOCATION_ARGS) {
@@ -14095,13 +14095,13 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::setter_se
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration) ;
     macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mColumnOutletTypeName = inOperand ;
+    p->mObject.mProperty_mColumnObjectTypeName = inOperand ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_string GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::getter_mColumnOutletTypeNameAtIndex (const GALGAS_uint & inIndex,
+GALGAS_string GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::getter_mColumnObjectTypeNameAtIndex (const GALGAS_uint & inIndex,
                                                                                                                      C_Compiler * inCompiler
                                                                                                                      COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
@@ -14109,7 +14109,7 @@ GALGAS_string GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::
   GALGAS_string result ;
   if (NULL != p) {
     macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration) ;
-    result = p->mObject.mProperty_mColumnOutletTypeName ;
+    result = p->mObject.mProperty_mColumnObjectTypeName ;
   }
   return result ;
 }
@@ -14246,10 +14246,10 @@ GALGAS_string cEnumerator_autoLayoutTableViewControllerBoundColumnListForGenerat
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_string cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration::current_mColumnOutletTypeName (LOCATION_ARGS) const {
+GALGAS_string cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration::current_mColumnObjectTypeName (LOCATION_ARGS) const {
   const cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration * p = (const cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration) ;
-  return p->mObject.mProperty_mColumnOutletTypeName ;
+  return p->mObject.mProperty_mColumnObjectTypeName ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

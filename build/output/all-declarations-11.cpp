@@ -276,6 +276,39 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
       "\n"
       "func compare_" ;
     result << in_TYPE.stringValue () ;
+    result << "_values (_ left : " ;
+    result << in_TYPE.stringValue () ;
+    result << ", _ inAscending : Bool, _ right : " ;
+    result << in_TYPE.stringValue () ;
+    result << ") -> ComparisonResult {\n" ;
+    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      result << "  let order = left." ;
+      result << in_COMPARISON_5F_METHOD.stringValue () ;
+      result << " (right)\n"
+        "  switch order {\n"
+        "  case .orderedAscending :\n"
+        "    return inAscending \? .orderedAscending : .orderedDescending\n"
+        "  case .orderedSame :\n"
+        "    return .orderedSame\n"
+        "  case .orderedDescending :\n"
+        "    return inAscending \? .orderedDescending : .orderedAscending\n"
+        "  }\n" ;
+    }else if (kBoolFalse == test_1) {
+      result << "  if left < right {\n"
+        "    return inAscending \? .orderedAscending : .orderedDescending\n"
+        "  }else if left > right {\n"
+        "    return inAscending \? .orderedDescending : .orderedAscending\n"
+        "  }else{\n"
+        "    return .orderedSame\n"
+        "  }\n" ;
+    }
+    result << "}\n"
+      "\n"
+      "//----------------------------------------------------------------------------------------------------------------------\n"
+      "\n"
+      "func compare_" ;
+    result << in_TYPE.stringValue () ;
     result << "_properties (_ left : EBReadOnlyProperty_" ;
     result << in_TYPE.stringValue () ;
     result << ", _ right : EBReadOnlyProperty_" ;
@@ -303,12 +336,12 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
       "    case .empty, .multiple :\n"
       "      return .orderedDescending\n"
       "    case .single (let otherValue) :\n" ;
-    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_1) {
+    const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_2) {
       result << "      return currentValue." ;
       result << in_COMPARISON_5F_METHOD.stringValue () ;
       result << " (otherValue)\n" ;
-    }else if (kBoolFalse == test_1) {
+    }else if (kBoolFalse == test_2) {
       result << "      if currentValue < otherValue {\n"
         "        return .orderedAscending\n"
         "      }else if currentValue > otherValue {\n"

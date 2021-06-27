@@ -145,7 +145,7 @@ private var gDebugObject : EBAllocationDebug? = nil
 
 //----------------------------------------------------------------------------------------------------------------------
 
-final class EBAllocationDebug : NSObject, NSWindowDelegate {
+final class EBAllocationDebug : EBObject, NSWindowDelegate, AutoLayoutTableViewDelegate {
 
   //····················································································································
   //   Properties
@@ -208,11 +208,18 @@ final class EBAllocationDebug : NSObject, NSWindowDelegate {
     .add (title: "Allocated Classes", withTag: 1)
     .add (title: "Differences with Snap Shot", withTag: 2)
 
-  fileprivate var mStatsTableView = InternalAutoLayoutTableView (small: true)
+  fileprivate var mStatsTableView = AutoLayoutTableView (small: true, addControlButtons: false)
 
   //····················································································································
   //    init
   //····················································································································
+
+//  final func addTextColumn (valueGetterDelegate inGetterDelegate : @escaping (_ inRow : Int) -> String?,
+//                            valueSetterDelegate inSetterDelegate : Optional < (_ inRow : Int, _ inNewValue : String) -> Void >,
+//                            sortDescriptor inSortDescriptor : NSSortDescriptor?,
+//                            title inTitle : String,
+//                            headerAlignment inHeaderAlignment : TextAlignment,
+//                            contentAlignment inContentAlignment : TextAlignment) -> Self {
 
    override init () {
      super.init ()
@@ -225,39 +232,55 @@ final class EBAllocationDebug : NSObject, NSWindowDelegate {
      _ = self.mPerformSnapShotButton.bind_run (target: self, selector: #selector (Self.performSnapShotAction (_:)))
      _ = self.mFilterPopUpButton.bind_selectedTag (self.mAllocationStatsDisplayFilterIndex)
   //--- Configure table view
-    _ = self.mStatsTableView.addTextObserverColumn (
+    self.mStatsTableView.configure (
+      allowsEmptySelection: false,
+      allowsMultipleSelection: false,
+      delegate: self
+    )
+    self.mStatsTableView.addTextColumn (
+      valueGetterDelegate: { [weak self] in return self?.mAllocationStatsDataSource [$0].className ?? "" },
+      valueSetterDelegate: nil,
+      sortDelegate: { [weak self] (ascending) in
+        self?.mAllocationStatsDataSource.sort { ascending ? ($0.className < $1.className) : ($0.className > $1.className) }
+      },
       title: "Class Name",
-      sort: { [weak self] (_ inAscending : Bool) in self?.mAllocationStatsDataSource.sort () { String.numericCompare ($0.className, inAscending, $1.className) } },
       headerAlignment: .center,
-      contentAlignment: .left,
-      valueDelegate: { [weak self] in return self?.mAllocationStatsDataSource [$0].className ?? "" }
+      contentAlignment: .left
     )
-    .addIntObserverColumn (
+    self.mStatsTableView.addIntColumn (
+      valueGetterDelegate: { [weak self] in return self?.mAllocationStatsDataSource [$0].snapShot ?? -1 },
+      valueSetterDelegate: nil,
+      sortDelegate: { [weak self] (ascending) in
+        self?.mAllocationStatsDataSource.sort { ascending ? ($0.snapShot < $1.snapShot) : ($0.snapShot > $1.snapShot) }
+      },
       title: "Snap Shot",
-      sort: { [weak self] (_ inAscending : Bool) in self?.mAllocationStatsDataSource.sort () { inAscending ? ($0.snapShot < $1.snapShot) : ($0.snapShot > $1.snapShot) } },
       headerAlignment: .center,
-      contentAlignment: .right,
-      valueDelegate: { [weak self] in return self?.mAllocationStatsDataSource [$0].snapShot ?? -1 }
+      contentAlignment: .right
     )
-    .addIntObserverColumn (
+    self.mStatsTableView.addIntColumn (
+      valueGetterDelegate: { [weak self] in return self?.mAllocationStatsDataSource [$0].live ?? -1 },
+      valueSetterDelegate: nil,
+      sortDelegate: { [weak self] (ascending) in
+        self?.mAllocationStatsDataSource.sort { ascending ? ($0.live < $1.live) : ($0.live > $1.live) }
+      },
       title: "Live",
-      sort: { [weak self] (_ inAscending : Bool) in self?.mAllocationStatsDataSource.sort () { inAscending ? ($0.live < $1.live) : ($0.live > $1.live) } },
       headerAlignment: .center,
-      contentAlignment: .right,
-      valueDelegate: { [weak self] in return self?.mAllocationStatsDataSource [$0].live ?? -1 }
+      contentAlignment: .right
     )
-    .addIntObserverColumn (
+    self.mStatsTableView.addIntColumn (
+      valueGetterDelegate: { [weak self] in return self?.mAllocationStatsDataSource [$0].allCount ?? -1 },
+      valueSetterDelegate: nil,
+      sortDelegate: { [weak self] (ascending) in
+        self?.mAllocationStatsDataSource.sort { ascending ? ($0.allCount < $1.allCount) : ($0.allCount > $1.allCount) }
+      },
       title: "Total",
-      sort: { [weak self] (_ inAscending : Bool) in self?.mAllocationStatsDataSource.sort () { inAscending ? ($0.allCount < $1.allCount) : ($0.allCount > $1.allCount) } },
       headerAlignment: .center,
-      contentAlignment: .right,
-      valueDelegate: { [weak self] in return self?.mAllocationStatsDataSource [$0].allCount ?? -1 }
+      contentAlignment: .right
     )
-    .setRowCountDelegate { [weak self] in return self?.mAllocationStatsDataSource.count ?? 0 }
    //--- Configure Window
      self.mAllocationStatsWindow.title = "Allocation Stats"
      self.mAllocationStatsWindow.isReleasedWhenClosed = false // Close button just hides the window, but do not release it
-     self.mAllocationStatsWindow.delegate = self //--- will call windowDidBecomeKey: and windowWillClose:
+     self.mAllocationStatsWindow.delegate = self // Will call windowDidBecomeKey: and windowWillClose:
    //--- Build window contents
       let mainVStack = AutoLayoutVerticalStackView ()
       do {
@@ -419,8 +442,47 @@ final class EBAllocationDebug : NSObject, NSWindowDelegate {
       self.mTotalAllocated.setProp (totalObjectCount)
     //---
       self.mAllocationStatsDataSource = array
-      self.mStatsTableView.reloadData () // Will sort mAllocationStatsDataSource
+      self.mStatsTableView.sortAndReloadData () // Will sort mAllocationStatsDataSource
     }
+  }
+
+  //····················································································································
+  //   IMPLEMENTATION OF AutoLayoutTableViewDelegate
+  //····················································································································
+
+  func rowCount() -> Int {
+    return self.mAllocationStatsDataSource.count
+  }
+
+  //····················································································································
+
+  func tableViewSelectionDidChange (selectedRows inSelectedRows: IndexSet) {
+  }
+
+  //····················································································································
+
+  func indexesOfSelectedObjects () -> IndexSet {
+    return .init ()
+  }
+
+  //····················································································································
+
+  func addEntry () {
+  }
+
+  //····················································································································
+
+  func removeSelectedEntries () {
+  }
+
+  //····················································································································
+
+  func beginSorting () {
+  }
+
+  //····················································································································
+
+  func endSorting () {
   }
 
   //····················································································································

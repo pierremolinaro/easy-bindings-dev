@@ -418,41 +418,27 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
         end
       end
     end
+    [propertyMap searchKey
+      !propertyName
+      ?let propertyKind
+      ?2*
+    ]
   #--- Sorted ?
     if sorted then
-      [propertyMap searchKey
-        !propertyName
-        ?let sortPropertyKind
-        ?2*
-      ]
-      if not [sortPropertyKind isComparable] then
+      if not [propertyKind isComparable] then
         error propertyName : "this property is not comparable"
       end 
       arrayControllerSortedColumnListForGeneration +=    
         !propertyName.string
-        !sortPropertyKind
+        !propertyKind
         !propertyName.string
     end
-#    if mSortPropertyName.string != "" then
-#      [propertyMap searchKey
-#        !mSortPropertyName
-#        ?let sortPropertyKind
-#        ?2*
-#      ]
-#      if not [sortPropertyKind isComparable] then
-#        error mSortPropertyName : "this property is not comparable"
-#      end 
-#      arrayControllerSortedColumnListForGeneration +=    
-#        !mColumnName.string
-#        !sortPropertyKind
-#        !mSortPropertyName.string
-#    end
   #-------- Column generation
     arrayControllerBoundColumnListForGeneration +=
       !editable
       !sorted
       !propertyName.string
-      !columnOutletTypeName.string
+      ![propertyKind swiftTypeName] # columnOutletTypeName.string
       !columnBindings.mRunActionName.string
       !regularBindingsGenerationList
       !actualParameterList
@@ -570,7 +556,7 @@ list @autoLayoutTableViewControllerBoundColumnListForGeneration {
   @bool mEditable
   @bool mSorted
   @string mColumnName
-  @string mColumnOutletTypeName
+  @string mColumnObjectTypeName
   @string mRunAction # Empty string if no action
   @regularBindingsGenerationList mRegularBindingsGenerationList
   @2stringlist mActualParameterList

@@ -6140,7 +6140,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                   const class GALGAS_bool & in_mEditable,
                                                   const class GALGAS_bool & in_mSorted,
                                                   const class GALGAS_string & in_mColumnName,
-                                                  const class GALGAS_string & in_mColumnOutletTypeName,
+                                                  const class GALGAS_string & in_mColumnObjectTypeName,
                                                   const class GALGAS_string & in_mRunAction,
                                                   const class GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                                   const class GALGAS__32_stringlist & in_mActualParameterList
@@ -6245,7 +6245,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMColumnOutletTypeNameAtIndex (class GALGAS_string constinArgument0,
+  public : VIRTUAL_IN_DEBUG void setter_setMColumnObjectTypeNameAtIndex (class GALGAS_string constinArgument0,
                                                                          class GALGAS_uint constinArgument1,
                                                                          C_Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
@@ -6303,7 +6303,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnOutletTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnObjectTypeNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                      C_Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const ;
 
@@ -6358,7 +6358,7 @@ class cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration : pu
   public : class GALGAS_bool current_mEditable (LOCATION_ARGS) const ;
   public : class GALGAS_bool current_mSorted (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mColumnName (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mColumnOutletTypeName (LOCATION_ARGS) const ;
+  public : class GALGAS_string current_mColumnObjectTypeName (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mRunAction (LOCATION_ARGS) const ;
   public : class GALGAS_regularBindingsGenerationList current_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
   public : class GALGAS__32_stringlist current_mActualParameterList (LOCATION_ARGS) const ;
@@ -6384,7 +6384,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_elemen
 
   public : GALGAS_string mProperty_mColumnName ;
 
-  public : GALGAS_string mProperty_mColumnOutletTypeName ;
+  public : GALGAS_string mProperty_mColumnObjectTypeName ;
 
   public : GALGAS_string mProperty_mRunAction ;
 
@@ -6409,7 +6409,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_elemen
   public : GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element (const GALGAS_bool & in_mEditable,
                                                                                         const GALGAS_bool & in_mSorted,
                                                                                         const GALGAS_string & in_mColumnName,
-                                                                                        const GALGAS_string & in_mColumnOutletTypeName,
+                                                                                        const GALGAS_string & in_mColumnObjectTypeName,
                                                                                         const GALGAS_string & in_mRunAction,
                                                                                         const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
                                                                                         const GALGAS__32_stringlist & in_mActualParameterList) ;
@@ -6450,7 +6450,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_elemen
 
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnName (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnOutletTypeName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mColumnObjectTypeName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mEditable (LOCATION_ARGS) const ;
 

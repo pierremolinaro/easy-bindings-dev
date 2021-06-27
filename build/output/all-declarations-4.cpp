@@ -14218,7 +14218,7 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::GAL
 mProperty_mEditable (),
 mProperty_mSorted (),
 mProperty_mColumnName (),
-mProperty_mColumnOutletTypeName (),
+mProperty_mColumnObjectTypeName (),
 mProperty_mRunAction (),
 mProperty_mRegularBindingsGenerationList (),
 mProperty_mActualParameterList () {
@@ -14241,7 +14241,7 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::GAL
 mProperty_mEditable (inOperand0),
 mProperty_mSorted (inOperand1),
 mProperty_mColumnName (inOperand2),
-mProperty_mColumnOutletTypeName (inOperand3),
+mProperty_mColumnObjectTypeName (inOperand3),
 mProperty_mRunAction (inOperand4),
 mProperty_mRegularBindingsGenerationList (inOperand5),
 mProperty_mActualParameterList (inOperand6) {
@@ -14290,7 +14290,7 @@ typeComparisonResult GALGAS_autoLayoutTableViewControllerBoundColumnListForGener
     result = mProperty_mColumnName.objectCompare (inOperand.mProperty_mColumnName) ;
   }
   if (result == kOperandEqual) {
-    result = mProperty_mColumnOutletTypeName.objectCompare (inOperand.mProperty_mColumnOutletTypeName) ;
+    result = mProperty_mColumnObjectTypeName.objectCompare (inOperand.mProperty_mColumnObjectTypeName) ;
   }
   if (result == kOperandEqual) {
     result = mProperty_mRunAction.objectCompare (inOperand.mProperty_mRunAction) ;
@@ -14307,7 +14307,7 @@ typeComparisonResult GALGAS_autoLayoutTableViewControllerBoundColumnListForGener
 //----------------------------------------------------------------------------------------------------------------------
 
 bool GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::isValid (void) const {
-  return mProperty_mEditable.isValid () && mProperty_mSorted.isValid () && mProperty_mColumnName.isValid () && mProperty_mColumnOutletTypeName.isValid () && mProperty_mRunAction.isValid () && mProperty_mRegularBindingsGenerationList.isValid () && mProperty_mActualParameterList.isValid () ;
+  return mProperty_mEditable.isValid () && mProperty_mSorted.isValid () && mProperty_mColumnName.isValid () && mProperty_mColumnObjectTypeName.isValid () && mProperty_mRunAction.isValid () && mProperty_mRegularBindingsGenerationList.isValid () && mProperty_mActualParameterList.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14316,7 +14316,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element
   mProperty_mEditable.drop () ;
   mProperty_mSorted.drop () ;
   mProperty_mColumnName.drop () ;
-  mProperty_mColumnOutletTypeName.drop () ;
+  mProperty_mColumnObjectTypeName.drop () ;
   mProperty_mRunAction.drop () ;
   mProperty_mRegularBindingsGenerationList.drop () ;
   mProperty_mActualParameterList.drop () ;
@@ -14336,7 +14336,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element
     ioString << ", " ;
     mProperty_mColumnName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
-    mProperty_mColumnOutletTypeName.description (ioString, inIndentation+1) ;
+    mProperty_mColumnObjectTypeName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mRunAction.description (ioString, inIndentation+1) ;
     ioString << ", " ;
@@ -14367,8 +14367,8 @@ GALGAS_string GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_string GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::getter_mColumnOutletTypeName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mColumnOutletTypeName ;
+GALGAS_string GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::getter_mColumnObjectTypeName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mColumnObjectTypeName ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

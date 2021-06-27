@@ -38,33 +38,13 @@ end
 
   //····················································································································
 
-  private var mSortDescriptorArray = [NSSortDescriptor] ()
+  private var mSortDescriptorArray = [(%!ELEMENT_TYPE_NAME%, %!ELEMENT_TYPE_NAME%) -> ComparisonResult] ()
 
   //····················································································································
   //    Model
   //····················································································································
 
   private var mModel : %!MODEL_TYPE_NAME%? = nil
-
-  //····················································································································
-
-/*   var objects : [%!ELEMENT_TYPE_NAME%] {
-    if let objects = self.mModel?.propval {
-      return objects
-    }else{
-      return []
-    }
-  } */
-
-  //····················································································································
-
-/*  var objectCount : Int {
-    if let objects = self.mModel?.propval {
-      return objects.count
-    }else{
-      return 0
-    }
-  } */
 
   //····················································································································
 
@@ -89,7 +69,6 @@ end
 end
 %      }
     )
-//    inModel.attachClient (self)
   }
 
 %
@@ -98,28 +77,10 @@ if [SORTED_COLUMNS length] > 0 then
 
   final func isOrderedBefore (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) -> Bool {
     var order = ComparisonResult.orderedSame
-    for sortDescriptor in self.mSortDescriptorArray {\n%
-for () in SORTED_COLUMNS
-  before
-  %      %
-  do
-  %if sortDescriptor.key == "%!mColumnName%" {\n%
-  %        order = compare_%![mSortPropertyKind swiftTypeName]%_properties (left.%!mObservablePropertyForSorting%_property, right.%!mObservablePropertyForSorting%_property)\n%
-  between
-  %      }else %
-  after
-  %      }\n%
-end
-%      // Swift.print ("key \(sortDescriptor.key), ascending \(sortDescriptor.ascending), order \(order.rawValue)")
-      if !sortDescriptor.ascending {
-        switch order {
-        case .orderedAscending : order = .orderedDescending
-        case .orderedSame : ()
-        case .orderedDescending : order = .orderedAscending
-        }
-      }
+    for sortDescriptor in self.mSortDescriptorArray {
+      order = sortDescriptor (left, right)
       if order != .orderedSame {
-        break // Exit from for
+        break // Exit from for loop
       }
     }
     return order == .orderedAscending
@@ -130,31 +91,9 @@ end
 
   final func unbind_model () {
     self.sortedArray_property.resetDataProvider ()
-//    self.mModel?.detachClient (self)
-  //---
     self.mModel = nil
     self.mUndoManager = nil
  }
-
-  //····················································································································
-  //    Observing model change
-  //····················································································································
-
-/*  override func notifyModelDidChange () {
-    super.notifyModelDidChange ()
- //   NSLog ("self.sortedArray \(self.sortedArray.count)")
-//    let oldSelectionSet = self.selectedSet
-//    var newSelectedArray = [%!ELEMENT_TYPE_NAME%] ()
-//    for object in self.sortedArray {
-//      if oldSelectionSet.contains (object) {
-//        newSelectedArray.append (object)
-//      }
-//    }
-//    self.mInternalSelectedArrayProperty.setProp (newSelectedArray)
-    for tableView in self.mTableViewArray {
-      tableView.reloadData ()
-    }
-  } */
 
   //····················································································································
   //   Selected Array
@@ -221,24 +160,27 @@ end
     )
 %for () in BOUND_COLUMNS do
 %  //--- Configure '%!mColumnName%' column
-    _ = inTableView.addTextColumn (valueGetterDelegate: { [weak self] in return self?.sortedArray [$0].%!mColumnName% },
-                                   valueSetterDelegate: %
+    inTableView.addTextColumn (
+      valueGetterDelegate: { [weak self] in return self?.sortedArray [$0].%!mColumnName% },
+      valueSetterDelegate: %
   if mEditable then
    %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray [inRowIndex].name = inNewValue }%
   else
     %nil%
   end
 %,
-                                   sortDescriptor: %
+      sortDelegate: %
 if mSorted then 
-  %NSSortDescriptor (key: "%!mColumnName%", ascending: true)%
+%{ [weak self] (ascending) in
+        self?.mSortDescriptorArray.append ({ (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) in return compare_%!mColumnObjectTypeName%_values (left.name, ascending, right.name) })
+      }%
 else
   %nil%
 end
 %,
 %
 for () in mActualParameterList
-  do %                                   %!mValue0%: %!mValue1%%
+  do %      %!mValue0%: %!mValue1%%
   between %,\n%
 end
 %
@@ -246,7 +188,7 @@ end
     self.mModel?.addEBObserverOf_%!mColumnName% (self.mColumnObserver_%!mColumnName%)
     self.mColumnObserver_%!mColumnName%.mEventCallBack = { [weak self] in
       for tableView in self?.mTableViewArray ?? [] {
-        tableView.reloadData ()
+        tableView.sortAndReloadData ()
       }
     }
 %
@@ -254,7 +196,7 @@ end
 %  //---
     self.mTableViewArray.append (inTableView)
   //---
-    inTableView.reloadData ()
+    inTableView.sortAndReloadData ()
   }
 
   //····················································································································
@@ -314,14 +256,6 @@ case entityArray :
       }
       self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
     }
-  }
-
-  //····················································································································
-
-  final func sortDescriptorsDidChangeTo (_ inSortDescriptors : [NSSortDescriptor]) {
-    self.mSortDescriptorArray = inSortDescriptors
- //   self.sortedArray_property.notifyModelDidChange ()
-    self.mModel?.notifyModelDidChange ()
   }
 
   //····················································································································
@@ -443,6 +377,18 @@ case entityArray :
     }
   }
 %end%
+  //····················································································································
+
+  func beginSorting () {
+    self.mSortDescriptorArray.removeAll ()
+  }
+
+  //····················································································································
+
+  func endSorting () {
+    self.sortedArray_property.notifyModelDidChange ()
+  }
+
   //····················································································································
 
 }
