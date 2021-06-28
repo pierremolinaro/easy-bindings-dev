@@ -221,8 +221,8 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_separator = "the
 //--- Syntax error message for terminal '$signature$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_signature = "the 'signature' keyword" ;
 
-//--- Syntax error message for terminal '$sort$' :
-static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_sort = "the 'sort' keyword" ;
+//--- Syntax error message for terminal '$sortkey$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_sortkey = "the 'sortkey' keyword" ;
 
 //--- Syntax error message for terminal '$space$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_space = "the 'space' keyword" ;
@@ -415,7 +415,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_self,
         gSyntaxErrorMessage_easyBindings_5F_lexique_separator,
         gSyntaxErrorMessage_easyBindings_5F_lexique_signature,
-        gSyntaxErrorMessage_easyBindings_5F_lexique_sort,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_sortkey,
         gSyntaxErrorMessage_easyBindings_5F_lexique_space,
         gSyntaxErrorMessage_easyBindings_5F_lexique_stackView,
         gSyntaxErrorMessage_easyBindings_5F_lexique_stackViewRef,
@@ -1194,12 +1194,15 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_signature [] = {
   TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$sort$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_sort [] = {
+//--- Unicode string for '$sortkey$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique_sortkey [] = {
   TO_UNICODE ('s'),
   TO_UNICODE ('o'),
   TO_UNICODE ('r'),
   TO_UNICODE ('t'),
+  TO_UNICODE ('k'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('y'),
   TO_UNICODE (0)
 } ;
 
@@ -1520,7 +1523,6 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_none, 4, C_Lexique_easyBindings_5F_lexique::kToken_none),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_root, 4, C_Lexique_easyBindings_5F_lexique::kToken_root),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_self, 4, C_Lexique_easyBindings_5F_lexique::kToken_self),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_sort, 4, C_Lexique_easyBindings_5F_lexique::kToken_sort),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_view, 4, C_Lexique_easyBindings_5F_lexique::kToken_view),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_class, 5, C_Lexique_easyBindings_5F_lexique::kToken_class),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_prefs, 5, C_Lexique_easyBindings_5F_lexique::kToken_prefs),
@@ -1544,6 +1546,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_include, 7, C_Lexique_easyBindings_5F_lexique::kToken_include),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_inverse, 7, C_Lexique_easyBindings_5F_lexique::kToken_inverse),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_mainxib, 7, C_Lexique_easyBindings_5F_lexique::kToken_mainxib),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_sortkey, 7, C_Lexique_easyBindings_5F_lexique::kToken_sortkey),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_version, 7, C_Lexique_easyBindings_5F_lexique::kToken_version),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_abstract, 8, C_Lexique_easyBindings_5F_lexique::kToken_abstract),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_calledBy, 8, C_Lexique_easyBindings_5F_lexique::kToken_calledBy),
@@ -1884,9 +1887,9 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString ("signature") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
-    case kToken_sort:
+    case kToken_sortkey:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendCString ("sort") ;
+      s.appendCString ("sortkey") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_space:
@@ -2489,7 +2492,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("self") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("separator") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("signature") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("sort") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("sortkey") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("space") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("stackView") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("stackViewRef") COMMA_THERE) ;
@@ -2586,7 +2589,6 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("none") ;
     ioList.appendObject ("root") ;
     ioList.appendObject ("self") ;
-    ioList.appendObject ("sort") ;
     ioList.appendObject ("view") ;
     ioList.appendObject ("class") ;
     ioList.appendObject ("prefs") ;
@@ -2610,6 +2612,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("include") ;
     ioList.appendObject ("inverse") ;
     ioList.appendObject ("mainxib") ;
+    ioList.appendObject ("sortkey") ;
     ioList.appendObject ("version") ;
     ioList.appendObject ("abstract") ;
     ioList.appendObject ("calledBy") ;
@@ -2714,7 +2717,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_self */,
     1 /* easyBindings_lexique_1_separator */,
     1 /* easyBindings_lexique_1_signature */,
-    1 /* easyBindings_lexique_1_sort */,
+    1 /* easyBindings_lexique_1_sortkey */,
     1 /* easyBindings_lexique_1_space */,
     1 /* easyBindings_lexique_1_stackView */,
     1 /* easyBindings_lexique_1_stackViewRef */,

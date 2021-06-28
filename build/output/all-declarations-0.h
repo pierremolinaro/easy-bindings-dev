@@ -115,7 +115,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_self,
    kToken_separator,
    kToken_signature,
-   kToken_sort,
+   kToken_sortkey,
    kToken_space,
    kToken_stackView,
    kToken_stackViewRef,

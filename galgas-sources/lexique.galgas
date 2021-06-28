@@ -56,7 +56,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "self",
   "separator",
   "signature",
-  "sort",
+  "sortkey",
   "space",
   "stackView",
   "stackViewRef",

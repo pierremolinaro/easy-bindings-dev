@@ -5,20 +5,20 @@
 list @autoLayoutTableViewControllerBoundColumnListAST {
   @bool mEditable
   @lstring mPropertyName
-  @lstring mColumnOutletTypeName
-  @autoLayoutTableViewColumnBindingAST mColumnBindingAST
+#  @lstring mColumnOutletTypeName
+#  @autoLayoutTableViewColumnBindingAST mColumnBindingAST
   @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
-  @bool mSorted
+  @lstring mSortPropertyName
 }
 
 #·······················································································································
 
-struct @autoLayoutTableViewColumnBindingAST {
-  @lstring mRunActionName # Empty string if no run binding
-  @multipleBindingDescriptor mEnabledBindingDescriptor
-  @multipleBindingDescriptor mHiddenBindingDescriptor
-  @regularBindingList mRegularBindingList
-}
+#struct @autoLayoutTableViewColumnBindingAST {
+#  @lstring mRunActionName # Empty string if no run binding
+#  @multipleBindingDescriptor mEnabledBindingDescriptor
+#  @multipleBindingDescriptor mHiddenBindingDescriptor
+#  @regularBindingList mRegularBindingList
+#}
 
 #·······················································································································
 
@@ -107,13 +107,6 @@ syntax extension easyBindings_syntax {
       ${$
       repeat
       while
-        @bool sortedColumn
-        select
-          sortedColumn = false
-        or
-          $sort$
-          sortedColumn = true
-        end
         @bool editableColumn
         select
           $column$
@@ -124,17 +117,24 @@ syntax extension easyBindings_syntax {
         end
         $identifier$ ?let propertyName
         <view_actual_parameter_list> ?let columnParameterListAST
-        $Identifier$ ?let columnOutletTypeName
-        ${$
-        <auto_layout_column_bindings> ?let @autoLayoutTableViewColumnBindingAST columnBindingAST
-        $}$
+        @lstring sortPropertyName
+        select
+          sortPropertyName = ["" nowhere]
+        or
+          $sortkey$
+          $identifier$ ?sortPropertyName
+        end
+#        $Identifier$ ?let columnOutletTypeName
+#        ${$
+#        <auto_layout_column_bindings> ?let @autoLayoutTableViewColumnBindingAST columnBindingAST
+#        $}$
         arrayControllerBoundColumnListAST +=
           !editableColumn
           !propertyName
-          !columnOutletTypeName
-          !columnBindingAST
+#          !columnOutletTypeName
+#          !columnBindingAST
           !columnParameterListAST
-          !sortedColumn
+          !sortPropertyName
       end
       $}$
     end
@@ -151,58 +151,58 @@ syntax extension easyBindings_syntax {
 
 #·······················································································································
 
-  rule <auto_layout_column_bindings> !@autoLayoutTableViewColumnBindingAST outColumnBindingAST {
-    @lstring runActionDescriptor = ["" nowhere]
-    var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
-    var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
-    @regularBindingList regularBindingList = {}
-    repeat
-    while
-      $run$
-      if runActionDescriptor.string != "" then
-        error .here : "duplicated $run binding"
-      end
-      $identifier$ ?runActionDescriptor
-  #--- Enabled
-    while
-      $enabled$
-      if enabledBindingDescriptor != .noBinding then
-        error .here : "duplicated $enabled binding"
-      end
-      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
-      enabledBindingDescriptor = .binding {!expression:bindingExpression}
-  #--- Hidden
-    while
-      $hidden$
-      if hiddenBindingDescriptor != .noBinding then
-        error .here : "duplicated $hidden binding"
-      end
-      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
-      hiddenBindingDescriptor = .binding {!expression:bindingExpression}
-  #--- Regular binding
-    while
-      $bindingName$ ?let @lstring bindingName
-      @observablePropertyList observablePropertyList = {}
-      repeat
-        <observable_property> ?let @observablePropertyAST observableProperty
-        observablePropertyList += !observableProperty
-      while
-        $,$
-      end
-      <binding_option_list> ?let bindingOptions
-      regularBindingList +=
-        !bindingName
-        !observablePropertyList
-        !bindingOptions
-    end
-  #---
-    outColumnBindingAST = @autoLayoutTableViewColumnBindingAST.new {
-      !runActionDescriptor
-      !enabledBindingDescriptor
-      !hiddenBindingDescriptor
-      !regularBindingList
-    }
-  }
+#  rule <auto_layout_column_bindings> !@autoLayoutTableViewColumnBindingAST outColumnBindingAST {
+#    @lstring runActionDescriptor = ["" nowhere]
+#    var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
+#    var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
+#    @regularBindingList regularBindingList = {}
+#    repeat
+#    while
+#      $run$
+#      if runActionDescriptor.string != "" then
+#        error .here : "duplicated $run binding"
+#      end
+#      $identifier$ ?runActionDescriptor
+#  #--- Enabled
+#    while
+#      $enabled$
+#      if enabledBindingDescriptor != .noBinding then
+#        error .here : "duplicated $enabled binding"
+#      end
+#      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+#      enabledBindingDescriptor = .binding {!expression:bindingExpression}
+#  #--- Hidden
+#    while
+#      $hidden$
+#      if hiddenBindingDescriptor != .noBinding then
+#        error .here : "duplicated $hidden binding"
+#      end
+#      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+#      hiddenBindingDescriptor = .binding {!expression:bindingExpression}
+#  #--- Regular binding
+#    while
+#      $bindingName$ ?let @lstring bindingName
+#      @observablePropertyList observablePropertyList = {}
+#      repeat
+#        <observable_property> ?let @observablePropertyAST observableProperty
+#        observablePropertyList += !observableProperty
+#      while
+#        $,$
+#      end
+#      <binding_option_list> ?let bindingOptions
+#      regularBindingList +=
+#        !bindingName
+#        !observablePropertyList
+#        !bindingOptions
+#    end
+#  #---
+#    outColumnBindingAST = @autoLayoutTableViewColumnBindingAST.new {
+#      !runActionDescriptor
+#      !enabledBindingDescriptor
+#      !hiddenBindingDescriptor
+#      !regularBindingList
+#    }
+#  }
   
   #·····················································································································
 
@@ -364,30 +364,30 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
   end
   @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
   @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
-  for (editable propertyName columnOutletTypeName columnBindings columnParameterList sorted) in self.mTableViewControllerBoundColumnListAST do
+  for (editable propertyName columnParameterList sortPropertyName) in self.mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
-    if columnBindings.mRunActionName.string != "" then
-      [actionMap searchKey !columnBindings.mRunActionName]
-    end
+#    if columnBindings.mRunActionName.string != "" then
+#      [actionMap searchKey !columnBindings.mRunActionName]
+#    end
   #-------- Simple bindings
-    [ioSemanticContext.mClassMap searchKey
-      !.new {!preferencesName () !.nowhere}
-      ?*
-      ?let preferencesPropertyMap
-      ?2*
-    ]
-    @regularBindingsGenerationList regularBindingsGenerationList = {}
-    analyzeRegularBinding (
-      !{} # No root observable property map
-      !preferencesPropertyMap
-      !ioSemanticContext
-      !propertyMap
-      !columnOutletTypeName
-      !"<<not used>>"
-      !columnBindings.mRegularBindingList
-      !"object."
-      !?regularBindingsGenerationList
-    )
+#    [ioSemanticContext.mClassMap searchKey
+#      !.new {!preferencesName () !.nowhere}
+#      ?*
+#      ?let preferencesPropertyMap
+#      ?2*
+#    ]
+#    @regularBindingsGenerationList regularBindingsGenerationList = {}
+#    analyzeRegularBinding (
+#      !{} # No root observable property map
+#      !preferencesPropertyMap
+#      !ioSemanticContext
+#      !propertyMap
+#      !columnOutletTypeName
+#      !"<<not used>>"
+#      !columnBindings.mRegularBindingList
+#      !"object."
+#      !?regularBindingsGenerationList
+#    )
   #-------- Arguments
     @autoLayoutClassParameterList formalArgumentList = {}
     formalArgumentList += !["title" nowhere] !.typeString
@@ -418,35 +418,40 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
         end
       end
     end
+  #--- Sorted ?
+    if sortPropertyName.string != "" then
+      [propertyMap searchKey
+        !sortPropertyName
+        ?let sortPropertyKind
+        ?2*
+      ]
+      if not [sortPropertyKind isComparable] then
+        error sortPropertyName : "this property is not comparable"
+      end 
+      arrayControllerSortedColumnListForGeneration +=    
+        !propertyName.string
+        !sortPropertyKind
+        !sortPropertyName.string
+    end
+  #-------- Column generation
     [propertyMap searchKey
       !propertyName
       ?let propertyKind
       ?2*
     ]
-  #--- Sorted ?
-    if sorted then
-      if not [propertyKind isComparable] then
-        error propertyName : "this property is not comparable"
-      end 
-      arrayControllerSortedColumnListForGeneration +=    
-        !propertyName.string
-        !propertyKind
-        !propertyName.string
-    end
-  #-------- Column generation
     arrayControllerBoundColumnListForGeneration +=
       !editable
-      !sorted
+      !sortPropertyName.string
       !propertyName.string
       ![propertyKind swiftTypeName] # columnOutletTypeName.string
-      !columnBindings.mRunActionName.string
-      !regularBindingsGenerationList
+      !"" # columnBindings.mRunActionName.string
+#      !regularBindingsGenerationList
       !actualParameterList
   #--- Outlet class is needed ?
-    [ioSemanticContext.mOutletClassMap searchKey !columnOutletTypeName ?6* ?let outletClassIsUserDefined]
-    if not outletClassIsUserDefined then
-      ioGeneration.mNeededOutletClasses += !columnOutletTypeName.string
-    end
+#    [ioSemanticContext.mOutletClassMap searchKey !columnOutletTypeName ?6* ?let outletClassIsUserDefined]
+#    if not outletClassIsUserDefined then
+#      ioGeneration.mNeededOutletClasses += !columnOutletTypeName.string
+#    end
   end
   let modelString = if self.mIsRoot
     then "self.rootObject." + self.mToManyPropertyName + "_property"
@@ -554,11 +559,11 @@ class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
 
 list @autoLayoutTableViewControllerBoundColumnListForGeneration {
   @bool mEditable
-  @bool mSorted
-  @string mColumnName
+  @string mSortPropertyName
+  @string mDisplayedPropertyName
   @string mColumnObjectTypeName
   @string mRunAction # Empty string if no action
-  @regularBindingsGenerationList mRegularBindingsGenerationList
+#  @regularBindingsGenerationList mRegularBindingsGenerationList
   @2stringlist mActualParameterList
 }
 

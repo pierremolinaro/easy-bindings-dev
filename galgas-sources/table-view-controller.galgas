@@ -110,7 +110,7 @@ syntax extension easyBindings_syntax {
         select
           sortPropertyName = ["" nowhere]
         or
-          $sort$
+          $sortkey$
           $identifier$ ?sortPropertyName
         end
         $Identifier$ ?let columnOutletTypeName

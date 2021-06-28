@@ -147,7 +147,7 @@ if [SORTED_COLUMNS length] > 0 then
   private var mTableViewArray = [AutoLayoutTableView] ()
 %
 for () in BOUND_COLUMNS do
-  %  private var mColumnObserver_%!mColumnName% = EBOutletEvent ()\n%
+  %  private var mColumnObserver_%!mDisplayedPropertyName% = EBOutletEvent ()\n%
 end
 %
   //····················································································································
@@ -159,9 +159,9 @@ end
       delegate: self
     )
 %for () in BOUND_COLUMNS do
-%  //--- Configure '%!mColumnName%' column
-    inTableView.addTextColumn (
-      valueGetterDelegate: { [weak self] in return self?.sortedArray [$0].%!mColumnName% },
+%  //--- Configure '%!mDisplayedPropertyName%' column
+    inTableView.addColumn_%!mColumnObjectTypeName% (
+      valueGetterDelegate: { [weak self] in return self?.sortedArray [$0].%!mDisplayedPropertyName% },
       valueSetterDelegate: %
   if mEditable then
    %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray [inRowIndex].name = inNewValue }%
@@ -170,9 +170,9 @@ end
   end
 %,
       sortDelegate: %
-if mSorted then 
+if mSortPropertyName != "" then 
 %{ [weak self] (ascending) in
-        self?.mSortDescriptorArray.append ({ (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) in return compare_%!mColumnObjectTypeName%_properties (left.%!mColumnName%_property, ascending, right.%!mColumnName%_property) })
+        self?.mSortDescriptorArray.append ({ (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) in return compare_%!mColumnObjectTypeName%_properties (left.%!mSortPropertyName%_property, ascending, right.%!mSortPropertyName%_property) })
       }%
 else
   %nil%
@@ -185,8 +185,12 @@ for () in mActualParameterList
 end
 %
     )
-    self.mModel?.addEBObserverOf_%!mColumnName% (self.mColumnObserver_%!mColumnName%)
-    self.mColumnObserver_%!mColumnName%.mEventCallBack = { [weak self] in
+    self.mModel?.addEBObserverOf_%!mDisplayedPropertyName% (self.mColumnObserver_%!mDisplayedPropertyName%)
+%
+if (mSortPropertyName != "") & (mSortPropertyName != mDisplayedPropertyName) then
+  %    self.mModel?.addEBObserverOf_%!mSortPropertyName% (self.mColumnObserver_%!mDisplayedPropertyName%)\n%
+end
+%    self.mColumnObserver_%!mDisplayedPropertyName%.mEventCallBack = { [weak self] in
       for tableView in self?.mTableViewArray ?? [] {
         tableView.sortAndReloadData ()
       }
