@@ -5,20 +5,9 @@
 list @autoLayoutTableViewControllerBoundColumnListAST {
   @bool mEditable
   @lstring mPropertyName
-#  @lstring mColumnOutletTypeName
-#  @autoLayoutTableViewColumnBindingAST mColumnBindingAST
   @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
   @lstring mSortPropertyName
 }
-
-#·······················································································································
-
-#struct @autoLayoutTableViewColumnBindingAST {
-#  @lstring mRunActionName # Empty string if no run binding
-#  @multipleBindingDescriptor mEnabledBindingDescriptor
-#  @multipleBindingDescriptor mHiddenBindingDescriptor
-#  @regularBindingList mRegularBindingList
-#}
 
 #·······················································································································
 
@@ -124,15 +113,9 @@ syntax extension easyBindings_syntax {
           $sortkey$
           $identifier$ ?sortPropertyName
         end
-#        $Identifier$ ?let columnOutletTypeName
-#        ${$
-#        <auto_layout_column_bindings> ?let @autoLayoutTableViewColumnBindingAST columnBindingAST
-#        $}$
         arrayControllerBoundColumnListAST +=
           !editableColumn
           !propertyName
-#          !columnOutletTypeName
-#          !columnBindingAST
           !columnParameterListAST
           !sortPropertyName
       end
@@ -149,61 +132,6 @@ syntax extension easyBindings_syntax {
     }
   }
 
-#·······················································································································
-
-#  rule <auto_layout_column_bindings> !@autoLayoutTableViewColumnBindingAST outColumnBindingAST {
-#    @lstring runActionDescriptor = ["" nowhere]
-#    var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
-#    var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
-#    @regularBindingList regularBindingList = {}
-#    repeat
-#    while
-#      $run$
-#      if runActionDescriptor.string != "" then
-#        error .here : "duplicated $run binding"
-#      end
-#      $identifier$ ?runActionDescriptor
-#  #--- Enabled
-#    while
-#      $enabled$
-#      if enabledBindingDescriptor != .noBinding then
-#        error .here : "duplicated $enabled binding"
-#      end
-#      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
-#      enabledBindingDescriptor = .binding {!expression:bindingExpression}
-#  #--- Hidden
-#    while
-#      $hidden$
-#      if hiddenBindingDescriptor != .noBinding then
-#        error .here : "duplicated $hidden binding"
-#      end
-#      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
-#      hiddenBindingDescriptor = .binding {!expression:bindingExpression}
-#  #--- Regular binding
-#    while
-#      $bindingName$ ?let @lstring bindingName
-#      @observablePropertyList observablePropertyList = {}
-#      repeat
-#        <observable_property> ?let @observablePropertyAST observableProperty
-#        observablePropertyList += !observableProperty
-#      while
-#        $,$
-#      end
-#      <binding_option_list> ?let bindingOptions
-#      regularBindingList +=
-#        !bindingName
-#        !observablePropertyList
-#        !bindingOptions
-#    end
-#  #---
-#    outColumnBindingAST = @autoLayoutTableViewColumnBindingAST.new {
-#      !runActionDescriptor
-#      !enabledBindingDescriptor
-#      !hiddenBindingDescriptor
-#      !regularBindingList
-#    }
-#  }
-  
   #·····················································································································
 
 }
@@ -391,6 +319,8 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
   #-------- Arguments
     @autoLayoutClassParameterList formalArgumentList = {}
     formalArgumentList += !["title" nowhere] !.typeString
+    formalArgumentList += !["minWidth" nowhere] !.typeInt
+    formalArgumentList += !["maxWidth" nowhere] !.typeInt
     formalArgumentList += !["headerAlignment" nowhere] !.typeEnum {!name: ["TextAlignment" nowhere]}
     formalArgumentList += !["contentAlignment" nowhere] !.typeEnum {!name: ["TextAlignment" nowhere]}
     @2stringlist actualParameterList = {}
