@@ -254,7 +254,7 @@ case entityArray :
     case .empty, .multiple :
       ()
     case .single (let v) :
-      var newSelectedObjects = [ArtworkFileGenerationParameters] ()
+      var newSelectedObjects = [ %!ELEMENT_TYPE_NAME%] ()
       for index in inSelectedRows {
         newSelectedObjects.append (v [index])
       }

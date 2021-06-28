@@ -2753,7 +2753,9 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "    case .empty, .multiple :\n"
     "      ()\n"
     "    case .single (let v) :\n"
-    "      var newSelectedObjects = [ArtworkFileGenerationParameters] ()\n"
+    "      var newSelectedObjects = [ " ;
+  result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
+  result << "] ()\n"
     "      for index in inSelectedRows {\n"
     "        newSelectedObjects.append (v [index])\n"
     "      }\n"
@@ -6351,24 +6353,24 @@ const char * gWrapperFileContent_92_swift_5F_sources = "//----------------------
   "    let windowController = NSWindowController (window: window)\n"
   "    self.addWindowController (windowController)\n"
   "  //--- Build temporary view\n"
-  "    let vStackView = AutoLayoutVerticalStackView ()\n"
-  "    vStackView.appendView (AutoLayoutFlexibleSpace ())\n"
-  "    let hStackView = AutoLayoutHorizontalStackView ()\n"
-  "    hStackView.appendView (AutoLayoutFlexibleSpace ())\n"
-  "    hStackView.appendView (AutoLayoutSpinningProgressIndicator ())\n"
-  "    hStackView.appendView (AutoLayoutFlexibleSpace ())\n"
-  "    vStackView.appendView (AutoLayoutFlexibleSpace ())\n"
-  "    window.contentView = vStackView\n"
+  "//    let vStackView = AutoLayoutVerticalStackView ()\n"
+  "//    vStackView.appendView (AutoLayoutFlexibleSpace ())\n"
+  "//    let hStackView = AutoLayoutHorizontalStackView ()\n"
+  "//    hStackView.appendView (AutoLayoutFlexibleSpace ())\n"
+  "//    hStackView.appendView (AutoLayoutSpinningProgressIndicator ())\n"
+  "//    hStackView.appendView (AutoLayoutFlexibleSpace ())\n"
+  "//    vStackView.appendView (AutoLayoutFlexibleSpace ())\n"
+  "//    window.contentView = vStackView\n"
   "  //--- Build user interface\n"
   "//    let deadline = DispatchTime.now () + DispatchTimeInterval.seconds (3)\n"
   "//    DispatchQueue.main.asyncAfter (deadline: deadline) {\n"
   "//      self.ebBuildUserInterface ()\n"
   "//      flushOutletEvents ()\n"
   "//    }\n"
-  "    DispatchQueue.main.async {\n"
+  "//    DispatchQueue.main.async {\n"
   "      self.ebBuildUserInterface ()\n"
   "      flushOutletEvents ()\n"
-  "    }\n"
+  "//    }\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -6750,7 +6752,7 @@ const cRegularFileWrapper gWrapperFile_92_swift_5F_sources (
   "EBAutoLayoutManagedDocument.swift",
   "swift",
   true, // Text file
-  26673, // Text length
+  26693, // Text length
   gWrapperFileContent_92_swift_5F_sources
 ) ;
 
@@ -20170,7 +20172,7 @@ const char * gWrapperFileContent_100_swift_5F_sources = "//---------------------
   "    defer: true\n"
   "  )\n"
   "\n"
-  "  private let mTextView = AutoLayoutTextView (editable: false)\n"
+  "  private let mTextView = AutoLayoutTextObserverView ()\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
   "  //  Init\n"
@@ -20226,7 +20228,7 @@ const cRegularFileWrapper gWrapperFile_100_swift_5F_sources (
   "file-log-operation-duration.swift",
   "swift",
   true, // Text file
-  4294, // Text length
+  4287, // Text length
   gWrapperFileContent_100_swift_5F_sources
 ) ;
 
@@ -20892,14 +20894,14 @@ const char * gWrapperFileContent_32_swift_5F_sources = "//----------------------
   "\n"
   "  init (computeFunction inExpression : EBMultipleBindingBooleanExpression,\n"
   "        outlet inOutlet : HiddenEBProtocol\?) {\n"
-  "    mOutlet = inOutlet\n"
+  "    self.mOutlet = inOutlet\n"
   "    super.init ()\n"
-  "     var modelArray = [EBObservableObjectProtocol] ()\n"
+  "    self.mEventCallBack = { [weak self] in self\?.updateOutlet (inExpression.compute ()) }\n"
+  "    var modelArray = [EBObservableObjectProtocol] ()\n"
   "    inExpression.addModelsTo (&modelArray)\n"
   "    for observedModel in modelArray {\n"
   "      observedModel.addEBObserver (self)\n"
   "    }\n"
-  "    self.mEventCallBack = { [weak self] in self\?.updateOutlet (inExpression.compute ()) }\n"
   "  }\n"
   "\n"
   "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
@@ -21046,7 +21048,7 @@ const char * gWrapperFileContent_32_swift_5F_sources = "//----------------------
   "        case .le :\n"
   "          return .single (v <= w)\n"
   "        case .gt :\n"
-  "          return .single (v < w)\n"
+  "          return .single (v > w)\n"
   "        case .ge :\n"
   "          return .single (v >= w)\n"
   "        }\n"
@@ -21092,13 +21094,14 @@ const char * gWrapperFileContent_32_swift_5F_sources = "//----------------------
   "    }\n"
   "  }\n"
   "}\n"
+  "\n"
   "//----------------------------------------------------------------------------------------------------------------------\n" ;
 
 const cRegularFileWrapper gWrapperFile_32_swift_5F_sources (
   "multiple-binding-controllers.swift",
   "swift",
   true, // Text file
-  7671, // Text length
+  7676, // Text length
   gWrapperFileContent_32_swift_5F_sources
 ) ;
 
