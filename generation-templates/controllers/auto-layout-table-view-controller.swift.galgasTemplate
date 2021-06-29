@@ -34,10 +34,6 @@ end
 
   //····················································································································
 
-  var sortedArray : [%!ELEMENT_TYPE_NAME%] { return self.sortedArray_property.propval }
-
-  //····················································································································
-
   private var mSortDescriptorArray = [(%!ELEMENT_TYPE_NAME%, %!ELEMENT_TYPE_NAME%) -> ComparisonResult] ()
 
   //····················································································································
@@ -77,7 +73,7 @@ if [SORTED_COLUMNS length] > 0 then
 
   final func isOrderedBefore (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) -> Bool {
     var order = ComparisonResult.orderedSame
-    for sortDescriptor in self.mSortDescriptorArray {
+    for sortDescriptor in self.mSortDescriptorArray.reversed () {
       order = sortDescriptor (left, right)
       if order != .orderedSame {
         break // Exit from for loop
@@ -111,15 +107,16 @@ if [SORTED_COLUMNS length] > 0 then
  
   //····················································································································
 
-  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> { return Set (self.selectedArray) }
+  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> { return Set (self.selectedArray_property.propval) }
 
   //····················································································································
 
   var selectedIndexesSet : Set <Int> {
+    let selectedObjectSet = self.selectedSet
     var result = Set <Int> ()
     var idx = 0
     for object in self.mModel?.propval ?? [] {
-      if self.selectedSet.contains (object) {
+      if selectedObjectSet.contains (object) {
         result.insert (idx)
       }
       idx += 1
@@ -141,15 +138,39 @@ if [SORTED_COLUMNS length] > 0 then
   }
 
   //····················································································································
+  //    sorted array observer
+  //····················································································································
+
+  private var mSortedArrayValuesObserver = EBOutletEvent ()
+
+  //····················································································································
+
+  override init () {
+    super.init ()
+//    self.sortedArray_property.addEBObserver (self.mSortedArrayValuesObserver)
+%
+for () in BOUND_COLUMNS do
+%  //--- Observe '%!mDisplayedPropertyName%' column
+    self.sortedArray_property.addEBObserverOf_%!mDisplayedPropertyName% (self.mSortedArrayValuesObserver)
+%
+if (mSortPropertyName != "") & (mSortPropertyName != mDisplayedPropertyName) then
+  %    self.sortedArray_property.addEBObserverOf_%!mSortPropertyName% (self.mSortedArrayValuesObserver)\n%
+end
+end
+%  //---
+    self.mSortedArrayValuesObserver.mEventCallBack = { [weak self] in
+       for tableView in self?.mTableViewArray ?? [] {
+        tableView.sortAndReloadData ()
+      }
+    }
+  }
+
+  //····················································································································
   //    bind_tableView
   //····················································································································
 
   private var mTableViewArray = [AutoLayoutTableView] ()
-%
-for () in BOUND_COLUMNS do
-  %  private var mColumnObserver_%!mDisplayedPropertyName% = EBOutletEvent ()\n%
-end
-%
+
   //····················································································································
 
   final func bind_tableView (_ inTableView : AutoLayoutTableView) {
@@ -161,10 +182,10 @@ end
 %for () in BOUND_COLUMNS do
 %  //--- Configure '%!mDisplayedPropertyName%' column
     inTableView.addColumn_%!mColumnObjectTypeName% (
-      valueGetterDelegate: { [weak self] in return self?.sortedArray [$0].%!mDisplayedPropertyName% },
+      valueGetterDelegate: { [weak self] in return self?.sortedArray_property.propval [$0].%!mDisplayedPropertyName% },
       valueSetterDelegate: %
   if mEditable then
-   %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray [inRowIndex].name = inNewValue }%
+   %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray_property.propval [inRowIndex].name = inNewValue }%
   else
     %nil%
   end
@@ -185,22 +206,11 @@ for () in mActualParameterList
 end
 %
     )
-    self.mModel?.addEBObserverOf_%!mDisplayedPropertyName% (self.mColumnObserver_%!mDisplayedPropertyName%)
-%
-if (mSortPropertyName != "") & (mSortPropertyName != mDisplayedPropertyName) then
-  %    self.mModel?.addEBObserverOf_%!mSortPropertyName% (self.mColumnObserver_%!mDisplayedPropertyName%)\n%
-end
-%    self.mColumnObserver_%!mDisplayedPropertyName%.mEventCallBack = { [weak self] in
-      for tableView in self?.mTableViewArray ?? [] {
-        tableView.sortAndReloadData ()
-      }
-    }
-%
-end
+%end
 %  //---
     self.mTableViewArray.append (inTableView)
   //---
-    inTableView.sortAndReloadData ()
+//    inTableView.sortAndReloadData ()
   }
 
   //····················································································································
@@ -244,7 +254,7 @@ case entityArray :
   //····················································································································
 
   final func rowCount () -> Int {
-    return self.sortedArray.count
+    return self.sortedArray_property.propval.count
   }
 
   //····················································································································
@@ -267,8 +277,8 @@ case entityArray :
   final func indexesOfSelectedObjects () -> IndexSet {
     var indexSet = IndexSet ()
     var idx = 0
-    let selectedObjectSet = Set (self.selectedArray)
-    for object in self.sortedArray {
+    let selectedObjectSet = Set (self.selectedArray_property.propval)
+    for object in self.sortedArray_property.propval {
       if selectedObjectSet.contains (object) {
         indexSet.insert (idx)
       }

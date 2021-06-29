@@ -563,7 +563,10 @@ final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : R
 
   //····················································································································
 
-  override var propval : [%!ENTITY_NAME%] { return self.mInternalArrayValue }
+  override var propval : [%!ENTITY_NAME%] {
+    self.computeModelArray ()
+    return self.mInternalArrayValue
+  }
 
   //····················································································································
 
