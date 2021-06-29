@@ -147,14 +147,14 @@ if [SORTED_COLUMNS length] > 0 then
 
   override init () {
     super.init ()
-//    self.sortedArray_property.addEBObserver (self.mSortedArrayValuesObserver)
+    self.sortedArray_property.addEBObserver (self.mSortedArrayValuesObserver)
 %
 for () in BOUND_COLUMNS do
 %  //--- Observe '%!mDisplayedPropertyName%' column
     self.sortedArray_property.addEBObserverOf_%!mDisplayedPropertyName% (self.mSortedArrayValuesObserver)
 %
 if (mSortPropertyName != "") & (mSortPropertyName != mDisplayedPropertyName) then
-  %    self.sortedArray_property.addEBObserverOf_%!mSortPropertyName% (self.mSortedArrayValuesObserver)\n%
+  %     self.sortedArray_property.addEBObserverOf_%!mSortPropertyName% (self.mSortedArrayValuesObserver)\n%
 end
 end
 %  //---

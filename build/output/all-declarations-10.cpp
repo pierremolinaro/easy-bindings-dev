@@ -2585,26 +2585,26 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "\n"
     "  override init () {\n"
     "    super.init ()\n"
-    "//    self.sortedArray_property.addEBObserver (self.mSortedArrayValuesObserver)\n" ;
-  GALGAS_uint index_6670_ (0) ;
+    "    self.sortedArray_property.addEBObserver (self.mSortedArrayValuesObserver)\n" ;
+  GALGAS_uint index_6668_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_6670 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
-    while (enumerator_6670.hasCurrentObject ()) {
+    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_6668 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
+    while (enumerator_6668.hasCurrentObject ()) {
       result << "  //--- Observe '" ;
-      result << enumerator_6670.current_mDisplayedPropertyName (HERE).stringValue () ;
+      result << enumerator_6668.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << "' column\n"
         "    self.sortedArray_property.addEBObserverOf_" ;
-      result << enumerator_6670.current_mDisplayedPropertyName (HERE).stringValue () ;
+      result << enumerator_6668.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << " (self.mSortedArrayValuesObserver)\n" ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, enumerator_6670.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (GALGAS_bool (kIsNotEqual, enumerator_6670.current_mSortPropertyName (HERE).objectCompare (enumerator_6670.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 156)).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, enumerator_6668.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (GALGAS_bool (kIsNotEqual, enumerator_6668.current_mSortPropertyName (HERE).objectCompare (enumerator_6668.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 156)).boolEnum () ;
       if (kBoolTrue == test_2) {
-        result << "    self.sortedArray_property.addEBObserverOf_" ;
-        result << enumerator_6670.current_mSortPropertyName (HERE).stringValue () ;
+        result << "     self.sortedArray_property.addEBObserverOf_" ;
+        result << enumerator_6668.current_mSortPropertyName (HERE).stringValue () ;
         result << " (self.mSortedArrayValuesObserver)\n" ;
       }else if (kBoolFalse == test_2) {
       }
-      index_6670_.increment () ;
-      enumerator_6670.gotoNextObject () ;
+      index_6668_.increment () ;
+      enumerator_6668.gotoNextObject () ;
     }
   }
   result << "  //---\n"
@@ -2629,21 +2629,21 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "      allowsMultipleSelection: allowsMultipleSelection,\n"
     "      delegate: self\n"
     "    )\n" ;
-  GALGAS_uint index_7921_ (0) ;
+  GALGAS_uint index_7920_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_7921 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
-    while (enumerator_7921.hasCurrentObject ()) {
+    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_7920 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
+    while (enumerator_7920.hasCurrentObject ()) {
       result << "  //--- Configure '" ;
-      result << enumerator_7921.current_mDisplayedPropertyName (HERE).stringValue () ;
+      result << enumerator_7920.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << "' column\n"
         "    inTableView.addColumn_" ;
-      result << enumerator_7921.current_mColumnObjectTypeName (HERE).stringValue () ;
+      result << enumerator_7920.current_mColumnObjectTypeName (HERE).stringValue () ;
       result << " (\n"
         "      valueGetterDelegate: { [weak self] in return self\?.sortedArray_property.propval [$0]." ;
-      result << enumerator_7921.current_mDisplayedPropertyName (HERE).stringValue () ;
+      result << enumerator_7920.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << " },\n"
         "      valueSetterDelegate: " ;
-      const enumGalgasBool test_3 = enumerator_7921.current_mEditable (HERE).boolEnum () ;
+      const enumGalgasBool test_3 = enumerator_7920.current_mEditable (HERE).boolEnum () ;
       if (kBoolTrue == test_3) {
         result << "{ [weak self] (inRowIndex, inNewValue) in self\?.sortedArray_property.propval [inRowIndex].name = inNewValue }" ;
       }else if (kBoolFalse == test_3) {
@@ -2651,7 +2651,7 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
       }
       result << ",\n"
         "      sortDelegate: " ;
-      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_7921.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_7920.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         result << "{ [weak self] (ascending) in\n"
           "        self\?.mSortDescriptorArray.append ({ (_ left : " ;
@@ -2659,36 +2659,36 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
         result << ", _ right : " ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
         result << ") in return compare_" ;
-        result << enumerator_7921.current_mColumnObjectTypeName (HERE).stringValue () ;
+        result << enumerator_7920.current_mColumnObjectTypeName (HERE).stringValue () ;
         result << "_properties (left." ;
-        result << enumerator_7921.current_mSortPropertyName (HERE).stringValue () ;
+        result << enumerator_7920.current_mSortPropertyName (HERE).stringValue () ;
         result << "_property, ascending, right." ;
-        result << enumerator_7921.current_mSortPropertyName (HERE).stringValue () ;
+        result << enumerator_7920.current_mSortPropertyName (HERE).stringValue () ;
         result << "_property) })\n"
           "      }" ;
       }else if (kBoolFalse == test_4) {
         result << "nil" ;
       }
       result << ",\n" ;
-      GALGAS_uint index_8741_ (0) ;
-      if (enumerator_7921.current_mActualParameterList (HERE).isValid ()) {
-        cEnumerator__32_stringlist enumerator_8741 (enumerator_7921.current_mActualParameterList (HERE), kENUMERATION_UP) ;
-        while (enumerator_8741.hasCurrentObject ()) {
+      GALGAS_uint index_8740_ (0) ;
+      if (enumerator_7920.current_mActualParameterList (HERE).isValid ()) {
+        cEnumerator__32_stringlist enumerator_8740 (enumerator_7920.current_mActualParameterList (HERE), kENUMERATION_UP) ;
+        while (enumerator_8740.hasCurrentObject ()) {
           result << "      " ;
-          result << enumerator_8741.current_mValue_30_ (HERE).stringValue () ;
+          result << enumerator_8740.current_mValue_30_ (HERE).stringValue () ;
           result << ": " ;
-          result << enumerator_8741.current_mValue_31_ (HERE).stringValue () ;
-          if (enumerator_8741.hasNextObject ()) {
+          result << enumerator_8740.current_mValue_31_ (HERE).stringValue () ;
+          if (enumerator_8740.hasNextObject ()) {
             result << ",\n" ;
           }
-          index_8741_.increment () ;
-          enumerator_8741.gotoNextObject () ;
+          index_8740_.increment () ;
+          enumerator_8740.gotoNextObject () ;
         }
       }
       result << "\n"
         "    )\n" ;
-      index_7921_.increment () ;
-      enumerator_7921.gotoNextObject () ;
+      index_7920_.increment () ;
+      enumerator_7920.gotoNextObject () ;
     }
   }
   result << "  //---\n"
