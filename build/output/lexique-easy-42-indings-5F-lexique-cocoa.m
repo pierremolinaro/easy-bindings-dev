@@ -83,7 +83,7 @@
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [61] = {
+static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [63] = {
   {"no", easyBindings_lexique_1_no},
   {"all", easyBindings_lexique_1_all},
   {"one", easyBindings_lexique_1_one},
@@ -104,11 +104,13 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
   {"column", easyBindings_lexique_1_column},
   {"entity", easyBindings_lexique_1_entity},
   {"extern", easyBindings_lexique_1_extern},
+  {"hSplit", easyBindings_lexique_1_hSplit},
   {"hStack", easyBindings_lexique_1_hStack},
   {"linker", easyBindings_lexique_1_linker},
   {"outlet", easyBindings_lexique_1_outlet},
   {"struct", easyBindings_lexique_1_struct},
   {"toMany", easyBindings_lexique_1_toMany},
+  {"vSplit", easyBindings_lexique_1_vSplit},
   {"vStack", easyBindings_lexique_1_vStack},
   {"binding", easyBindings_lexique_1_binding},
   {"default", easyBindings_lexique_1_default},
@@ -148,7 +150,7 @@ static const C_cocoa_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowe
 } ;
 
 static NSInteger search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (NSString * inSearchedString) {
-  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 61) ;
+  return searchStringInTable (inSearchedString, ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList, 63) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -364,7 +366,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //----------------------------------------------------------------------------------------------------------------------
 
 - (NSUInteger) terminalVocabularyCount {
-  return 96 ;
+  return 98 ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -394,7 +396,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //----------------------------------------------------------------------------------------------------------------------
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [97] = {0,
+  static const NSUInteger kTerminalSymbolStyles [99] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
@@ -428,6 +430,8 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     1 /* easyBindings_lexique_1_func */,
     1 /* easyBindings_lexique_1_graphic */,
     1 /* easyBindings_lexique_1_graphviz */,
+    1 /* easyBindings_lexique_1_hSplit */,
+    1 /* easyBindings_lexique_1_hStack */,
     1 /* easyBindings_lexique_1_include */,
     1 /* easyBindings_lexique_1_inverse */,
     1 /* easyBindings_lexique_1_linker */,
@@ -458,7 +462,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     1 /* easyBindings_lexique_1_toOne */,
     1 /* easyBindings_lexique_1_transient */,
     1 /* easyBindings_lexique_1_version */,
-    1 /* easyBindings_lexique_1_hStack */,
+    1 /* easyBindings_lexique_1_vSplit */,
     1 /* easyBindings_lexique_1_vStack */,
     1 /* easyBindings_lexique_1_versionShouldChange */,
     1 /* easyBindings_lexique_1_view */,
@@ -502,7 +506,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 //----------------------------------------------------------------------------------------------------------------------
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [97] = {NO,
+  static const BOOL kTerminalAtomicSelection [99] = {NO,
     YES /* easyBindings_lexique_1_identifier */,
     YES /* easyBindings_lexique_1_Identifier */,
     YES /* easyBindings_lexique_1__40_attribute */,
@@ -536,6 +540,8 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     YES /* easyBindings_lexique_1_func */,
     YES /* easyBindings_lexique_1_graphic */,
     YES /* easyBindings_lexique_1_graphviz */,
+    YES /* easyBindings_lexique_1_hSplit */,
+    YES /* easyBindings_lexique_1_hStack */,
     YES /* easyBindings_lexique_1_include */,
     YES /* easyBindings_lexique_1_inverse */,
     YES /* easyBindings_lexique_1_linker */,
@@ -566,7 +572,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     YES /* easyBindings_lexique_1_toOne */,
     YES /* easyBindings_lexique_1_transient */,
     YES /* easyBindings_lexique_1_version */,
-    YES /* easyBindings_lexique_1_hStack */,
+    YES /* easyBindings_lexique_1_vSplit */,
     YES /* easyBindings_lexique_1_vStack */,
     YES /* easyBindings_lexique_1_versionShouldChange */,
     YES /* easyBindings_lexique_1_view */,

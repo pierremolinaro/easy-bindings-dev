@@ -97,6 +97,8 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_func,
    kToken_graphic,
    kToken_graphviz,
+   kToken_hSplit,
+   kToken_hStack,
    kToken_include,
    kToken_inverse,
    kToken_linker,
@@ -127,7 +129,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_toOne,
    kToken_transient,
    kToken_version,
-   kToken_hStack,
+   kToken_vSplit,
    kToken_vStack,
    kToken_versionShouldChange,
    kToken_view,
@@ -197,7 +199,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 96 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 98 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;

@@ -66,6 +66,14 @@ class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+class @astHSplitViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+  @astAutoLayoutViewFunctionCallList mFunctionCallList
+  @astViewInstructionList mInstructionList
+  @optionalHiddenBinding mOptionalHiddenBinding
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
 class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
@@ -444,6 +452,26 @@ syntax extension easyBindings_syntax {
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> !horizontal: true !?instructionList
     outInstruction = @astHStackViewInstructionDeclaration.new {!functionCallList !instructionList !optionalHiddenBinding}
+    $}$
+  }
+  
+  #·····················································································································
+ 
+  rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
+    $hSplit$
+    <auto_layout_func_call_list> ?let functionCallList
+    @optionalHiddenBinding optionalHiddenBinding
+    select
+      optionalHiddenBinding = .noBinding
+    or
+      $hidden$
+      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      optionalHiddenBinding = .binding {!hidden: bindingExpression}
+    end
+    ${$
+    var instructionList = @astViewInstructionList {}
+    <view_instruction_list> !horizontal: true !?instructionList
+    outInstruction = @astHSplitViewInstructionDeclaration.new {!functionCallList !instructionList !optionalHiddenBinding}
     $}$
   }
   
@@ -1496,6 +1524,80 @@ override method @astHStackViewInstructionDeclaration generateCode
 
 #·······················································································································
 
+override method @astHSplitViewInstructionDeclaration generateCode
+                        ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                        ?let @bool inPreferences
+                        ?let @propertyMap inRootObservablePropertyMap
+                        ?let @propertyMap inPreferencesPropertyMap
+                        ?let @semanticContext inSemanticContext
+                        ?let @propertyMap inObservablePropertyMap
+                        ?let @actionMap inActionMap
+                        ?let @string inReceiverSwiftTypeName
+                        ?let @classMap inClassMap
+                        ?!@implicitViewFunctionGenerationList ioImplicitViewFunctionGenerationList
+                        ?!@autoLayoutConfiguratorMap ioConfiguratorMap
+                        ?!@autoLayoutOutletMap ioOutletMap
+                        !@abstractViewInstructionGeneration outInstruction {
+  @autoLayoutViewInstructionGenerationList instructionList = {}
+  [self.mFunctionCallList check
+     !{} # inSemanticContext.mAutoLayoutHStackFunctionMap
+     !inViewDeclarationMap
+     !inPreferences
+     !inRootObservablePropertyMap
+     !inPreferencesPropertyMap
+     !inSemanticContext
+     !inObservablePropertyMap
+     !inActionMap
+     !inReceiverSwiftTypeName
+     !inClassMap
+     !?ioImplicitViewFunctionGenerationList
+     !?ioConfiguratorMap
+     !?ioOutletMap
+     ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
+  ]
+  @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
+  switch self.mOptionalHiddenBinding 
+  case noBinding :
+  case binding (hiddenBindingExpression) :
+    [hiddenBindingExpression analyzeExpressionForMultipleBinding
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+      ?let @typeKind type
+      ?let @location errorLocation
+    ]
+    if not [type isBoolType] then
+      error errorLocation : "expression is not boolean"
+    end
+    multipleBindingGenerationList +=
+      !"hidden"
+      !hiddenExpression
+  end
+  for (instruction) in self.mInstructionList do
+   [instruction generateCode
+      !inViewDeclarationMap
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inPreferencesPropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      !inActionMap
+      !inReceiverSwiftTypeName
+      !inClassMap
+      !?ioImplicitViewFunctionGenerationList
+      !?ioConfiguratorMap
+      !?ioOutletMap
+      ?let generatedInstruction
+    ]
+    instructionList += !generatedInstruction
+  end
+  outInstruction = @hSplitViewInstructionGeneration.new {!funcCallList !instructionList !multipleBindingGenerationList}
+}
+
+#·······················································································································
+
 override method @astVStackViewInstructionDeclaration generateCode
                         ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
                         ?let @bool inPreferences
@@ -1635,6 +1737,14 @@ abstract class @abstractViewInstructionGeneration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
+  @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  @autoLayoutViewInstructionGenerationList mInstructionList
+  @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @hSplitViewInstructionGeneration : @abstractViewInstructionGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
   @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
@@ -1883,6 +1993,24 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
 
 override getter @hStackViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView ()\n"
+  [self.mFuncCallList generate !inIndentation !?result]
+  for (bindingName binding) in self.mMultipleBindingGenerationList do 
+    result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"
+  end
+  result += inIndentation + "do{\n"
+  let indentation = inIndentation + "  "
+  for (instruction) in self.mInstructionList do (index)
+     let name = inName + "_" + index
+     result += [instruction generate !name !indentation]
+     result += indentation + inName + ".appendView (" + name + ")\n"
+  end
+  result += inIndentation + "}\n"
+}
+
+#·······················································································································
+
+override getter @hSplitViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
+  result = inIndentation + "let " + inName + " = AutoLayoutHorizontalSplitView ()\n"
   [self.mFuncCallList generate !inIndentation !?result]
   for (bindingName binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"

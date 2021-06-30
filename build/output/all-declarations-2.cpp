@@ -1950,6 +1950,274 @@ GALGAS_autoLayoutMultipleBindingGenerationList GALGAS_autoLayoutMultipleBindingG
 //   Object comparison                                                                           
 //----------------------------------------------------------------------------------------------------------------------
 
+typeComparisonResult cPtr_hSplitViewInstructionGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_hSplitViewInstructionGeneration * p = (const cPtr_hSplitViewInstructionGeneration *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_hSplitViewInstructionGeneration) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mFuncCallList.objectCompare (p->mProperty_mFuncCallList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mInstructionList.objectCompare (p->mProperty_mInstructionList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mMultipleBindingGenerationList.objectCompare (p->mProperty_mMultipleBindingGenerationList) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+typeComparisonResult GALGAS_hSplitViewInstructionGeneration::objectCompare (const GALGAS_hSplitViewInstructionGeneration & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_hSplitViewInstructionGeneration::GALGAS_hSplitViewInstructionGeneration (void) :
+GALGAS_abstractViewInstructionGeneration () {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_hSplitViewInstructionGeneration GALGAS_hSplitViewInstructionGeneration::constructor_default (LOCATION_ARGS) {
+  return GALGAS_hSplitViewInstructionGeneration::constructor_new (GALGAS_autoLayoutViewInstructionGenerationFuncCallList::constructor_emptyList (HERE),
+                                                                  GALGAS_autoLayoutViewInstructionGenerationList::constructor_emptyList (HERE),
+                                                                  GALGAS_autoLayoutMultipleBindingGenerationList::constructor_emptyList (HERE)
+                                                                  COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_hSplitViewInstructionGeneration::GALGAS_hSplitViewInstructionGeneration (const cPtr_hSplitViewInstructionGeneration * inSourcePtr) :
+GALGAS_abstractViewInstructionGeneration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_hSplitViewInstructionGeneration) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_hSplitViewInstructionGeneration GALGAS_hSplitViewInstructionGeneration::constructor_new (const GALGAS_autoLayoutViewInstructionGenerationFuncCallList & inAttribute_mFuncCallList,
+                                                                                                const GALGAS_autoLayoutViewInstructionGenerationList & inAttribute_mInstructionList,
+                                                                                                const GALGAS_autoLayoutMultipleBindingGenerationList & inAttribute_mMultipleBindingGenerationList
+                                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_hSplitViewInstructionGeneration result ;
+  if (inAttribute_mFuncCallList.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mMultipleBindingGenerationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_hSplitViewInstructionGeneration (inAttribute_mFuncCallList, inAttribute_mInstructionList, inAttribute_mMultipleBindingGenerationList COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutViewInstructionGenerationFuncCallList GALGAS_hSplitViewInstructionGeneration::getter_mFuncCallList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutViewInstructionGenerationFuncCallList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_hSplitViewInstructionGeneration * p = (const cPtr_hSplitViewInstructionGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_hSplitViewInstructionGeneration) ;
+    result = p->mProperty_mFuncCallList ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutViewInstructionGenerationFuncCallList cPtr_hSplitViewInstructionGeneration::getter_mFuncCallList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mFuncCallList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutViewInstructionGenerationList GALGAS_hSplitViewInstructionGeneration::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutViewInstructionGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_hSplitViewInstructionGeneration * p = (const cPtr_hSplitViewInstructionGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_hSplitViewInstructionGeneration) ;
+    result = p->mProperty_mInstructionList ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutViewInstructionGenerationList cPtr_hSplitViewInstructionGeneration::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mInstructionList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutMultipleBindingGenerationList GALGAS_hSplitViewInstructionGeneration::getter_mMultipleBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutMultipleBindingGenerationList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_hSplitViewInstructionGeneration * p = (const cPtr_hSplitViewInstructionGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_hSplitViewInstructionGeneration) ;
+    result = p->mProperty_mMultipleBindingGenerationList ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutMultipleBindingGenerationList cPtr_hSplitViewInstructionGeneration::getter_mMultipleBindingGenerationList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mMultipleBindingGenerationList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_hSplitViewInstructionGeneration::setter_setMFuncCallList (GALGAS_autoLayoutViewInstructionGenerationFuncCallList inValue
+                                                                      COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_hSplitViewInstructionGeneration * p = (cPtr_hSplitViewInstructionGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_hSplitViewInstructionGeneration) ;
+    p->mProperty_mFuncCallList = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void cPtr_hSplitViewInstructionGeneration::setter_setMFuncCallList (GALGAS_autoLayoutViewInstructionGenerationFuncCallList inValue
+                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mFuncCallList = inValue ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_hSplitViewInstructionGeneration::setter_setMInstructionList (GALGAS_autoLayoutViewInstructionGenerationList inValue
+                                                                         COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_hSplitViewInstructionGeneration * p = (cPtr_hSplitViewInstructionGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_hSplitViewInstructionGeneration) ;
+    p->mProperty_mInstructionList = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void cPtr_hSplitViewInstructionGeneration::setter_setMInstructionList (GALGAS_autoLayoutViewInstructionGenerationList inValue
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mInstructionList = inValue ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_hSplitViewInstructionGeneration::setter_setMMultipleBindingGenerationList (GALGAS_autoLayoutMultipleBindingGenerationList inValue
+                                                                                       COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_hSplitViewInstructionGeneration * p = (cPtr_hSplitViewInstructionGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_hSplitViewInstructionGeneration) ;
+    p->mProperty_mMultipleBindingGenerationList = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void cPtr_hSplitViewInstructionGeneration::setter_setMMultipleBindingGenerationList (GALGAS_autoLayoutMultipleBindingGenerationList inValue
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mMultipleBindingGenerationList = inValue ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//Pointer class for @hSplitViewInstructionGeneration class
+//----------------------------------------------------------------------------------------------------------------------
+
+cPtr_hSplitViewInstructionGeneration::cPtr_hSplitViewInstructionGeneration (const GALGAS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
+                                                                            const GALGAS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
+                                                                            const GALGAS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList
+                                                                            COMMA_LOCATION_ARGS) :
+cPtr_abstractViewInstructionGeneration (THERE),
+mProperty_mFuncCallList (in_mFuncCallList),
+mProperty_mInstructionList (in_mInstructionList),
+mProperty_mMultipleBindingGenerationList (in_mMultipleBindingGenerationList) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_hSplitViewInstructionGeneration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_hSplitViewInstructionGeneration ;
+}
+
+void cPtr_hSplitViewInstructionGeneration::description (C_String & ioString,
+                                                        const int32_t inIndentation) const {
+  ioString << "[@hSplitViewInstructionGeneration:" ;
+  mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mMultipleBindingGenerationList.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_hSplitViewInstructionGeneration::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_hSplitViewInstructionGeneration (mProperty_mFuncCallList, mProperty_mInstructionList, mProperty_mMultipleBindingGenerationList COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//@hSplitViewInstructionGeneration type
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_hSplitViewInstructionGeneration ("hSplitViewInstructionGeneration",
+                                                        & kTypeDescriptor_GALGAS_abstractViewInstructionGeneration) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_hSplitViewInstructionGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_hSplitViewInstructionGeneration ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_hSplitViewInstructionGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_hSplitViewInstructionGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_hSplitViewInstructionGeneration GALGAS_hSplitViewInstructionGeneration::extractObject (const GALGAS_object & inObject,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_hSplitViewInstructionGeneration result ;
+  const GALGAS_hSplitViewInstructionGeneration * p = (const GALGAS_hSplitViewInstructionGeneration *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_hSplitViewInstructionGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("hSplitViewInstructionGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//   Object comparison                                                                           
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_vStackViewInstructionGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_vStackViewInstructionGeneration * p = (const cPtr_vStackViewInstructionGeneration *) inOperandPtr ;
@@ -5047,19 +5315,19 @@ void extensionMethod_generate (const GALGAS_autoLayoutViewInstructionGenerationF
                                C_Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_autoLayoutViewInstructionGenerationFuncCallList temp_0 = inObject ;
-  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_72949 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_72949.hasCurrentObject ()) {
-    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1743)).add_operation (enumerator_72949.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1743)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1743)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1743)) ;
-    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_73067 (enumerator_72949.current_mParameters (HERE), kENUMERATION_UP) ;
-    while (enumerator_73067.hasCurrentObject ()) {
-      ioArgument_ioStr.plusAssign_operation(enumerator_73067.current_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1745)).add_operation (enumerator_73067.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1745)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1745)) ;
-      if (enumerator_73067.hasNextObject ()) {
-        ioArgument_ioStr.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1746)) ;
+  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_77460 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_77460.hasCurrentObject ()) {
+    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1853)).add_operation (enumerator_77460.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1853)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1853)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1853)) ;
+    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_77578 (enumerator_77460.current_mParameters (HERE), kENUMERATION_UP) ;
+    while (enumerator_77578.hasCurrentObject ()) {
+      ioArgument_ioStr.plusAssign_operation(enumerator_77578.current_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1855)).add_operation (enumerator_77578.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1855)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1855)) ;
+      if (enumerator_77578.hasNextObject ()) {
+        ioArgument_ioStr.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1856)) ;
       }
-      enumerator_73067.gotoNextObject () ;
+      enumerator_77578.gotoNextObject () ;
     }
-    ioArgument_ioStr.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1748)) ;
-    enumerator_72949.gotoNextObject () ;
+    ioArgument_ioStr.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1858)) ;
+    enumerator_77460.gotoNextObject () ;
   }
 }
 
@@ -13479,353 +13747,4 @@ GALGAS_string extensionGetter_generateRemoveObserverCall (const GALGAS_observabl
 
 
 
-
-//----------------------------------------------------------------------------------------------------------------------
-//   Object comparison                                                                           
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_transientRoutineGeneration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_transientRoutineGeneration * p = (const cPtr_transientRoutineGeneration *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mOwnerName.objectCompare (p->mProperty_mOwnerName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mTransientName.objectCompare (p->mProperty_mTransientName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mTransientType.objectCompare (p->mProperty_mTransientType) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mGeneratedFunctionNamePrefix.objectCompare (p->mProperty_mGeneratedFunctionNamePrefix) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mDependencyList.objectCompare (p->mProperty_mDependencyList) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_transientRoutineGeneration::objectCompare (const GALGAS_transientRoutineGeneration & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_transientRoutineGeneration::GALGAS_transientRoutineGeneration (void) :
-GALGAS_abstractFileGeneration () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_transientRoutineGeneration::GALGAS_transientRoutineGeneration (const cPtr_transientRoutineGeneration * inSourcePtr) :
-GALGAS_abstractFileGeneration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_transientRoutineGeneration) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_transientRoutineGeneration GALGAS_transientRoutineGeneration::constructor_new (const GALGAS_string & inAttribute_mOwnerName,
-                                                                                      const GALGAS_string & inAttribute_mTransientName,
-                                                                                      const GALGAS_typeKind & inAttribute_mTransientType,
-                                                                                      const GALGAS_string & inAttribute_mGeneratedFunctionNamePrefix,
-                                                                                      const GALGAS_transientDependencyListForGeneration & inAttribute_mDependencyList
-                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_transientRoutineGeneration result ;
-  if (inAttribute_mOwnerName.isValid () && inAttribute_mTransientName.isValid () && inAttribute_mTransientType.isValid () && inAttribute_mGeneratedFunctionNamePrefix.isValid () && inAttribute_mDependencyList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_transientRoutineGeneration (inAttribute_mOwnerName, inAttribute_mTransientName, inAttribute_mTransientType, inAttribute_mGeneratedFunctionNamePrefix, inAttribute_mDependencyList COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string GALGAS_transientRoutineGeneration::getter_mOwnerName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientRoutineGeneration * p = (const cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    result = p->mProperty_mOwnerName ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_transientRoutineGeneration::getter_mOwnerName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mOwnerName ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string GALGAS_transientRoutineGeneration::getter_mTransientName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientRoutineGeneration * p = (const cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    result = p->mProperty_mTransientName ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_transientRoutineGeneration::getter_mTransientName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mTransientName ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_typeKind GALGAS_transientRoutineGeneration::getter_mTransientType (UNUSED_LOCATION_ARGS) const {
-  GALGAS_typeKind result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientRoutineGeneration * p = (const cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    result = p->mProperty_mTransientType ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_typeKind cPtr_transientRoutineGeneration::getter_mTransientType (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mTransientType ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string GALGAS_transientRoutineGeneration::getter_mGeneratedFunctionNamePrefix (UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientRoutineGeneration * p = (const cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    result = p->mProperty_mGeneratedFunctionNamePrefix ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_transientRoutineGeneration::getter_mGeneratedFunctionNamePrefix (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mGeneratedFunctionNamePrefix ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_transientDependencyListForGeneration GALGAS_transientRoutineGeneration::getter_mDependencyList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_transientDependencyListForGeneration result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_transientRoutineGeneration * p = (const cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    result = p->mProperty_mDependencyList ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_transientDependencyListForGeneration cPtr_transientRoutineGeneration::getter_mDependencyList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mDependencyList ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_transientRoutineGeneration::setter_setMOwnerName (GALGAS_string inValue
-                                                              COMMA_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    insulate (THERE) ;
-    cPtr_transientRoutineGeneration * p = (cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    p->mProperty_mOwnerName = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_transientRoutineGeneration::setter_setMOwnerName (GALGAS_string inValue
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mOwnerName = inValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_transientRoutineGeneration::setter_setMTransientName (GALGAS_string inValue
-                                                                  COMMA_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    insulate (THERE) ;
-    cPtr_transientRoutineGeneration * p = (cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    p->mProperty_mTransientName = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_transientRoutineGeneration::setter_setMTransientName (GALGAS_string inValue
-                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mTransientName = inValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_transientRoutineGeneration::setter_setMTransientType (GALGAS_typeKind inValue
-                                                                  COMMA_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    insulate (THERE) ;
-    cPtr_transientRoutineGeneration * p = (cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    p->mProperty_mTransientType = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_transientRoutineGeneration::setter_setMTransientType (GALGAS_typeKind inValue
-                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mTransientType = inValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_transientRoutineGeneration::setter_setMGeneratedFunctionNamePrefix (GALGAS_string inValue
-                                                                                COMMA_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    insulate (THERE) ;
-    cPtr_transientRoutineGeneration * p = (cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    p->mProperty_mGeneratedFunctionNamePrefix = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_transientRoutineGeneration::setter_setMGeneratedFunctionNamePrefix (GALGAS_string inValue
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mGeneratedFunctionNamePrefix = inValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_transientRoutineGeneration::setter_setMDependencyList (GALGAS_transientDependencyListForGeneration inValue
-                                                                   COMMA_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    insulate (THERE) ;
-    cPtr_transientRoutineGeneration * p = (cPtr_transientRoutineGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientRoutineGeneration) ;
-    p->mProperty_mDependencyList = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_transientRoutineGeneration::setter_setMDependencyList (GALGAS_transientDependencyListForGeneration inValue
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  mProperty_mDependencyList = inValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @transientRoutineGeneration class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_transientRoutineGeneration::cPtr_transientRoutineGeneration (const GALGAS_string & in_mOwnerName,
-                                                                  const GALGAS_string & in_mTransientName,
-                                                                  const GALGAS_typeKind & in_mTransientType,
-                                                                  const GALGAS_string & in_mGeneratedFunctionNamePrefix,
-                                                                  const GALGAS_transientDependencyListForGeneration & in_mDependencyList
-                                                                  COMMA_LOCATION_ARGS) :
-cPtr_abstractFileGeneration (THERE),
-mProperty_mOwnerName (in_mOwnerName),
-mProperty_mTransientName (in_mTransientName),
-mProperty_mTransientType (in_mTransientType),
-mProperty_mGeneratedFunctionNamePrefix (in_mGeneratedFunctionNamePrefix),
-mProperty_mDependencyList (in_mDependencyList) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_transientRoutineGeneration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientRoutineGeneration ;
-}
-
-void cPtr_transientRoutineGeneration::description (C_String & ioString,
-                                                   const int32_t inIndentation) const {
-  ioString << "[@transientRoutineGeneration:" ;
-  mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mTransientName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mTransientType.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mGeneratedFunctionNamePrefix.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mDependencyList.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_transientRoutineGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_transientRoutineGeneration (mProperty_mOwnerName, mProperty_mTransientName, mProperty_mTransientType, mProperty_mGeneratedFunctionNamePrefix, mProperty_mDependencyList COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//@transientRoutineGeneration type
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientRoutineGeneration ("transientRoutineGeneration",
-                                                   & kTypeDescriptor_GALGAS_abstractFileGeneration) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_transientRoutineGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientRoutineGeneration ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_transientRoutineGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_transientRoutineGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_transientRoutineGeneration GALGAS_transientRoutineGeneration::extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_transientRoutineGeneration result ;
-  const GALGAS_transientRoutineGeneration * p = (const GALGAS_transientRoutineGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientRoutineGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientRoutineGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
 

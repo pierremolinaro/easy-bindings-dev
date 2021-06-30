@@ -5508,6 +5508,113 @@ class cPtr_astHStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @astHSplitViewInstructionDeclaration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astHSplitViewInstructionDeclaration : public GALGAS_astAbstractViewInstructionDeclaration {
+//--- Constructor
+  public : GALGAS_astHSplitViewInstructionDeclaration (void) ;
+
+//---
+  public : inline const class cPtr_astHSplitViewInstructionDeclaration * ptr (void) const { return (const cPtr_astHSplitViewInstructionDeclaration *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_astHSplitViewInstructionDeclaration (const cPtr_astHSplitViewInstructionDeclaration * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_astHSplitViewInstructionDeclaration extractObject (const GALGAS_object & inObject,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_astHSplitViewInstructionDeclaration constructor_new (const class GALGAS_astAutoLayoutViewFunctionCallList & inOperand0,
+                                                                                    const class GALGAS_astViewInstructionList & inOperand1,
+                                                                                    const class GALGAS_optionalHiddenBinding & inOperand2
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_astHSplitViewInstructionDeclaration & inOperand) const ;
+
+//--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMFunctionCallList (class GALGAS_astAutoLayoutViewFunctionCallList inArgument0
+                                                              COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionList (class GALGAS_astViewInstructionList inArgument0
+                                                             COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMOptionalHiddenBinding (class GALGAS_optionalHiddenBinding inArgument0
+                                                                   COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewFunctionCallList getter_mFunctionCallList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_astViewInstructionList getter_mInstructionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_optionalHiddenBinding getter_mOptionalHiddenBinding (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astHSplitViewInstructionDeclaration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHSplitViewInstructionDeclaration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @astHSplitViewInstructionDeclaration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_astHSplitViewInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
+//--- Attributes
+  public : GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
+  public : GALGAS_astViewInstructionList mProperty_mInstructionList ;
+  public : GALGAS_optionalHiddenBinding mProperty_mOptionalHiddenBinding ;
+
+//--- Constructor
+  public : cPtr_astHSplitViewInstructionDeclaration (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                     const GALGAS_astViewInstructionList & in_mInstructionList,
+                                                     const GALGAS_optionalHiddenBinding & in_mOptionalHiddenBinding
+                                                     COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_astAutoLayoutViewFunctionCallList getter_mFunctionCallList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMFunctionCallList (GALGAS_astAutoLayoutViewFunctionCallList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_astViewInstructionList getter_mInstructionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionList (GALGAS_astViewInstructionList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_optionalHiddenBinding getter_mOptionalHiddenBinding (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOptionalHiddenBinding (GALGAS_optionalHiddenBinding inValue COMMA_LOCATION_ARGS) ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @astVStackViewInstructionDeclaration class
 //
 //----------------------------------------------------------------------------------------------------------------------

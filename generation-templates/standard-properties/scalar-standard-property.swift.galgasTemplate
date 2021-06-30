@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //   Scalar property %!TYPE%
-//----------------------------------------------------------------------------------------------------------------------
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 typealias EBReadOnlyProperty_%!TYPE%    = EBGenericReadOnlyProperty <%!TYPE%>
 typealias EBTransientProperty_%!TYPE%   = EBGenericTransientProperty <%!TYPE%>
@@ -11,7 +11,7 @@ typealias EBComputedProperty_%!TYPE%    = EBGenericComputedProperty <%!TYPE%>
 typealias EBStoredProperty_%!TYPE%      = EBGenericStoredProperty <%!TYPE%>
 typealias EBPreferencesProperty_%!TYPE% = EBGenericPreferenceProperty <%!TYPE%>
 
-//----------------------------------------------------------------------------------------------------------------------
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func values_%!TYPE%_are_ordered (_ inLeft : %!TYPE%, _ inAscending : Bool, _ inRight : %!TYPE%) -> Bool {
   let left  = inAscending ? inLeft  : inRight
@@ -24,7 +24,7 @@ else
 end
 %}
 
-//----------------------------------------------------------------------------------------------------------------------
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 func compare_%!TYPE%_properties (_ inLeft : EBReadOnlyProperty_%!TYPE%, _ inAscending : Bool, _ inRight : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
   let left  = inAscending ? inLeft  : inRight
