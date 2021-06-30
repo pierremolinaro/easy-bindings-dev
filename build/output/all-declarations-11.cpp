@@ -274,6 +274,27 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
       "\n"
       "//----------------------------------------------------------------------------------------------------------------------\n"
       "\n"
+      "func values_" ;
+    result << in_TYPE.stringValue () ;
+    result << "_are_ordered (_ inLeft : " ;
+    result << in_TYPE.stringValue () ;
+    result << ", _ inAscending : Bool, _ inRight : " ;
+    result << in_TYPE.stringValue () ;
+    result << ") -> Bool {\n"
+      "  let left  = inAscending \? inLeft  : inRight\n"
+      "  let right = inAscending \? inRight : inLeft\n" ;
+    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      result << "  return left." ;
+      result << in_COMPARISON_5F_METHOD.stringValue () ;
+      result << " (right) == .orderedAscending\n" ;
+    }else if (kBoolFalse == test_1) {
+      result << "  return left < right\n" ;
+    }
+    result << "}\n"
+      "\n"
+      "//----------------------------------------------------------------------------------------------------------------------\n"
+      "\n"
       "func compare_" ;
     result << in_TYPE.stringValue () ;
     result << "_properties (_ inLeft : EBReadOnlyProperty_" ;
@@ -305,12 +326,12 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
       "    case .empty, .multiple :\n"
       "      return .orderedDescending\n"
       "    case .single (let otherValue) :\n" ;
-    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_1) {
+    const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+    if (kBoolTrue == test_2) {
       result << "      return currentValue." ;
       result << in_COMPARISON_5F_METHOD.stringValue () ;
       result << " (otherValue)\n" ;
-    }else if (kBoolFalse == test_1) {
+    }else if (kBoolFalse == test_2) {
       result << "      if currentValue < otherValue {\n"
         "        return .orderedAscending\n"
         "      }else if currentValue > otherValue {\n"

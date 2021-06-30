@@ -690,7 +690,7 @@ override method @astComputedHorizontalViewDeclaration check
                                   ?!@autoLayoutOutletMap ioOutletMap
                                   !@abstractViewGeneration outGeneration {
   [self.mFunctionCallList check
-     !inSemanticContext.mAutoLayoutVStackFunctionMap
+     !inSemanticContext.mAutoLayoutHStackFunctionMap
      !inViewDeclarationMap
      !inPreferences
      !inRootObservablePropertyMap

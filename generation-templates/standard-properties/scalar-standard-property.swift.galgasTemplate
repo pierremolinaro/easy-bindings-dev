@@ -13,6 +13,19 @@ typealias EBPreferencesProperty_%!TYPE% = EBGenericPreferenceProperty <%!TYPE%>
 
 //----------------------------------------------------------------------------------------------------------------------
 
+func values_%!TYPE%_are_ordered (_ inLeft : %!TYPE%, _ inAscending : Bool, _ inRight : %!TYPE%) -> Bool {
+  let left  = inAscending ? inLeft  : inRight
+  let right = inAscending ? inRight : inLeft
+%
+if COMPARISON_METHOD != "" then
+  %  return left.%!COMPARISON_METHOD% (right) == .orderedAscending\n%
+else
+  %  return left < right\n%
+end
+%}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 func compare_%!TYPE%_properties (_ inLeft : EBReadOnlyProperty_%!TYPE%, _ inAscending : Bool, _ inRight : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
   let left  = inAscending ? inLeft  : inRight
   let right = inAscending ? inRight : inLeft
