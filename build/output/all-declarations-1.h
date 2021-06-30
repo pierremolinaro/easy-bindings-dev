@@ -5298,6 +5298,109 @@ class cPtr_astSeparatorInstructionDeclaration : public cPtr_astAbstractViewInstr
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//                                         Phase 1: @optionalHiddenBinding enum                                        *
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_optionalHiddenBinding : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public : GALGAS_optionalHiddenBinding (void) ;
+
+//--------------------------------- Enumeration
+  public : typedef enum {
+    kNotBuilt,
+    kEnum_noBinding,
+    kEnum_binding
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private : AC_GALGAS_enumAssociatedValues mAssociatedValues ;
+  public : VIRTUAL_IN_DEBUG const cEnumAssociatedValues * unsafePointer (void) const {
+    return mAssociatedValues.unsafePointer () ;
+  }
+
+  private : enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
+  public : VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public : inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_optionalHiddenBinding extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_optionalHiddenBinding constructor_binding (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0
+                                                                          COMMA_LOCATION_ARGS) ;
+
+  public : static class GALGAS_optionalHiddenBinding constructor_noBinding (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_optionalHiddenBinding & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+  public : VIRTUAL_IN_DEBUG void method_binding (class GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+                                                 C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBinding (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNoBinding (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_binding (class GALGAS_abstractBooleanMultipleBindingExpressionAST & outOperand0) const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_noBinding () const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_optionalHiddenBinding class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_optionalHiddenBinding ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: @optionalHiddenBinding enum, associated values
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cEnumAssociatedValues_optionalHiddenBinding_binding : public cEnumAssociatedValues {
+  public : const GALGAS_abstractBooleanMultipleBindingExpressionAST mAssociatedValue0 ;
+
+//--- Constructor
+  public : cEnumAssociatedValues_optionalHiddenBinding_binding (const GALGAS_abstractBooleanMultipleBindingExpressionAST & inAssociatedValue0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+  public : virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public : virtual ~ cEnumAssociatedValues_optionalHiddenBinding_binding (void) {}
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @astHStackViewInstructionDeclaration class
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -5305,9 +5408,6 @@ class cPtr_astSeparatorInstructionDeclaration : public cPtr_astAbstractViewInstr
 class GALGAS_astHStackViewInstructionDeclaration : public GALGAS_astAbstractViewInstructionDeclaration {
 //--- Constructor
   public : GALGAS_astHStackViewInstructionDeclaration (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_astHStackViewInstructionDeclaration constructor_default (LOCATION_ARGS) ;
 
 //---
   public : inline const class cPtr_astHStackViewInstructionDeclaration * ptr (void) const { return (const cPtr_astHStackViewInstructionDeclaration *) mObjectPtr ; }
@@ -5327,7 +5427,8 @@ class GALGAS_astHStackViewInstructionDeclaration : public GALGAS_astAbstractView
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_astHStackViewInstructionDeclaration constructor_new (const class GALGAS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                                    const class GALGAS_astViewInstructionList & inOperand1
+                                                                                    const class GALGAS_astViewInstructionList & inOperand1,
+                                                                                    const class GALGAS_optionalHiddenBinding & inOperand2
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5340,6 +5441,9 @@ class GALGAS_astHStackViewInstructionDeclaration : public GALGAS_astAbstractView
   public : VIRTUAL_IN_DEBUG void setter_setMInstructionList (class GALGAS_astViewInstructionList inArgument0
                                                              COMMA_LOCATION_ARGS) ;
 
+  public : VIRTUAL_IN_DEBUG void setter_setMOptionalHiddenBinding (class GALGAS_optionalHiddenBinding inArgument0
+                                                                   COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5348,6 +5452,8 @@ class GALGAS_astHStackViewInstructionDeclaration : public GALGAS_astAbstractView
   public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewFunctionCallList getter_mFunctionCallList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_astViewInstructionList getter_mInstructionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_optionalHiddenBinding getter_mOptionalHiddenBinding (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
@@ -5372,10 +5478,12 @@ class cPtr_astHStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
 //--- Attributes
   public : GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public : GALGAS_astViewInstructionList mProperty_mInstructionList ;
+  public : GALGAS_optionalHiddenBinding mProperty_mOptionalHiddenBinding ;
 
 //--- Constructor
   public : cPtr_astHStackViewInstructionDeclaration (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                     const GALGAS_astViewInstructionList & in_mInstructionList
+                                                     const GALGAS_astViewInstructionList & in_mInstructionList,
+                                                     const GALGAS_optionalHiddenBinding & in_mOptionalHiddenBinding
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5386,6 +5494,8 @@ class cPtr_astHStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
   public : VIRTUAL_IN_DEBUG void setter_setMFunctionCallList (GALGAS_astAutoLayoutViewFunctionCallList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_astViewInstructionList getter_mInstructionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMInstructionList (GALGAS_astViewInstructionList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_optionalHiddenBinding getter_mOptionalHiddenBinding (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOptionalHiddenBinding (GALGAS_optionalHiddenBinding inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -5406,9 +5516,6 @@ class GALGAS_astVStackViewInstructionDeclaration : public GALGAS_astAbstractView
 //--- Constructor
   public : GALGAS_astVStackViewInstructionDeclaration (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_astVStackViewInstructionDeclaration constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_astVStackViewInstructionDeclaration * ptr (void) const { return (const cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ; }
 
@@ -5427,7 +5534,8 @@ class GALGAS_astVStackViewInstructionDeclaration : public GALGAS_astAbstractView
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_astVStackViewInstructionDeclaration constructor_new (const class GALGAS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                                    const class GALGAS_astViewInstructionList & inOperand1
+                                                                                    const class GALGAS_astViewInstructionList & inOperand1,
+                                                                                    const class GALGAS_optionalHiddenBinding & inOperand2
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5440,6 +5548,9 @@ class GALGAS_astVStackViewInstructionDeclaration : public GALGAS_astAbstractView
   public : VIRTUAL_IN_DEBUG void setter_setMInstructionList (class GALGAS_astViewInstructionList inArgument0
                                                              COMMA_LOCATION_ARGS) ;
 
+  public : VIRTUAL_IN_DEBUG void setter_setMOptionalHiddenBinding (class GALGAS_optionalHiddenBinding inArgument0
+                                                                   COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5448,6 +5559,8 @@ class GALGAS_astVStackViewInstructionDeclaration : public GALGAS_astAbstractView
   public : VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewFunctionCallList getter_mFunctionCallList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_astViewInstructionList getter_mInstructionList (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_optionalHiddenBinding getter_mOptionalHiddenBinding (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
@@ -5472,10 +5585,12 @@ class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
 //--- Attributes
   public : GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public : GALGAS_astViewInstructionList mProperty_mInstructionList ;
+  public : GALGAS_optionalHiddenBinding mProperty_mOptionalHiddenBinding ;
 
 //--- Constructor
   public : cPtr_astVStackViewInstructionDeclaration (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                     const GALGAS_astViewInstructionList & in_mInstructionList
+                                                     const GALGAS_astViewInstructionList & in_mInstructionList,
+                                                     const GALGAS_optionalHiddenBinding & in_mOptionalHiddenBinding
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5486,6 +5601,8 @@ class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
   public : VIRTUAL_IN_DEBUG void setter_setMFunctionCallList (GALGAS_astAutoLayoutViewFunctionCallList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_astViewInstructionList getter_mInstructionList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMInstructionList (GALGAS_astViewInstructionList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_optionalHiddenBinding getter_mOptionalHiddenBinding (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOptionalHiddenBinding (GALGAS_optionalHiddenBinding inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

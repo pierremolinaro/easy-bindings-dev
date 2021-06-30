@@ -781,6 +781,10 @@ class cParser_easyBindings_5F_syntax {
 
   protected : virtual int32_t select_easyBindings_5F_syntax_98 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected : virtual int32_t select_easyBindings_5F_syntax_99 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected : virtual int32_t select_easyBindings_5F_syntax_100 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -4563,6 +4567,10 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public : virtual int32_t select_easyBindings_5F_syntax_97 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public : virtual int32_t select_easyBindings_5F_syntax_98 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_99 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public : virtual int32_t select_easyBindings_5F_syntax_100 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6116,19 +6124,22 @@ class cPtr_computedHorizontalViewGeneration : public cPtr_abstractViewGeneration
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @autoLayoutComputedViewInstructionGeneration class
+// Phase 1: @hStackViewInstructionGeneration class
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_autoLayoutComputedViewInstructionGeneration : public GALGAS_abstractViewInstructionGeneration {
+class GALGAS_hStackViewInstructionGeneration : public GALGAS_abstractViewInstructionGeneration {
 //--- Constructor
-  public : GALGAS_autoLayoutComputedViewInstructionGeneration (void) ;
+  public : GALGAS_hStackViewInstructionGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_hStackViewInstructionGeneration constructor_default (LOCATION_ARGS) ;
 
 //---
-  public : inline const class cPtr_autoLayoutComputedViewInstructionGeneration * ptr (void) const { return (const cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ; }
+  public : inline const class cPtr_hStackViewInstructionGeneration * ptr (void) const { return (const cPtr_hStackViewInstructionGeneration *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_autoLayoutComputedViewInstructionGeneration (const cPtr_autoLayoutComputedViewInstructionGeneration * inSourcePtr) ;
+  public : GALGAS_hStackViewInstructionGeneration (const cPtr_hStackViewInstructionGeneration * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -6136,81 +6147,39 @@ class GALGAS_autoLayoutComputedViewInstructionGeneration : public GALGAS_abstrac
   protected : virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_autoLayoutComputedViewInstructionGeneration extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public : static GALGAS_hStackViewInstructionGeneration extractObject (const GALGAS_object & inObject,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_autoLayoutComputedViewInstructionGeneration constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                            const class GALGAS_autoLayoutViewInstructionGenerationParameterList & inOperand1,
-                                                                                            const class GALGAS_autoLayoutViewInstructionGenerationFuncCallList & inOperand2,
-                                                                                            const class GALGAS_autoLayoutRegularBindingsGenerationList & inOperand3,
-                                                                                            const class GALGAS_autoLayoutMultipleBindingGenerationList & inOperand4,
-                                                                                            const class GALGAS_autolayoutRunBindingForGeneration & inOperand5,
-                                                                                            const class GALGAS_string & inOperand6,
-                                                                                            const class GALGAS_autoLayoutViewGraphicControllerBindingGeneration & inOperand7,
-                                                                                            const class GALGAS_string & inOperand8,
-                                                                                            const class GALGAS_string & inOperand9
-                                                                                            COMMA_LOCATION_ARGS) ;
+  public : static class GALGAS_hStackViewInstructionGeneration constructor_new (const class GALGAS_autoLayoutViewInstructionGenerationFuncCallList & inOperand0,
+                                                                                const class GALGAS_autoLayoutViewInstructionGenerationList & inOperand1,
+                                                                                const class GALGAS_autoLayoutMultipleBindingGenerationList & inOperand2
+                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_autoLayoutComputedViewInstructionGeneration & inOperand) const ;
+  public : typeComparisonResult objectCompare (const GALGAS_hStackViewInstructionGeneration & inOperand) const ;
 
 //--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutViewClassName (class GALGAS_lstring inArgument0
-                                                                     COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void setter_setMFuncCallList (class GALGAS_autoLayoutViewInstructionGenerationFuncCallList inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMConfiguratorName (class GALGAS_string inArgument0
-                                                              COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMEBViewGraphicControllerBindingGeneration (class GALGAS_autoLayoutViewGraphicControllerBindingGeneration inArgument0
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMFunctionCallList (class GALGAS_autoLayoutViewInstructionGenerationFuncCallList inArgument0
-                                                              COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionList (class GALGAS_autoLayoutViewInstructionGenerationList inArgument0
+                                                             COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMMultipleBindingGenerationList (class GALGAS_autoLayoutMultipleBindingGenerationList inArgument0
                                                                            COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMOutletName (class GALGAS_string inArgument0
-                                                        COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMParameterList (class GALGAS_autoLayoutViewInstructionGenerationParameterList inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMRegularBindingsGenerationList (class GALGAS_autoLayoutRegularBindingsGenerationList inArgument0
-                                                                           COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMRunBindingGeneration (class GALGAS_autolayoutRunBindingForGeneration inArgument0
-                                                                  COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMTableViewBindingGeneration (class GALGAS_string inArgument0
-                                                                        COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mAutoLayoutViewClassName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutViewInstructionGenerationFuncCallList getter_mFuncCallList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mConfiguratorName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutViewGraphicControllerBindingGeneration getter_mEBViewGraphicControllerBindingGeneration (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutViewInstructionGenerationFuncCallList getter_mFunctionCallList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutViewInstructionGenerationList getter_mInstructionList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutMultipleBindingGenerationList getter_mMultipleBindingGenerationList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mOutletName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutViewInstructionGenerationParameterList getter_mParameterList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_autoLayoutRegularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_autolayoutRunBindingForGeneration getter_mRunBindingGeneration (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mTableViewBindingGeneration (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
@@ -6218,69 +6187,41 @@ class GALGAS_autoLayoutComputedViewInstructionGeneration : public GALGAS_abstrac
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
-} ; // End of GALGAS_autoLayoutComputedViewInstructionGeneration class
+} ; // End of GALGAS_hStackViewInstructionGeneration class
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutComputedViewInstructionGeneration ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hStackViewInstructionGeneration ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 2: pointer class for @autoLayoutComputedViewInstructionGeneration class
+// Phase 2: pointer class for @hStackViewInstructionGeneration class
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+class cPtr_hStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 //--- Attributes
-  public : GALGAS_lstring mProperty_mAutoLayoutViewClassName ;
-  public : GALGAS_autoLayoutViewInstructionGenerationParameterList mProperty_mParameterList ;
-  public : GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFunctionCallList ;
-  public : GALGAS_autoLayoutRegularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
+  public : GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
+  public : GALGAS_autoLayoutViewInstructionGenerationList mProperty_mInstructionList ;
   public : GALGAS_autoLayoutMultipleBindingGenerationList mProperty_mMultipleBindingGenerationList ;
-  public : GALGAS_autolayoutRunBindingForGeneration mProperty_mRunBindingGeneration ;
-  public : GALGAS_string mProperty_mTableViewBindingGeneration ;
-  public : GALGAS_autoLayoutViewGraphicControllerBindingGeneration mProperty_mEBViewGraphicControllerBindingGeneration ;
-  public : GALGAS_string mProperty_mConfiguratorName ;
-  public : GALGAS_string mProperty_mOutletName ;
 
 //--- Constructor
-  public : cPtr_autoLayoutComputedViewInstructionGeneration (const GALGAS_lstring & in_mAutoLayoutViewClassName,
-                                                             const GALGAS_autoLayoutViewInstructionGenerationParameterList & in_mParameterList,
-                                                             const GALGAS_autoLayoutViewInstructionGenerationFuncCallList & in_mFunctionCallList,
-                                                             const GALGAS_autoLayoutRegularBindingsGenerationList & in_mRegularBindingsGenerationList,
-                                                             const GALGAS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                             const GALGAS_autolayoutRunBindingForGeneration & in_mRunBindingGeneration,
-                                                             const GALGAS_string & in_mTableViewBindingGeneration,
-                                                             const GALGAS_autoLayoutViewGraphicControllerBindingGeneration & in_mEBViewGraphicControllerBindingGeneration,
-                                                             const GALGAS_string & in_mConfiguratorName,
-                                                             const GALGAS_string & in_mOutletName
-                                                             COMMA_LOCATION_ARGS) ;
+  public : cPtr_hStackViewInstructionGeneration (const GALGAS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
+                                                 const GALGAS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
+                                                 const GALGAS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList
+                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mAutoLayoutViewClassName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMAutoLayoutViewClassName (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutViewInstructionGenerationParameterList getter_mParameterList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMParameterList (GALGAS_autoLayoutViewInstructionGenerationParameterList inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutViewInstructionGenerationFuncCallList getter_mFunctionCallList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMFunctionCallList (GALGAS_autoLayoutViewInstructionGenerationFuncCallList inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutRegularBindingsGenerationList getter_mRegularBindingsGenerationList (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMRegularBindingsGenerationList (GALGAS_autoLayoutRegularBindingsGenerationList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutViewInstructionGenerationFuncCallList getter_mFuncCallList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMFuncCallList (GALGAS_autoLayoutViewInstructionGenerationFuncCallList inValue COMMA_LOCATION_ARGS) ;
+  public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutViewInstructionGenerationList getter_mInstructionList (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionList (GALGAS_autoLayoutViewInstructionGenerationList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutMultipleBindingGenerationList getter_mMultipleBindingGenerationList (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMMultipleBindingGenerationList (GALGAS_autoLayoutMultipleBindingGenerationList inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_autolayoutRunBindingForGeneration getter_mRunBindingGeneration (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMRunBindingGeneration (GALGAS_autolayoutRunBindingForGeneration inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mTableViewBindingGeneration (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMTableViewBindingGeneration (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_autoLayoutViewGraphicControllerBindingGeneration getter_mEBViewGraphicControllerBindingGeneration (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMEBViewGraphicControllerBindingGeneration (GALGAS_autoLayoutViewGraphicControllerBindingGeneration inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mConfiguratorName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMConfiguratorName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_string getter_mOutletName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMOutletName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

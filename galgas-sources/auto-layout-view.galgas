@@ -51,9 +51,17 @@ class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclarati
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+enum @optionalHiddenBinding {
+  case noBinding
+  case binding (@abstractBooleanMultipleBindingExpressionAST hidden)
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
 class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
+  @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -61,6 +69,7 @@ class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
 class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
+  @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -403,10 +412,18 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $vStack$
     <auto_layout_func_call_list> ?let functionCallList
+    @optionalHiddenBinding optionalHiddenBinding
+    select
+      optionalHiddenBinding = .noBinding
+    or
+      $hidden$
+      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      optionalHiddenBinding = .binding {!hidden: bindingExpression}
+    end
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> !horizontal: false !?instructionList
-    outInstruction = @astVStackViewInstructionDeclaration.new {!functionCallList !instructionList}
+    outInstruction = @astVStackViewInstructionDeclaration.new {!functionCallList !instructionList !optionalHiddenBinding}
     $}$
   }
   
@@ -415,10 +432,18 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $hStack$
     <auto_layout_func_call_list> ?let functionCallList
+    @optionalHiddenBinding optionalHiddenBinding
+    select
+      optionalHiddenBinding = .noBinding
+    or
+      $hidden$
+      <booleanMultipleBindingExpression> ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression
+      optionalHiddenBinding = .binding {!hidden: bindingExpression}
+    end
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> !horizontal: true !?instructionList
-    outInstruction = @astHStackViewInstructionDeclaration.new {!functionCallList !instructionList}
+    outInstruction = @astHStackViewInstructionDeclaration.new {!functionCallList !instructionList !optionalHiddenBinding}
     $}$
   }
   
@@ -1428,6 +1453,26 @@ override method @astHStackViewInstructionDeclaration generateCode
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
+  @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
+  switch self.mOptionalHiddenBinding 
+  case noBinding :
+  case binding (hiddenBindingExpression) :
+    [hiddenBindingExpression analyzeExpressionForMultipleBinding
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+      ?let @typeKind type
+      ?let @location errorLocation
+    ]
+    if not [type isBoolType] then
+      error errorLocation : "expression is not boolean"
+    end
+    multipleBindingGenerationList +=
+      !"hidden"
+      !hiddenExpression
+  end
   for (instruction) in self.mInstructionList do
    [instruction generateCode
       !inViewDeclarationMap
@@ -1446,7 +1491,7 @@ override method @astHStackViewInstructionDeclaration generateCode
     ]
     instructionList += !generatedInstruction
   end
-  outInstruction = @hStackViewInstructionGeneration.new {!funcCallList !instructionList}
+  outInstruction = @hStackViewInstructionGeneration.new {!funcCallList !instructionList !multipleBindingGenerationList}
 }
 
 #·······················································································································
@@ -1482,6 +1527,26 @@ override method @astVStackViewInstructionDeclaration generateCode
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
+  @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
+  switch self.mOptionalHiddenBinding 
+  case noBinding :
+  case binding (hiddenBindingExpression) :
+    [hiddenBindingExpression analyzeExpressionForMultipleBinding
+      !inPreferences
+      !inRootObservablePropertyMap
+      !inSemanticContext
+      !inObservablePropertyMap
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+      ?let @typeKind type
+      ?let @location errorLocation
+    ]
+    if not [type isBoolType] then
+      error errorLocation : "expression is not boolean"
+    end
+    multipleBindingGenerationList +=
+      !"hidden"
+      !hiddenExpression
+  end
   for (instruction) in self.mInstructionList do
    [instruction generateCode
       !inViewDeclarationMap
@@ -1500,7 +1565,7 @@ override method @astVStackViewInstructionDeclaration generateCode
     ]
     instructionList += !generatedInstruction
   end
-  outInstruction = @vStackViewInstructionGeneration.new {!funcCallList !instructionList}
+  outInstruction = @vStackViewInstructionGeneration.new {!funcCallList !instructionList !multipleBindingGenerationList}
 }
 
 #·······················································································································
@@ -1572,6 +1637,7 @@ abstract class @abstractViewInstructionGeneration {
 class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
+  @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1579,6 +1645,7 @@ class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
 class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
+  @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1817,6 +1884,9 @@ override getter @autoLayoutComputedViewInstructionGeneration generate ?let @stri
 override getter @hStackViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !inIndentation !?result]
+  for (bindingName binding) in self.mMultipleBindingGenerationList do 
+    result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"
+  end
   result += inIndentation + "do{\n"
   let indentation = inIndentation + "  "
   for (instruction) in self.mInstructionList do (index)
@@ -1832,6 +1902,9 @@ override getter @hStackViewInstructionGeneration generate ?let @string inName ?l
 override getter @vStackViewInstructionGeneration generate ?let @string inName ?let @string inIndentation -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !inIndentation !?result]
+  for (bindingName binding) in self.mMultipleBindingGenerationList do 
+    result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"
+  end
   result += inIndentation + "do{\n"
   let indentation = inIndentation + "  "
   for (instruction) in self.mInstructionList do (index)
