@@ -41,18 +41,18 @@ end
     }
     set{
       super.fileModificationDate = newValue
-      self.documentFilePath_property.postEvent ()
+      self.documentFileName_property.postEvent ()
     }
   }
 
   //····················································································································
 
-  final func computeTransient_documentFilePath () -> String {
-    var documentFilePath = ""
+  final func computeTransient_documentFileName () -> String {
+    var documentFileName = ""
     if let url = self.fileURL {
-      documentFilePath = url.path
+      documentFileName = url.path
     }
-    return documentFilePath
+    return documentFileName
   }
 
   //····················································································································
@@ -190,12 +190,12 @@ end
     self.configureProperties ()
     self.installBindings ()
     self.setTargetsAndActions ()
-  //--------------------------- Read documentFilePath model
-    self.documentFilePath_property.mReadModelFunction = { [weak self] in
-      if let r = self?.computeTransient_documentFilePath () {
+  //--------------------------- Read documentFileName model
+    self.documentFileName_property.mReadModelFunction = { [weak self] in
+      if let r = self?.displayName {
         return .single (r)
       }else{
-        return .empty
+        return .single ("")
       }
     }
   }

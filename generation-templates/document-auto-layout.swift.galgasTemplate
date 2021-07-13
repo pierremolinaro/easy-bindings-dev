@@ -39,28 +39,15 @@ end
 end
 %
   //····················································································································
-  //    Document file path
-  //····················································································································
-  // Cette méthode est appelée après tout enregistrement, qu'il y ait changement de nom ou pas.
-
-  override final var fileModificationDate : Date? {
-    get {
-      return super.fileModificationDate
-    }
-    set{
-      super.fileModificationDate = newValue
-      self.documentFilePath_property.postEvent ()
-    }
-  }
-
+  //    displayName
   //····················································································································
 
-  final func computeTransient_documentFilePath () -> String {
-    var documentFilePath = ""
-    if let url = self.fileURL {
-      documentFilePath = url.path
+  override var displayName : String? {
+    get { return super.displayName }
+    set {
+      super.displayName = newValue
+      self.documentFileName_property.postEvent ()
     }
-    return documentFilePath
   }
 
   //····················································································································
@@ -119,7 +106,15 @@ end
     toolbar.delegate = self
     self.windowForSheet?.toolbar = toolbar
   %end
-  %//--- Build window content view
+  %  //--------------------------- Read documentFileName model
+    self.documentFileName_property.mReadModelFunction = { [weak self] in
+      if let r = self?.displayName {
+        return .single (r)
+      }else{
+        return .single ("")
+      }
+    }
+  //--- Build window content view
     self.configureProperties ()
     let mainView = self.%!MAIN_VIEW_NAME%
   //--- Call outlet linkers\n%
@@ -188,20 +183,7 @@ case view (title instruction) :
 %  }
 
   //····················································································································
-  //    check outlet connections
-  //····················································································································
-
-//  private func checkOutletConnections () {
-//    let start = Date ()
-%for () in OUTLET_GENERATION_MAP do
-%//    checkOutletConnection (self.%!lkey.string%, "%!lkey.string%", %!mOutletTypeName%.self, #file, #line)\n%
-end
-%//    if LOG_OPERATION_DURATION {
-//      let durationMS = Int (Date ().timeIntervalSince (start) * 1000.0)
-//      Swift.print ("Check outlet connections \(durationMS) ms")
-//    }
-//  }
-
+  //    configureProperties
   //····················································································································
 
   final private func configureProperties () {
@@ -301,11 +283,11 @@ for () in REGULAR_BINDINGS_GENERATION_LIST do
 end
 %  //--------------------------- Unbind multiple bindings
 %
-for () in MULTIPLE_BINDING_GENERATION_LIST do
+#for () in MULTIPLE_BINDING_GENERATION_LIST do
 #  for () in [mBoundObjectExpression observedModelSet] do
 #  % //   %!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
 #  end
-end
+#end
 %  //--------------------------- Unbind array controllers
 %
 for () in TABLE_VALUE_BINDING_GENERATION_LIST do

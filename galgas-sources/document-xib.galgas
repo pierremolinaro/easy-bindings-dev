@@ -63,7 +63,7 @@ syntax extension easyBindings_syntax {
       !documentName
       !rootEntityName
       !["String" here]
-      !["documentFilePath" here]
+      !["documentFileName" here]
       !{}
       !false
     }
