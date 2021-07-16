@@ -397,8 +397,8 @@ syntax extension easyBindings_syntax {
           $.$
           $identifier$ ?let enumFuncName
           outParameterList +=
-           !parameterName 
-           !.typeStringArray !.enumFunc {!enumTypeName: enumTypeName !enumFuncName: enumFuncName}
+            !parameterName 
+            !.typeStringArray !.enumFunc {!enumTypeName: enumTypeName !enumFuncName: enumFuncName}
         end
       while
         $,$
@@ -937,7 +937,14 @@ override method @astComputedViewInstruction generateCode
     : [[formalParameterList length] string] + " parameter(s) required, " + [self.mParameterList length] + " provided"
   else
     for (name type value) in self.mParameterList, (formalName formalType) in formalParameterList do
-      if type != formalType then
+      if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
+        [inClassMap searchKey !enumTypeName ?let typeKind ?3*]
+        if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
+          [constantMap searchKey !constantName ?*]
+        else
+          error enumTypeName : "this type name is not an enum"
+        end
+      elsif type != formalType then
         error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
       end
       if name.string != formalName.string then

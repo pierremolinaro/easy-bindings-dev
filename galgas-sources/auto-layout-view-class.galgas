@@ -198,19 +198,18 @@ syntax extension easyBindings_syntax {
           $entity$
           ioParameterList += !parameterName !.entity
         or
-         $Identifier$ ?let parameterTypeName
-         if parameterTypeName.string == "String" then
-           ioParameterList += !parameterName !.typeString
-         elsif parameterTypeName.string == "StringArray" then
-           ioParameterList += !parameterName !.typeStringArray
-         elsif parameterTypeName.string == "Int" then
-           ioParameterList += !parameterName !.typeInt
-         elsif parameterTypeName.string == "Bool" then
-           ioParameterList += !parameterName !.typeBool
-         else
-           ioParameterList += !parameterName !.typeEnum {!name: parameterTypeName}
-#           error parameterTypeName : "the type 'String', 'Int' or 'Bool' is required here"
-         end
+          $Identifier$ ?let parameterTypeName
+          if parameterTypeName.string == "String" then
+            ioParameterList += !parameterName !.typeString
+          elsif parameterTypeName.string == "StringArray" then
+            ioParameterList += !parameterName !.typeStringArray
+          elsif parameterTypeName.string == "Int" then
+            ioParameterList += !parameterName !.typeInt
+          elsif parameterTypeName.string == "Bool" then
+            ioParameterList += !parameterName !.typeBool
+          else
+            ioParameterList += !parameterName !.typeEnum {!name: parameterTypeName}
+          end
         end
       while
         $,$
