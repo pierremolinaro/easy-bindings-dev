@@ -185,7 +185,7 @@ end
       valueGetterDelegate: { [weak self] in return self?.sortedArray_property.propval [$0].%!mDisplayedPropertyName% },
       valueSetterDelegate: %
   if mEditable then
-   %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray_property.propval [inRowIndex].name = inNewValue }%
+   %{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray_property.propval [inRowIndex].%!mDisplayedPropertyName% = inNewValue }%
   else
     %nil%
   end
@@ -209,21 +209,7 @@ end
 %end
 %  //---
     self.mTableViewArray.append (inTableView)
-  //---
-//    inTableView.sortAndReloadData ()
   }
-
-  //····················································································································
-
-/*  final func unbind_tableView (_ inTableView : EBTableView?) {
-    if let tableView = inTableView, let idx = self.mTableViewArray.firstIndex (of:tableView) {
-      self.sortedArray_property.removeEBObserver (self.mTableViewDataSourceControllerArray [idx])
-      self.mInternalSelectedArrayProperty.removeEBObserver (self.mTableViewSelectionControllerArray [idx])
-      self.mTableViewArray.remove (at: idx)
-      self.mTableViewDataSourceControllerArray.remove (at: idx)
-      self.mTableViewSelectionControllerArray.remove (at: idx)
-    }
-  } */
 
 %switch MODEL_KIND
 case transientArray :
