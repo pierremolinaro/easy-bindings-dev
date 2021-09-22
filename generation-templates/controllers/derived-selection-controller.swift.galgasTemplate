@@ -8,7 +8,7 @@ import Cocoa
 //    Derived selection controller %!OWNER_NAME% %!SELECTION_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : BaseObject {
+final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBSwiftBaseObject {
 
 %for () in PROPERTY_GENERATION_LIST do
   ![mProperty declarationInSelectionControllerCode]
