@@ -103,7 +103,7 @@ if [SORTED_COLUMNS length] > 0 then
 
   //····················································································································
 
-  var selectedArray : EBReferenceArray  <%!ELEMENT_TYPE_NAME%> { return self.selectedArray_property.propval }
+  var selectedArray : EBReferenceArray <%!ELEMENT_TYPE_NAME%> { return self.selectedArray_property.propval }
 
   //····················································································································
 
@@ -252,7 +252,7 @@ case entityArray :
     case .empty, .multiple :
       ()
     case .single (let v) :
-      var newSelectedObjects = EBReferenceArray  <%!ELEMENT_TYPE_NAME%> ()
+      var newSelectedObjects = EBReferenceArray <%!ELEMENT_TYPE_NAME%> ()
       for index in inSelectedRows {
         newSelectedObjects.append (v [index])
       }
@@ -290,7 +290,7 @@ case entityArray :
         ()
       case .single (let v) :
         let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
-        var array = EBReferenceArray  (v)
+        var array = EBReferenceArray (v)
         array.append (newObject)
         model.setProp (array)
       //--- New object is the selection
@@ -362,7 +362,7 @@ case entityArray :
         //--- Sort in reverse order
           selectedObjectIndexArray.sort { $1 < $0 }
         //--- Remove objects, in reverse of order of their index
-          var newObjectArray = EBReferenceArray  (model_prop)
+          var newObjectArray = EBReferenceArray (model_prop)
           for index in selectedObjectIndexArray {
             newObjectArray.remove (at: index)
           }

@@ -17,7 +17,7 @@ end
   //   Selected array (not observable)
   //····················································································································
 
-  var selectedArray : EBReferenceArray  <%!DERIVED_ELEMENT_TYPE_NAME%> { return self.selectedArray_property.propval }
+  var selectedArray : EBReferenceArray <%!DERIVED_ELEMENT_TYPE_NAME%> { return self.selectedArray_property.propval }
 
   //····················································································································
   //   BIND SELECTION

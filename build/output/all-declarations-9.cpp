@@ -3563,14 +3563,14 @@ static GALGAS_string extensionGetter_toManyProxyGeneration_propertyDeclarationCo
     "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 238)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 238)) ;
   const GALGAS_toManyProxyGeneration temp_5 = object ;
   const GALGAS_toManyProxyGeneration temp_6 = object ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (temp_5.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 239)).add_operation (GALGAS_string (" : EBReferenceArray  <"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 239)).add_operation (temp_6.getter_mToManyTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 239)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 239)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 239)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (temp_5.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 239)).add_operation (GALGAS_string (" : EBReferenceArray <"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 239)).add_operation (temp_6.getter_mToManyTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 239)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 239)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 239)) ;
   result_result.plusAssign_operation(GALGAS_string ("    get {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 240)) ;
   const GALGAS_toManyProxyGeneration temp_7 = object ;
   result_result.plusAssign_operation(GALGAS_string ("      switch self.").add_operation (temp_7.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 241)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.galgas", 241)), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 241)) ;
   result_result.plusAssign_operation(GALGAS_string ("      case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 242)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return EBReferenceArray  ()\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 243)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return EBReferenceArray ()\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 243)) ;
   result_result.plusAssign_operation(GALGAS_string ("      case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 244)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return EBReferenceArray  (v)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 245)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return EBReferenceArray (v)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 245)) ;
   result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 246)) ;
   result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 247)) ;
   result_result.plusAssign_operation(GALGAS_string ("    set {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.galgas", 248)) ;
@@ -5559,7 +5559,7 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_propertyDeclaratio
         "\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 204)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 204)) ;
       const GALGAS_toManyPropertyGeneration temp_6 = object ;
       const GALGAS_toManyPropertyGeneration temp_7 = object ;
-      result_result.plusAssign_operation(GALGAS_string ("  final var ").add_operation (temp_6.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)).add_operation (GALGAS_string (" : EBReferenceArray  <"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)).add_operation (extensionGetter_swiftTypeName (temp_7.getter_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)) ;
+      result_result.plusAssign_operation(GALGAS_string ("  final var ").add_operation (temp_6.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)).add_operation (GALGAS_string (" : EBReferenceArray <"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)).add_operation (extensionGetter_swiftTypeName (temp_7.getter_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 205)) ;
       const GALGAS_toManyPropertyGeneration temp_8 = object ;
       result_result.plusAssign_operation(GALGAS_string ("    get { return self.").add_operation (temp_8.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 206)).add_operation (GALGAS_string ("_property.propval }\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 206)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 206)) ;
       enumGalgasBool test_9 = kBoolTrue ;
@@ -5596,7 +5596,7 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_propertyDeclaratio
           "\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 217)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 217)) ;
         const GALGAS_toManyPropertyGeneration temp_18 = object ;
         const GALGAS_toManyPropertyGeneration temp_19 = object ;
-        result_result.plusAssign_operation(GALGAS_string ("  var preferences_").add_operation (temp_18.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)).add_operation (GALGAS_string (" : EBReferenceArray  <"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)).add_operation (extensionGetter_swiftTypeName (temp_19.getter_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)) ;
+        result_result.plusAssign_operation(GALGAS_string ("  var preferences_").add_operation (temp_18.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)).add_operation (GALGAS_string (" : EBReferenceArray <"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)).add_operation (extensionGetter_swiftTypeName (temp_19.getter_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 218)) ;
         const GALGAS_toManyPropertyGeneration temp_20 = object ;
         result_result.plusAssign_operation(GALGAS_string ("    get { return preferences_").add_operation (temp_20.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 219)).add_operation (GALGAS_string ("_property.propval }\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 219)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 219)) ;
         enumGalgasBool test_21 = kBoolTrue ;
@@ -5630,7 +5630,7 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_propertyDeclaratio
         "\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 231)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 231)) ;
       const GALGAS_toManyPropertyGeneration temp_28 = object ;
       const GALGAS_toManyPropertyGeneration temp_29 = object ;
-      result_result.plusAssign_operation(GALGAS_string ("  final var ").add_operation (temp_28.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)).add_operation (GALGAS_string (" : EBReferenceArray  <"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)).add_operation (extensionGetter_swiftTypeName (temp_29.getter_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)) ;
+      result_result.plusAssign_operation(GALGAS_string ("  final var ").add_operation (temp_28.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)).add_operation (GALGAS_string (" : EBReferenceArray <"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)).add_operation (extensionGetter_swiftTypeName (temp_29.getter_mRelationshipType (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)).add_operation (GALGAS_string ("> {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 232)) ;
       const GALGAS_toManyPropertyGeneration temp_30 = object ;
       result_result.plusAssign_operation(GALGAS_string ("    get { return self.").add_operation (temp_30.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 233)).add_operation (GALGAS_string ("_property.propval }\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 233)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 233)) ;
       enumGalgasBool test_31 = kBoolTrue ;
@@ -5740,7 +5740,7 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_configurationCode 
   }else if (kBoolFalse == test_1) {
     temp_0 = GALGAS_string ("self.") ;
   }
-  GALGAS_string var_prefix_11160 = temp_0 ;
+  GALGAS_string var_prefix_11157 = temp_0 ;
   const GALGAS_toManyPropertyGeneration temp_2 = object ;
   switch (temp_2.getter_mOption (HERE).enumValue ()) {
   case GALGAS_toManyRelationshipOptionGeneration::kNotBuilt:
@@ -5750,7 +5750,7 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_configurationCode 
       const GALGAS_toManyPropertyGeneration temp_3 = object ;
       result_result = GALGAS_string ("  //--- To many property: ").add_operation (temp_3.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 259)).add_operation (GALGAS_string (" (no option)\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 259)) ;
       const GALGAS_toManyPropertyGeneration temp_4 = object ;
-      result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_11160, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 260)).add_operation (temp_4.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 260)).add_operation (GALGAS_string ("_property.ebUndoManager = self.ebUndoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 260)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 260)) ;
+      result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_11157, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 260)).add_operation (temp_4.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 260)).add_operation (GALGAS_string ("_property.ebUndoManager = self.ebUndoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 260)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 260)) ;
     }
     break ;
   case GALGAS_toManyRelationshipOptionGeneration::kEnum_hasDependance:
@@ -5760,14 +5760,14 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_configurationCode 
     break ;
   case GALGAS_toManyRelationshipOptionGeneration::kEnum_hasOpposite:
     {
-      const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite * extractPtr_12089 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite *) (temp_2.getter_mOption (HERE).unsafePointer ()) ;
-      const GALGAS_string extractedValue_oppositeName = extractPtr_12089->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite * extractPtr_12086 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite *) (temp_2.getter_mOption (HERE).unsafePointer ()) ;
+      const GALGAS_string extractedValue_oppositeName = extractPtr_12086->mAssociatedValue0 ;
       const GALGAS_toManyPropertyGeneration temp_5 = object ;
       result_result = GALGAS_string ("  //--- To many property: ").add_operation (temp_5.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 264)).add_operation (GALGAS_string (" (has opposite relationship)\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 264)) ;
       const GALGAS_toManyPropertyGeneration temp_6 = object ;
-      result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_11160, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 265)).add_operation (temp_6.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 265)).add_operation (GALGAS_string ("_property.ebUndoManager = self.ebUndoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 265)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 265)) ;
+      result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_11157, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 265)).add_operation (temp_6.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 265)).add_operation (GALGAS_string ("_property.ebUndoManager = self.ebUndoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 265)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 265)) ;
       const GALGAS_toManyPropertyGeneration temp_7 = object ;
-      result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_11160, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 266)).add_operation (temp_7.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 266)).add_operation (GALGAS_string ("_property.setOppositeRelationShipFunctions (\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 266)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 266)) ;
+      result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_11157, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 266)).add_operation (temp_7.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 266)).add_operation (GALGAS_string ("_property.setOppositeRelationShipFunctions (\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 266)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 266)) ;
       result_result.plusAssign_operation(GALGAS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_oppositeName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 267)).add_operation (GALGAS_string ("_property.setProp (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 267)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 267)) ;
       result_result.plusAssign_operation(GALGAS_string ("      resetter: { inObject in inObject.").add_operation (extractedValue_oppositeName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 268)).add_operation (GALGAS_string ("_property.setProp (nil) }\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 268)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 268)) ;
       result_result.plusAssign_operation(GALGAS_string ("    )\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.galgas", 269)) ;
@@ -6112,8 +6112,8 @@ static GALGAS_string extensionGetter_toManyPropertyGeneration_terminationCode (c
     break ;
   case GALGAS_toManyRelationshipOptionGeneration::kEnum_hasDependance:
     {
-      const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance * extractPtr_17148 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance *) (temp_0.getter_mOption (HERE).unsafePointer ()) ;
-      const GALGAS_string extractedValue_masterPropertyName = extractPtr_17148->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance * extractPtr_17145 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance *) (temp_0.getter_mOption (HERE).unsafePointer ()) ;
+      const GALGAS_string extractedValue_masterPropertyName = extractPtr_17145->mAssociatedValue0 ;
       const GALGAS_toManyPropertyGeneration temp_1 = object ;
       result_result = GALGAS_string ("  //--- To many property: ").add_operation (temp_1.getter_mPropertyName (HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 367)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.galgas", 367)) ;
       const GALGAS_toManyPropertyGeneration temp_2 = object ;
@@ -7980,7 +7980,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
-    "  var selectedArray : EBReferenceArray  <" ;
+    "  var selectedArray : EBReferenceArray <" ;
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << "> { return self.selectedArray_property.propval }\n"
     "\n"
@@ -8114,13 +8114,13 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     "\n"
     "   //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
-    "   var objectArray : EBReferenceArray  <" ;
+    "   var objectArray : EBReferenceArray <" ;
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << "> {\n"
     "     if let values = self.mModel\?.propval {\n"
     "       return values\n"
     "     }else{\n"
-    "       return EBReferenceArray  ()\n"
+    "       return EBReferenceArray ()\n"
     "     }\n"
     "   }\n"
     "\n"
@@ -8413,7 +8413,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
         "        let newObject = " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
       result << " (self.ebUndoManager)\n"
-        "        var array = EBReferenceArray  (v)\n"
+        "        var array = EBReferenceArray (v)\n"
         "        array.append (newObject)\n"
         "      //--- New object is the selection\n"
         "        self.selectedSet = EBReferenceSet ([newObject])\n"
@@ -8483,7 +8483,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
         "      //--- Sort in reverse order\n"
         "        selectedObjectIndexArray.sort { $1 < $0 }\n"
         "      //--- Remove objects, in reverse of order of their index\n"
-        "        var newObjectArray = EBReferenceArray  (model_prop)\n"
+        "        var newObjectArray = EBReferenceArray (model_prop)\n"
         "        for index in selectedObjectIndexArray {\n"
         "          newObjectArray.remove (at: index)\n"
         "        }\n"
@@ -8816,7 +8816,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "  func sendToBack () {\n"
       "    var objects = self.objectArray\n"
       "    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n"
-      "    var newObjectArray = EBReferenceArray  <" ;
+      "    var newObjectArray = EBReferenceArray <" ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << "> ()\n"
       "    for idx in sortedIndexArray.reversed () {\n"
