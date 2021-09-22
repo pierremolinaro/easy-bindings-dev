@@ -8,7 +8,16 @@ import Cocoa
 //    Table View Controller %!OWNER_NAME% %!TABLE_VIEW_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : ReadOnlyAbstractGenericRelationshipProperty, EBTableViewDelegate, NSTableViewDataSource {
+final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : ReadOnlyAbstractGenericRelationshipProperty, EBTableViewDelegate {
+
+  private var mDelegate = Delegate_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% ()
+  
+  //····················································································································
+
+  override init () {
+    super.init ()
+    self.mDelegate.setController (self)
+  }
 
   //····················································································································
   //    Constant properties
@@ -31,7 +40,7 @@ end
 
   //····················································································································
 
-  private var mSortDescriptorArray = [NSSortDescriptor] ()
+  fileprivate var mSortDescriptorArray = [NSSortDescriptor] ()
 
   //····················································································································
   //    Model
@@ -144,7 +153,7 @@ end
   //   Selected Array
   //····················································································································
 
-  private let mInternalSelectedArrayProperty = StandAloneArrayOf_%!ELEMENT_TYPE_NAME% ()
+  fileprivate let mInternalSelectedArrayProperty = StandAloneArrayOf_%!ELEMENT_TYPE_NAME% ()
 
   //····················································································································
 
@@ -218,7 +227,7 @@ end
 
   private var mTableViewDataSourceControllerArray = [DataSource_EBTableView_controller] ()
   private var mTableViewSelectionControllerArray = [Selection_EBTableView_controller] ()
-  private var mTableViewArray = [EBTableView] ()
+  fileprivate var mTableViewArray = [EBTableView] ()
 
   //····················································································································
 
@@ -226,8 +235,8 @@ end
     if let tableView = inTableView {
       tableView.allowsEmptySelection = allowsEmptySelection
       tableView.allowsMultipleSelection = allowsMultipleSelection
-      tableView.dataSource = self
-      tableView.delegate = self
+      tableView.dataSource = self.mDelegate
+      tableView.delegate = self.mDelegate
     //--- Set table view data source controller
       let dataSourceTableViewController = DataSource_EBTableView_controller (delegate:self, tableView:tableView)
       self.sortedArray_property.addEBObserver (dataSourceTableViewController)
@@ -290,116 +299,6 @@ end
       return indexSet
     }
   }
-
-  //····················································································································
-  //    T A B L E V I E W    D A T A S O U R C E : numberOfRows (in:)
-  //····················································································································
-
-  func numberOfRows (in _ : NSTableView) -> Int {
-    switch self.sortedArray_property.selection {
-    case .empty, .multiple :
-      return 0
-    case .single (let v) :
-      return v.count
-    }
-  }
-
-  //····················································································································
-  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:
-  //····················································································································
-
-  func tableViewSelectionDidChange (_ notification : Notification) {
-    switch self.sortedArray_property.selection {
-    case .empty, .multiple :
-      break
-    case .single (let v) :
-      let tableView = notification.object as! EBTableView
-      var newSelectedObjects = EBReferenceArray <%!ELEMENT_TYPE_NAME%> ()
-      for index in tableView.selectedRowIndexes {
-        newSelectedObjects.append (v [index])
-      }
-      self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
-    }
-  }
-
-  //····················································································································
-  //    T A B L E V I E W    S O U R C E : tableView:sortDescriptorsDidChange:
-  //····················································································································
-
-  func tableView (_ tableView : NSTableView, sortDescriptorsDidChange oldDescriptors : [NSSortDescriptor]) {
-    self.mSortDescriptorArray = tableView.sortDescriptors
-/*    for s in tableView.sortDescriptors {
-      Swift.print ("key \(s.key), ascending \(s.ascending)")
-    } */
-    for tableView in self.mTableViewArray {
-      tableView.sortDescriptors = self.mSortDescriptorArray
-    }
-    self.sortedArray_property.notifyModelDidChange ()
-  }
-
-  //····················································································································
-  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:
-  //····················································································································
-
-  func tableView (_ tableView : NSTableView,
-                  viewFor inTableColumn: NSTableColumn?,
-                  row inRowIndex: Int) -> NSView? {
-%if [BOUND_COLUMNS length] == 0 then
-  %    return nil \n%
-else
-%    switch self.sortedArray_property.selection {
-    case .empty, .multiple :
-      return nil
-    case .single (let v) :
-      if let tableColumnIdentifier = inTableColumn?.identifier,
-         let result = tableView.makeView (withIdentifier: tableColumnIdentifier, owner:self) as? NSTableCellView {
-        if !reuseTableViewCells () {
-          result.identifier = nil // So result cannot be reused, will be freed
-        }
-        let object = v [inRowIndex]
-        %
-for () in BOUND_COLUMNS
-  do
-    %if tableColumnIdentifier.rawValue == "%!mColumnName%", let cell = result as? %!mColumnOutletTypeName%_TableViewCell {\n%
-    %          cell.mUnbindFunction = { [weak cell] in\n%
-    if mRunAction != "" then
-    %            cell?.mCellOutlet?.target = nil\n%
-    %            cell?.mCellOutlet?.action = nil\n%
-    end
-    for () in mRegularBindingsGenerationList do
-    %            cell?.mCellOutlet?.unbind_%!mBindingName% ()\n%
-    end
-    %          }\n%
-    %          cell.mUnbindFunction? ()\n%
-    if mRunAction != "" then
-    %          cell.mCellOutlet?.target = object\n%
-    %          cell.mCellOutlet?.action = #selector (%!ELEMENT_TYPE_NAME%.%!mRunAction%(_:))\n%
-    end
-    for () in mRegularBindingsGenerationList do
-    %          cell.mCellOutlet?.bind_%!mBindingName% (%
-      for () in mBoundObjectList
-        do !mBoundObjectString
-        between %, %
-      end
-      !mBindingOptionsString%)\n%
-      %          cell.update ()\n%
-    end
-    %        %
-  between
-    %}else %
-  after
-   %}else{\n%
-   %          NSLog ("Unknown column '\(String (describing: inTableColumn?.identifier))'")\n%
-   %        }\n%
-end
-%        return result
-      }else{
-        return nil
-      }
-    }
-%
-end
-%  }
 
 %switch MODEL_KIND
 case transientArray :
@@ -518,6 +417,146 @@ case entityArray :
   }
 %end
 %
+  //····················································································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+fileprivate final class Delegate_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBObjcBaseObject, NSTableViewDataSource, NSTableViewDelegate {
+
+  //····················································································································
+
+  weak var mController : Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME%? = nil
+
+  //····················································································································
+
+  func setController (_ inController : Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME%) {
+    self.mController = inController
+  }
+
+  //····················································································································
+  //    T A B L E V I E W    D A T A S O U R C E : numberOfRows (in:)
+  //····················································································································
+
+  func numberOfRows (in _ : NSTableView) -> Int {
+    if let controller = self.mController {
+      switch controller.sortedArray_property.selection {
+      case .empty, .multiple :
+        return 0
+      case .single (let v) :
+        return v.count
+      }
+    }else{
+      return 0
+    }
+  }
+
+  //····················································································································
+  //    T A B L E V I E W    D E L E G A T E : tableViewSelectionDidChange:
+  //····················································································································
+
+  func tableViewSelectionDidChange (_ notification : Notification) {
+    if let controller = self.mController {
+      switch controller.sortedArray_property.selection {
+      case .empty, .multiple :
+        break
+      case .single (let v) :
+        let tableView = notification.object as! EBTableView
+        var newSelectedObjects = EBReferenceArray <%!ELEMENT_TYPE_NAME%> ()
+        for index in tableView.selectedRowIndexes {
+          newSelectedObjects.append (v [index])
+        }
+        controller.mInternalSelectedArrayProperty.setProp (newSelectedObjects)
+      }
+    }
+  }
+
+  //····················································································································
+  //    T A B L E V I E W    S O U R C E : tableView:sortDescriptorsDidChange:
+  //····················································································································
+
+  func tableView (_ tableView : NSTableView, sortDescriptorsDidChange oldDescriptors : [NSSortDescriptor]) {
+    if let controller = self.mController {
+      controller.mSortDescriptorArray = tableView.sortDescriptors
+  /*    for s in tableView.sortDescriptors {
+        Swift.print ("key \(s.key), ascending \(s.ascending)")
+      } */
+      for tableView in controller.mTableViewArray {
+        tableView.sortDescriptors = controller.mSortDescriptorArray
+      }
+      controller.sortedArray_property.notifyModelDidChange ()
+    }
+  }
+
+  //····················································································································
+  //    T A B L E V I E W    D E L E G A T E : tableView:viewForTableColumn:row:
+  //····················································································································
+
+  func tableView (_ tableView : NSTableView,
+                  viewFor inTableColumn: NSTableColumn?,
+                  row inRowIndex: Int) -> NSView? {
+%if [BOUND_COLUMNS length] == 0 then
+  %    return nil \n%
+else
+%    if let controller = self.mController {
+      switch controller.sortedArray_property.selection {
+      case .empty, .multiple :
+        return nil
+      case .single (let v) :
+        if let tableColumnIdentifier = inTableColumn?.identifier,
+          let result = tableView.makeView (withIdentifier: tableColumnIdentifier, owner:self) as? NSTableCellView {
+          if !reuseTableViewCells () {
+            result.identifier = nil // So result cannot be reused, will be freed
+          }
+          let object = v [inRowIndex]
+          %
+for () in BOUND_COLUMNS
+  do
+    %if tableColumnIdentifier.rawValue == "%!mColumnName%", let cell = result as? %!mColumnOutletTypeName%_TableViewCell {\n%
+    %            cell.mUnbindFunction = { [weak cell] in\n%
+    if mRunAction != "" then
+    %              cell?.mCellOutlet?.target = nil\n%
+    %              cell?.mCellOutlet?.action = nil\n%
+    end
+    for () in mRegularBindingsGenerationList do
+    %              cell?.mCellOutlet?.unbind_%!mBindingName% ()\n%
+    end
+    %            }\n%
+    %            cell.mUnbindFunction? ()\n%
+    if mRunAction != "" then
+    %            cell.mCellOutlet?.target = object\n%
+    %            cell.mCellOutlet?.action = #selector (%!ELEMENT_TYPE_NAME%.%!mRunAction%(_:))\n%
+    end
+    for () in mRegularBindingsGenerationList do
+    %            cell.mCellOutlet?.bind_%!mBindingName% (%
+      for () in mBoundObjectList
+        do !mBoundObjectString
+        between %, %
+      end
+      !mBindingOptionsString%)\n%
+      %            cell.update ()\n%
+    end
+    %          %
+  between
+    %}else %
+  after
+   %}else{\n%
+   %            NSLog ("Unknown column '\(String (describing: inTableColumn?.identifier))'")\n%
+   %          }\n%
+end
+%          return result
+        }else{
+          return nil
+        }
+      }
+    }else{
+      return nil
+    }
+%
+end
+%  }
+
   //····················································································································
 
 }
