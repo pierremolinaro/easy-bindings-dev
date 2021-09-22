@@ -103,11 +103,11 @@ if [SORTED_COLUMNS length] > 0 then
 
   //····················································································································
 
-  var selectedArray : [%!ELEMENT_TYPE_NAME%] { return self.selectedArray_property.propval }
+  var selectedArray : EBReferenceArray  <%!ELEMENT_TYPE_NAME%> { return self.selectedArray_property.propval }
 
   //····················································································································
 
-  var selectedSet : EBReferenceSet <%!ELEMENT_TYPE_NAME%> { return EBReferenceSet (self.selectedArray_property.propval) }
+  var selectedSet : EBReferenceSet <%!ELEMENT_TYPE_NAME%> { return EBReferenceSet (self.selectedArray_property.propval.values) }
 
   //····················································································································
 
@@ -115,11 +115,13 @@ if [SORTED_COLUMNS length] > 0 then
     let selectedObjectSet = self.selectedSet
     var result = Set <Int> ()
     var idx = 0
-    for object in self.mModel?.propval ?? [] {
-      if selectedObjectSet.contains (object) {
-        result.insert (idx)
+    if let model = self.mModel {
+      for object in model.propval.values {
+        if selectedObjectSet.contains (object) {
+          result.insert (idx)
+        }
+        idx += 1
       }
-      idx += 1
     }
     return result
   }
@@ -250,7 +252,7 @@ case entityArray :
     case .empty, .multiple :
       ()
     case .single (let v) :
-      var newSelectedObjects = [ %!ELEMENT_TYPE_NAME%] ()
+      var newSelectedObjects = EBReferenceArray  <%!ELEMENT_TYPE_NAME%> ()
       for index in inSelectedRows {
         newSelectedObjects.append (v [index])
       }
@@ -288,11 +290,11 @@ case entityArray :
         ()
       case .single (let v) :
         let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
-        var array = v
+        var array = EBReferenceArray  (v)
         array.append (newObject)
         model.setProp (array)
       //--- New object is the selection
-        self.mInternalSelectedArrayProperty.setProp ([newObject])
+        self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (newObject))
       }
     }
   }
@@ -360,7 +362,7 @@ case entityArray :
         //--- Sort in reverse order
           selectedObjectIndexArray.sort { $1 < $0 }
         //--- Remove objects, in reverse of order of their index
-          var newObjectArray = model_prop
+          var newObjectArray = EBReferenceArray  (model_prop)
           for index in selectedObjectIndexArray {
             newObjectArray.remove (at: index)
           }
@@ -368,9 +370,9 @@ case entityArray :
           model.setProp (newObjectArray)
         //----------------------------------------- Set new selection
           if let object = newSelectedObject {
-            self.mInternalSelectedArrayProperty.setProp ([object])
+            self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (object))
           }else{
-            self.mInternalSelectedArrayProperty.setProp ([])
+            self.mInternalSelectedArrayProperty.setProp (EBReferenceArray ())
           }
         }
       }

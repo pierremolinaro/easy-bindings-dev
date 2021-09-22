@@ -52,7 +52,7 @@ end
   private var mPrivateSelectedSet = EBReferenceSet <%!ELEMENT_TYPE_NAME%> () {
     didSet {
       self.selectedArray_property.postEvent ()
-      self.mInternalSelectedArrayProperty.setProp (Array (self.mPrivateSelectedSet.values))
+      self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (self.mPrivateSelectedSet.values)))
     }
   }
 
@@ -69,7 +69,7 @@ end
 
   //····················································································································
 
-  var selectedArray : [%!ELEMENT_TYPE_NAME%] { return self.selectedArray_property.propval }
+  var selectedArray : EBReferenceArray  <%!ELEMENT_TYPE_NAME%> { return self.selectedArray_property.propval }
 
   //····················································································································
   //   Init
@@ -186,17 +186,17 @@ end
     super.notifyModelDidChange ()
     let currentSelectedSet = self.selectedSet
     let objectArray = self.objectArray
-    let newSelectedSet = currentSelectedSet.intersection (objectArray)
-    self.mInternalSelectedArrayProperty.setProp (Array (newSelectedSet.values))
+    let newSelectedSet = currentSelectedSet.intersection (objectArray.values)
+    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (newSelectedSet.values)))
   }
 
    //····················································································································
 
-   var objectArray : [%!ELEMENT_TYPE_NAME%] {
+   var objectArray : EBReferenceArray  <%!ELEMENT_TYPE_NAME%> {
      if let values = self.mModel?.propval {
        return values
      }else{
-       return []
+       return EBReferenceArray  ()
      }
    }
 
@@ -215,7 +215,7 @@ end
   var selectedIndexesSet : Set <Int> {
     var result = Set <Int> ()
     var idx = 0
-    for object in self.objectArray {
+    for object in self.objectArray.values {
       if self.selectedArray_property.propset.contains (object) {
         result.insert (idx)
       }
@@ -238,7 +238,7 @@ end
   var selectedGraphicObjectSet : EBReferenceSet <EBGraphicManagedObject> {
   //  return self.selectedArray_property.propset // Faudrait faire mieux !
     var result = EBReferenceSet <EBGraphicManagedObject> (minimumCapacity: self.selectedArray_property.propval.count)
-    for object in self.selectedArray_property.propval {
+    for object in self.selectedArray_property.propval.values {
       result.insert (object)
     }
     return result
@@ -247,8 +247,8 @@ end
    //····················································································································
 
    var graphicObjectArray : [EBGraphicManagedObject] {
-     if let values = self.mModel?.propval {
-       return values
+     if let v = self.mModel?.propval {
+       return v.values
      }else{
        return []
      }
@@ -272,7 +272,7 @@ end
 
   func computeSelectionShape () {
     var selectionDisplayArray = [EBShape] ()
-    for object in self.objectArray {
+    for object in self.objectArray.values {
       if !self.selectedArray_property.propset.contains (object) {
         selectionDisplayArray.append (EBShape ())
       }else if let shape = object.selectionDisplay {
@@ -318,7 +318,7 @@ end
 
   func updateObjectDisplay () {
     var displayArray = [EBShape] ()
-    for object in self.objectArray {
+    for object in self.objectArray.values {
       if let shape = object.objectDisplay {
         displayArray.append (shape)
       }else{
@@ -336,7 +336,7 @@ end
 
   func alignmentPointSetArray () -> [Set<CanariPoint>] {
     var result = [Set<CanariPoint>] ()
-    for object in self.objectArray {
+    for object in self.objectArray.values {
       result.append (object.alignmentPoints ().points)
     }
     return result
@@ -436,7 +436,7 @@ end
     let selectedObjects = self.selectedArray_property.propset
     let indexSet = NSMutableIndexSet ()
     for object in selectedObjects.values {
-      if let index = modelObjects.firstIndex(of: object) {
+      if let index = modelObjects.firstIndex (of: object) {
         indexSet.add (index)
       }
     }
@@ -474,7 +474,7 @@ case entityArray :
         break
       case .single (let v) :
         let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
-        var array = v
+        var array = EBReferenceArray  (v)
         array.append (newObject)
       //--- New object is the selection
         self.selectedSet = EBReferenceSet ([newObject])
@@ -538,7 +538,7 @@ case entityArray :
       //--- Sort in reverse order
         selectedObjectIndexArray.sort { $1 < $0 }
       //--- Remove objects, in reverse of order of their index
-        var newObjectArray = model_prop
+        var newObjectArray = EBReferenceArray  (model_prop)
         for index in selectedObjectIndexArray {
           newObjectArray.remove (at: index)
         }
@@ -678,7 +678,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       for dictionary in dictionaryArray {
         if let object = makeManagedObjectFromDictionary (self.ebUndoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
           if errorMessage == "" {
-            errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx], objectArray: self.objectArray)
+            errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx], objectArray: self.objectArray.values)
           }
           idx += 1
           if errorMessage == "" {
@@ -746,8 +746,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func selectAllObjects () {
-    let objects = self.objectArray
-    self.selectedSet = EBReferenceSet (objects)
+    self.selectedSet = EBReferenceSet (self.objectArray.values)
   }
 
   //····················································································································
@@ -863,7 +862,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   func sendToBack () {
     var objects = self.objectArray
     let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()
-    var newObjectArray = [%!ELEMENT_TYPE_NAME%] ()
+    var newObjectArray = EBReferenceArray  <%!ELEMENT_TYPE_NAME%> ()
     for idx in sortedIndexArray.reversed () {
       let object = objects [idx]
       objects.remove (at: idx)
@@ -1119,7 +1118,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
         self.mCurrentAttachedView = tf
       }else{
         var selectionTypes = Set <ObjectIdentifier> ()
-        for object in self.selectedArray {
+        for object in self.selectedArray.values {
           let T = ObjectIdentifier (type (of: object))
           selectionTypes.insert (T)
         }

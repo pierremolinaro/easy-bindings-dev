@@ -207,7 +207,7 @@ end
 %
 for () in TO_MANY_RELATIONSHIP_LIST do
   if not [[mProperty mOption] isHasDependance] then
-    %    self.%![mProperty mPropertyName]% = []\n%
+    %    self.%![mProperty mPropertyName]%.removeAll ()\n%
   end
 end
 %  //---
@@ -311,7 +311,7 @@ end
     %    do{\n%
     %      var optionalFirstIndex : Int? = nil\n%
     %      var rangeCount = 0\n%
-    %      for object in self.%![mProperty mPropertyName]% {\n%
+    %      for object in self.%![mProperty mPropertyName]%.values {\n%
     %        if let firstIndex = optionalFirstIndex {\n%
     %          if object.savingIndex == (firstIndex + 1) {\n%
     %            rangeCount += 1\n%
@@ -373,7 +373,7 @@ end
 %for () in TO_MANY_RELATIONSHIP_LIST do
   if not [[mProperty mOption] isHasDependance] then
     %      if let range = inDictionary ["%![mProperty mPropertyName]%"], range.length > 0 {\n%
-    %        var relationshipArray = [%![[mProperty mRelationshipType] swiftTypeName]%] ()\n%
+    %        var relationshipArray = EBReferenceArray  <%![[mProperty mRelationshipType] swiftTypeName]%> ()\n%
     %        let indexArray = inData.base62EncodedIntArray (fromRange: range)\n%
     %        for idx in indexArray {\n%
     %          relationshipArray.append (inObjectArray [idx] as! %![[mProperty mRelationshipType] swiftTypeName]%)\n%

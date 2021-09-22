@@ -202,7 +202,7 @@ override getter @toManyPropertyGeneration propertyDeclarationCode
     result += "  final let " + self.mPropertyName + "_property = TransientArrayOfSuperOf_" + [self.mRelationshipType swiftTypeName]
            + " <" + masterPropertyTypeName + "> ()\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final var " + self.mPropertyName + " : [" + [self.mRelationshipType swiftTypeName] + "] {\n"
+    result += "  final var " + self.mPropertyName + " : EBReferenceArray  <" + [self.mRelationshipType swiftTypeName] + "> {\n"
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
     if not [self.mOption isHasDependance] then
       result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
@@ -215,7 +215,7 @@ override getter @toManyPropertyGeneration propertyDeclarationCode
     result += "  let preferences_" + self.mPropertyName + "_property = PreferencesArrayOf_" + [self.mRelationshipType swiftTypeName]
     result += " (prefKey: Preferences_" + self.mPropertyName + ")\n\n"
    result += "//" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  var preferences_" + self.mPropertyName + " : [" + [self.mRelationshipType swiftTypeName] + "] {\n"
+    result += "  var preferences_" + self.mPropertyName + " : EBReferenceArray  <" + [self.mRelationshipType swiftTypeName] + "> {\n"
     result += "    get { return preferences_" + self.mPropertyName + "_property.propval }\n"
     if not [self.mOption isHasDependance] then
       result += "    set { preferences_" + self.mPropertyName + "_property.setProp (newValue) }\n"
@@ -229,7 +229,7 @@ override getter @toManyPropertyGeneration propertyDeclarationCode
     result += " (usedForSignature: " + [self.mUsedForSignature cString] + ")\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final var " + self.mPropertyName + " : [" + [self.mRelationshipType swiftTypeName] + "] {\n"
+    result += "  final var " + self.mPropertyName + " : EBReferenceArray  <" + [self.mRelationshipType swiftTypeName] + "> {\n"
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
     if not [self.mOption isHasDependance] then
       result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
@@ -277,14 +277,22 @@ override getter @toManyPropertyGeneration setupRelationshipFromDictionaryCode ->
     result = ""
   elsif self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (Custom store)\n"
-    result += "    self." + self.mPropertyName + "_property.setProp (customRead_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (from: inDictionary, with: self.ebUndoManager))\n"
+    result += "    self." + self.mPropertyName + "_property.setProp (EBReferenceArray (customRead_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (from: inDictionary, with: self.ebUndoManager)))\n"
   else
     result  = "  //--- To many property: " + self.mPropertyName + "\n"
-    result += "    self." + self.mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
+    result += "/*    self." + self.mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
     result += "      inRelationshipName: \"" + self.mPropertyName + "\",\n"
     result += "      inDictionary: inDictionary,\n"
     result += "      managedObjectArray: &managedObjectArray\n"
-    result += "    ) as! [" + [self.mRelationshipType swiftTypeName] + "])\n"
+    result += "    ) as! [" + [self.mRelationshipType swiftTypeName] + "]) */\n"
+    result += "    do{\n"
+    result += "      let array = readEntityArrayFromDictionary (\n"
+    result += "        inRelationshipName: \"" + self.mPropertyName + "\",\n"
+    result += "        inDictionary: inDictionary,\n"
+    result += "        managedObjectArray: &managedObjectArray\n"
+    result += "      ) as! [" + [self.mRelationshipType swiftTypeName] + "]\n"
+    result += "      self." + self.mPropertyName + "_property.setProp (EBReferenceArray (array))\n"
+    result += "    }\n"
   end
 }
 
@@ -295,11 +303,11 @@ override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
     result = ""
   elsif self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (Custom store)\n"
-    result += "    customStore_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (self." + self.mPropertyName + "_property.propval, intoDictionary: ioDictionary)\n"
+    result += "    customStore_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (self." + self.mPropertyName + "_property.propval.values, intoDictionary: ioDictionary)\n"
   else
     result  = "  //--- To many property: " + self.mPropertyName + "\n"
     result += "    self.store (\n"
-    result += "      managedObjectArray: self." + self.mPropertyName + "_property.propval,\n"
+    result += "      managedObjectArray: self." + self.mPropertyName + "_property.propval.values,\n"
     result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
     result += "      intoDictionary: ioDictionary\n"
     result += "    )\n"
@@ -310,7 +318,7 @@ override getter @toManyPropertyGeneration saveIntoDictionaryCode -> @string {
 
 override getter @toManyPropertyGeneration objectAccessibilityCode -> @string {
   result  = "  //--- To many property: " + self.mPropertyName + "\n"
-  result += "    for managedObject in self." + self.mPropertyName + " {\n"
+  result += "    for managedObject in self." + self.mPropertyName + ".values {\n"
   result += "      objects.append (managedObject)\n"
   result += "    }\n"
 }
@@ -319,12 +327,12 @@ override getter @toManyPropertyGeneration objectAccessibilityCode -> @string {
 override getter @toManyPropertyGeneration objectAccessibilityCodeForSaveOperation -> @string {
   if self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (custom store)\n"
-    result += "    /* for managedObject in self." + self.mPropertyName + "_property.propval {\n"
+    result += "    /* for managedObject in self." + self.mPropertyName + "_property.propval.values {\n"
     result += "      objects.append (managedObject)\n"
     result += "    } */\n"
   else
     result  = "  //--- To many property: " + self.mPropertyName + "\n"
-    result += "    for managedObject in self." + self.mPropertyName + " {\n"
+    result += "    for managedObject in self." + self.mPropertyName + ".values {\n"
     result += "      objects.append (managedObject)\n"
     result += "    }\n"
   end
