@@ -107,7 +107,7 @@ if [SORTED_COLUMNS length] > 0 then
 
   //····················································································································
 
-  var selectedSet : Set <%!ELEMENT_TYPE_NAME%> { return Set (self.selectedArray_property.propval) }
+  var selectedSet : EBReferenceSet <%!ELEMENT_TYPE_NAME%> { return EBReferenceSet (self.selectedArray_property.propval) }
 
   //····················································································································
 
@@ -322,7 +322,7 @@ case entityArray :
             sortedObjectDictionary [object] = index
           }
           var indexArrayOfSelectedObjects = [Int] ()
-          for object in self.selectedSet {
+          for object in self.selectedSet.values {
             let index = sortedObjectDictionary [object]
             if let idx = index {
               indexArrayOfSelectedObjects.append (idx)
@@ -351,7 +351,7 @@ case entityArray :
           }
         //--- Build selected objects index array
           var selectedObjectIndexArray = [Int] ()
-          for object in self.selectedSet {
+          for object in self.selectedSet.values {
             let index = objectDictionary [object]
             if let idx = index {
               selectedObjectIndexArray.append (idx)
