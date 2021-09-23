@@ -186,8 +186,8 @@ override getter @selectionControllerPropertyGeneration initCode -> @string {
 #·······················································································································
 
 override getter @selectionControllerPropertyGeneration populateExplorerWindowCode -> @string {
-  result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
+  result  = "    //--- Selection controller property: " + self.mPropertyName + "\n"
+  result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································

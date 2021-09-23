@@ -465,8 +465,8 @@ override getter @tableViewControllerPropertyGeneration initCode -> @string {
 #·······················································································································
 
 override getter @tableViewControllerPropertyGeneration populateExplorerWindowCode -> @string {
-  result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
+  result  = "    //--- Array controller property: " + self.mPropertyName + "\n"
+  result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································

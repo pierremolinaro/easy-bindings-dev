@@ -139,65 +139,69 @@ end
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
-    super.populateExplorerWindow (&y, view:view)
+  #if BUILD_OBJECT_EXPLORER
+    override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+      super.populateExplorerWindow (&y, view:view)
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    createEntryForPropertyNamed (\n%
-  %      "%![mProperty mPropertyName]%",\n%
-  %      idx: self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
-  %      y: &y,\n%
-  %      view: view,\n%
-  %      observerExplorer: &self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
-  %      valueExplorer: &self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
-  %    )\n%
+  %      createEntryForPropertyNamed (\n%
+  %        "%![mProperty mPropertyName]%",\n%
+  %        idx: self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
+  %        y: &y,\n%
+  %        view: view,\n%
+  %        observerExplorer: &self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
+  %        valueExplorer: &self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
+  %      )\n%
 end
-%    createEntryForTitle ("Properties", y: &y, view: view)\n%
+%      createEntryForTitle ("Properties", y: &y, view: view)\n%
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    createEntryForPropertyNamed (\n%
-  %      "%![mProperty mPropertyName]%",\n%
-  %      idx: self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
-  %      y: &y,\n%
-  %      view: view,\n%
-  %      observerExplorer: &self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
-  %      valueExplorer: &self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
-  %    )\n%
+  %      createEntryForPropertyNamed (\n%
+  %        "%![mProperty mPropertyName]%",\n%
+  %        idx: self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
+  %        y: &y,\n%
+  %        view: view,\n%
+  %        observerExplorer: &self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
+  %        valueExplorer: &self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
+  %      )\n%
 end
-%    createEntryForTitle ("Transients", y: &y, view: view)\n%
+%      createEntryForTitle ("Transients", y: &y, view: view)\n%
 for () in TO_MANY_RELATIONSHIP_LIST do
   if not [[mProperty mOption] isHasDependance] then
-    %    createEntryForToManyRelationshipNamed (\n%
-    %      "%![mProperty mPropertyName]%",\n%
-    %      idx:%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
-    %      y: &y,\n%
-    %      view: view,\n%
-    %      valueExplorer:&%![mProperty mPropertyName]%_property.mValueExplorer\n%
-    %    )\n%
+    %      createEntryForToManyRelationshipNamed (\n%
+    %        "%![mProperty mPropertyName]%",\n%
+    %        idx:%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
+    %        y: &y,\n%
+    %        view: view,\n%
+    %        valueExplorer:&%![mProperty mPropertyName]%_property.mValueExplorer\n%
+    %      )\n%
   end
 end
-%    createEntryForTitle ("ToMany Relationships", y: &y, view: view)\n%
+%      createEntryForTitle ("ToMany Relationships", y: &y, view: view)\n%
 for () in TO_ONE_RELATIONSHIP_LIST do
-  %    createEntryForToOneRelationshipNamed (\n%
-  %      "%![mProperty mPropertyName]%",\n%
-  %      idx:self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
-  %      y: &y,\n%
-  %      view: view,\n%
-  %      valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
-  %    )\n%
-end%    createEntryForTitle ("ToOne Relationships", y: &y, view: view)
-  }
+  %      createEntryForToOneRelationshipNamed (\n%
+  %        "%![mProperty mPropertyName]%",\n%
+  %        idx:self.%![mProperty mPropertyName]%_property.ebObjectIndex,\n%
+  %        y: &y,\n%
+  %        view: view,\n%
+  %        valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
+  %      )\n%
+end%      createEntryForTitle ("ToOne Relationships", y: &y, view: view)
+    }
+  #endif
 
   //····················································································································
   //    clearObjectExplorer
   //····················································································································
 
-  override func clearObjectExplorer () {
+  #if BUILD_OBJECT_EXPLORER
+    override func clearObjectExplorer () {
 %
 for () in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty clearObjectExplorerCode]
 end
-%  //---
-    super.clearObjectExplorer ()
-  }
+%    //---
+      super.clearObjectExplorer ()
+    }
+  #endif
 
   //····················································································································
   //    cleanUpToManyRelationships

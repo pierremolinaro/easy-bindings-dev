@@ -281,8 +281,8 @@ override getter @toManyProxyGeneration terminationCode ?let @bool unused inPrefe
 #·······················································································································
 
 override getter @toManyProxyGeneration clearObjectExplorerCode -> @string {
-  result  = "  //--- ToMany proxy: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
+  result  = "    //--- ToMany proxy: " + self.mPropertyName + "\n"
+  result += "      self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -465,9 +465,9 @@ override getter @atomicProxyGeneration terminationCode ?let @bool unused inPrefe
 #·······················································································································
 
 override getter @atomicProxyGeneration clearObjectExplorerCode -> @string {
-  result  = "  //--- Atomic proxy property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
-  result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
+  result  = "    //--- Atomic proxy property: " + self.mPropertyName + "\n"
+  result += "      self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
+  result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

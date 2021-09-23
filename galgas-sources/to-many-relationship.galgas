@@ -344,8 +344,8 @@ override getter @toManyPropertyGeneration clearObjectExplorerCode -> @string {
   if [self.mOption isHasDependance] then
     result = ""
   else
-    result  = "  //--- To many property: " + self.mPropertyName + "\n"
-    result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
+    result  = "    //--- To many property: " + self.mPropertyName + "\n"
+    result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
   end
 }
 

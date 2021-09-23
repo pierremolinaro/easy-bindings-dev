@@ -320,8 +320,8 @@ override getter @atomicPropertyGeneration setupAtomicPropertyFromDictionaryCode 
 #·······················································································································
 
 override getter @atomicPropertyGeneration saveIntoDictionaryCode -> @string {
-  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
+  result  = "    //--- Atomic property: " + self.mPropertyName + "\n"
+  result += "      self." + self.mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
 }
 
 #·······················································································································

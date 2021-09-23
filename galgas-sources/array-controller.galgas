@@ -280,8 +280,8 @@ override getter @arrayControllerPropertyGeneration configurationCode ?let @bool 
 #·······················································································································
 
 override getter @arrayControllerPropertyGeneration populateExplorerWindowCode -> @string {
-  result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
+  result  = "    //--- Array controller property: " + self.mPropertyName + "\n"
+  result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································

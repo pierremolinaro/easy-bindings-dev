@@ -448,8 +448,8 @@ override getter @autoLayoutTableViewControllerPropertyGeneration initCode -> @st
 #·······················································································································
 
 override getter @autoLayoutTableViewControllerPropertyGeneration populateExplorerWindowCode -> @string {
-  result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
+  result  = "    //--- Array controller property: " + self.mPropertyName + "\n"
+  result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································

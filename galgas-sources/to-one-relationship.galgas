@@ -287,9 +287,9 @@ override getter @toOnePropertyGeneration objectAccessibilityCodeForSaveOperation
 #·······················································································································
 
 override getter @toOnePropertyGeneration clearObjectExplorerCode -> @string {
-  result  = "  //--- To one property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
-  result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
+  result  = "    //--- To one property: " + self.mPropertyName + "\n"
+  result += "      self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
+  result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

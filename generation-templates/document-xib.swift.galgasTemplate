@@ -59,14 +59,16 @@ end
   //    populateExplorerWindow
   //····················································································································
 
-  override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
+  #if BUILD_OBJECT_EXPLORER
+    override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
 %
 for () in DOCUMENT_PROPERTY_LIST do
   ![mProperty populateExplorerWindowCode]
 end
-%  //---
-    super.populateExplorerWindow (&y, view:view)
-  }
+%    //---
+      super.populateExplorerWindow (&y, view:view)
+    }
+  #endif
 
   //····················································································································
   //    windowNibName
