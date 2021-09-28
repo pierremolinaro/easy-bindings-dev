@@ -11,6 +11,7 @@ class @entityDeclarationAST : @abstractDeclarationAST {
   @lstringlist mObsoleteEntityNames
   @bool mIsGraphicEntity
   @externSwiftDelegateList mExternSwiftDelegateList
+  @lstringlist mGraphicOptionArray
 }
 
 #·······················································································································
@@ -78,6 +79,7 @@ syntax extension easyBindings_syntax {
     @lstringlist actionDeclarationList = {}
     @externSwiftDelegateList externSwiftDelegateList = {}
     @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    @lstringlist graphicOptionArray = {}
     repeat
     while
       <simple_stored_declaration> !entityName !?simpleStoredPropertyList !?signatureList !?ioDeclarationAST
@@ -93,6 +95,14 @@ syntax extension easyBindings_syntax {
       <controller_declaration> !autoLayout: false !entityName !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST
     while
       <extern_swift_delegate> !?externSwiftDelegateList
+    while
+      $graphic$
+      $identifier$ ?let graphicOption
+      graphicOptionArray += !graphicOption
+      $;$
+      if not graphicEntity then
+        error graphicOption : "only a graphic entity accepts a graphic option"
+      end
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST.new {
@@ -105,6 +115,7 @@ syntax extension easyBindings_syntax {
       !obsoleteEntityNames
       !graphicEntity
       !externSwiftDelegateList
+      !graphicOptionArray
     }
     if isAbstract && graphicEntity then
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new {
@@ -162,8 +173,6 @@ override method @entityDeclarationAST secondAnalysisPhase
       ?let @propertyMap inheritedPropertyMap
       ?2*
     ]  
-#    message "Entity '" + mClassName + "\n"
-#    message "  Super entity '" + mSuperEntityName + "' has " + [inheritedPropertyMap count] + " properties\n"
   #--- Search for current entity property map
     [ioSemanticContext.mClassMap searchKey
       !self.mClassName
@@ -247,6 +256,90 @@ override method @entityDeclarationAST fourthAnalysisPhase
       end
     end
   end
+#--- Graphic options
+  var cursorForKnob_option = false
+  var translate_option = false
+  var acceptedTranslation_option = false
+  var move_option = false
+  var snapToGrid_option = false
+  var flipHorizontally_option = false
+  var flipVertically_option = false
+  var rotate_option = false
+  var saveIntoAdditionalDictionary_option = false
+  var canCopyAndPaste_option = false
+  var operationAfterPasting_option = false
+  var cannotBeDeleted_option = false
+  
+  for (graphicOption) in self.mGraphicOptionArray do
+    if graphicOption.string == "cursorForKnob" then
+      if cursorForKnob_option then
+        error graphicOption : "duplicated option"
+      end
+      cursorForKnob_option = true
+    elsif graphicOption.string == "acceptedTranslation" then
+      if acceptedTranslation_option then
+        error graphicOption : "duplicated option"
+      end
+      acceptedTranslation_option = true
+    elsif graphicOption.string == "translate" then
+      if translate_option then
+        error graphicOption : "duplicated option"
+      end
+      translate_option = true
+    elsif graphicOption.string == "move" then
+      if move_option then
+        error graphicOption : "duplicated option"
+      end
+      move_option = true
+    elsif graphicOption.string == "snapToGrid" then
+      if snapToGrid_option then
+        error graphicOption : "duplicated option"
+      end
+      snapToGrid_option = true
+    elsif graphicOption.string == "flipHorizontally" then
+      if flipHorizontally_option then
+        error graphicOption : "duplicated option"
+      end
+      flipHorizontally_option = true
+    elsif graphicOption.string == "flipVertically" then
+      if flipVertically_option then
+        error graphicOption : "duplicated option"
+      end
+      flipVertically_option = true
+    elsif graphicOption.string == "rotate" then
+      if rotate_option then
+        error graphicOption : "duplicated option"
+      end
+      rotate_option = true
+    elsif graphicOption.string == "saveIntoAdditionalDictionary" then
+      if saveIntoAdditionalDictionary_option then
+        error graphicOption : "duplicated option"
+      end
+      saveIntoAdditionalDictionary_option = true
+    elsif graphicOption.string == "canCopyAndPaste" then
+      if canCopyAndPaste_option then
+        error graphicOption : "duplicated option"
+      end
+      canCopyAndPaste_option = true
+    elsif graphicOption.string == "operationAfterPasting" then
+      if operationAfterPasting_option then
+        error graphicOption : "duplicated option"
+      end
+      operationAfterPasting_option = true
+    elsif graphicOption.string == "cannotBeDeleted" then
+      if cannotBeDeleted_option then
+        error graphicOption : "duplicated option"
+      end
+     cannotBeDeleted_option = true
+    else
+      error graphicOption : "unkown graphic option" fixit {
+         replace "cursorForKnob" replace "acceptedTranslation" replace "translate" replace "move"
+         replace "flipHorizontally" replace "flipVertically" replace "rotate" replace "snapToGrid"
+         replace "saveIntoAdditionalDictionary" replace "canCopyAndPaste" replace "operationAfterPasting"
+         replace "cannotBeDeleted"
+      }
+    end
+  end
 #--- Search for a subclass
   var hasSubClass = false
   for classDeclaration in ioSemanticContext.mClassMap while not hasSubClass do
@@ -269,6 +362,18 @@ override method @entityDeclarationAST fourthAnalysisPhase
     !overridenTransients
     !self.mExternSwiftDelegateList
     !hasSubClass
+    !cursorForKnob_option
+    !acceptedTranslation_option
+    !translate_option
+    !move_option
+    !snapToGrid_option
+    !flipHorizontally_option
+    !flipVertically_option
+    !rotate_option
+    !saveIntoAdditionalDictionary_option
+    !canCopyAndPaste_option
+    !operationAfterPasting_option
+    !cannotBeDeleted_option
   }
 }
 
@@ -286,6 +391,18 @@ class @entityForGeneration : @abstractFileGeneration {
   @stringset mOverridenTransients
   @externSwiftDelegateList mExternSwiftDelegateList
   @bool mHasSubEntity
+  @bool mCursorForKnob_option
+  @bool mAcceptedTranslation_option
+  @bool mTranslate_option
+  @bool mMove_option
+  @bool mSnapToGrid_option
+  @bool mFlipHorizontally_option
+  @bool mFlipVertically_option
+  @bool mRotate_option
+  @bool mSaveIntoAdditionalDictionary_option
+  @bool mCanCopyAndPaste_option
+  @bool mOperationAfterPasting_option
+  @bool mCannotBeDeleted_option
 }
 
 #·······················································································································
@@ -350,6 +467,18 @@ override method @entityForGeneration generateCode
     !self.mOverridenTransients
     !self.mExternSwiftDelegateList
     !self.mHasSubEntity
+    !self.mCursorForKnob_option
+    !self.mAcceptedTranslation_option
+    !self.mTranslate_option
+    !self.mMove_option
+    !self.mSnapToGrid_option
+    !self.mFlipHorizontally_option
+    !self.mFlipVertically_option
+    !self.mRotate_option
+    !self.mSaveIntoAdditionalDictionary_option
+    !self.mCanCopyAndPaste_option
+    !self.mOperationAfterPasting_option
+    !self.mCannotBeDeleted_option
   ]
   var fileName = "entity-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -453,6 +582,18 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
     ?@stringset OVERRIDEN_TRANSIENTS
     ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
     ?@bool HAS_SUB_ENTITY
+    ?@bool OPTION_CursorForKnob
+    ?@bool OPTION_AcceptedTranslation
+    ?@bool OPTION_Translate
+    ?@bool OPTION_Move
+    ?@bool OPTION_SnapToGrid
+    ?@bool OPTION_FlipHorizontally
+    ?@bool OPTION_FlipVertically
+    ?@bool OPTION_Rotate
+    ?@bool OPTION_SaveIntoAdditionalDictionary
+    ?@bool OPTION_CanCopyAndPaste
+    ?@bool OPTION_OperationAfterPasting
+    ?@bool OPTION_CannotBeDeleted
 
   template entityToManyImplementationInSwift "entity-tomany.swift.galgasTemplate"
     ?@string ENTITY_NAME

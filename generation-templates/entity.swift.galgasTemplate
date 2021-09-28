@@ -433,6 +433,210 @@ end
 
 %
 end
+if IS_GRAPHIC_ENTITY then
+if OPTION_CursorForKnob then
+%  //····················································································································
+
+  override func cursorForKnob (knob inKnobIndex: Int) -> NSCursor? {
+    return cursorForKnob_%!ENTITY_NAME% (knob: inKnobIndex)
+  }
+
+%end
+if OPTION_AcceptedTranslation then
+%  //····················································································································
+
+  override func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> ObjcCanariPoint {
+    return acceptedTranslation_%!ENTITY_NAME% (xBy: inDx, yBy: inDy)
+  }
+
+%end
+if OPTION_Translate then
+%  //····················································································································
+
+  override func acceptToTranslate (xBy inDx: Int, yBy inDy: Int) -> Bool {
+    return acceptToTranslate_%!ENTITY_NAME% (xBy: inDx, yBy: inDy)
+  }
+
+  //····················································································································
+
+  override func translate (xBy inDx: Int, yBy inDy: Int, userSet ioSet : ObjcObjectSet) {
+    translate_%!ENTITY_NAME% (xBy: inDx, yBy: inDy, userSet: ioSet)
+  }
+
+%end
+if OPTION_Move then
+%  //····················································································································
+
+  override func canMove (knob inKnobIndex : Int,
+                         proposedUnalignedAlignedTranslation inProposedUnalignedTranslation : ObjcCanariPoint,
+                         proposedAlignedTranslation inProposedAlignedTranslation : ObjcCanariPoint,
+                         unalignedMouseDraggedLocation inUnalignedMouseDraggedLocation : ObjcCanariPoint,
+                         shift inShift : Bool) -> ObjcCanariPoint {
+    return canMove_%!ENTITY_NAME% (
+      knob: inKnobIndex,
+      proposedUnalignedAlignedTranslation: inProposedUnalignedTranslation,
+      proposedAlignedTranslation: inProposedAlignedTranslation,
+      unalignedMouseDraggedLocation: inUnalignedMouseDraggedLocation,
+      shift: inShift
+    )
+  }
+
+  //····················································································································
+
+  override func move (knob inKnobIndex: Int,
+                      proposedDx inDx: Int,
+                      proposedDy inDy: Int,
+                      unalignedMouseLocationX inUnlignedMouseLocationX : Int,
+                      unalignedMouseLocationY inUnlignedMouseLocationY : Int,
+                      alignedMouseLocationX inAlignedMouseLocationX : Int,
+                      alignedMouseLocationY inAlignedMouseLocationY : Int,
+                      shift inShift : Bool) {
+    move_%!ENTITY_NAME% (
+      knob: inKnobIndex,
+      proposedDx: inDx,
+      proposedDy: inDy,
+      unalignedMouseLocationX: inUnlignedMouseLocationX,
+      unalignedMouseLocationY: inUnlignedMouseLocationY,
+      alignedMouseLocationX: inAlignedMouseLocationX,
+      alignedMouseLocationY: inAlignedMouseLocationY,
+      shift: inShift
+    )
+  }
+
+%end
+if OPTION_SnapToGrid then
+%  //····················································································································
+  //  Snap to grid
+  //····················································································································
+
+  override func snapToGrid (_ inGrid : Int) {
+    snapToGrid_%!ENTITY_NAME% (inGrid)
+  }
+
+  //····················································································································
+
+  override func canSnapToGrid (_ inGrid : Int) -> Bool {
+    return canSnapToGrid_%!ENTITY_NAME% (inGrid)
+  }
+
+%end
+if OPTION_FlipHorizontally then
+%  //····················································································································
+  //  HORIZONTAL FLIP
+  //····················································································································
+
+  override func flipHorizontally () {
+    flipHorizontally_%!ENTITY_NAME% ()
+  }
+
+  //····················································································································
+
+  override func canFlipHorizontally () -> Bool {
+    return canFlipHorizontally_%!ENTITY_NAME% ()
+  }
+
+%end
+if OPTION_FlipVertically then
+%  //····················································································································
+  //  VERTICAL FLIP
+  //····················································································································
+
+  override func flipVertically () {
+    flipVertically_%!ENTITY_NAME% ()
+  }
+
+  //····················································································································
+
+  override func canFlipVertically () -> Bool {
+    return canFlipVertically_%!ENTITY_NAME% ()
+  }
+
+%end
+if OPTION_Rotate then
+%  //····················································································································
+  //  ROTATE 90
+  //····················································································································
+
+  override func canRotate90 (accumulatedPoints : ObjcCanariPointSet) -> Bool {
+    return canRotate90_%!ENTITY_NAME% (accumulatedPoints: accumulatedPoints)
+  }
+
+  //····················································································································
+
+  override func rotate90Clockwise (from inRotationCenter : ObjcCanariPoint, userSet ioSet : ObjcObjectSet) {
+    rotate90Clockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: ioSet)
+  }
+
+  //····················································································································
+
+  override func rotate90CounterClockwise (from inRotationCenter : ObjcCanariPoint, userSet ioSet : ObjcObjectSet) {
+    rotate90CounterClockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: ioSet)
+  }
+
+%end
+if OPTION_SaveIntoAdditionalDictionary then
+%  //····················································································································
+  //  Save into additional dictionary
+  //····················································································································
+
+  override func saveIntoAdditionalDictionary (_ ioDictionary : NSMutableDictionary) {
+    saveIntoAdditionalDictionary_%!ENTITY_NAME% (ioDictionary)
+  }
+
+%end
+if OPTION_CanCopyAndPaste then
+%  //····················································································································
+  //  COPY AND PASTE
+  //····················································································································
+
+  override func canCopyAndPaste () -> Bool {
+    return true
+  }
+
+%end
+if OPTION_OperationAfterPasting then
+%  //····················································································································
+  //  operationAfterPasting
+  //····················································································································
+
+  override func operationAfterPasting (additionalDictionary inDictionary : NSDictionary,
+                                       objectArray inObjectArray : [EBGraphicManagedObject]) -> String {
+    return operationAfterPasting_%!ENTITY_NAME% (additionalDictionary: inDictionary, objectArray: inObjectArray)
+  }
+
+%end
+if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
+%  //····················································································································
+  //  Alignment Points
+  //····················································································································
+
+  override func alignmentPoints () -> ObjcCanariPointSet {
+    return alignmentPoints_%!ENTITY_NAME% ()
+  }
+
+%end
+if OPTION_CannotBeDeleted then
+%  //····················································································································
+  //  Can be deleted
+  //····················································································································
+
+  override func canBeDeleted () -> Bool {
+    return false
+  }
+
+%end
+if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
+%  //····················································································································
+  //  operationBeforeRemoving
+  //····················································································································
+
+  override func operationBeforeRemoving () {
+    operationBeforeRemoving_%!ENTITY_NAME% ()
+  }
+
+%
+end
+end
 %  //····················································································································
 
 }
