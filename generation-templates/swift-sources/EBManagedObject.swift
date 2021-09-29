@@ -41,7 +41,7 @@ protocol EBManagedObject_alloc_index_protocol : AnyObject {
 //  EBManagedObject
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class EBManagedObject : EBObjcBaseObject, EBSignatureObserverProtocol, EBManagedObject_alloc_index_protocol {
+class EBManagedObject : EBSwiftBaseObject, EBSignatureObserverProtocol, EBManagedObject_alloc_index_protocol {
   private weak final var mEBUndoManager : EBUndoManager? = nil // SOULD BE WEAK
   final var savingIndex = 0
 
@@ -49,7 +49,7 @@ class EBManagedObject : EBObjcBaseObject, EBSignatureObserverProtocol, EBManaged
     final var mExplorerWindow : NSWindow? = nil
   #endif
 
-//  final var className : String { return String (describing: type (of: self)) }
+  final var className : String { return String (describing: type (of: self)) }
   
   //····················································································································
   //  init
