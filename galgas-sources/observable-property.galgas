@@ -183,7 +183,7 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   case rootPropertyRelationship (@lstring relationshipName *) :
     outResult = inSelf + "rootObject." + relationshipName + "_property"
   case selfWithoutProperty (*) :
-    outResult = inSelf + "ebObjectIndex"
+    outResult = inSelf + "address"
   case selfProperty (@lstring propertyName) :
     outResult = inSelf + propertyName + "_property"
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -230,7 +230,7 @@ getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
   case rootPropertyRelationship (@lstring relationshipName @lstring elementPropertyName) :
     outResult = "root_" + relationshipName + "_" + elementPropertyName
   case selfWithoutProperty (*) :
-    outResult = "self_ebObjectIndex"
+    outResult = "self_address"
   case selfProperty (@lstring propertyName) :
     outResult = "self_" + propertyName
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
@@ -469,9 +469,9 @@ method @observablePropertyAST analyzeObservableProperty
     case property (2*) :
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
     case toMany (4*) :
-      outSwiftTypeStringForTransientFunctionArgument = "[EBManagedObject_alloc_index_protocol]"
+      outSwiftTypeStringForTransientFunctionArgument = "[EBManagedObject_address_protocol]"
     case toOne (4*) :
-      outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_alloc_index_protocol?"
+      outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_address_protocol?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case selectionController (*) :
@@ -732,9 +732,9 @@ method @observablePropertyAST analyzeObservableProperty
     case property (2*) :
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
     case toMany (4*) :
-      outSwiftTypeStringForTransientFunctionArgument = "[EBManagedObject_alloc_index_protocol]"
+      outSwiftTypeStringForTransientFunctionArgument = "[EBManagedObject_address_protocol]"
     case toOne (4*) :
-      outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_alloc_index_protocol?"
+      outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_address_protocol?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case selectionController (*) :
