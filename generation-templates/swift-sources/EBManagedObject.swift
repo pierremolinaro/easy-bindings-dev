@@ -49,6 +49,8 @@ class EBManagedObject : EBObjcBaseObject, EBSignatureObserverProtocol, EBManaged
     final var mExplorerWindow : NSWindow? = nil
   #endif
 
+//  final var className : String { return String (describing: type (of: self)) }
+  
   //····················································································································
   //  init
   //····················································································································
