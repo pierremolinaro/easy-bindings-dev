@@ -26,17 +26,18 @@ struct EBReferenceSet <T : AnyObject> {
 
   //····················································································································
 
-//  init <U> (_ inOtherSet : EBReferenceSet <U>) where U : T {
-//    self.mDictionary = inOtherSet.mDictionary
-//  }
-
-  //····················································································································
-
   init (_ inObjects : [T]) {
     self.mDictionary = Dictionary <ObjectAddress, T> (minimumCapacity: inObjects.count)
     for object in inObjects {
       self.insert (object)
     }
+  }
+
+  //····················································································································
+
+  init (_ inObject : T) {
+    self.mDictionary = Dictionary <ObjectAddress, T> ()
+    self.insert (inObject)
   }
 
   //····················································································································
@@ -98,9 +99,11 @@ struct EBReferenceSet <T : AnyObject> {
 
   //····················································································································
 
-  mutating func removeFirst () {
+  mutating func removeFirst () -> T {
     let address = ObjectAddress (self.first!)
+    let result = self.mDictionary [address]!
     self.mDictionary [address] = nil
+    return result
   }
 
   //····················································································································
@@ -123,6 +126,14 @@ struct EBReferenceSet <T : AnyObject> {
        result.mDictionary [key] = nil
      }
      return result
+  }
+
+  //····················································································································
+
+  mutating func subtract (_ inOtherSet : EBReferenceSet <T>) {
+     for (key, _) in inOtherSet.mDictionary {
+       self.mDictionary [key] = nil
+     }
   }
 
   //····················································································································

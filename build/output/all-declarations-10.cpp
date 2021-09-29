@@ -8394,7 +8394,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
         "        break\n"
         "      case .single (let objectArray) :\n"
         "        if objectArray.contains (inObject) {\n"
-        "           self.selectedSet = EBReferenceSet ([inObject])\n"
+        "           self.selectedSet = EBReferenceSet (inObject)\n"
         "        }\n"
         "      }\n"
         "    }\n"
@@ -8434,9 +8434,9 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
         "      case .single (let model_prop) :\n"
         "      //------------- Find the object to be selected after selected object removing\n"
         "      //--- Dictionary of object sorted indexes\n"
-        "        var sortedObjectDictionary = [" ;
+        "        var sortedObjectDictionary = EBReferenceDictionary <" ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << " : Int] ()\n"
+      result << ", Int> ()\n"
         "        for (index, object) in model_prop.enumerated () {\n"
         "          sortedObjectDictionary [object] = index\n"
         "        }\n"
@@ -8466,9 +8466,9 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
         "        }\n"
         "      //----------------------------------------- Remove selected object\n"
         "      //--- Dictionary of object absolute indexes\n"
-        "        var objectDictionary = [" ;
+        "        var objectDictionary = EBReferenceDictionary <" ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << " : Int] ()\n"
+      result << ", Int> ()\n"
         "        for (index, object) in model_prop.enumerated () {\n"
         "          objectDictionary [object] = index\n"
         "        }\n"
