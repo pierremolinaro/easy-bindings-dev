@@ -337,7 +337,7 @@ end
   func alignmentPointSetArray () -> [Set<CanariPoint>] {
     var result = [Set<CanariPoint>] ()
     for object in self.objectArray.values {
-      result.append (object.alignmentPoints ().points)
+      result.append (object.alignmentPoints ())
     }
     return result
   }
@@ -672,7 +672,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
        let X = dataDictionary [X_KEY] as? Int,
        let Y = dataDictionary [Y_KEY] as? Int {
       var newObjects = [%!ELEMENT_TYPE_NAME%] ()
-      let userSet = ObjcObjectSet ()
+      var userSet = EBReferenceSet <AnyObject> ()
       var idx = 0
       var errorMessage = ""
       for dictionary in dictionaryArray {
@@ -682,7 +682,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
           }
           idx += 1
           if errorMessage == "" {
-            object.translate (xBy: X, yBy: Y, userSet: userSet)
+            object.translate (xBy: X, yBy: Y, userSet: &userSet)
             newObjects.append (object)
           }
         }
@@ -971,7 +971,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   var canRotate90_property = EBTransientProperty_Bool ()
-  private var mRotate90PointSet = ObjcCanariPointSet ()
+  private var mRotate90PointSet = Set <CanariPoint> ()
 
  //····················································································································
 
@@ -981,7 +981,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       return false
     }else{
       for object in self.selectedArray {
-        if !object.canRotate90 (accumulatedPoints: self.mRotate90PointSet) {
+        if !object.canRotate90 (accumulatedPoints: &self.mRotate90PointSet) {
           return false
         }
       }
@@ -992,20 +992,20 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   //····················································································································
 
   func rotate90Clockwise () {
-    let r = CanariRect (points: Array (self.mRotate90PointSet.points))
-    let userSet = ObjcObjectSet ()
+    let r = CanariRect (points: Array (self.mRotate90PointSet))
+    var userSet = EBReferenceSet <AnyObject> ()
     for object in self.selectedArray {
-      object.rotate90Clockwise (from: ObjcCanariPoint (canariPoint: r.center), userSet: userSet)
+      object.rotate90Clockwise (from: r.center, userSet: &userSet)
     }
   }
 
   //····················································································································
 
   func rotate90CounterClockwise () {
-    let r = CanariRect (points: Array (self.mRotate90PointSet.points))
-    let userSet = ObjcObjectSet ()
+    let r = CanariRect (points: Array (self.mRotate90PointSet))
+    var userSet = EBReferenceSet <AnyObject> ()
     for object in self.selectedArray {
-      object.rotate90CounterClockwise (from: ObjcCanariPoint (canariPoint: r.center), userSet: userSet)
+      object.rotate90CounterClockwise (from: r.center, userSet: &userSet)
     }
   }
 

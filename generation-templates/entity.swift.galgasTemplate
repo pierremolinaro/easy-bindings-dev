@@ -445,7 +445,7 @@ if OPTION_CursorForKnob then
 if OPTION_AcceptedTranslation then
 %  //····················································································································
 
-  override func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> ObjcCanariPoint {
+  override func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> CanariPoint {
     return acceptedTranslation_%!ENTITY_NAME% (xBy: inDx, yBy: inDy)
   }
 
@@ -459,8 +459,8 @@ if OPTION_Translate then
 
   //····················································································································
 
-  override func translate (xBy inDx: Int, yBy inDy: Int, userSet ioSet : ObjcObjectSet) {
-    translate_%!ENTITY_NAME% (xBy: inDx, yBy: inDy, userSet: ioSet)
+  override func translate (xBy inDx: Int, yBy inDy: Int, userSet ioSet : inout EBReferenceSet <AnyObject>) {
+    translate_%!ENTITY_NAME% (xBy: inDx, yBy: inDy, userSet: &ioSet)
   }
 
 %end
@@ -468,10 +468,10 @@ if OPTION_Move then
 %  //····················································································································
 
   override func canMove (knob inKnobIndex : Int,
-                         proposedUnalignedAlignedTranslation inProposedUnalignedTranslation : ObjcCanariPoint,
-                         proposedAlignedTranslation inProposedAlignedTranslation : ObjcCanariPoint,
-                         unalignedMouseDraggedLocation inUnalignedMouseDraggedLocation : ObjcCanariPoint,
-                         shift inShift : Bool) -> ObjcCanariPoint {
+                         proposedUnalignedAlignedTranslation inProposedUnalignedTranslation : CanariPoint,
+                         proposedAlignedTranslation inProposedAlignedTranslation : CanariPoint,
+                         unalignedMouseDraggedLocation inUnalignedMouseDraggedLocation : CanariPoint,
+                         shift inShift : Bool) -> CanariPoint {
     return canMove_%!ENTITY_NAME% (
       knob: inKnobIndex,
       proposedUnalignedAlignedTranslation: inProposedUnalignedTranslation,
@@ -557,20 +557,20 @@ if OPTION_Rotate then
   //  ROTATE 90
   //····················································································································
 
-  override func canRotate90 (accumulatedPoints : ObjcCanariPointSet) -> Bool {
-    return canRotate90_%!ENTITY_NAME% (accumulatedPoints: accumulatedPoints)
+  override func canRotate90 (accumulatedPoints : inout Set <CanariPoint>) -> Bool {
+    return canRotate90_%!ENTITY_NAME% (accumulatedPoints: &accumulatedPoints)
   }
 
   //····················································································································
 
-  override func rotate90Clockwise (from inRotationCenter : ObjcCanariPoint, userSet ioSet : ObjcObjectSet) {
-    rotate90Clockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: ioSet)
+  override func rotate90Clockwise (from inRotationCenter : CanariPoint, userSet ioSet : inout EBReferenceSet <AnyObject>) {
+    rotate90Clockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: &ioSet)
   }
 
   //····················································································································
 
-  override func rotate90CounterClockwise (from inRotationCenter : ObjcCanariPoint, userSet ioSet : ObjcObjectSet) {
-    rotate90CounterClockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: ioSet)
+  override func rotate90CounterClockwise (from inRotationCenter : CanariPoint, userSet ioSet : inout EBReferenceSet <AnyObject>) {
+    rotate90CounterClockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: &ioSet)
   }
 
 %end
@@ -610,7 +610,7 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //  Alignment Points
   //····················································································································
 
-  override func alignmentPoints () -> ObjcCanariPointSet {
+  override func alignmentPoints () -> Set <CanariPoint> {
     return alignmentPoints_%!ENTITY_NAME% ()
   }
 

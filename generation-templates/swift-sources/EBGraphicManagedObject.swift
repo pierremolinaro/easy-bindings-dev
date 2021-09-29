@@ -65,8 +65,8 @@ class EBGraphicManagedObject : EBManagedObject {
   //  Translation
   //····················································································································
 
-  func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> ObjcCanariPoint {
-    return ObjcCanariPoint (x: inDx, y: inDy)
+  func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> CanariPoint {
+    return CanariPoint (x: inDx, y: inDy)
   }
 
   //····················································································································
@@ -77,7 +77,7 @@ class EBGraphicManagedObject : EBManagedObject {
 
   //····················································································································
 
-  func translate (xBy inDx: Int, yBy inDy: Int, userSet ioSet : ObjcObjectSet) {
+  func translate (xBy inDx: Int, yBy inDy: Int, userSet ioSet : inout EBReferenceSet <AnyObject>) {
   }
 
   //····················································································································
@@ -85,10 +85,10 @@ class EBGraphicManagedObject : EBManagedObject {
   //····················································································································
 
   func canMove (knob inKnobIndex : Int,
-                proposedUnalignedAlignedTranslation inProposedUnalignedTranslation : ObjcCanariPoint,
-                proposedAlignedTranslation inProposedAlignedTranslation : ObjcCanariPoint,
-                unalignedMouseDraggedLocation inUnalignedMouseDraggedLocation : ObjcCanariPoint,
-                shift inShift : Bool) -> ObjcCanariPoint {
+                proposedUnalignedAlignedTranslation inProposedUnalignedTranslation : CanariPoint,
+                proposedAlignedTranslation inProposedAlignedTranslation : CanariPoint,
+                unalignedMouseDraggedLocation inUnalignedMouseDraggedLocation : CanariPoint,
+                shift inShift : Bool) -> CanariPoint {
     return inProposedAlignedTranslation
   }
 
@@ -147,18 +147,18 @@ class EBGraphicManagedObject : EBManagedObject {
   //  ROTATE 90
   //····················································································································
 
-  func canRotate90 (accumulatedPoints : ObjcCanariPointSet) -> Bool {
+  func canRotate90 (accumulatedPoints : inout Set <CanariPoint>) -> Bool {
     return false
   }
 
   //····················································································································
 
-  func rotate90Clockwise (from inRotationCenter : ObjcCanariPoint, userSet ioSet : ObjcObjectSet) {
+  func rotate90Clockwise (from inRotationCenter : CanariPoint, userSet ioSet : inout EBReferenceSet <AnyObject>) {
   }
 
   //····················································································································
 
-  func rotate90CounterClockwise (from inRotationCenter : ObjcCanariPoint, userSet ioSet : ObjcObjectSet) {
+  func rotate90CounterClockwise (from inRotationCenter : CanariPoint, userSet ioSet : inout EBReferenceSet <AnyObject>) {
   }
 
   //····················································································································
@@ -187,8 +187,8 @@ class EBGraphicManagedObject : EBManagedObject {
   //  Alignment Points
   //····················································································································
 
-  func alignmentPoints () -> ObjcCanariPointSet {
-    return ObjcCanariPointSet ()
+  func alignmentPoints () -> Set <CanariPoint> {
+    return Set <CanariPoint> ()
   }
 
   //····················································································································
@@ -212,128 +212,41 @@ class EBGraphicManagedObject : EBManagedObject {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc final class ObjcCanariPoint : EBObjcBaseObject { // SHOULD INHERIT FROM NSObject
+extension Set where Element == CanariPoint {
 
   //····················································································································
 
-  let p : CanariPoint
-
-  //····················································································································
-
-  var x : Int { return self.p.x }
-  var y : Int { return self.p.y }
-
-  //····················································································································
-
-  override init () {
-    self.p = CanariPoint ()
-    super.init ()
-  }
-
-  //····················································································································
-
-  init (x inX : Int, y inY : Int) {
-    self.p = CanariPoint (x: inX, y: inY)
-    super.init ()
-  }
-
-  //····················································································································
-
-  init (canariPoint inPoint : CanariPoint) {
-    self.p = inPoint
-    super.init ()
-  }
-
-  //····················································································································
-
-  func rotated90Clockwise (x inX : Int, y inY : Int) -> CanariPoint {
-    return self.rotated90Clockwise (CanariPoint (x: inX, y: inY))
-  }
-
-  //····················································································································
-
-  func rotated90Clockwise (_ inP : CanariPoint) -> CanariPoint {
-    return self.p.rotated90Clockwise (inP)
-  }
-
-  //····················································································································
-
-  func rotated90CounterClockwise (x inX : Int, y inY : Int) -> CanariPoint {
-    return self.rotated90CounterClockwise (CanariPoint (x: inX, y: inY))
-  }
-
-  //····················································································································
-
-  func rotated90CounterClockwise (_ inP : CanariPoint) -> CanariPoint {
-    return self.p.rotated90CounterClockwise (inP)
+  mutating func insertCanariPoint (x inX : Int, y inY : Int) {
+    self.insert (CanariPoint (x: inX, y: inY))
   }
 
   //····················································································································
 
 }
+
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc final class ObjcCanariPointSet : EBObjcBaseObject { // SHOULD INHERIT FROM NSObject
-
-  //····················································································································
-
-  private var mPoints = Set <CanariPoint> ()
-
-  //····················································································································
-
-  var points : Set <CanariPoint> { return self.mPoints }
-
-  //····················································································································
-
-  func insert (_ inPoint : CanariPoint) {
-    self.mPoints.insert (inPoint)
-  }
-
-  //····················································································································
-
-  func insert (x inX : Int, y inY : Int) {
-    self.mPoints.insert (CanariPoint (x: inX, y: inY))
-  }
-
-  //····················································································································
-
-  func removeAll () {
-    self.mPoints.removeAll ()
-  }
-
-  //····················································································································
-
-  var isEmpty : Bool {
-    return self.mPoints.isEmpty
-  }
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-@objc final class ObjcObjectSet : EBObjcBaseObject { // SHOULD INHERIT FROM NSObject
-
-  //····················································································································
-
-  private var mObjects = Set <EBObjcBaseObject> ()
-
-  //····················································································································
-
-  func insert (_ inObject : EBObjcBaseObject) {
-    self.mObjects.insert (inObject)
-  }
-
-  //····················································································································
-
-  func contains (_ inObject : EBObjcBaseObject) -> Bool {
-    return self.mObjects.contains (inObject)
-  }
-
-  //····················································································································
-
-}
+//@objc final class EBReferenceSet <AnyObject> : EBObjcBaseObject { // SHOULD INHERIT FROM NSObject
+//
+//  //····················································································································
+//
+//  private var mObjects = Set <EBObjcBaseObject> ()
+//
+//  //····················································································································
+//
+//  func insert (_ inObject : EBObjcBaseObject) {
+//    self.mObjects.insert (inObject)
+//  }
+//
+//  //····················································································································
+//
+//  func contains (_ inObject : EBObjcBaseObject) -> Bool {
+//    return self.mObjects.contains (inObject)
+//  }
+//
+//  //····················································································································
+//
+//}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
