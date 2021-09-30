@@ -5309,46 +5309,24 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
                                                                     const class GALGAS_externSwiftDelegateList & inOperand7,
                                                                     const class GALGAS_bool & inOperand8,
                                                                     const class GALGAS_bool & inOperand9,
-                                                                    const class GALGAS_bool & inOperand10,
-                                                                    const class GALGAS_bool & inOperand11,
-                                                                    const class GALGAS_bool & inOperand12,
-                                                                    const class GALGAS_bool & inOperand13,
-                                                                    const class GALGAS_bool & inOperand14,
-                                                                    const class GALGAS_bool & inOperand15,
-                                                                    const class GALGAS_bool & inOperand16,
-                                                                    const class GALGAS_bool & inOperand17,
-                                                                    const class GALGAS_bool & inOperand18,
-                                                                    const class GALGAS_bool & inOperand19,
-                                                                    const class GALGAS_bool & inOperand20
+                                                                    const class GALGAS_bool & inOperand10
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public : typeComparisonResult objectCompare (const GALGAS_entityForGeneration & inOperand) const ;
 
 //--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_setMAcceptedTranslation_5F_option (class GALGAS_bool inArgument0
-                                                                           COMMA_LOCATION_ARGS) ;
-
   public : VIRTUAL_IN_DEBUG void setter_setMCanCopyAndPaste_5F_option (class GALGAS_bool inArgument0
                                                                        COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMCannotBeDeleted_5F_option (class GALGAS_bool inArgument0
                                                                        COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMCursorForKnob_5F_option (class GALGAS_bool inArgument0
-                                                                     COMMA_LOCATION_ARGS) ;
-
   public : VIRTUAL_IN_DEBUG void setter_setMEntityName (class GALGAS_string inArgument0
                                                         COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMExternSwiftDelegateList (class GALGAS_externSwiftDelegateList inArgument0
                                                                      COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMFlipHorizontally_5F_option (class GALGAS_bool inArgument0
-                                                                        COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMFlipVertically_5F_option (class GALGAS_bool inArgument0
-                                                                      COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMHasSubEntity (class GALGAS_bool inArgument0
                                                           COMMA_LOCATION_ARGS) ;
@@ -5359,56 +5337,30 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG void setter_setMIsGraphicEntity (class GALGAS_bool inArgument0
                                                              COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMMove_5F_option (class GALGAS_bool inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMOperationAfterPasting_5F_option (class GALGAS_bool inArgument0
-                                                                             COMMA_LOCATION_ARGS) ;
-
   public : VIRTUAL_IN_DEBUG void setter_setMOverridenTransients (class GALGAS_stringset inArgument0
                                                                  COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMPropertyGenerationList (class GALGAS_propertyGenerationList inArgument0
                                                                     COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMRotate_5F_option (class GALGAS_bool inArgument0
-                                                              COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMSaveIntoAdditionalDictionary_5F_option (class GALGAS_bool inArgument0
-                                                                                    COMMA_LOCATION_ARGS) ;
-
   public : VIRTUAL_IN_DEBUG void setter_setMSignatureSet (class GALGAS_stringset inArgument0
                                                           COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMSnapToGrid_5F_option (class GALGAS_bool inArgument0
-                                                                  COMMA_LOCATION_ARGS) ;
-
   public : VIRTUAL_IN_DEBUG void setter_setMSuperEntityName (class GALGAS_string inArgument0
                                                              COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMTranslate_5F_option (class GALGAS_bool inArgument0
-                                                                 COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mAcceptedTranslation_5F_option (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCanCopyAndPaste_5F_option (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCannotBeDeleted_5F_option (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mCursorForKnob_5F_option (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_externSwiftDelegateList getter_mExternSwiftDelegateList (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mFlipHorizontally_5F_option (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mFlipVertically_5F_option (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHasSubEntity (LOCATION_ARGS) const ;
 
@@ -5416,25 +5368,13 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsGraphicEntity (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mMove_5F_option (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mOperationAfterPasting_5F_option (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mOverridenTransients (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mRotate_5F_option (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mSaveIntoAdditionalDictionary_5F_option (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_stringset getter_mSignatureSet (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mSnapToGrid_5F_option (LOCATION_ARGS) const ;
-
   public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSuperEntityName (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mTranslate_5F_option (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
@@ -5466,17 +5406,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public : GALGAS_stringset mProperty_mOverridenTransients ;
   public : GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
   public : GALGAS_bool mProperty_mHasSubEntity ;
-  public : GALGAS_bool mProperty_mCursorForKnob_5F_option ;
-  public : GALGAS_bool mProperty_mAcceptedTranslation_5F_option ;
-  public : GALGAS_bool mProperty_mTranslate_5F_option ;
-  public : GALGAS_bool mProperty_mMove_5F_option ;
-  public : GALGAS_bool mProperty_mSnapToGrid_5F_option ;
-  public : GALGAS_bool mProperty_mFlipHorizontally_5F_option ;
-  public : GALGAS_bool mProperty_mFlipVertically_5F_option ;
-  public : GALGAS_bool mProperty_mRotate_5F_option ;
-  public : GALGAS_bool mProperty_mSaveIntoAdditionalDictionary_5F_option ;
   public : GALGAS_bool mProperty_mCanCopyAndPaste_5F_option ;
-  public : GALGAS_bool mProperty_mOperationAfterPasting_5F_option ;
   public : GALGAS_bool mProperty_mCannotBeDeleted_5F_option ;
 
 //--- Constructor
@@ -5489,17 +5419,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
                                      const GALGAS_stringset & in_mOverridenTransients,
                                      const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
                                      const GALGAS_bool & in_mHasSubEntity,
-                                     const GALGAS_bool & in_mCursorForKnob_5F_option,
-                                     const GALGAS_bool & in_mAcceptedTranslation_5F_option,
-                                     const GALGAS_bool & in_mTranslate_5F_option,
-                                     const GALGAS_bool & in_mMove_5F_option,
-                                     const GALGAS_bool & in_mSnapToGrid_5F_option,
-                                     const GALGAS_bool & in_mFlipHorizontally_5F_option,
-                                     const GALGAS_bool & in_mFlipVertically_5F_option,
-                                     const GALGAS_bool & in_mRotate_5F_option,
-                                     const GALGAS_bool & in_mSaveIntoAdditionalDictionary_5F_option,
                                      const GALGAS_bool & in_mCanCopyAndPaste_5F_option,
-                                     const GALGAS_bool & in_mOperationAfterPasting_5F_option,
                                      const GALGAS_bool & in_mCannotBeDeleted_5F_option
                                      COMMA_LOCATION_ARGS) ;
 
@@ -5525,28 +5445,8 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public : VIRTUAL_IN_DEBUG void setter_setMExternSwiftDelegateList (GALGAS_externSwiftDelegateList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mHasSubEntity (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMHasSubEntity (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCursorForKnob_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMCursorForKnob_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mAcceptedTranslation_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMAcceptedTranslation_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mTranslate_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMTranslate_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mMove_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMMove_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mSnapToGrid_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMSnapToGrid_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mFlipHorizontally_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMFlipHorizontally_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mFlipVertically_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMFlipVertically_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mRotate_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMRotate_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mSaveIntoAdditionalDictionary_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMSaveIntoAdditionalDictionary_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCanCopyAndPaste_5F_option (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMCanCopyAndPaste_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mOperationAfterPasting_5F_option (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMOperationAfterPasting_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mCannotBeDeleted_5F_option (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG void setter_setMCannotBeDeleted_5F_option (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
