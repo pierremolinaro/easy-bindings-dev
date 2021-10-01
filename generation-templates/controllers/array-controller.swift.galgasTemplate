@@ -690,7 +690,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       }
       if errorMessage == "" {
         var objects = self.objectArray
-        objects += newObjects
+        objects.append (objects: newObjects)
         self.mModel?.setProp (objects)
         self.selectedSet = EBReferenceSet (newObjects)
       }else{
@@ -870,7 +870,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       newObjectArray.append (object)
     }
     newObjectArray.reverse ()
-    newObjectArray += objects
+    newObjectArray.append (objects: objects)
     self.mModel?.setProp (newObjectArray)
   }
 
@@ -981,7 +981,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
     if self.selectedArray.count == 0 {
       return false
     }else{
-      for object in self.selectedArray {
+      for object in self.selectedArray.values {
         if !object.canRotate90 (accumulatedPoints: &self.mRotate90PointSet) {
           return false
         }
@@ -995,7 +995,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   func rotate90Clockwise () {
     let r = CanariRect (points: Array (self.mRotate90PointSet))
     var userSet = EBReferenceSet <AnyObject> ()
-    for object in self.selectedArray {
+    for object in self.selectedArray.values {
       object.rotate90Clockwise (from: r.center, userSet: &userSet)
     }
   }
@@ -1005,7 +1005,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   func rotate90CounterClockwise () {
     let r = CanariRect (points: Array (self.mRotate90PointSet))
     var userSet = EBReferenceSet <AnyObject> ()
-    for object in self.selectedArray {
+    for object in self.selectedArray.values {
       object.rotate90CounterClockwise (from: r.center, userSet: &userSet)
     }
   }
