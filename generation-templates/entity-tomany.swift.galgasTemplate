@@ -16,32 +16,36 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_N
                                           addedSet inAddedSet : EBReferenceSet <%!ENTITY_NAME%>) {
     super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
   //--- Remove observers from removed objects
+    if !inRemovedSet.isEmpty {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inRemovedSet) // Stored property\n%
+  %      self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inRemovedSet) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inRemovedSet) // Transient property\n%
+  %      self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inRemovedSet) // Transient property\n%
 end
 for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %    self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inRemovedSet) // Computed property\n%
+  %      self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inRemovedSet) // Computed property\n%
 end
 for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
-  %    self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inAddedSet) // ToMany proxy\n%
+  %      self.removeEBObserversOf_%![mProperty mPropertyName]%_fromElementsOfSet (inAddedSet) // ToMany proxy\n%
 end
-%  //--- Add observers to added objects
+%    }
+  //--- Add observers to added objects
+    if !inAddedSet.isEmpty {
 %for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // Stored property\n%
+  %      self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // Stored property\n%
 end
 for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %    self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // Transient property\n%
+  %      self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // Transient property\n%
 end
 for () in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %    self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // Computed property\n%
+  %      self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // Computed property\n%
 end
 for () in TO_MANY_PROXY_LIST_FOR_GENERATION do
-  %    self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // ToMany proxy\n%
+  %      self.addEBObserversOf_%![mProperty mPropertyName]%_toElementsOfSet (inAddedSet) // ToMany proxy\n%
 end
-%  }
+%   }
+  }
 
 %
 for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do

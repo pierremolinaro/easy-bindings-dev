@@ -183,7 +183,7 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
   case rootPropertyRelationship (@lstring relationshipName *) :
     outResult = inSelf + "rootObject." + relationshipName + "_property"
   case selfWithoutProperty (*) :
-    outResult = inSelf + "address"
+    outResult = inSelf + "objectIdentifier"
   case selfProperty (@lstring propertyName) :
     outResult = inSelf + propertyName + "_property"
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
