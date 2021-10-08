@@ -10,7 +10,7 @@ enum @toManyRelationshipOptionAST {
 
 #·······················································································································
 
-class @toManyRelationshipAST : @abstractDeclarationAST {
+shared class @toManyRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToManyRelationshipName
   @toManyRelationshipOptionAST mOption
@@ -174,7 +174,7 @@ enum @toManyRelationshipOptionGeneration {
 
 #·······················································································································
 
-class @toManyPropertyGeneration : @propertyGeneration {
+shared class @toManyPropertyGeneration : @propertyGeneration {
   @propertyKind mRelationshipType
   @toManyRelationshipOptionGeneration mOption
   @bool mInPreferences

@@ -53,7 +53,7 @@ proc buildActionMap
 #   GENERATION                      
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @actionFileGeneration : @abstractFileGeneration {
+shared class @actionFileGeneration : @abstractFileGeneration {
   @string mClassName
   @string mActionName
 }

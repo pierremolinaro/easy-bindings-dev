@@ -2,7 +2,7 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @transientDeclarationAST : @abstractDeclarationAST {
+shared class @transientDeclarationAST : @abstractDeclarationAST {
   @lstring mRootEntityName
   @lstring mTransientTypeName
   @lstring mTransientName
@@ -262,7 +262,7 @@ override method @transientDeclarationAST thirdAnalysisPhase
 #   CODE GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @transientPropertyGeneration : @propertyGeneration {
+shared class @transientPropertyGeneration : @propertyGeneration {
   @string mClassName
   @typeKind mType
   @transientDependencyListForGeneration mDependencyList
@@ -587,7 +587,7 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
 #    TRANSIENT ROUTINE GENERATION         
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @transientRoutineGeneration : @abstractFileGeneration {
+shared class @transientRoutineGeneration : @abstractFileGeneration {
   @string mOwnerName
   @string mTransientName
   @typeKind mTransientType

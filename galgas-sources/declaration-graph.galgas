@@ -2,7 +2,7 @@
 #   AST
 #-----------------------------------------------------------------------------------------------------------------------
 
-abstract class @abstractDeclarationAST {
+abstract shared class @abstractDeclarationAST {
   @lstring mClassName
 }
 

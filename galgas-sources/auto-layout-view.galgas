@@ -2,31 +2,31 @@
 #   AST
 #-----------------------------------------------------------------------------------------------------------------------
 
-abstract class @astAbstractViewDeclaration {
+abstract shared class @astAbstractViewDeclaration {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astHorizontalStackViewDeclaration : @astAbstractViewDeclaration {
+shared class @astHorizontalStackViewDeclaration : @astAbstractViewDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astVerticalStackViewDeclaration : @astAbstractViewDeclaration {
+shared class @astVerticalStackViewDeclaration : @astAbstractViewDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
+shared class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
+shared class @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
 }
@@ -40,12 +40,12 @@ list @astViewDeclarationList {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-abstract class @astAbstractViewInstructionDeclaration {
+abstract shared class @astAbstractViewInstructionDeclaration {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+shared class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   @bool horizontal %selector
 }
 
@@ -58,7 +58,7 @@ enum @optionalHiddenBinding {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+shared class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
   @optionalHiddenBinding mOptionalHiddenBinding
@@ -66,7 +66,7 @@ class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astHSplitViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+shared class @astHSplitViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
   @optionalHiddenBinding mOptionalHiddenBinding
@@ -74,7 +74,7 @@ class @astHSplitViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+shared class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   @astAutoLayoutViewFunctionCallList mFunctionCallList
   @astViewInstructionList mInstructionList
   @optionalHiddenBinding mOptionalHiddenBinding
@@ -82,24 +82,24 @@ class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astStackViewReferenceInstructionDeclaration  : @astAbstractViewInstructionDeclaration {
+shared class @astStackViewReferenceInstructionDeclaration  : @astAbstractViewInstructionDeclaration {
   @lstring mStackViewName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astSpaceViewInstruction : @astAbstractViewInstructionDeclaration {
+shared class @astSpaceViewInstruction : @astAbstractViewInstructionDeclaration {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astLocalViewInstruction : @astAbstractViewInstructionDeclaration {
+shared class @astLocalViewInstruction : @astAbstractViewInstructionDeclaration {
   @lstring mLocalView
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
+shared class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
   @lstring mAutoLayoutViewClassName
   @astAutoLayoutViewInstructionParameterList mParameterList
   @astAutoLayoutViewFunctionCallList mFunctionCallList
@@ -1700,31 +1700,31 @@ override method @astStackViewReferenceInstructionDeclaration generateCode
 #   GENERATION                            
 #-----------------------------------------------------------------------------------------------------------------------
 
-abstract class @abstractViewGeneration {
+abstract shared class @abstractViewGeneration {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @newHorizontalStackViewGeneration : @abstractViewGeneration {
+shared class @newHorizontalStackViewGeneration : @abstractViewGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @newVerticalStackViewGeneration : @abstractViewGeneration {
+shared class @newVerticalStackViewGeneration : @abstractViewGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @computedHorizontalViewGeneration : @abstractViewGeneration {
+shared class @computedHorizontalViewGeneration : @abstractViewGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @computedVerticalViewGeneration : @abstractViewGeneration {
+shared class @computedVerticalViewGeneration : @abstractViewGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
 }
@@ -1738,12 +1738,12 @@ list @viewGenerationList {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-abstract class @abstractViewInstructionGeneration {
+abstract shared class @abstractViewInstructionGeneration {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
+shared class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
   @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
@@ -1751,7 +1751,7 @@ class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @hSplitViewInstructionGeneration : @abstractViewInstructionGeneration {
+shared class @hSplitViewInstructionGeneration : @abstractViewInstructionGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
   @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
@@ -1759,7 +1759,7 @@ class @hSplitViewInstructionGeneration : @abstractViewInstructionGeneration {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
+shared class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   @autoLayoutViewInstructionGenerationList mInstructionList
   @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
@@ -1767,24 +1767,24 @@ class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @stackViewReferenceInstructionGeneration : @abstractViewInstructionGeneration {
+shared class @stackViewReferenceInstructionGeneration : @abstractViewInstructionGeneration {
   @string mStackViewName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGeneration {
+shared class @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGeneration {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGeneration {
+shared class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGeneration {
   @bool horizontal %selector
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGeneration {
+shared class @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGeneration {
   @string mLocalView
 }
 
@@ -1826,7 +1826,7 @@ enum @autolayoutEnabledBindingForGeneration {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGeneration {
+shared class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGeneration {
   @lstring mAutoLayoutViewClassName
   @autoLayoutViewInstructionGenerationParameterList mParameterList
   @autoLayoutViewInstructionGenerationFuncCallList mFunctionCallList

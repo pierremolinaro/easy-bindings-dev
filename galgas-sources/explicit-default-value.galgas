@@ -2,43 +2,43 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-abstract class @abstractDefaultValue {
+abstract shared class @abstractDefaultValue {
 }
 
 #·······················································································································
 
-class @boolAsDefaultValue : @abstractDefaultValue {
+shared class @boolAsDefaultValue : @abstractDefaultValue {
   @lbool mValue
 }
 
 #·······················································································································
 
-class @doubleAsDefaultValue : @abstractDefaultValue {
+shared class @doubleAsDefaultValue : @abstractDefaultValue {
   @ldouble mValue
 }
 
 #·······················································································································
 
-class @integerAsDefaultValue : @abstractDefaultValue {
+shared class @integerAsDefaultValue : @abstractDefaultValue {
   @luint mValue
   @bool mNegative
 }
 
 #·······················································································································
 
-class @stringAsDefaultValue : @abstractDefaultValue {
+shared class @stringAsDefaultValue : @abstractDefaultValue {
   @lstring mValue
 }
 
 #·······················································································································
 
-class @identifierAsDefaultValue : @abstractDefaultValue {
+shared class @identifierAsDefaultValue : @abstractDefaultValue {
   @lstring mValue
 }
 
 #·······················································································································
 
-class @prefsAsDefaultValue : @abstractDefaultValue {
+shared class @prefsAsDefaultValue : @abstractDefaultValue {
   @lstring mPrefPropertyName
 }
 

@@ -2,7 +2,7 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @enumerationDeclarationAST : @abstractDeclarationAST {
+shared class @enumerationDeclarationAST : @abstractDeclarationAST {
   @lstringlist mEnumConstantNameList
 }
 
@@ -152,7 +152,7 @@ override method @enumerationDeclarationAST firstAnalysisPhase
 #   GENERATION
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @enumForGeneration : @abstractFileGeneration {
+shared class @enumForGeneration : @abstractFileGeneration {
   @string mEnumName
   @lstringlist mEnumConstantList
   @enumFuncMap mEnumFuncMap

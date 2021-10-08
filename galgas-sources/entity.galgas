@@ -2,7 +2,7 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @entityDeclarationAST : @abstractDeclarationAST {
+shared class @entityDeclarationAST : @abstractDeclarationAST {
   @bool mIsAbstract
   @lstring mSuperEntityName
   @simpleStoredPropertyList mSimpleStoredPropertyList
@@ -310,7 +310,7 @@ override method @entityDeclarationAST fourthAnalysisPhase
 #   GENERATION
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @entityForGeneration : @abstractFileGeneration {
+shared class @entityForGeneration : @abstractFileGeneration {
   @string mEntityName
   @string mSuperEntityName
   @propertyGenerationList mPropertyGenerationList

@@ -9,7 +9,7 @@ enum @proxyKind {
 
 #·······················································································································
 
-class @proxyDeclarationAST : @abstractDeclarationAST {
+shared class @proxyDeclarationAST : @abstractDeclarationAST {
   @proxyKind mProxyKind
   @lstring mProxyTypeName
   @lstring mProxyName
@@ -189,7 +189,7 @@ override method @proxyDeclarationAST secondAnalysisPhase
 #   CODE GENERATION (toMany proxy)
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @toManyProxyGeneration : @propertyGeneration {
+shared class @toManyProxyGeneration : @propertyGeneration {
   @proxyKind mProxyKind
   @string mToManyTypeName
   @string mObservedRelationshipName
@@ -289,7 +289,7 @@ override getter @toManyProxyGeneration clearObjectExplorerCode -> @string {
 #   CODE GENERATION (atomic proxy)
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @atomicProxyGeneration : @propertyGeneration {
+shared class @atomicProxyGeneration : @propertyGeneration {
   @proxyKind mProxyKind
   @typeKind mType
   @string mObservedRelationshipName

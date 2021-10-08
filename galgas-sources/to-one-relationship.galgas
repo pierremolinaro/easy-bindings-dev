@@ -10,7 +10,7 @@ enum @toOneOppositeRelationship {
 
 #·······················································································································
 
-class @toOneRelationshipAST : @abstractDeclarationAST {
+shared class @toOneRelationshipAST : @abstractDeclarationAST {
   @lstring mDestinationEntityName
   @lstring mToOneRelationshipName
   @toOneOppositeRelationship mOpposite
@@ -155,7 +155,7 @@ override method @toOneRelationshipAST thirdAnalysisPhase
 #   GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @toOnePropertyGeneration : @propertyGeneration {
+shared class @toOnePropertyGeneration : @propertyGeneration {
   @string mClassName
   @propertyKind mRelationshipType
   @toOneOppositeRelationship mOpposite

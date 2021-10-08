@@ -13,7 +13,7 @@ struct @prefDeclaration {
 
 #·······················································································································
 
-class @prefsDeclarationAST : @abstractDeclarationAST {
+shared class @prefsDeclarationAST : @abstractDeclarationAST {
   @prefDeclaration mDeclaration
 }
 
@@ -170,7 +170,7 @@ override method @prefsDeclarationAST fourthAnalysisPhase
 #   GENERATION                            
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @preferencesForGeneration : @abstractFileGeneration {
+shared class @preferencesForGeneration : @abstractFileGeneration {
   @propertyGenerationList mPropertyListForGeneration
   @mainXibDescriptorList mMainXibDescriptorList
   @regularBindingsGenerationList mRegularBindingsGenerationList

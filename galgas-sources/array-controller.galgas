@@ -2,7 +2,7 @@
 #   AST
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @arrayControllerDeclarationAST : @abstractDeclarationAST {
+shared class @arrayControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
   @arrayControllerBoundModelAST mModel
   @lstring mToManyPropertyName
@@ -240,7 +240,7 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
 #   CODE GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @arrayControllerPropertyGeneration : @propertyGeneration {
+shared class @arrayControllerPropertyGeneration : @propertyGeneration {
   @string mModelString
   @string mOwnerName
 }
@@ -303,7 +303,7 @@ enum @arrayControllerModelKind {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @arrayControllerGeneration : @abstractFileGeneration {
+shared class @arrayControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
   @string mModelTypeName

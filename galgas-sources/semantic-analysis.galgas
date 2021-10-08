@@ -11,7 +11,7 @@ enum @classKind {
 
 #·······················································································································
 
-abstract class @propertyGeneration {
+abstract shared class @propertyGeneration {
   @string mPropertyName
 }
 
