@@ -188,7 +188,7 @@ static void extensionMethod_xibDocumentDeclarationAST_fourthAnalysisPhase (const
     }
     enumerator_5349.gotoNextObject () ;
   }
-  ioArgument_ioGeneration.mProperty_mGenerateEBManagedXibDocumentSwift = GALGAS_bool (true) ;
+  ioArgument_ioGeneration.setter_setMGenerateEBManagedXibDocumentSwift (GALGAS_bool (true) COMMA_SOURCE_FILE ("document-xib.galgas", 172)) ;
   const GALGAS_xibDocumentDeclarationAST temp_8 = object ;
   const GALGAS_xibDocumentDeclarationAST temp_9 = object ;
   ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_xibDocumentFileGeneration::constructor_new (temp_8.getter_mClassName (HERE).getter_string (HERE), temp_9.getter_mRootEntityName (HERE).getter_string (HERE), var_documentPropertyGenerationList_4313, var_outletMap_5064, var_actionBindingListForGeneration_5025, var_regularBindingsGenerationList_4887, var_multipleBindingGenerationList_4953, var_tableViewBindingGenerationList_5136, var_ebViewGraphicControllerBindingGenerationList_5236  COMMA_SOURCE_FILE ("document-xib.galgas", 174))  COMMA_SOURCE_FILE ("document-xib.galgas", 174)) ;
@@ -1103,7 +1103,7 @@ static void extensionMethod_autoLayoutDocumentDeclarationAST_fourthAnalysisPhase
     }
     enumerator_9571.gotoNextObject () ;
   }
-  ioArgument_ioGeneration.mProperty_mGenerateEBManagedAutoLayoutDocumentSwift = GALGAS_bool (true) ;
+  ioArgument_ioGeneration.setter_setMGenerateEBManagedAutoLayoutDocumentSwift (GALGAS_bool (true) COMMA_SOURCE_FILE ("document-auto-layout.galgas", 301)) ;
   GALGAS_autoLayoutOutletLinkerGenerationList var_outletLinkerGenerationList_10452 = GALGAS_autoLayoutOutletLinkerGenerationList::constructor_emptyList (SOURCE_FILE ("document-auto-layout.galgas", 303)) ;
   GALGAS_stringset var_linkerNameSet_10484 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("document-auto-layout.galgas", 304)) ;
   const GALGAS_autoLayoutDocumentDeclarationAST temp_13 = object ;
@@ -2263,7 +2263,7 @@ static void extensionMethod_prefsDeclarationAST_firstAnalysisPhase (const cPtr_a
     enumerator_3893.gotoNextObject () ;
   }
   const GALGAS_prefsDeclarationAST temp_2 = object ;
-  ioArgument_ioGeneration.mProperty_mMainXibDescriptorList = temp_2.getter_mDeclaration (HERE).getter_mMainXibDescriptorList (HERE) ;
+  ioArgument_ioGeneration.setter_setMMainXibDescriptorList (temp_2.getter_mDeclaration (HERE).getter_mMainXibDescriptorList (HERE) COMMA_SOURCE_FILE ("preferences.galgas", 104)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

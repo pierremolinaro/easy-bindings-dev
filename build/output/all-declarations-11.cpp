@@ -2729,9 +2729,9 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   routine_sortProperties (constinArgument_inSourceFile.getter_string (HERE), var_declarationStruct_1036.getter_mUnifiedDeclarationList (HERE), var_sortedDeclarationListAST_1941, inCompiler  COMMA_SOURCE_FILE ("program.galgas", 40)) ;
   }
   GALGAS_semanticContext var_semanticContext_2051 = GALGAS_semanticContext::constructor_default (SOURCE_FILE ("program.galgas", 42)) ;
-  var_semanticContext_2051.mProperty_mAutoLayoutVStackFunctionMap = var_declarationStruct_1036.getter_mAutoLayoutVStackFunctionMap (HERE) ;
-  var_semanticContext_2051.mProperty_mAutoLayoutHStackFunctionMap = var_declarationStruct_1036.getter_mAutoLayoutHStackFunctionMap (HERE) ;
-  var_semanticContext_2051.mProperty_mEnumerationFunctionListAST = var_declarationStruct_1036.getter_mEnumerationFunctionListAST (HERE) ;
+  var_semanticContext_2051.setter_setMAutoLayoutVStackFunctionMap (var_declarationStruct_1036.getter_mAutoLayoutVStackFunctionMap (HERE) COMMA_SOURCE_FILE ("program.galgas", 43)) ;
+  var_semanticContext_2051.setter_setMAutoLayoutHStackFunctionMap (var_declarationStruct_1036.getter_mAutoLayoutHStackFunctionMap (HERE) COMMA_SOURCE_FILE ("program.galgas", 44)) ;
+  var_semanticContext_2051.setter_setMEnumerationFunctionListAST (var_declarationStruct_1036.getter_mEnumerationFunctionListAST (HERE) COMMA_SOURCE_FILE ("program.galgas", 45)) ;
   GALGAS_generationStruct var_generation_2379 = GALGAS_generationStruct::constructor_default (SOURCE_FILE ("program.galgas", 46)) ;
   cEnumerator_declarationListAST enumerator_2438 (var_sortedDeclarationListAST_1941, kENUMERATION_UP) ;
   bool bool_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.galgas", 47)).objectCompare (GALGAS_uint ((uint32_t) 0U))).isValidAndTrue () ;
