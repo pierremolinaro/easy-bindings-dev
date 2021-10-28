@@ -348,19 +348,21 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationListAST 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @abstractDeclarationAST class
+// Phase 1: @abstractDeclarationAST reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_abstractDeclarationAST : public AC_GALGAS_class {
-//--- Constructor
+class GALGAS_abstractDeclarationAST : public AC_GALGAS_reference_class {
+//--------------------------------- Default constructor
   public: GALGAS_abstractDeclarationAST (void) ;
 
-//---
-  public: inline const class cPtr_abstractDeclarationAST * ptr (void) const { return (const cPtr_abstractDeclarationAST *) mObjectPtr ; }
-
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
 //--------------------------------- Constructor from pointer
-  public: GALGAS_abstractDeclarationAST (const cPtr_abstractDeclarationAST * inSourcePtr) ;
+  public: GALGAS_abstractDeclarationAST (const class cPtr_abstractDeclarationAST * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -405,8 +407,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDeclaration
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class cPtr_abstractDeclarationAST : public acPtr_class {
-//--- Attributes
+class cPtr_abstractDeclarationAST : public acStrongPtr_class {
+//--- Properties
   public: GALGAS_lstring mProperty_mClassName ;
 
 //--- Constructor
@@ -414,8 +416,6 @@ class cPtr_abstractDeclarationAST : public acPtr_class {
                                        COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
-  public: VIRTUAL_IN_DEBUG GALGAS_lstring getter_mClassName (LOCATION_ARGS) const ;
-  public: VIRTUAL_IN_DEBUG void setter_setMClassName (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public: virtual void description (C_String & ioString,
                                     const int32_t inIndentation) const = 0 ;
@@ -5673,19 +5673,21 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumFuncMap_2D_elem
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @abstractFileGeneration class
+// Phase 1: @abstractFileGeneration reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_abstractFileGeneration : public AC_GALGAS_class {
-//--- Constructor
+class GALGAS_abstractFileGeneration : public AC_GALGAS_reference_class {
+//--------------------------------- Default constructor
   public: GALGAS_abstractFileGeneration (void) ;
 
-//---
-  public: inline const class cPtr_abstractFileGeneration * ptr (void) const { return (const cPtr_abstractFileGeneration *) mObjectPtr ; }
-
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
 //--------------------------------- Constructor from pointer
-  public: GALGAS_abstractFileGeneration (const cPtr_abstractFileGeneration * inSourcePtr) ;
+  public: GALGAS_abstractFileGeneration (const class cPtr_abstractFileGeneration * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -5725,8 +5727,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractFileGenerat
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class cPtr_abstractFileGeneration : public acPtr_class {
-//--- Attributes
+class cPtr_abstractFileGeneration : public acStrongPtr_class {
+//--- Properties
 
 //--- Constructor
   public: cPtr_abstractFileGeneration (LOCATION_ARGS) ;
@@ -5741,6 +5743,62 @@ class cPtr_abstractFileGeneration : public acPtr_class {
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
 
 } ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @abstractFileGeneration_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_abstractFileGeneration_2D_weak : public AC_GALGAS_weak_reference {
+//--------------------------------- Default constructor
+  public: GALGAS_abstractFileGeneration_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_abstractFileGeneration_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_abstractFileGeneration_2D_weak (const class GALGAS_abstractFileGeneration & inSource) ;
+
+  public: GALGAS_abstractFileGeneration_2D_weak & operator = (const class GALGAS_abstractFileGeneration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_abstractFileGeneration bang_abstractFileGeneration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_abstractFileGeneration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_abstractFileGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_abstractFileGeneration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_abstractFileGeneration_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractFileGeneration_2D_weak ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -6207,19 +6265,21 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @abstractDefaultValue class
+// Phase 1: @abstractDefaultValue reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_abstractDefaultValue : public AC_GALGAS_class {
-//--- Constructor
+class GALGAS_abstractDefaultValue : public AC_GALGAS_reference_class {
+//--------------------------------- Default constructor
   public: GALGAS_abstractDefaultValue (void) ;
 
-//---
-  public: inline const class cPtr_abstractDefaultValue * ptr (void) const { return (const cPtr_abstractDefaultValue *) mObjectPtr ; }
-
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
 //--------------------------------- Constructor from pointer
-  public: GALGAS_abstractDefaultValue (const cPtr_abstractDefaultValue * inSourcePtr) ;
+  public: GALGAS_abstractDefaultValue (const class cPtr_abstractDefaultValue * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -6259,8 +6319,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDefaultValu
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class cPtr_abstractDefaultValue : public acPtr_class {
-//--- Attributes
+class cPtr_abstractDefaultValue : public acStrongPtr_class {
+//--- Properties
 
 //--- Constructor
   public: cPtr_abstractDefaultValue (LOCATION_ARGS) ;
@@ -6377,19 +6437,21 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropert
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @propertyGeneration class
+// Phase 1: @propertyGeneration reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_propertyGeneration : public AC_GALGAS_class {
-//--- Constructor
+class GALGAS_propertyGeneration : public AC_GALGAS_reference_class {
+//--------------------------------- Default constructor
   public: GALGAS_propertyGeneration (void) ;
 
-//---
-  public: inline const class cPtr_propertyGeneration * ptr (void) const { return (const cPtr_propertyGeneration *) mObjectPtr ; }
-
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
 //--------------------------------- Constructor from pointer
-  public: GALGAS_propertyGeneration (const cPtr_propertyGeneration * inSourcePtr) ;
+  public: GALGAS_propertyGeneration (const class cPtr_propertyGeneration * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -6434,8 +6496,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGeneration 
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class cPtr_propertyGeneration : public acPtr_class {
-//--- Attributes
+class cPtr_propertyGeneration : public acStrongPtr_class {
+//--- Properties
   public: GALGAS_string mProperty_mPropertyName ;
 
 //--- Constructor
@@ -6443,8 +6505,6 @@ class cPtr_propertyGeneration : public acPtr_class {
                                    COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
-  public: VIRTUAL_IN_DEBUG GALGAS_string getter_mPropertyName (LOCATION_ARGS) const ;
-  public: VIRTUAL_IN_DEBUG void setter_setMPropertyName (GALGAS_string inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public: virtual void description (C_String & ioString,
                                     const int32_t inIndentation) const = 0 ;
@@ -7136,19 +7196,21 @@ class cEnumAssociatedValues_graphicController_defined : public cEnumAssociatedVa
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @abstractBooleanMultipleBindingExpressionAST class
+// Phase 1: @abstractBooleanMultipleBindingExpressionAST reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_abstractBooleanMultipleBindingExpressionAST : public AC_GALGAS_class {
-//--- Constructor
+class GALGAS_abstractBooleanMultipleBindingExpressionAST : public AC_GALGAS_reference_class {
+//--------------------------------- Default constructor
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST (void) ;
 
-//---
-  public: inline const class cPtr_abstractBooleanMultipleBindingExpressionAST * ptr (void) const { return (const cPtr_abstractBooleanMultipleBindingExpressionAST *) mObjectPtr ; }
-
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
 //--------------------------------- Constructor from pointer
-  public: GALGAS_abstractBooleanMultipleBindingExpressionAST (const cPtr_abstractBooleanMultipleBindingExpressionAST * inSourcePtr) ;
+  public: GALGAS_abstractBooleanMultipleBindingExpressionAST (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -9171,19 +9233,21 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingGene
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @abstractBooleanMultipleBindingExpressionForGeneration class
+// Phase 1: @abstractBooleanMultipleBindingExpressionForGeneration reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration : public AC_GALGAS_class {
-//--- Constructor
+class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration : public AC_GALGAS_reference_class {
+//--------------------------------- Default constructor
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (void) ;
 
-//---
-  public: inline const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * ptr (void) const { return (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) mObjectPtr ; }
-
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
 //--------------------------------- Constructor from pointer
-  public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (const cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inSourcePtr) ;
+  public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inSourcePtr) ;
 
 //-- Start of generic part --*
 
@@ -9223,8 +9287,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBooleanMult
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public acPtr_class {
-//--- Attributes
+class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public acStrongPtr_class {
+//--- Properties
 
 //--- Constructor
   public: cPtr_abstractBooleanMultipleBindingExpressionForGeneration (LOCATION_ARGS) ;

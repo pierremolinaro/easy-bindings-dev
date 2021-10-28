@@ -20,24 +20,24 @@ enum @multipleBindingComparisonAST {
 
 #·······················································································································
 
-abstract shared class @abstractBooleanMultipleBindingExpressionAST {
+abstract refclass @abstractBooleanMultipleBindingExpressionAST {
 }
 
 #·······················································································································
 
-shared class @literalIntMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+refclass @literalIntMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @luint mValue
 }
 
 #·······················································································································
 
-shared class @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+refclass @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @abstractBooleanMultipleBindingExpressionAST mBinding
 }
 
 #·······················································································································
 
-shared class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+refclass @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @abstractBooleanMultipleBindingExpressionAST mLeftBinding
   @multipleBindingComparisonAST mOperator
   @abstractBooleanMultipleBindingExpressionAST mRightBinding
@@ -45,28 +45,28 @@ shared class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleB
 
 #·······················································································································
 
-shared class @andBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+refclass @andBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @abstractBooleanMultipleBindingExpressionAST mLeftBinding
   @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 #·······················································································································
 
-shared class @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+refclass @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @abstractBooleanMultipleBindingExpressionAST mLeftBinding
   @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 #·······················································································································
 
-shared class @xorBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+refclass @xorBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @abstractBooleanMultipleBindingExpressionAST mLeftBinding
   @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 #·······················································································································
 
-shared class @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+refclass @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   @observablePropertyAST mProperty
 }
 
@@ -194,51 +194,51 @@ list @multipleBindingGenerationList {
 
 #·······················································································································
 
-abstract shared class @abstractBooleanMultipleBindingExpressionForGeneration {
+abstract refclass @abstractBooleanMultipleBindingExpressionForGeneration {
 }
 
 #·······················································································································
 
-shared class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+refclass @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @string mObservedModelString
 }
 
 #·······················································································································
 
-shared class @booleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+refclass @booleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @uint mValue
 }
 
 #·······················································································································
 
-shared class @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+refclass @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @abstractBooleanMultipleBindingExpressionForGeneration mBinding
 }
 
 #·······················································································································
 
-shared class @orBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+refclass @orBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
   @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 #·······················································································································
 
-shared class @xorBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+refclass @xorBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
   @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 #·······················································································································
 
-shared class @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+refclass @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
   @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 #·······················································································································
 
-shared class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+refclass @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
   @multipleBindingComparisonAST mOperator
   @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding

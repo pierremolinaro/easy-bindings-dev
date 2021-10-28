@@ -2,7 +2,7 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @selectionControllerDeclarationAST : @abstractDeclarationAST {
+refclass @selectionControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mSelectionControllerName
   @lstring mModelControllerName
   @lstring mModelControllerPropertyName
@@ -151,7 +151,7 @@ override method @selectionControllerDeclarationAST fourthAnalysisPhase
 #   CODE GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @selectionControllerPropertyGeneration : @propertyGeneration {
+refclass @selectionControllerPropertyGeneration : @propertyGeneration {
   @string mOwnerName
   @string mModelControllerName
   @string mModelControllerPropertyName

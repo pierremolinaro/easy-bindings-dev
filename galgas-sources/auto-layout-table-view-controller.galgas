@@ -18,7 +18,7 @@ list @autoLayoutTableViewControllerAttributListAST {
 
 #·······················································································································
 
-shared class @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
+refclass @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
   @bool mIsRoot
   @lstring mRootEntityName
@@ -407,7 +407,7 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
 #   CODE GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @autoLayoutTableViewControllerPropertyGeneration : @propertyGeneration {
+refclass @autoLayoutTableViewControllerPropertyGeneration : @propertyGeneration {
   @string mModelString
   @string mOwnerName
 }
@@ -472,7 +472,7 @@ enum @autoLayoutTableViewControllerModelKind {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
+refclass @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
   @string mModelString

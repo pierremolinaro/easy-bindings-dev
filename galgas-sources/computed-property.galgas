@@ -2,7 +2,7 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @computedPropertyDeclarationAST : @abstractDeclarationAST {
+refclass @computedPropertyDeclarationAST : @abstractDeclarationAST {
   @lstring mRootEntityName
   @lstring mComputedPropertyTypeName
   @lstring mComputedPropertyName
@@ -268,7 +268,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
 #   CODE GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @computedPropertyGeneration : @propertyGeneration {
+refclass @computedPropertyGeneration : @propertyGeneration {
   @string mClassName
   @typeKind mType
   @transientDependencyListForGeneration mDependencyList
@@ -456,7 +456,7 @@ override getter @computedPropertyGeneration terminationCode ?let @bool unused in
 #    COMPUTE ROUTINE GENERATION         
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @computeRoutineGeneration : @abstractFileGeneration {
+refclass @computeRoutineGeneration : @abstractFileGeneration {
   @string mOwnerName
   @string mTransientName
   @typeKind mTransientType

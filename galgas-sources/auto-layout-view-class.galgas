@@ -2,7 +2,7 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
+refclass @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
   @bool mUserDefined
   @lstring mSuperClassName
   @bool mHasRunAction

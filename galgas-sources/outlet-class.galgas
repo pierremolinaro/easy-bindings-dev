@@ -2,7 +2,7 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @outletClassDeclarationAST : @abstractDeclarationAST {
+refclass @outletClassDeclarationAST : @abstractDeclarationAST {
   @bool mUserDefined
   @lstring mSuperClassName
   @bool mHasRunAction

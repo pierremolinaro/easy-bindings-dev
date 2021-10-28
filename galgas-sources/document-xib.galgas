@@ -2,7 +2,7 @@
 #   AST
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @xibDocumentDeclarationAST : @abstractDeclarationAST {
+refclass @xibDocumentDeclarationAST : @abstractDeclarationAST {
   @lstring mRootEntityName
   @outletDeclarationList mOutletDeclarationList
   @lstringlist mActionDeclarationList
@@ -190,7 +190,7 @@ override method @xibDocumentDeclarationAST fourthAnalysisPhase
 #   GENERATION                            
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @xibDocumentFileGeneration : @abstractFileGeneration {
+refclass @xibDocumentFileGeneration : @abstractFileGeneration {
   @string mDocumentName
   @string mRootEntityName
   @propertyGenerationList mDocumentPropertyGenearionList

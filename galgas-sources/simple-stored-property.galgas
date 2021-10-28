@@ -11,7 +11,7 @@ list @simpleStoredPropertyList {
 
 #·······················································································································
 
-shared class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
+refclass @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   @lstring mPropertyTypeName
   @lstring mPropertyName
   @abstractDefaultValue mDefaultValue
@@ -148,7 +148,7 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
 #   CODE GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @atomicPropertyGeneration : @propertyGeneration {
+refclass @atomicPropertyGeneration : @propertyGeneration {
   @bool mNeedsValidation
   @typeKind mType
   @bool mIsProxy

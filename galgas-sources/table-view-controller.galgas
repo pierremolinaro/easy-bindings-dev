@@ -27,7 +27,7 @@ list @tableViewControllerAttributListAST {
 
 #·······················································································································
 
-shared class @tableViewControllerDeclarationAST : @abstractDeclarationAST {
+refclass @tableViewControllerDeclarationAST : @abstractDeclarationAST {
   @lstring mControllerName
   @bool mIsRoot
   @lstring mRootEntityName
@@ -424,7 +424,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
 #   CODE GENERATION                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @tableViewControllerPropertyGeneration : @propertyGeneration {
+refclass @tableViewControllerPropertyGeneration : @propertyGeneration {
   @string mModelString
   @string mOwnerName
 }
@@ -489,7 +489,7 @@ enum @tableViewControllerModelKind {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-shared class @tableViewControllerGeneration : @abstractFileGeneration {
+refclass @tableViewControllerGeneration : @abstractFileGeneration {
   @string mOwnerName # document name, prefs name, ...
   @lstring mControllerName
   @string mModelString
