@@ -3,19 +3,19 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @simpleStoredPropertyList {
-  @lstring mPropertyTypeName
-  @lstring mPropertyName
-  @abstractDefaultValue mDefaultValue
-  @bool mNeedsValidation
+  public var @lstring mPropertyTypeName
+  public var @lstring mPropertyName
+  public var @abstractDefaultValue mDefaultValue
+  public var @bool mNeedsValidation
 }
 
 #·······················································································································
 
 refclass @atomicPropertyDeclarationAST : @abstractDeclarationAST {
-  @lstring mPropertyTypeName
-  @lstring mPropertyName
-  @abstractDefaultValue mDefaultValue
-  @bool mNeedsValidation
+  public var @lstring mPropertyTypeName
+  public var @lstring mPropertyName
+  public var @abstractDefaultValue mDefaultValue
+  public var @bool mNeedsValidation
 }
 
 #·······················································································································
@@ -49,8 +49,8 @@ syntax extension easyBindings_syntax {
     ?!@astDeclarationStruct ioDeclarationAST
   {
     $property$
-    @bool usedForSignature = false
-    @bool needsValidation = false
+    var @bool usedForSignature = false
+    var @bool needsValidation = false
     repeat
     while
       $@attribute$ ?let attributeName
@@ -149,17 +149,17 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @atomicPropertyGeneration : @propertyGeneration {
-  @bool mNeedsValidation
-  @typeKind mType
-  @bool mIsProxy
-  @string mDefaultValueInSwift
-  @bool mInPreferences
+  public var @bool mNeedsValidation
+  public var @typeKind mType
+  public var @bool mIsProxy
+  public var @string mDefaultValueInSwift
+  public var @bool mInPreferences
 }
 
 #·······················································································································
 
 list @atomicPropertyGenerationList {
-  @atomicPropertyGeneration mProperty
+  public var @atomicPropertyGeneration mProperty
 }
 
 #·······················································································································

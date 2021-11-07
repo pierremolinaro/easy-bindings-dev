@@ -3,13 +3,13 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @outletClassDeclarationAST : @abstractDeclarationAST {
-  @bool mUserDefined
-  @lstring mSuperClassName
-  @bool mHasRunAction
-  @bool mHasEnabled
-  @bool mHandlesTableValueBinding
-  @bool mHandlesGraphicControllerBinding
-  @bool mHasHidden
+  public var @bool mUserDefined
+  public var @lstring mSuperClassName
+  public var @bool mHasRunAction
+  public var @bool mHasEnabled
+  public var @bool mHandlesTableValueBinding
+  public var @bool mHandlesGraphicControllerBinding
+  public var @bool mHasHidden
 }
 
 #·······················································································································
@@ -36,7 +36,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <outlet_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
-    @bool userDefined
+    var @bool userDefined
     select
       $extern$
       userDefined = true
@@ -46,18 +46,18 @@ syntax extension easyBindings_syntax {
     $outlet$
     $class$
     $Identifier$ ?let @lstring outletClassName
-    @lstring superClassName
+    var @lstring superClassName
     select
       superClassName = ["" here]
     or
       $:$
       $Identifier$ ?superClassName
     end
-    @bool hasRunAction = false
-    @bool hasEnabled = false
-    @bool hasHidden = false
-    @bool handlesTableViewBinding = false
-    @bool handlesGraphicControllerBinding = false
+    var @bool hasRunAction = false
+    var @bool hasEnabled = false
+    var @bool hasHidden = false
+    var @bool handlesTableViewBinding = false
+    var @bool handlesGraphicControllerBinding = false
     repeat
     while
       $tableValue$
@@ -155,13 +155,13 @@ override method @outletClassDeclarationAST firstAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @outletClassMap {
-  @lstring mSuperClassName
-  @bool mHandlesRunAction
-  @bool mHandlesTableValueBinding
-  @bool mHandleEnabledBinding
-  @bool mHandleHiddenBinding
-  @bool mHandleGraphicControllerBinding
-  @bool mUserDefined
+  public var @lstring mSuperClassName
+  public var @bool mHandlesRunAction
+  public var @bool mHandlesTableValueBinding
+  public var @bool mHandleEnabledBinding
+  public var @bool mHandleHiddenBinding
+  public var @bool mHandleGraphicControllerBinding
+  public var @bool mUserDefined
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
 }

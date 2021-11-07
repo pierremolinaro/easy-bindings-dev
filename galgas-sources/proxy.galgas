@@ -10,11 +10,11 @@ enum @proxyKind {
 #·······················································································································
 
 refclass @proxyDeclarationAST : @abstractDeclarationAST {
-  @proxyKind mProxyKind
-  @lstring mProxyTypeName
-  @lstring mProxyName
-  @lstring mToOneRelationshipName
-  @lstring mPropertyName
+  public var @proxyKind mProxyKind
+  public var @lstring mProxyTypeName
+  public var @lstring mProxyName
+  public var @lstring mToOneRelationshipName
+  public var @lstring mPropertyName
 }
 
 #·······················································································································
@@ -47,7 +47,7 @@ syntax extension easyBindings_syntax {
             ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST
             ?!@astDeclarationStruct ioDeclarationAST
   {
-    @proxyKind proxyKind
+    var @proxyKind proxyKind
     select
       $property$
       proxyKind = .propertyProxy
@@ -190,16 +190,16 @@ override method @proxyDeclarationAST secondAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @toManyProxyGeneration : @propertyGeneration {
-  @proxyKind mProxyKind
-  @string mToManyTypeName
-  @string mObservedRelationshipName
-  @string mObservedPropertyName
+  public var @proxyKind mProxyKind
+  public var @string mToManyTypeName
+  public var @string mObservedRelationshipName
+  public var @string mObservedPropertyName
 }
 
 #·······················································································································
 
 list @toManyProxyGenerationList {
-  @toManyProxyGeneration mProperty
+  public var @toManyProxyGeneration mProperty
 }
 
 #·······················································································································
@@ -290,16 +290,16 @@ override getter @toManyProxyGeneration clearObjectExplorerCode -> @string {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @atomicProxyGeneration : @propertyGeneration {
-  @proxyKind mProxyKind
-  @typeKind mType
-  @string mObservedRelationshipName
-  @string mObservedPropertyName
+  public var @proxyKind mProxyKind
+  public var @typeKind mType
+  public var @string mObservedRelationshipName
+  public var @string mObservedPropertyName
 }
 
 #·······················································································································
 
 list @atomicProxyGenerationList {
-  @atomicProxyGeneration mProperty
+  public var @atomicProxyGeneration mProperty
 }
 
 #·······················································································································

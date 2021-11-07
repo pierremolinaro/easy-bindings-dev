@@ -3,15 +3,15 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @entityDeclarationAST : @abstractDeclarationAST {
-  @bool mIsAbstract
-  @lstring mSuperEntityName
-  @simpleStoredPropertyList mSimpleStoredPropertyList
-  @stringset mSignatureList
-  @lstringlist mActionDeclarationList
-  @lstringlist mObsoleteEntityNames
-  @bool mIsGraphicEntity
-  @externSwiftDelegateList mExternSwiftDelegateList
-  @lstringlist mGraphicOptionArray
+  public var @bool mIsAbstract
+  public var @lstring mSuperEntityName
+  public var @simpleStoredPropertyList mSimpleStoredPropertyList
+  public var @stringset mSignatureList
+  public var @lstringlist mActionDeclarationList
+  public var @lstringlist mObsoleteEntityNames
+  public var @bool mIsGraphicEntity
+  public var @externSwiftDelegateList mExternSwiftDelegateList
+  public var @lstringlist mGraphicOptionArray
 }
 
 #·······················································································································
@@ -38,14 +38,14 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <entity_declaration> ?!@astDeclarationStruct ioDeclarationAST {
-    @bool isAbstract
+    var @bool isAbstract
     select
       isAbstract = false
     or
       $abstract$
       isAbstract = true
     end
-    @bool graphicEntity
+    var @bool graphicEntity
     select
       graphicEntity = false
     or
@@ -54,7 +54,7 @@ syntax extension easyBindings_syntax {
     end
     $entity$
     $Identifier$ ?let @lstring entityName
-    @lstringlist obsoleteEntityNames = {}
+    var @lstringlist obsoleteEntityNames = {}
     select
     or
       $($
@@ -66,7 +66,7 @@ syntax extension easyBindings_syntax {
       end
       $)$
     end
-    @lstring superEntityName
+    var @lstring superEntityName
     select
       superEntityName = ["" nowhere]
     or
@@ -74,12 +74,12 @@ syntax extension easyBindings_syntax {
       $Identifier$ ? superEntityName
     end
     ${$
-    @simpleStoredPropertyList simpleStoredPropertyList = {}
-    @stringset signatureList = {}
-    @lstringlist actionDeclarationList = {}
-    @externSwiftDelegateList externSwiftDelegateList = {}
-    @arrayControllerBindingListAST arrayControllerBindingListAST = {}
-    @lstringlist graphicOptionArray = {}
+    var @simpleStoredPropertyList simpleStoredPropertyList = {}
+    var @stringset signatureList = {}
+    var @lstringlist actionDeclarationList = {}
+    var @externSwiftDelegateList externSwiftDelegateList = {}
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    var @lstringlist graphicOptionArray = {}
     repeat
     while
       <simple_stored_declaration> !entityName !?simpleStoredPropertyList !?signatureList !?ioDeclarationAST
@@ -216,7 +216,7 @@ override method @entityDeclarationAST fourthAnalysisPhase
     ?let @propertyGenerationList propertyGenerationList
   ]
 #--- If super entity is abstract, and current is not, check all transient properties are implemented
-  @stringset overridenTransients = {}
+  var @stringset overridenTransients = {}
   if (self.mSuperEntityName.string != "") & not self.mIsAbstract then
     [ioSemanticContext.mClassMap searchKey
       !self.mSuperEntityName
@@ -311,24 +311,24 @@ override method @entityDeclarationAST fourthAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @entityForGeneration : @abstractFileGeneration {
-  @string mEntityName
-  @string mSuperEntityName
-  @propertyGenerationList mPropertyGenerationList
-  @stringset mSignatureSet
-  @bool mIsGraphicEntity
-  @bool mIsAbstract
-  @stringset mOverridenTransients
-  @externSwiftDelegateList mExternSwiftDelegateList
-  @bool mHasSubEntity
-  @bool mCanCopyAndPaste_option
-  @bool mCannotBeDeleted_option
+  public var @string mEntityName
+  public var @string mSuperEntityName
+  public var @propertyGenerationList mPropertyGenerationList
+  public var @stringset mSignatureSet
+  public var @bool mIsGraphicEntity
+  public var @bool mIsAbstract
+  public var @stringset mOverridenTransients
+  public var @externSwiftDelegateList mExternSwiftDelegateList
+  public var @bool mHasSubEntity
+  public var @bool mCanCopyAndPaste_option
+  public var @bool mCannotBeDeleted_option
 }
 
 #·······················································································································
 
 list @entityListForGeneratingEBManagedObjectContext {
-  @string mEntityName
-  @lstringlist mObsoleteEntityNames
+  public var @string mEntityName
+  public var @lstringlist mObsoleteEntityNames
 }
 
 #·······················································································································
@@ -337,13 +337,13 @@ override method @entityForGeneration generateCode
     ?let @string inOutputDirectory
     ?!@stringset ioGeneratedFileSet
 {
-  @atomicPropertyGenerationList atomicPropertyGenerationList = {}
-  @transientPropertyGenerationList transientPropertyGenerationList = {}
-  @computedPropertyGenerationList computedPropertyGenerationList = {}
-  @toOnePropertyGenerationList toOnePropertyGenerationList = {}
-  @toManyPropertyGenerationList toManyPropertyGenerationList = {}
-  @atomicProxyGenerationList proxyGenerationList = {}
-  @toManyProxyGenerationList toManyProxyGenerationList = {}
+  var @atomicPropertyGenerationList atomicPropertyGenerationList = {}
+  var @transientPropertyGenerationList transientPropertyGenerationList = {}
+  var @computedPropertyGenerationList computedPropertyGenerationList = {}
+  var @toOnePropertyGenerationList toOnePropertyGenerationList = {}
+  var @toManyPropertyGenerationList toManyPropertyGenerationList = {}
+  var @atomicProxyGenerationList proxyGenerationList = {}
+  var @toManyProxyGenerationList toManyProxyGenerationList = {}
   for (property) in self.mPropertyGenerationList do
     if let atomicProperty = property as @atomicPropertyGeneration then
       atomicPropertyGenerationList += !atomicProperty

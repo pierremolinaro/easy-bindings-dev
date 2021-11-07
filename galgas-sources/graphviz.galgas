@@ -40,10 +40,10 @@ private proc graphvizRootEntityAnalysis
   ?let @semanticContext inSemanticContext
   ?let @string inRootEntityName
 {
-  @stringset reachableEntityNameSet = {!inRootEntityName}
-  @stringlist exploreArray = {!inRootEntityName}
-  @stringlist nodeList = {}
-  @stringlist arrowList = {}
+  var @stringset reachableEntityNameSet = {!inRootEntityName}
+  var @stringlist exploreArray = {!inRootEntityName}
+  var @stringlist nodeList = {}
+  var @stringlist arrowList = {}
   loop ([inSemanticContext.mClassMap count] + 1) while [exploreArray length] > 0 do
     [!?exploreArray popLast ?let @string entityName]
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName

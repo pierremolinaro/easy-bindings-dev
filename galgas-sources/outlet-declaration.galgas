@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @bindingOptionList {
-  @lstring mOptionName
-  @abstractDefaultValue mOptionValue
+  public var @lstring mOptionName
+  public var @abstractDefaultValue mOptionValue
 }
 
 #·······················································································································
@@ -24,14 +24,14 @@ enum @graphicController {
 #·······················································································································
 
 list @outletDeclarationList {
-  @lstring mOutletTypeName
-  @lstring mOutletName
-  @tableValueBinding mTableValueBindingDescriptor
-  @runActionDescriptor mRunDescriptor
-  @multipleBindingDescriptor mEnabledBindingDescriptor
-  @multipleBindingDescriptor mHiddenBindingDescriptor
-  @regularBindingList mRegularBindingList
-  @graphicController mGraphicController
+  public var @lstring mOutletTypeName
+  public var @lstring mOutletName
+  public var @tableValueBinding mTableValueBindingDescriptor
+  public var @runActionDescriptor mRunDescriptor
+  public var @multipleBindingDescriptor mEnabledBindingDescriptor
+  public var @multipleBindingDescriptor mHiddenBindingDescriptor
+  public var @regularBindingList mRegularBindingList
+  public var @graphicController mGraphicController
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ syntax extension easyBindings_syntax {
       if runActionDescriptor != .noAction then
         error .here : "duplicated $run binding"
       end
-      @lstring runTargetName
+      var @lstring runTargetName
       select
         runTargetName = @lstring.new {!"self" !.here}
       or
@@ -120,7 +120,7 @@ syntax extension easyBindings_syntax {
   #--- Regular binding
     while
       $bindingName$ ?let @lstring bindingName
-      @observablePropertyList observablePropertyList = {}
+      var @observablePropertyList observablePropertyList = {}
       repeat
         <observable_property> ?let @observablePropertyAST observableProperty
         observablePropertyList += !observableProperty
@@ -136,7 +136,7 @@ syntax extension easyBindings_syntax {
     while
       $graphicController$
       $controllerName$ ?let @lstring graphicControllerName
-      @lstring propertyName
+      var @lstring propertyName
       select
         propertyName = ["" here]
       or
@@ -160,22 +160,22 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @outletBindingModelList {
-  @propertyKind mKind
-  @location mErrorLocation
+  public var @propertyKind mKind
+  public var @location mErrorLocation
 }
 
 #·······················································································································
 
 list @tableViewBindingGenerationList {
-  @string mTableValueBindingOutletName
-  @string mTableValueBindingControllerName
+  public var @string mTableValueBindingOutletName
+  public var @string mTableValueBindingControllerName
 }
 
 #·······················································································································
 
 list @ebViewGraphicControllerBindingGenerationList {
-  @string mEBViewOutletName
-  @string mArrayControllerControllerName
+  public var @string mEBViewOutletName
+  public var @string mArrayControllerControllerName
 }
 
 #·······················································································································
@@ -204,7 +204,7 @@ proc analyzeOutlets
   outletMap = {}
   outTableViewBindingGenerationList = {}
   outEBViewGraphicControllerBindingGenerationList = {}
-  for () outlet_ in inOutletDeclarationList do
+  for (outlet_mOutletTypeName outlet_mOutletName outlet_mTableValueBindingDescriptor outlet_mRunDescriptor outlet_mEnabledBindingDescriptor outlet_mHiddenBindingDescriptor outlet_mRegularBindingList outlet_mGraphicController) in inOutletDeclarationList do
     [!?outletMap insertKey !outlet_mOutletName !outlet_mOutletTypeName.string]
     [inSemanticContext.mOutletClassMap searchKey
       !outlet_mOutletTypeName
@@ -394,11 +394,11 @@ proc analyzeRegularBinding
   ?let @string inSelfSwiftName
   ?!@regularBindingsGenerationList ioRegularBindingsGenerationList
 {
-  for () in inRegularBindingList do
+  for (mBindingName mObservablePropertyList mBindingOptionList) in inRegularBindingList do
   #--- Analyze model
-    @outletBindingModelList boundModelTypeList = {}
-    @boundObjectList boundModelListForGeneration = {}
-    for () in mObservablePropertyList do
+    var @outletBindingModelList boundModelTypeList = {}
+    var @boundObjectList boundModelListForGeneration = {}
+    for (mObservableProperty) in mObservablePropertyList do
       [mObservableProperty analyzeObservableProperty
         !inRootPropertyMap
         !inSemanticContext
@@ -421,8 +421,8 @@ proc analyzeRegularBinding
       boundModelTypeList += !kind ![mObservableProperty location]
     end
   #--- Analyze outlet binding
-    @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
-    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
     var outletTypeName = inOutletTypeName
     var continues = true
     loop ([inSemanticContext.mBindingSpecificationMap count] + 1) while (outletTypeName.string != "") & continues do
@@ -451,7 +451,7 @@ proc analyzeRegularBinding
         + " model(s) required for this binding (found: "
         + [boundModelTypeList length] + ")"
     else
-      for () required_ in outletBindingSpecificationModelList, () found_ in boundModelTypeList do
+      for (required_mModelType required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind found_mErrorLocation) in boundModelTypeList do
         if required_mModelShouldBeWritableProperty && [found_mKind isTransient] then
           error found_mErrorLocation : "the model is transient and the binding requires an writable model"
         end
@@ -464,18 +464,18 @@ proc analyzeRegularBinding
   #--- Check options
     var bindingOptionString = ""
     if [controllerBindingOptionDecoratedList length] != [mBindingOptionList length] then
-      @string s
+      var @string s
       if [controllerBindingOptionDecoratedList length] == 0 then
         s = "this binding has no option"
       else 
         s = "this binding requires the following options:"
-        for () in controllerBindingOptionDecoratedList do
+        for (mOptionType mOptionName) in controllerBindingOptionDecoratedList do
           s += "\n  - " + mOptionName + " : " + [mOptionType swiftTypeName]
         end
       end
       error mBindingName : s
     else
-      for () controller_ in controllerBindingOptionDecoratedList, () binding_ in mBindingOptionList do
+      for (controller_mOptionType controller_mOptionName) in controllerBindingOptionDecoratedList, (binding_mOptionName binding_mOptionValue) in mBindingOptionList do
         if controller_mOptionName.string != binding_mOptionName.string then
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
@@ -501,32 +501,32 @@ proc analyzeRegularBinding
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @boundObjectList {
-  @string mBoundObjectString
-  @propertyKind mKind
+  public var @string mBoundObjectString
+  public var @propertyKind mKind
 }
 
 #·······················································································································
 
 list @regularBindingsGenerationList {
-  @string mOutletName
-  @string mBindingName
-  @boundObjectList mBoundObjectList
-  @string mBindingOptionsString
+  public var @string mOutletName
+  public var @string mBindingName
+  public var @boundObjectList mBoundObjectList
+  public var @string mBindingOptionsString
 }
 
 #·······················································································································
 
 list @actionBindingListForGeneration {
-  @string mOutletName
-  @string mTargetName
-  @string mActionName
-  @string mTargetTypeName
+  public var @string mOutletName
+  public var @string mTargetName
+  public var @string mActionName
+  public var @string mTargetTypeName
 }
 
 #·······················································································································
 
 map @decoratedOutletMap {
-  @string mOutletTypeName
+  public var @string mOutletTypeName
   insert insertKey error message "the '%K' outlet is already declared"
   search searchKey error message "the '%K' outlet is not declared"
 }

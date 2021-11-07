@@ -10,7 +10,7 @@ import Cocoa
 
 final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBSwiftBaseObject {
 
-%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+%for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
 %  //····················································································································\n%
 %  //   Selection observable property: %!lkey.string%\n%
 %  //····················································································································\n\n%
@@ -32,7 +32,7 @@ end
 
   final func bind_selection (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {
     self.mModel = model
-%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+%for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
   if not [mKind isEntityType] then
     %    self.bind_property_%!lkey.string% (model: model)\n%
   end
@@ -45,7 +45,7 @@ end
 
   final func unbind_selection () {
 %
-  for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+  for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
     if not [mKind isEntityType] then
       %  //--- %!lkey.string%\n%
       %    self.%!lkey.string%_property.mReadModelFunction = nil \n%
@@ -101,7 +101,7 @@ end
     //-------------------------------------------------- Adding properties
       let view = NSView (frame:r)
       var y : CGFloat = 0.0
-%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+%for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mKind isEntityType] & not [mKind isTransient] then
   %      createEntryForPropertyNamed (\n%
   %        "%!lkey.string%",\n%
@@ -170,7 +170,7 @@ end
     }
   #endif
 
-%for () in SELECTION_OBSERVABLE_PROPERTY_MAP do
+%for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mKind isEntityType] then
   %  //···················································································································*\n\n%
   %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%

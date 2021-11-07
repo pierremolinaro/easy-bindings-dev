@@ -3,10 +3,10 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @computedPropertyDeclarationAST : @abstractDeclarationAST {
-  @lstring mRootEntityName
-  @lstring mComputedPropertyTypeName
-  @lstring mComputedPropertyName
-  @observablePropertyList mDependencyList
+  public var @lstring mRootEntityName
+  public var @lstring mComputedPropertyTypeName
+  public var @lstring mComputedPropertyName
+  public var @observablePropertyList mDependencyList
 #  @bool mIsOverriding
 }
 
@@ -119,7 +119,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ ?let transientTypeName
     $identifier$ ?let @lstring transientName
     $dependsFrom$
-    @observablePropertyList dependanceList = {}
+    var @observablePropertyList dependanceList = {}
     repeat
       <observable_property> ?let @observablePropertyAST observablePropertyAST
       dependanceList += !observablePropertyAST
@@ -179,7 +179,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
 #--- Property type
   [ioSemanticContext.mClassMap searchKey !self.mComputedPropertyTypeName ?let classKind ?3*]
 #--- Check type
-  @typeKind typeKind
+  var @typeKind typeKind
   switch classKind
   case prefs :
     error self.mComputedPropertyTypeName: "an atomic class is required here" : typeKind
@@ -191,7 +191,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
     error self.mComputedPropertyTypeName: "an atomic class is required here" : typeKind
   end
 #--- Root properties
-  @propertyMap rootProperties
+  var @propertyMap rootProperties
   if self.mRootEntityName.string == "" then
     rootProperties = {}
   else
@@ -200,8 +200,8 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
 #--- Current class properties
   [ioSemanticContext.mClassMap searchKey !self.mClassName ?let currentClassKind ?let properties ?2*]
 #--- Analyse master properties
-  @transientDependencyListForGeneration dependencies = {}
-  for () in self.mDependencyList do
+  var @transientDependencyListForGeneration dependencies = {}
+  for (mObservableProperty) in self.mDependencyList do
     [mObservableProperty analyzeObservableProperty
       !rootProperties
       !ioSemanticContext
@@ -239,7 +239,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    @bool generate
+    var @bool generate
     switch currentClassKind
     case prefs :
       generate = true
@@ -269,16 +269,16 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @computedPropertyGeneration : @propertyGeneration {
-  @string mClassName
-  @typeKind mType
-  @transientDependencyListForGeneration mDependencyList
-  @bool mGenerate
+  public var @string mClassName
+  public var @typeKind mType
+  public var @transientDependencyListForGeneration mDependencyList
+  public var @bool mGenerate
 }
 
 #·······················································································································
 
 list @computedPropertyGenerationList {
-  @computedPropertyGeneration mProperty
+  public var @computedPropertyGeneration mProperty
 }
 
 #·······················································································································
@@ -431,7 +431,7 @@ override getter @computedPropertyGeneration configurationCode ?let @bool inPrefe
     end
     result += "    }\n"
     result += "    " + prefix + self.mPropertyName + "_property.mStoreFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0, $1) ?? false }\n"
-    for () in self.mDependencyList do
+    for (mDependency * *) in self.mDependencyList do
       let s = [mDependency generateAddObserverCall !inPreferences]
       if s != "" then
         result += "    " + s + " (" + prefix + self.mPropertyName + "_property)\n"
@@ -444,7 +444,7 @@ override getter @computedPropertyGeneration configurationCode ?let @bool inPrefe
 
 override getter @computedPropertyGeneration terminationCode ?let @bool unused inPreferences -> @string {
   result = ""
-  for () in self.mDependencyList do
+  for (mDependency * *) in self.mDependencyList do
     let s = [mDependency generateRemoveObserverCall]
     if s != "" then
       result += "    // " + s + " (self." + self.mPropertyName + "_property)\n"
@@ -457,10 +457,10 @@ override getter @computedPropertyGeneration terminationCode ?let @bool unused in
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @computeRoutineGeneration : @abstractFileGeneration {
-  @string mOwnerName
-  @string mTransientName
-  @typeKind mTransientType
-  @transientDependencyListForGeneration mDependencyList
+  public var @string mOwnerName
+  public var @string mTransientName
+  public var @typeKind mTransientType
+  public var @transientDependencyListForGeneration mDependencyList
 }
 
 #·······················································································································

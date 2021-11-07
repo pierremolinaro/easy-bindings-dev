@@ -12,7 +12,7 @@ enum @classKind {
 #·······················································································································
 
 abstract refclass @propertyGeneration {
-  @string mPropertyName
+  public var @string mPropertyName
 }
 
 #·······················································································································
@@ -78,16 +78,16 @@ getter @propertyGeneration resetToManyRelationships -> @string { result = "" }
 #·······················································································································
 
 list @propertyGenerationList {
-  @propertyGeneration mProperty
+  public var @propertyGeneration mProperty
 }
 
 #·······················································································································
 
 map @classMap {
-  @classKind mClassKind
-  @propertyMap mPropertyMap
-  @actionMap mActionMap
-  @propertyGenerationList mPropertyGenerationList
+  public var @classKind mClassKind
+  public var @propertyMap mPropertyMap
+  public var @actionMap mActionMap
+  public var @propertyGenerationList mPropertyGenerationList
   insert insertKey error message "the '%K' class is already declared in %L"
   search searchKey error message "there is no '%K' class"
 }
@@ -133,9 +133,9 @@ enum @propertyKind {
 #·······················································································································
 
 map @propertyMap {
-  @propertyKind mKind
-  @actionMap mActionMap
-  @bool mIsOverriding
+  public var @propertyKind mKind
+  public var @actionMap mActionMap
+  public var @bool mIsOverriding
   insert insertKey error message "the '%K' property is already declared in %L"
   search searchKey error message "there is no '%K' property"
 }

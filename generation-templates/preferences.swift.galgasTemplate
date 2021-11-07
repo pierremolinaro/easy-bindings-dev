@@ -10,12 +10,12 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-%for () in PROPERTY_LIST_FOR_GENERATION do
+%for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty prefKeyDefinitionCode]
 end
 %
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty propertyDeclarationCode !true ![@stringset emptySet]]
 end
 %
@@ -28,7 +28,7 @@ end
   //····················································································································
 
 %
-for () in OUTLET_MAP do
+for (lkey mOutletTypeName) in OUTLET_MAP do
 %  @IBOutlet var %!lkey.string% : %!mOutletTypeName%? = nil\n%
 end
 %
@@ -36,7 +36,7 @@ end
   //    Multiple bindings controllers
   //····················································································································
 
-%for () in MULTIPLE_BINDING_GENERATION_LIST do
+%for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
   %  private var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%?\n%
 end
 %
@@ -66,7 +66,7 @@ end
     g_%!preferencesName ()% = self ;
   //--- Read from preferences
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !true]
 end
 %  //--- Notify application will terminate
@@ -77,7 +77,7 @@ end
     )
   //--- Extern functions
 %
-  for () in EXTERN_SWIFT_FUNCTION_LIST do
+  for (mExternSwiftFunctionName mCallerName) in EXTERN_SWIFT_FUNCTION_LIST do
     if mCallerName.string == "init" then
       %    self.%!mExternSwiftFunctionName.string% ()\n%
     end
@@ -101,14 +101,14 @@ end
   override func awakeFromNib () {
 %
 ![MAIN_XIB_DESCRIPTOR_LIST generateCode]
-for () in OUTLET_MAP do
+for (lkey mOutletTypeName) in OUTLET_MAP do
 %    checkOutletConnection (self.%!lkey.string%, "%!lkey.string%", %!mOutletTypeName%.self, #file, #line)\n%
 end
 %  //--------------------------- Install bindings
 %
-for () in REGULAR_BINDINGS_GENERATION_LIST do
+for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
   %    %!mOutletName%?.bind_%!mBindingName% (%
-  for () in mBoundObjectList
+  for (mBoundObjectString mKind) in mBoundObjectList
     do !mBoundObjectString
     between %, %
   end
@@ -116,7 +116,7 @@ for () in REGULAR_BINDINGS_GENERATION_LIST do
 end
 %  //--------------------------- Install multiple bindings
 %
-for () in MULTIPLE_BINDING_GENERATION_LIST do
+for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
   %    do{\n%
   %      let controller = MultipleBindingController_%!mBindingName% (\n%
   %        computeFunction: %![mBoundObjectExpression expressionString]%,\n%
@@ -127,20 +127,20 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
 end
 %  //--------------------------- Array controller
 %
-for () in TABLE_VALUE_BINDING_GENERATION_LIST do
+for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
   %    preferences_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
-for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    preferences_%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
 end
 %  //--------------------------- Set targets / actions
-%for () in TARGET_ACTION_LIST do
+%for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
 %    self.%!mOutletName%?.target = %!mTargetName%\n%
 %    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
 %  //--------------------------- Extern functions
 %
-  for () in EXTERN_SWIFT_FUNCTION_LIST do
+  for (mExternSwiftFunctionName mCallerName) in EXTERN_SWIFT_FUNCTION_LIST do
     if mCallerName.string == "awakeFromNib" then
       %    self.%!mExternSwiftFunctionName.string% ()\n%
     end
@@ -154,13 +154,13 @@ end
   @objc func applicationWillTerminateAction (_ : NSNotification) {
   //--------------------------- Array controller
 %
-for () in TABLE_VALUE_BINDING_GENERATION_LIST do
+for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
   %    preferences_%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
-for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    preferences_%!mArrayControllerControllerName%.unbind_ebView (preferences_%!mEBViewOutletName%)\n%
 end
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty terminationCode !true]
 end
 %  }

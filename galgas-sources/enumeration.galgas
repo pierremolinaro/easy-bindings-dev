@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @enumerationDeclarationAST : @abstractDeclarationAST {
-  @lstringlist mEnumConstantNameList
+  public var @lstringlist mEnumConstantNameList
 }
 
 #·······················································································································
@@ -21,9 +21,9 @@ override getter @enumerationDeclarationAST nodeKey -> @lstring {
 #·······················································································································
 
 list @enumerationFunctionListAST {
-  @lstring mEnumName
-  @lstring mFunctionName
-  @2lstringlist mAssociationList
+  public var @lstring mEnumName
+  public var @lstring mFunctionName
+  public var @2lstringlist mAssociationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ syntax extension easyBindings_syntax {
     $enum$
     $Identifier$ ?let @lstring enumName
     ${$
-    @lstringlist enumConstants = {}
+    var @lstringlist enumConstants = {}
     repeat
       $identifier$ ?let @lstring constantName
       enumConstants += !constantName
@@ -58,7 +58,7 @@ syntax extension easyBindings_syntax {
     $.$    
     $identifier$ ?let @lstring funcName
     ${$
-    @2lstringlist associationList = {}
+    var @2lstringlist associationList = {}
     repeat
     while
       $identifier$ ?let @lstring constantName
@@ -80,7 +80,7 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @enumConstantMap {
-  @uint mIndex
+  public var @uint mIndex
   insert insertKey error message "there is already a '%K' constant"
   search searchKey error message "the '%K' constant is not defined"
 }
@@ -88,8 +88,8 @@ map @enumConstantMap {
 #-----------------------------------------------------------------------------------------------------------------------
 
 sortedlist @enumFunAssociationSortedList {
-  @uint mIndex
-  @string mAssociatedString
+  public var @uint mIndex
+  public var @string mAssociatedString
 }{
   mIndex <
 }
@@ -97,7 +97,7 @@ sortedlist @enumFunAssociationSortedList {
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @enumFuncMap {
-  @enumFunAssociationSortedList mAssociationSortedList
+  public var @enumFunAssociationSortedList mAssociationSortedList
   insert insertKey error message "there is already a '%K' enum function"
   search searchKey error message "the '%K' enum function is not defined"
 }
@@ -108,15 +108,15 @@ override method @enumerationDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  @enumConstantMap enumConstantMap = {}
+  var @enumConstantMap enumConstantMap = {}
   for (s) in self.mEnumConstantNameList do
     [!?enumConstantMap insertKey !s ![enumConstantMap count]]
   end
-  @enumFuncMap enumFuncMap = {}
+  var @enumFuncMap enumFuncMap = {}
   for (enumTypeName funcName associationList) in ioSemanticContext.mEnumerationFunctionListAST do
     if enumTypeName.string == self.mClassName.string then
-      @stringset definedConstantNameSet = {}
-      @enumFunAssociationSortedList associationSortedList = {}
+      var @stringset definedConstantNameSet = {}
+      var @enumFunAssociationSortedList associationSortedList = {}
       for (constantName associatedString) in associationList do
         [enumConstantMap searchKey !constantName ?let idx]
         associationSortedList += !idx !associatedString.string
@@ -153,9 +153,9 @@ override method @enumerationDeclarationAST firstAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @enumForGeneration : @abstractFileGeneration {
-  @string mEnumName
-  @lstringlist mEnumConstantList
-  @enumFuncMap mEnumFuncMap
+  public var @string mEnumName
+  public var @lstringlist mEnumConstantList
+  public var @enumFuncMap mEnumFuncMap
 }
 
 #·······················································································································

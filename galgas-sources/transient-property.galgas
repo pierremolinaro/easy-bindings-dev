@@ -3,11 +3,11 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @transientDeclarationAST : @abstractDeclarationAST {
-  @lstring mRootEntityName
-  @lstring mTransientTypeName
-  @lstring mTransientName
-  @observablePropertyList mDependencyList
-  @bool mIsOverriding
+  public var @lstring mRootEntityName
+  public var @lstring mTransientTypeName
+  public var @lstring mTransientName
+  public var @observablePropertyList mDependencyList
+  public var @bool mIsOverriding
 }
 
 #·······················································································································
@@ -108,7 +108,7 @@ syntax extension easyBindings_syntax {
             ?let @lstring inRootEntity
             ?!@astDeclarationStruct ioDeclarationAST
   {
-    @bool isOverriding
+    var @bool isOverriding
     select
       isOverriding = false
     or
@@ -119,7 +119,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ ?let transientTypeName
     $identifier$ ?let @lstring transientName
     $dependsFrom$
-    @observablePropertyList dependanceList = {}
+    var @observablePropertyList dependanceList = {}
     repeat
       <observable_property> ?let @observablePropertyAST observablePropertyAST
       dependanceList += !observablePropertyAST
@@ -179,7 +179,7 @@ override method @transientDeclarationAST thirdAnalysisPhase
 #--- Property type
   [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName ?let classKind ?3*]
 #--- Check type
-  @typeKind typeKind
+  var @typeKind typeKind
   switch classKind
   case prefs :
     error self.mTransientTypeName: "an atomic class is required here" : typeKind
@@ -191,7 +191,7 @@ override method @transientDeclarationAST thirdAnalysisPhase
     error self.mTransientTypeName: "an atomic class is required here" : typeKind
   end
 #--- Root properties
-  @propertyMap rootProperties
+  var @propertyMap rootProperties
   if self.mRootEntityName.string == "" then
     rootProperties = {}
   else
@@ -200,8 +200,8 @@ override method @transientDeclarationAST thirdAnalysisPhase
 #--- Current class properties
   [ioSemanticContext.mClassMap searchKey !self.mClassName ?let currentClassKind ?let properties ?2*]
 #--- Analyse master properties
-  @transientDependencyListForGeneration dependencies = {}
-  for () in self.mDependencyList do
+  var @transientDependencyListForGeneration dependencies = {}
+  for (mObservableProperty) in self.mDependencyList do
     [mObservableProperty analyzeObservableProperty
       !rootProperties
       !ioSemanticContext
@@ -233,7 +233,7 @@ override method @transientDeclarationAST thirdAnalysisPhase
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    @bool generate
+    var @bool generate
     switch currentClassKind
     case prefs :
       generate = true
@@ -263,16 +263,16 @@ override method @transientDeclarationAST thirdAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @transientPropertyGeneration : @propertyGeneration {
-  @string mClassName
-  @typeKind mType
-  @transientDependencyListForGeneration mDependencyList
-  @bool mGenerate
+  public var @string mClassName
+  public var @typeKind mType
+  public var @transientDependencyListForGeneration mDependencyList
+  public var @bool mGenerate
 }
 
 #·······················································································································
 
 list @transientPropertyGenerationList {
-  @transientPropertyGeneration mProperty
+  public var @transientPropertyGeneration mProperty
 }
 
 #·······················································································································
@@ -393,7 +393,7 @@ override getter @transientPropertyGeneration configurationCode ?let @bool inPref
       result += [self.mDependencyList transientComputeFunctionCall !inPreferences !self.mClassName !self.mPropertyName !"transient"]
     end
     result += "    }\n"
-    for () in self.mDependencyList do
+    for (mDependency * *) in self.mDependencyList do
       let s = [mDependency generateAddObserverCall !inPreferences]
       if s != "" then
         result += "    " + s + " (" + prefix + self.mPropertyName + "_property)\n"
@@ -406,7 +406,7 @@ override getter @transientPropertyGeneration configurationCode ?let @bool inPref
 
 override getter @transientPropertyGeneration terminationCode ?let @bool unused inPreferences -> @string {
   result = ""
-  for () in self.mDependencyList do
+  for (mDependency * *) in self.mDependencyList do
     let s = [mDependency generateRemoveObserverCall]
     if s != "" then
       result += "    // " + s + " (self." + self.mPropertyName + "_property)\n"
@@ -419,9 +419,9 @@ override getter @transientPropertyGeneration terminationCode ?let @bool unused i
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @transientDependencyListForGeneration {
-  @observablePropertyAST mDependency
-  @string mFunctionArgumentName
-  @string mFunctionArgumentTypeString
+  public var @observablePropertyAST mDependency
+  public var @string mFunctionArgumentName
+  public var @string mFunctionArgumentTypeString
 }
 
 #·······················································································································
@@ -437,7 +437,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   outResult = ""
   var ident = "        "
   outResult += ident + "switch ("
-  for () in self
+  for (mDependency * *) in self
   do
     outResult += [mDependency modelStringForSelf !uwself] + ".selection"
   between
@@ -445,7 +445,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   end
   outResult += ") {\n"
   outResult += ident + "case ("
-  for () in self
+  for (* * *) in self
   do (idx)
     outResult += ".single (let v" + idx + ")"
   between
@@ -455,7 +455,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   outResult += ident + "  return .single ("
   outResult += inFunctionNamePrefix + "_" + inOwnerName + "_" + inTransientName
   outResult += " ("
-  for () in self
+  for (* * *) in self
   do (idx)
     outResult += "v" + idx
   between
@@ -463,7 +463,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   end
   outResult += "))\n"
   outResult += ident + "case ("
-  for () in self
+  for (* * *) in self
   do
     outResult += ".multiple"
   between
@@ -588,11 +588,11 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @transientRoutineGeneration : @abstractFileGeneration {
-  @string mOwnerName
-  @string mTransientName
-  @typeKind mTransientType
-  @string mGeneratedFunctionNamePrefix
-  @transientDependencyListForGeneration mDependencyList
+  public var @string mOwnerName
+  public var @string mTransientName
+  public var @typeKind mTransientType
+  public var @string mGeneratedFunctionNamePrefix
+  public var @transientDependencyListForGeneration mDependencyList
 }
 
 #·······················································································································

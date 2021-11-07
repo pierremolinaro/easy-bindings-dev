@@ -93,8 +93,8 @@ private proc generateXcodeProjectInternal
     !"LD_RUNPATH_SEARCH_PATHS = \"$(inherited) @executable_path/../Frameworks\""
   }]
 #--- Add "Hand coded sources (App)" group
-  @stringlist swiftFileRefList = {}
-  @stringlist resourceFileRefList = {}
+  var @stringlist swiftFileRefList = {}
+  var @stringlist resourceFileRefList = {}
   var generatedFileSet = inGeneratedFileSet
   generatedFileSet += !"MainMenu.xib"
   [!?xcodeProject addGroupWithFiles

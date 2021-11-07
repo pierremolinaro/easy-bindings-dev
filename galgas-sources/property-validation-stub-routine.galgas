@@ -3,9 +3,9 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @validationStubRoutineListForGeneration {
-  @string mObjectTypeName
-  @string mModelName
-  @string mModelTypeName
+  public var @string mObjectTypeName
+  public var @string mModelName
+  public var @string mModelTypeName
 }
 
 #·······················································································································
@@ -28,7 +28,7 @@ proc generateValidationRoutineStubs
   ?let @validationStubRoutineListForGeneration inValidationStubRoutineListForGeneration
   ?!@stringset ioGeneratedFileSet
 {
-  for () in inValidationStubRoutineListForGeneration do
+  for (mObjectTypeName mModelName mModelTypeName) in inValidationStubRoutineListForGeneration do
     let s = [filewrapper validationStubExtension.actionGeneration
       !mObjectTypeName
       !mModelName

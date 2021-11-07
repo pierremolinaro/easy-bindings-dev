@@ -11,11 +11,11 @@ enum @toManyRelationshipOptionAST {
 #·······················································································································
 
 refclass @toManyRelationshipAST : @abstractDeclarationAST {
-  @lstring mDestinationEntityName
-  @lstring mToManyRelationshipName
-  @toManyRelationshipOptionAST mOption
-  @bool mCustomStore
-  @bool mUsedForSignature
+  public var @lstring mDestinationEntityName
+  public var @lstring mToManyRelationshipName
+  public var @toManyRelationshipOptionAST mOption
+  public var @bool mCustomStore
+  public var @bool mUsedForSignature
 }
 
 #·······················································································································
@@ -54,8 +54,8 @@ syntax extension easyBindings_syntax {
             ?!@astDeclarationStruct ioDeclarationAST
   {
     $toMany$
-    @bool usedForSignature = false
-    @bool customStore = false
+    var @bool usedForSignature = false
+    var @bool customStore = false
     repeat
     while
       $@attribute$ ?let attributeName
@@ -78,7 +78,7 @@ syntax extension easyBindings_syntax {
     if usedForSignature then
       ioSignatureList += !relationshipName.string
     end
-    @toManyRelationshipOptionAST toManyRelationshipOption
+    var @toManyRelationshipOptionAST toManyRelationshipOption
     select
       $inverse$
       $toOne$
@@ -138,7 +138,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
     #--- Current class is preferences ?
       let inPrefs = self.mClassName.string == preferencesName ()
     #--- Option
-      @toManyRelationshipOptionGeneration optionForGeneration
+      var @toManyRelationshipOptionGeneration optionForGeneration
       switch self.mOption
       case hasDependance (masterPropertyName) :
         [mPropertyMap searchKey !masterPropertyName ?let masterPropertyKind ?2*]
@@ -175,17 +175,17 @@ enum @toManyRelationshipOptionGeneration {
 #·······················································································································
 
 refclass @toManyPropertyGeneration : @propertyGeneration {
-  @propertyKind mRelationshipType
-  @toManyRelationshipOptionGeneration mOption
-  @bool mInPreferences
-  @bool mCustomStore
-  @bool mUsedForSignature
+  public var @propertyKind mRelationshipType
+  public var @toManyRelationshipOptionGeneration mOption
+  public var @bool mInPreferences
+  public var @bool mCustomStore
+  public var @bool mUsedForSignature
 }
 
 #·······················································································································
 
 list @toManyPropertyGenerationList {
-  @toManyPropertyGeneration mProperty
+  public var @toManyPropertyGeneration mProperty
 }
 
 #·······················································································································

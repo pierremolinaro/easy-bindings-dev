@@ -3,16 +3,16 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @arrayControllerDeclarationAST : @abstractDeclarationAST {
-  @lstring mControllerName
-  @arrayControllerBoundModelAST mModel
-  @lstring mToManyPropertyName
+  public var @lstring mControllerName
+  public var @arrayControllerBoundModelAST mModel
+  public var @lstring mToManyPropertyName
 }
 
 #·······················································································································
 
 list @arrayControllerBindingListAST {
-  @lstring mControllerName
-  @multipleBindingDescriptor mHiddenSelectionViewBindingDescriptor
+  public var @lstring mControllerName
+  public var @multipleBindingDescriptor mHiddenSelectionViewBindingDescriptor
 }
 
 #·······················································································································
@@ -62,7 +62,7 @@ syntax extension easyBindings_syntax {
     $arrayController$
     $controllerName$ ?let @lstring controllerName
   #--- Model
-    @arrayControllerBoundModelAST model
+    var @arrayControllerBoundModelAST model
     $:$
     select
       $root$
@@ -170,7 +170,7 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  @propertyMap boundModelPropertyMap
+  var @propertyMap boundModelPropertyMap
   switch self.mModel
   case rootToManyRelationship (@lstring rootEntityName) :
     [ioSemanticContext.mClassMap searchKey
@@ -193,11 +193,11 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
      ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
-  @actionMap actionMap
-  @propertyMap propertyMap
-  @arrayControllerModelKind arrayControllerModelKind
-  @bool graphic
-  @string elementTypeName
+  var @actionMap actionMap
+  var @propertyMap propertyMap
+  var @arrayControllerModelKind arrayControllerModelKind
+  var @bool graphic
+  var @string elementTypeName
   switch boundModelClassKind
   case property (2*) :
     error self.mToManyPropertyName
@@ -241,8 +241,8 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @arrayControllerPropertyGeneration : @propertyGeneration {
-  @string mModelString
-  @string mOwnerName
+  public var @string mModelString
+  public var @string mOwnerName
 }
 
 #·······················································································································
@@ -304,12 +304,12 @@ enum @arrayControllerModelKind {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @arrayControllerGeneration : @abstractFileGeneration {
-  @string mOwnerName # document name, prefs name, ...
-  @lstring mControllerName
-  @string mModelTypeName
-  @arrayControllerModelKind mArrayControllerModelKind
-  @string mElementTypeName
-  @bool mElementTypeIsGraphic
+  public var @string mOwnerName # document name, prefs name, ...
+  public var @lstring mControllerName
+  public var @string mModelTypeName
+  public var @arrayControllerModelKind mArrayControllerModelKind
+  public var @string mElementTypeName
+  public var @bool mElementTypeIsGraphic
 }
 
 #·······················································································································

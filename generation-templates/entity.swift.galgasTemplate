@@ -5,29 +5,29 @@
 import Cocoa
 
 %
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : AnyObject {
-  var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]% { get }
+protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+  var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]% { get }
 }
 
 %
 end
-for () in PROXY_LIST_FOR_GENERATION do
+for (mProperty) in PROXY_LIST_FOR_GENERATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : AnyObject {
-  var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]%? { get }
+protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+  var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]%? { get }
 }
 
 %
 end
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-protocol %!ENTITY_NAME%_%![mProperty mPropertyName]% : AnyObject {
-  var %![mProperty mPropertyName]% : %![[mProperty mType] swiftTypeName]%? { get }
+protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+  var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]%? { get }
 }
 
 %
@@ -41,15 +41,15 @@ if not HAS_SUB_ENTITY then
   %final %
 end
 %class %!ENTITY_NAME% : %!SUPER_CLASS_NAME
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration)  | (mProperty is == @atomicProxyGeneration) then
-    %,\n         %!ENTITY_NAME%_%![mProperty mPropertyName]
+    %,\n         %!ENTITY_NAME%_%!mProperty.mPropertyName
   end
 end
 % {
 
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty propertyDeclarationCode !false !OVERRIDEN_TRANSIENTS]
 end
 %  //····················································································································
@@ -58,34 +58,34 @@ end
 
   required init (_ ebUndoManager : EBUndoManager?) {
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty initCode]
 end
 %    super.init (ebUndoManager)
 %
-for () in TO_ONE_RELATIONSHIP_LIST do
-%    self.%![mProperty mPropertyName]%_none.mReadModelFunction = { [weak self] in // §\n%
+for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
+%    self.%!mProperty.mPropertyName%_none.mReadModelFunction = { [weak self] in // §\n%
 %      if let uwSelf = self {\n%
-%        return .single (uwSelf.%![mProperty mPropertyName]%_property.propval == nil)\n%
+%        return .single (uwSelf.%!mProperty.mPropertyName%_property.propval == nil)\n%
 %      }else{\n%
 %        return .empty\n%
 %      }\n%
 %    }\n%
-%    self.%![mProperty mPropertyName]%_property.addEBObserver (self.%![mProperty mPropertyName]%_none)\n%
+%    self.%!mProperty.mPropertyName%_property.addEBObserver (self.%!mProperty.mPropertyName%_none)\n%
 end
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !false]
 end
 %  //--- Install undoers and opposite setter for relationships
 %
-for () in TO_MANY_RELATIONSHIP_LIST do
-  switch [mProperty mOption]
+for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  switch mProperty.mOption
   case none :
 
   case hasDependance (@string masterPropertyName *) :
-    %    self.%![mProperty mPropertyName]%_property.setDataProvider (self.%!masterPropertyName%_property)\n%
+    %    self.%!mProperty.mPropertyName%_property.setDataProvider (self.%!masterPropertyName%_property)\n%
   case hasOpposite (@string oppositeName) :
-    %    self.%![mProperty mPropertyName]%_property.setOppositeRelationShipFunctions (\n%
+    %    self.%!mProperty.mPropertyName%_property.setOppositeRelationShipFunctions (\n%
     %      setter: { [weak self] inObject in if let me = self { inObject.%!oppositeName%_property.setProp (me) } },\n%
     %      resetter: { inObject in inObject.%!oppositeName%_property.setProp (nil) }\n%
     %    )\n%
@@ -93,12 +93,12 @@ for () in TO_MANY_RELATIONSHIP_LIST do
 end
 %  //--- Register properties for handling signature
 %
-for () in SIGNATURE_SET do
+for (key) in SIGNATURE_SET do
   %    self.%!key%_property.setSignatureObserver (observer: self)\n%
 end
 %  //--- Extern delegates
 %
-  for () in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
+  for (mExternSwiftDelegateName) in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
     %    self.mExternDelegate%![idx string]% = %!mExternSwiftDelegateName.string% (object: self)\n%
   end
 %  }
@@ -108,20 +108,20 @@ end
   override internal func removeAllObservers () {
     super.removeAllObservers ()
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty terminationCode !false]
 end
-for () in TO_MANY_RELATIONSHIP_LIST do
-  switch [mProperty mOption]
+for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  switch mProperty.mOption
   case none :
   case hasDependance (2*) :
-    %    self.%![mProperty mPropertyName]%_property.setDataProvider (nil)\n%
+    %    self.%!mProperty.mPropertyName%_property.setDataProvider (nil)\n%
   case hasOpposite (*) :
   end
 end
 %  //--- Unregister properties for handling signature
 %
-for () in SIGNATURE_SET do
+for (key) in SIGNATURE_SET do
   %    self.%!key%_property.setSignatureObserver (observer: nil)\n%
 end
 %  }
@@ -131,7 +131,7 @@ end
   //····················································································································
 
 %
-  for () in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
+  for (mExternSwiftDelegateName) in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
     %  var mExternDelegate%![idx string]% : %!mExternSwiftDelegateName.string%? = nil\n%
   end
 %
@@ -142,47 +142,47 @@ end
   #if BUILD_OBJECT_EXPLORER
     override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
       super.populateExplorerWindow (&y, view:view)
-%for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+%for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %      createEntryForPropertyNamed (\n%
-  %        "%![mProperty mPropertyName]%",\n%
-  %        object: self.%![mProperty mPropertyName]%_property,\n%
+  %        "%!mProperty.mPropertyName%",\n%
+  %        object: self.%!mProperty.mPropertyName%_property,\n%
   %        y: &y,\n%
   %        view: view,\n%
-  %        observerExplorer: &self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
-  %        valueExplorer: &self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
+  %        observerExplorer: &self.%!mProperty.mPropertyName%_property.mObserverExplorer,\n%
+  %        valueExplorer: &self.%!mProperty.mPropertyName%_property.mValueExplorer\n%
   %      )\n%
 end
 %      createEntryForTitle ("Properties", y: &y, view: view)\n%
-for () in TRANSIENT_LIST_FOR_IMPLEMENTATION do
+for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   %      createEntryForPropertyNamed (\n%
-  %        "%![mProperty mPropertyName]%",\n%
-  %        object: self.%![mProperty mPropertyName]%_property,\n%
+  %        "%!mProperty.mPropertyName%",\n%
+  %        object: self.%!mProperty.mPropertyName%_property,\n%
   %        y: &y,\n%
   %        view: view,\n%
-  %        observerExplorer: &self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
-  %        valueExplorer: &self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
+  %        observerExplorer: &self.%!mProperty.mPropertyName%_property.mObserverExplorer,\n%
+  %        valueExplorer: &self.%!mProperty.mPropertyName%_property.mValueExplorer\n%
   %      )\n%
 end
 %      createEntryForTitle ("Transients", y: &y, view: view)\n%
-for () in TO_MANY_RELATIONSHIP_LIST do
-  if not [[mProperty mOption] isHasDependance] then
+for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  if not [mProperty.mOption isHasDependance] then
     %      createEntryForToManyRelationshipNamed (\n%
-    %        "%![mProperty mPropertyName]%",\n%
-    %        object: %![mProperty mPropertyName]%_property,\n%
+    %        "%!mProperty.mPropertyName%",\n%
+    %        object: %!mProperty.mPropertyName%_property,\n%
     %        y: &y,\n%
     %        view: view,\n%
-    %        valueExplorer:&%![mProperty mPropertyName]%_property.mValueExplorer\n%
+    %        valueExplorer:&%!mProperty.mPropertyName%_property.mValueExplorer\n%
     %      )\n%
   end
 end
 %      createEntryForTitle ("ToMany Relationships", y: &y, view: view)\n%
-for () in TO_ONE_RELATIONSHIP_LIST do
+for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
   %      createEntryForToOneRelationshipNamed (\n%
-  %        "%![mProperty mPropertyName]%",\n%
-  %        object: self.%![mProperty mPropertyName]%_property,\n%
+  %        "%!mProperty.mPropertyName%",\n%
+  %        object: self.%!mProperty.mPropertyName%_property,\n%
   %        y: &y,\n%
   %        view: view,\n%
-  %        valueExplorer:&self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
+  %        valueExplorer:&self.%!mProperty.mPropertyName%_property.mValueExplorer\n%
   %      )\n%
 end%      createEntryForTitle ("ToOne Relationships", y: &y, view: view)
     }
@@ -195,7 +195,7 @@ end%      createEntryForTitle ("ToOne Relationships", y: &y, view: view)
   #if BUILD_OBJECT_EXPLORER
     override func clearObjectExplorer () {
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty clearObjectExplorerCode]
 end
 %    //---
@@ -209,9 +209,9 @@ end
 
   override internal func cleanUpToManyRelationships () {
 %
-for () in TO_MANY_RELATIONSHIP_LIST do
-  if not [[mProperty mOption] isHasDependance] then
-    %    self.%![mProperty mPropertyName]%.removeAll ()\n%
+for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  if not [mProperty.mOption isHasDependance] then
+    %    self.%!mProperty.mPropertyName%.removeAll ()\n%
   end
 end
 %  //---
@@ -224,8 +224,8 @@ end
 
   override internal func cleanUpToOneRelationships () {
 %
-for () in TO_ONE_RELATIONSHIP_LIST do
-  %    self.%![mProperty mPropertyName]% = nil\n%
+for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
+  %    self.%!mProperty.mPropertyName% = nil\n%
 end
 %  //---
     super.cleanUpToOneRelationships ()
@@ -238,7 +238,7 @@ end
   override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
     super.saveIntoDictionary (ioDictionary)
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty saveIntoDictionaryCode]
 end
 %  }
@@ -251,7 +251,7 @@ end
                                      managedObjectArray : inout [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray: &managedObjectArray)
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty setupRelationshipFromDictionaryCode]
 end
 %  }
@@ -263,7 +263,7 @@ end
   override func setUpAtomicPropertiesWithDictionary (_ inDictionary : NSDictionary) {
     super.setUpAtomicPropertiesWithDictionary (inDictionary)
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty setupAtomicPropertyFromDictionaryCode]
 end
 %  }
@@ -277,16 +277,16 @@ end
     super.appendPropertyNamesTo (&ioString)
   //--- Atomic properties
 %
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    ioString += "%![mProperty mPropertyName]%\\n"\n%
+for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %    ioString += "%!mProperty.mPropertyName%\\n"\n%
 end
 %  //--- To one relationships
-%for () in TO_ONE_RELATIONSHIP_LIST do
-  %    ioString += "%![mProperty mPropertyName]%\\n"\n%
+%for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
+  %    ioString += "%!mProperty.mPropertyName%\\n"\n%
 end
 %  //--- To many relationships
-%for () in TO_MANY_RELATIONSHIP_LIST do
-  %    ioString += "%![mProperty mPropertyName]%\\n"\n%
+%for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  %    ioString += "%!mProperty.mPropertyName%\\n"\n%
 end
 %  }
 
@@ -298,24 +298,24 @@ end
     super.appendPropertyValuesTo (&ioData)
   //--- Atomic properties
 %
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    self.%![mProperty mPropertyName]%.appendPropertyValueTo (&ioData)\n%
+for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %    self.%!mProperty.mPropertyName%.appendPropertyValueTo (&ioData)\n%
   %    ioData.append (ascii: .lineFeed)\n%
 end
 %  //--- To one relationships
-%for () in TO_ONE_RELATIONSHIP_LIST do
-  %    if let object = self.%![mProperty mPropertyName]% {\n%
+%for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
+  %    if let object = self.%!mProperty.mPropertyName% {\n%
   %      ioData.append (base62Encoded: object.savingIndex)\n%
   %    }\n%
   %    ioData.append (ascii: .lineFeed)\n%
 end
 %  //--- To many relationships
-%for () in TO_MANY_RELATIONSHIP_LIST do
-  if not [[mProperty mOption] isHasDependance] then
+%for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  if not [mProperty.mOption isHasDependance] then
     %    do{\n%
     %      var optionalFirstIndex : Int? = nil\n%
     %      var rangeCount = 0\n%
-    %      for object in self.%![mProperty mPropertyName]%.values {\n%
+    %      for object in self.%!mProperty.mPropertyName%.values {\n%
     %        if let firstIndex = optionalFirstIndex {\n%
     %          if object.savingIndex == (firstIndex + 1) {\n%
     %            rangeCount += 1\n%
@@ -361,28 +361,28 @@ if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TO_ONE_RELATIONSHIP_L
     inParallelObjectSetupContext.addOperation {
     //--- Atomic properties
 %
-for () in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      if let range = inDictionary ["%![mProperty mPropertyName]%"], let value = %![[mProperty mType] swiftTypeName]%.unarchiveFromDataRange (inData, range) {\n%
-  %        self.%![mProperty mPropertyName]% = value\n%
+for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
+  %      if let range = inDictionary ["%!mProperty.mPropertyName%"], let value = %![mProperty.mType swiftTypeName]%.unarchiveFromDataRange (inData, range) {\n%
+  %        self.%!mProperty.mPropertyName% = value\n%
   %      }\n%
 end
 %    //--- To one relationships
-%for () in TO_ONE_RELATIONSHIP_LIST do
-  %      if let range = inDictionary ["%![mProperty mPropertyName]%"], let objectIndex = inData.base62EncodedInt (range: range) {\n%
-  %        let object = inObjectArray [objectIndex] as! %![[mProperty mRelationshipType] swiftTypeName]%\n%
-  %        inParallelObjectSetupContext.addToOneSetupDeferredOperation { self.%![mProperty mPropertyName]% = object }\n%
+%for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
+  %      if let range = inDictionary ["%!mProperty.mPropertyName%"], let objectIndex = inData.base62EncodedInt (range: range) {\n%
+  %        let object = inObjectArray [objectIndex] as! %![mProperty.mRelationshipType swiftTypeName]%\n%
+  %        inParallelObjectSetupContext.addToOneSetupDeferredOperation { self.%!mProperty.mPropertyName% = object }\n%
   %      }\n%
 end
 %    //--- To many relationships
-%for () in TO_MANY_RELATIONSHIP_LIST do
-  if not [[mProperty mOption] isHasDependance] then
-    %      if let range = inDictionary ["%![mProperty mPropertyName]%"], range.length > 0 {\n%
-    %        var relationshipArray = EBReferenceArray <%![[mProperty mRelationshipType] swiftTypeName]%> ()\n%
+%for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  if not [mProperty.mOption isHasDependance] then
+    %      if let range = inDictionary ["%!mProperty.mPropertyName%"], range.length > 0 {\n%
+    %        var relationshipArray = EBReferenceArray <%![mProperty.mRelationshipType swiftTypeName]%> ()\n%
     %        let indexArray = inData.base62EncodedIntArray (fromRange: range)\n%
     %        for idx in indexArray {\n%
-    %          relationshipArray.append (inObjectArray [idx] as! %![[mProperty mRelationshipType] swiftTypeName]%)\n%
+    %          relationshipArray.append (inObjectArray [idx] as! %![mProperty.mRelationshipType swiftTypeName]%)\n%
     %        }\n%
-    %        inParallelObjectSetupContext.addToManySetupDeferredOperation { self.%![mProperty mPropertyName]% = relationshipArray }\n%
+    %        inParallelObjectSetupContext.addToManySetupDeferredOperation { self.%!mProperty.mPropertyName% = relationshipArray }\n%
     %      }\n%
   end
 end
@@ -399,7 +399,7 @@ end
   override func accessibleObjects (objects : inout [EBManagedObject]) {
     super.accessibleObjects (objects: &objects)
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty objectAccessibilityCode]
 end
 %  }
@@ -411,7 +411,7 @@ end
   override func accessibleObjectsForSaveOperation (objects : inout [EBManagedObject]) {
     super.accessibleObjectsForSaveOperation (objects: &objects)
 %
-for () in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty objectAccessibilityCodeForSaveOperation]
 end
 %  }
@@ -425,7 +425,7 @@ if [SIGNATURE_SET count] > 0 then
   override func computeSignature () -> UInt32 {
     var crc = super.computeSignature ()
 %
-for () in SIGNATURE_SET do
+for (key) in SIGNATURE_SET do
   %    crc.accumulateUInt32 (self.%!key%_property.signature ())\n%
 end
 %    return crc

@@ -44,7 +44,7 @@ proc buildActionMap
   !@actionMap outActionMap
 {
   outActionMap = {}
-  for () in inActionDeclarationList do
+  for (mValue) in inActionDeclarationList do
     [!?outActionMap insertKey !mValue]
   end
 }
@@ -54,8 +54,8 @@ proc buildActionMap
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @actionFileGeneration : @abstractFileGeneration {
-  @string mClassName
-  @string mActionName
+  public var @string mClassName
+  public var @string mActionName
 }
 
 #·······················································································································

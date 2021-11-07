@@ -3,10 +3,10 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @selectionControllerDeclarationAST : @abstractDeclarationAST {
-  @lstring mSelectionControllerName
-  @lstring mModelControllerName
-  @lstring mModelControllerPropertyName
-  @lstring mSelectionEntityName
+  public var @lstring mSelectionControllerName
+  public var @lstring mModelControllerName
+  public var @lstring mModelControllerPropertyName
+  public var @lstring mSelectionEntityName
 }
 
 #·······················································································································
@@ -152,9 +152,9 @@ override method @selectionControllerDeclarationAST fourthAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @selectionControllerPropertyGeneration : @propertyGeneration {
-  @string mOwnerName
-  @string mModelControllerName
-  @string mModelControllerPropertyName
+  public var @string mOwnerName
+  public var @string mModelControllerName
+  public var @string mModelControllerPropertyName
 }
 
 #·······················································································································
@@ -202,14 +202,14 @@ override getter @selectionControllerPropertyGeneration terminationCode ?let @boo
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @selectionControllerForGeneration {
-  @string mOwnerName # document name, prefs name, ...
-  @string mSelectionControllerName
-  @string mBoundControllerName
-  @string mBoundControllerPropertyName
-  @string mBaseTypeName
-  @string mSelectionTypeName
-  @propertyMap mSelectionObservablePropertyMap
-  @propertyGenerationList mPropertyGenerationList
+  public var @string mOwnerName # document name, prefs name, ...
+  public var @string mSelectionControllerName
+  public var @string mBoundControllerName
+  public var @string mBoundControllerPropertyName
+  public var @string mBaseTypeName
+  public var @string mSelectionTypeName
+  public var @propertyMap mSelectionObservablePropertyMap
+  public var @propertyGenerationList mPropertyGenerationList
 }
 
 #·······················································································································
@@ -241,7 +241,7 @@ proc generateSelectionControllers
   ?let @string inOutputDirectory
   ?!@stringset ioGeneratedFileSet
 {
-  for () in inArrayControllerListForGeneration do
+  for (mOwnerName mSelectionControllerName * * mBaseTypeName mSelectionTypeName mSelectionObservablePropertyMap mPropertyGenerationList) in inArrayControllerListForGeneration do
     if mBaseTypeName == mSelectionTypeName then
       let s = [filewrapper selectionControllerGenerationTemplate.baseSelectionControllerImplementation
         !mOwnerName

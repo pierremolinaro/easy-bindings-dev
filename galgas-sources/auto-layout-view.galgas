@@ -8,34 +8,34 @@ abstract refclass @astAbstractViewDeclaration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astHorizontalStackViewDeclaration : @astAbstractViewDeclaration {
-  @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astVerticalStackViewDeclaration : @astAbstractViewDeclaration {
-  @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
-  @astAutoLayoutViewFunctionCallList mFunctionCallList
-  @astViewInstructionList mInstructionList
+  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public var @astViewInstructionList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
-  @astAutoLayoutViewFunctionCallList mFunctionCallList
-  @astViewInstructionList mInstructionList
+  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public var @astViewInstructionList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astViewDeclarationList {
-  @lstring mViewName
-  @astAbstractViewDeclaration mView
+  public var @lstring mViewName
+  public var @astAbstractViewDeclaration mView
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ abstract refclass @astAbstractViewInstructionDeclaration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  @bool horizontal %selector
+  public var @bool horizontal %selector
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -59,31 +59,31 @@ enum @optionalHiddenBinding {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  @astAutoLayoutViewFunctionCallList mFunctionCallList
-  @astViewInstructionList mInstructionList
-  @optionalHiddenBinding mOptionalHiddenBinding
+  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public var @astViewInstructionList mInstructionList
+  public var @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astHSplitViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  @astAutoLayoutViewFunctionCallList mFunctionCallList
-  @astViewInstructionList mInstructionList
-  @optionalHiddenBinding mOptionalHiddenBinding
+  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public var @astViewInstructionList mInstructionList
+  public var @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  @astAutoLayoutViewFunctionCallList mFunctionCallList
-  @astViewInstructionList mInstructionList
-  @optionalHiddenBinding mOptionalHiddenBinding
+  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public var @astViewInstructionList mInstructionList
+  public var @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astStackViewReferenceInstructionDeclaration  : @astAbstractViewInstructionDeclaration {
-  @lstring mStackViewName
+  public var @lstring mStackViewName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -94,30 +94,30 @@ refclass @astSpaceViewInstruction : @astAbstractViewInstructionDeclaration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astLocalViewInstruction : @astAbstractViewInstructionDeclaration {
-  @lstring mLocalView
+  public var @lstring mLocalView
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
-  @lstring mAutoLayoutViewClassName
-  @astAutoLayoutViewInstructionParameterList mParameterList
-  @astAutoLayoutViewFunctionCallList mFunctionCallList
-  @tableValueBinding mTableValueBinding
-  @runActionDescriptor mRunActionDescriptor
-  @multipleBindingDescriptor mEnabledBindingDescriptor
-  @multipleBindingDescriptor mHiddenBindingDescriptor
-  @graphicController mGraphicController
-  @regularBindingList mRegularBindingList
-  @lstring mConfiguratorName # Empty string if no configurator
-  @lstring mOutletName # Empty string if no configurator
+  public var @lstring mAutoLayoutViewClassName
+  public var @astAutoLayoutViewInstructionParameterList mParameterList
+  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public var @tableValueBinding mTableValueBinding
+  public var @runActionDescriptor mRunActionDescriptor
+  public var @multipleBindingDescriptor mEnabledBindingDescriptor
+  public var @multipleBindingDescriptor mHiddenBindingDescriptor
+  public var @graphicController mGraphicController
+  public var @regularBindingList mRegularBindingList
+  public var @lstring mConfiguratorName # Empty string if no configurator
+  public var @lstring mOutletName # Empty string if no configurator
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astAutoLayoutViewFunctionCallList {
-  @lstring mFunctionName
-  @astAutoLayoutViewInstructionParameterList mParameterList
+  public var @lstring mFunctionName
+  public var @astAutoLayoutViewInstructionParameterList mParameterList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -133,15 +133,15 @@ enum @astAutoLayoutViewInstructionParameterValue {
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astAutoLayoutViewInstructionParameterList {
-  @lstring mParameterName
-  @autoLayoutClassParameterType mParameterType
-  @astAutoLayoutViewInstructionParameterValue mParameter
+  public var @lstring mParameterName
+  public var @autoLayoutClassParameterType mParameterType
+  public var @astAutoLayoutViewInstructionParameterValue mParameter
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astViewInstructionList {
-  @astAbstractViewInstructionDeclaration mInstruction
+  public var @astAbstractViewInstructionDeclaration mInstruction
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -252,14 +252,14 @@ syntax extension easyBindings_syntax {
  
   rule <computed_view_instruction> !@astComputedViewInstruction outInstruction {
     $Identifier$ ? let viewClassName
-    @astAutoLayoutViewInstructionParameterList instanciationParameterList
+    var @astAutoLayoutViewInstructionParameterList instanciationParameterList
     select
       instanciationParameterList = {}
     or
       <view_actual_parameter_list> ?instanciationParameterList
     end
-    @lstring configuratorName
-    @lstring outletName
+    var @lstring configuratorName
+    var @lstring outletName
     select
       outletName = ["" nowhere]
       configuratorName = ["" nowhere]
@@ -279,13 +279,13 @@ syntax extension easyBindings_syntax {
       end
       $]$
     end
-    @tableValueBinding tableValueBinding
-    @runActionDescriptor runActionDescriptor
-    @multipleBindingDescriptor enabledBindingDescriptor
-    @multipleBindingDescriptor hiddenBindingDescriptor
-    @graphicController graphicController
-    @regularBindingList regularBindingList
-    @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList
+    var @tableValueBinding tableValueBinding
+    var @runActionDescriptor runActionDescriptor
+    var @multipleBindingDescriptor enabledBindingDescriptor
+    var @multipleBindingDescriptor hiddenBindingDescriptor
+    var @graphicController graphicController
+    var @regularBindingList regularBindingList
+    var @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList
     select
       tableValueBinding = .noTableValueBinding
       runActionDescriptor = .noAction
@@ -340,12 +340,12 @@ syntax extension easyBindings_syntax {
         or
           $menuItem$
           $literal_string$ ?let menuItemTitle
-          @runActionDescriptor runActionDescriptor
+          var @runActionDescriptor runActionDescriptor
           select
             runActionDescriptor = .noAction
           or
             $run$
-            @lstring runTargetName
+            var @lstring runTargetName
             select
               runTargetName = @lstring.new {!"self" !.here}
             or
@@ -355,7 +355,7 @@ syntax extension easyBindings_syntax {
             $identifier$ ?let @lstring runActionName
             runActionDescriptor = .action {!target:runTargetName !action:runActionName}
           end
-          @multipleBindingDescriptor enabledBindingDescriptor = .noBinding
+          var @multipleBindingDescriptor enabledBindingDescriptor = .noBinding
           select
             enabledBindingDescriptor = .noBinding
           or
@@ -420,7 +420,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $vStack$
     <auto_layout_func_call_list> ?let functionCallList
-    @optionalHiddenBinding optionalHiddenBinding
+    var @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
     or
@@ -440,7 +440,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $hStack$
     <auto_layout_func_call_list> ?let functionCallList
-    @optionalHiddenBinding optionalHiddenBinding
+    var @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
     or
@@ -460,7 +460,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $hSplit$
     <auto_layout_func_call_list> ?let functionCallList
-    @optionalHiddenBinding optionalHiddenBinding
+    var @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
     or
@@ -491,7 +491,7 @@ map @autoLayoutViewDeclarationMap {
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @autoLayoutConfiguratorMap {
-  @string mAutoLayoutOutletTypeName
+  public var @string mAutoLayoutOutletTypeName
   insert insertKey error message "the '%K' configurator is already declared in %L"
   search searchKey error message "there is no '%K' configurator"
 }
@@ -499,7 +499,7 @@ map @autoLayoutConfiguratorMap {
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @autoLayoutOutletMap {
-  @string mAutoLayoutOutletTypeName
+  public var @string mAutoLayoutOutletTypeName
   insert insertKey error message "the '%K' outlet is already declared in %L"
   search searchKey error message "there is no '%K' outlet"
 }
@@ -507,7 +507,7 @@ map @autoLayoutOutletMap {
 #·······················································································································
 
 list @implicitViewFunctionGenerationList {
-  @abstractViewInstructionGeneration mInstruction
+  public var @abstractViewInstructionGeneration mInstruction
 }
 
 #·······················································································································
@@ -553,7 +553,7 @@ method @astAutoLayoutViewFunctionCallList check
     end
     mangleName += ")"
     [inFunctionMap searchKey !.new {!mangleName !functionName.location} ?let formalParameterList]
-    @autoLayoutViewInstructionGenerationParameterList parameterList = {}
+    var @autoLayoutViewInstructionGenerationParameterList parameterList = {}
     if [formalParameterList length] != [actualParameterList length] then
       error functionName 
       : [[formalParameterList length] string] + " parameter(s) required, " + [actualParameterList length] + " provided"
@@ -758,7 +758,7 @@ override method @astComputedHorizontalViewDeclaration check
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = {}
   for (instruction) in self.mInstructionList do
     [instruction generateCode
       !inViewDeclarationMap
@@ -796,7 +796,7 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                                   ?!@autoLayoutOutletMap ioOutletMap
                                   !@abstractViewGeneration outGeneration {
-  @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = {}
   [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
      !inViewDeclarationMap
@@ -931,7 +931,7 @@ override method @astComputedViewInstruction generateCode
      ?let formalParameterList
      ?let functionMap
   ]
-  @autoLayoutViewInstructionGenerationParameterList parameterList = {}
+  var @autoLayoutViewInstructionGenerationParameterList parameterList = {}
   if [formalParameterList length] != [self.mParameterList length] then
     error self.mAutoLayoutViewClassName 
     : [[formalParameterList length] string] + " parameter(s) required, " + [self.mParameterList length] + " provided"
@@ -1354,11 +1354,11 @@ proc analyzeAutoLayoutRegularBinding
   ?let @string inSelfSwiftName
   ?!@autoLayoutRegularBindingsGenerationList ioRegularBindingsGenerationList
 {
-  for () in inRegularBindingList do
+  for (mBindingName mObservablePropertyList mBindingOptionList) in inRegularBindingList do
   #--- Analyze model
-    @outletBindingModelList boundModelTypeList = {}
-    @boundObjectList boundModelListForGeneration = {}
-    for () in mObservablePropertyList do
+    var @outletBindingModelList boundModelTypeList = {}
+    var @boundObjectList boundModelListForGeneration = {}
+    for (mObservableProperty) in mObservablePropertyList do
       [mObservableProperty analyzeObservableProperty
         !inRootPropertyMap
         !inSemanticContext
@@ -1381,8 +1381,8 @@ proc analyzeAutoLayoutRegularBinding
       boundModelTypeList += !kind ![mObservableProperty location]
     end
   #--- Analyze outlet binding
-    @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
-    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
     var outletTypeName = inOutletTypeName
     var continues = true
     loop ([inSemanticContext.mBindingSpecificationMap count] + 1) while (outletTypeName.string != "") & continues do
@@ -1411,7 +1411,7 @@ proc analyzeAutoLayoutRegularBinding
         + " model(s) required for this binding (found: "
         + [boundModelTypeList length] + ")"
     else
-      for () required_ in outletBindingSpecificationModelList, () found_ in boundModelTypeList do
+      for (required_mModelType required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind found_mErrorLocation) in boundModelTypeList do
         if required_mModelShouldBeWritableProperty && [found_mKind isTransient] then
           error found_mErrorLocation : "the model is transient and the binding requires an writable model"
         end
@@ -1424,18 +1424,18 @@ proc analyzeAutoLayoutRegularBinding
   #--- Check options
     var bindingOptionString = ""
     if [controllerBindingOptionDecoratedList length] != [mBindingOptionList length] then
-      @string s
+      var @string s
       if [controllerBindingOptionDecoratedList length] == 0 then
         s = "this binding has no option"
       else 
         s = "this binding requires the following options:"
-        for () in controllerBindingOptionDecoratedList do
+        for (mOptionType mOptionName) in controllerBindingOptionDecoratedList do
           s += "\n  - " + mOptionName + " : " + [mOptionType swiftTypeName]
         end
       end
       error mBindingName : s
     else
-      for () controller_ in controllerBindingOptionDecoratedList, () binding_ in mBindingOptionList do
+      for (controller_mOptionType controller_mOptionName) in controllerBindingOptionDecoratedList, (binding_mOptionName binding_mOptionValue) in mBindingOptionList do
         if controller_mOptionName.string != binding_mOptionName.string then
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
@@ -1471,7 +1471,7 @@ override method @astHStackViewInstructionDeclaration generateCode
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                         ?!@autoLayoutOutletMap ioOutletMap
                         !@abstractViewInstructionGeneration outInstruction {
-  @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = {}
   [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutHStackFunctionMap
      !inViewDeclarationMap
@@ -1488,7 +1488,7 @@ override method @astHStackViewInstructionDeclaration generateCode
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
+  var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
   switch self.mOptionalHiddenBinding 
   case noBinding :
   case binding (hiddenBindingExpression) :
@@ -1545,7 +1545,7 @@ override method @astHSplitViewInstructionDeclaration generateCode
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                         ?!@autoLayoutOutletMap ioOutletMap
                         !@abstractViewInstructionGeneration outInstruction {
-  @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = {}
   [self.mFunctionCallList check
      !{} # inSemanticContext.mAutoLayoutHStackFunctionMap
      !inViewDeclarationMap
@@ -1562,7 +1562,7 @@ override method @astHSplitViewInstructionDeclaration generateCode
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
+  var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
   switch self.mOptionalHiddenBinding 
   case noBinding :
   case binding (hiddenBindingExpression) :
@@ -1619,7 +1619,7 @@ override method @astVStackViewInstructionDeclaration generateCode
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap
                         ?!@autoLayoutOutletMap ioOutletMap
                         !@abstractViewInstructionGeneration outInstruction {
-  @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = {}
   [self.mFunctionCallList check
      !inSemanticContext.mAutoLayoutVStackFunctionMap
      !inViewDeclarationMap
@@ -1636,7 +1636,7 @@ override method @astVStackViewInstructionDeclaration generateCode
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
+  var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
   switch self.mOptionalHiddenBinding 
   case noBinding :
   case binding (hiddenBindingExpression) :
@@ -1706,34 +1706,34 @@ abstract refclass @abstractViewGeneration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @newHorizontalStackViewGeneration : @abstractViewGeneration {
-  @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @newVerticalStackViewGeneration : @abstractViewGeneration {
-  @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @computedHorizontalViewGeneration : @abstractViewGeneration {
-  @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  @autoLayoutViewInstructionGenerationList mInstructionList
+  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public var @autoLayoutViewInstructionGenerationList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @computedVerticalViewGeneration : @abstractViewGeneration {
-  @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  @autoLayoutViewInstructionGenerationList mInstructionList
+  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public var @autoLayoutViewInstructionGenerationList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @viewGenerationList {
-  @string mViewName
-  @abstractViewGeneration mView
+  public var @string mViewName
+  public var @abstractViewGeneration mView
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1744,31 +1744,31 @@ abstract refclass @abstractViewInstructionGeneration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
-  @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  @autoLayoutViewInstructionGenerationList mInstructionList
-  @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public var @autoLayoutViewInstructionGenerationList mInstructionList
+  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @hSplitViewInstructionGeneration : @abstractViewInstructionGeneration {
-  @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  @autoLayoutViewInstructionGenerationList mInstructionList
-  @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public var @autoLayoutViewInstructionGenerationList mInstructionList
+  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
-  @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  @autoLayoutViewInstructionGenerationList mInstructionList
-  @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public var @autoLayoutViewInstructionGenerationList mInstructionList
+  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @stackViewReferenceInstructionGeneration : @abstractViewInstructionGeneration {
-  @string mStackViewName
+  public var @string mStackViewName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1779,28 +1779,28 @@ refclass @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGen
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGeneration {
-  @bool horizontal %selector
+  public var @bool horizontal %selector
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGeneration {
-  @string mLocalView
+  public var @string mLocalView
 }
 
 #·······················································································································
 
 list @autoLayoutRegularBindingsGenerationList {
-  @string mBindingName
-  @boundObjectList mBoundObjectList
-  @string mBindingOptionsString
+  public var @string mBindingName
+  public var @boundObjectList mBoundObjectList
+  public var @string mBindingOptionsString
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutMultipleBindingGenerationList {
-  @string mBindingName
-  @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
+  public var @string mBindingName
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
 }
 
 #·······················································································································
@@ -1827,30 +1827,30 @@ enum @autolayoutEnabledBindingForGeneration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGeneration {
-  @lstring mAutoLayoutViewClassName
-  @autoLayoutViewInstructionGenerationParameterList mParameterList
-  @autoLayoutViewInstructionGenerationFuncCallList mFunctionCallList
-  @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
-  @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
-  @autolayoutRunBindingForGeneration mRunBindingGeneration
-  @string mTableViewBindingGeneration # Bound controller name; empty string means no binding
-  @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
-  @string mConfiguratorName # Empty string if no configurator
-  @string mOutletName # Empty string if no configurator
+  public var @lstring mAutoLayoutViewClassName
+  public var @autoLayoutViewInstructionGenerationParameterList mParameterList
+  public var @autoLayoutViewInstructionGenerationFuncCallList mFunctionCallList
+  public var @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
+  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public var @autolayoutRunBindingForGeneration mRunBindingGeneration
+  public var @string mTableViewBindingGeneration # Bound controller name; empty string means no binding
+  public var @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
+  public var @string mConfiguratorName # Empty string if no configurator
+  public var @string mOutletName # Empty string if no configurator
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationParameterList {
-  @string mParameterName
-  @string mParameterValue
+  public var @string mParameterName
+  public var @string mParameterValue
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationFuncCallList {
-  @string mFunctionName
-  @autoLayoutViewInstructionGenerationParameterList mParameters
+  public var @string mFunctionName
+  public var @autoLayoutViewInstructionGenerationParameterList mParameters
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1869,7 +1869,7 @@ method @autoLayoutViewInstructionGenerationFuncCallList generate ?let @string in
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationList {
-  @abstractViewInstructionGeneration mInstruction
+  public var @abstractViewInstructionGeneration mInstruction
 }
 
 #·······················································································································

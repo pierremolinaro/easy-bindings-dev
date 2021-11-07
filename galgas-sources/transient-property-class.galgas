@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @transientClassDeclarationAST : @abstractDeclarationAST {
-  @bool mIsClass # Is false, struct
+  public var @bool mIsClass # Is false, struct
 }
 
 #·······················································································································
@@ -29,7 +29,7 @@ syntax extension easyBindings_syntax {
   rule <class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $transient$
      $property$
-    @bool isClass
+    var @bool isClass
     select
       $class$
       isClass = true

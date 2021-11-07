@@ -3,15 +3,15 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
-  @bool mUserDefined
-  @lstring mSuperClassName
-  @bool mHasRunAction
-  @bool mHasEnabled
-  @bool mHandlesTableValueBinding
-  @bool mHandlesGraphicControllerBinding
-  @bool mHasHidden
-  @autoLayoutClassParameterList mParameterList
-  @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
+  public var @bool mUserDefined
+  public var @lstring mSuperClassName
+  public var @bool mHasRunAction
+  public var @bool mHasEnabled
+  public var @bool mHandlesTableValueBinding
+  public var @bool mHandlesGraphicControllerBinding
+  public var @bool mHasHidden
+  public var @autoLayoutClassParameterList mParameterList
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
 }
 
 #·······················································································································
@@ -45,14 +45,14 @@ getter @autoLayoutClassParameterType string -> @string {
 #·······················································································································
 
 list @autoLayoutClassParameterList {
-  @lstring mParameterName
-  @autoLayoutClassParameterType mParameterType
+  public var @lstring mParameterName
+  public var @autoLayoutClassParameterType mParameterType
 }
 
 #·······················································································································
 
 map @astAutoLayoutViewFunctionMap {
-  @autoLayoutClassParameterList mFomalParameterList
+  public var @autoLayoutClassParameterList mFomalParameterList
   insert insertKey error message "the '%K' function is already declared in %L"
   search searchKey error message "there is no '%K' function"
 }
@@ -103,7 +103,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <autolayout_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
-    @bool userDefined
+    var @bool userDefined
     select
       $extern$
       userDefined = true
@@ -113,24 +113,24 @@ syntax extension easyBindings_syntax {
     $autolayout$
     $class$
     $Identifier$ ?let @lstring outletClassName
-    @autoLayoutClassParameterList parameterList
+    var @autoLayoutClassParameterList parameterList
     select
       parameterList = {}
     or
       <autolayout_formal_parameter_list> !["" nowhere] ?parameterList ?*
     end
-    @lstring superClassName
+    var @lstring superClassName
     select
       superClassName = ["" here]
     or
       $:$
       $Identifier$ ?superClassName
     end
-    @bool hasRunAction = false
-    @bool hasEnabled = false
-    @bool hasHidden = false
-    @bool handlesTableViewBinding = false
-    @bool handlesGraphicControllerBinding = false
+    var @bool hasRunAction = false
+    var @bool hasEnabled = false
+    var @bool hasHidden = false
+    var @bool handlesTableViewBinding = false
+    var @bool handlesGraphicControllerBinding = false
     repeat
     while
       $tableValue$
@@ -148,7 +148,7 @@ syntax extension easyBindings_syntax {
       $graphicController$
       handlesGraphicControllerBinding = true
     end
-    @astAutoLayoutViewFunctionMap astAutoLayoutViewFunctionMap = {}
+    var @astAutoLayoutViewFunctionMap astAutoLayoutViewFunctionMap = {}
     ${$
     repeat
     while
@@ -292,15 +292,15 @@ override method @autoLayoutViewClassDeclarationAST firstAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @autolayoutViewClassMap {
-  @lstring mSuperClassName
-  @bool mHandlesRunAction
-  @bool mHandlesTableValueBinding
-  @bool mHandleEnabledBinding
-  @bool mHandleHiddenBinding
-  @bool mHandleGraphicControllerBinding
-  @bool mUserDefined
-  @autoLayoutClassParameterList mParameterList
-  @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
+  public var @lstring mSuperClassName
+  public var @bool mHandlesRunAction
+  public var @bool mHandlesTableValueBinding
+  public var @bool mHandleEnabledBinding
+  public var @bool mHandleHiddenBinding
+  public var @bool mHandleGraphicControllerBinding
+  public var @bool mUserDefined
+  public var @autoLayoutClassParameterList mParameterList
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
   insert insertKey error message "the '%K' outlet class is already declared in %L"
   search searchKey error message "there is no '%K' outlet class"
 }

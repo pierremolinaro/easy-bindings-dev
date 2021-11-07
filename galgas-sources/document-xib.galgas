@@ -3,10 +3,10 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @xibDocumentDeclarationAST : @abstractDeclarationAST {
-  @lstring mRootEntityName
-  @outletDeclarationList mOutletDeclarationList
-  @lstringlist mActionDeclarationList
-  @arrayControllerBindingListAST mArrayControllerBindingListAST
+  public var @lstring mRootEntityName
+  public var @outletDeclarationList mOutletDeclarationList
+  public var @lstringlist mActionDeclarationList
+  public var @arrayControllerBindingListAST mArrayControllerBindingListAST
 }
 
 #·······················································································································
@@ -36,11 +36,11 @@ syntax extension easyBindings_syntax {
     $root$
     $Identifier$ ?let @lstring rootEntityName
     ${$
-    @outletDeclarationList outletDeclarationList = {}
-    @regularBindingList bindingList = {}
-    @lstringlist actionDeclarationList = {}
-    @stringset signatureList = {}
-    @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    var @outletDeclarationList outletDeclarationList = {}
+    var @regularBindingList bindingList = {}
+    var @lstringlist actionDeclarationList = {}
+    var @stringset signatureList = {}
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     repeat
     while
       <action_declaration> !?actionDeclarationList
@@ -89,7 +89,7 @@ override method @xibDocumentDeclarationAST firstAnalysisPhase
     !actionMap
     !{}
   ]
-  for () in actionMap do
+  for (lkey) in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
       !self.mClassName.string
       !lkey.string
@@ -191,15 +191,15 @@ override method @xibDocumentDeclarationAST fourthAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @xibDocumentFileGeneration : @abstractFileGeneration {
-  @string mDocumentName
-  @string mRootEntityName
-  @propertyGenerationList mDocumentPropertyGenearionList
-  @decoratedOutletMap mOutletMap
-  @actionBindingListForGeneration mTargetActionList 
-  @regularBindingsGenerationList mRegularBindingsGenerationList 
-  @multipleBindingGenerationList multipleBindingGenerationList
-  @tableViewBindingGenerationList mTableViewBindingGenerationList
-  @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public var @string mDocumentName
+  public var @string mRootEntityName
+  public var @propertyGenerationList mDocumentPropertyGenearionList
+  public var @decoratedOutletMap mOutletMap
+  public var @actionBindingListForGeneration mTargetActionList 
+  public var @regularBindingsGenerationList mRegularBindingsGenerationList 
+  public var @multipleBindingGenerationList multipleBindingGenerationList
+  public var @tableViewBindingGenerationList mTableViewBindingGenerationList
+  public var @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
 }
 
 #·······················································································································

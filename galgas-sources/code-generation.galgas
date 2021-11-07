@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @transientExternTypeList {
-  @string mTypeName
-  @bool mIsClass
+  public var @string mTypeName
+  public var @bool mIsClass
 }
 
 #·······················································································································
@@ -21,24 +21,24 @@ abstract method @abstractFileGeneration generateCode
 #·······················································································································
 
 list @fileGenerationList {
-  @abstractFileGeneration mFileGeneration
+  public var @abstractFileGeneration mFileGeneration
 }
 
 #·······················································································································
 
 struct @generationStruct {
-  @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
-  @fileGenerationList mFileGenerationList
-  @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
-  @bool mGenerateEBManagedXibDocumentSwift
-  @bool mGenerateEBManagedAutoLayoutDocumentSwift
-  @stringset mNeededOutletClasses
-  @mainXibDescriptorList mMainXibDescriptorList
+  public var @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
+  public var @fileGenerationList mFileGenerationList
+  public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
+  public var @bool mGenerateEBManagedXibDocumentSwift
+  public var @bool mGenerateEBManagedAutoLayoutDocumentSwift
+  public var @stringset mNeededOutletClasses
+  public var @mainXibDescriptorList mMainXibDescriptorList
 
 
-  @selectionControllerForGeneration mSelectionControllerListForGeneration
-  @stringlist mPropertyClassList
-  @transientExternTypeList mTransientPropertyTypeList
+  public var @selectionControllerForGeneration mSelectionControllerListForGeneration
+  public var @stringlist mPropertyClassList
+  public var @transientExternTypeList mTransientPropertyTypeList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ proc generateCode
   let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
   let projectName = [[inSourceFile lastPathComponent] stringByDeletingPathExtension]
   let fileOutputDirectory = outputDirectory + "/" + projectName
-  @stringset generatedFileSet = {}
+  var @stringset generatedFileSet = {}
   for (fileGeneration) in inGeneration.mFileGenerationList do
     [fileGeneration generateCode !fileOutputDirectory !?generatedFileSet]
   end
@@ -143,7 +143,7 @@ private proc generateSwiftApplicationFiles
   ?let @bool inHasEntities
   ?!@stringset ioGeneratedFileSet
 {
-  @stringlist swiftFiles = {
+  var @stringlist swiftFiles = {
     !"main",
     !"EBAllocationDebug-debug",
     !"EBAllocationDebug-release",
@@ -270,7 +270,7 @@ private proc generateSwiftApplicationFiles
     swiftFiles += !"EBLinePath"
     swiftFiles += !"EBShape"
   end
-  @stringlist xibFiles = {}
+  var @stringlist xibFiles = {}
   let fw = [filewrapper swift_sources]
   for (@string s) in swiftFiles do
     let fileName = s + ".swift"

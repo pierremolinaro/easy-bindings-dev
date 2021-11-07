@@ -3,28 +3,28 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutTableViewControllerBoundColumnListAST {
-  @bool mEditable
-  @lstring mPropertyName
-  @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
-  @lstring mSortPropertyName
+  public var @bool mEditable
+  public var @lstring mPropertyName
+  public var @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
+  public var @lstring mSortPropertyName
 }
 
 #·······················································································································
 
 list @autoLayoutTableViewControllerAttributListAST {
-  @lstring mAttributeName
-  @abstractDefaultValue mAttributeValue
+  public var @lstring mAttributeName
+  public var @abstractDefaultValue mAttributeValue
 }
 
 #·······················································································································
 
 refclass @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
-  @lstring mControllerName
-  @bool mIsRoot
-  @lstring mRootEntityName
-  @lstring mToManyPropertyName
-  @autoLayoutTableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
-  @autoLayoutTableViewControllerAttributListAST mTableViewControllerAttributListAST
+  public var @lstring mControllerName
+  public var @bool mIsRoot
+  public var @lstring mRootEntityName
+  public var @lstring mToManyPropertyName
+  public var @autoLayoutTableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
+  public var @autoLayoutTableViewControllerAttributListAST mTableViewControllerAttributListAST
 }
 
 #·······················································································································
@@ -67,7 +67,7 @@ syntax extension easyBindings_syntax {
     end
     $tableViewController$
     $controllerName$ ?let @lstring controllerName
-    @autoLayoutTableViewControllerAttributListAST arrayControllerAttributListAST = {}
+    var @autoLayoutTableViewControllerAttributListAST arrayControllerAttributListAST = {}
     $($
     repeat
       $identifier$ ?let @lstring attributeName
@@ -79,7 +79,7 @@ syntax extension easyBindings_syntax {
     end
     $)$
   #--- Model
-    @bool isRoot
+    var @bool isRoot
     select
       $root$
       isRoot = true
@@ -89,14 +89,14 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ ?let @lstring relationshipName
-    @autoLayoutTableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
+    var @autoLayoutTableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     select
       $;$
     or
       ${$
       repeat
       while
-        @bool editableColumn
+        var @bool editableColumn
         select
           $column$
           editableColumn = false
@@ -106,7 +106,7 @@ syntax extension easyBindings_syntax {
         end
         $identifier$ ?let propertyName
         <view_actual_parameter_list> ?let columnParameterListAST
-        @lstring sortPropertyName
+        var @lstring sortPropertyName
         select
           sortPropertyName = ["" nowhere]
         or
@@ -218,8 +218,8 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
 #------------------------------------------------------------ Check array controller attributes
   let attributes = @stringset {!"allowsEmptySelection", !"allowsMultipleSelection"}
   let allowedTypes = @typeKindList {!.boolType}
-  @stringset definedAttributes = {}
-  @2stringlist attributeListForGeneration = {}
+  var @stringset definedAttributes = {}
+  var @2stringlist attributeListForGeneration = {}
   for (name value) in self.mTableViewControllerAttributListAST do
     if not [attributes hasKey !name.string] then
       error name : "unknown attribute"
@@ -237,7 +237,7 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
     end
   end
 #------
-  @propertyMap boundModelPropertyMap
+  var @propertyMap boundModelPropertyMap
   if self.mIsRoot then
     [ioSemanticContext.mClassMap searchKey
        !self.mRootEntityName
@@ -259,11 +259,11 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
      ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
-  @actionMap actionMap
-  @propertyMap propertyMap
-  @autoLayoutTableViewControllerModelKind arrayControllerModelKind
-  @bool graphic
-  @string elementTypeName
+  var @actionMap actionMap
+  var @propertyMap propertyMap
+  var @autoLayoutTableViewControllerModelKind arrayControllerModelKind
+  var @bool graphic
+  var @string elementTypeName
   switch boundModelClassKind
   case property (2*) :
     error self.mToManyPropertyName
@@ -290,8 +290,8 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
-  @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
-  @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
+  var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
+  var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
   for (editable propertyName columnParameterList sortPropertyName) in self.mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
 #    if columnBindings.mRunActionName.string != "" then
@@ -317,13 +317,13 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
 #      !?regularBindingsGenerationList
 #    )
   #-------- Arguments
-    @autoLayoutClassParameterList formalArgumentList = {}
+    var @autoLayoutClassParameterList formalArgumentList = {}
     formalArgumentList += !["title" nowhere] !.typeString
     formalArgumentList += !["minWidth" nowhere] !.typeInt
     formalArgumentList += !["maxWidth" nowhere] !.typeInt
     formalArgumentList += !["headerAlignment" nowhere] !.typeEnum {!name: ["TextAlignment" nowhere]}
     formalArgumentList += !["contentAlignment" nowhere] !.typeEnum {!name: ["TextAlignment" nowhere]}
-    @2stringlist actualParameterList = {}
+    var @2stringlist actualParameterList = {}
     if [formalArgumentList length] != [columnParameterList length] then
       error propertyName : [[columnParameterList length] string] + " parameter(s), " + [formalArgumentList length] + " required"
     else
@@ -408,8 +408,8 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutTableViewControllerPropertyGeneration : @propertyGeneration {
-  @string mModelString
-  @string mOwnerName
+  public var @string mModelString
+  public var @string mOwnerName
 }
 
 #·······················································································································
@@ -473,36 +473,36 @@ enum @autoLayoutTableViewControllerModelKind {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
-  @string mOwnerName # document name, prefs name, ...
-  @lstring mControllerName
-  @string mModelString
-  @autoLayoutTableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
-  @autoLayoutTableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
-  @string mModelTypeName
-  @autoLayoutTableViewControllerModelKind mTableViewControllerModelKind
-  @string mElementTypeName
-  @bool mElementTypeIsGraphic
-  @2stringlist mAttributeListForGeneration
+  public var @string mOwnerName # document name, prefs name, ...
+  public var @lstring mControllerName
+  public var @string mModelString
+  public var @autoLayoutTableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
+  public var @autoLayoutTableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
+  public var @string mModelTypeName
+  public var @autoLayoutTableViewControllerModelKind mTableViewControllerModelKind
+  public var @string mElementTypeName
+  public var @bool mElementTypeIsGraphic
+  public var @2stringlist mAttributeListForGeneration
 }
 
 #·······················································································································
 
 list @autoLayoutTableViewControllerBoundColumnListForGeneration {
-  @bool mEditable
-  @string mSortPropertyName
-  @string mDisplayedPropertyName
-  @string mColumnObjectTypeName
-  @string mRunAction # Empty string if no action
+  public var @bool mEditable
+  public var @string mSortPropertyName
+  public var @string mDisplayedPropertyName
+  public var @string mColumnObjectTypeName
+  public var @string mRunAction # Empty string if no action
 #  @regularBindingsGenerationList mRegularBindingsGenerationList
-  @2stringlist mActualParameterList
+  public var @2stringlist mActualParameterList
 }
 
 #·······················································································································
 
 list @autoLayoutTableViewControllerSortedColumnListForGeneration {
-  @string mColumnName
-  @propertyKind mSortPropertyKind
-  @string mObservablePropertyForSorting
+  public var @string mColumnName
+  public var @propertyKind mSortPropertyKind
+  public var @string mObservablePropertyForSorting
 }
 
 #·······················································································································
@@ -532,8 +532,8 @@ override method @autoLayoutTableViewControllerGeneration generateCode
     ?!@stringset unused ioGeneratedFileSet
 {
 #--- Build observed property set (for sorting and filtering)
-  @stringset observedProperties = {}
-  for () in self.mTableViewControllerSortedColumnListForGeneration do
+  var @stringset observedProperties = {}
+  for (* * mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end
   let s = [filewrapper autoLayoutTableViewControllerGenerationTemplate.autoLayoutTableViewControllerImplementation

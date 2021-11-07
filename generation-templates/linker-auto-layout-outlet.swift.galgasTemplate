@@ -7,7 +7,7 @@ import Cocoa
 
 extension %!DOCUMENT_TYPE_NAME% {
   final func linker_%!LINKER_NAME% (%
-  for () in OUTLET_NAME_AND_TYPE_NAME_LIST
+  for (mValue0 mValue1) in OUTLET_NAME_AND_TYPE_NAME_LIST
   do  %_ in_%!mValue0% : AutoLayout%!mValue1%?%
   between %, %
   end

@@ -3,10 +3,10 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewClassBindingSpecificationList {
-  @lstring mOutletClassName
-  @lstring mBindingName
-  @outletClassBindingSpecificationModelList mOutletClassBindingSpecificationModelList
-  @controllerBindingOptionList mBindingOptionList
+  public var @lstring mOutletClassName
+  public var @lstring mBindingName
+  public var @outletClassBindingSpecificationModelList mOutletClassBindingSpecificationModelList
+  public var @controllerBindingOptionList mBindingOptionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -20,9 +20,9 @@ syntax extension easyBindings_syntax {
   rule <auto_layout_view_binding_specification> ?let @lstring inClassName 
                                                 ?!@autoLayoutViewClassBindingSpecificationList ioBindingList {
     $bindingName$ ?let @lstring bindingName
-    @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
+    var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
     repeat
-      @bool modelShouldBeWritableProperty
+      var @bool modelShouldBeWritableProperty
       select
         $property$
         modelShouldBeWritableProperty = true
@@ -30,7 +30,7 @@ syntax extension easyBindings_syntax {
         $transient$
         modelShouldBeWritableProperty = false
       end
-      @lstring modelTypeName
+      var @lstring modelTypeName
       select
         $Identifier$ ?modelTypeName
       or
@@ -41,7 +41,7 @@ syntax extension easyBindings_syntax {
     while
       $,$
     end
-    @controllerBindingOptionList bindingOptionList = {}
+    var @controllerBindingOptionList bindingOptionList = {}
     select
     or
       $($
@@ -71,8 +71,8 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @autoLayoutBindingSpecificationMap {
-  @lstring mOutletSuperClassName
-  @autoLayoutViewBindingSpecificationMap mBindingMap
+  public var @lstring mOutletSuperClassName
+  public var @autoLayoutViewBindingSpecificationMap mBindingMap
   insert insertKey error message "the '%K' binding is already declared in %L"
   search searchKey error message "there is no '%K' binding"
   remove removeKey error message "there is no '%K' binding"
@@ -81,8 +81,8 @@ map @autoLayoutBindingSpecificationMap {
 #·······················································································································
 
 map @autoLayoutViewBindingSpecificationMap {
-  @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
-  @controllerBindingOptionDecoratedList mControllerBindingOptionList
+  public var @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
+  public var @controllerBindingOptionDecoratedList mControllerBindingOptionList
   insert insertKey error message "the '%K' binding is already declared in %L"
   search searchKey error message "there is no '%K' binding"
 }
@@ -93,16 +93,16 @@ proc buildAutoLayoutBindingSpecificationMap
   ?!@semanticContext ioSemanticContext
   ?let @autoLayoutViewClassBindingSpecificationList inBindingSpecificationListMap
 {
-  for () in inBindingSpecificationListMap do
-    @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
-    for () in mOutletClassBindingSpecificationModelList do
+  for (mOutletClassName mBindingName mOutletClassBindingSpecificationModelList mBindingOptionList) in inBindingSpecificationListMap do
+    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    for (mModelTypeName mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         outletBindingSpecificationModelList +=
           !.enumType {!enumTypeName: "" !constantMap: {} !funcMap: {}} # Any enum type
           !mModelShouldBeWritableProperty
       else
         [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]
-        @typeKind typeKind
+        var @typeKind typeKind
         switch classKind
         case prefs :
           error mModelTypeName : "an atomic class is required here" : typeKind
@@ -116,10 +116,10 @@ proc buildAutoLayoutBindingSpecificationMap
         outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
       end
     end
-    @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
-    for () in mBindingOptionList do
+    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    for (mOptionName mOptionTypeName) in mBindingOptionList do
       [ioSemanticContext.mClassMap searchKey !mOptionTypeName ?let @classKind classKind ?3*]
-      @typeKind typeKind
+      var @typeKind typeKind
       switch classKind
       case prefs :
         error mOptionTypeName : "an atomic class is required here" : typeKind
@@ -133,8 +133,8 @@ proc buildAutoLayoutBindingSpecificationMap
       controllerBindingOptionDecoratedList += !typeKind !mOptionName
     end
   #--- Insert in binding map
-    @autoLayoutViewBindingSpecificationMap bindingMap
-    @lstring outletSuperClassName
+    var @autoLayoutViewBindingSpecificationMap bindingMap
+    var @lstring outletSuperClassName
     if [ioSemanticContext.mAutoLayoutBindingSpecificationMap hasKey !mOutletClassName.string] then
       [!?ioSemanticContext.mAutoLayoutBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
     else

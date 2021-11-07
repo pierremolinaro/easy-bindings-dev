@@ -26,48 +26,48 @@ abstract refclass @abstractBooleanMultipleBindingExpressionAST {
 #·······················································································································
 
 refclass @literalIntMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  @luint mValue
+  public var @luint mValue
 }
 
 #·······················································································································
 
 refclass @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  @abstractBooleanMultipleBindingExpressionAST mBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mBinding
 }
 
 #·······················································································································
 
 refclass @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  @abstractBooleanMultipleBindingExpressionAST mLeftBinding
-  @multipleBindingComparisonAST mOperator
-  @abstractBooleanMultipleBindingExpressionAST mRightBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  public var @multipleBindingComparisonAST mOperator
+  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 #·······················································································································
 
 refclass @andBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  @abstractBooleanMultipleBindingExpressionAST mLeftBinding
-  @abstractBooleanMultipleBindingExpressionAST mRightBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 #·······················································································································
 
 refclass @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  @abstractBooleanMultipleBindingExpressionAST mLeftBinding
-  @abstractBooleanMultipleBindingExpressionAST mRightBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 #·······················································································································
 
 refclass @xorBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  @abstractBooleanMultipleBindingExpressionAST mLeftBinding
-  @abstractBooleanMultipleBindingExpressionAST mRightBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
 #·······················································································································
 
 refclass @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
-  @observablePropertyAST mProperty
+  public var @observablePropertyAST mProperty
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -187,9 +187,9 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @multipleBindingGenerationList {
-  @string mOutletName
-  @string mBindingName
-  @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
+  public var @string mOutletName
+  public var @string mBindingName
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
 }
 
 #·······················································································································
@@ -200,48 +200,48 @@ abstract refclass @abstractBooleanMultipleBindingExpressionForGeneration {
 #·······················································································································
 
 refclass @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @string mObservedModelString
+  public var @string mObservedModelString
 }
 
 #·······················································································································
 
 refclass @booleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @uint mValue
+  public var @uint mValue
 }
 
 #·······················································································································
 
 refclass @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @abstractBooleanMultipleBindingExpressionForGeneration mBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mBinding
 }
 
 #·······················································································································
 
 refclass @orBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
-  @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 #·······················································································································
 
 refclass @xorBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
-  @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 #·······················································································································
 
 refclass @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
-  @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 #·······················································································································
 
 refclass @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
-  @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
-  @multipleBindingComparisonAST mOperator
-  @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  public var @multipleBindingComparisonAST mOperator
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

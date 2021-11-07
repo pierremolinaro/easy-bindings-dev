@@ -149,12 +149,12 @@ setter @XcodeProjectDescriptor addAppTarget
   [!?self getReferenceKey ?ref:let buildConfigurationRef]
   [!?self getReferenceKey ?ref:let frameworkBuildRef]
   [!?self getReferenceKey ?ref:let resourceBuildRef]
-  @2stringlist dependentTargets = {}
+  var @2stringlist dependentTargets = {}
   for (ref) in inDependentTargetRefList do
     [!?self getReferenceKey ?ref:let dependencyBuildRef]
     dependentTargets += !dependencyBuildRef !ref
   end
-  @stringlist resourceFileBuildRefs = inResourceFileBuildRefs
+  var @stringlist resourceFileBuildRefs = inResourceFileBuildRefs
   for (ref name) in inProductCopyList do
     [!?self addBuildFile !fileRef:ref !fileName:name ?buildRef:let @string buildRef]
     resourceFileBuildRefs += !buildRef
@@ -221,7 +221,7 @@ setter @XcodeProjectDescriptor addGroupWithFiles
   end
   [!?self getReferenceKey ?ref:outGroupRef]
 #---
-  @stringlist childrenRefs = {}
+  var @stringlist childrenRefs = {}
   for (f) in inFileNames do
     if [f pathExtension] == "cpp" then
       [!?self addCppFile !fileName:f ?fileRef:let @string cppFileRef]
@@ -293,54 +293,54 @@ setter @XcodeProjectDescriptor addSettingsToDefaultConfiguration
 #----------------------------------------------------------------------------------------------------------------------*
 
 list @XCodeGroupList {
-  @string mGroupReference
-  @string mGroupName
-  @string mGroupPath
-  @stringlist mChildrenRefs
+  public var @string mGroupReference
+  public var @string mGroupName
+  public var @string mGroupPath
+  public var @stringlist mChildrenRefs
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
 
 list @XCodeToolTargetList {
-  @string mTargetRef
-  @string mTargetName
-  @string mProductFileReference
-  @string mProductFileName
-  @stringlist mBuildPhaseRefList
-  @string mBuildPhaseRef
-  @string mBuildConfigurationListRef
-  @stringlist mBuildConfigurationSettingList
-  @string mBuildConfigurationRef
-  @stringlist mFrameworksFileRefList
-  @string mFrameworkBuildPhaseRef
+  public var @string mTargetRef
+  public var @string mTargetName
+  public var @string mProductFileReference
+  public var @string mProductFileName
+  public var @stringlist mBuildPhaseRefList
+  public var @string mBuildPhaseRef
+  public var @string mBuildConfigurationListRef
+  public var @stringlist mBuildConfigurationSettingList
+  public var @string mBuildConfigurationRef
+  public var @stringlist mFrameworksFileRefList
+  public var @string mFrameworkBuildPhaseRef
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
 
 list @XCodeAppTargetList {
-  @string mTargetRef
-  @string mTargetName
-  @string mProductFileReference
-  @string mProductFileName
-  @stringlist mBuildPhaseRefList
-  @string mBuildPhaseRef
-  @string mBuildConfigurationListRef
-  @stringlist mBuildConfigurationSettingList
-  @string mBuildConfigurationRef
-  @stringlist mFrameworksFileRefList
-  @string mFrameworkBuildPhaseRef
-  @2stringlist mDependentTargets
-  @string mResourceBuildRef
-  @stringlist mResourceFileBuildRefs
-  @string mInfoPListFile
+  public var @string mTargetRef
+  public var @string mTargetName
+  public var @string mProductFileReference
+  public var @string mProductFileName
+  public var @stringlist mBuildPhaseRefList
+  public var @string mBuildPhaseRef
+  public var @string mBuildConfigurationListRef
+  public var @stringlist mBuildConfigurationSettingList
+  public var @string mBuildConfigurationRef
+  public var @stringlist mFrameworksFileRefList
+  public var @string mFrameworkBuildPhaseRef
+  public var @2stringlist mDependentTargets
+  public var @string mResourceBuildRef
+  public var @stringlist mResourceFileBuildRefs
+  public var @string mInfoPListFile
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
 
 list @BuildFileList {
-  @string mFileReference
-  @string mFileName
-  @string mBuildReference
+  public var @string mFileReference
+  public var @string mFileName
+  public var @string mBuildReference
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
@@ -357,29 +357,29 @@ setter @XcodeProjectDescriptor getReferenceKey !ref: @string outRef {
 #----------------------------------------------------------------------------------------------------------------------*
 
 struct @XcodeProjectDescriptor {
-  @uint mSequenceNumber
-  @string mMainGroupReference
-  @stringlist mMainGroupChildrenRefs
-  @string mProjectObjectReference
-  @XCodeGroupList mGroupList
-  @XCodeToolTargetList mToolTargetList
-  @XCodeAppTargetList mAppTargetList
-  @2stringlist mCppFileList
-  @2stringlist m_M_FileList
-  @2stringlist m_MM_FileList
-  @2stringlist m_SwiftFileList
-  @2stringlist mFrameworkFileList
-  @2stringlist mHeaderFileList
-  @BuildFileList mBuildFileList
+  public var @uint mSequenceNumber
+  public var @string mMainGroupReference
+  public var @stringlist mMainGroupChildrenRefs
+  public var @string mProjectObjectReference
+  public var @XCodeGroupList mGroupList
+  public var @XCodeToolTargetList mToolTargetList
+  public var @XCodeAppTargetList mAppTargetList
+  public var @2stringlist mCppFileList
+  public var @2stringlist m_M_FileList
+  public var @2stringlist m_MM_FileList
+  public var @2stringlist m_SwiftFileList
+  public var @2stringlist mFrameworkFileList
+  public var @2stringlist mHeaderFileList
+  public var @BuildFileList mBuildFileList
 #--- Default configuration
-  @string mDefaultConfigurationRef
-  @stringlist mDefaultConfigurationSettingList
-  @string mProjectBuildConfigurationRef
+  public var @string mDefaultConfigurationRef
+  public var @stringlist mDefaultConfigurationSettingList
+  public var @string mProjectBuildConfigurationRef
 #--- Resource files
-  @2stringlist mInfoPlistFileList
-  @2stringlist mXIB_fileList
-  @2stringlist mTIFF_fileList
-  @2stringlist mICNS_fileList
+  public var @2stringlist mInfoPlistFileList
+  public var @2stringlist mXIB_fileList
+  public var @2stringlist mTIFF_fileList
+  public var @2stringlist mICNS_fileList
 }
 
 #----------------------------------------------------------------------------------------------------------------------*

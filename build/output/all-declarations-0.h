@@ -364,6 +364,9 @@ class GALGAS_abstractDeclarationAST : public AC_GALGAS_reference_class {
 //--------------------------------- Constructor from pointer
   public: GALGAS_abstractDeclarationAST (const class cPtr_abstractDeclarationAST * inSourcePtr) ;
 
+//--------------------------------- Property read access
+  public: class GALGAS_lstring readProperty_mClassName (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -386,8 +389,6 @@ class GALGAS_abstractDeclarationAST : public AC_GALGAS_reference_class {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mClassName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -435,6 +436,9 @@ class cPtr_abstractDeclarationAST : public acStrongPtr_class {
 class GALGAS_declarationListAST_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_abstractDeclarationAST mProperty_mPropertyDeclaration ;
+  public: inline GALGAS_abstractDeclarationAST readProperty_mPropertyDeclaration (void) const {
+    return mProperty_mPropertyDeclaration ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -480,8 +484,6 @@ class GALGAS_declarationListAST_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_abstractDeclarationAST getter_mPropertyDeclaration (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -1001,12 +1003,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingS
 class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mOutletClassName ;
+  public: inline GALGAS_lstring readProperty_mOutletClassName (void) const {
+    return mProperty_mOutletClassName ;
+  }
 
   public: GALGAS_lstring mProperty_mBindingName ;
+  public: inline GALGAS_lstring readProperty_mBindingName (void) const {
+    return mProperty_mBindingName ;
+  }
 
   public: GALGAS_outletClassBindingSpecificationModelList mProperty_mOutletClassBindingSpecificationModelList ;
+  public: inline GALGAS_outletClassBindingSpecificationModelList readProperty_mOutletClassBindingSpecificationModelList (void) const {
+    return mProperty_mOutletClassBindingSpecificationModelList ;
+  }
 
   public: GALGAS_controllerBindingOptionList mProperty_mBindingOptionList ;
+  public: inline GALGAS_controllerBindingOptionList readProperty_mBindingOptionList (void) const {
+    return mProperty_mBindingOptionList ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1073,14 +1087,6 @@ class GALGAS_outletClassBindingSpecificationList_2D_element : public AC_GALGAS_r
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mBindingName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_controllerBindingOptionList getter_mBindingOptionList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_outletClassBindingSpecificationModelList getter_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOutletClassName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -1294,12 +1300,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewClass
 class GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mOutletClassName ;
+  public: inline GALGAS_lstring readProperty_mOutletClassName (void) const {
+    return mProperty_mOutletClassName ;
+  }
 
   public: GALGAS_lstring mProperty_mBindingName ;
+  public: inline GALGAS_lstring readProperty_mBindingName (void) const {
+    return mProperty_mBindingName ;
+  }
 
   public: GALGAS_outletClassBindingSpecificationModelList mProperty_mOutletClassBindingSpecificationModelList ;
+  public: inline GALGAS_outletClassBindingSpecificationModelList readProperty_mOutletClassBindingSpecificationModelList (void) const {
+    return mProperty_mOutletClassBindingSpecificationModelList ;
+  }
 
   public: GALGAS_controllerBindingOptionList mProperty_mBindingOptionList ;
+  public: inline GALGAS_controllerBindingOptionList readProperty_mBindingOptionList (void) const {
+    return mProperty_mBindingOptionList ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1366,14 +1384,6 @@ class GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element : public AC_
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mBindingName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_controllerBindingOptionList getter_mBindingOptionList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_outletClassBindingSpecificationModelList getter_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOutletClassName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -1686,8 +1696,14 @@ class cMapElement_astAutoLayoutViewFunctionMap : public cMapElement {
 class GALGAS_astAutoLayoutViewFunctionMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_autoLayoutClassParameterList mProperty_mFomalParameterList ;
+  public: inline GALGAS_autoLayoutClassParameterList readProperty_mFomalParameterList (void) const {
+    return mProperty_mFomalParameterList ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1742,10 +1758,6 @@ class GALGAS_astAutoLayoutViewFunctionMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutClassParameterList getter_mFomalParameterList (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -1940,10 +1952,19 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumerationFunction
 class GALGAS_enumerationFunctionListAST_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mEnumName ;
+  public: inline GALGAS_lstring readProperty_mEnumName (void) const {
+    return mProperty_mEnumName ;
+  }
 
   public: GALGAS_lstring mProperty_mFunctionName ;
+  public: inline GALGAS_lstring readProperty_mFunctionName (void) const {
+    return mProperty_mFunctionName ;
+  }
 
   public: GALGAS__32_lstringlist mProperty_mAssociationList ;
+  public: inline GALGAS__32_lstringlist readProperty_mAssociationList (void) const {
+    return mProperty_mAssociationList ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2004,12 +2025,6 @@ class GALGAS_enumerationFunctionListAST_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS__32_lstringlist getter_mAssociationList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mEnumName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mFunctionName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -2696,14 +2711,29 @@ class cMapElement_classMap : public cMapElement {
 class GALGAS_classMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_classKind mProperty_mClassKind ;
+  public: inline GALGAS_classKind readProperty_mClassKind (void) const {
+    return mProperty_mClassKind ;
+  }
 
   public: GALGAS_propertyMap mProperty_mPropertyMap ;
+  public: inline GALGAS_propertyMap readProperty_mPropertyMap (void) const {
+    return mProperty_mPropertyMap ;
+  }
 
   public: GALGAS_actionMap mProperty_mActionMap ;
+  public: inline GALGAS_actionMap readProperty_mActionMap (void) const {
+    return mProperty_mActionMap ;
+  }
 
   public: GALGAS_propertyGenerationList mProperty_mPropertyGenerationList ;
+  public: inline GALGAS_propertyGenerationList readProperty_mPropertyGenerationList (void) const {
+    return mProperty_mPropertyGenerationList ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2773,16 +2803,6 @@ class GALGAS_classMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_actionMap getter_mActionMap (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_classKind getter_mClassKind (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyGenerationList getter_mPropertyGenerationList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyMap getter_mPropertyMap (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -3038,20 +3058,44 @@ class cMapElement_outletClassMap : public cMapElement {
 class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_lstring mProperty_mSuperClassName ;
+  public: inline GALGAS_lstring readProperty_mSuperClassName (void) const {
+    return mProperty_mSuperClassName ;
+  }
 
   public: GALGAS_bool mProperty_mHandlesRunAction ;
+  public: inline GALGAS_bool readProperty_mHandlesRunAction (void) const {
+    return mProperty_mHandlesRunAction ;
+  }
 
   public: GALGAS_bool mProperty_mHandlesTableValueBinding ;
+  public: inline GALGAS_bool readProperty_mHandlesTableValueBinding (void) const {
+    return mProperty_mHandlesTableValueBinding ;
+  }
 
   public: GALGAS_bool mProperty_mHandleEnabledBinding ;
+  public: inline GALGAS_bool readProperty_mHandleEnabledBinding (void) const {
+    return mProperty_mHandleEnabledBinding ;
+  }
 
   public: GALGAS_bool mProperty_mHandleHiddenBinding ;
+  public: inline GALGAS_bool readProperty_mHandleHiddenBinding (void) const {
+    return mProperty_mHandleHiddenBinding ;
+  }
 
   public: GALGAS_bool mProperty_mHandleGraphicControllerBinding ;
+  public: inline GALGAS_bool readProperty_mHandleGraphicControllerBinding (void) const {
+    return mProperty_mHandleGraphicControllerBinding ;
+  }
 
   public: GALGAS_bool mProperty_mUserDefined ;
+  public: inline GALGAS_bool readProperty_mUserDefined (void) const {
+    return mProperty_mUserDefined ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3142,22 +3186,6 @@ class GALGAS_outletClassMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleEnabledBinding (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleGraphicControllerBinding (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleHiddenBinding (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesRunAction (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableValueBinding (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSuperClassName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mUserDefined (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -3462,10 +3490,19 @@ class cMapElement_bindingSpecificationMap : public cMapElement {
 class GALGAS_bindingSpecificationMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_lstring mProperty_mOutletSuperClassName ;
+  public: inline GALGAS_lstring readProperty_mOutletSuperClassName (void) const {
+    return mProperty_mOutletSuperClassName ;
+  }
 
   public: GALGAS_outletBindingSpecificationMap mProperty_mBindingMap ;
+  public: inline GALGAS_outletBindingSpecificationMap readProperty_mBindingMap (void) const {
+    return mProperty_mBindingMap ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3526,12 +3563,6 @@ class GALGAS_bindingSpecificationMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_outletBindingSpecificationMap getter_mBindingMap (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOutletSuperClassName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -3819,24 +3850,54 @@ class cMapElement_autolayoutViewClassMap : public cMapElement {
 class GALGAS_autolayoutViewClassMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_lstring mProperty_mSuperClassName ;
+  public: inline GALGAS_lstring readProperty_mSuperClassName (void) const {
+    return mProperty_mSuperClassName ;
+  }
 
   public: GALGAS_bool mProperty_mHandlesRunAction ;
+  public: inline GALGAS_bool readProperty_mHandlesRunAction (void) const {
+    return mProperty_mHandlesRunAction ;
+  }
 
   public: GALGAS_bool mProperty_mHandlesTableValueBinding ;
+  public: inline GALGAS_bool readProperty_mHandlesTableValueBinding (void) const {
+    return mProperty_mHandlesTableValueBinding ;
+  }
 
   public: GALGAS_bool mProperty_mHandleEnabledBinding ;
+  public: inline GALGAS_bool readProperty_mHandleEnabledBinding (void) const {
+    return mProperty_mHandleEnabledBinding ;
+  }
 
   public: GALGAS_bool mProperty_mHandleHiddenBinding ;
+  public: inline GALGAS_bool readProperty_mHandleHiddenBinding (void) const {
+    return mProperty_mHandleHiddenBinding ;
+  }
 
   public: GALGAS_bool mProperty_mHandleGraphicControllerBinding ;
+  public: inline GALGAS_bool readProperty_mHandleGraphicControllerBinding (void) const {
+    return mProperty_mHandleGraphicControllerBinding ;
+  }
 
   public: GALGAS_bool mProperty_mUserDefined ;
+  public: inline GALGAS_bool readProperty_mUserDefined (void) const {
+    return mProperty_mUserDefined ;
+  }
 
   public: GALGAS_autoLayoutClassParameterList mProperty_mParameterList ;
+  public: inline GALGAS_autoLayoutClassParameterList readProperty_mParameterList (void) const {
+    return mProperty_mParameterList ;
+  }
 
   public: GALGAS_astAutoLayoutViewFunctionMap mProperty_mAutoLayoutViewFunctionMap ;
+  public: inline GALGAS_astAutoLayoutViewFunctionMap readProperty_mAutoLayoutViewFunctionMap (void) const {
+    return mProperty_mAutoLayoutViewFunctionMap ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3939,26 +4000,6 @@ class GALGAS_autolayoutViewClassMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewFunctionMap getter_mAutoLayoutViewFunctionMap (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleEnabledBinding (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleGraphicControllerBinding (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandleHiddenBinding (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesRunAction (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mHandlesTableValueBinding (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutClassParameterList getter_mParameterList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSuperClassName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mUserDefined (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4263,10 +4304,19 @@ class cMapElement_autoLayoutBindingSpecificationMap : public cMapElement {
 class GALGAS_autoLayoutBindingSpecificationMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_lstring mProperty_mOutletSuperClassName ;
+  public: inline GALGAS_lstring readProperty_mOutletSuperClassName (void) const {
+    return mProperty_mOutletSuperClassName ;
+  }
 
   public: GALGAS_autoLayoutViewBindingSpecificationMap mProperty_mBindingMap ;
+  public: inline GALGAS_autoLayoutViewBindingSpecificationMap readProperty_mBindingMap (void) const {
+    return mProperty_mBindingMap ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4327,12 +4377,6 @@ class GALGAS_autoLayoutBindingSpecificationMap_2D_element : public AC_GALGAS_roo
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutViewBindingSpecificationMap getter_mBindingMap (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOutletSuperClassName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4575,6 +4619,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegate
 class GALGAS_externSwiftDelegateList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mExternSwiftDelegateName ;
+  public: inline GALGAS_lstring readProperty_mExternSwiftDelegateName (void) const {
+    return mProperty_mExternSwiftDelegateName ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4623,8 +4670,6 @@ class GALGAS_externSwiftDelegateList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mExternSwiftDelegateName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4800,8 +4845,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftFunction
 class GALGAS_externSwiftFunctionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mExternSwiftFunctionName ;
+  public: inline GALGAS_lstring readProperty_mExternSwiftFunctionName (void) const {
+    return mProperty_mExternSwiftFunctionName ;
+  }
 
   public: GALGAS_lstring mProperty_mCallerName ;
+  public: inline GALGAS_lstring readProperty_mCallerName (void) const {
+    return mProperty_mCallerName ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4856,10 +4907,6 @@ class GALGAS_externSwiftFunctionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mCallerName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mExternSwiftFunctionName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4995,6 +5042,9 @@ class cMapElement_externFunctionMap : public cMapElement {
 class GALGAS_externFunctionMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5043,8 +5093,6 @@ class GALGAS_externFunctionMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5204,8 +5252,14 @@ class cMapElement_enumConstantMap : public cMapElement {
 class GALGAS_enumConstantMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_uint mProperty_mIndex ;
+  public: inline GALGAS_uint readProperty_mIndex (void) const {
+    return mProperty_mIndex ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5260,10 +5314,6 @@ class GALGAS_enumConstantMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mIndex (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5379,8 +5429,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumFunAssociationS
 class GALGAS_enumFunAssociationSortedList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_uint mProperty_mIndex ;
+  public: inline GALGAS_uint readProperty_mIndex (void) const {
+    return mProperty_mIndex ;
+  }
 
   public: GALGAS_string mProperty_mAssociatedString ;
+  public: inline GALGAS_string readProperty_mAssociatedString (void) const {
+    return mProperty_mAssociatedString ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5435,10 +5491,6 @@ class GALGAS_enumFunAssociationSortedList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mAssociatedString (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mIndex (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5598,8 +5650,14 @@ class cMapElement_enumFuncMap : public cMapElement {
 class GALGAS_enumFuncMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_enumFunAssociationSortedList mProperty_mAssociationSortedList ;
+  public: inline GALGAS_enumFunAssociationSortedList readProperty_mAssociationSortedList (void) const {
+    return mProperty_mAssociationSortedList ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5654,10 +5712,6 @@ class GALGAS_enumFuncMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_enumFunAssociationSortedList getter_mAssociationSortedList (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5689,6 +5743,7 @@ class GALGAS_abstractFileGeneration : public AC_GALGAS_reference_class {
 //--------------------------------- Constructor from pointer
   public: GALGAS_abstractFileGeneration (const class cPtr_abstractFileGeneration * inSourcePtr) ;
 
+//--------------------------------- Property read access
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -6281,6 +6336,7 @@ class GALGAS_abstractDefaultValue : public AC_GALGAS_reference_class {
 //--------------------------------- Constructor from pointer
   public: GALGAS_abstractDefaultValue (const class cPtr_abstractDefaultValue * inSourcePtr) ;
 
+//--------------------------------- Property read access
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -6345,12 +6401,24 @@ class cPtr_abstractDefaultValue : public acStrongPtr_class {
 class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mPropertyTypeName ;
+  public: inline GALGAS_lstring readProperty_mPropertyTypeName (void) const {
+    return mProperty_mPropertyTypeName ;
+  }
 
   public: GALGAS_lstring mProperty_mPropertyName ;
+  public: inline GALGAS_lstring readProperty_mPropertyName (void) const {
+    return mProperty_mPropertyName ;
+  }
 
   public: GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
+  public: inline GALGAS_abstractDefaultValue readProperty_mDefaultValue (void) const {
+    return mProperty_mDefaultValue ;
+  }
 
   public: GALGAS_bool mProperty_mNeedsValidation ;
+  public: inline GALGAS_bool readProperty_mNeedsValidation (void) const {
+    return mProperty_mNeedsValidation ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6414,14 +6482,6 @@ class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mDefaultValue (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidation (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyTypeName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6453,6 +6513,9 @@ class GALGAS_propertyGeneration : public AC_GALGAS_reference_class {
 //--------------------------------- Constructor from pointer
   public: GALGAS_propertyGeneration (const class cPtr_propertyGeneration * inSourcePtr) ;
 
+//--------------------------------- Property read access
+  public: class GALGAS_string readProperty_mPropertyName (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -6475,8 +6538,6 @@ class GALGAS_propertyGeneration : public AC_GALGAS_reference_class {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mPropertyName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6524,6 +6585,9 @@ class cPtr_propertyGeneration : public acStrongPtr_class {
 class GALGAS_propertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_propertyGeneration mProperty_mProperty ;
+  public: inline GALGAS_propertyGeneration readProperty_mProperty (void) const {
+    return mProperty_mProperty ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6569,8 +6633,6 @@ class GALGAS_propertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyGeneration getter_mProperty (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6746,8 +6808,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGenera
 class GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_string mProperty_mEntityName ;
+  public: inline GALGAS_string readProperty_mEntityName (void) const {
+    return mProperty_mEntityName ;
+  }
 
   public: GALGAS_lstringlist mProperty_mObsoleteEntityNames ;
+  public: inline GALGAS_lstringlist readProperty_mObsoleteEntityNames (void) const {
+    return mProperty_mObsoleteEntityNames ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6802,10 +6870,6 @@ class GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element : public A
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mEntityName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mObsoleteEntityNames (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -7212,6 +7276,7 @@ class GALGAS_abstractBooleanMultipleBindingExpressionAST : public AC_GALGAS_refe
 //--------------------------------- Constructor from pointer
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST (const class cPtr_abstractBooleanMultipleBindingExpressionAST * inSourcePtr) ;
 
+//--------------------------------- Property read access
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -7739,20 +7804,44 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingList 
 class GALGAS_outletDeclarationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mOutletTypeName ;
+  public: inline GALGAS_lstring readProperty_mOutletTypeName (void) const {
+    return mProperty_mOutletTypeName ;
+  }
 
   public: GALGAS_lstring mProperty_mOutletName ;
+  public: inline GALGAS_lstring readProperty_mOutletName (void) const {
+    return mProperty_mOutletName ;
+  }
 
   public: GALGAS_tableValueBinding mProperty_mTableValueBindingDescriptor ;
+  public: inline GALGAS_tableValueBinding readProperty_mTableValueBindingDescriptor (void) const {
+    return mProperty_mTableValueBindingDescriptor ;
+  }
 
   public: GALGAS_runActionDescriptor mProperty_mRunDescriptor ;
+  public: inline GALGAS_runActionDescriptor readProperty_mRunDescriptor (void) const {
+    return mProperty_mRunDescriptor ;
+  }
 
   public: GALGAS_multipleBindingDescriptor mProperty_mEnabledBindingDescriptor ;
+  public: inline GALGAS_multipleBindingDescriptor readProperty_mEnabledBindingDescriptor (void) const {
+    return mProperty_mEnabledBindingDescriptor ;
+  }
 
   public: GALGAS_multipleBindingDescriptor mProperty_mHiddenBindingDescriptor ;
+  public: inline GALGAS_multipleBindingDescriptor readProperty_mHiddenBindingDescriptor (void) const {
+    return mProperty_mHiddenBindingDescriptor ;
+  }
 
   public: GALGAS_regularBindingList mProperty_mRegularBindingList ;
+  public: inline GALGAS_regularBindingList readProperty_mRegularBindingList (void) const {
+    return mProperty_mRegularBindingList ;
+  }
 
   public: GALGAS_graphicController mProperty_mGraphicController ;
+  public: inline GALGAS_graphicController readProperty_mGraphicController (void) const {
+    return mProperty_mGraphicController ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -7840,22 +7929,6 @@ class GALGAS_outletDeclarationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor getter_mEnabledBindingDescriptor (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_graphicController getter_mGraphicController (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor getter_mHiddenBindingDescriptor (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOutletName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOutletTypeName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_regularBindingList getter_mRegularBindingList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_runActionDescriptor getter_mRunDescriptor (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_tableValueBinding getter_mTableValueBindingDescriptor (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -8031,8 +8104,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBind
 class GALGAS_arrayControllerBindingListAST_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mControllerName ;
+  public: inline GALGAS_lstring readProperty_mControllerName (void) const {
+    return mProperty_mControllerName ;
+  }
 
   public: GALGAS_multipleBindingDescriptor mProperty_mHiddenSelectionViewBindingDescriptor ;
+  public: inline GALGAS_multipleBindingDescriptor readProperty_mHiddenSelectionViewBindingDescriptor (void) const {
+    return mProperty_mHiddenSelectionViewBindingDescriptor ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -8084,10 +8163,6 @@ class GALGAS_arrayControllerBindingListAST_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mControllerName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor getter_mHiddenSelectionViewBindingDescriptor (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -8247,8 +8322,14 @@ class cMapElement_decoratedOutletMap : public cMapElement {
 class GALGAS_decoratedOutletMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
 
   public: GALGAS_string mProperty_mOutletTypeName ;
+  public: inline GALGAS_string readProperty_mOutletTypeName (void) const {
+    return mProperty_mOutletTypeName ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -8303,10 +8384,6 @@ class GALGAS_decoratedOutletMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mOutletTypeName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -8520,12 +8597,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionBindingListFo
 class GALGAS_actionBindingListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_string mProperty_mOutletName ;
+  public: inline GALGAS_string readProperty_mOutletName (void) const {
+    return mProperty_mOutletName ;
+  }
 
   public: GALGAS_string mProperty_mTargetName ;
+  public: inline GALGAS_string readProperty_mTargetName (void) const {
+    return mProperty_mTargetName ;
+  }
 
   public: GALGAS_string mProperty_mActionName ;
+  public: inline GALGAS_string readProperty_mActionName (void) const {
+    return mProperty_mActionName ;
+  }
 
   public: GALGAS_string mProperty_mTargetTypeName ;
+  public: inline GALGAS_string readProperty_mTargetTypeName (void) const {
+    return mProperty_mTargetTypeName ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -8592,14 +8681,6 @@ class GALGAS_actionBindingListForGeneration_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mActionName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mOutletName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mTargetName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mTargetTypeName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -8966,12 +9047,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boundObjectList ;
 class GALGAS_regularBindingsGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_string mProperty_mOutletName ;
+  public: inline GALGAS_string readProperty_mOutletName (void) const {
+    return mProperty_mOutletName ;
+  }
 
   public: GALGAS_string mProperty_mBindingName ;
+  public: inline GALGAS_string readProperty_mBindingName (void) const {
+    return mProperty_mBindingName ;
+  }
 
   public: GALGAS_boundObjectList mProperty_mBoundObjectList ;
+  public: inline GALGAS_boundObjectList readProperty_mBoundObjectList (void) const {
+    return mProperty_mBoundObjectList ;
+  }
 
   public: GALGAS_string mProperty_mBindingOptionsString ;
+  public: inline GALGAS_string readProperty_mBindingOptionsString (void) const {
+    return mProperty_mBindingOptionsString ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -9038,14 +9131,6 @@ class GALGAS_regularBindingsGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mBindingName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mBindingOptionsString (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_boundObjectList getter_mBoundObjectList (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mOutletName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -9249,6 +9334,7 @@ class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration : public AC_G
 //--------------------------------- Constructor from pointer
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inSourcePtr) ;
 
+//--------------------------------- Property read access
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -9313,10 +9399,19 @@ class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public acStro
 class GALGAS_multipleBindingGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_string mProperty_mOutletName ;
+  public: inline GALGAS_string readProperty_mOutletName (void) const {
+    return mProperty_mOutletName ;
+  }
 
   public: GALGAS_string mProperty_mBindingName ;
+  public: inline GALGAS_string readProperty_mBindingName (void) const {
+    return mProperty_mBindingName ;
+  }
 
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mBoundObjectExpression ;
+  public: inline GALGAS_abstractBooleanMultipleBindingExpressionForGeneration readProperty_mBoundObjectExpression (void) const {
+    return mProperty_mBoundObjectExpression ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -9374,12 +9469,6 @@ class GALGAS_multipleBindingGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mBindingName (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration getter_mBoundObjectExpression (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mOutletName (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 

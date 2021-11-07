@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 abstract refclass @abstractDeclarationAST {
-  @lstring mClassName
+  public var @lstring mClassName
 }
 
 #·······················································································································
@@ -47,7 +47,7 @@ method @abstractDeclarationAST fourthAnalysisPhase
 #·······················································································································
 
 list @declarationListAST {
-  @abstractDeclarationAST mPropertyDeclaration
+  public var @abstractDeclarationAST mPropertyDeclaration
 }
 
 #·······················································································································
@@ -64,7 +64,7 @@ proc sortProperties
       !@declarationListAST outSortedDeclarationListAST
 {
 #------------------------ Enter declarations in graph
-  @declarationPrecedenceGraph declarationPrecedenceGraph = .emptyGraph
+  var @declarationPrecedenceGraph declarationPrecedenceGraph = .emptyGraph
   for (declaration) in inDeclarationListAST do
     [declaration enterInPrecedenceGraph !?declarationPrecedenceGraph]
   end
@@ -77,7 +77,7 @@ proc sortProperties
 #------------------------  Get ordered declaration list
   outSortedDeclarationListAST = {}
   if [declarationPrecedenceGraph undefinedNodeCount] > 0 then
-    for () in  [declarationPrecedenceGraph undefinedNodeReferenceList] do
+    for (mValue) in  [declarationPrecedenceGraph undefinedNodeReferenceList] do
       error mValue : "the property " + mValue.string + " is not defined"
     end
   else

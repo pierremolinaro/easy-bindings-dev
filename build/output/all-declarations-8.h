@@ -46,18 +46,11 @@ class GALGAS_doubleAsDefaultValue_2D_weak : public GALGAS_abstractDefaultValue_2
   public: typeComparisonResult objectCompare (const GALGAS_doubleAsDefaultValue_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_ldouble inArgument0,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_ldouble getter_mValue (C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -326,4 +319,69 @@ void routine_generateEBManagedObjectContext (const class GALGAS_entityListForGen
                                              class GALGAS_stringset & ioArgument2,
                                              class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeOutlets'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_analyzeOutlets (const class GALGAS_bool constinArgument0,
+                             const class GALGAS_propertyMap constinArgument1,
+                             const class GALGAS_propertyMap constinArgument2,
+                             const class GALGAS_string constinArgument3,
+                             const class GALGAS_semanticContext constinArgument4,
+                             const class GALGAS_outletDeclarationList constinArgument5,
+                             const class GALGAS_propertyMap constinArgument6,
+                             const class GALGAS_actionMap constinArgument7,
+                             const class GALGAS_string constinArgument8,
+                             class GALGAS_generationStruct & ioArgument9,
+                             class GALGAS_regularBindingsGenerationList & outArgument10,
+                             class GALGAS_multipleBindingGenerationList & outArgument11,
+                             class GALGAS_actionBindingListForGeneration & outArgument12,
+                             class GALGAS_decoratedOutletMap & outArgument13,
+                             class GALGAS_tableViewBindingGenerationList & outArgument14,
+                             class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument15,
+                             class C_Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'xibDocumentGenerationTemplate'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_xibDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_xibDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_xibDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_xibDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_xibDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_xibDocumentGenerationTemplate ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'xibDocumentGenerationTemplate documentImplementation'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_xibDocumentGenerationTemplate_documentImplementation (class C_Compiler * inCompiler,
+                                                                                        const class GALGAS_string & in_DOCUMENT_5F_NAME,
+                                                                                        const class GALGAS_string & in_ROOT_5F_ENTITY_5F_NAME,
+                                                                                        const class GALGAS_propertyGenerationList & in_DOCUMENT_5F_PROPERTY_5F_LIST,
+                                                                                        const class GALGAS_decoratedOutletMap & in_OUTLET_5F_GENERATION_5F_MAP,
+                                                                                        const class GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST,
+                                                                                        const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
+                                                                                        const class GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST,
+                                                                                        const class GALGAS_tableViewBindingGenerationList & in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST,
+                                                                                        const class GALGAS_ebViewGraphicControllerBindingGenerationList & in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST
+                                                                                        COMMA_LOCATION_ARGS) ;
 

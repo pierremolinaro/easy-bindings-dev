@@ -24,7 +24,7 @@ final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : ReadOnlyAbs
   //····················································································································
 
 %
-for () in ATTRIBUTE_VALUES do
+for (mValue0 mValue1) in ATTRIBUTE_VALUES do
 %  private let %!mValue0% = %!mValue1%\n%
 end
 %
@@ -74,7 +74,7 @@ end
   //--- Set sort descriptors
     self.mSortDescriptorArray = []
 %
-for () in SORTED_COLUMNS do
+for (mColumnName mSortPropertyKind mObservablePropertyForSorting) in SORTED_COLUMNS do
   %    self.mSortDescriptorArray.append (NSSortDescriptor (key: "%!mColumnName%", ascending: true))\n%
 end
 %    for tableView in self.mTableViewArray {
@@ -96,12 +96,12 @@ else
   %      sortCallback: nil,\n%
 end
 %      addSortObserversCallback: { (observer) in
-%for () in OBSERVED_PROPERTIES_FOR_SORTING do
+%for (key) in OBSERVED_PROPERTIES_FOR_SORTING do
   %        inModel.addEBObserverOf_%!key% (observer)\n%
 end
 %      },
       removeSortObserversCallback: {(observer) in
-%for () in OBSERVED_PROPERTIES_FOR_SORTING do
+%for (key) in OBSERVED_PROPERTIES_FOR_SORTING do
   %        inModel.removeEBObserverOf_%!key% (observer)\n%
 end
 %      }
@@ -194,7 +194,7 @@ if [SORTED_COLUMNS length] > 0 then
   func isOrderedBefore (_ left : %!ELEMENT_TYPE_NAME%, _ right : %!ELEMENT_TYPE_NAME%) -> Bool {
     var order = ComparisonResult.orderedSame
     for sortDescriptor in self.mSortDescriptorArray {\n%
-for () in SORTED_COLUMNS
+for (mColumnName mSortPropertyKind mObservablePropertyForSorting) in SORTED_COLUMNS
   before
   %      %
   do
@@ -245,7 +245,7 @@ end
       let selectionTableViewController = Selection_EBTableView_controller (delegate:self, tableView:tableView)
       self.mInternalSelectedArrayProperty.addEBObserver (selectionTableViewController)
       self.mTableViewSelectionControllerArray.append (selectionTableViewController)
-%for () in BOUND_COLUMNS do
+%for (mColumnName mColumnOutletTypeName mRunAction mRegularBindingsGenerationList) in BOUND_COLUMNS do
 %    //--- Check '%!mColumnName%' column
       if let column : NSTableColumn = tableView.tableColumn (withIdentifier: NSUserInterfaceItemIdentifier (rawValue: "%!mColumnName%")) {
         column.sortDescriptorPrototype = nil
@@ -512,7 +512,7 @@ else
           }
           let object = v [inRowIndex]
           %
-for () in BOUND_COLUMNS
+for (mColumnName mColumnOutletTypeName mRunAction mRegularBindingsGenerationList) in BOUND_COLUMNS
   do
     %if tableColumnIdentifier.rawValue == "%!mColumnName%", let cell = result as? %!mColumnOutletTypeName%_TableViewCell {\n%
     %            cell.mUnbindFunction = { [weak cell] in\n%
@@ -520,7 +520,7 @@ for () in BOUND_COLUMNS
     %              cell?.mCellOutlet?.target = nil\n%
     %              cell?.mCellOutlet?.action = nil\n%
     end
-    for () in mRegularBindingsGenerationList do
+    for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in mRegularBindingsGenerationList do
     %              cell?.mCellOutlet?.unbind_%!mBindingName% ()\n%
     end
     %            }\n%
@@ -529,9 +529,9 @@ for () in BOUND_COLUMNS
     %            cell.mCellOutlet?.target = object\n%
     %            cell.mCellOutlet?.action = #selector (%!ELEMENT_TYPE_NAME%.%!mRunAction%(_:))\n%
     end
-    for () in mRegularBindingsGenerationList do
+    for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in mRegularBindingsGenerationList do
     %            cell.mCellOutlet?.bind_%!mBindingName% (%
-      for () in mBoundObjectList
+      for (mBoundObjectString mKind) in mBoundObjectList
         do !mBoundObjectString
         between %, %
       end

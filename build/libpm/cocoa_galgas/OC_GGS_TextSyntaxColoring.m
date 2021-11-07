@@ -265,9 +265,9 @@
           if (color == nil) {
             color = [NSColor whiteColor] ;
           }
-          [attributeDictionary setObject:color forKey:NSBackgroundColorAttributeName] ;
+          [attributeDictionary setObject:color forKey: NSBackgroundColorAttributeName] ;
         }else{
-          [attributeDictionary setObject:[NSColor blackColor] forKey:NSBackgroundColorAttributeName] ;
+          [attributeDictionary setObject:[NSColor blackColor] forKey: NSBackgroundColorAttributeName] ;
         }
       }
     //--- Add font attribute   
@@ -275,26 +275,26 @@
       data = [defaults dataForKey:name] ;
       if (data != nil) {
         NSFont * font = (NSFont *) [NSUnarchiver unarchiveObjectWithData:data] ;
-        [attributeDictionary setObject:font forKey:NSFontAttributeName] ;
+        [attributeDictionary setObject:font forKey: NSFontAttributeName] ;
       }
     //--- Add dictionary
-      [mFontAttributesDictionaryArray addObject:attributeDictionary] ;
+      [mFontAttributesDictionaryArray addObject: attributeDictionary] ;
     }
   //--- Max line height
     [self computeMaxLineHeight:NULL] ;
   //---
     [[NSNotificationCenter defaultCenter]
-      addObserver:self
-      selector:@selector(textStorageDidProcessEditingNotification:)
+      addObserver: self
+      selector: @selector(textStorageDidProcessEditingNotification:)
       name: NSTextStorageDidProcessEditingNotification
-      object:mSourceTextStorage
+      object: mSourceTextStorage
     ] ;
   //--- Enter source string
     [mSourceTextStorage beginEditing] ;
-    [mSourceTextStorage replaceCharactersInRange:NSMakeRange (0, mSourceTextStorage.length) withString:inSource] ;
+    [mSourceTextStorage replaceCharactersInRange: NSMakeRange (0, mSourceTextStorage.length) withString: inSource] ;
     [mSourceTextStorage endEditing] ;
   //---
-    [self setIssueArray:inIssueArray] ;
+    [self setIssueArray: inIssueArray] ;
   }
   return self ;
 }
@@ -306,25 +306,25 @@
     NSLog (@"%s", __PRETTY_FUNCTION__) ;
   #endif
   [[NSNotificationCenter defaultCenter]
-    removeObserver:self
-    name:NSUndoManagerCheckpointNotification
-    object:mUndoManager
+    removeObserver: self
+    name: NSUndoManagerCheckpointNotification
+    object: mUndoManager
   ] ;
   [[NSNotificationCenter defaultCenter]
-    removeObserver:self
-    name:NSUndoManagerDidUndoChangeNotification
-    object:mUndoManager
+    removeObserver: self
+    name: NSUndoManagerDidUndoChangeNotification
+    object: mUndoManager
   ] ;
   [[NSNotificationCenter defaultCenter]
-    removeObserver:self
+    removeObserver: self
     name:NSUndoManagerDidRedoChangeNotification
-    object:mUndoManager
+    object: mUndoManager
   ] ;
 //---
   [[NSNotificationCenter defaultCenter]
-    removeObserver:self
+    removeObserver: self
     name: NSTextStorageDidProcessEditingNotification
-    object:mSourceTextStorage
+    object: mSourceTextStorage
   ] ;
 //---
 //  NSLog (@"%s:observationInfo %@", __PRETTY_FUNCTION__, (id) self.observationInfo) ;
@@ -391,12 +391,12 @@
     nil
   ] ;
   [mUndoManager
-    registerUndoWithTarget:self
-    selector:@selector (replaceUsingDictionary:)
-    object:d
+    registerUndoWithTarget: self
+    selector: @selector (replaceUsingDictionary:)
+    object: d
   ] ;
   [mSourceTextStorage beginEditing] ;
-  [mSourceTextStorage replaceCharactersInRange:inRange withString:inReplaceString] ;
+  [mSourceTextStorage replaceCharactersInRange: inRange withString: inReplaceString] ;
   [mSourceTextStorage endEditing] ;
 }
 

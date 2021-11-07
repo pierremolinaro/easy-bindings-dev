@@ -28,7 +28,7 @@
  <string>EBApplication</string>
  <key>CFBundleDocumentTypes</key>
  <array>
-%for () in HANDLED_EXTENSION_SET do
+%for (key) in HANDLED_EXTENSION_SET do
 %  <dict>
    <key>CFBundleTypeIconFile</key>
    <string>%!key%_icns</string>

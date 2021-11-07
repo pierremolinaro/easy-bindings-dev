@@ -8,7 +8,7 @@ import Cocoa
 
 enum %!ENUM_TYPE_NAME% : Int, EnumPropertyProtocol, Hashable, CaseIterable {
 %
-for () in CONSTANT_ORDERED_LIST do index idx
+for (mValue) in CONSTANT_ORDERED_LIST do index idx
    %  case %!mValue.string% = %![idx string]%\n%
 end
 %
@@ -18,7 +18,7 @@ end
   init? (string : String) {
     switch string {
 %
-for () in CONSTANT_ORDERED_LIST do index idx
+for (mValue) in CONSTANT_ORDERED_LIST do index idx
    %      case "%!mValue.string%" : self = .%!mValue.string% // %![idx string]%\n%
 end
 %      case _ : return nil
@@ -30,20 +30,20 @@ end
   func descriptionForExplorer () -> String {
     switch self {
 %
-for () in CONSTANT_ORDERED_LIST do index idx
+for (mValue) in CONSTANT_ORDERED_LIST do index idx
    %      case .%!mValue.string% : return "%!mValue.string%" // %![idx string]%\n%
 end
 %    }
   }
 
 %
-for () in FUNCTION_MAP do
+for (lkey mAssociationSortedList) in FUNCTION_MAP do
 %  //····················································································································\n%
 %  // Function %!lkey.string%\n%
 %  //····················································································································\n\n%
 %  static func %!lkey.string% () -> [String] {\n%
 %    return [%
-for () in mAssociationSortedList
+for (mIndex mAssociatedString) in mAssociationSortedList
   do ![mAssociatedString utf8Representation]
   between %, %
 end

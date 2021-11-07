@@ -8,38 +8,38 @@ abstract refclass @abstractDefaultValue {
 #·······················································································································
 
 refclass @boolAsDefaultValue : @abstractDefaultValue {
-  @lbool mValue
+  public var @lbool mValue
 }
 
 #·······················································································································
 
 refclass @doubleAsDefaultValue : @abstractDefaultValue {
-  @ldouble mValue
+  public var @ldouble mValue
 }
 
 #·······················································································································
 
 refclass @integerAsDefaultValue : @abstractDefaultValue {
-  @luint mValue
-  @bool mNegative
+  public var @luint mValue
+  public var @bool mNegative
 }
 
 #·······················································································································
 
 refclass @stringAsDefaultValue : @abstractDefaultValue {
-  @lstring mValue
+  public var @lstring mValue
 }
 
 #·······················································································································
 
 refclass @identifierAsDefaultValue : @abstractDefaultValue {
-  @lstring mValue
+  public var @lstring mValue
 }
 
 #·······················································································································
 
 refclass @prefsAsDefaultValue : @abstractDefaultValue {
-  @lstring mPrefPropertyName
+  public var @lstring mPrefPropertyName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -109,8 +109,8 @@ override method @boolAsDefaultValue analyzeDefaultValueType
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
-  @bool found = false
-  for () in  inAttributeActualTypeList while not found do
+  var @bool found = false
+  for (mType) in  inAttributeActualTypeList while not found do
     switch mType
     case boolType :
       outSwiftDefaultValueAsString = if self.mValue.bool then "true" else "false" end
@@ -137,8 +137,8 @@ override method @integerAsDefaultValue analyzeDefaultValueType
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
-  @bool found = false
-  for () in  inAttributeActualTypeList while not found do
+  var @bool found = false
+  for (mType) in  inAttributeActualTypeList while not found do
     switch mType
     case integerType :
       outSwiftDefaultValueAsString = if self.mNegative then "-" else "" end + [self.mValue.uint string]
@@ -173,8 +173,8 @@ override method @doubleAsDefaultValue analyzeDefaultValueType
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
-  @bool found = false
-  for () in  inAttributeActualTypeList while not found do
+  var @bool found = false
+  for (mType) in  inAttributeActualTypeList while not found do
     switch mType
     case doubleType :
       outSwiftDefaultValueAsString = [self.mValue.double string]
@@ -201,8 +201,8 @@ override method @stringAsDefaultValue analyzeDefaultValueType
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
-  @bool found = false
-  for () in  inAttributeActualTypeList while not found do
+  var @bool found = false
+  for (mType) in  inAttributeActualTypeList while not found do
     switch mType
     case stringType :
       outSwiftDefaultValueAsString = "\""+ self.mValue.string + "\""
@@ -283,8 +283,8 @@ override method @identifierAsDefaultValue analyzeDefaultValueType
   !@string outSwiftDefaultValueAsString
 {
   outSwiftDefaultValueAsString = ""
-  @bool found = false
-  for () in inAttributeActualTypeList while not found do
+  var @bool found = false
+  for (mType) in inAttributeActualTypeList while not found do
     switch mType 
     case dateType :
       found = true

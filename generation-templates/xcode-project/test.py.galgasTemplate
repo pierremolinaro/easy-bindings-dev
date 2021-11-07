@@ -39,7 +39,7 @@ def setUpPreferencesWindow (application) :
   time.sleep (0.5)
   window = application.windows ('%!PROJECT_NAME%')[0]
 %
-for () in OUTLET_IDENTIFIER_LIST do
+for (mValue) in OUTLET_IDENTIFIER_LIST do
 %  global %!mValue%\n%
 %  %!mValue% = window.findFirst (AXIdentifier='%!mValue%')\n%
 end

@@ -12,11 +12,11 @@ let ENTITY_KEY = "--entity"
 
 fileprivate let kEntityDictionary : [String : EBManagedObject.Type] = [
 %
-for () in ENTITY_LIST
+for (mEntityName mObsoleteEntityNames) in ENTITY_LIST
 do
   %  "%!mEntityName%" : %!mEntityName%.self%
-  for () in mObsoleteEntityNames do
-    %,\n  "%![mValue string]%" : %!mEntityName%.self%
+  for (mValue) in mObsoleteEntityNames do
+    %,\n  "%!mValue.string%" : %!mEntityName%.self%
   end
 between
   %,\n%

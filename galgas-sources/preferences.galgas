@@ -3,18 +3,18 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 struct @prefDeclaration {
-  @outletDeclarationList mOutletDeclarationList
-  @simpleStoredPropertyList mSimpleStoredAttributeList
-  @lstringlist mActionDeclarationList
-  @externSwiftFunctionList mExternSwiftFunctionList
-  @stringset mSignatureList
-  @mainXibDescriptorList mMainXibDescriptorList
+  public var @outletDeclarationList mOutletDeclarationList
+  public var @simpleStoredPropertyList mSimpleStoredAttributeList
+  public var @lstringlist mActionDeclarationList
+  public var @externSwiftFunctionList mExternSwiftFunctionList
+  public var @stringset mSignatureList
+  public var @mainXibDescriptorList mMainXibDescriptorList
 }
 
 #·······················································································································
 
 refclass @prefsDeclarationAST : @abstractDeclarationAST {
-  @prefDeclaration mDeclaration
+  public var @prefDeclaration mDeclaration
 }
 
 #·······················································································································
@@ -47,13 +47,13 @@ syntax extension easyBindings_syntax {
     $prefs$
     let prefs = @lstring.new {!preferencesName () !.here}
     ${$
-    @stringset signatureList = {}
-    @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    var @stringset signatureList = {}
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     repeat
     while
       <action_declaration> !?ioDeclarationAST.mPreferences.mActionDeclarationList
     while
-      @simpleStoredPropertyList simpleStoredPropertyList = {}
+      var @simpleStoredPropertyList simpleStoredPropertyList = {}
       <simple_stored_declaration>
         !prefs
         !?simpleStoredPropertyList
@@ -95,7 +95,7 @@ override method @prefsDeclarationAST firstAnalysisPhase
     !actionMap
     !{}
   ]
-  for () in actionMap do
+  for (lkey) in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
       !self.mClassName.string
       !lkey.string
@@ -114,8 +114,8 @@ override method @prefsDeclarationAST fourthAnalysisPhase
 {
 #--- Analyze extern functions
   let @stringset availableCallers = {!"awakeFromNib", !"init"}
-  @externFunctionMap externFunctionMap = {}
-  for () in self.mDeclaration.mExternSwiftFunctionList do
+  var @externFunctionMap externFunctionMap = {}
+  for (mExternSwiftFunctionName mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
     [!?externFunctionMap insertKey !mExternSwiftFunctionName]
     if not [availableCallers hasKey !mCallerName.string] then
       var s = "invalid caller; available callers:"
@@ -171,15 +171,15 @@ override method @prefsDeclarationAST fourthAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @preferencesForGeneration : @abstractFileGeneration {
-  @propertyGenerationList mPropertyListForGeneration
-  @mainXibDescriptorList mMainXibDescriptorList
-  @regularBindingsGenerationList mRegularBindingsGenerationList
-  @multipleBindingGenerationList mMultipleBindingGenerationList
-  @actionBindingListForGeneration mActionBindingListForGeneration
-  @decoratedOutletMap mOutletMap
-  @externSwiftFunctionList mExternSwiftFunctionList
-  @tableViewBindingGenerationList mTableViewBindingGenerationList
-  @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public var @propertyGenerationList mPropertyListForGeneration
+  public var @mainXibDescriptorList mMainXibDescriptorList
+  public var @regularBindingsGenerationList mRegularBindingsGenerationList
+  public var @multipleBindingGenerationList mMultipleBindingGenerationList
+  public var @actionBindingListForGeneration mActionBindingListForGeneration
+  public var @decoratedOutletMap mOutletMap
+  public var @externSwiftFunctionList mExternSwiftFunctionList
+  public var @tableViewBindingGenerationList mTableViewBindingGenerationList
+  public var @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
 }
 
 #·······················································································································

@@ -3,9 +3,9 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @regularBindingList {
-  @lstring mBindingName
-  @observablePropertyList mObservablePropertyList
-  @bindingOptionList mBindingOptionList
+  public var @lstring mBindingName
+  public var @observablePropertyList mObservablePropertyList
+  public var @bindingOptionList mBindingOptionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

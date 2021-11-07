@@ -3,15 +3,15 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
-  @lstring mRootEntityName
-  @lstring mMainViewName
-  @outletDeclarationList mOutletDeclarationList
-  @lstringlist mActionDeclarationList
-  @arrayControllerBindingListAST mArrayControllerBindingListAST
-  @astViewDeclarationList mViewDeclarationList
-  @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
-  @string mCustomSuperClassName # Empty String if no custom superclass
-  @astAutoLayoutOutletLinkerList mOutletLinkerList
+  public var @lstring mRootEntityName
+  public var @lstring mMainViewName
+  public var @outletDeclarationList mOutletDeclarationList
+  public var @lstringlist mActionDeclarationList
+  public var @arrayControllerBindingListAST mArrayControllerBindingListAST
+  public var @astViewDeclarationList mViewDeclarationList
+  public var @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
+  public var @string mCustomSuperClassName # Empty String if no custom superclass
+  public var @astAutoLayoutOutletLinkerList mOutletLinkerList
 }
 
 #·······················································································································
@@ -24,21 +24,21 @@ enum @astAutoLayoutToolbarItem {
 #·······················································································································
 
 list @astAutoLayoutToolbarItemList {
-  @astAutoLayoutToolbarItem mItem
+  public var @astAutoLayoutToolbarItem mItem
 }
 
 #·······················································································································
 
 list @astAutoLayoutOutletLinkerList {
-  @lstring mLinkerName
-  @lstringlist mOutletNameList
+  public var @lstring mLinkerName
+  public var @lstringlist mOutletNameList
 }
 
 #·······················································································································
 
 list @autoLayoutOutletLinkerGenerationList {
-  @string mLinkerName
-  @2stringlist mOutletNameAndTypeNameList
+  public var @string mLinkerName
+  public var @2stringlist mOutletNameAndTypeNameList
 }
 
 #·······················································································································
@@ -65,7 +65,7 @@ syntax extension easyBindings_syntax {
   rule <document_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $autoLayoutDocument$
     $Identifier$ ?let @lstring documentName
-    @string customSuperClassName
+    var @string customSuperClassName
     select
       customSuperClassName = ""
     or
@@ -78,14 +78,14 @@ syntax extension easyBindings_syntax {
     $stackView$
     $identifier$ ?let @lstring mainViewName
     ${$
-    @outletDeclarationList outletDeclarationList = {}
-    @regularBindingList bindingList = {}
-    @lstringlist actionDeclarationList = {}
-    @stringset signatureList = {}
-    @arrayControllerBindingListAST arrayControllerBindingListAST = {}
-    @astViewDeclarationList viewDeclarationList = {}
-    @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
-    @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = {}
+    var @outletDeclarationList outletDeclarationList = {}
+    var @regularBindingList bindingList = {}
+    var @lstringlist actionDeclarationList = {}
+    var @stringset signatureList = {}
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    var @astViewDeclarationList viewDeclarationList = {}
+    var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
+    var @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = {}
     repeat
     while
       <stack_view_declaration> !?viewDeclarationList
@@ -113,7 +113,7 @@ syntax extension easyBindings_syntax {
       $linker$
       $identifier$ ?let linkerName
       $($
-      @lstringlist outletNameList = {}
+      var @lstringlist outletNameList = {}
       repeat
         $identifier$ ?let outletName
         outletNameList += !outletName
@@ -166,7 +166,7 @@ override method @autoLayoutDocumentDeclarationAST firstAnalysisPhase
     !actionMap
     !{}
   ]
-  for () in actionMap do
+  for (lkey) in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration.new {
       !self.mClassName.string
       !lkey.string
@@ -246,11 +246,11 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     end
   end
 #--- Check auto layout view declarations
-  @autoLayoutViewDeclarationMap viewDeclarationMap = {}
-  @viewGenerationList viewGenerationList = {}
-  @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
-  @autoLayoutConfiguratorMap configuratorMap = {}
-  @autoLayoutOutletMap autoLayoutOutletMap = {}
+  var @autoLayoutViewDeclarationMap viewDeclarationMap = {}
+  var @viewGenerationList viewGenerationList = {}
+  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
+  var @autoLayoutConfiguratorMap configuratorMap = {}
+  var @autoLayoutOutletMap autoLayoutOutletMap = {}
   for (viewName viewDeclaration) in self.mViewDeclarationList do
     [!?viewDeclarationMap insertKey !viewName]
     [viewDeclaration check
@@ -273,7 +273,7 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
   end
   [viewDeclarationMap searchKey !self.mMainViewName]
 #--- Analyze toolbar item declarations
-  @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = {}
+  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = {}
   for (item) in self.mAutoLayoutToolbarItemList do
     switch item
     case space :
@@ -300,14 +300,14 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
 #--- Code generation
   ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
 #--- Check outlet linker
-  @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = {}
-  @stringset linkerNameSet = {}
+  var @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = {}
+  var @stringset linkerNameSet = {}
   for (linkerName ouletNameList) in self.mOutletLinkerList do
     if [linkerNameSet hasKey !linkerName.string] then
       error linkerName : "duplicated linker name"
     end
     linkerNameSet += !linkerName.string
-    @2stringlist outletNameAndTypeNameList = {}
+    var @2stringlist outletNameAndTypeNameList = {}
     for (outletName) in ouletNameList do
       [autoLayoutOutletMap searchKey !outletName ?let outletTypeName]
       outletNameAndTypeNameList += !outletName.string !outletTypeName
@@ -341,23 +341,23 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
-  @string mDocumentName
-  @string mRootEntityName
-  @string mMainViewName
-  @propertyGenerationList mDocumentPropertyGenearionList
-  @decoratedOutletMap mOutletMap
-  @autoLayoutOutletMap mAutoLayoutOutletMap
-  @actionBindingListForGeneration mTargetActionList 
-  @regularBindingsGenerationList mRegularBindingsGenerationList 
-  @multipleBindingGenerationList multipleBindingGenerationList
-  @tableViewBindingGenerationList mTableViewBindingGenerationList
-  @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
-  @viewGenerationList mViewDeclarationList
-  @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
-  @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
-  @autoLayoutConfiguratorMap mConfiguratorMap
-  @string mCustomSuperClassName # Empty String if no custom superclass
-  @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
+  public var @string mDocumentName
+  public var @string mRootEntityName
+  public var @string mMainViewName
+  public var @propertyGenerationList mDocumentPropertyGenearionList
+  public var @decoratedOutletMap mOutletMap
+  public var @autoLayoutOutletMap mAutoLayoutOutletMap
+  public var @actionBindingListForGeneration mTargetActionList 
+  public var @regularBindingsGenerationList mRegularBindingsGenerationList 
+  public var @multipleBindingGenerationList multipleBindingGenerationList
+  public var @tableViewBindingGenerationList mTableViewBindingGenerationList
+  public var @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public var @viewGenerationList mViewDeclarationList
+  public var @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
+  public var @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
+  public var @autoLayoutConfiguratorMap mConfiguratorMap
+  public var @string mCustomSuperClassName # Empty String if no custom superclass
+  public var @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
 }
 
 #·······················································································································
@@ -370,7 +370,7 @@ enum @autoLayoutToolbarItemGeneration {
 #·······················································································································
 
 list @autoLayoutToolbarItemGenerationList {
-  @autoLayoutToolbarItemGeneration mItem
+  public var @autoLayoutToolbarItemGeneration mItem
 }
 
 #·······················································································································

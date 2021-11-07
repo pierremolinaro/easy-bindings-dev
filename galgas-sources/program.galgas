@@ -3,14 +3,14 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 struct @semanticContext {
-  @classMap mClassMap
-  @outletClassMap mOutletClassMap
-  @bindingSpecificationMap mBindingSpecificationMap
-  @autolayoutViewClassMap mAutolayoutViewClassMap
-  @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap
-  @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap
-  @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap
-  @enumerationFunctionListAST mEnumerationFunctionListAST
+  public var @classMap mClassMap
+  public var @outletClassMap mOutletClassMap
+  public var @bindingSpecificationMap mBindingSpecificationMap
+  public var @autolayoutViewClassMap mAutolayoutViewClassMap
+  public var @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap
+  public var @enumerationFunctionListAST mEnumerationFunctionListAST
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ case . "eb"
   grammar easyBindings_grammar
   ?sourceFilePath:@lstring inSourceFile
 {
-  @astDeclarationStruct declarationStruct = .default
+  var @astDeclarationStruct declarationStruct = .default
 #----------------------------------------- Parse predefined outlets files
   grammar easyBindings_grammar on ([filewrapper predefinedOutletClasses.sourceFile], "")
     !?declarationStruct
@@ -39,11 +39,11 @@ case . "eb"
 #----------------------------------------- Sort properties
   sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let sortedDeclarationListAST)
 #----------------------------------------- Semantic Analysis, first phase
-  @semanticContext semanticContext = .default
+  var @semanticContext semanticContext = .default
   semanticContext.mAutoLayoutVStackFunctionMap = declarationStruct.mAutoLayoutVStackFunctionMap
   semanticContext.mAutoLayoutHStackFunctionMap = declarationStruct.mAutoLayoutHStackFunctionMap
   semanticContext.mEnumerationFunctionListAST = declarationStruct.mEnumerationFunctionListAST
-  @generationStruct generation = .default
+  var @generationStruct generation = .default
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     [declaration firstAnalysisPhase !?semanticContext !?generation]
   end

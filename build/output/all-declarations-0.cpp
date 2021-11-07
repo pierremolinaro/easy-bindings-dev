@@ -9829,7 +9829,7 @@ GALGAS_enumFuncMap GALGAS_enumFuncMap::extractObject (const GALGAS_object & inOb
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//   Object comparison                                                                           
+// @abstractFileGeneration reference class
 //----------------------------------------------------------------------------------------------------------------------
 
 

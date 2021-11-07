@@ -9,7 +9,7 @@ import Cocoa
 @objc(%!DOCUMENT_NAME%) class %!DOCUMENT_NAME% : EBManagedXibDocument {
 
 %
-for () in DOCUMENT_PROPERTY_LIST do
+for (mProperty) in DOCUMENT_PROPERTY_LIST do
   ![mProperty propertyDeclarationCode !false ![@stringset emptySet]]
 end
 %
@@ -18,7 +18,7 @@ end
   //····················································································································
 
 %
-for () in OUTLET_GENERATION_MAP do
+for (lkey mOutletTypeName) in OUTLET_GENERATION_MAP do
 %  @IBOutlet final var %!lkey.string% : %!mOutletTypeName%? = nil\n%
 end
 %
@@ -26,7 +26,7 @@ end
   //    Multiple bindings controllers
   //····················································································································
 
-%for () in MULTIPLE_BINDING_GENERATION_LIST do
+%for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
   %  final var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%? = nil\n%
 end
 %
@@ -62,7 +62,7 @@ end
   #if BUILD_OBJECT_EXPLORER
     override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
 %
-for () in DOCUMENT_PROPERTY_LIST do
+for (mProperty) in DOCUMENT_PROPERTY_LIST do
   ![mProperty populateExplorerWindowCode]
 end
 %    //---
@@ -98,7 +98,7 @@ end
 
   private func checkOutletConnections () {
     let start = Date ()
-%for () in OUTLET_GENERATION_MAP do
+%for (lkey mOutletTypeName) in OUTLET_GENERATION_MAP do
 %    checkOutletConnection (self.%!lkey.string%, "%!lkey.string%", %!mOutletTypeName%.self, #file, #line)\n%
 end
 %    if LOG_OPERATION_DURATION {
@@ -113,7 +113,7 @@ end
     let start = Date ()
     var opIdx = 0
 %
-for () in DOCUMENT_PROPERTY_LIST do
+for (mProperty) in DOCUMENT_PROPERTY_LIST do
   ![mProperty configurationCode !false]
 %    if LOG_OPERATION_DURATION {
       Swift.print ("  op\(opIdx) \(Int (Date ().timeIntervalSince (start) * 1000.0)) ms")
@@ -132,19 +132,19 @@ for () in DOCUMENT_PROPERTY_LIST do
     let start = Date ()
   //--------------------------- Install table view bindings
 %
-for () in TABLE_VALUE_BINDING_GENERATION_LIST do
+for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
   %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
 %  //--------------------------- Install ebView bindings
 %
-for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    self.%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
 end
 %  //--------------------------- Install regular bindings
 %
-for () in REGULAR_BINDINGS_GENERATION_LIST do
+for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
   %    self.%!mOutletName%?.bind_%!mBindingName% (%
-  for () in mBoundObjectList
+  for (mBoundObjectString mKind) in mBoundObjectList
     do !mBoundObjectString
     between %, %
   end
@@ -152,7 +152,7 @@ for () in REGULAR_BINDINGS_GENERATION_LIST do
 end
 %  //--------------------------- Install multiple bindings
 %
-for () in MULTIPLE_BINDING_GENERATION_LIST do
+for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
   %    do{\n%
   %      let controller = MultipleBindingController_%!mBindingName% (\n%
   %        computeFunction: %![mBoundObjectExpression expressionString]%,\n%
@@ -172,7 +172,7 @@ end
   final private func setTargetsAndActions () {
      let start = Date ()
    //--------------------------- Set targets / actions
-%for () in TARGET_ACTION_LIST do
+%for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
 %    self.%!mOutletName%?.target = %!mTargetName%\n%
 %    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
@@ -210,12 +210,12 @@ end
     super.removeUserInterface ()
   //--------------------------- Unbind regular bindings
 %
-for () in REGULAR_BINDINGS_GENERATION_LIST do
+for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
   %    self.%!mOutletName%?.unbind_%!mBindingName% ()\n%
 end
 %  //--------------------------- Unbind multiple bindings
 %
-for () in MULTIPLE_BINDING_GENERATION_LIST do
+for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
 #  for () in [mBoundObjectExpression observedModelSet] do
 #  %    %!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
 #  end
@@ -223,27 +223,27 @@ for () in MULTIPLE_BINDING_GENERATION_LIST do
 end
 %  //--------------------------- Unbind array controllers
 %
-for () in TABLE_VALUE_BINDING_GENERATION_LIST do
+for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
   %    self.%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
-for () in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
+for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
 end
-for () in DOCUMENT_PROPERTY_LIST do
+for (mProperty) in DOCUMENT_PROPERTY_LIST do
   ![mProperty terminationCode !false]
 end
 %  //--------------------------- Remove targets / actions
-%for () in TARGET_ACTION_LIST do
+%for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
 %    self.%!mOutletName%?.target = nil\n%
 end
 %  //--------------------------- Clean up outlets
 %
-for () in OUTLET_GENERATION_MAP do
+for (lkey mOutletTypeName) in OUTLET_GENERATION_MAP do
    %    self.%!lkey.string%?.ebCleanUp ()\n%
 end
 %  //--------------------------- Detach outlets
 %
-for () in OUTLET_GENERATION_MAP do
+for (lkey mOutletTypeName) in OUTLET_GENERATION_MAP do
    %    self.%!lkey.string% = nil\n%
 end
 %  }

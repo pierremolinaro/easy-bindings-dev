@@ -11,10 +11,10 @@ enum @toOneOppositeRelationship {
 #·······················································································································
 
 refclass @toOneRelationshipAST : @abstractDeclarationAST {
-  @lstring mDestinationEntityName
-  @lstring mToOneRelationshipName
-  @toOneOppositeRelationship mOpposite
-  @bool mUsedForSignature
+  public var @lstring mDestinationEntityName
+  public var @lstring mToOneRelationshipName
+  public var @toOneOppositeRelationship mOpposite
+  public var @bool mUsedForSignature
 }
 
 #·······················································································································
@@ -42,7 +42,7 @@ syntax extension easyBindings_syntax {
 
   rule <toOne_relationship> ?let @lstring inCurrentEntity ?!@astDeclarationStruct ioDeclarationAST {
     $toOne$
-    @bool usedForSignature = false
+    var @bool usedForSignature = false
     repeat
     while
       $@attribute$ ?let attributeName
@@ -57,7 +57,7 @@ syntax extension easyBindings_syntax {
     end
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
-    @toOneOppositeRelationship opposite
+    var @toOneOppositeRelationship opposite
     select
       opposite = .none
     or
@@ -156,17 +156,17 @@ override method @toOneRelationshipAST thirdAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @toOnePropertyGeneration : @propertyGeneration {
-  @string mClassName
-  @propertyKind mRelationshipType
-  @toOneOppositeRelationship mOpposite
-  @propertyMap mDestinationEntityObservablePropertyMap
-  @bool mUsedForSignature
+  public var @string mClassName
+  public var @propertyKind mRelationshipType
+  public var @toOneOppositeRelationship mOpposite
+  public var @propertyMap mDestinationEntityObservablePropertyMap
+  public var @bool mUsedForSignature
 }
 
 #·······················································································································
 
 list @toOnePropertyGenerationList {
-  @toOnePropertyGeneration mProperty
+  public var @toOnePropertyGeneration mProperty
 }
 
 #·······················································································································

@@ -15,7 +15,7 @@ final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : EBSwiftBase
   //····················································································································
 
 %
-for () in ATTRIBUTE_VALUES do
+for (mValue0 mValue1) in ATTRIBUTE_VALUES do
 %  private let %!mValue0% = %!mValue1%\n%
 end
 %
@@ -55,12 +55,12 @@ else
   %      sortCallback: nil,\n%
 end
 %      addSortObserversCallback: { (observer) in
-%for () in OBSERVED_PROPERTIES_FOR_SORTING do
+%for (key) in OBSERVED_PROPERTIES_FOR_SORTING do
   %        inModel.addEBObserverOf_%!key% (observer)\n%
 end
 %      },
       removeSortObserversCallback: {(observer) in
-%for () in OBSERVED_PROPERTIES_FOR_SORTING do
+%for (key) in OBSERVED_PROPERTIES_FOR_SORTING do
   %        inModel.removeEBObserverOf_%!key% (observer)\n%
 end
 %      }
@@ -151,7 +151,7 @@ if [SORTED_COLUMNS length] > 0 then
     super.init ()
     self.sortedArray_property.addEBObserver (self.mSortedArrayValuesObserver)
 %
-for () in BOUND_COLUMNS do
+for (mEditable mSortPropertyName mDisplayedPropertyName mColumnObjectTypeName mRunAction mActualParameterList) in BOUND_COLUMNS do
 %  //--- Observe '%!mDisplayedPropertyName%' column
     self.sortedArray_property.addEBObserverOf_%!mDisplayedPropertyName% (self.mSortedArrayValuesObserver)
 %
@@ -181,7 +181,7 @@ end
       allowsMultipleSelection: allowsMultipleSelection,
       delegate: self
     )
-%for () in BOUND_COLUMNS do
+%for (mEditable mSortPropertyName mDisplayedPropertyName mColumnObjectTypeName mRunAction mActualParameterList) in BOUND_COLUMNS do
 %  //--- Configure '%!mDisplayedPropertyName%' column
     inTableView.addColumn_%!mColumnObjectTypeName% (
       valueGetterDelegate: { [weak self] in return self?.sortedArray_property.propval [$0].%!mDisplayedPropertyName% },
@@ -202,7 +202,7 @@ else
 end
 %,
 %
-for () in mActualParameterList
+for (mValue0 mValue1) in mActualParameterList
   do %      %!mValue0%: %!mValue1%%
   between %,\n%
 end

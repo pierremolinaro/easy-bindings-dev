@@ -3,37 +3,37 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @tableViewControllerBoundColumnListAST {
-  @lstring mColumnName
-  @lstring mColumnOutletTypeName
-  @tableViewColumnBindingAST mColumnBindingAST
-  @lstring mSortPropertyName
+  public var @lstring mColumnName
+  public var @lstring mColumnOutletTypeName
+  public var @tableViewColumnBindingAST mColumnBindingAST
+  public var @lstring mSortPropertyName
 }
 
 #·······················································································································
 
 struct @tableViewColumnBindingAST {
-  @lstring mRunActionName # Empty string if no run binding
-  @multipleBindingDescriptor mEnabledBindingDescriptor
-  @multipleBindingDescriptor mHiddenBindingDescriptor
-  @regularBindingList mRegularBindingList
+  public var @lstring mRunActionName # Empty string if no run binding
+  public var @multipleBindingDescriptor mEnabledBindingDescriptor
+  public var @multipleBindingDescriptor mHiddenBindingDescriptor
+  public var @regularBindingList mRegularBindingList
 }
 
 #·······················································································································
 
 list @tableViewControllerAttributListAST {
-  @lstring mAttributeName
-  @abstractDefaultValue mAttributeValue
+  public var @lstring mAttributeName
+  public var @abstractDefaultValue mAttributeValue
 }
 
 #·······················································································································
 
 refclass @tableViewControllerDeclarationAST : @abstractDeclarationAST {
-  @lstring mControllerName
-  @bool mIsRoot
-  @lstring mRootEntityName
-  @lstring mToManyPropertyName
-  @tableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
-  @tableViewControllerAttributListAST mTableViewControllerAttributListAST
+  public var @lstring mControllerName
+  public var @bool mIsRoot
+  public var @lstring mRootEntityName
+  public var @lstring mToManyPropertyName
+  public var @tableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
+  public var @tableViewControllerAttributListAST mTableViewControllerAttributListAST
 }
 
 #·······················································································································
@@ -75,7 +75,7 @@ syntax extension easyBindings_syntax {
       error .here : "AutoLayout document requires 'autolayout' prefix"
     end
     $controllerName$ ?let @lstring controllerName
-    @tableViewControllerAttributListAST arrayControllerAttributListAST = {}
+    var @tableViewControllerAttributListAST arrayControllerAttributListAST = {}
     ${$
     repeat
       $identifier$ ?let @lstring attributeName
@@ -87,7 +87,7 @@ syntax extension easyBindings_syntax {
     end
     $}$
   #--- Model
-    @bool isRoot
+    var @bool isRoot
     select
       $root$
       isRoot = true
@@ -97,7 +97,7 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ ?let @lstring relationshipName
-    @tableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
+    var @tableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
     select
       $;$
     or
@@ -106,7 +106,7 @@ syntax extension easyBindings_syntax {
       while
         $column$
         $literal_string$ ?let columnName
-        @lstring sortPropertyName
+        var @lstring sortPropertyName
         select
           sortPropertyName = ["" nowhere]
         or
@@ -137,10 +137,10 @@ syntax extension easyBindings_syntax {
 #·······················································································································
 
   rule <column_bindings> !@tableViewColumnBindingAST outColumnBindingAST {
-    @lstring runActionDescriptor = ["" nowhere]
+    var @lstring runActionDescriptor = ["" nowhere]
     var enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
     var hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
-    @regularBindingList regularBindingList = {}
+    var @regularBindingList regularBindingList = {}
     repeat
     while
       $run$
@@ -167,7 +167,7 @@ syntax extension easyBindings_syntax {
   #--- Regular binding
     while
       $bindingName$ ?let @lstring bindingName
-      @observablePropertyList observablePropertyList = {}
+      var @observablePropertyList observablePropertyList = {}
       repeat
         <observable_property> ?let @observablePropertyAST observableProperty
         observablePropertyList += !observableProperty
@@ -275,8 +275,8 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
 #------------------------------------------------------------ Check array controller attributes
   let attributes = @stringset {!"allowsEmptySelection", !"allowsMultipleSelection"}
   let allowedTypes = @typeKindList {!.boolType}
-  @stringset definedAttributes = {}
-  @2stringlist attributeListForGeneration = {}
+  var @stringset definedAttributes = {}
+  var @2stringlist attributeListForGeneration = {}
   for (name value) in self.mTableViewControllerAttributListAST do
     if not [attributes hasKey !name.string] then
       error name : "unknown attribute"
@@ -294,7 +294,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
     end
   end
 #------
-  @propertyMap boundModelPropertyMap
+  var @propertyMap boundModelPropertyMap
   if self.mIsRoot then
     [ioSemanticContext.mClassMap searchKey
        !self.mRootEntityName
@@ -316,11 +316,11 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
      ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
-  @actionMap actionMap
-  @propertyMap propertyMap
-  @tableViewControllerModelKind arrayControllerModelKind
-  @bool graphic
-  @string elementTypeName
+  var @actionMap actionMap
+  var @propertyMap propertyMap
+  var @tableViewControllerModelKind arrayControllerModelKind
+  var @bool graphic
+  var @string elementTypeName
   switch boundModelClassKind
   case property (2*) :
     error self.mToManyPropertyName
@@ -347,9 +347,9 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
   end
-  @tableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
-  @tableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
-  for () in self.mTableViewControllerBoundColumnListAST do
+  var @tableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
+  var @tableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
+  for (mColumnName mColumnOutletTypeName mColumnBindingAST mSortPropertyName) in self.mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
     if mColumnBindingAST.mRunActionName.string != "" then
       [actionMap searchKey !mColumnBindingAST.mRunActionName]
@@ -361,7 +361,7 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
       ?let preferencesPropertyMap
       ?2*
     ]
-    @regularBindingsGenerationList regularBindingsGenerationList = {}
+    var @regularBindingsGenerationList regularBindingsGenerationList = {}
     analyzeRegularBinding (
       !{} # No root observable property map
       !preferencesPropertyMap
@@ -425,8 +425,8 @@ override method @tableViewControllerDeclarationAST thirdAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @tableViewControllerPropertyGeneration : @propertyGeneration {
-  @string mModelString
-  @string mOwnerName
+  public var @string mModelString
+  public var @string mOwnerName
 }
 
 #·······················································································································
@@ -490,33 +490,33 @@ enum @tableViewControllerModelKind {
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @tableViewControllerGeneration : @abstractFileGeneration {
-  @string mOwnerName # document name, prefs name, ...
-  @lstring mControllerName
-  @string mModelString
-  @tableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
-  @tableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
-  @string mModelTypeName
-  @tableViewControllerModelKind mTableViewControllerModelKind
-  @string mElementTypeName
-  @bool mElementTypeIsGraphic
-  @2stringlist mAttributeListForGeneration
+  public var @string mOwnerName # document name, prefs name, ...
+  public var @lstring mControllerName
+  public var @string mModelString
+  public var @tableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
+  public var @tableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
+  public var @string mModelTypeName
+  public var @tableViewControllerModelKind mTableViewControllerModelKind
+  public var @string mElementTypeName
+  public var @bool mElementTypeIsGraphic
+  public var @2stringlist mAttributeListForGeneration
 }
 
 #·······················································································································
 
 list @tableViewControllerBoundColumnListForGeneration {
-  @string mColumnName
-  @string mColumnOutletTypeName
-  @string mRunAction # Empty string if no action
-  @regularBindingsGenerationList mRegularBindingsGenerationList
+  public var @string mColumnName
+  public var @string mColumnOutletTypeName
+  public var @string mRunAction # Empty string if no action
+  public var @regularBindingsGenerationList mRegularBindingsGenerationList
 }
 
 #·······················································································································
 
 list @tableViewControllerSortedColumnListForGeneration {
-  @string mColumnName
-  @propertyKind mSortPropertyKind
-  @string mObservablePropertyForSorting
+  public var @string mColumnName
+  public var @propertyKind mSortPropertyKind
+  public var @string mObservablePropertyForSorting
 }
 
 #·······················································································································
@@ -546,8 +546,8 @@ override method @tableViewControllerGeneration generateCode
     ?!@stringset unused ioGeneratedFileSet
 {
 #--- Build observed property set (for sorting and filtering)
-  @stringset observedProperties = {}
-  for () in self.mTableViewControllerSortedColumnListForGeneration do
+  var @stringset observedProperties = {}
+  for (* * mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end
   let s = [filewrapper tableViewControllerGenerationTemplate.tableViewControllerImplementationInSwift

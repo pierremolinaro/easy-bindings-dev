@@ -10,7 +10,7 @@ import Cocoa
 
 final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBSwiftBaseObject {
 
-%for () in PROPERTY_GENERATION_LIST do
+%for (mProperty) in PROPERTY_GENERATION_LIST do
   ![mProperty declarationInSelectionControllerCode]
 end
 %  //····················································································································
@@ -30,12 +30,12 @@ end
   final func bind_selection (model : ReadOnlyArrayOf_%!BASE_ELEMENT_TYPE_NAME%) {
     self.selectedArray_property.setDataProvider (model)
 %
-  for () in PROPERTY_GENERATION_LIST do
+  for (mProperty) in PROPERTY_GENERATION_LIST do
     if (mProperty is == @atomicPropertyGeneration)
      | (mProperty is == @transientPropertyGeneration)
      | (mProperty is == @computedPropertyGeneration)
      | (mProperty is == @atomicProxyGeneration) then
-      %    self.bind_property_%![mProperty mPropertyName]% ()\n%
+      %    self.bind_property_%!mProperty.mPropertyName% ()\n%
     end
   end
 %  }
@@ -47,17 +47,17 @@ end
   final func unbind_selection () {
     self.selectedArray_property.setDataProvider (nil)
 %
-  for () in PROPERTY_GENERATION_LIST do
+  for (mProperty) in PROPERTY_GENERATION_LIST do
     if (mProperty is == @atomicPropertyGeneration)
      | (mProperty is == @computedPropertyGeneration)
      | (mProperty is == @transientPropertyGeneration) then
-      %  //--- %![mProperty mPropertyName]%\n%
-      %    self.%![mProperty mPropertyName]%_property.mReadModelFunction = nil \n%
+      %  //--- %!mProperty.mPropertyName%\n%
+      %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = nil \n%
       if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @computedPropertyGeneration)  then
-        %    self.%![mProperty mPropertyName]%_property.mWriteModelFunction = nil \n%
-        %    self.%![mProperty mPropertyName]%_property.mValidateAndWriteModelFunction = nil \n%
+        %    self.%!mProperty.mPropertyName%_property.mWriteModelFunction = nil \n%
+        %    self.%!mProperty.mPropertyName%_property.mValidateAndWriteModelFunction = nil \n%
        end
-      %    self.selectedArray_property.removeEBObserverOf_%![mProperty mPropertyName]% (self.%![mProperty mPropertyName]%_property)\n%
+      %    self.selectedArray_property.removeEBObserverOf_%!mProperty.mPropertyName% (self.%!mProperty.mPropertyName%_property)\n%
     end
   end
 %  }
@@ -108,15 +108,15 @@ if HAS_ATOMIC_PROPERTIES then
 else
   %      let y : CGFloat = 0.0\n%
 end
-for () in PROPERTY_GENERATION_LIST do
+for (mProperty) in PROPERTY_GENERATION_LIST do
   if mProperty is == @atomicPropertyGeneration then
     %      createEntryForPropertyNamed (\n%
-    %        "%![mProperty mPropertyName]%",\n%
-    %        object: self.%![mProperty mPropertyName]%_property,\n%
+    %        "%!mProperty.mPropertyName%",\n%
+    %        object: self.%!mProperty.mPropertyName%_property,\n%
     %        y: &y,\n%
     %        view: view,\n%
-    %        observerExplorer: &self.%![mProperty mPropertyName]%_property.mObserverExplorer,\n%
-    %        valueExplorer: &self.%![mProperty mPropertyName]%_property.mValueExplorer\n%
+    %        observerExplorer: &self.%!mProperty.mPropertyName%_property.mObserverExplorer,\n%
+    %        valueExplorer: &self.%!mProperty.mPropertyName%_property.mValueExplorer\n%
     %      )\n%
   end
 end
@@ -179,7 +179,7 @@ end
     }
   #endif
 
-%for () in PROPERTY_GENERATION_LIST do
+%for (mProperty) in PROPERTY_GENERATION_LIST do
   ![mProperty bindPropertyInSelectionController]
 end%
 
