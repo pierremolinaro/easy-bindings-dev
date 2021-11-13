@@ -1520,6 +1520,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_newVerticalStackVie
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_newVerticalStackViewGeneration : public cPtr_abstractViewGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
 
@@ -1877,6 +1880,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedVerticalVie
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_computedVerticalViewGeneration : public cPtr_abstractViewGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
   public: GALGAS_autoLayoutViewInstructionGenerationList mProperty_mInstructionList ;
@@ -2328,6 +2334,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hSplitViewInstructi
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_hSplitViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
   public: GALGAS_autoLayoutViewInstructionGenerationList mProperty_mInstructionList ;
@@ -2491,6 +2500,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_vStackViewInstructi
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_vStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
   public: GALGAS_autoLayoutViewInstructionGenerationList mProperty_mInstructionList ;
@@ -2642,6 +2654,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stackViewReferenceI
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_stackViewReferenceInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mStackViewName ;
 
@@ -2783,6 +2798,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSpaceView
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutSpaceViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -2928,6 +2946,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSeparator
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutSeparatorInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_horizontal ;
 
@@ -3075,6 +3096,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutLocalView
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutLocalViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mLocalView ;
 
@@ -6012,6 +6036,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedPropertyGen
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_computedPropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
   public: GALGAS_typeKind mProperty_mType ;

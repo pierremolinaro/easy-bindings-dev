@@ -693,6 +693,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAbstractViewDecl
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astAbstractViewDeclaration : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -982,6 +985,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAbstractViewInst
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astAbstractViewInstructionDeclaration : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -2202,6 +2208,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractViewGenerat
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_abstractViewGeneration : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+/* § public: virtual GALGAS_string getter_generate (const GALGAS_string inViewName,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties
 
 //--- Constructor
@@ -2803,6 +2814,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_implicitViewFunctio
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_abstractViewInstructionGeneration : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+/* § public: virtual GALGAS_string getter_generate (const GALGAS_string inName,
+           const GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties
 
 //--- Constructor
@@ -3569,6 +3586,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_preferencesForGener
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_propertyGenerationList mProperty_mPropertyListForGeneration ;
   public: GALGAS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
@@ -5194,6 +5214,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVerticalStackVie
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astVerticalStackViewDeclaration : public cPtr_astAbstractViewDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
 
@@ -5551,6 +5574,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedVertical
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astComputedVerticalViewDeclaration : public cPtr_astAbstractViewDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public: GALGAS_astViewInstructionList mProperty_mInstructionList ;
@@ -5756,6 +5782,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSeparatorInstruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astSeparatorInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_horizontal ;
 
@@ -6015,6 +6044,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHStackViewInstru
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astHStackViewInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public: GALGAS_astViewInstructionList mProperty_mInstructionList ;
@@ -6175,6 +6207,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHSplitViewInstru
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astHSplitViewInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public: GALGAS_astViewInstructionList mProperty_mInstructionList ;
@@ -6335,6 +6370,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVStackViewInstru
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public: GALGAS_astViewInstructionList mProperty_mInstructionList ;
@@ -6480,6 +6518,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSpaceViewInstruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astSpaceViewInstruction : public cPtr_astAbstractViewInstructionDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor

@@ -93,6 +93,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computeRoutineGener
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_computeRoutineGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mOwnerName ;
   public: GALGAS_string mProperty_mTransientName ;
@@ -262,6 +265,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGe
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
   public: GALGAS_typeKind mProperty_mType ;
@@ -687,6 +693,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientRoutineGen
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_transientRoutineGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mOwnerName ;
   public: GALGAS_string mProperty_mTransientName ;
@@ -931,6 +940,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGenerati
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_proxyKind mProperty_mProxyKind ;
   public: GALGAS_string mProperty_mToManyTypeName ;
@@ -1305,6 +1317,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGenerati
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_atomicProxyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_proxyKind mProperty_mProxyKind ;
   public: GALGAS_typeKind mProperty_mType ;
@@ -1685,6 +1700,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGener
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mNeedsValidation ;
   public: GALGAS_typeKind mProperty_mType ;
@@ -2340,6 +2358,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOnePropertyGenera
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
   public: GALGAS_propertyKind mProperty_mRelationshipType ;
@@ -2668,6 +2689,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyPropertyGener
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_propertyKind mProperty_mRelationshipType ;
   public: GALGAS_toManyRelationshipOptionGeneration mProperty_mOption ;
@@ -3374,6 +3398,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionFileGeneratio
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_actionFileGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
   public: GALGAS_string mProperty_mActionName ;
@@ -3561,6 +3588,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingComp
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_abstractBooleanMultipleBindingExpressionAST : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -3700,6 +3730,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_negateBooleanMultip
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_negateBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mBinding ;
 
@@ -3856,6 +3889,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_comparisonMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
   public: GALGAS_multipleBindingComparisonAST mProperty_mOperator ;
@@ -4010,6 +4046,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_andBooleanMultipleB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_andBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mRightBinding ;
@@ -4162,6 +4201,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_orBooleanMultipleBi
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_orBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mRightBinding ;
@@ -4314,6 +4356,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xorBooleanMultipleB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_xorBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mRightBinding ;
@@ -4460,6 +4505,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyI
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_observablePropertyInMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_observablePropertyAST mProperty_mProperty ;
 
@@ -4663,6 +4711,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyA
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mObservedModelString ;
 
@@ -4810,6 +4861,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_booleanMultipleBind
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_booleanMultipleBindingLiteralIntForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_uint mProperty_mValue ;
 
@@ -4954,6 +5008,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_negateBooleanMultip
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_negateBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mBinding ;
 
@@ -5104,6 +5161,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_orBooleanMultipleBi
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_orBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mLeftBinding ;
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mRightBinding ;
@@ -5256,6 +5316,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xorBooleanMultipleB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_xorBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mLeftBinding ;
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mRightBinding ;
@@ -5408,6 +5471,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_andBooleanMultipleB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_andBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mLeftBinding ;
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mRightBinding ;
@@ -5566,6 +5632,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_comparisonMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mLeftBinding ;
   public: GALGAS_multipleBindingComparisonAST mProperty_mOperator ;
@@ -5862,6 +5931,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerProp
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_arrayControllerPropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mModelString ;
   public: GALGAS_string mProperty_mOwnerName ;
@@ -6723,6 +6795,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_tableViewControllerPropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mModelString ;
   public: GALGAS_string mProperty_mOwnerName ;

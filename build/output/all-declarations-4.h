@@ -880,6 +880,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableView
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mModelString ;
   public: GALGAS_string mProperty_mOwnerName ;
@@ -1737,6 +1740,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionController
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_selectionControllerPropertyGeneration : public cPtr_propertyGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mOwnerName ;
   public: GALGAS_string mProperty_mModelControllerName ;
@@ -2368,6 +2374,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_integerAsDefaultVal
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_integerAsDefaultValue : public cPtr_abstractDefaultValue {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mValue ;
   public: GALGAS_bool mProperty_mNegative ;

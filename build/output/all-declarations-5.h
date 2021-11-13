@@ -875,6 +875,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerDecl
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_arrayControllerDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mControllerName ;
   public: GALGAS_arrayControllerBoundModelAST mProperty_mModel ;
@@ -977,6 +980,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedHorizont
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astComputedHorizontalViewDeclaration : public cPtr_astAbstractViewDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public: GALGAS_astViewInstructionList mProperty_mInstructionList ;
@@ -1007,6 +1013,9 @@ class cPtr_astComputedHorizontalViewDeclaration : public cPtr_astAbstractViewDec
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mAutoLayoutViewClassName ;
   public: GALGAS_astAutoLayoutViewInstructionParameterList mProperty_mParameterList ;
@@ -1118,6 +1127,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHorizontalStackV
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astHorizontalStackViewDeclaration : public cPtr_astAbstractViewDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
 
@@ -1209,6 +1221,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astLocalViewInstruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astLocalViewInstruction : public cPtr_astAbstractViewInstructionDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mLocalView ;
 
@@ -1300,6 +1315,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astStackViewReferen
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_astStackViewReferenceInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mStackViewName ;
 
@@ -1407,6 +1425,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyDecla
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mPropertyTypeName ;
   public: GALGAS_lstring mProperty_mPropertyName ;
@@ -1554,6 +1575,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentD
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutDocumentDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRootEntityName ;
   public: GALGAS_lstring mProperty_mMainViewName ;
@@ -1693,6 +1717,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableView
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutTableViewControllerDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mControllerName ;
   public: GALGAS_bool mProperty_mIsRoot ;
@@ -1844,6 +1871,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewClass
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutViewClassDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mUserDefined ;
   public: GALGAS_lstring mProperty_mSuperClassName ;
@@ -1952,6 +1982,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boolAsDefaultValue 
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_boolAsDefaultValue : public cPtr_abstractDefaultValue {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lbool mProperty_mValue ;
 
@@ -2062,6 +2095,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedPropertyDec
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_computedPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRootEntityName ;
   public: GALGAS_lstring mProperty_mComputedPropertyTypeName ;
@@ -2160,6 +2196,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_doubleAsDefaultValu
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_doubleAsDefaultValue : public cPtr_abstractDefaultValue {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ldouble mProperty_mValue ;
 
@@ -2300,6 +2339,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityDeclarationAS
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mIsAbstract ;
   public: GALGAS_lstring mProperty_mSuperEntityName ;
@@ -2409,6 +2451,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumerationDeclarat
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_enumerationDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstringlist mProperty_mEnumConstantNameList ;
 
@@ -2501,6 +2546,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_identifierAsDefault
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_identifierAsDefaultValue : public cPtr_abstractDefaultValue {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mValue ;
 
@@ -2592,6 +2640,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literalIntMultipleB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_literalIntMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mValue ;
 
@@ -2720,6 +2771,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassDeclarat
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_outletClassDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mUserDefined ;
   public: GALGAS_lstring mProperty_mSuperClassName ;
@@ -2824,6 +2878,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsAsDefaultValue
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_prefsAsDefaultValue : public cPtr_abstractDefaultValue {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mPrefPropertyName ;
 
@@ -2937,6 +2994,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyDeclarationAST
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_proxyKind mProperty_mProxyKind ;
   public: GALGAS_lstring mProperty_mProxyTypeName ;
@@ -3056,6 +3116,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionController
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_selectionControllerDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mSelectionControllerName ;
   public: GALGAS_lstring mProperty_mModelControllerName ;
@@ -3154,6 +3217,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringAsDefaultValu
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_stringAsDefaultValue : public cPtr_abstractDefaultValue {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mValue ;
 
@@ -3276,6 +3342,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_tableViewControllerDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mControllerName ;
   public: GALGAS_bool mProperty_mIsRoot ;
@@ -3400,6 +3469,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipA
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mDestinationEntityName ;
   public: GALGAS_lstring mProperty_mToManyRelationshipName ;
@@ -3516,6 +3588,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneRelationshipAS
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mDestinationEntityName ;
   public: GALGAS_lstring mProperty_mToOneRelationshipName ;
@@ -3615,6 +3690,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientClassDecla
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_transientClassDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mIsClass ;
 
@@ -3732,6 +3810,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDeclaratio
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRootEntityName ;
   public: GALGAS_lstring mProperty_mTransientTypeName ;
@@ -3851,6 +3932,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xibDocumentDeclarat
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_xibDocumentDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRootEntityName ;
   public: GALGAS_outletDeclarationList mProperty_mOutletDeclarationList ;
@@ -5313,6 +5397,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumForGeneration ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mEnumName ;
   public: GALGAS_lstringlist mProperty_mEnumConstantList ;
@@ -5462,6 +5549,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicClassDeclarat
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_atomicClassDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_typeKind mProperty_mKind ;
 
@@ -5726,6 +5816,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mEntityName ;
   public: GALGAS_string mProperty_mSuperEntityName ;
@@ -5997,6 +6090,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xibDocumentFileGene
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_xibDocumentFileGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mDocumentName ;
   public: GALGAS_string mProperty_mRootEntityName ;

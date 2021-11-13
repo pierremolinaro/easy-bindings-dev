@@ -230,6 +230,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentF
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mDocumentName ;
   public: GALGAS_string mProperty_mRootEntityName ;
@@ -410,6 +413,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsDeclarationAST
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_prefsDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_prefDeclaration mProperty_mDeclaration ;
 
@@ -894,6 +900,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_newHorizontalStackV
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_newHorizontalStackViewGeneration : public cPtr_abstractViewGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
 
@@ -1047,6 +1056,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedHorizontalV
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_computedHorizontalViewGeneration : public cPtr_abstractViewGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
   public: GALGAS_autoLayoutViewInstructionGenerationList mProperty_mInstructionList ;
@@ -1208,6 +1220,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hStackViewInstructi
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_hStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
   public: GALGAS_autoLayoutViewInstructionGenerationList mProperty_mInstructionList ;
@@ -1410,6 +1425,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutComputedV
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mAutoLayoutViewClassName ;
   public: GALGAS_autoLayoutViewInstructionGenerationParameterList mProperty_mParameterList ;
@@ -2218,6 +2236,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerGene
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mOwnerName ;
   public: GALGAS_lstring mProperty_mControllerName ;
@@ -2482,6 +2503,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewController
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_tableViewControllerGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mOwnerName ;
   public: GALGAS_lstring mProperty_mControllerName ;
@@ -2754,6 +2778,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableView
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_string mProperty_mOwnerName ;
   public: GALGAS_lstring mProperty_mControllerName ;

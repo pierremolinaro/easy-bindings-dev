@@ -409,6 +409,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDeclaration
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_abstractDeclarationAST : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+/* § public: virtual GALGAS_lstring getter_nodeKey (C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties
   public: GALGAS_lstring mProperty_mClassName ;
 
@@ -5783,6 +5787,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractFileGenerat
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_abstractFileGeneration : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -6376,6 +6383,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDefaultValu
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_abstractDefaultValue : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -6558,6 +6568,28 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGeneration 
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_propertyGeneration : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+/* § public: virtual GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_configurationCode (const GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_declarationInSelectionControllerCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_objectAccessibilityCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_objectAccessibilityCodeForSaveOperation (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_populateExplorerWindowCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_prefKeyDefinitionCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_propertyDeclarationCode (const GALGAS_bool inPreferences,
+           const GALGAS_stringset inOverriddenTransients,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_resetToManyRelationships (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_saveIntoDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_setupAtomicPropertyFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_setupRelationshipFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_terminationCode (const GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties
   public: GALGAS_string mProperty_mPropertyName ;
 
@@ -9374,6 +9406,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBooleanMult
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+/* § public: virtual GALGAS_string getter_expressionString (C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties
 
 //--- Constructor
