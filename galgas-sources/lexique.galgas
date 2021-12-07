@@ -211,8 +211,11 @@ message incorrectStringEnd : "string does not end with '\"'"
 
 rule '"' {
   repeat
+   while "\\u" :
+     enterCharacterIntoString (!?tokenString !'\\')
+     enterCharacterIntoString (!?tokenString !'u')
    while ' ' | '!' | '#'-> '\uFFFD' :
-    enterCharacterIntoString ( !?tokenString !* )
+     enterCharacterIntoString (!?tokenString !*)
   end
   select
   case '"' :

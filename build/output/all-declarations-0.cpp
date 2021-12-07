@@ -585,6 +585,13 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique__5B_ [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$_5C_u$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique__5C_u [] = {
+  TO_UNICODE ('\\'),
+  TO_UNICODE ('u'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$_5D_$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique__5D_ [] = {
   TO_UNICODE (']'),
@@ -2295,7 +2302,10 @@ bool C_Lexique_easyBindings_5F_lexique::parseLexicalToken (void) {
         }
       }else if (testForInputUTF32Char (TO_UNICODE ('\"'))) {
         do {
-          if (testForInputUTF32Char (TO_UNICODE (' ')) || testForInputUTF32Char (TO_UNICODE ('!')) || testForInputUTF32CharRange (TO_UNICODE ('#'), TO_UNICODE (65533))) {
+          if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5C_u, 2, true)) {
+            ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, TO_UNICODE ('\\')) ;
+            ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, TO_UNICODE ('u')) ;
+          }else if (testForInputUTF32Char (TO_UNICODE (' ')) || testForInputUTF32Char (TO_UNICODE ('!')) || testForInputUTF32CharRange (TO_UNICODE ('#'), TO_UNICODE (65533))) {
             ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, previousChar ()) ;
           }else{
             mLoop = false ;

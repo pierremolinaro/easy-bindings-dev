@@ -22,6 +22,16 @@ end
 
   //····················································································································
 
+  var objects : EBReferenceArray <%!ELEMENT_TYPE_NAME%> {
+    if let objects = self.mModel?.propval {
+      return objects
+    }else{
+      return EBReferenceArray ()
+    }
+  }
+
+  //····················································································································
+
   var selectedSet : EBReferenceSet <%!ELEMENT_TYPE_NAME%> {
     set (newValue) {
 %

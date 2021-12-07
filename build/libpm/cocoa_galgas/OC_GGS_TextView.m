@@ -46,12 +46,16 @@
 - (id) initWithFrame: (NSRect) inFrame
        documentUsedForDisplaying: (OC_GGS_Document *) inDocumentUsedForDisplaying
        displayDescriptor: (OC_GGS_TextDisplayDescriptor *) inDisplayDescriptor {
-  self = [super initWithFrame:inFrame] ;
+  self = [super initWithFrame: inFrame] ;
   if (self) {
     #ifdef DEBUG_MESSAGES
       NSLog (@"%s", __PRETTY_FUNCTION__) ;
     #endif
     noteObjectAllocation (self) ;
+    self.richText = false ;
+    self.importsGraphics = false ;
+    self.allowsImageEditing = false ;
+
     mDocumentUsedForDisplaying = inDocumentUsedForDisplaying ;
     mDisplayDescriptor = inDisplayDescriptor ;
     NSUserDefaults * df = [NSUserDefaults standardUserDefaults] ;

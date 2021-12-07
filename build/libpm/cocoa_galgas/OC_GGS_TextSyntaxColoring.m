@@ -467,7 +467,7 @@
       name: NSTextStorageDidProcessEditingNotification
       object:mSourceTextStorage
     ]; */
- //   [mSourceTextStorage beginEditing] ;
+    [mSourceTextStorage beginEditing] ;
   //--- Change default style ?
     if (inChangedColorIndex == 0) {
       const NSRange allTextRange = {0, [mSourceTextStorage length]} ;
@@ -522,9 +522,9 @@
         }
       }
     }
-/*    [mSourceTextStorage endEditing] ;
+    [mSourceTextStorage endEditing] ;
   //--- Resinstall observer
-    [[NSNotificationCenter defaultCenter]
+ /*   [[NSNotificationCenter defaultCenter]
       addObserver:self
       selector:@selector(textStorageDidProcessEditingNotification:)
       name: NSTextStorageDidProcessEditingNotification
@@ -901,15 +901,8 @@ static inline NSUInteger imax (const NSUInteger a, const NSUInteger b) { return 
   #ifdef DEBUG_MESSAGES
     NSLog (@"%s", __PRETTY_FUNCTION__) ;
   #endif
-//  NSArray * undoStack = mUndoManager.undoStack ;
-//  NSArray * redoStack = mUndoManager.redoStack ;
-  //NSLog (@"undoManagerCheckPointNotification: undoStack %lu, redoStack %lu", undoStack.count, redoStack.count) ;
 //---
   isDirty = mTimerForAutosaving != nil ;
-//    (mSavePointUndoStackCount != undoStack.count)
-//  ||
-//    (mSavePointRedoStackCount != redoStack.count)
-//  ;
   for (OC_GGS_TextDisplayDescriptor * textDisplayDescriptor in mTextDisplayDescriptorSet) {
     textDisplayDescriptor.isDirty = isDirty ;
   }
@@ -921,11 +914,6 @@ static inline NSUInteger imax (const NSUInteger a, const NSUInteger b) { return 
   #ifdef DEBUG_MESSAGES
     NSLog (@"%s", __PRETTY_FUNCTION__) ;
   #endif
-//  NSArray * undoStack = mUndoManager.undoStack ;
-//  mSavePointUndoStackCount = undoStack.count ;
-//  NSArray * redoStack = mUndoManager.redoStack ;
-//  mSavePointRedoStackCount = redoStack.count ;
-  // NSLog (@"documentHasBeenSaved: undoStack %lu, redoStack %lu", mSavePointUndoStackCount, mSavePointRedoStackCount) ;
   [self undoManagerCheckPointNotification:nil] ;
 }
 

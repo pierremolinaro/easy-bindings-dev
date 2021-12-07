@@ -160,6 +160,7 @@ private proc generateSwiftApplicationFiles
     !"ReadOnlyAbstractObjectProperty",
     !"EBReadOnlyPropertyController",
     !"EBGenericReadWritePropertyController",
+    !"EBGenericEnumReadWritePropertyController",
     !"EBTableCellView",
     !"BezierPathArray",
     !"extension-Data-EBPropertyProtocol",
