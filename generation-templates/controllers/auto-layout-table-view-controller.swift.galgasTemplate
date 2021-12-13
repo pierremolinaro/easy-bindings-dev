@@ -138,9 +138,9 @@ if [SORTED_COLUMNS length] > 0 then
 
   //····················································································································
 
-/*  func setSelection (_ inObjects : [%!ELEMENT_TYPE_NAME%]) {
-    self.mInternalSelectedArrayProperty.setProp (inObjects)
-  } */
+  func setSelection (_ inObjects : [%!ELEMENT_TYPE_NAME%]) {
+    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObjects))
+  }
 
   //····················································································································
   //    Explorer
