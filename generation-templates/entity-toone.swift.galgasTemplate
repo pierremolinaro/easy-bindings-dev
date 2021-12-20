@@ -79,14 +79,14 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %  //····················································································································\n\n%
   %  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakEventSet ()\n\n%
   %  //····················································································································\n\n%
-  %  final func addEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBEvent) {\n%
+  %  final func addEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {\n%
   %    self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)\n%
   %    if let object = self.propval {\n%
   %      object.%!mProperty.mPropertyName%_property.addEBObserver (inObserver)\n%
   %    }\n%
   %  }\n\n%
   %  //····················································································································\n\n%
-  %  final func removeEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBEvent) {\n%
+  %  final func removeEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {\n%
   %    self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)\n%
   %    if let object = self.propval {\n%
   %      object.%!mProperty.mPropertyName%_property.removeEBObserver (inObserver)\n%

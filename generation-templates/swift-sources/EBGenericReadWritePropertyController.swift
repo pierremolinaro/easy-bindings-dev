@@ -6,15 +6,15 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class EBGenericReadWritePropertyController <T> : EBReadOnlyPropertyController where T : Equatable {
+final class EBGenericReadWritePropertyController <T> : EBObservablePropertyController where T : Equatable {
 
   //····················································································································
 
-  private let mObject : EBGenericReadWriteProperty <T>
+  private let mObject : EBObservableMutableProperty <T>
 
   //····················································································································
 
-  init (observedObject inObject : EBGenericReadWriteProperty <T>, callBack inCallBack : @escaping () -> Void) {
+  init (observedObject inObject : EBObservableMutableProperty <T>, callBack inCallBack : @escaping () -> Void) {
     self.mObject = inObject
     super.init (observedObjects : [inObject], callBack : inCallBack)
   }
