@@ -90,7 +90,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     if !self.mObserversOf_%!mProperty.mPropertyName%.isEmpty {
       for managedObject in inSet.values {
-        self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+        self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
           managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
         }
       }
@@ -100,7 +100,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //····················································································································
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
-    self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+    self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
       observer.observedObjectDidChange ()
       for managedObject in inSet.values {
         managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
@@ -151,7 +151,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
         managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
       }
     }
@@ -160,7 +160,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
   //····················································································································
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
-    self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+    self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
       observer.observedObjectDidChange ()
       for managedObject in inSet.values {
         managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
@@ -211,7 +211,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
 
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
         managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
       }
     }
@@ -220,7 +220,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
   //····················································································································
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
-    self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+    self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
       observer.observedObjectDidChange ()
       for managedObject in inSet.values {
         managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
@@ -271,7 +271,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
         managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
       }
     }
@@ -281,7 +281,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
         managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
       }
     }
@@ -330,7 +330,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
         managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
       }
     }
@@ -340,7 +340,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
+      self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBObserverProtocol) in
         managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
       }
     }

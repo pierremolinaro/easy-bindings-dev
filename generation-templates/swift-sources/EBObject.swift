@@ -65,7 +65,7 @@ class EBSwiftBaseObject : EBUserClassNameProtocol, ObjectIndexProtocol {
 
   //····················································································································
 
-  final private let objectIndex : Int
+  final let objectIndex : Int
 
   //····················································································································
 
