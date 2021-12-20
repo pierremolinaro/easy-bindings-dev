@@ -411,7 +411,7 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
       }
     #endif
   //--- Notify observers
-    self.postEvent ()
+    self.observedObjectDidChange ()
     self.clearSignatureCache ()
   //---
     super.notifyModelDidChange ()

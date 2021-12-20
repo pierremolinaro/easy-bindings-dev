@@ -95,23 +95,31 @@ static inline NSUInteger imax (const NSUInteger a, const NSUInteger b) { return 
     mDocumentUsedForDisplaying = inDocumentUsedForDisplaying ;
     mTextView = [[OC_GGS_TextView alloc]
       initWithFrame:NSMakeRect (0.0, 0.0, 10.0, 10.0)
-      documentUsedForDisplaying:inDocumentUsedForDisplaying
-      displayDescriptor:self
+      documentUsedForDisplaying: inDocumentUsedForDisplaying
+      displayDescriptor: self
     ] ;
+//    NSLog (@"Default font %@", mTextView.font) ;
+//    NSLog (@"Default attributes %@", mTextView.textStorage.attributeRuns) ;
     mTextView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable ;
     mTextView.allowsUndo = YES ;
     mTextView.drawsBackground = NO ;
-    [mTextView setGrammarCheckingEnabled: NO] ;
-    [mTextView setContinuousSpellCheckingEnabled: NO] ;
+    mTextView.grammarCheckingEnabled = NO ;
+    mTextView.continuousSpellCheckingEnabled = NO ;
     [mTextView useAllLigatures: nil] ;
 //    mTextView.allowedInputSourceLocales = [NSArray arrayWithObject: NSAllRomanInputSourcesLocaleIdentifier] ;
-    [mTextView setAlignment: NSNaturalTextAlignment] ;
-    [mTextView setAutomaticQuoteSubstitutionEnabled: NO] ;
-    mTextView.smartInsertDeleteEnabled = NO ;
-    [mTextView setAutomaticDashSubstitutionEnabled: NO] ;
-    [mTextView.layoutManager setAllowsNonContiguousLayout: NO] ;
-    [mTextView.layoutManager setUsesFontLeading: YES] ;
-    [mTextView.layoutManager setBackgroundLayoutEnabled: YES] ;
+ //   mTextView.alignment = NSNaturalTextAlignment ;
+    mTextView.automaticQuoteSubstitutionEnabled = NO ;
+    mTextView.smartInsertDeleteEnabled = YES ;
+    mTextView.automaticDashSubstitutionEnabled = NO ;
+    mTextView.layoutManager.allowsNonContiguousLayout = YES ;
+    mTextView.layoutManager.usesFontLeading = YES ;
+    mTextView.layoutManager.backgroundLayoutEnabled = NO ;
+    mTextView.richText = YES ;
+    mTextView.importsGraphics = YES ;
+    mTextView.allowsImageEditing = YES ;
+    mTextView.layoutManager.usesScreenFonts = NO ;
+    mTextView.layoutManager.showsControlCharacters = YES ;
+//    mTextView.font = nil ; // [NSFont systemFontOfSize: 0.0] ;
 //    [mTextView.layoutManager setTypesetterBehavior: NSTypesetterLatestBehavior] ;
   //---
     mTextView.automaticTextReplacementEnabled = NO ;

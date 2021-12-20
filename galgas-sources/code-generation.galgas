@@ -172,6 +172,7 @@ private proc generateSwiftApplicationFiles
     !"extension-NSBezierPath-EBPropertyProtocol",
     !"EBValidationResult",
     !"EBObject",
+    !"EBObserverProtocol",
     !"EBReferenceSet",
     !"EBReferenceArray",
     !"extension-Int-EBPropertyProtocol",

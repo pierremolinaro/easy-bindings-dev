@@ -101,7 +101,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
-      observer.postEvent ()
+      observer.observedObjectDidChange ()
       for managedObject in inSet.values {
         managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
       }
@@ -161,7 +161,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
-      observer.postEvent ()
+      observer.observedObjectDidChange ()
       for managedObject in inSet.values {
         managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
       }
@@ -221,7 +221,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     self.mObserversOf_%!mProperty.mPropertyName%.apply { (_ observer : EBEvent) in
-      observer.postEvent ()
+      observer.observedObjectDidChange ()
       for managedObject in inSet.values {
         managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
       }
@@ -420,7 +420,7 @@ final class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
   //····················································································································
 
   override func notifyModelDidChange () {
-    self.mModelEvent.postEvent ()
+    self.mModelEvent.observedObjectDidChange ()
     self.mModelArrayShouldBeComputed = true
     super.notifyModelDidChange ()
   }
@@ -515,7 +515,7 @@ final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : R
   //····················································································································
 
   override func notifyModelDidChange () {
-    self.mModelEvent.postEvent ()
+    self.mModelEvent.observedObjectDidChange ()
     self.mModelArrayShouldBeComputed = true
     super.notifyModelDidChange ()
   }
@@ -746,7 +746,7 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
       }
     #endif
   //--- Notify observers
-    self.postEvent ()
+    self.observedObjectDidChange ()
   //---
     super.notifyModelDidChange ()
   }
@@ -878,7 +878,7 @@ final class StandAloneArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
   //····················································································································
 
   override func notifyModelDidChange () {
-    self.postEvent ()
+    self.observedObjectDidChange ()
     super.notifyModelDidChange ()
   }
 

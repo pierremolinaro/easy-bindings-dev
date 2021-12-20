@@ -46,7 +46,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 %        object.selectionDisplay_property.removeEBObserver (self.mObjectSelectionObserver)\n%
 %      }\n%
 %      if deselectedSet.count > 0 {\n%
-%        self.mObjectSelectionObserver.postEvent () // Required, as removing observer does not post event\n%
+%        self.mObjectSelectionObserver.observedObjectDidChange () // Required, as removing observer does not post event\n%
 %      }\n%
 %    //---\n%
 end
@@ -61,7 +61,7 @@ end
 
   private var mPrivateSelectedSet = EBReferenceSet <%!ELEMENT_TYPE_NAME%> () {
     didSet {
-      self.selectedArray_property.postEvent ()
+      self.selectedArray_property.observedObjectDidChange ()
       self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (self.mPrivateSelectedSet.values)))
     }
   }

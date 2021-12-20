@@ -189,6 +189,7 @@ end
     inTableView.configure (
       allowsEmptySelection: allowsEmptySelection,
       allowsMultipleSelection: allowsMultipleSelection,
+      rowCountCallBack: { [weak self] in self?.sortedArray_property.propval.count ?? 0 },
       delegate: self
     )
 %for (mEditable mSortPropertyName mDisplayedPropertyName mColumnObjectTypeName mRunAction mActualParameterList) in BOUND_COLUMNS do
@@ -322,9 +323,9 @@ case entityArray :
   // IMPLEMENTATION OF AutoLayoutTableViewDelegate
   //····················································································································
 
-  final func rowCount () -> Int {
+/*  final func rowCount () -> Int {
     return self.sortedArray_property.propval.count
-  }
+  } */
 
   //····················································································································
 

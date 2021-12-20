@@ -7952,7 +7952,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "        object.selectionDisplay_property.removeEBObserver (self.mObjectSelectionObserver)\n"
       "      }\n"
       "      if deselectedSet.count > 0 {\n"
-      "        self.mObjectSelectionObserver.postEvent () // Required, as removing observer does not post event\n"
+      "        self.mObjectSelectionObserver.observedObjectDidChange () // Required, as removing observer does not post event\n"
       "      }\n"
       "    //---\n" ;
   }else if (kBoolFalse == test_1) {
@@ -7970,7 +7970,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << "> () {\n"
     "    didSet {\n"
-    "      self.selectedArray_property.postEvent ()\n"
+    "      self.selectedArray_property.observedObjectDidChange ()\n"
     "      self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (self.mPrivateSelectedSet.values)))\n"
     "    }\n"
     "  }\n"

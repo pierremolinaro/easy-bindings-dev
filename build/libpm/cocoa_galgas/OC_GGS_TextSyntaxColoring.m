@@ -275,7 +275,7 @@
       data = [defaults dataForKey:name] ;
       if (data != nil) {
         NSFont * font = (NSFont *) [NSUnarchiver unarchiveObjectWithData:data] ;
-        [attributeDictionary setObject:font forKey: NSFontAttributeName] ;
+        [attributeDictionary setObject: font forKey: NSFontAttributeName] ;
       }
     //--- Add dictionary
       [mFontAttributesDictionaryArray addObject: attributeDictionary] ;
@@ -473,7 +473,7 @@
       const NSRange allTextRange = {0, [mSourceTextStorage length]} ;
       [mSourceTextStorage
         setAttributes:[mFontAttributesDictionaryArray objectAtIndex:0]
-        range:allTextRange
+        range: allTextRange
       ] ;
       for (NSUInteger i=0 ; i<[mTokenArray count] ; i++) {
         OC_Token * token = [mTokenArray objectAtIndex:i] ;
@@ -644,8 +644,8 @@
         NSLog (@"PERFORM REMOVE ATTRIBUTE range [%lu, %lu] text length %lu", eraseRange.location, eraseRange.length, textLength) ;
       #endif
       [mSourceTextStorage
-        setAttributes:[mFontAttributesDictionaryArray objectAtIndex:0]
-        range:eraseRange
+        setAttributes: [mFontAttributesDictionaryArray objectAtIndex:0]
+        range: eraseRange
       ] ;
       #ifdef DEBUG_MESSAGES
         NSLog (@"mSourceTextStorage setAttributes DONE") ;

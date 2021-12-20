@@ -52,9 +52,6 @@
       NSLog (@"%s", __PRETTY_FUNCTION__) ;
     #endif
     noteObjectAllocation (self) ;
-    self.richText = false ;
-    self.importsGraphics = false ;
-    self.allowsImageEditing = false ;
 
     mDocumentUsedForDisplaying = inDocumentUsedForDisplaying ;
     mDisplayDescriptor = inDisplayDescriptor ;
