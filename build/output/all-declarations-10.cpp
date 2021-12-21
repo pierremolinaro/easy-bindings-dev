@@ -7216,7 +7216,7 @@ static GALGAS_string extensionGetter_comparisonMultipleBindingExpressionForGener
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_notEqual:
     {
-      result_outExpressionString.plusAssign_operation(GALGAS_string (".neq"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 617)) ;
+      result_outExpressionString.plusAssign_operation(GALGAS_string (".ne"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 617)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_lower:
