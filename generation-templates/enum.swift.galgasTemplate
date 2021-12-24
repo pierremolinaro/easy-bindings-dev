@@ -15,7 +15,7 @@ end
 
   //····················································································································
 
-  init? (string : String) {
+/*  init? (string : String) {
     switch string {
 %
 for (mValue) in CONSTANT_ORDERED_LIST do index idx
@@ -23,7 +23,7 @@ for (mValue) in CONSTANT_ORDERED_LIST do index idx
 end
 %      case _ : return nil
     }
-  }
+  } */
 
   //····················································································································
 
