@@ -211,6 +211,8 @@ message incorrectStringEnd : "string does not end with '\"'"
 
 rule '"' {
   repeat
+   while "\\n" :
+     enterCharacterIntoString (!?tokenString !'\n')
    while "\\u" :
      enterCharacterIntoString (!?tokenString !'\\')
      enterCharacterIntoString (!?tokenString !'u')

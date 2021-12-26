@@ -282,7 +282,9 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
       }
     }else if (scanningOk && ([self testForInputChar:34])) {
       do {
-        if (scanningOk && ([self testForInputString:@"\\u" advance:YES])) {
+        if (scanningOk && ([self testForInputString:@"\\n" advance:YES])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 10) ;
+        }else if (scanningOk && ([self testForInputString:@"\\u" advance:YES])) {
           scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 92) ;
           scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 117) ;
         }else if (scanningOk && ([self testForInputChar:32] || [self testForInputChar:33] || [self testForInputFromChar:35 toChar:65533])) {
