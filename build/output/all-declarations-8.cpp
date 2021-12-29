@@ -1443,7 +1443,7 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
       if (enumerator_1370.current_mAssociationSortedList (HERE).isValid ()) {
         cEnumerator_enumFunAssociationSortedList enumerator_1782 (enumerator_1370.current_mAssociationSortedList (HERE), kENUMERATION_UP) ;
         while (enumerator_1782.hasCurrentObject ()) {
-          result << enumerator_1782.current_mAssociatedString (HERE).getter_utf_38_Representation (SOURCE_FILE ("enum.swift.galgasTemplate", 47)).stringValue () ;
+          result << enumerator_1782.current_mAssociatedString (HERE).getter_cStringRepresentation (SOURCE_FILE ("enum.swift.galgasTemplate", 47)).stringValue () ;
           if (enumerator_1782.hasNextObject ()) {
             result << ", " ;
           }
