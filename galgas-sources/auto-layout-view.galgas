@@ -1989,7 +1989,7 @@ abstract getter @abstractViewGeneration generate ?let @string inViewName -> @str
 #·······················································································································
 
 override getter @newHorizontalStackViewGeneration generate ?let @string inViewName -> @string {
-  result = "  let " + inViewName + " : AutoLayoutAbstractStackView = AutoLayoutHorizontalStackView ()\n"
+  result = "  let " + inViewName + " : AutoLayoutBase_NSStackView = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   result += "\n"
 }
@@ -1997,7 +1997,7 @@ override getter @newHorizontalStackViewGeneration generate ?let @string inViewNa
 #·······················································································································
 
 override getter @newVerticalStackViewGeneration generate ?let @string inViewName -> @string {
-  result = "  let " + inViewName + " : AutoLayoutAbstractStackView = AutoLayoutVerticalStackView ()\n"
+  result = "  let " + inViewName + " : AutoLayoutBase_NSStackView = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   result += "\n"
 }
