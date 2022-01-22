@@ -647,7 +647,7 @@ method @astAutoLayoutViewFunctionCallList check
             !inObservablePropertyMap
             ?let enabledBindingGeneration
           )
-          var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
+          var s = "AutoLayoutMenuItemDescriptor (title: " + [title cStringRepresentation]
           switch runBindingGeneration 
           case none :
             s += ", target: nil, selector: nil"
