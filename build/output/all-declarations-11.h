@@ -10,42 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'tableViewControllerGenerationTemplate'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_tableViewControllerGenerationTemplate ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'tableViewControllerGenerationTemplate tableViewControllerImplementationInSwift'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_tableViewControllerGenerationTemplate_tableViewControllerImplementationInSwift (class C_Compiler * inCompiler,
-                                                                                                                  const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                                                  const class GALGAS_string & in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME,
-                                                                                                                  const class GALGAS_string & in_MODEL_5F_STRING,
-                                                                                                                  const class GALGAS_tableViewControllerModelKind & in_MODEL_5F_KIND,
-                                                                                                                  const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
-                                                                                                                  const class GALGAS_tableViewControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
-                                                                                                                  const class GALGAS_tableViewControllerSortedColumnListForGeneration & in_SORTED_5F_COLUMNS,
-                                                                                                                  const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                                  const class GALGAS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING,
-                                                                                                                  const class GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
-                                                                                                                  COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'autoLayoutTableViewControllerGenerationTemplate'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -169,17 +133,6 @@ void routine_generateCode (const class GALGAS_string constinArgument0,
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Routine 'generateEBManagedDocumentSwift'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateEBManagedDocumentSwift (const class GALGAS_string constinArgument0,
-                                             class GALGAS_stringset & ioArgument1,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Routine 'generateStandardProperties'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -190,18 +143,6 @@ void routine_generateStandardProperties (const class GALGAS_string constinArgume
                                          class GALGAS_stringset & ioArgument3,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'generateSwiftApplicationFiles'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateSwiftApplicationFiles (const class GALGAS_string constinArgument0,
-                                            const class GALGAS_bool constinArgument1,
-                                            class GALGAS_stringset & ioArgument2,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -228,4 +169,146 @@ void routine_generateXcodeProject (const class GALGAS_string constinArgument0,
                                    const class GALGAS_string constinArgument3,
                                    class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'standard_properties'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_standard_5F_properties ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'standard_properties stub'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_standard_5F_properties_stub (class C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'standard_properties scalarProperty'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (class C_Compiler * inCompiler,
+                                                                         const class GALGAS_string & in_TYPE,
+                                                                         const class GALGAS_bool & in_TRANSIENT,
+                                                                         const class GALGAS_string & in_COMPARISON_5F_METHOD
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'standard_properties classProperty'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (class C_Compiler * inCompiler,
+                                                                        const class GALGAS_string & in_CLASS_5F_NAME,
+                                                                        const class GALGAS_bool & in_COMPARABLE,
+                                                                        const class GALGAS_bool & in_TRANSIENT
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateXcodeProjectInternal'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_generateXcodeProjectInternal (const class GALGAS_string constinArgument0,
+                                           const class GALGAS_string constinArgument1,
+                                           const class GALGAS_stringset constinArgument2,
+                                           const class GALGAS_string constinArgument3,
+                                           class C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'additionalXcodeFiles'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_additionalXcodeFiles ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'additionalXcodeFiles main_xib'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (class C_Compiler * inCompiler,
+                                                                    const class GALGAS_string & in_PROJECT_5F_NAME
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'additionalXcodeFiles info_plist'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (class C_Compiler * inCompiler,
+                                                                      const class GALGAS_string & in_PROJECT_5F_NAME,
+                                                                      const class GALGAS_string & in_APPLICATION_5F_BUNDLE_5F_BASE,
+                                                                      const class GALGAS_string & in_VERSION_5F_STRING,
+                                                                      const class GALGAS_stringset & in_HANDLED_5F_EXTENSION_5F_SET
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'additionalXcodeFiles build_command'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (class C_Compiler * inCompiler,
+                                                                         const class GALGAS_string & in_PROJECT_5F_NAME
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'testFiles'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_testFiles ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'testFiles test_py'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_testFiles_test_5F_py (class C_Compiler * inCompiler,
+                                                        const class GALGAS_string & in_BUNDLE_5F_IDENTIFIER,
+                                                        const class GALGAS_string & in_PROJECT_5F_NAME,
+                                                        const class GALGAS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
+                                                        COMMA_LOCATION_ARGS) ;
 

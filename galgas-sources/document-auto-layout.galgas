@@ -491,20 +491,3 @@ private filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templ
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
-
-proc generateAutoLayoutManagedDocumentSwift
-  ?let @string inOutputDirectory
-  ?!@stringset ioGeneratedFileSet
-{
-  let fileName = "EBAutoLayoutManagedDocument.swift"
-  var fw = [filewrapper swift_sources]
-  let contents = [fw textFileContentsAtPath !fileName]
-  ioGeneratedFileSet += !fileName
-  [@string generateFile
-    !inOutputDirectory
-    !fileName
-    !contents
-  ]
-}
-
-#-----------------------------------------------------------------------------------------------------------------------

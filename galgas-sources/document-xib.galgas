@@ -246,20 +246,3 @@ private filewrapper xibDocumentGenerationTemplate in "../generation-templates" {
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
-
-proc generateEBManagedXibDocumentSwift
-  ?let @string inOutputDirectory
-  ?!@stringset ioGeneratedFileSet
-{
-  let fileName = "EBManagedXibDocument.swift"
-  var fw = [filewrapper swift_sources]
-  let contents = [fw textFileContentsAtPath !fileName]
-  ioGeneratedFileSet += !fileName
-  [@string generateFile
-    !inOutputDirectory
-    !fileName
-    !contents
-  ]
-}
-
-#-----------------------------------------------------------------------------------------------------------------------

@@ -579,46 +579,24 @@ C_BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDepende
 
 //--- All files of 'controllers' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_4 [1] = {
+static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_3 [1] = {
   NULL
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_4 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_3 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_4_predefinedOutletClasses (
+const cDirectoryWrapper gWrapperDirectory_3_predefinedOutletClasses (
   "controllers",
   0,
-  gWrapperAllFiles_predefinedOutletClasses_4,
+  gWrapperAllFiles_predefinedOutletClasses_3,
   0,
-  gWrapperAllDirectories_predefinedOutletClasses_4
-) ;
-
-//--- All files of 'outlet-classes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_5 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'outlet-classes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_5 [1] = {
-  NULL
-} ;
-
-//--- Directory 'outlet-classes'
-
-const cDirectoryWrapper gWrapperDirectory_5_predefinedOutletClasses (
-  "outlet-classes",
-  0,
-  gWrapperAllFiles_predefinedOutletClasses_5,
-  0,
-  gWrapperAllDirectories_predefinedOutletClasses_5
+  gWrapperAllDirectories_predefinedOutletClasses_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -641,28 +619,6 @@ const cDirectoryWrapper gWrapperDirectory_1_predefinedOutletClasses (
   gWrapperAllFiles_predefinedOutletClasses_1,
   0,
   gWrapperAllDirectories_predefinedOutletClasses_1
-) ;
-
-//--- All files of 'swift-sources' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_3 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'swift-sources' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_3 [1] = {
-  NULL
-} ;
-
-//--- Directory 'swift-sources'
-
-const cDirectoryWrapper gWrapperDirectory_3_predefinedOutletClasses (
-  "swift-sources",
-  0,
-  gWrapperAllFiles_predefinedOutletClasses_3,
-  0,
-  gWrapperAllDirectories_predefinedOutletClasses_3
 ) ;
 
 //--- All files of 'xcode-project' directory
@@ -695,11 +651,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_0 [6] = {
-  & gWrapperDirectory_4_predefinedOutletClasses,
-  & gWrapperDirectory_5_predefinedOutletClasses,
-  & gWrapperDirectory_1_predefinedOutletClasses,
+static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_0 [4] = {
   & gWrapperDirectory_3_predefinedOutletClasses,
+  & gWrapperDirectory_1_predefinedOutletClasses,
   & gWrapperDirectory_2_predefinedOutletClasses,
   NULL
 } ;
@@ -710,7 +664,7 @@ const cDirectoryWrapper gWrapperDirectory_0_predefinedOutletClasses (
   "",
   0,
   gWrapperAllFiles_predefinedOutletClasses_0,
-  5,
+  3,
   gWrapperAllDirectories_predefinedOutletClasses_0
 ) ;
 
@@ -1206,46 +1160,24 @@ C_PrologueEpilogue gMethod_enumerationDeclarationAST_firstAnalysisPhase (defineE
 
 //--- All files of 'controllers' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_4 [1] = {
+static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_3 [1] = {
   NULL
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_4 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_3 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_4_enumGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_enumGenerationTemplate_4,
+  gWrapperAllFiles_enumGenerationTemplate_3,
   0,
-  gWrapperAllDirectories_enumGenerationTemplate_4
-) ;
-
-//--- All files of 'outlet-classes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'outlet-classes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- Directory 'outlet-classes'
-
-const cDirectoryWrapper gWrapperDirectory_5_enumGenerationTemplate (
-  "outlet-classes",
-  0,
-  gWrapperAllFiles_enumGenerationTemplate_5,
-  0,
-  gWrapperAllDirectories_enumGenerationTemplate_5
+  gWrapperAllDirectories_enumGenerationTemplate_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -1268,28 +1200,6 @@ const cDirectoryWrapper gWrapperDirectory_1_enumGenerationTemplate (
   gWrapperAllFiles_enumGenerationTemplate_1,
   0,
   gWrapperAllDirectories_enumGenerationTemplate_1
-) ;
-
-//--- All files of 'swift-sources' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'swift-sources' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- Directory 'swift-sources'
-
-const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate (
-  "swift-sources",
-  0,
-  gWrapperAllFiles_enumGenerationTemplate_3,
-  0,
-  gWrapperAllDirectories_enumGenerationTemplate_3
 ) ;
 
 //--- All files of 'xcode-project' directory
@@ -1322,11 +1232,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_0 [1]
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_0 [6] = {
-  & gWrapperDirectory_4_enumGenerationTemplate,
-  & gWrapperDirectory_5_enumGenerationTemplate,
-  & gWrapperDirectory_1_enumGenerationTemplate,
+static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_0 [4] = {
   & gWrapperDirectory_3_enumGenerationTemplate,
+  & gWrapperDirectory_1_enumGenerationTemplate,
   & gWrapperDirectory_2_enumGenerationTemplate,
   NULL
 } ;
@@ -1337,7 +1245,7 @@ const cDirectoryWrapper gWrapperDirectory_0_enumGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_enumGenerationTemplate_0,
-  5,
+  3,
   gWrapperAllDirectories_enumGenerationTemplate_0
 ) ;
 
@@ -2355,46 +2263,24 @@ void routine_generateEBManagedObjectContext (const GALGAS_entityListForGeneratin
 
 //--- All files of 'controllers' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_4 [1] = {
+static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_3 [1] = {
   NULL
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_4 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_3 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_4_entityGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_entityGenerationTemplate_4,
+  gWrapperAllFiles_entityGenerationTemplate_3,
   0,
-  gWrapperAllDirectories_entityGenerationTemplate_4
-) ;
-
-//--- All files of 'outlet-classes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'outlet-classes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- Directory 'outlet-classes'
-
-const cDirectoryWrapper gWrapperDirectory_5_entityGenerationTemplate (
-  "outlet-classes",
-  0,
-  gWrapperAllFiles_entityGenerationTemplate_5,
-  0,
-  gWrapperAllDirectories_entityGenerationTemplate_5
+  gWrapperAllDirectories_entityGenerationTemplate_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -2417,28 +2303,6 @@ const cDirectoryWrapper gWrapperDirectory_1_entityGenerationTemplate (
   gWrapperAllFiles_entityGenerationTemplate_1,
   0,
   gWrapperAllDirectories_entityGenerationTemplate_1
-) ;
-
-//--- All files of 'swift-sources' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'swift-sources' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- Directory 'swift-sources'
-
-const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate (
-  "swift-sources",
-  0,
-  gWrapperAllFiles_entityGenerationTemplate_3,
-  0,
-  gWrapperAllDirectories_entityGenerationTemplate_3
 ) ;
 
 //--- All files of 'xcode-project' directory
@@ -2471,11 +2335,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_0 [
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_0 [6] = {
-  & gWrapperDirectory_4_entityGenerationTemplate,
-  & gWrapperDirectory_5_entityGenerationTemplate,
-  & gWrapperDirectory_1_entityGenerationTemplate,
+static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_0 [4] = {
   & gWrapperDirectory_3_entityGenerationTemplate,
+  & gWrapperDirectory_1_entityGenerationTemplate,
   & gWrapperDirectory_2_entityGenerationTemplate,
   NULL
 } ;
@@ -2486,7 +2348,7 @@ const cDirectoryWrapper gWrapperDirectory_0_entityGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_entityGenerationTemplate_0,
-  5,
+  3,
   gWrapperAllDirectories_entityGenerationTemplate_0
 ) ;
 
@@ -6016,46 +5878,24 @@ C_PrologueEpilogue gMethod_xibDocumentFileGeneration_generateCode (defineExtensi
 
 //--- All files of 'controllers' directory
 
-static const cRegularFileWrapper * gWrapperAllFiles_xibDocumentGenerationTemplate_4 [1] = {
+static const cRegularFileWrapper * gWrapperAllFiles_xibDocumentGenerationTemplate_3 [1] = {
   NULL
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_xibDocumentGenerationTemplate_4 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_xibDocumentGenerationTemplate_3 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_4_xibDocumentGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_3_xibDocumentGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_xibDocumentGenerationTemplate_4,
+  gWrapperAllFiles_xibDocumentGenerationTemplate_3,
   0,
-  gWrapperAllDirectories_xibDocumentGenerationTemplate_4
-) ;
-
-//--- All files of 'outlet-classes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_xibDocumentGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'outlet-classes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_xibDocumentGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
-//--- Directory 'outlet-classes'
-
-const cDirectoryWrapper gWrapperDirectory_5_xibDocumentGenerationTemplate (
-  "outlet-classes",
-  0,
-  gWrapperAllFiles_xibDocumentGenerationTemplate_5,
-  0,
-  gWrapperAllDirectories_xibDocumentGenerationTemplate_5
+  gWrapperAllDirectories_xibDocumentGenerationTemplate_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -6078,28 +5918,6 @@ const cDirectoryWrapper gWrapperDirectory_1_xibDocumentGenerationTemplate (
   gWrapperAllFiles_xibDocumentGenerationTemplate_1,
   0,
   gWrapperAllDirectories_xibDocumentGenerationTemplate_1
-) ;
-
-//--- All files of 'swift-sources' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_xibDocumentGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'swift-sources' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_xibDocumentGenerationTemplate_3 [1] = {
-  NULL
-} ;
-
-//--- Directory 'swift-sources'
-
-const cDirectoryWrapper gWrapperDirectory_3_xibDocumentGenerationTemplate (
-  "swift-sources",
-  0,
-  gWrapperAllFiles_xibDocumentGenerationTemplate_3,
-  0,
-  gWrapperAllDirectories_xibDocumentGenerationTemplate_3
 ) ;
 
 //--- All files of 'xcode-project' directory
@@ -6132,11 +5950,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_xibDocumentGenerationTemplat
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_xibDocumentGenerationTemplate_0 [6] = {
-  & gWrapperDirectory_4_xibDocumentGenerationTemplate,
-  & gWrapperDirectory_5_xibDocumentGenerationTemplate,
-  & gWrapperDirectory_1_xibDocumentGenerationTemplate,
+static const cDirectoryWrapper * gWrapperAllDirectories_xibDocumentGenerationTemplate_0 [4] = {
   & gWrapperDirectory_3_xibDocumentGenerationTemplate,
+  & gWrapperDirectory_1_xibDocumentGenerationTemplate,
   & gWrapperDirectory_2_xibDocumentGenerationTemplate,
   NULL
 } ;
@@ -6147,7 +5963,7 @@ const cDirectoryWrapper gWrapperDirectory_0_xibDocumentGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_xibDocumentGenerationTemplate_0,
-  5,
+  3,
   gWrapperAllDirectories_xibDocumentGenerationTemplate_0
 ) ;
 
