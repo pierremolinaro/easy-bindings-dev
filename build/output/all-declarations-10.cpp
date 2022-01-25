@@ -3185,7 +3185,7 @@ static GALGAS_string extensionGetter_booleanMultipleBindingLiteralIntForGenerati
   const cPtr_booleanMultipleBindingLiteralIntForGeneration * object = (const cPtr_booleanMultipleBindingLiteralIntForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_booleanMultipleBindingLiteralIntForGeneration) ;
   const GALGAS_booleanMultipleBindingLiteralIntForGeneration temp_0 = object ;
-  result_outExpressionString = GALGAS_string (".literalInt (").add_operation (temp_0.readProperty_mValue ().getter_string (SOURCE_FILE ("multiple-binding.galgas", 572)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 572)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 572)) ;
+  result_outExpressionString = GALGAS_string ("MultipleBindingLiteralInt (").add_operation (temp_0.readProperty_mValue ().getter_string (SOURCE_FILE ("multiple-binding.galgas", 511)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 511)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 511)) ;
 //---
   return result_outExpressionString ;
 }
@@ -3215,7 +3215,7 @@ static GALGAS_string extensionGetter_observablePropertyAsBooleanMultipleBindingE
   const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration) ;
   const GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration temp_0 = object ;
-  result_outExpressionString = GALGAS_string (".id (").add_operation (temp_0.readProperty_mObservedModelString (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 579)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 579)) ;
+  result_outExpressionString = GALGAS_string (".MultipleBindingProp (").add_operation (temp_0.readProperty_mObservedModelString (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 519)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 519)) ;
 //---
   return result_outExpressionString ;
 }
@@ -3245,7 +3245,7 @@ static GALGAS_string extensionGetter_negateBooleanMultipleBindingExpressionForGe
   const cPtr_negateBooleanMultipleBindingExpressionForGeneration * object = (const cPtr_negateBooleanMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_negateBooleanMultipleBindingExpressionForGeneration) ;
   const GALGAS_negateBooleanMultipleBindingExpressionForGeneration temp_0 = object ;
-  result_outExpressionString = GALGAS_string (".not (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 586)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 586)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 586)) ;
+  result_outExpressionString = GALGAS_string ("MultipleBindingNot (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 527)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 527)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 527)) ;
 //---
   return result_outExpressionString ;
 }
@@ -3276,7 +3276,7 @@ static GALGAS_string extensionGetter_orBooleanMultipleBindingExpressionForGenera
   macroValidSharedObject (object, cPtr_orBooleanMultipleBindingExpressionForGeneration) ;
   const GALGAS_orBooleanMultipleBindingExpressionForGeneration temp_0 = object ;
   const GALGAS_orBooleanMultipleBindingExpressionForGeneration temp_1 = object ;
-  result_outExpressionString = GALGAS_string (".boolcmp (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mLeftBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 593)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 593)).add_operation (GALGAS_string (", .or, "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 593)).add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_1.readProperty_mRightBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 593)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 593)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 593)) ;
+  result_outExpressionString = GALGAS_string ("MultipleBindingBoolOp (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mLeftBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 535)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 535)).add_operation (GALGAS_string (", .or, "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 535)).add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_1.readProperty_mRightBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 535)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 535)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 535)) ;
 //---
   return result_outExpressionString ;
 }
@@ -3307,7 +3307,7 @@ static GALGAS_string extensionGetter_xorBooleanMultipleBindingExpressionForGener
   macroValidSharedObject (object, cPtr_xorBooleanMultipleBindingExpressionForGeneration) ;
   const GALGAS_xorBooleanMultipleBindingExpressionForGeneration temp_0 = object ;
   const GALGAS_xorBooleanMultipleBindingExpressionForGeneration temp_1 = object ;
-  result_outExpressionString = GALGAS_string (".boolcmp (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mLeftBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 600)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 600)).add_operation (GALGAS_string (", .xor, "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 600)).add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_1.readProperty_mRightBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 600)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 600)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 600)) ;
+  result_outExpressionString = GALGAS_string ("MultipleBindingBoolOp (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mLeftBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 543)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 543)).add_operation (GALGAS_string (", .xor, "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 543)).add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_1.readProperty_mRightBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 543)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 543)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 543)) ;
 //---
   return result_outExpressionString ;
 }
@@ -3338,7 +3338,7 @@ static GALGAS_string extensionGetter_andBooleanMultipleBindingExpressionForGener
   macroValidSharedObject (object, cPtr_andBooleanMultipleBindingExpressionForGeneration) ;
   const GALGAS_andBooleanMultipleBindingExpressionForGeneration temp_0 = object ;
   const GALGAS_andBooleanMultipleBindingExpressionForGeneration temp_1 = object ;
-  result_outExpressionString = GALGAS_string (".boolcmp (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mLeftBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 607)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 607)).add_operation (GALGAS_string (", .and, "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 607)).add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_1.readProperty_mRightBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 607)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 607)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 607)) ;
+  result_outExpressionString = GALGAS_string ("MultipleBindingBoolOp (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mLeftBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 551)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 551)).add_operation (GALGAS_string (", .and, "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 551)).add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_1.readProperty_mRightBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 551)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 551)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 551)) ;
 //---
   return result_outExpressionString ;
 }
@@ -3368,44 +3368,44 @@ static GALGAS_string extensionGetter_comparisonMultipleBindingExpressionForGener
   const cPtr_comparisonMultipleBindingExpressionForGeneration * object = (const cPtr_comparisonMultipleBindingExpressionForGeneration *) inObject ;
   macroValidSharedObject (object, cPtr_comparisonMultipleBindingExpressionForGeneration) ;
   const GALGAS_comparisonMultipleBindingExpressionForGeneration temp_0 = object ;
-  result_outExpressionString = GALGAS_string (".intcmp (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mLeftBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 614)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 614)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 614)) ;
+  result_outExpressionString = GALGAS_string ("MultipleBindingIntCmp (").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_0.readProperty_mLeftBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 559)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 559)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 559)) ;
   const GALGAS_comparisonMultipleBindingExpressionForGeneration temp_1 = object ;
   switch (temp_1.readProperty_mOperator ().enumValue ()) {
   case GALGAS_multipleBindingComparisonAST::kNotBuilt:
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_equal:
     {
-      result_outExpressionString.plusAssign_operation(GALGAS_string (".eq"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 616)) ;
+      result_outExpressionString.plusAssign_operation(GALGAS_string (".eq"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 561)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_notEqual:
     {
-      result_outExpressionString.plusAssign_operation(GALGAS_string (".ne"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 617)) ;
+      result_outExpressionString.plusAssign_operation(GALGAS_string (".ne"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 562)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_lower:
     {
-      result_outExpressionString.plusAssign_operation(GALGAS_string (".lt"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 618)) ;
+      result_outExpressionString.plusAssign_operation(GALGAS_string (".lt"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 563)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_lowerOrEqual:
     {
-      result_outExpressionString.plusAssign_operation(GALGAS_string (".le"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 619)) ;
+      result_outExpressionString.plusAssign_operation(GALGAS_string (".le"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 564)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_greater:
     {
-      result_outExpressionString.plusAssign_operation(GALGAS_string (".gt"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 620)) ;
+      result_outExpressionString.plusAssign_operation(GALGAS_string (".gt"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 565)) ;
     }
     break ;
   case GALGAS_multipleBindingComparisonAST::kEnum_greaterOrEqual:
     {
-      result_outExpressionString.plusAssign_operation(GALGAS_string (".ge"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 621)) ;
+      result_outExpressionString.plusAssign_operation(GALGAS_string (".ge"), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 566)) ;
     }
     break ;
   }
   const GALGAS_comparisonMultipleBindingExpressionForGeneration temp_2 = object ;
-  result_outExpressionString.plusAssign_operation(GALGAS_string (", ").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_2.readProperty_mRightBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 623)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 623)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 623)), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 623)) ;
+  result_outExpressionString.plusAssign_operation(GALGAS_string (", ").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) temp_2.readProperty_mRightBinding ().ptr (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 568)), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 568)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("multiple-binding.galgas", 568)), inCompiler  COMMA_SOURCE_FILE ("multiple-binding.galgas", 568)) ;
 //---
   return result_outExpressionString ;
 }
