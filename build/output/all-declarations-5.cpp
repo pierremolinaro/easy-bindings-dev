@@ -6679,74 +6679,82 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.galgas", 47)) ;
-  GALGAS_lstring var_prefs_2046 = GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 48)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 48))  COMMA_SOURCE_FILE ("preferences.galgas", 48)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.galgas", 49)) ;
-  GALGAS_stringset var_signatureList_2131 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("preferences.galgas", 50)) ;
-  GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2205 = GALGAS_arrayControllerBindingListAST::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 51)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.galgas", 48)) ;
+  GALGAS_lstring var_prefs_2104 = GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.galgas", 49)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 49))  COMMA_SOURCE_FILE ("preferences.galgas", 49)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.galgas", 50)) ;
+  GALGAS_stringset var_signatureList_2189 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("preferences.galgas", 51)) ;
+  GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2263 = GALGAS_arrayControllerBindingListAST::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 52)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
     case 2: {
-      nt_action_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mActionDeclarationList, inCompiler) ;
+      GALGAS_astViewDeclarationList var_viewDeclarationList_2343 = GALGAS_astViewDeclarationList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 55)) ;
+      nt_stack_5F_view_5F_declaration_ (var_viewDeclarationList_2343, inCompiler) ;
+      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mViewDeclarationList.plusAssign_operation(var_viewDeclarationList_2343, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 57)) ;
     } break ;
     case 3: {
-      GALGAS_simpleStoredPropertyList var_simpleStoredPropertyList_2384 = GALGAS_simpleStoredPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 56)) ;
-      nt_simple_5F_stored_5F_declaration_ (var_prefs_2046, var_simpleStoredPropertyList_2384, var_signatureList_2131, ioArgument_ioDeclarationAST, inCompiler) ;
-      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSimpleStoredAttributeList.plusAssign_operation(var_simpleStoredPropertyList_2384, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 62)) ;
+      nt_action_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mActionDeclarationList, inCompiler) ;
     } break ;
     case 4: {
-      nt_outlet_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mOutletDeclarationList, inCompiler) ;
+      GALGAS_simpleStoredPropertyList var_simpleStoredPropertyList_2644 = GALGAS_simpleStoredPropertyList::constructor_emptyList (SOURCE_FILE ("preferences.galgas", 61)) ;
+      nt_simple_5F_stored_5F_declaration_ (var_prefs_2104, var_simpleStoredPropertyList_2644, var_signatureList_2189, ioArgument_ioDeclarationAST, inCompiler) ;
+      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSimpleStoredAttributeList.plusAssign_operation(var_simpleStoredPropertyList_2644, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 67)) ;
     } break ;
     case 5: {
-      nt_transient_5F_declaration_ (var_prefs_2046, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.galgas", 66)), ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_outlet_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mOutletDeclarationList, inCompiler) ;
     } break ;
     case 6: {
-      nt_extern_5F_swift_5F_func_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mExternSwiftFunctionList, inCompiler) ;
+      nt_transient_5F_declaration_ (var_prefs_2104, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.galgas", 71)), ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 7: {
-      GALGAS_stringset joker_2928 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("preferences.galgas", 70)) ;
-      nt_toMany_5F_relationship_ (var_prefs_2046, joker_2928, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_extern_5F_swift_5F_func_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mExternSwiftFunctionList, inCompiler) ;
     } break ;
     case 8: {
-      nt_controller_5F_declaration_ (GALGAS_bool (false), var_prefs_2046, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.galgas", 72)), var_arrayControllerBindingListAST_2205, ioArgument_ioDeclarationAST, inCompiler) ;
+      GALGAS_stringset joker_3188 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("preferences.galgas", 75)) ;
+      nt_toMany_5F_relationship_ (var_prefs_2104, joker_3188, ioArgument_ioDeclarationAST, inCompiler) ;
+    } break ;
+    case 9: {
+      nt_controller_5F_declaration_ (GALGAS_bool (false), var_prefs_2104, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.galgas", 77)), var_arrayControllerBindingListAST_2263, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSignatureList.plusAssign_operation(var_signatureList_2131, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 74)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.galgas", 75)) ;
+  ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSignatureList.plusAssign_operation(var_signatureList_2189, inCompiler  COMMA_SOURCE_FILE ("preferences.galgas", 79)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.galgas", 80)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.galgas", 47)) ;
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.galgas", 49)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.galgas", 48)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.galgas", 50)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_14 (inCompiler)) {
     case 2: {
-      nt_action_5F_declaration_parse (inCompiler) ;
+      nt_stack_5F_view_5F_declaration_parse (inCompiler) ;
     } break ;
     case 3: {
-      nt_simple_5F_stored_5F_declaration_parse (inCompiler) ;
+      nt_action_5F_declaration_parse (inCompiler) ;
     } break ;
     case 4: {
-      nt_outlet_5F_declaration_parse (inCompiler) ;
+      nt_simple_5F_stored_5F_declaration_parse (inCompiler) ;
     } break ;
     case 5: {
-      nt_transient_5F_declaration_parse (inCompiler) ;
+      nt_outlet_5F_declaration_parse (inCompiler) ;
     } break ;
     case 6: {
-      nt_extern_5F_swift_5F_func_parse (inCompiler) ;
+      nt_transient_5F_declaration_parse (inCompiler) ;
     } break ;
     case 7: {
-      nt_toMany_5F_relationship_parse (inCompiler) ;
+      nt_extern_5F_swift_5F_func_parse (inCompiler) ;
     } break ;
     case 8: {
+      nt_toMany_5F_relationship_parse (inCompiler) ;
+    } break ;
+    case 9: {
       nt_controller_5F_declaration_parse (inCompiler) ;
     } break ;
     default:
@@ -6754,7 +6762,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
       break ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.galgas", 75)) ;
+  inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.galgas", 80)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -10792,7 +10800,8 @@ mProperty_mSimpleStoredAttributeList (),
 mProperty_mActionDeclarationList (),
 mProperty_mExternSwiftFunctionList (),
 mProperty_mSignatureList (),
-mProperty_mMainXibDescriptorList () {
+mProperty_mMainXibDescriptorList (),
+mProperty_mViewDeclarationList () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10807,13 +10816,15 @@ GALGAS_prefDeclaration::GALGAS_prefDeclaration (const GALGAS_outletDeclarationLi
                                                 const GALGAS_lstringlist & inOperand2,
                                                 const GALGAS_externSwiftFunctionList & inOperand3,
                                                 const GALGAS_stringset & inOperand4,
-                                                const GALGAS_mainXibDescriptorList & inOperand5) :
+                                                const GALGAS_mainXibDescriptorList & inOperand5,
+                                                const GALGAS_astViewDeclarationList & inOperand6) :
 mProperty_mOutletDeclarationList (inOperand0),
 mProperty_mSimpleStoredAttributeList (inOperand1),
 mProperty_mActionDeclarationList (inOperand2),
 mProperty_mExternSwiftFunctionList (inOperand3),
 mProperty_mSignatureList (inOperand4),
-mProperty_mMainXibDescriptorList (inOperand5) {
+mProperty_mMainXibDescriptorList (inOperand5),
+mProperty_mViewDeclarationList (inOperand6) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10824,7 +10835,8 @@ GALGAS_prefDeclaration GALGAS_prefDeclaration::constructor_default (UNUSED_LOCAT
                                  GALGAS_lstringlist::constructor_emptyList (HERE),
                                  GALGAS_externSwiftFunctionList::constructor_emptyList (HERE),
                                  GALGAS_stringset::constructor_emptySet (HERE),
-                                 GALGAS_mainXibDescriptorList::constructor_emptyList (HERE)) ;
+                                 GALGAS_mainXibDescriptorList::constructor_emptyList (HERE),
+                                 GALGAS_astViewDeclarationList::constructor_emptyList (HERE)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10834,11 +10846,12 @@ GALGAS_prefDeclaration GALGAS_prefDeclaration::constructor_new (const GALGAS_out
                                                                 const GALGAS_lstringlist & inOperand2,
                                                                 const GALGAS_externSwiftFunctionList & inOperand3,
                                                                 const GALGAS_stringset & inOperand4,
-                                                                const GALGAS_mainXibDescriptorList & inOperand5 
+                                                                const GALGAS_mainXibDescriptorList & inOperand5,
+                                                                const GALGAS_astViewDeclarationList & inOperand6 
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_prefDeclaration result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
-    result = GALGAS_prefDeclaration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid ()) {
+    result = GALGAS_prefDeclaration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6) ;
   }
   return result ;
 }
@@ -10865,13 +10878,16 @@ typeComparisonResult GALGAS_prefDeclaration::objectCompare (const GALGAS_prefDec
   if (result == kOperandEqual) {
     result = mProperty_mMainXibDescriptorList.objectCompare (inOperand.mProperty_mMainXibDescriptorList) ;
   }
+  if (result == kOperandEqual) {
+    result = mProperty_mViewDeclarationList.objectCompare (inOperand.mProperty_mViewDeclarationList) ;
+  }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 bool GALGAS_prefDeclaration::isValid (void) const {
-  return mProperty_mOutletDeclarationList.isValid () && mProperty_mSimpleStoredAttributeList.isValid () && mProperty_mActionDeclarationList.isValid () && mProperty_mExternSwiftFunctionList.isValid () && mProperty_mSignatureList.isValid () && mProperty_mMainXibDescriptorList.isValid () ;
+  return mProperty_mOutletDeclarationList.isValid () && mProperty_mSimpleStoredAttributeList.isValid () && mProperty_mActionDeclarationList.isValid () && mProperty_mExternSwiftFunctionList.isValid () && mProperty_mSignatureList.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mViewDeclarationList.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10883,6 +10899,7 @@ void GALGAS_prefDeclaration::drop (void) {
   mProperty_mExternSwiftFunctionList.drop () ;
   mProperty_mSignatureList.drop () ;
   mProperty_mMainXibDescriptorList.drop () ;
+  mProperty_mViewDeclarationList.drop () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10904,6 +10921,8 @@ void GALGAS_prefDeclaration::description (C_String & ioString,
     mProperty_mSignatureList.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mMainXibDescriptorList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mViewDeclarationList.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }

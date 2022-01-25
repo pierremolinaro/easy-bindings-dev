@@ -9,12 +9,13 @@ struct @prefDeclaration {
   public var @externSwiftFunctionList mExternSwiftFunctionList
   public var @stringset mSignatureList
   public var @mainXibDescriptorList mMainXibDescriptorList
+  public var @astViewDeclarationList mViewDeclarationList
 }
 
 #·······················································································································
 
 refclass @prefsDeclarationAST : @abstractDeclarationAST {
-  public var @prefDeclaration mDeclaration
+  public let @prefDeclaration mDeclaration
 }
 
 #·······················································································································
@@ -50,6 +51,10 @@ syntax extension easyBindings_syntax {
     var @stringset signatureList = {}
     var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     repeat
+    while
+      var @astViewDeclarationList viewDeclarationList = {}
+      <stack_view_declaration> !?viewDeclarationList
+      ioDeclarationAST.mPreferences.mViewDeclarationList += viewDeclarationList
     while
       <action_declaration> !?ioDeclarationAST.mPreferences.mActionDeclarationList
     while
@@ -152,6 +157,35 @@ override method @prefsDeclarationAST fourthAnalysisPhase
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
+#--- Check auto layout view declarations
+  var @autoLayoutViewDeclarationMap viewDeclarationMap = {}
+  var @viewGenerationList viewGenerationList = {}
+  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
+  var @autoLayoutConfiguratorMap configuratorMap = {}
+  var @autoLayoutOutletMap autoLayoutOutletMap = {}
+  for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
+    [!?viewDeclarationMap insertKey !viewName]
+    [viewDeclaration check
+      !viewName
+      !viewDeclarationMap
+      !false
+      !{} # rootPropertyMap
+      !preferencesPropertyMap
+      !ioSemanticContext
+      !{} # documentPropertyMap
+      !actionMap
+      !self.mClassName
+      !ioSemanticContext.mClassMap
+      !?implicitViewFunctionGenerationList
+      !?configuratorMap
+      !?autoLayoutOutletMap
+      ?let viewGeneration
+    ]
+    viewGenerationList += !viewName !viewGeneration
+  end
+  if not [viewDeclarationMap hasKey !"mPrefsMainView"] then
+    error .nowhere : "Preferences should define 'mPrefsMainView' stack view"
+  end
 #--- Code generation
   ioGeneration.mFileGenerationList += !@preferencesForGeneration.new {
     !propertyGenerationList
@@ -163,6 +197,8 @@ override method @prefsDeclarationAST fourthAnalysisPhase
     !self.mDeclaration.mExternSwiftFunctionList
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGenerationList
+    !viewGenerationList
+    !implicitViewFunctionGenerationList
   }
 }
 
@@ -171,15 +207,17 @@ override method @prefsDeclarationAST fourthAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @preferencesForGeneration : @abstractFileGeneration {
-  public var @propertyGenerationList mPropertyListForGeneration
-  public var @mainXibDescriptorList mMainXibDescriptorList
-  public var @regularBindingsGenerationList mRegularBindingsGenerationList
-  public var @multipleBindingGenerationList mMultipleBindingGenerationList
-  public var @actionBindingListForGeneration mActionBindingListForGeneration
-  public var @decoratedOutletMap mOutletMap
-  public var @externSwiftFunctionList mExternSwiftFunctionList
-  public var @tableViewBindingGenerationList mTableViewBindingGenerationList
-  public var @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public let @propertyGenerationList mPropertyListForGeneration
+  public let @mainXibDescriptorList mMainXibDescriptorList
+  public let @regularBindingsGenerationList mRegularBindingsGenerationList
+  public let @multipleBindingGenerationList mMultipleBindingGenerationList
+  public let @actionBindingListForGeneration mActionBindingListForGeneration
+  public let @decoratedOutletMap mOutletMap
+  public let @externSwiftFunctionList mExternSwiftFunctionList
+  public let @tableViewBindingGenerationList mTableViewBindingGenerationList
+  public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public let @viewGenerationList mViewGenerationList
+  public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
 }
 
 #·······················································································································
@@ -197,6 +235,8 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
     ?@externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
+    ?@viewGenerationList VIEW_GENERATION_LIST
+    ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
 }
 
 #·······················································································································
@@ -215,6 +255,8 @@ override method @preferencesForGeneration generateCode
     !self.mExternSwiftFunctionList
     !self.mTableViewBindingGenerationList
     !self.mEBViewBindingGenerationList
+    !self.mViewGenerationList
+    !self.mImplicitViewFunctionGenerationList
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName

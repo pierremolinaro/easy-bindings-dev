@@ -4470,6 +4470,11 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
     return mProperty_mMainXibDescriptorList ;
   }
 
+  public: GALGAS_astViewDeclarationList mProperty_mViewDeclarationList ;
+  public: inline GALGAS_astViewDeclarationList readProperty_mViewDeclarationList (void) const {
+    return mProperty_mViewDeclarationList ;
+  }
+
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public: VIRTUAL_IN_DEBUG void drop (void) ;
@@ -4505,6 +4510,10 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
     mProperty_mMainXibDescriptorList = inValue ;
   }
 
+  public: inline void setter_setMViewDeclarationList (const GALGAS_astViewDeclarationList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mViewDeclarationList = inValue ;
+  }
+
 //--------------------------------- Virtual destructor (in debug mode)
   public: virtual ~ GALGAS_prefDeclaration (void) ;
 
@@ -4514,7 +4523,8 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
                                   const GALGAS_lstringlist & in_mActionDeclarationList,
                                   const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
                                   const GALGAS_stringset & in_mSignatureList,
-                                  const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList) ;
+                                  const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
+                                  const GALGAS_astViewDeclarationList & in_mViewDeclarationList) ;
 
 //-- Start of generic part --*
 
@@ -4532,7 +4542,8 @@ class GALGAS_prefDeclaration : public AC_GALGAS_root {
                                                                const class GALGAS_lstringlist & inOperand2,
                                                                const class GALGAS_externSwiftFunctionList & inOperand3,
                                                                const class GALGAS_stringset & inOperand4,
-                                                               const class GALGAS_mainXibDescriptorList & inOperand5
+                                                               const class GALGAS_mainXibDescriptorList & inOperand5,
+                                                               const class GALGAS_astViewDeclarationList & inOperand6
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'

@@ -24,6 +24,49 @@ end
 @objc(%!preferencesName ()%) final class %!preferencesName ()% : EBObjcBaseObject, NSWindowDelegate {
 
   //····················································································································
+
+  private var mWindow : EBWindow? = nil
+
+  //····················································································································
+  //    Show Preferences window
+  //····················································································································
+
+  @IBAction func showPreferencesWindowAction (_ inSender : Any?) {
+    let window : EBWindow
+    if let w = self.mWindow {
+      window = w
+    }else{
+      window = EBWindow (
+        contentRect: NSRect (x: 0, y: 0, width: 680, height: 600),
+        styleMask: [.closable, .titled],
+        backing: .buffered,
+        defer: false
+      )
+      self.mWindow = window
+      window.title = "Preferences"
+      window.isReleasedWhenClosed = false
+      window.contentView = AutoLayoutWindowContentView (view: self.mPrefsMainView)
+    }
+    window.makeKeyAndOrderFront (nil)
+  }
+
+%
+for (mViewName mView) in VIEW_GENERATION_LIST do
+  %  //····················································································································\n%
+  %  //    VIEW %!mViewName%\n%
+  %  //····················································································································\n\n%
+  ![mView generate !mViewName]
+end
+for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do index idx
+  %  //····················································································································\n%
+  %  //    IMPLICIT VIEW %![idx string]%\n%
+  %  //····················································································································\n\n%
+%  fileprivate final func computeImplicitView_%![idx string]% () -> NSView {\n%
+![mInstruction generate !"view" !"    "]
+%    return view\n%
+%  }\n\n%
+end
+%  //····················································································································
   //    Outlets
   //····················································································································
 

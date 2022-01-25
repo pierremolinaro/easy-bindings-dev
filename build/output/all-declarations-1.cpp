@@ -5517,6 +5517,12 @@ typeComparisonResult cPtr_preferencesForGeneration::dynamicObjectCompare (const 
   if (kOperandEqual == result) {
     result = mProperty_mEBViewBindingGenerationList.objectCompare (p->mProperty_mEBViewBindingGenerationList) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mViewGenerationList.objectCompare (p->mProperty_mViewGenerationList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mImplicitViewFunctionGenerationList.objectCompare (p->mProperty_mImplicitViewFunctionGenerationList) ;
+  }
   return result ;
 }
 
@@ -5556,7 +5562,9 @@ GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::constructor_def
                                                            GALGAS_decoratedOutletMap::constructor_emptyMap (HERE),
                                                            GALGAS_externSwiftFunctionList::constructor_emptyList (HERE),
                                                            GALGAS_tableViewBindingGenerationList::constructor_emptyList (HERE),
-                                                           GALGAS_ebViewGraphicControllerBindingGenerationList::constructor_emptyList (HERE)
+                                                           GALGAS_ebViewGraphicControllerBindingGenerationList::constructor_emptyList (HERE),
+                                                           GALGAS_viewGenerationList::constructor_emptyList (HERE),
+                                                           GALGAS_implicitViewFunctionGenerationList::constructor_emptyList (HERE)
                                                            COMMA_THERE) ;
 }
 
@@ -5576,11 +5584,13 @@ GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::constructor_new
                                                                                   const GALGAS_decoratedOutletMap & inAttribute_mOutletMap,
                                                                                   const GALGAS_externSwiftFunctionList & inAttribute_mExternSwiftFunctionList,
                                                                                   const GALGAS_tableViewBindingGenerationList & inAttribute_mTableViewBindingGenerationList,
-                                                                                  const GALGAS_ebViewGraphicControllerBindingGenerationList & inAttribute_mEBViewBindingGenerationList
+                                                                                  const GALGAS_ebViewGraphicControllerBindingGenerationList & inAttribute_mEBViewBindingGenerationList,
+                                                                                  const GALGAS_viewGenerationList & inAttribute_mViewGenerationList,
+                                                                                  const GALGAS_implicitViewFunctionGenerationList & inAttribute_mImplicitViewFunctionGenerationList
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_preferencesForGeneration result ;
-  if (inAttribute_mPropertyListForGeneration.isValid () && inAttribute_mMainXibDescriptorList.isValid () && inAttribute_mRegularBindingsGenerationList.isValid () && inAttribute_mMultipleBindingGenerationList.isValid () && inAttribute_mActionBindingListForGeneration.isValid () && inAttribute_mOutletMap.isValid () && inAttribute_mExternSwiftFunctionList.isValid () && inAttribute_mTableViewBindingGenerationList.isValid () && inAttribute_mEBViewBindingGenerationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_preferencesForGeneration (inAttribute_mPropertyListForGeneration, inAttribute_mMainXibDescriptorList, inAttribute_mRegularBindingsGenerationList, inAttribute_mMultipleBindingGenerationList, inAttribute_mActionBindingListForGeneration, inAttribute_mOutletMap, inAttribute_mExternSwiftFunctionList, inAttribute_mTableViewBindingGenerationList, inAttribute_mEBViewBindingGenerationList COMMA_THERE)) ;
+  if (inAttribute_mPropertyListForGeneration.isValid () && inAttribute_mMainXibDescriptorList.isValid () && inAttribute_mRegularBindingsGenerationList.isValid () && inAttribute_mMultipleBindingGenerationList.isValid () && inAttribute_mActionBindingListForGeneration.isValid () && inAttribute_mOutletMap.isValid () && inAttribute_mExternSwiftFunctionList.isValid () && inAttribute_mTableViewBindingGenerationList.isValid () && inAttribute_mEBViewBindingGenerationList.isValid () && inAttribute_mViewGenerationList.isValid () && inAttribute_mImplicitViewFunctionGenerationList.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_preferencesForGeneration (inAttribute_mPropertyListForGeneration, inAttribute_mMainXibDescriptorList, inAttribute_mRegularBindingsGenerationList, inAttribute_mMultipleBindingGenerationList, inAttribute_mActionBindingListForGeneration, inAttribute_mOutletMap, inAttribute_mExternSwiftFunctionList, inAttribute_mTableViewBindingGenerationList, inAttribute_mEBViewBindingGenerationList, inAttribute_mViewGenerationList, inAttribute_mImplicitViewFunctionGenerationList COMMA_THERE)) ;
   }
   return result ;
 }
@@ -5681,6 +5691,28 @@ void GALGAS_preferencesForGeneration::setter_setMEBViewBindingGenerationList (GA
     cPtr_preferencesForGeneration * p = (cPtr_preferencesForGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_preferencesForGeneration) ;
     p->mProperty_mEBViewBindingGenerationList = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_preferencesForGeneration::setter_setMViewGenerationList (GALGAS_viewGenerationList inValue
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    cPtr_preferencesForGeneration * p = (cPtr_preferencesForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_preferencesForGeneration) ;
+    p->mProperty_mViewGenerationList = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_preferencesForGeneration::setter_setMImplicitViewFunctionGenerationList (GALGAS_implicitViewFunctionGenerationList inValue
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    cPtr_preferencesForGeneration * p = (cPtr_preferencesForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_preferencesForGeneration) ;
+    p->mProperty_mImplicitViewFunctionGenerationList = inValue ;
   }
 }
 
@@ -5793,6 +5825,30 @@ GALGAS_ebViewGraphicControllerBindingGenerationList GALGAS_preferencesForGenerat
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_viewGenerationList GALGAS_preferencesForGeneration::readProperty_mViewGenerationList (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_viewGenerationList () ;
+  }else{
+    cPtr_preferencesForGeneration * p = (cPtr_preferencesForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_preferencesForGeneration) ;
+    return p->mProperty_mViewGenerationList ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_implicitViewFunctionGenerationList GALGAS_preferencesForGeneration::readProperty_mImplicitViewFunctionGenerationList (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_implicitViewFunctionGenerationList () ;
+  }else{
+    cPtr_preferencesForGeneration * p = (cPtr_preferencesForGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_preferencesForGeneration) ;
+    return p->mProperty_mImplicitViewFunctionGenerationList ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 //Pointer class for @preferencesForGeneration class
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -5804,7 +5860,9 @@ cPtr_preferencesForGeneration::cPtr_preferencesForGeneration (const GALGAS_prope
                                                               const GALGAS_decoratedOutletMap & in_mOutletMap,
                                                               const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
                                                               const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
-                                                              const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList
+                                                              const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
+                                                              const GALGAS_viewGenerationList & in_mViewGenerationList,
+                                                              const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList
                                                               COMMA_LOCATION_ARGS) :
 cPtr_abstractFileGeneration (THERE),
 mProperty_mPropertyListForGeneration (in_mPropertyListForGeneration),
@@ -5815,7 +5873,9 @@ mProperty_mActionBindingListForGeneration (in_mActionBindingListForGeneration),
 mProperty_mOutletMap (in_mOutletMap),
 mProperty_mExternSwiftFunctionList (in_mExternSwiftFunctionList),
 mProperty_mTableViewBindingGenerationList (in_mTableViewBindingGenerationList),
-mProperty_mEBViewBindingGenerationList (in_mEBViewBindingGenerationList) {
+mProperty_mEBViewBindingGenerationList (in_mEBViewBindingGenerationList),
+mProperty_mViewGenerationList (in_mViewGenerationList),
+mProperty_mImplicitViewFunctionGenerationList (in_mImplicitViewFunctionGenerationList) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5844,6 +5904,10 @@ void cPtr_preferencesForGeneration::description (C_String & ioString,
   mProperty_mTableViewBindingGenerationList.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mEBViewBindingGenerationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mViewGenerationList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mImplicitViewFunctionGenerationList.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -5851,7 +5915,7 @@ void cPtr_preferencesForGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_preferencesForGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_preferencesForGeneration (mProperty_mPropertyListForGeneration, mProperty_mMainXibDescriptorList, mProperty_mRegularBindingsGenerationList, mProperty_mMultipleBindingGenerationList, mProperty_mActionBindingListForGeneration, mProperty_mOutletMap, mProperty_mExternSwiftFunctionList, mProperty_mTableViewBindingGenerationList, mProperty_mEBViewBindingGenerationList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_preferencesForGeneration (mProperty_mPropertyListForGeneration, mProperty_mMainXibDescriptorList, mProperty_mRegularBindingsGenerationList, mProperty_mMultipleBindingGenerationList, mProperty_mActionBindingListForGeneration, mProperty_mOutletMap, mProperty_mExternSwiftFunctionList, mProperty_mTableViewBindingGenerationList, mProperty_mEBViewBindingGenerationList, mProperty_mViewGenerationList, mProperty_mImplicitViewFunctionGenerationList COMMA_THERE)) ;
   return ptr ;
 }
 

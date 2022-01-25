@@ -3524,6 +3524,10 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 
   public: class GALGAS_ebViewGraphicControllerBindingGenerationList readProperty_mEBViewBindingGenerationList (void) const ;
 
+  public: class GALGAS_viewGenerationList readProperty_mViewGenerationList (void) const ;
+
+  public: class GALGAS_implicitViewFunctionGenerationList readProperty_mImplicitViewFunctionGenerationList (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -3543,7 +3547,9 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
                                                                         const class GALGAS_decoratedOutletMap & inOperand5,
                                                                         const class GALGAS_externSwiftFunctionList & inOperand6,
                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand7,
-                                                                        const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand8
+                                                                        const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand8,
+                                                                        const class GALGAS_viewGenerationList & inOperand9,
+                                                                        const class GALGAS_implicitViewFunctionGenerationList & inOperand10
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3558,6 +3564,9 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 
   public: VIRTUAL_IN_DEBUG void setter_setMExternSwiftFunctionList (class GALGAS_externSwiftFunctionList inArgument0
                                                                     COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMImplicitViewFunctionGenerationList (class GALGAS_implicitViewFunctionGenerationList inArgument0
+                                                                               COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMMainXibDescriptorList (class GALGAS_mainXibDescriptorList inArgument0
                                                                   COMMA_LOCATION_ARGS) ;
@@ -3576,6 +3585,9 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 
   public: VIRTUAL_IN_DEBUG void setter_setMTableViewBindingGenerationList (class GALGAS_tableViewBindingGenerationList inArgument0
                                                                            COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMViewGenerationList (class GALGAS_viewGenerationList inArgument0
+                                                               COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
@@ -3615,6 +3627,8 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
   public: GALGAS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
   public: GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
   public: GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
+  public: GALGAS_viewGenerationList mProperty_mViewGenerationList ;
+  public: GALGAS_implicitViewFunctionGenerationList mProperty_mImplicitViewFunctionGenerationList ;
 
 //--- Constructor
   public: cPtr_preferencesForGeneration (const GALGAS_propertyGenerationList & in_mPropertyListForGeneration,
@@ -3625,7 +3639,9 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
                                          const GALGAS_decoratedOutletMap & in_mOutletMap,
                                          const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
                                          const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
-                                         const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList
+                                         const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
+                                         const GALGAS_viewGenerationList & in_mViewGenerationList,
+                                         const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication

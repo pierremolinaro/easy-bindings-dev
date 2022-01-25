@@ -129,9 +129,6 @@ end
      %)\n%
      end
 %  //--- Assign main view to window
-/*    if let windowSize = self.windowForSheet?.frame.size {
-      mainView.frame.size = windowSize
-    } */
     self.windowForSheet?.contentView = AutoLayoutWindowContentView (view: mainView)
   }
 
@@ -207,64 +204,6 @@ for (mProperty) in DOCUMENT_PROPERTY_LIST do
       Swift.print ("Configure properties \(durationMS) ms")
     }
   }
-
-  //····················································································································
-
-/*  final private func installBindings () {
-    let start = Date ()
-  //--------------------------- Install table view bindings
-%
-for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    self.%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%, file: #file, line: #line)\n%
-end
-%  //--------------------------- Install ebView bindings
-%
-for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %    self.%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
-end
-%  //--------------------------- Install regular bindings
-%
-for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
-  %    self.%!mOutletName%?.bind_%!mBindingName% (%
-  for (mBoundObjectString mKind) in mBoundObjectList do
-    !mBoundObjectString%, %
-  end
-  %file: #file, line: #line%!mBindingOptionsString%)\n%
-end
-%  //--------------------------- Install multiple bindings
-%
-for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
-  %    do{\n%
-  %      let controller = MultipleBindingController_%!mBindingName% (\n%
-  %        computeFunction: %![mBoundObjectExpression expressionString]%ø}\n%
-  %        outlet: self.%!mOutletName%\n%
-  %      )\n%
-#  for () in [mBoundObjectExpression observedModelSet] do
-#  %      %!key%.addEBObserver (controller)\n%
-#  end
-  %      self.mController_%!mOutletName%_%!mBindingName% = controller\n%
-  %    }\n%
-end
-%    if LOG_OPERATION_DURATION {
-      let durationMS = Int (Date ().timeIntervalSince (start) * 1000.0)
-      Swift.print ("Install bindings \(durationMS) ms")
-    }
-  } */
-
-  //····················································································································
-
-/*  final private func setTargetsAndActions () {
-     let start = Date ()
-   //--------------------------- Set targets / actions
-%for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
-%    self.%!mOutletName%?.target = %!mTargetName%\n%
-%    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
-end
-%    if LOG_OPERATION_DURATION {
-      let durationMS = Int (Date ().timeIntervalSince (start) * 1000.0)
-      Swift.print ("Set target and actions \(durationMS) ms")
-    }
-  } */
 
   //····················································································································
   //   removeUserInterface

@@ -3,15 +3,15 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
-  public var @lstring mRootEntityName
-  public var @lstring mMainViewName
-  public var @outletDeclarationList mOutletDeclarationList
-  public var @lstringlist mActionDeclarationList
-  public var @arrayControllerBindingListAST mArrayControllerBindingListAST
-  public var @astViewDeclarationList mViewDeclarationList
-  public var @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
-  public var @string mCustomSuperClassName # Empty String if no custom superclass
-  public var @astAutoLayoutOutletLinkerList mOutletLinkerList
+  public let @lstring mRootEntityName
+  public let @lstring mMainViewName
+  public let @outletDeclarationList mOutletDeclarationList
+  public let @lstringlist mActionDeclarationList
+  public let @arrayControllerBindingListAST mArrayControllerBindingListAST
+  public let @astViewDeclarationList mViewDeclarationList
+  public let @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
+  public let @string mCustomSuperClassName # Empty String if no custom superclass
+  public let @astAutoLayoutOutletLinkerList mOutletLinkerList
 }
 
 #·······················································································································
@@ -341,23 +341,23 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
-  public var @string mDocumentName
-  public var @string mRootEntityName
-  public var @string mMainViewName
-  public var @propertyGenerationList mDocumentPropertyGenearionList
-  public var @decoratedOutletMap mOutletMap
-  public var @autoLayoutOutletMap mAutoLayoutOutletMap
-  public var @actionBindingListForGeneration mTargetActionList 
-  public var @regularBindingsGenerationList mRegularBindingsGenerationList 
-  public var @multipleBindingGenerationList multipleBindingGenerationList
-  public var @tableViewBindingGenerationList mTableViewBindingGenerationList
-  public var @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
-  public var @viewGenerationList mViewDeclarationList
-  public var @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
-  public var @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
-  public var @autoLayoutConfiguratorMap mConfiguratorMap
-  public var @string mCustomSuperClassName # Empty String if no custom superclass
-  public var @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
+  public let @string mDocumentName
+  public let @string mRootEntityName
+  public let @string mMainViewName
+  public let @propertyGenerationList mDocumentPropertyGenearionList
+  public let @decoratedOutletMap mOutletMap
+  public let @autoLayoutOutletMap mAutoLayoutOutletMap
+  public let @actionBindingListForGeneration mTargetActionList 
+  public let @regularBindingsGenerationList mRegularBindingsGenerationList 
+  public let @multipleBindingGenerationList multipleBindingGenerationList
+  public let @tableViewBindingGenerationList mTableViewBindingGenerationList
+  public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public let @viewGenerationList mViewDeclarationList
+  public let @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
+  public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
+  public let @autoLayoutConfiguratorMap mConfiguratorMap
+  public let @string mCustomSuperClassName # Empty String if no custom superclass
+  public let @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
 }
 
 #·······················································································································
