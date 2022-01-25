@@ -656,8 +656,7 @@ method @astAutoLayoutViewFunctionCallList check
           end
           switch enabledBindingGeneration 
           case none :
-            s += ", enableBinding: .empty"
-#            s += ", enableBinding: EBMultipleBindingBooleanExpression ()"
+            s += ", enableBinding: .alwaysTrue"
           case enabled (binding) :
             s += ", enableBinding: " + [binding expressionString]
           end
@@ -1035,8 +1034,7 @@ override method @astComputedViewInstruction generateCode
         end
         switch enabledBindingGeneration 
         case none :
-          s += ", enableBinding: .empty"
-#          s += ", enableBinding: EBMultipleBindingBooleanExpression ()"
+          s += ", enableBinding: . alwaysTrue"
         case enabled (binding) :
           s += ", enableBinding: " + [binding expressionString]
         end
