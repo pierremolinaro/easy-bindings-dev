@@ -75,7 +75,6 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "versionShouldChange",
   "view",
   "xcodeproject",
-  "xibdocument",
   "yes"
 }
 

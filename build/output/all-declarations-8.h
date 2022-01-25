@@ -341,7 +341,7 @@ void routine_analyzeOutlets (const class GALGAS_bool constinArgument0,
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'xibDocumentGenerationTemplate'
+//Filewrapper 'autoLayoutDocumentGenerationTemplate'
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -354,26 +354,57 @@ void routine_analyzeOutlets (const class GALGAS_bool constinArgument0,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-extern const cDirectoryWrapper gWrapperDirectory_0_xibDocumentGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_1_xibDocumentGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_2_xibDocumentGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_3_xibDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_0_autoLayoutDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_autoLayoutDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_autoLayoutDocumentGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_autoLayoutDocumentGenerationTemplate ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Filewrapper template 'xibDocumentGenerationTemplate documentImplementation'
+//Filewrapper template 'autoLayoutDocumentGenerationTemplate documentImplementation'
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_string filewrapperTemplate_xibDocumentGenerationTemplate_documentImplementation (class C_Compiler * inCompiler,
-                                                                                        const class GALGAS_string & in_DOCUMENT_5F_NAME,
-                                                                                        const class GALGAS_string & in_ROOT_5F_ENTITY_5F_NAME,
-                                                                                        const class GALGAS_propertyGenerationList & in_DOCUMENT_5F_PROPERTY_5F_LIST,
-                                                                                        const class GALGAS_decoratedOutletMap & in_OUTLET_5F_GENERATION_5F_MAP,
-                                                                                        const class GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST,
-                                                                                        const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
-                                                                                        const class GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST,
-                                                                                        const class GALGAS_tableViewBindingGenerationList & in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST,
-                                                                                        const class GALGAS_ebViewGraphicControllerBindingGenerationList & in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST
-                                                                                        COMMA_LOCATION_ARGS) ;
+GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentImplementation (class C_Compiler * inCompiler,
+                                                                                               const class GALGAS_string & in_DOCUMENT_5F_CLASS_5F_NAME,
+                                                                                               const class GALGAS_string & in_ROOT_5F_ENTITY_5F_NAME,
+                                                                                               const class GALGAS_string & in_MAIN_5F_VIEW_5F_NAME,
+                                                                                               const class GALGAS_propertyGenerationList & in_DOCUMENT_5F_PROPERTY_5F_LIST,
+                                                                                               const class GALGAS_decoratedOutletMap & in_OUTLET_5F_GENERATION_5F_MAP,
+                                                                                               const class GALGAS_autoLayoutOutletMap & in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP,
+                                                                                               const class GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST,
+                                                                                               const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
+                                                                                               const class GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST,
+                                                                                               const class GALGAS_tableViewBindingGenerationList & in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST,
+                                                                                               const class GALGAS_ebViewGraphicControllerBindingGenerationList & in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST,
+                                                                                               const class GALGAS_viewGenerationList & in_VIEW_5F_GENERATION_5F_LIST,
+                                                                                               const class GALGAS_autoLayoutToolbarItemGenerationList & in_TOOLBAR_5F_ITEM_5F_LIST,
+                                                                                               const class GALGAS_implicitViewFunctionGenerationList & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST,
+                                                                                               const class GALGAS_string & in_DOCUMENT_5F_SUPER_5F_CLASS_5F_NAME,
+                                                                                               const class GALGAS_autoLayoutOutletLinkerGenerationList & in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST
+                                                                                               COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'autoLayoutDocumentGenerationTemplate documentOutletConfiguratorImplementation'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentOutletConfiguratorImplementation (class C_Compiler * inCompiler,
+                                                                                                                 const class GALGAS_string & in_DOCUMENT_5F_TYPE_5F_NAME,
+                                                                                                                 const class GALGAS_string & in_OUTLET_5F_NAME,
+                                                                                                                 const class GALGAS_string & in_OUTLET_5F_TYPE_5F_NAME
+                                                                                                                 COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'autoLayoutDocumentGenerationTemplate outletLinkerImplementation'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_outletLinkerImplementation (class C_Compiler * inCompiler,
+                                                                                                   const class GALGAS_string & in_DOCUMENT_5F_TYPE_5F_NAME,
+                                                                                                   const class GALGAS_string & in_LINKER_5F_NAME,
+                                                                                                   const class GALGAS__32_stringlist & in_OUTLET_5F_NAME_5F_AND_5F_TYPE_5F_NAME_5F_LIST
+                                                                                                   COMMA_LOCATION_ARGS) ;
 
