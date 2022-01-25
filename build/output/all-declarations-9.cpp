@@ -988,102 +988,101 @@ GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentI
   if (in_VIEW_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_viewGenerationList enumerator_11865 (in_VIEW_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_11865.hasCurrentObject ()) {
-      result << "    self." ;
+      result << "    // self." ;
       result << enumerator_11865.current_mViewName (HERE).stringValue () ;
       result << ".ebCleanUp ()\n" ;
       index_11865_.increment () ;
       enumerator_11865.gotoNextObject () ;
     }
   }
-  result << "    let toolbarItems = self.windowForSheet\?.toolbar\?.items \?\? []\n"
+  result << "    /* let toolbarItems = self.windowForSheet\?.toolbar\?.items \?\? []\n"
     "    for item in toolbarItems {\n"
     "      item.view\?.ebCleanUp ()\n"
-    "    }\n"
+    "    } */\n"
     "  //--------------------------- Unbind regular bindings\n" ;
-  GALGAS_uint index_12210_ (0) ;
+  GALGAS_uint index_12219_ (0) ;
   if (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_regularBindingsGenerationList enumerator_12210 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_12210.hasCurrentObject ()) {
+    cEnumerator_regularBindingsGenerationList enumerator_12219 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_12219.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_12210.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_12219.current_mOutletName (HERE).stringValue () ;
       result << "\?.unbind_" ;
-      result << enumerator_12210.current_mBindingName (HERE).stringValue () ;
+      result << enumerator_12219.current_mBindingName (HERE).stringValue () ;
       result << " ()\n" ;
-      index_12210_.increment () ;
-      enumerator_12210.gotoNextObject () ;
+      index_12219_.increment () ;
+      enumerator_12219.gotoNextObject () ;
     }
   }
-  result << "  //--------------------------- Unbind multiple bindings\n"
-    "  //--------------------------- Unbind array controllers\n" ;
-  GALGAS_uint index_12706_ (0) ;
+  result << "  //--------------------------- Unbind array controllers\n" ;
+  GALGAS_uint index_12450_ (0) ;
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_tableViewBindingGenerationList enumerator_12706 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_12706.hasCurrentObject ()) {
+    cEnumerator_tableViewBindingGenerationList enumerator_12450 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_12450.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_12706.current_mTableValueBindingControllerName (HERE).stringValue () ;
+      result << enumerator_12450.current_mTableValueBindingControllerName (HERE).stringValue () ;
       result << ".unbind_tableView (self." ;
-      result << enumerator_12706.current_mTableValueBindingOutletName (HERE).stringValue () ;
+      result << enumerator_12450.current_mTableValueBindingOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_12706_.increment () ;
-      enumerator_12706.gotoNextObject () ;
+      index_12450_.increment () ;
+      enumerator_12450.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_12929_ (0) ;
+  GALGAS_uint index_12673_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_12929 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_12929.hasCurrentObject ()) {
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_12673 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_12673.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_12929.current_mArrayControllerControllerName (HERE).stringValue () ;
+      result << enumerator_12673.current_mArrayControllerControllerName (HERE).stringValue () ;
       result << ".unbind_ebView (self." ;
-      result << enumerator_12929.current_mEBViewOutletName (HERE).stringValue () ;
+      result << enumerator_12673.current_mEBViewOutletName (HERE).stringValue () ;
       result << ")\n" ;
-      index_12929_.increment () ;
-      enumerator_12929.gotoNextObject () ;
+      index_12673_.increment () ;
+      enumerator_12673.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_13069_ (0) ;
+  GALGAS_uint index_12813_ (0) ;
   if (in_DOCUMENT_5F_PROPERTY_5F_LIST.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_13069 (in_DOCUMENT_5F_PROPERTY_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_13069.hasCurrentObject ()) {
-      result << callExtensionGetter_terminationCode ((const cPtr_propertyGeneration *) enumerator_13069.current_mProperty (HERE).ptr (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 305)).stringValue () ;
-      index_13069_.increment () ;
-      enumerator_13069.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_12813 (in_DOCUMENT_5F_PROPERTY_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_12813.hasCurrentObject ()) {
+      result << callExtensionGetter_terminationCode ((const cPtr_propertyGeneration *) enumerator_12813.current_mProperty (HERE).ptr (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 298)).stringValue () ;
+      index_12813_.increment () ;
+      enumerator_12813.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Remove targets / actions\n" ;
-  GALGAS_uint index_13253_ (0) ;
+  GALGAS_uint index_12997_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_13253 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_13253.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_12997 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_12997.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_13253.current_mOutletName (HERE).stringValue () ;
+      result << enumerator_12997.current_mOutletName (HERE).stringValue () ;
       result << "\?.target = nil\n" ;
-      index_13253_.increment () ;
-      enumerator_13253.gotoNextObject () ;
+      index_12997_.increment () ;
+      enumerator_12997.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Clean up outlets\n" ;
-  GALGAS_uint index_13406_ (0) ;
+  GALGAS_uint index_13150_ (0) ;
   if (in_OUTLET_5F_GENERATION_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_13406 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_13406.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_13150 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_13150.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_13406.current_lkey (HERE).readProperty_string ().stringValue () ;
+      result << enumerator_13150.current_lkey (HERE).readProperty_string ().stringValue () ;
       result << "\?.ebCleanUp ()\n" ;
-      index_13406_.increment () ;
-      enumerator_13406.gotoNextObject () ;
+      index_13150_.increment () ;
+      enumerator_13150.gotoNextObject () ;
     }
   }
   result << "  //--------------------------- Detach outlets\n" ;
-  GALGAS_uint index_13560_ (0) ;
+  GALGAS_uint index_13304_ (0) ;
   if (in_OUTLET_5F_GENERATION_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_13560 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_13560.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_13304 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_13304.hasCurrentObject ()) {
       result << "    self." ;
-      result << enumerator_13560.current_lkey (HERE).readProperty_string ().stringValue () ;
+      result << enumerator_13304.current_lkey (HERE).readProperty_string ().stringValue () ;
       result << " = nil\n" ;
-      index_13560_.increment () ;
-      enumerator_13560.gotoNextObject () ;
+      index_13304_.increment () ;
+      enumerator_13304.gotoNextObject () ;
     }
   }
   result << "  }\n"

@@ -275,24 +275,17 @@ end
   //--------------------------- Clean up auto layout views
 %
 for (mViewName mView) in VIEW_GENERATION_LIST do
-  %    self.%!mViewName%.ebCleanUp ()\n%
+  %    // self.%!mViewName%.ebCleanUp ()\n%
 end
-%    let toolbarItems = self.windowForSheet?.toolbar?.items ?? []
+%    /* let toolbarItems = self.windowForSheet?.toolbar?.items ?? []
     for item in toolbarItems {
       item.view?.ebCleanUp ()
-    }
+    } */
   //--------------------------- Unbind regular bindings
 %
 for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
   %    self.%!mOutletName%?.unbind_%!mBindingName% ()\n%
 end
-%  //--------------------------- Unbind multiple bindings
-%
-#for () in MULTIPLE_BINDING_GENERATION_LIST do
-#  for () in [mBoundObjectExpression observedModelSet] do
-#  % //   %!key%.removeEBObserver (self.mController_%!mOutletName%_%!mBindingName%!)\n%
-#  end
-#end
 %  //--------------------------- Unbind array controllers
 %
 for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
