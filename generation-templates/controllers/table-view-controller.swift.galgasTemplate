@@ -507,9 +507,6 @@ else
       case .single (let v) :
         if let tableColumnIdentifier = inTableColumn?.identifier,
           let result = tableView.makeView (withIdentifier: tableColumnIdentifier, owner:self) as? NSTableCellView {
-          if !reuseTableViewCells () {
-            result.identifier = nil // So result cannot be reused, will be freed
-          }
           let object = v [inRowIndex]
           %
 for (mColumnName mColumnOutletTypeName mRunAction mRegularBindingsGenerationList) in BOUND_COLUMNS

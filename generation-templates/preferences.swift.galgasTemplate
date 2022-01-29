@@ -10,17 +10,6 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-%for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty prefKeyDefinitionCode]
-end
-%
-%
-for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty propertyDeclarationCode !true ![@stringset emptySet]]
-end
-%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
 @objc(%!preferencesName ()%) final class %!preferencesName ()% : EBObjcBaseObject, NSWindowDelegate {
 
   //····················································································································
@@ -38,7 +27,7 @@ end
     }else{
       window = EBWindow (
         contentRect: NSRect (x: 0, y: 0, width: 680, height: 600),
-        styleMask: [.closable, .titled],
+        styleMask: [.closable, .resizable, .titled],
         backing: .buffered,
         defer: false
       )
@@ -67,6 +56,15 @@ for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do index idx
 %  }\n\n%
 end
 %  //····················································································································
+  //    Outlets
+  //····················································································································
+
+%
+for (lkey mAutoLayoutOutletTypeName) in AUTO_LAYOUT_OUTLET_MAP do
+%  var %!lkey.string% : AutoLayout%!mAutoLayoutOutletTypeName%? = nil\n%
+end
+%
+  //····················································································································
   //    Outlets
   //····················································································································
 
@@ -212,5 +210,16 @@ end
 
 }
 
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+%for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty prefKeyDefinitionCode]
+end
+%
+%
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
+  ![mProperty propertyDeclarationCode !true ![@stringset emptySet]]
+end
+%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

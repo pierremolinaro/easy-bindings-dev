@@ -247,7 +247,7 @@ override getter @toManyPropertyGeneration initCode -> @string {
 #·······················································································································
 
 override getter @toManyPropertyGeneration prefKeyDefinitionCode -> @string {
-  result = "let Preferences_" + self.mPropertyName + " = \"Preferences:" + self.mPropertyName + "\"\n"
+  result = "fileprivate let Preferences_" + self.mPropertyName + " = \"Preferences:" + self.mPropertyName + "\"\n"
 }
 
 #·······················································································································

@@ -3528,6 +3528,10 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 
   public: class GALGAS_implicitViewFunctionGenerationList readProperty_mImplicitViewFunctionGenerationList (void) const ;
 
+  public: class GALGAS_autoLayoutConfiguratorMap readProperty_mConfiguratorMap (void) const ;
+
+  public: class GALGAS_autoLayoutOutletMap readProperty_mAutoLayoutOutletMap (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -3549,7 +3553,9 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
                                                                         const class GALGAS_tableViewBindingGenerationList & inOperand7,
                                                                         const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand8,
                                                                         const class GALGAS_viewGenerationList & inOperand9,
-                                                                        const class GALGAS_implicitViewFunctionGenerationList & inOperand10
+                                                                        const class GALGAS_implicitViewFunctionGenerationList & inOperand10,
+                                                                        const class GALGAS_autoLayoutConfiguratorMap & inOperand11,
+                                                                        const class GALGAS_autoLayoutOutletMap & inOperand12
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3558,6 +3564,12 @@ class GALGAS_preferencesForGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMActionBindingListForGeneration (class GALGAS_actionBindingListForGeneration inArgument0
                                                                            COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMAutoLayoutOutletMap (class GALGAS_autoLayoutOutletMap inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMConfiguratorMap (class GALGAS_autoLayoutConfiguratorMap inArgument0
+                                                            COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMEBViewBindingGenerationList (class GALGAS_ebViewGraphicControllerBindingGenerationList inArgument0
                                                                         COMMA_LOCATION_ARGS) ;
@@ -3629,6 +3641,8 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
   public: GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
   public: GALGAS_viewGenerationList mProperty_mViewGenerationList ;
   public: GALGAS_implicitViewFunctionGenerationList mProperty_mImplicitViewFunctionGenerationList ;
+  public: GALGAS_autoLayoutConfiguratorMap mProperty_mConfiguratorMap ;
+  public: GALGAS_autoLayoutOutletMap mProperty_mAutoLayoutOutletMap ;
 
 //--- Constructor
   public: cPtr_preferencesForGeneration (const GALGAS_propertyGenerationList & in_mPropertyListForGeneration,
@@ -3641,7 +3655,9 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
                                          const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
                                          const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
                                          const GALGAS_viewGenerationList & in_mViewGenerationList,
-                                         const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList
+                                         const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                         const GALGAS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
+                                         const GALGAS_autoLayoutOutletMap & in_mAutoLayoutOutletMap
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
