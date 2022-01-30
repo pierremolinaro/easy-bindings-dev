@@ -279,9 +279,9 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     case space :
       autoLayoutToolbarItemGenerationList += !.space
     case view (title instruction) :
-      [instruction generateCode
+      [instruction generateViewCode
         !viewDeclarationMap
-        !false
+        !prefs: false
         !rootPropertyMap
         !preferencesPropertyMap
         !ioSemanticContext

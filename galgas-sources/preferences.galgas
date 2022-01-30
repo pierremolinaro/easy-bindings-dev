@@ -74,7 +74,7 @@ syntax extension easyBindings_syntax {
     while
       <toMany_relationship> !prefs !?* !?ioDeclarationAST
     while
-      <controller_declaration> !autoLayout: false !prefs !["" nowhere] !?arrayControllerBindingListAST!?ioDeclarationAST
+      <controller_declaration> !autoLayout: true !prefs !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$

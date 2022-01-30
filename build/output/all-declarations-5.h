@@ -10,16 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Extension getter '@mainXibDescriptorList generateCode' (as function)
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string extensionGetter_generateCode (const class GALGAS_mainXibDescriptorList & inObject,
-                                                  class C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Parser class 'easyBindings_syntax' declaration
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -86,11 +76,6 @@ class cParser_easyBindings_5F_syntax {
                                                     class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_class_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_column_5F_bindings_ (class GALGAS_tableViewColumnBindingAST & outArgument0,
-                                                  class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_column_5F_bindings_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_computed_5F_view_5F_instruction_ (class GALGAS_astComputedViewInstruction & outArgument0,
                                                                class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -552,48 +537,34 @@ class cParser_easyBindings_5F_syntax {
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i52_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_column_5F_bindings_i53_ (GALGAS_tableViewColumnBindingAST & outArgument0,
-                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_column_5F_bindings_i53_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i54_ (GALGAS_bool inArgument0,
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i53_ (GALGAS_bool inArgument0,
                                                                               const GALGAS_lstring constinArgument1,
                                                                               const GALGAS_lstring constinArgument2,
                                                                               GALGAS_arrayControllerBindingListAST & ioArgument3,
                                                                               GALGAS_astDeclarationStruct & ioArgument4,
                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i54_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i53_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i55_ (GALGAS_bool inArgument0,
-                                                                              const GALGAS_lstring constinArgument1,
-                                                                              const GALGAS_lstring constinArgument2,
-                                                                              GALGAS_arrayControllerBindingListAST & ioArgument3,
-                                                                              GALGAS_astDeclarationStruct & ioArgument4,
-                                                                              C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i55_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i56_ (GALGAS_abstractDefaultValue & outArgument0,
+  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i54_ (GALGAS_abstractDefaultValue & outArgument0,
                                                                       C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i56_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i54_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i57_ (GALGAS_lstring & ioArgument0,
+  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i55_ (GALGAS_lstring & ioArgument0,
                                                                      C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i57_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i55_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i58_ (GALGAS_mainXibDescriptorList & ioArgument0,
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i56_ (GALGAS_mainXibDescriptorList & ioArgument0,
                                                                 C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i58_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i56_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i59_ (GALGAS_mainXibLineDescriptorList & outArgument0,
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i57_ (GALGAS_mainXibLineDescriptorList & outArgument0,
                                                                         C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i59_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i57_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
 
 
@@ -787,20 +758,6 @@ class cParser_easyBindings_5F_syntax {
   protected: virtual int32_t select_easyBindings_5F_syntax_93 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected: virtual int32_t select_easyBindings_5F_syntax_94 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected: virtual int32_t select_easyBindings_5F_syntax_95 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected: virtual int32_t select_easyBindings_5F_syntax_96 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected: virtual int32_t select_easyBindings_5F_syntax_97 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected: virtual int32_t select_easyBindings_5F_syntax_98 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected: virtual int32_t select_easyBindings_5F_syntax_99 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected: virtual int32_t select_easyBindings_5F_syntax_100 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
-
-  protected: virtual int32_t select_easyBindings_5F_syntax_101 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -3253,142 +3210,6 @@ class cPtr_stringAsDefaultValue : public cPtr_abstractDefaultValue {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @tableViewControllerDeclarationAST reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_tableViewControllerDeclarationAST : public GALGAS_abstractDeclarationAST {
-//--------------------------------- Default constructor
-  public: GALGAS_tableViewControllerDeclarationAST (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_tableViewControllerDeclarationAST constructor_default (LOCATION_ARGS) ;
-
-//--------------------------------- Embedded object pointer
- public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
-   return (acStrongPtr_class *) mObjectPtr ;
- }
-  
-//--------------------------------- Constructor from pointer
-  public: GALGAS_tableViewControllerDeclarationAST (const class cPtr_tableViewControllerDeclarationAST * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_lstring readProperty_mControllerName (void) const ;
-
-  public: class GALGAS_bool readProperty_mIsRoot (void) const ;
-
-  public: class GALGAS_lstring readProperty_mRootEntityName (void) const ;
-
-  public: class GALGAS_lstring readProperty_mToManyPropertyName (void) const ;
-
-  public: class GALGAS_tableViewControllerBoundColumnListAST readProperty_mTableViewControllerBoundColumnListAST (void) const ;
-
-  public: class GALGAS_tableViewControllerAttributListAST readProperty_mTableViewControllerAttributListAST (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_tableViewControllerDeclarationAST extractObject (const GALGAS_object & inObject,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_tableViewControllerDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                 const class GALGAS_lstring & inOperand1,
-                                                                                 const class GALGAS_bool & inOperand2,
-                                                                                 const class GALGAS_lstring & inOperand3,
-                                                                                 const class GALGAS_lstring & inOperand4,
-                                                                                 const class GALGAS_tableViewControllerBoundColumnListAST & inOperand5,
-                                                                                 const class GALGAS_tableViewControllerAttributListAST & inOperand6
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_tableViewControllerDeclarationAST & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMControllerName (class GALGAS_lstring inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMIsRoot (class GALGAS_bool inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRootEntityName (class GALGAS_lstring inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMTableViewControllerAttributListAST (class GALGAS_tableViewControllerAttributListAST inArgument0
-                                                                               COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMTableViewControllerBoundColumnListAST (class GALGAS_tableViewControllerBoundColumnListAST inArgument0
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMToManyPropertyName (class GALGAS_lstring inArgument0
-                                                               COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_tableViewControllerDeclarationAST class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewControllerDeclarationAST ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @tableViewControllerDeclarationAST class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_tableViewControllerDeclarationAST : public cPtr_abstractDeclarationAST {
-
-//----------------------------------------------------------------------------------------------------------------------
-
-//--- Properties
-  public: GALGAS_lstring mProperty_mControllerName ;
-  public: GALGAS_bool mProperty_mIsRoot ;
-  public: GALGAS_lstring mProperty_mRootEntityName ;
-  public: GALGAS_lstring mProperty_mToManyPropertyName ;
-  public: GALGAS_tableViewControllerBoundColumnListAST mProperty_mTableViewControllerBoundColumnListAST ;
-  public: GALGAS_tableViewControllerAttributListAST mProperty_mTableViewControllerAttributListAST ;
-
-//--- Constructor
-  public: cPtr_tableViewControllerDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                                  const GALGAS_lstring & in_mControllerName,
-                                                  const GALGAS_bool & in_mIsRoot,
-                                                  const GALGAS_lstring & in_mRootEntityName,
-                                                  const GALGAS_lstring & in_mToManyPropertyName,
-                                                  const GALGAS_tableViewControllerBoundColumnListAST & in_mTableViewControllerBoundColumnListAST,
-                                                  const GALGAS_tableViewControllerAttributListAST & in_mTableViewControllerAttributListAST
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 // Phase 1: @toManyRelationshipAST reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -3949,14 +3770,6 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public: virtual void nt_class_5F_declaration_ (GALGAS_astDeclarationStruct & ioArgument0,
                                                  C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
-//------------------------------------- 'column_bindings' non terminal
-//--- 'parse' label
-  public: virtual void nt_column_5F_bindings_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
-
-//----------- '' label
-  public: virtual void nt_column_5F_bindings_ (GALGAS_tableViewColumnBindingAST & outArgument0,
-                                               C_Lexique_easyBindings_5F_lexique * inCompiler) ;
-
 //------------------------------------- 'computed_view_instruction' non terminal
 //--- 'parse' label
   public: virtual void nt_computed_5F_view_5F_instruction_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -4415,20 +4228,6 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public: virtual int32_t select_easyBindings_5F_syntax_93 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public: virtual int32_t select_easyBindings_5F_syntax_94 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public: virtual int32_t select_easyBindings_5F_syntax_95 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public: virtual int32_t select_easyBindings_5F_syntax_96 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public: virtual int32_t select_easyBindings_5F_syntax_97 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public: virtual int32_t select_easyBindings_5F_syntax_98 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public: virtual int32_t select_easyBindings_5F_syntax_99 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public: virtual int32_t select_easyBindings_5F_syntax_100 (C_Lexique_easyBindings_5F_lexique *) ;
-
-  public: virtual int32_t select_easyBindings_5F_syntax_101 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5586,4 +5385,888 @@ class GALGAS_entityDeclarationAST_2D_weak : public GALGAS_abstractDeclarationAST
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityDeclarationAST_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @entityForGeneration reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
+//--------------------------------- Default constructor
+  public: GALGAS_entityForGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_entityForGeneration constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
+//--------------------------------- Constructor from pointer
+  public: GALGAS_entityForGeneration (const class cPtr_entityForGeneration * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_string readProperty_mEntityName (void) const ;
+
+  public: class GALGAS_string readProperty_mSuperEntityName (void) const ;
+
+  public: class GALGAS_propertyGenerationList readProperty_mPropertyGenerationList (void) const ;
+
+  public: class GALGAS_stringset readProperty_mSignatureSet (void) const ;
+
+  public: class GALGAS_bool readProperty_mIsGraphicEntity (void) const ;
+
+  public: class GALGAS_bool readProperty_mIsAbstract (void) const ;
+
+  public: class GALGAS_stringset readProperty_mOverridenTransients (void) const ;
+
+  public: class GALGAS_externSwiftDelegateList readProperty_mExternSwiftDelegateList (void) const ;
+
+  public: class GALGAS_bool readProperty_mHasSubEntity (void) const ;
+
+  public: class GALGAS_bool readProperty_mCanCopyAndPaste_5F_option (void) const ;
+
+  public: class GALGAS_bool readProperty_mCannotBeDeleted_5F_option (void) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_entityForGeneration extractObject (const GALGAS_object & inObject,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_entityForGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                   const class GALGAS_string & inOperand1,
+                                                                   const class GALGAS_propertyGenerationList & inOperand2,
+                                                                   const class GALGAS_stringset & inOperand3,
+                                                                   const class GALGAS_bool & inOperand4,
+                                                                   const class GALGAS_bool & inOperand5,
+                                                                   const class GALGAS_stringset & inOperand6,
+                                                                   const class GALGAS_externSwiftDelegateList & inOperand7,
+                                                                   const class GALGAS_bool & inOperand8,
+                                                                   const class GALGAS_bool & inOperand9,
+                                                                   const class GALGAS_bool & inOperand10
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_entityForGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setMCanCopyAndPaste_5F_option (class GALGAS_bool inArgument0
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMCannotBeDeleted_5F_option (class GALGAS_bool inArgument0
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMEntityName (class GALGAS_string inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMExternSwiftDelegateList (class GALGAS_externSwiftDelegateList inArgument0
+                                                                    COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMHasSubEntity (class GALGAS_bool inArgument0
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMIsAbstract (class GALGAS_bool inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMIsGraphicEntity (class GALGAS_bool inArgument0
+                                                            COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMOverridenTransients (class GALGAS_stringset inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMPropertyGenerationList (class GALGAS_propertyGenerationList inArgument0
+                                                                   COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMSignatureSet (class GALGAS_stringset inArgument0
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMSuperEntityName (class GALGAS_string inArgument0
+                                                            COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_entityForGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @entityForGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+//--- Properties
+  public: GALGAS_string mProperty_mEntityName ;
+  public: GALGAS_string mProperty_mSuperEntityName ;
+  public: GALGAS_propertyGenerationList mProperty_mPropertyGenerationList ;
+  public: GALGAS_stringset mProperty_mSignatureSet ;
+  public: GALGAS_bool mProperty_mIsGraphicEntity ;
+  public: GALGAS_bool mProperty_mIsAbstract ;
+  public: GALGAS_stringset mProperty_mOverridenTransients ;
+  public: GALGAS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
+  public: GALGAS_bool mProperty_mHasSubEntity ;
+  public: GALGAS_bool mProperty_mCanCopyAndPaste_5F_option ;
+  public: GALGAS_bool mProperty_mCannotBeDeleted_5F_option ;
+
+//--- Constructor
+  public: cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
+                                    const GALGAS_string & in_mSuperEntityName,
+                                    const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
+                                    const GALGAS_stringset & in_mSignatureSet,
+                                    const GALGAS_bool & in_mIsGraphicEntity,
+                                    const GALGAS_bool & in_mIsAbstract,
+                                    const GALGAS_stringset & in_mOverridenTransients,
+                                    const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                    const GALGAS_bool & in_mHasSubEntity,
+                                    const GALGAS_bool & in_mCanCopyAndPaste_5F_option,
+                                    const GALGAS_bool & in_mCannotBeDeleted_5F_option
+                                    COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const ;
+
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @entityForGeneration_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_entityForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_entityForGeneration_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_entityForGeneration_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_entityForGeneration_2D_weak (const class GALGAS_entityForGeneration & inSource) ;
+
+  public: GALGAS_entityForGeneration_2D_weak & operator = (const class GALGAS_entityForGeneration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_entityForGeneration bang_entityForGeneration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_entityForGeneration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_entityForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_entityForGeneration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_entityForGeneration_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @autoLayoutDocumentDeclarationAST_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_autoLayoutDocumentDeclarationAST_2D_weak : public GALGAS_abstractDeclarationAST_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_autoLayoutDocumentDeclarationAST_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (const class GALGAS_autoLayoutDocumentDeclarationAST & inSource) ;
+
+  public: GALGAS_autoLayoutDocumentDeclarationAST_2D_weak & operator = (const class GALGAS_autoLayoutDocumentDeclarationAST & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_autoLayoutDocumentDeclarationAST bang_autoLayoutDocumentDeclarationAST_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_autoLayoutDocumentDeclarationAST_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_autoLayoutDocumentDeclarationAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_autoLayoutDocumentDeclarationAST_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @autoLayoutDocumentFileGeneration reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_autoLayoutDocumentFileGeneration : public GALGAS_abstractFileGeneration {
+//--------------------------------- Default constructor
+  public: GALGAS_autoLayoutDocumentFileGeneration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_autoLayoutDocumentFileGeneration constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
+//--------------------------------- Constructor from pointer
+  public: GALGAS_autoLayoutDocumentFileGeneration (const class cPtr_autoLayoutDocumentFileGeneration * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_string readProperty_mDocumentName (void) const ;
+
+  public: class GALGAS_string readProperty_mRootEntityName (void) const ;
+
+  public: class GALGAS_string readProperty_mMainViewName (void) const ;
+
+  public: class GALGAS_propertyGenerationList readProperty_mDocumentPropertyGenearionList (void) const ;
+
+  public: class GALGAS_decoratedOutletMap readProperty_mOutletMap (void) const ;
+
+  public: class GALGAS_autoLayoutOutletMap readProperty_mAutoLayoutOutletMap (void) const ;
+
+  public: class GALGAS_actionBindingListForGeneration readProperty_mTargetActionList (void) const ;
+
+  public: class GALGAS_regularBindingsGenerationList readProperty_mRegularBindingsGenerationList (void) const ;
+
+  public: class GALGAS_multipleBindingGenerationList readProperty_multipleBindingGenerationList (void) const ;
+
+  public: class GALGAS_tableViewBindingGenerationList readProperty_mTableViewBindingGenerationList (void) const ;
+
+  public: class GALGAS_ebViewGraphicControllerBindingGenerationList readProperty_mEBViewBindingGenerationList (void) const ;
+
+  public: class GALGAS_viewGenerationList readProperty_mViewDeclarationList (void) const ;
+
+  public: class GALGAS_autoLayoutToolbarItemGenerationList readProperty_mAutoLayoutToolbarItemGenerationList (void) const ;
+
+  public: class GALGAS_implicitViewFunctionGenerationList readProperty_mImplicitViewFunctionGenerationList (void) const ;
+
+  public: class GALGAS_autoLayoutConfiguratorMap readProperty_mConfiguratorMap (void) const ;
+
+  public: class GALGAS_string readProperty_mCustomSuperClassName (void) const ;
+
+  public: class GALGAS_autoLayoutOutletLinkerGenerationList readProperty_mOutletLinkerGenerationList (void) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_autoLayoutDocumentFileGeneration extractObject (const GALGAS_object & inObject,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_autoLayoutDocumentFileGeneration constructor_new (const class GALGAS_string & inOperand0,
+                                                                                const class GALGAS_string & inOperand1,
+                                                                                const class GALGAS_string & inOperand2,
+                                                                                const class GALGAS_propertyGenerationList & inOperand3,
+                                                                                const class GALGAS_decoratedOutletMap & inOperand4,
+                                                                                const class GALGAS_autoLayoutOutletMap & inOperand5,
+                                                                                const class GALGAS_actionBindingListForGeneration & inOperand6,
+                                                                                const class GALGAS_regularBindingsGenerationList & inOperand7,
+                                                                                const class GALGAS_multipleBindingGenerationList & inOperand8,
+                                                                                const class GALGAS_tableViewBindingGenerationList & inOperand9,
+                                                                                const class GALGAS_ebViewGraphicControllerBindingGenerationList & inOperand10,
+                                                                                const class GALGAS_viewGenerationList & inOperand11,
+                                                                                const class GALGAS_autoLayoutToolbarItemGenerationList & inOperand12,
+                                                                                const class GALGAS_implicitViewFunctionGenerationList & inOperand13,
+                                                                                const class GALGAS_autoLayoutConfiguratorMap & inOperand14,
+                                                                                const class GALGAS_string & inOperand15,
+                                                                                const class GALGAS_autoLayoutOutletLinkerGenerationList & inOperand16
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_autoLayoutDocumentFileGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setMAutoLayoutOutletMap (class GALGAS_autoLayoutOutletMap inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMAutoLayoutToolbarItemGenerationList (class GALGAS_autoLayoutToolbarItemGenerationList inArgument0
+                                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMConfiguratorMap (class GALGAS_autoLayoutConfiguratorMap inArgument0
+                                                            COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMCustomSuperClassName (class GALGAS_string inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMDocumentName (class GALGAS_string inArgument0
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMDocumentPropertyGenearionList (class GALGAS_propertyGenerationList inArgument0
+                                                                          COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMEBViewBindingGenerationList (class GALGAS_ebViewGraphicControllerBindingGenerationList inArgument0
+                                                                        COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMImplicitViewFunctionGenerationList (class GALGAS_implicitViewFunctionGenerationList inArgument0
+                                                                               COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMMainViewName (class GALGAS_string inArgument0
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMOutletLinkerGenerationList (class GALGAS_autoLayoutOutletLinkerGenerationList inArgument0
+                                                                       COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMOutletMap (class GALGAS_decoratedOutletMap inArgument0
+                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMRegularBindingsGenerationList (class GALGAS_regularBindingsGenerationList inArgument0
+                                                                          COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMRootEntityName (class GALGAS_string inArgument0
+                                                           COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMTableViewBindingGenerationList (class GALGAS_tableViewBindingGenerationList inArgument0
+                                                                           COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMTargetActionList (class GALGAS_actionBindingListForGeneration inArgument0
+                                                             COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMViewDeclarationList (class GALGAS_viewGenerationList inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMultipleBindingGenerationList (class GALGAS_multipleBindingGenerationList inArgument0
+                                                                         COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_autoLayoutDocumentFileGeneration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentFileGeneration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @autoLayoutDocumentFileGeneration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+//--- Properties
+  public: GALGAS_string mProperty_mDocumentName ;
+  public: GALGAS_string mProperty_mRootEntityName ;
+  public: GALGAS_string mProperty_mMainViewName ;
+  public: GALGAS_propertyGenerationList mProperty_mDocumentPropertyGenearionList ;
+  public: GALGAS_decoratedOutletMap mProperty_mOutletMap ;
+  public: GALGAS_autoLayoutOutletMap mProperty_mAutoLayoutOutletMap ;
+  public: GALGAS_actionBindingListForGeneration mProperty_mTargetActionList ;
+  public: GALGAS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
+  public: GALGAS_multipleBindingGenerationList mProperty_multipleBindingGenerationList ;
+  public: GALGAS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
+  public: GALGAS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
+  public: GALGAS_viewGenerationList mProperty_mViewDeclarationList ;
+  public: GALGAS_autoLayoutToolbarItemGenerationList mProperty_mAutoLayoutToolbarItemGenerationList ;
+  public: GALGAS_implicitViewFunctionGenerationList mProperty_mImplicitViewFunctionGenerationList ;
+  public: GALGAS_autoLayoutConfiguratorMap mProperty_mConfiguratorMap ;
+  public: GALGAS_string mProperty_mCustomSuperClassName ;
+  public: GALGAS_autoLayoutOutletLinkerGenerationList mProperty_mOutletLinkerGenerationList ;
+
+//--- Constructor
+  public: cPtr_autoLayoutDocumentFileGeneration (const GALGAS_string & in_mDocumentName,
+                                                 const GALGAS_string & in_mRootEntityName,
+                                                 const GALGAS_string & in_mMainViewName,
+                                                 const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
+                                                 const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                                 const GALGAS_autoLayoutOutletMap & in_mAutoLayoutOutletMap,
+                                                 const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
+                                                 const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                                 const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
+                                                 const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                                 const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
+                                                 const GALGAS_viewGenerationList & in_mViewDeclarationList,
+                                                 const GALGAS_autoLayoutToolbarItemGenerationList & in_mAutoLayoutToolbarItemGenerationList,
+                                                 const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                 const GALGAS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
+                                                 const GALGAS_string & in_mCustomSuperClassName,
+                                                 const GALGAS_autoLayoutOutletLinkerGenerationList & in_mOutletLinkerGenerationList
+                                                 COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const ;
+
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @autoLayoutDocumentFileGeneration_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_autoLayoutDocumentFileGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_autoLayoutDocumentFileGeneration_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_autoLayoutDocumentFileGeneration_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_autoLayoutDocumentFileGeneration_2D_weak (const class GALGAS_autoLayoutDocumentFileGeneration & inSource) ;
+
+  public: GALGAS_autoLayoutDocumentFileGeneration_2D_weak & operator = (const class GALGAS_autoLayoutDocumentFileGeneration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_autoLayoutDocumentFileGeneration bang_autoLayoutDocumentFileGeneration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_autoLayoutDocumentFileGeneration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_autoLayoutDocumentFileGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_autoLayoutDocumentFileGeneration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_autoLayoutDocumentFileGeneration_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentFileGeneration_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @prefsDeclarationAST reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_prefsDeclarationAST : public GALGAS_abstractDeclarationAST {
+//--------------------------------- Default constructor
+  public: GALGAS_prefsDeclarationAST (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_prefsDeclarationAST constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Embedded object pointer
+ public: inline acStrongPtr_class * embeddedObjectPtr (void) const {
+   return (acStrongPtr_class *) mObjectPtr ;
+ }
+  
+//--------------------------------- Constructor from pointer
+  public: GALGAS_prefsDeclarationAST (const class cPtr_prefsDeclarationAST * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_prefDeclaration readProperty_mDeclaration (void) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_prefsDeclarationAST extractObject (const GALGAS_object & inObject,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_prefsDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                   const class GALGAS_prefDeclaration & inOperand1
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_prefsDeclarationAST & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setMDeclaration (class GALGAS_prefDeclaration inArgument0
+                                                        COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_prefsDeclarationAST class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsDeclarationAST ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @prefsDeclarationAST class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_prefsDeclarationAST : public cPtr_abstractDeclarationAST {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+//--- Properties
+  public: GALGAS_prefDeclaration mProperty_mDeclaration ;
+
+//--- Constructor
+  public: cPtr_prefsDeclarationAST (const GALGAS_lstring & in_mClassName,
+                                    const GALGAS_prefDeclaration & in_mDeclaration
+                                    COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const ;
+
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @prefsDeclarationAST_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_prefsDeclarationAST_2D_weak : public GALGAS_abstractDeclarationAST_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_prefsDeclarationAST_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_prefsDeclarationAST_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_prefsDeclarationAST_2D_weak (const class GALGAS_prefsDeclarationAST & inSource) ;
+
+  public: GALGAS_prefsDeclarationAST_2D_weak & operator = (const class GALGAS_prefsDeclarationAST & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_prefsDeclarationAST bang_prefsDeclarationAST_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_prefsDeclarationAST_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_prefsDeclarationAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_prefsDeclarationAST_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_prefsDeclarationAST_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsDeclarationAST_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @autoLayoutViewClassDeclarationAST_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_autoLayoutViewClassDeclarationAST_2D_weak : public GALGAS_abstractDeclarationAST_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_autoLayoutViewClassDeclarationAST_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_autoLayoutViewClassDeclarationAST_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_autoLayoutViewClassDeclarationAST_2D_weak (const class GALGAS_autoLayoutViewClassDeclarationAST & inSource) ;
+
+  public: GALGAS_autoLayoutViewClassDeclarationAST_2D_weak & operator = (const class GALGAS_autoLayoutViewClassDeclarationAST & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_autoLayoutViewClassDeclarationAST bang_autoLayoutViewClassDeclarationAST_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_autoLayoutViewClassDeclarationAST_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_autoLayoutViewClassDeclarationAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_autoLayoutViewClassDeclarationAST_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_autoLayoutViewClassDeclarationAST_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astHorizontalStackViewDeclaration_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astHorizontalStackViewDeclaration_2D_weak : public GALGAS_astAbstractViewDeclaration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_astHorizontalStackViewDeclaration_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astHorizontalStackViewDeclaration_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_astHorizontalStackViewDeclaration_2D_weak (const class GALGAS_astHorizontalStackViewDeclaration & inSource) ;
+
+  public: GALGAS_astHorizontalStackViewDeclaration_2D_weak & operator = (const class GALGAS_astHorizontalStackViewDeclaration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_astHorizontalStackViewDeclaration bang_astHorizontalStackViewDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astHorizontalStackViewDeclaration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astHorizontalStackViewDeclaration_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astHorizontalStackViewDeclaration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astHorizontalStackViewDeclaration_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHorizontalStackViewDeclaration_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astComputedHorizontalViewDeclaration_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astComputedHorizontalViewDeclaration_2D_weak : public GALGAS_astAbstractViewDeclaration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_astComputedHorizontalViewDeclaration_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astComputedHorizontalViewDeclaration_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_astComputedHorizontalViewDeclaration_2D_weak (const class GALGAS_astComputedHorizontalViewDeclaration & inSource) ;
+
+  public: GALGAS_astComputedHorizontalViewDeclaration_2D_weak & operator = (const class GALGAS_astComputedHorizontalViewDeclaration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_astComputedHorizontalViewDeclaration bang_astComputedHorizontalViewDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astComputedHorizontalViewDeclaration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astComputedHorizontalViewDeclaration_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astComputedHorizontalViewDeclaration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astComputedHorizontalViewDeclaration_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration_2D_weak ;
 

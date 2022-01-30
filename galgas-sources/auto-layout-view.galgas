@@ -602,9 +602,9 @@ method @astAutoLayoutViewFunctionCallList check
         end
         switch value
         case viewFunc (instruction) :
-          [instruction generateCode 
+          [instruction generateViewCode 
             !inViewDeclarationMap
-            !inPreferences
+            !prefs: inPreferences
             !inRootObservablePropertyMap
             !inPreferencesPropertyMap
             !inSemanticContext
@@ -788,9 +788,9 @@ override method @astComputedHorizontalViewDeclaration check
   ]
   var @autoLayoutViewInstructionGenerationList instructionList = {}
   for (instruction) in self.mInstructionList do
-    [instruction generateCode
+    [instruction generateViewCode
       !inViewDeclarationMap
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
       !inSemanticContext
@@ -842,9 +842,9 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in self.mInstructionList do
-   [instruction generateCode
+   [instruction generateViewCode
       !inViewDeclarationMap
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
       !inSemanticContext
@@ -864,9 +864,9 @@ override method @astComputedVerticalViewDeclaration check ?let @string unused in
 
 #·······················································································································
 
-abstract method @astAbstractViewInstructionDeclaration generateCode
+abstract method @astAbstractViewInstructionDeclaration generateViewCode
                                 ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                ?let @bool inPreferences
+                                ?prefs:let @bool inPreferences
                                 ?let @propertyMap inRootObservablePropertyMap
                                 ?let @propertyMap inPreferencesPropertyMap
                                 ?let @semanticContext inSemanticContext
@@ -881,9 +881,9 @@ abstract method @astAbstractViewInstructionDeclaration generateCode
 
 #·······················································································································
 
-override method @astSpaceViewInstruction generateCode
+override method @astSpaceViewInstruction generateViewCode
                                 ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                ?let @bool unused inPreferences
+                                ?prefs: let @bool unused inPreferences
                                 ?let @propertyMap unused inRootObservablePropertyMap
                                 ?let @propertyMap unused inPreferencesPropertyMap
                                 ?let @semanticContext unused inSemanticContext
@@ -900,9 +900,9 @@ override method @astSpaceViewInstruction generateCode
 
 #·······················································································································
 
-override method @astSeparatorInstructionDeclaration generateCode
+override method @astSeparatorInstructionDeclaration generateViewCode
                                 ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                                ?let @bool unused inPreferences
+                                ?prefs: let @bool unused inPreferences
                                 ?let @propertyMap unused inRootObservablePropertyMap
                                 ?let @propertyMap unused inPreferencesPropertyMap
                                 ?let @semanticContext unused inSemanticContext
@@ -920,9 +920,9 @@ override method @astSeparatorInstructionDeclaration generateCode
 
 #·······················································································································
 
-override method @astLocalViewInstruction generateCode
+override method @astLocalViewInstruction generateViewCode
                                 ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                ?let @bool unused inPreferences
+                                ?prefs: let @bool unused inPreferences
                                 ?let @propertyMap unused inRootObservablePropertyMap
                                 ?let @propertyMap unused inPreferencesPropertyMap
                                 ?let @semanticContext unused inSemanticContext
@@ -940,9 +940,9 @@ override method @astLocalViewInstruction generateCode
 
 #·······················································································································
 
-override method @astComputedViewInstruction generateCode
+override method @astComputedViewInstruction generateViewCode
                                 ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                                ?let @bool inPreferences
+                                ?prefs: let @bool inPreferences
                                 ?let @propertyMap inRootObservablePropertyMap
                                 ?let @propertyMap inPreferencesPropertyMap
                                 ?let @semanticContext inSemanticContext
@@ -980,9 +980,9 @@ override method @astComputedViewInstruction generateCode
       end
       switch value
         case viewFunc (instruction) :
-          [instruction generateCode 
+          [instruction generateViewCode 
             !inViewDeclarationMap
-            !inPreferences
+            !prefs: inPreferences
             !inRootObservablePropertyMap
             !inPreferencesPropertyMap
             !inSemanticContext
@@ -1220,10 +1220,20 @@ proc analyzeAutoLayoutBinding
   case tableValueBinding (@lstring controllerName) :
     if not handlesTableViewBinding then
       error inTypeName : "the '" + inTypeName + "' type does not handle the $tableView binding"
+    elsif inPreferences then
+      [inPreferencesPropertyMap searchKey
+        !controllerName
+        ?let @propertyKind kind
+        ?2*
+      ]
+      if not [kind isArrayController] then
+        error controllerName : "the bound model should be an array controller"
+      end
+      outTableViewBindingGeneration = controllerName.string
     else
       [inObservablePropertyMap searchKey
         !controllerName
-        ?let @propertyKind unused kind
+        ?let @propertyKind kind
         ?2*
       ]
       if not [kind isArrayController] then
@@ -1485,9 +1495,9 @@ proc analyzeAutoLayoutRegularBinding
 
 #·······················································································································
 
-override method @astHStackViewInstructionDeclaration generateCode
+override method @astHStackViewInstructionDeclaration generateViewCode
                         ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                        ?let @bool inPreferences
+                        ?prefs: let @bool inPreferences
                         ?let @propertyMap inRootObservablePropertyMap
                         ?let @propertyMap inPreferencesPropertyMap
                         ?let @semanticContext inSemanticContext
@@ -1537,9 +1547,9 @@ override method @astHStackViewInstructionDeclaration generateCode
       !hiddenExpression
   end
   for (instruction) in self.mInstructionList do
-   [instruction generateCode
+   [instruction generateViewCode
       !inViewDeclarationMap
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
       !inSemanticContext
@@ -1559,9 +1569,9 @@ override method @astHStackViewInstructionDeclaration generateCode
 
 #·······················································································································
 
-override method @astHSplitViewInstructionDeclaration generateCode
+override method @astHSplitViewInstructionDeclaration generateViewCode
                         ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                        ?let @bool inPreferences
+                        ?prefs: let @bool inPreferences
                         ?let @propertyMap inRootObservablePropertyMap
                         ?let @propertyMap inPreferencesPropertyMap
                         ?let @semanticContext inSemanticContext
@@ -1611,9 +1621,9 @@ override method @astHSplitViewInstructionDeclaration generateCode
       !hiddenExpression
   end
   for (instruction) in self.mInstructionList do
-   [instruction generateCode
+   [instruction generateViewCode
       !inViewDeclarationMap
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
       !inSemanticContext
@@ -1633,9 +1643,9 @@ override method @astHSplitViewInstructionDeclaration generateCode
 
 #·······················································································································
 
-override method @astVSplitViewInstructionDeclaration generateCode
+override method @astVSplitViewInstructionDeclaration generateViewCode
                         ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                        ?let @bool inPreferences
+                        ?prefs: let @bool inPreferences
                         ?let @propertyMap inRootObservablePropertyMap
                         ?let @propertyMap inPreferencesPropertyMap
                         ?let @semanticContext inSemanticContext
@@ -1685,9 +1695,9 @@ override method @astVSplitViewInstructionDeclaration generateCode
       !hiddenExpression
   end
   for (instruction) in self.mInstructionList do
-   [instruction generateCode
+   [instruction generateViewCode
       !inViewDeclarationMap
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
       !inSemanticContext
@@ -1707,9 +1717,9 @@ override method @astVSplitViewInstructionDeclaration generateCode
 
 #·······················································································································
 
-override method @astVStackViewInstructionDeclaration generateCode
+override method @astVStackViewInstructionDeclaration generateViewCode
                         ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
-                        ?let @bool inPreferences
+                        ?prefs: let @bool inPreferences
                         ?let @propertyMap inRootObservablePropertyMap
                         ?let @propertyMap inPreferencesPropertyMap
                         ?let @semanticContext inSemanticContext
@@ -1759,9 +1769,9 @@ override method @astVStackViewInstructionDeclaration generateCode
       !hiddenExpression
   end
   for (instruction) in self.mInstructionList do
-   [instruction generateCode
+   [instruction generateViewCode
       !inViewDeclarationMap
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inPreferencesPropertyMap
       !inSemanticContext
@@ -1781,9 +1791,9 @@ override method @astVStackViewInstructionDeclaration generateCode
 
 #·······················································································································
 
-override method @astStackViewReferenceInstructionDeclaration generateCode
+override method @astStackViewReferenceInstructionDeclaration generateViewCode
                         ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                        ?let @bool unused inPreferences
+                        ?prefs: let @bool unused inPreferences
                         ?let @propertyMap unused inRootObservablePropertyMap
                         ?let @propertyMap unused inPreferencesPropertyMap
                         ?let @semanticContext unused inSemanticContext

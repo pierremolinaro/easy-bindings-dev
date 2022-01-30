@@ -14097,20 +14097,20 @@ GALGAS_arrayControllerModelKind GALGAS_arrayControllerModelKind::extractObject (
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Class for element of '@tableViewControllerBoundColumnListAST' list
+//Class for element of '@autoLayoutTableViewControllerBoundColumnListAST' list
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class cCollectionElement_tableViewControllerBoundColumnListAST : public cCollectionElement {
-  public: GALGAS_tableViewControllerBoundColumnListAST_2D_element mObject ;
+class cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST : public cCollectionElement {
+  public: GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element mObject ;
 
 //--- Constructors
-  public: cCollectionElement_tableViewControllerBoundColumnListAST (const GALGAS_lstring & in_mColumnName,
-                                                                    const GALGAS_lstring & in_mColumnOutletTypeName,
-                                                                    const GALGAS_tableViewColumnBindingAST & in_mColumnBindingAST,
-                                                                    const GALGAS_lstring & in_mSortPropertyName
-                                                                    COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_tableViewControllerBoundColumnListAST (const GALGAS_tableViewControllerBoundColumnListAST_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (const GALGAS_bool & in_mEditable,
+                                                                              const GALGAS_lstring & in_mPropertyName,
+                                                                              const GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
+                                                                              const GALGAS_lstring & in_mSortPropertyName
+                                                                              COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -14127,51 +14127,51 @@ class cCollectionElement_tableViewControllerBoundColumnListAST : public cCollect
 
 //----------------------------------------------------------------------------------------------------------------------
 
-cCollectionElement_tableViewControllerBoundColumnListAST::cCollectionElement_tableViewControllerBoundColumnListAST (const GALGAS_lstring & in_mColumnName,
-                                                                                                                    const GALGAS_lstring & in_mColumnOutletTypeName,
-                                                                                                                    const GALGAS_tableViewColumnBindingAST & in_mColumnBindingAST,
-                                                                                                                    const GALGAS_lstring & in_mSortPropertyName
-                                                                                                                    COMMA_LOCATION_ARGS) :
+cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST::cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (const GALGAS_bool & in_mEditable,
+                                                                                                                                        const GALGAS_lstring & in_mPropertyName,
+                                                                                                                                        const GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
+                                                                                                                                        const GALGAS_lstring & in_mSortPropertyName
+                                                                                                                                        COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mColumnName, in_mColumnOutletTypeName, in_mColumnBindingAST, in_mSortPropertyName) {
+mObject (in_mEditable, in_mPropertyName, in_mColumnParameterListAST, in_mSortPropertyName) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-cCollectionElement_tableViewControllerBoundColumnListAST::cCollectionElement_tableViewControllerBoundColumnListAST (const GALGAS_tableViewControllerBoundColumnListAST_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST::cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element & inElement COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (inElement.mProperty_mColumnName, inElement.mProperty_mColumnOutletTypeName, inElement.mProperty_mColumnBindingAST, inElement.mProperty_mSortPropertyName) {
+mObject (inElement.mProperty_mEditable, inElement.mProperty_mPropertyName, inElement.mProperty_mColumnParameterListAST, inElement.mProperty_mSortPropertyName) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-bool cCollectionElement_tableViewControllerBoundColumnListAST::isValid (void) const {
+bool cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST::isValid (void) const {
   return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-cCollectionElement * cCollectionElement_tableViewControllerBoundColumnListAST::copy (void) {
+cCollectionElement * cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_tableViewControllerBoundColumnListAST (mObject.mProperty_mColumnName, mObject.mProperty_mColumnOutletTypeName, mObject.mProperty_mColumnBindingAST, mObject.mProperty_mSortPropertyName COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (mObject.mProperty_mEditable, mObject.mProperty_mPropertyName, mObject.mProperty_mColumnParameterListAST, mObject.mProperty_mSortPropertyName COMMA_HERE)) ;
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void cCollectionElement_tableViewControllerBoundColumnListAST::description (C_String & ioString, const int32_t inIndentation) const {
+void cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST::description (C_String & ioString, const int32_t inIndentation) const {
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mColumnName" ":" ;
-  mObject.mProperty_mColumnName.description (ioString, inIndentation) ;
+  ioString << "mEditable" ":" ;
+  mObject.mProperty_mEditable.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mColumnOutletTypeName" ":" ;
-  mObject.mProperty_mColumnOutletTypeName.description (ioString, inIndentation) ;
+  ioString << "mPropertyName" ":" ;
+  mObject.mProperty_mPropertyName.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mColumnBindingAST" ":" ;
-  mObject.mProperty_mColumnBindingAST.description (ioString, inIndentation) ;
+  ioString << "mColumnParameterListAST" ":" ;
+  mObject.mProperty_mColumnParameterListAST.description (ioString, inIndentation) ;
   ioString << "\n" ;
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mSortPropertyName" ":" ;
@@ -14180,42 +14180,42 @@ void cCollectionElement_tableViewControllerBoundColumnListAST::description (C_St
 
 //----------------------------------------------------------------------------------------------------------------------
 
-typeComparisonResult cCollectionElement_tableViewControllerBoundColumnListAST::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_tableViewControllerBoundColumnListAST * operand = (cCollectionElement_tableViewControllerBoundColumnListAST *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_tableViewControllerBoundColumnListAST) ;
+typeComparisonResult cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * operand = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
   return mObject.objectCompare (operand->mObject) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST::GALGAS_tableViewControllerBoundColumnListAST (void) :
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST::GALGAS_autoLayoutTableViewControllerBoundColumnListAST (void) :
 AC_GALGAS_list () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST::GALGAS_tableViewControllerBoundColumnListAST (const capCollectionElementArray & inSharedArray) :
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST::GALGAS_autoLayoutTableViewControllerBoundColumnListAST (const capCollectionElementArray & inSharedArray) :
 AC_GALGAS_list (inSharedArray) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColumnListAST::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_tableViewControllerBoundColumnListAST  (capCollectionElementArray ()) ;
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableViewControllerBoundColumnListAST::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+  return GALGAS_autoLayoutTableViewControllerBoundColumnListAST  (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColumnListAST::constructor_listWithValue (const GALGAS_lstring & inOperand0,
-                                                                                                                      const GALGAS_lstring & inOperand1,
-                                                                                                                      const GALGAS_tableViewColumnBindingAST & inOperand2,
-                                                                                                                      const GALGAS_lstring & inOperand3
-                                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_tableViewControllerBoundColumnListAST result ;
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableViewControllerBoundColumnListAST::constructor_listWithValue (const GALGAS_bool & inOperand0,
+                                                                                                                                          const GALGAS_lstring & inOperand1,
+                                                                                                                                          const GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                                                                                                          const GALGAS_lstring & inOperand3
+                                                                                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS_autoLayoutTableViewControllerBoundColumnListAST result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_tableViewControllerBoundColumnListAST (capCollectionElementArray ()) ;
+    result = GALGAS_autoLayoutTableViewControllerBoundColumnListAST (capCollectionElementArray ()) ;
     capCollectionElement attributes ;
-    GALGAS_tableViewControllerBoundColumnListAST::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE) ;
+    GALGAS_autoLayoutTableViewControllerBoundColumnListAST::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE) ;
     result.appendObject (attributes) ;
   }
   return result ;
@@ -14223,32 +14223,32 @@ GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColu
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                              const GALGAS_lstring & in_mColumnName,
-                                                                              const GALGAS_lstring & in_mColumnOutletTypeName,
-                                                                              const GALGAS_tableViewColumnBindingAST & in_mColumnBindingAST,
-                                                                              const GALGAS_lstring & in_mSortPropertyName
-                                                                              COMMA_LOCATION_ARGS) {
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = NULL ;
-  macroMyNew (p, cCollectionElement_tableViewControllerBoundColumnListAST (in_mColumnName,
-                                                                           in_mColumnOutletTypeName,
-                                                                           in_mColumnBindingAST,
-                                                                           in_mSortPropertyName COMMA_THERE)) ;
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                                                        const GALGAS_bool & in_mEditable,
+                                                                                        const GALGAS_lstring & in_mPropertyName,
+                                                                                        const GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
+                                                                                        const GALGAS_lstring & in_mSortPropertyName
+                                                                                        COMMA_LOCATION_ARGS) {
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = NULL ;
+  macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (in_mEditable,
+                                                                                     in_mPropertyName,
+                                                                                     in_mColumnParameterListAST,
+                                                                                     in_mSortPropertyName COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::addAssign_operation (const GALGAS_lstring & inOperand0,
-                                                                        const GALGAS_lstring & inOperand1,
-                                                                        const GALGAS_tableViewColumnBindingAST & inOperand2,
-                                                                        const GALGAS_lstring & inOperand3
-                                                                        COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::addAssign_operation (const GALGAS_bool & inOperand0,
+                                                                                  const GALGAS_lstring & inOperand1,
+                                                                                  const GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                                                  const GALGAS_lstring & inOperand3
+                                                                                  COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
       cCollectionElement * p = NULL ;
-      macroMyNew (p, cCollectionElement_tableViewControllerBoundColumnListAST (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
+      macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
       macroDetachSharedObject (p) ;
@@ -14261,13 +14261,13 @@ void GALGAS_tableViewControllerBoundColumnListAST::addAssign_operation (const GA
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::setter_append (GALGAS_tableViewControllerBoundColumnListAST_2D_element inElement,
-                                                                  C_Compiler * /* inCompiler */
-                                                                  COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_append (GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element inElement,
+                                                                            C_Compiler * /* inCompiler */
+                                                                            COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inElement.isValid ()) {
       cCollectionElement * p = NULL ;
-      macroMyNew (p, cCollectionElement_tableViewControllerBoundColumnListAST (inElement COMMA_THERE)) ;
+      macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (inElement COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
       macroDetachSharedObject (p) ;
@@ -14280,17 +14280,17 @@ void GALGAS_tableViewControllerBoundColumnListAST::setter_append (GALGAS_tableVi
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::setter_insertAtIndex (const GALGAS_lstring inOperand0,
-                                                                         const GALGAS_lstring inOperand1,
-                                                                         const GALGAS_tableViewColumnBindingAST inOperand2,
-                                                                         const GALGAS_lstring inOperand3,
-                                                                         const GALGAS_uint inInsertionIndex,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_insertAtIndex (const GALGAS_bool inOperand0,
+                                                                                   const GALGAS_lstring inOperand1,
+                                                                                   const GALGAS_astAutoLayoutViewInstructionParameterList inOperand2,
+                                                                                   const GALGAS_lstring inOperand3,
+                                                                                   const GALGAS_uint inInsertionIndex,
+                                                                                   C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
       cCollectionElement * p = NULL ;
-      macroMyNew (p, cCollectionElement_tableViewControllerBoundColumnListAST (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
+      macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
       macroDetachSharedObject (p) ;
@@ -14303,18 +14303,18 @@ void GALGAS_tableViewControllerBoundColumnListAST::setter_insertAtIndex (const G
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::setter_removeAtIndex (GALGAS_lstring & outOperand0,
-                                                                         GALGAS_lstring & outOperand1,
-                                                                         GALGAS_tableViewColumnBindingAST & outOperand2,
-                                                                         GALGAS_lstring & outOperand3,
-                                                                         const GALGAS_uint inRemoveIndex,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_removeAtIndex (GALGAS_bool & outOperand0,
+                                                                                   GALGAS_lstring & outOperand1,
+                                                                                   GALGAS_astAutoLayoutViewInstructionParameterList & outOperand2,
+                                                                                   GALGAS_lstring & outOperand3,
+                                                                                   const GALGAS_uint inRemoveIndex,
+                                                                                   C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inRemoveIndex.isValid ()) {
       capCollectionElement attributes ;
       removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-      cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
+      cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
       if (NULL == p) {
         outOperand0.drop () ;
         outOperand1.drop () ;
@@ -14322,10 +14322,10 @@ void GALGAS_tableViewControllerBoundColumnListAST::setter_removeAtIndex (GALGAS_
         outOperand3.drop () ;
         drop () ;
       }else{
-        macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-        outOperand0 = p->mObject.mProperty_mColumnName ;
-        outOperand1 = p->mObject.mProperty_mColumnOutletTypeName ;
-        outOperand2 = p->mObject.mProperty_mColumnBindingAST ;
+        macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+        outOperand0 = p->mObject.mProperty_mEditable ;
+        outOperand1 = p->mObject.mProperty_mPropertyName ;
+        outOperand2 = p->mObject.mProperty_mColumnParameterListAST ;
         outOperand3 = p->mObject.mProperty_mSortPropertyName ;
       }
     }else{
@@ -14345,110 +14345,110 @@ void GALGAS_tableViewControllerBoundColumnListAST::setter_removeAtIndex (GALGAS_
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::setter_popFirst (GALGAS_lstring & outOperand0,
-                                                                    GALGAS_lstring & outOperand1,
-                                                                    GALGAS_tableViewColumnBindingAST & outOperand2,
-                                                                    GALGAS_lstring & outOperand3,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_popFirst (GALGAS_bool & outOperand0,
+                                                                              GALGAS_lstring & outOperand1,
+                                                                              GALGAS_astAutoLayoutViewInstructionParameterList & outOperand2,
+                                                                              GALGAS_lstring & outOperand3,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
     outOperand3.drop () ;
   }else{
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-    outOperand0 = p->mObject.mProperty_mColumnName ;
-    outOperand1 = p->mObject.mProperty_mColumnOutletTypeName ;
-    outOperand2 = p->mObject.mProperty_mColumnBindingAST ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+    outOperand0 = p->mObject.mProperty_mEditable ;
+    outOperand1 = p->mObject.mProperty_mPropertyName ;
+    outOperand2 = p->mObject.mProperty_mColumnParameterListAST ;
     outOperand3 = p->mObject.mProperty_mSortPropertyName ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::setter_popLast (GALGAS_lstring & outOperand0,
-                                                                   GALGAS_lstring & outOperand1,
-                                                                   GALGAS_tableViewColumnBindingAST & outOperand2,
-                                                                   GALGAS_lstring & outOperand3,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_popLast (GALGAS_bool & outOperand0,
+                                                                             GALGAS_lstring & outOperand1,
+                                                                             GALGAS_astAutoLayoutViewInstructionParameterList & outOperand2,
+                                                                             GALGAS_lstring & outOperand3,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
     outOperand3.drop () ;
   }else{
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-    outOperand0 = p->mObject.mProperty_mColumnName ;
-    outOperand1 = p->mObject.mProperty_mColumnOutletTypeName ;
-    outOperand2 = p->mObject.mProperty_mColumnBindingAST ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+    outOperand0 = p->mObject.mProperty_mEditable ;
+    outOperand1 = p->mObject.mProperty_mPropertyName ;
+    outOperand2 = p->mObject.mProperty_mColumnParameterListAST ;
     outOperand3 = p->mObject.mProperty_mSortPropertyName ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::method_first (GALGAS_lstring & outOperand0,
-                                                                 GALGAS_lstring & outOperand1,
-                                                                 GALGAS_tableViewColumnBindingAST & outOperand2,
-                                                                 GALGAS_lstring & outOperand3,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::method_first (GALGAS_bool & outOperand0,
+                                                                           GALGAS_lstring & outOperand1,
+                                                                           GALGAS_astAutoLayoutViewInstructionParameterList & outOperand2,
+                                                                           GALGAS_lstring & outOperand3,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
   readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
     outOperand3.drop () ;
   }else{
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-    outOperand0 = p->mObject.mProperty_mColumnName ;
-    outOperand1 = p->mObject.mProperty_mColumnOutletTypeName ;
-    outOperand2 = p->mObject.mProperty_mColumnBindingAST ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+    outOperand0 = p->mObject.mProperty_mEditable ;
+    outOperand1 = p->mObject.mProperty_mPropertyName ;
+    outOperand2 = p->mObject.mProperty_mColumnParameterListAST ;
     outOperand3 = p->mObject.mProperty_mSortPropertyName ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::method_last (GALGAS_lstring & outOperand0,
-                                                                GALGAS_lstring & outOperand1,
-                                                                GALGAS_tableViewColumnBindingAST & outOperand2,
-                                                                GALGAS_lstring & outOperand3,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::method_last (GALGAS_bool & outOperand0,
+                                                                          GALGAS_lstring & outOperand1,
+                                                                          GALGAS_astAutoLayoutViewInstructionParameterList & outOperand2,
+                                                                          GALGAS_lstring & outOperand3,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
   readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
   if (NULL == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
     outOperand3.drop () ;
   }else{
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-    outOperand0 = p->mObject.mProperty_mColumnName ;
-    outOperand1 = p->mObject.mProperty_mColumnOutletTypeName ;
-    outOperand2 = p->mObject.mProperty_mColumnBindingAST ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+    outOperand0 = p->mObject.mProperty_mEditable ;
+    outOperand1 = p->mObject.mProperty_mPropertyName ;
+    outOperand2 = p->mObject.mProperty_mColumnParameterListAST ;
     outOperand3 = p->mObject.mProperty_mSortPropertyName ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColumnListAST::add_operation (const GALGAS_tableViewControllerBoundColumnListAST & inOperand,
-                                                                                                          C_Compiler * /* inCompiler */
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_tableViewControllerBoundColumnListAST result ;
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableViewControllerBoundColumnListAST::add_operation (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inOperand,
+                                                                                                                              C_Compiler * /* inCompiler */
+                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutTableViewControllerBoundColumnListAST result ;
   if (isValid () && inOperand.isValid ()) {
     result = *this ;
     result.appendList (inOperand) ;
@@ -14458,138 +14458,138 @@ GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColu
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColumnListAST::getter_subListWithRange (const GALGAS_range & inRange,
-                                                                                                                    C_Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) const {
-  GALGAS_tableViewControllerBoundColumnListAST result = GALGAS_tableViewControllerBoundColumnListAST::constructor_emptyList (THERE) ;
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableViewControllerBoundColumnListAST::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                                                                                        C_Compiler * inCompiler
+                                                                                                                                        COMMA_LOCATION_ARGS) const {
+  GALGAS_autoLayoutTableViewControllerBoundColumnListAST result = GALGAS_autoLayoutTableViewControllerBoundColumnListAST::constructor_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColumnListAST::getter_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                                                                    C_Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) const {
-  GALGAS_tableViewControllerBoundColumnListAST result = GALGAS_tableViewControllerBoundColumnListAST::constructor_emptyList (THERE) ;
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableViewControllerBoundColumnListAST::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                                                                                        C_Compiler * inCompiler
+                                                                                                                                        COMMA_LOCATION_ARGS) const {
+  GALGAS_autoLayoutTableViewControllerBoundColumnListAST result = GALGAS_autoLayoutTableViewControllerBoundColumnListAST::constructor_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColumnListAST::getter_subListToIndex (const GALGAS_uint & inIndex,
-                                                                                                                  C_Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) const {
-  GALGAS_tableViewControllerBoundColumnListAST result = GALGAS_tableViewControllerBoundColumnListAST::constructor_emptyList (THERE) ;
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableViewControllerBoundColumnListAST::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                                                                      C_Compiler * inCompiler
+                                                                                                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_autoLayoutTableViewControllerBoundColumnListAST result = GALGAS_autoLayoutTableViewControllerBoundColumnListAST::constructor_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::plusAssign_operation (const GALGAS_tableViewControllerBoundColumnListAST inOperand,
-                                                                         C_Compiler * /* inCompiler */
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::plusAssign_operation (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST inOperand,
+                                                                                   C_Compiler * /* inCompiler */
+                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::setter_setMColumnNameAtIndex (GALGAS_lstring inOperand,
-                                                                                 GALGAS_uint inIndex,
-                                                                                 C_Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) {
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_setMEditableAtIndex (GALGAS_bool inOperand,
+                                                                                         GALGAS_uint inIndex,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) {
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
   if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
     macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mColumnName = inOperand ;
+    p->mObject.mProperty_mEditable = inOperand ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_lstring GALGAS_tableViewControllerBoundColumnListAST::getter_mColumnNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const {
+GALGAS_bool GALGAS_autoLayoutTableViewControllerBoundColumnListAST::getter_mEditableAtIndex (const GALGAS_uint & inIndex,
+                                                                                             C_Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
+  GALGAS_bool result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+    result = p->mObject.mProperty_mEditable ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_setMPropertyNameAtIndex (GALGAS_lstring inOperand,
+                                                                                             GALGAS_uint inIndex,
+                                                                                             C_Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) {
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mPropertyName = inOperand ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS_autoLayoutTableViewControllerBoundColumnListAST::getter_mPropertyNameAtIndex (const GALGAS_uint & inIndex,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
   GALGAS_lstring result ;
   if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-    result = p->mObject.mProperty_mColumnName ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+    result = p->mObject.mProperty_mPropertyName ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::setter_setMColumnOutletTypeNameAtIndex (GALGAS_lstring inOperand,
-                                                                                           GALGAS_uint inIndex,
-                                                                                           C_Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_setMColumnParameterListASTAtIndex (GALGAS_astAutoLayoutViewInstructionParameterList inOperand,
+                                                                                                       GALGAS_uint inIndex,
+                                                                                                       C_Compiler * inCompiler
+                                                                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
   if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
     macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mColumnOutletTypeName = inOperand ;
+    p->mObject.mProperty_mColumnParameterListAST = inOperand ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_lstring GALGAS_tableViewControllerBoundColumnListAST::getter_mColumnOutletTypeNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) const {
+GALGAS_astAutoLayoutViewInstructionParameterList GALGAS_autoLayoutTableViewControllerBoundColumnListAST::getter_mColumnParameterListASTAtIndex (const GALGAS_uint & inIndex,
+                                                                                                                                                C_Compiler * inCompiler
+                                                                                                                                                COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
-  GALGAS_lstring result ;
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
+  GALGAS_astAutoLayoutViewInstructionParameterList result ;
   if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-    result = p->mObject.mProperty_mColumnOutletTypeName ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+    result = p->mObject.mProperty_mColumnParameterListAST ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_tableViewControllerBoundColumnListAST::setter_setMColumnBindingASTAtIndex (GALGAS_tableViewColumnBindingAST inOperand,
-                                                                                       GALGAS_uint inIndex,
-                                                                                       C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) {
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+void GALGAS_autoLayoutTableViewControllerBoundColumnListAST::setter_setMSortPropertyNameAtIndex (GALGAS_lstring inOperand,
+                                                                                                 GALGAS_uint inIndex,
+                                                                                                 C_Compiler * inCompiler
+                                                                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
   if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mColumnBindingAST = inOperand ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_tableViewColumnBindingAST GALGAS_tableViewControllerBoundColumnListAST::getter_mColumnBindingASTAtIndex (const GALGAS_uint & inIndex,
-                                                                                                                C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
-  GALGAS_tableViewColumnBindingAST result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-    result = p->mObject.mProperty_mColumnBindingAST ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_tableViewControllerBoundColumnListAST::setter_setMSortPropertyNameAtIndex (GALGAS_lstring inOperand,
-                                                                                       GALGAS_uint inIndex,
-                                                                                       C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) {
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mSortPropertyName = inOperand ;
   }
@@ -14597,14 +14597,14 @@ void GALGAS_tableViewControllerBoundColumnListAST::setter_setMSortPropertyNameAt
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_lstring GALGAS_tableViewControllerBoundColumnListAST::getter_mSortPropertyNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_autoLayoutTableViewControllerBoundColumnListAST::getter_mSortPropertyNameAtIndex (const GALGAS_uint & inIndex,
+                                                                                                        C_Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_tableViewControllerBoundColumnListAST * p = (cCollectionElement_tableViewControllerBoundColumnListAST *) attributes.ptr () ;
+  cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) attributes.ptr () ;
   GALGAS_lstring result ;
   if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
+    macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
     result = p->mObject.mProperty_mSortPropertyName ;
   }
   return result ;
@@ -14614,50 +14614,50 @@ GALGAS_lstring GALGAS_tableViewControllerBoundColumnListAST::getter_mSortPropert
 
 //----------------------------------------------------------------------------------------------------------------------
 
-cEnumerator_tableViewControllerBoundColumnListAST::cEnumerator_tableViewControllerBoundColumnListAST (const GALGAS_tableViewControllerBoundColumnListAST & inEnumeratedObject,
-                                                                                                      const typeEnumerationOrder inOrder) :
+cEnumerator_autoLayoutTableViewControllerBoundColumnListAST::cEnumerator_autoLayoutTableViewControllerBoundColumnListAST (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inEnumeratedObject,
+                                                                                                                          const typeEnumerationOrder inOrder) :
 cGenericAbstractEnumerator (inOrder) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST_2D_element cEnumerator_tableViewControllerBoundColumnListAST::current (LOCATION_ARGS) const {
-  const cCollectionElement_tableViewControllerBoundColumnListAST * p = (const cCollectionElement_tableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element cEnumerator_autoLayoutTableViewControllerBoundColumnListAST::current (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
   return p->mObject ;
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_lstring cEnumerator_tableViewControllerBoundColumnListAST::current_mColumnName (LOCATION_ARGS) const {
-  const cCollectionElement_tableViewControllerBoundColumnListAST * p = (const cCollectionElement_tableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-  return p->mObject.mProperty_mColumnName ;
+GALGAS_bool cEnumerator_autoLayoutTableViewControllerBoundColumnListAST::current_mEditable (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+  return p->mObject.mProperty_mEditable ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_lstring cEnumerator_tableViewControllerBoundColumnListAST::current_mColumnOutletTypeName (LOCATION_ARGS) const {
-  const cCollectionElement_tableViewControllerBoundColumnListAST * p = (const cCollectionElement_tableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-  return p->mObject.mProperty_mColumnOutletTypeName ;
+GALGAS_lstring cEnumerator_autoLayoutTableViewControllerBoundColumnListAST::current_mPropertyName (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+  return p->mObject.mProperty_mPropertyName ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewColumnBindingAST cEnumerator_tableViewControllerBoundColumnListAST::current_mColumnBindingAST (LOCATION_ARGS) const {
-  const cCollectionElement_tableViewControllerBoundColumnListAST * p = (const cCollectionElement_tableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
-  return p->mObject.mProperty_mColumnBindingAST ;
+GALGAS_astAutoLayoutViewInstructionParameterList cEnumerator_autoLayoutTableViewControllerBoundColumnListAST::current_mColumnParameterListAST (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
+  return p->mObject.mProperty_mColumnParameterListAST ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_lstring cEnumerator_tableViewControllerBoundColumnListAST::current_mSortPropertyName (LOCATION_ARGS) const {
-  const cCollectionElement_tableViewControllerBoundColumnListAST * p = (const cCollectionElement_tableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_tableViewControllerBoundColumnListAST) ;
+GALGAS_lstring cEnumerator_autoLayoutTableViewControllerBoundColumnListAST::current_mSortPropertyName (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST * p = (const cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST) ;
   return p->mObject.mProperty_mSortPropertyName ;
 }
 
@@ -14666,42 +14666,42 @@ GALGAS_lstring cEnumerator_tableViewControllerBoundColumnListAST::current_mSortP
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@tableViewControllerBoundColumnListAST type
+//@autoLayoutTableViewControllerBoundColumnListAST type
 //
 //----------------------------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_tableViewControllerBoundColumnListAST ("tableViewControllerBoundColumnListAST",
-                                                              NULL) ;
+kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListAST ("autoLayoutTableViewControllerBoundColumnListAST",
+                                                                        NULL) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor * GALGAS_tableViewControllerBoundColumnListAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_tableViewControllerBoundColumnListAST ;
+const C_galgas_type_descriptor * GALGAS_autoLayoutTableViewControllerBoundColumnListAST::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListAST ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-AC_GALGAS_root * GALGAS_tableViewControllerBoundColumnListAST::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_autoLayoutTableViewControllerBoundColumnListAST::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_tableViewControllerBoundColumnListAST (*this)) ;
+    macroMyNew (result, GALGAS_autoLayoutTableViewControllerBoundColumnListAST (*this)) ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewControllerBoundColumnListAST GALGAS_tableViewControllerBoundColumnListAST::extractObject (const GALGAS_object & inObject,
-                                                                                                          C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_tableViewControllerBoundColumnListAST result ;
-  const GALGAS_tableViewControllerBoundColumnListAST * p = (const GALGAS_tableViewControllerBoundColumnListAST *) inObject.embeddedObject () ;
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableViewControllerBoundColumnListAST::extractObject (const GALGAS_object & inObject,
+                                                                                                                              C_Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_autoLayoutTableViewControllerBoundColumnListAST result ;
+  const GALGAS_autoLayoutTableViewControllerBoundColumnListAST * p = (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_tableViewControllerBoundColumnListAST *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_autoLayoutTableViewControllerBoundColumnListAST *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("tableViewControllerBoundColumnListAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("autoLayoutTableViewControllerBoundColumnListAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
