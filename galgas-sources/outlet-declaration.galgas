@@ -86,7 +86,7 @@ syntax extension easyBindings_syntax {
         error .here : "duplicated $tableValue binding"
       end
       $controllerName$ ?let @lstring controllerName
-      tableValueBinding = .tableValueBinding {!controllerName:controllerName}
+      tableValueBinding = .tableValueBinding {!controllerName: controllerName}
     while
       $run$
       if runActionDescriptor != .noAction then

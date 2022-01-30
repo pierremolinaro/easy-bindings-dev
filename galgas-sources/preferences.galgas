@@ -74,7 +74,7 @@ syntax extension easyBindings_syntax {
     while
       <toMany_relationship> !prefs !?* !?ioDeclarationAST
     while
-      <controller_declaration> !autoLayout: true !prefs !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST
+      <controller_declaration> !prefs !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
@@ -165,10 +165,10 @@ override method @prefsDeclarationAST fourthAnalysisPhase
   var @autoLayoutOutletMap autoLayoutOutletMap = {}
   for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
     [!?viewDeclarationMap insertKey !viewName]
-    [viewDeclaration check
+    [viewDeclaration checkView
       !viewName
       !viewDeclarationMap
-      !false
+      !prefs: true
       !{} # rootPropertyMap
       !preferencesPropertyMap
       !ioSemanticContext

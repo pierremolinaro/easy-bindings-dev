@@ -222,6 +222,7 @@ end
 %end
 %  //---
     self.mTableViewArray.append (inTableView)
+    inTableView.sortAndReloadData ()
   }
 
 %switch MODEL_KIND

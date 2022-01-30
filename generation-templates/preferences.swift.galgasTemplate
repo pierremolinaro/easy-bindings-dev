@@ -45,14 +45,14 @@ for (mViewName mView) in VIEW_GENERATION_LIST do
   %  //····················································································································\n%
   %  //    VIEW %!mViewName%\n%
   %  //····················································································································\n\n%
-  ![mView generate !mViewName]
+  ![mView generate !prefs: true !mViewName]
 end
 for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do index idx
   %  //····················································································································\n%
   %  //    IMPLICIT VIEW %![idx string]%\n%
   %  //····················································································································\n\n%
 %  fileprivate final func computeImplicitView_%![idx string]% () -> NSView {\n%
-![mInstruction generate !"view" !"    "]
+![mInstruction generate !prefs: true !"view" !"    "]
 %    return view\n%
 %  }\n\n%
 end
@@ -66,7 +66,7 @@ for (lkey mAutoLayoutOutletTypeName) in AUTO_LAYOUT_OUTLET_MAP do
 end
 %
   //····················································································································
-  //    Outlets
+  //    Outlets (EX)
   //····················································································································
 
 %

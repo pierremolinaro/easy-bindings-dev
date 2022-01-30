@@ -82,11 +82,10 @@ class cParser_easyBindings_5F_syntax {
 
   protected: virtual void nt_computed_5F_view_5F_instruction_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_controller_5F_declaration_ (class GALGAS_bool inArgument0,
+  protected: virtual void nt_controller_5F_declaration_ (const class GALGAS_lstring constinArgument0,
                                                          const class GALGAS_lstring constinArgument1,
-                                                         const class GALGAS_lstring constinArgument2,
-                                                         class GALGAS_arrayControllerBindingListAST & ioArgument3,
-                                                         class GALGAS_astDeclarationStruct & ioArgument4,
+                                                         class GALGAS_arrayControllerBindingListAST & ioArgument2,
+                                                         class GALGAS_astDeclarationStruct & ioArgument3,
                                                          class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_controller_5F_declaration_parse (class C_Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
@@ -444,11 +443,10 @@ class cParser_easyBindings_5F_syntax {
 
   protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i37_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i38_ (GALGAS_bool inArgument0,
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i38_ (const GALGAS_lstring constinArgument0,
                                                                               const GALGAS_lstring constinArgument1,
-                                                                              const GALGAS_lstring constinArgument2,
-                                                                              GALGAS_arrayControllerBindingListAST & ioArgument3,
-                                                                              GALGAS_astDeclarationStruct & ioArgument4,
+                                                                              GALGAS_arrayControllerBindingListAST & ioArgument2,
+                                                                              GALGAS_astDeclarationStruct & ioArgument3,
                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i38_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -519,29 +517,26 @@ class cParser_easyBindings_5F_syntax {
 
   protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i50_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i51_ (GALGAS_bool inArgument0,
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i51_ (const GALGAS_lstring constinArgument0,
                                                                               const GALGAS_lstring constinArgument1,
-                                                                              const GALGAS_lstring constinArgument2,
-                                                                              GALGAS_arrayControllerBindingListAST & ioArgument3,
-                                                                              GALGAS_astDeclarationStruct & ioArgument4,
+                                                                              GALGAS_arrayControllerBindingListAST & ioArgument2,
+                                                                              GALGAS_astDeclarationStruct & ioArgument3,
                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i51_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i52_ (GALGAS_bool inArgument0,
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i52_ (const GALGAS_lstring constinArgument0,
                                                                               const GALGAS_lstring constinArgument1,
-                                                                              const GALGAS_lstring constinArgument2,
-                                                                              GALGAS_arrayControllerBindingListAST & ioArgument3,
-                                                                              GALGAS_astDeclarationStruct & ioArgument4,
+                                                                              GALGAS_arrayControllerBindingListAST & ioArgument2,
+                                                                              GALGAS_astDeclarationStruct & ioArgument3,
                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i52_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i53_ (GALGAS_bool inArgument0,
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i53_ (const GALGAS_lstring constinArgument0,
                                                                               const GALGAS_lstring constinArgument1,
-                                                                              const GALGAS_lstring constinArgument2,
-                                                                              GALGAS_arrayControllerBindingListAST & ioArgument3,
-                                                                              GALGAS_astDeclarationStruct & ioArgument4,
+                                                                              GALGAS_arrayControllerBindingListAST & ioArgument2,
+                                                                              GALGAS_astDeclarationStruct & ioArgument3,
                                                                               C_Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i53_parse (C_Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -3783,11 +3778,10 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public: virtual void nt_controller_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_controller_5F_declaration_ (GALGAS_bool inArgument0,
+  public: virtual void nt_controller_5F_declaration_ (const GALGAS_lstring inArgument0,
                                                       const GALGAS_lstring inArgument1,
-                                                      const GALGAS_lstring inArgument2,
-                                                      GALGAS_arrayControllerBindingListAST & ioArgument3,
-                                                      GALGAS_astDeclarationStruct & ioArgument4,
+                                                      GALGAS_arrayControllerBindingListAST & ioArgument2,
+                                                      GALGAS_astDeclarationStruct & ioArgument3,
                                                       C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'document_declaration' non terminal

@@ -204,52 +204,52 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewDecla
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@astAbstractViewDeclaration check'
+//Abstract extension method '@astAbstractViewDeclaration checkView'
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_astAbstractViewDeclaration_check) (const class cPtr_astAbstractViewDeclaration * inObject,
-                                                                           const class GALGAS_string constinArgument0,
-                                                                           const class GALGAS_autoLayoutViewDeclarationMap constinArgument1,
-                                                                           const class GALGAS_bool constinArgument2,
-                                                                           const class GALGAS_propertyMap constinArgument3,
-                                                                           const class GALGAS_propertyMap constinArgument4,
-                                                                           const class GALGAS_semanticContext constinArgument5,
-                                                                           const class GALGAS_propertyMap constinArgument6,
-                                                                           const class GALGAS_actionMap constinArgument7,
-                                                                           const class GALGAS_string constinArgument8,
-                                                                           const class GALGAS_classMap constinArgument9,
-                                                                           class GALGAS_implicitViewFunctionGenerationList & ioArgument10,
-                                                                           class GALGAS_autoLayoutConfiguratorMap & ioArgument11,
-                                                                           class GALGAS_autoLayoutOutletMap & ioArgument12,
-                                                                           class GALGAS_abstractViewGeneration & outArgument13,
-                                                                           class C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
+typedef void (*extensionMethodSignature_astAbstractViewDeclaration_checkView) (const class cPtr_astAbstractViewDeclaration * inObject,
+                                                                               const class GALGAS_string constinArgument0,
+                                                                               const class GALGAS_autoLayoutViewDeclarationMap constinArgument1,
+                                                                               const class GALGAS_bool constinArgument2,
+                                                                               const class GALGAS_propertyMap constinArgument3,
+                                                                               const class GALGAS_propertyMap constinArgument4,
+                                                                               const class GALGAS_semanticContext constinArgument5,
+                                                                               const class GALGAS_propertyMap constinArgument6,
+                                                                               const class GALGAS_actionMap constinArgument7,
+                                                                               const class GALGAS_string constinArgument8,
+                                                                               const class GALGAS_classMap constinArgument9,
+                                                                               class GALGAS_implicitViewFunctionGenerationList & ioArgument10,
+                                                                               class GALGAS_autoLayoutConfiguratorMap & ioArgument11,
+                                                                               class GALGAS_autoLayoutOutletMap & ioArgument12,
+                                                                               class GALGAS_abstractViewGeneration & outArgument13,
+                                                                               class C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void enterExtensionMethod_check (const int32_t inClassIndex,
-                                 extensionMethodSignature_astAbstractViewDeclaration_check inMethod) ;
+void enterExtensionMethod_checkView (const int32_t inClassIndex,
+                                     extensionMethodSignature_astAbstractViewDeclaration_checkView inMethod) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void callExtensionMethod_check (const class cPtr_astAbstractViewDeclaration * inObject,
-                                const GALGAS_string constin_inViewName,
-                                const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
-                                const GALGAS_bool constin_inPreferences,
-                                const GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                const GALGAS_propertyMap constin_inPreferencesPropertyMap,
-                                const GALGAS_semanticContext constin_inSemanticContext,
-                                const GALGAS_propertyMap constin_inObservablePropertyMap,
-                                const GALGAS_actionMap constin_inActionMap,
-                                const GALGAS_string constin_inReceiverSwiftTypeName,
-                                const GALGAS_classMap constin_inClassMap,
-                                GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
-                                GALGAS_autoLayoutConfiguratorMap & io_ioConfiguratorMap,
-                                GALGAS_autoLayoutOutletMap & io_ioOutletMap,
-                                GALGAS_abstractViewGeneration & out_outGeneration,
-                                C_Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_checkView (const class cPtr_astAbstractViewDeclaration * inObject,
+                                    const GALGAS_string constin_inViewName,
+                                    const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
+                                    const GALGAS_bool constin_inPreferences,
+                                    const GALGAS_propertyMap constin_inRootObservablePropertyMap,
+                                    const GALGAS_propertyMap constin_inPreferencesPropertyMap,
+                                    const GALGAS_semanticContext constin_inSemanticContext,
+                                    const GALGAS_propertyMap constin_inObservablePropertyMap,
+                                    const GALGAS_actionMap constin_inActionMap,
+                                    const GALGAS_string constin_inReceiverSwiftTypeName,
+                                    const GALGAS_classMap constin_inClassMap,
+                                    GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
+                                    GALGAS_autoLayoutConfiguratorMap & io_ioConfiguratorMap,
+                                    GALGAS_autoLayoutOutletMap & io_ioOutletMap,
+                                    GALGAS_abstractViewGeneration & out_outGeneration,
+                                    C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -609,27 +609,27 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_semanticContext ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Extension method '@astAutoLayoutViewFunctionCallList check'
+//Extension method '@astAutoLayoutViewFunctionCallList checkViewFunctionCallList'
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-void extensionMethod_check (const class GALGAS_astAutoLayoutViewFunctionCallList inObject,
-                            const class GALGAS_astAutoLayoutViewFunctionMap constin_inFunctionMap,
-                            const class GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
-                            const class GALGAS_bool constin_inPreferences,
-                            const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                            const class GALGAS_propertyMap constin_inPreferencesPropertyMap,
-                            const class GALGAS_semanticContext constin_inSemanticContext,
-                            const class GALGAS_propertyMap constin_inObservablePropertyMap,
-                            const class GALGAS_actionMap constin_inActionMap,
-                            const class GALGAS_string constin_inReceiverSwiftTypeName,
-                            const class GALGAS_classMap constin_inClassMap,
-                            class GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
-                            class GALGAS_autoLayoutConfiguratorMap & io_ioConfiguratorMap,
-                            class GALGAS_autoLayoutOutletMap & io_ioOutletMap,
-                            class GALGAS_autoLayoutViewInstructionGenerationFuncCallList & out_outFuncCallList,
-                            class C_Compiler * inCompiler
-                            COMMA_LOCATION_ARGS) ;
+void extensionMethod_checkViewFunctionCallList (const class GALGAS_astAutoLayoutViewFunctionCallList inObject,
+                                                const class GALGAS_astAutoLayoutViewFunctionMap constin_inFunctionMap,
+                                                const class GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
+                                                const class GALGAS_bool constin_inPreferences,
+                                                const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
+                                                const class GALGAS_propertyMap constin_inPreferencesPropertyMap,
+                                                const class GALGAS_semanticContext constin_inSemanticContext,
+                                                const class GALGAS_propertyMap constin_inObservablePropertyMap,
+                                                const class GALGAS_actionMap constin_inActionMap,
+                                                const class GALGAS_string constin_inReceiverSwiftTypeName,
+                                                const class GALGAS_classMap constin_inClassMap,
+                                                class GALGAS_implicitViewFunctionGenerationList & io_ioImplicitViewFunctionGenerationList,
+                                                class GALGAS_autoLayoutConfiguratorMap & io_ioConfiguratorMap,
+                                                class GALGAS_autoLayoutOutletMap & io_ioOutletMap,
+                                                class GALGAS_autoLayoutViewInstructionGenerationFuncCallList & out_outFuncCallList,
+                                                class C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -4276,7 +4276,8 @@ void extensionMethod_generate (const class GALGAS_autoLayoutViewInstructionGener
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef class GALGAS_string (*enterExtensionGetter_abstractViewGeneration_generate) (const class cPtr_abstractViewGeneration * inObject,
-                                                                                     const class GALGAS_string constinArgument0,
+                                                                                     const class GALGAS_bool constinArgument0,
+                                                                                     const class GALGAS_string constinArgument1,
                                                                                      class C_Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
@@ -4288,6 +4289,7 @@ void enterExtensionGetter_generate (const int32_t inClassIndex,
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewGeneration * inObject,
+                                                  const GALGAS_bool constin_inPreferences,
                                                   const GALGAS_string constin_inViewName,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
@@ -4299,8 +4301,9 @@ class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewG
 //----------------------------------------------------------------------------------------------------------------------
 
 typedef class GALGAS_string (*enterExtensionGetter_abstractViewInstructionGeneration_generate) (const class cPtr_abstractViewInstructionGeneration * inObject,
-                                                                                                const class GALGAS_string constinArgument0,
+                                                                                                const class GALGAS_bool constinArgument0,
                                                                                                 const class GALGAS_string constinArgument1,
+                                                                                                const class GALGAS_string constinArgument2,
                                                                                                 class C_Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
@@ -4312,6 +4315,7 @@ void enterExtensionGetter_generate (const int32_t inClassIndex,
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewInstructionGeneration * inObject,
+                                                  const GALGAS_bool constin_inPreferences,
                                                   const GALGAS_string constin_inName,
                                                   const GALGAS_string constin_inIndentation,
                                                   C_Compiler * inCompiler

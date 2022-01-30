@@ -53,7 +53,6 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <controller_declaration>
-            ?autoLayout: @bool unused inAutoLayout
             ?let @lstring inCurrentEntity
             ?let @lstring inRootEntity
             ?!@arrayControllerBindingListAST ioArrayControllerBindingListAST

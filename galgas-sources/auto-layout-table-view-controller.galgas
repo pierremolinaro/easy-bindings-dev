@@ -55,16 +55,11 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <controller_declaration>
-            ?autoLayout: @bool inAutoLayout
             ?let @lstring inCurrentEntity
             ?let @lstring inRootEntity
             ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST
             ?!@astDeclarationStruct ioDeclarationAST
   {
-    $autolayout$
-    if not inAutoLayout then
-      error .here : "XIB document forbids 'autolayout' prefix"
-    end
     $tableViewController$
     $controllerName$ ?let @lstring controllerName
     var @autoLayoutTableViewControllerAttributListAST arrayControllerAttributListAST = {}

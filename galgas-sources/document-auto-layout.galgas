@@ -96,7 +96,7 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> !?outletDeclarationList
     while
-      <controller_declaration> !autoLayout: true !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
+      <controller_declaration> !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST
     while
       $toolbarItem$
       select
@@ -253,10 +253,10 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
   var @autoLayoutOutletMap autoLayoutOutletMap = {}
   for (viewName viewDeclaration) in self.mViewDeclarationList do
     [!?viewDeclarationMap insertKey !viewName]
-    [viewDeclaration check
+    [viewDeclaration checkView
       !viewName
       !viewDeclarationMap
-      !false
+      !prefs: false
       !rootPropertyMap
       !preferencesPropertyMap
       !ioSemanticContext

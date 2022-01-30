@@ -2227,7 +2227,8 @@ class cPtr_abstractViewGeneration : public acStrongPtr_class {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-/* § public: virtual GALGAS_string getter_generate (const GALGAS_string inViewName,
+/* § public: virtual GALGAS_string getter_generate (const GALGAS_bool inPreferences,
+           const GALGAS_string inViewName,
            C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties
 
@@ -2833,7 +2834,8 @@ class cPtr_abstractViewInstructionGeneration : public acStrongPtr_class {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-/* § public: virtual GALGAS_string getter_generate (const GALGAS_string inName,
+/* § public: virtual GALGAS_string getter_generate (const GALGAS_bool inPreferences,
+           const GALGAS_string inName,
            const GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties

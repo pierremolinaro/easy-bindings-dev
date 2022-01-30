@@ -84,14 +84,14 @@ for (mViewName mView) in VIEW_GENERATION_LIST do
   %  //····················································································································\n%
   %  //    VIEW %!mViewName%\n%
   %  //····················································································································\n\n%
-  ![mView generate !mViewName]
+  ![mView generate !prefs: false !mViewName]
 end
 for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do index idx
   %  //····················································································································\n%
   %  //    IMPLICIT VIEW %![idx string]%\n%
   %  //····················································································································\n\n%
 %  fileprivate final func computeImplicitView_%![idx string]% () -> NSView {\n%
-![mInstruction generate !"view" !"    "]
+![mInstruction generate !prefs: false !"view" !"    "]
 %    return view\n%
 %  }\n\n%
 end
@@ -174,7 +174,7 @@ case view (title instruction) :
 %      let toolbarItem = NSToolbarItem (itemIdentifier: itemId)\n%
 %      toolbarItem.label = %![title utf8Representation]%\n%
 %      toolbarItem.isEnabled = true\n%
-![instruction generate !"view" !"      "]
+![instruction generate !prefs: false !"view" !"      "]
 %      toolbarItem.view = view\n%
 %      return toolbarItem\n%
     end
@@ -211,15 +211,6 @@ for (mProperty) in DOCUMENT_PROPERTY_LIST do
 
   override func removeUserInterface () {
     super.removeUserInterface ()
-  //--------------------------- Clean up auto layout views
-%
-for (mViewName mView) in VIEW_GENERATION_LIST do
-  %    // self.%!mViewName%.ebCleanUp ()\n%
-end
-%    /* let toolbarItems = self.windowForSheet?.toolbar?.items ?? []
-    for item in toolbarItems {
-      item.view?.ebCleanUp ()
-    } */
   //--------------------------- Unbind regular bindings
 %
 for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
