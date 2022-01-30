@@ -26,7 +26,7 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
       window = w
     }else{
       window = EBWindow (
-        contentRect: NSRect (x: 0, y: 0, width: 680, height: 600),
+        contentRect: .zero,
         styleMask: [.closable, .resizable, .titled],
         backing: .buffered,
         defer: false
