@@ -228,10 +228,11 @@ override method @autoLayoutDocumentDeclarationAST fourthAnalysisPhase
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
-        !false
+        !prefs: false
         !rootPropertyMap
         !ioSemanticContext
         !documentPropertyMap
+        !preferencesPropertyMap
         ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
         ?let @typeKind type
         ?let @location errorLocation

@@ -1289,7 +1289,8 @@ void routine_analyzeAutoLayoutEnableBinding (const class GALGAS_multipleBindingD
                                              const class GALGAS_propertyMap constinArgument3,
                                              const class GALGAS_semanticContext constinArgument4,
                                              const class GALGAS_propertyMap constinArgument5,
-                                             class GALGAS_autolayoutEnabledBindingForGeneration & outArgument6,
+                                             const class GALGAS_propertyMap constinArgument6,
+                                             class GALGAS_autolayoutEnabledBindingForGeneration & outArgument7,
                                              class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 

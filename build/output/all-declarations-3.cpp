@@ -13381,6 +13381,7 @@ void callExtensionMethod_analyzeExpressionForMultipleBinding (const cPtr_abstrac
                                                               const GALGAS_propertyMap constin_inRootObservablePropertyMap,
                                                               const GALGAS_semanticContext constin_inSemanticContext,
                                                               const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
+                                                              const GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
                                                               GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
                                                               GALGAS_typeKind & out_outType,
                                                               GALGAS_location & out_outErrorLocation,
@@ -13412,7 +13413,7 @@ void callExtensionMethod_analyzeExpressionForMultipleBinding (const cPtr_abstrac
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inSemanticContext, constin_inCurrentObservablePropertyMap, out_outEnableExpression, out_outType, out_outErrorLocation, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inSemanticContext, constin_inCurrentObservablePropertyMap, constin_inPreferencesObservablePropertyMap, out_outEnableExpression, out_outType, out_outErrorLocation, inCompiler COMMA_THERE) ;
     }
   }
 }

@@ -6368,9 +6368,10 @@ typedef void (*extensionMethodSignature_abstractBooleanMultipleBindingExpression
                                                                                                                           const class GALGAS_propertyMap constinArgument1,
                                                                                                                           const class GALGAS_semanticContext constinArgument2,
                                                                                                                           const class GALGAS_propertyMap constinArgument3,
-                                                                                                                          class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument4,
-                                                                                                                          class GALGAS_typeKind & outArgument5,
-                                                                                                                          class GALGAS_location & outArgument6,
+                                                                                                                          const class GALGAS_propertyMap constinArgument4,
+                                                                                                                          class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument5,
+                                                                                                                          class GALGAS_typeKind & outArgument6,
+                                                                                                                          class GALGAS_location & outArgument7,
                                                                                                                           class C_Compiler * inCompiler
                                                                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -6386,6 +6387,7 @@ void callExtensionMethod_analyzeExpressionForMultipleBinding (const class cPtr_a
                                                               const GALGAS_propertyMap constin_inRootObservablePropertyMap,
                                                               const GALGAS_semanticContext constin_inSemanticContext,
                                                               const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
+                                                              const GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
                                                               GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
                                                               GALGAS_typeKind & out_outType,
                                                               GALGAS_location & out_outErrorLocation,

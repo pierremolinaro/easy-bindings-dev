@@ -641,10 +641,11 @@ method @astAutoLayoutViewFunctionCallList checkViewFunctionCallList
           analyzeAutoLayoutEnableBinding (
             !enabledBinding
             !handlesEnabledBinding: true
-            !inPreferences
+            !prefs: inPreferences
             !inRootObservablePropertyMap
             !inSemanticContext
             !inObservablePropertyMap
+            !prefsMap: inPreferencesPropertyMap
             ?let enabledBindingGeneration
           )
           var s = "AutoLayoutMenuItemDescriptor (title: " + [title cStringRepresentation]
@@ -1022,10 +1023,11 @@ override method @astComputedViewInstruction generateViewCode
         analyzeAutoLayoutEnableBinding (
           !enabledBinding
           !handlesEnabledBinding: true
-          !inPreferences
+          !prefs: inPreferences
           !inRootObservablePropertyMap
           !inSemanticContext
           !inObservablePropertyMap
+          !prefsMap: inPreferencesPropertyMap
           ?let enabledBindingGeneration
         )
         var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
@@ -1260,10 +1262,11 @@ proc analyzeAutoLayoutBinding
   analyzeAutoLayoutEnableBinding (
     !inEnabledBindingDescriptor
     !handlesEnabledBinding: handlesEnabledBinding
-    !inPreferences
+    !prefs: inPreferences
     !inRootObservablePropertyMap
     !inSemanticContext
     !inObservablePropertyMap
+    !prefsMap: inPreferencesPropertyMap
     ?let enabledBindingGeneration
   )
   switch enabledBindingGeneration
@@ -1276,10 +1279,11 @@ proc analyzeAutoLayoutBinding
   case noBinding :
   case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
     [expression analyzeExpressionForMultipleBinding
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inSemanticContext
       !inObservablePropertyMap
+      !inPreferencesPropertyMap
       ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
       ?let @typeKind type
       ?let @location errorLocation
@@ -1296,6 +1300,7 @@ proc analyzeAutoLayoutBinding
   end
 #---------------------------------- Regular bindings
   analyzeAutoLayoutRegularBinding (
+    !prefs: inPreferences
     !inRootObservablePropertyMap
     !inPreferencesPropertyMap
     !inSemanticContext
@@ -1312,10 +1317,11 @@ proc analyzeAutoLayoutBinding
 proc analyzeAutoLayoutEnableBinding
   ?let @multipleBindingDescriptor inEnabledBindingDescriptor
   ?handlesEnabledBinding: let @bool inHandlesEnabledBinding
-  ?let @bool inPreferences
+  ?prefs: let @bool inPreferences
   ?let @propertyMap inRootObservablePropertyMap
   ?let @semanticContext inSemanticContext
   ?let @propertyMap inObservablePropertyMap
+  ?prefsMap: let @propertyMap inPreferencesPropertyMap
   !@autolayoutEnabledBindingForGeneration outEnabledBindingGeneration
 {
   switch inEnabledBindingDescriptor
@@ -1323,10 +1329,11 @@ proc analyzeAutoLayoutEnableBinding
     outEnabledBindingGeneration = .none
   case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
     [expression analyzeExpressionForMultipleBinding
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inSemanticContext
       !inObservablePropertyMap
+      !inPreferencesPropertyMap
       ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
       ?let @typeKind type
       ?let @location errorLocation
@@ -1386,6 +1393,7 @@ proc analyzeAutoLayoutRunBinding
 #·······················································································································
 
 proc analyzeAutoLayoutRegularBinding
+  ?prefs: let @bool inPreferences
   ?let @propertyMap inRootPropertyMap
   ?let @propertyMap inPreferencesPropertyMap
   ?let @semanticContext inSemanticContext
@@ -1403,7 +1411,7 @@ proc analyzeAutoLayoutRegularBinding
       [mObservableProperty analyzeObservableProperty
         !inRootPropertyMap
         !inSemanticContext
-        !inBoundModelPropertyMap
+        !if inPreferences then inPreferencesPropertyMap else inBoundModelPropertyMap end
         ?@propertyKind kind
         ?let @string unused swiftTypeStringForTransientFunctionArgument
       ]
@@ -1534,10 +1542,11 @@ override method @astHStackViewInstructionDeclaration generateViewCode
   case noBinding :
   case binding (hiddenBindingExpression) :
     [hiddenBindingExpression analyzeExpressionForMultipleBinding
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inSemanticContext
       !inObservablePropertyMap
+      !inPreferencesPropertyMap
       ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
       ?let @typeKind type
       ?let @location errorLocation
@@ -1608,10 +1617,11 @@ override method @astHSplitViewInstructionDeclaration generateViewCode
   case noBinding :
   case binding (hiddenBindingExpression) :
     [hiddenBindingExpression analyzeExpressionForMultipleBinding
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inSemanticContext
       !inObservablePropertyMap
+      !inPreferencesPropertyMap
       ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
       ?let @typeKind type
       ?let @location errorLocation
@@ -1682,10 +1692,11 @@ override method @astVSplitViewInstructionDeclaration generateViewCode
   case noBinding :
   case binding (hiddenBindingExpression) :
     [hiddenBindingExpression analyzeExpressionForMultipleBinding
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inSemanticContext
       !inObservablePropertyMap
+      !inPreferencesPropertyMap
       ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
       ?let @typeKind type
       ?let @location errorLocation
@@ -1756,10 +1767,11 @@ override method @astVStackViewInstructionDeclaration generateViewCode
   case noBinding :
   case binding (hiddenBindingExpression) :
     [hiddenBindingExpression analyzeExpressionForMultipleBinding
-      !inPreferences
+      !prefs: inPreferences
       !inRootObservablePropertyMap
       !inSemanticContext
       !inObservablePropertyMap
+      !inPreferencesPropertyMap
       ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
       ?let @typeKind type
       ?let @location errorLocation

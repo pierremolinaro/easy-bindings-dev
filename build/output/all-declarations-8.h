@@ -212,14 +212,15 @@ void routine_analyzeAutoLayoutBinding (const class GALGAS_bool constinArgument0,
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-void routine_analyzeAutoLayoutRegularBinding (const class GALGAS_propertyMap constinArgument0,
+void routine_analyzeAutoLayoutRegularBinding (const class GALGAS_bool constinArgument0,
                                               const class GALGAS_propertyMap constinArgument1,
-                                              const class GALGAS_semanticContext constinArgument2,
-                                              const class GALGAS_propertyMap constinArgument3,
-                                              const class GALGAS_lstring constinArgument4,
-                                              const class GALGAS_regularBindingList constinArgument5,
-                                              const class GALGAS_string constinArgument6,
-                                              class GALGAS_autoLayoutRegularBindingsGenerationList & ioArgument7,
+                                              const class GALGAS_propertyMap constinArgument2,
+                                              const class GALGAS_semanticContext constinArgument3,
+                                              const class GALGAS_propertyMap constinArgument4,
+                                              const class GALGAS_lstring constinArgument5,
+                                              const class GALGAS_regularBindingList constinArgument6,
+                                              const class GALGAS_string constinArgument7,
+                                              class GALGAS_autoLayoutRegularBindingsGenerationList & ioArgument8,
                                               class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 

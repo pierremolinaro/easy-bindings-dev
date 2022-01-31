@@ -323,10 +323,11 @@ proc analyzeOutlets
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
-        !inPreferences
+        !prefs: inPreferences
         !inRootObservablePropertyMap
         !inSemanticContext
         !inObservablePropertyMap
+        !inPreferencesPropertyMap
         ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
         ?let @typeKind type
         ?let @location errorLocation
@@ -347,10 +348,11 @@ proc analyzeOutlets
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
-        !inPreferences
+        !prefs: inPreferences
         !inRootObservablePropertyMap
         !inSemanticContext
         !inObservablePropertyMap
+        !inPreferencesPropertyMap
         ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
         ?let @typeKind type
         ?let @location errorLocation
