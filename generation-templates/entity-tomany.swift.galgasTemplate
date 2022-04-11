@@ -12,8 +12,8 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_N
 
   //····················································································································
 
-  internal override func updateObservers (removedSet inRemovedSet : EBReferenceSet <%!ENTITY_NAME%>,
-                                          addedSet inAddedSet : EBReferenceSet <%!ENTITY_NAME%>) {
+  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <%!ENTITY_NAME%>,
+                                 addedSet inAddedSet : EBReferenceSet <%!ENTITY_NAME%>) {
     super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
   //--- Remove observers from removed objects
     if !inRemovedSet.isEmpty {

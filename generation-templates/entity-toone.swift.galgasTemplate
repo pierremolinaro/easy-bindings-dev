@@ -12,7 +12,7 @@ class ReadOnlyObject_%!ENTITY_NAME% : ReadOnlyAbstractObjectProperty <%!ENTITY_N
 
   //····················································································································
 
-  internal override func notifyModelDidChangeFrom (oldValue inOldValue : %!ENTITY_NAME%?) {
+  override func notifyModelDidChangeFrom (oldValue inOldValue : %!ENTITY_NAME%?) {
     super.notifyModelDidChangeFrom (oldValue: inOldValue)
   //--- Remove observers from removed objects
 %if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] +[COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then

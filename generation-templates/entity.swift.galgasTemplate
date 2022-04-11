@@ -105,7 +105,7 @@ end
 
   //····················································································································
 
-  override internal func removeAllObservers () {
+  override func removeAllObservers () {
     super.removeAllObservers ()
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
@@ -207,7 +207,7 @@ end
   //    cleanUpToManyRelationships
   //····················································································································
 
-  override internal func cleanUpToManyRelationships () {
+  override func cleanUpToManyRelationships () {
 %
 for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   if not [mProperty.mOption isHasDependance] then
@@ -222,7 +222,7 @@ end
   //    cleanUpToOneRelationships
   //····················································································································
 
-  override internal func cleanUpToOneRelationships () {
+  override func cleanUpToOneRelationships () {
 %
 for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
   %    self.%!mProperty.mPropertyName% = nil\n%
