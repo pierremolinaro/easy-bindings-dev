@@ -2799,7 +2799,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientExternType
 
 typedef void (*extensionMethodSignature_abstractFileGeneration_generateCode) (const class cPtr_abstractFileGeneration * inObject,
                                                                               const class GALGAS_string constinArgument0,
-                                                                              class GALGAS_stringset & ioArgument1,
+                                                                              class GALGAS_stringset inArgument1,
+                                                                              class GALGAS_stringset inArgument2,
+                                                                              class GALGAS_stringset & ioArgument3,
                                                                               class C_Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
@@ -2812,6 +2814,8 @@ void enterExtensionMethod_generateCode (const int32_t inClassIndex,
 
 void callExtensionMethod_generateCode (const class cPtr_abstractFileGeneration * inObject,
                                        const GALGAS_string constin_inOutputDirectory,
+                                       GALGAS_stringset in_inToOneEntities,
+                                       GALGAS_stringset in_inToManyEntities,
                                        GALGAS_stringset & io_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;

@@ -173,6 +173,8 @@ private filewrapper enumGenerationTemplate in "../generation-templates" {
 
 override method @enumForGeneration generateCode
     ?let @string inOutputDirectory
+    ?toOne: @stringset unused inToOneEntities
+    ?toMany: @stringset unused inToManyEntities
     ?!@stringset ioGeneratedFileSet
 {
   if [self.mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"

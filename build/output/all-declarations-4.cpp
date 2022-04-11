@@ -7261,6 +7261,8 @@ C_PrologueEpilogue gMethod_abstractFileGeneration_generateCode (NULL,
 
 void callExtensionMethod_generateCode (const cPtr_abstractFileGeneration * inObject,
                                        const GALGAS_string constin_inOutputDirectory,
+                                       GALGAS_stringset in_inToOneEntities,
+                                       GALGAS_stringset in_inToManyEntities,
                                        GALGAS_stringset & io_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) {
@@ -7287,7 +7289,7 @@ void callExtensionMethod_generateCode (const cPtr_abstractFileGeneration * inObj
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inOutputDirectory, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inOutputDirectory, in_inToOneEntities, in_inToManyEntities, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
     }
   }
 }

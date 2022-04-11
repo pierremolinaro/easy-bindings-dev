@@ -125,6 +125,8 @@ override method @selectionControllerDeclarationAST fourthAnalysisPhase
        !self.mSelectionEntityName.string
        !selectionObservablePropertyMap
        !selectionGenerationList
+     ioGeneration.mToManyClassImplementations += !self.mSelectionEntityName
+     # message "SELECTION CONTROLLER " + self.mSelectionEntityName + "\n"
      var testedTypeName = self.mSelectionEntityName.string
      loop (@uint.max) while (typeName.string != testedTypeName) & (testedTypeName != "") do
        if typeName.string != self.mSelectionEntityName.string then

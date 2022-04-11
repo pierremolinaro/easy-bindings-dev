@@ -378,6 +378,8 @@ list @autoLayoutToolbarItemGenerationList {
 
 override method @autoLayoutDocumentFileGeneration generateCode
     ?let @string inOutputDirectory
+    ?toOne: @stringset unused inToOneEntities
+    ?toMany: @stringset unused inToManyEntities
     ?!@stringset ioGeneratedFileSet
 {
   let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentImplementation

@@ -331,6 +331,8 @@ private filewrapper arrayControllerGenerationTemplate in "../generation-template
 
 override method @arrayControllerGeneration generateCode
     ?let @string inOutputDirectory
+    ?toOne: @stringset unused inToOneEntities
+    ?toMany: @stringset unused inToManyEntities
     ?!@stringset unused ioGeneratedFileSet
 {
 #--- Build observed property set (for sorting and filtering)

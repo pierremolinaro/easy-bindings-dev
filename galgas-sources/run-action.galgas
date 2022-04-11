@@ -62,6 +62,8 @@ refclass @actionFileGeneration : @abstractFileGeneration {
 
 override method @actionFileGeneration generateCode
     ?let @string inOutputDirectory
+    ?toOne: @stringset unused inToOneEntities
+    ?toMany: @stringset unused inToManyEntities
     ?!@stringset ioGeneratedFileSet
 {
  let s = [filewrapper actionGenerationTemplate.actionGeneration

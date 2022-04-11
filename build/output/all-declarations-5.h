@@ -4693,6 +4693,16 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
     return mProperty_mMainXibDescriptorList ;
   }
 
+  public: GALGAS_stringset mProperty_mToOneClassImplementations ;
+  public: inline GALGAS_stringset readProperty_mToOneClassImplementations (void) const {
+    return mProperty_mToOneClassImplementations ;
+  }
+
+  public: GALGAS_stringset mProperty_mToManyClassImplementations ;
+  public: inline GALGAS_stringset readProperty_mToManyClassImplementations (void) const {
+    return mProperty_mToManyClassImplementations ;
+  }
+
   public: GALGAS_selectionControllerForGeneration mProperty_mSelectionControllerListForGeneration ;
   public: inline GALGAS_selectionControllerForGeneration readProperty_mSelectionControllerListForGeneration (void) const {
     return mProperty_mSelectionControllerListForGeneration ;
@@ -4747,6 +4757,14 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
     mProperty_mMainXibDescriptorList = inValue ;
   }
 
+  public: inline void setter_setMToOneClassImplementations (const GALGAS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mToOneClassImplementations = inValue ;
+  }
+
+  public: inline void setter_setMToManyClassImplementations (const GALGAS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mToManyClassImplementations = inValue ;
+  }
+
   public: inline void setter_setMSelectionControllerListForGeneration (const GALGAS_selectionControllerForGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
     mProperty_mSelectionControllerListForGeneration = inValue ;
   }
@@ -4770,6 +4788,8 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                    const GALGAS_bool & in_mGenerateEBManagedAutoLayoutDocumentSwift,
                                    const GALGAS_stringset & in_mNeededOutletClasses,
                                    const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
+                                   const GALGAS_stringset & in_mToOneClassImplementations,
+                                   const GALGAS_stringset & in_mToManyClassImplementations,
                                    const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
                                    const GALGAS_stringlist & in_mPropertyClassList,
                                    const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList) ;
@@ -4792,9 +4812,11 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                                                 const class GALGAS_bool & inOperand4,
                                                                 const class GALGAS_stringset & inOperand5,
                                                                 const class GALGAS_mainXibDescriptorList & inOperand6,
-                                                                const class GALGAS_selectionControllerForGeneration & inOperand7,
-                                                                const class GALGAS_stringlist & inOperand8,
-                                                                const class GALGAS_transientExternTypeList & inOperand9
+                                                                const class GALGAS_stringset & inOperand7,
+                                                                const class GALGAS_stringset & inOperand8,
+                                                                const class GALGAS_selectionControllerForGeneration & inOperand9,
+                                                                const class GALGAS_stringlist & inOperand10,
+                                                                const class GALGAS_transientExternTypeList & inOperand11
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'

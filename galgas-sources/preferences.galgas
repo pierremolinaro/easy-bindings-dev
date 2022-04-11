@@ -248,6 +248,8 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
 
 override method @preferencesForGeneration generateCode
     ?let @string inOutputDirectory
+    ?toOne: @stringset unused inToOneEntities
+    ?toMany: @stringset unused inToManyEntities
     ?!@stringset ioGeneratedFileSet
 {
   let s = [filewrapper prefsGenerationTemplate.preferences

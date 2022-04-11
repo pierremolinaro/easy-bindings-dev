@@ -467,6 +467,8 @@ refclass @computeRoutineGeneration : @abstractFileGeneration {
 
 override method @computeRoutineGeneration generateCode
     ?let @string inOutputDirectory
+    ?toOne: @stringset unused inToOneEntities
+    ?toMany: @stringset unused inToManyEntities
     ?!@stringset ioGeneratedFileSet
 {
   if [self.mDependencyList length] > 0 then

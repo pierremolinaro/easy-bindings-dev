@@ -16,6 +16,8 @@ abstract refclass @abstractFileGeneration {
 
 abstract method @abstractFileGeneration generateCode
     ?let @string inOutputDirectory
+    ?toOne: @stringset inToOneEntities
+    ?toMany: @stringset inToManyEntities
     ?!@stringset ioGeneratedFileSet
 
 #·······················································································································
@@ -34,7 +36,9 @@ struct @generationStruct {
   public var @bool mGenerateEBManagedAutoLayoutDocumentSwift
   public var @stringset mNeededOutletClasses
   public var @mainXibDescriptorList mMainXibDescriptorList
-
+ 
+  public var @stringset mToOneClassImplementations
+  public var @stringset mToManyClassImplementations
 
   public var @selectionControllerForGeneration mSelectionControllerListForGeneration
   public var @stringlist mPropertyClassList
@@ -55,7 +59,12 @@ proc generateCode
   let fileOutputDirectory = outputDirectory + "/" + projectName
   var @stringset generatedFileSet = {}
   for (fileGeneration) in inGeneration.mFileGenerationList do
-    [fileGeneration generateCode !fileOutputDirectory !?generatedFileSet]
+    [fileGeneration generateCode
+      !fileOutputDirectory
+      !toOne: inGeneration.mToOneClassImplementations
+      !toMany: inGeneration.mToManyClassImplementations
+      !?generatedFileSet
+    ]
   end
 #  generateOutletClasses (
 #    !inGeneration.mNeededOutletClasses
@@ -67,15 +76,6 @@ proc generateCode
     !fileOutputDirectory
     !?generatedFileSet
   )
-#  if inGeneration.mGenerateEBManagedXibDocumentSwift || inGeneration.mGenerateEBManagedAutoLayoutDocumentSwift then
-#    generateEBManagedDocumentSwift (!fileOutputDirectory !?generatedFileSet)
-#  end
-#  if inGeneration.mGenerateEBManagedXibDocumentSwift then
-#    generateEBManagedXibDocumentSwift (!fileOutputDirectory !?generatedFileSet)
-#  end
-#  if inGeneration.mGenerateEBManagedAutoLayoutDocumentSwift then
-#    generateAutoLayoutManagedDocumentSwift (!fileOutputDirectory !?generatedFileSet)
-#  end
   generateSelectionControllers (
     !inGeneration.mSelectionControllerListForGeneration
     !fileOutputDirectory

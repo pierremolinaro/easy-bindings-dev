@@ -9606,6 +9606,8 @@ mProperty_mGenerateEBManagedXibDocumentSwift (),
 mProperty_mGenerateEBManagedAutoLayoutDocumentSwift (),
 mProperty_mNeededOutletClasses (),
 mProperty_mMainXibDescriptorList (),
+mProperty_mToOneClassImplementations (),
+mProperty_mToManyClassImplementations (),
 mProperty_mSelectionControllerListForGeneration (),
 mProperty_mPropertyClassList (),
 mProperty_mTransientPropertyTypeList () {
@@ -9625,9 +9627,11 @@ GALGAS_generationStruct::GALGAS_generationStruct (const GALGAS_validationStubRou
                                                   const GALGAS_bool & inOperand4,
                                                   const GALGAS_stringset & inOperand5,
                                                   const GALGAS_mainXibDescriptorList & inOperand6,
-                                                  const GALGAS_selectionControllerForGeneration & inOperand7,
-                                                  const GALGAS_stringlist & inOperand8,
-                                                  const GALGAS_transientExternTypeList & inOperand9) :
+                                                  const GALGAS_stringset & inOperand7,
+                                                  const GALGAS_stringset & inOperand8,
+                                                  const GALGAS_selectionControllerForGeneration & inOperand9,
+                                                  const GALGAS_stringlist & inOperand10,
+                                                  const GALGAS_transientExternTypeList & inOperand11) :
 mProperty_mValidationStubRoutineListForGeneration (inOperand0),
 mProperty_mFileGenerationList (inOperand1),
 mProperty_mEntityListForGeneration (inOperand2),
@@ -9635,9 +9639,11 @@ mProperty_mGenerateEBManagedXibDocumentSwift (inOperand3),
 mProperty_mGenerateEBManagedAutoLayoutDocumentSwift (inOperand4),
 mProperty_mNeededOutletClasses (inOperand5),
 mProperty_mMainXibDescriptorList (inOperand6),
-mProperty_mSelectionControllerListForGeneration (inOperand7),
-mProperty_mPropertyClassList (inOperand8),
-mProperty_mTransientPropertyTypeList (inOperand9) {
+mProperty_mToOneClassImplementations (inOperand7),
+mProperty_mToManyClassImplementations (inOperand8),
+mProperty_mSelectionControllerListForGeneration (inOperand9),
+mProperty_mPropertyClassList (inOperand10),
+mProperty_mTransientPropertyTypeList (inOperand11) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9650,6 +9656,8 @@ GALGAS_generationStruct GALGAS_generationStruct::constructor_default (UNUSED_LOC
                                   GALGAS_bool::constructor_default (HERE),
                                   GALGAS_stringset::constructor_emptySet (HERE),
                                   GALGAS_mainXibDescriptorList::constructor_emptyList (HERE),
+                                  GALGAS_stringset::constructor_emptySet (HERE),
+                                  GALGAS_stringset::constructor_emptySet (HERE),
                                   GALGAS_selectionControllerForGeneration::constructor_emptyList (HERE),
                                   GALGAS_stringlist::constructor_emptyList (HERE),
                                   GALGAS_transientExternTypeList::constructor_emptyList (HERE)) ;
@@ -9664,13 +9672,15 @@ GALGAS_generationStruct GALGAS_generationStruct::constructor_new (const GALGAS_v
                                                                   const GALGAS_bool & inOperand4,
                                                                   const GALGAS_stringset & inOperand5,
                                                                   const GALGAS_mainXibDescriptorList & inOperand6,
-                                                                  const GALGAS_selectionControllerForGeneration & inOperand7,
-                                                                  const GALGAS_stringlist & inOperand8,
-                                                                  const GALGAS_transientExternTypeList & inOperand9 
+                                                                  const GALGAS_stringset & inOperand7,
+                                                                  const GALGAS_stringset & inOperand8,
+                                                                  const GALGAS_selectionControllerForGeneration & inOperand9,
+                                                                  const GALGAS_stringlist & inOperand10,
+                                                                  const GALGAS_transientExternTypeList & inOperand11 
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_generationStruct result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
-    result = GALGAS_generationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid ()) {
+    result = GALGAS_generationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11) ;
   }
   return result ;
 }
@@ -9701,6 +9711,12 @@ typeComparisonResult GALGAS_generationStruct::objectCompare (const GALGAS_genera
     result = mProperty_mMainXibDescriptorList.objectCompare (inOperand.mProperty_mMainXibDescriptorList) ;
   }
   if (result == kOperandEqual) {
+    result = mProperty_mToOneClassImplementations.objectCompare (inOperand.mProperty_mToOneClassImplementations) ;
+  }
+  if (result == kOperandEqual) {
+    result = mProperty_mToManyClassImplementations.objectCompare (inOperand.mProperty_mToManyClassImplementations) ;
+  }
+  if (result == kOperandEqual) {
     result = mProperty_mSelectionControllerListForGeneration.objectCompare (inOperand.mProperty_mSelectionControllerListForGeneration) ;
   }
   if (result == kOperandEqual) {
@@ -9715,7 +9731,7 @@ typeComparisonResult GALGAS_generationStruct::objectCompare (const GALGAS_genera
 //----------------------------------------------------------------------------------------------------------------------
 
 bool GALGAS_generationStruct::isValid (void) const {
-  return mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mFileGenerationList.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mGenerateEBManagedXibDocumentSwift.isValid () && mProperty_mGenerateEBManagedAutoLayoutDocumentSwift.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
+  return mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mFileGenerationList.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mGenerateEBManagedXibDocumentSwift.isValid () && mProperty_mGenerateEBManagedAutoLayoutDocumentSwift.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mToOneClassImplementations.isValid () && mProperty_mToManyClassImplementations.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9728,6 +9744,8 @@ void GALGAS_generationStruct::drop (void) {
   mProperty_mGenerateEBManagedAutoLayoutDocumentSwift.drop () ;
   mProperty_mNeededOutletClasses.drop () ;
   mProperty_mMainXibDescriptorList.drop () ;
+  mProperty_mToOneClassImplementations.drop () ;
+  mProperty_mToManyClassImplementations.drop () ;
   mProperty_mSelectionControllerListForGeneration.drop () ;
   mProperty_mPropertyClassList.drop () ;
   mProperty_mTransientPropertyTypeList.drop () ;
@@ -9754,6 +9772,10 @@ void GALGAS_generationStruct::description (C_String & ioString,
     mProperty_mNeededOutletClasses.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mMainXibDescriptorList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mToOneClassImplementations.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mToManyClassImplementations.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mSelectionControllerListForGeneration.description (ioString, inIndentation+1) ;
     ioString << ", " ;

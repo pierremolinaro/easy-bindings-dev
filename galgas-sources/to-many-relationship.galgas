@@ -114,11 +114,12 @@ syntax extension easyBindings_syntax {
 
 override method @toManyRelationshipAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration
+       ?!@generationStruct ioGeneration
 {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
+    ioGeneration.mToManyClassImplementations += !self.mDestinationEntityName
     [ioSemanticContext.mClassMap searchKey !self.mDestinationEntityName ?let classKind ?3*]
     switch classKind
     case prefs :
