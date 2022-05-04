@@ -65,7 +65,7 @@ syntax extension easyBindings_syntax {
   rule <document_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $autoLayoutDocument$
     $Identifier$ ?let @lstring documentName
-    var @string customSuperClassName
+    let @string customSuperClassName
     select
       customSuperClassName = ""
     or
@@ -79,9 +79,9 @@ syntax extension easyBindings_syntax {
     $identifier$ ?let @lstring mainViewName
     ${$
     var @outletDeclarationList outletDeclarationList = {}
-    var @regularBindingList bindingList = {}
+    let @regularBindingList bindingList = {}
     var @lstringlist actionDeclarationList = {}
-    var @stringset signatureList = {}
+    let @stringset signatureList = {}
     var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     var @astViewDeclarationList viewDeclarationList = {}
     var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}

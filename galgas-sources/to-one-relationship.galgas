@@ -57,7 +57,7 @@ syntax extension easyBindings_syntax {
     end
     $Identifier$ ?let @lstring destinationEntityName
     $identifier$ ?let @lstring relationshipName
-    var @toOneOppositeRelationship opposite
+    let @toOneOppositeRelationship opposite
     select
       opposite = .none
     or

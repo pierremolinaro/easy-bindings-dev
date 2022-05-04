@@ -74,7 +74,7 @@ syntax extension easyBindings_syntax {
     end
     $)$
   #--- Model
-    var @bool isRoot
+    let @bool isRoot
     select
       $root$
       isRoot = true
@@ -91,7 +91,7 @@ syntax extension easyBindings_syntax {
       ${$
       repeat
       while
-        var @bool editableColumn
+        let @bool editableColumn
         select
           $column$
           editableColumn = false
@@ -101,7 +101,7 @@ syntax extension easyBindings_syntax {
         end
         $identifier$ ?let propertyName
         <view_actual_parameter_list> ?let columnParameterListAST
-        var @lstring sortPropertyName
+        let @lstring sortPropertyName
         select
           sortPropertyName = ["" nowhere]
         or
@@ -232,7 +232,7 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
     end
   end
 #------
-  var @propertyMap boundModelPropertyMap
+  let @propertyMap boundModelPropertyMap
   if self.mIsRoot then
     [ioSemanticContext.mClassMap searchKey
        !self.mRootEntityName
@@ -254,11 +254,11 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
      ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
-  var @actionMap actionMap
-  var @propertyMap propertyMap
-  var @autoLayoutTableViewControllerModelKind arrayControllerModelKind
-  var @bool graphic
-  var @string elementTypeName
+  let @actionMap actionMap
+  let @propertyMap propertyMap
+  let @autoLayoutTableViewControllerModelKind arrayControllerModelKind
+  let @bool graphic
+  let @string elementTypeName
   switch boundModelClassKind
   case property (2*) :
     error self.mToManyPropertyName

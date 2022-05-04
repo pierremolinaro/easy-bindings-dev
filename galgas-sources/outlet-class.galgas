@@ -36,7 +36,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <outlet_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
-    var @bool userDefined
+    let @bool userDefined
     select
       $extern$
       userDefined = true
@@ -46,7 +46,7 @@ syntax extension easyBindings_syntax {
     $outlet$
     $class$
     $Identifier$ ?let @lstring outletClassName
-    var @lstring superClassName
+    let @lstring superClassName
     select
       superClassName = ["" here]
     or

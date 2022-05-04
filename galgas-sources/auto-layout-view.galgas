@@ -260,14 +260,14 @@ syntax extension easyBindings_syntax {
  
   rule <computed_view_instruction> !@astComputedViewInstruction outInstruction {
     $Identifier$ ? let viewClassName
-    var @astAutoLayoutViewInstructionParameterList instanciationParameterList
+    let @astAutoLayoutViewInstructionParameterList instanciationParameterList
     select
       instanciationParameterList = {}
     or
       <view_actual_parameter_list> ?instanciationParameterList
     end
-    var @lstring configuratorName
-    var @lstring outletName
+    let @lstring configuratorName
+    let @lstring outletName
     select
       outletName = ["" nowhere]
       configuratorName = ["" nowhere]
@@ -287,13 +287,13 @@ syntax extension easyBindings_syntax {
       end
       $]$
     end
-    var @tableValueBinding tableValueBinding
-    var @runActionDescriptor runActionDescriptor
-    var @multipleBindingDescriptor enabledBindingDescriptor
-    var @multipleBindingDescriptor hiddenBindingDescriptor
-    var @graphicController graphicController
-    var @regularBindingList regularBindingList
-    var @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList
+    let @tableValueBinding tableValueBinding
+    let @runActionDescriptor runActionDescriptor
+    let @multipleBindingDescriptor enabledBindingDescriptor
+    let @multipleBindingDescriptor hiddenBindingDescriptor
+    let @graphicController graphicController
+    let @regularBindingList regularBindingList
+    let @astAutoLayoutViewFunctionCallList autoLayoutViewFunctionCallList
     select
       tableValueBinding = .noTableValueBinding
       runActionDescriptor = .noAction
@@ -348,12 +348,12 @@ syntax extension easyBindings_syntax {
         or
           $menuItem$
           $literal_string$ ?let menuItemTitle
-          var @runActionDescriptor runActionDescriptor
+          let @runActionDescriptor runActionDescriptor
           select
             runActionDescriptor = .noAction
           or
             $run$
-            var @lstring runTargetName
+            let @lstring runTargetName
             select
               runTargetName = @lstring.new {!"self" !.here}
             or
@@ -428,7 +428,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $vStack$
     <auto_layout_func_call_list> ?let functionCallList
-    var @optionalHiddenBinding optionalHiddenBinding
+    let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
     or
@@ -448,7 +448,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $hStack$
     <auto_layout_func_call_list> ?let functionCallList
-    var @optionalHiddenBinding optionalHiddenBinding
+    let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
     or
@@ -468,7 +468,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $hSplit$
     <auto_layout_func_call_list> ?let functionCallList
-    var @optionalHiddenBinding optionalHiddenBinding
+    let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
     or
@@ -488,7 +488,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> !@astAbstractViewInstructionDeclaration outInstruction {
     $vSplit$
     <auto_layout_func_call_list> ?let functionCallList
-    var @optionalHiddenBinding optionalHiddenBinding
+    let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
     or
@@ -1412,7 +1412,7 @@ proc analyzeAutoLayoutRegularBinding
         !inRootPropertyMap
         !inSemanticContext
         !if inPreferences then inPreferencesPropertyMap else inBoundModelPropertyMap end
-        ?@propertyKind kind
+        ?let @propertyKind kind
         ?let @string unused swiftTypeStringForTransientFunctionArgument
       ]
       switch kind

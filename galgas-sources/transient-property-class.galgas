@@ -29,7 +29,7 @@ syntax extension easyBindings_syntax {
   rule <class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
     $transient$
      $property$
-    var @bool isClass
+    let @bool isClass
     select
       $class$
       isClass = true

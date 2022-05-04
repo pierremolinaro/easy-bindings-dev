@@ -108,7 +108,7 @@ syntax extension easyBindings_syntax {
             ?let @lstring inRootEntity
             ?!@astDeclarationStruct ioDeclarationAST
   {
-    var @bool isOverriding
+    let @bool isOverriding
     select
       isOverriding = false
     or
@@ -179,7 +179,7 @@ override method @transientDeclarationAST thirdAnalysisPhase
 #--- Property type
   [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName ?let classKind ?3*]
 #--- Check type
-  var @typeKind typeKind
+  let @typeKind typeKind
   switch classKind
   case prefs :
     error self.mTransientTypeName: "an atomic class is required here" : typeKind
@@ -191,7 +191,7 @@ override method @transientDeclarationAST thirdAnalysisPhase
     error self.mTransientTypeName: "an atomic class is required here" : typeKind
   end
 #--- Root properties
-  var @propertyMap rootProperties
+  let @propertyMap rootProperties
   if self.mRootEntityName.string == "" then
     rootProperties = {}
   else
@@ -233,7 +233,7 @@ override method @transientDeclarationAST thirdAnalysisPhase
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    var @bool generate
+    let @bool generate
     switch currentClassKind
     case prefs :
       generate = true
@@ -435,7 +435,7 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
 {
   let uwself = if inPreferences then "preferences_" else "unwSelf." end
   outResult = ""
-  var ident = "        "
+  let ident = "        "
   outResult += ident + "switch ("
   for (mDependency * *) in self
   do

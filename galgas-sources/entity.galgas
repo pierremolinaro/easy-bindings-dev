@@ -38,14 +38,14 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <entity_declaration> ?!@astDeclarationStruct ioDeclarationAST {
-    var @bool isAbstract
+    let @bool isAbstract
     select
       isAbstract = false
     or
       $abstract$
       isAbstract = true
     end
-    var @bool graphicEntity
+    let @bool graphicEntity
     select
       graphicEntity = false
     or
@@ -66,7 +66,7 @@ syntax extension easyBindings_syntax {
       end
       $)$
     end
-    var @lstring superEntityName
+    let @lstring superEntityName
     select
       superEntityName = ["" nowhere]
     or

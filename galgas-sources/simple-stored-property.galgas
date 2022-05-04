@@ -68,13 +68,13 @@ syntax extension easyBindings_syntax {
         error attributeName : "unknow attribute" fixit { replace "@signature" replace "@validation" }
       end
     end
-    $Identifier$ ?var @lstring attributeTypeName
-    $identifier$ ?var @lstring attributeName
+    $Identifier$ ?let @lstring attributeTypeName
+    $identifier$ ?let @lstring attributeName
     if usedForSignature then
       ioSignatureList += !attributeName.string
     end
     $default$
-    <explicit_value> ?var @abstractDefaultValue defaultValue
+    <explicit_value> ?let @abstractDefaultValue defaultValue
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@atomicPropertyDeclarationAST.new{
       !inClassName

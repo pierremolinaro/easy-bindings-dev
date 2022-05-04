@@ -40,7 +40,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
     repeat
     while
       $include$
-      $literal_string$ ?var @lstring filePath
+      $literal_string$ ?let @lstring filePath
       $;$
       let sourceFile = @lstring.new {
         ![filePath.string absolutePathFromPath ![@string.stringWithSourceFilePath stringByDeletingLastPathComponent]]

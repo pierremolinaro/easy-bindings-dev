@@ -46,7 +46,7 @@ syntax extension easyBindings_syntax {
             ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST
             ?!@astDeclarationStruct ioDeclarationAST
   {
-    var @proxyKind proxyKind
+    let @proxyKind proxyKind
     select
       $property$
       proxyKind = .propertyProxy
@@ -55,7 +55,7 @@ syntax extension easyBindings_syntax {
       proxyKind = .toManyProxy
     end
     $proxy$
-    $Identifier$ ?var @lstring proxyTypeName
+    $Identifier$ ?let @lstring proxyTypeName
     $identifier$ ?let @lstring proxyName
     $:$
     $identifier$ ?let @lstring toOnePropertyName

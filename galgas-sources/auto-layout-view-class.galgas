@@ -103,7 +103,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <autolayout_class_declaration> ?!@astDeclarationStruct ioDeclarationAST {
-    var @bool userDefined
+    let @bool userDefined
     select
       $extern$
       userDefined = true
@@ -113,13 +113,13 @@ syntax extension easyBindings_syntax {
     $autolayout$
     $class$
     $Identifier$ ?let @lstring outletClassName
-    var @autoLayoutClassParameterList parameterList
+    let @autoLayoutClassParameterList parameterList
     select
       parameterList = {}
     or
       <autolayout_formal_parameter_list> !["" nowhere] ?parameterList ?*
     end
-    var @lstring superClassName
+    let @lstring superClassName
     select
       superClassName = ["" here]
     or

@@ -179,7 +179,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
 #--- Property type
   [ioSemanticContext.mClassMap searchKey !self.mComputedPropertyTypeName ?let classKind ?3*]
 #--- Check type
-  var @typeKind typeKind
+  let @typeKind typeKind
   switch classKind
   case prefs :
     error self.mComputedPropertyTypeName: "an atomic class is required here" : typeKind
@@ -191,7 +191,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
     error self.mComputedPropertyTypeName: "an atomic class is required here" : typeKind
   end
 #--- Root properties
-  var @propertyMap rootProperties
+  let @propertyMap rootProperties
   if self.mRootEntityName.string == "" then
     rootProperties = {}
   else
@@ -239,7 +239,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    var @bool generate
+    let @bool generate
     switch currentClassKind
     case prefs :
       generate = true

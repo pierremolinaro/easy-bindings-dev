@@ -7743,19 +7743,19 @@ void extensionMethod_generate (const GALGAS_autoLayoutViewInstructionGenerationF
                                C_Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_autoLayoutViewInstructionGenerationFuncCallList temp_0 = inObject ;
-  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_85225 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_85225.hasCurrentObject ()) {
-    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1995)).add_operation (enumerator_85225.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1995)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1995)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1995)) ;
-    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_85334 (enumerator_85225.current_mParameters (HERE), kENUMERATION_UP) ;
-    while (enumerator_85334.hasCurrentObject ()) {
-      ioArgument_ioStr.plusAssign_operation(enumerator_85334.current_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1997)).add_operation (enumerator_85334.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1997)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1997)) ;
-      if (enumerator_85334.hasNextObject ()) {
+  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_85229 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_85229.hasCurrentObject ()) {
+    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1995)).add_operation (enumerator_85229.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1995)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1995)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1995)) ;
+    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_85338 (enumerator_85229.current_mParameters (HERE), kENUMERATION_UP) ;
+    while (enumerator_85338.hasCurrentObject ()) {
+      ioArgument_ioStr.plusAssign_operation(enumerator_85338.current_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1997)).add_operation (enumerator_85338.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1997)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1997)) ;
+      if (enumerator_85338.hasNextObject ()) {
         ioArgument_ioStr.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 1998)) ;
       }
-      enumerator_85334.gotoNextObject () ;
+      enumerator_85338.gotoNextObject () ;
     }
     ioArgument_ioStr.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 2000)) ;
-    enumerator_85225.gotoNextObject () ;
+    enumerator_85229.gotoNextObject () ;
   }
 }
 

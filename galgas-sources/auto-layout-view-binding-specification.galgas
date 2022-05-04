@@ -22,7 +22,7 @@ syntax extension easyBindings_syntax {
     $bindingName$ ?let @lstring bindingName
     var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
     repeat
-      var @bool modelShouldBeWritableProperty
+      let @bool modelShouldBeWritableProperty
       select
         $property$
         modelShouldBeWritableProperty = true
@@ -30,7 +30,7 @@ syntax extension easyBindings_syntax {
         $transient$
         modelShouldBeWritableProperty = false
       end
-      var @lstring modelTypeName
+      let @lstring modelTypeName
       select
         $Identifier$ ?modelTypeName
       or
@@ -102,7 +102,7 @@ proc buildAutoLayoutBindingSpecificationMap
           !mModelShouldBeWritableProperty
       else
         [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]
-        var @typeKind typeKind
+        let @typeKind typeKind
         switch classKind
         case prefs :
           error mModelTypeName : "an atomic class is required here" : typeKind
@@ -119,7 +119,7 @@ proc buildAutoLayoutBindingSpecificationMap
     var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
     for (mOptionName mOptionTypeName) in mBindingOptionList do
       [ioSemanticContext.mClassMap searchKey !mOptionTypeName ?let @classKind classKind ?3*]
-      var @typeKind typeKind
+      let @typeKind typeKind
       switch classKind
       case prefs :
         error mOptionTypeName : "an atomic class is required here" : typeKind
@@ -134,7 +134,7 @@ proc buildAutoLayoutBindingSpecificationMap
     end
   #--- Insert in binding map
     var @autoLayoutViewBindingSpecificationMap bindingMap
-    var @lstring outletSuperClassName
+    let @lstring outletSuperClassName
     if [ioSemanticContext.mAutoLayoutBindingSpecificationMap hasKey !mOutletClassName.string] then
       [!?ioSemanticContext.mAutoLayoutBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
     else

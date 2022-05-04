@@ -78,7 +78,7 @@ syntax extension easyBindings_syntax {
     if usedForSignature then
       ioSignatureList += !relationshipName.string
     end
-    var @toManyRelationshipOptionAST toManyRelationshipOption
+    let @toManyRelationshipOptionAST toManyRelationshipOption
     select
       $inverse$
       $toOne$
@@ -139,7 +139,7 @@ override method @toManyRelationshipAST firstAnalysisPhase
     #--- Current class is preferences ?
       let inPrefs = self.mClassName.string == preferencesName ()
     #--- Option
-      var @toManyRelationshipOptionGeneration optionForGeneration
+      let @toManyRelationshipOptionGeneration optionForGeneration
       switch self.mOption
       case hasDependance (masterPropertyName) :
         [mPropertyMap searchKey !masterPropertyName ?let masterPropertyKind ?2*]

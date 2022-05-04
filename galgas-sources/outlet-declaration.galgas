@@ -92,7 +92,7 @@ syntax extension easyBindings_syntax {
       if runActionDescriptor != .noAction then
         error .here : "duplicated $run binding"
       end
-      var @lstring runTargetName
+      let @lstring runTargetName
       select
         runTargetName = @lstring.new {!"self" !.here}
       or
@@ -136,7 +136,7 @@ syntax extension easyBindings_syntax {
     while
       $graphicController$
       $controllerName$ ?let @lstring graphicControllerName
-      var @lstring propertyName
+      let @lstring propertyName
       select
         propertyName = ["" here]
       or
@@ -405,7 +405,7 @@ proc analyzeRegularBinding
         !inRootPropertyMap
         !inSemanticContext
         !inBoundModelPropertyMap
-        ?@propertyKind kind
+        ?let @propertyKind kind
         ?let @string unused swiftTypeStringForTransientFunctionArgument
       ]
       switch kind

@@ -330,7 +330,7 @@ override method @negateBooleanMultipleBindingExpressionAST analyzeExpressionForM
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration expression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration expression
     ?outType
     ?outErrorLocation
   ]
@@ -358,7 +358,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMulti
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
     ?let outLeftType
     ?let outLeftLocation
   ]
@@ -371,7 +371,7 @@ override method @orBooleanMultipleBindingExpressionAST analyzeExpressionForMulti
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
     ?let outRightType
     ?let outRightLocation
   ]
@@ -401,7 +401,7 @@ override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMult
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
     ?let outLeftType
     ?let outLeftLocation
   ]
@@ -414,7 +414,7 @@ override method @xorBooleanMultipleBindingExpressionAST analyzeExpressionForMult
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
     ?let outRightType
     ?let outRightLocation
   ]
@@ -444,7 +444,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMult
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
     ?let outLeftType
     ?let outLeftLocation
   ]
@@ -457,7 +457,7 @@ override method @andBooleanMultipleBindingExpressionAST analyzeExpressionForMult
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
     ?let outRightType
     ?let outRightLocation
   ]
@@ -487,7 +487,7 @@ override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMult
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
     ?let outLeftType
     ?let outLeftLocation
   ]
@@ -497,7 +497,7 @@ override method @comparisonMultipleBindingExpressionAST analyzeExpressionForMult
     !inSemanticContext
     !inCurrentObservablePropertyMap
     !inPreferencesObservablePropertyMap
-    ?var @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
     ?let outRightType
     ?let outRightLocation
   ]

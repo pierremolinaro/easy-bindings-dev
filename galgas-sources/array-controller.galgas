@@ -61,7 +61,7 @@ syntax extension easyBindings_syntax {
     $arrayController$
     $controllerName$ ?let @lstring controllerName
   #--- Model
-    var @arrayControllerBoundModelAST model
+    let @arrayControllerBoundModelAST model
     $:$
     select
       $root$
@@ -169,7 +169,7 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration
 {
-  var @propertyMap boundModelPropertyMap
+  let @propertyMap boundModelPropertyMap
   switch self.mModel
   case rootToManyRelationship (@lstring rootEntityName) :
     [ioSemanticContext.mClassMap searchKey
@@ -192,11 +192,11 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
      ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
-  var @actionMap actionMap
-  var @propertyMap propertyMap
-  var @arrayControllerModelKind arrayControllerModelKind
-  var @bool graphic
-  var @string elementTypeName
+  let @actionMap actionMap
+  let @propertyMap propertyMap
+  let @arrayControllerModelKind arrayControllerModelKind
+  let @bool graphic
+  let @string elementTypeName
   switch boundModelClassKind
   case property (2*) :
     error self.mToManyPropertyName

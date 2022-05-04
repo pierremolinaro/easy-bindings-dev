@@ -660,7 +660,7 @@ method @observablePropertyAST analyzeObservableProperty
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case selfControllerOneProperty (@lstring controllerName @lstring propertyName) :
     [inBoundModelPropertyMap searchKey !controllerName ?let @propertyKind propertyKind ?2*]
-    var @string controllerTypeName = ""
+    let @string controllerTypeName = ""
     switch propertyKind
     case arrayController (2*) :
       error controllerName : "an array controller does not support 'one'"
