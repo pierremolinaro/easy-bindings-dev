@@ -22,13 +22,9 @@ case . "eb"
 {
   var @astDeclarationStruct declarationStruct = .default
 #----------------------------------------- Parse predefined outlets files
-  grammar easyBindings_grammar on ([filewrapper predefinedOutletClasses.sourceFile], "")
-    !?declarationStruct
-    ?*
+  grammar easyBindings_grammar (!?declarationStruct ?*) on [filewrapper predefinedOutletClasses.sourceFile]:""
 #----------------------------------------- Parse source file
-  grammar easyBindings_grammar in inSourceFile
-    !?declarationStruct
-    ?let @location endOfSourceFile
+  grammar easyBindings_grammar (!?declarationStruct ?let @location endOfSourceFile) in inSourceFile
 #------------------------ Add prefs declaration
   declarationStruct.mUnifiedDeclarationList += !@prefsDeclarationAST.new {
     !.new{!preferencesName () !.nowhere}
