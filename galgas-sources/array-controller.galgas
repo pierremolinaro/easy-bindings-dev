@@ -192,8 +192,6 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
      ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
-  let @actionMap actionMap
-  let @propertyMap propertyMap
   let @arrayControllerModelKind arrayControllerModelKind
   let @bool graphic
   let @string elementTypeName
@@ -201,7 +199,7 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
   case property (2*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+      : graphic, arrayControllerModelKind, elementTypeName
   case toMany (typeName accessibility isGraphic *) :
     elementTypeName = typeName
     graphic = isGraphic
@@ -209,19 +207,19 @@ override method @arrayControllerDeclarationAST thirdAnalysisPhase
       then .transientArray
       else .entityArray
     end
-    [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?actionMap ?*]
+    [ioSemanticContext.mClassMap searchKey !typeName ?* ?3*]
   case toOne (4*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+      : graphic, arrayControllerModelKind, elementTypeName
   case arrayController (2*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+      : graphic, arrayControllerModelKind, elementTypeName
   case selectionController (*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+      : graphic, arrayControllerModelKind, elementTypeName
   end
 #---
   ioGeneration.mFileGenerationList += !@arrayControllerGeneration.new {

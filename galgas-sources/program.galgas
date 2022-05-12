@@ -24,7 +24,7 @@ case . "eb"
 #----------------------------------------- Parse predefined outlets files
   grammar easyBindings_grammar (!?declarationStruct ?*) on [filewrapper predefinedOutletClasses.sourceFile]:""
 #----------------------------------------- Parse source file
-  grammar easyBindings_grammar (!?declarationStruct ?let @location endOfSourceFile) in inSourceFile
+  grammar easyBindings_grammar (!?declarationStruct ?let @location unused endOfSourceFile) in inSourceFile
 #------------------------ Add prefs declaration
   declarationStruct.mUnifiedDeclarationList += !@prefsDeclarationAST.new {
     !.new{!preferencesName () !.nowhere}

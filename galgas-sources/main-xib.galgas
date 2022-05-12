@@ -96,7 +96,7 @@ getter @mainXibDescriptorList generateCode -> @string outResult {
       for (mElement) in mLine do
         switch mElement
         case text (t) :
-          idx ++
+          idx += 1
           outResult += "  //--- Text " + t + "\n"
           outResult += "  //  createTextFieldForText (" + [t utf8Representation] + ", y:&y, col:0, view:view)\n"
           outResult += "    let tf" + idx + " = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
@@ -111,7 +111,7 @@ getter @mainXibDescriptorList generateCode -> @string outResult {
           outResult += "    " + outletName + "?.setAccessibilityIdentifier (" + [outletName utf8Representation] + ")\n"
           outResult += "    view.addSubview (" + outletName + "!)\n"
         end
-        column ++
+        column += 1
       end
       if column > columnMax then
         columnMax = column

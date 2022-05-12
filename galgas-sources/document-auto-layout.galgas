@@ -79,9 +79,7 @@ syntax extension easyBindings_syntax {
     $identifier$ ?let @lstring mainViewName
     ${$
     var @outletDeclarationList outletDeclarationList = {}
-    let @regularBindingList bindingList = {}
     var @lstringlist actionDeclarationList = {}
-    let @stringset signatureList = {}
     var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     var @astViewDeclarationList viewDeclarationList = {}
     var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}

@@ -254,7 +254,6 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
      ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
-  let @actionMap actionMap
   let @propertyMap propertyMap
   let @autoLayoutTableViewControllerModelKind arrayControllerModelKind
   let @bool graphic
@@ -263,7 +262,7 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
   case property (2*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+      : graphic, arrayControllerModelKind, propertyMap, elementTypeName
   case toMany (typeName accessibility isGraphic *) :
     elementTypeName = typeName
     graphic = isGraphic
@@ -271,19 +270,19 @@ override method @autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase
       then .transientArray
       else .entityArray
     end
-    [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?actionMap ?*]
+    [ioSemanticContext.mClassMap searchKey !typeName ?* ?propertyMap ?* ?*]
   case toOne (4*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+      : graphic, arrayControllerModelKind, propertyMap, elementTypeName
   case arrayController (2*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+      : graphic, arrayControllerModelKind, propertyMap, elementTypeName
   case selectionController (*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      : graphic, arrayControllerModelKind, propertyMap, actionMap, elementTypeName
+      : graphic, arrayControllerModelKind, propertyMap, elementTypeName
   end
   var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
   var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
