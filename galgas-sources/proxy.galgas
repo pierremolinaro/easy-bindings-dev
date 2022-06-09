@@ -369,24 +369,6 @@ override getter @atomicProxyGeneration bindPropertyInSelectionController -> @str
   result += "        }\n"
   result += "      }\n"
   result += "    }\n"
-  result += "    self." + self.mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : " + [self.mType swiftTypeName] + ", windowForSheet : NSWindow?) in\n"
-  result += "      if let model = self?.selectedArray_property {\n"
-  result += "        switch model.selection {\n"
-  result += "        case .empty, .multiple :\n"
-  result += "          return false\n"
-  result += "        case .single (let v) :\n"
-  result += "          for object in v {\n"
-  result += "            let result = object." + self.mPropertyName + "_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n"
-  result += "            if !result {\n"
-  result += "              return false\n"
-  result += "            }\n"
-  result += "          }\n"
-  result += "          return true\n"
-  result += "        }\n"
-  result += "      }else{\n"
-  result += "        return false\n"
-  result += "      }\n"
-  result += "    }\n"
   result += "  }\n"
 }
 
@@ -443,9 +425,6 @@ override getter @atomicProxyGeneration configurationCode ?let @bool unused inPre
   result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (_ inValue : " + [self.mType swiftTypeName] + ") in\n"
   result += "      self?." + self.mObservedRelationshipName + "?." + self.mObservedPropertyName + " = inValue\n"
   result += "    }\n"
-  result += "    self." + self.mPropertyName + "_property.mValidateAndWriteModelFunction = { [weak self] (_ inValue : " + [self.mType swiftTypeName] + ", _ inWindow : NSWindow?) -> Bool in\n"
-  result += "      return self?." + self.mObservedRelationshipName + "?." + self.mObservedPropertyName + "_property.validateAndSetProp (inValue, windowForSheet: inWindow) ?? false\n"
-  result += "    }\n"
   result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName
   result += "_property.addEBObserver (self." + self.mPropertyName + "_property)\n"
 }
@@ -456,7 +435,6 @@ override getter @atomicProxyGeneration terminationCode ?let @bool unused inPrefe
   result  = "  //--- Atomic proxy property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = nil\n"
   result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = nil\n"
-  result += "    self." + self.mPropertyName + "_property.mValidateAndWriteModelFunction = nil\n"
   result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName
   result += "_property.removeEBObserver (self." + self.mPropertyName + "_property)\n"
 }

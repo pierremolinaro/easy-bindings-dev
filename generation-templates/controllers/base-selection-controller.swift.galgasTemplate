@@ -51,7 +51,6 @@ end
       %    self.%!lkey.string%_property.mReadModelFunction = nil \n%
       if not [mKind isTransient] then
         %    self.%!lkey.string%_property.mWriteModelFunction = nil \n%
-        %    self.%!lkey.string%_property.mValidateAndWriteModelFunction = nil \n%
        end
       %    self.mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
     end
@@ -220,24 +219,6 @@ if not [mKind isTransient] then
 %            object.%!lkey.string%_property.setProp (inValue)\n%
 %          }\n%
 %        }\n%
-%      }\n%
-%    }\n%
-%    self.%!lkey.string%_property.mValidateAndWriteModelFunction = { [weak self] (candidateValue : %![mKind swiftTypeName]%, windowForSheet : NSWindow?) in\n%
-%      if let model = self?.mModel {\n%
-%        switch model.selection {\n%
-%        case .empty, .multiple :\n%
-%          return false\n%
-%        case .single (let v) :\n%
-%          for object in v {\n%
-%            let result = object.%!lkey.string%_property.validateAndSetProp (candidateValue, windowForSheet:windowForSheet)\n%
-%            if !result {\n%
-%              return false\n%
-%            }\n%
-%          }\n%
-%          return true\n%
-%        }\n%
-%      }else{\n%
-%        return false\n%
 %      }\n%
 %    }\n%
 end
