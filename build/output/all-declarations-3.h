@@ -2886,8 +2886,6 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
 
   public: class GALGAS_abstractDefaultValue readProperty_mDefaultValue (void) const ;
 
-  public: class GALGAS_bool readProperty_mNeedsValidation (void) const ;
-
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -2902,8 +2900,7 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
   public: static class GALGAS_atomicPropertyDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                             const class GALGAS_lstring & inOperand1,
                                                                             const class GALGAS_lstring & inOperand2,
-                                                                            const class GALGAS_abstractDefaultValue & inOperand3,
-                                                                            const class GALGAS_bool & inOperand4
+                                                                            const class GALGAS_abstractDefaultValue & inOperand3
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2912,9 +2909,6 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMDefaultValue (class GALGAS_abstractDefaultValue inArgument0
                                                          COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMNeedsValidation (class GALGAS_bool inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMPropertyName (class GALGAS_lstring inArgument0
                                                          COMMA_LOCATION_ARGS) ;
@@ -2954,14 +2948,12 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
   public: GALGAS_lstring mProperty_mPropertyTypeName ;
   public: GALGAS_lstring mProperty_mPropertyName ;
   public: GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
-  public: GALGAS_bool mProperty_mNeedsValidation ;
 
 //--- Constructor
   public: cPtr_atomicPropertyDeclarationAST (const GALGAS_lstring & in_mClassName,
                                              const GALGAS_lstring & in_mPropertyTypeName,
                                              const GALGAS_lstring & in_mPropertyName,
-                                             const GALGAS_abstractDefaultValue & in_mDefaultValue,
-                                             const GALGAS_bool & in_mNeedsValidation
+                                             const GALGAS_abstractDefaultValue & in_mDefaultValue
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3048,8 +3040,6 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
   public: GALGAS_atomicPropertyGeneration (const class cPtr_atomicPropertyGeneration * inSourcePtr) ;
 
 //--------------------------------- Property read access
-  public: class GALGAS_bool readProperty_mNeedsValidation (void) const ;
-
   public: class GALGAS_typeKind readProperty_mType (void) const ;
 
   public: class GALGAS_bool readProperty_mIsProxy (void) const ;
@@ -3070,11 +3060,10 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_atomicPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                        const class GALGAS_bool & inOperand1,
-                                                                        const class GALGAS_typeKind & inOperand2,
-                                                                        const class GALGAS_bool & inOperand3,
-                                                                        const class GALGAS_string & inOperand4,
-                                                                        const class GALGAS_bool & inOperand5
+                                                                        const class GALGAS_typeKind & inOperand1,
+                                                                        const class GALGAS_bool & inOperand2,
+                                                                        const class GALGAS_string & inOperand3,
+                                                                        const class GALGAS_bool & inOperand4
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3089,9 +3078,6 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 
   public: VIRTUAL_IN_DEBUG void setter_setMIsProxy (class GALGAS_bool inArgument0
                                                     COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMNeedsValidation (class GALGAS_bool inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMType (class GALGAS_typeKind inArgument0
                                                  COMMA_LOCATION_ARGS) ;
@@ -3125,7 +3111,6 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 //----------------------------------------------------------------------------------------------------------------------
 
 //--- Properties
-  public: GALGAS_bool mProperty_mNeedsValidation ;
   public: GALGAS_typeKind mProperty_mType ;
   public: GALGAS_bool mProperty_mIsProxy ;
   public: GALGAS_string mProperty_mDefaultValueInSwift ;
@@ -3133,7 +3118,6 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Constructor
   public: cPtr_atomicPropertyGeneration (const GALGAS_string & in_mPropertyName,
-                                         const GALGAS_bool & in_mNeedsValidation,
                                          const GALGAS_typeKind & in_mType,
                                          const GALGAS_bool & in_mIsProxy,
                                          const GALGAS_string & in_mDefaultValueInSwift,

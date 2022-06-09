@@ -11146,8 +11146,7 @@ class cCollectionElement_simpleStoredPropertyList : public cCollectionElement {
 //--- Constructors
   public: cCollectionElement_simpleStoredPropertyList (const GALGAS_lstring & in_mPropertyTypeName,
                                                        const GALGAS_lstring & in_mPropertyName,
-                                                       const GALGAS_abstractDefaultValue & in_mDefaultValue,
-                                                       const GALGAS_bool & in_mNeedsValidation
+                                                       const GALGAS_abstractDefaultValue & in_mDefaultValue
                                                        COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_simpleStoredPropertyList (const GALGAS_simpleStoredPropertyList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
@@ -11168,18 +11167,17 @@ class cCollectionElement_simpleStoredPropertyList : public cCollectionElement {
 
 cCollectionElement_simpleStoredPropertyList::cCollectionElement_simpleStoredPropertyList (const GALGAS_lstring & in_mPropertyTypeName,
                                                                                           const GALGAS_lstring & in_mPropertyName,
-                                                                                          const GALGAS_abstractDefaultValue & in_mDefaultValue,
-                                                                                          const GALGAS_bool & in_mNeedsValidation
+                                                                                          const GALGAS_abstractDefaultValue & in_mDefaultValue
                                                                                           COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (in_mPropertyTypeName, in_mPropertyName, in_mDefaultValue, in_mNeedsValidation) {
+mObject (in_mPropertyTypeName, in_mPropertyName, in_mDefaultValue) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement_simpleStoredPropertyList::cCollectionElement_simpleStoredPropertyList (const GALGAS_simpleStoredPropertyList_2D_element & inElement COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
-mObject (inElement.mProperty_mPropertyTypeName, inElement.mProperty_mPropertyName, inElement.mProperty_mDefaultValue, inElement.mProperty_mNeedsValidation) {
+mObject (inElement.mProperty_mPropertyTypeName, inElement.mProperty_mPropertyName, inElement.mProperty_mDefaultValue) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11192,7 +11190,7 @@ bool cCollectionElement_simpleStoredPropertyList::isValid (void) const {
 
 cCollectionElement * cCollectionElement_simpleStoredPropertyList::copy (void) {
   cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_simpleStoredPropertyList (mObject.mProperty_mPropertyTypeName, mObject.mProperty_mPropertyName, mObject.mProperty_mDefaultValue, mObject.mProperty_mNeedsValidation COMMA_HERE)) ;
+  macroMyNew (result, cCollectionElement_simpleStoredPropertyList (mObject.mProperty_mPropertyTypeName, mObject.mProperty_mPropertyName, mObject.mProperty_mDefaultValue COMMA_HERE)) ;
   return result ;
 }
 
@@ -11211,10 +11209,6 @@ void cCollectionElement_simpleStoredPropertyList::description (C_String & ioStri
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mDefaultValue" ":" ;
   mObject.mProperty_mDefaultValue.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mNeedsValidation" ":" ;
-  mObject.mProperty_mNeedsValidation.description (ioString, inIndentation) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11247,14 +11241,13 @@ GALGAS_simpleStoredPropertyList GALGAS_simpleStoredPropertyList::constructor_emp
 
 GALGAS_simpleStoredPropertyList GALGAS_simpleStoredPropertyList::constructor_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                             const GALGAS_lstring & inOperand1,
-                                                                                            const GALGAS_abstractDefaultValue & inOperand2,
-                                                                                            const GALGAS_bool & inOperand3
+                                                                                            const GALGAS_abstractDefaultValue & inOperand2
                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_simpleStoredPropertyList result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     result = GALGAS_simpleStoredPropertyList (capCollectionElementArray ()) ;
     capCollectionElement attributes ;
-    GALGAS_simpleStoredPropertyList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE) ;
+    GALGAS_simpleStoredPropertyList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2 COMMA_THERE) ;
     result.appendObject (attributes) ;
   }
   return result ;
@@ -11265,14 +11258,12 @@ GALGAS_simpleStoredPropertyList GALGAS_simpleStoredPropertyList::constructor_lis
 void GALGAS_simpleStoredPropertyList::makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                                  const GALGAS_lstring & in_mPropertyTypeName,
                                                                  const GALGAS_lstring & in_mPropertyName,
-                                                                 const GALGAS_abstractDefaultValue & in_mDefaultValue,
-                                                                 const GALGAS_bool & in_mNeedsValidation
+                                                                 const GALGAS_abstractDefaultValue & in_mDefaultValue
                                                                  COMMA_LOCATION_ARGS) {
   cCollectionElement_simpleStoredPropertyList * p = NULL ;
   macroMyNew (p, cCollectionElement_simpleStoredPropertyList (in_mPropertyTypeName,
                                                               in_mPropertyName,
-                                                              in_mDefaultValue,
-                                                              in_mNeedsValidation COMMA_THERE)) ;
+                                                              in_mDefaultValue COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -11281,13 +11272,12 @@ void GALGAS_simpleStoredPropertyList::makeAttributesFromObjects (capCollectionEl
 
 void GALGAS_simpleStoredPropertyList::addAssign_operation (const GALGAS_lstring & inOperand0,
                                                            const GALGAS_lstring & inOperand1,
-                                                           const GALGAS_abstractDefaultValue & inOperand2,
-                                                           const GALGAS_bool & inOperand3
+                                                           const GALGAS_abstractDefaultValue & inOperand2
                                                            COMMA_LOCATION_ARGS) {
   if (isValid ()) {
-    if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
+    if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
       cCollectionElement * p = NULL ;
-      macroMyNew (p, cCollectionElement_simpleStoredPropertyList (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
+      macroMyNew (p, cCollectionElement_simpleStoredPropertyList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
       macroDetachSharedObject (p) ;
@@ -11322,14 +11312,13 @@ void GALGAS_simpleStoredPropertyList::setter_append (GALGAS_simpleStoredProperty
 void GALGAS_simpleStoredPropertyList::setter_insertAtIndex (const GALGAS_lstring inOperand0,
                                                             const GALGAS_lstring inOperand1,
                                                             const GALGAS_abstractDefaultValue inOperand2,
-                                                            const GALGAS_bool inOperand3,
                                                             const GALGAS_uint inInsertionIndex,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) {
   if (isValid ()) {
-    if (inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
+    if (inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
       cCollectionElement * p = NULL ;
-      macroMyNew (p, cCollectionElement_simpleStoredPropertyList (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
+      macroMyNew (p, cCollectionElement_simpleStoredPropertyList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
       macroDetachSharedObject (p) ;
@@ -11345,7 +11334,6 @@ void GALGAS_simpleStoredPropertyList::setter_insertAtIndex (const GALGAS_lstring
 void GALGAS_simpleStoredPropertyList::setter_removeAtIndex (GALGAS_lstring & outOperand0,
                                                             GALGAS_lstring & outOperand1,
                                                             GALGAS_abstractDefaultValue & outOperand2,
-                                                            GALGAS_bool & outOperand3,
                                                             const GALGAS_uint inRemoveIndex,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) {
@@ -11358,27 +11346,23 @@ void GALGAS_simpleStoredPropertyList::setter_removeAtIndex (GALGAS_lstring & out
         outOperand0.drop () ;
         outOperand1.drop () ;
         outOperand2.drop () ;
-        outOperand3.drop () ;
         drop () ;
       }else{
         macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
         outOperand0 = p->mObject.mProperty_mPropertyTypeName ;
         outOperand1 = p->mObject.mProperty_mPropertyName ;
         outOperand2 = p->mObject.mProperty_mDefaultValue ;
-        outOperand3 = p->mObject.mProperty_mNeedsValidation ;
       }
     }else{
       outOperand0.drop () ;
       outOperand1.drop () ;
       outOperand2.drop () ;
-      outOperand3.drop () ;
       drop () ;    
     }
   }else{
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
-    outOperand3.drop () ;
   }
 }
 
@@ -11387,7 +11371,6 @@ void GALGAS_simpleStoredPropertyList::setter_removeAtIndex (GALGAS_lstring & out
 void GALGAS_simpleStoredPropertyList::setter_popFirst (GALGAS_lstring & outOperand0,
                                                        GALGAS_lstring & outOperand1,
                                                        GALGAS_abstractDefaultValue & outOperand2,
-                                                       GALGAS_bool & outOperand3,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -11397,13 +11380,11 @@ void GALGAS_simpleStoredPropertyList::setter_popFirst (GALGAS_lstring & outOpera
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
-    outOperand3.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
     outOperand0 = p->mObject.mProperty_mPropertyTypeName ;
     outOperand1 = p->mObject.mProperty_mPropertyName ;
     outOperand2 = p->mObject.mProperty_mDefaultValue ;
-    outOperand3 = p->mObject.mProperty_mNeedsValidation ;
   }
 }
 
@@ -11412,7 +11393,6 @@ void GALGAS_simpleStoredPropertyList::setter_popFirst (GALGAS_lstring & outOpera
 void GALGAS_simpleStoredPropertyList::setter_popLast (GALGAS_lstring & outOperand0,
                                                       GALGAS_lstring & outOperand1,
                                                       GALGAS_abstractDefaultValue & outOperand2,
-                                                      GALGAS_bool & outOperand3,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) {
   capCollectionElement attributes ;
@@ -11422,13 +11402,11 @@ void GALGAS_simpleStoredPropertyList::setter_popLast (GALGAS_lstring & outOperan
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
-    outOperand3.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
     outOperand0 = p->mObject.mProperty_mPropertyTypeName ;
     outOperand1 = p->mObject.mProperty_mPropertyName ;
     outOperand2 = p->mObject.mProperty_mDefaultValue ;
-    outOperand3 = p->mObject.mProperty_mNeedsValidation ;
   }
 }
 
@@ -11437,7 +11415,6 @@ void GALGAS_simpleStoredPropertyList::setter_popLast (GALGAS_lstring & outOperan
 void GALGAS_simpleStoredPropertyList::method_first (GALGAS_lstring & outOperand0,
                                                     GALGAS_lstring & outOperand1,
                                                     GALGAS_abstractDefaultValue & outOperand2,
-                                                    GALGAS_bool & outOperand3,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -11447,13 +11424,11 @@ void GALGAS_simpleStoredPropertyList::method_first (GALGAS_lstring & outOperand0
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
-    outOperand3.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
     outOperand0 = p->mObject.mProperty_mPropertyTypeName ;
     outOperand1 = p->mObject.mProperty_mPropertyName ;
     outOperand2 = p->mObject.mProperty_mDefaultValue ;
-    outOperand3 = p->mObject.mProperty_mNeedsValidation ;
   }
 }
 
@@ -11462,7 +11437,6 @@ void GALGAS_simpleStoredPropertyList::method_first (GALGAS_lstring & outOperand0
 void GALGAS_simpleStoredPropertyList::method_last (GALGAS_lstring & outOperand0,
                                                    GALGAS_lstring & outOperand1,
                                                    GALGAS_abstractDefaultValue & outOperand2,
-                                                   GALGAS_bool & outOperand3,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const {
   capCollectionElement attributes ;
@@ -11472,13 +11446,11 @@ void GALGAS_simpleStoredPropertyList::method_last (GALGAS_lstring & outOperand0,
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
-    outOperand3.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
     outOperand0 = p->mObject.mProperty_mPropertyTypeName ;
     outOperand1 = p->mObject.mProperty_mPropertyName ;
     outOperand2 = p->mObject.mProperty_mDefaultValue ;
-    outOperand3 = p->mObject.mProperty_mNeedsValidation ;
   }
 }
 
@@ -11620,35 +11592,6 @@ GALGAS_abstractDefaultValue GALGAS_simpleStoredPropertyList::getter_mDefaultValu
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_simpleStoredPropertyList::setter_setMNeedsValidationAtIndex (GALGAS_bool inOperand,
-                                                                         GALGAS_uint inIndex,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
-  cCollectionElement_simpleStoredPropertyList * p = (cCollectionElement_simpleStoredPropertyList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mNeedsValidation = inOperand ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_simpleStoredPropertyList::getter_mNeedsValidationAtIndex (const GALGAS_uint & inIndex,
-                                                                             C_Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_simpleStoredPropertyList * p = (cCollectionElement_simpleStoredPropertyList *) attributes.ptr () ;
-  GALGAS_bool result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
-    result = p->mObject.mProperty_mNeedsValidation ;
-  }
-  return result ;
-}
-
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11690,14 +11633,6 @@ GALGAS_abstractDefaultValue cEnumerator_simpleStoredPropertyList::current_mDefau
   const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
   return p->mObject.mProperty_mDefaultValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool cEnumerator_simpleStoredPropertyList::current_mNeedsValidation (LOCATION_ARGS) const {
-  const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
-  return p->mObject.mProperty_mNeedsValidation ;
 }
 
 

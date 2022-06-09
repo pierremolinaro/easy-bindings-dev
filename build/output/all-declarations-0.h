@@ -6634,8 +6634,7 @@ class GALGAS_simpleStoredPropertyList : public AC_GALGAS_list {
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GALGAS_lstring & in_mPropertyTypeName,
                                                  const class GALGAS_lstring & in_mPropertyName,
-                                                 const class GALGAS_abstractDefaultValue & in_mDefaultValue,
-                                                 const class GALGAS_bool & in_mNeedsValidation
+                                                 const class GALGAS_abstractDefaultValue & in_mDefaultValue
                                                  COMMA_LOCATION_ARGS) ;
 
 //-- Start of generic part --*
@@ -6653,8 +6652,7 @@ class GALGAS_simpleStoredPropertyList : public AC_GALGAS_list {
 
   public: static class GALGAS_simpleStoredPropertyList constructor_listWithValue (const class GALGAS_lstring & inOperand0,
                                                                                   const class GALGAS_lstring & inOperand1,
-                                                                                  const class GALGAS_abstractDefaultValue & inOperand2,
-                                                                                  const class GALGAS_bool & inOperand3
+                                                                                  const class GALGAS_abstractDefaultValue & inOperand2
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -6665,8 +6663,7 @@ class GALGAS_simpleStoredPropertyList : public AC_GALGAS_list {
 //--------------------------------- += operator (with list of field expressions)
   public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                      const class GALGAS_lstring & inOperand1,
-                                                     const class GALGAS_abstractDefaultValue & inOperand2,
-                                                     const class GALGAS_bool & inOperand3
+                                                     const class GALGAS_abstractDefaultValue & inOperand2
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_simpleStoredPropertyList add_operation (const GALGAS_simpleStoredPropertyList & inOperand,
@@ -6682,30 +6679,26 @@ class GALGAS_simpleStoredPropertyList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                       class GALGAS_lstring constinArgument1,
                                                       class GALGAS_abstractDefaultValue constinArgument2,
-                                                      class GALGAS_bool constinArgument3,
-                                                      class GALGAS_uint constinArgument4,
+                                                      class GALGAS_uint constinArgument3,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
                                                  class GALGAS_lstring & outArgument1,
                                                  class GALGAS_abstractDefaultValue & outArgument2,
-                                                 class GALGAS_bool & outArgument3,
                                                  C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
                                                 class GALGAS_lstring & outArgument1,
                                                 class GALGAS_abstractDefaultValue & outArgument2,
-                                                class GALGAS_bool & outArgument3,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
                                                       class GALGAS_lstring & outArgument1,
                                                       class GALGAS_abstractDefaultValue & outArgument2,
-                                                      class GALGAS_bool & outArgument3,
-                                                      class GALGAS_uint constinArgument4,
+                                                      class GALGAS_uint constinArgument3,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -6713,11 +6706,6 @@ class GALGAS_simpleStoredPropertyList : public AC_GALGAS_list {
                                                                 class GALGAS_uint constinArgument1,
                                                                 C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMNeedsValidationAtIndex (class GALGAS_bool constinArgument0,
-                                                                   class GALGAS_uint constinArgument1,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMPropertyNameAtIndex (class GALGAS_lstring constinArgument0,
                                                                 class GALGAS_uint constinArgument1,
@@ -6734,14 +6722,12 @@ class GALGAS_simpleStoredPropertyList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
                                               class GALGAS_lstring & outArgument1,
                                               class GALGAS_abstractDefaultValue & outArgument2,
-                                              class GALGAS_bool & outArgument3,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
                                              class GALGAS_lstring & outArgument1,
                                              class GALGAS_abstractDefaultValue & outArgument2,
-                                             class GALGAS_bool & outArgument3,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
@@ -6751,10 +6737,6 @@ class GALGAS_simpleStoredPropertyList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GALGAS_abstractDefaultValue getter_mDefaultValueAtIndex (const class GALGAS_uint & constinOperand0,
                                                                                           C_Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mNeedsValidationAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                             C_Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyNameAtIndex (const class GALGAS_uint & constinOperand0,
                                                                              C_Compiler * inCompiler
@@ -6799,7 +6781,6 @@ class cEnumerator_simpleStoredPropertyList : public cGenericAbstractEnumerator {
   public: class GALGAS_lstring current_mPropertyTypeName (LOCATION_ARGS) const ;
   public: class GALGAS_lstring current_mPropertyName (LOCATION_ARGS) const ;
   public: class GALGAS_abstractDefaultValue current_mDefaultValue (LOCATION_ARGS) const ;
-  public: class GALGAS_bool current_mNeedsValidation (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GALGAS_simpleStoredPropertyList_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -6903,11 +6884,6 @@ class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
     return mProperty_mDefaultValue ;
   }
 
-  public: GALGAS_bool mProperty_mNeedsValidation ;
-  public: inline GALGAS_bool readProperty_mNeedsValidation (void) const {
-    return mProperty_mNeedsValidation ;
-  }
-
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public: VIRTUAL_IN_DEBUG void drop (void) ;
@@ -6928,18 +6904,13 @@ class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
     mProperty_mDefaultValue = inValue ;
   }
 
-  public: inline void setter_setMNeedsValidation (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mNeedsValidation = inValue ;
-  }
-
 //--------------------------------- Virtual destructor (in debug mode)
   public: virtual ~ GALGAS_simpleStoredPropertyList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public: GALGAS_simpleStoredPropertyList_2D_element (const GALGAS_lstring & in_mPropertyTypeName,
                                                       const GALGAS_lstring & in_mPropertyName,
-                                                      const GALGAS_abstractDefaultValue & in_mDefaultValue,
-                                                      const GALGAS_bool & in_mNeedsValidation) ;
+                                                      const GALGAS_abstractDefaultValue & in_mDefaultValue) ;
 
 //-- Start of generic part --*
 
@@ -6954,8 +6925,7 @@ class GALGAS_simpleStoredPropertyList_2D_element : public AC_GALGAS_root {
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_simpleStoredPropertyList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                                    const class GALGAS_lstring & inOperand1,
-                                                                                   const class GALGAS_abstractDefaultValue & inOperand2,
-                                                                                   const class GALGAS_bool & inOperand3
+                                                                                   const class GALGAS_abstractDefaultValue & inOperand2
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'

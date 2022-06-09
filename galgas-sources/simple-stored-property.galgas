@@ -6,7 +6,7 @@ list @simpleStoredPropertyList {
   public var @lstring mPropertyTypeName
   public var @lstring mPropertyName
   public var @abstractDefaultValue mDefaultValue
-  public var @bool mNeedsValidation
+#  public var @bool mNeedsValidation
 }
 
 #·······················································································································
@@ -15,7 +15,7 @@ refclass @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mPropertyTypeName
   public var @lstring mPropertyName
   public var @abstractDefaultValue mDefaultValue
-  public var @bool mNeedsValidation
+#  public var @bool mNeedsValidation
 }
 
 #·······················································································································
@@ -50,20 +50,20 @@ syntax extension easyBindings_syntax {
   {
     $property$
     var @bool usedForSignature = false
-    var @bool needsValidation = false
+#    var @bool needsValidation = false
     repeat
     while
       $@attribute$ ?let attributeName
       if attributeName.string == "signature" then
-        if needsValidation then
-          error attributeName : "duplicated attribute" fixit { remove }
-        end
+#        if needsValidation then
+#          error attributeName : "duplicated attribute" fixit { remove }
+#        end
         usedForSignature = true
-      elsif attributeName.string == "validation" then
-        if needsValidation then
-          error attributeName : "duplicated attribute" fixit { remove }
-        end
-        needsValidation = true
+#      elsif attributeName.string == "validation" then
+#        if needsValidation then
+#          error attributeName : "duplicated attribute" fixit { remove }
+#        end
+#        needsValidation = true
       else
         error attributeName : "unknow attribute" fixit { replace "@signature" replace "@validation" }
       end
@@ -81,14 +81,14 @@ syntax extension easyBindings_syntax {
       !attributeTypeName
       !attributeName
       !defaultValue
-      !needsValidation
+#      !needsValidation
 
     }
     ioAttributeList +=
       !attributeTypeName
       !attributeName
       !defaultValue
-      !needsValidation
+#      !needsValidation
   }
 
   #·····················································································································
@@ -123,19 +123,19 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
     #--- Code Generation
       mPropertyGenerationList += !@atomicPropertyGeneration.new {
         !self.mPropertyName.string
-        !self.mNeedsValidation
+#        !self.mNeedsValidation
         !kind
         !false
         !swiftDefaultValueAsString
         !self.mClassName.string == preferencesName ()
       }
     #--- Needs validation ?
-      if self.mNeedsValidation then
-        ioGeneration.mValidationStubRoutineListForGeneration +=
-          !self.mClassName
-          !self.mPropertyName.string
-          ![kind swiftTypeName]
-      end
+#      if self.mNeedsValidation then
+#        ioGeneration.mValidationStubRoutineListForGeneration +=
+#          !self.mClassName
+#          !self.mPropertyName.string
+#          ![kind swiftTypeName]
+#      end
     case document (*) :
       error self.mPropertyTypeName : "an atomic class is required here"
     case entity (3*) :
@@ -149,7 +149,7 @@ override method @atomicPropertyDeclarationAST firstAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @atomicPropertyGeneration : @propertyGeneration {
-  public var @bool mNeedsValidation
+#  public var @bool mNeedsValidation
   public var @typeKind mType
   public var @bool mIsProxy
   public var @string mDefaultValueInSwift
@@ -265,12 +265,12 @@ override getter @atomicPropertyGeneration propertyDeclarationCode
     result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
     result += "  }\n\n"
   end
-  if self.mNeedsValidation then
-    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-    result += "  final func " + self.mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [self.mType swiftTypeName] + ", windowForSheet inWindow : NSWindow?) -> Bool {\n"
-    result += "    return self." + self.mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet: inWindow)\n"
-    result += "  }\n\n"
-  end
+#  if self.mNeedsValidation then
+#    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
+#    result += "  final func " + self.mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [self.mType swiftTypeName] + ", windowForSheet inWindow : NSWindow?) -> Bool {\n"
+#    result += "    return self." + self.mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet: inWindow)\n"
+#    result += "  }\n\n"
+#  end
 }
 
 #·······················································································································
@@ -284,12 +284,12 @@ override getter @atomicPropertyGeneration initCode -> @string {
 
 override getter @atomicPropertyGeneration configurationCode ?let @bool unused inPreferences -> @string {
   result = ""
-  if self.mNeedsValidation then
-    result += "  //--- Atomic property: " + self.mPropertyName + "\n"
-    result += "    self." + self.mPropertyName + "_property.validationFunction = { [weak self] in\n"
-    result += "      return self?.validate_" + self.mPropertyName + " (currentValue: $0, proposedValue: $1) ?? .rejectWithBeep\n"
-    result += "    }\n"
-  end
+#  if self.mNeedsValidation then
+#    result += "  //--- Atomic property: " + self.mPropertyName + "\n"
+#    result += "    self." + self.mPropertyName + "_property.validationFunction = { [weak self] in\n"
+#    result += "      return self?.validate_" + self.mPropertyName + " (currentValue: $0, proposedValue: $1) ?? .rejectWithBeep\n"
+#    result += "    }\n"
+#  end
 }
 
 #·······················································································································

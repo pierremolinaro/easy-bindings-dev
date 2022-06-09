@@ -6522,9 +6522,6 @@ typeComparisonResult cPtr_atomicPropertyGeneration::dynamicObjectCompare (const 
     result = mProperty_mPropertyName.objectCompare (p->mProperty_mPropertyName) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mNeedsValidation.objectCompare (p->mProperty_mNeedsValidation) ;
-  }
-  if (kOperandEqual == result) {
     result = mProperty_mType.objectCompare (p->mProperty_mType) ;
   }
   if (kOperandEqual == result) {
@@ -6573,28 +6570,16 @@ GALGAS_propertyGeneration (inSourcePtr) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_atomicPropertyGeneration GALGAS_atomicPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
-                                                                                  const GALGAS_bool & inAttribute_mNeedsValidation,
                                                                                   const GALGAS_typeKind & inAttribute_mType,
                                                                                   const GALGAS_bool & inAttribute_mIsProxy,
                                                                                   const GALGAS_string & inAttribute_mDefaultValueInSwift,
                                                                                   const GALGAS_bool & inAttribute_mInPreferences
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_atomicPropertyGeneration result ;
-  if (inAttribute_mPropertyName.isValid () && inAttribute_mNeedsValidation.isValid () && inAttribute_mType.isValid () && inAttribute_mIsProxy.isValid () && inAttribute_mDefaultValueInSwift.isValid () && inAttribute_mInPreferences.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyGeneration (inAttribute_mPropertyName, inAttribute_mNeedsValidation, inAttribute_mType, inAttribute_mIsProxy, inAttribute_mDefaultValueInSwift, inAttribute_mInPreferences COMMA_THERE)) ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mType.isValid () && inAttribute_mIsProxy.isValid () && inAttribute_mDefaultValueInSwift.isValid () && inAttribute_mInPreferences.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyGeneration (inAttribute_mPropertyName, inAttribute_mType, inAttribute_mIsProxy, inAttribute_mDefaultValueInSwift, inAttribute_mInPreferences COMMA_THERE)) ;
   }
   return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_atomicPropertyGeneration::setter_setMNeedsValidation (GALGAS_bool inValue
-                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
-    p->mProperty_mNeedsValidation = inValue ;
-  }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6638,18 +6623,6 @@ void GALGAS_atomicPropertyGeneration::setter_setMInPreferences (GALGAS_bool inVa
     cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
     p->mProperty_mInPreferences = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_atomicPropertyGeneration::readProperty_mNeedsValidation (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
-    return p->mProperty_mNeedsValidation ;
   }
 }
 
@@ -6706,14 +6679,12 @@ GALGAS_bool GALGAS_atomicPropertyGeneration::readProperty_mInPreferences (void) 
 //----------------------------------------------------------------------------------------------------------------------
 
 cPtr_atomicPropertyGeneration::cPtr_atomicPropertyGeneration (const GALGAS_string & in_mPropertyName,
-                                                              const GALGAS_bool & in_mNeedsValidation,
                                                               const GALGAS_typeKind & in_mType,
                                                               const GALGAS_bool & in_mIsProxy,
                                                               const GALGAS_string & in_mDefaultValueInSwift,
                                                               const GALGAS_bool & in_mInPreferences
                                                               COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
-mProperty_mNeedsValidation (in_mNeedsValidation),
 mProperty_mType (in_mType),
 mProperty_mIsProxy (in_mIsProxy),
 mProperty_mDefaultValueInSwift (in_mDefaultValueInSwift),
@@ -6731,8 +6702,6 @@ void cPtr_atomicPropertyGeneration::description (C_String & ioString,
   ioString << "[@atomicPropertyGeneration:" ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mNeedsValidation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
   mProperty_mType.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mIsProxy.description (ioString, inIndentation+1) ;
@@ -6747,7 +6716,7 @@ void cPtr_atomicPropertyGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_atomicPropertyGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_atomicPropertyGeneration (mProperty_mPropertyName, mProperty_mNeedsValidation, mProperty_mType, mProperty_mIsProxy, mProperty_mDefaultValueInSwift, mProperty_mInPreferences COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_atomicPropertyGeneration (mProperty_mPropertyName, mProperty_mType, mProperty_mIsProxy, mProperty_mDefaultValueInSwift, mProperty_mInPreferences COMMA_THERE)) ;
   return ptr ;
 }
 

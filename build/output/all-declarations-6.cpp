@@ -5019,9 +5019,6 @@ typeComparisonResult cPtr_atomicPropertyDeclarationAST::dynamicObjectCompare (co
   if (kOperandEqual == result) {
     result = mProperty_mDefaultValue.objectCompare (p->mProperty_mDefaultValue) ;
   }
-  if (kOperandEqual == result) {
-    result = mProperty_mNeedsValidation.objectCompare (p->mProperty_mNeedsValidation) ;
-  }
   return result ;
 }
 
@@ -5061,12 +5058,11 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 GALGAS_atomicPropertyDeclarationAST GALGAS_atomicPropertyDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
                                                                                           const GALGAS_lstring & inAttribute_mPropertyTypeName,
                                                                                           const GALGAS_lstring & inAttribute_mPropertyName,
-                                                                                          const GALGAS_abstractDefaultValue & inAttribute_mDefaultValue,
-                                                                                          const GALGAS_bool & inAttribute_mNeedsValidation
+                                                                                          const GALGAS_abstractDefaultValue & inAttribute_mDefaultValue
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_atomicPropertyDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mPropertyTypeName.isValid () && inAttribute_mPropertyName.isValid () && inAttribute_mDefaultValue.isValid () && inAttribute_mNeedsValidation.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyDeclarationAST (inAttribute_mClassName, inAttribute_mPropertyTypeName, inAttribute_mPropertyName, inAttribute_mDefaultValue, inAttribute_mNeedsValidation COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mPropertyTypeName.isValid () && inAttribute_mPropertyName.isValid () && inAttribute_mDefaultValue.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyDeclarationAST (inAttribute_mClassName, inAttribute_mPropertyTypeName, inAttribute_mPropertyName, inAttribute_mDefaultValue COMMA_THERE)) ;
   }
   return result ;
 }
@@ -5101,17 +5097,6 @@ void GALGAS_atomicPropertyDeclarationAST::setter_setMDefaultValue (GALGAS_abstra
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
     p->mProperty_mDefaultValue = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_atomicPropertyDeclarationAST::setter_setMNeedsValidation (GALGAS_bool inValue
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
-    p->mProperty_mNeedsValidation = inValue ;
   }
 }
 
@@ -5152,32 +5137,18 @@ GALGAS_abstractDefaultValue GALGAS_atomicPropertyDeclarationAST::readProperty_mD
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mNeedsValidation (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
-    return p->mProperty_mNeedsValidation ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
 //Pointer class for @atomicPropertyDeclarationAST class
 //----------------------------------------------------------------------------------------------------------------------
 
 cPtr_atomicPropertyDeclarationAST::cPtr_atomicPropertyDeclarationAST (const GALGAS_lstring & in_mClassName,
                                                                       const GALGAS_lstring & in_mPropertyTypeName,
                                                                       const GALGAS_lstring & in_mPropertyName,
-                                                                      const GALGAS_abstractDefaultValue & in_mDefaultValue,
-                                                                      const GALGAS_bool & in_mNeedsValidation
+                                                                      const GALGAS_abstractDefaultValue & in_mDefaultValue
                                                                       COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
 mProperty_mPropertyTypeName (in_mPropertyTypeName),
 mProperty_mPropertyName (in_mPropertyName),
-mProperty_mDefaultValue (in_mDefaultValue),
-mProperty_mNeedsValidation (in_mNeedsValidation) {
+mProperty_mDefaultValue (in_mDefaultValue) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5196,8 +5167,6 @@ void cPtr_atomicPropertyDeclarationAST::description (C_String & ioString,
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mDefaultValue.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mNeedsValidation.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -5205,7 +5174,7 @@ void cPtr_atomicPropertyDeclarationAST::description (C_String & ioString,
 
 acPtr_class * cPtr_atomicPropertyDeclarationAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue, mProperty_mNeedsValidation COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -13873,8 +13842,7 @@ GALGAS_computedPropertyGenerationList_2D_element GALGAS_computedPropertyGenerati
 GALGAS_simpleStoredPropertyList_2D_element::GALGAS_simpleStoredPropertyList_2D_element (void) :
 mProperty_mPropertyTypeName (),
 mProperty_mPropertyName (),
-mProperty_mDefaultValue (),
-mProperty_mNeedsValidation () {
+mProperty_mDefaultValue () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13886,24 +13854,21 @@ GALGAS_simpleStoredPropertyList_2D_element::~ GALGAS_simpleStoredPropertyList_2D
 
 GALGAS_simpleStoredPropertyList_2D_element::GALGAS_simpleStoredPropertyList_2D_element (const GALGAS_lstring & inOperand0,
                                                                                         const GALGAS_lstring & inOperand1,
-                                                                                        const GALGAS_abstractDefaultValue & inOperand2,
-                                                                                        const GALGAS_bool & inOperand3) :
+                                                                                        const GALGAS_abstractDefaultValue & inOperand2) :
 mProperty_mPropertyTypeName (inOperand0),
 mProperty_mPropertyName (inOperand1),
-mProperty_mDefaultValue (inOperand2),
-mProperty_mNeedsValidation (inOperand3) {
+mProperty_mDefaultValue (inOperand2) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_simpleStoredPropertyList_2D_element GALGAS_simpleStoredPropertyList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
                                                                                                         const GALGAS_lstring & inOperand1,
-                                                                                                        const GALGAS_abstractDefaultValue & inOperand2,
-                                                                                                        const GALGAS_bool & inOperand3 
+                                                                                                        const GALGAS_abstractDefaultValue & inOperand2 
                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_simpleStoredPropertyList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_simpleStoredPropertyList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
+    result = GALGAS_simpleStoredPropertyList_2D_element (inOperand0, inOperand1, inOperand2) ;
   }
   return result ;
 }
@@ -13921,16 +13886,13 @@ typeComparisonResult GALGAS_simpleStoredPropertyList_2D_element::objectCompare (
   if (result == kOperandEqual) {
     result = mProperty_mDefaultValue.objectCompare (inOperand.mProperty_mDefaultValue) ;
   }
-  if (result == kOperandEqual) {
-    result = mProperty_mNeedsValidation.objectCompare (inOperand.mProperty_mNeedsValidation) ;
-  }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 bool GALGAS_simpleStoredPropertyList_2D_element::isValid (void) const {
-  return mProperty_mPropertyTypeName.isValid () && mProperty_mPropertyName.isValid () && mProperty_mDefaultValue.isValid () && mProperty_mNeedsValidation.isValid () ;
+  return mProperty_mPropertyTypeName.isValid () && mProperty_mPropertyName.isValid () && mProperty_mDefaultValue.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13939,7 +13901,6 @@ void GALGAS_simpleStoredPropertyList_2D_element::drop (void) {
   mProperty_mPropertyTypeName.drop () ;
   mProperty_mPropertyName.drop () ;
   mProperty_mDefaultValue.drop () ;
-  mProperty_mNeedsValidation.drop () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13955,8 +13916,6 @@ void GALGAS_simpleStoredPropertyList_2D_element::description (C_String & ioStrin
     mProperty_mPropertyName.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mDefaultValue.description (ioString, inIndentation+1) ;
-    ioString << ", " ;
-    mProperty_mNeedsValidation.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
