@@ -64,7 +64,7 @@ end
 %    super.init (ebUndoManager)
 %
 for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
-%    self.%!mProperty.mPropertyName%_none.mReadModelFunction = { [weak self] in // §\n%
+%    self.%!mProperty.mPropertyName%_none.mReadModelFunction = { [weak self] in\n%
 %      if let uwSelf = self {\n%
 %        return .single (uwSelf.%!mProperty.mPropertyName%_property.propval == nil)\n%
 %      }else{\n%
