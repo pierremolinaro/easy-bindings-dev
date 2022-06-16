@@ -101,7 +101,7 @@ syntax extension easyBindings_syntax {
 
 override method @atomicPropertyDeclarationAST firstAnalysisPhase
        ?!@semanticContext ioSemanticContext
-       ?!@generationStruct ioGeneration
+       ?!@generationStruct unused ioGeneration
 {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey

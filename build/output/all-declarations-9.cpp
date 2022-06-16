@@ -566,21 +566,21 @@ static void extensionMethod_atomicPropertyDeclarationAST_firstAnalysisPhase (con
   const cPtr_atomicPropertyDeclarationAST * object = (const cPtr_atomicPropertyDeclarationAST *) inObject ;
   macroValidSharedObject (object, cPtr_atomicPropertyDeclarationAST) ;
   const GALGAS_atomicPropertyDeclarationAST temp_0 = object ;
-  cMapElement_classMap * objectArray_4115 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 106)) ;
-  if (NULL != objectArray_4115) {
-    macroValidSharedObject (objectArray_4115, cMapElement_classMap) ;
-    GALGAS_classKind var_classKind_4280 ;
+  cMapElement_classMap * objectArray_4122 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 106)) ;
+  if (NULL != objectArray_4122) {
+    macroValidSharedObject (objectArray_4122, cMapElement_classMap) ;
+    GALGAS_classKind var_classKind_4287 ;
     const GALGAS_atomicPropertyDeclarationAST temp_1 = object ;
-    GALGAS_propertyMap joker_4282_3 ; // Joker input parameter
-    GALGAS_actionMap joker_4282_2 ; // Joker input parameter
-    GALGAS_propertyGenerationList joker_4282_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_1.readProperty_mPropertyTypeName (), var_classKind_4280, joker_4282_3, joker_4282_2, joker_4282_1, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 109)) ;
-    GALGAS_propertyMap var_preferencesPropertyMap_4415 ;
-    GALGAS_classKind joker_4380 ; // Joker input parameter
-    GALGAS_actionMap joker_4423_2 ; // Joker input parameter
-    GALGAS_propertyGenerationList joker_4423_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 111)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("simple-stored-property.galgas", 111))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 111)), joker_4380, var_preferencesPropertyMap_4415, joker_4423_2, joker_4423_1, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 110)) ;
-    switch (var_classKind_4280.enumValue ()) {
+    GALGAS_propertyMap joker_4289_3 ; // Joker input parameter
+    GALGAS_actionMap joker_4289_2 ; // Joker input parameter
+    GALGAS_propertyGenerationList joker_4289_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_1.readProperty_mPropertyTypeName (), var_classKind_4287, joker_4289_3, joker_4289_2, joker_4289_1, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 109)) ;
+    GALGAS_propertyMap var_preferencesPropertyMap_4422 ;
+    GALGAS_classKind joker_4387 ; // Joker input parameter
+    GALGAS_actionMap joker_4430_2 ; // Joker input parameter
+    GALGAS_propertyGenerationList joker_4430_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 111)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("simple-stored-property.galgas", 111))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 111)), joker_4387, var_preferencesPropertyMap_4422, joker_4430_2, joker_4430_1, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 110)) ;
+    switch (var_classKind_4287.enumValue ()) {
     case GALGAS_classKind::kNotBuilt:
       break ;
     case GALGAS_classKind::kEnum_prefs:
@@ -592,20 +592,20 @@ static void extensionMethod_atomicPropertyDeclarationAST_firstAnalysisPhase (con
       break ;
     case GALGAS_classKind::kEnum_atomic:
       {
-        const cEnumAssociatedValues_classKind_atomic * extractPtr_5117 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_4280.unsafePointer ()) ;
-        const GALGAS_typeKind extractedValue_4563_kind = extractPtr_5117->mAssociatedValue0 ;
+        const cEnumAssociatedValues_classKind_atomic * extractPtr_5124 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_4287.unsafePointer ()) ;
+        const GALGAS_typeKind extractedValue_4570_kind = extractPtr_5124->mAssociatedValue0 ;
         {
         const GALGAS_atomicPropertyDeclarationAST temp_4 = object ;
-        objectArray_4115->mProperty_mPropertyMap.setter_insertKey (temp_4.readProperty_mPropertyName (), GALGAS_propertyKind::constructor_property (extractedValue_4563_kind, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("simple-stored-property.galgas", 120))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 120)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("simple-stored-property.galgas", 120)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 120)) ;
+        objectArray_4122->mProperty_mPropertyMap.setter_insertKey (temp_4.readProperty_mPropertyName (), GALGAS_propertyKind::constructor_property (extractedValue_4570_kind, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("simple-stored-property.galgas", 120))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 120)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("simple-stored-property.galgas", 120)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 120)) ;
         }
-        GALGAS_string var_swiftDefaultValueAsString_4832 ;
+        GALGAS_string var_swiftDefaultValueAsString_4839 ;
         const GALGAS_atomicPropertyDeclarationAST temp_5 = object ;
         GALGAS_typeKindList temp_6 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.galgas", 122)) ;
-        temp_6.addAssign_operation (extractedValue_4563_kind  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 122)) ;
-        callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) temp_5.readProperty_mDefaultValue ().ptr (), temp_6, var_preferencesPropertyMap_4415, var_swiftDefaultValueAsString_4832, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 122)) ;
+        temp_6.addAssign_operation (extractedValue_4570_kind  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 122)) ;
+        callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) temp_5.readProperty_mDefaultValue ().ptr (), temp_6, var_preferencesPropertyMap_4422, var_swiftDefaultValueAsString_4839, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 122)) ;
         const GALGAS_atomicPropertyDeclarationAST temp_7 = object ;
         const GALGAS_atomicPropertyDeclarationAST temp_8 = object ;
-        objectArray_4115->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_atomicPropertyGeneration::constructor_new (temp_7.readProperty_mPropertyName ().readProperty_string (), extractedValue_4563_kind, GALGAS_bool (false), var_swiftDefaultValueAsString_4832, GALGAS_bool (kIsEqual, temp_8.readProperty_mClassName ().readProperty_string ().objectCompare (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 130))))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 124))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 124)) ;
+        objectArray_4122->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_atomicPropertyGeneration::constructor_new (temp_7.readProperty_mPropertyName ().readProperty_string (), extractedValue_4570_kind, GALGAS_bool (false), var_swiftDefaultValueAsString_4839, GALGAS_bool (kIsEqual, temp_8.readProperty_mClassName ().readProperty_string ().objectCompare (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("simple-stored-property.galgas", 130))))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 124))  COMMA_SOURCE_FILE ("simple-stored-property.galgas", 124)) ;
       }
       break ;
     case GALGAS_classKind::kEnum_document:
