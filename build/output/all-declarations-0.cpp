@@ -7937,6 +7937,16 @@ GALGAS_declarationPrecedenceGraph GALGAS_declarationPrecedenceGraph::getter_subg
 
 //----------------------------------------------------------------------------------------------------------------------
 
+GALGAS_declarationListAST GALGAS_declarationPrecedenceGraph::getter_nodeList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_declarationListAST resultingList ;
+  if (isValid ()) {
+    resultingList = graph () ;
+  }
+  return resultingList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 GALGAS_lstringlist GALGAS_declarationPrecedenceGraph::getter_accessibleNodesFrom (const GALGAS_lstringlist & inStartKeyList,
                                                                                   const GALGAS_stringset & inNodesToExclude,
                                                                                   C_Compiler * inCompiler

@@ -4510,6 +4510,8 @@ class GALGAS_declarationPrecedenceGraph : public AC_GALGAS_graph {
                                                                                 C_Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const ;
 
+  public: VIRTUAL_IN_DEBUG class GALGAS_declarationListAST getter_nodeList (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GALGAS_declarationPrecedenceGraph getter_reversedGraph (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_declarationPrecedenceGraph getter_subgraphFromNodes (const class GALGAS_lstringlist & constinOperand0,
