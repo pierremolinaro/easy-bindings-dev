@@ -293,6 +293,7 @@ override method @observablePropertyInMultipleBindingExpressionAST analyzeExpress
     !if inPreferences then inPreferencesObservablePropertyMap else inCurrentObservablePropertyMap end
     ?let @propertyKind kind
     ?let @string unused swiftTypeStringForTransientFunctionArgument
+    ?let @string unused defaultValueAsString
   ]
   switch kind
   case property (type *) :

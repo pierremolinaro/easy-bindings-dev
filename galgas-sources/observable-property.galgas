@@ -23,6 +23,7 @@ enum @observablePropertyAST {
   case versionProperty (@location location)
   case versionShouldChangeProperty (@location location)
   case superProperty (@lstring superEntityName @lstring propertyName)
+  case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName @abstractDefaultValue defaultValue)
 }
 
 #·······················································································································
@@ -157,10 +158,20 @@ syntax extension easyBindings_syntax {
       $Identifier$ ?let superEntityName
       $.$
       $identifier$ ?let propertyName
-      outObservablePropertyAST = .superProperty {
-        !superEntityName: superEntityName
-        !propertyName: propertyName
-      }
+      select
+        outObservablePropertyAST = .superProperty {
+          !superEntityName: superEntityName
+          !propertyName: propertyName
+        }
+      or
+        $default$
+        <explicit_value> ?let @abstractDefaultValue defaultValue
+        outObservablePropertyAST = .superPropertyWithDefaultValue {
+          !superEntityName: superEntityName
+          !propertyName: propertyName
+          !defaultValue: defaultValue
+        }
+      end
     end
   }
 
@@ -214,6 +225,8 @@ getter @observablePropertyAST modelStringForSelf ?let @string inSelf -> @string 
     outResult = "self.versionShouldChangeObserver_property"
   case superProperty (* @lstring propertyName) :
     outResult = inSelf + propertyName + "_property"
+  case superPropertyWithDefaultValue (* @lstring propertyName *) :
+    outResult = inSelf + propertyName + "_property"
   end  
 }
 
@@ -260,6 +273,8 @@ getter @observablePropertyAST modelStringFunctionArgument -> @string outResult {
   case versionShouldChangeProperty (*) :
     outResult = "self_versionShouldChangeObserver"
   case superProperty (@lstring superEntityName @lstring propertyName) :
+    outResult = "self_" + superEntityName + "_" + propertyName
+  case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
     outResult = "self_" + superEntityName + "_" + propertyName
   end  
 }
@@ -308,6 +323,8 @@ getter @observablePropertyAST needs_unwSelf ?let @bool inPreferences -> @bool ou
     outResult = true
   case superProperty (2*) :
     outResult = true
+  case superPropertyWithDefaultValue (3*) :
+    outResult = true
   end  
 }
 
@@ -355,6 +372,8 @@ getter @observablePropertyAST location -> @location outResult {
     outResult = location
   case superProperty (* @lstring propertyName) :
     outResult = propertyName.location
+  case superPropertyWithDefaultValue (* @lstring propertyName *) :
+    outResult = propertyName.location
   end  
 }
 
@@ -366,7 +385,9 @@ method @observablePropertyAST analyzeObservableProperty
   ?let @propertyMap inBoundModelPropertyMap
   !@propertyKind outKind
   !@string outSwiftTypeStringForTransientFunctionArgument
+  !@string outDefaultValue # Empty string -> no default value
 {
+  outDefaultValue = "" # No default value
   switch self
   case versionShouldChangeProperty (*) :
     let type = @typeKind.boolType
@@ -731,6 +752,30 @@ method @observablePropertyAST analyzeObservableProperty
     switch outKind
     case property (2*) :
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+    case toMany (4*) :
+      outSwiftTypeStringForTransientFunctionArgument = "[EBManagedObject_address_protocol]"
+    case toOne (4*) :
+      outSwiftTypeStringForTransientFunctionArgument = "EBManagedObject_address_protocol?"
+    case arrayController (2*) :
+      error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+    case selectionController (*) :
+      error propertyName : "a selection controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
+    end
+  case superPropertyWithDefaultValue (* @lstring propertyName defaultValue) :
+    [inBoundModelPropertyMap searchKey
+      !propertyName
+      ?outKind
+      ?2*
+    ]
+    switch outKind
+    case property (propertyType *) :
+      outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
+      [inSemanticContext.mClassMap searchKey !.new {!preferencesName () !.nowhere} ?* ?let preferencesPropertyMap ?2*]
+      [defaultValue analyzeDefaultValueType 
+        !{!propertyType}
+        !preferencesPropertyMap
+        ?outDefaultValue
+      ]
     case toMany (4*) :
       outSwiftTypeStringForTransientFunctionArgument = "[EBManagedObject_address_protocol]"
     case toOne (4*) :

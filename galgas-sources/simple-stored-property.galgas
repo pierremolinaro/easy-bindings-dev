@@ -81,14 +81,11 @@ syntax extension easyBindings_syntax {
       !attributeTypeName
       !attributeName
       !defaultValue
-#      !needsValidation
-
     }
     ioAttributeList +=
       !attributeTypeName
       !attributeName
       !defaultValue
-#      !needsValidation
   }
 
   #·····················································································································

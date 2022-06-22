@@ -6106,7 +6106,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
     kEnum_signatureProperty,
     kEnum_versionProperty,
     kEnum_versionShouldChangeProperty,
-    kEnum_superProperty
+    kEnum_superProperty,
+    kEnum_superPropertyWithDefaultValue
   } enumeration ;
   
 //--------------------------------- Private data member
@@ -6199,6 +6200,11 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public: static class GALGAS_observablePropertyAST constructor_superProperty (const class GALGAS_lstring & inOperand0,
                                                                                const class GALGAS_lstring & inOperand1
                                                                                COMMA_LOCATION_ARGS) ;
+
+  public: static class GALGAS_observablePropertyAST constructor_superPropertyWithDefaultValue (const class GALGAS_lstring & inOperand0,
+                                                                                               const class GALGAS_lstring & inOperand1,
+                                                                                               const class GALGAS_abstractDefaultValue & inOperand2
+                                                                                               COMMA_LOCATION_ARGS) ;
 
   public: static class GALGAS_observablePropertyAST constructor_versionProperty (const class GALGAS_location & inOperand0
                                                                                  COMMA_LOCATION_ARGS) ;
@@ -6300,6 +6306,12 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) const ;
 
+  public: VIRTUAL_IN_DEBUG void method_superPropertyWithDefaultValue (class GALGAS_lstring & outArgument0,
+                                                                      class GALGAS_lstring & outArgument1,
+                                                                      class GALGAS_abstractDefaultValue & outArgument2,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG void method_versionProperty (class GALGAS_location & outArgument0,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const ;
@@ -6346,6 +6358,8 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSignatureProperty (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSuperProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSuperPropertyWithDefaultValue (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isVersionProperty (LOCATION_ARGS) const ;
 
@@ -6401,6 +6415,10 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
 
   public: VIRTUAL_IN_DEBUG bool optional_superProperty (class GALGAS_lstring & outOperand0,
                                                         class GALGAS_lstring & outOperand1) const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_superPropertyWithDefaultValue (class GALGAS_lstring & outOperand0,
+                                                                        class GALGAS_lstring & outOperand1,
+                                                                        class GALGAS_abstractDefaultValue & outOperand2) const ;
 
   public: VIRTUAL_IN_DEBUG bool optional_versionProperty (class GALGAS_location & outOperand0) const ;
 
@@ -6765,6 +6783,26 @@ class cEnumAssociatedValues_observablePropertyAST_superProperty : public cEnumAs
   public: virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
   public: virtual ~ cEnumAssociatedValues_observablePropertyAST_superProperty (void) {}
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class cEnumAssociatedValues_observablePropertyAST_superPropertyWithDefaultValue : public cEnumAssociatedValues {
+  public: const GALGAS_lstring mAssociatedValue0 ;
+  public: const GALGAS_lstring mAssociatedValue1 ;
+  public: const GALGAS_abstractDefaultValue mAssociatedValue2 ;
+
+//--- Constructor
+  public: cEnumAssociatedValues_observablePropertyAST_superPropertyWithDefaultValue (const GALGAS_lstring inAssociatedValue0,
+                                                                                     const GALGAS_lstring inAssociatedValue1,
+                                                                                     const GALGAS_abstractDefaultValue inAssociatedValue2
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const ;
+  public: virtual typeComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
+
+  public: virtual ~ cEnumAssociatedValues_observablePropertyAST_superPropertyWithDefaultValue (void) {}
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------

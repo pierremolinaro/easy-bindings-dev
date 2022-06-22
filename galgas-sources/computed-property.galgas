@@ -63,6 +63,8 @@ override method @computedPropertyDeclarationAST enterInPrecedenceGraph ?!@declar
     case versionShouldChangeProperty (*) :
     case superProperty (@lstring superEntityName @lstring propertyName) :
       [!?ioGraph addEdge !node !.new {!superEntityName.string + " " + propertyName !propertyName.location}]
+    case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
+      [!?ioGraph addEdge !node !.new {!superEntityName.string + " " + propertyName !propertyName.location}]
     end
   end
 }
@@ -208,6 +210,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
       !properties
       ?let @propertyKind dependencyKind
       ?let @string swiftTypeStringForTransientFunctionArgument
+      ?let @string defaultValueAsString
     ]
     switch dependencyKind
     case property (* *) :
@@ -222,6 +225,7 @@ override method @computedPropertyDeclarationAST thirdAnalysisPhase
       !mObservableProperty
       ![mObservableProperty modelStringFunctionArgument]
       !swiftTypeStringForTransientFunctionArgument
+      !defaultValueAsString
   end
   ioGeneration.mFileGenerationList += !@transientRoutineGeneration.new {
     !self.mClassName
@@ -413,7 +417,7 @@ override getter @computedPropertyGeneration configurationCode ?let @bool inPrefe
     end
     result += "    }\n"
     result += "    " + prefix + self.mPropertyName + "_property.mStoreFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0, $1) ?? false }\n"
-    for (mDependency * *) in self.mDependencyList do
+    for (mDependency 3*) in self.mDependencyList do
       let s = [mDependency generateAddObserverCall !inPreferences]
       if s != "" then
         result += "    " + s + " (" + prefix + self.mPropertyName + "_property)\n"
@@ -426,7 +430,7 @@ override getter @computedPropertyGeneration configurationCode ?let @bool inPrefe
 
 override getter @computedPropertyGeneration terminationCode ?let @bool unused inPreferences -> @string {
   result = ""
-  for (mDependency * *) in self.mDependencyList do
+  for (mDependency 3*) in self.mDependencyList do
     let s = [mDependency generateRemoveObserverCall]
     if s != "" then
       result += "    // " + s + " (self." + self.mPropertyName + "_property)\n"

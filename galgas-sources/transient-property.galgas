@@ -63,6 +63,8 @@ override method @transientDeclarationAST enterInPrecedenceGraph ?!@declarationPr
     case versionShouldChangeProperty (*) :
     case superProperty (@lstring superEntityName @lstring propertyName) :
       [!?ioGraph addEdge !node !.new {!superEntityName.string + " " + propertyName !propertyName.location}]
+    case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
+      [!?ioGraph addEdge !node !.new {!superEntityName.string + " " + propertyName !propertyName.location}]
     end
   end
 }
@@ -174,8 +176,7 @@ override method @transientDeclarationAST firstAnalysisPhase
 
 override method @transientDeclarationAST thirdAnalysisPhase
        ?!@semanticContext ioSemanticContext
-       ?!@generationStruct ioGeneration
-{
+       ?!@generationStruct ioGeneration {
 #--- Property type
   [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName ?let classKind ?3*]
 #--- Check type
@@ -208,7 +209,9 @@ override method @transientDeclarationAST thirdAnalysisPhase
       !properties
       ?let @propertyKind dependencyKind
       ?let @string swiftTypeStringForTransientFunctionArgument
+      ?let @string defaultValueAsString
     ]
+#    message "defaultValueAsString " + defaultValueAsString + "\n"
     switch dependencyKind
     case property (* *) :
     case toMany (4*) :
@@ -222,6 +225,7 @@ override method @transientDeclarationAST thirdAnalysisPhase
       !mObservableProperty
       ![mObservableProperty modelStringFunctionArgument]
       !swiftTypeStringForTransientFunctionArgument
+      !defaultValueAsString
   end
   ioGeneration.mFileGenerationList += !@transientRoutineGeneration.new {
     !self.mClassName
@@ -393,7 +397,7 @@ override getter @transientPropertyGeneration configurationCode ?let @bool inPref
       result += [self.mDependencyList transientComputeFunctionCall !inPreferences !self.mClassName !self.mPropertyName !"transient"]
     end
     result += "    }\n"
-    for (mDependency * *) in self.mDependencyList do
+    for (mDependency 3*) in self.mDependencyList do
       let s = [mDependency generateAddObserverCall !inPreferences]
       if s != "" then
         result += "    " + s + " (" + prefix + self.mPropertyName + "_property)\n"
@@ -406,7 +410,7 @@ override getter @transientPropertyGeneration configurationCode ?let @bool inPref
 
 override getter @transientPropertyGeneration terminationCode ?let @bool unused inPreferences -> @string {
   result = ""
-  for (mDependency * *) in self.mDependencyList do
+  for (mDependency 3*) in self.mDependencyList do
     let s = [mDependency generateRemoveObserverCall]
     if s != "" then
       result += "    // " + s + " (self." + self.mPropertyName + "_property)\n"
@@ -419,43 +423,45 @@ override getter @transientPropertyGeneration terminationCode ?let @bool unused i
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @transientDependencyListForGeneration {
-  public var @observablePropertyAST mDependency
-  public var @string mFunctionArgumentName
-  public var @string mFunctionArgumentTypeString
+  public let @observablePropertyAST mDependency
+  public let @string mFunctionArgumentName
+  public let @string mFunctionArgumentTypeString
+  public let @string mDefaultValueAsString
 }
 
 #·······················································································································
 
 getter @transientDependencyListForGeneration transientComputeFunctionCall
-  ?let @bool inPreferences
-  ?let @string inOwnerName
-  ?let @string inTransientName
-  ?let @string inFunctionNamePrefix
-  -> @string outResult
-{
+                                        ?let @bool inPreferences
+                                        ?let @string inOwnerName
+                                        ?let @string inTransientName
+                                        ?let @string inFunctionNamePrefix -> @string outResult {
   let uwself = if inPreferences then "preferences_" else "unwSelf." end
   outResult = ""
   let ident = "        "
   outResult += ident + "switch ("
-  for (mDependency * *) in self
+  for (dependency * * defaultValue) in self
   do
-    outResult += [mDependency modelStringForSelf !uwself] + ".selection"
+    outResult += [dependency modelStringForSelf !uwself] + ".selection"
+    if defaultValue != "" then
+      outResult += " (default: " + defaultValue + ")"
+    end
   between
-    outResult += ", "
+    outResult += ",\n                "
   end
   outResult += ") {\n"
   outResult += ident + "case ("
-  for (* * *) in self
+  for (4*) in self
   do (idx)
     outResult += ".single (let v" + idx + ")"
   between
-    outResult += ", "
+    outResult += ",\n              "
   end
   outResult += ") :\n"
   outResult += ident + "  return .single ("
   outResult += inFunctionNamePrefix + "_" + inOwnerName + "_" + inTransientName
   outResult += " ("
-  for (* * *) in self
+  for (4*) in self
   do (idx)
     outResult += "v" + idx
   between
@@ -463,25 +469,24 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   end
   outResult += "))\n"
   outResult += ident + "case ("
-  for (* * *) in self
+  for (4*) in self
   do
     outResult += ".multiple"
   between
-    outResult += ", "
+    outResult += ",\n              "
   end
   outResult += ") :\n"
   outResult += ident + "  return .multiple\n"
   outResult += ident + "default :\n"
   outResult += ident + "  return .empty\n"
   outResult += ident + "}\n"
-#  outResult += ident + "}\n"
 }
 
 #·······················································································································
 
 getter @transientDependencyListForGeneration needs_unwSelf ?let @bool inPreferences -> @bool outResult {
   outResult = false
-  for (dep 2*) in self while not outResult do
+  for (dep 3*) in self while not outResult do
     outResult = [dep needs_unwSelf !inPreferences]
   end
 }
@@ -533,6 +538,8 @@ getter @observablePropertyAST generateAddObserverCall ?let @bool inPreferences -
     outResult = "<< ligne 247 >>"
   case superProperty (* @lstring propertyName) :
     outResult = prefix + propertyName.string + "_property.addEBObserver"
+  case superPropertyWithDefaultValue (* @lstring propertyName *) :
+    outResult = prefix + propertyName.string + "_property.addEBObserver"
   end
 }
 
@@ -579,6 +586,8 @@ getter @observablePropertyAST generateRemoveObserverCall -> @string outResult {
   case versionShouldChangeProperty (*) :
     outResult = "<< ligne 274 >>"
   case superProperty (* @lstring propertyName) :
+    outResult = "self." + propertyName.string + "_property.removeEBObserver"
+  case superPropertyWithDefaultValue (* @lstring propertyName *) :
     outResult = "self." + propertyName.string + "_property.removeEBObserver"
   end
 }

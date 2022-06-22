@@ -407,6 +407,7 @@ proc analyzeRegularBinding
         !inBoundModelPropertyMap
         ?let @propertyKind kind
         ?let @string unused swiftTypeStringForTransientFunctionArgument
+        ?let @string unused defaultValueAsString
       ]
       switch kind
       case property (2*) : # Ok
@@ -477,7 +478,8 @@ proc analyzeRegularBinding
       end
       error mBindingName : s
     else
-      for (controller_mOptionType controller_mOptionName) in controllerBindingOptionDecoratedList, (binding_mOptionName binding_mOptionValue) in mBindingOptionList do
+      for (controller_mOptionType controller_mOptionName) in controllerBindingOptionDecoratedList,
+          (binding_mOptionName binding_mOptionValue) in mBindingOptionList do
         if controller_mOptionName.string != binding_mOptionName.string then
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end

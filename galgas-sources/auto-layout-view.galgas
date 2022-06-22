@@ -1414,6 +1414,7 @@ proc analyzeAutoLayoutRegularBinding
         !if inPreferences then inPreferencesPropertyMap else inBoundModelPropertyMap end
         ?let @propertyKind kind
         ?let @string unused swiftTypeStringForTransientFunctionArgument
+        ?let @string unused defaultValueAsString
       ]
       switch kind
       case property (2*) : # Ok
