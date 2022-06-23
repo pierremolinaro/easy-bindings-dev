@@ -4241,7 +4241,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     "  var selectedSet : EBReferenceSet <" ;
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << "> {\n"
-    "    set (newValue) {\n" ;
+    "    set {\n" ;
   const enumGalgasBool test_1 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   if (kBoolTrue == test_1) {
     result << "    //--- Add observers to newly selected set\n"
@@ -4477,7 +4477,6 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
       "\n"
       "  var selectedGraphicObjectSet : EBReferenceSet <EBGraphicManagedObject> {\n"
-      "  //  return self.selectedArray_property.propset // Faudrait faire mieux !\n"
       "    var result = EBReferenceSet <EBGraphicManagedObject> (minimumCapacity: self.selectedArray_property.propval.count)\n"
       "    for object in self.selectedArray_property.propval.values {\n"
       "      result.insert (object)\n"
@@ -4911,26 +4910,28 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "   func pasteFromPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?, _ inWindow : NSWindow) {\n"
       "    let pb = NSPasteboard.general\n"
       "    if let pasteboardType = inPasteboardType,\n"
-      "       pb.availableType (from: [pasteboardType]) != nil,\n"
-      "       let dataDictionary = pb.propertyList (forType: pasteboardType) as\? NSDictionary,\n"
-      "       let dictionaryArray = dataDictionary [OBJECT_DICTIONARY_KEY] as\? [NSDictionary],\n"
-      "       let additionalDictionaryArray = dataDictionary [OBJECT_ADDITIONAL_DICTIONARY_KEY] as\? [NSDictionary],\n"
-      "       let X = dataDictionary [X_KEY] as\? Int,\n"
-      "       let Y = dataDictionary [Y_KEY] as\? Int {\n"
+      "           pb.availableType (from: [pasteboardType]) != nil,\n"
+      "           let dataDictionary = pb.propertyList (forType: pasteboardType) as\? NSDictionary,\n"
+      "           let dictionaryArray = dataDictionary [OBJECT_DICTIONARY_KEY] as\? [NSDictionary],\n"
+      "           let additionalDictionaryArray = dataDictionary [OBJECT_ADDITIONAL_DICTIONARY_KEY] as\? [NSDictionary],\n"
+      "           let X = dataDictionary [X_KEY] as\? Int,\n"
+      "           let Y = dataDictionary [Y_KEY] as\? Int {\n"
       "      var newObjects = [" ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << "] ()\n"
       "      var userSet = EBReferenceSet <AnyObject> ()\n"
-      "      var idx = 0\n"
+      "      var idx = -1\n"
       "      var errorMessage = \"\"\n"
       "      for dictionary in dictionaryArray {\n"
+      "        idx += 1\n"
       "        if let object = makeManagedObjectFromDictionary (self.ebUndoManager, dictionary) as\? " ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << " {\n"
       "          if errorMessage.isEmpty {\n"
-      "            errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx], objectArray: self.objectArray.values)\n"
+      "            errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx],\n"
+      "                                                         optionalDocument: self.document,\n"
+      "                                                         objectArray: self.objectArray.values)\n"
       "          }\n"
-      "          idx += 1\n"
       "          if errorMessage.isEmpty {\n"
       "            object.translate (xBy: X, yBy: Y, userSet: &userSet)\n"
       "            newObjects.append (object)\n"

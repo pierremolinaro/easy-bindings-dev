@@ -575,8 +575,11 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func operationAfterPasting (additionalDictionary inDictionary : NSDictionary,
+                                       optionalDocument inOptionalDocument : EBAutoLayoutManagedDocument?,
                                        objectArray inObjectArray : [EBGraphicManagedObject]) -> String {
-    return operationAfterPasting_%!ENTITY_NAME% (additionalDictionary: inDictionary, objectArray: inObjectArray)
+    return operationAfterPasting_%!ENTITY_NAME% (additionalDictionary: inDictionary,
+                                                 optionalDocument: inOptionalDocument,
+                                                 objectArray: inObjectArray)
   }
 
   //····················································································································
