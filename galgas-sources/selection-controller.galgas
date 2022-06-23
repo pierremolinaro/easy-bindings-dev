@@ -153,9 +153,9 @@ override method @selectionControllerDeclarationAST fourthAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @selectionControllerPropertyGeneration : @propertyGeneration {
-  public var @string mOwnerName
-  public var @string mModelControllerName
-  public var @string mModelControllerPropertyName
+  public let @string mOwnerName
+  public let @string mModelControllerName
+  public let @string mModelControllerPropertyName
 }
 
 #·······················································································································
@@ -167,7 +167,7 @@ override getter @selectionControllerPropertyGeneration propertyDeclarationCode
   result  = "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n"
   result += "  //   Selection controller: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-  result += "  var " + self.mPropertyName + " = SelectionController_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
+  result += "  final var " + self.mPropertyName + " = SelectionController_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
 }
 
 #·······················································································································

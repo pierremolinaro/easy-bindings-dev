@@ -132,7 +132,7 @@ end
 
 %
   for (mExternSwiftDelegateName) in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
-    %  var mExternDelegate%![idx string]% : %!mExternSwiftDelegateName.string%? = nil\n%
+    %  final var mExternDelegate%![idx string]% : %!mExternSwiftDelegateName.string%? = nil\n%
   end
 %
   //····················································································································

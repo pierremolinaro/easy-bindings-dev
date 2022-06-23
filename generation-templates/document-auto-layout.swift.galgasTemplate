@@ -35,7 +35,7 @@ end
   //····················································································································
 
 %for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
-  %//  var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%? = nil\n%
+  %//  final var mController_%!mOutletName%_%!mBindingName% : MultipleBindingController_%!mBindingName%? = nil\n%
 end
 %
   //····················································································································
