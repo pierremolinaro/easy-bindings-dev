@@ -2039,7 +2039,7 @@ override getter @newVerticalStackViewGeneration generate
 override getter @computedHorizontalViewGeneration generate 
                          ?prefs: let @bool inPreferences
                          ?let @string inViewName -> @string {
-  result = "  lazy var " + inViewName + " : AutoLayoutHorizontalStackView = {\n"
+  result = "  lazy final var " + inViewName + " : AutoLayoutHorizontalStackView = {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   for (instruction) in self.mInstructionList do (index)
@@ -2056,7 +2056,7 @@ override getter @computedHorizontalViewGeneration generate
 override getter @computedVerticalViewGeneration generate
                          ?prefs: let @bool inPreferences
                          ?let @string inViewName -> @string {
-  result = "  lazy var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
+  result = "  lazy final var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   for (instruction) in self.mInstructionList do (index)

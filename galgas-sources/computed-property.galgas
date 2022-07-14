@@ -416,7 +416,7 @@ override getter @computedPropertyGeneration configurationCode ?let @bool inPrefe
       result += [self.mDependencyList transientComputeFunctionCall !inPreferences !self.mClassName !self.mPropertyName !"computed"]
     end
     result += "    }\n"
-    result += "    " + prefix + self.mPropertyName + "_property.mStoreFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0, $1) ?? false }\n"
+    result += "    " + prefix + self.mPropertyName + "_property.mStoreFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0) }\n"
     for (mDependency 3*) in self.mDependencyList do
       let s = [mDependency generateAddObserverCall !inPreferences]
       if s != "" then

@@ -1,6 +1,6 @@
 project (0:0:1) -> "eb" {
   %makefile-macosx
-  %LatestMacOS
+  %MacOS
   %applicationBundleBase : "fr.irccyn"
 
 #--- Source files

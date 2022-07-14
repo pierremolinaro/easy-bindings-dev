@@ -157,17 +157,17 @@ override method @toOneRelationshipAST thirdAnalysisPhase
 #-----------------------------------------------------------------------------------------------------------------------
 
 refclass @toOnePropertyGeneration : @propertyGeneration {
-  public var @string mClassName
-  public var @propertyKind mRelationshipType
-  public var @toOneOppositeRelationship mOpposite
-  public var @propertyMap mDestinationEntityObservablePropertyMap
-  public var @bool mUsedForSignature
+  public let @string mClassName
+  public let @propertyKind mRelationshipType
+  public let @toOneOppositeRelationship mOpposite
+  public let @propertyMap mDestinationEntityObservablePropertyMap
+  public let @bool mUsedForSignature
 }
 
 #·······················································································································
 
 list @toOnePropertyGenerationList {
-  public var @toOnePropertyGeneration mProperty
+  public let @toOnePropertyGeneration mProperty
 }
 
 #·······················································································································
@@ -232,20 +232,17 @@ override getter @toOnePropertyGeneration configurationCode ?let @bool unused inP
 #·······················································································································
 
 override getter @toOnePropertyGeneration setupRelationshipFromDictionaryCode -> @string {
-  result  = ""
-#  if [mInverseRelationMultiplicity isSingle] then
-    result += "  //--- To one property: " + self.mPropertyName + "\n"
-    result += "    do{\n"
-    result += "      let possibleEntity = readEntityFromDictionary (\n"
-    result += "        inRelationshipName: \"" + self.mPropertyName + "\",\n"
-    result += "        inDictionary: inDictionary,\n"
-    result += "        managedObjectArray: &managedObjectArray\n"
-    result += "      )\n"
-    result += "      if let entity = possibleEntity as? " + [self.mRelationshipType swiftTypeName] + " {\n"
-    result += "        self." + self.mPropertyName + "_property.setProp (entity)\n"
-    result += "      }\n"
-    result += "    }\n"
-#  end
+  result  = "  //--- To one property: " + self.mPropertyName + "\n"
+  result += "    do{\n"
+  result += "      let possibleEntity = readEntityFromDictionary (\n"
+  result += "        inRelationshipName: \"" + self.mPropertyName + "\",\n"
+  result += "        inDictionary: inDictionary,\n"
+  result += "        managedObjectArray: &managedObjectArray\n"
+  result += "      )\n"
+  result += "      if let entity = possibleEntity as? " + [self.mRelationshipType swiftTypeName] + " {\n"
+  result += "        self." + self.mPropertyName + "_property.setProp (entity)\n"
+  result += "      }\n"
+  result += "    }\n"
 }
 
 #·······················································································································

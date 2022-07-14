@@ -14,7 +14,7 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
 
   //····················································································································
 
-  private var mWindow : CanariWindow? = nil
+  private final var mWindow : CanariWindow? = nil
 
   //····················································································································
   //    Show Preferences window
@@ -36,6 +36,10 @@ var g_%!preferencesName ()% : %!preferencesName ()%? = nil
       window.title = "Preferences"
       window.isReleasedWhenClosed = false
       window.contentView = AutoLayoutWindowContentView (view: self.mPrefsMainView)
+    //--- Contrôler le comportement en plein écran
+      window.collectionBehavior = [.fullScreenAuxiliary, .fullScreenNone]
+      let zoomButton = window.standardWindowButton (.zoomButton)
+      zoomButton?.isEnabled = false
     }
     window.makeKeyAndOrderFront (nil)
   }
@@ -130,7 +134,7 @@ end
 if [MAIN_XIB_DESCRIPTOR_LIST length] > 0 then
 %  //····················································································································
 
-  @IBOutlet private var window : NSWindow?
+  @IBOutlet private final var window : NSWindow?
   let OUTLET_WIDTH = 200.0
   let OUTLET_HEIGHT = 22.0
 

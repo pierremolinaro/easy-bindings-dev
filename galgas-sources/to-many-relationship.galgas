@@ -281,11 +281,6 @@ override getter @toManyPropertyGeneration setupRelationshipFromDictionaryCode ->
     result += "    self." + self.mPropertyName + "_property.setProp (EBReferenceArray (customRead_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (from: inDictionary, with: self.ebUndoManager)))\n"
   else
     result  = "  //--- To many property: " + self.mPropertyName + "\n"
-    result += "/*    self." + self.mPropertyName + "_property.setProp (readEntityArrayFromDictionary (\n"
-    result += "      inRelationshipName: \"" + self.mPropertyName + "\",\n"
-    result += "      inDictionary: inDictionary,\n"
-    result += "      managedObjectArray: &managedObjectArray\n"
-    result += "    ) as! [" + [self.mRelationshipType swiftTypeName] + "]) */\n"
     result += "    do{\n"
     result += "      let array = readEntityArrayFromDictionary (\n"
     result += "        inRelationshipName: \"" + self.mPropertyName + "\",\n"

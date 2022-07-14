@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="101200" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21179.7"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -252,7 +252,7 @@ Gw
                                             <rect key="frame" x="1" y="1" width="233" height="463"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="panel" usesRuler="YES" spellingCorrection="YES" id="704">
+                                                <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesRuler="YES" spellingCorrection="YES" id="704">
                                                     <rect key="frame" x="0.0" y="0.0" width="234" height="463"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1014,8 +1014,8 @@ Gw
                                                         <connections>
                                                             <binding destination="HLE-gn-wtm" name="fontBold" keyPath="objectValue.boldDisplay" id="ffk-6B-jb9"/>
                                                             <binding destination="HLE-gn-wtm" name="textColor" keyPath="objectValue.color" id="dTL-oY-x0q"/>
-                                                            <binding destination="HLE-gn-wtm" name="toolTip" keyPath="objectValue.foundItem" id="CNb-kF-SIH"/>
                                                             <binding destination="HLE-gn-wtm" name="value" keyPath="objectValue.foundItem" id="Bkb-2h-tRO"/>
+                                                            <binding destination="HLE-gn-wtm" name="toolTip" keyPath="objectValue.foundItem" id="CNb-kF-SIH"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>

@@ -439,15 +439,25 @@ getter @transientDependencyListForGeneration transientComputeFunctionCall
   let uwself = if inPreferences then "preferences_" else "unwSelf." end
   outResult = ""
   let ident = "        "
-  outResult += ident + "switch ("
-  for (dependency * * defaultValue) in self
-  do
-    outResult += [dependency modelStringForSelf !uwself] + ".selection"
+  for (dependency 2* defaultValue) in self do (idx)
     if defaultValue != "" then
-      outResult += " (default: " + defaultValue + ")"
+      outResult += ident + "var s" + idx + " = " + [dependency modelStringForSelf !uwself] + ".selection" + "\n"
+      outResult += ident + "switch s" + idx + " {\n"
+      outResult += ident + "case .single :\n"
+      outResult += ident + "  ()\n"
+      outResult += ident + "case .empty, .multiple :\n"
+      outResult += ident + "  s" + idx + " = .single (" + defaultValue + ")\n"
+      outResult += ident + "}\n"
+    else
+      outResult += ident + "let s" + idx + " = " + [dependency modelStringForSelf !uwself] + ".selection" + "\n"
     end
+  end
+  outResult += ident + "switch ("
+  for (4*) in self
+  do (idx)
+    outResult += "s" + idx
   between
-    outResult += ",\n                "
+    outResult += ", "
   end
   outResult += ") {\n"
   outResult += ident + "case ("
