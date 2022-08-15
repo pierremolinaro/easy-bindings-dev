@@ -2238,29 +2238,7 @@ GALGAS_abstractViewInstructionGeneration GALGAS_abstractViewInstructionGeneratio
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-static TC_UniqueArray <extensionMethodSignature_astAbstractViewDeclaration_checkView> gExtensionMethodTable_astAbstractViewDeclaration_checkView ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_checkView (const int32_t inClassIndex,
-                                     extensionMethodSignature_astAbstractViewDeclaration_checkView inMethod) {
-  gExtensionMethodTable_astAbstractViewDeclaration_checkView.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void freeExtensionMethod_astAbstractViewDeclaration_checkView (void) {
-  gExtensionMethodTable_astAbstractViewDeclaration_checkView.free () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_astAbstractViewDeclaration_checkView (NULL,
-                                                                 freeExtensionMethod_astAbstractViewDeclaration_checkView) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_checkView (const cPtr_astAbstractViewDeclaration * inObject,
+void callExtensionMethod_checkView (cPtr_astAbstractViewDeclaration * inObject,
                                     const GALGAS_string constin_inViewName,
                                     const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
                                     const GALGAS_bool constin_inPreferences,
@@ -2280,32 +2258,11 @@ void callExtensionMethod_checkView (const cPtr_astAbstractViewDeclaration * inOb
 //--- Drop output arguments
   out_outGeneration.drop () ;
 //--- Find method
-  if (NULL != inObject) {
+  if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_astAbstractViewDeclaration) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_astAbstractViewDeclaration_checkView f = NULL ;
-    if (classIndex < gExtensionMethodTable_astAbstractViewDeclaration_checkView.count ()) {
-      f = gExtensionMethodTable_astAbstractViewDeclaration_checkView (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_astAbstractViewDeclaration_checkView.count ()) {
-          f = gExtensionMethodTable_astAbstractViewDeclaration_checkView (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_astAbstractViewDeclaration_checkView.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inViewName, constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, constin_inClassMap, io_ioImplicitViewFunctionGenerationList, io_ioConfiguratorMap, io_ioOutletMap, out_outGeneration, inCompiler COMMA_THERE) ;
-    }
+    inObject->method_checkView (constin_inViewName, constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, constin_inClassMap, io_ioImplicitViewFunctionGenerationList, io_ioConfiguratorMap, io_ioOutletMap, out_outGeneration, inCompiler COMMA_THERE) ;
   }
 }
-
 //----------------------------------------------------------------------------------------------------------------------
 //
 //Extension method '@astAutoLayoutViewFunctionCallList checkViewFunctionCallList'
@@ -2429,7 +2386,7 @@ void extensionMethod_checkViewFunctionCallList (const GALGAS_astAutoLayoutViewFu
             const cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_viewFunc * extractPtr_25884 = (const cEnumAssociatedValues_astAutoLayoutViewInstructionParameterValue_viewFunc *) (enumerator_24296.current_mParameter (HERE).unsafePointer ()) ;
             const GALGAS_astAbstractViewInstructionDeclaration extractedValue_25164_instruction = extractPtr_25884->mAssociatedValue0 ;
             GALGAS_abstractViewInstructionGeneration var_viewInstruction_25687 ;
-            callExtensionMethod_generateViewCode ((const cPtr_astAbstractViewInstructionDeclaration *) extractedValue_25164_instruction.ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, constinArgument_inClassMap, ioArgument_ioImplicitViewFunctionGenerationList, ioArgument_ioConfiguratorMap, ioArgument_ioOutletMap, var_viewInstruction_25687, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 605)) ;
+            callExtensionMethod_generateViewCode ((cPtr_astAbstractViewInstructionDeclaration *) extractedValue_25164_instruction.ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, constinArgument_inClassMap, ioArgument_ioImplicitViewFunctionGenerationList, ioArgument_ioConfiguratorMap, ioArgument_ioOutletMap, var_viewInstruction_25687, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 605)) ;
             var_parameterList_24036.addAssign_operation (enumerator_24296.current_mParameterName (HERE).readProperty_string (), GALGAS_string ("self.computeImplicitView_").add_operation (ioArgument_ioImplicitViewFunctionGenerationList.getter_length (SOURCE_FILE ("auto-layout-view.galgas", 620)).getter_string (SOURCE_FILE ("auto-layout-view.galgas", 620)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 620)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.galgas", 620))  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 620)) ;
             ioArgument_ioImplicitViewFunctionGenerationList.addAssign_operation (var_viewInstruction_25687  COMMA_SOURCE_FILE ("auto-layout-view.galgas", 621)) ;
           }
@@ -2572,29 +2529,7 @@ void extensionMethod_checkViewFunctionCallList (const GALGAS_astAutoLayoutViewFu
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-static TC_UniqueArray <extensionMethodSignature_astAbstractViewInstructionDeclaration_generateViewCode> gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateViewCode ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_generateViewCode (const int32_t inClassIndex,
-                                            extensionMethodSignature_astAbstractViewInstructionDeclaration_generateViewCode inMethod) {
-  gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateViewCode.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void freeExtensionMethod_astAbstractViewInstructionDeclaration_generateViewCode (void) {
-  gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateViewCode.free () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_astAbstractViewInstructionDeclaration_generateViewCode (NULL,
-                                                                                   freeExtensionMethod_astAbstractViewInstructionDeclaration_generateViewCode) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_generateViewCode (const cPtr_astAbstractViewInstructionDeclaration * inObject,
+void callExtensionMethod_generateViewCode (cPtr_astAbstractViewInstructionDeclaration * inObject,
                                            const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
                                            const GALGAS_bool constin_inPreferences,
                                            const GALGAS_propertyMap constin_inRootObservablePropertyMap,
@@ -2613,32 +2548,11 @@ void callExtensionMethod_generateViewCode (const cPtr_astAbstractViewInstruction
 //--- Drop output arguments
   out_outInstruction.drop () ;
 //--- Find method
-  if (NULL != inObject) {
+  if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_astAbstractViewInstructionDeclaration) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_astAbstractViewInstructionDeclaration_generateViewCode f = NULL ;
-    if (classIndex < gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateViewCode.count ()) {
-      f = gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateViewCode (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateViewCode.count ()) {
-          f = gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateViewCode (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_astAbstractViewInstructionDeclaration_generateViewCode.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, constin_inClassMap, io_ioImplicitViewFunctionGenerationList, io_ioConfiguratorMap, io_ioOutletMap, out_outInstruction, inCompiler COMMA_THERE) ;
-    }
+    inObject->method_generateViewCode (constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, constin_inClassMap, io_ioImplicitViewFunctionGenerationList, io_ioConfiguratorMap, io_ioOutletMap, out_outInstruction, inCompiler COMMA_THERE) ;
   }
 }
-
 //----------------------------------------------------------------------------------------------------------------------
 // @abstractViewGeneration reference class
 //----------------------------------------------------------------------------------------------------------------------
@@ -9609,58 +9523,14 @@ void extensionMethod_generate (const GALGAS_autoLayoutViewInstructionGenerationF
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-static TC_UniqueArray <enterExtensionGetter_abstractViewGeneration_generate> gExtensionGetterTable_abstractViewGeneration_generate ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionGetter_generate (const int32_t inClassIndex,
-                                    enterExtensionGetter_abstractViewGeneration_generate inGetter) {
-  gExtensionGetterTable_abstractViewGeneration_generate.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void freeExtensionGetter_abstractViewGeneration_generate (void) {
-  gExtensionGetterTable_abstractViewGeneration_generate.free () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_abstractViewGeneration_generate (NULL,
-                                                            freeExtensionGetter_abstractViewGeneration_generate) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_string callExtensionGetter_generate (const cPtr_abstractViewGeneration * inObject,
                                             const GALGAS_bool in_inPreferences,
                                             const GALGAS_string in_inViewName,
                                             C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) {
   GALGAS_string result ;
-//--- Find Reader
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractViewGeneration) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    enterExtensionGetter_abstractViewGeneration_generate f = NULL ;
-    if (classIndex < gExtensionGetterTable_abstractViewGeneration_generate.count ()) {
-      f = gExtensionGetterTable_abstractViewGeneration_generate (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-       while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gExtensionGetterTable_abstractViewGeneration_generate.count ()) {
-           f = gExtensionGetterTable_abstractViewGeneration_generate (p->mSlotID COMMA_HERE) ;
-         }
-         p = p->mSuperclassDescriptor ;
-       }
-       gExtensionGetterTable_abstractViewGeneration_generate.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      result = f (inObject, in_inPreferences, in_inViewName, inCompiler COMMA_THERE) ;
-    }
+  if (nullptr != inObject) {
+    result = inObject->getter_generate (in_inPreferences, in_inViewName, inCompiler COMMA_THERE) ;
   }
   return result ;
 }
@@ -9671,28 +9541,6 @@ GALGAS_string callExtensionGetter_generate (const cPtr_abstractViewGeneration * 
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-static TC_UniqueArray <enterExtensionGetter_abstractViewInstructionGeneration_generate> gExtensionGetterTable_abstractViewInstructionGeneration_generate ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionGetter_generate (const int32_t inClassIndex,
-                                    enterExtensionGetter_abstractViewInstructionGeneration_generate inGetter) {
-  gExtensionGetterTable_abstractViewInstructionGeneration_generate.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void freeExtensionGetter_abstractViewInstructionGeneration_generate (void) {
-  gExtensionGetterTable_abstractViewInstructionGeneration_generate.free () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_abstractViewInstructionGeneration_generate (NULL,
-                                                                       freeExtensionGetter_abstractViewInstructionGeneration_generate) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_string callExtensionGetter_generate (const cPtr_abstractViewInstructionGeneration * inObject,
                                             const GALGAS_bool in_inPreferences,
                                             const GALGAS_string in_inName,
@@ -9700,30 +9548,8 @@ GALGAS_string callExtensionGetter_generate (const cPtr_abstractViewInstructionGe
                                             C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) {
   GALGAS_string result ;
-//--- Find Reader
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractViewInstructionGeneration) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    enterExtensionGetter_abstractViewInstructionGeneration_generate f = NULL ;
-    if (classIndex < gExtensionGetterTable_abstractViewInstructionGeneration_generate.count ()) {
-      f = gExtensionGetterTable_abstractViewInstructionGeneration_generate (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-       while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gExtensionGetterTable_abstractViewInstructionGeneration_generate.count ()) {
-           f = gExtensionGetterTable_abstractViewInstructionGeneration_generate (p->mSlotID COMMA_HERE) ;
-         }
-         p = p->mSuperclassDescriptor ;
-       }
-       gExtensionGetterTable_abstractViewInstructionGeneration_generate.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY READER CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      result = f (inObject, in_inPreferences, in_inName, in_inIndentation, inCompiler COMMA_THERE) ;
-    }
+  if (nullptr != inObject) {
+    result = inObject->getter_generate (in_inPreferences, in_inName, in_inIndentation, inCompiler COMMA_THERE) ;
   }
   return result ;
 }

@@ -270,21 +270,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKindList ;
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType) (const class cPtr_abstractDefaultValue * inObject,
-                                                                                       const class GALGAS_typeKindList constinArgument0,
-                                                                                       const class GALGAS_propertyMap constinArgument1,
-                                                                                       class GALGAS_string & outArgument2,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_analyzeDefaultValueType (const int32_t inClassIndex,
-                                                   extensionMethodSignature_abstractDefaultValue_analyzeDefaultValueType inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeDefaultValueType (const class cPtr_abstractDefaultValue * inObject,
+void callExtensionMethod_analyzeDefaultValueType (class cPtr_abstractDefaultValue * inObject,
                                                   const GALGAS_typeKindList constin_inAttributeActualTypeList,
                                                   const GALGAS_propertyMap constin_inPreferencesPropertyMap,
                                                   GALGAS_string & out_outSwiftDefaultValueAsString,
@@ -376,7 +362,22 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedPropertyDec
 
 class cPtr_computedPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter nodeKey
+  public: virtual class GALGAS_lstring getter_nodeKey (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method enterInPrecedenceGraph
+  public: virtual void method_enterInPrecedenceGraph (class GALGAS_declarationPrecedenceGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method firstAnalysisPhase
+  public: virtual void method_firstAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method thirdAnalysisPhase
+  public: virtual void method_thirdAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mRootEntityName ;
@@ -393,16 +394,16 @@ class cPtr_computedPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1028,7 +1029,27 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedPropertyGen
 
 class cPtr_computedPropertyGeneration : public cPtr_propertyGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter bindPropertyInSelectionController
+  public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter configurationCode
+  public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter declarationInSelectionControllerCode
+  public: virtual class GALGAS_string getter_declarationInSelectionControllerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter initCode
+  public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter propertyDeclarationCode
+  public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_stringset inOverriddenTransients,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminationCode
+  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
@@ -1045,16 +1066,16 @@ class cPtr_computedPropertyGeneration : public cPtr_propertyGeneration {
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1209,7 +1230,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computeRoutineGener
 
 class cPtr_computeRoutineGeneration : public cPtr_abstractFileGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
+           class GALGAS_stringset inToOneEntities,
+           class GALGAS_stringset inToManyEntities,
+           class GALGAS_stringset & ioGeneratedFileSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mOwnerName ;
@@ -1225,16 +1251,16 @@ class cPtr_computeRoutineGeneration : public cPtr_abstractFileGeneration {
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1385,7 +1411,22 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDeclaratio
 
 class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter nodeKey
+  public: virtual class GALGAS_lstring getter_nodeKey (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method enterInPrecedenceGraph
+  public: virtual void method_enterInPrecedenceGraph (class GALGAS_declarationPrecedenceGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method firstAnalysisPhase
+  public: virtual void method_firstAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method thirdAnalysisPhase
+  public: virtual void method_thirdAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mRootEntityName ;
@@ -1404,16 +1445,16 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1555,7 +1596,27 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGe
 
 class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter bindPropertyInSelectionController
+  public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter configurationCode
+  public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter declarationInSelectionControllerCode
+  public: virtual class GALGAS_string getter_declarationInSelectionControllerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter initCode
+  public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter propertyDeclarationCode
+  public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_stringset inOverriddenTransients,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminationCode
+  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
@@ -1572,16 +1633,16 @@ class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1978,7 +2039,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientRoutineGen
 
 class cPtr_transientRoutineGeneration : public cPtr_abstractFileGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
+           class GALGAS_stringset inToOneEntities,
+           class GALGAS_stringset inToManyEntities,
+           class GALGAS_stringset & ioGeneratedFileSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mOwnerName ;
@@ -1996,16 +2062,16 @@ class cPtr_transientRoutineGeneration : public cPtr_abstractFileGeneration {
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2226,7 +2292,22 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyDeclarationAST
 
 class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter nodeKey
+  public: virtual class GALGAS_lstring getter_nodeKey (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method enterInPrecedenceGraph
+  public: virtual void method_enterInPrecedenceGraph (class GALGAS_declarationPrecedenceGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method firstAnalysisPhase
+  public: virtual void method_firstAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method secondAnalysisPhase
+  public: virtual void method_secondAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_proxyKind mProperty_mProxyKind ;
@@ -2245,16 +2326,16 @@ class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2396,7 +2477,30 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGenerati
 
 class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter bindPropertyInSelectionController
+  public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter clearObjectExplorerCode
+  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter configurationCode
+  public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter declarationInSelectionControllerCode
+  public: virtual class GALGAS_string getter_declarationInSelectionControllerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter initCode
+  public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter propertyDeclarationCode
+  public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_stringset inOverriddenTransients,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminationCode
+  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_proxyKind mProperty_mProxyKind ;
@@ -2413,16 +2517,16 @@ class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2768,7 +2872,30 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGenerati
 
 class cPtr_atomicProxyGeneration : public cPtr_propertyGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter bindPropertyInSelectionController
+  public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter clearObjectExplorerCode
+  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter configurationCode
+  public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter declarationInSelectionControllerCode
+  public: virtual class GALGAS_string getter_declarationInSelectionControllerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter initCode
+  public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter propertyDeclarationCode
+  public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_stringset inOverriddenTransients,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminationCode
+  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_proxyKind mProperty_mProxyKind ;
@@ -2785,16 +2912,16 @@ class cPtr_atomicProxyGeneration : public cPtr_propertyGeneration {
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3134,7 +3261,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyDecla
 
 class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter nodeKey
+  public: virtual class GALGAS_lstring getter_nodeKey (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method enterInPrecedenceGraph
+  public: virtual void method_enterInPrecedenceGraph (class GALGAS_declarationPrecedenceGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method firstAnalysisPhase
+  public: virtual void method_firstAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mPropertyTypeName ;
@@ -3149,16 +3286,16 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3300,7 +3437,35 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGener
 
 class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter bindPropertyInSelectionController
+  public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter clearObjectExplorerCode
+  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter configurationCode
+  public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter declarationInSelectionControllerCode
+  public: virtual class GALGAS_string getter_declarationInSelectionControllerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter initCode
+  public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter prefKeyDefinitionCode
+  public: virtual class GALGAS_string getter_prefKeyDefinitionCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter propertyDeclarationCode
+  public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_stringset inOverriddenTransients,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter saveIntoDictionaryCode
+  public: virtual class GALGAS_string getter_saveIntoDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter setupAtomicPropertyFromDictionaryCode
+  public: virtual class GALGAS_string getter_setupAtomicPropertyFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_typeKind mProperty_mType ;
@@ -3317,16 +3482,16 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3708,7 +3873,22 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneRelationshipAS
 
 class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter nodeKey
+  public: virtual class GALGAS_lstring getter_nodeKey (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method enterInPrecedenceGraph
+  public: virtual void method_enterInPrecedenceGraph (class GALGAS_declarationPrecedenceGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method firstAnalysisPhase
+  public: virtual void method_firstAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method thirdAnalysisPhase
+  public: virtual void method_thirdAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mDestinationEntityName ;
@@ -3725,16 +3905,16 @@ class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3985,7 +4165,32 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOnePropertyGenera
 
 class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter clearObjectExplorerCode
+  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter configurationCode
+  public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter initCode
+  public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter objectAccessibilityCode
+  public: virtual class GALGAS_string getter_objectAccessibilityCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter objectAccessibilityCodeForSaveOperation
+  public: virtual class GALGAS_string getter_objectAccessibilityCodeForSaveOperation (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter propertyDeclarationCode
+  public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_stringset inOverriddenTransients,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter saveIntoDictionaryCode
+  public: virtual class GALGAS_string getter_saveIntoDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter setupRelationshipFromDictionaryCode
+  public: virtual class GALGAS_string getter_setupRelationshipFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
@@ -4004,16 +4209,16 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4365,7 +4570,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipA
 
 class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter nodeKey
+  public: virtual class GALGAS_lstring getter_nodeKey (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method enterInPrecedenceGraph
+  public: virtual void method_enterInPrecedenceGraph (class GALGAS_declarationPrecedenceGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method firstAnalysisPhase
+  public: virtual void method_firstAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mDestinationEntityName ;
@@ -4384,16 +4599,16 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4677,7 +4892,42 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyPropertyGener
 
 class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter clearObjectExplorerCode
+  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter configurationCode
+  public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter initCode
+  public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter objectAccessibilityCode
+  public: virtual class GALGAS_string getter_objectAccessibilityCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter objectAccessibilityCodeForSaveOperation
+  public: virtual class GALGAS_string getter_objectAccessibilityCodeForSaveOperation (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter prefKeyDefinitionCode
+  public: virtual class GALGAS_string getter_prefKeyDefinitionCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter propertyDeclarationCode
+  public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_stringset inOverriddenTransients,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter resetToManyRelationships
+  public: virtual class GALGAS_string getter_resetToManyRelationships (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter saveIntoDictionaryCode
+  public: virtual class GALGAS_string getter_saveIntoDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter setupRelationshipFromDictionaryCode
+  public: virtual class GALGAS_string getter_setupRelationshipFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminationCode
+  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_propertyKind mProperty_mRelationshipType ;
@@ -4696,16 +4946,16 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5381,7 +5631,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionFileGeneratio
 
 class cPtr_actionFileGeneration : public cPtr_abstractFileGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
+           class GALGAS_stringset inToOneEntities,
+           class GALGAS_stringset inToManyEntities,
+           class GALGAS_stringset & ioGeneratedFileSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
@@ -5393,16 +5648,16 @@ class cPtr_actionFileGeneration : public cPtr_abstractFileGeneration {
                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5571,7 +5826,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingComp
 
 class cPtr_abstractBooleanMultipleBindingExpressionAST : public acStrongPtr_class {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method analyzeExpressionForMultipleBinding
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inCurrentObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesObservablePropertyMap,
+           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outEnableExpression,
+           class GALGAS_typeKind & outType,
+           class GALGAS_location & outErrorLocation,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
 //--- Properties
 
@@ -5581,11 +5845,11 @@ class cPtr_abstractBooleanMultipleBindingExpressionAST : public acStrongPtr_clas
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const = 0 ;
+                                    const int32_t inIndentation) const override = 0 ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -5711,7 +5975,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literalIntMultipleB
 
 class cPtr_literalIntMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method analyzeExpressionForMultipleBinding
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inCurrentObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesObservablePropertyMap,
+           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outEnableExpression,
+           class GALGAS_typeKind & outType,
+           class GALGAS_location & outErrorLocation,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_luint mProperty_mValue ;
@@ -5721,16 +5994,16 @@ class cPtr_literalIntMultipleBindingExpressionAST : public cPtr_abstractBooleanM
                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5853,7 +6126,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_negateBooleanMultip
 
 class cPtr_negateBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method analyzeExpressionForMultipleBinding
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inCurrentObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesObservablePropertyMap,
+           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outEnableExpression,
+           class GALGAS_typeKind & outType,
+           class GALGAS_location & outErrorLocation,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mBinding ;
@@ -5863,16 +6145,16 @@ class cPtr_negateBooleanMultipleBindingExpressionAST : public cPtr_abstractBoole
                                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6007,7 +6289,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleB
 
 class cPtr_comparisonMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method analyzeExpressionForMultipleBinding
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inCurrentObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesObservablePropertyMap,
+           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outEnableExpression,
+           class GALGAS_typeKind & outType,
+           class GALGAS_location & outErrorLocation,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
@@ -6021,16 +6312,16 @@ class cPtr_comparisonMultipleBindingExpressionAST : public cPtr_abstractBooleanM
                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6159,7 +6450,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_andBooleanMultipleB
 
 class cPtr_andBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method analyzeExpressionForMultipleBinding
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inCurrentObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesObservablePropertyMap,
+           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outEnableExpression,
+           class GALGAS_typeKind & outType,
+           class GALGAS_location & outErrorLocation,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
@@ -6171,16 +6471,16 @@ class cPtr_andBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanM
                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6309,7 +6609,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_orBooleanMultipleBi
 
 class cPtr_orBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method analyzeExpressionForMultipleBinding
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inCurrentObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesObservablePropertyMap,
+           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outEnableExpression,
+           class GALGAS_typeKind & outType,
+           class GALGAS_location & outErrorLocation,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
@@ -6321,16 +6630,16 @@ class cPtr_orBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMu
                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6459,7 +6768,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xorBooleanMultipleB
 
 class cPtr_xorBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method analyzeExpressionForMultipleBinding
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inCurrentObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesObservablePropertyMap,
+           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outEnableExpression,
+           class GALGAS_typeKind & outType,
+           class GALGAS_location & outErrorLocation,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST mProperty_mLeftBinding ;
@@ -6471,16 +6789,16 @@ class cPtr_xorBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanM
                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6603,7 +6921,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyI
 
 class cPtr_observablePropertyInMultipleBindingExpressionAST : public cPtr_abstractBooleanMultipleBindingExpressionAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method analyzeExpressionForMultipleBinding
+  public: virtual void method_analyzeExpressionForMultipleBinding (const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inCurrentObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesObservablePropertyMap,
+           class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outEnableExpression,
+           class GALGAS_typeKind & outType,
+           class GALGAS_location & outErrorLocation,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_observablePropertyAST mProperty_mProperty ;
@@ -6613,16 +6940,16 @@ class cPtr_observablePropertyInMultipleBindingExpressionAST : public cPtr_abstra
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6804,7 +7131,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyA
 
 class cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter expressionString
+  public: virtual class GALGAS_string getter_expressionString (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mObservedModelString ;
@@ -6814,16 +7142,16 @@ class cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration : p
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6949,7 +7277,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_booleanMultipleBind
 
 class cPtr_booleanMultipleBindingLiteralIntForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter expressionString
+  public: virtual class GALGAS_string getter_expressionString (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_uint mProperty_mValue ;
@@ -6959,16 +7288,16 @@ class cPtr_booleanMultipleBindingLiteralIntForGeneration : public cPtr_abstractB
                                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7091,7 +7420,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_negateBooleanMultip
 
 class cPtr_negateBooleanMultipleBindingExpressionForGeneration : public cPtr_abstractBooleanMultipleBindingExpressionForGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter expressionString
+  public: virtual class GALGAS_string getter_expressionString (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_mBinding ;
@@ -7101,16 +7431,16 @@ class cPtr_negateBooleanMultipleBindingExpressionForGeneration : public cPtr_abs
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 

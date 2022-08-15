@@ -15,7 +15,7 @@
 
 GALGAS_bool extensionGetter_needs_5F_unwSelf (const GALGAS_observablePropertyAST & inObject,
                                               const GALGAS_bool & constinArgument_inPreferences,
-                                              C_Compiler * /* inCompiler */
+                                              C_Compiler *
                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool result_outResult ; // Returned variable
   const GALGAS_observablePropertyAST temp_0 = inObject ;
@@ -142,7 +142,7 @@ GALGAS_bool extensionGetter_needs_5F_unwSelf (const GALGAS_observablePropertyAST
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location extensionGetter_location (const GALGAS_observablePropertyAST & inObject,
-                                          C_Compiler * /* inCompiler */
+                                          C_Compiler *
                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_location result_outResult ; // Returned variable
   const GALGAS_observablePropertyAST temp_0 = inObject ;
@@ -1245,7 +1245,7 @@ void extensionMethod_analyzeObservableProperty (const GALGAS_observablePropertyA
           constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 773)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("observable-property.galgas", 773))  COMMA_SOURCE_FILE ("observable-property.galgas", 773)), joker_33771, var_preferencesPropertyMap_33800, joker_33802_2, joker_33802_1, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 773)) ;
           GALGAS_typeKindList temp_69 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("observable-property.galgas", 775)) ;
           temp_69.addAssign_operation (extractedValue_33602_propertyType  COMMA_SOURCE_FILE ("observable-property.galgas", 775)) ;
-          callExtensionMethod_analyzeDefaultValueType ((const cPtr_abstractDefaultValue *) extractedValue_33458_defaultValue.ptr (), temp_69, var_preferencesPropertyMap_33800, outArgument_outDefaultValue, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 774)) ;
+          callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) extractedValue_33458_defaultValue.ptr (), temp_69, var_preferencesPropertyMap_33800, outArgument_outDefaultValue, inCompiler COMMA_SOURCE_FILE ("observable-property.galgas", 774)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_toMany:

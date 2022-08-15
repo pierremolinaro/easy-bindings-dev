@@ -398,7 +398,21 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingList_
 
 class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDeclaration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method generateViewCode
+  public: virtual void method_generateViewCode (const class GALGAS_autoLayoutViewDeclarationMap inViewDeclarationMap,
+           const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesPropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inObservablePropertyMap,
+           const class GALGAS_actionMap inActionMap,
+           const class GALGAS_string inReceiverSwiftTypeName,
+           const class GALGAS_classMap inClassMap,
+           class GALGAS_implicitViewFunctionGenerationList & ioImplicitViewFunctionGenerationList,
+           class GALGAS_autoLayoutConfiguratorMap & ioConfiguratorMap,
+           class GALGAS_autoLayoutOutletMap & ioOutletMap,
+           class GALGAS_abstractViewInstructionGeneration & outInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mAutoLayoutViewClassName ;
@@ -428,16 +442,16 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -697,32 +711,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewDecla
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_astAbstractViewDeclaration_checkView) (const class cPtr_astAbstractViewDeclaration * inObject,
-                                                                               const class GALGAS_string constinArgument0,
-                                                                               const class GALGAS_autoLayoutViewDeclarationMap constinArgument1,
-                                                                               const class GALGAS_bool constinArgument2,
-                                                                               const class GALGAS_propertyMap constinArgument3,
-                                                                               const class GALGAS_propertyMap constinArgument4,
-                                                                               const class GALGAS_semanticContext constinArgument5,
-                                                                               const class GALGAS_propertyMap constinArgument6,
-                                                                               const class GALGAS_actionMap constinArgument7,
-                                                                               const class GALGAS_string constinArgument8,
-                                                                               const class GALGAS_classMap constinArgument9,
-                                                                               class GALGAS_implicitViewFunctionGenerationList & ioArgument10,
-                                                                               class GALGAS_autoLayoutConfiguratorMap & ioArgument11,
-                                                                               class GALGAS_autoLayoutOutletMap & ioArgument12,
-                                                                               class GALGAS_abstractViewGeneration & outArgument13,
-                                                                               class C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_checkView (const int32_t inClassIndex,
-                                     extensionMethodSignature_astAbstractViewDeclaration_checkView inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_checkView (const class cPtr_astAbstractViewDeclaration * inObject,
+void callExtensionMethod_checkView (class cPtr_astAbstractViewDeclaration * inObject,
                                     const GALGAS_string constin_inViewName,
                                     const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
                                     const GALGAS_bool constin_inPreferences,
@@ -1398,17 +1387,6 @@ class cEnumAssociatedValues_classKind_entity : public cEnumAssociatedValues {
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef class GALGAS_string (*enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_expressionString) (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
-                                                                                                                            class C_Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionGetter_expressionString (const int32_t inClassIndex,
-                                            enterExtensionGetter_abstractBooleanMultipleBindingExpressionForGeneration_expressionString inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
 class GALGAS_string callExtensionGetter_expressionString (const class cPtr_abstractBooleanMultipleBindingExpressionForGeneration * inObject,
                                                           C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
@@ -1725,31 +1703,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewInstr
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_astAbstractViewInstructionDeclaration_generateViewCode) (const class cPtr_astAbstractViewInstructionDeclaration * inObject,
-                                                                                                 const class GALGAS_autoLayoutViewDeclarationMap constinArgument0,
-                                                                                                 const class GALGAS_bool constinArgument1,
-                                                                                                 const class GALGAS_propertyMap constinArgument2,
-                                                                                                 const class GALGAS_propertyMap constinArgument3,
-                                                                                                 const class GALGAS_semanticContext constinArgument4,
-                                                                                                 const class GALGAS_propertyMap constinArgument5,
-                                                                                                 const class GALGAS_actionMap constinArgument6,
-                                                                                                 const class GALGAS_string constinArgument7,
-                                                                                                 const class GALGAS_classMap constinArgument8,
-                                                                                                 class GALGAS_implicitViewFunctionGenerationList & ioArgument9,
-                                                                                                 class GALGAS_autoLayoutConfiguratorMap & ioArgument10,
-                                                                                                 class GALGAS_autoLayoutOutletMap & ioArgument11,
-                                                                                                 class GALGAS_abstractViewInstructionGeneration & outArgument12,
-                                                                                                 class C_Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_generateViewCode (const int32_t inClassIndex,
-                                            extensionMethodSignature_astAbstractViewInstructionDeclaration_generateViewCode inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_generateViewCode (const class cPtr_astAbstractViewInstructionDeclaration * inObject,
+void callExtensionMethod_generateViewCode (class cPtr_astAbstractViewInstructionDeclaration * inObject,
                                            const GALGAS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
                                            const GALGAS_bool constin_inPreferences,
                                            const GALGAS_propertyMap constin_inRootObservablePropertyMap,
@@ -2006,7 +1960,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_newHorizontalStackV
 
 class cPtr_newHorizontalStackViewGeneration : public cPtr_abstractViewGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inViewName,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
@@ -2016,16 +1973,16 @@ class cPtr_newHorizontalStackViewGeneration : public cPtr_abstractViewGeneration
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2151,7 +2108,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_newVerticalStackVie
 
 class cPtr_newVerticalStackViewGeneration : public cPtr_abstractViewGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inViewName,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
@@ -2161,16 +2121,16 @@ class cPtr_newVerticalStackViewGeneration : public cPtr_abstractViewGeneration {
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2506,7 +2466,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedHorizontalV
 
 class cPtr_computedHorizontalViewGeneration : public cPtr_abstractViewGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inViewName,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
@@ -2518,16 +2481,16 @@ class cPtr_computedHorizontalViewGeneration : public cPtr_abstractViewGeneration
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2659,7 +2622,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedVerticalVie
 
 class cPtr_computedVerticalViewGeneration : public cPtr_abstractViewGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inViewName,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
@@ -2671,16 +2637,16 @@ class cPtr_computedVerticalViewGeneration : public cPtr_abstractViewGeneration {
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3108,7 +3074,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hStackViewInstructi
 
 class cPtr_hStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
@@ -3122,16 +3092,16 @@ class cPtr_hStackViewInstructionGeneration : public cPtr_abstractViewInstruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3269,7 +3239,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hSplitViewInstructi
 
 class cPtr_hSplitViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
@@ -3283,16 +3257,16 @@ class cPtr_hSplitViewInstructionGeneration : public cPtr_abstractViewInstruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3430,7 +3404,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_vSplitViewInstructi
 
 class cPtr_vSplitViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
@@ -3444,16 +3422,16 @@ class cPtr_vSplitViewInstructionGeneration : public cPtr_abstractViewInstruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3591,7 +3569,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_vStackViewInstructi
 
 class cPtr_vStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_autoLayoutViewInstructionGenerationFuncCallList mProperty_mFuncCallList ;
@@ -3605,16 +3587,16 @@ class cPtr_vStackViewInstructionGeneration : public cPtr_abstractViewInstruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3740,7 +3722,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stackViewReferenceI
 
 class cPtr_stackViewReferenceInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mStackViewName ;
@@ -3750,16 +3736,16 @@ class cPtr_stackViewReferenceInstructionGeneration : public cPtr_abstractViewIns
                                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3879,7 +3865,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSpaceView
 
 class cPtr_autoLayoutSpaceViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
 
@@ -3887,16 +3877,16 @@ class cPtr_autoLayoutSpaceViewInstructionGeneration : public cPtr_abstractViewIn
   public: cPtr_autoLayoutSpaceViewInstructionGeneration (LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4022,7 +4012,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSeparator
 
 class cPtr_autoLayoutSeparatorInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_bool mProperty_horizontal ;
@@ -4032,16 +4026,16 @@ class cPtr_autoLayoutSeparatorInstructionGeneration : public cPtr_abstractViewIn
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4167,7 +4161,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutLocalView
 
 class cPtr_autoLayoutLocalViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mLocalView ;
@@ -4177,16 +4175,16 @@ class cPtr_autoLayoutLocalViewInstructionGeneration : public cPtr_abstractViewIn
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5278,7 +5276,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutComputedV
 
 class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter generate
+  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+           const class GALGAS_string inName,
+           const class GALGAS_string inIndentation,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mAutoLayoutViewClassName ;
@@ -5306,16 +5308,16 @@ class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractVie
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5393,19 +5395,6 @@ void extensionMethod_generate (const class GALGAS_autoLayoutViewInstructionGener
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef class GALGAS_string (*enterExtensionGetter_abstractViewGeneration_generate) (const class cPtr_abstractViewGeneration * inObject,
-                                                                                     const class GALGAS_bool constinArgument0,
-                                                                                     const class GALGAS_string constinArgument1,
-                                                                                     class C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionGetter_generate (const int32_t inClassIndex,
-                                    enterExtensionGetter_abstractViewGeneration_generate inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
 class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewGeneration * inObject,
                                                   const GALGAS_bool constin_inPreferences,
                                                   const GALGAS_string constin_inViewName,
@@ -5416,20 +5405,6 @@ class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewG
 //
 //Abstract extension getter '@abstractViewInstructionGeneration generate'
 //
-//----------------------------------------------------------------------------------------------------------------------
-
-typedef class GALGAS_string (*enterExtensionGetter_abstractViewInstructionGeneration_generate) (const class cPtr_abstractViewInstructionGeneration * inObject,
-                                                                                                const class GALGAS_bool constinArgument0,
-                                                                                                const class GALGAS_string constinArgument1,
-                                                                                                const class GALGAS_string constinArgument2,
-                                                                                                class C_Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionGetter_generate (const int32_t inClassIndex,
-                                    enterExtensionGetter_abstractViewInstructionGeneration_generate inMethod) ;
-
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewInstructionGeneration * inObject,
@@ -5542,7 +5517,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassDeclarat
 
 class cPtr_outletClassDeclarationAST : public cPtr_abstractDeclarationAST {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter nodeKey
+  public: virtual class GALGAS_lstring getter_nodeKey (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method enterInPrecedenceGraph
+  public: virtual void method_enterInPrecedenceGraph (class GALGAS_declarationPrecedenceGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method firstAnalysisPhase
+  public: virtual void method_firstAnalysisPhase (class GALGAS_semanticContext & ioSemanticContext,
+           class GALGAS_generationStruct & ioGeneration,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_bool mProperty_mUserDefined ;
@@ -5565,16 +5550,16 @@ class cPtr_outletClassDeclarationAST : public cPtr_abstractDeclarationAST {
                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
