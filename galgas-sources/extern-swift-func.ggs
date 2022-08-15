@@ -19,10 +19,10 @@ syntax extension easyBindings_syntax {
     ?!@externSwiftFunctionList ioExternSwiftFunctionList)
   {
     $externFunc$
-    $identifier$( ?let @lstring externFunctionName)
+    $identifier$ (?let @lstring externFunctionName)
 #      warning externFunctionName : "Extern function" 
     $calledBy$
-    $identifier$( ?let @lstring callerName)
+    $identifier$ (?let @lstring callerName)
     $;$
     ioExternSwiftFunctionList +=
       !externFunctionName

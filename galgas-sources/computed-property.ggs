@@ -12,7 +12,7 @@ class @computedPropertyDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @computedPropertyDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring.new (!self.mClassName.string + " " + self.mComputedPropertyName !self.mComputedPropertyName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
@@ -71,7 +71,7 @@ override proc @computedPropertyDeclarationAST. enterInPrecedenceGraph( ?!@declar
 
 #·······················································································································
 
-override func @computedPropertyDeclarationAST. nodeKey() -> @lstring {
+override func @computedPropertyDeclarationAST.nodeKey() -> @lstring {
   result = @lstring.new (!self.mClassName.string + " " + self.mComputedPropertyName !self.mComputedPropertyName.location)
 }
 
@@ -118,12 +118,12 @@ syntax extension easyBindings_syntax {
 #      isOverriding = true
 #    end
     $computed$
-    $Identifier$( ?let transientTypeName)
-    $identifier$( ?let @lstring transientName)
+    $Identifier$ (?let transientTypeName)
+    $identifier$ (?let @lstring transientName)
     $dependsFrom$
     var @observablePropertyList dependanceList = {}
     repeat
-      <observable_property>( ?let @observablePropertyAST observablePropertyAST)
+      <observable_property> (?let @observablePropertyAST observablePropertyAST)
       dependanceList += !observablePropertyAST
     while
       $,$
@@ -144,7 +144,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @computedPropertyDeclarationAST. firstAnalysisPhase(
+override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {
@@ -174,7 +174,7 @@ override proc @computedPropertyDeclarationAST. firstAnalysisPhase(
 #   SECOND ANALYSIS PHASE
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @computedPropertyDeclarationAST. thirdAnalysisPhase(
+override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -287,7 +287,7 @@ list @computedPropertyGenerationList {
 
 #·······················································································································
 
-override func @computedPropertyGeneration. declarationInSelectionControllerCode() -> @string {
+override func @computedPropertyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
@@ -296,13 +296,13 @@ override func @computedPropertyGeneration. declarationInSelectionControllerCode(
 
 #·······················································································································
 
-override func @computedPropertyGeneration. initCode() -> @string {
+override func @computedPropertyGeneration.initCode() -> @string {
   result  = ""
 }
 
 #·······················································································································
 
-override func @computedPropertyGeneration. bindPropertyInSelectionController() -> @string {
+override func @computedPropertyGeneration.bindPropertyInSelectionController() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.addEBObserverOf_" + self.mPropertyName + " (self." + self.mPropertyName + "_property)\n"
@@ -358,7 +358,7 @@ override func @computedPropertyGeneration. bindPropertyInSelectionController() -
 
 #·······················································································································
 
-override func @computedPropertyGeneration. propertyDeclarationCode(
+override func @computedPropertyGeneration.propertyDeclarationCode(
    ?let @bool inPreferences
    ?let @stringset inOverriddenTransients) -> @string
 {
@@ -398,7 +398,7 @@ override func @computedPropertyGeneration. propertyDeclarationCode(
 
 #·······················································································································
 
-override func @computedPropertyGeneration. configurationCode( ?let @bool inPreferences) -> @string {
+override func @computedPropertyGeneration.configurationCode (?let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = ""
   if [self.mDependencyList length] > 0 then
@@ -428,7 +428,7 @@ override func @computedPropertyGeneration. configurationCode( ?let @bool inPrefe
 
 #·······················································································································
 
-override func @computedPropertyGeneration. terminationCode( ?let @bool unused inPreferences) -> @string {
+override func @computedPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
   result = ""
   for (mDependency 3*) in self.mDependencyList do
     let s = [mDependency generateRemoveObserverCall]
@@ -451,7 +451,7 @@ class @computeRoutineGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-override proc @computeRoutineGeneration. generateCode(
+override proc @computeRoutineGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities

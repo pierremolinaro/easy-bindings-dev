@@ -14,7 +14,7 @@ class @outletClassDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @outletClassDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @outletClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   [!?ioGraph addNode !self.mClassName !self]
   if self.mSuperClassName.string != "" then
     [!?ioGraph addEdge !self.mClassName !self.mSuperClassName]
@@ -23,7 +23,7 @@ override proc @outletClassDeclarationAST. enterInPrecedenceGraph( ?!@declaration
 
 #·······················································································································
 
-override func @outletClassDeclarationAST. nodeKey() -> @lstring {
+override func @outletClassDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
@@ -35,7 +35,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <outlet_class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <outlet_class_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     let @bool userDefined
     select
       $extern$
@@ -45,13 +45,13 @@ syntax extension easyBindings_syntax {
     end
     $outlet$
     $class$
-    $Identifier$( ?let @lstring outletClassName)
+    $Identifier$ (?let @lstring outletClassName)
     let @lstring superClassName
     select
       superClassName = ["" here]
     or
       $:$
-      $Identifier$( ?superClassName)
+      $Identifier$ (?superClassName)
     end
     var @bool hasRunAction = false
     var @bool hasEnabled = false
@@ -96,7 +96,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @outletClassDeclarationAST. firstAnalysisPhase(
+override proc @outletClassDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {

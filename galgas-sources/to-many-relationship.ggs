@@ -20,7 +20,7 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @toManyRelationshipAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring.new (!self.mClassName.string + " " + self.mToManyRelationshipName !self.mToManyRelationshipName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
@@ -36,7 +36,7 @@ override proc @toManyRelationshipAST. enterInPrecedenceGraph( ?!@declarationPrec
 
 #·······················································································································
 
-override func @toManyRelationshipAST. nodeKey() -> @lstring {
+override func @toManyRelationshipAST.nodeKey() -> @lstring {
   result = @lstring.new (!self.mClassName.string + " " + self.mToManyRelationshipName !self.mToManyRelationshipName.location)
 }
 
@@ -58,7 +58,7 @@ syntax extension easyBindings_syntax {
     var @bool customStore = false
     repeat
     while
-      $@attribute$( ?let attributeName)
+      $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
           error attributeName : "duplicated attribute" fixit { remove }
@@ -73,8 +73,8 @@ syntax extension easyBindings_syntax {
         error attributeName : "unknow attribute" fixit { replace "@signature" replace "@customStore" }
       end
     end
-    $Identifier$( ?let destinationEntityName)
-    $identifier$( ?let relationshipName)
+    $Identifier$ (?let destinationEntityName)
+    $identifier$ (?let relationshipName)
     if usedForSignature then
       ioSignatureList += !relationshipName.string
     end
@@ -82,13 +82,13 @@ syntax extension easyBindings_syntax {
     select
       $inverse$
       $toOne$
-      $identifier$( ?let inserseRelationshipName)
+      $identifier$ (?let inserseRelationshipName)
       toManyRelationshipOption = .hasOpposite (!oppositeName: inserseRelationshipName)
     or
       $dependsFrom$
       $self$
       $.$
-      $identifier$( ?let masterPropertyName)
+      $identifier$ (?let masterPropertyName)
       toManyRelationshipOption = .hasDependance (!masterPropertyName: masterPropertyName)
    or
       toManyRelationshipOption = .none
@@ -112,7 +112,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @toManyRelationshipAST. firstAnalysisPhase(
+override proc @toManyRelationshipAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -191,7 +191,7 @@ list @toManyPropertyGenerationList {
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. propertyDeclarationCode(
+override func @toManyPropertyGeneration.propertyDeclarationCode(
    ?let @bool unused inPreferences
    ?let @stringset unused inOverriddenTransients) -> @string
 {
@@ -241,19 +241,19 @@ override func @toManyPropertyGeneration. propertyDeclarationCode(
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. initCode() -> @string {
+override func @toManyPropertyGeneration.initCode() -> @string {
   result = ""
 }
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. prefKeyDefinitionCode() -> @string {
+override func @toManyPropertyGeneration.prefKeyDefinitionCode() -> @string {
   result = "fileprivate let Preferences_" + self.mPropertyName + " = \"Preferences:" + self.mPropertyName + "\"\n"
 }
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. configurationCode( ?let @bool inPreferences) -> @string {
+override func @toManyPropertyGeneration.configurationCode (?let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   switch self.mOption
   case none :
@@ -273,7 +273,7 @@ override func @toManyPropertyGeneration. configurationCode( ?let @bool inPrefere
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. setupRelationshipFromDictionaryCode() -> @string {
+override func @toManyPropertyGeneration.setupRelationshipFromDictionaryCode() -> @string {
   if [self.mOption isHasDependance] then
     result = ""
   elsif self.mCustomStore then
@@ -294,7 +294,7 @@ override func @toManyPropertyGeneration. setupRelationshipFromDictionaryCode() -
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. saveIntoDictionaryCode() -> @string {
+override func @toManyPropertyGeneration.saveIntoDictionaryCode() -> @string {
   if [self.mOption isHasDependance] then
     result = ""
   elsif self.mCustomStore then
@@ -312,7 +312,7 @@ override func @toManyPropertyGeneration. saveIntoDictionaryCode() -> @string {
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. objectAccessibilityCode() -> @string {
+override func @toManyPropertyGeneration.objectAccessibilityCode() -> @string {
   result  = "  //--- To many property: " + self.mPropertyName + "\n"
   result += "    for managedObject in self." + self.mPropertyName + ".values {\n"
   result += "      objects.append (managedObject)\n"
@@ -320,7 +320,7 @@ override func @toManyPropertyGeneration. objectAccessibilityCode() -> @string {
 }
 #·······················································································································
 
-override func @toManyPropertyGeneration. objectAccessibilityCodeForSaveOperation() -> @string {
+override func @toManyPropertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string {
   if self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (custom store)\n"
     result += "    /* for managedObject in self." + self.mPropertyName + "_property.propval.values {\n"
@@ -336,7 +336,7 @@ override func @toManyPropertyGeneration. objectAccessibilityCodeForSaveOperation
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. clearObjectExplorerCode() -> @string {
+override func @toManyPropertyGeneration.clearObjectExplorerCode() -> @string {
   if [self.mOption isHasDependance] then
     result = ""
   else
@@ -347,7 +347,7 @@ override func @toManyPropertyGeneration. clearObjectExplorerCode() -> @string {
 
 #·······················································································································
 
-override func @toManyPropertyGeneration. resetToManyRelationships() -> @string {
+override func @toManyPropertyGeneration.resetToManyRelationships() -> @string {
   if [self.mOption isHasDependance] then
     result = ""
   else
@@ -357,7 +357,7 @@ override func @toManyPropertyGeneration. resetToManyRelationships() -> @string {
 }
 #·······················································································································
 
-override func @toManyPropertyGeneration. terminationCode( ?let @bool unused inPreferences) -> @string {
+override func @toManyPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
   switch self.mOption 
   case hasDependance (masterPropertyName *) :
     result  = "  //--- To many property: " + self.mPropertyName + "\n"

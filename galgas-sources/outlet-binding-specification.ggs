@@ -32,10 +32,10 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <outlet_binding_specification>( ?!@outletClassBindingSpecificationList ioControllerTemplateList) {
+  rule <outlet_binding_specification> (?!@outletClassBindingSpecificationList ioControllerTemplateList) {
     $binding$
-    $Identifier$( ?let @lstring outletClassName)
-    $bindingName$( ?let @lstring bindingName)
+    $Identifier$ (?let @lstring outletClassName)
+    $bindingName$ (?let @lstring bindingName)
     $:$
     var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
     repeat
@@ -49,7 +49,7 @@ syntax extension easyBindings_syntax {
       end
       let @lstring modelTypeName
       select
-        $Identifier$( ?modelTypeName)
+        $Identifier$ (?modelTypeName)
       or
         $enum$
         modelTypeName = .new (!"enum" !.here)
@@ -63,9 +63,9 @@ syntax extension easyBindings_syntax {
     or
       ${$
       repeat
-        $identifier$( ?let @lstring optionName)
+        $identifier$ (?let @lstring optionName)
         $:$
-        $Identifier$( ?let @lstring optionType)
+        $Identifier$ (?let @lstring optionType)
         bindingOptionList += !optionName !optionType
       while
         $,$

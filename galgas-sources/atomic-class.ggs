@@ -8,13 +8,13 @@ class @atomicClassDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @atomicClassDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @atomicClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   [!?ioGraph addNode !self.mClassName !self]
 }
 
 #·······················································································································
 
-override func @atomicClassDeclarationAST. nodeKey() -> @lstring {
+override func @atomicClassDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
@@ -22,7 +22,7 @@ override func @atomicClassDeclarationAST. nodeKey() -> @lstring {
 #   ENTER ATOMIC CLASSES IN DECLARATION LIST
 #-----------------------------------------------------------------------------------------------------------------------
 
-proc enterAtomicClassesIn( ?!declarationList: @declarationListAST ioDeclarationListAST) {
+proc enterAtomicClassesIn (?!declarationList: @declarationListAST ioDeclarationListAST) {
   ioDeclarationListAST += !@atomicClassDeclarationAST.new (!["Double" nowhere] !.doubleType)
   ioDeclarationListAST += !@atomicClassDeclarationAST.new (!["String" nowhere] !.stringType)
   ioDeclarationListAST += !@atomicClassDeclarationAST.new (!["Int" nowhere]    !.integerType)
@@ -41,7 +41,7 @@ proc enterAtomicClassesIn( ?!declarationList: @declarationListAST ioDeclarationL
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @atomicClassDeclarationAST. firstAnalysisPhase(
+override proc @atomicClassDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {

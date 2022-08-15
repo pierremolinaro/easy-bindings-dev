@@ -10,7 +10,7 @@ syntax extension easyBindings_syntax {
     ?!@lstring ioXcodeProjectString)
   {
     $xcodeproject$
-    $literal_string$( ?let @lstring xcodeProjectString)
+    $literal_string$ (?let @lstring xcodeProjectString)
     $;$
     if xcodeProjectString.string == "" then
       error xcodeProjectString : "string should not be empty"

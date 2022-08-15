@@ -18,7 +18,7 @@ syntax extension easyBindings_syntax {
     ?!@externSwiftDelegateList ioExternSwiftDelegateList)
   {
     $externDelegate$
-    $Identifier$( ?let @lstring externDelegateName)
+    $Identifier$ (?let @lstring externDelegateName)
     $;$
     ioExternSwiftDelegateList += !externDelegateName
   }

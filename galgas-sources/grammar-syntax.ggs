@@ -40,7 +40,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
     repeat
     while
       $include$
-      $literal_string$( ?let @lstring filePath)
+      $literal_string$ (?let @lstring filePath)
       $;$
       let sourceFile = @lstring.new (
         ![filePath.string absolutePathFromPath ![@string.stringWithSourceFilePath stringByDeletingLastPathComponent]]
@@ -48,29 +48,29 @@ syntax easyBindings_syntax (easyBindings_lexique) {
       )
       grammar easyBindings_grammar (!?ioDeclarationAST ?*) in sourceFile
     while
-      <autolayout_class_declaration>( !?ioDeclarationAST)
+      <autolayout_class_declaration> (!?ioDeclarationAST)
    while
-      <graphviz_declaration>( !?ioDeclarationAST)
+      <graphviz_declaration> (!?ioDeclarationAST)
     while
-      <enum_declaration>( !?ioDeclarationAST)
+      <enum_declaration> (!?ioDeclarationAST)
    while
-      <enum_function_declaration>( !?ioDeclarationAST)
+      <enum_function_declaration> (!?ioDeclarationAST)
     while
-      <entity_declaration>( !?ioDeclarationAST)
+      <entity_declaration> (!?ioDeclarationAST)
     while
-      <class_declaration>(  !?ioDeclarationAST)
+      <class_declaration> ( !?ioDeclarationAST)
     while
-      <preferences_declaration>( !?ioDeclarationAST)
+      <preferences_declaration> (!?ioDeclarationAST)
     while
-      <document_declaration>( !?ioDeclarationAST)
+      <document_declaration> (!?ioDeclarationAST)
     while
-      <outlet_class_declaration>( !?ioDeclarationAST)
+      <outlet_class_declaration> (!?ioDeclarationAST)
     while
-      <outlet_binding_specification>( !?ioDeclarationAST.mBindingSpecificationListMap)
+      <outlet_binding_specification> (!?ioDeclarationAST.mBindingSpecificationListMap)
     while
-      <xcode_project>( !?ioDeclarationAST.mXcodeProject)
+      <xcode_project> (!?ioDeclarationAST.mXcodeProject)
     while
-      <main_xib>( !?ioDeclarationAST.mPreferences.mMainXibDescriptorList)
+      <main_xib> (!?ioDeclarationAST.mPreferences.mMainXibDescriptorList)
     end
     outEndOfFile = .here
   }

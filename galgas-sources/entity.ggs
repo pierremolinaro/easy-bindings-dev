@@ -16,7 +16,7 @@ class @entityDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @entityDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @entityDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   [!?ioGraph addNode !self.mClassName !self]
   if self.mSuperEntityName.string != "" then
     [!?ioGraph addEdge !self.mClassName !self.mSuperEntityName]
@@ -25,7 +25,7 @@ override proc @entityDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrece
 
 #·······················································································································
 
-override func @entityDeclarationAST. nodeKey() -> @lstring {
+override func @entityDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
@@ -37,7 +37,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <entity_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <entity_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     let @bool isAbstract
     select
       isAbstract = false
@@ -53,13 +53,13 @@ syntax extension easyBindings_syntax {
       graphicEntity = true
     end
     $entity$
-    $Identifier$( ?let @lstring entityName)
+    $Identifier$ (?let @lstring entityName)
     var @lstringlist obsoleteEntityNames = {}
     select
     or
       $($
       repeat
-        $Identifier$( ?let @lstring obsoleteName)
+        $Identifier$ (?let @lstring obsoleteName)
         obsoleteEntityNames += !obsoleteName
       while
         $,$
@@ -71,7 +71,7 @@ syntax extension easyBindings_syntax {
       superEntityName = ["" nowhere]
     or
       $:$
-      $Identifier$( ? superEntityName)
+      $Identifier$ (? superEntityName)
     end
     ${$
     var @simpleStoredPropertyList simpleStoredPropertyList = {}
@@ -82,22 +82,22 @@ syntax extension easyBindings_syntax {
     var @lstringlist graphicOptionArray = {}
     repeat
     while
-      <simple_stored_declaration>( !entityName !?simpleStoredPropertyList !?signatureList !?ioDeclarationAST)
+      <simple_stored_declaration> (!entityName !?simpleStoredPropertyList !?signatureList !?ioDeclarationAST)
     while
-      <transient_declaration>( !entityName !["" nowhere] !?ioDeclarationAST)
+      <transient_declaration> (!entityName !["" nowhere] !?ioDeclarationAST)
     while
-      <toMany_relationship>( !entityName !?signatureList !?ioDeclarationAST)
+      <toMany_relationship> (!entityName !?signatureList !?ioDeclarationAST)
     while
-      <toOne_relationship>( !entityName !?ioDeclarationAST)
+      <toOne_relationship> (!entityName !?ioDeclarationAST)
     while
-      <action_declaration>( !?actionDeclarationList)
+      <action_declaration> (!?actionDeclarationList)
     while
-      <controller_declaration>( !entityName !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST)
+      <controller_declaration> (!entityName !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST)
     while
-      <extern_swift_delegate>( !?externSwiftDelegateList)
+      <extern_swift_delegate> (!?externSwiftDelegateList)
     while
       $graphic$
-      $identifier$( ?let graphicOption)
+      $identifier$ (?let graphicOption)
       graphicOptionArray += !graphicOption
       $;$
       if not graphicEntity then
@@ -145,7 +145,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @entityDeclarationAST. firstAnalysisPhase(
+override proc @entityDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {
@@ -161,7 +161,7 @@ override proc @entityDeclarationAST. firstAnalysisPhase(
 
 #·······················································································································
 
-override proc @entityDeclarationAST. secondAnalysisPhase(
+override proc @entityDeclarationAST.secondAnalysisPhase(
     ?!@semanticContext ioSemanticContext
     ?!@generationStruct unused ioGeneration)
 {
@@ -204,7 +204,7 @@ override proc @entityDeclarationAST. secondAnalysisPhase(
 
 #·······················································································································
 
-override proc @entityDeclarationAST. fourthAnalysisPhase(
+override proc @entityDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -333,7 +333,7 @@ list @entityListForGeneratingEBManagedObjectContext {
 
 #·······················································································································
 
-override proc @entityForGeneration. generateCode(
+override proc @entityForGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset inToOneEntities
     ?toMany: @stringset inToManyEntities

@@ -50,7 +50,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-   rule <explicit_value>( !@abstractDefaultValue outDefaultValue) {
+   rule <explicit_value> (!@abstractDefaultValue outDefaultValue) {
     select
       $yes$
       outDefaultValue = @boolAsDefaultValue.new (!.new (!true !.here))
@@ -58,25 +58,25 @@ syntax extension easyBindings_syntax {
       $no$
       outDefaultValue = @boolAsDefaultValue.new (!.new (!false !.here))
     or
-      $literal_integer$( ?let @luint integerValue)
+      $literal_integer$ (?let @luint integerValue)
       outDefaultValue = @integerAsDefaultValue.new (!integerValue !false)
     or
       $-$
-      $literal_integer$( ?let @luint integerValue)
+      $literal_integer$ (?let @luint integerValue)
       outDefaultValue = @integerAsDefaultValue.new (!integerValue !true)
     or
-      $literal_double$( ?let @ldouble doubleValue ?*)
+      $literal_double$ (?let @ldouble doubleValue ?*)
       outDefaultValue = @doubleAsDefaultValue.new (!doubleValue)
     or
-      $literal_string$( ?let @lstring stringValue)
+      $literal_string$ (?let @lstring stringValue)
       outDefaultValue = @stringAsDefaultValue.new (!stringValue)
     or
-      $identifier$( ?let @lstring stringValue)
+      $identifier$ (?let @lstring stringValue)
       outDefaultValue = @identifierAsDefaultValue.new (!stringValue)
     or
       $prefs$
       $.$
-      $identifier$( ?let name)
+      $identifier$ (?let name)
       outDefaultValue = @prefsAsDefaultValue.new (!name)
     end
   }
@@ -89,21 +89,21 @@ syntax extension easyBindings_syntax {
 #   SEMANTICS                             
 #-----------------------------------------------------------------------------------------------------------------------
 
-abstract proc @abstractDefaultValue. analyzeDefaultValueType( 
+abstract proc @abstractDefaultValue.analyzeDefaultValueType (
   ?let @typeKindList inAttributeActualTypeList
   ?let @propertyMap inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString)
 
 #·······················································································································
 
-proc @abstractDefaultValue. enterDefaultValuePrecedence(
+proc @abstractDefaultValue.enterDefaultValuePrecedence(
    ?let @lstring unused inNode
    ?!@declarationPrecedenceGraph unused ioGraph) {
 }
 
 #·······················································································································
   
-override proc @boolAsDefaultValue. analyzeDefaultValueType( 
+override proc @boolAsDefaultValue.analyzeDefaultValueType (
   ?let @typeKindList inAttributeActualTypeList
   ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString)
@@ -131,7 +131,7 @@ override proc @boolAsDefaultValue. analyzeDefaultValueType(
 
 #·······················································································································
   
-override proc @integerAsDefaultValue. analyzeDefaultValueType( 
+override proc @integerAsDefaultValue.analyzeDefaultValueType (
   ?let @typeKindList inAttributeActualTypeList
   ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString)
@@ -167,7 +167,7 @@ override proc @integerAsDefaultValue. analyzeDefaultValueType(
 
 #·······················································································································
   
-override proc @doubleAsDefaultValue. analyzeDefaultValueType( 
+override proc @doubleAsDefaultValue.analyzeDefaultValueType (
   ?let @typeKindList inAttributeActualTypeList
   ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString)
@@ -195,7 +195,7 @@ override proc @doubleAsDefaultValue. analyzeDefaultValueType(
 
 #·······················································································································
   
-override proc @stringAsDefaultValue. analyzeDefaultValueType( 
+override proc @stringAsDefaultValue.analyzeDefaultValueType (
   ?let @typeKindList inAttributeActualTypeList
   ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString)
@@ -277,7 +277,7 @@ func %once predefinedColors() -> @stringset {
 }
 #·······················································································································
   
-override proc @identifierAsDefaultValue. analyzeDefaultValueType( 
+override proc @identifierAsDefaultValue.analyzeDefaultValueType (
   ?let @typeKindList inAttributeActualTypeList
   ?let @propertyMap unused inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString)
@@ -365,7 +365,7 @@ override proc @identifierAsDefaultValue. analyzeDefaultValueType(
 
 #·······················································································································
  
-override proc @prefsAsDefaultValue. analyzeDefaultValueType( 
+override proc @prefsAsDefaultValue.analyzeDefaultValueType (
   ?let @typeKindList inAttributeActualTypeList
   ?let @propertyMap inPreferencesPropertyMap
   !@string outSwiftDefaultValueAsString)
@@ -394,7 +394,7 @@ override proc @prefsAsDefaultValue. analyzeDefaultValueType(
 
 #·······················································································································
 
-override proc @prefsAsDefaultValue. enterDefaultValuePrecedence(
+override proc @prefsAsDefaultValue.enterDefaultValuePrecedence(
    ?let @lstring inNode
    ?!@declarationPrecedenceGraph ioGraph)
 {

@@ -8,13 +8,13 @@ class @enumerationDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @enumerationDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @enumerationDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   [!?ioGraph addNode !self.mClassName !self]
 }
 
 #·······················································································································
 
-override func @enumerationDeclarationAST. nodeKey() -> @lstring {
+override func @enumerationDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
@@ -34,13 +34,13 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <enum_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <enum_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $enum$
-    $Identifier$( ?let @lstring enumName)
+    $Identifier$ (?let @lstring enumName)
     ${$
     var @lstringlist enumConstants = {}
     repeat
-      $identifier$( ?let @lstring constantName)
+      $identifier$ (?let @lstring constantName)
       enumConstants += !constantName
     while
       $,$
@@ -51,19 +51,19 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <enum_function_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <enum_function_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $func$
     $enum$
-    $Identifier$( ?let @lstring enumName)
+    $Identifier$ (?let @lstring enumName)
     $.$    
-    $identifier$( ?let @lstring funcName)
+    $identifier$ (?let @lstring funcName)
     ${$
     var @2lstringlist associationList = {}
     repeat
     while
-      $identifier$( ?let @lstring constantName)
+      $identifier$ (?let @lstring constantName)
       $:$
-      $literal_string$( ?let @lstring associatedString)
+      $literal_string$ (?let @lstring associatedString)
       $;$
       associationList += !constantName !associatedString
     end 
@@ -104,7 +104,7 @@ map @enumFuncMap {
 
 #·······················································································································
 
-override proc @enumerationDeclarationAST. firstAnalysisPhase(
+override proc @enumerationDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -171,7 +171,7 @@ private filewrapper enumGenerationTemplate in "../generation-templates" {
 
 #·······················································································································
 
-override proc @enumForGeneration. generateCode(
+override proc @enumForGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities

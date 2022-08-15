@@ -17,9 +17,9 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <auto_layout_view_binding_specification>( ?let @lstring inClassName 
+  rule <auto_layout_view_binding_specification> (?let @lstring inClassName 
                                                 ?!@autoLayoutViewClassBindingSpecificationList ioBindingList) {
-    $bindingName$( ?let @lstring bindingName)
+    $bindingName$ (?let @lstring bindingName)
     var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
     repeat
       let @bool modelShouldBeWritableProperty
@@ -32,7 +32,7 @@ syntax extension easyBindings_syntax {
       end
       let @lstring modelTypeName
       select
-        $Identifier$( ?modelTypeName)
+        $Identifier$ (?modelTypeName)
       or
         $enum$
         modelTypeName = .new (!"enum" !.here)
@@ -46,9 +46,9 @@ syntax extension easyBindings_syntax {
     or
       $($
       repeat
-        $identifier$( ?let @lstring optionName)
+        $identifier$ (?let @lstring optionName)
         $:$
-        $Identifier$( ?let @lstring optionType)
+        $Identifier$ (?let @lstring optionType)
         bindingOptionList += !optionName !optionType
       while
         $,$

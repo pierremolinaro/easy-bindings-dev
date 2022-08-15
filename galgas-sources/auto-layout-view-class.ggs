@@ -29,7 +29,7 @@ enum @autoLayoutClassParameterType {
 
 #·······················································································································
 
-func @autoLayoutClassParameterType. string() -> @string {
+func @autoLayoutClassParameterType.string() -> @string {
   switch self
   case typeString : result = "String"
   case typeStringArray : result = "String array"
@@ -59,7 +59,7 @@ map @astAutoLayoutViewFunctionMap {
 
 #·······················································································································
 
-override proc @autoLayoutViewClassDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @autoLayoutViewClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   [!?ioGraph addNode !self.mClassName !self]
   if self.mSuperClassName.string != "" then
     [!?ioGraph addEdge !self.mClassName !self.mSuperClassName]
@@ -68,7 +68,7 @@ override proc @autoLayoutViewClassDeclarationAST. enterInPrecedenceGraph( ?!@dec
 
 #·······················································································································
 
-override func @autoLayoutViewClassDeclarationAST. nodeKey() -> @lstring {
+override func @autoLayoutViewClassDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
@@ -80,29 +80,29 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <autolayout_class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <autolayout_class_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $vStack$
     $func$
-    $identifier$( ?let functionName)
-    <autolayout_formal_parameter_list>( !functionName ?let parameterList ?let mangledName)
+    $identifier$ (?let functionName)
+    <autolayout_formal_parameter_list> (!functionName ?let parameterList ?let mangledName)
     $;$
     [!?ioDeclarationAST.mAutoLayoutVStackFunctionMap insertKey !mangledName !parameterList]
   }
   
  #·····················································································································
   
-  rule <autolayout_class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <autolayout_class_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $hStack$
     $func$
-    $identifier$( ?let functionName)
-    <autolayout_formal_parameter_list>( !functionName ?let parameterList ?let mangledName)
+    $identifier$ (?let functionName)
+    <autolayout_formal_parameter_list> (!functionName ?let parameterList ?let mangledName)
     $;$
     [!?ioDeclarationAST.mAutoLayoutHStackFunctionMap insertKey !mangledName !parameterList]
   }
   
   #·····················································································································
   
-  rule <autolayout_class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <autolayout_class_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     let @bool userDefined
     select
       $extern$
@@ -112,19 +112,19 @@ syntax extension easyBindings_syntax {
     end
     $autolayout$
     $class$
-    $Identifier$( ?let @lstring outletClassName)
+    $Identifier$ (?let @lstring outletClassName)
     let @autoLayoutClassParameterList parameterList
     select
       parameterList = {}
     or
-      <autolayout_formal_parameter_list>( !["" nowhere] ?parameterList ?*)
+      <autolayout_formal_parameter_list> (!["" nowhere] ?parameterList ?*)
     end
     let @lstring superClassName
     select
       superClassName = ["" here]
     or
       $:$
-      $Identifier$( ?superClassName)
+      $Identifier$ (?superClassName)
     end
     var @bool hasRunAction = false
     var @bool hasEnabled = false
@@ -153,11 +153,11 @@ syntax extension easyBindings_syntax {
     repeat
     while
       $func$
-      $identifier$( ?let functionName)
-      <autolayout_formal_parameter_list>( !functionName ?let parameterList ?let mangledName)
+      $identifier$ (?let functionName)
+      <autolayout_formal_parameter_list> (!functionName ?let parameterList ?let mangledName)
       [!?astAutoLayoutViewFunctionMap insertKey !mangledName !parameterList]
     while
-      <auto_layout_view_binding_specification>( !outletClassName !?ioDeclarationAST.mAutoLayoutBindingSpecificationList)
+      <auto_layout_view_binding_specification> (!outletClassName !?ioDeclarationAST.mAutoLayoutBindingSpecificationList)
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutViewClassDeclarationAST.new (
@@ -176,7 +176,7 @@ syntax extension easyBindings_syntax {
 
  #·····················································································································
   
-  rule <autolayout_formal_parameter_list>( ?let @lstring inFunctionName 
+  rule <autolayout_formal_parameter_list> (?let @lstring inFunctionName 
                                           !@autoLayoutClassParameterList ioParameterList
                                           !@lstring outMangledName) {
     ioParameterList = {}
@@ -185,7 +185,7 @@ syntax extension easyBindings_syntax {
     select
     or
       repeat
-        $identifier$( ?let parameterName)
+        $identifier$ (?let parameterName)
         mangledName += parameterName.string + ":"
         $:$
         select
@@ -198,7 +198,7 @@ syntax extension easyBindings_syntax {
           $entity$
           ioParameterList += !parameterName !.entity
         or
-          $Identifier$( ?let parameterTypeName)
+          $Identifier$ (?let parameterTypeName)
           if parameterTypeName.string == "String" then
             ioParameterList += !parameterName !.typeString
           elsif parameterTypeName.string == "StringArray" then
@@ -228,7 +228,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @autoLayoutViewClassDeclarationAST. firstAnalysisPhase(
+override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {

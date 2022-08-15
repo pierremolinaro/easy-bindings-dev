@@ -24,7 +24,7 @@ enum @arrayControllerBoundModelAST {
 
 #·······················································································································
 
-override proc @arrayControllerDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring.new (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
@@ -40,7 +40,7 @@ override proc @arrayControllerDeclarationAST. enterInPrecedenceGraph( ?!@declara
 
 #·······················································································································
 
-override func @arrayControllerDeclarationAST. nodeKey() -> @lstring {
+override func @arrayControllerDeclarationAST.nodeKey() -> @lstring {
   result = @lstring.new (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
 }
 
@@ -59,7 +59,7 @@ syntax extension easyBindings_syntax {
             ?!@astDeclarationStruct ioDeclarationAST)
   {
     $arrayController$
-    $controllerName$( ?let @lstring controllerName)
+    $controllerName$ (?let @lstring controllerName)
   #--- Model
     let @arrayControllerBoundModelAST model
     $:$
@@ -71,12 +71,12 @@ syntax extension easyBindings_syntax {
       model = .selfToManyRelationship
     end
     $.$
-    $identifier$( ?let @lstring relationshipName)
+    $identifier$ (?let @lstring relationshipName)
   #--- Hidden binding ?
     select
     or
       $hidden$
-       <booleanMultipleBindingExpression>( ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
+       <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       let hiddenSelectionViewBindingDescriptor = @multipleBindingDescriptor.binding (!expression:bindingExpression)
       ioArrayControllerBindingListAST += 
         !controllerName
@@ -99,7 +99,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @arrayControllerDeclarationAST. firstAnalysisPhase( 
+override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {
@@ -165,7 +165,7 @@ override proc @arrayControllerDeclarationAST. firstAnalysisPhase(
 #   SECOND ANALYSIS PHASE
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @arrayControllerDeclarationAST. thirdAnalysisPhase(
+override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -244,7 +244,7 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration. propertyDeclarationCode(
+override func @arrayControllerPropertyGeneration.propertyDeclarationCode(
    ?let @bool inPreferences
    ?let @stringset unused inOverriddenTransients) -> @string
 {
@@ -263,27 +263,27 @@ override func @arrayControllerPropertyGeneration. propertyDeclarationCode(
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration. initCode() -> @string {
+override func @arrayControllerPropertyGeneration.initCode() -> @string {
   result = ""
 }
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration. configurationCode( ?let @bool unused inPreferences) -> @string {
+override func @arrayControllerPropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".bind_model (self." + self.mModelString + "_property, self.ebUndoManager)\n"
 }
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration. populateExplorerWindowCode() -> @string {
+override func @arrayControllerPropertyGeneration.populateExplorerWindowCode() -> @string {
   result  = "    //--- Array controller property: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration. terminationCode( ?let @bool inPreferences) -> @string {
+override func @arrayControllerPropertyGeneration.terminationCode (?let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    " + prefix + self.mPropertyName + ".unbind_model ()\n"
@@ -327,7 +327,7 @@ private filewrapper arrayControllerGenerationTemplate in "../generation-template
 #   GENERATION
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @arrayControllerGeneration. generateCode(
+override proc @arrayControllerGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities

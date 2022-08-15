@@ -15,9 +15,9 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <action_declaration>( ?!@lstringlist ioActionDeclarationList) {
+  rule <action_declaration> (?!@lstringlist ioActionDeclarationList) {
     $action$
-    $identifier$( ?let @lstring actionName)
+    $identifier$ (?let @lstring actionName)
     $;$
     ioActionDeclarationList += !actionName
   }
@@ -60,7 +60,7 @@ class @actionFileGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-override proc @actionFileGeneration. generateCode(
+override proc @actionFileGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities

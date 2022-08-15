@@ -8,21 +8,21 @@ abstract class @abstractDeclarationAST {
 
 #·······················································································································
 
-abstract proc @abstractDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph)
+abstract proc @abstractDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph)
 
 #·······················································································································
 
-abstract func @abstractDeclarationAST. nodeKey() -> @lstring
+abstract func @abstractDeclarationAST.nodeKey() -> @lstring
 
 #·······················································································································
 
-abstract proc @abstractDeclarationAST. firstAnalysisPhase(
+abstract proc @abstractDeclarationAST.firstAnalysisPhase(
     ?!@semanticContext ioSemanticContext
     ?!@generationStruct ioGeneration)
 
 #·······················································································································
 
-proc @abstractDeclarationAST. secondAnalysisPhase(
+proc @abstractDeclarationAST.secondAnalysisPhase(
     ?!@semanticContext unused ioSemanticContext
     ?!@generationStruct unused ioGeneration)
 {
@@ -30,7 +30,7 @@ proc @abstractDeclarationAST. secondAnalysisPhase(
 
 #·······················································································································
 
-proc @abstractDeclarationAST. thirdAnalysisPhase(
+proc @abstractDeclarationAST.thirdAnalysisPhase(
     ?!@semanticContext unused ioSemanticContext
     ?!@generationStruct unused ioGeneration)
 {
@@ -38,7 +38,7 @@ proc @abstractDeclarationAST. thirdAnalysisPhase(
 
 #·······················································································································
 
-proc @abstractDeclarationAST. fourthAnalysisPhase(
+proc @abstractDeclarationAST.fourthAnalysisPhase(
     ?!@semanticContext unused ioSemanticContext
     ?!@generationStruct unused ioGeneration)
 {

@@ -43,14 +43,14 @@ list @autoLayoutOutletLinkerGenerationList {
 
 #·······················································································································
 
-override proc @autoLayoutDocumentDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @autoLayoutDocumentDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   [!?ioGraph addNode !self.mClassName !self]
   [!?ioGraph addEdge !self.mClassName !self.mRootEntityName]
 }
 
 #·······················································································································
 
-override func @autoLayoutDocumentDeclarationAST. nodeKey() -> @lstring {
+override func @autoLayoutDocumentDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
@@ -62,21 +62,21 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <document_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <document_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $autoLayoutDocument$
-    $Identifier$( ?let @lstring documentName)
+    $Identifier$ (?let @lstring documentName)
     let @string customSuperClassName
     select
       customSuperClassName = ""
     or
       $:$
-      $Identifier$( ?let name)
+      $Identifier$ (?let name)
       customSuperClassName = name.string
     end
     $root$
-    $Identifier$( ?let @lstring rootEntityName)
+    $Identifier$ (?let @lstring rootEntityName)
     $stackView$
-    $identifier$( ?let @lstring mainViewName)
+    $identifier$ (?let @lstring mainViewName)
     ${$
     var @outletDeclarationList outletDeclarationList = {}
     var @lstringlist actionDeclarationList = {}
@@ -86,15 +86,15 @@ syntax extension easyBindings_syntax {
     var @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = {}
     repeat
     while
-      <stack_view_declaration>( !?viewDeclarationList)
+      <stack_view_declaration> (!?viewDeclarationList)
     while
-      <action_declaration>( !?actionDeclarationList)
+      <action_declaration> (!?actionDeclarationList)
     while
-      <transient_declaration>( !documentName !rootEntityName !?ioDeclarationAST)
+      <transient_declaration> (!documentName !rootEntityName !?ioDeclarationAST)
     while
-      <outlet_declaration>( !?outletDeclarationList)
+      <outlet_declaration> (!?outletDeclarationList)
     while
-      <controller_declaration>( !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST)
+      <controller_declaration> (!documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST)
     while
       $toolbarItem$
       select
@@ -102,18 +102,18 @@ syntax extension easyBindings_syntax {
         $;$
         autoLayoutToolbarItemList += !.space
       or
-        $literal_string$( ?let title)
+        $literal_string$ (?let title)
         $:$
-        <computed_view_instruction>( ?let instruction)
+        <computed_view_instruction> (?let instruction)
         autoLayoutToolbarItemList += !.view (!title: title !instruction: instruction)
       end
     while
       $linker$
-      $identifier$( ?let linkerName)
+      $identifier$ (?let linkerName)
       $($
       var @lstringlist outletNameList = {}
       repeat
-        $identifier$( ?let outletName)
+        $identifier$ (?let outletName)
         outletNameList += !outletName
       while
         $,$
@@ -152,7 +152,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @autoLayoutDocumentDeclarationAST. firstAnalysisPhase(
+override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -174,7 +174,7 @@ override proc @autoLayoutDocumentDeclarationAST. firstAnalysisPhase(
 
 #·······················································································································
 
-override proc @autoLayoutDocumentDeclarationAST. fourthAnalysisPhase(
+override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -374,7 +374,7 @@ list @autoLayoutToolbarItemGenerationList {
 
 #·······················································································································
 
-override proc @autoLayoutDocumentFileGeneration. generateCode(
+override proc @autoLayoutDocumentFileGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities

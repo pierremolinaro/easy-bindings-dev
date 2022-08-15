@@ -6,9 +6,9 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <graphviz_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <graphviz_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $graphviz$
-    $Identifier$( ?let @lstring entityName)
+    $Identifier$ (?let @lstring entityName)
     ioDeclarationAST.mGraphvizList += !entityName
     $;$
  }
@@ -21,7 +21,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC TYPES                        
 #-----------------------------------------------------------------------------------------------------------------------
 
-proc graphvizAnalysis( 
+proc graphvizAnalysis (
   ?let @string inSourceFileDirectory
   ?let @semanticContext inSemanticContext
   ?let @lstringlist inGraphvizList)

@@ -12,7 +12,7 @@ class @transientDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @transientDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @transientDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring.new (!self.mClassName.string + " " + self.mTransientName !self.mTransientName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
@@ -71,7 +71,7 @@ override proc @transientDeclarationAST. enterInPrecedenceGraph( ?!@declarationPr
 
 #·······················································································································
 
-override func @transientDeclarationAST. nodeKey() -> @lstring {
+override func @transientDeclarationAST.nodeKey() -> @lstring {
   result = @lstring.new (!self.mClassName.string + " " + self.mTransientName !self.mTransientName.location)
 }
 
@@ -90,8 +90,8 @@ syntax extension easyBindings_syntax {
   {
     $abstract$
     $transient$
-    $Identifier$( ?let transientTypeName)
-    $identifier$( ?let @lstring transientName)
+    $Identifier$ (?let transientTypeName)
+    $identifier$ (?let @lstring transientName)
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new (
       !inCurrentEntity
@@ -118,12 +118,12 @@ syntax extension easyBindings_syntax {
       isOverriding = true
     end
     $transient$
-    $Identifier$( ?let transientTypeName)
-    $identifier$( ?let @lstring transientName)
+    $Identifier$ (?let transientTypeName)
+    $identifier$ (?let @lstring transientName)
     $dependsFrom$
     var @observablePropertyList dependanceList = {}
     repeat
-      <observable_property>( ?let @observablePropertyAST observablePropertyAST)
+      <observable_property> (?let @observablePropertyAST observablePropertyAST)
       dependanceList += !observablePropertyAST
     while
       $,$
@@ -144,7 +144,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @transientDeclarationAST. firstAnalysisPhase(
+override proc @transientDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {
@@ -174,7 +174,7 @@ override proc @transientDeclarationAST. firstAnalysisPhase(
 #   SECOND ANALYSIS PHASE
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @transientDeclarationAST. thirdAnalysisPhase(
+override proc @transientDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration) {
 #--- Property type
@@ -281,7 +281,7 @@ list @transientPropertyGenerationList {
 
 #·······················································································································
 
-override func @transientPropertyGeneration. declarationInSelectionControllerCode() -> @string {
+override func @transientPropertyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
@@ -290,13 +290,13 @@ override func @transientPropertyGeneration. declarationInSelectionControllerCode
 
 #·······················································································································
 
-override func @transientPropertyGeneration. initCode() -> @string {
+override func @transientPropertyGeneration.initCode() -> @string {
   result  = ""
 }
 
 #·······················································································································
 
-override func @transientPropertyGeneration. bindPropertyInSelectionController() -> @string {
+override func @transientPropertyGeneration.bindPropertyInSelectionController() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.addEBObserverOf_" + self.mPropertyName + " (self." + self.mPropertyName + "_property)\n"
@@ -339,7 +339,7 @@ override func @transientPropertyGeneration. bindPropertyInSelectionController() 
 
 #·······················································································································
 
-override func @transientPropertyGeneration. propertyDeclarationCode(
+override func @transientPropertyGeneration.propertyDeclarationCode(
    ?let @bool inPreferences
    ?let @stringset inOverriddenTransients) -> @string
 {
@@ -379,7 +379,7 @@ override func @transientPropertyGeneration. propertyDeclarationCode(
 
 #·······················································································································
 
-override func @transientPropertyGeneration. configurationCode( ?let @bool inPreferences) -> @string {
+override func @transientPropertyGeneration.configurationCode (?let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = ""
   if [self.mDependencyList length] > 0 then
@@ -408,7 +408,7 @@ override func @transientPropertyGeneration. configurationCode( ?let @bool inPref
 
 #·······················································································································
 
-override func @transientPropertyGeneration. terminationCode( ?let @bool unused inPreferences) -> @string {
+override func @transientPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
   result = ""
   for (mDependency 3*) in self.mDependencyList do
     let s = [mDependency generateRemoveObserverCall]
@@ -431,7 +431,7 @@ list @transientDependencyListForGeneration {
 
 #·······················································································································
 
-func @transientDependencyListForGeneration. transientComputeFunctionCall(
+func @transientDependencyListForGeneration.transientComputeFunctionCall(
                                         ?let @bool inPreferences
                                         ?let @string inOwnerName
                                         ?let @string inTransientName
@@ -494,7 +494,7 @@ func @transientDependencyListForGeneration. transientComputeFunctionCall(
 
 #·······················································································································
 
-func @transientDependencyListForGeneration. needs_unwSelf( ?let @bool inPreferences) -> @bool outResult {
+func @transientDependencyListForGeneration.needs_unwSelf (?let @bool inPreferences) -> @bool outResult {
   outResult = false
   for (dep 3*) in self while not outResult do
     outResult = [dep needs_unwSelf !inPreferences]
@@ -505,7 +505,7 @@ func @transientDependencyListForGeneration. needs_unwSelf( ?let @bool inPreferen
 #   GENERATION                            
 #-----------------------------------------------------------------------------------------------------------------------
 
-func @observablePropertyAST. generateAddObserverCall( ?let @bool inPreferences) -> @string outResult {
+func @observablePropertyAST.generateAddObserverCall (?let @bool inPreferences) -> @string outResult {
   let prefix = if inPreferences then "preferences_" else "self." end
   switch self
   case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
@@ -555,7 +555,7 @@ func @observablePropertyAST. generateAddObserverCall( ?let @bool inPreferences) 
 
 #·······················································································································
 
-func @observablePropertyAST. generateRemoveObserverCall() -> @string outResult {
+func @observablePropertyAST.generateRemoveObserverCall() -> @string outResult {
   switch self
   case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property.removeEBObserver"
@@ -616,7 +616,7 @@ class @transientRoutineGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-override proc @transientRoutineGeneration. generateCode(
+override proc @transientRoutineGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities

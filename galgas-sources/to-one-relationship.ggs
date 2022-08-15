@@ -19,7 +19,7 @@ class @toOneRelationshipAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @toOneRelationshipAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @toOneRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring.new (!self.mClassName.string + " " + self.mToOneRelationshipName !self.mToOneRelationshipName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
@@ -28,7 +28,7 @@ override proc @toOneRelationshipAST. enterInPrecedenceGraph( ?!@declarationPrece
 
 #·······················································································································
 
-override func @toOneRelationshipAST. nodeKey() -> @lstring {
+override func @toOneRelationshipAST.nodeKey() -> @lstring {
   result = @lstring.new (!self.mClassName.string + " " + self.mToOneRelationshipName !self.mToOneRelationshipName.location)
 }
 
@@ -40,12 +40,12 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
 
-  rule <toOne_relationship>( ?let @lstring inCurrentEntity ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <toOne_relationship> (?let @lstring inCurrentEntity ?!@astDeclarationStruct ioDeclarationAST) {
     $toOne$
     var @bool usedForSignature = false
     repeat
     while
-      $@attribute$( ?let attributeName)
+      $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
           error attributeName : "duplicated attribute" fixit { remove }
@@ -55,8 +55,8 @@ syntax extension easyBindings_syntax {
         error attributeName : "unknow attribute" fixit { replace "@signature" }
       end
     end
-    $Identifier$( ?let @lstring destinationEntityName)
-    $identifier$( ?let @lstring relationshipName)
+    $Identifier$ (?let @lstring destinationEntityName)
+    $identifier$ (?let @lstring relationshipName)
     let @toOneOppositeRelationship opposite
     select
       opposite = .none
@@ -64,11 +64,11 @@ syntax extension easyBindings_syntax {
       $inverse$
       select
         $toOne$
-        $identifier$( ?let inverseRelationshipName)
+        $identifier$ (?let inverseRelationshipName)
         opposite = .oppositeIsToOne (!oppositeRelationshipName: inverseRelationshipName)
       or
         $toMany$
-        $identifier$( ?let inverseRelationshipName)
+        $identifier$ (?let inverseRelationshipName)
         opposite = .oppositeIsToMany (!oppositeRelationshipName: inverseRelationshipName)
       end
     end
@@ -90,7 +90,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @toOneRelationshipAST. firstAnalysisPhase( 
+override proc @toOneRelationshipAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -120,7 +120,7 @@ override proc @toOneRelationshipAST. firstAnalysisPhase(
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @toOneRelationshipAST. thirdAnalysisPhase( 
+override proc @toOneRelationshipAST.thirdAnalysisPhase (
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {
@@ -172,7 +172,7 @@ list @toOnePropertyGenerationList {
 
 #·······················································································································
 
-override func @toOnePropertyGeneration. propertyDeclarationCode(
+override func @toOnePropertyGeneration.propertyDeclarationCode(
    ?let @bool unused inPreferences
    ?let @stringset unused inOverriddenTransients) -> @string
 {
@@ -201,13 +201,13 @@ override func @toOnePropertyGeneration. propertyDeclarationCode(
 
 #·······················································································································
 
-override func @toOnePropertyGeneration. initCode() -> @string {
+override func @toOnePropertyGeneration.initCode() -> @string {
   result = ""
 }
 
 #·······················································································································
 
-override func @toOnePropertyGeneration. configurationCode( ?let @bool unused inPreferences) -> @string {
+override func @toOnePropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
   switch self.mOpposite
   case oppositeIsToMany (oppositeName) :
     result  = "  //--- To one property: " + self.mPropertyName + " (has opposite to many relationship: " + oppositeName + ")\n"
@@ -231,7 +231,7 @@ override func @toOnePropertyGeneration. configurationCode( ?let @bool unused inP
 
 #·······················································································································
 
-override func @toOnePropertyGeneration. setupRelationshipFromDictionaryCode() -> @string {
+override func @toOnePropertyGeneration.setupRelationshipFromDictionaryCode() -> @string {
   result  = "  //--- To one property: " + self.mPropertyName + "\n"
   result += "    do{\n"
   result += "      let possibleEntity = readEntityFromDictionary (\n"
@@ -247,7 +247,7 @@ override func @toOnePropertyGeneration. setupRelationshipFromDictionaryCode() ->
 
 #·······················································································································
 
-override func @toOnePropertyGeneration. saveIntoDictionaryCode() -> @string {
+override func @toOnePropertyGeneration.saveIntoDictionaryCode() -> @string {
   result  = ""
   switch self.mOpposite
   case oppositeIsToMany (*) :
@@ -266,7 +266,7 @@ override func @toOnePropertyGeneration. saveIntoDictionaryCode() -> @string {
 
 #·······················································································································
 
-override func @toOnePropertyGeneration. objectAccessibilityCode() -> @string {
+override func @toOnePropertyGeneration.objectAccessibilityCode() -> @string {
   result  = "  //--- To one property: " + self.mPropertyName + "\n"
   result += "    if let object = self." + self.mPropertyName + " {\n"
   result += "      objects.append (object)\n"
@@ -275,7 +275,7 @@ override func @toOnePropertyGeneration. objectAccessibilityCode() -> @string {
 
 #·······················································································································
 
-override func @toOnePropertyGeneration. objectAccessibilityCodeForSaveOperation() -> @string {
+override func @toOnePropertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string {
   result  = "  //--- To one property: " + self.mPropertyName + "\n"
   result += "    if let object = self." + self.mPropertyName + " {\n"
   result += "      objects.append (object)\n"
@@ -284,7 +284,7 @@ override func @toOnePropertyGeneration. objectAccessibilityCodeForSaveOperation(
 
 #·······················································································································
 
-override func @toOnePropertyGeneration. clearObjectExplorerCode() -> @string {
+override func @toOnePropertyGeneration.clearObjectExplorerCode() -> @string {
   result  = "    //--- To one property: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
   result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"

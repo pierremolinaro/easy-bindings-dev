@@ -11,7 +11,7 @@ class @selectionControllerDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @selectionControllerDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring.new (!self.mClassName.string + " " + self.mSelectionControllerName !self.mSelectionControllerName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mModelControllerName !self.mModelControllerName.location)]
@@ -19,7 +19,7 @@ override proc @selectionControllerDeclarationAST. enterInPrecedenceGraph( ?!@dec
 
 #·······················································································································
 
-override func @selectionControllerDeclarationAST. nodeKey() -> @lstring {
+override func @selectionControllerDeclarationAST.nodeKey() -> @lstring {
   result = @lstring.new (!self.mClassName.string + " " + self.mSelectionControllerName !self.mSelectionControllerName.location)
 }
 
@@ -38,12 +38,12 @@ syntax extension easyBindings_syntax {
             ?!@astDeclarationStruct ioDeclarationAST)
   {
     $selectionController$
-    $Identifier$( ?let @lstring selectionEntityName)
-    $controllerName$( ?let @lstring selectionControllerName)
+    $Identifier$ (?let @lstring selectionEntityName)
+    $controllerName$ (?let @lstring selectionControllerName)
     $:$
-    $controllerName$( ?let modelControllerName)
+    $controllerName$ (?let modelControllerName)
     $.$
-    $identifier$( ?let @lstring propertyName)
+    $identifier$ (?let @lstring propertyName)
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@selectionControllerDeclarationAST.new (
       !inCurrentEntity
@@ -62,7 +62,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @selectionControllerDeclarationAST. firstAnalysisPhase(
+override proc @selectionControllerDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {
@@ -97,7 +97,7 @@ override proc @selectionControllerDeclarationAST. firstAnalysisPhase(
 
 #·······················································································································
 
-override proc @selectionControllerDeclarationAST. fourthAnalysisPhase(
+override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -160,7 +160,7 @@ class @selectionControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override func @selectionControllerPropertyGeneration. propertyDeclarationCode(
+override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
    ?let @bool unused inPreferences
    ?let @stringset unused inOverriddenTransients) -> @string
 {
@@ -172,7 +172,7 @@ override func @selectionControllerPropertyGeneration. propertyDeclarationCode(
 
 #·······················································································································
 
-override func @selectionControllerPropertyGeneration. configurationCode( ?let @bool unused inPreferences) -> @string {
+override func @selectionControllerPropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
   result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".bind_selection (model: self." + self.mModelControllerName
     + "." + self.mModelControllerPropertyName + "_property)\n"
@@ -180,20 +180,20 @@ override func @selectionControllerPropertyGeneration. configurationCode( ?let @b
 
 #·······················································································································
 
-override func @selectionControllerPropertyGeneration. initCode() -> @string {
+override func @selectionControllerPropertyGeneration.initCode() -> @string {
   result  = ""
 }
 
 #·······················································································································
 
-override func @selectionControllerPropertyGeneration. populateExplorerWindowCode() -> @string {
+override func @selectionControllerPropertyGeneration.populateExplorerWindowCode() -> @string {
   result  = "    //--- Selection controller property: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
 #·······················································································································
 
-override func @selectionControllerPropertyGeneration. terminationCode( ?let @bool unused inPreferences) -> @string {
+override func @selectionControllerPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
   result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".unbind_selection ()\n"
 }

@@ -8,13 +8,13 @@ class @transientClassDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @transientClassDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @transientClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   [!?ioGraph addNode !self.mClassName !self]
 }
 
 #·······················································································································
 
-override func @transientClassDeclarationAST. nodeKey() -> @lstring {
+override func @transientClassDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
@@ -26,7 +26,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <class_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $transient$
      $property$
     let @bool isClass
@@ -37,7 +37,7 @@ syntax extension easyBindings_syntax {
       $struct$
       isClass = false
     end
-    $Identifier$( ?let @lstring propertyTypeName)
+    $Identifier$ (?let @lstring propertyTypeName)
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@transientClassDeclarationAST.new (
       !propertyTypeName
@@ -53,7 +53,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @transientClassDeclarationAST. firstAnalysisPhase(
+override proc @transientClassDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {

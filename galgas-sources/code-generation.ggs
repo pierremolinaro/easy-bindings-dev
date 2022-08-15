@@ -14,7 +14,7 @@ abstract class @abstractFileGeneration {
 
 #·······················································································································
 
-abstract proc @abstractFileGeneration. generateCode(
+abstract proc @abstractFileGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset inToOneEntities
     ?toMany: @stringset inToManyEntities

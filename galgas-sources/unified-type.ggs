@@ -2,7 +2,7 @@
 #   AST   
 #-----------------------------------------------------------------------------------------------------------------------
 
-func @typeKind. typeName() -> @string {
+func @typeKind.typeName() -> @string {
   switch self
   case boolType :
     result = "Bool"
@@ -39,7 +39,7 @@ func @typeKind. typeName() -> @string {
 
 #·······················································································································
 
-func @typeKind. isComparable() -> @bool outResult {
+func @typeKind.isComparable() -> @bool outResult {
   switch self
   case boolType, integerType, uint32Type, doubleType, stringType, dateType, dataType :
     outResult = true
@@ -58,7 +58,7 @@ func @typeKind. isComparable() -> @bool outResult {
 
 #·······················································································································
 
-func @typeKind. isGraphic() -> @bool outResult {
+func @typeKind.isGraphic() -> @bool outResult {
   switch self
   case boolType, integerType, uint32Type, doubleType, stringType, dateType,
        dataType, bezierPathType, bezierPathArrayType :
@@ -84,7 +84,7 @@ list @typeKindList {
 
 #·······················································································································
 
-func @propertyKind. typeName() -> @string {
+func @propertyKind.typeName() -> @string {
   switch self
   case property (type *) :
     result = [type typeName]
@@ -101,7 +101,7 @@ func @propertyKind. typeName() -> @string {
 
 #·······················································································································
 
-func @propertyKind. swiftTypeName() -> @string {
+func @propertyKind.swiftTypeName() -> @string {
   switch self
   case property (type *) :
     result = [type swiftTypeName]
@@ -118,7 +118,7 @@ func @propertyKind. swiftTypeName() -> @string {
 
 #·······················································································································
 
-func @typeKind. swiftTypeName() -> @string outResult {
+func @typeKind.swiftTypeName() -> @string outResult {
   switch self
   case integerType : outResult = "Int"
   case uint32Type : outResult = "UInt32"
@@ -140,7 +140,7 @@ func @typeKind. swiftTypeName() -> @string outResult {
 
 #·······················································································································
 
-func @propertyKind. isTransient() -> @bool {
+func @propertyKind.isTransient() -> @bool {
   switch self
   case property (* accessibility) : result = [accessibility isTransient]
   case toMany (* accessibility 2*) : result = [accessibility isTransient]
@@ -152,7 +152,7 @@ func @propertyKind. isTransient() -> @bool {
 
 #·······················································································································
 
-func @propertyKind. isComparable() -> @bool {
+func @propertyKind.isComparable() -> @bool {
   switch self
   case property (type *) : result = [type isComparable]
   case toMany (4*) : result = false
@@ -164,7 +164,7 @@ func @propertyKind. isComparable() -> @bool {
 
 #·······················································································································
 
-func @propertyKind. isEntityType() -> @bool {
+func @propertyKind.isEntityType() -> @bool {
   switch self
   case property (2*) : result = false
   case toMany (4*) : result = true
@@ -176,7 +176,7 @@ func @propertyKind. isEntityType() -> @bool {
 
 #·······················································································································
 
-func @propertyKind. isEnumType() -> @bool {
+func @propertyKind.isEnumType() -> @bool {
   switch self
   case property (type *) : result = [type isEnumType]
   case toMany (4*) : result = false

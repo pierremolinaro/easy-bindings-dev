@@ -20,7 +20,7 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @atomicPropertyDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring.new (!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
@@ -30,7 +30,7 @@ override proc @atomicPropertyDeclarationAST. enterInPrecedenceGraph( ?!@declarat
 
 #·······················································································································
 
-override func @atomicPropertyDeclarationAST. nodeKey() -> @lstring {
+override func @atomicPropertyDeclarationAST.nodeKey() -> @lstring {
   result = @lstring.new (!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location)
 }
 
@@ -53,7 +53,7 @@ syntax extension easyBindings_syntax {
 #    var @bool needsValidation = false
     repeat
     while
-      $@attribute$( ?let attributeName)
+      $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
 #        if needsValidation then
 #          error attributeName : "duplicated attribute" fixit { remove }
@@ -68,13 +68,13 @@ syntax extension easyBindings_syntax {
         error attributeName : "unknow attribute" fixit { replace "@signature" replace "@validation" }
       end
     end
-    $Identifier$( ?let @lstring attributeTypeName)
-    $identifier$( ?let @lstring attributeName)
+    $Identifier$ (?let @lstring attributeTypeName)
+    $identifier$ (?let @lstring attributeName)
     if usedForSignature then
       ioSignatureList += !attributeName.string
     end
     $default$
-    <explicit_value>( ?let @abstractDefaultValue defaultValue)
+    <explicit_value> (?let @abstractDefaultValue defaultValue)
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@atomicPropertyDeclarationAST.new(
       !inClassName
@@ -96,7 +96,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @atomicPropertyDeclarationAST. firstAnalysisPhase(
+override proc @atomicPropertyDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct unused ioGeneration)
 {
@@ -161,13 +161,13 @@ list @atomicPropertyGenerationList {
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. prefKeyDefinitionCode() -> @string {
+override func @atomicPropertyGeneration.prefKeyDefinitionCode() -> @string {
   result = "let Preferences_" + self.mPropertyName + " = \"Preferences:" + self.mPropertyName + "\"\n"
 }
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. declarationInSelectionControllerCode() -> @string {
+override func @atomicPropertyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
@@ -176,7 +176,7 @@ override func @atomicPropertyGeneration. declarationInSelectionControllerCode() 
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. bindPropertyInSelectionController() -> @string {
+override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.addEBObserverOf_" + self.mPropertyName + " (self." + self.mPropertyName + "_property)\n"
@@ -232,7 +232,7 @@ override func @atomicPropertyGeneration. bindPropertyInSelectionController() -> 
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. propertyDeclarationCode(
+override func @atomicPropertyGeneration.propertyDeclarationCode(
    ?let @bool unused inPreferences
    ?let @stringset unused inOverriddenTransients) -> @string
 {
@@ -272,14 +272,14 @@ override func @atomicPropertyGeneration. propertyDeclarationCode(
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. initCode() -> @string {
+override func @atomicPropertyGeneration.initCode() -> @string {
   result  = "    self." + self.mPropertyName + "_property = EBStoredProperty_" + [self.mType swiftTypeName]
   result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: ebUndoManager)\n"
 }
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. configurationCode( ?let @bool unused inPreferences) -> @string {
+override func @atomicPropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
   result = ""
 #  if self.mNeedsValidation then
 #    result += "  //--- Atomic property: " + self.mPropertyName + "\n"
@@ -291,21 +291,21 @@ override func @atomicPropertyGeneration. configurationCode( ?let @bool unused in
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. setupAtomicPropertyFromDictionaryCode() -> @string {
+override func @atomicPropertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string {
   result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey: \"" + self.mPropertyName + "\")\n"
 }
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. saveIntoDictionaryCode() -> @string {
+override func @atomicPropertyGeneration.saveIntoDictionaryCode() -> @string {
   result  = "    //--- Atomic property: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
 }
 
 #·······················································································································
 
-override func @atomicPropertyGeneration. clearObjectExplorerCode() -> @string {
+override func @atomicPropertyGeneration.clearObjectExplorerCode() -> @string {
   result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
   result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"

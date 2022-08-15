@@ -80,7 +80,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
 
 rule 'a'->'z' {
   repeat
-    enterCharacterIntoString ( !?tokenString !* )
+    enterCharacterIntoString  (!?tokenString !* )
   while 'a'->'z' | 'A'->'Z' | '0'->'9' | '_' :
   end
   send search tokenString in lowerCaseKeyWordList default $identifier$
@@ -88,7 +88,7 @@ rule 'a'->'z' {
 
 rule 'A'->'Z' {
   repeat
-    enterCharacterIntoString ( !?tokenString !* )
+    enterCharacterIntoString  (!?tokenString !* )
   while 'a'->'z' | 'A'->'Z' | '0'->'9' :
   end
   send $Identifier$
@@ -176,24 +176,24 @@ message decimalNumberTooLarge : "decimal number too large"
 message internalError : "internal error"
 
 rule '0'->'9' {
-  enterCharacterIntoString ( !?tokenString !* )
+  enterCharacterIntoString  (!?tokenString !* )
   repeat
   while '0'->'9' :
-    enterCharacterIntoString ( !?tokenString !* )
+    enterCharacterIntoString  (!?tokenString !* )
   while '_' :
   end
   select
   case '.' :
-    enterCharacterIntoString ( !?tokenString !'.' )
+    enterCharacterIntoString  (!?tokenString !'.' )
     repeat
     while '0'->'9' :
-      enterCharacterIntoString ( !?tokenString !* )
+      enterCharacterIntoString  (!?tokenString !* )
     while '_' :
     end
-    convertStringToDouble ( !tokenString !?floatValue error floatNumberConversionError )
+    convertStringToDouble  (!tokenString !?floatValue error floatNumberConversionError )
     send $literal_double$
   default
-    convertDecimalStringIntoUInt ( !tokenString !?uint32value error decimalNumberTooLarge, internalError )
+    convertDecimalStringIntoUInt  (!tokenString !?uint32value error decimalNumberTooLarge, internalError )
     send $literal_integer$
   end
 }

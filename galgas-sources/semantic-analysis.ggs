@@ -17,63 +17,63 @@ abstract class @propertyGeneration {
 
 #·······················································································································
 
-func @propertyGeneration. prefKeyDefinitionCode() -> @string { result = "" }
+func @propertyGeneration.prefKeyDefinitionCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. declarationInSelectionControllerCode() -> @string { result = "" }
+func @propertyGeneration.declarationInSelectionControllerCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. bindPropertyInSelectionController() -> @string { result = "" }
+func @propertyGeneration.bindPropertyInSelectionController() -> @string { result = "" }
 
 #·······················································································································
 
-abstract func @propertyGeneration. propertyDeclarationCode( ?let @bool inPreferences ?let @stringset inOverriddenTransients) -> @string
+abstract func @propertyGeneration.propertyDeclarationCode (?let @bool inPreferences ?let @stringset inOverriddenTransients) -> @string
 
 #·······················································································································
 
-abstract func @propertyGeneration. configurationCode( ?let @bool inPreferences) -> @string
+abstract func @propertyGeneration.configurationCode (?let @bool inPreferences) -> @string
 
 #·······················································································································
 
-abstract func @propertyGeneration. initCode() -> @string
+abstract func @propertyGeneration.initCode() -> @string
 
 #·······················································································································
 
-func @propertyGeneration. terminationCode( ?let @bool unused inPreferences) -> @string { result = "" }
+func @propertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. setupAtomicPropertyFromDictionaryCode() -> @string { result = "" }
+func @propertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. setupRelationshipFromDictionaryCode() -> @string { result = "" }
+func @propertyGeneration.setupRelationshipFromDictionaryCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. saveIntoDictionaryCode() -> @string { result = "" }
+func @propertyGeneration.saveIntoDictionaryCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. objectAccessibilityCode() -> @string { result = "" }
+func @propertyGeneration.objectAccessibilityCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. objectAccessibilityCodeForSaveOperation() -> @string { result = "" }
+func @propertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. populateExplorerWindowCode() -> @string { result = "" }
+func @propertyGeneration.populateExplorerWindowCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. clearObjectExplorerCode() -> @string { result = "" }
+func @propertyGeneration.clearObjectExplorerCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration. resetToManyRelationships() -> @string { result = "" }
+func @propertyGeneration.resetToManyRelationships() -> @string { result = "" }
 
 #·······················································································································
 
@@ -142,7 +142,7 @@ map @propertyMap {
 
 #·······················································································································
 
-func @propertyMap-element. isAbstract() -> @bool {
+func @propertyMap-element.isAbstract() -> @bool {
   result = false
   if let [self.mKind property ?1* ?accessibility:let @propertyAccessibility accessibility] then
     if [accessibility isTransient] then

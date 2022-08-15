@@ -20,13 +20,13 @@ class @prefsDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-override proc @prefsDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+override proc @prefsDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   [!?ioGraph addNode !self.mClassName !self]
 }
 
 #·······················································································································
 
-override func @prefsDeclarationAST. nodeKey() -> @lstring {
+override func @prefsDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
@@ -44,7 +44,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <preferences_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <preferences_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $prefs$
     let prefs = @lstring.new (!preferencesName () !.here)
     ${$
@@ -53,10 +53,10 @@ syntax extension easyBindings_syntax {
     repeat
     while
       var @astViewDeclarationList viewDeclarationList = {}
-      <stack_view_declaration>( !?viewDeclarationList)
+      <stack_view_declaration> (!?viewDeclarationList)
       ioDeclarationAST.mPreferences.mViewDeclarationList += viewDeclarationList
     while
-      <action_declaration>( !?ioDeclarationAST.mPreferences.mActionDeclarationList)
+      <action_declaration> (!?ioDeclarationAST.mPreferences.mActionDeclarationList)
     while
       var @simpleStoredPropertyList simpleStoredPropertyList = {}
       <simple_stored_declaration>(
@@ -66,15 +66,15 @@ syntax extension easyBindings_syntax {
         !?ioDeclarationAST)
       ioDeclarationAST.mPreferences.mSimpleStoredAttributeList += simpleStoredPropertyList
     while
-      <outlet_declaration>( !?ioDeclarationAST.mPreferences.mOutletDeclarationList)
+      <outlet_declaration> (!?ioDeclarationAST.mPreferences.mOutletDeclarationList)
     while
-      <transient_declaration>( !prefs !["" nowhere] !?ioDeclarationAST)
+      <transient_declaration> (!prefs !["" nowhere] !?ioDeclarationAST)
     while
-      <extern_swift_func>( !?ioDeclarationAST.mPreferences.mExternSwiftFunctionList)
+      <extern_swift_func> (!?ioDeclarationAST.mPreferences.mExternSwiftFunctionList)
     while
-      <toMany_relationship>( !prefs !?* !?ioDeclarationAST)
+      <toMany_relationship> (!prefs !?* !?ioDeclarationAST)
     while
-      <controller_declaration>( !prefs !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST)
+      <controller_declaration> (!prefs !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST)
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
@@ -88,7 +88,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @prefsDeclarationAST. firstAnalysisPhase(
+override proc @prefsDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -113,7 +113,7 @@ override proc @prefsDeclarationAST. firstAnalysisPhase(
 #   THIRD ANALYSIS PHASE
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @prefsDeclarationAST. fourthAnalysisPhase(
+override proc @prefsDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext
        ?!@generationStruct ioGeneration)
 {
@@ -246,7 +246,7 @@ private filewrapper prefsGenerationTemplate in "../generation-templates" {
 
 #·······················································································································
 
-override proc @preferencesForGeneration. generateCode(
+override proc @preferencesForGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities

@@ -42,11 +42,11 @@ syntax extension easyBindings_syntax {
 
 #·······················································································································
 
-  rule <outlet_declaration>( ?!@outletDeclarationList ioOutletDeclarationList) {
+  rule <outlet_declaration> (?!@outletDeclarationList ioOutletDeclarationList) {
     $outlet$
-    $Identifier$( ?let outletTypeName)
-    $identifier$( ?let outletName)
-    <outlet_binding>( ?let @tableValueBinding tableValueBinding
+    $Identifier$ (?let outletTypeName)
+    $identifier$ (?let outletName)
+    <outlet_binding> (?let @tableValueBinding tableValueBinding
                      ?let @runActionDescriptor runActionDescriptor
                      ?let @multipleBindingDescriptor enabledBindingDescriptor
                      ?let @multipleBindingDescriptor hiddenBindingDescriptor
@@ -66,7 +66,7 @@ syntax extension easyBindings_syntax {
  
  #·······················································································································
 
-  rule <outlet_binding>( !@tableValueBinding tableValueBinding
+  rule <outlet_binding> (!@tableValueBinding tableValueBinding
                         !@runActionDescriptor runActionDescriptor
                         !@multipleBindingDescriptor enabledBindingDescriptor
                         !@multipleBindingDescriptor hiddenBindingDescriptor
@@ -85,7 +85,7 @@ syntax extension easyBindings_syntax {
       if tableValueBinding != .noTableValueBinding then
         error .here : "duplicated $tableValue binding"
       end
-      $controllerName$( ?let @lstring controllerName)
+      $controllerName$ (?let @lstring controllerName)
       tableValueBinding = .tableValueBinding (!controllerName: controllerName)
     while
       $run$
@@ -96,10 +96,10 @@ syntax extension easyBindings_syntax {
       select
         runTargetName = @lstring.new (!"self" !.here)
       or
-        $controllerName$( ?runTargetName)
+        $controllerName$ (?runTargetName)
         $.$
       end
-      $identifier$( ?let @lstring runActionName)
+      $identifier$ (?let @lstring runActionName)
       runActionDescriptor = .action (!target:runTargetName !action:runActionName)
   #--- Enabled
     while
@@ -107,7 +107,7 @@ syntax extension easyBindings_syntax {
       if enabledBindingDescriptor != .noBinding then
         error .here : "duplicated $enabled binding"
       end
-      <booleanMultipleBindingExpression>( ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
+      <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       enabledBindingDescriptor = .binding (!expression:bindingExpression)
   #--- Hidden
     while
@@ -115,19 +115,19 @@ syntax extension easyBindings_syntax {
       if hiddenBindingDescriptor != .noBinding then
         error .here : "duplicated $hidden binding"
       end
-      <booleanMultipleBindingExpression>( ?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
+      <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       hiddenBindingDescriptor = .binding (!expression:bindingExpression)
   #--- Regular binding
     while
-      $bindingName$( ?let @lstring bindingName)
+      $bindingName$ (?let @lstring bindingName)
       var @observablePropertyList observablePropertyList = {}
       repeat
-        <observable_property>( ?let @observablePropertyAST observableProperty)
+        <observable_property> (?let @observablePropertyAST observableProperty)
         observablePropertyList += !observableProperty
       while
         $,$
       end
-      <binding_option_list>( ?let bindingOptions)
+      <binding_option_list> (?let bindingOptions)
       regularBindingList +=
         !bindingName
         !observablePropertyList
@@ -135,13 +135,13 @@ syntax extension easyBindings_syntax {
   #--- Graphic controller binding
     while
       $graphicController$
-      $controllerName$( ?let @lstring graphicControllerName)
+      $controllerName$ (?let @lstring graphicControllerName)
       let @lstring propertyName
       select
         propertyName = ["" here]
       or
         $.$
-        $identifier$( ?propertyName)
+        $identifier$ (?propertyName)
       end
       if [graphicController isNone] then
         graphicController = .defined (!controller:graphicControllerName !propertyName: propertyName)

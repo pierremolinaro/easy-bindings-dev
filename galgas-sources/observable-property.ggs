@@ -44,18 +44,18 @@ syntax extension easyBindings_syntax {
     select
       $root$
       $.$
-      $identifier$( ?let propertyName)
+      $identifier$ (?let propertyName)
       select
         outObservablePropertyAST = .rootProperty (!propertyName:propertyName)
       or
         $.$
         select
-          $identifier$( ?let optionName)
+          $identifier$ (?let optionName)
           outObservablePropertyAST = .rootPropertyWithOption (!propertyName:propertyName !optionName:optionName)
         or
           $all$
           $.$
-          $identifier$( ?let observablePropertyName)
+          $identifier$ (?let observablePropertyName)
           outObservablePropertyAST = .rootPropertyRelationship (
             !relationshipName:propertyName !propertyName:observablePropertyName
           )
@@ -70,7 +70,7 @@ syntax extension easyBindings_syntax {
         outObservablePropertyAST = .selfWithoutProperty (!issueLocation: .here)
       or
         $.$
-        $identifier$( ?let propertyName)
+        $identifier$ (?let propertyName)
         select
           outObservablePropertyAST = .selfProperty (!propertyName:propertyName)
         or
@@ -78,7 +78,7 @@ syntax extension easyBindings_syntax {
           select
             $all$
             $.$
-            $identifier$( ?let elementPropertyName)
+            $identifier$ (?let elementPropertyName)
             outObservablePropertyAST = .selfPropertyArray (
               !propertyName:propertyName
               !elementPropertyName:elementPropertyName
@@ -86,7 +86,7 @@ syntax extension easyBindings_syntax {
           or
             $one$
             $.$
-            $identifier$( ?let elementPropertyName)
+            $identifier$ (?let elementPropertyName)
             outObservablePropertyAST = .selfPropertyObject (
               !propertyName:propertyName
               !elementPropertyName:elementPropertyName
@@ -95,7 +95,7 @@ syntax extension easyBindings_syntax {
             $none$
             outObservablePropertyAST = .selfPropertyNone (!propertyName:propertyName)
           or
-            $identifier$( ?let optionName)
+            $identifier$ (?let optionName)
             outObservablePropertyAST = .selfPropertyWithOption (!propertyName:propertyName !optionName:optionName)
           end
         end
@@ -103,29 +103,29 @@ syntax extension easyBindings_syntax {
     or
       $prefs$
       $.$
-      $identifier$( ?let propertyName)
+      $identifier$ (?let propertyName)
       select
         outObservablePropertyAST = .prefsProperty (!propertyName:propertyName)
       or
         $.$ ;
-        $identifier$( ?let optionName)
+        $identifier$ (?let optionName)
         outObservablePropertyAST = .prefsPropertyWithOption (!propertyName:propertyName !optionName:optionName)
       end
     or
-      $controllerName$( ?let controllerName)
+      $controllerName$ (?let controllerName)
       $.$
       select
         $one$
         $.$
-        $identifier$( ?let propertyName)
+        $identifier$ (?let propertyName)
         outObservablePropertyAST = .selfControllerOneProperty (!controllerName:controllerName !propertyName:propertyName)
       or
-        $identifier$( ?let propertyName)
+        $identifier$ (?let propertyName)
         select
           outObservablePropertyAST = .selfControllerProperty (!controllerName:controllerName !propertyName:propertyName)
         or
           $.$
-          $identifier$( ?let secondaryPropertyName)
+          $identifier$ (?let secondaryPropertyName)
           outObservablePropertyAST = .selfControllerSecondaryProperty (
             !controllerName:controllerName
             !propertyName:propertyName
@@ -135,7 +135,7 @@ syntax extension easyBindings_syntax {
           $.$
           $all$
           $.$
-          $identifier$( ?let secondaryPropertyName)
+          $identifier$ (?let secondaryPropertyName)
           outObservablePropertyAST = .selfControllerAllProperties (
             !controllerName: controllerName
             !propertyName: propertyName
@@ -155,9 +155,9 @@ syntax extension easyBindings_syntax {
     or
       $super$
       $.$
-      $Identifier$( ?let superEntityName)
+      $Identifier$ (?let superEntityName)
       $.$
-      $identifier$( ?let propertyName)
+      $identifier$ (?let propertyName)
       select
         outObservablePropertyAST = .superProperty (
           !superEntityName: superEntityName
@@ -165,7 +165,7 @@ syntax extension easyBindings_syntax {
         )
       or
         $default$
-        <explicit_value>( ?let @abstractDefaultValue defaultValue)
+        <explicit_value> (?let @abstractDefaultValue defaultValue)
         outObservablePropertyAST = .superPropertyWithDefaultValue (
           !superEntityName: superEntityName
           !propertyName: propertyName
@@ -183,7 +183,7 @@ syntax extension easyBindings_syntax {
 #  SEMANTICS                              
 #-----------------------------------------------------------------------------------------------------------------------
 
-func @observablePropertyAST. modelStringForSelf( ?let @string inSelf) -> @string outResult {
+func @observablePropertyAST.modelStringForSelf (?let @string inSelf) -> @string outResult {
   switch self
   case rootProperty (@lstring propertyName) :
     outResult = inSelf + "rootObject." + propertyName + "_property"
@@ -232,7 +232,7 @@ func @observablePropertyAST. modelStringForSelf( ?let @string inSelf) -> @string
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-func @observablePropertyAST. modelStringFunctionArgument() -> @string outResult {
+func @observablePropertyAST.modelStringFunctionArgument() -> @string outResult {
   switch self
   case rootProperty (@lstring propertyName) :
     outResult = "root_" + propertyName 
@@ -281,7 +281,7 @@ func @observablePropertyAST. modelStringFunctionArgument() -> @string outResult 
 
 #·······················································································································
 
-func @observablePropertyAST. needs_unwSelf( ?let @bool inPreferences) -> @bool outResult {
+func @observablePropertyAST.needs_unwSelf (?let @bool inPreferences) -> @bool outResult {
   switch self
   case rootProperty (*) :
     outResult = true
@@ -330,7 +330,7 @@ func @observablePropertyAST. needs_unwSelf( ?let @bool inPreferences) -> @bool o
 
 #·······················································································································
 
-func @observablePropertyAST. location() -> @location outResult {
+func @observablePropertyAST.location() -> @location outResult {
   switch self
   case rootProperty (@lstring propertyName) :
     outResult = propertyName.location
@@ -379,7 +379,7 @@ func @observablePropertyAST. location() -> @location outResult {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-proc @observablePropertyAST. analyzeObservableProperty(
+proc @observablePropertyAST.analyzeObservableProperty(
   ?let @propertyMap inRootPropertyMap
   ?let @semanticContext inSemanticContext
   ?let @propertyMap inBoundModelPropertyMap
