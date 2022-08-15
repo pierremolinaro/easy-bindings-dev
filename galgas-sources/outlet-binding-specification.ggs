@@ -1,0 +1,185 @@
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @controllerBindingOptionList {
+  public var @lstring mOptionName
+  public var @lstring mOptionTypeName
+}
+
+#·······················································································································
+
+list @outletClassBindingSpecificationModelList {
+  public var @lstring mModelTypeName
+  public var @bool mModelShouldBeWritableProperty
+}
+
+#·······················································································································
+
+list @outletClassBindingSpecificationList {
+  public var @lstring mOutletClassName
+  public var @lstring mBindingName
+  public var @outletClassBindingSpecificationModelList mOutletClassBindingSpecificationModelList
+  public var @controllerBindingOptionList mBindingOptionList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <outlet_binding_specification>( ?!@outletClassBindingSpecificationList ioControllerTemplateList) {
+    $binding$
+    $Identifier$( ?let @lstring outletClassName)
+    $bindingName$( ?let @lstring bindingName)
+    $:$
+    var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
+    repeat
+      let @bool modelShouldBeWritableProperty
+      select
+        $property$
+        modelShouldBeWritableProperty = true
+      or
+        $transient$
+        modelShouldBeWritableProperty = false
+      end
+      let @lstring modelTypeName
+      select
+        $Identifier$( ?modelTypeName)
+      or
+        $enum$
+        modelTypeName = .new (!"enum" !.here)
+      end
+      outletClassBindingSpecificationModelList += !modelTypeName !modelShouldBeWritableProperty
+    while
+      $,$
+    end
+    var @controllerBindingOptionList bindingOptionList = {}
+    select
+    or
+      ${$
+      repeat
+        $identifier$( ?let @lstring optionName)
+        $:$
+        $Identifier$( ?let @lstring optionType)
+        bindingOptionList += !optionName !optionType
+      while
+        $,$
+      end
+      $}$
+    end
+    $;$
+    ioControllerTemplateList +=
+      !outletClassName
+      !bindingName
+      !outletClassBindingSpecificationModelList
+      !bindingOptionList
+  }
+
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#  SEMANTICS
+#-----------------------------------------------------------------------------------------------------------------------
+
+map @bindingSpecificationMap {
+  public var @lstring mOutletSuperClassName
+  public var @outletBindingSpecificationMap mBindingMap
+  insert insertKey error message "the '%K' binding is already declared in %L"
+  search searchKey error message "there is no '%K' binding"
+  remove removeKey error message "there is no '%K' binding"
+}
+
+#·······················································································································
+
+list @outletBindingSpecificationModelList {
+  public var @typeKind mModelType
+  public var @bool mModelShouldBeWritableProperty
+}
+
+#·······················································································································
+
+list @controllerBindingOptionDecoratedList {
+  public var @typeKind mOptionType
+  public var @lstring mOptionName
+}
+
+#·······················································································································
+
+map @outletBindingSpecificationMap {
+  public var @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
+  public var @controllerBindingOptionDecoratedList mControllerBindingOptionList
+  insert insertKey error message "the '%K' binding is already declared in %L"
+  search searchKey error message "there is no '%K' binding"
+}
+
+#·······················································································································
+
+proc buildBindingSpecificationMap(
+  ?!@semanticContext ioSemanticContext
+  ?let @outletClassBindingSpecificationList inBindingSpecificationListMap)
+{
+  for (mOutletClassName mBindingName mOutletClassBindingSpecificationModelList mBindingOptionList) in inBindingSpecificationListMap do
+    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    for (mModelTypeName mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
+      if mModelTypeName.string == "enum" then
+        outletBindingSpecificationModelList +=
+          !.enumType (!enumTypeName: "" !constantMap: {} !funcMap: {}) # Any enum type
+          !mModelShouldBeWritableProperty
+      else
+        [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]
+        let @typeKind typeKind
+        switch classKind
+        case prefs :
+          error mModelTypeName : "an atomic class is required here" : typeKind
+        case atomic (@typeKind kind) :
+          typeKind = kind
+        case document (*) :
+          error mModelTypeName : "an atomic class is required here" : typeKind
+        case entity (3*) :
+          error mModelTypeName : "an atomic class is required here" : typeKind
+        end
+        outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
+      end
+    end
+    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    for (mOptionName mOptionTypeName) in mBindingOptionList do
+      [ioSemanticContext.mClassMap searchKey !mOptionTypeName ?let @classKind classKind ?3*]
+      let @typeKind typeKind
+      switch classKind
+      case prefs :
+        error mOptionTypeName : "an atomic class is required here" : typeKind
+      case atomic (@typeKind kind) :
+        typeKind = kind
+      case document (*) :
+        error mOptionTypeName : "an atomic class is required here" : typeKind
+      case entity (3*) :
+        error mOptionTypeName : "an atomic class is required here" : typeKind
+      end
+      controllerBindingOptionDecoratedList += !typeKind !mOptionName
+    end
+  #--- Insert in binding map
+    var @outletBindingSpecificationMap bindingMap
+    let @lstring outletSuperClassName
+    if [ioSemanticContext.mBindingSpecificationMap hasKey !mOutletClassName.string] then
+      [!?ioSemanticContext.mBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
+    else
+      bindingMap = {}
+      [ioSemanticContext.mOutletClassMap searchKey !mOutletClassName ?outletSuperClassName ?6*]
+    end
+    [!?bindingMap insertKey
+      !mBindingName
+      !outletBindingSpecificationModelList
+      !controllerBindingOptionDecoratedList
+    ]
+    [!?ioSemanticContext.mBindingSpecificationMap insertKey !mOutletClassName !outletSuperClassName !bindingMap]
+  end
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,334 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   SEMANTIC TYPES
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @transientExternTypeList {
+  public var @string mTypeName
+  public var @bool mIsClass
+}
+
+#·······················································································································
+
+abstract class @abstractFileGeneration {
+}
+
+#·······················································································································
+
+abstract proc @abstractFileGeneration. generateCode(
+    ?let @string inOutputDirectory
+    ?toOne: @stringset inToOneEntities
+    ?toMany: @stringset inToManyEntities
+    ?!@stringset ioGeneratedFileSet)
+
+#·······················································································································
+
+list @fileGenerationList {
+  public var @abstractFileGeneration mFileGeneration
+}
+
+#·······················································································································
+
+struct @generationStruct {
+  public var @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
+  public var @fileGenerationList mFileGenerationList
+  public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
+  public var @bool mGenerateEBManagedXibDocumentSwift
+  public var @bool mGenerateEBManagedAutoLayoutDocumentSwift
+  public var @stringset mNeededOutletClasses
+  public var @mainXibDescriptorList mMainXibDescriptorList
+ 
+  public var @stringset mToOneClassImplementations
+  public var @stringset mToManyClassImplementations
+
+  public var @selectionControllerForGeneration mSelectionControllerListForGeneration
+  public var @stringlist mPropertyClassList
+  public var @transientExternTypeList mTransientPropertyTypeList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   CODE GENERATION
+#-----------------------------------------------------------------------------------------------------------------------
+
+proc generateCode(
+  ?let @string inXcodeProjectString
+  ?let @generationStruct inGeneration
+  ?let @string inSourceFile)
+{
+  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
+  let projectName = [[inSourceFile lastPathComponent] stringByDeletingPathExtension]
+  let fileOutputDirectory = outputDirectory + "/" + projectName
+  var @stringset generatedFileSet = {}
+  for (fileGeneration) in inGeneration.mFileGenerationList do
+    [fileGeneration generateCode
+      !fileOutputDirectory
+      !toOne: inGeneration.mToOneClassImplementations
+      !toMany: inGeneration.mToManyClassImplementations
+      !?generatedFileSet
+    ]
+  end
+#  generateOutletClasses (
+#    !inGeneration.mNeededOutletClasses
+#    !fileOutputDirectory
+#    !?generatedFileSet
+#  )
+  generateEBManagedObjectContext (
+    !inGeneration.mEntityListForGeneration
+    !fileOutputDirectory
+    !?generatedFileSet
+  )
+  generateSelectionControllers (
+    !inGeneration.mSelectionControllerListForGeneration
+    !fileOutputDirectory
+    !?generatedFileSet
+  )
+#  generateSwiftApplicationFiles (
+#    !fileOutputDirectory
+#    ![inGeneration.mEntityListForGeneration length] > 0
+#    !?generatedFileSet
+#  )
+  generateValidationRoutineStubs (
+    !fileOutputDirectory
+    !inGeneration.mValidationStubRoutineListForGeneration
+    !?generatedFileSet
+  )
+  generateStandardProperties (
+    !fileOutputDirectory
+    !inGeneration.mPropertyClassList
+    !inGeneration.mTransientPropertyTypeList
+    !?generatedFileSet
+  )
+  generateXcodeProject (
+    !outputDirectory
+    !inXcodeProjectString
+    !generatedFileSet
+    !projectName
+  )
+  generateTestFile (
+    !inXcodeProjectString
+    !projectName
+    !inGeneration.mMainXibDescriptorList
+    !outputDirectory
+  )
+}
+
+#·······················································································································
+
+#private proc generateSwiftApplicationFiles
+#  ?let @string inOutputDirectory
+#  ?let @bool inHasEntities
+#  ?!@stringset ioGeneratedFileSet
+#{
+#  var @stringlist swiftFiles = {
+#    !"main",
+#    !"EBAllocationDebug-debug",
+#    !"EBAllocationDebug-release",
+#    !"EBUndoManager",
+#    !"property-explorer",
+#    !"EBSignatureObserverProtocol",
+#    !"EBWeakEventSet",
+#    !"EBModelNotifierEvent",
+#    !"EBObservedObject",
+#    !"func-presentErrorWindow",
+#    !"func-checkOutletConnection",
+#    !"ReadOnlyAbstractGenericRelationshipProperty",
+#    !"ReadOnlyAbstractArrayProperty",
+#    !"ReadOnlyAbstractObjectProperty",
+#    !"EBObservablePropertyController",
+#    !"EBGenericReadWritePropertyController",
+#    !"EBGenericEnumReadWritePropertyController",
+#    !"EBTableCellView",
+#    !"BezierPathArray",
+#    !"extension-Data-EBPropertyProtocol",
+#    !"extension-NSFont-EBPropertyProtocol",
+#    !"extension-Date-EBPropertyProtocol",
+#    !"extension-NSColor-EBPropertyProtocol",
+#    !"extension-Bool-EBPropertyProtocol",
+#    !"extension-Double-EBPropertyProtocol",
+#    !"extension-NSBezierPath-EBPropertyProtocol",
+#    !"EBValidationResult",
+#    !"EBObject",
+#    !"EBObserverProtocol",
+#    !"EBReferenceSet",
+#    !"EBReferenceArray",
+#    !"extension-Int-EBPropertyProtocol",
+#    !"extension-UInt32-EBPropertyProtocol",
+#    !"extension-String-EBPropertyProtocol",
+#    !"EBEnumTransientProperty",
+#    !"EBEnumStoredProperty",
+#    !"EBEnumPropertyProxy",
+#    !"EBEnumReadWriteProperty",
+#    !"EBEnumReadOnlyProperty",
+#    !"EBObservableObjectProtocol",
+#    !"EnumPropertyProtocol",
+#    !"EBEnumProtocol",
+#    !"EBGenericTransientProperty",
+#    !"EBGenericPreferenceProperty",
+#    !"EBGenericComputedProperty",
+#    !"EBGenericStoredProperty",
+#    !"EBGenericPropertyProxy",
+#    !"EBObservableMutableProperty",
+#    !"EBObservableProperty",
+#    !"EBPropertyProtocol",
+#    !"extension-Data-Comparable",
+#    !"PropertyKind",
+#    !"EBSelection",
+#    !"func-defaultValidationFunction",
+#    !"multiple-binding-controllers",
+#    !"Application",
+#    !"model-events",
+#    !"outlet-events",
+#    !"file-format-binary",
+#    !"file-metadata-binary-format",
+#    !"file-format-text-utilities",
+#    !"file-metadata-get",
+#    !"file-format-text",
+#    !"file-metadata-text-format",
+#    !"file-format-utilities",
+#    !"file-log-operation-duration",
+#    !"file-operations-facade",
+#    !"show-debug-menu"
+#  }
+#  if inHasEntities then
+#    swiftFiles += !"EBManagedObject"
+#    swiftFiles += !"EBDataScanner"
+#    swiftFiles += !"EBGraphicManagedObject"
+#    swiftFiles += !"buildPDFimage"
+#  #--- EBGraphicView
+#    swiftFiles += !"EBScrollView"
+#    swiftFiles += !"EBFocusRingView"
+#    swiftFiles += !"EBGraphicView"
+#    swiftFiles += !"EBGraphicView-binding-arrowKeyMagnitude"
+#    swiftFiles += !"EBGraphicView-binding-backColor"
+#    swiftFiles += !"EBGraphicView-binding-backgroundImage"
+#    swiftFiles += !"EBGraphicView-binding-foregroundImage"
+#    swiftFiles += !"EBGraphicView-binding-gridCrossColor"
+#    swiftFiles += !"EBGraphicView-binding-gridDisplayFactor"
+#    swiftFiles += !"EBGraphicView-binding-gridLineColor"
+#    swiftFiles += !"EBGraphicView-binding-gridStep"
+#    swiftFiles += !"EBGraphicView-binding-gridStyle"
+#    swiftFiles += !"EBGraphicView-binding-horizontalFlip"
+#    swiftFiles += !"EBGraphicView-binding-mouseGrid"
+#    swiftFiles += !"EBGraphicView-binding-overObjectsDisplay"
+#    swiftFiles += !"EBGraphicView-binding-shiftArrowKeyMagnitude"
+#    swiftFiles += !"EBGraphicView-binding-underObjectsDisplay"
+#    swiftFiles += !"EBGraphicView-binding-verticalFlip"
+#    swiftFiles += !"EBGraphicView-binding-xPlacardUnit"
+#    swiftFiles += !"EBGraphicView-binding-yPlacardUnit"
+#    swiftFiles += !"EBGraphicView-binding-zoom"
+#    swiftFiles += !"EBGraphicView-dragging-source"
+#    swiftFiles += !"EBGraphicView-draw"
+#    swiftFiles += !"EBGraphicView-guide"
+#    swiftFiles += !"EBGraphicView-issue"
+#    swiftFiles += !"EBGraphicView-key-down"
+#    swiftFiles += !"EBGraphicView-magnify-and-zoom"
+#    swiftFiles += !"EBGraphicView-menu-actions"
+#    swiftFiles += !"EBGraphicView-mouse-down-behaviours"
+#    swiftFiles += !"EBGraphicView-mouse-moved-exited"
+#    swiftFiles += !"EBGraphicView-mouse"
+#    swiftFiles += !"EBGraphicView-helpers"
+#    swiftFiles += !"EBGraphicView-tool-tips"
+#    swiftFiles += !"EBGraphicView-tracking-areas"
+#    swiftFiles += !"EBGraphicViewControllerProtocol"
+#    swiftFiles += !"EBGraphicViewScaleProvider"
+#    swiftFiles += !"EBEnclosingGraphicView"
+#    swiftFiles += !"NSControl-extension-enable-binding"
+#  #--- Extensions
+#    swiftFiles += !"extension-CGPoint-NSPoint"
+#    swiftFiles += !"extension-CGRect-NSRect"
+#    swiftFiles += !"extension-CGSize-NSSize"
+#    swiftFiles += !"extension-Data"
+#    swiftFiles += !"extension-NSBezierPath"
+#    swiftFiles += !"extension-NSObject"
+#    swiftFiles += !"extension-NSTextView"
+#    swiftFiles += !"extension-String"
+#    swiftFiles += !"extension-UInt32"
+# #--- Shapes
+#    swiftFiles += !"EBBezierPath"
+#    swiftFiles += !"EBLinePath"
+#    swiftFiles += !"EBShape"
+#  end
+#  var @stringlist xibFiles = {}
+#  let fw = [filewrapper swift_sources]
+#  for (@string s) in swiftFiles do
+#    let fileName = s + ".swift"
+#    let contents = [fw textFileContentsAtPath !fileName]
+#    ioGeneratedFileSet += !fileName
+#    [@string generateFile
+#      !inOutputDirectory
+#      !fileName
+#      !contents
+#    ]
+#  end
+#  for (@string s) in xibFiles do
+#    let contents = [fw textFileContentsAtPath !s + ".xib"]
+#    let fileName = s + ".xib"
+#    ioGeneratedFileSet += !fileName
+#    [@string generateFile
+#      !inOutputDirectory
+#      !fileName
+#      !contents
+#    ]
+#  end
+#}
+
+#·······················································································································
+
+filewrapper standard_properties in "../generation-templates/standard-properties" {
+}{
+}{
+  template stub "standard-properties-stub.swift.galgasTemplate"
+
+  template scalarProperty "scalar-standard-property.swift.galgasTemplate"
+    ?@string TYPE
+    ?@bool TRANSIENT
+    ?@string COMPARISON_METHOD
+
+  template classProperty "class-standard-property.swift.galgasTemplate"
+    ?@string CLASS_NAME
+    ?@bool COMPARABLE
+    ?@bool TRANSIENT
+}
+
+#·······················································································································
+
+private proc generateStandardProperties(
+  ?let @string inOutputDirectory
+  ?let @stringlist inPropertyClassList
+  ?let @transientExternTypeList inTransientPropertyExternTypeList
+  ?!@stringset ioGeneratedFileSet)
+{
+  var contents = [filewrapper standard_properties.stub]
+#--- Add scalar property types
+  contents += [filewrapper standard_properties.scalarProperty !"UInt32" !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"Int"    !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"Bool"   !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"Double" !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"String" !false !"localizedStandardCompare"]
+  contents += [filewrapper standard_properties.scalarProperty !"Data"   !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"Date"   !false !""]
+  contents += [filewrapper standard_properties.scalarProperty !"BezierPathArray" !false !""]
+#--- Add class property types
+  for (propertyClass) in inPropertyClassList do
+    contents += [filewrapper standard_properties.classProperty !propertyClass !false !false]
+  end
+  for (propertyType isClass) in inTransientPropertyExternTypeList do
+    if isClass then
+      contents += [filewrapper standard_properties.classProperty !propertyType !false !true]
+    else
+      contents += [filewrapper standard_properties.scalarProperty !propertyType !true !""]
+    end
+  end
+  contents += [filewrapper standard_properties.classProperty !"NSBezierPath" !false !false]
+  contents += [filewrapper standard_properties.classProperty !"NSFont"  !false !false]
+  contents += [filewrapper standard_properties.classProperty !"NSColor" !false !false]
+#--- Generate file
+  let fileName = "standard-properties.swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !contents
+  ]
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

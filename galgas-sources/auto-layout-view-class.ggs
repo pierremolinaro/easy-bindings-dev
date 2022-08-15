@@ -1,0 +1,308 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST   
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
+  public var @bool mUserDefined
+  public var @lstring mSuperClassName
+  public var @bool mHasRunAction
+  public var @bool mHasEnabled
+  public var @bool mHandlesTableValueBinding
+  public var @bool mHandlesGraphicControllerBinding
+  public var @bool mHasHidden
+  public var @autoLayoutClassParameterList mParameterList
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
+}
+
+#·······················································································································
+
+enum @autoLayoutClassParameterType {
+  case typeString
+  case typeStringArray
+  case typeInt
+  case typeBool
+  case typeView
+  case menuItem
+  case entity
+  case typeEnum (@lstring name)
+}
+
+#·······················································································································
+
+func @autoLayoutClassParameterType. string() -> @string {
+  switch self
+  case typeString : result = "String"
+  case typeStringArray : result = "String array"
+  case typeInt : result = "Int"
+  case typeBool : result = "Bool"
+  case typeView : result = "a view"
+  case menuItem : result = "a menu item"
+  case entity : result = "an entity name"
+  case typeEnum (name) : result = "the " + name + " enum type"
+  end
+}
+
+#·······················································································································
+
+list @autoLayoutClassParameterList {
+  public var @lstring mParameterName
+  public var @autoLayoutClassParameterType mParameterType
+}
+
+#·······················································································································
+
+map @astAutoLayoutViewFunctionMap {
+  public var @autoLayoutClassParameterList mFomalParameterList
+  insert insertKey error message "the '%K' function is already declared in %L"
+  search searchKey error message "there is no '%K' function"
+}
+
+#·······················································································································
+
+override proc @autoLayoutViewClassDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+  [!?ioGraph addNode !self.mClassName !self]
+  if self.mSuperClassName.string != "" then
+    [!?ioGraph addEdge !self.mClassName !self.mSuperClassName]
+  end
+}
+
+#·······················································································································
+
+override func @autoLayoutViewClassDeclarationAST. nodeKey() -> @lstring {
+  result = self.mClassName
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <autolayout_class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+    $vStack$
+    $func$
+    $identifier$( ?let functionName)
+    <autolayout_formal_parameter_list>( !functionName ?let parameterList ?let mangledName)
+    $;$
+    [!?ioDeclarationAST.mAutoLayoutVStackFunctionMap insertKey !mangledName !parameterList]
+  }
+  
+ #·····················································································································
+  
+  rule <autolayout_class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+    $hStack$
+    $func$
+    $identifier$( ?let functionName)
+    <autolayout_formal_parameter_list>( !functionName ?let parameterList ?let mangledName)
+    $;$
+    [!?ioDeclarationAST.mAutoLayoutHStackFunctionMap insertKey !mangledName !parameterList]
+  }
+  
+  #·····················································································································
+  
+  rule <autolayout_class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+    let @bool userDefined
+    select
+      $extern$
+      userDefined = true
+    or
+      userDefined = false
+    end
+    $autolayout$
+    $class$
+    $Identifier$( ?let @lstring outletClassName)
+    let @autoLayoutClassParameterList parameterList
+    select
+      parameterList = {}
+    or
+      <autolayout_formal_parameter_list>( !["" nowhere] ?parameterList ?*)
+    end
+    let @lstring superClassName
+    select
+      superClassName = ["" here]
+    or
+      $:$
+      $Identifier$( ?superClassName)
+    end
+    var @bool hasRunAction = false
+    var @bool hasEnabled = false
+    var @bool hasHidden = false
+    var @bool handlesTableViewBinding = false
+    var @bool handlesGraphicControllerBinding = false
+    repeat
+    while
+      $tableValue$
+      handlesTableViewBinding = true
+    while
+      $run$
+      hasRunAction = true
+    while
+      $enabled$
+      hasEnabled = true
+    while
+      $hidden$
+      hasHidden = true
+    while
+      $graphicController$
+      handlesGraphicControllerBinding = true
+    end
+    var @astAutoLayoutViewFunctionMap astAutoLayoutViewFunctionMap = {}
+    ${$
+    repeat
+    while
+      $func$
+      $identifier$( ?let functionName)
+      <autolayout_formal_parameter_list>( !functionName ?let parameterList ?let mangledName)
+      [!?astAutoLayoutViewFunctionMap insertKey !mangledName !parameterList]
+    while
+      <auto_layout_view_binding_specification>( !outletClassName !?ioDeclarationAST.mAutoLayoutBindingSpecificationList)
+    end
+    $}$
+    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutViewClassDeclarationAST.new (
+      !outletClassName
+      !userDefined
+      !superClassName
+      !hasRunAction
+      !hasEnabled
+      !handlesTableViewBinding
+      !handlesGraphicControllerBinding
+      !hasHidden
+      !parameterList
+      !astAutoLayoutViewFunctionMap
+    )
+ }
+
+ #·····················································································································
+  
+  rule <autolayout_formal_parameter_list>( ?let @lstring inFunctionName 
+                                          !@autoLayoutClassParameterList ioParameterList
+                                          !@lstring outMangledName) {
+    ioParameterList = {}
+    var mangledName = inFunctionName.string + "("
+    $($
+    select
+    or
+      repeat
+        $identifier$( ?let parameterName)
+        mangledName += parameterName.string + ":"
+        $:$
+        select
+          $view$
+          ioParameterList += !parameterName !.typeView
+        or
+          $menuItem$
+          ioParameterList += !parameterName !.menuItem
+        or
+          $entity$
+          ioParameterList += !parameterName !.entity
+        or
+          $Identifier$( ?let parameterTypeName)
+          if parameterTypeName.string == "String" then
+            ioParameterList += !parameterName !.typeString
+          elsif parameterTypeName.string == "StringArray" then
+            ioParameterList += !parameterName !.typeStringArray
+          elsif parameterTypeName.string == "Int" then
+            ioParameterList += !parameterName !.typeInt
+          elsif parameterTypeName.string == "Bool" then
+            ioParameterList += !parameterName !.typeBool
+          else
+            ioParameterList += !parameterName !.typeEnum (!name: parameterTypeName)
+          end
+        end
+      while
+        $,$
+      end
+    end
+    $)$
+    mangledName += ")"
+    outMangledName = .new (!mangledName !inFunctionName.location)
+  }
+
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SEMANTIC ANALYSIS                       
+#-----------------------------------------------------------------------------------------------------------------------
+
+override proc @autoLayoutViewClassDeclarationAST. firstAnalysisPhase(
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct unused ioGeneration)
+{
+  if self.mSuperClassName.string == "" then
+    [!?ioSemanticContext.mAutolayoutViewClassMap insertKey
+      !self.mClassName
+      !["" nowhere]  # No super class
+      !self.mHasRunAction
+      !self.mHandlesTableValueBinding
+      !self.mHasEnabled
+      !self.mHasHidden
+      !self.mHandlesGraphicControllerBinding
+      !self.mUserDefined
+      !self.mParameterList
+      !self.mAutoLayoutViewFunctionMap
+    ]
+  else
+    [ioSemanticContext.mAutolayoutViewClassMap searchKey
+      !self.mSuperClassName
+      ?*
+      ?let hasRunAction
+      ?let handlesTableValueBinding
+      ?let hasEnabled
+      ?let hasHidden
+      ?let handlesGraphicControllerBinding
+      ?3*
+    ]
+    if self.mHasRunAction & hasRunAction then
+      error self.mClassName : "$run binding already defined in superclass"
+    end
+    if self.mHandlesTableValueBinding & handlesTableValueBinding then
+      error self.mClassName : "$tableview binding already defined in superclass"
+    end
+    if self.mHasEnabled & hasEnabled then
+      error self.mClassName : "$enabled binding already defined in superclass"
+    end
+    if self.mHasHidden & hasHidden then
+      error self.mClassName : "$hidden binding already defined in superclass"
+    end
+    if self.mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
+      error self.mClassName : "$graphicController binding already defined in superclass"
+    end
+  #---
+    [!?ioSemanticContext.mAutolayoutViewClassMap insertKey
+      !self.mClassName
+      !self.mSuperClassName
+      !self.mHasRunAction | hasRunAction
+      !self.mHandlesTableValueBinding | handlesTableValueBinding
+      !self.mHasEnabled | hasEnabled
+      !self.mHasHidden | hasHidden
+      !self.mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
+      !self.mUserDefined
+      !self.mParameterList
+      !self.mAutoLayoutViewFunctionMap
+    ]
+  end
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#  SEMANTIC TYPE                          
+#-----------------------------------------------------------------------------------------------------------------------
+
+map @autolayoutViewClassMap {
+  public var @lstring mSuperClassName
+  public var @bool mHandlesRunAction
+  public var @bool mHandlesTableValueBinding
+  public var @bool mHandleEnabledBinding
+  public var @bool mHandleHiddenBinding
+  public var @bool mHandleGraphicControllerBinding
+  public var @bool mUserDefined
+  public var @autoLayoutClassParameterList mParameterList
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
+  insert insertKey error message "the '%K' outlet class is already declared in %L"
+  search searchKey error message "there is no '%K' outlet class"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

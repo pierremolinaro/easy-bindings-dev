@@ -4,67 +4,67 @@ project (0:0:1) -> "eb" {
   %applicationBundleBase : "fr.irccyn"
 
 #--- Source files
-  "galgas-sources/lexique.galgas"
-  "galgas-sources/options.galgas"
-  "galgas-sources/grammar-syntax.galgas"
-  "galgas-sources/easyBindings-cocoa.galgas"
-  "galgas-sources/program.galgas"
-  "galgas-sources/declaration-graph.galgas"
+  "galgas-sources/lexique.ggs"
+  "galgas-sources/options.ggs"
+  "galgas-sources/grammar-syntax.ggs"
+  "galgas-sources/easyBindings-cocoa.ggs"
+  "galgas-sources/program.ggs"
+  "galgas-sources/declaration-graph.ggs"
 
 #--- Extern Swift functions
-  "galgas-sources/extern-delegate.galgas"
-  "galgas-sources/extern-swift-func.galgas"
+  "galgas-sources/extern-delegate.ggs"
+  "galgas-sources/extern-swift-func.ggs"
 
 #--- Property class
-  "galgas-sources/transient-property-class.galgas"
+  "galgas-sources/transient-property-class.ggs"
 
 #--- Components  
-  "galgas-sources/enumeration.galgas"
-  "galgas-sources/atomic-class.galgas"
-  "galgas-sources/entity.galgas"
-  "galgas-sources/document-auto-layout.galgas"
-  "galgas-sources/preferences.galgas"
-  "galgas-sources/graphviz.galgas"
+  "galgas-sources/enumeration.ggs"
+  "galgas-sources/atomic-class.ggs"
+  "galgas-sources/entity.ggs"
+  "galgas-sources/document-auto-layout.ggs"
+  "galgas-sources/preferences.ggs"
+  "galgas-sources/graphviz.ggs"
 
 #--- Auto Layout
-  "galgas-sources/auto-layout-view-class.galgas"
-  "galgas-sources/auto-layout-view-binding-specification.galgas"
-  "galgas-sources/auto-layout-view.galgas"
+  "galgas-sources/auto-layout-view-class.ggs"
+  "galgas-sources/auto-layout-view-binding-specification.ggs"
+  "galgas-sources/auto-layout-view.ggs"
   
 #--- Outlet classes
-  "galgas-sources/outlet-class.galgas"
-  "galgas-sources/outlet-binding-specification.galgas"
-  "galgas-sources/outlet-declaration.galgas"
+  "galgas-sources/outlet-class.ggs"
+  "galgas-sources/outlet-binding-specification.ggs"
+  "galgas-sources/outlet-declaration.ggs"
 
 #--- Properties
-  "galgas-sources/observable-property.galgas"
-  "galgas-sources/computed-property.galgas"
-  "galgas-sources/transient-property.galgas"
-  "galgas-sources/proxy.galgas"
-  "galgas-sources/simple-stored-property.galgas"
-  "galgas-sources/to-one-relationship.galgas"
-  "galgas-sources/to-many-relationship.galgas"
-  "galgas-sources/property-validation-stub-routine.galgas"
-  "galgas-sources/run-action.galgas"
+  "galgas-sources/observable-property.ggs"
+  "galgas-sources/computed-property.ggs"
+  "galgas-sources/transient-property.ggs"
+  "galgas-sources/proxy.ggs"
+  "galgas-sources/simple-stored-property.ggs"
+  "galgas-sources/to-one-relationship.ggs"
+  "galgas-sources/to-many-relationship.ggs"
+  "galgas-sources/property-validation-stub-routine.ggs"
+  "galgas-sources/run-action.ggs"
 
 #--- Bindings
-  "galgas-sources/multiple-binding.galgas"
-  "galgas-sources/regular-binding.galgas"
+  "galgas-sources/multiple-binding.ggs"
+  "galgas-sources/regular-binding.ggs"
 
 #--- Controllers
-  "galgas-sources/array-controller.galgas"
-  "galgas-sources/auto-layout-table-view-controller.galgas"
-  "galgas-sources/selection-controller.galgas"
+  "galgas-sources/array-controller.ggs"
+  "galgas-sources/auto-layout-table-view-controller.ggs"
+  "galgas-sources/selection-controller.ggs"
 
 #--- Semantics, code generation
-  "galgas-sources/explicit-default-value.galgas"
-  "galgas-sources/unified-type.galgas"
-  "galgas-sources/semantic-analysis.galgas"
-  "galgas-sources/code-generation.galgas"
+  "galgas-sources/explicit-default-value.ggs"
+  "galgas-sources/unified-type.ggs"
+  "galgas-sources/semantic-analysis.ggs"
+  "galgas-sources/code-generation.ggs"
   
 #--- Xcode project
-  "galgas-sources/xcode-project.galgas"
-  "galgas-sources/XcodeProjectNewGeneration.galgas"
-  "galgas-sources/main-xib.galgas"
+  "galgas-sources/xcode-project.ggs"
+  "galgas-sources/XcodeProjectNewGeneration.ggs"
+  "galgas-sources/main-xib.ggs"
 }
 

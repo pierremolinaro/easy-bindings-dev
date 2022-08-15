@@ -1,0 +1,304 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST   
+#-----------------------------------------------------------------------------------------------------------------------
+
+struct @prefDeclaration {
+  public var @outletDeclarationList mOutletDeclarationList
+  public var @simpleStoredPropertyList mSimpleStoredAttributeList
+  public var @lstringlist mActionDeclarationList
+  public var @externSwiftFunctionList mExternSwiftFunctionList
+  public var @stringset mSignatureList
+  public var @mainXibDescriptorList mMainXibDescriptorList
+  public var @astViewDeclarationList mViewDeclarationList
+}
+
+#·······················································································································
+
+class @prefsDeclarationAST : @abstractDeclarationAST {
+  public let @prefDeclaration mDeclaration
+}
+
+#·······················································································································
+
+override proc @prefsDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+  [!?ioGraph addNode !self.mClassName !self]
+}
+
+#·······················································································································
+
+override func @prefsDeclarationAST. nodeKey() -> @lstring {
+  result = self.mClassName
+}
+
+#·······················································································································
+
+func %once preferencesName() -> @string outResult {
+  outResult = "Preferences"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <preferences_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+    $prefs$
+    let prefs = @lstring.new (!preferencesName () !.here)
+    ${$
+    var @stringset signatureList = {}
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    repeat
+    while
+      var @astViewDeclarationList viewDeclarationList = {}
+      <stack_view_declaration>( !?viewDeclarationList)
+      ioDeclarationAST.mPreferences.mViewDeclarationList += viewDeclarationList
+    while
+      <action_declaration>( !?ioDeclarationAST.mPreferences.mActionDeclarationList)
+    while
+      var @simpleStoredPropertyList simpleStoredPropertyList = {}
+      <simple_stored_declaration>(
+        !prefs
+        !?simpleStoredPropertyList
+        !?signatureList
+        !?ioDeclarationAST)
+      ioDeclarationAST.mPreferences.mSimpleStoredAttributeList += simpleStoredPropertyList
+    while
+      <outlet_declaration>( !?ioDeclarationAST.mPreferences.mOutletDeclarationList)
+    while
+      <transient_declaration>( !prefs !["" nowhere] !?ioDeclarationAST)
+    while
+      <extern_swift_func>( !?ioDeclarationAST.mPreferences.mExternSwiftFunctionList)
+    while
+      <toMany_relationship>( !prefs !?* !?ioDeclarationAST)
+    while
+      <controller_declaration>( !prefs !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST)
+    end
+    ioDeclarationAST.mPreferences.mSignatureList += signatureList
+    $}$
+  }
+
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#-----------------------------------------------------------------------------------------------------------------------
+
+override proc @prefsDeclarationAST. firstAnalysisPhase(
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration)
+{
+  buildActionMap (!self.mDeclaration.mActionDeclarationList ?let @actionMap actionMap)
+  [!?ioSemanticContext.mClassMap insertKey
+    !.new (!preferencesName () !.here)
+    !.prefs
+    !{}
+    !actionMap
+    !{}
+  ]
+  for (lkey) in actionMap do
+    ioGeneration.mFileGenerationList += !@actionFileGeneration.new (
+      !self.mClassName.string
+      !lkey.string
+    )
+  end
+  ioGeneration.mMainXibDescriptorList = self.mDeclaration.mMainXibDescriptorList
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   THIRD ANALYSIS PHASE
+#-----------------------------------------------------------------------------------------------------------------------
+
+override proc @prefsDeclarationAST. fourthAnalysisPhase(
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration)
+{
+#--- Analyze extern functions
+  let @stringset availableCallers = {!"awakeFromNib", !"init"}
+  var @externFunctionMap externFunctionMap = {}
+  for (mExternSwiftFunctionName mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
+    [!?externFunctionMap insertKey !mExternSwiftFunctionName]
+    if not [availableCallers hasKey !mCallerName.string] then
+      var s = "invalid caller; available callers:"
+      for (str) in availableCallers do
+        s += "\n  - " + str
+      end
+      error mCallerName : s
+    end
+  end
+#--- Get preference property map
+  [ioSemanticContext.mClassMap searchKey
+    !.new (!preferencesName () !.nowhere)
+    ?*
+    ?let preferencesPropertyMap
+    ?let actionMap
+    ?let propertyGenerationList
+  ]
+#--- Analyze outlets and bindings
+  analyzeOutlets (
+    !true
+    !{} # No root entity
+    !preferencesPropertyMap
+    !"" # No root entity
+    !ioSemanticContext
+    !self.mDeclaration.mOutletDeclarationList
+    !preferencesPropertyMap
+    !actionMap
+    !preferencesName ()
+    !?ioGeneration
+    ?let @regularBindingsGenerationList regularBindingsGenerationList
+    ?let @multipleBindingGenerationList multipleBindingGenerationList
+    ?let @actionBindingListForGeneration actionBindingListForGeneration
+    ?let @decoratedOutletMap outletMap
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
+  )
+#--- Check auto layout view declarations
+  var @autoLayoutViewDeclarationMap viewDeclarationMap = {}
+  var @viewGenerationList viewGenerationList = {}
+  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
+  var @autoLayoutConfiguratorMap configuratorMap = {}
+  var @autoLayoutOutletMap autoLayoutOutletMap = {}
+  for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
+    [!?viewDeclarationMap insertKey !viewName]
+    [viewDeclaration checkView
+      !viewName
+      !viewDeclarationMap
+      !prefs: true
+      !{} # rootPropertyMap
+      !preferencesPropertyMap
+      !ioSemanticContext
+      !{} # documentPropertyMap
+      !actionMap
+      !self.mClassName
+      !ioSemanticContext.mClassMap
+      !?implicitViewFunctionGenerationList
+      !?configuratorMap
+      !?autoLayoutOutletMap
+      ?let viewGeneration
+    ]
+    viewGenerationList += !viewName !viewGeneration
+  end
+  if not [viewDeclarationMap hasKey !"mPrefsMainView"] then
+    error .nowhere : "Preferences should define 'mPrefsMainView' stack view"
+  end
+#--- Code generation
+  ioGeneration.mFileGenerationList += !@preferencesForGeneration.new (
+    !propertyGenerationList
+    !ioGeneration.mMainXibDescriptorList
+    !regularBindingsGenerationList
+    !multipleBindingGenerationList
+    !actionBindingListForGeneration
+    !outletMap
+    !self.mDeclaration.mExternSwiftFunctionList
+    !tableViewBindingGenerationList
+    !ebViewGraphicControllerBindingGenerationList
+    !viewGenerationList
+    !implicitViewFunctionGenerationList
+    !configuratorMap
+    !autoLayoutOutletMap
+  )
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   GENERATION                            
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @preferencesForGeneration : @abstractFileGeneration {
+  public let @propertyGenerationList mPropertyListForGeneration
+  public let @mainXibDescriptorList mMainXibDescriptorList
+  public let @regularBindingsGenerationList mRegularBindingsGenerationList
+  public let @multipleBindingGenerationList mMultipleBindingGenerationList
+  public let @actionBindingListForGeneration mActionBindingListForGeneration
+  public let @decoratedOutletMap mOutletMap
+  public let @externSwiftFunctionList mExternSwiftFunctionList
+  public let @tableViewBindingGenerationList mTableViewBindingGenerationList
+  public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public let @viewGenerationList mViewGenerationList
+  public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
+  public let @autoLayoutConfiguratorMap mConfiguratorMap
+  public let @autoLayoutOutletMap mAutoLayoutOutletMap
+}
+
+#·······················································································································
+
+private filewrapper prefsGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template preferences "preferences.swift.galgasTemplate"
+    ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
+    ?@mainXibDescriptorList MAIN_XIB_DESCRIPTOR_LIST
+    ?@decoratedOutletMap OUTLET_MAP
+    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
+    ?@actionBindingListForGeneration TARGET_ACTION_LIST
+    ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
+    ?@externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST
+    ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
+    ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
+    ?@viewGenerationList VIEW_GENERATION_LIST
+    ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
+    ?@autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP
+}
+
+#·······················································································································
+
+override proc @preferencesForGeneration. generateCode(
+    ?let @string inOutputDirectory
+    ?toOne: @stringset unused inToOneEntities
+    ?toMany: @stringset unused inToManyEntities
+    ?!@stringset ioGeneratedFileSet)
+{
+  let s = [filewrapper prefsGenerationTemplate.preferences
+    !self.mPropertyListForGeneration
+    !self.mMainXibDescriptorList
+    !self.mOutletMap
+    !self.mRegularBindingsGenerationList
+    !self.mActionBindingListForGeneration
+    !self.mMultipleBindingGenerationList
+    !self.mExternSwiftFunctionList
+    !self.mTableViewBindingGenerationList
+    !self.mEBViewBindingGenerationList
+    !self.mViewGenerationList
+    !self.mImplicitViewFunctionGenerationList
+    !self.mAutoLayoutOutletMap
+  ]
+  let fileName = preferencesName () + ".swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !s
+  ]
+#--- Configurators
+  for (outletName outletTypeName) in self.mConfiguratorMap do
+    let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation
+      !"Preferences"
+      !outletName.string
+      !outletTypeName
+    ]
+    let header = "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n"
+      "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
+      "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n\n"
+      + "import Cocoa\n\n"
+      + "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n\n"
+    let fileName = "configurator-Preferences-" + outletName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFileWithPattern
+      !startPath: inOutputDirectory
+      !fileName: fileName
+      !lineComment:"//"
+      !header:header
+      !defaultUserZone1:"\n\n" # Defaut user zone1
+      !generatedZone2:s
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n" # Defaut user zone2
+      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n"
+      !makeExecutable:false
+    ]
+  end
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

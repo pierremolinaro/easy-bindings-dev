@@ -1,0 +1,589 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST   
+#-----------------------------------------------------------------------------------------------------------------------
+
+enum @multipleBindingDescriptor {
+  case noBinding 
+  case binding (@abstractBooleanMultipleBindingExpressionAST expression)
+}
+
+#·······················································································································
+
+enum @multipleBindingComparisonAST {
+  case equal
+  case notEqual
+  case lower
+  case lowerOrEqual
+  case greater
+  case greaterOrEqual
+}
+
+#·······················································································································
+
+abstract class @abstractBooleanMultipleBindingExpressionAST {
+}
+
+#·······················································································································
+
+class @literalIntMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  public var @luint mValue
+}
+
+#·······················································································································
+
+class @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  public var @abstractBooleanMultipleBindingExpressionAST mBinding
+}
+
+#·······················································································································
+
+class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  public var @multipleBindingComparisonAST mOperator
+  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
+}
+
+#·······················································································································
+
+class @andBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
+}
+
+#·······················································································································
+
+class @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
+}
+
+#·······················································································································
+
+class @xorBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
+}
+
+#·······················································································································
+
+class @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
+  public var @observablePropertyAST mProperty
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <booleanMultipleBindingExpression>( 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding)
+  {
+    <booleanMultipleBindingComparison>( ?outBinding)
+    repeat
+    while
+      $&$
+      <booleanMultipleBindingComparison>( ?let @abstractBooleanMultipleBindingExpressionAST binding)
+      outBinding = @andBooleanMultipleBindingExpressionAST. new ( !outBinding !binding)
+    end
+  }
+  
+  #·····················································································································
+  
+  rule <booleanMultipleBindingComparison>(  !@abstractBooleanMultipleBindingExpressionAST outBinding) {
+    <booleanMultipleBindingTerm>( ?outBinding)
+    select
+    or
+      $>$
+      <booleanMultipleBindingTerm>( ?let rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.greater !rightBinding)
+    or
+      $>=$
+      <booleanMultipleBindingTerm>( ?let rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.greaterOrEqual !rightBinding)
+    or
+      $<=$
+      <booleanMultipleBindingTerm>( ?let rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.lowerOrEqual !rightBinding)
+    or
+      $<$
+      <booleanMultipleBindingTerm>( ?let rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.lower !rightBinding)
+    or
+      $==$
+      <booleanMultipleBindingTerm>( ?let rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.equal !rightBinding)
+    or
+      $!=$
+      <booleanMultipleBindingTerm>( ?let rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.notEqual !rightBinding)
+    end
+  }
+  
+  #·····················································································································
+  
+  rule <booleanMultipleBindingTerm>( 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding)
+  {
+    <booleanMultipleBindingOperand>( ?outBinding)
+    repeat
+    while
+      $|$
+      <booleanMultipleBindingOperand>( ?let @abstractBooleanMultipleBindingExpressionAST binding)
+      outBinding = @orBooleanMultipleBindingExpressionAST. new ( !outBinding !binding)
+    while
+      $^$
+      <booleanMultipleBindingOperand>( ?let @abstractBooleanMultipleBindingExpressionAST binding)
+      outBinding = @xorBooleanMultipleBindingExpressionAST. new ( !outBinding !binding)
+    end
+  }
+  
+  #·····················································································································
+  
+  rule <booleanMultipleBindingOperand>( 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding)
+  {
+    <observable_property>( ?let @observablePropertyAST observablePropertyAST)
+    outBinding = @observablePropertyInMultipleBindingExpressionAST.new ( !observablePropertyAST)
+  }
+  
+  #·····················································································································
+  
+  rule <booleanMultipleBindingOperand>( 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding)
+  {
+    $!$
+    <booleanMultipleBindingOperand>( ?let @abstractBooleanMultipleBindingExpressionAST binding)
+    outBinding = @negateBooleanMultipleBindingExpressionAST. new ( !binding)
+  }
+  
+  #·····················································································································
+  
+  rule <booleanMultipleBindingOperand>( 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding)
+  {
+    $($
+    <booleanMultipleBindingExpression>( ?outBinding)
+    $)$
+  }
+
+  #·····················································································································
+  
+  rule <booleanMultipleBindingOperand>( 
+    !@abstractBooleanMultipleBindingExpressionAST outBinding)
+  {
+    $literal_integer$( ?let value)
+    outBinding = @literalIntMultipleBindingExpressionAST.new (!value)
+  }
+
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SEMANTIC TYPES                        
+#-----------------------------------------------------------------------------------------------------------------------
+
+list @multipleBindingGenerationList {
+  public var @string mOutletName
+  public var @string mBindingName
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
+}
+
+#·······················································································································
+
+abstract class @abstractBooleanMultipleBindingExpressionForGeneration {
+}
+
+#·······················································································································
+
+class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  public var @string mObservedModelString
+}
+
+#·······················································································································
+
+class @booleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  public var @uint mValue
+}
+
+#·······················································································································
+
+class @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mBinding
+}
+
+#·······················································································································
+
+class @orBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+}
+
+#·······················································································································
+
+class @xorBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+}
+
+#·······················································································································
+
+class @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+}
+
+#·······················································································································
+
+class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
+  public var @multipleBindingComparisonAST mOperator
+  public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SEMANTIC                              
+#-----------------------------------------------------------------------------------------------------------------------
+
+abstract proc @abstractBooleanMultipleBindingExpressionAST. analyzeExpressionForMultipleBinding(
+  ?prefs: let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inPreferencesObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation)
+
+#·······················································································································
+
+override proc @literalIntMultipleBindingExpressionAST. analyzeExpressionForMultipleBinding(
+  ?prefs: let @bool unused inPreferences
+  ?let @propertyMap unused inRootObservablePropertyMap
+  ?let @semanticContext unused inSemanticContext
+  ?let @propertyMap unused inCurrentObservablePropertyMap
+  ?let @propertyMap unused inPreferencesObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation)
+{
+  outEnableExpression = @booleanMultipleBindingLiteralIntForGeneration.new (!self.mValue.uint)
+  outType = .integerType
+  outErrorLocation = self.mValue.location
+}
+
+#·······················································································································
+
+override proc @observablePropertyInMultipleBindingExpressionAST. analyzeExpressionForMultipleBinding(
+  ?prefs: let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inPreferencesObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation)
+{
+  [self.mProperty analyzeObservableProperty
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !if inPreferences then inPreferencesObservablePropertyMap else inCurrentObservablePropertyMap end
+    ?let @propertyKind kind
+    ?let @string unused swiftTypeStringForTransientFunctionArgument
+    ?let @string unused defaultValueAsString
+  ]
+  switch kind
+  case property (type *) :
+    outType = type
+  case toMany (4*) :
+    error [self.mProperty location] : "only an atomic property can be observed" : outType
+  case toOne (4*) :
+    error [self.mProperty location] : "only an atomic property can be observed" : outType
+  case arrayController (2*) :
+    error [self.mProperty location] : "only an atomic property can be observed" : outType
+  case selectionController (*) :
+    error [self.mProperty location] : "only an atomic property can be observed" : outType
+  end
+  outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new (
+    ![self.mProperty modelStringForSelf !if inPreferences then "preferences_" else "self." end]
+  )
+  outErrorLocation = [self.mProperty location]
+}
+
+#·······················································································································
+
+override proc @negateBooleanMultipleBindingExpressionAST. analyzeExpressionForMultipleBinding(
+  ?prefs: let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inPreferencesObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation)
+{
+  [self.mBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration expression
+    ?outType
+    ?outErrorLocation
+  ]
+  if not [outType isBoolType] then
+    error outErrorLocation : "cannot apply negation: operand is not boolean"
+  end
+  outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration.new (!expression)
+}
+
+#·······················································································································
+
+override proc @orBooleanMultipleBindingExpressionAST. analyzeExpressionForMultipleBinding(
+  ?prefs: let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inPreferencesObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation)
+{
+  [self.mLeftBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  if not [outLeftType isBoolType] then
+    error outLeftLocation : "cannot apply 'or': left operand is not boolean"
+  end
+  [self.mRightBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not [outRightType isBoolType] then
+    error outRightLocation : "cannot apply 'or': right operand is not boolean"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration. new (!leftExpression !rightExpression)
+}
+
+#·······················································································································
+
+override proc @xorBooleanMultipleBindingExpressionAST. analyzeExpressionForMultipleBinding(
+  ?prefs: let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inPreferencesObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation)
+{
+  [self.mLeftBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  if not [outLeftType isBoolType] then
+    error outLeftLocation : "cannot apply 'or': left operand is not boolean"
+  end
+  [self.mRightBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not [outRightType isBoolType] then
+    error outRightLocation : "cannot apply 'or': right operand is not boolean"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration. new (!leftExpression !rightExpression)
+}
+
+#·······················································································································
+
+override proc @andBooleanMultipleBindingExpressionAST. analyzeExpressionForMultipleBinding(
+  ?prefs: let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inPreferencesObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation)
+{
+  [self.mLeftBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  if not [outLeftType isBoolType] then
+    error outLeftLocation : "cannot apply 'and': left operand is not boolean"
+  end
+  [self.mRightBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not [outRightType isBoolType] then
+    error outRightLocation : "cannot apply 'and': right operand is not boolean"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration. new (!leftExpression !rightExpression)
+}
+
+#·······················································································································
+
+override proc @comparisonMultipleBindingExpressionAST. analyzeExpressionForMultipleBinding(
+  ?prefs: let @bool inPreferences
+  ?let @propertyMap inRootObservablePropertyMap
+  ?let @semanticContext inSemanticContext
+  ?let @propertyMap inCurrentObservablePropertyMap
+  ?let @propertyMap inPreferencesObservablePropertyMap
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
+  !@typeKind outType
+  !@location outErrorLocation)
+{
+  [self.mLeftBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
+    ?let outLeftType
+    ?let outLeftLocation
+  ]
+  [self.mRightBinding analyzeExpressionForMultipleBinding
+    !prefs: inPreferences
+    !inRootObservablePropertyMap
+    !inSemanticContext
+    !inCurrentObservablePropertyMap
+    !inPreferencesObservablePropertyMap
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
+    ?let outRightType
+    ?let outRightLocation
+  ]
+  if not ([outLeftType isBoolType] || [outLeftType isIntegerType]) then
+    error outLeftLocation : "cannot compare: left operand is neither boolean nor integer"
+  end
+  if outRightType != outLeftType then
+    error outRightLocation : "cannot compare: right operand type is different than left operand type"
+  end
+  outType = .boolType
+  outErrorLocation = outRightLocation
+  outEnableExpression = @comparisonMultipleBindingExpressionForGeneration. new (
+    !leftExpression
+    !self.mOperator
+    !rightExpression
+  )
+}
+
+#·······················································································································
+
+abstract func @abstractBooleanMultipleBindingExpressionForGeneration. expressionString() -> @string
+
+#·······················································································································
+
+override func @booleanMultipleBindingLiteralIntForGeneration. expressionString()
+  -> @string outExpressionString {
+  outExpressionString = ".literalInt (" + [self.mValue string] + ")"
+#  outExpressionString = "MultipleBindingLiteralInt (" + [self.mValue string] + ")"
+}
+
+#·······················································································································
+
+override func @observablePropertyAsBooleanMultipleBindingExpressionForGeneration. expressionString()
+  -> @string outExpressionString {
+  outExpressionString = ".prop (" + self.mObservedModelString + ")"
+#  outExpressionString = ".MultipleBindingProp (" + self.mObservedModelString + ")"
+}
+
+#·······················································································································
+
+override func @negateBooleanMultipleBindingExpressionForGeneration. expressionString()
+  -> @string outExpressionString {
+  outExpressionString = ".not (" + [self.mBinding expressionString] + ")"
+#  outExpressionString = "MultipleBindingNot (" + [self.mBinding expressionString] + ")"
+}
+
+#·······················································································································
+
+override func @orBooleanMultipleBindingExpressionForGeneration. expressionString()
+  -> @string outExpressionString {
+  outExpressionString = ".boolcmp (" + [self.mLeftBinding expressionString] +  ", .or, " + [self.mRightBinding expressionString] + ")"
+#  outExpressionString = "MultipleBindingBoolOp (" + [self.mLeftBinding expressionString] +  ", .or, " + [self.mRightBinding expressionString] + ")"
+}
+
+#·······················································································································
+
+override func @xorBooleanMultipleBindingExpressionForGeneration. expressionString()
+  -> @string outExpressionString {
+  outExpressionString = ".boolcmp (" + [self.mLeftBinding expressionString] +  ", .xor, " + [self.mRightBinding expressionString] + ")"
+#  outExpressionString = "MultipleBindingBoolOp (" + [self.mLeftBinding expressionString] +  ", .xor, " + [self.mRightBinding expressionString] + ")"
+}
+
+#·······················································································································
+
+override func @andBooleanMultipleBindingExpressionForGeneration. expressionString()
+  -> @string outExpressionString {
+  outExpressionString = ". boolcmp (" + [self.mLeftBinding expressionString] +  ", .and, " + [self.mRightBinding expressionString] + ")"
+#  outExpressionString = "MultipleBindingBoolOp (" + [self.mLeftBinding expressionString] +  ", .and, " + [self.mRightBinding expressionString] + ")"
+}
+
+#·······················································································································
+
+override func @comparisonMultipleBindingExpressionForGeneration. expressionString()
+  -> @string outExpressionString {
+  outExpressionString = ".intcmp (" + [self.mLeftBinding expressionString] + ", "
+#  outExpressionString = "MultipleBindingIntCmp (" + [self.mLeftBinding expressionString] + ", "
+  switch self.mOperator
+  case equal : outExpressionString += ".eq"
+  case notEqual : outExpressionString += ".ne"
+  case lower : outExpressionString += ".lt"
+  case lowerOrEqual : outExpressionString += ".le"
+  case greater : outExpressionString += ".gt"
+  case greaterOrEqual : outExpressionString += ".ge"
+  end
+  outExpressionString += ", " + [self.mRightBinding expressionString] + ")"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

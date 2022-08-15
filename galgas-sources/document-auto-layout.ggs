@@ -1,0 +1,494 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
+  public let @lstring mRootEntityName
+  public let @lstring mMainViewName
+  public let @outletDeclarationList mOutletDeclarationList
+  public let @lstringlist mActionDeclarationList
+  public let @arrayControllerBindingListAST mArrayControllerBindingListAST
+  public let @astViewDeclarationList mViewDeclarationList
+  public let @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
+  public let @string mCustomSuperClassName # Empty String if no custom superclass
+  public let @astAutoLayoutOutletLinkerList mOutletLinkerList
+}
+
+#·······················································································································
+
+enum @astAutoLayoutToolbarItem {
+  case view (@lstring title @astComputedViewInstruction instruction)
+  case space
+}
+
+#·······················································································································
+
+list @astAutoLayoutToolbarItemList {
+  public var @astAutoLayoutToolbarItem mItem
+}
+
+#·······················································································································
+
+list @astAutoLayoutOutletLinkerList {
+  public var @lstring mLinkerName
+  public var @lstringlist mOutletNameList
+}
+
+#·······················································································································
+
+list @autoLayoutOutletLinkerGenerationList {
+  public var @string mLinkerName
+  public var @2stringlist mOutletNameAndTypeNameList
+}
+
+#·······················································································································
+
+override proc @autoLayoutDocumentDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+  [!?ioGraph addNode !self.mClassName !self]
+  [!?ioGraph addEdge !self.mClassName !self.mRootEntityName]
+}
+
+#·······················································································································
+
+override func @autoLayoutDocumentDeclarationAST. nodeKey() -> @lstring {
+  result = self.mClassName
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <document_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+    $autoLayoutDocument$
+    $Identifier$( ?let @lstring documentName)
+    let @string customSuperClassName
+    select
+      customSuperClassName = ""
+    or
+      $:$
+      $Identifier$( ?let name)
+      customSuperClassName = name.string
+    end
+    $root$
+    $Identifier$( ?let @lstring rootEntityName)
+    $stackView$
+    $identifier$( ?let @lstring mainViewName)
+    ${$
+    var @outletDeclarationList outletDeclarationList = {}
+    var @lstringlist actionDeclarationList = {}
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    var @astViewDeclarationList viewDeclarationList = {}
+    var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
+    var @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = {}
+    repeat
+    while
+      <stack_view_declaration>( !?viewDeclarationList)
+    while
+      <action_declaration>( !?actionDeclarationList)
+    while
+      <transient_declaration>( !documentName !rootEntityName !?ioDeclarationAST)
+    while
+      <outlet_declaration>( !?outletDeclarationList)
+    while
+      <controller_declaration>( !documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST)
+    while
+      $toolbarItem$
+      select
+        $space$
+        $;$
+        autoLayoutToolbarItemList += !.space
+      or
+        $literal_string$( ?let title)
+        $:$
+        <computed_view_instruction>( ?let instruction)
+        autoLayoutToolbarItemList += !.view (!title: title !instruction: instruction)
+      end
+    while
+      $linker$
+      $identifier$( ?let linkerName)
+      $($
+      var @lstringlist outletNameList = {}
+      repeat
+        $identifier$( ?let outletName)
+        outletNameList += !outletName
+      while
+        $,$
+      end
+      $)$
+      autoLayoutOutletLinkerList += !linkerName !outletNameList
+    end
+    $}$
+    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutDocumentDeclarationAST.new (
+      !documentName
+      !rootEntityName
+      !mainViewName
+      !outletDeclarationList
+      !actionDeclarationList
+      !arrayControllerBindingListAST
+      !viewDeclarationList
+      !autoLayoutToolbarItemList
+      !customSuperClassName
+      !autoLayoutOutletLinkerList
+    )
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new (
+      !documentName
+      !rootEntityName
+      !["String" here]
+      !["documentFileName" here]
+      !{}
+      !false
+    )
+  }
+
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#-----------------------------------------------------------------------------------------------------------------------
+
+override proc @autoLayoutDocumentDeclarationAST. firstAnalysisPhase(
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration)
+{
+  buildActionMap (!self.mActionDeclarationList ?let @actionMap actionMap)
+  [!?ioSemanticContext.mClassMap insertKey
+    !self.mClassName
+    !.document (!rootEntityName: self.mRootEntityName)
+    !{}
+    !actionMap
+    !{}
+  ]
+  for (lkey) in actionMap do
+    ioGeneration.mFileGenerationList += !@actionFileGeneration.new (
+      !self.mClassName.string
+      !lkey.string
+    )
+  end
+}
+
+#·······················································································································
+
+override proc @autoLayoutDocumentDeclarationAST. fourthAnalysisPhase(
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration)
+{
+  [ioSemanticContext.mClassMap searchKey
+    !.new (!preferencesName () !.nowhere)
+    ?*
+    ?let preferencesPropertyMap
+    ?2*
+  ]
+#--- Get document property map
+  [ioSemanticContext.mClassMap searchKey
+    !.new (!self.mClassName !.nowhere)
+    ?*
+    ?let documentPropertyMap
+    ?let documentActionMap
+    ?let documentPropertyGenerationList
+  ]
+#--- Get root entity property map
+  [ioSemanticContext.mClassMap searchKey
+    !self.mRootEntityName
+    ?*
+    ?let rootPropertyMap
+    ?let unused rootActionMap
+    ?let unused rootPropertyGenerationList
+  ]
+#--- Analyze outlets and bindings
+  analyzeOutlets (
+    !false
+    !rootPropertyMap
+    !preferencesPropertyMap
+    !self.mRootEntityName.string
+    !ioSemanticContext
+    !self.mOutletDeclarationList
+    !documentPropertyMap
+    !documentActionMap
+    !self.mClassName
+    !?ioGeneration
+    ?let @regularBindingsGenerationList regularBindingsGenerationList
+    ?@multipleBindingGenerationList multipleBindingGenerationList
+    ?let @actionBindingListForGeneration actionBindingListForGeneration
+    ?let @decoratedOutletMap outletMap
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
+  )
+#--- Analyze controller bindings
+  for (controllerName hiddenBinding) in self.mArrayControllerBindingListAST do
+  #--- Hidden
+    switch hiddenBinding
+    case noBinding :
+    case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
+      [expression analyzeExpressionForMultipleBinding
+        !prefs: false
+        !rootPropertyMap
+        !ioSemanticContext
+        !documentPropertyMap
+        !preferencesPropertyMap
+        ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
+        ?let @typeKind type
+        ?let @location errorLocation
+      ]
+      if not [type isBoolType] then
+        error errorLocation : "expression is not boolean"
+      end
+      multipleBindingGenerationList +=
+        !controllerName.string
+        !"hidden"
+        !hiddenExpression
+    end
+  end
+#--- Check auto layout view declarations
+  var @autoLayoutViewDeclarationMap viewDeclarationMap = {}
+  var @viewGenerationList viewGenerationList = {}
+  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
+  var @autoLayoutConfiguratorMap configuratorMap = {}
+  var @autoLayoutOutletMap autoLayoutOutletMap = {}
+  for (viewName viewDeclaration) in self.mViewDeclarationList do
+    [!?viewDeclarationMap insertKey !viewName]
+    [viewDeclaration checkView
+      !viewName
+      !viewDeclarationMap
+      !prefs: false
+      !rootPropertyMap
+      !preferencesPropertyMap
+      !ioSemanticContext
+      !documentPropertyMap
+      !documentActionMap
+      !self.mClassName
+      !ioSemanticContext.mClassMap
+      !?implicitViewFunctionGenerationList
+      !?configuratorMap
+      !?autoLayoutOutletMap
+      ?let viewGeneration
+    ]
+    viewGenerationList += !viewName !viewGeneration
+  end
+  [viewDeclarationMap searchKey !self.mMainViewName]
+#--- Analyze toolbar item declarations
+  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = {}
+  for (item) in self.mAutoLayoutToolbarItemList do
+    switch item
+    case space :
+      autoLayoutToolbarItemGenerationList += !.space
+    case view (title instruction) :
+      [instruction generateViewCode
+        !viewDeclarationMap
+        !prefs: false
+        !rootPropertyMap
+        !preferencesPropertyMap
+        !ioSemanticContext
+        !documentPropertyMap
+        !documentActionMap
+        !self.mClassName
+        !ioSemanticContext.mClassMap
+        !?implicitViewFunctionGenerationList
+        !?configuratorMap
+        !?autoLayoutOutletMap
+        ?let @abstractViewInstructionGeneration generatedInstruction
+      ]
+      autoLayoutToolbarItemGenerationList += !.view (!title: title.string !instruction: generatedInstruction)
+    end
+  end
+#--- Code generation
+  ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
+#--- Check outlet linker
+  var @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = {}
+  var @stringset linkerNameSet = {}
+  for (linkerName ouletNameList) in self.mOutletLinkerList do
+    if [linkerNameSet hasKey !linkerName.string] then
+      error linkerName : "duplicated linker name"
+    end
+    linkerNameSet += !linkerName.string
+    var @2stringlist outletNameAndTypeNameList = {}
+    for (outletName) in ouletNameList do
+      [autoLayoutOutletMap searchKey !outletName ?let outletTypeName]
+      outletNameAndTypeNameList += !outletName.string !outletTypeName
+    end
+    outletLinkerGenerationList += !linkerName.string !outletNameAndTypeNameList
+  end
+#---
+  ioGeneration.mFileGenerationList += !@autoLayoutDocumentFileGeneration.new (
+    !self.mClassName.string
+    !self.mRootEntityName.string
+    !self.mMainViewName.string
+    !documentPropertyGenerationList
+    !outletMap
+    !autoLayoutOutletMap
+    !actionBindingListForGeneration
+    !regularBindingsGenerationList
+    !multipleBindingGenerationList
+    !tableViewBindingGenerationList
+    !ebViewGraphicControllerBindingGenerationList
+    !viewGenerationList
+    !autoLayoutToolbarItemGenerationList
+    !implicitViewFunctionGenerationList
+    !configuratorMap
+    !self.mCustomSuperClassName # Empty String if no custom superclass
+    !outletLinkerGenerationList
+  )
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   GENERATION                            
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
+  public let @string mDocumentName
+  public let @string mRootEntityName
+  public let @string mMainViewName
+  public let @propertyGenerationList mDocumentPropertyGenearionList
+  public let @decoratedOutletMap mOutletMap
+  public let @autoLayoutOutletMap mAutoLayoutOutletMap
+  public let @actionBindingListForGeneration mTargetActionList 
+  public let @regularBindingsGenerationList mRegularBindingsGenerationList 
+  public let @multipleBindingGenerationList multipleBindingGenerationList
+  public let @tableViewBindingGenerationList mTableViewBindingGenerationList
+  public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
+  public let @viewGenerationList mViewDeclarationList
+  public let @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
+  public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
+  public let @autoLayoutConfiguratorMap mConfiguratorMap
+  public let @string mCustomSuperClassName # Empty String if no custom superclass
+  public let @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
+}
+
+#·······················································································································
+
+enum @autoLayoutToolbarItemGeneration {
+  case view (@string title @abstractViewInstructionGeneration instruction)
+  case space
+}
+
+#·······················································································································
+
+list @autoLayoutToolbarItemGenerationList {
+  public var @autoLayoutToolbarItemGeneration mItem
+}
+
+#·······················································································································
+
+override proc @autoLayoutDocumentFileGeneration. generateCode(
+    ?let @string inOutputDirectory
+    ?toOne: @stringset unused inToOneEntities
+    ?toMany: @stringset unused inToManyEntities
+    ?!@stringset ioGeneratedFileSet)
+{
+  let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentImplementation
+    !self.mDocumentName
+    !self.mRootEntityName
+    !self.mMainViewName
+    !self.mDocumentPropertyGenearionList
+    !self.mOutletMap
+    !self.mAutoLayoutOutletMap
+    !self.mTargetActionList
+    !self.mRegularBindingsGenerationList
+    !self.multipleBindingGenerationList
+    !self.mTableViewBindingGenerationList
+    !self.mEBViewBindingGenerationList
+    !self.mViewDeclarationList
+    !self.mAutoLayoutToolbarItemGenerationList
+    !self.mImplicitViewFunctionGenerationList
+    !if self.mCustomSuperClassName == "" then "EBAutoLayoutManagedDocument" else self.mCustomSuperClassName end
+    !self.mOutletLinkerGenerationList
+  ]
+  let fileName = "document-" + self.mDocumentName + ".swift"
+  ioGeneratedFileSet += !fileName
+  [@string generateFile
+    !inOutputDirectory
+    !fileName
+    !s
+  ]
+  for (outletName outletTypeName) in self.mConfiguratorMap do
+    let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation
+      !self.mDocumentName
+      !outletName.string
+      !outletTypeName
+    ]
+    let header = "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n"
+      "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
+      "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n\n"
+      + "import Cocoa\n\n"
+      + "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n\n"
+    let fileName = "configurator-" + self.mDocumentName + "-" + outletName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFileWithPattern
+      !startPath: inOutputDirectory
+      !fileName: fileName
+      !lineComment:"//"
+      !header:header
+      !defaultUserZone1:"\n\n" # Defaut user zone1
+      !generatedZone2:s
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n" # Defaut user zone2
+      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n"
+      !makeExecutable:false
+    ]
+  end
+  for (linkerName outletNameAndTypeNameList) in self.mOutletLinkerGenerationList do
+    let s = [filewrapper autoLayoutDocumentGenerationTemplate.outletLinkerImplementation
+      !self.mDocumentName
+      !linkerName
+      !outletNameAndTypeNameList
+    ]
+    let header = "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n"
+      "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
+      "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n\n"
+      + "import Cocoa\n\n"
+      + "//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n\n"
+    let fileName = "linker-" + self.mDocumentName + "-" + linkerName + ".swift"
+    ioGeneratedFileSet += !fileName
+    [@string generateFileWithPattern
+      !startPath: inOutputDirectory
+      !fileName: fileName
+      !lineComment:"//"
+      !header:header
+      !defaultUserZone1:"\n\n" # Defaut user zone1
+      !generatedZone2:s
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n" # Defaut user zone2
+      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—' !118) + "\n"
+      !makeExecutable:false
+    ]
+  end
+}
+
+#·······················································································································
+
+filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templates" {
+}{
+}{
+  template documentImplementation "document-auto-layout.swift.galgasTemplate"
+    ?@string DOCUMENT_CLASS_NAME
+    ?@string ROOT_ENTITY_NAME
+    ?@string MAIN_VIEW_NAME
+    ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
+    ?@decoratedOutletMap OUTLET_GENERATION_MAP
+    ?@autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP
+    ?@actionBindingListForGeneration TARGET_ACTION_LIST
+    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
+    ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
+    ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
+    ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
+    ?@viewGenerationList VIEW_GENERATION_LIST
+    ?@autoLayoutToolbarItemGenerationList TOOLBAR_ITEM_LIST
+    ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
+    ?@string DOCUMENT_SUPER_CLASS_NAME
+    ?@autoLayoutOutletLinkerGenerationList AUTO_LAYOUT_LINKER_LIST
+
+  template documentOutletConfiguratorImplementation "configure-auto-layout-outlet.swift.galgasTemplate"
+    ?@string DOCUMENT_TYPE_NAME
+    ?@string OUTLET_NAME
+    ?@string OUTLET_TYPE_NAME
+
+  template outletLinkerImplementation "linker-auto-layout-outlet.swift.galgasTemplate"
+    ?@string DOCUMENT_TYPE_NAME
+    ?@string LINKER_NAME
+    ?@2stringlist OUTLET_NAME_AND_TYPE_NAME_LIST
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,70 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST   
+#-----------------------------------------------------------------------------------------------------------------------
+
+class @transientClassDeclarationAST : @abstractDeclarationAST {
+  public var @bool mIsClass # Is false, struct
+}
+
+#·······················································································································
+
+override proc @transientClassDeclarationAST. enterInPrecedenceGraph( ?!@declarationPrecedenceGraph ioGraph) {
+  [!?ioGraph addNode !self.mClassName !self]
+}
+
+#·······················································································································
+
+override func @transientClassDeclarationAST. nodeKey() -> @lstring {
+  result = self.mClassName
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   SYNTAX
+#-----------------------------------------------------------------------------------------------------------------------
+
+syntax extension easyBindings_syntax {
+
+  #·····················································································································
+  
+  rule <class_declaration>( ?!@astDeclarationStruct ioDeclarationAST) {
+    $transient$
+     $property$
+    let @bool isClass
+    select
+      $class$
+      isClass = true
+    or
+      $struct$
+      isClass = false
+    end
+    $Identifier$( ?let @lstring propertyTypeName)
+    $;$
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientClassDeclarationAST.new (
+      !propertyTypeName
+      !isClass
+    )
+  }
+
+  #·····················································································································
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+#-----------------------------------------------------------------------------------------------------------------------
+
+override proc @transientClassDeclarationAST. firstAnalysisPhase(
+       ?!@semanticContext ioSemanticContext
+       ?!@generationStruct ioGeneration)
+{
+  [!?ioSemanticContext.mClassMap insertKey
+    !self.mClassName
+    !.atomic (!kind: .transientPropertyExternType (!externTypeName: self.mClassName))
+    !{}
+    !{}
+    !{}
+  ]
+  ioGeneration.mTransientPropertyTypeList += !self.mClassName.string !self.mIsClass
+}
+
+#-----------------------------------------------------------------------------------------------------------------------

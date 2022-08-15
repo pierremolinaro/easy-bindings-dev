@@ -1,0 +1,190 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   AST   
+#-----------------------------------------------------------------------------------------------------------------------
+
+func @typeKind. typeName() -> @string {
+  switch self
+  case boolType :
+    result = "Bool"
+  case integerType :
+    result = "Int"
+  case uint32Type :
+    result = "UInt32"
+  case doubleType :
+    result = "Double"
+  case stringType :
+    result = "String"
+  case dateType :
+    result = "Date"
+  case dataType :
+    result = "Data"
+  case fontType :
+    result = "NSFont"
+  case colorType :
+    result = "NSColor"
+  case bezierPathType :
+    result = "NSBezierPath"
+  case bezierPathArrayType :
+    result = "BezierPathArray"
+  case enumType (typeName 2*) :
+    result = typeName
+  case entityType (typeName *) :
+    result = typeName
+  case classType (typeName) :
+    result = typeName
+  case transientPropertyExternType (typeName) :
+    result = typeName
+  end
+}
+
+#·······················································································································
+
+func @typeKind. isComparable() -> @bool outResult {
+  switch self
+  case boolType, integerType, uint32Type, doubleType, stringType, dateType, dataType :
+    outResult = true
+  case fontType, colorType, bezierPathType, bezierPathArrayType :
+    outResult = false
+  case enumType (3*) :
+    outResult = false
+  case entityType (2*) :
+    outResult = false
+  case classType (*) :
+    outResult = false
+  case transientPropertyExternType (*) :
+    outResult = false
+  end
+}
+
+#·······················································································································
+
+func @typeKind. isGraphic() -> @bool outResult {
+  switch self
+  case boolType, integerType, uint32Type, doubleType, stringType, dateType,
+       dataType, bezierPathType, bezierPathArrayType :
+    outResult = false
+  case fontType, colorType :
+    outResult = false
+  case enumType (3*) :
+    outResult = false
+  case entityType (* isGraphic) :
+    outResult = isGraphic
+  case classType (*) :
+    outResult = false
+  case transientPropertyExternType (*) :
+    outResult = false
+  end
+}
+
+#·······················································································································
+
+list @typeKindList {
+  public var @typeKind mType
+}
+
+#·······················································································································
+
+func @propertyKind. typeName() -> @string {
+  switch self
+  case property (type *) :
+    result = [type typeName]
+  case toMany (typeName 3*) :
+    result = typeName
+  case toOne (typeName 3*) :
+    result = typeName
+  case arrayController (typeName *) :
+    result = typeName
+  case selectionController (typeName) :
+    result = typeName
+  end
+}
+
+#·······················································································································
+
+func @propertyKind. swiftTypeName() -> @string {
+  switch self
+  case property (type *) :
+    result = [type swiftTypeName]
+  case toMany (typeName 3*) :
+    result = typeName
+  case toOne (typeName 3*) :
+    result = typeName
+  case arrayController (typeName *) :
+    result = typeName
+  case selectionController (typeName) :
+    result = typeName
+  end
+}
+
+#·······················································································································
+
+func @typeKind. swiftTypeName() -> @string outResult {
+  switch self
+  case integerType : outResult = "Int"
+  case uint32Type : outResult = "UInt32"
+  case stringType : outResult = "String"
+  case boolType : outResult = "Bool"
+  case dateType : outResult = "Date"
+  case dataType : outResult = "Data"
+  case doubleType : outResult = "Double"
+  case fontType : outResult = "NSFont"
+  case colorType : outResult = "NSColor"
+  case bezierPathType : outResult = "NSBezierPath"
+  case bezierPathArrayType : outResult = "BezierPathArray"
+  case entityType (@string entityName *) : outResult = entityName
+  case enumType (@string enumTypeName 2*) : outResult = enumTypeName
+  case classType (@string classTypeName) : outResult = classTypeName
+  case transientPropertyExternType (@string classTypeName) : outResult = classTypeName
+  end
+}
+
+#·······················································································································
+
+func @propertyKind. isTransient() -> @bool {
+  switch self
+  case property (* accessibility) : result = [accessibility isTransient]
+  case toMany (* accessibility 2*) : result = [accessibility isTransient]
+  case toOne (* accessibility 2*) : result = [accessibility isTransient]
+  case arrayController (2*) : result = false
+  case selectionController (*) : result = false
+  end
+}
+
+#·······················································································································
+
+func @propertyKind. isComparable() -> @bool {
+  switch self
+  case property (type *) : result = [type isComparable]
+  case toMany (4*) : result = false
+  case toOne (4*) : result = false
+  case arrayController (2*) : result = false
+  case selectionController (*) : result = false
+  end
+}
+
+#·······················································································································
+
+func @propertyKind. isEntityType() -> @bool {
+  switch self
+  case property (2*) : result = false
+  case toMany (4*) : result = true
+  case toOne (4*) : result = true
+  case arrayController (2*) : result = false
+  case selectionController (*) : result = false
+  end
+}
+
+#·······················································································································
+
+func @propertyKind. isEnumType() -> @bool {
+  switch self
+  case property (type *) : result = [type isEnumType]
+  case toMany (4*) : result = false
+  case toOne (4*) : result = false
+  case arrayController (2*) : result = false
+  case selectionController (*) : result = false
+  end
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+

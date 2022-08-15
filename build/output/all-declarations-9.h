@@ -10,38 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'validationStubExtension'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'validationStubExtension actionGeneration'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (class C_Compiler * inCompiler,
-                                                                            const class GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
-                                                                            const class GALGAS_string & in_MODEL_5F_NAME,
-                                                                            const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Routine 'generateValidationRoutineStubs'
 //
 //----------------------------------------------------------------------------------------------------------------------

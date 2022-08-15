@@ -1,0 +1,155 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#   SEMANTIC TYPES                        
+#-----------------------------------------------------------------------------------------------------------------------
+
+enum @classKind {
+  case prefs
+  case atomic (@typeKind kind)
+  case document (@lstring rootEntityName)
+  case entity (@string superEntityName @bool isGraphic @bool isAbstract)
+}
+
+#·······················································································································
+
+abstract class @propertyGeneration {
+  public var @string mPropertyName
+}
+
+#·······················································································································
+
+func @propertyGeneration. prefKeyDefinitionCode() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. declarationInSelectionControllerCode() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. bindPropertyInSelectionController() -> @string { result = "" }
+
+#·······················································································································
+
+abstract func @propertyGeneration. propertyDeclarationCode( ?let @bool inPreferences ?let @stringset inOverriddenTransients) -> @string
+
+#·······················································································································
+
+abstract func @propertyGeneration. configurationCode( ?let @bool inPreferences) -> @string
+
+#·······················································································································
+
+abstract func @propertyGeneration. initCode() -> @string
+
+#·······················································································································
+
+func @propertyGeneration. terminationCode( ?let @bool unused inPreferences) -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. setupAtomicPropertyFromDictionaryCode() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. setupRelationshipFromDictionaryCode() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. saveIntoDictionaryCode() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. objectAccessibilityCode() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. objectAccessibilityCodeForSaveOperation() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. populateExplorerWindowCode() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. clearObjectExplorerCode() -> @string { result = "" }
+
+#·······················································································································
+
+func @propertyGeneration. resetToManyRelationships() -> @string { result = "" }
+
+#·······················································································································
+
+list @propertyGenerationList {
+  public var @propertyGeneration mProperty
+}
+
+#·······················································································································
+
+map @classMap {
+  public var @classKind mClassKind
+  public var @propertyMap mPropertyMap
+  public var @actionMap mActionMap
+  public var @propertyGenerationList mPropertyGenerationList
+  insert insertKey error message "the '%K' class is already declared in %L"
+  search searchKey error message "there is no '%K' class"
+}
+
+#·······················································································································
+
+enum @propertyAccessibility {
+  case stored
+  case computed
+  case transient (@bool isAbstract)
+}
+
+#·······················································································································
+
+enum @typeKind {
+  case boolType 
+  case integerType 
+  case uint32Type 
+  case doubleType
+  case stringType 
+  case dataType
+  case dateType
+  case fontType
+  case colorType
+  case bezierPathType
+  case bezierPathArrayType
+  case enumType (@string enumTypeName @enumConstantMap constantMap @enumFuncMap funcMap)
+  case entityType (@string entityName @bool graphic)
+  case classType (@string className)
+  case transientPropertyExternType (@string externTypeName)
+}
+
+#·······················································································································
+
+enum @propertyKind {
+  case property (@typeKind type @propertyAccessibility accessibility)
+  case toMany (@lstring typeName @propertyAccessibility accessibility @bool graphic @toManyRelationshipOptionAST optionKind)
+  case toOne (@lstring typeName @propertyAccessibility accessibility @bool graphic @toOneOppositeRelationship opposite)
+  case arrayController (@lstring typeName @bool graphic)
+  case selectionController (@string typeName)
+}
+
+#·······················································································································
+
+map @propertyMap {
+  public var @propertyKind mKind
+  public var @actionMap mActionMap
+  public var @bool mIsOverriding
+  insert insertKey error message "the '%K' property is already declared in %L"
+  search searchKey error message "there is no '%K' property"
+}
+
+#·······················································································································
+
+func @propertyMap-element. isAbstract() -> @bool {
+  result = false
+  if let [self.mKind property ?1* ?accessibility:let @propertyAccessibility accessibility] then
+    if [accessibility isTransient] then
+      [accessibility transient ?isAbstract: let ab]
+      result = ab
+    end
+  end
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
