@@ -20,7 +20,7 @@ class @proxyDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @proxyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring.new (!self.mClassName.string + " " + self.mProxyName !self.mProxyName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mProxyName !self.mProxyName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mProxyTypeName]
@@ -29,7 +29,7 @@ override proc @proxyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecede
 #·······················································································································
 
 override func @proxyDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring.new (!self.mClassName.string + " " + self.mProxyName !self.mProxyName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mProxyName !self.mProxyName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ syntax extension easyBindings_syntax {
     $.$
     $identifier$ (?let @lstring propertyName)
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@proxyDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@proxyDeclarationAST (
       !inCurrentEntity
       !proxyKind
       !proxyTypeName
@@ -136,7 +136,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase(
       [propertyMap searchKey !self.mPropertyName ?let propertyKind ?2*]
       switch propertyKind
       case property (propertyType 1*) :
-        mPropertyGenerationList += !@atomicProxyGeneration.new (
+        mPropertyGenerationList += !@atomicProxyGeneration (
           !self.mProxyName.string
           !self.mProxyKind
           !propertyType
@@ -148,7 +148,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase(
         end
       case toMany (toManyTypeName 3*) :
         [ioSemanticContext.mClassMap searchKey !toManyTypeName ?4*]
-        mPropertyGenerationList += !@toManyProxyGeneration.new (
+        mPropertyGenerationList += !@toManyProxyGeneration (
           !self.mProxyName.string
           !self.mProxyKind
           !toManyTypeName

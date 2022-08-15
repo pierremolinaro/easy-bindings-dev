@@ -21,7 +21,7 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring.new (!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mPropertyTypeName]
@@ -31,7 +31,7 @@ override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarati
 #·······················································································································
 
 override func @atomicPropertyDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring.new (!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -118,21 +118,13 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase(
     #--- Analyze default value
       [self.mDefaultValue analyzeDefaultValueType !{!kind} !preferencesPropertyMap ?let @string swiftDefaultValueAsString]
     #--- Code Generation
-      mPropertyGenerationList += !@atomicPropertyGeneration.new (
+      mPropertyGenerationList += !@atomicPropertyGeneration (
         !self.mPropertyName.string
-#        !self.mNeedsValidation
         !kind
         !false
         !swiftDefaultValueAsString
         !self.mClassName.string == preferencesName ()
       )
-    #--- Needs validation ?
-#      if self.mNeedsValidation then
-#        ioGeneration.mValidationStubRoutineListForGeneration +=
-#          !self.mClassName
-#          !self.mPropertyName.string
-#          ![kind swiftTypeName]
-#      end
     case document (*) :
       error self.mPropertyTypeName : "an atomic class is required here"
     case entity (3*) :

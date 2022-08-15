@@ -46,7 +46,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST.new (!enumName !enumConstants)
+    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST (!enumName !enumConstants)
   }
 
   #·····················································································································
@@ -141,7 +141,7 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
     !{}
   ]
 #--- Generation
-  ioGeneration.mFileGenerationList += !@enumForGeneration.new (
+  ioGeneration.mFileGenerationList += !@enumForGeneration (
     !self.mClassName
     !self.mEnumConstantNameList
     !enumFuncMap

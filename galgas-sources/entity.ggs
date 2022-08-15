@@ -105,7 +105,7 @@ syntax extension easyBindings_syntax {
       end
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST (
       !entityName
       !isAbstract
       !superEntityName
@@ -118,7 +118,7 @@ syntax extension easyBindings_syntax {
       !graphicOptionArray
     )
     if isAbstract && graphicEntity then
-      ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new (
+      ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
         !entityName
         !["" here]
         !["EBShape" here]
@@ -126,7 +126,7 @@ syntax extension easyBindings_syntax {
         !{}
         !false
       )
-      ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new (
+      ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
         !entityName
         !["" here]
         !["EBShape" here]
@@ -291,7 +291,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase(
   ioGeneration.mEntityListForGeneration +=
     !self.mClassName.string
     !self.mObsoleteEntityNames
-  ioGeneration.mFileGenerationList += !@entityForGeneration.new (
+  ioGeneration.mFileGenerationList += !@entityForGeneration (
     !self.mClassName.string
     !self.mSuperEntityName.string
     !propertyGenerationList

@@ -30,7 +30,7 @@ class @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @autoLayoutTableViewControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring.new (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   if not self.mIsRoot then
@@ -43,7 +43,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.enterInPrecedenceGrap
 #·······················································································································
 
 override func @autoLayoutTableViewControllerDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring.new (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ syntax extension easyBindings_syntax {
       end
       $}$
     end
-    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutTableViewControllerDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutTableViewControllerDeclarationAST (
       !inCurrentEntity
       !controllerName
       !isRoot
@@ -156,7 +156,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
         )
         [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
-      mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration.new (
+      mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration (
         !self.mControllerName.string
         !"rootObject." + self.mToManyPropertyName
         !self.mClassName
@@ -180,7 +180,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
         )
         [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
-      mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration.new (
+      mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration (
         !self.mControllerName.string
         !self.mToManyPropertyName
         !self.mClassName
@@ -382,7 +382,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     else "self." + self.mToManyPropertyName + "_property"
   end
 #---
-  ioGeneration.mFileGenerationList += !@autoLayoutTableViewControllerGeneration.new (
+  ioGeneration.mFileGenerationList += !@autoLayoutTableViewControllerGeneration (
     !self.mClassName
     !self.mControllerName
     !modelString

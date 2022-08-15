@@ -21,13 +21,13 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring.new (!self.mClassName.string + " " + self.mToManyRelationshipName !self.mToManyRelationshipName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mToManyRelationshipName !self.mToManyRelationshipName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mDestinationEntityName]
   switch self.mOption
   case hasDependance (masterPropertyName) :
-    let dependanceNode = @lstring.new (!self.mClassName.string + " " + masterPropertyName !masterPropertyName.location)
+    let dependanceNode = @lstring (!self.mClassName.string + " " + masterPropertyName !masterPropertyName.location)
     [!?ioGraph addEdge !node !dependanceNode]
   case hasOpposite (*) :
   case none :
@@ -37,7 +37,7 @@ override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrece
 #·······················································································································
 
 override func @toManyRelationshipAST.nodeKey() -> @lstring {
-  result = @lstring.new (!self.mClassName.string + " " + self.mToManyRelationshipName !self.mToManyRelationshipName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mToManyRelationshipName !self.mToManyRelationshipName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ syntax extension easyBindings_syntax {
       toManyRelationshipOption = .none
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@toManyRelationshipAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@toManyRelationshipAST (
       !inCurrentEntity
       !destinationEntityName
       !relationshipName
@@ -153,7 +153,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase(
         optionForGeneration = .none
       end
     #--- Code Generation
-      mPropertyGenerationList += !@toManyPropertyGeneration.new (
+      mPropertyGenerationList += !@toManyPropertyGeneration (
         !self.mToManyRelationshipName.string
         !kind
         !optionForGeneration

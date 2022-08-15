@@ -26,7 +26,7 @@ case ."eb"
 #----------------------------------------- Parse source file
   grammar easyBindings_grammar (!?declarationStruct ?let @location unused endOfSourceFile) in inSourceFile
 #------------------------ Add prefs declaration
-  declarationStruct.mUnifiedDeclarationList += !@prefsDeclarationAST.new (
+  declarationStruct.mUnifiedDeclarationList += !@prefsDeclarationAST (
     !.new(!preferencesName () !.nowhere)
     !declarationStruct.mPreferences
   )

@@ -13,7 +13,7 @@ class @computedPropertyDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring.new (!self.mClassName.string + " " + self.mComputedPropertyName !self.mComputedPropertyName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mComputedPropertyName !self.mComputedPropertyName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mComputedPropertyTypeName]
@@ -72,7 +72,7 @@ override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declara
 #·······················································································································
 
 override func @computedPropertyDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring.new (!self.mClassName.string + " " + self.mComputedPropertyName !self.mComputedPropertyName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mComputedPropertyName !self.mComputedPropertyName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -80,28 +80,6 @@ override func @computedPropertyDeclarationAST.nodeKey() -> @lstring {
 #-----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
-
-  #·····················································································································
-  
-#  rule <transient_declaration>
-#            ?let @lstring inCurrentEntity
-#            ?let @lstring inRootEntity
-#            ?!@astDeclarationStruct ioDeclarationAST
-#  {
-#    $abstract$
-#    $computed$
-#    $Identifier$ ?let transientTypeName
-#    $identifier$ ?let transientName
-#    $;$
-#    ioDeclarationAST.mUnifiedDeclarationList += !@computedPropertyDeclarationAST.new {
-#      !inCurrentEntity
-#      !inRootEntity
-#      !transientTypeName
-#      !transientName
-#      !{}
-#      !false
-#    }
-#  }
 
   #·····················································································································
   
@@ -129,7 +107,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@computedPropertyDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@computedPropertyDeclarationAST (
       !inCurrentEntity
       !inRootEntity
       !transientTypeName
@@ -227,14 +205,14 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
       !swiftTypeStringForTransientFunctionArgument
       !defaultValueAsString
   end
-  ioGeneration.mFileGenerationList += !@transientRoutineGeneration.new (
+  ioGeneration.mFileGenerationList += !@transientRoutineGeneration (
     !self.mClassName
     !self.mComputedPropertyName.string
     !typeKind
     !"computed"
     !dependencies
   )
-  ioGeneration.mFileGenerationList += !@computeRoutineGeneration.new (
+  ioGeneration.mFileGenerationList += !@computeRoutineGeneration (
     !self.mClassName
     !self.mComputedPropertyName.string
     !typeKind
@@ -258,7 +236,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
         generate = true
       end
     end
-    mPropertyGenerationList += !@computedPropertyGeneration.new (
+    mPropertyGenerationList += !@computedPropertyGeneration (
       !self.mComputedPropertyName.string
       !self.mClassName.string
       !typeKind

@@ -98,27 +98,27 @@ syntax extension easyBindings_syntax {
     or
       $>$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.greater !rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding !.greater !rightBinding)
     or
       $>=$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.greaterOrEqual !rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding !.greaterOrEqual !rightBinding)
     or
       $<=$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.lowerOrEqual !rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding !.lowerOrEqual !rightBinding)
     or
       $<$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.lower !rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding !.lower !rightBinding)
     or
       $==$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.equal !rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding !.equal !rightBinding)
     or
       $!=$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST.new (!outBinding !.notEqual !rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding !.notEqual !rightBinding)
     end
   }
   
@@ -175,7 +175,7 @@ syntax extension easyBindings_syntax {
     !@abstractBooleanMultipleBindingExpressionAST outBinding)
   {
     $literal_integer$ (?let value)
-    outBinding = @literalIntMultipleBindingExpressionAST.new (!value)
+    outBinding = @literalIntMultipleBindingExpressionAST (!value)
   }
 
   #·····················································································································
@@ -270,7 +270,7 @@ override proc @literalIntMultipleBindingExpressionAST.analyzeExpressionForMultip
   !@typeKind outType
   !@location outErrorLocation)
 {
-  outEnableExpression = @booleanMultipleBindingLiteralIntForGeneration.new (!self.mValue.uint)
+  outEnableExpression = @booleanMultipleBindingLiteralIntForGeneration (!self.mValue.uint)
   outType = .integerType
   outErrorLocation = self.mValue.location
 }
@@ -307,7 +307,7 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
   case selectionController (*) :
     error [self.mProperty location] : "only an atomic property can be observed" : outType
   end
-  outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.new (
+  outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration (
     ![self.mProperty modelStringForSelf !if inPreferences then "preferences_" else "self." end]
   )
   outErrorLocation = [self.mProperty location]
@@ -338,7 +338,7 @@ override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMul
   if not [outType isBoolType] then
     error outErrorLocation : "cannot apply negation: operand is not boolean"
   end
-  outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration.new (!expression)
+  outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration (!expression)
 }
 
 #·······················································································································
@@ -381,7 +381,7 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
   end
   outType = .boolType
   outErrorLocation = outRightLocation
-  outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration.new (!leftExpression !rightExpression)
+  outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration (!leftExpression !rightExpression)
 }
 
 #·······················································································································
@@ -424,7 +424,7 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   end
   outType = .boolType
   outErrorLocation = outRightLocation
-  outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration.new (!leftExpression !rightExpression)
+  outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration (!leftExpression !rightExpression)
 }
 
 #·······················································································································
@@ -467,7 +467,7 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   end
   outType = .boolType
   outErrorLocation = outRightLocation
-  outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration.new (!leftExpression !rightExpression)
+  outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration (!leftExpression !rightExpression)
 }
 
 #·······················································································································
@@ -510,7 +510,7 @@ override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultip
   end
   outType = .boolType
   outErrorLocation = outRightLocation
-  outEnableExpression = @comparisonMultipleBindingExpressionForGeneration.new (
+  outEnableExpression = @comparisonMultipleBindingExpressionForGeneration (
     !leftExpression
     !self.mOperator
     !rightExpression

@@ -3,16 +3,16 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @selectionControllerDeclarationAST : @abstractDeclarationAST {
-  public var @lstring mSelectionControllerName
-  public var @lstring mModelControllerName
-  public var @lstring mModelControllerPropertyName
-  public var @lstring mSelectionEntityName
+  public let @lstring mSelectionControllerName
+  public let @lstring mModelControllerName
+  public let @lstring mModelControllerPropertyName
+  public let @lstring mSelectionEntityName
 }
 
 #·······················································································································
 
 override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring.new (!self.mClassName.string + " " + self.mSelectionControllerName !self.mSelectionControllerName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mSelectionControllerName !self.mSelectionControllerName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mModelControllerName !self.mModelControllerName.location)]
 }
@@ -20,7 +20,7 @@ override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@decl
 #·······················································································································
 
 override func @selectionControllerDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring.new (!self.mClassName.string + " " + self.mSelectionControllerName !self.mSelectionControllerName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mSelectionControllerName !self.mSelectionControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ syntax extension easyBindings_syntax {
     $.$
     $identifier$ (?let @lstring propertyName)
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@selectionControllerDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@selectionControllerDeclarationAST (
       !inCurrentEntity
       !selectionControllerName
       !modelControllerName
@@ -85,7 +85,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase(
       end
       let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
       [!?mPropertyMap insertKey !self.mSelectionControllerName !kind !{} !false]
-      mPropertyGenerationList += !@selectionControllerPropertyGeneration.new (
+      mPropertyGenerationList += !@selectionControllerPropertyGeneration (
         !self.mSelectionControllerName.string
         !self.mClassName
         !self.mModelControllerName.string

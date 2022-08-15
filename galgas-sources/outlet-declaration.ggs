@@ -94,7 +94,7 @@ syntax extension easyBindings_syntax {
       end
       let @lstring runTargetName
       select
-        runTargetName = @lstring.new (!"self" !.here)
+        runTargetName = @lstring (!"self" !.here)
       or
         $controllerName$ (?runTargetName)
         $.$

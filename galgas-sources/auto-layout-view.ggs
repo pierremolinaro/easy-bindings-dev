@@ -167,11 +167,11 @@ syntax extension easyBindings_syntax {
     select
       $hStack$
       <auto_layout_func_call_list> (?let functionCallList)
-      ioViewDeclarationList += !viewName !@astHorizontalStackViewDeclaration.new (!functionCallList)
+      ioViewDeclarationList += !viewName !@astHorizontalStackViewDeclaration (!functionCallList)
     or
       $vStack$
       <auto_layout_func_call_list> (?let functionCallList)
-      ioViewDeclarationList += !viewName !@astVerticalStackViewDeclaration.new (!functionCallList)
+      ioViewDeclarationList += !viewName !@astVerticalStackViewDeclaration (!functionCallList)
     end
     $;$
   }
@@ -189,7 +189,7 @@ syntax extension easyBindings_syntax {
     $}$
     ioViewDeclarationList +=
       !viewName
-      !@astComputedVerticalViewDeclaration.new (!functionCallList !instructionList)
+      !@astComputedVerticalViewDeclaration (!functionCallList !instructionList)
   }
  
   #·····················································································································
@@ -217,7 +217,7 @@ syntax extension easyBindings_syntax {
     $}$
     ioViewDeclarationList +=
       !viewName
-      !@astComputedHorizontalViewDeclaration.new (!functionCallList !instructionList)
+      !@astComputedHorizontalViewDeclaration (!functionCallList !instructionList)
   }
  
   #·····················································································································
@@ -226,7 +226,7 @@ syntax extension easyBindings_syntax {
     repeat
     while
       $separator$
-      ioInstructionList += !@astSeparatorInstructionDeclaration.new (!horizontal: inHorizontal)
+      ioInstructionList += !@astSeparatorInstructionDeclaration (!horizontal: inHorizontal)
 
     while
       <view_instruction> (?let instruction)
@@ -246,7 +246,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
     $view$
     $identifier$ (?let localViewName)
-    outInstruction = @astLocalViewInstruction.new (!localViewName)
+    outInstruction = @astLocalViewInstruction (!localViewName)
   }
   
  #·····················································································································
@@ -313,7 +313,7 @@ syntax extension easyBindings_syntax {
                        ?regularBindingList)
       $}$
     end
-    outInstruction = @astComputedViewInstruction.new (
+    outInstruction = @astComputedViewInstruction (
       !viewClassName
       !instanciationParameterList
       !autoLayoutViewFunctionCallList
@@ -355,7 +355,7 @@ syntax extension easyBindings_syntax {
             $run$
             let @lstring runTargetName
             select
-              runTargetName = @lstring.new (!"self" !.here)
+              runTargetName = @lstring (!"self" !.here)
             or
               $controllerName$ (?runTargetName)
               $.$
@@ -420,7 +420,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
     $stackViewRef$
     $identifier$ (?let stackViewName)
-    outInstruction = @astStackViewReferenceInstructionDeclaration.new (!stackViewName)
+    outInstruction = @astStackViewReferenceInstructionDeclaration (!stackViewName)
   }
   
   #·····················································································································
@@ -439,7 +439,7 @@ syntax extension easyBindings_syntax {
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> (!horizontal: false !?instructionList)
-    outInstruction = @astVStackViewInstructionDeclaration.new (!functionCallList !instructionList !optionalHiddenBinding)
+    outInstruction = @astVStackViewInstructionDeclaration (!functionCallList !instructionList !optionalHiddenBinding)
     $}$
   }
   
@@ -459,7 +459,7 @@ syntax extension easyBindings_syntax {
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> (!horizontal: true !?instructionList)
-    outInstruction = @astHStackViewInstructionDeclaration.new (!functionCallList !instructionList !optionalHiddenBinding)
+    outInstruction = @astHStackViewInstructionDeclaration (!functionCallList !instructionList !optionalHiddenBinding)
     $}$
   }
   
@@ -479,7 +479,7 @@ syntax extension easyBindings_syntax {
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> (!horizontal: true !?instructionList)
-    outInstruction = @astHSplitViewInstructionDeclaration.new (!functionCallList !instructionList !optionalHiddenBinding)
+    outInstruction = @astHSplitViewInstructionDeclaration (!functionCallList !instructionList !optionalHiddenBinding)
     $}$
   }
   
@@ -499,7 +499,7 @@ syntax extension easyBindings_syntax {
     ${$
     var instructionList = @astViewInstructionList {}
     <view_instruction_list> (!horizontal: true !?instructionList)
-    outInstruction = @astVSplitViewInstructionDeclaration.new (!functionCallList !instructionList !optionalHiddenBinding)
+    outInstruction = @astVSplitViewInstructionDeclaration (!functionCallList !instructionList !optionalHiddenBinding)
     $}$
   }
   
@@ -717,7 +717,7 @@ override proc @astHorizontalStackViewDeclaration.checkView(
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  outGeneration = @newHorizontalStackViewGeneration.new (!funcCallList)
+  outGeneration = @newHorizontalStackViewGeneration (!funcCallList)
 }
 
 #·······················································································································
@@ -753,7 +753,7 @@ override proc @astVerticalStackViewDeclaration.checkView(
      !?ioOutletMap
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  outGeneration = @newVerticalStackViewGeneration.new (!funcCallList)
+  outGeneration = @newVerticalStackViewGeneration (!funcCallList)
 }
 
 #·······················································································································
@@ -808,7 +808,7 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
     ]
     instructionList += !generatedInstruction
   end
-  outGeneration = @computedHorizontalViewGeneration.new (!funcCallList !instructionList)
+  outGeneration = @computedHorizontalViewGeneration (!funcCallList !instructionList)
 }
 
 #·······················································································································
@@ -863,7 +863,7 @@ override proc @astComputedVerticalViewDeclaration.checkView(
     ]
     instructionList += !generatedInstruction
   end
-  outGeneration = @computedVerticalViewGeneration.new (!funcCallList !instructionList)
+  outGeneration = @computedVerticalViewGeneration (!funcCallList !instructionList)
 }
 
 #·······················································································································
@@ -918,7 +918,7 @@ override proc @astSeparatorInstructionDeclaration.generateViewCode(
                                 ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
                                 ?!@autoLayoutOutletMap unused ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction) {
-  outInstruction = @autoLayoutSeparatorInstructionGeneration.new (!horizontal: self.horizontal)
+  outInstruction = @autoLayoutSeparatorInstructionGeneration (!horizontal: self.horizontal)
 
 }
 
@@ -939,7 +939,7 @@ override proc @astLocalViewInstruction.generateViewCode(
                                 ?!@autoLayoutOutletMap unused ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction) {
   [inViewDeclarationMap searchKey !self.mLocalView]
-  outInstruction = @autoLayoutLocalViewInstructionGeneration.new (!self.mLocalView.string)
+  outInstruction = @autoLayoutLocalViewInstructionGeneration (!self.mLocalView.string)
 }
 
 #·······················································································································
@@ -1112,7 +1112,7 @@ override proc @astComputedViewInstruction.generateViewCode(
     [!?ioConfiguratorMap insertKey !self.mConfiguratorName !self.mAutoLayoutViewClassName]
   end
 #---  
-  outInstruction = @autoLayoutComputedViewInstructionGeneration.new (
+  outInstruction = @autoLayoutComputedViewInstructionGeneration (
     !self.mAutoLayoutViewClassName
     !parameterList
     !funcCallList
@@ -1577,7 +1577,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
     ]
     instructionList += !generatedInstruction
   end
-  outInstruction = @hStackViewInstructionGeneration.new (!funcCallList !instructionList !multipleBindingGenerationList)
+  outInstruction = @hStackViewInstructionGeneration (!funcCallList !instructionList !multipleBindingGenerationList)
 }
 
 #·······················································································································
@@ -1652,7 +1652,7 @@ override proc @astHSplitViewInstructionDeclaration.generateViewCode(
     ]
     instructionList += !generatedInstruction
   end
-  outInstruction = @hSplitViewInstructionGeneration.new (!funcCallList !instructionList !multipleBindingGenerationList)
+  outInstruction = @hSplitViewInstructionGeneration (!funcCallList !instructionList !multipleBindingGenerationList)
 }
 
 #·······················································································································
@@ -1727,7 +1727,7 @@ override proc @astVSplitViewInstructionDeclaration.generateViewCode(
     ]
     instructionList += !generatedInstruction
   end
-  outInstruction = @vSplitViewInstructionGeneration.new (!funcCallList !instructionList !multipleBindingGenerationList)
+  outInstruction = @vSplitViewInstructionGeneration (!funcCallList !instructionList !multipleBindingGenerationList)
 }
 
 #·······················································································································
@@ -1802,7 +1802,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
     ]
     instructionList += !generatedInstruction
   end
-  outInstruction = @vStackViewInstructionGeneration.new (!funcCallList !instructionList !multipleBindingGenerationList)
+  outInstruction = @vStackViewInstructionGeneration (!funcCallList !instructionList !multipleBindingGenerationList)
 }
 
 #·······················································································································
@@ -1821,7 +1821,7 @@ override proc @astStackViewReferenceInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
                         ?!@autoLayoutOutletMap unused ioOutletMap
                         !@abstractViewInstructionGeneration outInstruction) {
-  outInstruction = @stackViewReferenceInstructionGeneration.new (!self.mStackViewName.string)
+  outInstruction = @stackViewReferenceInstructionGeneration (!self.mStackViewName.string)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

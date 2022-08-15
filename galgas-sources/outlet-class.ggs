@@ -76,7 +76,7 @@ syntax extension easyBindings_syntax {
       handlesGraphicControllerBinding = true
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@outletClassDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@outletClassDeclarationAST (
       !outletClassName
       !userDefined
       !superClassName

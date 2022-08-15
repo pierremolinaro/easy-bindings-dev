@@ -13,7 +13,7 @@ class @transientDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @transientDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring.new (!self.mClassName.string + " " + self.mTransientName !self.mTransientName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mTransientName !self.mTransientName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mTransientTypeName]
@@ -72,7 +72,7 @@ override proc @transientDeclarationAST.enterInPrecedenceGraph (?!@declarationPre
 #·······················································································································
 
 override func @transientDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring.new (!self.mClassName.string + " " + self.mTransientName !self.mTransientName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mTransientName !self.mTransientName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let transientTypeName)
     $identifier$ (?let @lstring transientName)
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
       !inCurrentEntity
       !inRootEntity
       !transientTypeName
@@ -129,7 +129,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
       !inCurrentEntity
       !inRootEntity
       !transientTypeName
@@ -227,7 +227,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
       !swiftTypeStringForTransientFunctionArgument
       !defaultValueAsString
   end
-  ioGeneration.mFileGenerationList += !@transientRoutineGeneration.new (
+  ioGeneration.mFileGenerationList += !@transientRoutineGeneration (
     !self.mClassName
     !self.mTransientName.string
     !typeKind
@@ -252,7 +252,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
         generate = true
       end
     end
-    mPropertyGenerationList += !@transientPropertyGeneration.new (
+    mPropertyGenerationList += !@transientPropertyGeneration (
       !self.mTransientName.string
       !self.mClassName.string
       !typeKind

@@ -160,7 +160,7 @@ syntax extension easyBindings_syntax {
       <auto_layout_view_binding_specification> (!outletClassName !?ioDeclarationAST.mAutoLayoutBindingSpecificationList)
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutViewClassDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutViewClassDeclarationAST (
       !outletClassName
       !userDefined
       !superClassName

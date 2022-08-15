@@ -25,7 +25,7 @@ enum @arrayControllerBoundModelAST {
 #·······················································································································
 
 override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring.new (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   switch self.mModel 
@@ -41,7 +41,7 @@ override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarat
 #·······················································································································
 
 override func @arrayControllerDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring.new (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ syntax extension easyBindings_syntax {
         !hiddenSelectionViewBindingDescriptor
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST (
       !inCurrentEntity
       !controllerName
       !model
@@ -121,7 +121,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         )
         [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
-      mPropertyGenerationList += !@arrayControllerPropertyGeneration.new (
+      mPropertyGenerationList += !@arrayControllerPropertyGeneration (
         !self.mControllerName.string
         !"rootObject." + self.mToManyPropertyName
         !self.mClassName
@@ -145,7 +145,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         )
         [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
-      mPropertyGenerationList += !@arrayControllerPropertyGeneration.new (
+      mPropertyGenerationList += !@arrayControllerPropertyGeneration (
         !self.mControllerName.string
         !self.mToManyPropertyName
         !self.mClassName
@@ -222,7 +222,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
       : graphic, arrayControllerModelKind, elementTypeName
   end
 #---
-  ioGeneration.mFileGenerationList += !@arrayControllerGeneration.new (
+  ioGeneration.mFileGenerationList += !@arrayControllerGeneration (
     !self.mClassName
     !self.mControllerName
     !"ReadWriteArrayOf_" + elementTypeName

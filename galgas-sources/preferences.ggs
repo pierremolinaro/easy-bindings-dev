@@ -46,7 +46,7 @@ syntax extension easyBindings_syntax {
   
   rule <preferences_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $prefs$
-    let prefs = @lstring.new (!preferencesName () !.here)
+    let prefs = @lstring (!preferencesName () !.here)
     ${$
     var @stringset signatureList = {}
     var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
@@ -101,7 +101,7 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
     !{}
   ]
   for (lkey) in actionMap do
-    ioGeneration.mFileGenerationList += !@actionFileGeneration.new (
+    ioGeneration.mFileGenerationList += !@actionFileGeneration (
       !self.mClassName.string
       !lkey.string
     )
@@ -187,7 +187,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     error .nowhere : "Preferences should define 'mPrefsMainView' stack view"
   end
 #--- Code generation
-  ioGeneration.mFileGenerationList += !@preferencesForGeneration.new (
+  ioGeneration.mFileGenerationList += !@preferencesForGeneration (
     !propertyGenerationList
     !ioGeneration.mMainXibDescriptorList
     !regularBindingsGenerationList

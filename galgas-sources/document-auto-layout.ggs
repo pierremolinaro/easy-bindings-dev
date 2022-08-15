@@ -122,7 +122,7 @@ syntax extension easyBindings_syntax {
       autoLayoutOutletLinkerList += !linkerName !outletNameList
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutDocumentDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutDocumentDeclarationAST (
       !documentName
       !rootEntityName
       !mainViewName
@@ -134,7 +134,7 @@ syntax extension easyBindings_syntax {
       !customSuperClassName
       !autoLayoutOutletLinkerList
     )
-    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST.new (
+    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
       !documentName
       !rootEntityName
       !["String" here]
@@ -165,7 +165,7 @@ override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
     !{}
   ]
   for (lkey) in actionMap do
-    ioGeneration.mFileGenerationList += !@actionFileGeneration.new (
+    ioGeneration.mFileGenerationList += !@actionFileGeneration (
       !self.mClassName.string
       !lkey.string
     )
@@ -314,7 +314,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     outletLinkerGenerationList += !linkerName.string !outletNameAndTypeNameList
   end
 #---
-  ioGeneration.mFileGenerationList += !@autoLayoutDocumentFileGeneration.new (
+  ioGeneration.mFileGenerationList += !@autoLayoutDocumentFileGeneration (
     !self.mClassName.string
     !self.mRootEntityName.string
     !self.mMainViewName.string
