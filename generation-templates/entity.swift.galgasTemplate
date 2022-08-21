@@ -98,7 +98,7 @@ for (key) in SIGNATURE_SET do
 end
 %  //--- Extern delegates
 %
-  for (mExternSwiftDelegateName) in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
+  for (mExternSwiftDelegateName) in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do (idx)
     %    self.mExternDelegate%![idx string]% = %!mExternSwiftDelegateName.string% (object: self)\n%
   end
 %  }
@@ -131,7 +131,7 @@ end
   //····················································································································
 
 %
-  for (mExternSwiftDelegateName) in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do index idx
+  for (mExternSwiftDelegateName) in EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION do (idx)
     %  final var mExternDelegate%![idx string]% : %!mExternSwiftDelegateName.string%? = nil\n%
   end
 %

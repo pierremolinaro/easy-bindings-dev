@@ -51,7 +51,7 @@ for (mViewName mView) in VIEW_GENERATION_LIST do
   %  //····················································································································\n\n%
   ![mView generate !prefs: true !mViewName]
 end
-for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do index idx
+for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do (idx)
   %  //····················································································································\n%
   %  //    IMPLICIT VIEW %![idx string]%\n%
   %  //····················································································································\n\n%

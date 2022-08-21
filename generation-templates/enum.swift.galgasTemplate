@@ -8,7 +8,7 @@ import Cocoa
 
 enum %!ENUM_TYPE_NAME% : Int, EnumPropertyProtocol, Hashable, CaseIterable {
 %
-for (mValue) in CONSTANT_ORDERED_LIST do index idx
+for (mValue) in CONSTANT_ORDERED_LIST do (idx)
    %  case %!mValue.string% = %![idx string]%\n%
 end
 %
@@ -18,7 +18,7 @@ end
   func descriptionForExplorer () -> String {
     switch self {
 %
-for (mValue) in CONSTANT_ORDERED_LIST do index idx
+for (mValue) in CONSTANT_ORDERED_LIST do (idx)
    %      case .%!mValue.string% : return "%!mValue.string%" // %![idx string]%\n%
 end
 %    }

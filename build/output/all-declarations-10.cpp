@@ -42,7 +42,7 @@ const cDirectoryWrapper gWrapperDirectory_0_xcodeProjectGenerationFilewrapper (
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C_Compiler * inCompiler,
+GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C_Compiler * /* inCompiler */,
                                                                                const GALGAS_string & in_PROJECT_5F_REF,
                                                                                const GALGAS_string & in_MAIN_5F_GROUP_5F_REF,
                                                                                const GALGAS_XCodeGroupList & in_GROUPS,
@@ -380,7 +380,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_5296 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_5296.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5296.current_mFrameworksFileRefList (HERE).getter_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).getter_uint (inCompiler COMMA_SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)))).boolEnum () ;
+      const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5296.current_mFrameworksFileRefList (HERE).getter_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
       if (kBoolTrue == test_0) {
         result << "  " ;
         result << enumerator_5296.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
@@ -513,7 +513,7 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
         "      " ;
       result << enumerator_7302.current_mBuildPhaseRef (HERE).stringValue () ;
       result << " ,\n" ;
-      const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, enumerator_7302.current_mFrameworksFileRefList (HERE).getter_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).getter_uint (inCompiler COMMA_SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)))).boolEnum () ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, enumerator_7302.current_mFrameworksFileRefList (HERE).getter_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
       if (kBoolTrue == test_1) {
         result << "      " ;
         result << enumerator_7302.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
@@ -929,7 +929,7 @@ void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdent
                                COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    GALGAS_bool test_1 = GALGAS_bool (kIsStrictSup, constinArgument_inMainXibDescriptorList.getter_length (SOURCE_FILE ("main-xib.ggs", 135)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 135)).getter_uint (inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 135)))) ;
+    GALGAS_bool test_1 = GALGAS_bool (kIsStrictSup, constinArgument_inMainXibDescriptorList.getter_length (SOURCE_FILE ("main-xib.ggs", 135)).objectCompare (GALGAS_uint (uint32_t (0U)))) ;
     if (kBoolTrue == test_1.boolEnum ()) {
       test_1 = GALGAS_bool (kIsNotEqual, constinArgument_inBundleIdentifier.objectCompare (GALGAS_string::makeEmptyString ())) ;
     }
@@ -1207,19 +1207,19 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   var_semanticContext_2134.setter_setMEnumerationFunctionListAST (var_declarationStruct_1127.readProperty_mEnumerationFunctionListAST () COMMA_SOURCE_FILE ("program.ggs", 41)) ;
   GALGAS_generationStruct var_generation_2466 = GALGAS_generationStruct::constructor_default (SOURCE_FILE ("program.ggs", 42)) ;
   cEnumerator_declarationListAST enumerator_2496 (var_sortedDeclarationListAST_2020, kENUMERATION_UP) ;
-  bool bool_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 43)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 43)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 43)))).isValidAndTrue () ;
+  bool bool_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 43)).objectCompare (GALGAS_uint (uint32_t (0U)))).isValidAndTrue () ;
   if (enumerator_2496.hasCurrentObject () && bool_0) {
     while (enumerator_2496.hasCurrentObject () && bool_0) {
       callExtensionMethod_firstAnalysisPhase ((cPtr_abstractDeclarationAST *) enumerator_2496.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_2134, var_generation_2466, inCompiler COMMA_SOURCE_FILE ("program.ggs", 44)) ;
       enumerator_2496.gotoNextObject () ;
       if (enumerator_2496.hasCurrentObject ()) {
-        bool_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 43)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 43)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 43)))).isValidAndTrue () ;
+        bool_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 43)).objectCompare (GALGAS_uint (uint32_t (0U)))).isValidAndTrue () ;
       }
     }
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 47)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 47)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 47)))).boolEnum () ;
+    test_1 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 47)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_1) {
       {
       routine_buildBindingSpecificationMap (var_semanticContext_2134, var_declarationStruct_1127.readProperty_mBindingSpecificationListMap (), inCompiler  COMMA_SOURCE_FILE ("program.ggs", 48)) ;
@@ -1228,7 +1228,7 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   }
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 53)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 53)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 53)))).boolEnum () ;
+    test_2 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 53)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_2) {
       {
       routine_buildAutoLayoutBindingSpecificationMap (var_semanticContext_2134, var_declarationStruct_1127.readProperty_mAutoLayoutBindingSpecificationList (), inCompiler  COMMA_SOURCE_FILE ("program.ggs", 54)) ;
@@ -1236,41 +1236,41 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
     }
   }
   cEnumerator_declarationListAST enumerator_3130 (var_sortedDeclarationListAST_2020, kENUMERATION_UP) ;
-  bool bool_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 60)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 60)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 60)))).isValidAndTrue () ;
+  bool bool_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 60)).objectCompare (GALGAS_uint (uint32_t (0U)))).isValidAndTrue () ;
   if (enumerator_3130.hasCurrentObject () && bool_3) {
     while (enumerator_3130.hasCurrentObject () && bool_3) {
       callExtensionMethod_secondAnalysisPhase ((cPtr_abstractDeclarationAST *) enumerator_3130.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_2134, var_generation_2466, inCompiler COMMA_SOURCE_FILE ("program.ggs", 61)) ;
       enumerator_3130.gotoNextObject () ;
       if (enumerator_3130.hasCurrentObject ()) {
-        bool_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 60)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 60)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 60)))).isValidAndTrue () ;
+        bool_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 60)).objectCompare (GALGAS_uint (uint32_t (0U)))).isValidAndTrue () ;
       }
     }
   }
   cEnumerator_declarationListAST enumerator_3358 (var_sortedDeclarationListAST_2020, kENUMERATION_UP) ;
-  bool bool_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 64)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 64)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 64)))).isValidAndTrue () ;
+  bool bool_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 64)).objectCompare (GALGAS_uint (uint32_t (0U)))).isValidAndTrue () ;
   if (enumerator_3358.hasCurrentObject () && bool_4) {
     while (enumerator_3358.hasCurrentObject () && bool_4) {
       callExtensionMethod_thirdAnalysisPhase ((cPtr_abstractDeclarationAST *) enumerator_3358.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_2134, var_generation_2466, inCompiler COMMA_SOURCE_FILE ("program.ggs", 65)) ;
       enumerator_3358.gotoNextObject () ;
       if (enumerator_3358.hasCurrentObject ()) {
-        bool_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 64)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 64)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 64)))).isValidAndTrue () ;
+        bool_4 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 64)).objectCompare (GALGAS_uint (uint32_t (0U)))).isValidAndTrue () ;
       }
     }
   }
   cEnumerator_declarationListAST enumerator_3586 (var_sortedDeclarationListAST_2020, kENUMERATION_UP) ;
-  bool bool_5 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 68)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 68)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 68)))).isValidAndTrue () ;
+  bool bool_5 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 68)).objectCompare (GALGAS_uint (uint32_t (0U)))).isValidAndTrue () ;
   if (enumerator_3586.hasCurrentObject () && bool_5) {
     while (enumerator_3586.hasCurrentObject () && bool_5) {
       callExtensionMethod_fourthAnalysisPhase ((cPtr_abstractDeclarationAST *) enumerator_3586.current_mPropertyDeclaration (HERE).ptr (), var_semanticContext_2134, var_generation_2466, inCompiler COMMA_SOURCE_FILE ("program.ggs", 69)) ;
       enumerator_3586.gotoNextObject () ;
       if (enumerator_3586.hasCurrentObject ()) {
-        bool_5 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 68)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 68)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 68)))).isValidAndTrue () ;
+        bool_5 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 68)).objectCompare (GALGAS_uint (uint32_t (0U)))).isValidAndTrue () ;
       }
     }
   }
   enumGalgasBool test_6 = kBoolTrue ;
   if (kBoolTrue == test_6) {
-    test_6 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 72)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 72)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 72)))).boolEnum () ;
+    test_6 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 72)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_6) {
       cEnumerator_enumerationFunctionListAST enumerator_3874 (var_semanticContext_2134.readProperty_mEnumerationFunctionListAST (), kENUMERATION_UP) ;
       while (enumerator_3874.hasCurrentObject ()) {
@@ -1305,7 +1305,7 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   }
   enumGalgasBool test_11 = kBoolTrue ;
   if (kBoolTrue == test_11) {
-    test_11 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 86)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 86)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 86)))).boolEnum () ;
+    test_11 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 86)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_11) {
       {
       routine_graphvizAnalysis (constinArgument_inSourceFile.readProperty_string ().getter_stringByDeletingLastPathComponent (SOURCE_FILE ("program.ggs", 87)), var_semanticContext_2134, var_declarationStruct_1127.readProperty_mGraphvizList (), inCompiler  COMMA_SOURCE_FILE ("program.ggs", 87)) ;
@@ -1314,7 +1314,7 @@ static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_in
   }
   enumGalgasBool test_12 = kBoolTrue ;
   if (kBoolTrue == test_12) {
-    test_12 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 90)).objectCompare (GALGAS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("program.ggs", 90)).getter_uint (inCompiler COMMA_SOURCE_FILE ("program.ggs", 90)))).boolEnum () ;
+    test_12 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("program.ggs", 90)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_12) {
       {
       routine_generateCode (var_declarationStruct_1127.readProperty_mXcodeProject ().readProperty_string (), var_generation_2466, constinArgument_inSourceFile.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("program.ggs", 91)) ;
@@ -1424,7 +1424,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
         message << ".\n" ;
         ggs_printMessage (message COMMA_HERE) ;
       }
-    }catch (const ::std:: exception & e) {
+    }catch (const ::std::exception & e) {
       F_default_display_exception (e) ;
       returnCode = 1 ; // Error code
     }catch (...) {
