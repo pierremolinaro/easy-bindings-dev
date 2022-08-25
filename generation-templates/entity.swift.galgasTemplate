@@ -348,32 +348,57 @@ end
 %  }
 
 %
-if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TO_ONE_RELATIONSHIP_LIST length] + [TO_MANY_RELATIONSHIP_LIST length]) > 0 then
+if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
 %  //····················································································································
-  //    setUpWithTextDictionary
+  //    setUpPropertiesWithTextDictionary
   //····················································································································
 
-  override func setUpWithTextDictionary (_ inDictionary : [String : NSRange],
-                                         _ inObjectArray : [EBManagedObject],
-                                         _ inData : Data,
-                                         _ inParallelObjectSetupContext : ParallelObjectSetupContext) {
-    super.setUpWithTextDictionary (inDictionary, inObjectArray, inData, inParallelObjectSetupContext)
-    inParallelObjectSetupContext.addOperation {
-    //--- Atomic properties
+  override func setUpPropertiesWithTextDictionary (_ inDictionary : [String : NSRange],
+                                                   _ inObjectArray : [EBManagedObject],
+                                                   _ inData : Data,
+                                                   _ ioParallelObjectSetupContext : inout ParallelObjectSetupContext) {
+    super.setUpPropertiesWithTextDictionary (inDictionary, inObjectArray, inData, &ioParallelObjectSetupContext)
+    ioParallelObjectSetupContext.addOperation {
 %
 for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %      if let range = inDictionary ["%!mProperty.mPropertyName%"], let value = %![mProperty.mType swiftTypeName]%.unarchiveFromDataRange (inData, range) {\n%
   %        self.%!mProperty.mPropertyName% = value\n%
   %      }\n%
 end
-%    //--- To one relationships
+%    }\n%
+%  //--- End of addOperation\n%
+%  }
+
+%
+end
+if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
+%  //····················································································································
+  //    setUpToOneRelationshipsWithTextDictionary
+  //····················································································································
+
+  override func setUpToOneRelationshipsWithTextDictionary (_ inDictionary : [String : NSRange],
+                                                           _ inObjectArray : [EBManagedObject],
+                                                           _ inData : Data) {
+    super.setUpToOneRelationshipsWithTextDictionary (inDictionary, inObjectArray, inData)
 %for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
   %      if let range = inDictionary ["%!mProperty.mPropertyName%"], let objectIndex = inData.base62EncodedInt (range: range) {\n%
   %        let object = inObjectArray [objectIndex] as! %![mProperty.mRelationshipType swiftTypeName]%\n%
-  %        inParallelObjectSetupContext.addToOneSetupDeferredOperation { self.%!mProperty.mPropertyName% = object }\n%
+  %        self.%!mProperty.mPropertyName% = object \n%
   %      }\n%
 end
-%    //--- To many relationships
+%  }
+
+%
+end
+if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
+%  //····················································································································
+  //    setUpToManyRelationshipsWithTextDictionary
+  //····················································································································
+
+  override func setUpToManyRelationshipsWithTextDictionary (_ inDictionary : [String : NSRange],
+                                                            _ inObjectArray : [EBManagedObject],
+                                                            _ inData : Data) {
+    super.setUpToManyRelationshipsWithTextDictionary (inDictionary, inObjectArray, inData)
 %for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   if not [mProperty.mOption isHasDependance] then
     %      if let range = inDictionary ["%!mProperty.mPropertyName%"], range.length > 0 {\n%
@@ -382,12 +407,10 @@ end
     %        for idx in indexArray {\n%
     %          relationshipArray.append (inObjectArray [idx] as! %![mProperty.mRelationshipType swiftTypeName]%)\n%
     %        }\n%
-    %        inParallelObjectSetupContext.addToManySetupDeferredOperation { self.%!mProperty.mPropertyName% = relationshipArray }\n%
+    %        self.%!mProperty.mPropertyName% = relationshipArray\n%
     %      }\n%
   end
 end
-%    }\n%
-%  //--- End of addOperation\n%
 %  }
 
 %
