@@ -326,7 +326,7 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
  //····················································································································
 
   init (usedForSignature inUsedForSignature : Bool) {
-    mUsedForSignature = inUsedForSignature
+    self.mUsedForSignature = inUsedForSignature
     super.init ()
   }
 
