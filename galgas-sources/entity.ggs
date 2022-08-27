@@ -333,12 +333,10 @@ list @entityListForGeneratingEBManagedObjectContext {
 
 #·······················································································································
 
-override proc @entityForGeneration.generateCode(
-    ?let @string inOutputDirectory
-    ?toOne: @stringset inToOneEntities
-    ?toMany: @stringset inToManyEntities
-    ?!@stringset ioGeneratedFileSet)
-{
+override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
+                                                 ?toOne: @stringset inToOneEntities
+                                                 ?toMany: @stringset inToManyEntities
+                                                 ?!@stringset ioGeneratedFileSet) {
   var @atomicPropertyGenerationList atomicPropertyGenerationList = {}
   var @transientPropertyGenerationList transientPropertyGenerationList = {}
   var @computedPropertyGenerationList computedPropertyGenerationList = {}

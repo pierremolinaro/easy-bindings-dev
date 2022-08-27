@@ -382,10 +382,10 @@ if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
                                                            _ inData : Data) {
     super.setUpToOneRelationshipsWithTextDictionary (inDictionary, inRawObjectArray, inData)
 %for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
-  %      if let range = inDictionary ["%!mProperty.mPropertyName%"], let objectIndex = inData.base62EncodedInt (range: range) {\n%
-  %        let object = inRawObjectArray [objectIndex].object as! %![mProperty.mRelationshipType swiftTypeName]%\n%
-  %        self.%!mProperty.mPropertyName% = object \n%
-  %      }\n%
+  %    if let range = inDictionary ["%!mProperty.mPropertyName%"], let objectIndex = inData.base62EncodedInt (range: range) {\n%
+  %      let object = inRawObjectArray [objectIndex].object as! %![mProperty.mRelationshipType swiftTypeName]%\n%
+  %      self.%!mProperty.mPropertyName% = object\n%
+  %    }\n%
 end
 %  }
 
