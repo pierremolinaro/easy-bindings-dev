@@ -1367,11 +1367,13 @@ class cEnumAssociatedValues_classKind_entity : public cEnumAssociatedValues {
   public: const GALGAS_string mAssociatedValue0 ;
   public: const GALGAS_bool mAssociatedValue1 ;
   public: const GALGAS_bool mAssociatedValue2 ;
+  public: const GALGAS_bool mAssociatedValue3 ;
 
 //--- Constructor
   public: cEnumAssociatedValues_classKind_entity (const GALGAS_string inAssociatedValue0,
                                                   const GALGAS_bool inAssociatedValue1,
-                                                  const GALGAS_bool inAssociatedValue2
+                                                  const GALGAS_bool inAssociatedValue2,
+                                                  const GALGAS_bool inAssociatedValue3
                                                   COMMA_LOCATION_ARGS) ;
 
   public: virtual void description (C_String & ioString,

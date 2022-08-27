@@ -127,7 +127,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase(
       )
     case document (*) :
       error self.mPropertyTypeName : "an atomic class is required here"
-    case entity (3*) :
+    case entity (4*) :
       error self.mPropertyTypeName : "an atomic class is required here"
     end
   end

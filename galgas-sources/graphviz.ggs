@@ -48,7 +48,7 @@ private proc graphvizRootEntityAnalysis(
     [!?exploreArray popLast ?let @string entityName]
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
     [inSemanticContext.mClassMap searchKey ![entityName nowhere] ?let entityKind ?let @propertyMap propertyMap ?2*]
-    [entityKind entity ?superEntityName: let superEntityName ?2*]
+    [entityKind entity ?superEntityName: let superEntityName ?3*]
     if superEntityName != "" then
       if not [reachableEntityNameSet hasKey !superEntityName] then
         reachableEntityNameSet += !superEntityName

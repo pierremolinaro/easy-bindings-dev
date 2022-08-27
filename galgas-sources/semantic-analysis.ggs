@@ -6,7 +6,7 @@ enum @classKind {
   case prefs
   case atomic (@typeKind kind)
   case document (@lstring rootEntityName)
-  case entity (@string superEntityName @bool isGraphic @bool isAbstract)
+  case entity (@string superEntityName @bool isGraphic @bool isAbstract @bool handlingOpposite)
 }
 
 #·······················································································································
@@ -84,10 +84,10 @@ list @propertyGenerationList {
 #·······················································································································
 
 map @classMap {
-  public var @classKind mClassKind
-  public var @propertyMap mPropertyMap
-  public var @actionMap mActionMap
-  public var @propertyGenerationList mPropertyGenerationList
+  public let @classKind mClassKind
+  public let @propertyMap mPropertyMap
+  public let @actionMap mActionMap
+  public let @propertyGenerationList mPropertyGenerationList
   insert insertKey error message "the '%K' class is already declared in %L"
   search searchKey error message "there is no '%K' class"
 }

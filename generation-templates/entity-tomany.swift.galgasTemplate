@@ -12,8 +12,7 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_N
 
   //····················································································································
 
-  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <%!ENTITY_NAME%>,
-                                 
+  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <%!ENTITY_NAME%>,                            
                                  addedSet inAddedSet : EBReferenceSet <%!ENTITY_NAME%>) {
     super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
   //--- Remove observers from removed objects
@@ -732,7 +731,8 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
 
   weak final var ebUndoManager : EBUndoManager? = nil // SOULD BE WEAK
 
-  //····················································································································
+%if HANDLING_OPPOSITE then
+%  //····················································································································
   //   Opposite relationship management
   //····················································································································
 
@@ -747,7 +747,8 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
     self.mResetOppositeRelationship = inResetter
   }
 
-  //····················································································································
+%end
+%  //····················································································································
 
   #if BUILD_OBJECT_EXPLORER
     final var mValueExplorer : NSPopUpButton? {
@@ -802,15 +803,19 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
       if self.mUsedForSignature {
         managedObject.setSignatureObserver (observer: nil)
       }
-      self.mResetOppositeRelationship? (managedObject)
-   }
+%if HANDLING_OPPOSITE then
+%      self.mResetOppositeRelationship? (managedObject)
+%end
+%   }
   //---
     for managedObject in inAddedSet.values {
       if self.mUsedForSignature {
         managedObject.setSignatureObserver (observer: self)
       }
-      self.mSetOppositeRelationship? (managedObject)
-    }
+%if HANDLING_OPPOSITE then
+%      self.mSetOppositeRelationship? (managedObject)
+%end
+%    }
   //---
     super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
  }

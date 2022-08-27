@@ -8610,12 +8610,14 @@ typeComparisonResult cEnumAssociatedValues_classKind_document::compare (const cE
 
 cEnumAssociatedValues_classKind_entity::cEnumAssociatedValues_classKind_entity (const GALGAS_string inAssociatedValue0,
                                                                                 const GALGAS_bool inAssociatedValue1,
-                                                                                const GALGAS_bool inAssociatedValue2
+                                                                                const GALGAS_bool inAssociatedValue2,
+                                                                                const GALGAS_bool inAssociatedValue3
                                                                                 COMMA_LOCATION_ARGS) :
 cEnumAssociatedValues (THERE),
 mAssociatedValue0 (inAssociatedValue0),
 mAssociatedValue1 (inAssociatedValue1),
-mAssociatedValue2 (inAssociatedValue2) {
+mAssociatedValue2 (inAssociatedValue2),
+mAssociatedValue3 (inAssociatedValue3) {
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8626,6 +8628,7 @@ void cEnumAssociatedValues_classKind_entity::description (C_String & ioString,
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
+  mAssociatedValue3.description (ioString, inIndentation) ;
   ioString << ")" ;
 }
 
@@ -8643,6 +8646,9 @@ typeComparisonResult cEnumAssociatedValues_classKind_entity::compare (const cEnu
   }
   if (result == kOperandEqual) {
     result = mAssociatedValue2.objectCompare (ptr->mAssociatedValue2) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAssociatedValue3.objectCompare (ptr->mAssociatedValue3) ;
   }
   return result ;
 }
@@ -8696,13 +8702,14 @@ GALGAS_classKind GALGAS_classKind::constructor_document (const GALGAS_lstring & 
 
 GALGAS_classKind GALGAS_classKind::constructor_entity (const GALGAS_string & inAssociatedValue0,
                                                        const GALGAS_bool & inAssociatedValue1,
-                                                       const GALGAS_bool & inAssociatedValue2
+                                                       const GALGAS_bool & inAssociatedValue2,
+                                                       const GALGAS_bool & inAssociatedValue3
                                                        COMMA_LOCATION_ARGS) {
   GALGAS_classKind result ;
-  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid () && inAssociatedValue2.isValid ()) {
+  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid () && inAssociatedValue2.isValid () && inAssociatedValue3.isValid ()) {
     result.mEnum = kEnum_entity ;
     cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_classKind_entity (inAssociatedValue0, inAssociatedValue1, inAssociatedValue2 COMMA_THERE)) ;
+    macroMyNew (ptr, cEnumAssociatedValues_classKind_entity (inAssociatedValue0, inAssociatedValue1, inAssociatedValue2, inAssociatedValue3 COMMA_THERE)) ;
     result.mAssociatedValues.setPointer (ptr) ;
     macroDetachSharedObject (ptr) ;
   }
@@ -8746,12 +8753,14 @@ void GALGAS_classKind::method_document (GALGAS_lstring & outAssociatedValue0,
 void GALGAS_classKind::method_entity (GALGAS_string & outAssociatedValue0,
                                       GALGAS_bool & outAssociatedValue1,
                                       GALGAS_bool & outAssociatedValue2,
+                                      GALGAS_bool & outAssociatedValue3,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) const {
   if (mEnum != kEnum_entity) {
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     outAssociatedValue2.drop () ;
+    outAssociatedValue3.drop () ;
     C_String s ;
     s << "method @classKind entity invoked with an invalid enum value" ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
@@ -8760,6 +8769,7 @@ void GALGAS_classKind::method_entity (GALGAS_string & outAssociatedValue0,
     outAssociatedValue0 = ptr->mAssociatedValue0 ;
     outAssociatedValue1 = ptr->mAssociatedValue1 ;
     outAssociatedValue2 = ptr->mAssociatedValue2 ;
+    outAssociatedValue3 = ptr->mAssociatedValue3 ;
   }
 }
 
@@ -8798,7 +8808,8 @@ bool GALGAS_classKind::optional_document (GALGAS_lstring & outAssociatedValue0) 
 
 bool GALGAS_classKind::optional_entity (GALGAS_string & outAssociatedValue0,
                                         GALGAS_bool & outAssociatedValue1,
-                                        GALGAS_bool & outAssociatedValue2) const {
+                                        GALGAS_bool & outAssociatedValue2,
+                                        GALGAS_bool & outAssociatedValue3) const {
   const bool ok = mEnum == kEnum_entity ;
   if (ok) {
     const auto * ptr = (const cEnumAssociatedValues_classKind_entity *) unsafePointer () ;
@@ -8806,6 +8817,7 @@ bool GALGAS_classKind::optional_entity (GALGAS_string & outAssociatedValue0,
     outAssociatedValue0 = ptr->mAssociatedValue0 ;
     outAssociatedValue1 = ptr->mAssociatedValue1 ;
     outAssociatedValue2 = ptr->mAssociatedValue2 ;
+    outAssociatedValue3 = ptr->mAssociatedValue3 ;
   }
   return ok ;
 }

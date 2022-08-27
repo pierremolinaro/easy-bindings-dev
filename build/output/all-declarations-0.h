@@ -97,6 +97,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_func,
    kToken_graphic,
    kToken_graphviz,
+   kToken_handlingOpposite,
    kToken_hSplit,
    kToken_hStack,
    kToken_include,
@@ -197,7 +198,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected: virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int16_t terminalVocabularyCount (void) const override { return 97 ; }
+  public: virtual int16_t terminalVocabularyCount (void) const override { return 98 ; }
 
 //--- Get Token String
   public: virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const override ;
@@ -2261,7 +2262,8 @@ class GALGAS_classKind : public AC_GALGAS_root {
 
   public: static class GALGAS_classKind constructor_entity (const class GALGAS_string & inOperand0,
                                                             const class GALGAS_bool & inOperand1,
-                                                            const class GALGAS_bool & inOperand2
+                                                            const class GALGAS_bool & inOperand2,
+                                                            const class GALGAS_bool & inOperand3
                                                             COMMA_LOCATION_ARGS) ;
 
   public: static class GALGAS_classKind constructor_prefs (LOCATION_ARGS) ;
@@ -2286,6 +2288,7 @@ class GALGAS_classKind : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void method_entity (class GALGAS_string & outArgument0,
                                                class GALGAS_bool & outArgument1,
                                                class GALGAS_bool & outArgument2,
+                                               class GALGAS_bool & outArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const ;
 
@@ -2308,7 +2311,8 @@ class GALGAS_classKind : public AC_GALGAS_root {
 
   public: VIRTUAL_IN_DEBUG bool optional_entity (class GALGAS_string & outOperand0,
                                                  class GALGAS_bool & outOperand1,
-                                                 class GALGAS_bool & outOperand2) const ;
+                                                 class GALGAS_bool & outOperand2,
+                                                 class GALGAS_bool & outOperand3) const ;
 
   public: VIRTUAL_IN_DEBUG bool optional_prefs () const ;
 
@@ -7043,6 +7047,8 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
 
   public: class GALGAS_lstring readProperty_mSuperEntityName (void) const ;
 
+  public: class GALGAS_bool readProperty_mHandlingOpposite (void) const ;
+
   public: class GALGAS_simpleStoredPropertyList readProperty_mSimpleStoredPropertyList (void) const ;
 
   public: class GALGAS_stringset readProperty_mSignatureList (void) const ;
@@ -7071,13 +7077,14 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
   public: static class GALGAS_entityDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                     const class GALGAS_bool & inOperand1,
                                                                     const class GALGAS_lstring & inOperand2,
-                                                                    const class GALGAS_simpleStoredPropertyList & inOperand3,
-                                                                    const class GALGAS_stringset & inOperand4,
-                                                                    const class GALGAS_lstringlist & inOperand5,
+                                                                    const class GALGAS_bool & inOperand3,
+                                                                    const class GALGAS_simpleStoredPropertyList & inOperand4,
+                                                                    const class GALGAS_stringset & inOperand5,
                                                                     const class GALGAS_lstringlist & inOperand6,
-                                                                    const class GALGAS_bool & inOperand7,
-                                                                    const class GALGAS_externSwiftDelegateList & inOperand8,
-                                                                    const class GALGAS_lstringlist & inOperand9
+                                                                    const class GALGAS_lstringlist & inOperand7,
+                                                                    const class GALGAS_bool & inOperand8,
+                                                                    const class GALGAS_externSwiftDelegateList & inOperand9,
+                                                                    const class GALGAS_lstringlist & inOperand10
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -7092,6 +7099,9 @@ class GALGAS_entityDeclarationAST : public GALGAS_abstractDeclarationAST {
 
   public: VIRTUAL_IN_DEBUG void setter_setMGraphicOptionArray (class GALGAS_lstringlist inArgument0
                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMHandlingOpposite (class GALGAS_bool inArgument0
+                                                             COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMIsAbstract (class GALGAS_bool inArgument0
                                                        COMMA_LOCATION_ARGS) ;
@@ -7162,6 +7172,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
 //--- Properties
   public: GALGAS_bool mProperty_mIsAbstract ;
   public: GALGAS_lstring mProperty_mSuperEntityName ;
+  public: GALGAS_bool mProperty_mHandlingOpposite ;
   public: GALGAS_simpleStoredPropertyList mProperty_mSimpleStoredPropertyList ;
   public: GALGAS_stringset mProperty_mSignatureList ;
   public: GALGAS_lstringlist mProperty_mActionDeclarationList ;
@@ -7174,6 +7185,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
   public: cPtr_entityDeclarationAST (const GALGAS_lstring & in_mClassName,
                                      const GALGAS_bool & in_mIsAbstract,
                                      const GALGAS_lstring & in_mSuperEntityName,
+                                     const GALGAS_bool & in_mHandlingOpposite,
                                      const GALGAS_simpleStoredPropertyList & in_mSimpleStoredPropertyList,
                                      const GALGAS_stringset & in_mSignatureList,
                                      const GALGAS_lstringlist & in_mActionDeclarationList,
@@ -7470,6 +7482,8 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 
   public: class GALGAS_string readProperty_mSuperEntityName (void) const ;
 
+  public: class GALGAS_bool readProperty_mHandlingOpposite (void) const ;
+
   public: class GALGAS_propertyGenerationList readProperty_mPropertyGenerationList (void) const ;
 
   public: class GALGAS_stringset readProperty_mSignatureSet (void) const ;
@@ -7501,15 +7515,16 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_entityForGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                    const class GALGAS_string & inOperand1,
-                                                                   const class GALGAS_propertyGenerationList & inOperand2,
-                                                                   const class GALGAS_stringset & inOperand3,
-                                                                   const class GALGAS_bool & inOperand4,
+                                                                   const class GALGAS_bool & inOperand2,
+                                                                   const class GALGAS_propertyGenerationList & inOperand3,
+                                                                   const class GALGAS_stringset & inOperand4,
                                                                    const class GALGAS_bool & inOperand5,
-                                                                   const class GALGAS_stringset & inOperand6,
-                                                                   const class GALGAS_externSwiftDelegateList & inOperand7,
-                                                                   const class GALGAS_bool & inOperand8,
+                                                                   const class GALGAS_bool & inOperand6,
+                                                                   const class GALGAS_stringset & inOperand7,
+                                                                   const class GALGAS_externSwiftDelegateList & inOperand8,
                                                                    const class GALGAS_bool & inOperand9,
-                                                                   const class GALGAS_bool & inOperand10
+                                                                   const class GALGAS_bool & inOperand10,
+                                                                   const class GALGAS_bool & inOperand11
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -7527,6 +7542,9 @@ class GALGAS_entityForGeneration : public GALGAS_abstractFileGeneration {
 
   public: VIRTUAL_IN_DEBUG void setter_setMExternSwiftDelegateList (class GALGAS_externSwiftDelegateList inArgument0
                                                                     COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMHandlingOpposite (class GALGAS_bool inArgument0
+                                                             COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMHasSubEntity (class GALGAS_bool inArgument0
                                                          COMMA_LOCATION_ARGS) ;
@@ -7585,6 +7603,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
 //--- Properties
   public: GALGAS_string mProperty_mEntityName ;
   public: GALGAS_string mProperty_mSuperEntityName ;
+  public: GALGAS_bool mProperty_mHandlingOpposite ;
   public: GALGAS_propertyGenerationList mProperty_mPropertyGenerationList ;
   public: GALGAS_stringset mProperty_mSignatureSet ;
   public: GALGAS_bool mProperty_mIsGraphicEntity ;
@@ -7598,6 +7617,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
 //--- Constructor
   public: cPtr_entityForGeneration (const GALGAS_string & in_mEntityName,
                                     const GALGAS_string & in_mSuperEntityName,
+                                    const GALGAS_bool & in_mHandlingOpposite,
                                     const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
                                     const GALGAS_stringset & in_mSignatureSet,
                                     const GALGAS_bool & in_mIsGraphicEntity,

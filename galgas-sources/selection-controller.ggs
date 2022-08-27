@@ -137,7 +137,7 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
            testedTypeName = ""
          case document (*) :
            testedTypeName = ""
-         case entity (@string superOfSuperEntity 2*) :
+         case entity (@string superOfSuperEntity 3*) :
             testedTypeName = superOfSuperEntity
             if testedTypeName == "" then
               error self.mSelectionEntityName : "This entity is not descendant of " + typeName

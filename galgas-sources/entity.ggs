@@ -3,15 +3,16 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @entityDeclarationAST : @abstractDeclarationAST {
-  public var @bool mIsAbstract
-  public var @lstring mSuperEntityName
-  public var @simpleStoredPropertyList mSimpleStoredPropertyList
-  public var @stringset mSignatureList
-  public var @lstringlist mActionDeclarationList
-  public var @lstringlist mObsoleteEntityNames
-  public var @bool mIsGraphicEntity
-  public var @externSwiftDelegateList mExternSwiftDelegateList
-  public var @lstringlist mGraphicOptionArray
+  public let @bool mIsAbstract
+  public let @lstring mSuperEntityName
+  public let @bool mHandlingOpposite
+  public let @simpleStoredPropertyList mSimpleStoredPropertyList
+  public let @stringset mSignatureList
+  public let @lstringlist mActionDeclarationList
+  public let @lstringlist mObsoleteEntityNames
+  public let @bool mIsGraphicEntity
+  public let @externSwiftDelegateList mExternSwiftDelegateList
+  public let @lstringlist mGraphicOptionArray
 }
 
 #·······················································································································
@@ -51,6 +52,13 @@ syntax extension easyBindings_syntax {
     or
       $graphic$
       graphicEntity = true
+    end
+    let @bool handlingOpposite
+    select
+      handlingOpposite = false
+    or
+      $handlingOpposite$
+      handlingOpposite = true
     end
     $entity$
     $Identifier$ (?let @lstring entityName)
@@ -109,6 +117,7 @@ syntax extension easyBindings_syntax {
       !entityName
       !isAbstract
       !superEntityName
+      !handlingOpposite
       !simpleStoredPropertyList
       !signatureList
       !actionDeclarationList
@@ -145,14 +154,17 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @entityDeclarationAST.firstAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration)
-{
+override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext
+                                                        ?!@generationStruct unused ioGeneration) {
   buildActionMap (!self.mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
     !self.mClassName
-    !.entity (!superEntityName: self.mSuperEntityName.string !isGraphic: self.mIsGraphicEntity !isAbstract: self.mIsAbstract)
+    !.entity (
+      !superEntityName: self.mSuperEntityName.string
+      !isGraphic: self.mIsGraphicEntity
+      !isAbstract: self.mIsAbstract
+      !handlingOpposite: self.mHandlingOpposite
+     )
     !{}
     !actionMap
     !{}
@@ -231,7 +243,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase(
       error self.mSuperEntityName : "an atomic class cannot be a super entity"
     case document (*) :
       error self.mSuperEntityName : "a document cannot be a super entity"
-    case entity (* @bool isGraphic @bool isAbstract) :
+    case entity (* @bool isGraphic @bool isAbstract *) :
       if isGraphic & not self.mIsGraphicEntity then
         error self.mClassName : "this entity should be declared with 'graphic', as super entity is graphic"
       end
@@ -283,7 +295,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase(
   var hasSubClass = false
   for classDeclaration in ioSemanticContext.mClassMap while not hasSubClass do
     if [classDeclaration.mClassKind isEntity] then
-      [classDeclaration.mClassKind entity ?superEntityName: let superEntityName ?2*]
+      [classDeclaration.mClassKind entity ?superEntityName: let superEntityName ?3*]
       hasSubClass = self.mClassName.string == superEntityName
     end 
   end
@@ -294,6 +306,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase(
   ioGeneration.mFileGenerationList += !@entityForGeneration (
     !self.mClassName.string
     !self.mSuperEntityName.string
+    !self.mHandlingOpposite
     !propertyGenerationList
     !self.mSignatureList
     !self.mIsGraphicEntity
@@ -311,17 +324,18 @@ override proc @entityDeclarationAST.fourthAnalysisPhase(
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @entityForGeneration : @abstractFileGeneration {
-  public var @string mEntityName
-  public var @string mSuperEntityName
-  public var @propertyGenerationList mPropertyGenerationList
-  public var @stringset mSignatureSet
-  public var @bool mIsGraphicEntity
-  public var @bool mIsAbstract
-  public var @stringset mOverridenTransients
-  public var @externSwiftDelegateList mExternSwiftDelegateList
-  public var @bool mHasSubEntity
-  public var @bool mCanCopyAndPaste_option
-  public var @bool mCannotBeDeleted_option
+  public let @string mEntityName
+  public let @string mSuperEntityName
+  public let @bool mHandlingOpposite
+  public let @propertyGenerationList mPropertyGenerationList
+  public let @stringset mSignatureSet
+  public let @bool mIsGraphicEntity
+  public let @bool mIsAbstract
+  public let @stringset mOverridenTransients
+  public let @externSwiftDelegateList mExternSwiftDelegateList
+  public let @bool mHasSubEntity
+  public let @bool mCanCopyAndPaste_option
+  public let @bool mCannotBeDeleted_option
 }
 
 #·······················································································································
@@ -400,6 +414,7 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
     s = [filewrapper entityGenerationTemplate.entityToOneImplementationInSwift
       !self.mEntityName
       !superEntityName
+      !self.mHandlingOpposite
       !self.mPropertyGenerationList
       !proxyGenerationList
       !toManyProxyGenerationList
@@ -428,6 +443,7 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
     s = [filewrapper entityGenerationTemplate.entityToManyImplementationInSwift
       !self.mEntityName
       !superEntityName
+      !self.mHandlingOpposite
       !self.mPropertyGenerationList
       !proxyGenerationList
       !toManyProxyGenerationList
@@ -503,6 +519,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
   template entityToManyImplementationInSwift "entity-tomany.swift.galgasTemplate"
     ?@string ENTITY_NAME
     ?@string SUPER_CLASS_NAME
+    ?@bool HANDLING_OPPOSITE
     ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
     ?@atomicProxyGenerationList PROXY_LIST_FOR_GENERATION
     ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION
@@ -520,6 +537,7 @@ private filewrapper entityGenerationTemplate in "../generation-templates" {
   template entityToOneImplementationInSwift "entity-toone.swift.galgasTemplate"
     ?@string ENTITY_NAME
     ?@string SUPER_CLASS_NAME
+    ?@bool HANDLING_OPPOSITE
     ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
     ?@atomicProxyGenerationList PROXY_LIST_FOR_GENERATION
     ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION

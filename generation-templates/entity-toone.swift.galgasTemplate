@@ -342,7 +342,8 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
 
   weak final var ebUndoManager : EBUndoManager? = nil // SOULD BE WEAK
 
- //····················································································································
+%if HANDLING_OPPOSITE then
+%  //····················································································································
   //   Opposite relationship management
   //····················································································································
 
@@ -357,7 +358,8 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
     self.mResetOppositeRelationship = inResetter
   }
 
-  //····················································································································
+%end
+%  //····················································································································
 
   #if BUILD_OBJECT_EXPLORER
     final var mValueExplorer : NSButton? {
@@ -386,15 +388,19 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
       if self.mUsedForSignature {
         object.setSignatureObserver (observer: nil)
       }
-      self.mResetOppositeRelationship? (object)
-    }
+%if HANDLING_OPPOSITE then
+%      self.mResetOppositeRelationship? (object)
+%end
+%    }
   //---
     if let object = self.mInternalValue {
       if self.mUsedForSignature {
         object.setSignatureObserver (observer: self)
       }
-      self.mSetOppositeRelationship? (object)
-    }
+%if HANDLING_OPPOSITE then
+%      self.mSetOppositeRelationship? (object)
+%end
+%    }
   //---
     super.notifyModelDidChangeFrom (oldValue: inOldValue)
   }

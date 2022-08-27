@@ -38,6 +38,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "func",
   "graphic",
   "graphviz",
+  "handlingOpposite",
   "hSplit",
   "hStack",
   "include",

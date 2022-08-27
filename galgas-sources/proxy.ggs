@@ -91,7 +91,7 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
     switch proxyKind
     case prefs :
       error self.mProxyTypeName : "an atomic type is required here"
-    case entity (* @bool isGraphic *) :
+    case entity (* @bool isGraphic 2*) :
       switch self.mProxyKind 
       case toManyProxy :
       let k = @propertyKind.toMany (

@@ -90,10 +90,8 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @toOneRelationshipAST.firstAnalysisPhase (
-       ?!@semanticContext ioSemanticContext
-       ?!@generationStruct ioGeneration)
-{
+override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext
+                                                        ?!@generationStruct ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
@@ -106,13 +104,16 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (
       error self.mDestinationEntityName : "an entity is required here"
     case document (*) :
       error self.mDestinationEntityName : "an entity is required here"
-    case entity (* graphic *) :
+    case entity (* graphic * handleOpposite) :
       let kind = @propertyKind.toOne (
         !typeName: self.mDestinationEntityName
         !accessibility: .stored
         !graphic: graphic
         !opposite: self.mOpposite
       )
+      if self.mOpposite != .none, not handleOpposite then
+        error self.mToOneRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
+      end
       [!?mPropertyMap insertKey !self.mToOneRelationshipName !kind !{} !false]
     end
   end
@@ -132,7 +133,7 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (
     case prefs :
     case atomic (*) :
     case document (*) :
-    case entity (* graphic *) :
+    case entity (* graphic 2*) :
       let kind = @propertyKind.toOne (
         !typeName: self.mDestinationEntityName
         !accessibility: .stored

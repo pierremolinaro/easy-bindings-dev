@@ -167,6 +167,9 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_graphic = "the '
 //--- Syntax error message for terminal '$graphviz$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_graphviz = "the 'graphviz' keyword" ;
 
+//--- Syntax error message for terminal '$handlingOpposite$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_handlingOpposite = "the 'handlingOpposite' keyword" ;
+
 //--- Syntax error message for terminal '$hSplit$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_hSplit = "the 'hSplit' keyword" ;
 
@@ -365,8 +368,8 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__2D_ = "the '-' 
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
   C_String result = "<unknown>" ;
-  if ((inTerminalIndex >= 0) && (inTerminalIndex < 98)) {
-    static const char * syntaxErrorMessageArray [98] = {kEndOfSourceLexicalErrorMessage,
+  if ((inTerminalIndex >= 0) && (inTerminalIndex < 99)) {
+    static const char * syntaxErrorMessageArray [99] = {kEndOfSourceLexicalErrorMessage,
         gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique__40_attribute,
@@ -400,6 +403,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_func,
         gSyntaxErrorMessage_easyBindings_5F_lexique_graphic,
         gSyntaxErrorMessage_easyBindings_5F_lexique_graphviz,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_handlingOpposite,
         gSyntaxErrorMessage_easyBindings_5F_lexique_hSplit,
         gSyntaxErrorMessage_easyBindings_5F_lexique_hStack,
         gSyntaxErrorMessage_easyBindings_5F_lexique_include,
@@ -993,6 +997,27 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_hStack [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$handlingOpposite$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique_handlingOpposite [] = {
+  TO_UNICODE ('h'),
+  TO_UNICODE ('a'),
+  TO_UNICODE ('n'),
+  TO_UNICODE ('d'),
+  TO_UNICODE ('l'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('n'),
+  TO_UNICODE ('g'),
+  TO_UNICODE ('O'),
+  TO_UNICODE ('p'),
+  TO_UNICODE ('p'),
+  TO_UNICODE ('o'),
+  TO_UNICODE ('s'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('e'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$hidden$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique_hidden [] = {
   TO_UNICODE ('h'),
@@ -1535,7 +1560,7 @@ int16_t C_Lexique_easyBindings_5F_lexique::search_into_delimitorsList (const C_S
 //             Key words table 'lowerCaseKeyWordList'      
 //----------------------------------------------------------------------------------------------------------------------
 
-static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 62 ;
+static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 63 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList] = {
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_no, 2, C_Lexique_easyBindings_5F_lexique::kToken_no),
@@ -1596,6 +1621,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_editableColumn, 14, C_Lexique_easyBindings_5F_lexique::kToken_editableColumn),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externDelegate, 14, C_Lexique_easyBindings_5F_lexique::kToken_externDelegate),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_arrayController, 15, C_Lexique_easyBindings_5F_lexique::kToken_arrayController),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_handlingOpposite, 16, C_Lexique_easyBindings_5F_lexique::kToken_handlingOpposite),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_autoLayoutDocument, 18, C_Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_selectionController, 19, C_Lexique_easyBindings_5F_lexique::kToken_selectionController),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_tableViewController, 19, C_Lexique_easyBindings_5F_lexique::kToken_tableViewController),
@@ -1820,6 +1846,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
     case kToken_graphviz:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("graphviz") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_handlingOpposite:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("handlingOpposite") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_hSplit:
@@ -2513,6 +2544,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("func") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("graphic") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("graphviz") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("handlingOpposite") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("hSplit") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("hStack") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("include") COMMA_THERE) ;
@@ -2678,6 +2710,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("editableColumn") ;
     ioList.appendObject ("externDelegate") ;
     ioList.appendObject ("arrayController") ;
+    ioList.appendObject ("handlingOpposite") ;
     ioList.appendObject ("autoLayoutDocument") ;
     ioList.appendObject ("selectionController") ;
     ioList.appendObject ("tableViewController") ;
@@ -2706,7 +2739,7 @@ __attribute__ ((unused)) (getKeywordLists_easyBindings_5F_lexique, getKeywordsFo
 //----------------------------------------------------------------------------------------------------------------------
 
 uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [98] = {0,
+  static const uint32_t kTerminalSymbolStyles [99] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
@@ -2740,6 +2773,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_func */,
     1 /* easyBindings_lexique_1_graphic */,
     1 /* easyBindings_lexique_1_graphviz */,
+    1 /* easyBindings_lexique_1_handlingOpposite */,
     1 /* easyBindings_lexique_1_hSplit */,
     1 /* easyBindings_lexique_1_hStack */,
     1 /* easyBindings_lexique_1_include */,

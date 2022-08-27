@@ -164,7 +164,7 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
       ]
     case document (*) :
       error self.mTransientTypeName : "an atomic class is required here"
-    case entity (3*) :
+    case entity (4*) :
       error self.mTransientTypeName : "an atomic class is required here"
     end
   end
@@ -188,7 +188,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
     typeKind = kind
   case document (*) :
     error self.mTransientTypeName: "an atomic class is required here" : typeKind
-  case entity (3*) :
+  case entity (4*) :
     error self.mTransientTypeName: "an atomic class is required here" : typeKind
   end
 #--- Root properties
@@ -245,7 +245,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
       generate = true
     case atomic (*) :
       generate = true
-    case entity (* graphic *):
+    case entity (* graphic 2*):
       if graphic then
         generate = (self.mTransientName.string != "selectionDisplay") & (self.mTransientName.string != "objectDisplay")
       else

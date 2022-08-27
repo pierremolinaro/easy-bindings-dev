@@ -110,7 +110,7 @@ proc buildAutoLayoutBindingSpecificationMap(
           typeKind = kind
         case document (*) :
           error mModelTypeName : "an atomic class is required here" : typeKind
-        case entity (3*) :
+        case entity (4*) :
           error mModelTypeName : "an atomic class is required here" : typeKind
         end
         outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
@@ -127,7 +127,7 @@ proc buildAutoLayoutBindingSpecificationMap(
         typeKind = kind
       case document (*) :
         error mOptionTypeName : "an atomic class is required here" : typeKind
-      case entity (3*) :
+      case entity (4*) :
         error mOptionTypeName : "an atomic class is required here" : typeKind
       end
       controllerBindingOptionDecoratedList += !typeKind !mOptionName
