@@ -417,7 +417,7 @@ final class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
   //   Data provider
   //····················································································································
 
-  private var mDataProvider : ReadOnlyArrayOf_%!ENTITY_NAME%? = nil
+  private weak var mDataProvider : ReadOnlyArrayOf_%!ENTITY_NAME%? = nil // SHOULD BE WEAK
   private var mTransientKind : PropertyKind = .empty
   private var mModelArrayShouldBeComputed = true
 
@@ -530,7 +530,7 @@ final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : R
   //   Data provider
   //····················································································································
 
-  private var mDataProvider : ReadOnlyAbstractArrayProperty <SUPER>? = nil
+  private weak var mDataProvider : ReadOnlyAbstractArrayProperty <SUPER>? = nil // SHOULD BE WEAK
   private var mTransientKind : PropertyKind = .empty
   private var mModelArrayShouldBeComputed = true
   private var mModelEvent = EBModelEvent ()
@@ -639,7 +639,7 @@ final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
-  private var mModel : ReadWriteArrayOf_%!ENTITY_NAME%? = nil
+  private weak var mModel : ReadWriteArrayOf_%!ENTITY_NAME%? = nil // SHOULD BE WEAK
 
   //····················································································································
 

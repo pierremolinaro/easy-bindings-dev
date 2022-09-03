@@ -410,12 +410,6 @@ override func @transientPropertyGeneration.configurationCode (?let @bool inPrefe
 
 override func @transientPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
   result = ""
-  for (mDependency 3*) in self.mDependencyList do
-    let s = [mDependency generateRemoveObserverCall]
-    if s != "" then
-      result += "    // " + s + " (self." + self.mPropertyName + "_property)\n"
-    end
-  end
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

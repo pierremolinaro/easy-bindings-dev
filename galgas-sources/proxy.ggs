@@ -271,15 +271,12 @@ override func @toManyProxyGeneration.configurationCode (?let @bool unused inPref
 #·······················································································································
 
 override func @toManyProxyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  result  = "  //--- ToMany proxy: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + "_property.setModel (nil)\n"
-  result += "    self." + self.mPropertyName + "_modelDidChangeController?.unregister ()\n"
-  result += "    self." + self.mPropertyName + "_modelDidChangeController = nil\n"
+  result  = ""
 }
 
 #·······················································································································
 
-override func @toManyProxyGeneration.clearObjectExplorerCode() -> @string {
+override func @toManyProxyGeneration.clearObjectExplorerCode () -> @string {
   result  = "    //--- ToMany proxy: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
 }
@@ -432,16 +429,12 @@ override func @atomicProxyGeneration.configurationCode (?let @bool unused inPref
 #·······················································································································
 
 override func @atomicProxyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  result  = "  //--- Atomic proxy property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + "_property.mReadModelFunction = nil\n"
-  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = nil\n"
-  result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName
-  result += "_property.removeEBObserver (self." + self.mPropertyName + "_property)\n"
+  result  = ""
 }
 
 #·······················································································································
 
-override func @atomicProxyGeneration.clearObjectExplorerCode() -> @string {
+override func @atomicProxyGeneration.clearObjectExplorerCode () -> @string {
   result  = "    //--- Atomic proxy property: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
   result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"

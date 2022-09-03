@@ -106,29 +106,6 @@ end
 %   }
   
   //····················································································································
-
-  override func removeAllObservers () {
-    super.removeAllObservers ()
-%
-for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty terminationCode !false]
-end
-for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
-  switch mProperty.mOption
-  case none :
-  case hasDependance (2*) :
-    %    self.%!mProperty.mPropertyName%_property.setDataProvider (nil)\n%
-  case hasOpposite (*) :
-  end
-end
-%  //--- Unregister properties for handling signature
-%
-for (key) in SIGNATURE_SET do
-  %    self.%!key%_property.setSignatureObserver (observer: nil)\n%
-end
-%  }
-
-  //····················································································································
   //    Extern delegates
   //····················································································································
 

@@ -26,7 +26,7 @@ end
   //   BIND SELECTION
   //····················································································································
 
-  private var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%? = nil
+  private weak var mModel : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%? = nil // SHOULD BE WEAK
 
   //····················································································································
 

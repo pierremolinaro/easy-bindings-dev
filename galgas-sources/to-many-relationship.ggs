@@ -359,15 +359,7 @@ override func @toManyPropertyGeneration.resetToManyRelationships() -> @string {
 #·······················································································································
 
 override func @toManyPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  switch self.mOption 
-  case hasDependance (masterPropertyName *) :
-    result  = "  //--- To many property: " + self.mPropertyName + "\n"
-    result += "    self." + masterPropertyName + "_property.removeEBObserver (self." + self.mPropertyName + "_property)\n"
-  case none :
-    result = ""
-  case hasOpposite (*) :
-    result = ""
-  end
+  result = ""
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

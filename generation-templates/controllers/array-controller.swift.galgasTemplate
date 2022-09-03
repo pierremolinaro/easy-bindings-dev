@@ -15,10 +15,17 @@ end
 %, HiddenEBProtocol {
 
   //····················································································································
+  //    Undo manager
+  //····················································································································
+
+  private weak var mUndoManager : EBUndoManager? = nil // SHOULD BE WEAK
+  var ebUndoManager : EBUndoManager? { return self.mUndoManager }
+
+  //····················································································································
   // Model
   //····················································································································
 
-  private var mModel : %!MODEL_TYPE_NAME%? = nil
+  private weak var mModel : %!MODEL_TYPE_NAME%? = nil // SHOULD BE WEAK
 
   //····················································································································
 
@@ -81,79 +88,78 @@ end
 
   var selectedArray : EBReferenceArray <%!ELEMENT_TYPE_NAME%> { return self.selectedArray_property.propval }
 
-  //····················································································································
+%if ELEMENT_TYPE_IS_GRAPHIC then
+%  //····················································································································
   //   Init
   //····················································································································
 
   override init () {
     super.init ()
-%if ELEMENT_TYPE_IS_GRAPHIC then
-  %  //--- Selection observers\n%
-  %    self.canBringForward_property.mReadModelFunction = { [weak self] in\n%
-  %      if let me = self {\n%
-  %        return .single (me.canBringForward)\n%
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-  %    self.selectedArray_property.addEBObserver (self.canBringToFront_property)\n%
-  %  //---\n%
-  %    self.canBringToFront_property.mReadModelFunction = { [weak self] in\n%
-  %      if let me = self {\n%
-  %        return .single (me.canBringToFront)\n%
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-  %    self.selectedArray_property.addEBObserver (self.canBringToFront_property)\n%
-  %  //---\n%
-  %    self.canSendBackward_property.mReadModelFunction = { [weak self] in\n%
-  %      if let me = self {\n%
-  %        return .single (me.canSendBackward)\n%
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-  %    self.selectedArray_property.addEBObserver (self.canSendBackward_property)\n%
-  %  //---\n%
-  %    self.canSendToBack_property.mReadModelFunction = { [weak self] in\n%
-  %      if let me = self {\n%
-  %        return .single (me.canSendToBack)\n%
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-  %    self.selectedArray_property.addEBObserver (self.canSendToBack_property)\n%
-  %  //---\n%
-  %    self.canFlipHorizontally_property.mReadModelFunction = { [weak self] in\n%
-  %      if let me = self {\n%
-  %        return .single (me.canFlipHorizontally)\n%
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-  %    self.selectedArray_property.addEBObserver (self.canFlipHorizontally_property)\n%
-  %  //---\n%
-  %    self.canFlipVertically_property.mReadModelFunction = { [weak self] in\n%
-  %      if let me = self {\n%
-  %        return .single (me.canFlipVertically)\n%
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-  %    self.selectedArray_property.addEBObserver (self.canFlipVertically_property)\n%
-  %  //---\n%
-  %    self.canRotate90_property.mReadModelFunction = { [weak self] in\n%
-  %      if let me = self {\n%
-  %        return .single (me.canRotate90)\n%
-  %      }else{\n%
-  %        return .empty\n%
-  %      }\n%
-  %    }\n%
-  %    self.selectedArray_property.addEBObserver (self.canRotate90_property)\n%
-end
-%  }
-
+   //--- Selection observers
+    self.canBringForward_property.mReadModelFunction = { [weak self] in
+      if let me = self {
+        return .single (me.canBringForward)
+      }else{
+        return .empty
+      }
+    }
+    self.selectedArray_property.addEBObserver (self.canBringToFront_property)
+  //---
+    self.canBringToFront_property.mReadModelFunction = { [weak self] in
+      if let me = self {
+        return .single (me.canBringToFront)
+      }else{
+        return .empty
+      }
+    }
+    self.selectedArray_property.addEBObserver (self.canBringToFront_property)
+  //---
+    self.canSendBackward_property.mReadModelFunction = { [weak self] in
+      if let me = self {
+        return .single (me.canSendBackward)
+      }else{
+        return .empty
+      }
+    }
+    self.selectedArray_property.addEBObserver (self.canSendBackward_property)
+  //---
+    self.canSendToBack_property.mReadModelFunction = { [weak self] in
+      if let me = self {
+        return .single (me.canSendToBack)
+      }else{
+        return .empty
+      }
+    }
+    self.selectedArray_property.addEBObserver (self.canSendToBack_property)
+  //---
+    self.canFlipHorizontally_property.mReadModelFunction = { [weak self] in
+      if let me = self {
+        return .single (me.canFlipHorizontally)
+      }else{
+        return .empty
+      }
+    }
+    self.selectedArray_property.addEBObserver (self.canFlipHorizontally_property)
+  //---
+    self.canFlipVertically_property.mReadModelFunction = { [weak self] in
+      if let me = self {
+        return .single (me.canFlipVertically)
+      }else{
+        return .empty
+      }
+    }
+    self.selectedArray_property.addEBObserver (self.canFlipVertically_property)
+  //---
+    self.canRotate90_property.mReadModelFunction = { [weak self] in
+      if let me = self {
+        return .single (me.canRotate90)
+      }else{
+        return .empty
+      }
+    }
+    self.selectedArray_property.addEBObserver (self.canRotate90_property)
+  }
+%end%
   //····················································································································
 
   var objectCount : Int {
@@ -209,13 +215,6 @@ end
        return EBReferenceArray ()
      }
    }
-
-  //····················································································································
-  //    Undo manager
-  //····················································································································
-
-  private var mUndoManager : EBUndoManager? = nil
-  var ebUndoManager : EBUndoManager? { return self.mUndoManager }
 
   //····················································································································
   //   SELECTION

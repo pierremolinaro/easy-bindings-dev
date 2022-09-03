@@ -27,6 +27,8 @@ extern const cDirectoryWrapper gWrapperDirectory_0_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_1_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_prefsGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -178,6 +180,8 @@ extern const cDirectoryWrapper gWrapperDirectory_0_computedPropertyManager ;
 extern const cDirectoryWrapper gWrapperDirectory_1_computedPropertyManager ;
 extern const cDirectoryWrapper gWrapperDirectory_2_computedPropertyManager ;
 extern const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_4_computedPropertyManager ;
+extern const cDirectoryWrapper gWrapperDirectory_5_computedPropertyManager ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -210,6 +214,8 @@ extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_4_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_5_transientManager ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -244,6 +250,8 @@ extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //

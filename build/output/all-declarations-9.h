@@ -39,6 +39,8 @@ extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //

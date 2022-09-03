@@ -166,7 +166,7 @@ final class TransientObject_%!ENTITY_NAME% : ReadOnlyObject_%!ENTITY_NAME% {
   //   Data provider
   //····················································································································
 
-  private var mDataProvider : ReadOnlyObject_%!ENTITY_NAME%? = nil
+  private weak var mDataProvider : ReadOnlyObject_%!ENTITY_NAME%? = nil // SHOULD BE WEAK
   private var mTransientKind : PropertyKind = .empty
 
   //····················································································································
@@ -250,7 +250,7 @@ final class ProxyObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME% {
 
   //····················································································································
 
-  private var mModel : ReadWriteObject_%!ENTITY_NAME%? = nil
+  private weak var mModel : ReadWriteObject_%!ENTITY_NAME%? = nil // SHOULD BE WEAK
 
   //····················································································································
 

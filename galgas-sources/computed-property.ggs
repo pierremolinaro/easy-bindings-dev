@@ -408,12 +408,6 @@ override func @computedPropertyGeneration.configurationCode (?let @bool inPrefer
 
 override func @computedPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
   result = ""
-  for (mDependency 3*) in self.mDependencyList do
-    let s = [mDependency generateRemoveObserverCall]
-    if s != "" then
-      result += "    // " + s + " (self." + self.mPropertyName + "_property)\n"
-    end
-  end
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

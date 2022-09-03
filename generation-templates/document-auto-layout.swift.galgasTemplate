@@ -133,77 +133,16 @@ end
   }
 
   //····················································································································
-  //    Toolbar
-  //····················································································································
-
-/*  final func toolbarAllowedItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-    return self.toolbarDefaultItemIdentifiers (toolbar)
-  } */
-
-  //····················································································································
-
-/*  final func toolbarDefaultItemIdentifiers (_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-    return [%
-    for (mItem) in TOOLBAR_ITEM_LIST
-      do (idx)
-        switch mItem
-        case space :
-          !".flexibleSpace"
-        case view (2*) :
-          !"NSToolbarItem.Identifier (\"" ![idx string] !"\")"
-        end
-      between !", "
-    end
-    %]
-  } */
-
-  //····················································································································
-
-/*  final func toolbar (_ toolbar: NSToolbar,
-                      itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
-                      willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
-    switch itemIdentifier.rawValue {
-%for (mItem) in TOOLBAR_ITEM_LIST do (idx)
-      switch mItem
-      case space :
-%    case NSToolbarItem.Identifier.flexibleSpace.rawValue :\n%
-%      return NSToolbarItem (itemIdentifier: .flexibleSpace)\n%
-case view (title instruction) :
-%    case "%![idx string]%" :\n%
-%      let itemId = NSToolbarItem.Identifier ("%![idx string]%")\n%
-%      let toolbarItem = NSToolbarItem (itemIdentifier: itemId)\n%
-%      toolbarItem.label = %![title utf8Representation]%\n%
-%      toolbarItem.isEnabled = true\n%
-![instruction generate !prefs: false !"view" !"      "]
-%      toolbarItem.view = view\n%
-%      return toolbarItem\n%
-    end
-  end
-%    default :\n%
-%      return nil\n%
-%    }\n%
-%  } */
-
-  //····················································································································
   //    configureProperties
   //····················································································································
 
   final private func configureProperties () {
-    let start = Date ()
-    var opIdx = 0
 %
 for (mProperty) in DOCUMENT_PROPERTY_LIST do
   ![mProperty configurationCode !false]
-%    if LOG_OPERATION_DURATION {
-      Swift.print ("  op\(opIdx) \(Int (Date ().timeIntervalSince (start) * 1000.0)) ms")
-      opIdx += 1
-    }
+%
 %end
-%    if LOG_OPERATION_DURATION {
-      let durationMS = Int (Date ().timeIntervalSince (start) * 1000.0)
-      Swift.print ("Configure properties \(durationMS) ms")
-    }
-  }
+%  }
 
   //····················································································································
   //   removeUserInterface

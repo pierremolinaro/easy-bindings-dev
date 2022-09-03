@@ -222,26 +222,71 @@ void cPtr_prefsDeclarationAST::method_fourthAnalysisPhase (GALGAS_semanticContex
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_prefsGenerationTemplate (
+  "indexes",
+  0,
+  gWrapperAllFiles_prefsGenerationTemplate_4,
+  0,
+  gWrapperAllDirectories_prefsGenerationTemplate_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_3 [2] = {
+  & gWrapperDirectory_4_prefsGenerationTemplate,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate (
+  "build",
+  0,
+  gWrapperAllFiles_prefsGenerationTemplate_3,
+  1,
+  gWrapperAllDirectories_prefsGenerationTemplate_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_prefsGenerationTemplate_3,
+  gWrapperAllFiles_prefsGenerationTemplate_5,
   0,
-  gWrapperAllDirectories_prefsGenerationTemplate_3
+  gWrapperAllDirectories_prefsGenerationTemplate_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -296,8 +341,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_0 [5] = {
   & gWrapperDirectory_3_prefsGenerationTemplate,
+  & gWrapperDirectory_5_prefsGenerationTemplate,
   & gWrapperDirectory_1_prefsGenerationTemplate,
   & gWrapperDirectory_2_prefsGenerationTemplate,
   NULL
@@ -309,7 +355,7 @@ const cDirectoryWrapper gWrapperDirectory_0_prefsGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_prefsGenerationTemplate_0,
-  3,
+  4,
   gWrapperAllDirectories_prefsGenerationTemplate_0
 ) ;
 
@@ -4897,24 +4943,10 @@ GALGAS_string cPtr_computedPropertyGeneration::getter_configurationCode (const G
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string cPtr_computedPropertyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                                       C_Compiler * inCompiler
+                                                                       C_Compiler */* inCompiler */
                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
   result_result = GALGAS_string::makeEmptyString () ;
-  const GALGAS_computedPropertyGeneration temp_0 = this ;
-  cEnumerator_transientDependencyListForGeneration enumerator_18895 (temp_0.readProperty_mDependencyList (), kENUMERATION_UP) ;
-  while (enumerator_18895.hasCurrentObject ()) {
-    GALGAS_string var_s_18933 = extensionGetter_generateRemoveObserverCall (enumerator_18895.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 412)) ;
-    enumGalgasBool test_1 = kBoolTrue ;
-    if (kBoolTrue == test_1) {
-      test_1 = GALGAS_bool (kIsNotEqual, var_s_18933.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_1) {
-        const GALGAS_computedPropertyGeneration temp_2 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("    // ").add_operation (var_s_18933, inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 414)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 414)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 414)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 414)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 414)) ;
-      }
-    }
-    enumerator_18895.gotoNextObject () ;
-  }
 //---
   return result_result ;
 }
@@ -4935,35 +4967,35 @@ void cPtr_computeRoutineGeneration::method_generateCode (const GALGAS_string con
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_computeRoutineGeneration temp_1 = this ;
-    test_0 = GALGAS_bool (kIsStrictSup, temp_1.readProperty_mDependencyList ().getter_length (SOURCE_FILE ("computed-property.ggs", 438)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, temp_1.readProperty_mDependencyList ().getter_length (SOURCE_FILE ("computed-property.ggs", 432)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_computeRoutineGeneration temp_2 = this ;
       const GALGAS_computeRoutineGeneration temp_3 = this ;
       const GALGAS_computeRoutineGeneration temp_4 = this ;
-      GALGAS_string var_s_20011 = GALGAS_string (filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mTransientName (), temp_4.readProperty_mTransientType () COMMA_SOURCE_FILE ("computed-property.ggs", 439))) ;
+      GALGAS_string var_s_19794 = GALGAS_string (filewrapperTemplate_computedPropertyManager_computedComputationFunctionFile (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mTransientName (), temp_4.readProperty_mTransientType () COMMA_SOURCE_FILE ("computed-property.ggs", 433))) ;
       const GALGAS_computeRoutineGeneration temp_5 = this ;
       const GALGAS_computeRoutineGeneration temp_6 = this ;
-      GALGAS_string var_fileName_20182 = GALGAS_string ("compute-").add_operation (temp_5.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 444)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 444)).add_operation (temp_6.readProperty_mTransientName (), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 444)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 444)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_20182  COMMA_SOURCE_FILE ("computed-property.ggs", 445)) ;
-      GALGAS_string var_header_20303 = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("computed-property.ggs", 446)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 446)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 446)) ;
-      var_header_20303.plusAssign_operation(GALGAS_string ("//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 447)) ;
-      var_header_20303.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("computed-property.ggs", 448)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 448)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 448)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 448)) ;
-      var_header_20303.plusAssign_operation(GALGAS_string ("import Cocoa\n"
-        "\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 449)) ;
-      var_header_20303.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("computed-property.ggs", 450)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 450)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 450)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 450)) ;
-      GALGAS_string var_generatedZone_33__20686 = GALGAS_string ("  }\n"
+      GALGAS_string var_fileName_19965 = GALGAS_string ("compute-").add_operation (temp_5.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 438)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 438)).add_operation (temp_6.readProperty_mTransientName (), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 438)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 438)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_19965  COMMA_SOURCE_FILE ("computed-property.ggs", 439)) ;
+      GALGAS_string var_header_20086 = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("computed-property.ggs", 440)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 440)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 440)) ;
+      var_header_20086.plusAssign_operation(GALGAS_string ("//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 441)) ;
+      var_header_20086.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("computed-property.ggs", 442)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 442)).add_operation (GALGAS_string ("\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 442)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 442)) ;
+      var_header_20086.plusAssign_operation(GALGAS_string ("import Cocoa\n"
+        "\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 443)) ;
+      var_header_20086.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("computed-property.ggs", 444)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 444)).add_operation (GALGAS_string ("\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 444)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 444)) ;
+      GALGAS_string var_generatedZone_33__20469 = GALGAS_string ("  }\n"
         "\n") ;
-      var_generatedZone_33__20686.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("computed-property.ggs", 452)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 452)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 452)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 452)) ;
-      var_generatedZone_33__20686.plusAssign_operation(GALGAS_string ("}\n"
-        "\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 453)) ;
-      var_generatedZone_33__20686.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("computed-property.ggs", 454)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 454)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 454)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 454)) ;
+      var_generatedZone_33__20469.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("computed-property.ggs", 446)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 446)).add_operation (GALGAS_string ("\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 446)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 446)) ;
+      var_generatedZone_33__20469.plusAssign_operation(GALGAS_string ("}\n"
+        "\n"), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 447)) ;
+      var_generatedZone_33__20469.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("computed-property.ggs", 448)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 448)).add_operation (GALGAS_string ("\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 448)), inCompiler  COMMA_SOURCE_FILE ("computed-property.ggs", 448)) ;
       {
-      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_20182, GALGAS_string ("//"), var_header_20303, GALGAS_string ("\n"
-        "\n"), var_s_20011, GALGAS_string ("\n"), var_generatedZone_33__20686, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 455)) ;
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_19965, GALGAS_string ("//"), var_header_20086, GALGAS_string ("\n"
+        "\n"), var_s_19794, GALGAS_string ("\n"), var_generatedZone_33__20469, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 449)) ;
       }
     }
   }
@@ -4974,26 +5006,71 @@ void cPtr_computeRoutineGeneration::method_generateCode (const GALGAS_string con
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_computedPropertyManager (
+  "indexes",
+  0,
+  gWrapperAllFiles_computedPropertyManager_4,
+  0,
+  gWrapperAllDirectories_computedPropertyManager_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_3 [2] = {
+  & gWrapperDirectory_4_computedPropertyManager,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager (
+  "build",
+  0,
+  gWrapperAllFiles_computedPropertyManager_3,
+  1,
+  gWrapperAllDirectories_computedPropertyManager_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager (
+const cDirectoryWrapper gWrapperDirectory_5_computedPropertyManager (
   "controllers",
   0,
-  gWrapperAllFiles_computedPropertyManager_3,
+  gWrapperAllFiles_computedPropertyManager_5,
   0,
-  gWrapperAllDirectories_computedPropertyManager_3
+  gWrapperAllDirectories_computedPropertyManager_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -5048,8 +5125,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_0 [5] = {
   & gWrapperDirectory_3_computedPropertyManager,
+  & gWrapperDirectory_5_computedPropertyManager,
   & gWrapperDirectory_1_computedPropertyManager,
   & gWrapperDirectory_2_computedPropertyManager,
   NULL
@@ -5061,7 +5139,7 @@ const cDirectoryWrapper gWrapperDirectory_0_computedPropertyManager (
   "",
   0,
   gWrapperAllFiles_computedPropertyManager_0,
-  3,
+  4,
   gWrapperAllDirectories_computedPropertyManager_0
 ) ;
 
@@ -5845,24 +5923,10 @@ GALGAS_string cPtr_transientPropertyGeneration::getter_configurationCode (const 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string cPtr_transientPropertyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                                        C_Compiler * inCompiler
+                                                                        C_Compiler */* inCompiler */
                                                                         COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
   result_result = GALGAS_string::makeEmptyString () ;
-  const GALGAS_transientPropertyGeneration temp_0 = this ;
-  cEnumerator_transientDependencyListForGeneration enumerator_18536 (temp_0.readProperty_mDependencyList (), kENUMERATION_UP) ;
-  while (enumerator_18536.hasCurrentObject ()) {
-    GALGAS_string var_s_18574 = extensionGetter_generateRemoveObserverCall (enumerator_18536.current_mDependency (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 414)) ;
-    enumGalgasBool test_1 = kBoolTrue ;
-    if (kBoolTrue == test_1) {
-      test_1 = GALGAS_bool (kIsNotEqual, var_s_18574.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_1) {
-        const GALGAS_transientPropertyGeneration temp_2 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("    // ").add_operation (var_s_18574, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 416)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 416)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 416)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 416)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 416)) ;
-      }
-    }
-    enumerator_18536.gotoNextObject () ;
-  }
 //---
   return result_result ;
 }
@@ -5883,30 +5947,30 @@ void cPtr_transientRoutineGeneration::method_generateCode (const GALGAS_string c
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_transientRoutineGeneration temp_1 = this ;
-    test_0 = GALGAS_bool (kIsStrictSup, temp_1.readProperty_mDependencyList ().getter_length (SOURCE_FILE ("transient-property.ggs", 625)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, temp_1.readProperty_mDependencyList ().getter_length (SOURCE_FILE ("transient-property.ggs", 619)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_transientRoutineGeneration temp_2 = this ;
       const GALGAS_transientRoutineGeneration temp_3 = this ;
       const GALGAS_transientRoutineGeneration temp_4 = this ;
       const GALGAS_transientRoutineGeneration temp_5 = this ;
       const GALGAS_transientRoutineGeneration temp_6 = this ;
-      GALGAS_string var_s_29474 = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mTransientName (), temp_4.readProperty_mDependencyList (), temp_5.readProperty_mTransientType (), temp_6.readProperty_mGeneratedFunctionNamePrefix () COMMA_SOURCE_FILE ("transient-property.ggs", 626))) ;
-      GALGAS_string var_header_29706 = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("transient-property.ggs", 633)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 633)).add_operation (GALGAS_string ("\n"
+      GALGAS_string var_s_29257 = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mTransientName (), temp_4.readProperty_mDependencyList (), temp_5.readProperty_mTransientType (), temp_6.readProperty_mGeneratedFunctionNamePrefix () COMMA_SOURCE_FILE ("transient-property.ggs", 620))) ;
+      GALGAS_string var_header_29489 = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("transient-property.ggs", 627)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 627)).add_operation (GALGAS_string ("\n"
         "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
-        "//"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 633)).add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("transient-property.ggs", 635)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 635)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 635)).add_operation (GALGAS_string ("import Cocoa\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 635)).add_operation (GALGAS_string ("//"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 636)).add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("transient-property.ggs", 637)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 637)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 637)) ;
+        "//"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 627)).add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("transient-property.ggs", 629)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 629)).add_operation (GALGAS_string ("\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 629)).add_operation (GALGAS_string ("import Cocoa\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 629)).add_operation (GALGAS_string ("//"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 630)).add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("transient-property.ggs", 631)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 631)).add_operation (GALGAS_string ("\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 631)) ;
       const GALGAS_transientRoutineGeneration temp_7 = this ;
       const GALGAS_transientRoutineGeneration temp_8 = this ;
       const GALGAS_transientRoutineGeneration temp_9 = this ;
-      GALGAS_string var_fileName_30054 = temp_7.readProperty_mGeneratedFunctionNamePrefix ().add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 638)).add_operation (temp_8.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 638)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 638)).add_operation (temp_9.readProperty_mTransientName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 638)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 638)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_30054  COMMA_SOURCE_FILE ("transient-property.ggs", 639)) ;
+      GALGAS_string var_fileName_29837 = temp_7.readProperty_mGeneratedFunctionNamePrefix ().add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 632)).add_operation (temp_8.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 632)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 632)).add_operation (temp_9.readProperty_mTransientName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 632)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 632)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_29837  COMMA_SOURCE_FILE ("transient-property.ggs", 633)) ;
       {
-      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_30054, GALGAS_string ("//"), var_header_29706, GALGAS_string ("\n"
-        "\n"), var_s_29474, GALGAS_string ("\n"), GALGAS_string ("}\n"
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_29837, GALGAS_string ("//"), var_header_29489, GALGAS_string ("\n"
+        "\n"), var_s_29257, GALGAS_string ("\n"), GALGAS_string ("}\n"
         "\n"
-        "//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("transient-property.ggs", 648)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 648)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 648)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 640)) ;
+        "//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (118U))  COMMA_SOURCE_FILE ("transient-property.ggs", 642)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 642)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 642)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 634)) ;
       }
     }
   }
@@ -5917,26 +5981,71 @@ void cPtr_transientRoutineGeneration::method_generateCode (const GALGAS_string c
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_transientManager_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_transientManager (
+  "indexes",
+  0,
+  gWrapperAllFiles_transientManager_4,
+  0,
+  gWrapperAllDirectories_transientManager_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_3 [2] = {
+  & gWrapperDirectory_4_transientManager,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_transientManager (
+  "build",
+  0,
+  gWrapperAllFiles_transientManager_3,
+  1,
+  gWrapperAllDirectories_transientManager_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_transientManager_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_transientManager (
+const cDirectoryWrapper gWrapperDirectory_5_transientManager (
   "controllers",
   0,
-  gWrapperAllFiles_transientManager_3,
+  gWrapperAllFiles_transientManager_5,
   0,
-  gWrapperAllDirectories_transientManager_3
+  gWrapperAllDirectories_transientManager_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -5991,8 +6100,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_transientManager_0 [1] = {
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_0 [5] = {
   & gWrapperDirectory_3_transientManager,
+  & gWrapperDirectory_5_transientManager,
   & gWrapperDirectory_1_transientManager,
   & gWrapperDirectory_2_transientManager,
   NULL
@@ -6004,7 +6114,7 @@ const cDirectoryWrapper gWrapperDirectory_0_transientManager (
   "",
   0,
   gWrapperAllFiles_transientManager_0,
-  3,
+  4,
   gWrapperAllDirectories_transientManager_0
 ) ;
 
@@ -6515,17 +6625,10 @@ GALGAS_string cPtr_toManyProxyGeneration::getter_configurationCode (const GALGAS
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string cPtr_toManyProxyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                                  C_Compiler * inCompiler
+                                                                  C_Compiler */* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
-  const GALGAS_toManyProxyGeneration temp_0 = this ;
-  result_result = GALGAS_string ("  //--- ToMany proxy: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 274)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 274)) ;
-  const GALGAS_toManyProxyGeneration temp_1 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 275)).add_operation (GALGAS_string ("_property.setModel (nil)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 275)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 275)) ;
-  const GALGAS_toManyProxyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 276)).add_operation (GALGAS_string ("_modelDidChangeController\?.unregister ()\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 276)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 276)) ;
-  const GALGAS_toManyProxyGeneration temp_3 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 277)).add_operation (GALGAS_string ("_modelDidChangeController = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 277)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 277)) ;
+  result_result = GALGAS_string::makeEmptyString () ;
 //---
   return result_result ;
 }
@@ -6541,9 +6644,9 @@ GALGAS_string cPtr_toManyProxyGeneration::getter_clearObjectExplorerCode (C_Comp
                                                                           COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
   const GALGAS_toManyProxyGeneration temp_0 = this ;
-  result_result = GALGAS_string ("    //--- ToMany proxy: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 283)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 283)) ;
+  result_result = GALGAS_string ("    //--- ToMany proxy: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 280)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 280)) ;
   const GALGAS_toManyProxyGeneration temp_1 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 284)).add_operation (GALGAS_string ("_property.mObserverExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 284)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 284)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 281)).add_operation (GALGAS_string ("_property.mObserverExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 281)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 281)) ;
 //---
   return result_result ;
 }
@@ -6558,15 +6661,15 @@ GALGAS_string cPtr_toManyProxyGeneration::getter_clearObjectExplorerCode (C_Comp
 GALGAS_string cPtr_atomicProxyGeneration::getter_declarationInSelectionControllerCode (C_Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 307)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 307)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 307)) ;
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 304)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 304)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 304)) ;
   const GALGAS_atomicProxyGeneration temp_0 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 308)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 308)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 308)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 309)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 309)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 309)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 309)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //   Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 305)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 305)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 305)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 306)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 306)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 306)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 306)) ;
   const GALGAS_atomicProxyGeneration temp_1 = this ;
   const GALGAS_atomicProxyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 310)).add_operation (GALGAS_string ("_property = EBPropertyProxy_"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 310)).add_operation (extensionGetter_swiftTypeName (temp_2.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 310)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 310)).add_operation (GALGAS_string (" ()\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 310)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 310)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 307)).add_operation (GALGAS_string ("_property = EBPropertyProxy_"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 307)).add_operation (extensionGetter_swiftTypeName (temp_2.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 307)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 307)).add_operation (GALGAS_string (" ()\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 307)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 307)) ;
 //---
   return result_result ;
 }
@@ -6596,66 +6699,66 @@ GALGAS_string cPtr_atomicProxyGeneration::getter_initCode (C_Compiler */* inComp
 GALGAS_string cPtr_atomicProxyGeneration::getter_bindPropertyInSelectionController (C_Compiler * inCompiler
                                                                                     COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 322)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 322)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 322)) ;
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 319)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 319)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 319)) ;
   const GALGAS_atomicProxyGeneration temp_0 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  private final func bind_property_").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 323)).add_operation (GALGAS_string (" () {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 323)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 323)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  private final func bind_property_").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 320)).add_operation (GALGAS_string (" () {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 320)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 320)) ;
   const GALGAS_atomicProxyGeneration temp_1 = this ;
   const GALGAS_atomicProxyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.selectedArray_property.addEBObserverOf_").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 324)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 324)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 324)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 324)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 324)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.selectedArray_property.addEBObserverOf_").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 321)).add_operation (GALGAS_string (" (self."), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 321)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 321)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 321)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 321)) ;
   const GALGAS_atomicProxyGeneration temp_3 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 325)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 325)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 325)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 326)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        switch model.selection {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 327)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 328)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 329)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 330)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 331)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 332)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 322)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 322)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 322)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 323)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        switch model.selection {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 324)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 325)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 326)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 327)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 328)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 329)) ;
   const GALGAS_atomicProxyGeneration temp_4 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("          var s = Set <").add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 333)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 333)).add_operation (GALGAS_string ("> ()\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 333)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 333)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          var isMultipleSelection = false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 334)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 335)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          var s = Set <").add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 330)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 330)).add_operation (GALGAS_string ("> ()\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 330)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 330)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          var isMultipleSelection = false\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 331)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 332)) ;
   const GALGAS_atomicProxyGeneration temp_5 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("            switch object.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 336)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 336)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 336)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 337)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 338)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 339)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              isMultipleSelection = true\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 340)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .single (let vProp) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 341)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              s.insert (vProp)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 342)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 343)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 344)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          if isMultipleSelection {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 345)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 346)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 0 {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 347)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 348)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 1 {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 349)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .single (s.first!)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 350)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 351)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 352)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 353)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 354)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 355)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 356)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 357)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 358)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            switch object.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 333)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 333)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 333)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 334)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 335)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 336)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              isMultipleSelection = true\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 337)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .single (let vProp) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 338)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              s.insert (vProp)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 339)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 340)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 341)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          if isMultipleSelection {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 342)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 343)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 0 {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 344)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 345)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 1 {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 346)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .single (s.first!)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 347)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 348)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 349)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 350)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 351)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 352)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 353)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 354)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 355)) ;
   const GALGAS_atomicProxyGeneration temp_6 = this ;
   const GALGAS_atomicProxyGeneration temp_7 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 360)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 360)).add_operation (extensionGetter_swiftTypeName (temp_7.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 360)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 360)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 360)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 360)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 361)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        switch model.selection {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 362)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 363)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          break\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 364)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 365)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 366)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 357)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 357)).add_operation (extensionGetter_swiftTypeName (temp_7.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 357)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 357)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 357)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 357)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 358)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        switch model.selection {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 359)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 360)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          break\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 361)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 362)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 363)) ;
   const GALGAS_atomicProxyGeneration temp_8 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("            object.").add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 367)).add_operation (GALGAS_string ("_property.setProp (inValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 367)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 367)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 368)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 369)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 370)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 371)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 372)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            object.").add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 364)).add_operation (GALGAS_string ("_property.setProp (inValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 364)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 364)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 365)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 366)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 367)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 368)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 369)) ;
 //---
   return result_result ;
 }
@@ -6672,37 +6775,37 @@ GALGAS_string cPtr_atomicProxyGeneration::getter_propertyDeclarationCode (const 
                                                                           C_Compiler * inCompiler
                                                                           COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 381)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 381)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 381)) ;
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 378)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 378)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 378)) ;
   const GALGAS_atomicProxyGeneration temp_0 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 382)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 382)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 382)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 383)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 383)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 383)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 383)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //   Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 379)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 379)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 379)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 380)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 380)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 380)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 380)) ;
   const GALGAS_atomicProxyGeneration temp_1 = this ;
   const GALGAS_atomicProxyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 384)).add_operation (GALGAS_string ("_property = EBPropertyProxy_"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 384)).add_operation (extensionGetter_swiftTypeName (temp_2.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 384)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 384)).add_operation (GALGAS_string (" ()\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 384)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 384)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 385)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 385)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 385)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 385)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  let ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 381)).add_operation (GALGAS_string ("_property = EBPropertyProxy_"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 381)).add_operation (extensionGetter_swiftTypeName (temp_2.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 381)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 381)).add_operation (GALGAS_string (" ()\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 381)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 381)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("proxy.ggs", 382)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 382)).add_operation (GALGAS_string ("\n"
+    "\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 382)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 382)) ;
   const GALGAS_atomicProxyGeneration temp_3 = this ;
   const GALGAS_atomicProxyGeneration temp_4 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 386)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 386)).add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 386)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 386)).add_operation (GALGAS_string ("\? {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 386)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 386)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    get {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 387)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  var ").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 383)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 383)).add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 383)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 383)).add_operation (GALGAS_string ("\? {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 383)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 383)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    get {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 384)) ;
   const GALGAS_atomicProxyGeneration temp_5 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("      switch self.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 388)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 388)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 388)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 389)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return nil\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 390)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 391)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return v\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 392)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 393)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 394)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    set {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 395)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let unwrappedNewValue = newValue {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 396)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      switch self.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 385)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 385)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 385)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 386)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return nil\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 387)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 388)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return v\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 389)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 390)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 391)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    set {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 392)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let unwrappedNewValue = newValue {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 393)) ;
   const GALGAS_atomicProxyGeneration temp_6 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("        self.").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 397)).add_operation (GALGAS_string ("_property.setProp (unwrappedNewValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 397)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 397)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 398)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 399)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        self.").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 394)).add_operation (GALGAS_string ("_property.setProp (unwrappedNewValue)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 394)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 394)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 395)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 396)) ;
   result_result.plusAssign_operation(GALGAS_string ("  }\n"
-    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 400)) ;
+    "\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 397)) ;
 //---
   return result_result ;
 }
@@ -6719,40 +6822,40 @@ GALGAS_string cPtr_atomicProxyGeneration::getter_configurationCode (const GALGAS
                                                                     COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
   const GALGAS_atomicProxyGeneration temp_0 = this ;
-  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 406)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 406)) ;
+  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 403)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 403)) ;
   const GALGAS_atomicProxyGeneration temp_1 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 407)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 407)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 407)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 404)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 404)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 404)) ;
   const GALGAS_atomicProxyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let object = self\?.").add_operation (temp_2.readProperty_mObservedRelationshipName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 408)).add_operation (GALGAS_string ("_property {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 408)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 408)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let object = self\?.").add_operation (temp_2.readProperty_mObservedRelationshipName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 405)).add_operation (GALGAS_string ("_property {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 405)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 405)) ;
   const GALGAS_atomicProxyGeneration temp_3 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("        switch object.").add_operation (temp_3.readProperty_mObservedPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 409)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 409)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 409)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 410)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 411)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 412)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 413)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .single (let optionalV) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 414)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          if let v = optionalV {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 415)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .single (v)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 416)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 417)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 418)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 419)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 420)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 421)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 422)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 423)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 424)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        switch object.").add_operation (temp_3.readProperty_mObservedPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 406)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 406)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 406)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 407)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 408)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 409)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 410)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .single (let optionalV) :\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 411)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          if let v = optionalV {\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 412)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .single (v)\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 413)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 414)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 415)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 416)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 417)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 418)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 419)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 420)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 421)) ;
   const GALGAS_atomicProxyGeneration temp_4 = this ;
   const GALGAS_atomicProxyGeneration temp_5 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 425)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (_ inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 425)).add_operation (extensionGetter_swiftTypeName (temp_5.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 425)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 425)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 425)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 425)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 422)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (_ inValue : "), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 422)).add_operation (extensionGetter_swiftTypeName (temp_5.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 422)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 422)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 422)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 422)) ;
   const GALGAS_atomicProxyGeneration temp_6 = this ;
   const GALGAS_atomicProxyGeneration temp_7 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("      self\?.").add_operation (temp_6.readProperty_mObservedRelationshipName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 426)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 426)).add_operation (temp_7.readProperty_mObservedPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 426)).add_operation (GALGAS_string (" = inValue\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 426)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 426)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 427)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self\?.").add_operation (temp_6.readProperty_mObservedRelationshipName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 423)).add_operation (GALGAS_string ("\?."), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 423)).add_operation (temp_7.readProperty_mObservedPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 423)).add_operation (GALGAS_string (" = inValue\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 423)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 423)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 424)) ;
   const GALGAS_atomicProxyGeneration temp_8 = this ;
   const GALGAS_atomicProxyGeneration temp_9 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_8.readProperty_mObservedRelationshipName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 428)).add_operation (GALGAS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 428)).add_operation (temp_9.readProperty_mObservedPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 428)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 428)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_8.readProperty_mObservedRelationshipName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 425)).add_operation (GALGAS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 425)).add_operation (temp_9.readProperty_mObservedPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 425)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 425)) ;
   const GALGAS_atomicProxyGeneration temp_10 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("_property.addEBObserver (self.").add_operation (temp_10.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 429)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 429)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 429)) ;
+  result_result.plusAssign_operation(GALGAS_string ("_property.addEBObserver (self.").add_operation (temp_10.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 426)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 426)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 426)) ;
 //---
   return result_result ;
 }
@@ -6765,20 +6868,10 @@ GALGAS_string cPtr_atomicProxyGeneration::getter_configurationCode (const GALGAS
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string cPtr_atomicProxyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                                  C_Compiler * inCompiler
+                                                                  C_Compiler */* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
-  const GALGAS_atomicProxyGeneration temp_0 = this ;
-  result_result = GALGAS_string ("  //--- Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 435)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 435)) ;
-  const GALGAS_atomicProxyGeneration temp_1 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 436)).add_operation (GALGAS_string ("_property.mReadModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 436)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 436)) ;
-  const GALGAS_atomicProxyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 437)).add_operation (GALGAS_string ("_property.mWriteModelFunction = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 437)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 437)) ;
-  const GALGAS_atomicProxyGeneration temp_3 = this ;
-  const GALGAS_atomicProxyGeneration temp_4 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_3.readProperty_mObservedRelationshipName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 438)).add_operation (GALGAS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 438)).add_operation (temp_4.readProperty_mObservedPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 438)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 438)) ;
-  const GALGAS_atomicProxyGeneration temp_5 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("_property.removeEBObserver (self.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 439)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 439)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 439)) ;
+  result_result = GALGAS_string::makeEmptyString () ;
 //---
   return result_result ;
 }
@@ -6794,11 +6887,11 @@ GALGAS_string cPtr_atomicProxyGeneration::getter_clearObjectExplorerCode (C_Comp
                                                                           COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
   const GALGAS_atomicProxyGeneration temp_0 = this ;
-  result_result = GALGAS_string ("    //--- Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 445)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 445)) ;
+  result_result = GALGAS_string ("    //--- Atomic proxy property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 438)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 438)) ;
   const GALGAS_atomicProxyGeneration temp_1 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 446)).add_operation (GALGAS_string ("_property.mObserverExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 446)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 446)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 439)).add_operation (GALGAS_string ("_property.mObserverExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 439)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 439)) ;
   const GALGAS_atomicProxyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 447)).add_operation (GALGAS_string ("_property.mValueExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 447)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 447)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 440)).add_operation (GALGAS_string ("_property.mValueExplorer = nil\n"), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 440)), inCompiler  COMMA_SOURCE_FILE ("proxy.ggs", 440)) ;
 //---
   return result_result ;
 }
@@ -8255,34 +8348,10 @@ GALGAS_string cPtr_toManyPropertyGeneration::getter_resetToManyRelationships (C_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string cPtr_toManyPropertyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                                     C_Compiler * inCompiler
+                                                                     C_Compiler */* inCompiler */
                                                                      COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
-  const GALGAS_toManyPropertyGeneration temp_0 = this ;
-  switch (temp_0.readProperty_mOption ().enumValue ()) {
-  case GALGAS_toManyRelationshipOptionGeneration::kNotBuilt:
-    break ;
-  case GALGAS_toManyRelationshipOptionGeneration::kEnum_hasDependance:
-    {
-      const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance * extractPtr_17265 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance *) (temp_0.readProperty_mOption ().unsafePointer ()) ;
-      const GALGAS_string extractedValue_17066_masterPropertyName = extractPtr_17265->mAssociatedValue0 ;
-      const GALGAS_toManyPropertyGeneration temp_1 = this ;
-      result_result = GALGAS_string ("  //--- To many property: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 364)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 364)) ;
-      const GALGAS_toManyPropertyGeneration temp_2 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (extractedValue_17066_masterPropertyName, inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 365)).add_operation (GALGAS_string ("_property.removeEBObserver (self."), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 365)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 365)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 365)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 365)) ;
-    }
-    break ;
-  case GALGAS_toManyRelationshipOptionGeneration::kEnum_none:
-    {
-      result_result = GALGAS_string::makeEmptyString () ;
-    }
-    break ;
-  case GALGAS_toManyRelationshipOptionGeneration::kEnum_hasOpposite:
-    {
-      result_result = GALGAS_string::makeEmptyString () ;
-    }
-    break ;
-  }
+  result_result = GALGAS_string::makeEmptyString () ;
 //---
   return result_result ;
 }
@@ -8294,26 +8363,71 @@ GALGAS_string cPtr_toManyPropertyGeneration::getter_terminationCode (const GALGA
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension (
+  "indexes",
+  0,
+  gWrapperAllFiles_validationStubExtension_4,
+  0,
+  gWrapperAllDirectories_validationStubExtension_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_3 [2] = {
+  & gWrapperDirectory_4_validationStubExtension,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension (
+  "build",
+  0,
+  gWrapperAllFiles_validationStubExtension_3,
+  1,
+  gWrapperAllDirectories_validationStubExtension_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension (
+const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension (
   "controllers",
   0,
-  gWrapperAllFiles_validationStubExtension_3,
+  gWrapperAllFiles_validationStubExtension_5,
   0,
-  gWrapperAllDirectories_validationStubExtension_3
+  gWrapperAllDirectories_validationStubExtension_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -8368,8 +8482,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_0 [5] = {
   & gWrapperDirectory_3_validationStubExtension,
+  & gWrapperDirectory_5_validationStubExtension,
   & gWrapperDirectory_1_validationStubExtension,
   & gWrapperDirectory_2_validationStubExtension,
   NULL
@@ -8381,7 +8496,7 @@ const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension (
   "",
   0,
   gWrapperAllFiles_validationStubExtension_0,
-  3,
+  4,
   gWrapperAllDirectories_validationStubExtension_0
 ) ;
 

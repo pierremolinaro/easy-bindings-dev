@@ -23,7 +23,7 @@ end
   //    Undo manager
   //····················································································································
 
-  private var mUndoManager : EBUndoManager? = nil
+  private weak var mUndoManager : EBUndoManager? = nil // SHOULD BE WEAK
   var ebUndoManager : EBUndoManager? { return self.mUndoManager }
 
   //····················································································································
@@ -40,7 +40,7 @@ end
   //    Model
   //····················································································································
 
-  private var mModel : %!MODEL_TYPE_NAME%? = nil
+  private weak var mModel : %!MODEL_TYPE_NAME%? = nil // SHOULD BE WEAK
 
   //····················································································································
 
