@@ -283,10 +283,8 @@ override func @arrayControllerPropertyGeneration.populateExplorerWindowCode() ->
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration.terminationCode (?let @bool inPreferences) -> @string {
-  let prefix = if inPreferences then "preferences_" else "self." end
-  result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
-  result += "    " + prefix + self.mPropertyName + ".unbind_model () //b\n"
+override func @arrayControllerPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
+  result = ""
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
