@@ -194,8 +194,7 @@ override func @selectionControllerPropertyGeneration.populateExplorerWindowCode(
 #·······················································································································
 
 override func @selectionControllerPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + ".unbind_selection ()\n"
+  result = ""
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
