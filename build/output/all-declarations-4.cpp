@@ -9061,36 +9061,6 @@ GALGAS_string callExtensionGetter_initCode (const cPtr_propertyGeneration * inOb
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyGeneration terminationCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_propertyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                               C_Compiler */* inCompiler */
-                                                               COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string::makeEmptyString () ;
-//---
-  return result_result ;
-}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGeneration * inObject,
-                                                   const GALGAS_bool in_inPreferences,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
-  GALGAS_string result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_terminationCode (in_inPreferences, inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Extension getter '@propertyGeneration setupAtomicPropertyFromDictionaryCode'
 //
 //----------------------------------------------------------------------------------------------------------------------

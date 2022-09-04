@@ -206,9 +206,6 @@ end
 for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    preferences_%!mArrayControllerControllerName%.unbind_ebView (preferences_%!mEBViewOutletName%)\n%
 end
-for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty terminationCode !true]
-end
 %  }
 
   //····················································································································

@@ -41,10 +41,6 @@ abstract func @propertyGeneration.initCode() -> @string
 
 #·······················································································································
 
-func @propertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string { result = "" }
-
-#·······················································································································
-
 func @propertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string { result = "" }
 
 #·······················································································································

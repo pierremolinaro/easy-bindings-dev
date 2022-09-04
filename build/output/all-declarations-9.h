@@ -10,18 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Routine 'generateValidationRoutineStubs'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateValidationRoutineStubs (const class GALGAS_string constinArgument0,
-                                             const class GALGAS_validationStubRoutineListForGeneration constinArgument1,
-                                             class GALGAS_stringset & ioArgument2,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'actionGenerationTemplate'
 //
 //----------------------------------------------------------------------------------------------------------------------

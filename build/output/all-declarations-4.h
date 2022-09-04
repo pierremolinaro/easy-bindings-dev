@@ -1004,10 +1004,6 @@ class cPtr_arrayControllerPropertyGeneration : public cPtr_propertyGeneration {
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
-           C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Properties
   public: GALGAS_string mProperty_mModelString ;
   public: GALGAS_string mProperty_mOwnerName ;
@@ -2167,10 +2163,6 @@ class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propert
 //--- Extension getter propertyDeclarationCode
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
            const class GALGAS_stringset inOverriddenTransients,
-           C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
@@ -3444,10 +3436,6 @@ class cPtr_selectionControllerPropertyGeneration : public cPtr_propertyGeneratio
 //--- Extension getter propertyDeclarationCode
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
            const class GALGAS_stringset inOverriddenTransients,
-           C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
@@ -5136,17 +5124,6 @@ class GALGAS_string callExtensionGetter_configurationCode (const class cPtr_prop
 class GALGAS_string callExtensionGetter_initCode (const class cPtr_propertyGeneration * inObject,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyGeneration terminationCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string callExtensionGetter_terminationCode (const cPtr_propertyGeneration * inObject,
-                                                         const GALGAS_bool constin_inPreferences,
-                                                         class C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //

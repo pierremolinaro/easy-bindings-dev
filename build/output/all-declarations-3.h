@@ -1047,10 +1047,6 @@ class cPtr_computedPropertyGeneration : public cPtr_propertyGeneration {
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
-           C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Properties
   public: GALGAS_string mProperty_mClassName ;
   public: GALGAS_typeKind mProperty_mType ;
@@ -1612,10 +1608,6 @@ class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
 //--- Extension getter propertyDeclarationCode
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
            const class GALGAS_stringset inOverriddenTransients,
-           C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
@@ -2498,10 +2490,6 @@ class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
-           C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Properties
   public: GALGAS_proxyKind mProperty_mProxyKind ;
   public: GALGAS_string mProperty_mToManyTypeName ;
@@ -2891,10 +2879,6 @@ class cPtr_atomicProxyGeneration : public cPtr_propertyGeneration {
 //--- Extension getter propertyDeclarationCode
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
            const class GALGAS_stringset inOverriddenTransients,
-           C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
@@ -4924,10 +4908,6 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Extension getter setupRelationshipFromDictionaryCode
   public: virtual class GALGAS_string getter_setupRelationshipFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
-           C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GALGAS_propertyKind mProperty_mRelationshipType ;

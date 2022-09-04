@@ -404,12 +404,6 @@ override func @computedPropertyGeneration.configurationCode (?let @bool inPrefer
   end
 }
 
-#·······················································································································
-
-override func @computedPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  result = ""
-}
-
 #-----------------------------------------------------------------------------------------------------------------------
 #    COMPUTE ROUTINE GENERATION         
 #-----------------------------------------------------------------------------------------------------------------------

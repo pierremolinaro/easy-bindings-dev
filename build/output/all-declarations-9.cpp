@@ -9,35 +9,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Routine 'generateValidationRoutineStubs'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateValidationRoutineStubs (const GALGAS_string constinArgument_inOutputDirectory,
-                                             const GALGAS_validationStubRoutineListForGeneration constinArgument_inValidationStubRoutineListForGeneration,
-                                             GALGAS_stringset & ioArgument_ioGeneratedFileSet,
-                                             C_Compiler * inCompiler
-                                             COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_validationStubRoutineListForGeneration enumerator_1328 (constinArgument_inValidationStubRoutineListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_1328.hasCurrentObject ()) {
-    GALGAS_string var_s_1386 = GALGAS_string (filewrapperTemplate_validationStubExtension_actionGeneration (inCompiler, enumerator_1328.current_mObjectTypeName (HERE), enumerator_1328.current_mModelName (HERE), enumerator_1328.current_mModelTypeName (HERE) COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 32))) ;
-    GALGAS_string var_fileName_1528 = GALGAS_string ("validation-").add_operation (enumerator_1328.current_mObjectTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 37)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 37)).add_operation (enumerator_1328.current_mModelName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 37)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 37)) ;
-    ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_1528  COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 38)) ;
-    GALGAS_string var_defaultUserZone_32__1653 = GALGAS_string ("    var result : EBValidationResult <").add_operation (enumerator_1328.current_mModelTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 40)).add_operation (GALGAS_string (">\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 40)).add_operation (GALGAS_string ("    let validates = false // Add your validation condition here\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 40)).add_operation (GALGAS_string ("    if validates {\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 41)).add_operation (GALGAS_string ("      result = .ok (proposedValue)\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 42)).add_operation (GALGAS_string ("    }else{\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 43)).add_operation (GALGAS_string ("      result = .rejectWithAlert (\"Rejected in \\(#file), line \\(#line)\")\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 44)).add_operation (GALGAS_string ("    }\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 45)).add_operation (GALGAS_string ("    return result\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 46)) ;
-    {
-    GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_1528, GALGAS_string ("//"), GALGAS_string::makeEmptyString (), GALGAS_string ("\n"
-      "\n"), var_s_1386, var_defaultUserZone_32__1653, GALGAS_string ("  }\n"
-      "}\n"
-      "\n"
-      "//---------------------------------------------------------------------------------------------------------------------*\n"), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 48)) ;
-    }
-    enumerator_1328.gotoNextObject () ;
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Routine 'buildActionMap'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -1153,22 +1124,6 @@ GALGAS_string cPtr_arrayControllerPropertyGeneration::getter_populateExplorerWin
   const GALGAS_arrayControllerPropertyGeneration temp_1 = this ;
   const GALGAS_arrayControllerPropertyGeneration temp_2 = this ;
   result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 281)).add_operation (GALGAS_string (".addExplorer (name: \""), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 281)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 281)).add_operation (GALGAS_string ("\", y:&y, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 281)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 281)) ;
-//---
-  return result_result ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@arrayControllerPropertyGeneration terminationCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_arrayControllerPropertyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                                              C_Compiler */* inCompiler */
-                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string::makeEmptyString () ;
 //---
   return result_result ;
 }
@@ -2489,11 +2444,11 @@ void cPtr_arrayControllerGeneration::method_generateCode (const GALGAS_string co
   const GALGAS_arrayControllerGeneration temp_3 = this ;
   const GALGAS_arrayControllerGeneration temp_4 = this ;
   const GALGAS_arrayControllerGeneration temp_5 = this ;
-  GALGAS_string var_s_13749 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, temp_0.readProperty_mOwnerName (), temp_1.readProperty_mControllerName ().readProperty_string (), temp_2.readProperty_mArrayControllerModelKind (), temp_3.readProperty_mModelTypeName (), temp_4.readProperty_mElementTypeName (), temp_5.readProperty_mElementTypeIsGraphic () COMMA_SOURCE_FILE ("array-controller.ggs", 335))) ;
+  GALGAS_string var_s_13498 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, temp_0.readProperty_mOwnerName (), temp_1.readProperty_mControllerName ().readProperty_string (), temp_2.readProperty_mArrayControllerModelKind (), temp_3.readProperty_mModelTypeName (), temp_4.readProperty_mElementTypeName (), temp_5.readProperty_mElementTypeIsGraphic () COMMA_SOURCE_FILE ("array-controller.ggs", 329))) ;
   {
   const GALGAS_arrayControllerGeneration temp_6 = this ;
   const GALGAS_arrayControllerGeneration temp_7 = this ;
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-array-").add_operation (temp_6.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 345)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 345)).add_operation (temp_7.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 345)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 345)), var_s_13749, inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 343)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-array-").add_operation (temp_6.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 339)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 339)).add_operation (temp_7.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 339)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 339)), var_s_13498, inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 337)) ;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -3127,22 +3082,6 @@ GALGAS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_popul
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutTableViewControllerPropertyGeneration terminationCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                                                            C_Compiler */* inCompiler */
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string::makeEmptyString () ;
-//---
-  return result_result ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'autoLayoutTableViewControllerGenerationTemplate'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -3281,33 +3220,33 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "      inModel,\n" ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, in_SORTED_5F_COLUMNS.getter_length (SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 62)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    result << "      sortCallback: { (left, right) in self.isOrderedBefore (left, right) },\n" ;
+    result << "      sortCallback: { [weak self] (left, right) in self\?.isOrderedBefore (left, right) \?\? true },\n" ;
   }else if (kBoolFalse == test_0) {
     result << "      sortCallback: nil,\n" ;
   }
   result << "      addSortObserversCallback: { (observer) in\n" ;
-  GALGAS_uint index_3325_ (0) ;
+  GALGAS_uint index_3346_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING.isValid ()) {
-    cEnumerator_stringset enumerator_3325 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING, kENUMERATION_UP) ;
-    while (enumerator_3325.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_3346 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING, kENUMERATION_UP) ;
+    while (enumerator_3346.hasCurrentObject ()) {
       result << "        inModel.addEBObserverOf_" ;
-      result << enumerator_3325.current_key (HERE).stringValue () ;
+      result << enumerator_3346.current_key (HERE).stringValue () ;
       result << " (observer)\n" ;
-      index_3325_.increment () ;
-      enumerator_3325.gotoNextObject () ;
+      index_3346_.increment () ;
+      enumerator_3346.gotoNextObject () ;
     }
   }
   result << "      },\n"
     "      removeSortObserversCallback: {(observer) in\n" ;
-  GALGAS_uint index_3494_ (0) ;
+  GALGAS_uint index_3515_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING.isValid ()) {
-    cEnumerator_stringset enumerator_3494 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING, kENUMERATION_UP) ;
-    while (enumerator_3494.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_3515 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING, kENUMERATION_UP) ;
+    while (enumerator_3515.hasCurrentObject ()) {
       result << "        inModel.removeEBObserverOf_" ;
-      result << enumerator_3494.current_key (HERE).stringValue () ;
+      result << enumerator_3515.current_key (HERE).stringValue () ;
       result << " (observer)\n" ;
-      index_3494_.increment () ;
-      enumerator_3494.gotoNextObject () ;
+      index_3515_.increment () ;
+      enumerator_3515.gotoNextObject () ;
     }
   }
   result << "      }\n"
@@ -3412,25 +3351,25 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "  override init () {\n"
     "    super.init ()\n"
     "    self.sortedArray_property.addEBObserver (self.mSortedArrayValuesObserver)\n" ;
-  GALGAS_uint index_7248_ (0) ;
+  GALGAS_uint index_7269_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_7248 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
-    while (enumerator_7248.hasCurrentObject ()) {
+    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_7269 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
+    while (enumerator_7269.hasCurrentObject ()) {
       result << "  //--- Observe '" ;
-      result << enumerator_7248.current_mDisplayedPropertyName (HERE).stringValue () ;
+      result << enumerator_7269.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << "' column\n"
         "    self.sortedArray_property.addEBObserverOf_" ;
-      result << enumerator_7248.current_mDisplayedPropertyName (HERE).stringValue () ;
+      result << enumerator_7269.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << " (self.mSortedArrayValuesObserver)\n" ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, enumerator_7248.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (GALGAS_bool (kIsNotEqual, enumerator_7248.current_mSortPropertyName (HERE).objectCompare (enumerator_7248.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 168)).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, enumerator_7269.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (GALGAS_bool (kIsNotEqual, enumerator_7269.current_mSortPropertyName (HERE).objectCompare (enumerator_7269.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 168)).boolEnum () ;
       if (kBoolTrue == test_2) {
         result << "     self.sortedArray_property.addEBObserverOf_" ;
-        result << enumerator_7248.current_mSortPropertyName (HERE).stringValue () ;
+        result << enumerator_7269.current_mSortPropertyName (HERE).stringValue () ;
         result << " (self.mSortedArrayValuesObserver)\n" ;
       }else if (kBoolFalse == test_2) {
       }
-      index_7248_.increment () ;
-      enumerator_7248.gotoNextObject () ;
+      index_7269_.increment () ;
+      enumerator_7269.gotoNextObject () ;
     }
   }
   result << "  //---\n"
@@ -3456,31 +3395,31 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "      rowCountCallBack: { [weak self] in self\?.sortedArray_property.propval.count \?\? 0 },\n"
     "      delegate: self\n"
     "    )\n" ;
-  GALGAS_uint index_8694_ (0) ;
+  GALGAS_uint index_8715_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_8694 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
-    while (enumerator_8694.hasCurrentObject ()) {
+    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_8715 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
+    while (enumerator_8715.hasCurrentObject ()) {
       result << "  //--- Configure '" ;
-      result << enumerator_8694.current_mDisplayedPropertyName (HERE).stringValue () ;
+      result << enumerator_8715.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << "' column\n"
         "    inTableView.addColumn_" ;
-      result << enumerator_8694.current_mColumnObjectTypeName (HERE).stringValue () ;
+      result << enumerator_8715.current_mColumnObjectTypeName (HERE).stringValue () ;
       result << " (\n"
         "      valueGetterDelegate: { [weak self] in return self\?.sortedArray_property.propval [$0]." ;
-      result << enumerator_8694.current_mDisplayedPropertyName (HERE).stringValue () ;
+      result << enumerator_8715.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << " },\n"
         "      valueSetterDelegate: " ;
-      const enumGalgasBool test_3 = enumerator_8694.current_mEditable (HERE).boolEnum () ;
+      const enumGalgasBool test_3 = enumerator_8715.current_mEditable (HERE).boolEnum () ;
       if (kBoolTrue == test_3) {
         result << "{ [weak self] (inRowIndex, inNewValue) in self\?.sortedArray_property.propval [inRowIndex]." ;
-        result << enumerator_8694.current_mDisplayedPropertyName (HERE).stringValue () ;
+        result << enumerator_8715.current_mDisplayedPropertyName (HERE).stringValue () ;
         result << " = inNewValue }" ;
       }else if (kBoolFalse == test_3) {
         result << "nil" ;
       }
       result << ",\n"
         "      sortDelegate: " ;
-      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_8694.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_8715.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         result << "{ [weak self] (ascending) in\n"
           "        self\?.mSortDescriptorArray.append ({ (_ left : " ;
@@ -3488,36 +3427,36 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
         result << ", _ right : " ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
         result << ") in return compare_" ;
-        result << enumerator_8694.current_mColumnObjectTypeName (HERE).stringValue () ;
+        result << enumerator_8715.current_mColumnObjectTypeName (HERE).stringValue () ;
         result << "_properties (left." ;
-        result << enumerator_8694.current_mSortPropertyName (HERE).stringValue () ;
+        result << enumerator_8715.current_mSortPropertyName (HERE).stringValue () ;
         result << "_property, ascending, right." ;
-        result << enumerator_8694.current_mSortPropertyName (HERE).stringValue () ;
+        result << enumerator_8715.current_mSortPropertyName (HERE).stringValue () ;
         result << "_property) })\n"
           "      }" ;
       }else if (kBoolFalse == test_4) {
         result << "nil" ;
       }
       result << ",\n" ;
-      GALGAS_uint index_9549_ (0) ;
-      if (enumerator_8694.current_mActualParameterList (HERE).isValid ()) {
-        cEnumerator__32_stringlist enumerator_9549 (enumerator_8694.current_mActualParameterList (HERE), kENUMERATION_UP) ;
-        while (enumerator_9549.hasCurrentObject ()) {
+      GALGAS_uint index_9570_ (0) ;
+      if (enumerator_8715.current_mActualParameterList (HERE).isValid ()) {
+        cEnumerator__32_stringlist enumerator_9570 (enumerator_8715.current_mActualParameterList (HERE), kENUMERATION_UP) ;
+        while (enumerator_9570.hasCurrentObject ()) {
           result << "      " ;
-          result << enumerator_9549.current_mValue_30_ (HERE).stringValue () ;
+          result << enumerator_9570.current_mValue_30_ (HERE).stringValue () ;
           result << ": " ;
-          result << enumerator_9549.current_mValue_31_ (HERE).stringValue () ;
-          if (enumerator_9549.hasNextObject ()) {
+          result << enumerator_9570.current_mValue_31_ (HERE).stringValue () ;
+          if (enumerator_9570.hasNextObject ()) {
             result << ",\n" ;
           }
-          index_9549_.increment () ;
-          enumerator_9549.gotoNextObject () ;
+          index_9570_.increment () ;
+          enumerator_9570.gotoNextObject () ;
         }
       }
       result << "\n"
         "    )\n" ;
-      index_8694_.increment () ;
-      enumerator_8694.gotoNextObject () ;
+      index_8715_.increment () ;
+      enumerator_8715.gotoNextObject () ;
     }
   }
   result << "  //---\n"
@@ -3816,12 +3755,12 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCode (const GA
                                                                         GALGAS_stringset & /* ioArgument_ioGeneratedFileSet */,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset var_observedProperties_22113 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 529)) ;
+  GALGAS_stringset var_observedProperties_21848 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 523)) ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_0 = this ;
-  cEnumerator_autoLayoutTableViewControllerSortedColumnListForGeneration enumerator_22159 (temp_0.readProperty_mTableViewControllerSortedColumnListForGeneration (), kENUMERATION_UP) ;
-  while (enumerator_22159.hasCurrentObject ()) {
-    var_observedProperties_22113.addAssign_operation (enumerator_22159.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 531)) ;
-    enumerator_22159.gotoNextObject () ;
+  cEnumerator_autoLayoutTableViewControllerSortedColumnListForGeneration enumerator_21894 (temp_0.readProperty_mTableViewControllerSortedColumnListForGeneration (), kENUMERATION_UP) ;
+  while (enumerator_21894.hasCurrentObject ()) {
+    var_observedProperties_21848.addAssign_operation (enumerator_21894.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 525)) ;
+    enumerator_21894.gotoNextObject () ;
   }
   const GALGAS_autoLayoutTableViewControllerGeneration temp_1 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_2 = this ;
@@ -3832,11 +3771,11 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCode (const GA
   const GALGAS_autoLayoutTableViewControllerGeneration temp_7 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_8 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_9 = this ;
-  GALGAS_string var_s_22292 = GALGAS_string (filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (inCompiler, temp_1.readProperty_mOwnerName (), temp_2.readProperty_mControllerName ().readProperty_string (), temp_3.readProperty_mModelString (), temp_4.readProperty_mTableViewControllerModelKind (), temp_5.readProperty_mModelTypeName (), temp_6.readProperty_mTableViewControllerBoundColumnListForGeneration (), temp_7.readProperty_mTableViewControllerSortedColumnListForGeneration (), temp_8.readProperty_mElementTypeName (), var_observedProperties_22113, temp_9.readProperty_mAttributeListForGeneration () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 533))) ;
+  GALGAS_string var_s_22027 = GALGAS_string (filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (inCompiler, temp_1.readProperty_mOwnerName (), temp_2.readProperty_mControllerName ().readProperty_string (), temp_3.readProperty_mModelString (), temp_4.readProperty_mTableViewControllerModelKind (), temp_5.readProperty_mModelTypeName (), temp_6.readProperty_mTableViewControllerBoundColumnListForGeneration (), temp_7.readProperty_mTableViewControllerSortedColumnListForGeneration (), temp_8.readProperty_mElementTypeName (), var_observedProperties_21848, temp_9.readProperty_mAttributeListForGeneration () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 527))) ;
   {
   const GALGAS_autoLayoutTableViewControllerGeneration temp_10 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_11 = this ;
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-table-view-").add_operation (temp_10.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 547)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 547)).add_operation (temp_11.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 547)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 547)), var_s_22292, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 545)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-table-view-").add_operation (temp_10.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (temp_11.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)), var_s_22027, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)) ;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -4158,22 +4097,6 @@ GALGAS_string cPtr_selectionControllerPropertyGeneration::getter_populateExplore
   const GALGAS_selectionControllerPropertyGeneration temp_1 = this ;
   const GALGAS_selectionControllerPropertyGeneration temp_2 = this ;
   result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 191)).add_operation (GALGAS_string (".addExplorer (name: \""), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 191)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 191)).add_operation (GALGAS_string ("\", y:&y, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 191)), inCompiler  COMMA_SOURCE_FILE ("selection-controller.ggs", 191)) ;
-//---
-  return result_result ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@selectionControllerPropertyGeneration terminationCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_selectionControllerPropertyGeneration::getter_terminationCode (const GALGAS_bool /* constinArgument_inPreferences */,
-                                                                                  C_Compiler */* inCompiler */
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string::makeEmptyString () ;
 //---
   return result_result ;
 }
@@ -4873,41 +4796,41 @@ void routine_generateSelectionControllers (const GALGAS_selectionControllerForGe
                                            GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                            C_Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_selectionControllerForGeneration enumerator_11040 (constinArgument_inArrayControllerListForGeneration, kENUMERATION_UP) ;
-  while (enumerator_11040.hasCurrentObject ()) {
+  cEnumerator_selectionControllerForGeneration enumerator_10785 (constinArgument_inArrayControllerListForGeneration, kENUMERATION_UP) ;
+  while (enumerator_10785.hasCurrentObject ()) {
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsEqual, enumerator_11040.current_mBaseTypeName (HERE).objectCompare (enumerator_11040.current_mSelectionTypeName (HERE))).boolEnum () ;
+      test_0 = GALGAS_bool (kIsEqual, enumerator_10785.current_mBaseTypeName (HERE).objectCompare (enumerator_10785.current_mSelectionTypeName (HERE))).boolEnum () ;
       if (kBoolTrue == test_0) {
-        GALGAS_string var_s_11142 = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_baseSelectionControllerImplementation (inCompiler, enumerator_11040.current_mOwnerName (HERE), enumerator_11040.current_mSelectionControllerName (HERE), enumerator_11040.current_mBaseTypeName (HERE), enumerator_11040.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.ggs", 246))) ;
-        GALGAS_string var_fileName_11378 = GALGAS_string ("selectionController-").add_operation (enumerator_11040.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 252)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 252)).add_operation (enumerator_11040.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 252)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 252)) ;
-        ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_11378  COMMA_SOURCE_FILE ("selection-controller.ggs", 253)) ;
+        GALGAS_string var_s_10887 = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_baseSelectionControllerImplementation (inCompiler, enumerator_10785.current_mOwnerName (HERE), enumerator_10785.current_mSelectionControllerName (HERE), enumerator_10785.current_mBaseTypeName (HERE), enumerator_10785.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.ggs", 240))) ;
+        GALGAS_string var_fileName_11123 = GALGAS_string ("selectionController-").add_operation (enumerator_10785.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 246)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 246)).add_operation (enumerator_10785.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 246)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 246)) ;
+        ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_11123  COMMA_SOURCE_FILE ("selection-controller.ggs", 247)) ;
         {
-        GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11378, var_s_11142, inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 254)) ;
+        GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11123, var_s_10887, inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 248)) ;
         }
       }
     }
     if (kBoolFalse == test_0) {
-      GALGAS_bool var_hasAtomicStoredProperties_11636 = GALGAS_bool (false) ;
-      cEnumerator_propertyGenerationList enumerator_11664 (enumerator_11040.current_mPropertyGenerationList (HERE), kENUMERATION_UP) ;
-      bool bool_1 = var_hasAtomicStoredProperties_11636.operator_not (SOURCE_FILE ("selection-controller.ggs", 261)).isValidAndTrue () ;
-      if (enumerator_11664.hasCurrentObject () && bool_1) {
-        while (enumerator_11664.hasCurrentObject () && bool_1) {
-          var_hasAtomicStoredProperties_11636 = GALGAS_bool (enumerator_11664.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration) ;
-          enumerator_11664.gotoNextObject () ;
-          if (enumerator_11664.hasCurrentObject ()) {
-            bool_1 = var_hasAtomicStoredProperties_11636.operator_not (SOURCE_FILE ("selection-controller.ggs", 261)).isValidAndTrue () ;
+      GALGAS_bool var_hasAtomicStoredProperties_11381 = GALGAS_bool (false) ;
+      cEnumerator_propertyGenerationList enumerator_11409 (enumerator_10785.current_mPropertyGenerationList (HERE), kENUMERATION_UP) ;
+      bool bool_1 = var_hasAtomicStoredProperties_11381.operator_not (SOURCE_FILE ("selection-controller.ggs", 255)).isValidAndTrue () ;
+      if (enumerator_11409.hasCurrentObject () && bool_1) {
+        while (enumerator_11409.hasCurrentObject () && bool_1) {
+          var_hasAtomicStoredProperties_11381 = GALGAS_bool (enumerator_11409.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration) ;
+          enumerator_11409.gotoNextObject () ;
+          if (enumerator_11409.hasCurrentObject ()) {
+            bool_1 = var_hasAtomicStoredProperties_11381.operator_not (SOURCE_FILE ("selection-controller.ggs", 255)).isValidAndTrue () ;
           }
         }
       }
-      GALGAS_string var_s_11830 = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (inCompiler, enumerator_11040.current_mOwnerName (HERE), enumerator_11040.current_mSelectionControllerName (HERE), enumerator_11040.current_mBaseTypeName (HERE), enumerator_11040.current_mSelectionTypeName (HERE), enumerator_11040.current_mPropertyGenerationList (HERE), var_hasAtomicStoredProperties_11636 COMMA_SOURCE_FILE ("selection-controller.ggs", 264))) ;
-      GALGAS_string var_fileName_12124 = GALGAS_string ("selectionController-").add_operation (enumerator_11040.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 272)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 272)).add_operation (enumerator_11040.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 272)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 272)) ;
-      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_12124  COMMA_SOURCE_FILE ("selection-controller.ggs", 273)) ;
+      GALGAS_string var_s_11575 = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (inCompiler, enumerator_10785.current_mOwnerName (HERE), enumerator_10785.current_mSelectionControllerName (HERE), enumerator_10785.current_mBaseTypeName (HERE), enumerator_10785.current_mSelectionTypeName (HERE), enumerator_10785.current_mPropertyGenerationList (HERE), var_hasAtomicStoredProperties_11381 COMMA_SOURCE_FILE ("selection-controller.ggs", 258))) ;
+      GALGAS_string var_fileName_11869 = GALGAS_string ("selectionController-").add_operation (enumerator_10785.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 266)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 266)).add_operation (enumerator_10785.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 266)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 266)) ;
+      ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_11869  COMMA_SOURCE_FILE ("selection-controller.ggs", 267)) ;
       {
-      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12124, var_s_11830, inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 274)) ;
+      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_11869, var_s_11575, inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 268)) ;
       }
     }
-    enumerator_11040.gotoNextObject () ;
+    enumerator_10785.gotoNextObject () ;
   }
 }
 
@@ -7157,6 +7080,914 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compi
     "  sys.exit (buildProcess.returncode)\n"
     "\n"
     "#------------------------------------------------------------------------------*\n" ;
+  return GALGAS_string (result) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'xcodeProjectGenerationFilewrapper'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_xcodeProjectGenerationFilewrapper_0 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_xcodeProjectGenerationFilewrapper_0 [1] = {
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_xcodeProjectGenerationFilewrapper (
+  "",
+  0,
+  gWrapperAllFiles_xcodeProjectGenerationFilewrapper_0,
+  0,
+  gWrapperAllDirectories_xcodeProjectGenerationFilewrapper_0
+) ;
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'xcodeProjectGenerationFilewrapper xcodeproj'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C_Compiler * /* inCompiler */,
+                                                                               const GALGAS_string & in_PROJECT_5F_REF,
+                                                                               const GALGAS_string & in_MAIN_5F_GROUP_5F_REF,
+                                                                               const GALGAS_XCodeGroupList & in_GROUPS,
+                                                                               const GALGAS_stringlist & in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS,
+                                                                               const GALGAS_XCodeToolTargetList & in_TOOL_5F_TARGET_5F_LIST,
+                                                                               const GALGAS_XCodeAppTargetList & in_APP_5F_TARGET_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_CPP_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_M_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_MM_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_SWIFT_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_FRAMEWORK_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_HEADER_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_PLIST_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_TIFF_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_ICNS_5F_FILE_5F_LIST,
+                                                                               const GALGAS__32_stringlist & in_XIB_5F_FILE_5F_LIST,
+                                                                               const GALGAS_BuildFileList & in_BUILD_5F_FILE_5F_LIST,
+                                                                               const GALGAS_string & in_DEFAULT_5F_CONFIGURATION_5F_REF,
+                                                                               const GALGAS_stringlist & in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST,
+                                                                               const GALGAS_string & in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "// !$*UTF8*$!\n"
+    "{\n"
+    "  archiveVersion = 1;\n"
+    "  classes = {\n"
+    "  };\n"
+    "  objectVersion = 42;\n"
+    "  objects = {\n"
+    "\n"
+    "  /*------------------------------------------------------------------ PBXBuildFile */\n" ;
+  GALGAS_uint index_250_ (0) ;
+  if (in_BUILD_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator_BuildFileList enumerator_250 (in_BUILD_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_250.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_250.current_mBuildReference (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_250.current_mFileName (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXBuildFile;\n"
+        "    fileRef = " ;
+      result << enumerator_250.current_mFileReference (HERE).stringValue () ;
+      result << " ;\n"
+        "    settings = {ATTRIBUTES = (); };\n"
+        "  };\n"
+        "\n" ;
+      index_250_.increment () ;
+      enumerator_250.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXFileReference */\n" ;
+  GALGAS_uint index_555_ (0) ;
+  if (in_CPP_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_555 (in_CPP_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_555.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_555.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_555.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.cpp.cpp;\n"
+        "    name = " ;
+      result << enumerator_555.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_555.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 26)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_555_.increment () ;
+      enumerator_555.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_902_ (0) ;
+  if (in_M_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_902 (in_M_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_902.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_902.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_902.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.c.obj;\n"
+        "    name = " ;
+      result << enumerator_902.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_902.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 36)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_902_.increment () ;
+      enumerator_902.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_1248_ (0) ;
+  if (in_MM_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_1248 (in_MM_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_1248.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_1248.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_1248.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.cpp.objcpp;\n"
+        "    name = " ;
+      result << enumerator_1248.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_1248.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 46)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_1248_.increment () ;
+      enumerator_1248.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_1602_ (0) ;
+  if (in_SWIFT_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_1602 (in_SWIFT_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_1602.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_1602.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_1602.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.swift;\n"
+        "    name = " ;
+      result << enumerator_1602.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_1602.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 56)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_1602_.increment () ;
+      enumerator_1602.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_1952_ (0) ;
+  if (in_HEADER_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_1952 (in_HEADER_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_1952.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_1952.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_1952.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = sourcecode.c.h;\n"
+        "    name = " ;
+      result << enumerator_1952.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_1952.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 66)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_1952_.increment () ;
+      enumerator_1952.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_2303_ (0) ;
+  if (in_FRAMEWORK_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_2303 (in_FRAMEWORK_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_2303.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_2303.current_mValue_30_ (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_2303.current_mValue_31_ (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXFileReference;\n"
+        "    lastKnownFileType = wrapper.framework;\n"
+        "    name = " ;
+      result << enumerator_2303.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_2303.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 75)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_2303_.increment () ;
+      enumerator_2303.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_2836_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_2836 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_2836.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_2836.current_mProductFileReference (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    explicitFileType = \"compiled.mach-o.executable\";\n"
+        "    includeInIndex = 0;\n"
+        "    path = " ;
+      result << enumerator_2836.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 84)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = BUILT_PRODUCTS_DIR;\n"
+        "  };\n"
+        "\n" ;
+      index_2836_.increment () ;
+      enumerator_2836.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_3427_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_3427 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_3427.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_3427.current_mProductFileReference (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    explicitFileType = \"compiled.mach-o.executable\";\n"
+        "    includeInIndex = 0;\n"
+        "    path = " ;
+      result << enumerator_3427.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 93)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = BUILT_PRODUCTS_DIR;\n"
+        "  };\n"
+        "\n" ;
+      index_3427_.increment () ;
+      enumerator_3427.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_3736_ (0) ;
+  if (in_PLIST_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_3736 (in_PLIST_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_3736.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_3736.current_mValue_30_ (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = text.plist;\n"
+        "    name = " ;
+      result << enumerator_3736.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_3736.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 103)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_3736_.increment () ;
+      enumerator_3736.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_4060_ (0) ;
+  if (in_XIB_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_4060 (in_XIB_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_4060.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_4060.current_mValue_30_ (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    fileEncoding = 4;\n"
+        "    lastKnownFileType = wrapper.xib;\n"
+        "    name = " ;
+      result << enumerator_4060.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_4060.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 113)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_4060_.increment () ;
+      enumerator_4060.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_4386_ (0) ;
+  if (in_TIFF_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_4386 (in_TIFF_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_4386.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_4386.current_mValue_30_ (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    lastKnownFileType = image.tiff;\n"
+        "    name = " ;
+      result << enumerator_4386.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_4386.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 122)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_4386_.increment () ;
+      enumerator_4386.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_4685_ (0) ;
+  if (in_ICNS_5F_FILE_5F_LIST.isValid ()) {
+    cEnumerator__32_stringlist enumerator_4685 (in_ICNS_5F_FILE_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_4685.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_4685.current_mValue_30_ (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFileReference;\n"
+        "    lastKnownFileType = image.icns;\n"
+        "    name = " ;
+      result << enumerator_4685.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_4685.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 131)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n"
+        "\n" ;
+      index_4685_.increment () ;
+      enumerator_4685.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXFrameworksBuildPhase */\n"
+    "\n" ;
+  GALGAS_uint index_5296_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_5296 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5296.hasCurrentObject ()) {
+      const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5296.current_mFrameworksFileRefList (HERE).getter_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+      if (kBoolTrue == test_0) {
+        result << "  " ;
+        result << enumerator_5296.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
+        result << " = {\n"
+          "    isa = PBXFrameworksBuildPhase;\n"
+          "    buildActionMask = 2147483647;\n"
+          "    files = (\n" ;
+        GALGAS_uint index_5536_ (0) ;
+        if (enumerator_5296.current_mFrameworksFileRefList (HERE).isValid ()) {
+          cEnumerator_stringlist enumerator_5536 (enumerator_5296.current_mFrameworksFileRefList (HERE), kENUMERATION_UP) ;
+          while (enumerator_5536.hasCurrentObject ()) {
+            result << "      " ;
+            result << enumerator_5536.current_mValue (HERE).stringValue () ;
+            result << ",\n" ;
+            index_5536_.increment () ;
+            enumerator_5536.gotoNextObject () ;
+          }
+        }
+        result << "    );\n"
+          "    runOnlyForDeploymentPostprocessing = 0;\n"
+          "  };\n"
+          "\n" ;
+      }else if (kBoolFalse == test_0) {
+      }
+      index_5296_.increment () ;
+      enumerator_5296.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_5989_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_5989 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5989.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_5989.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
+      result << " = {\n"
+        "    isa = PBXFrameworksBuildPhase;\n"
+        "    buildActionMask = 2147483647;\n"
+        "    files = (\n" ;
+      GALGAS_uint index_6173_ (0) ;
+      if (enumerator_5989.current_mFrameworksFileRefList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_6173 (enumerator_5989.current_mFrameworksFileRefList (HERE), kENUMERATION_UP) ;
+        while (enumerator_6173.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_6173.current_mValue (HERE).stringValue () ;
+          result << ",\n" ;
+          index_6173_.increment () ;
+          enumerator_6173.gotoNextObject () ;
+        }
+      }
+      result << "    );\n"
+        "    runOnlyForDeploymentPostprocessing = 0;\n"
+        "  };\n"
+        "\n" ;
+      index_5989_.increment () ;
+      enumerator_5989.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXGroup section */\n" ;
+  GALGAS_uint index_6449_ (0) ;
+  if (in_GROUPS.isValid ()) {
+    cEnumerator_XCodeGroupList enumerator_6449 (in_GROUPS, kENUMERATION_UP) ;
+    while (enumerator_6449.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_6449.current_mGroupReference (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_6449.current_mGroupName (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXGroup;\n"
+        "    children = (\n" ;
+      GALGAS_uint index_6576_ (0) ;
+      if (enumerator_6449.current_mChildrenRefs (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_6576 (enumerator_6449.current_mChildrenRefs (HERE), kENUMERATION_UP) ;
+        while (enumerator_6576.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_6576.current_mValue (HERE).stringValue () ;
+          result << ", \n" ;
+          index_6576_.increment () ;
+          enumerator_6576.gotoNextObject () ;
+        }
+      }
+      result << "    );\n"
+        "    name = " ;
+      result << enumerator_6449.current_mGroupName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 174)).stringValue () ;
+      result << ";\n"
+        "    path = " ;
+      result << enumerator_6449.current_mGroupPath (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 175)).stringValue () ;
+      result << ";\n"
+        "    sourceTree = \"<group>\";\n"
+        "  };\n" ;
+      index_6449_.increment () ;
+      enumerator_6449.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "  " ;
+  result << in_MAIN_5F_GROUP_5F_REF.stringValue () ;
+  result << " /* Main Group */ = {\n"
+    "    isa = PBXGroup;\n"
+    "    children = (\n" ;
+  GALGAS_uint index_6888_ (0) ;
+  if (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS.isValid ()) {
+    cEnumerator_stringlist enumerator_6888 (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS, kENUMERATION_UP) ;
+    while (enumerator_6888.hasCurrentObject ()) {
+      result << "      " ;
+      result << enumerator_6888.current_mValue (HERE).stringValue () ;
+      result << ",\n" ;
+      index_6888_.increment () ;
+      enumerator_6888.gotoNextObject () ;
+    }
+  }
+  result << "    );\n"
+    "    sourceTree = \"<group>\";\n"
+    "  };\n"
+    "\n"
+    "  /*------------------------------------------------------------------ PBXNativeTarget */\n" ;
+  GALGAS_uint index_7302_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_7302 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_7302.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_7302.current_mTargetRef (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_7302.current_mTargetName (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXNativeTarget;\n"
+        "    buildConfigurationList = " ;
+      result << enumerator_7302.current_mBuildConfigurationListRef (HERE).stringValue () ;
+      result << " ;\n"
+        "    buildPhases = (\n"
+        "      " ;
+      result << enumerator_7302.current_mBuildPhaseRef (HERE).stringValue () ;
+      result << " ,\n" ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, enumerator_7302.current_mFrameworksFileRefList (HERE).getter_length (SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+      if (kBoolTrue == test_1) {
+        result << "      " ;
+        result << enumerator_7302.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
+        result << " , /* Frameworks */\n" ;
+      }else if (kBoolFalse == test_1) {
+      }
+      result << "    );\n"
+        "    buildRules = (\n"
+        "    );\n"
+        "    dependencies = (\n"
+        "    );\n"
+        "    name = " ;
+      result << enumerator_7302.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 208)).stringValue () ;
+      result << ";\n"
+        "    productInstallPath = \"$(HOME)/bin\";\n"
+        "    productName = " ;
+      result << enumerator_7302.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 210)).stringValue () ;
+      result << ";\n"
+        "    productReference = " ;
+      result << enumerator_7302.current_mProductFileReference (HERE).stringValue () ;
+      result << " ;\n"
+        "    productType = \"com.apple.product-type.tool\";\n"
+        "  };\n"
+        " \n" ;
+      index_7302_.increment () ;
+      enumerator_7302.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_8235_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_8235 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_8235.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_8235.current_mTargetRef (HERE).stringValue () ;
+      result << " /* " ;
+      result << enumerator_8235.current_mTargetName (HERE).stringValue () ;
+      result << " */ = {\n"
+        "    isa = PBXNativeTarget;\n"
+        "    buildConfigurationList = " ;
+      result << enumerator_8235.current_mBuildConfigurationListRef (HERE).stringValue () ;
+      result << " ;\n"
+        "    buildPhases = (\n"
+        "      " ;
+      result << enumerator_8235.current_mResourceBuildRef (HERE).stringValue () ;
+      result << " , /* Resources */\n"
+        "      " ;
+      result << enumerator_8235.current_mFrameworkBuildPhaseRef (HERE).stringValue () ;
+      result << " , /* Frameworks */\n"
+        "      " ;
+      result << enumerator_8235.current_mBuildPhaseRef (HERE).stringValue () ;
+      result << " , /* Sources */\n"
+        "    );\n"
+        "    buildRules = (\n"
+        "    );\n"
+        "    dependencies = (\n" ;
+      GALGAS_uint index_8624_ (0) ;
+      if (enumerator_8235.current_mDependentTargets (HERE).isValid ()) {
+        cEnumerator__32_stringlist enumerator_8624 (enumerator_8235.current_mDependentTargets (HERE), kENUMERATION_UP) ;
+        while (enumerator_8624.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_8624.current_mValue_30_ (HERE).stringValue () ;
+          result << " ,\n" ;
+          index_8624_.increment () ;
+          enumerator_8624.gotoNextObject () ;
+        }
+      }
+      result << "    );\n"
+        "    name = " ;
+      result << enumerator_8235.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 234)).stringValue () ;
+      result << ";\n"
+        "    productInstallPath = \"$(HOME)/bin\";\n"
+        "    productName = " ;
+      result << enumerator_8235.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 236)).stringValue () ;
+      result << ";\n"
+        "    productReference = " ;
+      result << enumerator_8235.current_mProductFileReference (HERE).stringValue () ;
+      result << " ;\n"
+        "    productType = \"com.apple.product-type.application\";\n"
+        "  };\n"
+        "\n" ;
+      index_8235_.increment () ;
+      enumerator_8235.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXProject */\n"
+    "  " ;
+  result << in_PROJECT_5F_REF.stringValue () ;
+  result << " /* Project object */ = {\n"
+    "   isa = PBXProject;\n"
+    "   attributes = {\n"
+    "     LastSwiftUpdateCheck = 0700;\n"
+    "     LastUpgradeCheck = 0700;\n"
+    "   };\n"
+    "   buildConfigurationList = " ;
+  result << in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
+  result << " /* Build configuration list for PBXProject */;\n"
+    "   compatibilityVersion = \"Xcode 2.4\";\n"
+    "   hasScannedForEncodings = 1;\n"
+    "   mainGroup = " ;
+  result << in_MAIN_5F_GROUP_5F_REF.stringValue () ;
+  result << ";\n"
+    "   projectDirPath = \"\";\n"
+    "   projectRoot = \"\";\n"
+    "   targets = (\n" ;
+  GALGAS_uint index_9696_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_9696 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_9696.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_9696.current_mTargetRef (HERE).stringValue () ;
+      result << ", \n" ;
+      index_9696_.increment () ;
+      enumerator_9696.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_10050_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_10050 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_10050.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_10050.current_mTargetRef (HERE).stringValue () ;
+      result << ", \n" ;
+      index_10050_.increment () ;
+      enumerator_10050.gotoNextObject () ;
+    }
+  }
+  result << "   );\n"
+    "  };\n"
+    "\n"
+    "  /*------------------------------------------------------------------ PBXResourcesBuildPhase */\n"
+    "\n" ;
+  GALGAS_uint index_10517_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_10517 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_10517.hasCurrentObject ()) {
+      result << "  " ;
+      result << enumerator_10517.current_mResourceBuildRef (HERE).stringValue () ;
+      result << " /* Resources */ = {\n"
+        "    isa = PBXResourcesBuildPhase;\n"
+        "    buildActionMask = 2147483647;\n"
+        "    files = (\n" ;
+      GALGAS_uint index_10700_ (0) ;
+      if (enumerator_10517.current_mResourceFileBuildRefs (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_10700 (enumerator_10517.current_mResourceFileBuildRefs (HERE), kENUMERATION_UP) ;
+        while (enumerator_10700.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_10700.current_mValue (HERE).stringValue () ;
+          result << ",\n" ;
+          index_10700_.increment () ;
+          enumerator_10700.gotoNextObject () ;
+        }
+      }
+      result << "    );\n"
+        "    runOnlyForDeploymentPostprocessing = 0;\n"
+        "  };\n"
+        "\n" ;
+      index_10517_.increment () ;
+      enumerator_10517.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXSourcesBuildPhase */\n" ;
+  GALGAS_uint index_11150_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_11150 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_11150.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_11150.current_mBuildPhaseRef (HERE).stringValue () ;
+      result << " /* Sources */ = {\n"
+        "      isa = PBXSourcesBuildPhase;\n"
+        "      buildActionMask = 2147483647;\n"
+        "      files = (\n" ;
+      GALGAS_uint index_11317_ (0) ;
+      if (enumerator_11150.current_mBuildPhaseRefList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_11317 (enumerator_11150.current_mBuildPhaseRefList (HERE), kENUMERATION_UP) ;
+        while (enumerator_11317.hasCurrentObject ()) {
+          result << "        " ;
+          result << enumerator_11317.current_mValue (HERE).stringValue () ;
+          result << ",\n" ;
+          index_11317_.increment () ;
+          enumerator_11317.gotoNextObject () ;
+        }
+      }
+      result << "      );\n"
+        "      runOnlyForDeploymentPostprocessing = 0;\n"
+        "    };\n" ;
+      index_11150_.increment () ;
+      enumerator_11150.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_11738_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_11738 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_11738.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_11738.current_mBuildPhaseRef (HERE).stringValue () ;
+      result << " /* Sources */ = {\n"
+        "      isa = PBXSourcesBuildPhase;\n"
+        "      buildActionMask = 2147483647;\n"
+        "      files = (\n" ;
+      GALGAS_uint index_11905_ (0) ;
+      if (enumerator_11738.current_mBuildPhaseRefList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_11905 (enumerator_11738.current_mBuildPhaseRefList (HERE), kENUMERATION_UP) ;
+        while (enumerator_11905.hasCurrentObject ()) {
+          result << "        " ;
+          result << enumerator_11905.current_mValue (HERE).stringValue () ;
+          result << ",\n" ;
+          index_11905_.increment () ;
+          enumerator_11905.gotoNextObject () ;
+        }
+      }
+      result << "      );\n"
+        "      runOnlyForDeploymentPostprocessing = 0;\n"
+        "    };\n" ;
+      index_11738_.increment () ;
+      enumerator_11738.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "\n"
+    "  /*------------------------------------------------------------------ PBXTargetDependency */\n"
+    " \n" ;
+  GALGAS_uint index_12427_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_12427 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_12427.hasCurrentObject ()) {
+      GALGAS_uint index_12475_ (0) ;
+      if (enumerator_12427.current_mDependentTargets (HERE).isValid ()) {
+        cEnumerator__32_stringlist enumerator_12475 (enumerator_12427.current_mDependentTargets (HERE), kENUMERATION_UP) ;
+        while (enumerator_12475.hasCurrentObject ()) {
+          result << "  " ;
+          result << enumerator_12475.current_mValue_30_ (HERE).stringValue () ;
+          result << " = {\n"
+            "    isa = PBXTargetDependency;\n"
+            "    target = " ;
+          result << enumerator_12475.current_mValue_31_ (HERE).stringValue () ;
+          result << ";\n"
+            "  };\n"
+            "\n" ;
+          index_12475_.increment () ;
+          enumerator_12475.gotoNextObject () ;
+        }
+      }
+      index_12427_.increment () ;
+      enumerator_12427.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ PBXVariantGroup */\n"
+    " \n"
+    "  /*------------------------------------------------------------------ XCBuildConfiguration */\n"
+    "    " ;
+  result << in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
+  result << " /* Default */ = {\n"
+    "      isa = XCBuildConfiguration;\n"
+    "      buildSettings = {\n" ;
+  GALGAS_uint index_12952_ (0) ;
+  if (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST.isValid ()) {
+    cEnumerator_stringlist enumerator_12952 (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_12952.hasCurrentObject ()) {
+      result << "      " ;
+      result << enumerator_12952.current_mValue (HERE).stringValue () ;
+      result << " ;\n" ;
+      index_12952_.increment () ;
+      enumerator_12952.gotoNextObject () ;
+    }
+  }
+  result << "    };\n"
+    "    name = Default;\n"
+    "  };\n"
+    "\n" ;
+  GALGAS_uint index_13267_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_13267 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_13267.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_13267.current_mBuildConfigurationRef (HERE).stringValue () ;
+      result << " /* Default */ = {\n"
+        "      isa = XCBuildConfiguration;\n"
+        "      buildSettings = {\n" ;
+      GALGAS_uint index_13435_ (0) ;
+      if (enumerator_13267.current_mBuildConfigurationSettingList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_13435 (enumerator_13267.current_mBuildConfigurationSettingList (HERE), kENUMERATION_UP) ;
+        while (enumerator_13435.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_13435.current_mValue (HERE).stringValue () ;
+          result << " ;\n" ;
+          index_13435_.increment () ;
+          enumerator_13435.gotoNextObject () ;
+        }
+      }
+      result << "      PRODUCT_NAME = " ;
+      result << enumerator_13267.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 347)).stringValue () ;
+      result << " ;\n"
+        "    };\n"
+        "    name = Default;\n"
+        "  };\n"
+        "\n" ;
+      index_13267_.increment () ;
+      enumerator_13267.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_13905_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_13905 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_13905.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_13905.current_mBuildConfigurationRef (HERE).stringValue () ;
+      result << " /* Default */ = {\n"
+        "      isa = XCBuildConfiguration;\n"
+        "      buildSettings = {\n" ;
+      GALGAS_uint index_14073_ (0) ;
+      if (enumerator_13905.current_mBuildConfigurationSettingList (HERE).isValid ()) {
+        cEnumerator_stringlist enumerator_14073 (enumerator_13905.current_mBuildConfigurationSettingList (HERE), kENUMERATION_UP) ;
+        while (enumerator_14073.hasCurrentObject ()) {
+          result << "      " ;
+          result << enumerator_14073.current_mValue (HERE).stringValue () ;
+          result << " ;\n" ;
+          index_14073_.increment () ;
+          enumerator_14073.gotoNextObject () ;
+        }
+      }
+      result << "      INFOPLIST_FILE = " ;
+      result << enumerator_13905.current_mInfoPListFile (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 359)).stringValue () ;
+      result << ";\n"
+        "      PRODUCT_NAME = " ;
+      result << enumerator_13905.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 360)).stringValue () ;
+      result << " ;\n"
+        "    };\n"
+        "    name = Default;\n"
+        "  };\n"
+        "\n" ;
+      index_13905_.increment () ;
+      enumerator_13905.gotoNextObject () ;
+    }
+  }
+  result << "  /*------------------------------------------------------------------ XCConfigurationList section */\n"
+    "\n"
+    "    " ;
+  result << in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
+  result << " /* Build configuration list for PBXProject */ = {\n"
+    "      isa = XCConfigurationList;\n"
+    "      buildConfigurations = (\n"
+    "        " ;
+  result << in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue () ;
+  result << " /* Default */,\n"
+    "      );\n"
+    "      defaultConfigurationIsVisible = 0;\n"
+    "      defaultConfigurationName = Default;\n"
+    "    };\n"
+    "\n" ;
+  GALGAS_uint index_14955_ (0) ;
+  if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeToolTargetList enumerator_14955 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_14955.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_14955.current_mBuildConfigurationListRef (HERE).stringValue () ;
+      result << " /* Default */ = {\n"
+        "      isa = XCConfigurationList;\n"
+        "      buildConfigurations = (\n"
+        "        " ;
+      result << enumerator_14955.current_mBuildConfigurationRef (HERE).stringValue () ;
+      result << " /* Default */,\n"
+        "      );\n"
+        "      defaultConfigurationIsVisible = 0;\n"
+        "      defaultConfigurationName = Default;\n"
+        "    };\n"
+        "\n" ;
+      index_14955_.increment () ;
+      enumerator_14955.gotoNextObject () ;
+    }
+  }
+  GALGAS_uint index_15552_ (0) ;
+  if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
+    cEnumerator_XCodeAppTargetList enumerator_15552 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_15552.hasCurrentObject ()) {
+      result << "    " ;
+      result << enumerator_15552.current_mBuildConfigurationListRef (HERE).stringValue () ;
+      result << " /* Default */ = {\n"
+        "      isa = XCConfigurationList;\n"
+        "      buildConfigurations = (\n"
+        "        " ;
+      result << enumerator_15552.current_mBuildConfigurationRef (HERE).stringValue () ;
+      result << " /* Default */,\n"
+        "      );\n"
+        "      defaultConfigurationIsVisible = 0;\n"
+        "      defaultConfigurationName = Default;\n"
+        "    };\n"
+        "\n" ;
+      index_15552_.increment () ;
+      enumerator_15552.gotoNextObject () ;
+    }
+  }
+  result << "/*------------------------------------------------------------------ End */\n"
+    "  };\n"
+    "\n"
+    "  rootObject = " ;
+  result << in_PROJECT_5F_REF.stringValue () ;
+  result << " /* Project object */;\n"
+    "}\n" ;
   return GALGAS_string (result) ;
 }
 

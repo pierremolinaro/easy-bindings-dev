@@ -356,10 +356,5 @@ override func @toManyPropertyGeneration.resetToManyRelationships() -> @string {
     result += "    self." + self.mPropertyName + "_property.setProp ([])\n"
   end
 }
-#·······················································································································
-
-override func @toManyPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  result = ""
-}
 
 #-----------------------------------------------------------------------------------------------------------------------

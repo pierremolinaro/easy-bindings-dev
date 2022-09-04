@@ -60,7 +60,7 @@ end
     self.sortedArray_property.setDataProvider (
       inModel,
 %if [SORTED_COLUMNS length] > 0 then
-  %      sortCallback: { (left, right) in self.isOrderedBefore (left, right) },\n%
+  %      sortCallback: { [weak self] (left, right) in self?.isOrderedBefore (left, right) ?? true },\n%
 else
   %      sortCallback: nil,\n%
 end

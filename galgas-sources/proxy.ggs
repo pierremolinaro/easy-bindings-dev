@@ -270,12 +270,6 @@ override func @toManyProxyGeneration.configurationCode (?let @bool unused inPref
 
 #·······················································································································
 
-override func @toManyProxyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  result  = ""
-}
-
-#·······················································································································
-
 override func @toManyProxyGeneration.clearObjectExplorerCode () -> @string {
   result  = "    //--- ToMany proxy: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
@@ -424,12 +418,6 @@ override func @atomicProxyGeneration.configurationCode (?let @bool unused inPref
   result += "    }\n"
   result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName
   result += "_property.addEBObserver (self." + self.mPropertyName + "_property)\n"
-}
-
-#·······················································································································
-
-override func @atomicProxyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  result  = ""
 }
 
 #·······················································································································

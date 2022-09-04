@@ -7369,10 +7369,6 @@ class cPtr_propertyGeneration : public acStrongPtr_class {
 //--- Extension getter setupRelationshipFromDictionaryCode
   public: virtual class GALGAS_string getter_setupRelationshipFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const ;
 
-//--- Extension getter terminationCode
-  public: virtual class GALGAS_string getter_terminationCode (const class GALGAS_bool inPreferences,
-           C_Compiler * COMMA_LOCATION_ARGS) const ;
-
 //--- Properties
   public: GALGAS_string mProperty_mPropertyName ;
 

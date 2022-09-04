@@ -406,12 +406,6 @@ override func @transientPropertyGeneration.configurationCode (?let @bool inPrefe
   end
 }
 
-#·······················································································································
-
-override func @transientPropertyGeneration.terminationCode (?let @bool unused inPreferences) -> @string {
-  result = ""
-}
-
 #-----------------------------------------------------------------------------------------------------------------------
 #   GENERATION TYPE                       
 #-----------------------------------------------------------------------------------------------------------------------

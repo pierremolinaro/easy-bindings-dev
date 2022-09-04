@@ -148,40 +148,29 @@ for (mProperty) in DOCUMENT_PROPERTY_LIST do
   //   removeUserInterface
   //····················································································································
 
-  override func removeUserInterface () {
+/*  override func removeUserInterface () { //a
     super.removeUserInterface ()
-  //--------------------------- Unbind regular bindings
 %
 for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
   %    self.%!mOutletName%?.unbind_%!mBindingName% ()\n%
 end
-%  //--------------------------- Unbind array controllers
-%
 for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
   %    self.%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
 for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
   %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
 end
-for (mProperty) in DOCUMENT_PROPERTY_LIST do
-  ![mProperty terminationCode !false]
-end
-%  //--------------------------- Remove targets / actions
-%for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
+for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
 %    self.%!mOutletName%?.target = nil\n%
 end
-%  //--------------------------- Clean up outlets
-%
 for (lkey mOutletTypeName) in OUTLET_GENERATION_MAP do
    %    self.%!lkey.string%?.ebCleanUp ()\n%
 end
-%  //--------------------------- Detach outlets
-%
 for (lkey mOutletTypeName) in OUTLET_GENERATION_MAP do
    %    self.%!lkey.string% = nil\n%
 end
 %  }
-
+*/
   //····················································································································
 
 }
