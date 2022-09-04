@@ -51,21 +51,6 @@ end
   }
 
   //····················································································································
-  //    populateExplorerWindow
-  //····················································································································
-
-  #if BUILD_OBJECT_EXPLORER
-    override func populateExplorerWindow (_ y : inout CGFloat, view : NSView) {
-%
-for (mProperty) in DOCUMENT_PROPERTY_LIST do
-  ![mProperty populateExplorerWindowCode]
-end
-%   //---
-      super.populateExplorerWindow (&y, view:view)
-    }
-  #endif
-
-  //····················································································································
   //    rootEntityClassName
   //····················································································································
 
