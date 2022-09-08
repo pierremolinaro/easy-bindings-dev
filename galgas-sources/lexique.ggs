@@ -75,6 +75,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "vStack",
   "versionShouldChange",
   "view",
+  "weak",
   "xcodeproject",
   "yes"
 }

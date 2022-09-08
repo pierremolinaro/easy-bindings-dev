@@ -27,8 +27,6 @@ extern const cDirectoryWrapper gWrapperDirectory_0_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_1_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_prefsGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_4_prefsGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -74,6 +72,18 @@ void routine_graphvizRootEntityAnalysis (const class GALGAS_string constinArgume
                                          const class GALGAS_string constinArgument2,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'graphvizRootEntityStrongAnalysis'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_graphvizRootEntityStrongAnalysis (const class GALGAS_string constinArgument0,
+                                               const class GALGAS_semanticContext constinArgument1,
+                                               const class GALGAS_string constinArgument2,
+                                               class C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -180,8 +190,6 @@ extern const cDirectoryWrapper gWrapperDirectory_0_computedPropertyManager ;
 extern const cDirectoryWrapper gWrapperDirectory_1_computedPropertyManager ;
 extern const cDirectoryWrapper gWrapperDirectory_2_computedPropertyManager ;
 extern const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager ;
-extern const cDirectoryWrapper gWrapperDirectory_4_computedPropertyManager ;
-extern const cDirectoryWrapper gWrapperDirectory_5_computedPropertyManager ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -214,8 +222,6 @@ extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_4_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_5_transientManager ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -230,50 +236,4 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
                                                                                      const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE,
                                                                                      const class GALGAS_string & in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX
                                                                                      COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper 'validationStubExtension'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension ;
-extern const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'validationStubExtension actionGeneration'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (class C_Compiler * inCompiler,
-                                                                            const class GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
-                                                                            const class GALGAS_string & in_MODEL_5F_NAME,
-                                                                            const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'generateValidationRoutineStubs'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateValidationRoutineStubs (const class GALGAS_string constinArgument0,
-                                             const class GALGAS_validationStubRoutineListForGeneration constinArgument1,
-                                             class GALGAS_stringset & ioArgument2,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
 

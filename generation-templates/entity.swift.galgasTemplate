@@ -119,7 +119,7 @@ end
   //    cleanUpToManyRelationships
   //····················································································································
 
-  override func cleanUpToManyRelationships () {
+/*  override func cleanUpToManyRelationships () {
 %
 for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   if not [mProperty.mOption isHasDependance] then
@@ -127,7 +127,7 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   end
 end
 %    super.cleanUpToManyRelationships ()
-  }
+  } */
 
 %end
 if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
@@ -135,13 +135,13 @@ if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
   //    cleanUpToOneRelationships
   //····················································································································
 
-  override func cleanUpToOneRelationships () {
+/*  override func cleanUpToOneRelationships () {
 %
 for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
   %    self.%!mProperty.mPropertyName% = nil\n%
 end
 %    super.cleanUpToOneRelationships ()
-  }
+  } */
 
 %end
 %  //····················································································································
@@ -331,13 +331,13 @@ end
   //   accessibleObjects
   //····················································································································
 
-  override func accessibleObjects (objects : inout [EBManagedObject]) {
+/*  override func accessibleObjects (objects : inout [EBManagedObject]) {
     super.accessibleObjects (objects: &objects)
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty objectAccessibilityCode]
 end
-%  }
+%  } */
 
   //····················································································································
   //   accessibleObjectsForSaveOperation

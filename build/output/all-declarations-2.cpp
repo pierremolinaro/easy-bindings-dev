@@ -11127,13 +11127,15 @@ typeComparisonResult cEnumAssociatedValues_propertyKind_toMany::compare (const c
 cEnumAssociatedValues_propertyKind_toOne::cEnumAssociatedValues_propertyKind_toOne (const GALGAS_lstring inAssociatedValue0,
                                                                                     const GALGAS_propertyAccessibility inAssociatedValue1,
                                                                                     const GALGAS_bool inAssociatedValue2,
-                                                                                    const GALGAS_toOneOppositeRelationship inAssociatedValue3
+                                                                                    const GALGAS_toOneOppositeRelationship inAssociatedValue3,
+                                                                                    const GALGAS_bool inAssociatedValue4
                                                                                     COMMA_LOCATION_ARGS) :
 cEnumAssociatedValues (THERE),
 mAssociatedValue0 (inAssociatedValue0),
 mAssociatedValue1 (inAssociatedValue1),
 mAssociatedValue2 (inAssociatedValue2),
-mAssociatedValue3 (inAssociatedValue3) {
+mAssociatedValue3 (inAssociatedValue3),
+mAssociatedValue4 (inAssociatedValue4) {
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11145,6 +11147,7 @@ void cEnumAssociatedValues_propertyKind_toOne::description (C_String & ioString,
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
   mAssociatedValue3.description (ioString, inIndentation) ;
+  mAssociatedValue4.description (ioString, inIndentation) ;
   ioString << ")" ;
 }
 
@@ -11165,6 +11168,9 @@ typeComparisonResult cEnumAssociatedValues_propertyKind_toOne::compare (const cE
   }
   if (result == kOperandEqual) {
     result = mAssociatedValue3.objectCompare (ptr->mAssociatedValue3) ;
+  }
+  if (result == kOperandEqual) {
+    result = mAssociatedValue4.objectCompare (ptr->mAssociatedValue4) ;
   }
   return result ;
 }
@@ -11279,13 +11285,14 @@ GALGAS_propertyKind GALGAS_propertyKind::constructor_toMany (const GALGAS_lstrin
 GALGAS_propertyKind GALGAS_propertyKind::constructor_toOne (const GALGAS_lstring & inAssociatedValue0,
                                                             const GALGAS_propertyAccessibility & inAssociatedValue1,
                                                             const GALGAS_bool & inAssociatedValue2,
-                                                            const GALGAS_toOneOppositeRelationship & inAssociatedValue3
+                                                            const GALGAS_toOneOppositeRelationship & inAssociatedValue3,
+                                                            const GALGAS_bool & inAssociatedValue4
                                                             COMMA_LOCATION_ARGS) {
   GALGAS_propertyKind result ;
-  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid () && inAssociatedValue2.isValid () && inAssociatedValue3.isValid ()) {
+  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid () && inAssociatedValue2.isValid () && inAssociatedValue3.isValid () && inAssociatedValue4.isValid ()) {
     result.mEnum = kEnum_toOne ;
     cEnumAssociatedValues * ptr = NULL ;
-    macroMyNew (ptr, cEnumAssociatedValues_propertyKind_toOne (inAssociatedValue0, inAssociatedValue1, inAssociatedValue2, inAssociatedValue3 COMMA_THERE)) ;
+    macroMyNew (ptr, cEnumAssociatedValues_propertyKind_toOne (inAssociatedValue0, inAssociatedValue1, inAssociatedValue2, inAssociatedValue3, inAssociatedValue4 COMMA_THERE)) ;
     result.mAssociatedValues.setPointer (ptr) ;
     macroDetachSharedObject (ptr) ;
   }
@@ -11373,6 +11380,7 @@ void GALGAS_propertyKind::method_toOne (GALGAS_lstring & outAssociatedValue0,
                                         GALGAS_propertyAccessibility & outAssociatedValue1,
                                         GALGAS_bool & outAssociatedValue2,
                                         GALGAS_toOneOppositeRelationship & outAssociatedValue3,
+                                        GALGAS_bool & outAssociatedValue4,
                                         C_Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) const {
   if (mEnum != kEnum_toOne) {
@@ -11380,6 +11388,7 @@ void GALGAS_propertyKind::method_toOne (GALGAS_lstring & outAssociatedValue0,
     outAssociatedValue1.drop () ;
     outAssociatedValue2.drop () ;
     outAssociatedValue3.drop () ;
+    outAssociatedValue4.drop () ;
     C_String s ;
     s << "method @propertyKind toOne invoked with an invalid enum value" ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
@@ -11389,6 +11398,7 @@ void GALGAS_propertyKind::method_toOne (GALGAS_lstring & outAssociatedValue0,
     outAssociatedValue1 = ptr->mAssociatedValue1 ;
     outAssociatedValue2 = ptr->mAssociatedValue2 ;
     outAssociatedValue3 = ptr->mAssociatedValue3 ;
+    outAssociatedValue4 = ptr->mAssociatedValue4 ;
   }
 }
 
@@ -11464,7 +11474,8 @@ bool GALGAS_propertyKind::optional_toMany (GALGAS_lstring & outAssociatedValue0,
 bool GALGAS_propertyKind::optional_toOne (GALGAS_lstring & outAssociatedValue0,
                                           GALGAS_propertyAccessibility & outAssociatedValue1,
                                           GALGAS_bool & outAssociatedValue2,
-                                          GALGAS_toOneOppositeRelationship & outAssociatedValue3) const {
+                                          GALGAS_toOneOppositeRelationship & outAssociatedValue3,
+                                          GALGAS_bool & outAssociatedValue4) const {
   const bool ok = mEnum == kEnum_toOne ;
   if (ok) {
     const auto * ptr = (const cEnumAssociatedValues_propertyKind_toOne *) unsafePointer () ;
@@ -11473,6 +11484,7 @@ bool GALGAS_propertyKind::optional_toOne (GALGAS_lstring & outAssociatedValue0,
     outAssociatedValue1 = ptr->mAssociatedValue1 ;
     outAssociatedValue2 = ptr->mAssociatedValue2 ;
     outAssociatedValue3 = ptr->mAssociatedValue3 ;
+    outAssociatedValue4 = ptr->mAssociatedValue4 ;
   }
   return ok ;
 }

@@ -30,7 +30,7 @@ end
 end
 %  //--- Add observers to added objects
 %if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] +[COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
-%    if let newValue = self.mInternalValue {\n%
+%    if let newValue = self.mWeakInternalValue {\n%
 for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %      newValue.%!mProperty.mPropertyName%_property.addEBObserver (self.%!mProperty.mPropertyName%_property) // Stored property\n%
 end
@@ -102,7 +102,7 @@ end
 %for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //--- Configure %!mProperty.mPropertyName% simple stored property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
-%      if let model = self?.mInternalValue {\n%
+%      if let model = self?.mWeakInternalValue {\n%
 %        switch model.%!mProperty.mPropertyName%_property.selection {\n%
 %        case .empty :\n%
 %          return .empty\n%
@@ -119,7 +119,7 @@ end
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //--- Configure %!mProperty.mPropertyName% transient property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
-%      if let model = self?.mInternalValue {\n%
+%      if let model = self?.mWeakInternalValue {\n%
 %        switch model.%!mProperty.mPropertyName%_property.selection {\n%
 %        case .empty :\n%
 %          return .empty\n%
@@ -136,7 +136,7 @@ end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 %  //--- Configure %!mProperty.mPropertyName% computed property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
-%      if let model = self?.mInternalValue {\n%
+%      if let model = self?.mWeakInternalValue {\n%
 %        switch model.%!mProperty.mPropertyName%_property.selection {\n%
 %        case .empty :\n%
 %          return .empty\n%
@@ -199,7 +199,7 @@ final class TransientObject_%!ENTITY_NAME% : ReadOnlyObject_%!ENTITY_NAME% {
       newObject = nil
       self.mTransientKind = .empty
     }
-    self.mInternalValue = newObject
+    self.mWeakInternalValue = newObject
     super.notifyModelDidChange ()
   }
 
@@ -210,8 +210,8 @@ final class TransientObject_%!ENTITY_NAME% : ReadOnlyObject_%!ENTITY_NAME% {
     case .empty :
       return .empty
     case .single :
-      if let internalValue = self.mInternalValue {
-        return .single (internalValue)
+      if let v = self.mWeakInternalValue {
+        return .single (v)
       }else{
         return .empty
       }
@@ -222,7 +222,7 @@ final class TransientObject_%!ENTITY_NAME% : ReadOnlyObject_%!ENTITY_NAME% {
 
   //····················································································································
 
-  override var propval : %!ENTITY_NAME%? { return self.mInternalValue }
+  override var propval : %!ENTITY_NAME%? { return self.mWeakInternalValue }
 
   //····················································································································
 
@@ -278,7 +278,7 @@ final class ProxyObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME% {
     }else{
       newModel = nil
     }
-    self.mInternalValue = newModel
+    self.mWeakInternalValue = newModel
     super.notifyModelDidChange ()
   }
 
@@ -325,8 +325,9 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
 
  //····················································································································
 
-  init (usedForSignature inUsedForSignature : Bool) {
+  init (usedForSignature inUsedForSignature : Bool, strongRef inStrongReference : Bool) {
     self.mUsedForSignature = inUsedForSignature
+    self.mStrongReference = inStrongReference
     super.init ()
   }
 
@@ -365,7 +366,7 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
 
   override func notifyModelDidChangeFrom (oldValue inOldValue : %!ENTITY_NAME%?) {
   //--- Register old value in undo manager
-    self.ebUndoManager?.registerUndo (withTarget: self) { $0.mInternalValue = inOldValue }
+    self.ebUndoManager?.registerUndo (withTarget: self) { $0.mWeakInternalValue = inOldValue }
   //---
     if let object = inOldValue {
       if self.mUsedForSignature {
@@ -376,7 +377,7 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
 %end
 %    }
   //---
-    if let object = self.mInternalValue {
+    if let object = self.mWeakInternalValue {
       if self.mUsedForSignature {
         object.setSignatureObserver (observer: self)
       }
@@ -403,7 +404,7 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
   //····················································································································
 
   override var selection : EBSelection < %!ENTITY_NAME%? > {
-    if let object = self.mInternalValue {
+    if let object = self.mWeakInternalValue {
       return .single (object)
     }else{
       return .empty
@@ -412,11 +413,23 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
 
   //····················································································································
 
-  override func setProp (_ inValue : %!ENTITY_NAME%?) { self.mInternalValue = inValue }
+  override var propval : %!ENTITY_NAME%? { return self.mWeakInternalValue }
+
+  //····················································································································
+  //   setProp
+  //····················································································································
+
+  private let mStrongReference : Bool
+  private final var mStrongInternalValue : %!ENTITY_NAME%? = nil
 
   //····················································································································
 
-  override var propval : %!ENTITY_NAME%? { return self.mInternalValue }
+  override func setProp (_ inValue : %!ENTITY_NAME%?) {
+    self.mWeakInternalValue = inValue
+    if self.mStrongReference {
+      self.mStrongInternalValue = inValue
+    }
+  }
 
   //····················································································································
   //   signature
@@ -454,7 +467,7 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
 
   final private func computeSignature () -> UInt32 {
     var crc : UInt32 = 0
-    if let object = self.mInternalValue {
+    if let object = self.mWeakInternalValue {
       crc.accumulateUInt32 (object.signature ())
     }
     return crc

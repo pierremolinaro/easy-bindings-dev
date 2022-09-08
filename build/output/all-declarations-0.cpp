@@ -278,6 +278,9 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_versionShouldCha
 //--- Syntax error message for terminal '$view$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_view = "the 'view' keyword" ;
 
+//--- Syntax error message for terminal '$weak$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_weak = "the 'weak' keyword" ;
+
 //--- Syntax error message for terminal '$xcodeproject$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_xcodeproject = "the 'xcodeproject' keyword" ;
 
@@ -368,8 +371,8 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__2D_ = "the '-' 
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
   C_String result = "<unknown>" ;
-  if ((inTerminalIndex >= 0) && (inTerminalIndex < 99)) {
-    static const char * syntaxErrorMessageArray [99] = {kEndOfSourceLexicalErrorMessage,
+  if ((inTerminalIndex >= 0) && (inTerminalIndex < 100)) {
+    static const char * syntaxErrorMessageArray [100] = {kEndOfSourceLexicalErrorMessage,
         gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique__40_attribute,
@@ -440,6 +443,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_vStack,
         gSyntaxErrorMessage_easyBindings_5F_lexique_versionShouldChange,
         gSyntaxErrorMessage_easyBindings_5F_lexique_view,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_weak,
         gSyntaxErrorMessage_easyBindings_5F_lexique_xcodeproject,
         gSyntaxErrorMessage_easyBindings_5F_lexique_yes,
         gSyntaxErrorMessage_easyBindings_5F_lexique_enabled,
@@ -1479,6 +1483,15 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_view [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$weak$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique_weak [] = {
+  TO_UNICODE ('w'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('a'),
+  TO_UNICODE ('k'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$xcodeproject$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique_xcodeproject [] = {
   TO_UNICODE ('x'),
@@ -1560,7 +1573,7 @@ int16_t C_Lexique_easyBindings_5F_lexique::search_into_delimitorsList (const C_S
 //             Key words table 'lowerCaseKeyWordList'      
 //----------------------------------------------------------------------------------------------------------------------
 
-static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 63 ;
+static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 64 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList] = {
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_no, 2, C_Lexique_easyBindings_5F_lexique::kToken_no),
@@ -1573,6 +1586,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_root, 4, C_Lexique_easyBindings_5F_lexique::kToken_root),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_self, 4, C_Lexique_easyBindings_5F_lexique::kToken_self),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_view, 4, C_Lexique_easyBindings_5F_lexique::kToken_view),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_weak, 4, C_Lexique_easyBindings_5F_lexique::kToken_weak),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_class, 5, C_Lexique_easyBindings_5F_lexique::kToken_class),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_prefs, 5, C_Lexique_easyBindings_5F_lexique::kToken_prefs),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_proxy, 5, C_Lexique_easyBindings_5F_lexique::kToken_proxy),
@@ -2031,6 +2045,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
     case kToken_view:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("view") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_weak:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("weak") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_xcodeproject:
@@ -2581,6 +2600,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("vStack") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("versionShouldChange") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("view") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("weak") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("xcodeproject") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("yes") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("enabled") COMMA_THERE) ;
@@ -2662,6 +2682,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("root") ;
     ioList.appendObject ("self") ;
     ioList.appendObject ("view") ;
+    ioList.appendObject ("weak") ;
     ioList.appendObject ("class") ;
     ioList.appendObject ("prefs") ;
     ioList.appendObject ("proxy") ;
@@ -2739,7 +2760,7 @@ __attribute__ ((unused)) (getKeywordLists_easyBindings_5F_lexique, getKeywordsFo
 //----------------------------------------------------------------------------------------------------------------------
 
 uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [99] = {0,
+  static const uint32_t kTerminalSymbolStyles [100] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
@@ -2810,6 +2831,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_vStack */,
     1 /* easyBindings_lexique_1_versionShouldChange */,
     1 /* easyBindings_lexique_1_view */,
+    1 /* easyBindings_lexique_1_weak */,
     1 /* easyBindings_lexique_1_xcodeproject */,
     1 /* easyBindings_lexique_1_yes */,
     6 /* easyBindings_lexique_1_enabled */,

@@ -134,6 +134,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_vStack,
    kToken_versionShouldChange,
    kToken_view,
+   kToken_weak,
    kToken_xcodeproject,
    kToken_yes,
    kToken_enabled,
@@ -198,7 +199,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected: virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int16_t terminalVocabularyCount (void) const override { return 98 ; }
+  public: virtual int16_t terminalVocabularyCount (void) const override { return 99 ; }
 
 //--- Get Token String
   public: virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const override ;

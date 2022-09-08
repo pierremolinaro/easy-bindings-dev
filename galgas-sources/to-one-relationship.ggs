@@ -15,6 +15,7 @@ class @toOneRelationshipAST : @abstractDeclarationAST {
   public var @lstring mToOneRelationshipName
   public var @toOneOppositeRelationship mOpposite
   public var @bool mUsedForSignature
+  public var @bool mWeak
 }
 
 #·······················································································································
@@ -42,7 +43,8 @@ syntax extension easyBindings_syntax {
 
   rule <toOne_relationship> (?let @lstring inCurrentEntity ?!@astDeclarationStruct ioDeclarationAST) {
     $toOne$
-    var @bool usedForSignature = false
+    var usedForSignature = false
+    var weak = false
     repeat
     while
       $@attribute$ (?let attributeName)
@@ -51,8 +53,13 @@ syntax extension easyBindings_syntax {
           error attributeName : "duplicated attribute" fixit { remove }
         end
         usedForSignature = true
+      elsif attributeName.string == "weak" then
+        if weak then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        weak = true
       else
-        error attributeName : "unknow attribute" fixit { replace "@signature" }
+        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@weak" }
       end
     end
     $Identifier$ (?let @lstring destinationEntityName)
@@ -79,6 +86,7 @@ syntax extension easyBindings_syntax {
       !relationshipName
       !opposite
       !usedForSignature
+      !weak
     )
   }
   
@@ -110,6 +118,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
         !accessibility: .stored
         !graphic: graphic
         !opposite: self.mOpposite
+        !weak: self.mWeak
       )
       if self.mOpposite != .none, not handleOpposite then
         error self.mToOneRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
@@ -121,10 +130,8 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @toOneRelationshipAST.thirdAnalysisPhase (
-       ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration)
-{
+override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSemanticContext
+                                                        ?!@generationStruct unused ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
@@ -139,6 +146,7 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (
         !accessibility: .stored
         !graphic: graphic
         !opposite: self.mOpposite
+        !weak: self.mWeak
       )
     #--- Code Generation
       mPropertyGenerationList += !@toOnePropertyGeneration (
@@ -148,6 +156,7 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (
         !self.mOpposite
         !destinationEntityPropertyMap
         !self.mUsedForSignature
+        !not self.mWeak
       )
     end
   end
@@ -163,6 +172,7 @@ class @toOnePropertyGeneration : @propertyGeneration {
   public let @toOneOppositeRelationship mOpposite
   public let @propertyMap mDestinationEntityObservablePropertyMap
   public let @bool mUsedForSignature
+  public let @bool mStrongRef
 }
 
 #·······················································································································
@@ -173,15 +183,15 @@ list @toOnePropertyGenerationList {
 
 #·······················································································································
 
-override func @toOnePropertyGeneration.propertyDeclarationCode(
-   ?let @bool unused inPreferences
-   ?let @stringset unused inOverriddenTransients) -> @string
-{
+override func @toOnePropertyGeneration.propertyDeclarationCode
+                                                   (?let @bool unused inPreferences
+                                                    ?let @stringset unused inOverriddenTransients) -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
   result += "  //   To one property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = StoredObject_" + [self.mRelationshipType swiftTypeName]
-  result +=            " (usedForSignature: " + [self.mUsedForSignature cString] + ")\n\n"
+  result += " (usedForSignature: " + [self.mUsedForSignature cString]
+  result += ", strongRef: " + [self.mStrongRef cString] + ")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
   result += "  final var " + self.mPropertyName + " : " + [self.mRelationshipType swiftTypeName] + "? {\n"
   result += "    get {\n"

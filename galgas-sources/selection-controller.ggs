@@ -75,7 +75,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase(
       error self.mModelControllerName : "an array controller is required here"
     case toMany (4*) :
       error self.mModelControllerName : "an array controller is required here"
-    case toOne (4*) :
+    case toOne (5*) :
       error self.mModelControllerName : "an array controller is required here"
     case selectionController (*) :
       error self.mModelControllerName : "an array controller is required here"
@@ -106,7 +106,7 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
    switch propertyKind
    case property (2*) :
    case toMany (4*) :
-   case toOne (4*) :
+   case toOne (5*) :
    case selectionController (*) :
    case arrayController (typeName *) :
      [ioSemanticContext.mClassMap searchKey

@@ -126,7 +126,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         !"rootObject." + self.mToManyPropertyName
         !self.mClassName
       )
-      case toOne (4*) :
+      case toOne (5*) :
         error rootEntityName : "a toMany relationship is required here"
       case arrayController (2*) :
         error rootEntityName : "a toMany relationship is required here"
@@ -150,7 +150,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         !self.mToManyPropertyName
         !self.mClassName
       )
-      case toOne (4*) :
+      case toOne (5*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
       case arrayController (2*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
@@ -208,7 +208,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
       else .entityArray
     end
     [ioSemanticContext.mClassMap searchKey !typeName ?* ?3*]
-  case toOne (4*) :
+  case toOne (5*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
       : graphic, arrayControllerModelKind, elementTypeName

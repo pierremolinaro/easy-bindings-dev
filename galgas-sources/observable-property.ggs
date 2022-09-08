@@ -419,7 +419,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error relationshipName : "a property does not accept 'none'" : outKind
     case toMany (4*) :
       error relationshipName : "an array property does not accept 'none'" : outKind
-    case toOne (4*) :
+    case toOne (5*) :
       outKind = .property (!type: .boolType !accessibility: .transient (!isAbstract: false))
     case arrayController (2*) :
       error relationshipName : "an array controller does not accept 'none'" : outKind
@@ -442,7 +442,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       else
         error optionName : "unknown option (accepted : 'count')" : outKind
       end
-    case toOne (4*) :
+    case toOne (5*) :
       error propertyName : "a toOne property does not accept any option" : outKind
     case arrayController (2*) :
       if optionName.string == "count" then
@@ -472,7 +472,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
         ?outKind
         ?2*
       ]
-    case toOne (4*) :
+    case toOne (5*) :
       error relationshipName : "a toOne property does not accept 'all'" : outKind
     case arrayController (2*) :
       error relationshipName : "an array controller does not accept 'all'" : outKind
@@ -491,7 +491,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
     case toMany (4*) :
       outSwiftTypeStringForTransientFunctionArgument = "[ObjectIndexProtocol]"
-    case toOne (4*) :
+    case toOne (5*) :
       outSwiftTypeStringForTransientFunctionArgument = "ObjectIndexProtocol?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
@@ -516,7 +516,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       else
         error optionName : "unknown option (accepted : 'count')" : outKind
       end
-    case toOne (4*) :
+    case toOne (5*) :
       error propertyName : "a toOne property accepts no option" : outKind
     case arrayController (2*) :
       if optionName.string == "count" then
@@ -546,7 +546,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
         ?outKind
         ?2*
       ]
-    case toOne (4*) :
+    case toOne (5*) :
       error propertyName : "a toOne property accepts no option" : outKind
     case arrayController (2*) :
       error propertyName : "an array controller accepts no option" : outKind
@@ -566,7 +566,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "an atomic property does not accept 'one'" : outKind
     case toMany (4*) :
       error propertyName : "a toOne property does not accept 'one'" : outKind
-    case toOne (typeName 3*) :
+    case toOne (typeName 4*) :
       [inSemanticContext.mClassMap searchKey !typeName ?* ?let observablePropertyMap ?2*]
       [observablePropertyMap searchKey
         !elementPropertyName
@@ -590,7 +590,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "an atomic property does not accept 'none'" : outKind
     case toMany (4*) :
       error propertyName : "a toOne property does not accept 'none'" : outKind
-    case toOne (4*) :
+    case toOne (5*) :
       outKind = .property (!type: .boolType !accessibility: .transient (!isAbstract: false))
     case arrayController (2*) :
       error propertyName : "an array controller does not accept 'none'" : outKind
@@ -618,7 +618,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a property does not accept any option" : outKind
     case toMany (4*) :
       error propertyName : "a toMany property does not accept any option" : outKind
-    case toOne (4*) :
+    case toOne (5*) :
       error propertyName : "a toOne property does not accept any option" : outKind
     case arrayController (2*) :
       if optionName.string == "count" then
@@ -643,7 +643,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a property does not accept any option" : outKind
     case toMany (4*) :
       error propertyName : "a toMany property does not accept any option" : outKind
-    case toOne (4*) :
+    case toOne (5*) :
       error propertyName : "a toOne property does not accept any option" : outKind
     case arrayController (typeName graphic) :
       if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
@@ -691,7 +691,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error controllerName : "a property does not support 'one'"
     case toMany (4*) :
       error controllerName : "a toMany relationship does not support 'one'"
-    case toOne (4*) :
+    case toOne (5*) :
       error controllerName : "a toOne relationship does not support 'one'"
     end
     [inSemanticContext.mClassMap searchKey !
@@ -719,7 +719,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
         error propertyName
          : "a toMany property does not accept any option" 
          : outKind, outSwiftTypeStringForTransientFunctionArgument
-      case toOne (4*) :
+      case toOne (5*) :
         error propertyName
           : "a toOne property does not accept any option"
           : outKind, outSwiftTypeStringForTransientFunctionArgument
@@ -754,7 +754,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
     case toMany (4*) :
       outSwiftTypeStringForTransientFunctionArgument = "[ObjectIndexProtocol]"
-    case toOne (4*) :
+    case toOne (5*) :
       outSwiftTypeStringForTransientFunctionArgument = "ObjectIndexProtocol?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
@@ -778,7 +778,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       ]
     case toMany (4*) :
       outSwiftTypeStringForTransientFunctionArgument = "[ObjectIndexProtocol]"
-    case toOne (4*) :
+    case toOne (5*) :
       outSwiftTypeStringForTransientFunctionArgument = "ObjectIndexProtocol?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument

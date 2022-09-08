@@ -29,17 +29,16 @@ proc graphvizAnalysis (
   if @uint.errorCount == 0 then
     for (rootEntityName) in inGraphvizList do
       graphvizRootEntityAnalysis (!inSourceFileDirectory !inSemanticContext !rootEntityName.string)
+      graphvizRootEntityStrongAnalysis (!inSourceFileDirectory !inSemanticContext !rootEntityName.string)
     end
   end
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-private proc graphvizRootEntityAnalysis(
-  ?let @string inSourceFileDirectory
-  ?let @semanticContext inSemanticContext
-  ?let @string inRootEntityName)
-{
+private proc graphvizRootEntityAnalysis (?let @string inSourceFileDirectory
+                                         ?let @semanticContext inSemanticContext
+                                         ?let @string inRootEntityName) {
   var @stringset reachableEntityNameSet = {!inRootEntityName}
   var @stringlist exploreArray = {!inRootEntityName}
   var @stringlist nodeList = {}
@@ -54,7 +53,7 @@ private proc graphvizRootEntityAnalysis(
         reachableEntityNameSet += !superEntityName
         exploreArray += !superEntityName
       end
-      arrowList += !"  " + entityName + " -> " + superEntityName +  " [arrowhead=dot]"
+      arrowList += !"  " + entityName + " -> " + superEntityName +  " [dir=both arrowtail=dot arrowhead=normal]"
     end
     for (propertyName propertyKind 2*) in propertyMap do
       switch propertyKind
@@ -77,18 +76,24 @@ private proc graphvizRootEntityAnalysis(
               exploreArray += !typeName
             end
            arrowList += !"  " + entityName + ":" + propertyName
-             + " -> " + typeName + ":" + typeName + " [dir=both arrowtail=none arrowhead=vee]"
+             + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
          case hasOpposite (oppositeName) :
            if not [reachableEntityNameSet hasKey !typeName] then
              reachableEntityNameSet += !typeName
              exploreArray += !typeName
            end
            arrowList += !"  " + entityName + ":" + propertyName
-              + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=vee]"
+              + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=veevee]"
          case hasDependance (*) :
+           if not [reachableEntityNameSet hasKey !typeName] then
+             reachableEntityNameSet += !typeName
+             exploreArray += !typeName
+           end
+           arrowList += !"  " + entityName + ":" + propertyName
+              + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
          end
         end
-      case toOne (@lstring typeName @propertyAccessibility accessibility * opposite) :
+      case toOne (@lstring typeName @propertyAccessibility accessibility * opposite *) :
         if [accessibility isStored] then
           node += "|<" + propertyName + ">" + typeName + "? " + propertyName
           switch opposite
@@ -127,9 +132,136 @@ private proc graphvizRootEntityAnalysis(
     s += arrow + " ;\n"
   end
   s += "}\n"
-  let filePath = inSourceFileDirectory + "/models/" + inRootEntityName + ".dot"
+  let filePath = inSourceFileDirectory + "/models/graph-" + inRootEntityName + ".dot"
   [[filePath stringByDeletingLastPathComponent] makeDirectory]
   [s writeToFileWhenDifferentContents !filePath ?*]
+}
+
+#·······················································································································
+
+graph @entityStrongReferenceGraph (@stringlist) {
+  insert addNode error message "the '%K' entity is already declared at %L"
+}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+private proc graphvizRootEntityStrongAnalysis (?let @string inSourceFileDirectory
+                                               ?let @semanticContext inSemanticContext
+                                               ?let @string inRootEntityName) {
+  var @stringset reachableEntityNameSet = {!inRootEntityName}
+  var @stringlist exploreArray = {!inRootEntityName}
+  var @stringlist nodeList = {}
+  var @stringlist arrowList = {}
+  var @entityStrongReferenceGraph entityStrongReferenceGraph = .emptyGraph
+  loop ([inSemanticContext.mClassMap count] + 1) while [exploreArray length] > 0 do
+    [!?exploreArray popLast ?let @string entityName]
+    nodeList += !entityName
+    [!?entityStrongReferenceGraph addNode !.new (!entityName !.nowhere) !entityName]
+    [inSemanticContext.mClassMap searchKey ![entityName nowhere] ?let entityKind ?let @propertyMap propertyMap ?2*]
+    [entityKind entity ?superEntityName: let superEntityName ?3*]
+    if superEntityName != "" then
+      if not [reachableEntityNameSet hasKey !superEntityName] then
+        reachableEntityNameSet += !superEntityName
+        exploreArray += !superEntityName
+      end
+      arrowList += !superEntityName + " -> " + entityName +  " [arrowtail=dot arrowhead=normal]"
+      [!?entityStrongReferenceGraph addEdge !.new (!superEntityName !.nowhere) !.new (!entityName !.nowhere)]
+    end
+    for (* propertyKind 2*) in propertyMap do
+      switch propertyKind
+      case property (2 *) :
+      case arrayController (2*) :
+      case selectionController (*) :
+      case toMany (@lstring typeName @propertyAccessibility accessibility * *) :
+        arrowList += !entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
+        [!?entityStrongReferenceGraph addEdge !.new (!entityName !.nowhere) !.new (!typeName !.nowhere)]
+        if [accessibility isStored] then
+#          switch optionKind
+#          case none :
+            if not [reachableEntityNameSet hasKey !typeName] then
+               reachableEntityNameSet += !typeName
+               exploreArray += !typeName
+             end
+#          case hasOpposite (*) :
+#            if not [reachableEntityNameSet hasKey !typeName] then
+#              reachableEntityNameSet += !typeName
+#              exploreArray += !typeName
+#            end
+#          case hasDependance (*) :
+#
+#          end
+        end
+      case toOne (@lstring typeName @propertyAccessibility accessibility * opposite weak) :
+        if not weak then
+          arrowList += !entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]"
+          [!?entityStrongReferenceGraph addEdge !.new (!entityName !.nowhere) !.new (!typeName !.nowhere)]
+        end
+        if [accessibility isStored] then
+          switch opposite
+          case none :
+            if not [reachableEntityNameSet hasKey !typeName] then
+              reachableEntityNameSet += !typeName
+              exploreArray += !typeName
+            end
+          case oppositeIsToMany (*) : # No generation
+          case oppositeIsToOne (*) :
+            if not [reachableEntityNameSet hasKey !typeName] then
+              reachableEntityNameSet += !typeName
+              exploreArray += !typeName
+            end
+          end
+        end
+      end
+    end
+  end
+#--- Generation
+  var s = "digraph G {\n"
+  s += "  rankdir=LR ;\n"
+  s += "  node [shape=record fontname=helvetica style=rounded] ;\n"
+  for (node) in nodeList do
+    s += "  " + node + " ;\n"
+  end
+  for (arrow) in arrowList do
+    s += "  " + arrow + " ;\n"
+  end
+  s += "}\n"
+  var filePath = inSourceFileDirectory + "/models/strong-" + inRootEntityName + ".dot"
+  [[filePath stringByDeletingLastPathComponent] makeDirectory]
+  [s writeToFileWhenDifferentContents !filePath ?*]
+#--- Print graph
+  filePath = inSourceFileDirectory + "/models/strong-dep-" + inRootEntityName + ".dot"
+  [[entityStrongReferenceGraph graphviz] writeToFileWhenDifferentContents !filePath ?*]
+#--- Check all node are defined
+  let undefinedNodeList = [entityStrongReferenceGraph undefinedNodeKeyList]
+  if [undefinedNodeList length] > 0 then
+    var s = "for " + inRootEntityName + " graph , the following entities are not defined"
+    for (node) in undefinedNodeList do
+      s += "\n -- " + node
+    end
+    error .nowhere : s
+  end
+#--- Check accessibility
+  if [undefinedNodeList length] == 0 then
+    let accessibleNodeList = [entityStrongReferenceGraph accessibleNodesFrom !{!.new (!inRootEntityName !.nowhere)} !{}]
+    let accessibleNodeSet = @stringset.setWithLStringList (!accessibleNodeList)
+    for (node) in nodeList do
+      if not [accessibleNodeSet hasKey !node] then
+        error .nowhere : node + " entity is not reachable via strong reference from " + inRootEntityName
+      end
+    end
+  end
+#--- Check no circularities
+  if [undefinedNodeList length] == 0 then 
+    [entityStrongReferenceGraph circularities ?* ?let @lstringlist unsortedNodeList]
+    if [unsortedNodeList length] > 0 then
+      var s = "for " + inRootEntityName + " graph, " + [unsortedNodeList length]
+      s += " entities are involved in a strong reference cycle"
+      for (node) in unsortedNodeList do
+        s += "\n -- " + node
+      end
+      warning .nowhere : s
+    end
+  end
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

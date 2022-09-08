@@ -193,7 +193,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
     switch dependencyKind
     case property (* *) :
     case toMany (4*) :
-    case toOne (4*) :
+    case toOne (5*) :
     case arrayController (2*) :
       error [mObservableProperty location] : "only an atomic property can be observed"
     case selectionController (*) :

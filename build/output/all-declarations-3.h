@@ -3797,6 +3797,8 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
 
   public: class GALGAS_bool readProperty_mUsedForSignature (void) const ;
 
+  public: class GALGAS_bool readProperty_mWeak (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -3812,7 +3814,8 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
                                                                     const class GALGAS_lstring & inOperand1,
                                                                     const class GALGAS_lstring & inOperand2,
                                                                     const class GALGAS_toOneOppositeRelationship & inOperand3,
-                                                                    const class GALGAS_bool & inOperand4
+                                                                    const class GALGAS_bool & inOperand4,
+                                                                    const class GALGAS_bool & inOperand5
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3830,6 +3833,9 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
 
   public: VIRTUAL_IN_DEBUG void setter_setMUsedForSignature (class GALGAS_bool inArgument0
                                                              COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMWeak (class GALGAS_bool inArgument0
+                                                 COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
@@ -3879,13 +3885,15 @@ class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
   public: GALGAS_lstring mProperty_mToOneRelationshipName ;
   public: GALGAS_toOneOppositeRelationship mProperty_mOpposite ;
   public: GALGAS_bool mProperty_mUsedForSignature ;
+  public: GALGAS_bool mProperty_mWeak ;
 
 //--- Constructor
   public: cPtr_toOneRelationshipAST (const GALGAS_lstring & in_mClassName,
                                      const GALGAS_lstring & in_mDestinationEntityName,
                                      const GALGAS_lstring & in_mToOneRelationshipName,
                                      const GALGAS_toOneOppositeRelationship & in_mOpposite,
-                                     const GALGAS_bool & in_mUsedForSignature
+                                     const GALGAS_bool & in_mUsedForSignature,
+                                     const GALGAS_bool & in_mWeak
                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -4085,6 +4093,8 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
 
   public: class GALGAS_bool readProperty_mUsedForSignature (void) const ;
 
+  public: class GALGAS_bool readProperty_mStrongRef (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -4101,7 +4111,8 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
                                                                        const class GALGAS_propertyKind & inOperand2,
                                                                        const class GALGAS_toOneOppositeRelationship & inOperand3,
                                                                        const class GALGAS_propertyMap & inOperand4,
-                                                                       const class GALGAS_bool & inOperand5
+                                                                       const class GALGAS_bool & inOperand5,
+                                                                       const class GALGAS_bool & inOperand6
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4119,6 +4130,9 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
 
   public: VIRTUAL_IN_DEBUG void setter_setMRelationshipType (class GALGAS_propertyKind inArgument0
                                                              COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMStrongRef (class GALGAS_bool inArgument0
+                                                      COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMUsedForSignature (class GALGAS_bool inArgument0
                                                              COMMA_LOCATION_ARGS) ;
@@ -4182,6 +4196,7 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
   public: GALGAS_toOneOppositeRelationship mProperty_mOpposite ;
   public: GALGAS_propertyMap mProperty_mDestinationEntityObservablePropertyMap ;
   public: GALGAS_bool mProperty_mUsedForSignature ;
+  public: GALGAS_bool mProperty_mStrongRef ;
 
 //--- Constructor
   public: cPtr_toOnePropertyGeneration (const GALGAS_string & in_mPropertyName,
@@ -4189,7 +4204,8 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
                                         const GALGAS_propertyKind & in_mRelationshipType,
                                         const GALGAS_toOneOppositeRelationship & in_mOpposite,
                                         const GALGAS_propertyMap & in_mDestinationEntityObservablePropertyMap,
-                                        const GALGAS_bool & in_mUsedForSignature
+                                        const GALGAS_bool & in_mUsedForSignature,
+                                        const GALGAS_bool & in_mStrongRef
                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication

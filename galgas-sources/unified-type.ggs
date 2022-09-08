@@ -90,7 +90,7 @@ func @propertyKind.typeName() -> @string {
     result = [type typeName]
   case toMany (typeName 3*) :
     result = typeName
-  case toOne (typeName 3*) :
+  case toOne (typeName 4*) :
     result = typeName
   case arrayController (typeName *) :
     result = typeName
@@ -107,7 +107,7 @@ func @propertyKind.swiftTypeName() -> @string {
     result = [type swiftTypeName]
   case toMany (typeName 3*) :
     result = typeName
-  case toOne (typeName 3*) :
+  case toOne (typeName 4*) :
     result = typeName
   case arrayController (typeName *) :
     result = typeName
@@ -144,7 +144,7 @@ func @propertyKind.isTransient() -> @bool {
   switch self
   case property (* accessibility) : result = [accessibility isTransient]
   case toMany (* accessibility 2*) : result = [accessibility isTransient]
-  case toOne (* accessibility 2*) : result = [accessibility isTransient]
+  case toOne (* accessibility 3*) : result = [accessibility isTransient]
   case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
@@ -156,7 +156,7 @@ func @propertyKind.isComparable() -> @bool {
   switch self
   case property (type *) : result = [type isComparable]
   case toMany (4*) : result = false
-  case toOne (4*) : result = false
+  case toOne (5*) : result = false
   case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
@@ -168,7 +168,7 @@ func @propertyKind.isEntityType() -> @bool {
   switch self
   case property (2*) : result = false
   case toMany (4*) : result = true
-  case toOne (4*) : result = true
+  case toOne (5*) : result = true
   case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
@@ -180,7 +180,7 @@ func @propertyKind.isEnumType() -> @bool {
   switch self
   case property (type *) : result = [type isEnumType]
   case toMany (4*) : result = false
-  case toOne (4*) : result = false
+  case toOne (5*) : result = false
   case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end

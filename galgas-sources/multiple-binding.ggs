@@ -300,7 +300,7 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
     outType = type
   case toMany (4*) :
     error [self.mProperty location] : "only an atomic property can be observed" : outType
-  case toOne (4*) :
+  case toOne (5*) :
     error [self.mProperty location] : "only an atomic property can be observed" : outType
   case arrayController (2*) :
     error [self.mProperty location] : "only an atomic property can be observed" : outType

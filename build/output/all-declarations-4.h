@@ -5662,6 +5662,200 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fileGenerationList_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @generationStruct struct
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_generationStruct : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GALGAS_validationStubRoutineListForGeneration mProperty_mValidationStubRoutineListForGeneration ;
+  public: inline GALGAS_validationStubRoutineListForGeneration readProperty_mValidationStubRoutineListForGeneration (void) const {
+    return mProperty_mValidationStubRoutineListForGeneration ;
+  }
+
+  public: GALGAS_fileGenerationList mProperty_mFileGenerationList ;
+  public: inline GALGAS_fileGenerationList readProperty_mFileGenerationList (void) const {
+    return mProperty_mFileGenerationList ;
+  }
+
+  public: GALGAS_entityListForGeneratingEBManagedObjectContext mProperty_mEntityListForGeneration ;
+  public: inline GALGAS_entityListForGeneratingEBManagedObjectContext readProperty_mEntityListForGeneration (void) const {
+    return mProperty_mEntityListForGeneration ;
+  }
+
+  public: GALGAS_bool mProperty_mGenerateEBManagedXibDocumentSwift ;
+  public: inline GALGAS_bool readProperty_mGenerateEBManagedXibDocumentSwift (void) const {
+    return mProperty_mGenerateEBManagedXibDocumentSwift ;
+  }
+
+  public: GALGAS_bool mProperty_mGenerateEBManagedAutoLayoutDocumentSwift ;
+  public: inline GALGAS_bool readProperty_mGenerateEBManagedAutoLayoutDocumentSwift (void) const {
+    return mProperty_mGenerateEBManagedAutoLayoutDocumentSwift ;
+  }
+
+  public: GALGAS_stringset mProperty_mNeededOutletClasses ;
+  public: inline GALGAS_stringset readProperty_mNeededOutletClasses (void) const {
+    return mProperty_mNeededOutletClasses ;
+  }
+
+  public: GALGAS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
+  public: inline GALGAS_mainXibDescriptorList readProperty_mMainXibDescriptorList (void) const {
+    return mProperty_mMainXibDescriptorList ;
+  }
+
+  public: GALGAS_stringset mProperty_mToOneClassImplementations ;
+  public: inline GALGAS_stringset readProperty_mToOneClassImplementations (void) const {
+    return mProperty_mToOneClassImplementations ;
+  }
+
+  public: GALGAS_stringset mProperty_mToManyClassImplementations ;
+  public: inline GALGAS_stringset readProperty_mToManyClassImplementations (void) const {
+    return mProperty_mToManyClassImplementations ;
+  }
+
+  public: GALGAS_selectionControllerForGeneration mProperty_mSelectionControllerListForGeneration ;
+  public: inline GALGAS_selectionControllerForGeneration readProperty_mSelectionControllerListForGeneration (void) const {
+    return mProperty_mSelectionControllerListForGeneration ;
+  }
+
+  public: GALGAS_stringlist mProperty_mPropertyClassList ;
+  public: inline GALGAS_stringlist readProperty_mPropertyClassList (void) const {
+    return mProperty_mPropertyClassList ;
+  }
+
+  public: GALGAS_transientExternTypeList mProperty_mTransientPropertyTypeList ;
+  public: inline GALGAS_transientExternTypeList readProperty_mTransientPropertyTypeList (void) const {
+    return mProperty_mTransientPropertyTypeList ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public: VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_generationStruct constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Default constructor
+  public: GALGAS_generationStruct (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMValidationStubRoutineListForGeneration (const GALGAS_validationStubRoutineListForGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mValidationStubRoutineListForGeneration = inValue ;
+  }
+
+  public: inline void setter_setMFileGenerationList (const GALGAS_fileGenerationList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mFileGenerationList = inValue ;
+  }
+
+  public: inline void setter_setMEntityListForGeneration (const GALGAS_entityListForGeneratingEBManagedObjectContext & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEntityListForGeneration = inValue ;
+  }
+
+  public: inline void setter_setMGenerateEBManagedXibDocumentSwift (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mGenerateEBManagedXibDocumentSwift = inValue ;
+  }
+
+  public: inline void setter_setMGenerateEBManagedAutoLayoutDocumentSwift (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mGenerateEBManagedAutoLayoutDocumentSwift = inValue ;
+  }
+
+  public: inline void setter_setMNeededOutletClasses (const GALGAS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeededOutletClasses = inValue ;
+  }
+
+  public: inline void setter_setMMainXibDescriptorList (const GALGAS_mainXibDescriptorList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMainXibDescriptorList = inValue ;
+  }
+
+  public: inline void setter_setMToOneClassImplementations (const GALGAS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mToOneClassImplementations = inValue ;
+  }
+
+  public: inline void setter_setMToManyClassImplementations (const GALGAS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mToManyClassImplementations = inValue ;
+  }
+
+  public: inline void setter_setMSelectionControllerListForGeneration (const GALGAS_selectionControllerForGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mSelectionControllerListForGeneration = inValue ;
+  }
+
+  public: inline void setter_setMPropertyClassList (const GALGAS_stringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mPropertyClassList = inValue ;
+  }
+
+  public: inline void setter_setMTransientPropertyTypeList (const GALGAS_transientExternTypeList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mTransientPropertyTypeList = inValue ;
+  }
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public: virtual ~ GALGAS_generationStruct (void) ;
+
+//--------------------------------- Native constructor
+  public: GALGAS_generationStruct (const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration,
+                                   const GALGAS_fileGenerationList & in_mFileGenerationList,
+                                   const GALGAS_entityListForGeneratingEBManagedObjectContext & in_mEntityListForGeneration,
+                                   const GALGAS_bool & in_mGenerateEBManagedXibDocumentSwift,
+                                   const GALGAS_bool & in_mGenerateEBManagedAutoLayoutDocumentSwift,
+                                   const GALGAS_stringset & in_mNeededOutletClasses,
+                                   const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
+                                   const GALGAS_stringset & in_mToOneClassImplementations,
+                                   const GALGAS_stringset & in_mToManyClassImplementations,
+                                   const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
+                                   const GALGAS_stringlist & in_mPropertyClassList,
+                                   const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_generationStruct extractObject (const GALGAS_object & inObject,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_generationStruct constructor_new (const class GALGAS_validationStubRoutineListForGeneration & inOperand0,
+                                                                const class GALGAS_fileGenerationList & inOperand1,
+                                                                const class GALGAS_entityListForGeneratingEBManagedObjectContext & inOperand2,
+                                                                const class GALGAS_bool & inOperand3,
+                                                                const class GALGAS_bool & inOperand4,
+                                                                const class GALGAS_stringset & inOperand5,
+                                                                const class GALGAS_mainXibDescriptorList & inOperand6,
+                                                                const class GALGAS_stringset & inOperand7,
+                                                                const class GALGAS_stringset & inOperand8,
+                                                                const class GALGAS_selectionControllerForGeneration & inOperand9,
+                                                                const class GALGAS_stringlist & inOperand10,
+                                                                const class GALGAS_transientExternTypeList & inOperand11
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_generationStruct & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_generationStruct class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_generationStruct ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @XCodeGroupList list
 //
 //----------------------------------------------------------------------------------------------------------------------

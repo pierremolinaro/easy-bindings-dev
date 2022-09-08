@@ -819,7 +819,8 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
   public: static class GALGAS_propertyKind constructor_toOne (const class GALGAS_lstring & inOperand0,
                                                               const class GALGAS_propertyAccessibility & inOperand1,
                                                               const class GALGAS_bool & inOperand2,
-                                                              const class GALGAS_toOneOppositeRelationship & inOperand3
+                                                              const class GALGAS_toOneOppositeRelationship & inOperand3,
+                                                              const class GALGAS_bool & inOperand4
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -856,6 +857,7 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
                                               class GALGAS_propertyAccessibility & outArgument1,
                                               class GALGAS_bool & outArgument2,
                                               class GALGAS_toOneOppositeRelationship & outArgument3,
+                                              class GALGAS_bool & outArgument4,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -890,7 +892,8 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG bool optional_toOne (class GALGAS_lstring & outOperand0,
                                                 class GALGAS_propertyAccessibility & outOperand1,
                                                 class GALGAS_bool & outOperand2,
-                                                class GALGAS_toOneOppositeRelationship & outOperand3) const ;
+                                                class GALGAS_toOneOppositeRelationship & outOperand3,
+                                                class GALGAS_bool & outOperand4) const ;
 
 
 //--------------------------------- Introspection
@@ -4844,12 +4847,14 @@ class cEnumAssociatedValues_propertyKind_toOne : public cEnumAssociatedValues {
   public: const GALGAS_propertyAccessibility mAssociatedValue1 ;
   public: const GALGAS_bool mAssociatedValue2 ;
   public: const GALGAS_toOneOppositeRelationship mAssociatedValue3 ;
+  public: const GALGAS_bool mAssociatedValue4 ;
 
 //--- Constructor
   public: cEnumAssociatedValues_propertyKind_toOne (const GALGAS_lstring inAssociatedValue0,
                                                     const GALGAS_propertyAccessibility inAssociatedValue1,
                                                     const GALGAS_bool inAssociatedValue2,
-                                                    const GALGAS_toOneOppositeRelationship inAssociatedValue3
+                                                    const GALGAS_toOneOppositeRelationship inAssociatedValue3,
+                                                    const GALGAS_bool inAssociatedValue4
                                                     COMMA_LOCATION_ARGS) ;
 
   public: virtual void description (C_String & ioString,

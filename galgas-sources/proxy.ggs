@@ -131,7 +131,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase(
       error self.mToOneRelationshipName : "a toOne relationship is required here"
     case toMany (4*) :
       error self.mToOneRelationshipName : "a toOne relationship is required here"
-    case toOne (toOneTypeName 3*) :
+    case toOne (toOneTypeName 4*) :
       [ioSemanticContext.mClassMap searchKey !toOneTypeName ?* ?let propertyMap ?2*]
       [propertyMap searchKey !self.mPropertyName ?let propertyKind ?2*]
       switch propertyKind
@@ -158,7 +158,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase(
         if self.mProxyKind != .toManyProxy then
           error self.mPropertyName : "this property is not atomic"
         end
-      case toOne (4*) :
+      case toOne (5*) :
         switch self.mProxyKind
         case propertyProxy :
           error self.mPropertyName : "an atomic property is required here"

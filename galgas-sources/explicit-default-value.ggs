@@ -382,7 +382,7 @@ override proc @prefsAsDefaultValue.analyzeDefaultValueType (
     end
   case toMany (4*) :
     error self.mPrefPropertyName : "an atomic property is required here"
-  case toOne (4*) :
+  case toOne (5*) :
     error self.mPrefPropertyName : "an atomic property is required here"
   case arrayController (2*) :
     error self.mPrefPropertyName : "an atomic property is required here"
