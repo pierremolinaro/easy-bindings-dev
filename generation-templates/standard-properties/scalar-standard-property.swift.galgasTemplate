@@ -26,7 +26,8 @@ end
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_%!TYPE%_properties (_ inLeft : EBReadOnlyProperty_%!TYPE%, _ inAscending : Bool, _ inRight : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
+@MainActor func compare_%!TYPE%_properties (_ inLeft : EBReadOnlyProperty_%!TYPE%, _ inAscending : Bool,
+                                            _ inRight : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
   let left  = inAscending ? inLeft  : inRight
   let right = inAscending ? inRight : inLeft
   switch left.selection {

@@ -2045,7 +2045,7 @@ override func @computedHorizontalViewGeneration.generate (
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
     result += [instruction generate !prefs: inPreferences !name !"    "]
-    result += "    hStackView.appendView (" + name + ")\n"
+    result += "    _ = hStackView.appendView (" + name + ")\n"
   end
   result += "    return hStackView\n"
   result += "  } ()\n\n"
@@ -2062,7 +2062,7 @@ override func @computedVerticalViewGeneration.generate(
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
     result += [instruction generate !prefs: inPreferences !name !"    "]
-    result += "    vStackView.appendView (" + name + ")\n"
+    result += "    _ = vStackView.appendView (" + name + ")\n"
   end
   result += "    return vStackView\n"
   result += "  } ()\n\n"
@@ -2173,7 +2173,7 @@ override func @hStackViewInstructionGeneration.generate(
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
      result += [instruction generate !prefs: inPreferences !name !indentation]
-     result += indentation + inName + ".appendView (" + name + ")\n"
+     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
 }
@@ -2194,7 +2194,7 @@ override func @hSplitViewInstructionGeneration.generate(
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
      result += [instruction generate !prefs: inPreferences !name !indentation]
-     result += indentation + inName + ".appendView (" + name + ")\n"
+     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
 }
@@ -2215,7 +2215,7 @@ override func @vSplitViewInstructionGeneration.generate(
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
      result += [instruction generate !prefs: inPreferences !name !indentation]
-     result += indentation + inName + ".appendView (" + name + ")\n"
+     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
 }
@@ -2236,7 +2236,7 @@ override func @vStackViewInstructionGeneration.generate(
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
      result += [instruction generate !prefs: inPreferences !name !indentation]
-     result += indentation + inName + ".appendView (" + name + ")\n"
+     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
 }

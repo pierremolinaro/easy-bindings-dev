@@ -244,15 +244,13 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration.propertyDeclarationCode(
-   ?let @bool inPreferences
-   ?let @stringset unused inOverriddenTransients) -> @string
-{
+override func @arrayControllerPropertyGeneration.propertyDeclarationCode (?let @bool inPreferences
+                                                            ?let @stringset unused inOverriddenTransients) -> @string {
   if inPreferences then
     result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
     result += "//   Array controller: " + self.mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-    result += "  var preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
+    result += "@MainAction let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"

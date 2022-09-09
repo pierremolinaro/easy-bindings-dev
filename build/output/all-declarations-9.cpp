@@ -9,6 +9,26 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Overriding extension getter '@toManyPropertyGeneration objectAccessibilityCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string cPtr_toManyPropertyGeneration::getter_objectAccessibilityCode (C_Compiler * inCompiler
+                                                                             COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_string result_result ; // Returned variable
+  const GALGAS_toManyPropertyGeneration temp_0 = this ;
+  result_result = GALGAS_string ("  //--- To many property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 317)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 317)) ;
+  const GALGAS_toManyPropertyGeneration temp_1 = this ;
+  result_result.plusAssign_operation(GALGAS_string ("    for managedObject in self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 318)).add_operation (GALGAS_string (".values {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 318)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 318)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      objects.append (managedObject)\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 319)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 320)) ;
+//---
+  return result_result ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Overriding extension getter '@toManyPropertyGeneration objectAccessibilityCodeForSaveOperation'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -1259,29 +1279,29 @@ GALGAS_string cPtr_arrayControllerPropertyGeneration::getter_propertyDeclaration
   if (kBoolTrue == test_0) {
     test_0 = constinArgument_inPreferences.boolEnum () ;
     if (kBoolTrue == test_0) {
-      result_result = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("array-controller.ggs", 252)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 252)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 252)) ;
+      result_result = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("array-controller.ggs", 250)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 250)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 250)) ;
       const GALGAS_arrayControllerPropertyGeneration temp_1 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("//   Array controller: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 253)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 253)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 253)) ;
-      result_result.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("array-controller.ggs", 254)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 254)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 254)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 254)) ;
+      result_result.plusAssign_operation(GALGAS_string ("//   Array controller: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 251)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 251)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 251)) ;
+      result_result.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("array-controller.ggs", 252)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 252)).add_operation (GALGAS_string ("\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 252)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 252)) ;
       const GALGAS_arrayControllerPropertyGeneration temp_2 = this ;
       const GALGAS_arrayControllerPropertyGeneration temp_3 = this ;
       const GALGAS_arrayControllerPropertyGeneration temp_4 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("  var preferences_").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 255)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 255)).add_operation (temp_3.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 255)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 255)).add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 255)).add_operation (GALGAS_string (" ()\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 255)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 255)) ;
+      result_result.plusAssign_operation(GALGAS_string ("@MainAction let preferences_").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 253)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 253)).add_operation (temp_3.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 253)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 253)).add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 253)).add_operation (GALGAS_string (" ()\n"
+        "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 253)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 253)) ;
     }
   }
   if (kBoolFalse == test_0) {
-    result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("array-controller.ggs", 257)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 257)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 257)) ;
+    result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("array-controller.ggs", 255)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 255)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 255)) ;
     const GALGAS_arrayControllerPropertyGeneration temp_5 = this ;
-    result_result.plusAssign_operation(GALGAS_string ("  //   Array controller: ").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 258)) ;
-    result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("array-controller.ggs", 259)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 259)).add_operation (GALGAS_string ("\n"
-      "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 259)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 259)) ;
+    result_result.plusAssign_operation(GALGAS_string ("  //   Array controller: ").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 256)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 256)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 256)) ;
+    result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("array-controller.ggs", 257)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 257)).add_operation (GALGAS_string ("\n"
+      "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 257)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 257)) ;
     const GALGAS_arrayControllerPropertyGeneration temp_6 = this ;
     const GALGAS_arrayControllerPropertyGeneration temp_7 = this ;
     const GALGAS_arrayControllerPropertyGeneration temp_8 = this ;
-    result_result.plusAssign_operation(GALGAS_string ("  final var ").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (temp_7.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (GALGAS_string (" ()\n"
-      "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 260)) ;
+    result_result.plusAssign_operation(GALGAS_string ("  final var ").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)).add_operation (temp_7.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)).add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)).add_operation (GALGAS_string (" ()\n"
+      "\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 258)) ;
   }
 //---
   return result_result ;
@@ -1314,10 +1334,10 @@ GALGAS_string cPtr_arrayControllerPropertyGeneration::getter_configurationCode (
                                                                                 COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
   const GALGAS_arrayControllerPropertyGeneration temp_0 = this ;
-  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 273)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 273)) ;
+  result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 271)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 271)) ;
   const GALGAS_arrayControllerPropertyGeneration temp_1 = this ;
   const GALGAS_arrayControllerPropertyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 274)).add_operation (GALGAS_string (".bind_model (self."), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 274)).add_operation (temp_2.readProperty_mModelString (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 274)).add_operation (GALGAS_string ("_property, self.ebUndoManager)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 274)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 274)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 272)).add_operation (GALGAS_string (".bind_model (self."), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 272)).add_operation (temp_2.readProperty_mModelString (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 272)).add_operation (GALGAS_string ("_property, self.ebUndoManager)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 272)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 272)) ;
 //---
   return result_result ;
 }
@@ -1333,10 +1353,10 @@ GALGAS_string cPtr_arrayControllerPropertyGeneration::getter_populateExplorerWin
                                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
   const GALGAS_arrayControllerPropertyGeneration temp_0 = this ;
-  result_result = GALGAS_string ("    //--- Array controller property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 280)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 280)) ;
+  result_result = GALGAS_string ("    //--- Array controller property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 278)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 278)) ;
   const GALGAS_arrayControllerPropertyGeneration temp_1 = this ;
   const GALGAS_arrayControllerPropertyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 281)).add_operation (GALGAS_string (".addExplorer (name: \""), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 281)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 281)).add_operation (GALGAS_string ("\", y:&y, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 281)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 281)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      self.").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 279)).add_operation (GALGAS_string (".addExplorer (name: \""), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 279)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 279)).add_operation (GALGAS_string ("\", y:&y, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 279)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 279)) ;
 //---
   return result_result ;
 }
@@ -2657,11 +2677,11 @@ void cPtr_arrayControllerGeneration::method_generateCode (const GALGAS_string co
   const GALGAS_arrayControllerGeneration temp_3 = this ;
   const GALGAS_arrayControllerGeneration temp_4 = this ;
   const GALGAS_arrayControllerGeneration temp_5 = this ;
-  GALGAS_string var_s_13498 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, temp_0.readProperty_mOwnerName (), temp_1.readProperty_mControllerName ().readProperty_string (), temp_2.readProperty_mArrayControllerModelKind (), temp_3.readProperty_mModelTypeName (), temp_4.readProperty_mElementTypeName (), temp_5.readProperty_mElementTypeIsGraphic () COMMA_SOURCE_FILE ("array-controller.ggs", 329))) ;
+  GALGAS_string var_s_13562 = GALGAS_string (filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (inCompiler, temp_0.readProperty_mOwnerName (), temp_1.readProperty_mControllerName ().readProperty_string (), temp_2.readProperty_mArrayControllerModelKind (), temp_3.readProperty_mModelTypeName (), temp_4.readProperty_mElementTypeName (), temp_5.readProperty_mElementTypeIsGraphic () COMMA_SOURCE_FILE ("array-controller.ggs", 327))) ;
   {
   const GALGAS_arrayControllerGeneration temp_6 = this ;
   const GALGAS_arrayControllerGeneration temp_7 = this ;
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-array-").add_operation (temp_6.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 339)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 339)).add_operation (temp_7.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 339)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 339)), var_s_13498, inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 337)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-array-").add_operation (temp_6.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 337)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 337)).add_operation (temp_7.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 337)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 337)), var_s_13562, inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 335)) ;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -3204,13 +3224,13 @@ GALGAS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_prope
     if (kBoolTrue == test_0) {
       result_result = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 416)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 416)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 416)) ;
       const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_1 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("//   Array controller: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 417)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 417)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 417)) ;
+      result_result.plusAssign_operation(GALGAS_string ("//   Table View controller: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 417)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 417)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 417)) ;
       result_result.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 418)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 418)).add_operation (GALGAS_string ("\n"
         "\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 418)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 418)) ;
       const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_2 = this ;
       const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_3 = this ;
       const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_4 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("  var preferences_").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (temp_3.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (GALGAS_string (" ()\n"
+      result_result.plusAssign_operation(GALGAS_string ("@MainActor let preferences_").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (GALGAS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (temp_3.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (GALGAS_string ("_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)).add_operation (GALGAS_string (" ()\n"
         "\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 419)) ;
     }
   }
@@ -3248,12 +3268,12 @@ GALGAS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_confi
   }else if (kBoolFalse == test_1) {
     temp_0 = GALGAS_string ("self.") ;
   }
-  GALGAS_string var_prefix_17491 = temp_0 ;
+  GALGAS_string var_prefix_17505 = temp_0 ;
   const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_2 = this ;
   result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 432)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 432)) ;
   const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_3 = this ;
   const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_4 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_17491, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (GALGAS_string (".bind_model ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (var_prefix_17491, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (temp_4.readProperty_mModelString (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (GALGAS_string ("_property, self.ebUndoManager)\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_17505, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (GALGAS_string (".bind_model ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (var_prefix_17505, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (temp_4.readProperty_mModelString (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (GALGAS_string ("_property, self.ebUndoManager)\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)) ;
 //---
   return result_result ;
 }
@@ -3968,12 +3988,12 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCode (const GA
                                                                         GALGAS_stringset & /* ioArgument_ioGeneratedFileSet */,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset var_observedProperties_21848 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 523)) ;
+  GALGAS_stringset var_observedProperties_21862 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 523)) ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_0 = this ;
-  cEnumerator_autoLayoutTableViewControllerSortedColumnListForGeneration enumerator_21894 (temp_0.readProperty_mTableViewControllerSortedColumnListForGeneration (), kENUMERATION_UP) ;
-  while (enumerator_21894.hasCurrentObject ()) {
-    var_observedProperties_21848.addAssign_operation (enumerator_21894.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 525)) ;
-    enumerator_21894.gotoNextObject () ;
+  cEnumerator_autoLayoutTableViewControllerSortedColumnListForGeneration enumerator_21908 (temp_0.readProperty_mTableViewControllerSortedColumnListForGeneration (), kENUMERATION_UP) ;
+  while (enumerator_21908.hasCurrentObject ()) {
+    var_observedProperties_21862.addAssign_operation (enumerator_21908.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 525)) ;
+    enumerator_21908.gotoNextObject () ;
   }
   const GALGAS_autoLayoutTableViewControllerGeneration temp_1 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_2 = this ;
@@ -3984,11 +4004,11 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCode (const GA
   const GALGAS_autoLayoutTableViewControllerGeneration temp_7 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_8 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_9 = this ;
-  GALGAS_string var_s_22027 = GALGAS_string (filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (inCompiler, temp_1.readProperty_mOwnerName (), temp_2.readProperty_mControllerName ().readProperty_string (), temp_3.readProperty_mModelString (), temp_4.readProperty_mTableViewControllerModelKind (), temp_5.readProperty_mModelTypeName (), temp_6.readProperty_mTableViewControllerBoundColumnListForGeneration (), temp_7.readProperty_mTableViewControllerSortedColumnListForGeneration (), temp_8.readProperty_mElementTypeName (), var_observedProperties_21848, temp_9.readProperty_mAttributeListForGeneration () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 527))) ;
+  GALGAS_string var_s_22041 = GALGAS_string (filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (inCompiler, temp_1.readProperty_mOwnerName (), temp_2.readProperty_mControllerName ().readProperty_string (), temp_3.readProperty_mModelString (), temp_4.readProperty_mTableViewControllerModelKind (), temp_5.readProperty_mModelTypeName (), temp_6.readProperty_mTableViewControllerBoundColumnListForGeneration (), temp_7.readProperty_mTableViewControllerSortedColumnListForGeneration (), temp_8.readProperty_mElementTypeName (), var_observedProperties_21862, temp_9.readProperty_mAttributeListForGeneration () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 527))) ;
   {
   const GALGAS_autoLayoutTableViewControllerGeneration temp_10 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_11 = this ;
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-table-view-").add_operation (temp_10.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (temp_11.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)), var_s_22027, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-table-view-").add_operation (temp_10.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (temp_11.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 541)), var_s_22041, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)) ;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -5784,11 +5804,12 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
       "\n"
       "//\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\xE2""\x80""\x94""\n"
       "\n"
-      "func compare_" ;
+      "@MainActor func compare_" ;
     result << in_TYPE.stringValue () ;
     result << "_properties (_ inLeft : EBReadOnlyProperty_" ;
     result << in_TYPE.stringValue () ;
-    result << ", _ inAscending : Bool, _ inRight : EBReadOnlyProperty_" ;
+    result << ", _ inAscending : Bool,\n"
+      "                                            _ inRight : EBReadOnlyProperty_" ;
     result << in_TYPE.stringValue () ;
     result << ") -> ComparisonResult {\n"
       "  let left  = inAscending \? inLeft  : inRight\n"

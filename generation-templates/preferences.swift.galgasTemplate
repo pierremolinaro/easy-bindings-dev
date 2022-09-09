@@ -98,6 +98,7 @@ end
 
   //····················································································································
   // The preferences window should register this object as delegate (do it in Interface Builder)
+  //····················································································································
 
   @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager? {
     return self.ebUndoManager

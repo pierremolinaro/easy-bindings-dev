@@ -414,9 +414,9 @@ override func @autoLayoutTableViewControllerPropertyGeneration.propertyDeclarati
 {
   if inPreferences then
     result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
-    result += "//   Array controller: " + self.mPropertyName + "\n"
+    result += "//   Table View controller: " + self.mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-    result += "  var preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
+    result += "@MainActor let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
