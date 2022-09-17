@@ -91,7 +91,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
     if !self.mObserversOf_%!mProperty.mPropertyName%.isEmpty {
       for managedObject in inSet.values {
         for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-          if let observer = entry.observer {
+          if let observer = entry.possibleObserver {
             managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
           }else{
             self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -105,7 +105,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-      if let observer = entry.observer {
+      if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
           managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
@@ -160,7 +160,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-        if let observer = entry.observer {
+        if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -173,7 +173,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-      if let observer = entry.observer {
+      if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
           managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
@@ -228,7 +228,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-        if let observer = entry.observer {
+        if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -241,7 +241,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
 
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-      if let observer = entry.observer {
+      if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
           managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
@@ -296,7 +296,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-        if let observer = entry.observer {
+        if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -310,7 +310,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-        if let observer = entry.observer {
+        if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -363,7 +363,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-        if let observer = entry.observer {
+        if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -377,7 +377,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
-        if let observer = entry.observer {
+        if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()

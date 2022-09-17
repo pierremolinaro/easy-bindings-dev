@@ -2133,7 +2133,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "      var newObjects = [" ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << "] ()\n"
-      "      var userSet = EBReferenceSet <AnyObject> ()\n"
+      "      var userSet = EBReferenceSet <EBManagedObject> ()\n"
       "      var idx = -1\n"
       "      var errorMessage = \"\"\n"
       "      for dictionary in dictionaryArray {\n"
@@ -2460,7 +2460,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "\n"
       "  func rotate90Clockwise () {\n"
       "    let r = CanariRect (points: Array (self.mRotate90PointSet))\n"
-      "    var userSet = EBReferenceSet <AnyObject> ()\n"
+      "    var userSet = EBReferenceSet <EBManagedObject> ()\n"
       "    for object in self.selectedArray.values {\n"
       "      object.rotate90Clockwise (from: r.center, userSet: &userSet)\n"
       "    }\n"
@@ -2470,7 +2470,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "\n"
       "  func rotate90CounterClockwise () {\n"
       "    let r = CanariRect (points: Array (self.mRotate90PointSet))\n"
-      "    var userSet = EBReferenceSet <AnyObject> ()\n"
+      "    var userSet = EBReferenceSet <EBManagedObject> ()\n"
       "    for object in self.selectedArray.values {\n"
       "      object.rotate90CounterClockwise (from: r.center, userSet: &userSet)\n"
       "    }\n"

@@ -662,7 +662,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
            let X = dataDictionary [X_KEY] as? Int,
            let Y = dataDictionary [Y_KEY] as? Int {
       var newObjects = [%!ELEMENT_TYPE_NAME%] ()
-      var userSet = EBReferenceSet <AnyObject> ()
+      var userSet = EBReferenceSet <EBManagedObject> ()
       var idx = -1
       var errorMessage = ""
       for dictionary in dictionaryArray {
@@ -985,7 +985,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   func rotate90Clockwise () {
     let r = CanariRect (points: Array (self.mRotate90PointSet))
-    var userSet = EBReferenceSet <AnyObject> ()
+    var userSet = EBReferenceSet <EBManagedObject> ()
     for object in self.selectedArray.values {
       object.rotate90Clockwise (from: r.center, userSet: &userSet)
     }
@@ -995,7 +995,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
 
   func rotate90CounterClockwise () {
     let r = CanariRect (points: Array (self.mRotate90PointSet))
-    var userSet = EBReferenceSet <AnyObject> ()
+    var userSet = EBReferenceSet <EBManagedObject> ()
     for object in self.selectedArray.values {
       object.rotate90CounterClockwise (from: r.center, userSet: &userSet)
     }
