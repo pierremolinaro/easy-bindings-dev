@@ -23,8 +23,8 @@ end
   //    Undo manager
   //····················································································································
 
-  private weak var mUndoManager : EBUndoManager? = nil // SHOULD BE WEAK
-  var ebUndoManager : EBUndoManager? { return self.mUndoManager }
+  private weak var mUndoManager : UndoManager? = nil // SHOULD BE WEAK
+  var undoManager : UndoManager? { return self.mUndoManager }
 
   //····················································································································
   //   Sorted Array
@@ -54,7 +54,7 @@ end
 
   //····················································································································
 
-  final func bind_model (_ inModel : %!MODEL_TYPE_NAME%, _ inUndoManager : EBUndoManager) {
+  final func bind_model (_ inModel : %!MODEL_TYPE_NAME%, _ inUndoManager : UndoManager?) {
     self.mModel = inModel
     self.mUndoManager = inUndoManager
     self.sortedArray_property.setDataProvider (
@@ -95,11 +95,11 @@ if [SORTED_COLUMNS length] > 0 then
 %
   //····················································································································
 
-  final func unbind_model () {
+  /* final func unbind_model () {
     self.sortedArray_property.resetDataProvider ()
     self.mModel = nil
     self.mUndoManager = nil
- }
+  } */
 
   //····················································································································
   //   Selected Array
@@ -140,13 +140,6 @@ if [SORTED_COLUMNS length] > 0 then
 
   func setSelection (_ inObjects : [%!ELEMENT_TYPE_NAME%]) {
     self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObjects))
-  }
-
-  //····················································································································
-  //    Explorer
-  //····················································································································
-
-  final func addExplorer (name : String, y : inout CGFloat, view : NSView) {
   }
 
   //····················································································································
@@ -354,7 +347,7 @@ case entityArray :
       case .empty, .multiple :
         ()
       case .single (let v) :
-        let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
+        let newObject = %!ELEMENT_TYPE_NAME% (self.undoManager)
         var array = EBReferenceArray (v)
         array.append (newObject)
         model.setProp (array)

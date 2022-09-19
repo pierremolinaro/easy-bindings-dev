@@ -43,7 +43,7 @@ end
   //   UNBIND SELECTION
   //····················································································································
 
-  final func unbind_selection () {
+  /* final func unbind_selection () {
 %
   for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
     if not [mKind isEntityType] then
@@ -57,7 +57,7 @@ end
   end
 %  //---
     self.mModel = nil
-  }
+  } */
 
 %for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mKind isEntityType] then

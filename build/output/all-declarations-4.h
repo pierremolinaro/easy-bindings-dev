@@ -5157,16 +5157,6 @@ class GALGAS_string callExtensionGetter_saveIntoDictionaryCode (const cPtr_prope
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyGeneration objectAccessibilityCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string callExtensionGetter_objectAccessibilityCode (const cPtr_propertyGeneration * inObject,
-                                                                 class C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Extension getter '@propertyGeneration objectAccessibilityCodeForSaveOperation'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -5184,16 +5174,6 @@ class GALGAS_string callExtensionGetter_objectAccessibilityCodeForSaveOperation 
 class GALGAS_string callExtensionGetter_populateExplorerWindowCode (const cPtr_propertyGeneration * inObject,
                                                                     class C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyGeneration clearObjectExplorerCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_string callExtensionGetter_clearObjectExplorerCode (const cPtr_propertyGeneration * inObject,
-                                                                 class C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //

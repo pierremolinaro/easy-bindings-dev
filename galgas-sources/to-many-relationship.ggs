@@ -256,15 +256,16 @@ override func @toManyPropertyGeneration.prefKeyDefinitionCode() -> @string {
 
 override func @toManyPropertyGeneration.configurationCode (?let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
+  let undoManager = if inPreferences then "self.undoManager" else "inUndoManager" end
   switch self.mOption
   case none :
     result  = "  //--- To many property: " + self.mPropertyName + " (no option)\n"
-    result += "    " + prefix + self.mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    " + prefix + self.mPropertyName + "_property.undoManager = " + undoManager + "\n"
   case hasDependance (2*) :
     result = ""
   case hasOpposite (@string oppositeName) :
     result  = "  //--- To many property: " + self.mPropertyName + " (has opposite relationship)\n"
-    result += "    " + prefix + self.mPropertyName + "_property.ebUndoManager = self.ebUndoManager\n"
+    result += "    " + prefix + self.mPropertyName + "_property.undoManager = " + undoManager + "\n"
     result += "    " + prefix + self.mPropertyName + "_property.setOppositeRelationShipFunctions (\n"
     result += "      setter: { [weak self] inObject in if let me = self { inObject." + oppositeName + "_property.setProp (me) } },\n"
     result += "      resetter: { inObject in inObject." + oppositeName + "_property.setProp (nil) }\n"
@@ -279,7 +280,7 @@ override func @toManyPropertyGeneration.setupRelationshipFromDictionaryCode() ->
     result = ""
   elsif self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (Custom store)\n"
-    result += "    self." + self.mPropertyName + "_property.setProp (EBReferenceArray (customRead_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (from: inDictionary, with: self.ebUndoManager)))\n"
+    result += "    self." + self.mPropertyName + "_property.setProp (EBReferenceArray (customRead_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (from: inDictionary, with: self.undoManager)))\n"
   else
     result  = "  //--- To many property: " + self.mPropertyName + "\n"
     result += "    do{\n"
@@ -313,14 +314,6 @@ override func @toManyPropertyGeneration.saveIntoDictionaryCode() -> @string {
 
 #·······················································································································
 
-override func @toManyPropertyGeneration.objectAccessibilityCode() -> @string {
-  result  = "  //--- To many property: " + self.mPropertyName + "\n"
-  result += "    for managedObject in self." + self.mPropertyName + ".values {\n"
-  result += "      objects.append (managedObject)\n"
-  result += "    }\n"
-}
-#·······················································································································
-
 override func @toManyPropertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string {
   if self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (custom store)\n"
@@ -337,14 +330,14 @@ override func @toManyPropertyGeneration.objectAccessibilityCodeForSaveOperation(
 
 #·······················································································································
 
-override func @toManyPropertyGeneration.clearObjectExplorerCode() -> @string {
-  if [self.mOption isHasDependance] then
-    result = ""
-  else
-    result  = "    //--- To many property: " + self.mPropertyName + "\n"
-    result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
-  end
-}
+#override func @toManyPropertyGeneration.clearObjectExplorerCode () -> @string {
+#  if [self.mOption isHasDependance] then
+#    result = ""
+#  else
+#    result  = "    //--- To many property: " + self.mPropertyName + "\n"
+#    result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
+#  end
+#}
 
 #·······················································································································
 

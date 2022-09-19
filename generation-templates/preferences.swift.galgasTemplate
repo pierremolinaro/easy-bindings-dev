@@ -94,14 +94,14 @@ end
 
   //····················································································································
 
-  var ebUndoManager : EBUndoManager { return self.mUndoManager }
+  var undoManager : UndoManager { return self.mUndoManager }
 
   //····················································································································
   // The preferences window should register this object as delegate (do it in Interface Builder)
   //····················································································································
 
   @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager? {
-    return self.ebUndoManager
+    return self.undoManager
   }
 
   //····················································································································
@@ -117,11 +117,11 @@ for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !true]
 end
 %  //--- Notify application will terminate
-    NotificationCenter.default.addObserver (self,
+    /* NotificationCenter.default.addObserver (self,
       selector:#selector(Preferences.applicationWillTerminateAction(_:)),
       name:NSApplication.willTerminateNotification,
       object:nil
-    )
+    ) */
   //--- Extern functions
 %
   for (mExternSwiftFunctionName mCallerName) in EXTERN_SWIFT_FUNCTION_LIST do
@@ -192,21 +192,6 @@ end
       %    self.%!mExternSwiftFunctionName.string% ()\n%
     end
   end
-%  }
-
-  //····················································································································
-  //    applicationWillTerminateAction
-  //····················································································································
-
-  @objc func applicationWillTerminateAction (_ : NSNotification) {
-  //--------------------------- Array controller
-%
-for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    preferences_%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
-end
-for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %    preferences_%!mArrayControllerControllerName%.unbind_ebView (preferences_%!mEBViewOutletName%)\n%
-end
 %  }
 
   //····················································································································

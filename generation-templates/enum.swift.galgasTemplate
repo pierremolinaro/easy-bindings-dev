@@ -12,18 +12,6 @@ for (mValue) in CONSTANT_ORDERED_LIST do (idx)
    %  case %!mValue.string% = %![idx string]%\n%
 end
 %
-
-  //····················································································································
-
-  func descriptionForExplorer () -> String {
-    switch self {
-%
-for (mValue) in CONSTANT_ORDERED_LIST do (idx)
-   %      case .%!mValue.string% : return "%!mValue.string%" // %![idx string]%\n%
-end
-%    }
-  }
-
 %
 for (lkey mAssociationSortedList) in FUNCTION_MAP do
 %  //····················································································································\n%

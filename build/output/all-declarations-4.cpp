@@ -9145,34 +9145,6 @@ GALGAS_string callExtensionGetter_saveIntoDictionaryCode (const cPtr_propertyGen
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyGeneration objectAccessibilityCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_propertyGeneration::getter_objectAccessibilityCode (C_Compiler */* inCompiler */
-                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string::makeEmptyString () ;
-//---
-  return result_result ;
-}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string callExtensionGetter_objectAccessibilityCode (const cPtr_propertyGeneration * inObject,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
-  GALGAS_string result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_objectAccessibilityCode (inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Extension getter '@propertyGeneration objectAccessibilityCodeForSaveOperation'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -9223,34 +9195,6 @@ GALGAS_string callExtensionGetter_populateExplorerWindowCode (const cPtr_propert
   GALGAS_string result ;
   if (nullptr != inObject) {
     result = inObject->getter_populateExplorerWindowCode (inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyGeneration clearObjectExplorerCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_propertyGeneration::getter_clearObjectExplorerCode (C_Compiler */* inCompiler */
-                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string::makeEmptyString () ;
-//---
-  return result_result ;
-}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string callExtensionGetter_clearObjectExplorerCode (const cPtr_propertyGeneration * inObject,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
-  GALGAS_string result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_clearObjectExplorerCode (inCompiler COMMA_THERE) ;
   }
   return result ;
 }

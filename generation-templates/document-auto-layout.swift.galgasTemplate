@@ -6,8 +6,8 @@ import Cocoa
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@objc(%!DOCUMENT_CLASS_NAME%) class %!DOCUMENT_CLASS_NAME% : %!DOCUMENT_SUPER_CLASS_NAME%, NSToolbarDelegate {
-
+@objc(%!DOCUMENT_CLASS_NAME%) class %!DOCUMENT_CLASS_NAME% : %!DOCUMENT_SUPER_CLASS_NAME% {
+  
 %
 for (mProperty) in DOCUMENT_PROPERTY_LIST do
   ![mProperty propertyDeclarationCode !false ![@stringset emptySet]]
@@ -129,33 +129,6 @@ for (mProperty) in DOCUMENT_PROPERTY_LIST do
 %end
 %  }
 
-  //····················································································································
-  //   removeUserInterface
-  //····················································································································
-
-/*  override func removeUserInterface () { //a
-    super.removeUserInterface ()
-%
-for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
-  %    self.%!mOutletName%?.unbind_%!mBindingName% ()\n%
-end
-for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    self.%!mTableValueBindingControllerName%.unbind_tableView (self.%!mTableValueBindingOutletName%)\n%
-end
-for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %    self.%!mArrayControllerControllerName%.unbind_ebView (self.%!mEBViewOutletName%)\n%
-end
-for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
-%    self.%!mOutletName%?.target = nil\n%
-end
-for (lkey mOutletTypeName) in OUTLET_GENERATION_MAP do
-   %    self.%!lkey.string%?.ebCleanUp ()\n%
-end
-for (lkey mOutletTypeName) in OUTLET_GENERATION_MAP do
-   %    self.%!lkey.string% = nil\n%
-end
-%  }
-*/
   //····················································································································
 
 }

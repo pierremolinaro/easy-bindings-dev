@@ -18,8 +18,8 @@ end
   //    Undo manager
   //····················································································································
 
-  private weak var mUndoManager : EBUndoManager? = nil // SHOULD BE WEAK
-  var ebUndoManager : EBUndoManager? { return self.mUndoManager }
+  private weak var mUndoManager : UndoManager? = nil // SHOULD BE WEAK
+  var undoManager : UndoManager? { return self.mUndoManager }
 
   //····················································································································
   // Model
@@ -172,7 +172,7 @@ end
 
   //····················································································································
 
-  final func bind_model (_ inModel : %!MODEL_TYPE_NAME%, _ inUndoManager : EBUndoManager?) {
+  final func bind_model (_ inModel : %!MODEL_TYPE_NAME%, _ inUndoManager : UndoManager?) {
     self.mModel = inModel
     self.mUndoManager = inUndoManager
     inModel.attachClient (self)
@@ -194,7 +194,7 @@ end
     self.selectedSet = EBReferenceSet ()
     self.mModel = nil
     self.mUndoManager = nil
- }
+  }
 
   //····················································································································
 
@@ -403,21 +403,14 @@ end
 
   //····················································································································
 
-  final func unbind_ebView (_ inEBView : EBGraphicView?) {
+  /* final func unbind_ebView (_ inEBView : EBGraphicView?) {
     if let ebView = inEBView {
       ebView.updateObjectDisplay ([])
       ebView.updateSelectionShape ([])
       self.mEBGraphicViews.remove (ebView)
     }
-  }
+  } */
 %end%
-  //····················································································································
-  //    Explorer
-  //····················································································································
-
-  final func addExplorer (name : String, y : inout CGFloat, view : NSView) {
-  }
-
   //····················································································································
 
   func selectedObjectIndexSet () -> NSIndexSet {
@@ -463,7 +456,7 @@ case entityArray :
       case .empty, .multiple :
         break
       case .single (let v) :
-        let newObject = %!ELEMENT_TYPE_NAME% (self.ebUndoManager)
+        let newObject = %!ELEMENT_TYPE_NAME% (self.undoManager)
         var array = EBReferenceArray (v)
         array.append (newObject)
       //--- New object is the selection
@@ -667,7 +660,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       var errorMessage = ""
       for dictionary in dictionaryArray {
         idx += 1
-        if let object = makeManagedObjectFromDictionary (self.ebUndoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
+        if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
           if errorMessage.isEmpty {
             errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx],
                                                          optionalDocument: self.document,
@@ -687,7 +680,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
       }else{
          let alert = NSAlert ()
          alert.messageText = errorMessage
-         alert.addButton (withTitle: "Ok")
+         _ = alert.addButton (withTitle: "Ok")
          alert.beginSheetModal (for: inWindow) { (inReturnCode : NSApplication.ModalResponse) in }
       }
     }

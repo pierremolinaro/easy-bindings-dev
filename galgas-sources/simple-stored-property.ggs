@@ -266,7 +266,7 @@ override func @atomicPropertyGeneration.propertyDeclarationCode(
 
 override func @atomicPropertyGeneration.initCode() -> @string {
   result  = "    self." + self.mPropertyName + "_property = EBStoredProperty_" + [self.mType swiftTypeName]
-  result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: ebUndoManager)\n"
+  result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: inUndoManager)\n"
 }
 
 #·······················································································································
@@ -297,10 +297,10 @@ override func @atomicPropertyGeneration.saveIntoDictionaryCode() -> @string {
 
 #·······················································································································
 
-override func @atomicPropertyGeneration.clearObjectExplorerCode() -> @string {
-  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
-  result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
-}
+#override func @atomicPropertyGeneration.clearObjectExplorerCode() -> @string {
+#  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
+#  result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
+#  result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
+#}
 
 #-----------------------------------------------------------------------------------------------------------------------

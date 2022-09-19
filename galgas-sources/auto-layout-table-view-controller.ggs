@@ -430,7 +430,7 @@ override func @autoLayoutTableViewControllerPropertyGeneration.propertyDeclarati
 override func @autoLayoutTableViewControllerPropertyGeneration.configurationCode (?let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
-  result += "    " + prefix + self.mPropertyName + ".bind_model (" + prefix + self.mModelString + "_property, self.ebUndoManager)\n"
+  result += "    " + prefix + self.mPropertyName + ".bind_model (" + prefix + self.mModelString + "_property, self.undoManager)\n"
 }
 
 #·······················································································································

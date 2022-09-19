@@ -2472,9 +2472,6 @@ class cPtr_toManyProxyGeneration : public cPtr_propertyGeneration {
 //--- Extension getter bindPropertyInSelectionController
   public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter clearObjectExplorerCode
-  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Extension getter configurationCode
   public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -2862,9 +2859,6 @@ class cPtr_atomicProxyGeneration : public cPtr_propertyGeneration {
 
 //--- Extension getter bindPropertyInSelectionController
   public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter clearObjectExplorerCode
-  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter configurationCode
   public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
@@ -3423,9 +3417,6 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Extension getter bindPropertyInSelectionController
   public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter clearObjectExplorerCode
-  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter configurationCode
   public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
@@ -4163,18 +4154,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOnePropertyGenera
 
 class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
 
-//--- Extension getter clearObjectExplorerCode
-  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Extension getter configurationCode
   public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter initCode
   public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter objectAccessibilityCode
-  public: virtual class GALGAS_string getter_objectAccessibilityCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter objectAccessibilityCodeForSaveOperation
   public: virtual class GALGAS_string getter_objectAccessibilityCodeForSaveOperation (C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -4892,18 +4877,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyPropertyGener
 
 class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 
-//--- Extension getter clearObjectExplorerCode
-  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Extension getter configurationCode
   public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter initCode
   public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter objectAccessibilityCode
-  public: virtual class GALGAS_string getter_objectAccessibilityCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter objectAccessibilityCodeForSaveOperation
   public: virtual class GALGAS_string getter_objectAccessibilityCodeForSaveOperation (C_Compiler * COMMA_LOCATION_ARGS) const override ;

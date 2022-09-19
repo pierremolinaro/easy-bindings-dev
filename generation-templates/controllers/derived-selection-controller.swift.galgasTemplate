@@ -44,7 +44,7 @@ end
   //   UNBIND SELECTION
   //····················································································································
 
-  final func unbind_selection () {
+  /* final func unbind_selection () {
     self.selectedArray_property.setDataProvider (nil)
 %
   for (mProperty) in PROPERTY_GENERATION_LIST do
@@ -59,7 +59,7 @@ end
       %    self.selectedArray_property.removeEBObserverOf_%!mProperty.mPropertyName% (self.%!mProperty.mPropertyName%_property)\n%
     end
   end
-%  }
+%  } */
 
 %for (mProperty) in PROPERTY_GENERATION_LIST do
   ![mProperty bindPropertyInSelectionController]

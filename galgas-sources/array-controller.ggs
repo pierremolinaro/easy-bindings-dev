@@ -269,7 +269,7 @@ override func @arrayControllerPropertyGeneration.initCode() -> @string {
 
 override func @arrayControllerPropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + ".bind_model (self." + self.mModelString + "_property, self.ebUndoManager)\n"
+  result += "    self." + self.mPropertyName + ".bind_model (self." + self.mModelString + "_property, self.undoManager)\n"
 }
 
 #·······················································································································

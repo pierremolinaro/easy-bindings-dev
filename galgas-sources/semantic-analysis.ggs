@@ -53,10 +53,6 @@ func @propertyGeneration.saveIntoDictionaryCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration.objectAccessibilityCode() -> @string { result = "" }
-
-#·······················································································································
-
 func @propertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string { result = "" }
 
 #·······················································································································
@@ -65,7 +61,7 @@ func @propertyGeneration.populateExplorerWindowCode() -> @string { result = "" }
 
 #·······················································································································
 
-func @propertyGeneration.clearObjectExplorerCode() -> @string { result = "" }
+#func @propertyGeneration.clearObjectExplorerCode() -> @string { result = "" }
 
 #·······················································································································
 

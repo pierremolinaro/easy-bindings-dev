@@ -7328,9 +7328,6 @@ class cPtr_propertyGeneration : public acStrongPtr_class {
 //--- Extension getter bindPropertyInSelectionController
   public: virtual class GALGAS_string getter_bindPropertyInSelectionController (C_Compiler * COMMA_LOCATION_ARGS) const ;
 
-//--- Extension getter clearObjectExplorerCode
-  public: virtual class GALGAS_string getter_clearObjectExplorerCode (C_Compiler * COMMA_LOCATION_ARGS) const ;
-
 //--- Extension getter configurationCode
   public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
            C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
@@ -7340,9 +7337,6 @@ class cPtr_propertyGeneration : public acStrongPtr_class {
 
 //--- Extension getter initCode
   public: virtual class GALGAS_string getter_initCode (C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension getter objectAccessibilityCode
-  public: virtual class GALGAS_string getter_objectAccessibilityCode (C_Compiler * COMMA_LOCATION_ARGS) const ;
 
 //--- Extension getter objectAccessibilityCodeForSaveOperation
   public: virtual class GALGAS_string getter_objectAccessibilityCodeForSaveOperation (C_Compiler * COMMA_LOCATION_ARGS) const ;
