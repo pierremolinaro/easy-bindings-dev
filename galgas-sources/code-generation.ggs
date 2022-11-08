@@ -20,6 +20,7 @@ abstract proc @abstractFileGeneration.generateCode(
     ?toMany: @stringset inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset inGenerateClass_PreferencesArrayOf
     ?generateClass_StandAloneArrayOf: @stringset inGenerateClass_StandAloneArrayOf
+    ?generateClass_ProxyArrayOf: @stringset inGenerateClass_ProxyArrayOf
     ?!@stringset ioGeneratedFileSet)
 
 #·······················································································································
@@ -48,6 +49,7 @@ struct @generationStruct {
 
   public var @stringset mGenerateClass_PreferencesArrayOf_
   public var @stringset mGenerateClass_StandAloneArrayOf_
+  public var @stringset mGenerateClass_ProxyArrayOf_
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -70,6 +72,7 @@ proc generateCode(
       !toMany: inGeneration.mToManyClassImplementations
       !generateClass_PreferencesArrayOf: inGeneration.mGenerateClass_PreferencesArrayOf_
       !generateClass_StandAloneArrayOf: inGeneration.mGenerateClass_StandAloneArrayOf_
+      !generateClass_ProxyArrayOf: inGeneration.mGenerateClass_ProxyArrayOf_
       !?generatedFileSet
     ]
   end

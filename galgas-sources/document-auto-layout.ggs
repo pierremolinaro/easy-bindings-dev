@@ -380,6 +380,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     ?toMany: @stringset unused inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
     ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
+    ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
     ?!@stringset ioGeneratedFileSet)
 {
   let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentImplementation

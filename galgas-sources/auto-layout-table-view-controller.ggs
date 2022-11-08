@@ -520,6 +520,7 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
     ?toMany: @stringset unused inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
     ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
+    ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
     ?!@stringset unused ioGeneratedFileSet)
 {
 #--- Build observed property set (for sorting and filtering)

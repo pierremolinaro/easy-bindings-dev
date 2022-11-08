@@ -1645,6 +1645,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
            class GALGAS_stringset inToManyEntities,
            class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
            class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
+           class GALGAS_stringset inGenerateClass_ProxyArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 

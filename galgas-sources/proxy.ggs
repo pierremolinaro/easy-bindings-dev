@@ -114,10 +114,8 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
 
 #·······················································································································
 
-override proc @proxyDeclarationAST.secondAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration)
-{
+override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSemanticContext
+                                                        ?!@generationStruct ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
@@ -155,6 +153,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase(
           !self.mToOneRelationshipName.string
           !self.mPropertyName.string
         )
+        ioGeneration.mGenerateClass_ProxyArrayOf_ += !toManyTypeName
         if self.mProxyKind != .toManyProxy then
           error self.mPropertyName : "this property is not atomic"
         end
