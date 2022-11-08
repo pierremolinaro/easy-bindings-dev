@@ -9923,6 +9923,7 @@ void callExtensionMethod_generateCode (cPtr_abstractFileGeneration * inObject,
                                        const GALGAS_string constin_inOutputDirectory,
                                        GALGAS_stringset in_inToOneEntities,
                                        GALGAS_stringset in_inToManyEntities,
+                                       GALGAS_stringset in_inGenerateClass_5F_PreferencesArrayOf,
                                        GALGAS_stringset & io_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) {
@@ -9930,7 +9931,7 @@ void callExtensionMethod_generateCode (cPtr_abstractFileGeneration * inObject,
 //--- Find method
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractFileGeneration) ;
-    inObject->method_generateCode (constin_inOutputDirectory, in_inToOneEntities, in_inToManyEntities, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
+    inObject->method_generateCode (constin_inOutputDirectory, in_inToOneEntities, in_inToManyEntities, in_inGenerateClass_5F_PreferencesArrayOf, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -10364,7 +10365,8 @@ mProperty_mToOneClassImplementations (),
 mProperty_mToManyClassImplementations (),
 mProperty_mSelectionControllerListForGeneration (),
 mProperty_mPropertyClassList (),
-mProperty_mTransientPropertyTypeList () {
+mProperty_mTransientPropertyTypeList (),
+mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_ () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10385,7 +10387,8 @@ GALGAS_generationStruct::GALGAS_generationStruct (const GALGAS_validationStubRou
                                                   const GALGAS_stringset & inOperand8,
                                                   const GALGAS_selectionControllerForGeneration & inOperand9,
                                                   const GALGAS_stringlist & inOperand10,
-                                                  const GALGAS_transientExternTypeList & inOperand11) :
+                                                  const GALGAS_transientExternTypeList & inOperand11,
+                                                  const GALGAS_stringset & inOperand12) :
 mProperty_mValidationStubRoutineListForGeneration (inOperand0),
 mProperty_mFileGenerationList (inOperand1),
 mProperty_mEntityListForGeneration (inOperand2),
@@ -10397,7 +10400,8 @@ mProperty_mToOneClassImplementations (inOperand7),
 mProperty_mToManyClassImplementations (inOperand8),
 mProperty_mSelectionControllerListForGeneration (inOperand9),
 mProperty_mPropertyClassList (inOperand10),
-mProperty_mTransientPropertyTypeList (inOperand11) {
+mProperty_mTransientPropertyTypeList (inOperand11),
+mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_ (inOperand12) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10414,7 +10418,8 @@ GALGAS_generationStruct GALGAS_generationStruct::constructor_default (UNUSED_LOC
                                   GALGAS_stringset::constructor_emptySet (HERE),
                                   GALGAS_selectionControllerForGeneration::constructor_emptyList (HERE),
                                   GALGAS_stringlist::constructor_emptyList (HERE),
-                                  GALGAS_transientExternTypeList::constructor_emptyList (HERE)) ;
+                                  GALGAS_transientExternTypeList::constructor_emptyList (HERE),
+                                  GALGAS_stringset::constructor_emptySet (HERE)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10430,11 +10435,12 @@ GALGAS_generationStruct GALGAS_generationStruct::constructor_new (const GALGAS_v
                                                                   const GALGAS_stringset & inOperand8,
                                                                   const GALGAS_selectionControllerForGeneration & inOperand9,
                                                                   const GALGAS_stringlist & inOperand10,
-                                                                  const GALGAS_transientExternTypeList & inOperand11 
+                                                                  const GALGAS_transientExternTypeList & inOperand11,
+                                                                  const GALGAS_stringset & inOperand12 
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_generationStruct result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid ()) {
-    result = GALGAS_generationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid () && inOperand12.isValid ()) {
+    result = GALGAS_generationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11, inOperand12) ;
   }
   return result ;
 }
@@ -10479,13 +10485,16 @@ typeComparisonResult GALGAS_generationStruct::objectCompare (const GALGAS_genera
   if (result == kOperandEqual) {
     result = mProperty_mTransientPropertyTypeList.objectCompare (inOperand.mProperty_mTransientPropertyTypeList) ;
   }
+  if (result == kOperandEqual) {
+    result = mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_.objectCompare (inOperand.mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_) ;
+  }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 bool GALGAS_generationStruct::isValid (void) const {
-  return mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mFileGenerationList.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mGenerateEBManagedXibDocumentSwift.isValid () && mProperty_mGenerateEBManagedAutoLayoutDocumentSwift.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mToOneClassImplementations.isValid () && mProperty_mToManyClassImplementations.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () ;
+  return mProperty_mValidationStubRoutineListForGeneration.isValid () && mProperty_mFileGenerationList.isValid () && mProperty_mEntityListForGeneration.isValid () && mProperty_mGenerateEBManagedXibDocumentSwift.isValid () && mProperty_mGenerateEBManagedAutoLayoutDocumentSwift.isValid () && mProperty_mNeededOutletClasses.isValid () && mProperty_mMainXibDescriptorList.isValid () && mProperty_mToOneClassImplementations.isValid () && mProperty_mToManyClassImplementations.isValid () && mProperty_mSelectionControllerListForGeneration.isValid () && mProperty_mPropertyClassList.isValid () && mProperty_mTransientPropertyTypeList.isValid () && mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10503,6 +10512,7 @@ void GALGAS_generationStruct::drop (void) {
   mProperty_mSelectionControllerListForGeneration.drop () ;
   mProperty_mPropertyClassList.drop () ;
   mProperty_mTransientPropertyTypeList.drop () ;
+  mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_.drop () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10536,6 +10546,8 @@ void GALGAS_generationStruct::description (C_String & ioString,
     mProperty_mPropertyClassList.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mTransientPropertyTypeList.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }

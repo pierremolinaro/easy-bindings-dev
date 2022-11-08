@@ -162,6 +162,9 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
         !self.mCustomStore
         !self.mUsedForSignature
       )
+      if inPrefs then
+        ioGeneration.mGenerateClass_PreferencesArrayOf_ += !self.mDestinationEntityName.string
+      end
     end
   end
 }
@@ -192,10 +195,8 @@ list @toManyPropertyGenerationList {
 
 #·······················································································································
 
-override func @toManyPropertyGeneration.propertyDeclarationCode(
-   ?let @bool unused inPreferences
-   ?let @stringset unused inOverriddenTransients) -> @string
-{
+override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unused inPreferences
+                                                            ?let @stringset unused inOverriddenTransients) -> @string {
   if [self.mOption isHasDependance] then
     result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
@@ -287,7 +288,7 @@ override func @toManyPropertyGeneration.setupRelationshipFromDictionaryCode() ->
     result += "      let array = readEntityArrayFromDictionary (\n"
     result += "        inRelationshipName: \"" + self.mPropertyName + "\",\n"
     result += "        inDictionary: inDictionary,\n"
-    result += "        managedObjectArray: &managedObjectArray\n"
+    result += "        managedObjectArray: inManagedObjectArray\n"
     result += "      ) as! [" + [self.mRelationshipType swiftTypeName] + "]\n"
     result += "      self." + self.mPropertyName + "_property.setProp (EBReferenceArray (array))\n"
     result += "    }\n"
@@ -327,17 +328,6 @@ override func @toManyPropertyGeneration.objectAccessibilityCodeForSaveOperation(
     result += "    }\n"
   end
 }
-
-#·······················································································································
-
-#override func @toManyPropertyGeneration.clearObjectExplorerCode () -> @string {
-#  if [self.mOption isHasDependance] then
-#    result = ""
-#  else
-#    result  = "    //--- To many property: " + self.mPropertyName + "\n"
-#    result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
-#  end
-#}
 
 #·······················································································································
 

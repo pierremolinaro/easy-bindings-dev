@@ -6181,6 +6181,7 @@ class cPtr_abstractFileGeneration : public acStrongPtr_class {
   public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
            class GALGAS_stringset inToOneEntities,
            class GALGAS_stringset inToManyEntities,
+           class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
@@ -7588,6 +7589,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
            class GALGAS_stringset inToOneEntities,
            class GALGAS_stringset inToManyEntities,
+           class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 

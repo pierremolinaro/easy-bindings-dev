@@ -73,11 +73,11 @@ for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
 %    }\n%
 %    self.%!mProperty.mPropertyName%_property.addEBObserver (self.%!mProperty.mPropertyName%_none)\n%
 end
-%    // gInitSemaphore.wait ()
+%    gInitSemaphore.wait ()
 %for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !false]
 end
-%    // gInitSemaphore.signal ()
+%    gInitSemaphore.signal ()
   //--- Install undoers and opposite setter for relationships
 %
 for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
@@ -132,8 +132,8 @@ end
   //····················································································································
 
   override func setUpWithDictionary (_ inDictionary : NSDictionary,
-                                     managedObjectArray : inout [EBManagedObject]) {
-    super.setUpWithDictionary (inDictionary, managedObjectArray: &managedObjectArray)
+                                     managedObjectArray inManagedObjectArray : [EBManagedObject]) {
+    super.setUpWithDictionary (inDictionary, managedObjectArray: inManagedObjectArray)
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty setupRelationshipFromDictionaryCode]

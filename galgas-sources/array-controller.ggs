@@ -321,6 +321,7 @@ override proc @arrayControllerGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities
+    ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
     ?!@stringset unused ioGeneratedFileSet)
 {
 #--- Build observed property set (for sorting and filtering)

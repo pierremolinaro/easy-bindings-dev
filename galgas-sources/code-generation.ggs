@@ -18,6 +18,7 @@ abstract proc @abstractFileGeneration.generateCode(
     ?let @string inOutputDirectory
     ?toOne: @stringset inToOneEntities
     ?toMany: @stringset inToManyEntities
+    ?generateClass_PreferencesArrayOf: @stringset inGenerateClass_PreferencesArrayOf
     ?!@stringset ioGeneratedFileSet)
 
 #·······················································································································
@@ -43,6 +44,8 @@ struct @generationStruct {
   public var @selectionControllerForGeneration mSelectionControllerListForGeneration
   public var @stringlist mPropertyClassList
   public var @transientExternTypeList mTransientPropertyTypeList
+
+  public var @stringset mGenerateClass_PreferencesArrayOf_
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -63,6 +66,7 @@ proc generateCode(
       !fileOutputDirectory
       !toOne: inGeneration.mToOneClassImplementations
       !toMany: inGeneration.mToManyClassImplementations
+      !generateClass_PreferencesArrayOf: inGeneration.mGenerateClass_PreferencesArrayOf_
       !?generatedFileSet
     ]
   end
