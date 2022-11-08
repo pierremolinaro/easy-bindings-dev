@@ -522,6 +522,7 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
     ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
     ?generateClass_TransientArrayOfSuperOf: @stringset unused inGenerateClass_TransientArrayOfSuperOf
     ?generateClass_TransientArrayOf: @stringset unused inGenerateClass_TransientArrayOf
+    ?generateClass_StoredArrayOf: @stringset unused inGenerateClass_StoredArrayOf
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = {}

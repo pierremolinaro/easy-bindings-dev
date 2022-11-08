@@ -1235,6 +1235,7 @@ class cPtr_computeRoutineGeneration : public cPtr_abstractFileGeneration {
            class GALGAS_stringset inGenerateClass_ProxyArrayOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOf,
+           class GALGAS_stringset inGenerateClass_StoredArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -2045,6 +2046,7 @@ class cPtr_transientRoutineGeneration : public cPtr_abstractFileGeneration {
            class GALGAS_stringset inGenerateClass_ProxyArrayOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOf,
+           class GALGAS_stringset inGenerateClass_StoredArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -5625,6 +5627,7 @@ class cPtr_actionFileGeneration : public cPtr_abstractFileGeneration {
            class GALGAS_stringset inGenerateClass_ProxyArrayOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOf,
+           class GALGAS_stringset inGenerateClass_StoredArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 

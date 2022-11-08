@@ -7,6 +7,208 @@
 
 #include "all-declarations-10.h"
 
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateTestFile'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdentifier,
+                               const GALGAS_string constinArgument_inProjectName,
+                               const GALGAS_mainXibDescriptorList constinArgument_inMainXibDescriptorList,
+                               const GALGAS_string constinArgument_inOutputDirectory,
+                               C_Compiler * inCompiler
+                               COMMA_UNUSED_LOCATION_ARGS) {
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    GALGAS_bool test_1 = GALGAS_bool (kIsStrictSup, constinArgument_inMainXibDescriptorList.getter_length (SOURCE_FILE ("main-xib.ggs", 135)).objectCompare (GALGAS_uint (uint32_t (0U)))) ;
+    if (kBoolTrue == test_1.boolEnum ()) {
+      test_1 = GALGAS_bool (kIsNotEqual, constinArgument_inBundleIdentifier.objectCompare (GALGAS_string::makeEmptyString ())) ;
+    }
+    test_0 = test_1.boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_stringlist var_outlet_5F_identifier_5F_list_5342 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("main-xib.ggs", 136)) ;
+      cEnumerator_mainXibDescriptorList enumerator_5362 (constinArgument_inMainXibDescriptorList, kENUMERATION_UP) ;
+      while (enumerator_5362.hasCurrentObject ()) {
+        cEnumerator_mainXibLineDescriptorList enumerator_5413 (enumerator_5362.current_mLine (HERE), kENUMERATION_UP) ;
+        while (enumerator_5413.hasCurrentObject ()) {
+          switch (enumerator_5413.current_mElement (HERE).enumValue ()) {
+          case GALGAS_mainXibElement::kNotBuilt:
+            break ;
+          case GALGAS_mainXibElement::kEnum_text:
+            {
+            }
+            break ;
+          case GALGAS_mainXibElement::kEnum_outlet:
+            {
+              const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_5566 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_5413.current_mElement (HERE).unsafePointer ()) ;
+              const GALGAS_lstring extractedValue_5508_outletName = extractPtr_5566->mAssociatedValue1 ;
+              var_outlet_5F_identifier_5F_list_5342.addAssign_operation (extractedValue_5508_outletName.readProperty_string ()  COMMA_SOURCE_FILE ("main-xib.ggs", 142)) ;
+            }
+            break ;
+          }
+          enumerator_5413.gotoNextObject () ;
+        }
+        enumerator_5362.gotoNextObject () ;
+      }
+      GALGAS_string var_s_5606 = GALGAS_string (filewrapperTemplate_testFiles_test_5F_py (inCompiler, constinArgument_inBundleIdentifier, constinArgument_inProjectName, var_outlet_5F_identifier_5F_list_5342 COMMA_SOURCE_FILE ("main-xib.ggs", 146))) ;
+      GALGAS_string var_header_5737 = GALGAS_string ("#!/usr/bin/python\n"
+        "# coding=utf-8\n"
+        "\n"
+        "# https://pypi.python.org/pypi/atomac\n"
+        "# https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py\n"
+        "\n") ;
+      {
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, GALGAS_string ("test.py"), GALGAS_string ("#"), var_header_5737, GALGAS_string::makeEmptyString (), var_s_5606, GALGAS_string ("#    ENTER USER CODE HERE\n"), GALGAS_string ("\n"
+        "quitApplication ()\n"
+        "\n"
+        "#----------------------------------------------------------------------------*\n"), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 155)) ;
+      }
+    }
+  }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'testFiles'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_testFiles_0 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_testFiles_0 [1] = {
+  NULL
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_testFiles (
+  "",
+  0,
+  gWrapperAllFiles_testFiles_0,
+  0,
+  gWrapperAllDirectories_testFiles_0
+) ;
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'testFiles test_py'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_testFiles_test_5F_py (C_Compiler * /* inCompiler */,
+                                                        const GALGAS_string & in_BUNDLE_5F_IDENTIFIER,
+                                                        const GALGAS_string & in_PROJECT_5F_NAME,
+                                                        const GALGAS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
+                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  C_String result ;
+  result << "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "import random, string\n"
+    "\n"
+    "import subprocess, os, sys, atexit\n"
+    "import atomac, sys, time, inspect\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   GET SOURCE LINE NUMBER                                                     *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def lineno():\n"
+    "  return inspect.currentframe().f_back.f_lineno\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   LAUNCH APPLICATION                                                         *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def launchApplication ():\n"
+    "  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n"
+    "  atomac.launchAppByBundlePath (scriptDir + \"/build/Default/" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << ".app\")\n"
+    "  time.sleep (0.5)\n"
+    "  application = atomac.getAppRefByBundleId ('" ;
+  result << in_BUNDLE_5F_IDENTIFIER.stringValue () ;
+  result << "." ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "')\n"
+    "  return application\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   QUIT APPLICATION                                                           *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def quitApplication ():\n"
+    "  atomac.terminateAppByBundleId ('" ;
+  result << in_BUNDLE_5F_IDENTIFIER.stringValue () ;
+  result << "." ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "')\n"
+    "  time.sleep (0.5)\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   PREFERENCES WINDOW                                                         *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def setUpPreferencesWindow (application) :\n"
+    "  time.sleep (0.5)\n"
+    "  window = application.windows ('" ;
+  result << in_PROJECT_5F_NAME.stringValue () ;
+  result << "')[0]\n" ;
+  GALGAS_uint index_1785_ (0) ;
+  if (in_OUTLET_5F_IDENTIFIER_5F_LIST.isValid ()) {
+    cEnumerator_stringlist enumerator_1785 (in_OUTLET_5F_IDENTIFIER_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_1785.hasCurrentObject ()) {
+      result << "  global " ;
+      result << enumerator_1785.current_mValue (HERE).stringValue () ;
+      result << "\n"
+        "  " ;
+      result << enumerator_1785.current_mValue (HERE).stringValue () ;
+      result << " = window.findFirst (AXIdentifier='" ;
+      result << enumerator_1785.current_mValue (HERE).stringValue () ;
+      result << "')\n" ;
+      index_1785_.increment () ;
+      enumerator_1785.gotoNextObject () ;
+    }
+  }
+  result << "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   CHECK TEXT FIELD VALUE                                                     *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def checkTextFieldValue (textField, expectedValue, line):\n"
+    "  if textField.AXValue != expectedValue :\n"
+    "    print '*** Check error at line ' + str (line) + ' ***'\n"
+    "    sys.exit (1)\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   SET TEXT FIELD                                                             *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "def setTextFieldValue (textField, value):\n"
+    "  textField.AXFocused = True\n"
+    "  textField.AXValue = value\n"
+    "  textField.Confirm ()\n"
+    "  time.sleep (0.5)\n"
+    "\n"
+    "#------------------------------------------------------------------------------*\n"
+    "#   MAIN                                                                       *\n"
+    "#------------------------------------------------------------------------------*\n"
+    "\n"
+    "application = launchApplication ()\n"
+    "setUpPreferencesWindow (application)\n"
+    "\n"
+    "\n" ;
+  return GALGAS_string (result) ;
+}
+
 #include "project_header.h"
 #include "command_line_interface/F_mainForLIBPM.h"
 #include "command_line_interface/F_Analyze_CLI_Options.h"

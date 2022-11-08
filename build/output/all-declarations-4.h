@@ -1259,6 +1259,7 @@ class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
            class GALGAS_stringset inGenerateClass_ProxyArrayOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOf,
+           class GALGAS_stringset inGenerateClass_StoredArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -3070,6 +3071,7 @@ class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGen
            class GALGAS_stringset inGenerateClass_ProxyArrayOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
            class GALGAS_stringset inGenerateClass_TransientArrayOf,
+           class GALGAS_stringset inGenerateClass_StoredArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -5447,6 +5449,7 @@ void callExtensionMethod_generateCode (class cPtr_abstractFileGeneration * inObj
                                        GALGAS_stringset in_inGenerateClass_5F_ProxyArrayOf,
                                        GALGAS_stringset in_inGenerateClass_5F_TransientArrayOfSuperOf,
                                        GALGAS_stringset in_inGenerateClass_5F_TransientArrayOf,
+                                       GALGAS_stringset in_inGenerateClass_5F_StoredArrayOf,
                                        GALGAS_stringset & io_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
@@ -5748,6 +5751,11 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
     return mProperty_mGenerateClass_5F_TransientArrayOf_5F_ ;
   }
 
+  public: GALGAS_stringset mProperty_mGenerateClass_5F_StoredArrayOf_5F_ ;
+  public: inline GALGAS_stringset readProperty_mGenerateClass_5F_StoredArrayOf_5F_ (void) const {
+    return mProperty_mGenerateClass_5F_StoredArrayOf_5F_ ;
+  }
+
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public: VIRTUAL_IN_DEBUG void drop (void) ;
@@ -5827,6 +5835,10 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
     mProperty_mGenerateClass_5F_TransientArrayOf_5F_ = inValue ;
   }
 
+  public: inline void setter_setMGenerateClass_5F_StoredArrayOf_5F_ (const GALGAS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mGenerateClass_5F_StoredArrayOf_5F_ = inValue ;
+  }
+
 //--------------------------------- Virtual destructor (in debug mode)
   public: virtual ~ GALGAS_generationStruct (void) ;
 
@@ -5847,7 +5859,8 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                    const GALGAS_stringset & in_mGenerateClass_5F_StandAloneArrayOf_5F_,
                                    const GALGAS_stringset & in_mGenerateClass_5F_ProxyArrayOf_5F_,
                                    const GALGAS_stringset & in_mGenerateClass_5F_TransientArrayOfSuperOf_5F_,
-                                   const GALGAS_stringset & in_mGenerateClass_5F_TransientArrayOf_5F_) ;
+                                   const GALGAS_stringset & in_mGenerateClass_5F_TransientArrayOf_5F_,
+                                   const GALGAS_stringset & in_mGenerateClass_5F_StoredArrayOf_5F_) ;
 
 //-- Start of generic part --*
 
@@ -5876,7 +5889,8 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                                                 const class GALGAS_stringset & inOperand13,
                                                                 const class GALGAS_stringset & inOperand14,
                                                                 const class GALGAS_stringset & inOperand15,
-                                                                const class GALGAS_stringset & inOperand16
+                                                                const class GALGAS_stringset & inOperand16,
+                                                                const class GALGAS_stringset & inOperand17
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'

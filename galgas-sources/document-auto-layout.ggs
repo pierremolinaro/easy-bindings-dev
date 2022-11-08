@@ -383,8 +383,8 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
     ?generateClass_TransientArrayOfSuperOf: @stringset unused inGenerateClass_TransientArrayOfSuperOf
     ?generateClass_TransientArrayOf: @stringset unused inGenerateClass_TransientArrayOf
-    ?!@stringset ioGeneratedFileSet)
-{
+    ?generateClass_StoredArrayOf: @stringset unused inGenerateClass_StoredArrayOf
+    ?!@stringset ioGeneratedFileSet) {
   let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentImplementation
     !self.mDocumentName
     !self.mRootEntityName

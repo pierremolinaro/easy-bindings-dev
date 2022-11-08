@@ -426,8 +426,8 @@ override proc @computeRoutineGeneration.generateCode(
     ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
     ?generateClass_TransientArrayOfSuperOf: @stringset unused inGenerateClass_TransientArrayOfSuperOf
     ?generateClass_TransientArrayOf: @stringset unused inGenerateClass_TransientArrayOf
-    ?!@stringset ioGeneratedFileSet)
-{
+    ?generateClass_StoredArrayOf: @stringset unused inGenerateClass_StoredArrayOf
+    ?!@stringset ioGeneratedFileSet) {
   if [self.mDependencyList length] > 0 then
     let s = [filewrapper computedPropertyManager.computedComputationFunctionFile
       !self.mOwnerName

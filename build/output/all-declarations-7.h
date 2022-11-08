@@ -215,7 +215,8 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
                                                                                               const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_StandAloneArrayOf_5F_,
                                                                                               const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_,
                                                                                               const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_TransientArrayOfSuperOf_5F_,
-                                                                                              const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_TransientArrayOf_5F_
+                                                                                              const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_TransientArrayOf_5F_,
+                                                                                              const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

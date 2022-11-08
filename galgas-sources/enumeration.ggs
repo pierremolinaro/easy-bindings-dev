@@ -180,6 +180,7 @@ override proc @enumForGeneration.generateCode(
     ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
     ?generateClass_TransientArrayOfSuperOf: @stringset unused inGenerateClass_TransientArrayOfSuperOf
     ?generateClass_TransientArrayOf: @stringset unused inGenerateClass_TransientArrayOf
+    ?generateClass_StoredArrayOf: @stringset unused inGenerateClass_StoredArrayOf
     ?!@stringset ioGeneratedFileSet) {
   if [self.mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
     let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift

@@ -719,7 +719,10 @@ else
 //    %!"Stored Array: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatureObserverProtocol {
+%if not GENERATE_CLASS_StoredArrayOf_ then
+%// StoredArrayOf_%!ENTITY_NAME% is useless.\n%
+else
+%class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatureObserverProtocol {
 
   //····················································································································
 
@@ -888,7 +891,7 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
   //····················································································································
 
 }
-
+%end%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"Stand alone Array: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
