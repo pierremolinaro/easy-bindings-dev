@@ -3,28 +3,28 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutTableViewControllerBoundColumnListAST {
-  public var @bool mEditable
-  public var @lstring mPropertyName
-  public var @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
-  public var @lstring mSortPropertyName
+  public let @bool mEditable
+  public let @lstring mPropertyName
+  public let @astAutoLayoutViewInstructionParameterList mColumnParameterListAST
+  public let @lstring mSortPropertyName
 }
 
 #·······················································································································
 
 list @autoLayoutTableViewControllerAttributListAST {
-  public var @lstring mAttributeName
-  public var @abstractDefaultValue mAttributeValue
+  public let @lstring mAttributeName
+  public let @abstractDefaultValue mAttributeValue
 }
 
 #·······················································································································
 
 class @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
-  public var @lstring mControllerName
-  public var @bool mIsRoot
-  public var @lstring mRootEntityName
-  public var @lstring mToManyPropertyName
-  public var @autoLayoutTableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
-  public var @autoLayoutTableViewControllerAttributListAST mTableViewControllerAttributListAST
+  public let @lstring mControllerName
+  public let @bool mIsRoot
+  public let @lstring mRootEntityName
+  public let @lstring mToManyPropertyName
+  public let @autoLayoutTableViewControllerBoundColumnListAST mTableViewControllerBoundColumnListAST
+  public let @autoLayoutTableViewControllerAttributListAST mTableViewControllerAttributListAST
 }
 
 #·······················································································································
@@ -369,7 +369,6 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       !propertyName.string
       ![propertyKind swiftTypeName] # columnOutletTypeName.string
       !"" # columnBindings.mRunActionName.string
-#      !regularBindingsGenerationList
       !actualParameterList
   #--- Outlet class is needed ?
 #    [ioSemanticContext.mOutletClassMap searchKey !columnOutletTypeName ?6* ?let outletClassIsUserDefined]
@@ -388,13 +387,14 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     !modelString
     !arrayControllerBoundColumnListForGeneration
     !arrayControllerSortedColumnListForGeneration
-    !"ReadWriteArrayOf_" + elementTypeName # [kind swiftTypeName]
-    !arrayControllerModelKind # boundModelClassKind
-    !elementTypeName # [kind swiftTypeName]
+    !"ReadWriteArrayOf_" + elementTypeName
+    !arrayControllerModelKind
+    !elementTypeName
     !graphic
     !attributeListForGeneration
   )
   ioGeneration.mGenerateClass_StandAloneArrayOf_ += !elementTypeName
+  ioGeneration.mGenerateClass_TransientArrayOf_ += !elementTypeName
 }
 
 
@@ -403,8 +403,8 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutTableViewControllerPropertyGeneration : @propertyGeneration {
-  public var @string mModelString
-  public var @string mOwnerName
+  public let @string mModelString
+  public let @string mOwnerName
 }
 
 #·······················································································································
@@ -460,36 +460,35 @@ enum @autoLayoutTableViewControllerModelKind {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
-  public var @string mOwnerName # document name, prefs name, ...
-  public var @lstring mControllerName
-  public var @string mModelString
-  public var @autoLayoutTableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
-  public var @autoLayoutTableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
-  public var @string mModelTypeName
-  public var @autoLayoutTableViewControllerModelKind mTableViewControllerModelKind
-  public var @string mElementTypeName
-  public var @bool mElementTypeIsGraphic
-  public var @2stringlist mAttributeListForGeneration
+  public let @string mOwnerName # document name, prefs name, ...
+  public let @lstring mControllerName
+  public let @string mModelString
+  public let @autoLayoutTableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
+  public let @autoLayoutTableViewControllerSortedColumnListForGeneration mTableViewControllerSortedColumnListForGeneration
+  public let @string mModelTypeName
+  public let @autoLayoutTableViewControllerModelKind mTableViewControllerModelKind
+  public let @string mElementTypeName
+  public let @bool mElementTypeIsGraphic
+  public let @2stringlist mAttributeListForGeneration
 }
 
 #·······················································································································
 
 list @autoLayoutTableViewControllerBoundColumnListForGeneration {
-  public var @bool mEditable
-  public var @string mSortPropertyName
-  public var @string mDisplayedPropertyName
-  public var @string mColumnObjectTypeName
-  public var @string mRunAction # Empty string if no action
-#  @regularBindingsGenerationList mRegularBindingsGenerationList
-  public var @2stringlist mActualParameterList
+  public let @bool mEditable
+  public let @string mSortPropertyName
+  public let @string mDisplayedPropertyName
+  public let @string mColumnObjectTypeName
+  public let @string mRunAction # Empty string if no action
+  public let @2stringlist mActualParameterList
 }
 
 #·······················································································································
 
 list @autoLayoutTableViewControllerSortedColumnListForGeneration {
-  public var @string mColumnName
-  public var @propertyKind mSortPropertyKind
-  public var @string mObservablePropertyForSorting
+  public let @string mColumnName
+  public let @propertyKind mSortPropertyKind
+  public let @string mObservablePropertyForSorting
 }
 
 #·······················································································································
@@ -521,8 +520,9 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
     ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
     ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
-    ?!@stringset unused ioGeneratedFileSet)
-{
+    ?generateClass_TransientArrayOfSuperOf: @stringset unused inGenerateClass_TransientArrayOfSuperOf
+    ?generateClass_TransientArrayOf: @stringset unused inGenerateClass_TransientArrayOf
+    ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = {}
   for (* * mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do

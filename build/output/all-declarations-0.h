@@ -6184,6 +6184,8 @@ class cPtr_abstractFileGeneration : public acStrongPtr_class {
            class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
            class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
            class GALGAS_stringset inGenerateClass_ProxyArrayOf,
+           class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
+           class GALGAS_stringset inGenerateClass_TransientArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
@@ -7594,6 +7596,8 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
            class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
            class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
            class GALGAS_stringset inGenerateClass_ProxyArrayOf,
+           class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
+           class GALGAS_stringset inGenerateClass_TransientArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 

@@ -67,8 +67,9 @@ override proc @actionFileGeneration.generateCode(
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
     ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
     ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
-    ?!@stringset ioGeneratedFileSet)
-{
+    ?generateClass_TransientArrayOfSuperOf: @stringset unused inGenerateClass_TransientArrayOfSuperOf
+    ?generateClass_TransientArrayOf: @stringset unused inGenerateClass_TransientArrayOf
+    ?!@stringset ioGeneratedFileSet) {
  let s = [filewrapper actionGenerationTemplate.actionGeneration
     !self.mClassName
     !self.mActionName

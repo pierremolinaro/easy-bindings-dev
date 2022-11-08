@@ -21,6 +21,8 @@ abstract proc @abstractFileGeneration.generateCode(
     ?generateClass_PreferencesArrayOf: @stringset inGenerateClass_PreferencesArrayOf
     ?generateClass_StandAloneArrayOf: @stringset inGenerateClass_StandAloneArrayOf
     ?generateClass_ProxyArrayOf: @stringset inGenerateClass_ProxyArrayOf
+    ?generateClass_TransientArrayOfSuperOf: @stringset inGenerateClass_TransientArrayOfSuperOf
+    ?generateClass_TransientArrayOf: @stringset inGenerateClass_TransientArrayOf
     ?!@stringset ioGeneratedFileSet)
 
 #·······················································································································
@@ -50,6 +52,8 @@ struct @generationStruct {
   public var @stringset mGenerateClass_PreferencesArrayOf_
   public var @stringset mGenerateClass_StandAloneArrayOf_
   public var @stringset mGenerateClass_ProxyArrayOf_
+  public var @stringset mGenerateClass_TransientArrayOfSuperOf_
+  public var @stringset mGenerateClass_TransientArrayOf_
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -73,6 +77,8 @@ proc generateCode(
       !generateClass_PreferencesArrayOf: inGeneration.mGenerateClass_PreferencesArrayOf_
       !generateClass_StandAloneArrayOf: inGeneration.mGenerateClass_StandAloneArrayOf_
       !generateClass_ProxyArrayOf: inGeneration.mGenerateClass_ProxyArrayOf_
+      !generateClass_TransientArrayOfSuperOf: inGeneration.mGenerateClass_TransientArrayOfSuperOf_
+      !generateClass_TransientArrayOf: inGeneration.mGenerateClass_TransientArrayOf_
       !?generatedFileSet
     ]
   end

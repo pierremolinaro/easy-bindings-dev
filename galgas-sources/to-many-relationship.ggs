@@ -162,6 +162,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
         !self.mCustomStore
         !self.mUsedForSignature
       )
+#      ioGeneration.mGenerateClass_TransientArrayOfSuperOf_ += !self.mDestinationEntityName.string
       if inPrefs then
         ioGeneration.mGenerateClass_PreferencesArrayOf_ += !self.mDestinationEntityName.string
       end

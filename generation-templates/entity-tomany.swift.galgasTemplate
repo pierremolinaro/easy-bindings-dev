@@ -396,7 +396,10 @@ end
 //    TransientArrayOf %!ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
+%if not GENERATE_CLASS_TransientArrayOf_ then
+%// TransientArrayOf_%!ENTITY_NAME% is useless.\n%
+else
+%final class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
   //   Sort
@@ -519,12 +522,15 @@ final class TransientArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
   //····················································································································
 
 }
-
+%end%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    TransientArrayOfSuperOf %!ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : ReadOnlyArrayOf_%!ENTITY_NAME% {
+%if not GENERATE_CLASS_TransientArrayOfSuperOf_ then
+%// TransientArrayOfSuperOf_%!ENTITY_NAME% is useless.\n%
+else
+%final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
   //   Data provider
@@ -616,7 +622,7 @@ final class TransientArrayOfSuperOf_%!ENTITY_NAME% <SUPER : EBManagedObject> : R
   //····················································································································
 
 }
-
+%end%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"To many relationship read write: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -637,8 +643,8 @@ class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
 %if not GENERATE_CLASS_ProxyArrayOf_ then
 %// ProxyArrayOf_%!ENTITY_NAME% is useless.\n%
-else%
-final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
+else
+%final class ProxyArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
@@ -889,8 +895,8 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
 
 %if not GENERATE_CLASS_StandAloneArrayOf_ then
 %// StandAloneArrayOf_%!ENTITY_NAME% is useless.\n%
-else%
-final class StandAloneArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
+else
+%final class StandAloneArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
@@ -937,8 +943,8 @@ final class StandAloneArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
 %if not GENERATE_CLASS_PreferencesArrayOf_ then
 %// PreferencesArrayOf_%!ENTITY_NAME% is useless.\n%
-else%
-final class PreferencesArrayOf_%!ENTITY_NAME% : StoredArrayOf_%!ENTITY_NAME% {
+else
+%final class PreferencesArrayOf_%!ENTITY_NAME% : StoredArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
