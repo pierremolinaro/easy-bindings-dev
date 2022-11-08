@@ -1228,14 +1228,7 @@ class cPtr_computeRoutineGeneration : public cPtr_abstractFileGeneration {
 
 //--- Extension method generateCode
   public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
-           class GALGAS_stringset inToOneEntities,
-           class GALGAS_stringset inToManyEntities,
-           class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
-           class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
-           class GALGAS_stringset inGenerateClass_ProxyArrayOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOf,
-           class GALGAS_stringset inGenerateClass_StoredArrayOf,
+           const class GALGAS_generationStruct inGenerationStruct,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -2039,14 +2032,7 @@ class cPtr_transientRoutineGeneration : public cPtr_abstractFileGeneration {
 
 //--- Extension method generateCode
   public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
-           class GALGAS_stringset inToOneEntities,
-           class GALGAS_stringset inToManyEntities,
-           class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
-           class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
-           class GALGAS_stringset inGenerateClass_ProxyArrayOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOf,
-           class GALGAS_stringset inGenerateClass_StoredArrayOf,
+           const class GALGAS_generationStruct inGenerationStruct,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -5620,14 +5606,7 @@ class cPtr_actionFileGeneration : public cPtr_abstractFileGeneration {
 
 //--- Extension method generateCode
   public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
-           class GALGAS_stringset inToOneEntities,
-           class GALGAS_stringset inToManyEntities,
-           class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
-           class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
-           class GALGAS_stringset inGenerateClass_ProxyArrayOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOf,
-           class GALGAS_stringset inGenerateClass_StoredArrayOf,
+           const class GALGAS_generationStruct inGenerationStruct,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 

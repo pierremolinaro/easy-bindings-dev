@@ -10,49 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Routine 'generateValidationRoutineStubs'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateValidationRoutineStubs (const class GALGAS_string constinArgument0,
-                                             const class GALGAS_validationStubRoutineListForGeneration constinArgument1,
-                                             class GALGAS_stringset & ioArgument2,
-                                             class C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper 'actionGenerationTemplate'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'actionGenerationTemplate actionGeneration'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class C_Compiler * inCompiler,
-                                                                             const class GALGAS_string & in_EXTENDED_5F_CLASS_5F_NAME,
-                                                                             const class GALGAS_string & in_ACTION_5F_NAME
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'arrayControllerGenerationTemplate'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -357,4 +314,33 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (class C_Co
 GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (class C_Compiler * inCompiler,
                                                                          const class GALGAS_string & in_PROJECT_5F_NAME
                                                                          COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'testFiles'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_testFiles ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'testFiles test_py'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_testFiles_test_5F_py (class C_Compiler * inCompiler,
+                                                        const class GALGAS_string & in_BUNDLE_5F_IDENTIFIER,
+                                                        const class GALGAS_string & in_PROJECT_5F_NAME,
+                                                        const class GALGAS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
+                                                        COMMA_LOCATION_ARGS) ;
 

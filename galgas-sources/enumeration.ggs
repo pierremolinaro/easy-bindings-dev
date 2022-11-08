@@ -173,14 +173,7 @@ private filewrapper enumGenerationTemplate in "../generation-templates" {
 
 override proc @enumForGeneration.generateCode(
     ?let @string inOutputDirectory
-    ?toOne: @stringset unused inToOneEntities
-    ?toMany: @stringset unused inToManyEntities
-    ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
-    ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
-    ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
-    ?generateClass_TransientArrayOfSuperOf: @stringset unused inGenerateClass_TransientArrayOfSuperOf
-    ?generateClass_TransientArrayOf: @stringset unused inGenerateClass_TransientArrayOf
-    ?generateClass_StoredArrayOf: @stringset unused inGenerateClass_StoredArrayOf
+    ?let @generationStruct unused inGenerationStruct
     ?!@stringset ioGeneratedFileSet) {
   if [self.mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
     let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift

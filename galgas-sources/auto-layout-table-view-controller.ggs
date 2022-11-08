@@ -515,14 +515,7 @@ private filewrapper autoLayoutTableViewControllerGenerationTemplate in "../gener
 
 override proc @autoLayoutTableViewControllerGeneration.generateCode(
     ?let @string inOutputDirectory
-    ?toOne: @stringset unused inToOneEntities
-    ?toMany: @stringset unused inToManyEntities
-    ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
-    ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
-    ?generateClass_ProxyArrayOf: @stringset unused inGenerateClass_ProxyArrayOf
-    ?generateClass_TransientArrayOfSuperOf: @stringset unused inGenerateClass_TransientArrayOfSuperOf
-    ?generateClass_TransientArrayOf: @stringset unused inGenerateClass_TransientArrayOf
-    ?generateClass_StoredArrayOf: @stringset unused inGenerateClass_StoredArrayOf
+    ?let @generationStruct unused inGenerationStruct
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = {}

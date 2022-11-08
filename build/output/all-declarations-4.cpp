@@ -9921,14 +9921,7 @@ GALGAS_transientExternTypeList GALGAS_transientExternTypeList::extractObject (co
 
 void callExtensionMethod_generateCode (cPtr_abstractFileGeneration * inObject,
                                        const GALGAS_string constin_inOutputDirectory,
-                                       GALGAS_stringset in_inToOneEntities,
-                                       GALGAS_stringset in_inToManyEntities,
-                                       GALGAS_stringset in_inGenerateClass_5F_PreferencesArrayOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_StandAloneArrayOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_ProxyArrayOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_TransientArrayOfSuperOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_TransientArrayOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_StoredArrayOf,
+                                       const GALGAS_generationStruct constin_inGenerationStruct,
                                        GALGAS_stringset & io_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) {
@@ -9936,7 +9929,7 @@ void callExtensionMethod_generateCode (cPtr_abstractFileGeneration * inObject,
 //--- Find method
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractFileGeneration) ;
-    inObject->method_generateCode (constin_inOutputDirectory, in_inToOneEntities, in_inToManyEntities, in_inGenerateClass_5F_PreferencesArrayOf, in_inGenerateClass_5F_StandAloneArrayOf, in_inGenerateClass_5F_ProxyArrayOf, in_inGenerateClass_5F_TransientArrayOfSuperOf, in_inGenerateClass_5F_TransientArrayOf, in_inGenerateClass_5F_StoredArrayOf, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
+    inObject->method_generateCode (constin_inOutputDirectory, constin_inGenerationStruct, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------

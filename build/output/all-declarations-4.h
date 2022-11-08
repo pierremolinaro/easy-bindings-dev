@@ -1252,14 +1252,7 @@ class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
 
 //--- Extension method generateCode
   public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
-           class GALGAS_stringset inToOneEntities,
-           class GALGAS_stringset inToManyEntities,
-           class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
-           class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
-           class GALGAS_stringset inGenerateClass_ProxyArrayOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOf,
-           class GALGAS_stringset inGenerateClass_StoredArrayOf,
+           const class GALGAS_generationStruct inGenerationStruct,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -3064,14 +3057,7 @@ class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGen
 
 //--- Extension method generateCode
   public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
-           class GALGAS_stringset inToOneEntities,
-           class GALGAS_stringset inToManyEntities,
-           class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
-           class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
-           class GALGAS_stringset inGenerateClass_ProxyArrayOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOfSuperOf,
-           class GALGAS_stringset inGenerateClass_TransientArrayOf,
-           class GALGAS_stringset inGenerateClass_StoredArrayOf,
+           const class GALGAS_generationStruct inGenerationStruct,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -5442,14 +5428,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientExternType
 
 void callExtensionMethod_generateCode (class cPtr_abstractFileGeneration * inObject,
                                        const GALGAS_string constin_inOutputDirectory,
-                                       GALGAS_stringset in_inToOneEntities,
-                                       GALGAS_stringset in_inToManyEntities,
-                                       GALGAS_stringset in_inGenerateClass_5F_PreferencesArrayOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_StandAloneArrayOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_ProxyArrayOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_TransientArrayOfSuperOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_TransientArrayOf,
-                                       GALGAS_stringset in_inGenerateClass_5F_StoredArrayOf,
+                                       const GALGAS_generationStruct constin_inGenerationStruct,
                                        GALGAS_stringset & io_ioGeneratedFileSet,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
@@ -5587,76 +5566,6 @@ class cEnumerator_fileGenerationList : public cGenericAbstractEnumerator {
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fileGenerationList ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @fileGenerationList_2D_element struct
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_fileGenerationList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GALGAS_abstractFileGeneration mProperty_mFileGeneration ;
-  public: inline GALGAS_abstractFileGeneration readProperty_mFileGeneration (void) const {
-    return mProperty_mFileGeneration ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public: GALGAS_fileGenerationList_2D_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMFileGeneration (const GALGAS_abstractFileGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mFileGeneration = inValue ;
-  }
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public: virtual ~ GALGAS_fileGenerationList_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public: GALGAS_fileGenerationList_2D_element (const GALGAS_abstractFileGeneration & in_mFileGeneration) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_fileGenerationList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_fileGenerationList_2D_element constructor_new (const class GALGAS_abstractFileGeneration & inOperand0
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_fileGenerationList_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_fileGenerationList_2D_element class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fileGenerationList_2D_element ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -5917,6 +5826,76 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_generationStruct ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @fileGenerationList_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_fileGenerationList_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GALGAS_abstractFileGeneration mProperty_mFileGeneration ;
+  public: inline GALGAS_abstractFileGeneration readProperty_mFileGeneration (void) const {
+    return mProperty_mFileGeneration ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
+  public: VIRTUAL_IN_DEBUG void drop (void) ;
+
+//--------------------------------- Default constructor
+  public: GALGAS_fileGenerationList_2D_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMFileGeneration (const GALGAS_abstractFileGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mFileGeneration = inValue ;
+  }
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public: virtual ~ GALGAS_fileGenerationList_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public: GALGAS_fileGenerationList_2D_element (const GALGAS_abstractFileGeneration & in_mFileGeneration) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_fileGenerationList_2D_element extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_fileGenerationList_2D_element constructor_new (const class GALGAS_abstractFileGeneration & inOperand0
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_fileGenerationList_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_fileGenerationList_2D_element class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fileGenerationList_2D_element ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
