@@ -884,6 +884,9 @@ class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatur
 //    %!"Stand alone Array: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+%if not GENERATE_CLASS_StandAloneArrayOf_ then
+%// StandAloneArrayOf_%!ENTITY_NAME% is useless.\n%
+else%
 final class StandAloneArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
@@ -924,7 +927,7 @@ final class StandAloneArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
   //····················································································································
 
 }
-
+%end%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"Preferences array: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

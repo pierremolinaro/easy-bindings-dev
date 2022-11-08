@@ -3760,6 +3760,7 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
            class GALGAS_stringset inToOneEntities,
            class GALGAS_stringset inToManyEntities,
            class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
+           class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -4657,6 +4658,7 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
            class GALGAS_stringset inToOneEntities,
            class GALGAS_stringset inToManyEntities,
            class GALGAS_stringset inGenerateClass_PreferencesArrayOf,
+           class GALGAS_stringset inGenerateClass_StandAloneArrayOf,
            class GALGAS_stringset & ioGeneratedFileSet,
            C_Compiler * COMMA_LOCATION_ARGS) override ;
 

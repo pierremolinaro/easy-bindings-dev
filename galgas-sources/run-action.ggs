@@ -65,6 +65,7 @@ override proc @actionFileGeneration.generateCode(
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
+    ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
     ?!@stringset ioGeneratedFileSet)
 {
  let s = [filewrapper actionGenerationTemplate.actionGeneration

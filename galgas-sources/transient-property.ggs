@@ -609,6 +609,7 @@ override proc @transientRoutineGeneration.generateCode(
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
+    ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
     ?!@stringset ioGeneratedFileSet)
 {
   if [self.mDependencyList length] > 0 then

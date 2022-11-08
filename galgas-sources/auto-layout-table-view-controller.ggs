@@ -394,6 +394,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     !graphic
     !attributeListForGeneration
   )
+  ioGeneration.mGenerateClass_StandAloneArrayOf_ += !elementTypeName
 }
 
 
@@ -518,6 +519,7 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
+    ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
     ?!@stringset unused ioGeneratedFileSet)
 {
 #--- Build observed property set (for sorting and filtering)

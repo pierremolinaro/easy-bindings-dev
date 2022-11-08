@@ -19,6 +19,7 @@ abstract proc @abstractFileGeneration.generateCode(
     ?toOne: @stringset inToOneEntities
     ?toMany: @stringset inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset inGenerateClass_PreferencesArrayOf
+    ?generateClass_StandAloneArrayOf: @stringset inGenerateClass_StandAloneArrayOf
     ?!@stringset ioGeneratedFileSet)
 
 #·······················································································································
@@ -46,6 +47,7 @@ struct @generationStruct {
   public var @transientExternTypeList mTransientPropertyTypeList
 
   public var @stringset mGenerateClass_PreferencesArrayOf_
+  public var @stringset mGenerateClass_StandAloneArrayOf_
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -67,14 +69,10 @@ proc generateCode(
       !toOne: inGeneration.mToOneClassImplementations
       !toMany: inGeneration.mToManyClassImplementations
       !generateClass_PreferencesArrayOf: inGeneration.mGenerateClass_PreferencesArrayOf_
+      !generateClass_StandAloneArrayOf: inGeneration.mGenerateClass_StandAloneArrayOf_
       !?generatedFileSet
     ]
   end
-#  generateOutletClasses (
-#    !inGeneration.mNeededOutletClasses
-#    !fileOutputDirectory
-#    !?generatedFileSet
-#  )
   generateEBManagedObjectContext (
     !inGeneration.mEntityListForGeneration
     !fileOutputDirectory
@@ -85,11 +83,6 @@ proc generateCode(
     !fileOutputDirectory
     !?generatedFileSet
   )
-#  generateSwiftApplicationFiles (
-#    !fileOutputDirectory
-#    ![inGeneration.mEntityListForGeneration length] > 0
-#    !?generatedFileSet
-#  )
   generateValidationRoutineStubs (
     !fileOutputDirectory
     !inGeneration.mValidationStubRoutineListForGeneration

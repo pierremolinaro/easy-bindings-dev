@@ -230,6 +230,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
     !elementTypeName
     !graphic
   )
+  ioGeneration.mGenerateClass_StandAloneArrayOf_ += !elementTypeName
 }
 
 
@@ -322,6 +323,7 @@ override proc @arrayControllerGeneration.generateCode(
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
+    ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
     ?!@stringset unused ioGeneratedFileSet)
 {
 #--- Build observed property set (for sorting and filtering)

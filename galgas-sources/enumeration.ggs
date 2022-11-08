@@ -176,6 +176,7 @@ override proc @enumForGeneration.generateCode(
     ?toOne: @stringset unused inToOneEntities
     ?toMany: @stringset unused inToManyEntities
     ?generateClass_PreferencesArrayOf: @stringset unused inGenerateClass_PreferencesArrayOf
+    ?generateClass_StandAloneArrayOf: @stringset unused inGenerateClass_StandAloneArrayOf
     ?!@stringset ioGeneratedFileSet) {
   if [self.mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
     let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift
