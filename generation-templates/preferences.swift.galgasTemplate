@@ -56,7 +56,7 @@ for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do (idx)
   %  //    IMPLICIT VIEW %![idx string]%\n%
   %  //····················································································································\n\n%
 %  fileprivate final func computeImplicitView_%![idx string]% () -> NSView {\n%
-![mInstruction generate !prefs: true !"view" !"    "]
+![mInstruction generateViewInstruction !prefs: true !"view" !"    "]
 %    return view\n%
 %  }\n\n%
 end

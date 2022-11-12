@@ -3280,8 +3280,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_implicitViewFunctio
 
 class cPtr_abstractViewInstructionGeneration : public acStrongPtr_class {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;

@@ -3079,8 +3079,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hStackViewInstructi
 
 class cPtr_hStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -3244,8 +3244,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hSplitViewInstructi
 
 class cPtr_hSplitViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -3409,8 +3409,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_vSplitViewInstructi
 
 class cPtr_vSplitViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -3574,8 +3574,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_vStackViewInstructi
 
 class cPtr_vStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -3727,8 +3727,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stackViewReferenceI
 
 class cPtr_stackViewReferenceInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -3870,8 +3870,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSpaceView
 
 class cPtr_autoLayoutSpaceViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -4017,8 +4017,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSeparator
 
 class cPtr_autoLayoutSeparatorInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -4166,8 +4166,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutLocalView
 
 class cPtr_autoLayoutLocalViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -5283,8 +5283,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutComputedV
 
 class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
 
-//--- Extension getter generate
-  public: virtual class GALGAS_string getter_generate (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewInstruction
+  public: virtual class GALGAS_string getter_generateViewInstruction (const class GALGAS_bool inPreferences,
            const class GALGAS_string inName,
            const class GALGAS_string inIndentation,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -5410,16 +5410,16 @@ class GALGAS_string callExtensionGetter_generateView (const class cPtr_abstractV
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractViewInstructionGeneration generate'
+//Abstract extension getter '@abstractViewInstructionGeneration generateViewInstruction'
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_string callExtensionGetter_generate (const class cPtr_abstractViewInstructionGeneration * inObject,
-                                                  const GALGAS_bool constin_inPreferences,
-                                                  const GALGAS_string constin_inName,
-                                                  const GALGAS_string constin_inIndentation,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+class GALGAS_string callExtensionGetter_generateViewInstruction (const class cPtr_abstractViewInstructionGeneration * inObject,
+                                                                 const GALGAS_bool constin_inPreferences,
+                                                                 const GALGAS_string constin_inName,
+                                                                 const GALGAS_string constin_inIndentation,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //

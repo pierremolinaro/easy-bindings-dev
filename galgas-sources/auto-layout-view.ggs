@@ -96,6 +96,13 @@ class @astStackViewReferenceInstructionDeclaration  : @astAbstractViewInstructio
 
 #-----------------------------------------------------------------------------------------------------------------------
 
+#class @astNewStackViewInstructionDeclaration  : @astAbstractViewInstructionDeclaration {
+#  public let @lstring mInstanciedStackViewName
+#  public let @lstring mTypeStackViewName
+#}
+
+#-----------------------------------------------------------------------------------------------------------------------
+
 class @astSpaceViewInstruction : @astAbstractViewInstructionDeclaration {
 }
 
@@ -227,7 +234,6 @@ syntax extension easyBindings_syntax {
     while
       $separator$
       ioInstructionList += !@astSeparatorInstructionDeclaration (!horizontal: inHorizontal)
-
     while
       <view_instruction> (?let instruction)
       ioInstructionList += !instruction
@@ -238,7 +244,7 @@ syntax extension easyBindings_syntax {
  
   rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
     $space$
-    outInstruction = @astSpaceViewInstruction.new
+    outInstruction = @astSpaceViewInstruction ()
   }
   
   #·····················································································································
@@ -422,6 +428,16 @@ syntax extension easyBindings_syntax {
     $identifier$ (?let stackViewName)
     outInstruction = @astStackViewReferenceInstructionDeclaration (!stackViewName)
   }
+
+  #·····················································································································
+ 
+#  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
+#    $newStackView$
+#    $identifier$ (?let instancedStackViewName)
+#    $:$
+#    $identifier$ (?let typeStackViewName)
+#    outInstruction = @astNewStackViewInstructionDeclaration (!instancedStackViewName !typeStackViewName)
+#  }
   
   #·····················································································································
  
@@ -1823,6 +1839,27 @@ override proc @astStackViewReferenceInstructionDeclaration.generateViewCode(
                         !@abstractViewInstructionGeneration outInstruction) {
   outInstruction = @stackViewReferenceInstructionGeneration (!self.mStackViewName.string)
 }
+#·······················································································································
+
+#override proc @astNewStackViewInstructionDeclaration.generateViewCode(
+#                        ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
+#                        ?prefs: let @bool unused inPreferences
+#                        ?let @propertyMap unused inRootObservablePropertyMap
+#                        ?let @propertyMap unused inPreferencesPropertyMap
+#                        ?let @semanticContext unused inSemanticContext
+#                        ?let @propertyMap unused inObservablePropertyMap
+#                        ?let @actionMap unused inActionMap
+#                        ?let @string unused inReceiverSwiftTypeName
+#                        ?let @classMap unused inClassMap
+#                        ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
+#                        ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
+#                        ?!@autoLayoutOutletMap unused ioOutletMap
+#                        !@abstractViewInstructionGeneration outInstruction) {
+#  outInstruction = @newStackViewInstructionGeneration (
+#    !self.mInstanciedStackViewName.string
+#    !self.mTypeStackViewName.string
+#  )
+#}
 
 #-----------------------------------------------------------------------------------------------------------------------
 #   GENERATION                            
@@ -1906,6 +1943,13 @@ class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
 class @stackViewReferenceInstructionGeneration : @abstractViewInstructionGeneration {
   public let @string mStackViewName
 }
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+#class @newStackViewInstructionGeneration : @abstractViewInstructionGeneration {
+#  public let @string mInstanciedStackViewName
+#  public let @string mTypeStackViewName
+#}
 
 #-----------------------------------------------------------------------------------------------------------------------
 
@@ -2040,7 +2084,7 @@ override func @computedHorizontalViewGeneration.generateView (?prefs: let @bool 
   [self.mFuncCallList generate !"    " !?result]
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
-    result += [instruction generate !prefs: inPreferences !name !"    "]
+    result += [instruction generateViewInstruction !prefs: inPreferences !name !"    "]
     result += "    _ = hStackView.appendView (" + name + ")\n"
   end
   result += "    return hStackView\n"
@@ -2056,7 +2100,7 @@ override func @computedVerticalViewGeneration.generateView (?prefs: let @bool in
   [self.mFuncCallList generate !"    " !?result]
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
-    result += [instruction generate !prefs: inPreferences !name !"    "]
+    result += [instruction generateViewInstruction !prefs: inPreferences !name !"    "]
     result += "    _ = vStackView.appendView (" + name + ")\n"
   end
   result += "    return vStackView\n"
@@ -2065,14 +2109,14 @@ override func @computedVerticalViewGeneration.generateView (?prefs: let @bool in
 
 #·······················································································································
 
-abstract func  @abstractViewInstructionGeneration.generate(
+abstract func  @abstractViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string
 
 #·······················································································································
 
-override func @autoLayoutSpaceViewInstructionGeneration.generate(
+override func @autoLayoutSpaceViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool unused inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
@@ -2081,7 +2125,7 @@ override func @autoLayoutSpaceViewInstructionGeneration.generate(
 
 #·······················································································································
 
-override func @autoLayoutSeparatorInstructionGeneration.generate(
+override func @autoLayoutSeparatorInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool unused inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
@@ -2094,7 +2138,7 @@ override func @autoLayoutSeparatorInstructionGeneration.generate(
 
 #·······················································································································
 
-override func @autoLayoutLocalViewInstructionGeneration.generate(
+override func @autoLayoutLocalViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool unused inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
@@ -2103,7 +2147,7 @@ override func @autoLayoutLocalViewInstructionGeneration.generate(
 
 #·······················································································································
 
-override func @autoLayoutComputedViewInstructionGeneration.generate(
+override func @autoLayoutComputedViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
@@ -2154,7 +2198,7 @@ override func @autoLayoutComputedViewInstructionGeneration.generate(
 
 #·······················································································································
 
-override func @hStackViewInstructionGeneration.generate(
+override func @hStackViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
@@ -2167,7 +2211,7 @@ override func @hStackViewInstructionGeneration.generate(
   let indentation = inIndentation + "  "
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
-     result += [instruction generate !prefs: inPreferences !name !indentation]
+     result += [instruction generateViewInstruction  !prefs: inPreferences !name !indentation]
      result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
@@ -2175,7 +2219,7 @@ override func @hStackViewInstructionGeneration.generate(
 
 #·······················································································································
 
-override func @hSplitViewInstructionGeneration.generate(
+override func @hSplitViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
@@ -2188,7 +2232,7 @@ override func @hSplitViewInstructionGeneration.generate(
   let indentation = inIndentation + "  "
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
-     result += [instruction generate !prefs: inPreferences !name !indentation]
+     result += [instruction generateViewInstruction !prefs: inPreferences !name !indentation]
      result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
@@ -2196,7 +2240,7 @@ override func @hSplitViewInstructionGeneration.generate(
 
 #·······················································································································
 
-override func @vSplitViewInstructionGeneration.generate(
+override func @vSplitViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
@@ -2209,7 +2253,7 @@ override func @vSplitViewInstructionGeneration.generate(
   let indentation = inIndentation + "  "
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
-     result += [instruction generate !prefs: inPreferences !name !indentation]
+     result += [instruction generateViewInstruction !prefs: inPreferences !name !indentation]
      result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
@@ -2217,7 +2261,7 @@ override func @vSplitViewInstructionGeneration.generate(
 
 #·······················································································································
 
-override func @vStackViewInstructionGeneration.generate(
+override func @vStackViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
@@ -2230,7 +2274,7 @@ override func @vStackViewInstructionGeneration.generate(
   let indentation = inIndentation + "  "
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
-     result += [instruction generate !prefs: inPreferences !name !indentation]
+     result += [instruction generateViewInstruction !prefs: inPreferences !name !indentation]
      result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
@@ -2238,11 +2282,21 @@ override func @vStackViewInstructionGeneration.generate(
 
 #·······················································································································
 
-override func @stackViewReferenceInstructionGeneration.generate(
+override func @stackViewReferenceInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool unused inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
   result = inIndentation + "let " + inName + " = self." + self.mStackViewName + "\n"
 }
+#·······················································································································
+
+#override func @newStackViewInstructionGeneration.generateViewInstruction (
+#                         ?prefs: let @bool unused inPreferences
+#                         ?let @string inName
+#                         ?let @string inIndentation) -> @string {
+#  result = inIndentation + "let " + inName + " = self." + self.mTypeStackViewName + "\n"
+#  result = inIndentation + "let " + self.mInstanciedStackViewName + " = " + inName + "\n"
+#}
+
 
 #-----------------------------------------------------------------------------------------------------------------------
