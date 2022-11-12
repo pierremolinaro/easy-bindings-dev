@@ -8,34 +8,34 @@ abstract class @astAbstractViewDeclaration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astHorizontalStackViewDeclaration : @astAbstractViewDeclaration {
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astVerticalStackViewDeclaration : @astAbstractViewDeclaration {
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
-  public var @astViewInstructionList mInstructionList
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @astViewInstructionList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
-  public var @astViewInstructionList mInstructionList
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @astViewInstructionList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astViewDeclarationList {
-  public var @lstring mViewName
-  public var @astAbstractViewDeclaration mView
+  public let @lstring mViewName
+  public let @astAbstractViewDeclaration mView
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ abstract class @astAbstractViewInstructionDeclaration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  public var @bool horizontal %selector
+  public let @bool horizontal %selector
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -59,39 +59,39 @@ enum @optionalHiddenBinding {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
-  public var @astViewInstructionList mInstructionList
-  public var @optionalHiddenBinding mOptionalHiddenBinding
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @astViewInstructionList mInstructionList
+  public let @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astHSplitViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
-  public var @astViewInstructionList mInstructionList
-  public var @optionalHiddenBinding mOptionalHiddenBinding
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @astViewInstructionList mInstructionList
+  public let @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astVSplitViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
-  public var @astViewInstructionList mInstructionList
-  public var @optionalHiddenBinding mOptionalHiddenBinding
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @astViewInstructionList mInstructionList
+  public let @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
-  public var @astViewInstructionList mInstructionList
-  public var @optionalHiddenBinding mOptionalHiddenBinding
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @astViewInstructionList mInstructionList
+  public let @optionalHiddenBinding mOptionalHiddenBinding
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astStackViewReferenceInstructionDeclaration  : @astAbstractViewInstructionDeclaration {
-  public var @lstring mStackViewName
+  public let @lstring mStackViewName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -102,30 +102,30 @@ class @astSpaceViewInstruction : @astAbstractViewInstructionDeclaration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astLocalViewInstruction : @astAbstractViewInstructionDeclaration {
-  public var @lstring mLocalView
+  public let @lstring mLocalView
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
-  public var @lstring mAutoLayoutViewClassName
-  public var @astAutoLayoutViewInstructionParameterList mParameterList
-  public var @astAutoLayoutViewFunctionCallList mFunctionCallList
-  public var @tableValueBinding mTableValueBinding
-  public var @runActionDescriptor mRunActionDescriptor
-  public var @multipleBindingDescriptor mEnabledBindingDescriptor
-  public var @multipleBindingDescriptor mHiddenBindingDescriptor
-  public var @graphicController mGraphicController
-  public var @regularBindingList mRegularBindingList
-  public var @lstring mConfiguratorName # Empty string if no configurator
-  public var @lstring mOutletName # Empty string if no configurator
+  public let @lstring mAutoLayoutViewClassName
+  public let @astAutoLayoutViewInstructionParameterList mParameterList
+  public let @astAutoLayoutViewFunctionCallList mFunctionCallList
+  public let @tableValueBinding mTableValueBinding
+  public let @runActionDescriptor mRunActionDescriptor
+  public let @multipleBindingDescriptor mEnabledBindingDescriptor
+  public let @multipleBindingDescriptor mHiddenBindingDescriptor
+  public let @graphicController mGraphicController
+  public let @regularBindingList mRegularBindingList
+  public let @lstring mConfiguratorName # Empty string if no configurator
+  public let @lstring mOutletName # Empty string if no configurator
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astAutoLayoutViewFunctionCallList {
-  public var @lstring mFunctionName
-  public var @astAutoLayoutViewInstructionParameterList mParameterList
+  public let @lstring mFunctionName
+  public let @astAutoLayoutViewInstructionParameterList mParameterList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -141,15 +141,15 @@ enum @astAutoLayoutViewInstructionParameterValue {
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astAutoLayoutViewInstructionParameterList {
-  public var @lstring mParameterName
-  public var @autoLayoutClassParameterType mParameterType
-  public var @astAutoLayoutViewInstructionParameterValue mParameter
+  public let @lstring mParameterName
+  public let @autoLayoutClassParameterType mParameterType
+  public let @astAutoLayoutViewInstructionParameterValue mParameter
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @astViewInstructionList {
-  public var @astAbstractViewInstructionDeclaration mInstruction
+  public let @astAbstractViewInstructionDeclaration mInstruction
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -519,7 +519,7 @@ map @autoLayoutViewDeclarationMap {
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @autoLayoutConfiguratorMap {
-  public var @string mAutoLayoutOutletTypeName
+  public let @string mAutoLayoutOutletTypeName
   insert insertKey error message "the '%K' configurator is already declared in %L"
   search searchKey error message "there is no '%K' configurator"
 }
@@ -527,7 +527,7 @@ map @autoLayoutConfiguratorMap {
 #-----------------------------------------------------------------------------------------------------------------------
 
 map @autoLayoutOutletMap {
-  public var @string mAutoLayoutOutletTypeName
+  public let @string mAutoLayoutOutletTypeName
   insert insertKey error message "the '%K' outlet is already declared in %L"
   search searchKey error message "there is no '%K' outlet"
 }
@@ -535,7 +535,7 @@ map @autoLayoutOutletMap {
 #·······················································································································
 
 list @implicitViewFunctionGenerationList {
-  public var @abstractViewInstructionGeneration mInstruction
+  public let @abstractViewInstructionGeneration mInstruction
 }
 
 #·······················································································································
@@ -1834,34 +1834,34 @@ abstract class @abstractViewGeneration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @newHorizontalStackViewGeneration : @abstractViewGeneration {
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @newVerticalStackViewGeneration : @abstractViewGeneration {
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @computedHorizontalViewGeneration : @abstractViewGeneration {
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  public var @autoLayoutViewInstructionGenerationList mInstructionList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public let @autoLayoutViewInstructionGenerationList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @computedVerticalViewGeneration : @abstractViewGeneration {
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  public var @autoLayoutViewInstructionGenerationList mInstructionList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public let @autoLayoutViewInstructionGenerationList mInstructionList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @viewGenerationList {
-  public var @string mViewName
-  public var @abstractViewGeneration mView
+  public let @string mViewName
+  public let @abstractViewGeneration mView
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1872,39 +1872,39 @@ abstract class @abstractViewInstructionGeneration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  public var @autoLayoutViewInstructionGenerationList mInstructionList
-  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public let @autoLayoutViewInstructionGenerationList mInstructionList
+  public let @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @hSplitViewInstructionGeneration : @abstractViewInstructionGeneration {
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  public var @autoLayoutViewInstructionGenerationList mInstructionList
-  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public let @autoLayoutViewInstructionGenerationList mInstructionList
+  public let @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @vSplitViewInstructionGeneration : @abstractViewInstructionGeneration {
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  public var @autoLayoutViewInstructionGenerationList mInstructionList
-  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public let @autoLayoutViewInstructionGenerationList mInstructionList
+  public let @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
-  public var @autoLayoutViewInstructionGenerationList mInstructionList
-  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
+  public let @autoLayoutViewInstructionGenerationList mInstructionList
+  public let @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @stackViewReferenceInstructionGeneration : @abstractViewInstructionGeneration {
-  public var @string mStackViewName
+  public let @string mStackViewName
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1915,28 +1915,28 @@ class @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGenera
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGeneration {
-  public var @bool horizontal %selector
+  public let @bool horizontal %selector
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGeneration {
-  public var @string mLocalView
+  public let @string mLocalView
 }
 
 #·······················································································································
 
 list @autoLayoutRegularBindingsGenerationList {
-  public var @string mBindingName
-  public var @boundObjectList mBoundObjectList
-  public var @string mBindingOptionsString
+  public let @string mBindingName
+  public let @boundObjectList mBoundObjectList
+  public let @string mBindingOptionsString
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutMultipleBindingGenerationList {
-  public var @string mBindingName
-  public var @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
+  public let @string mBindingName
+  public let @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
 }
 
 #·······················································································································
@@ -1963,30 +1963,30 @@ enum @autolayoutEnabledBindingForGeneration {
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGeneration {
-  public var @lstring mAutoLayoutViewClassName
-  public var @autoLayoutViewInstructionGenerationParameterList mParameterList
-  public var @autoLayoutViewInstructionGenerationFuncCallList mFunctionCallList
-  public var @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
-  public var @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
-  public var @autolayoutRunBindingForGeneration mRunBindingGeneration
-  public var @string mTableViewBindingGeneration # Bound controller name; empty string means no binding
-  public var @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
-  public var @string mConfiguratorName # Empty string if no configurator
-  public var @string mOutletName # Empty string if no configurator
+  public let @lstring mAutoLayoutViewClassName
+  public let @autoLayoutViewInstructionGenerationParameterList mParameterList
+  public let @autoLayoutViewInstructionGenerationFuncCallList mFunctionCallList
+  public let @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
+  public let @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
+  public let @autolayoutRunBindingForGeneration mRunBindingGeneration
+  public let @string mTableViewBindingGeneration # Bound controller name; empty string means no binding
+  public let @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
+  public let @string mConfiguratorName # Empty string if no configurator
+  public let @string mOutletName # Empty string if no configurator
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationParameterList {
-  public var @string mParameterName
-  public var @string mParameterValue
+  public let @string mParameterName
+  public let @string mParameterValue
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationFuncCallList {
-  public var @string mFunctionName
-  public var @autoLayoutViewInstructionGenerationParameterList mParameters
+  public let @string mFunctionName
+  public let @autoLayoutViewInstructionGenerationParameterList mParameters
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -2005,20 +2005,18 @@ proc @autoLayoutViewInstructionGenerationFuncCallList.generate (?let @string inI
 #-----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationList {
-  public var @abstractViewInstructionGeneration mInstruction
+  public let @abstractViewInstructionGeneration mInstruction
 }
 
 #·······················································································································
 
-abstract func @abstractViewGeneration.generate(
-                         ?prefs: let @bool inPreferences
-                         ?let @string inViewName) -> @string
+abstract func @abstractViewGeneration.generateView (?prefs: let @bool inPreferences
+                                                    ?let @string inViewName) -> @string
 
 #·······················································································································
 
-override func @newHorizontalStackViewGeneration.generate(
-                         ?prefs: let @bool unused inPreferences
-                         ?let @string inViewName) -> @string {
+override func @newHorizontalStackViewGeneration.generateView (?prefs: let @bool unused inPreferences
+                                                              ?let @string inViewName) -> @string {
   result = "  let " + inViewName + " : AutoLayoutBase_NSStackView = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   result += "\n"
@@ -2026,9 +2024,8 @@ override func @newHorizontalStackViewGeneration.generate(
 
 #·······················································································································
 
-override func @newVerticalStackViewGeneration.generate(
-                         ?prefs: let @bool unused inPreferences
-                         ?let @string inViewName) -> @string {
+override func @newVerticalStackViewGeneration.generateView (?prefs: let @bool unused inPreferences
+                                                            ?let @string inViewName) -> @string {
   result = "  let " + inViewName + " : AutoLayoutBase_NSStackView = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   result += "\n"
@@ -2036,10 +2033,9 @@ override func @newVerticalStackViewGeneration.generate(
 
 #·······················································································································
 
-override func @computedHorizontalViewGeneration.generate (
-                         ?prefs: let @bool inPreferences
-                         ?let @string inViewName) -> @string {
-  result = "  lazy final var " + inViewName + " : AutoLayoutHorizontalStackView = {\n"
+override func @computedHorizontalViewGeneration.generateView (?prefs: let @bool inPreferences
+                                                              ?let @string inViewName) -> @string {
+  result = "  lazy final private var " + inViewName + " : AutoLayoutHorizontalStackView = {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   for (instruction) in self.mInstructionList do (index)
@@ -2053,10 +2049,9 @@ override func @computedHorizontalViewGeneration.generate (
 
 #·······················································································································
 
-override func @computedVerticalViewGeneration.generate(
-                         ?prefs: let @bool inPreferences
-                         ?let @string inViewName) -> @string {
-  result = "  lazy final var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
+override func @computedVerticalViewGeneration.generateView (?prefs: let @bool inPreferences
+                                                            ?let @string inViewName) -> @string {
+  result = "  lazy final private var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   for (instruction) in self.mInstructionList do (index)
@@ -2247,7 +2242,7 @@ override func @stackViewReferenceInstructionGeneration.generate(
                          ?prefs: let @bool unused inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
-  result = inIndentation + "let " + inName + " = " + self.mStackViewName + "\n"
+  result = inIndentation + "let " + inName + " = self." + self.mStackViewName + "\n"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

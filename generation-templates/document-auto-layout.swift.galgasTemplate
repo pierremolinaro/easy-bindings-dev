@@ -69,7 +69,7 @@ for (mViewName mView) in VIEW_GENERATION_LIST do
   %  //····················································································································\n%
   %  //    VIEW %!mViewName%\n%
   %  //····················································································································\n\n%
-  ![mView generate !prefs: false !mViewName]
+  ![mView generateView !prefs: false !mViewName]
 end
 for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do (idx)
   %  //····················································································································\n%
