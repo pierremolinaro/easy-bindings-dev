@@ -22,6 +22,7 @@ class @astVerticalStackViewDeclaration : @astAbstractViewDeclaration {
 class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
   public let @astAutoLayoutViewFunctionCallList mFunctionCallList
   public let @astViewInstructionList mInstructionList
+  public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -29,6 +30,7 @@ class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
 class @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
   public let @astAutoLayoutViewFunctionCallList mFunctionCallList
   public let @astViewInstructionList mInstructionList
+  public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -90,16 +92,10 @@ class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-class @astStackViewReferenceInstructionDeclaration  : @astAbstractViewInstructionDeclaration {
-  public let @lstring mStackViewName
+list @astNewStackViewDeclarationList {
+  public let @lstring mInstanciedStackViewName
+  public let @lstring mTypeStackViewName
 }
-
-#-----------------------------------------------------------------------------------------------------------------------
-
-#class @astNewStackViewInstructionDeclaration  : @astAbstractViewInstructionDeclaration {
-#  public let @lstring mInstanciedStackViewName
-#  public let @lstring mTypeStackViewName
-#}
 
 #-----------------------------------------------------------------------------------------------------------------------
 
@@ -169,15 +165,15 @@ syntax extension easyBindings_syntax {
   
   rule <stack_view_declaration> (?!@astViewDeclarationList ioViewDeclarationList) {
     $stackView$
-    $identifier$ (?let viewName)
+    $viewName$ (?let viewName)
     $:$
     select
       $hStack$
-      <auto_layout_func_call_list> (?let functionCallList)
+      <auto_layout_func_call_list> (!{} ?let functionCallList)
       ioViewDeclarationList += !viewName !@astHorizontalStackViewDeclaration (!functionCallList)
     or
       $vStack$
-      <auto_layout_func_call_list> (?let functionCallList)
+      <auto_layout_func_call_list> (!{} ?let functionCallList)
       ioViewDeclarationList += !viewName !@astVerticalStackViewDeclaration (!functionCallList)
     end
     $;$
@@ -187,90 +183,133 @@ syntax extension easyBindings_syntax {
   
   rule <stack_view_declaration> (?!@astViewDeclarationList ioViewDeclarationList) {
     $stackView$
-    $identifier$ (?let viewName)
+    $viewName$ (?let viewName)
     $vStack$
-     <auto_layout_func_call_list> (?let functionCallList)
+    <auto_layout_func_call_list> (! {}?let functionCallList)
     ${$
+    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
+    var @stringset stackViewInstances = {}
+    repeat
+    while
+      $newView$
+      $identifier$ (?let instancedStackViewName)
+      stackViewInstances += !instancedStackViewName
+      $=$
+      $viewName$ (?let typeStackViewName)
+      $($
+      $)$
+      astNewStackViewDeclarationList += !instancedStackViewName !typeStackViewName
+    end 
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: false !?instructionList)
+    <view_instruction_list> (!horizontal: false !stackViewInstances !?instructionList)
     $}$
     ioViewDeclarationList +=
       !viewName
-      !@astComputedVerticalViewDeclaration (!functionCallList !instructionList)
+      !@astComputedVerticalViewDeclaration (!functionCallList !instructionList !astNewStackViewDeclarationList)
   }
  
   #·····················································································································
   
-  rule <auto_layout_func_call_list> (!@astAutoLayoutViewFunctionCallList outFunctionCallList) {
+  rule <stack_view_declaration> (?!@astViewDeclarationList ioViewDeclarationList) {
+    $stackView$
+    $viewName$ (?let viewName)
+    $hStack$
+    <auto_layout_func_call_list> (!{} ?let functionCallList)
+    ${$
+    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
+    var @stringset stackViewInstances = {}
+    repeat
+    while
+      $newView$
+      $identifier$ (?let instancedStackViewName) 
+      stackViewInstances += !instancedStackViewName
+      $=$
+      $viewName$ (?let typeStackViewName)
+      $($
+      $)$
+      astNewStackViewDeclarationList += !instancedStackViewName !typeStackViewName
+    end 
+    var instructionList = @astViewInstructionList {}
+    <view_instruction_list> (!horizontal: true !stackViewInstances !?instructionList)
+    $}$
+    ioViewDeclarationList +=
+      !viewName
+      !@astComputedHorizontalViewDeclaration (!functionCallList !instructionList !astNewStackViewDeclarationList)
+  }
+ 
+  #·····················································································································
+  
+  rule <auto_layout_func_call_list> (?let @stringset inStackViewInstances
+                                     !@astAutoLayoutViewFunctionCallList outFunctionCallList) {
    outFunctionCallList = {}
    repeat
     while
        $identifier$ (?let functionName)
-       <view_actual_parameter_list> (?let actualParameterList)
+       <view_actual_parameter_list> (!inStackViewInstances ?let actualParameterList)
        outFunctionCallList += !functionName !actualParameterList
     end
   }
    
   #·····················································································································
-  
-  rule <stack_view_declaration> (?!@astViewDeclarationList ioViewDeclarationList) {
-    $stackView$
-    $identifier$ (?let viewName)
-    $hStack$
-    <auto_layout_func_call_list> (?let functionCallList)
-    ${$
-    var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: true !?instructionList)
-    $}$
-    ioViewDeclarationList +=
-      !viewName
-      !@astComputedHorizontalViewDeclaration (!functionCallList !instructionList)
-  }
  
-  #·····················································································································
- 
-  rule <view_instruction_list> (?horizontal: @bool inHorizontal ?!@astViewInstructionList ioInstructionList) {
+  rule <view_instruction_list> (?horizontal: @bool inHorizontal
+                                ?let @stringset inStackViewInstances
+                                ?!@astViewInstructionList ioInstructionList) {
     repeat
     while
       $separator$
       ioInstructionList += !@astSeparatorInstructionDeclaration (!horizontal: inHorizontal)
     while
-      <view_instruction> (?let instruction)
+      $view$
+      $identifier$ (?let localViewName)
+      if not [inStackViewInstances hasKey !localViewName.string] then
+        error localViewName : "the view is not instancied"
+      end
+      ioInstructionList += !@astLocalViewInstruction (!localViewName)
+    while
+      <view_instruction> (!inStackViewInstances ?let instruction)
       ioInstructionList += !instruction
     end
   }
   
   #·····················································································································
  
-  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
+  rule <view_instruction> (?let @stringset unused inStackViewInstances
+                           !@astAbstractViewInstructionDeclaration outInstruction) {
     $space$
     outInstruction = @astSpaceViewInstruction ()
   }
   
   #·····················································································································
  
-  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
-    $view$
-    $identifier$ (?let localViewName)
-    outInstruction = @astLocalViewInstruction (!localViewName)
-  }
+#  rule <view_instruction> (?let @stringset inStackViewInstances
+#                           !@astAbstractViewInstructionDeclaration outInstruction) {
+#    $view$
+#    $identifier$ (?let localViewName)
+#    if not [inStackViewInstances hasKey !localViewName.string] then
+#      error localViewName : "the view is not instancied"
+#    end
+#    outInstruction = @astLocalViewInstruction (!localViewName)
+#  }
   
  #·····················································································································
  
-  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
-    <computed_view_instruction> (?let instruction)
+  rule <view_instruction> (?let @stringset inStackViewInstances
+                           !@astAbstractViewInstructionDeclaration outInstruction) {
+    <computed_view_instruction> (!inStackViewInstances ?let instruction)
     outInstruction = instruction
   }
   
   #·····················································································································
  
-  rule <computed_view_instruction> (!@astComputedViewInstruction outInstruction) {
+  rule <computed_view_instruction> (?let @stringset inStackViewInstances
+                                    !@astComputedViewInstruction outInstruction) {
     $Identifier$ (? let viewClassName)
     let @astAutoLayoutViewInstructionParameterList instanciationParameterList
     select
       instanciationParameterList = {}
     or
-      <view_actual_parameter_list> (?instanciationParameterList)
+      <view_actual_parameter_list> (!inStackViewInstances ?instanciationParameterList)
     end
     let @lstring configuratorName
     let @lstring outletName
@@ -310,7 +349,7 @@ syntax extension easyBindings_syntax {
       autoLayoutViewFunctionCallList = {}
     or
       ${$
-      <auto_layout_func_call_list> (?autoLayoutViewFunctionCallList)
+      <auto_layout_func_call_list> (!inStackViewInstances ?autoLayoutViewFunctionCallList)
       <outlet_binding> (?tableValueBinding
                        ?runActionDescriptor
                        ?enabledBindingDescriptor
@@ -336,7 +375,8 @@ syntax extension easyBindings_syntax {
   
  #·····················································································································
  
-  rule <view_actual_parameter_list> (!@astAutoLayoutViewInstructionParameterList outParameterList) {
+  rule <view_actual_parameter_list> (?let @stringset inStackViewInstances
+                                     !@astAutoLayoutViewInstructionParameterList outParameterList) {
     outParameterList = {}
     $($
     select
@@ -345,7 +385,7 @@ syntax extension easyBindings_syntax {
         $identifier$ (?let parameterName)
         $:$
         select
-          <view_instruction> (?let @astAbstractViewInstructionDeclaration instruction)
+          <view_instruction> (!inStackViewInstances ?let @astAbstractViewInstructionDeclaration instruction)
           outParameterList += !parameterName !.typeView !.viewFunc (!instruction: instruction)
         or
           $entity$
@@ -382,9 +422,12 @@ syntax extension easyBindings_syntax {
            !.menuItem
            !.menuItem (!title: menuItemTitle !run: runActionDescriptor !enabled: enabledBindingDescriptor)
         or
-          $stackView$
+          $view$
           $identifier$ (?let viewName)
-          outParameterList += !parameterName !.typeView !.string (!value: "self." + viewName.string)
+          if not [inStackViewInstances hasKey !viewName.string] then
+            error viewName : "view is not instancied"
+          end
+          outParameterList += !parameterName !.typeView !.string (!value: viewName.string)
         or
           $yes$
           outParameterList += !parameterName !.typeBool !.string (!value: "true")
@@ -423,27 +466,10 @@ syntax extension easyBindings_syntax {
   
   #·····················································································································
  
-  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
-    $stackViewRef$
-    $identifier$ (?let stackViewName)
-    outInstruction = @astStackViewReferenceInstructionDeclaration (!stackViewName)
-  }
-
-  #·····················································································································
- 
-#  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
-#    $newStackView$
-#    $identifier$ (?let instancedStackViewName)
-#    $:$
-#    $identifier$ (?let typeStackViewName)
-#    outInstruction = @astNewStackViewInstructionDeclaration (!instancedStackViewName !typeStackViewName)
-#  }
-  
-  #·····················································································································
- 
-  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
+  rule <view_instruction> (?let @stringset inStackViewInstances
+                           !@astAbstractViewInstructionDeclaration outInstruction) {
     $vStack$
-    <auto_layout_func_call_list> (?let functionCallList)
+    <auto_layout_func_call_list> (!inStackViewInstances ?let functionCallList)
     let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
@@ -454,16 +480,17 @@ syntax extension easyBindings_syntax {
     end
     ${$
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: false !?instructionList)
+    <view_instruction_list> (!horizontal: false !inStackViewInstances !?instructionList)
     outInstruction = @astVStackViewInstructionDeclaration (!functionCallList !instructionList !optionalHiddenBinding)
     $}$
   }
   
   #·····················································································································
  
-  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
+  rule <view_instruction> (?let @stringset inStackViewInstances
+                           !@astAbstractViewInstructionDeclaration outInstruction) {
     $hStack$
-    <auto_layout_func_call_list> (?let functionCallList)
+    <auto_layout_func_call_list> (!inStackViewInstances ?let functionCallList)
     let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
@@ -474,16 +501,17 @@ syntax extension easyBindings_syntax {
     end
     ${$
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: true !?instructionList)
+    <view_instruction_list> (!horizontal: true !inStackViewInstances !?instructionList)
     outInstruction = @astHStackViewInstructionDeclaration (!functionCallList !instructionList !optionalHiddenBinding)
     $}$
   }
   
   #·····················································································································
  
-  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
+  rule <view_instruction> (?let @stringset inStackViewInstances
+                           !@astAbstractViewInstructionDeclaration outInstruction) {
     $hSplit$
-    <auto_layout_func_call_list> (?let functionCallList)
+    <auto_layout_func_call_list> (!inStackViewInstances ?let functionCallList)
     let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
@@ -494,16 +522,17 @@ syntax extension easyBindings_syntax {
     end
     ${$
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: true !?instructionList)
+    <view_instruction_list> (!horizontal: true !inStackViewInstances !?instructionList)
     outInstruction = @astHSplitViewInstructionDeclaration (!functionCallList !instructionList !optionalHiddenBinding)
     $}$
   }
   
   #·····················································································································
  
-  rule <view_instruction> (!@astAbstractViewInstructionDeclaration outInstruction) {
+  rule <view_instruction> (?let @stringset inStackViewInstances
+                           !@astAbstractViewInstructionDeclaration outInstruction) {
     $vSplit$
-    <auto_layout_func_call_list> (?let functionCallList)
+    <auto_layout_func_call_list> (!inStackViewInstances ?let functionCallList)
     let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
@@ -514,7 +543,7 @@ syntax extension easyBindings_syntax {
     end
     ${$
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: true !?instructionList)
+    <view_instruction_list> (!horizontal: true !inStackViewInstances !?instructionList)
     outInstruction = @astVSplitViewInstructionDeclaration (!functionCallList !instructionList !optionalHiddenBinding)
     $}$
   }
@@ -627,7 +656,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             !inObservablePropertyMap
             !inActionMap
             !inReceiverSwiftTypeName
-             !inClassMap
+            !inClassMap
             !?ioImplicitViewFunctionGenerationList
             !?ioConfiguratorMap
             !?ioOutletMap
@@ -824,7 +853,7 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
     ]
     instructionList += !generatedInstruction
   end
-  outGeneration = @computedHorizontalViewGeneration (!funcCallList !instructionList)
+  outGeneration = @computedHorizontalViewGeneration (!funcCallList !instructionList !self.mNewStackViewDeclarationList)
 }
 
 #·······················································································································
@@ -879,7 +908,7 @@ override proc @astComputedVerticalViewDeclaration.checkView(
     ]
     instructionList += !generatedInstruction
   end
-  outGeneration = @computedVerticalViewGeneration (!funcCallList !instructionList)
+  outGeneration = @computedVerticalViewGeneration (!funcCallList !instructionList !self.mNewStackViewDeclarationList)
 }
 
 #·······················································································································
@@ -941,7 +970,7 @@ override proc @astSeparatorInstructionDeclaration.generateViewCode(
 #·······················································································································
 
 override proc @astLocalViewInstruction.generateViewCode(
-                                ?let @autoLayoutViewDeclarationMap inViewDeclarationMap
+                                ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
                                 ?prefs: let @bool unused inPreferences
                                 ?let @propertyMap unused inRootObservablePropertyMap
                                 ?let @propertyMap unused inPreferencesPropertyMap
@@ -954,7 +983,7 @@ override proc @astLocalViewInstruction.generateViewCode(
                                 ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
                                 ?!@autoLayoutOutletMap unused ioOutletMap
                                 !@abstractViewInstructionGeneration outInstruction) {
-  [inViewDeclarationMap searchKey !self.mLocalView]
+#  [inViewDeclarationMap searchKey !self.mLocalView]
   outInstruction = @autoLayoutLocalViewInstructionGeneration (!self.mLocalView.string)
 }
 
@@ -1821,46 +1850,6 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
   outInstruction = @vStackViewInstructionGeneration (!funcCallList !instructionList !multipleBindingGenerationList)
 }
 
-#·······················································································································
-
-override proc @astStackViewReferenceInstructionDeclaration.generateViewCode(
-                        ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-                        ?prefs: let @bool unused inPreferences
-                        ?let @propertyMap unused inRootObservablePropertyMap
-                        ?let @propertyMap unused inPreferencesPropertyMap
-                        ?let @semanticContext unused inSemanticContext
-                        ?let @propertyMap unused inObservablePropertyMap
-                        ?let @actionMap unused inActionMap
-                        ?let @string unused inReceiverSwiftTypeName
-                        ?let @classMap unused inClassMap
-                        ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
-                        ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
-                        ?!@autoLayoutOutletMap unused ioOutletMap
-                        !@abstractViewInstructionGeneration outInstruction) {
-  outInstruction = @stackViewReferenceInstructionGeneration (!self.mStackViewName.string)
-}
-#·······················································································································
-
-#override proc @astNewStackViewInstructionDeclaration.generateViewCode(
-#                        ?let @autoLayoutViewDeclarationMap unused inViewDeclarationMap
-#                        ?prefs: let @bool unused inPreferences
-#                        ?let @propertyMap unused inRootObservablePropertyMap
-#                        ?let @propertyMap unused inPreferencesPropertyMap
-#                        ?let @semanticContext unused inSemanticContext
-#                        ?let @propertyMap unused inObservablePropertyMap
-#                        ?let @actionMap unused inActionMap
-#                        ?let @string unused inReceiverSwiftTypeName
-#                        ?let @classMap unused inClassMap
-#                        ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList
-#                        ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap
-#                        ?!@autoLayoutOutletMap unused ioOutletMap
-#                        !@abstractViewInstructionGeneration outInstruction) {
-#  outInstruction = @newStackViewInstructionGeneration (
-#    !self.mInstanciedStackViewName.string
-#    !self.mTypeStackViewName.string
-#  )
-#}
-
 #-----------------------------------------------------------------------------------------------------------------------
 #   GENERATION                            
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1885,6 +1874,7 @@ class @newVerticalStackViewGeneration : @abstractViewGeneration {
 class @computedHorizontalViewGeneration : @abstractViewGeneration {
   public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   public let @autoLayoutViewInstructionGenerationList mInstructionList
+  public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1892,6 +1882,7 @@ class @computedHorizontalViewGeneration : @abstractViewGeneration {
 class @computedVerticalViewGeneration : @abstractViewGeneration {
   public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   public let @autoLayoutViewInstructionGenerationList mInstructionList
+  public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1937,19 +1928,6 @@ class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   public let @autoLayoutViewInstructionGenerationList mInstructionList
   public let @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
 }
-
-#-----------------------------------------------------------------------------------------------------------------------
-
-class @stackViewReferenceInstructionGeneration : @abstractViewInstructionGeneration {
-  public let @string mStackViewName
-}
-
-#-----------------------------------------------------------------------------------------------------------------------
-
-#class @newStackViewInstructionGeneration : @abstractViewInstructionGeneration {
-#  public let @string mInstanciedStackViewName
-#  public let @string mTypeStackViewName
-#}
 
 #-----------------------------------------------------------------------------------------------------------------------
 
@@ -2061,55 +2039,63 @@ abstract func @abstractViewGeneration.generateView (?prefs: let @bool inPreferen
 
 override func @newHorizontalStackViewGeneration.generateView (?prefs: let @bool unused inPreferences
                                                               ?let @string inViewName) -> @string {
-  result = "  let " + inViewName + " : AutoLayoutBase_NSStackView = AutoLayoutHorizontalStackView ()\n"
-  [self.mFuncCallList generate !"    " !?result]
-  result += "\n"
+  result  = "  final private func " + inViewName + " () -> AutoLayoutBase_NSStackView {\n"
+  result += "    return AutoLayoutHorizontalStackView ()\n"
+  [self.mFuncCallList generate !"      " !?result]
+  result += "  }\n\n"
 }
 
 #·······················································································································
 
 override func @newVerticalStackViewGeneration.generateView (?prefs: let @bool unused inPreferences
                                                             ?let @string inViewName) -> @string {
-  result = "  let " + inViewName + " : AutoLayoutBase_NSStackView = AutoLayoutVerticalStackView ()\n"
-  [self.mFuncCallList generate !"    " !?result]
-  result += "\n"
+  result  = "  final private func " + inViewName + " () -> AutoLayoutBase_NSStackView {\n"
+  result += "    return AutoLayoutVerticalStackView ()\n"
+  [self.mFuncCallList generate !"      " !?result]
+  result += "  }\n\n"
 }
 
 #·······················································································································
 
 override func @computedHorizontalViewGeneration.generateView (?prefs: let @bool inPreferences
                                                               ?let @string inViewName) -> @string {
-  result = "  lazy final private var " + inViewName + " : AutoLayoutHorizontalStackView = {\n"
+  result = "  final private func " + inViewName + " () -> AutoLayoutHorizontalStackView {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
+  for (instance type) in self.mNewStackViewDeclarationList do
+    result += "    let " + instance + " = self." + type + " ()\n"
+  end
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
     result += [instruction generateViewInstruction !prefs: inPreferences !name !"    "]
     result += "    _ = hStackView.appendView (" + name + ")\n"
   end
   result += "    return hStackView\n"
-  result += "  } ()\n\n"
+  result += "  }\n\n"
 }
 
 #·······················································································································
 
 override func @computedVerticalViewGeneration.generateView (?prefs: let @bool inPreferences
                                                             ?let @string inViewName) -> @string {
-  result = "  lazy final private var " + inViewName + " : AutoLayoutVerticalStackView = {\n"
+  result = "  final private func " + inViewName + " () -> AutoLayoutVerticalStackView {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
+  for (instance type) in self.mNewStackViewDeclarationList do
+    result += "    let " + instance + " = self." + type + " ()\n"
+  end
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
     result += [instruction generateViewInstruction !prefs: inPreferences !name !"    "]
     result += "    _ = vStackView.appendView (" + name + ")\n"
   end
   result += "    return vStackView\n"
-  result += "  } ()\n\n"
+  result += "  }\n\n"
 }
 
 #·······················································································································
 
-abstract func  @abstractViewInstructionGeneration.generateViewInstruction (
+abstract func @abstractViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string
@@ -2142,7 +2128,7 @@ override func @autoLayoutLocalViewInstructionGeneration.generateViewInstruction 
                          ?prefs: let @bool unused inPreferences
                          ?let @string inName
                          ?let @string inIndentation) -> @string {
-  result = inIndentation + "let " + inName + " = self." + self.mLocalView + "\n"
+  result = inIndentation + "let " + inName + " = " + self.mLocalView + "\n"
 }
 
 #·······················································································································
@@ -2279,24 +2265,5 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
   end
   result += inIndentation + "}\n"
 }
-
-#·······················································································································
-
-override func @stackViewReferenceInstructionGeneration.generateViewInstruction (
-                         ?prefs: let @bool unused inPreferences
-                         ?let @string inName
-                         ?let @string inIndentation) -> @string {
-  result = inIndentation + "let " + inName + " = self." + self.mStackViewName + "\n"
-}
-#·······················································································································
-
-#override func @newStackViewInstructionGeneration.generateViewInstruction (
-#                         ?prefs: let @bool unused inPreferences
-#                         ?let @string inName
-#                         ?let @string inIndentation) -> @string {
-#  result = inIndentation + "let " + inName + " = self." + self.mTypeStackViewName + "\n"
-#  result = inIndentation + "let " + self.mInstanciedStackViewName + " = " + inName + "\n"
-#}
-
 
 #-----------------------------------------------------------------------------------------------------------------------

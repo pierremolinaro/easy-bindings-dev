@@ -76,7 +76,7 @@ syntax extension easyBindings_syntax {
     $root$
     $Identifier$ (?let @lstring rootEntityName)
     $stackView$
-    $identifier$ (?let @lstring mainViewName)
+    $viewName$ (?let @lstring mainViewName)
     ${$
     var @outletDeclarationList outletDeclarationList = {}
     var @lstringlist actionDeclarationList = {}
@@ -104,7 +104,7 @@ syntax extension easyBindings_syntax {
       or
         $literal_string$ (?let title)
         $:$
-        <computed_view_instruction> (?let instruction)
+        <computed_view_instruction> (!{} ?let instruction)
         autoLayoutToolbarItemList += !.view (!title: title !instruction: instruction)
       end
     while

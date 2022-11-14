@@ -83,6 +83,9 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_bindingName = "a
 //--- Syntax error message for terminal '$controllerName$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_controllerName = "a controller name (identifier prefixed by '#')" ;
 
+//--- Syntax error message for terminal '$viewName$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_viewName = "a view name (identifier prefixed by '\\')" ;
+
 //--- Syntax error message for terminal '$literal_integer$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_integer = "a 32-bit unsigned decimal number" ;
 
@@ -194,6 +197,9 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_menuItem = "the 
 //--- Syntax error message for terminal '$no$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_no = "the 'no' keyword" ;
 
+//--- Syntax error message for terminal '$newView$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_newView = "the 'newView' keyword" ;
+
 //--- Syntax error message for terminal '$none$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_none = "the 'none' keyword" ;
 
@@ -238,9 +244,6 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_space = "the 'sp
 
 //--- Syntax error message for terminal '$stackView$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_stackView = "the 'stackView' keyword" ;
-
-//--- Syntax error message for terminal '$stackViewRef$' :
-static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_stackViewRef = "the 'stackViewRef' keyword" ;
 
 //--- Syntax error message for terminal '$struct$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_struct = "the 'struct' keyword" ;
@@ -365,19 +368,23 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__5E_ = "the '^' 
 //--- Syntax error message for terminal '$-$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__2D_ = "the '-' delimitor" ;
 
+//--- Syntax error message for terminal '$=$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3D_ = "the '=' delimitor" ;
+
 //----------------------------------------------------------------------------------------------------------------------
 //                getMessageForTerminal                                                          
 //----------------------------------------------------------------------------------------------------------------------
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
   C_String result = "<unknown>" ;
-  if ((inTerminalIndex >= 0) && (inTerminalIndex < 100)) {
-    static const char * syntaxErrorMessageArray [100] = {kEndOfSourceLexicalErrorMessage,
+  if ((inTerminalIndex >= 0) && (inTerminalIndex < 102)) {
+    static const char * syntaxErrorMessageArray [102] = {kEndOfSourceLexicalErrorMessage,
         gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique__40_attribute,
         gSyntaxErrorMessage_easyBindings_5F_lexique_bindingName,
         gSyntaxErrorMessage_easyBindings_5F_lexique_controllerName,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_viewName,
         gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_integer,
         gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_double,
         gSyntaxErrorMessage_easyBindings_5F_lexique_literal_5F_string,
@@ -415,6 +422,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_mainxib,
         gSyntaxErrorMessage_easyBindings_5F_lexique_menuItem,
         gSyntaxErrorMessage_easyBindings_5F_lexique_no,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_newView,
         gSyntaxErrorMessage_easyBindings_5F_lexique_none,
         gSyntaxErrorMessage_easyBindings_5F_lexique_one,
         gSyntaxErrorMessage_easyBindings_5F_lexique_outlet,
@@ -430,7 +438,6 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_sortkey,
         gSyntaxErrorMessage_easyBindings_5F_lexique_space,
         gSyntaxErrorMessage_easyBindings_5F_lexique_stackView,
-        gSyntaxErrorMessage_easyBindings_5F_lexique_stackViewRef,
         gSyntaxErrorMessage_easyBindings_5F_lexique_struct,
         gSyntaxErrorMessage_easyBindings_5F_lexique_super,
         gSyntaxErrorMessage_easyBindings_5F_lexique_tableViewController,
@@ -471,7 +478,8 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique__21__3D_,
         gSyntaxErrorMessage_easyBindings_5F_lexique__3D__3D_,
         gSyntaxErrorMessage_easyBindings_5F_lexique__5E_,
-        gSyntaxErrorMessage_easyBindings_5F_lexique__2D_
+        gSyntaxErrorMessage_easyBindings_5F_lexique__2D_,
+        gSyntaxErrorMessage_easyBindings_5F_lexique__3D_
     } ;
     result = syntaxErrorMessageArray [inTerminalIndex] ;
   }
@@ -559,6 +567,12 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique__3C_ [] = {
 //--- Unicode string for '$_3C__3D_$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique__3C__3D_ [] = {
   TO_UNICODE ('<'),
+  TO_UNICODE ('='),
+  TO_UNICODE (0)
+} ;
+
+//--- Unicode string for '$_3D_$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique__3D_ [] = {
   TO_UNICODE ('='),
   TO_UNICODE (0)
 } ;
@@ -1093,6 +1107,18 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_menuItem [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$newView$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique_newView [] = {
+  TO_UNICODE ('n'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('w'),
+  TO_UNICODE ('V'),
+  TO_UNICODE ('i'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('w'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$no$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique_no [] = {
   TO_UNICODE ('n'),
@@ -1285,23 +1311,6 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_stackView [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('e'),
   TO_UNICODE ('w'),
-  TO_UNICODE (0)
-} ;
-
-//--- Unicode string for '$stackViewRef$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_stackViewRef [] = {
-  TO_UNICODE ('s'),
-  TO_UNICODE ('t'),
-  TO_UNICODE ('a'),
-  TO_UNICODE ('c'),
-  TO_UNICODE ('k'),
-  TO_UNICODE ('V'),
-  TO_UNICODE ('i'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('w'),
-  TO_UNICODE ('R'),
-  TO_UNICODE ('e'),
-  TO_UNICODE ('f'),
   TO_UNICODE (0)
 } ;
 
@@ -1539,7 +1548,7 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique__7D_ [] = {
 //             Key words table 'delimitorsList'      
 //----------------------------------------------------------------------------------------------------------------------
 
-static const int32_t ktable_size_easyBindings_5F_lexique_delimitorsList = 21 ;
+static const int32_t ktable_size_easyBindings_5F_lexique_delimitorsList = 22 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_delimitorsList [ktable_size_easyBindings_5F_lexique_delimitorsList] = {
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__21_, 1, C_Lexique_easyBindings_5F_lexique::kToken__21_),
@@ -1552,6 +1561,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_de
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3A_, 1, C_Lexique_easyBindings_5F_lexique::kToken__3A_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3B_, 1, C_Lexique_easyBindings_5F_lexique::kToken__3B_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3C_, 1, C_Lexique_easyBindings_5F_lexique::kToken__3C_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3D_, 1, C_Lexique_easyBindings_5F_lexique::kToken__3D_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3E_, 1, C_Lexique_easyBindings_5F_lexique::kToken__3E_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5B_, 1, C_Lexique_easyBindings_5F_lexique::kToken__5B_),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5D_, 1, C_Lexique_easyBindings_5F_lexique::kToken__5D_),
@@ -1611,6 +1621,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_include, 7, C_Lexique_easyBindings_5F_lexique::kToken_include),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_inverse, 7, C_Lexique_easyBindings_5F_lexique::kToken_inverse),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_mainxib, 7, C_Lexique_easyBindings_5F_lexique::kToken_mainxib),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_newView, 7, C_Lexique_easyBindings_5F_lexique::kToken_newView),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_sortkey, 7, C_Lexique_easyBindings_5F_lexique::kToken_sortkey),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_version, 7, C_Lexique_easyBindings_5F_lexique::kToken_version),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_abstract, 8, C_Lexique_easyBindings_5F_lexique::kToken_abstract),
@@ -1629,7 +1640,6 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_dependsFrom, 11, C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_toolbarItem, 11, C_Lexique_easyBindings_5F_lexique::kToken_toolbarItem),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_configurator, 12, C_Lexique_easyBindings_5F_lexique::kToken_configurator),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_stackViewRef, 12, C_Lexique_easyBindings_5F_lexique::kToken_stackViewRef),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_xcodeproject, 12, C_Lexique_easyBindings_5F_lexique::kToken_xcodeproject),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_classForSwift, 13, C_Lexique_easyBindings_5F_lexique::kToken_classForSwift),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_editableColumn, 14, C_Lexique_easyBindings_5F_lexique::kToken_editableColumn),
@@ -1710,6 +1720,13 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
     case kToken_controllerName:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("controllerName") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeCharacter (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      break ;
+    case kToken_viewName:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("viewName") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendUnicodeCharacter (TO_UNICODE (' ') COMMA_HERE) ;
       s.appendCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
@@ -1907,6 +1924,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString ("no") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
+    case kToken_newView:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("newView") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
     case kToken_none:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("none") ;
@@ -1980,11 +2002,6 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
     case kToken_stackView:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("stackView") ;
-      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      break ;
-    case kToken_stackViewRef:
-      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendCString ("stackViewRef") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_struct:
@@ -2192,6 +2209,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
       s.appendCString ("-") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
+    case kToken__3D_:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("=") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
     default:
       break ;
     }
@@ -2294,6 +2316,17 @@ void C_Lexique_easyBindings_5F_lexique::internalParseLexicalToken (cTokenFor_eas
       loop = true ;
       token.mTokenCode = kToken_controllerName ;
       enterToken (token) ;
+    }else if (testForInputUTF32Char (TO_UNICODE ('\\'))) {
+      do {
+        if (testForInputUTF32CharRange (TO_UNICODE ('a'), TO_UNICODE ('z')) || testForInputUTF32CharRange (TO_UNICODE ('A'), TO_UNICODE ('Z')) || testForInputUTF32CharRange (TO_UNICODE ('0'), TO_UNICODE ('9'))) {
+          ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, previousChar ()) ;
+        }else{
+          loop = false ;
+        }
+      }while (loop) ;
+      loop = true ;
+      token.mTokenCode = kToken_viewName ;
+      enterToken (token) ;
     }else if (testForInputUTF32CharRange (TO_UNICODE ('0'), TO_UNICODE ('9'))) {
       ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, previousChar ()) ;
       do {
@@ -2376,6 +2409,9 @@ void C_Lexique_easyBindings_5F_lexique::internalParseLexicalToken (cTokenFor_eas
       enterToken (token) ;
     }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3E_, 1, true)) {
       token.mTokenCode = kToken__3E_ ;
+      enterToken (token) ;
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3D_, 1, true)) {
+      token.mTokenCode = kToken__3D_ ;
       enterToken (token) ;
     }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3C_, 1, true)) {
       token.mTokenCode = kToken__3C_ ;
@@ -2535,6 +2571,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("@attribute") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("bindingName") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("controllerName") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("viewName") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("literal_integer") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("literal_double") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("literal_string") COMMA_THERE) ;
@@ -2572,6 +2609,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("mainxib") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("menuItem") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("no") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("newView") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("none") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("one") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("outlet") COMMA_THERE) ;
@@ -2587,7 +2625,6 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("sortkey") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("space") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("stackView") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("stackViewRef") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("struct") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("super") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("tableViewController") COMMA_THERE) ;
@@ -2629,6 +2666,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("==") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("^") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("-") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("=") COMMA_THERE) ;
   return result ;
 }
 
@@ -2657,6 +2695,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject (":") ;
     ioList.appendObject (";") ;
     ioList.appendObject ("<") ;
+    ioList.appendObject ("=") ;
     ioList.appendObject (">") ;
     ioList.appendObject ("[") ;
     ioList.appendObject ("]") ;
@@ -2707,6 +2746,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("include") ;
     ioList.appendObject ("inverse") ;
     ioList.appendObject ("mainxib") ;
+    ioList.appendObject ("newView") ;
     ioList.appendObject ("sortkey") ;
     ioList.appendObject ("version") ;
     ioList.appendObject ("abstract") ;
@@ -2725,7 +2765,6 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("dependsFrom") ;
     ioList.appendObject ("toolbarItem") ;
     ioList.appendObject ("configurator") ;
-    ioList.appendObject ("stackViewRef") ;
     ioList.appendObject ("xcodeproject") ;
     ioList.appendObject ("classForSwift") ;
     ioList.appendObject ("editableColumn") ;
@@ -2760,16 +2799,17 @@ __attribute__ ((unused)) (getKeywordLists_easyBindings_5F_lexique, getKeywordsFo
 //----------------------------------------------------------------------------------------------------------------------
 
 uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [100] = {0,
+  static const uint32_t kTerminalSymbolStyles [102] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
     5 /* easyBindings_lexique_1_bindingName */,
     7 /* easyBindings_lexique_1_controllerName */,
-    8 /* easyBindings_lexique_1_literal_5F_integer */,
-    9 /* easyBindings_lexique_1_literal_5F_double */,
-    10 /* easyBindings_lexique_1_literal_5F_string */,
-    12 /* easyBindings_lexique_1_comment */,
+    8 /* easyBindings_lexique_1_viewName */,
+    9 /* easyBindings_lexique_1_literal_5F_integer */,
+    10 /* easyBindings_lexique_1_literal_5F_double */,
+    11 /* easyBindings_lexique_1_literal_5F_string */,
+    13 /* easyBindings_lexique_1_comment */,
     1 /* easyBindings_lexique_1_abstract */,
     1 /* easyBindings_lexique_1_action */,
     1 /* easyBindings_lexique_1_all */,
@@ -2803,6 +2843,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_mainxib */,
     1 /* easyBindings_lexique_1_menuItem */,
     1 /* easyBindings_lexique_1_no */,
+    1 /* easyBindings_lexique_1_newView */,
     1 /* easyBindings_lexique_1_none */,
     1 /* easyBindings_lexique_1_one */,
     1 /* easyBindings_lexique_1_outlet */,
@@ -2818,7 +2859,6 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_sortkey */,
     1 /* easyBindings_lexique_1_space */,
     1 /* easyBindings_lexique_1_stackView */,
-    1 /* easyBindings_lexique_1_stackViewRef */,
     1 /* easyBindings_lexique_1_struct */,
     1 /* easyBindings_lexique_1_super */,
     1 /* easyBindings_lexique_1_tableViewController */,
@@ -2839,27 +2879,28 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     6 /* easyBindings_lexique_1_hidden */,
     6 /* easyBindings_lexique_1_tableValue */,
     6 /* easyBindings_lexique_1_run */,
-    11 /* easyBindings_lexique_1__3A_ */,
-    11 /* easyBindings_lexique_1__2C_ */,
-    11 /* easyBindings_lexique_1__3B_ */,
-    11 /* easyBindings_lexique_1__21_ */,
-    11 /* easyBindings_lexique_1__5B_ */,
-    11 /* easyBindings_lexique_1__5D_ */,
-    11 /* easyBindings_lexique_1__7B_ */,
-    11 /* easyBindings_lexique_1__7D_ */,
-    11 /* easyBindings_lexique_1__28_ */,
-    11 /* easyBindings_lexique_1__29_ */,
-    11 /* easyBindings_lexique_1__2E_ */,
-    11 /* easyBindings_lexique_1__7C_ */,
-    11 /* easyBindings_lexique_1__26_ */,
-    11 /* easyBindings_lexique_1__3C_ */,
-    11 /* easyBindings_lexique_1__3E_ */,
-    11 /* easyBindings_lexique_1__3C__3D_ */,
-    11 /* easyBindings_lexique_1__3E__3D_ */,
-    11 /* easyBindings_lexique_1__21__3D_ */,
-    11 /* easyBindings_lexique_1__3D__3D_ */,
-    11 /* easyBindings_lexique_1__5E_ */,
-    11 /* easyBindings_lexique_1__2D_ */
+    12 /* easyBindings_lexique_1__3A_ */,
+    12 /* easyBindings_lexique_1__2C_ */,
+    12 /* easyBindings_lexique_1__3B_ */,
+    12 /* easyBindings_lexique_1__21_ */,
+    12 /* easyBindings_lexique_1__5B_ */,
+    12 /* easyBindings_lexique_1__5D_ */,
+    12 /* easyBindings_lexique_1__7B_ */,
+    12 /* easyBindings_lexique_1__7D_ */,
+    12 /* easyBindings_lexique_1__28_ */,
+    12 /* easyBindings_lexique_1__29_ */,
+    12 /* easyBindings_lexique_1__2E_ */,
+    12 /* easyBindings_lexique_1__7C_ */,
+    12 /* easyBindings_lexique_1__26_ */,
+    12 /* easyBindings_lexique_1__3C_ */,
+    12 /* easyBindings_lexique_1__3E_ */,
+    12 /* easyBindings_lexique_1__3C__3D_ */,
+    12 /* easyBindings_lexique_1__3E__3D_ */,
+    12 /* easyBindings_lexique_1__21__3D_ */,
+    12 /* easyBindings_lexique_1__3D__3D_ */,
+    12 /* easyBindings_lexique_1__5E_ */,
+    12 /* easyBindings_lexique_1__2D_ */,
+    12 /* easyBindings_lexique_1__3D_ */
   } ;
   return (inTerminalIndex >= 0) ? kTerminalSymbolStyles [inTerminalIndex] : 0 ;
 }
@@ -2870,8 +2911,8 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
 
 C_String C_Lexique_easyBindings_5F_lexique::styleNameForIndex (const uint32_t inStyleIndex) const {
   C_String result ;
-  if (inStyleIndex < 13) {
-    static const char * kStyleArray [13] = {
+  if (inStyleIndex < 14) {
+    static const char * kStyleArray [14] = {
       "",
       "keywordsStyle",
       "idfStyle",
@@ -2880,6 +2921,7 @@ C_String C_Lexique_easyBindings_5F_lexique::styleNameForIndex (const uint32_t in
       "bindingNameStyle",
       "reservedBindingNameStyle",
       "controllerNameStyle",
+      "viewNameStyle",
       "integerStyle",
       "floatStyle",
       "stringStyle",

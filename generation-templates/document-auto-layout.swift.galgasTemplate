@@ -103,7 +103,7 @@ end
     }
   //--- Build window content view
     self.configureProperties ()
-    let mainView = self.%!MAIN_VIEW_NAME%
+    let mainView = self.%!MAIN_VIEW_NAME% ()
   //--- Call outlet linkers\n%
      for (mLinkerName mOutletNameAndTypeNameList) in AUTO_LAYOUT_LINKER_LIST do
      %    self.linker_%!mLinkerName% (%

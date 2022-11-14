@@ -47,7 +47,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "mainxib",
   "menuItem",
   "no",
-#  "newStackView",
+  "newView",
   "none",
   "one",
   "outlet",
@@ -63,7 +63,7 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "sortkey",
   "space",
   "stackView",
-  "stackViewRef",
+#  "stackViewRef",
   "struct",
   "super",
   "tableViewController",
@@ -164,6 +164,23 @@ rule '#' {
 }
 
 #----------------------------------------------------------------------------*
+#   View names                                                               *
+#----------------------------------------------------------------------------*
+
+style viewNameStyle -> "View Names"
+
+$viewName$ ! tokenString  style viewNameStyle error message "a view name (identifier prefixed by '\\')"
+
+rule '\\' {
+  repeat
+  while
+   'a'->'z' | 'A'->'Z' | '0'->'9' :
+    enterCharacterIntoString (!?tokenString !*)
+  end
+  send $viewName$
+}
+
+#----------------------------------------------------------------------------*
 #   Literal decimal integers                                                 *
 #----------------------------------------------------------------------------*
 
@@ -237,7 +254,7 @@ style delimitersStyle -> "Delimiters"
 list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
   ":",    ",",    ";",   "!",  "[",  "]",  "{",  "}",
   "(",  ")", "." , "|", "&", "<", ">", "<=", ">=", "!=", "==",
-  "^", "-"
+  "^", "-", "="
 }
 
 rule list delimitorsList

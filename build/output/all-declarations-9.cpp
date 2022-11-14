@@ -2302,30 +2302,30 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_0 = this ;
-  cMapElement_classMap * objectArray_5395 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 142)) ;
-  if (NULL != objectArray_5395) {
-    macroValidSharedObject (objectArray_5395, cMapElement_classMap) ;
+  cMapElement_classMap * objectArray_5399 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 142)) ;
+  if (NULL != objectArray_5399) {
+    macroValidSharedObject (objectArray_5399, cMapElement_classMap) ;
     GALGAS_actionMap temp_1 = GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 145)) ;
     temp_1.addAssign_operation (GALGAS_string ("add").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 145)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 145)) ;
     temp_1.addAssign_operation (GALGAS_string ("remove").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 145)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 145)) ;
-    GALGAS_actionMap var_controllerActions_5515 = temp_1 ;
+    GALGAS_actionMap var_controllerActions_5519 = temp_1 ;
     enumGalgasBool test_2 = kBoolTrue ;
     if (kBoolTrue == test_2) {
       const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_3 = this ;
       test_2 = temp_3.readProperty_mIsRoot ().boolEnum () ;
       if (kBoolTrue == test_2) {
-        GALGAS_propertyMap var_rootProperties_5673 ;
+        GALGAS_propertyMap var_rootProperties_5677 ;
         const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_4 = this ;
-        GALGAS_classKind joker_5652 ; // Joker input parameter
-        GALGAS_actionMap joker_5675_2 ; // Joker input parameter
-        GALGAS_propertyGenerationList joker_5675_1 ; // Joker input parameter
-        ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_4.readProperty_mRootEntityName (), joker_5652, var_rootProperties_5673, joker_5675_2, joker_5675_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 147)) ;
-        GALGAS_propertyKind var_classKind_5751 ;
+        GALGAS_classKind joker_5656 ; // Joker input parameter
+        GALGAS_actionMap joker_5679_2 ; // Joker input parameter
+        GALGAS_propertyGenerationList joker_5679_1 ; // Joker input parameter
+        ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_4.readProperty_mRootEntityName (), joker_5656, var_rootProperties_5677, joker_5679_2, joker_5679_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 147)) ;
+        GALGAS_propertyKind var_classKind_5755 ;
         const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_5 = this ;
-        GALGAS_actionMap joker_5753_2 ; // Joker input parameter
-        GALGAS_bool joker_5753_1 ; // Joker input parameter
-        var_rootProperties_5673.method_searchKey (temp_5.readProperty_mToManyPropertyName (), var_classKind_5751, joker_5753_2, joker_5753_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 148)) ;
-        switch (var_classKind_5751.enumValue ()) {
+        GALGAS_actionMap joker_5757_2 ; // Joker input parameter
+        GALGAS_bool joker_5757_1 ; // Joker input parameter
+        var_rootProperties_5677.method_searchKey (temp_5.readProperty_mToManyPropertyName (), var_classKind_5755, joker_5757_2, joker_5757_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 148)) ;
+        switch (var_classKind_5755.enumValue ()) {
         case GALGAS_propertyKind::kNotBuilt:
           break ;
         case GALGAS_propertyKind::kEnum_property:
@@ -2337,18 +2337,18 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
           break ;
         case GALGAS_propertyKind::kEnum_toMany:
           {
-            const cEnumAssociatedValues_propertyKind_toMany * extractPtr_6365 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_classKind_5751.unsafePointer ()) ;
-            const GALGAS_lstring extractedValue_5912_typeName = extractPtr_6365->mAssociatedValue0 ;
-            const GALGAS_bool extractedValue_5922_graphic = extractPtr_6365->mAssociatedValue2 ;
-            GALGAS_propertyKind var_kind_5944 = GALGAS_propertyKind::constructor_arrayController (extractedValue_5912_typeName, extractedValue_5922_graphic  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 153)) ;
+            const cEnumAssociatedValues_propertyKind_toMany * extractPtr_6369 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_classKind_5755.unsafePointer ()) ;
+            const GALGAS_lstring extractedValue_5916_typeName = extractPtr_6369->mAssociatedValue0 ;
+            const GALGAS_bool extractedValue_5926_graphic = extractPtr_6369->mAssociatedValue2 ;
+            GALGAS_propertyKind var_kind_5948 = GALGAS_propertyKind::constructor_arrayController (extractedValue_5916_typeName, extractedValue_5926_graphic  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 153)) ;
             {
             const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_8 = this ;
-            objectArray_5395->mProperty_mPropertyMap.setter_insertKey (temp_8.readProperty_mControllerName (), var_kind_5944, var_controllerActions_5515, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 157)) ;
+            objectArray_5399->mProperty_mPropertyMap.setter_insertKey (temp_8.readProperty_mControllerName (), var_kind_5948, var_controllerActions_5519, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 157)) ;
             }
             const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_9 = this ;
             const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_10 = this ;
             const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_11 = this ;
-            objectArray_5395->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_autoLayoutTableViewControllerPropertyGeneration::constructor_new (temp_9.readProperty_mControllerName ().readProperty_string (), GALGAS_string ("rootObject.").add_operation (temp_10.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 161)), temp_11.readProperty_mClassName ().readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 159))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 159)) ;
+            objectArray_5399->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_autoLayoutTableViewControllerPropertyGeneration::constructor_new (temp_9.readProperty_mControllerName ().readProperty_string (), GALGAS_string ("rootObject.").add_operation (temp_10.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 161)), temp_11.readProperty_mClassName ().readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 159))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 159)) ;
           }
           break ;
         case GALGAS_propertyKind::kEnum_toOne:
@@ -2376,12 +2376,12 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
       }
     }
     if (kBoolFalse == test_2) {
-      GALGAS_propertyKind var_classKind_6784 ;
+      GALGAS_propertyKind var_classKind_6788 ;
       const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_18 = this ;
-      GALGAS_actionMap joker_6786_2 ; // Joker input parameter
-      GALGAS_bool joker_6786_1 ; // Joker input parameter
-      objectArray_5395->mProperty_mPropertyMap.method_searchKey (temp_18.readProperty_mToManyPropertyName (), var_classKind_6784, joker_6786_2, joker_6786_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 172)) ;
-      switch (var_classKind_6784.enumValue ()) {
+      GALGAS_actionMap joker_6790_2 ; // Joker input parameter
+      GALGAS_bool joker_6790_1 ; // Joker input parameter
+      objectArray_5399->mProperty_mPropertyMap.method_searchKey (temp_18.readProperty_mToManyPropertyName (), var_classKind_6788, joker_6790_2, joker_6790_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 172)) ;
+      switch (var_classKind_6788.enumValue ()) {
       case GALGAS_propertyKind::kNotBuilt:
         break ;
       case GALGAS_propertyKind::kEnum_property:
@@ -2393,18 +2393,18 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
         break ;
       case GALGAS_propertyKind::kEnum_toMany:
         {
-          const cEnumAssociatedValues_propertyKind_toMany * extractPtr_7382 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_classKind_6784.unsafePointer ()) ;
-          const GALGAS_lstring extractedValue_6945_typeName = extractPtr_7382->mAssociatedValue0 ;
-          const GALGAS_bool extractedValue_6955_graphic = extractPtr_7382->mAssociatedValue2 ;
-          GALGAS_propertyKind var_kind_6977 = GALGAS_propertyKind::constructor_arrayController (extractedValue_6945_typeName, extractedValue_6955_graphic  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 177)) ;
+          const cEnumAssociatedValues_propertyKind_toMany * extractPtr_7386 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_classKind_6788.unsafePointer ()) ;
+          const GALGAS_lstring extractedValue_6949_typeName = extractPtr_7386->mAssociatedValue0 ;
+          const GALGAS_bool extractedValue_6959_graphic = extractPtr_7386->mAssociatedValue2 ;
+          GALGAS_propertyKind var_kind_6981 = GALGAS_propertyKind::constructor_arrayController (extractedValue_6949_typeName, extractedValue_6959_graphic  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 177)) ;
           {
           const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_21 = this ;
-          objectArray_5395->mProperty_mPropertyMap.setter_insertKey (temp_21.readProperty_mControllerName (), var_kind_6977, var_controllerActions_5515, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 181)) ;
+          objectArray_5399->mProperty_mPropertyMap.setter_insertKey (temp_21.readProperty_mControllerName (), var_kind_6981, var_controllerActions_5519, GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 181)) ;
           }
           const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_22 = this ;
           const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_23 = this ;
           const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_24 = this ;
-          objectArray_5395->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_autoLayoutTableViewControllerPropertyGeneration::constructor_new (temp_22.readProperty_mControllerName ().readProperty_string (), temp_23.readProperty_mToManyPropertyName ().readProperty_string (), temp_24.readProperty_mClassName ().readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 183))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 183)) ;
+          objectArray_5399->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_autoLayoutTableViewControllerPropertyGeneration::constructor_new (temp_22.readProperty_mControllerName ().readProperty_string (), temp_23.readProperty_mToManyPropertyName ().readProperty_string (), temp_24.readProperty_mClassName ().readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 183))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 183)) ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
@@ -2442,92 +2442,92 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
                                                                                   GALGAS_generationStruct & ioArgument_ioGeneration,
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_propertyMap var_preferencesPropertyMap_8295 ;
-  GALGAS_classKind joker_8262 ; // Joker input parameter
-  GALGAS_actionMap joker_8301_2 ; // Joker input parameter
-  GALGAS_propertyGenerationList joker_8301_1 ; // Joker input parameter
-  ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 208)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 208))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 208)), joker_8262, var_preferencesPropertyMap_8295, joker_8301_2, joker_8301_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 207)) ;
+  GALGAS_propertyMap var_preferencesPropertyMap_8299 ;
+  GALGAS_classKind joker_8266 ; // Joker input parameter
+  GALGAS_actionMap joker_8305_2 ; // Joker input parameter
+  GALGAS_propertyGenerationList joker_8305_1 ; // Joker input parameter
+  ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 208)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 208))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 208)), joker_8266, var_preferencesPropertyMap_8299, joker_8305_2, joker_8305_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 207)) ;
   GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 214)) ;
   temp_0.addAssign_operation (GALGAS_string ("allowsEmptySelection")  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 214)) ;
   temp_0.addAssign_operation (GALGAS_string ("allowsMultipleSelection")  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 214)) ;
-  GALGAS_stringset var_attributes_8420 = temp_0 ;
+  GALGAS_stringset var_attributes_8424 = temp_0 ;
   GALGAS_typeKindList temp_1 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 215)) ;
   temp_1.addAssign_operation (GALGAS_typeKind::constructor_boolType (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 215))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 215)) ;
-  GALGAS_typeKindList var_allowedTypes_8506 = temp_1 ;
-  GALGAS_stringset var_definedAttributes_8570 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 216)) ;
-  GALGAS__32_stringlist var_attributeListForGeneration_8621 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 217)) ;
+  GALGAS_typeKindList var_allowedTypes_8510 = temp_1 ;
+  GALGAS_stringset var_definedAttributes_8574 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 216)) ;
+  GALGAS__32_stringlist var_attributeListForGeneration_8625 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 217)) ;
   const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_2 = this ;
-  cEnumerator_autoLayoutTableViewControllerAttributListAST enumerator_8644 (temp_2.readProperty_mTableViewControllerAttributListAST (), kENUMERATION_UP) ;
-  while (enumerator_8644.hasCurrentObject ()) {
+  cEnumerator_autoLayoutTableViewControllerAttributListAST enumerator_8648 (temp_2.readProperty_mTableViewControllerAttributListAST (), kENUMERATION_UP) ;
+  while (enumerator_8648.hasCurrentObject ()) {
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
-      test_3 = var_attributes_8420.getter_hasKey (enumerator_8644.current_mAttributeName (HERE).readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 219)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 219)).boolEnum () ;
+      test_3 = var_attributes_8424.getter_hasKey (enumerator_8648.current_mAttributeName (HERE).readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 219)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 219)).boolEnum () ;
       if (kBoolTrue == test_3) {
         TC_Array <C_FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (enumerator_8644.current_mAttributeName (HERE).readProperty_location (), GALGAS_string ("unknown attribute"), fixItArray4  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 220)) ;
+        inCompiler->emitSemanticError (enumerator_8648.current_mAttributeName (HERE).readProperty_location (), GALGAS_string ("unknown attribute"), fixItArray4  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 220)) ;
       }
     }
     if (kBoolFalse == test_3) {
       enumGalgasBool test_5 = kBoolTrue ;
       if (kBoolTrue == test_5) {
-        test_5 = var_definedAttributes_8570.getter_hasKey (enumerator_8644.current_mAttributeName (HERE).readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 221)).boolEnum () ;
+        test_5 = var_definedAttributes_8574.getter_hasKey (enumerator_8648.current_mAttributeName (HERE).readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 221)).boolEnum () ;
         if (kBoolTrue == test_5) {
           TC_Array <C_FixItDescription> fixItArray6 ;
-          inCompiler->emitSemanticError (enumerator_8644.current_mAttributeName (HERE).readProperty_location (), GALGAS_string ("attribute multiply defined"), fixItArray6  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 222)) ;
+          inCompiler->emitSemanticError (enumerator_8648.current_mAttributeName (HERE).readProperty_location (), GALGAS_string ("attribute multiply defined"), fixItArray6  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 222)) ;
         }
       }
       if (kBoolFalse == test_5) {
-        var_definedAttributes_8570.addAssign_operation (enumerator_8644.current_mAttributeName (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 224)) ;
+        var_definedAttributes_8574.addAssign_operation (enumerator_8648.current_mAttributeName (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 224)) ;
       }
     }
-    GALGAS_string var_valueAsString_9032 ;
-    callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) enumerator_8644.current_mAttributeValue (HERE).ptr (), var_allowedTypes_8506, var_preferencesPropertyMap_8295, var_valueAsString_9032, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 226)) ;
-    var_attributeListForGeneration_8621.addAssign_operation (enumerator_8644.current_mAttributeName (HERE).readProperty_string (), var_valueAsString_9032  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 227)) ;
-    enumerator_8644.gotoNextObject () ;
+    GALGAS_string var_valueAsString_9036 ;
+    callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) enumerator_8648.current_mAttributeValue (HERE).ptr (), var_allowedTypes_8510, var_preferencesPropertyMap_8299, var_valueAsString_9036, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 226)) ;
+    var_attributeListForGeneration_8625.addAssign_operation (enumerator_8648.current_mAttributeName (HERE).readProperty_string (), var_valueAsString_9036  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 227)) ;
+    enumerator_8648.gotoNextObject () ;
   }
-  cEnumerator_stringset enumerator_9123 (var_attributes_8420, kENUMERATION_UP) ;
-  while (enumerator_9123.hasCurrentObject ()) {
+  cEnumerator_stringset enumerator_9127 (var_attributes_8424, kENUMERATION_UP) ;
+  while (enumerator_9127.hasCurrentObject ()) {
     enumGalgasBool test_7 = kBoolTrue ;
     if (kBoolTrue == test_7) {
-      test_7 = var_definedAttributes_8570.getter_hasKey (enumerator_9123.current (HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 230)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 230)).boolEnum () ;
+      test_7 = var_definedAttributes_8574.getter_hasKey (enumerator_9127.current (HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 230)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 230)).boolEnum () ;
       if (kBoolTrue == test_7) {
         const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_8 = this ;
         TC_Array <C_FixItDescription> fixItArray9 ;
-        inCompiler->emitSemanticError (temp_8.readProperty_mControllerName ().readProperty_location (), GALGAS_string ("attribute '").add_operation (enumerator_9123.current (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 231)).add_operation (GALGAS_string ("' not defined"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 231)), fixItArray9  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 231)) ;
+        inCompiler->emitSemanticError (temp_8.readProperty_mControllerName ().readProperty_location (), GALGAS_string ("attribute '").add_operation (enumerator_9127.current (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 231)).add_operation (GALGAS_string ("' not defined"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 231)), fixItArray9  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 231)) ;
       }
     }
-    enumerator_9123.gotoNextObject () ;
+    enumerator_9127.gotoNextObject () ;
   }
-  GALGAS_propertyMap var_boundModelPropertyMap_9306 ;
+  GALGAS_propertyMap var_boundModelPropertyMap_9310 ;
   enumGalgasBool test_10 = kBoolTrue ;
   if (kBoolTrue == test_10) {
     const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_11 = this ;
     test_10 = temp_11.readProperty_mIsRoot ().boolEnum () ;
     if (kBoolTrue == test_10) {
       const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_12 = this ;
-      GALGAS_classKind joker_9410 ; // Joker input parameter
-      GALGAS_actionMap joker_9451_2 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_9451_1 ; // Joker input parameter
-      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_12.readProperty_mRootEntityName (), joker_9410, var_boundModelPropertyMap_9306, joker_9451_2, joker_9451_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 237)) ;
+      GALGAS_classKind joker_9414 ; // Joker input parameter
+      GALGAS_actionMap joker_9455_2 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_9455_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_12.readProperty_mRootEntityName (), joker_9414, var_boundModelPropertyMap_9310, joker_9455_2, joker_9455_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 237)) ;
     }
   }
   if (kBoolFalse == test_10) {
     const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_13 = this ;
-    GALGAS_classKind joker_9543 ; // Joker input parameter
-    GALGAS_actionMap joker_9584_2 ; // Joker input parameter
-    GALGAS_propertyGenerationList joker_9584_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_13.readProperty_mClassName (), joker_9543, var_boundModelPropertyMap_9306, joker_9584_2, joker_9584_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 244)) ;
+    GALGAS_classKind joker_9547 ; // Joker input parameter
+    GALGAS_actionMap joker_9588_2 ; // Joker input parameter
+    GALGAS_propertyGenerationList joker_9588_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_13.readProperty_mClassName (), joker_9547, var_boundModelPropertyMap_9310, joker_9588_2, joker_9588_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 244)) ;
   }
-  GALGAS_propertyKind var_boundModelClassKind_9711 ;
+  GALGAS_propertyKind var_boundModelClassKind_9715 ;
   const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_14 = this ;
-  GALGAS_actionMap joker_9718_2 ; // Joker input parameter
-  GALGAS_bool joker_9718_1 ; // Joker input parameter
-  var_boundModelPropertyMap_9306.method_searchKey (temp_14.readProperty_mToManyPropertyName (), var_boundModelClassKind_9711, joker_9718_2, joker_9718_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 251)) ;
-  GALGAS_propertyMap var_propertyMap_9842 ;
-  GALGAS_autoLayoutTableViewControllerModelKind var_arrayControllerModelKind_9913 ;
-  GALGAS_bool var_graphic_9933 ;
-  GALGAS_string var_elementTypeName_9963 ;
-  switch (var_boundModelClassKind_9711.enumValue ()) {
+  GALGAS_actionMap joker_9722_2 ; // Joker input parameter
+  GALGAS_bool joker_9722_1 ; // Joker input parameter
+  var_boundModelPropertyMap_9310.method_searchKey (temp_14.readProperty_mToManyPropertyName (), var_boundModelClassKind_9715, joker_9722_2, joker_9722_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 251)) ;
+  GALGAS_propertyMap var_propertyMap_9846 ;
+  GALGAS_autoLayoutTableViewControllerModelKind var_arrayControllerModelKind_9917 ;
+  GALGAS_bool var_graphic_9937 ;
+  GALGAS_string var_elementTypeName_9967 ;
+  switch (var_boundModelClassKind_9715.enumValue ()) {
   case GALGAS_propertyKind::kNotBuilt:
     break ;
   case GALGAS_propertyKind::kEnum_property:
@@ -2535,32 +2535,32 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
       const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_15 = this ;
       TC_Array <C_FixItDescription> fixItArray16 ;
       inCompiler->emitSemanticError (temp_15.readProperty_mToManyPropertyName ().readProperty_location (), GALGAS_string ("a toMany property is required here"), fixItArray16  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 263)) ;
-      var_graphic_9933.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_9913.drop () ; // Release error dropped variable
-      var_propertyMap_9842.drop () ; // Release error dropped variable
-      var_elementTypeName_9963.drop () ; // Release error dropped variable
+      var_graphic_9937.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_9917.drop () ; // Release error dropped variable
+      var_propertyMap_9846.drop () ; // Release error dropped variable
+      var_elementTypeName_9967.drop () ; // Release error dropped variable
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
     {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_10472 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_boundModelClassKind_9711.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_10191_typeName = extractPtr_10472->mAssociatedValue0 ;
-      const GALGAS_propertyAccessibility extractedValue_10205_accessibility = extractPtr_10472->mAssociatedValue1 ;
-      const GALGAS_bool extractedValue_10215_isGraphic = extractPtr_10472->mAssociatedValue2 ;
-      var_elementTypeName_9963 = extractedValue_10191_typeName.readProperty_string () ;
-      var_graphic_9933 = extractedValue_10215_isGraphic ;
+      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_10476 = (const cEnumAssociatedValues_propertyKind_toMany *) (var_boundModelClassKind_9715.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_10195_typeName = extractPtr_10476->mAssociatedValue0 ;
+      const GALGAS_propertyAccessibility extractedValue_10209_accessibility = extractPtr_10476->mAssociatedValue1 ;
+      const GALGAS_bool extractedValue_10219_isGraphic = extractPtr_10476->mAssociatedValue2 ;
+      var_elementTypeName_9967 = extractedValue_10195_typeName.readProperty_string () ;
+      var_graphic_9937 = extractedValue_10219_isGraphic ;
       GALGAS_autoLayoutTableViewControllerModelKind temp_17 ;
-      const enumGalgasBool test_18 = extractedValue_10205_accessibility.getter_isTransient (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 269)).boolEnum () ;
+      const enumGalgasBool test_18 = extractedValue_10209_accessibility.getter_isTransient (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 269)).boolEnum () ;
       if (kBoolTrue == test_18) {
         temp_17 = GALGAS_autoLayoutTableViewControllerModelKind::constructor_transientArray (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 270)) ;
       }else if (kBoolFalse == test_18) {
         temp_17 = GALGAS_autoLayoutTableViewControllerModelKind::constructor_entityArray (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 271)) ;
       }
-      var_arrayControllerModelKind_9913 = temp_17 ;
-      GALGAS_classKind joker_10451 ; // Joker input parameter
-      GALGAS_actionMap joker_10467 ; // Joker input parameter
-      GALGAS_propertyGenerationList joker_10470 ; // Joker input parameter
-      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_10191_typeName, joker_10451, var_propertyMap_9842, joker_10467, joker_10470, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 273)) ;
+      var_arrayControllerModelKind_9917 = temp_17 ;
+      GALGAS_classKind joker_10455 ; // Joker input parameter
+      GALGAS_actionMap joker_10471 ; // Joker input parameter
+      GALGAS_propertyGenerationList joker_10474 ; // Joker input parameter
+      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_10195_typeName, joker_10455, var_propertyMap_9846, joker_10471, joker_10474, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 273)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toOne:
@@ -2568,10 +2568,10 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
       const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_19 = this ;
       TC_Array <C_FixItDescription> fixItArray20 ;
       inCompiler->emitSemanticError (temp_19.readProperty_mToManyPropertyName ().readProperty_location (), GALGAS_string ("a toMany property is required here"), fixItArray20  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 275)) ;
-      var_graphic_9933.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_9913.drop () ; // Release error dropped variable
-      var_propertyMap_9842.drop () ; // Release error dropped variable
-      var_elementTypeName_9963.drop () ; // Release error dropped variable
+      var_graphic_9937.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_9917.drop () ; // Release error dropped variable
+      var_propertyMap_9846.drop () ; // Release error dropped variable
+      var_elementTypeName_9967.drop () ; // Release error dropped variable
     }
     break ;
   case GALGAS_propertyKind::kEnum_arrayController:
@@ -2579,10 +2579,10 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
       const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_21 = this ;
       TC_Array <C_FixItDescription> fixItArray22 ;
       inCompiler->emitSemanticError (temp_21.readProperty_mToManyPropertyName ().readProperty_location (), GALGAS_string ("a toMany property is required here"), fixItArray22  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 279)) ;
-      var_graphic_9933.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_9913.drop () ; // Release error dropped variable
-      var_propertyMap_9842.drop () ; // Release error dropped variable
-      var_elementTypeName_9963.drop () ; // Release error dropped variable
+      var_graphic_9937.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_9917.drop () ; // Release error dropped variable
+      var_propertyMap_9846.drop () ; // Release error dropped variable
+      var_elementTypeName_9967.drop () ; // Release error dropped variable
     }
     break ;
   case GALGAS_propertyKind::kEnum_selectionController:
@@ -2590,88 +2590,88 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
       const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_23 = this ;
       TC_Array <C_FixItDescription> fixItArray24 ;
       inCompiler->emitSemanticError (temp_23.readProperty_mToManyPropertyName ().readProperty_location (), GALGAS_string ("a toMany property is required here"), fixItArray24  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 283)) ;
-      var_graphic_9933.drop () ; // Release error dropped variable
-      var_arrayControllerModelKind_9913.drop () ; // Release error dropped variable
-      var_propertyMap_9842.drop () ; // Release error dropped variable
-      var_elementTypeName_9963.drop () ; // Release error dropped variable
+      var_graphic_9937.drop () ; // Release error dropped variable
+      var_arrayControllerModelKind_9917.drop () ; // Release error dropped variable
+      var_propertyMap_9846.drop () ; // Release error dropped variable
+      var_elementTypeName_9967.drop () ; // Release error dropped variable
     }
     break ;
   }
-  GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration var_arrayControllerBoundColumnListForGeneration_11126 = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 287)) ;
-  GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration var_arrayControllerSortedColumnListForGeneration_11242 = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 288)) ;
+  GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration var_arrayControllerBoundColumnListForGeneration_11130 = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 287)) ;
+  GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration var_arrayControllerSortedColumnListForGeneration_11246 = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 288)) ;
   const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_25 = this ;
-  cEnumerator_autoLayoutTableViewControllerBoundColumnListAST enumerator_11313 (temp_25.readProperty_mTableViewControllerBoundColumnListAST (), kENUMERATION_UP) ;
-  while (enumerator_11313.hasCurrentObject ()) {
-    GALGAS_autoLayoutClassParameterList var_formalArgumentList_12179 = GALGAS_autoLayoutClassParameterList::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 314)) ;
-    var_formalArgumentList_12179.addAssign_operation (GALGAS_string ("title").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 315)), GALGAS_autoLayoutClassParameterType::constructor_typeString (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 315))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 315)) ;
-    var_formalArgumentList_12179.addAssign_operation (GALGAS_string ("minWidth").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 316)), GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 316))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 316)) ;
-    var_formalArgumentList_12179.addAssign_operation (GALGAS_string ("maxWidth").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 317)), GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 317))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 317)) ;
-    var_formalArgumentList_12179.addAssign_operation (GALGAS_string ("headerAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)), GALGAS_autoLayoutClassParameterType::constructor_typeEnum (GALGAS_string ("TextAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)) ;
-    var_formalArgumentList_12179.addAssign_operation (GALGAS_string ("contentAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 319)), GALGAS_autoLayoutClassParameterType::constructor_typeEnum (GALGAS_string ("TextAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 319))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 319))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 319)) ;
-    GALGAS__32_stringlist var_actualParameterList_12602 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 320)) ;
+  cEnumerator_autoLayoutTableViewControllerBoundColumnListAST enumerator_11317 (temp_25.readProperty_mTableViewControllerBoundColumnListAST (), kENUMERATION_UP) ;
+  while (enumerator_11317.hasCurrentObject ()) {
+    GALGAS_autoLayoutClassParameterList var_formalArgumentList_12183 = GALGAS_autoLayoutClassParameterList::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 314)) ;
+    var_formalArgumentList_12183.addAssign_operation (GALGAS_string ("title").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 315)), GALGAS_autoLayoutClassParameterType::constructor_typeString (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 315))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 315)) ;
+    var_formalArgumentList_12183.addAssign_operation (GALGAS_string ("minWidth").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 316)), GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 316))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 316)) ;
+    var_formalArgumentList_12183.addAssign_operation (GALGAS_string ("maxWidth").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 317)), GALGAS_autoLayoutClassParameterType::constructor_typeInt (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 317))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 317)) ;
+    var_formalArgumentList_12183.addAssign_operation (GALGAS_string ("headerAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)), GALGAS_autoLayoutClassParameterType::constructor_typeEnum (GALGAS_string ("TextAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)) ;
+    var_formalArgumentList_12183.addAssign_operation (GALGAS_string ("contentAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 319)), GALGAS_autoLayoutClassParameterType::constructor_typeEnum (GALGAS_string ("TextAlignment").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 319))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 319))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 319)) ;
+    GALGAS__32_stringlist var_actualParameterList_12606 = GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 320)) ;
     enumGalgasBool test_26 = kBoolTrue ;
     if (kBoolTrue == test_26) {
-      test_26 = GALGAS_bool (kIsNotEqual, var_formalArgumentList_12179.getter_length (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 321)).objectCompare (enumerator_11313.current_mColumnParameterListAST (HERE).getter_length (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 321)))).boolEnum () ;
+      test_26 = GALGAS_bool (kIsNotEqual, var_formalArgumentList_12183.getter_length (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 321)).objectCompare (enumerator_11317.current_mColumnParameterListAST (HERE).getter_length (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 321)))).boolEnum () ;
       if (kBoolTrue == test_26) {
         TC_Array <C_FixItDescription> fixItArray27 ;
-        inCompiler->emitSemanticError (enumerator_11313.current_mPropertyName (HERE).readProperty_location (), enumerator_11313.current_mColumnParameterListAST (HERE).getter_length (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).add_operation (GALGAS_string (" parameter(s), "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).add_operation (var_formalArgumentList_12179.getter_length (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).add_operation (GALGAS_string (" required"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)), fixItArray27  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)) ;
+        inCompiler->emitSemanticError (enumerator_11317.current_mPropertyName (HERE).readProperty_location (), enumerator_11317.current_mColumnParameterListAST (HERE).getter_length (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).add_operation (GALGAS_string (" parameter(s), "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).add_operation (var_formalArgumentList_12183.getter_length (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)).add_operation (GALGAS_string (" required"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)), fixItArray27  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 322)) ;
       }
     }
     if (kBoolFalse == test_26) {
-      cEnumerator_autoLayoutClassParameterList enumerator_12850 (var_formalArgumentList_12179, kENUMERATION_UP) ;
-      cEnumerator_astAutoLayoutViewInstructionParameterList enumerator_12913 (enumerator_11313.current_mColumnParameterListAST (HERE), kENUMERATION_UP) ;
-      while (enumerator_12850.hasCurrentObject () && enumerator_12913.hasCurrentObject ()) {
+      cEnumerator_autoLayoutClassParameterList enumerator_12854 (var_formalArgumentList_12183, kENUMERATION_UP) ;
+      cEnumerator_astAutoLayoutViewInstructionParameterList enumerator_12917 (enumerator_11317.current_mColumnParameterListAST (HERE), kENUMERATION_UP) ;
+      while (enumerator_12854.hasCurrentObject () && enumerator_12917.hasCurrentObject ()) {
         enumGalgasBool test_28 = kBoolTrue ;
         if (kBoolTrue == test_28) {
-          test_28 = GALGAS_bool (kIsNotEqual, enumerator_12850.current_mParameterName (HERE).readProperty_string ().objectCompare (enumerator_12913.current_mParameterName (HERE).readProperty_string ())).boolEnum () ;
+          test_28 = GALGAS_bool (kIsNotEqual, enumerator_12854.current_mParameterName (HERE).readProperty_string ().objectCompare (enumerator_12917.current_mParameterName (HERE).readProperty_string ())).boolEnum () ;
           if (kBoolTrue == test_28) {
             TC_Array <C_FixItDescription> fixItArray29 ;
-            inCompiler->emitSemanticError (enumerator_12913.current_mParameterName (HERE).readProperty_location (), GALGAS_string ("required argument name: ").add_operation (enumerator_12850.current_mParameterName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 326)), fixItArray29  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 326)) ;
+            inCompiler->emitSemanticError (enumerator_12917.current_mParameterName (HERE).readProperty_location (), GALGAS_string ("required argument name: ").add_operation (enumerator_12854.current_mParameterName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 326)), fixItArray29  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 326)) ;
           }
         }
         enumGalgasBool test_30 = kBoolTrue ;
         if (kBoolTrue == test_30) {
-          GALGAS_lstring var_enumTypeName_13136 ;
-          const bool optionalResult13112 = enumerator_12850.current_mParameterType (HERE).optional_typeEnum (var_enumTypeName_13136) ;
-          if (!optionalResult13112) {
+          GALGAS_lstring var_enumTypeName_13140 ;
+          const bool optionalResult13116 = enumerator_12854.current_mParameterType (HERE).optional_typeEnum (var_enumTypeName_13140) ;
+          if (!optionalResult13116) {
             test_30 = kBoolFalse ;
           }
           if (kBoolTrue == test_30) {
-            GALGAS_lstring var_constantName_13187 ;
-            const bool optionalResult13163 = enumerator_12913.current_mParameterType (HERE).optional_typeEnum (var_constantName_13187) ;
-            if (!optionalResult13163) {
+            GALGAS_lstring var_constantName_13191 ;
+            const bool optionalResult13167 = enumerator_12917.current_mParameterType (HERE).optional_typeEnum (var_constantName_13191) ;
+            if (!optionalResult13167) {
               test_30 = kBoolFalse ;
             }
             if (kBoolTrue == test_30) {
-              GALGAS_classKind var_typeKind_13270 ;
-              GALGAS_propertyMap joker_13272_3 ; // Joker input parameter
-              GALGAS_actionMap joker_13272_2 ; // Joker input parameter
-              GALGAS_propertyGenerationList joker_13272_1 ; // Joker input parameter
-              ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (var_enumTypeName_13136, var_typeKind_13270, joker_13272_3, joker_13272_2, joker_13272_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 329)) ;
+              GALGAS_classKind var_typeKind_13274 ;
+              GALGAS_propertyMap joker_13276_3 ; // Joker input parameter
+              GALGAS_actionMap joker_13276_2 ; // Joker input parameter
+              GALGAS_propertyGenerationList joker_13276_1 ; // Joker input parameter
+              ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (var_enumTypeName_13140, var_typeKind_13274, joker_13276_3, joker_13276_2, joker_13276_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 329)) ;
               enumGalgasBool test_31 = kBoolTrue ;
               if (kBoolTrue == test_31) {
-                GALGAS_typeKind var_classKind_13330 ;
-                const bool optionalResult13309 = var_typeKind_13270.optional_atomic (var_classKind_13330) ;
-                if (!optionalResult13309) {
+                GALGAS_typeKind var_classKind_13334 ;
+                const bool optionalResult13313 = var_typeKind_13274.optional_atomic (var_classKind_13334) ;
+                if (!optionalResult13313) {
                   test_31 = kBoolFalse ;
                 }
                 if (kBoolTrue == test_31) {
-                  GALGAS_string var_unused_0_13360 ;
-                  GALGAS_enumConstantMap var_constantMap_13390 ;
-                  GALGAS_enumFuncMap var_unused_0_13394 ;
-                  const bool optionalResult13356 = var_classKind_13330.optional_enumType (var_unused_0_13360, var_constantMap_13390, var_unused_0_13394) ;
-                  if (!optionalResult13356) {
+                  GALGAS_string var_unused_0_13364 ;
+                  GALGAS_enumConstantMap var_constantMap_13394 ;
+                  GALGAS_enumFuncMap var_unused_0_13398 ;
+                  const bool optionalResult13360 = var_classKind_13334.optional_enumType (var_unused_0_13364, var_constantMap_13394, var_unused_0_13398) ;
+                  if (!optionalResult13360) {
                     test_31 = kBoolFalse ;
                   }
                   if (kBoolTrue == test_31) {
-                    GALGAS_uint joker_13451 ; // Joker input parameter
-                    var_constantMap_13390.method_searchKey (var_constantName_13187, joker_13451, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 331)) ;
+                    GALGAS_uint joker_13455 ; // Joker input parameter
+                    var_constantMap_13394.method_searchKey (var_constantName_13191, joker_13455, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 331)) ;
                   }
                 }
               }
               if (kBoolFalse == test_31) {
                 TC_Array <C_FixItDescription> fixItArray32 ;
-                inCompiler->emitSemanticError (var_enumTypeName_13136.readProperty_location (), GALGAS_string ("this type name is not an enum"), fixItArray32  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 333)) ;
+                inCompiler->emitSemanticError (var_enumTypeName_13140.readProperty_location (), GALGAS_string ("this type name is not an enum"), fixItArray32  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 333)) ;
               }
             }
           }
@@ -2679,57 +2679,57 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
         if (kBoolFalse == test_30) {
           enumGalgasBool test_33 = kBoolTrue ;
           if (kBoolTrue == test_33) {
-            test_33 = GALGAS_bool (kIsNotEqual, enumerator_12913.current_mParameterType (HERE).objectCompare (enumerator_12850.current_mParameterType (HERE))).boolEnum () ;
+            test_33 = GALGAS_bool (kIsNotEqual, enumerator_12917.current_mParameterType (HERE).objectCompare (enumerator_12854.current_mParameterType (HERE))).boolEnum () ;
             if (kBoolTrue == test_33) {
               TC_Array <C_FixItDescription> fixItArray34 ;
-              inCompiler->emitSemanticError (enumerator_12913.current_mParameterName (HERE).readProperty_location (), GALGAS_string ("the formal parameter requires ").add_operation (extensionGetter_string (enumerator_12850.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)).add_operation (GALGAS_string (", actual parameter is "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)).add_operation (extensionGetter_string (enumerator_12913.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)), fixItArray34  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)) ;
+              inCompiler->emitSemanticError (enumerator_12917.current_mParameterName (HERE).readProperty_location (), GALGAS_string ("the formal parameter requires ").add_operation (extensionGetter_string (enumerator_12854.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)).add_operation (GALGAS_string (", actual parameter is "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)).add_operation (extensionGetter_string (enumerator_12917.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)), fixItArray34  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 336)) ;
             }
           }
         }
         enumGalgasBool test_35 = kBoolTrue ;
         if (kBoolTrue == test_35) {
-          GALGAS_string var_stringValue_13780 ;
-          const bool optionalResult13757 = enumerator_12913.current_mParameter (HERE).optional_string (var_stringValue_13780) ;
-          if (!optionalResult13757) {
+          GALGAS_string var_stringValue_13784 ;
+          const bool optionalResult13761 = enumerator_12917.current_mParameter (HERE).optional_string (var_stringValue_13784) ;
+          if (!optionalResult13761) {
             test_35 = kBoolFalse ;
           }
           if (kBoolTrue == test_35) {
-            var_actualParameterList_12602.addAssign_operation (enumerator_12850.current_mParameterName (HERE).readProperty_string (), var_stringValue_13780  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 339)) ;
+            var_actualParameterList_12606.addAssign_operation (enumerator_12854.current_mParameterName (HERE).readProperty_string (), var_stringValue_13784  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 339)) ;
           }
         }
         if (kBoolFalse == test_35) {
           TC_Array <C_FixItDescription> fixItArray36 ;
-          inCompiler->emitSemanticError (enumerator_12913.current_mParameterName (HERE).readProperty_location (), GALGAS_string ("parameter value is not string convertible"), fixItArray36  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 341)) ;
+          inCompiler->emitSemanticError (enumerator_12917.current_mParameterName (HERE).readProperty_location (), GALGAS_string ("parameter value is not string convertible"), fixItArray36  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 341)) ;
         }
-        enumerator_12850.gotoNextObject () ;
-        enumerator_12913.gotoNextObject () ;
+        enumerator_12854.gotoNextObject () ;
+        enumerator_12917.gotoNextObject () ;
       }
     }
     enumGalgasBool test_37 = kBoolTrue ;
     if (kBoolTrue == test_37) {
-      test_37 = GALGAS_bool (kIsNotEqual, enumerator_11313.current_mSortPropertyName (HERE).readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      test_37 = GALGAS_bool (kIsNotEqual, enumerator_11317.current_mSortPropertyName (HERE).readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_37) {
-        GALGAS_propertyKind var_sortPropertyKind_14109 ;
-        GALGAS_actionMap joker_14119_2 ; // Joker input parameter
-        GALGAS_bool joker_14119_1 ; // Joker input parameter
-        var_propertyMap_9842.method_searchKey (enumerator_11313.current_mSortPropertyName (HERE), var_sortPropertyKind_14109, joker_14119_2, joker_14119_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 347)) ;
+        GALGAS_propertyKind var_sortPropertyKind_14113 ;
+        GALGAS_actionMap joker_14123_2 ; // Joker input parameter
+        GALGAS_bool joker_14123_1 ; // Joker input parameter
+        var_propertyMap_9846.method_searchKey (enumerator_11317.current_mSortPropertyName (HERE), var_sortPropertyKind_14113, joker_14123_2, joker_14123_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 347)) ;
         enumGalgasBool test_38 = kBoolTrue ;
         if (kBoolTrue == test_38) {
-          test_38 = extensionGetter_isComparable (var_sortPropertyKind_14109, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 352)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 352)).boolEnum () ;
+          test_38 = extensionGetter_isComparable (var_sortPropertyKind_14113, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 352)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 352)).boolEnum () ;
           if (kBoolTrue == test_38) {
             TC_Array <C_FixItDescription> fixItArray39 ;
-            inCompiler->emitSemanticError (enumerator_11313.current_mSortPropertyName (HERE).readProperty_location (), GALGAS_string ("this property is not comparable"), fixItArray39  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 353)) ;
+            inCompiler->emitSemanticError (enumerator_11317.current_mSortPropertyName (HERE).readProperty_location (), GALGAS_string ("this property is not comparable"), fixItArray39  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 353)) ;
           }
         }
-        var_arrayControllerSortedColumnListForGeneration_11242.addAssign_operation (enumerator_11313.current_mPropertyName (HERE).readProperty_string (), var_sortPropertyKind_14109, enumerator_11313.current_mSortPropertyName (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 355)) ;
+        var_arrayControllerSortedColumnListForGeneration_11246.addAssign_operation (enumerator_11317.current_mPropertyName (HERE).readProperty_string (), var_sortPropertyKind_14113, enumerator_11317.current_mSortPropertyName (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 355)) ;
       }
     }
-    GALGAS_propertyKind var_propertyKind_14512 ;
-    GALGAS_actionMap joker_14520_2 ; // Joker input parameter
-    GALGAS_bool joker_14520_1 ; // Joker input parameter
-    var_propertyMap_9842.method_searchKey (enumerator_11313.current_mPropertyName (HERE), var_propertyKind_14512, joker_14520_2, joker_14520_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 361)) ;
-    var_arrayControllerBoundColumnListForGeneration_11126.addAssign_operation (enumerator_11313.current_mEditable (HERE), enumerator_11313.current_mSortPropertyName (HERE).readProperty_string (), enumerator_11313.current_mPropertyName (HERE).readProperty_string (), extensionGetter_swiftTypeName (var_propertyKind_14512, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 370)), GALGAS_string::makeEmptyString (), var_actualParameterList_12602  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 366)) ;
-    enumerator_11313.gotoNextObject () ;
+    GALGAS_propertyKind var_propertyKind_14516 ;
+    GALGAS_actionMap joker_14524_2 ; // Joker input parameter
+    GALGAS_bool joker_14524_1 ; // Joker input parameter
+    var_propertyMap_9846.method_searchKey (enumerator_11317.current_mPropertyName (HERE), var_propertyKind_14516, joker_14524_2, joker_14524_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 361)) ;
+    var_arrayControllerBoundColumnListForGeneration_11130.addAssign_operation (enumerator_11317.current_mEditable (HERE), enumerator_11317.current_mSortPropertyName (HERE).readProperty_string (), enumerator_11317.current_mPropertyName (HERE).readProperty_string (), extensionGetter_swiftTypeName (var_propertyKind_14516, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 370)), GALGAS_string::makeEmptyString (), var_actualParameterList_12606  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 366)) ;
+    enumerator_11317.gotoNextObject () ;
   }
   const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_40 = this ;
   GALGAS_string temp_41 ;
@@ -2741,12 +2741,12 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
     const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_44 = this ;
     temp_41 = GALGAS_string ("self.").add_operation (temp_44.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 381)).add_operation (GALGAS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 381)) ;
   }
-  GALGAS_string var_modelString_15082 = temp_41 ;
+  GALGAS_string var_modelString_15086 = temp_41 ;
   const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_45 = this ;
   const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_46 = this ;
-  ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_autoLayoutTableViewControllerGeneration::constructor_new (temp_45.readProperty_mClassName ().readProperty_string (), temp_46.readProperty_mControllerName (), var_modelString_15082, var_arrayControllerBoundColumnListForGeneration_11126, var_arrayControllerSortedColumnListForGeneration_11242, GALGAS_string ("ReadWriteArrayOf_").add_operation (var_elementTypeName_9963, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 390)), var_arrayControllerModelKind_9913, var_elementTypeName_9963, var_graphic_9933, var_attributeListForGeneration_8621  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 384))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 384)) ;
-  ioArgument_ioGeneration.mProperty_mGenerateClass_5F_StandAloneArrayOf_5F_.addAssign_operation (var_elementTypeName_9963  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 396)) ;
-  ioArgument_ioGeneration.mProperty_mGenerateClass_5F_TransientArrayOf_5F_.addAssign_operation (var_elementTypeName_9963  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 397)) ;
+  ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_autoLayoutTableViewControllerGeneration::constructor_new (temp_45.readProperty_mClassName ().readProperty_string (), temp_46.readProperty_mControllerName (), var_modelString_15086, var_arrayControllerBoundColumnListForGeneration_11130, var_arrayControllerSortedColumnListForGeneration_11246, GALGAS_string ("ReadWriteArrayOf_").add_operation (var_elementTypeName_9967, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 390)), var_arrayControllerModelKind_9917, var_elementTypeName_9967, var_graphic_9937, var_attributeListForGeneration_8625  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 384))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 384)) ;
+  ioArgument_ioGeneration.mProperty_mGenerateClass_5F_StandAloneArrayOf_5F_.addAssign_operation (var_elementTypeName_9967  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 396)) ;
+  ioArgument_ioGeneration.mProperty_mGenerateClass_5F_TransientArrayOf_5F_.addAssign_operation (var_elementTypeName_9967  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 397)) ;
 }
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -2809,12 +2809,12 @@ GALGAS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_confi
   }else if (kBoolFalse == test_1) {
     temp_0 = GALGAS_string ("self.") ;
   }
-  GALGAS_string var_prefix_17536 = temp_0 ;
+  GALGAS_string var_prefix_17540 = temp_0 ;
   const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_2 = this ;
   result_result = GALGAS_string ("  //--- Array controller property: ").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 433)) ;
   const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_3 = this ;
   const GALGAS_autoLayoutTableViewControllerPropertyGeneration temp_4 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_17536, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (GALGAS_string (".bind_model ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (var_prefix_17536, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (temp_4.readProperty_mModelString (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (GALGAS_string ("_property, self.undoManager)\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_17540, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (GALGAS_string (".bind_model ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (var_prefix_17540, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (temp_4.readProperty_mModelString (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)).add_operation (GALGAS_string ("_property, self.undoManager)\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 434)) ;
 //---
   return result_result ;
 }
@@ -3521,12 +3521,12 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCode (const GA
                                                                         GALGAS_stringset & /* ioArgument_ioGeneratedFileSet */,
                                                                         C_Compiler * inCompiler
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_stringset var_observedProperties_21785 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 521)) ;
+  GALGAS_stringset var_observedProperties_21789 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 521)) ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_0 = this ;
-  cEnumerator_autoLayoutTableViewControllerSortedColumnListForGeneration enumerator_21831 (temp_0.readProperty_mTableViewControllerSortedColumnListForGeneration (), kENUMERATION_UP) ;
-  while (enumerator_21831.hasCurrentObject ()) {
-    var_observedProperties_21785.addAssign_operation (enumerator_21831.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 523)) ;
-    enumerator_21831.gotoNextObject () ;
+  cEnumerator_autoLayoutTableViewControllerSortedColumnListForGeneration enumerator_21835 (temp_0.readProperty_mTableViewControllerSortedColumnListForGeneration (), kENUMERATION_UP) ;
+  while (enumerator_21835.hasCurrentObject ()) {
+    var_observedProperties_21789.addAssign_operation (enumerator_21835.current_mObservablePropertyForSorting (HERE)  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 523)) ;
+    enumerator_21835.gotoNextObject () ;
   }
   const GALGAS_autoLayoutTableViewControllerGeneration temp_1 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_2 = this ;
@@ -3537,11 +3537,11 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCode (const GA
   const GALGAS_autoLayoutTableViewControllerGeneration temp_7 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_8 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_9 = this ;
-  GALGAS_string var_s_21964 = GALGAS_string (filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (inCompiler, temp_1.readProperty_mOwnerName (), temp_2.readProperty_mControllerName ().readProperty_string (), temp_3.readProperty_mModelString (), temp_4.readProperty_mTableViewControllerModelKind (), temp_5.readProperty_mModelTypeName (), temp_6.readProperty_mTableViewControllerBoundColumnListForGeneration (), temp_7.readProperty_mTableViewControllerSortedColumnListForGeneration (), temp_8.readProperty_mElementTypeName (), var_observedProperties_21785, temp_9.readProperty_mAttributeListForGeneration () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 525))) ;
+  GALGAS_string var_s_21968 = GALGAS_string (filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (inCompiler, temp_1.readProperty_mOwnerName (), temp_2.readProperty_mControllerName ().readProperty_string (), temp_3.readProperty_mModelString (), temp_4.readProperty_mTableViewControllerModelKind (), temp_5.readProperty_mModelTypeName (), temp_6.readProperty_mTableViewControllerBoundColumnListForGeneration (), temp_7.readProperty_mTableViewControllerSortedColumnListForGeneration (), temp_8.readProperty_mElementTypeName (), var_observedProperties_21789, temp_9.readProperty_mAttributeListForGeneration () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 525))) ;
   {
   const GALGAS_autoLayoutTableViewControllerGeneration temp_10 = this ;
   const GALGAS_autoLayoutTableViewControllerGeneration temp_11 = this ;
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-table-view-").add_operation (temp_10.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)).add_operation (temp_11.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)), var_s_21964, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 537)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, GALGAS_string ("controller-table-view-").add_operation (temp_10.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)).add_operation (temp_11.readProperty_mControllerName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 539)), var_s_21968, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 537)) ;
   }
 }
 //----------------------------------------------------------------------------------------------------------------------

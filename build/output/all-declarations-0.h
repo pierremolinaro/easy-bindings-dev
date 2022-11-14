@@ -69,6 +69,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken__40_attribute,
    kToken_bindingName,
    kToken_controllerName,
+   kToken_viewName,
    kToken_literal_5F_integer,
    kToken_literal_5F_double,
    kToken_literal_5F_string,
@@ -106,6 +107,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_mainxib,
    kToken_menuItem,
    kToken_no,
+   kToken_newView,
    kToken_none,
    kToken_one,
    kToken_outlet,
@@ -121,7 +123,6 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_sortkey,
    kToken_space,
    kToken_stackView,
-   kToken_stackViewRef,
    kToken_struct,
    kToken_super,
    kToken_tableViewController,
@@ -162,7 +163,8 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken__21__3D_,
    kToken__3D__3D_,
    kToken__5E_,
-   kToken__2D_} ;
+   kToken__2D_,
+   kToken__3D_} ;
 
 //--- Key words table 'lowerCaseKeyWordList'
   public: static int16_t search_into_lowerCaseKeyWordList (const C_String & inSearchedString) ;
@@ -199,7 +201,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected: virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int16_t terminalVocabularyCount (void) const override { return 99 ; }
+  public: virtual int16_t terminalVocabularyCount (void) const override { return 101 ; }
 
 //--- Get Token String
   public: virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const override ;
