@@ -328,7 +328,7 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
 %  //····················································································································
 
   override func cursorForKnob (knob inKnobIndex: Int) -> NSCursor? {
-    return cursorForKnob_%!ENTITY_NAME% (knob: inKnobIndex)
+    return self.cursorForKnob_%!ENTITY_NAME% (knob: inKnobIndex)
   }
 
   //····················································································································
@@ -336,20 +336,20 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> CanariPoint {
-    return acceptedTranslation_%!ENTITY_NAME% (xBy: inDx, yBy: inDy)
+    return self.acceptedTranslation_%!ENTITY_NAME% (xBy: inDx, yBy: inDy)
   }
 
   //····················································································································
 
   override func acceptToTranslate (xBy inDx: Int, yBy inDy: Int) -> Bool {
-    return acceptToTranslate_%!ENTITY_NAME% (xBy: inDx, yBy: inDy)
+    return self.acceptToTranslate_%!ENTITY_NAME% (xBy: inDx, yBy: inDy)
   }
 
   //····················································································································
 
   override func translate (xBy inDx: Int, yBy inDy: Int,
                            userSet ioSet : inout EBReferenceSet <EBManagedObject>) {
-    translate_%!ENTITY_NAME% (xBy: inDx, yBy: inDy, userSet: &ioSet)
+    self.translate_%!ENTITY_NAME% (xBy: inDx, yBy: inDy, userSet: &ioSet)
   }
 
   //····················································································································
@@ -361,7 +361,7 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
                          proposedAlignedTranslation inProposedAlignedTranslation : CanariPoint,
                          unalignedMouseDraggedLocation inUnalignedMouseDraggedLocation : CanariPoint,
                          shift inShift : Bool) -> CanariPoint {
-    return canMove_%!ENTITY_NAME% (
+    return self.canMove_%!ENTITY_NAME% (
       knob: inKnobIndex,
       proposedUnalignedAlignedTranslation: inProposedUnalignedTranslation,
       proposedAlignedTranslation: inProposedAlignedTranslation,
@@ -380,7 +380,7 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
                       alignedMouseLocationX inAlignedMouseLocationX : Int,
                       alignedMouseLocationY inAlignedMouseLocationY : Int,
                       shift inShift : Bool) {
-    move_%!ENTITY_NAME% (
+    self.move_%!ENTITY_NAME% (
       knob: inKnobIndex,
       proposedDx: inDx,
       proposedDy: inDy,
@@ -397,13 +397,13 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func snapToGrid (_ inGrid : Int) {
-    snapToGrid_%!ENTITY_NAME% (inGrid)
+    self.snapToGrid_%!ENTITY_NAME% (inGrid)
   }
 
   //····················································································································
 
   override func canSnapToGrid (_ inGrid : Int) -> Bool {
-    return canSnapToGrid_%!ENTITY_NAME% (inGrid)
+    return self.canSnapToGrid_%!ENTITY_NAME% (inGrid)
   }
 
   //····················································································································
@@ -411,13 +411,13 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func flipHorizontally () {
-    flipHorizontally_%!ENTITY_NAME% ()
+    self.flipHorizontally_%!ENTITY_NAME% ()
   }
 
   //····················································································································
 
   override func canFlipHorizontally () -> Bool {
-    return canFlipHorizontally_%!ENTITY_NAME% ()
+    return self.canFlipHorizontally_%!ENTITY_NAME% ()
   }
 
   //····················································································································
@@ -425,13 +425,13 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func flipVertically () {
-    flipVertically_%!ENTITY_NAME% ()
+    self.flipVertically_%!ENTITY_NAME% ()
   }
 
   //····················································································································
 
   override func canFlipVertically () -> Bool {
-    return canFlipVertically_%!ENTITY_NAME% ()
+    return self.canFlipVertically_%!ENTITY_NAME% ()
   }
 
   //····················································································································
@@ -439,21 +439,21 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func canRotate90 (accumulatedPoints : inout Set <CanariPoint>) -> Bool {
-    return canRotate90_%!ENTITY_NAME% (accumulatedPoints: &accumulatedPoints)
+    return self.canRotate90_%!ENTITY_NAME% (accumulatedPoints: &accumulatedPoints)
   }
 
   //····················································································································
 
   override func rotate90Clockwise (from inRotationCenter : CanariPoint,
                                    userSet ioSet : inout EBReferenceSet <EBManagedObject>) {
-    rotate90Clockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: &ioSet)
+    self.rotate90Clockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: &ioSet)
   }
 
   //····················································································································
 
   override func rotate90CounterClockwise (from inRotationCenter : CanariPoint,
                                           userSet ioSet : inout EBReferenceSet <EBManagedObject>) {
-    rotate90CounterClockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: &ioSet)
+    self.rotate90CounterClockwise_%!ENTITY_NAME% (from: inRotationCenter, userSet: &ioSet)
   }
 
   //····················································································································
@@ -461,7 +461,7 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func saveIntoAdditionalDictionary (_ ioDictionary : NSMutableDictionary) {
-    saveIntoAdditionalDictionary_%!ENTITY_NAME% (ioDictionary)
+    self.saveIntoAdditionalDictionary_%!ENTITY_NAME% (ioDictionary)
   }
 
   //····················································································································
@@ -471,9 +471,9 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   override func operationAfterPasting (additionalDictionary inDictionary : NSDictionary,
                                        optionalDocument inOptionalDocument : EBAutoLayoutManagedDocument?,
                                        objectArray inObjectArray : [EBGraphicManagedObject]) -> String {
-    return operationAfterPasting_%!ENTITY_NAME% (additionalDictionary: inDictionary,
-                                                 optionalDocument: inOptionalDocument,
-                                                 objectArray: inObjectArray)
+    return self.operationAfterPasting_%!ENTITY_NAME% (additionalDictionary: inDictionary,
+                                                      optionalDocument: inOptionalDocument,
+                                                      objectArray: inObjectArray)
   }
 
   //····················································································································
@@ -481,7 +481,7 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func alignmentPoints () -> Set <CanariPoint> {
-    return alignmentPoints_%!ENTITY_NAME% ()
+    return self.alignmentPoints_%!ENTITY_NAME% ()
   }
 
   //····················································································································
@@ -489,7 +489,7 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //····················································································································
 
   override func operationBeforeRemoving () {
-    operationBeforeRemoving_%!ENTITY_NAME% ()
+    self.operationBeforeRemoving_%!ENTITY_NAME% ()
   }
 
 %
