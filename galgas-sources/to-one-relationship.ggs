@@ -260,7 +260,7 @@ override func @toOnePropertyGeneration.setupRelationshipFromDictionaryCode() -> 
 
 #·······················································································································
 
-override func @toOnePropertyGeneration.saveIntoDictionaryCode() -> @string {
+override func @toOnePropertyGeneration.saveIntoDictionaryCode () -> @string {
   result  = ""
   switch self.mOpposite
   case oppositeIsToMany (*) :
@@ -282,16 +282,8 @@ override func @toOnePropertyGeneration.saveIntoDictionaryCode() -> @string {
 override func @toOnePropertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string {
   result  = "  //--- To one property: " + self.mPropertyName + "\n"
   result += "    if let object = self." + self.mPropertyName + " {\n"
-  result += "      objects.append (object)\n"
+  result += "      ioObjectArray.append (object)\n"
   result += "    }\n"
 }
-
-#·······················································································································
-
-#override func @toOnePropertyGeneration.clearObjectExplorerCode() -> @string {
-#  result  = "    //--- To one property: " + self.mPropertyName + "\n"
-#  result += "      self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
-#  result += "      self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
-#}
 
 #-----------------------------------------------------------------------------------------------------------------------

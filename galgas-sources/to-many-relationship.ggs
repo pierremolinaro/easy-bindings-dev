@@ -320,12 +320,12 @@ override func @toManyPropertyGeneration.objectAccessibilityCodeForSaveOperation(
   if self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (custom store)\n"
     result += "    /* for managedObject in self." + self.mPropertyName + "_property.propval.values {\n"
-    result += "      objects.append (managedObject)\n"
+    result += "      ioObjectArray.append (managedObject)\n"
     result += "    } */\n"
   else
     result  = "  //--- To many property: " + self.mPropertyName + "\n"
     result += "    for managedObject in self." + self.mPropertyName + ".values {\n"
-    result += "      objects.append (managedObject)\n"
+    result += "      ioObjectArray.append (managedObject)\n"
     result += "    }\n"
   end
 }
