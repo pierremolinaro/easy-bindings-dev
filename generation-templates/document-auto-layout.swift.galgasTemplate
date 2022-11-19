@@ -71,13 +71,13 @@ for (mViewName mView) in VIEW_GENERATION_LIST do
   %  //····················································································································\n%
   %  //    VIEW %!mViewName%\n%
   %  //····················································································································\n\n%
-  ![mView generateView !prefs: false !mViewName]
+  ![mView generateViewBuilder !prefs: false !mViewName]
 end
 for (mInstruction) in IMPLICIT_VIEW_GENERATION_FUNCTION_LIST do (idx)
   %  //····················································································································\n%
   %  //    IMPLICIT VIEW %![idx string]%\n%
   %  //····················································································································\n\n%
-%  fileprivate final func computeImplicitView_%![idx string]% () -> NSView {\n%
+%  private final func computeImplicitView_%![idx string]% () -> NSView {\n%
 ![mInstruction generateViewInstruction !prefs: false !"view" !"    "]
 %    return view\n%
 %  }\n\n%

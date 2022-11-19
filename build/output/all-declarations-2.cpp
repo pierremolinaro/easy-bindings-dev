@@ -10172,18 +10172,18 @@ void extensionMethod_generate (const GALGAS_autoLayoutViewInstructionGenerationF
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractViewGeneration generateView'
+//Abstract extension getter '@abstractViewGeneration generateViewBuilder'
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_string callExtensionGetter_generateView (const cPtr_abstractViewGeneration * inObject,
-                                                const GALGAS_bool in_inPreferences,
-                                                const GALGAS_string in_inViewName,
-                                                C_Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) {
+GALGAS_string callExtensionGetter_generateViewBuilder (const cPtr_abstractViewGeneration * inObject,
+                                                       const GALGAS_bool in_inPreferences,
+                                                       const GALGAS_string in_inViewName,
+                                                       C_Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
   GALGAS_string result ;
   if (nullptr != inObject) {
-    result = inObject->getter_generateView (in_inPreferences, in_inViewName, inCompiler COMMA_THERE) ;
+    result = inObject->getter_generateViewBuilder (in_inPreferences, in_inViewName, inCompiler COMMA_THERE) ;
   }
   return result ;
 }

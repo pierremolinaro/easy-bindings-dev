@@ -2590,8 +2590,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_newHorizontalStackV
 
 class cPtr_newHorizontalStackViewGeneration : public cPtr_abstractViewGeneration {
 
-//--- Extension getter generateView
-  public: virtual class GALGAS_string getter_generateView (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewBuilder
+  public: virtual class GALGAS_string getter_generateViewBuilder (const class GALGAS_bool inPreferences,
            const class GALGAS_string inViewName,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -2738,8 +2738,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_newVerticalStackVie
 
 class cPtr_newVerticalStackViewGeneration : public cPtr_abstractViewGeneration {
 
-//--- Extension getter generateView
-  public: virtual class GALGAS_string getter_generateView (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewBuilder
+  public: virtual class GALGAS_string getter_generateViewBuilder (const class GALGAS_bool inPreferences,
            const class GALGAS_string inViewName,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -3102,8 +3102,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedHorizontalV
 
 class cPtr_computedHorizontalViewGeneration : public cPtr_abstractViewGeneration {
 
-//--- Extension getter generateView
-  public: virtual class GALGAS_string getter_generateView (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewBuilder
+  public: virtual class GALGAS_string getter_generateViewBuilder (const class GALGAS_bool inPreferences,
            const class GALGAS_string inViewName,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -3266,8 +3266,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedVerticalVie
 
 class cPtr_computedVerticalViewGeneration : public cPtr_abstractViewGeneration {
 
-//--- Extension getter generateView
-  public: virtual class GALGAS_string getter_generateView (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewBuilder
+  public: virtual class GALGAS_string getter_generateViewBuilder (const class GALGAS_bool inPreferences,
            const class GALGAS_string inViewName,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -5890,15 +5890,15 @@ void extensionMethod_generate (const class GALGAS_autoLayoutViewInstructionGener
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractViewGeneration generateView'
+//Abstract extension getter '@abstractViewGeneration generateViewBuilder'
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-class GALGAS_string callExtensionGetter_generateView (const class cPtr_abstractViewGeneration * inObject,
-                                                      const GALGAS_bool constin_inPreferences,
-                                                      const GALGAS_string constin_inViewName,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+class GALGAS_string callExtensionGetter_generateViewBuilder (const class cPtr_abstractViewGeneration * inObject,
+                                                             const GALGAS_bool constin_inPreferences,
+                                                             const GALGAS_string constin_inViewName,
+                                                             C_Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //

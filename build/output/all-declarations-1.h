@@ -2678,8 +2678,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractViewGenerat
 
 class cPtr_abstractViewGeneration : public acStrongPtr_class {
 
-//--- Extension getter generateView
-  public: virtual class GALGAS_string getter_generateView (const class GALGAS_bool inPreferences,
+//--- Extension getter generateViewBuilder
+  public: virtual class GALGAS_string getter_generateViewBuilder (const class GALGAS_bool inPreferences,
            const class GALGAS_string inViewName,
            C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 

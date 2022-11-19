@@ -2032,14 +2032,14 @@ list @autoLayoutViewInstructionGenerationList {
 
 #·······················································································································
 
-abstract func @abstractViewGeneration.generateView (?prefs: let @bool inPreferences
-                                                    ?let @string inViewName) -> @string
+abstract func @abstractViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences
+                                                           ?let @string inViewName) -> @string
 
 #·······················································································································
 
-override func @newHorizontalStackViewGeneration.generateView (?prefs: let @bool unused inPreferences
-                                                              ?let @string inViewName) -> @string {
-  result  = "  final private func " + inViewName + " () -> AutoLayoutBase_NSStackView {\n"
+override func @newHorizontalStackViewGeneration.generateViewBuilder (?prefs: let @bool unused inPreferences
+                                                                     ?let @string inViewName) -> @string {
+  result  = "  final func " + inViewName + " () -> AutoLayoutBase_NSStackView {\n"
   result += "    return AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !"      " !?result]
   result += "  }\n\n"
@@ -2047,9 +2047,9 @@ override func @newHorizontalStackViewGeneration.generateView (?prefs: let @bool 
 
 #·······················································································································
 
-override func @newVerticalStackViewGeneration.generateView (?prefs: let @bool unused inPreferences
-                                                            ?let @string inViewName) -> @string {
-  result  = "  final private func " + inViewName + " () -> AutoLayoutBase_NSStackView {\n"
+override func @newVerticalStackViewGeneration.generateViewBuilder (?prefs: let @bool unused inPreferences
+                                                                   ?let @string inViewName) -> @string {
+  result  = "  final func " + inViewName + " () -> AutoLayoutBase_NSStackView {\n"
   result += "    return AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !"      " !?result]
   result += "  }\n\n"
@@ -2057,9 +2057,9 @@ override func @newVerticalStackViewGeneration.generateView (?prefs: let @bool un
 
 #·······················································································································
 
-override func @computedHorizontalViewGeneration.generateView (?prefs: let @bool inPreferences
-                                                              ?let @string inViewName) -> @string {
-  result = "  final private func " + inViewName + " () -> AutoLayoutHorizontalStackView {\n"
+override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences
+                                                                     ?let @string inViewName) -> @string {
+  result = "  final func " + inViewName + " () -> AutoLayoutHorizontalStackView {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   for (instance type) in self.mNewStackViewDeclarationList do
@@ -2076,9 +2076,9 @@ override func @computedHorizontalViewGeneration.generateView (?prefs: let @bool 
 
 #·······················································································································
 
-override func @computedVerticalViewGeneration.generateView (?prefs: let @bool inPreferences
-                                                            ?let @string inViewName) -> @string {
-  result = "  final private func " + inViewName + " () -> AutoLayoutVerticalStackView {\n"
+override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences
+                                                                   ?let @string inViewName) -> @string {
+  result = "  final func " + inViewName + " () -> AutoLayoutVerticalStackView {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !"    " !?result]
   for (instance type) in self.mNewStackViewDeclarationList do

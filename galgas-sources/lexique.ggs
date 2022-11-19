@@ -63,7 +63,6 @@ list lowerCaseKeyWordList style keywordsStyle error message "the '%K' keyword"{
   "sortkey",
   "space",
   "stackView",
-#  "stackViewRef",
   "struct",
   "super",
   "tableViewController",
