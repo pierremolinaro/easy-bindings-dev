@@ -111,6 +111,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_none,
    kToken_one,
    kToken_outlet,
+   kToken_outletArray,
    kToken_override,
    kToken_prefs,
    kToken_property,
@@ -201,7 +202,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected: virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int16_t terminalVocabularyCount (void) const override { return 101 ; }
+  public: virtual int16_t terminalVocabularyCount (void) const override { return 102 ; }
 
 //--- Get Token String
   public: virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const override ;
@@ -9792,6 +9793,8 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
 
   public: class GALGAS_lstring readProperty_mOutletName (void) const ;
 
+  public: class GALGAS_bool readProperty_mOutletIsArray (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -9813,7 +9816,8 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
                                                                           const class GALGAS_graphicController & inOperand7,
                                                                           const class GALGAS_regularBindingList & inOperand8,
                                                                           const class GALGAS_lstring & inOperand9,
-                                                                          const class GALGAS_lstring & inOperand10
+                                                                          const class GALGAS_lstring & inOperand10,
+                                                                          const class GALGAS_bool & inOperand11
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9837,6 +9841,9 @@ class GALGAS_astComputedViewInstruction : public GALGAS_astAbstractViewInstructi
 
   public: VIRTUAL_IN_DEBUG void setter_setMHiddenBindingDescriptor (class GALGAS_multipleBindingDescriptor inArgument0
                                                                     COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMOutletIsArray (class GALGAS_bool inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMOutletName (class GALGAS_lstring inArgument0
                                                        COMMA_LOCATION_ARGS) ;

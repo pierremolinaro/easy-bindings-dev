@@ -122,6 +122,7 @@ class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
   public let @regularBindingList mRegularBindingList
   public let @lstring mConfiguratorName # Empty string if no configurator
   public let @lstring mOutletName # Empty string if no configurator
+  public let @bool mOutletIsArray
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -313,16 +314,24 @@ syntax extension easyBindings_syntax {
     end
     let @lstring configuratorName
     let @lstring outletName
+    let @bool outletIsArray
     select
       outletName = ["" nowhere]
       configuratorName = ["" nowhere]
+      outletIsArray = false
     or
       $[$
       select
         outletName = ["" nowhere]
+        outletIsArray = false
       or
         $outlet$
         $identifier$ (?outletName)
+        outletIsArray = false
+      or
+        $outletArray$
+        $identifier$ (?outletName)
+        outletIsArray = true
       end
       select
         configuratorName = ["" nowhere]
@@ -351,11 +360,11 @@ syntax extension easyBindings_syntax {
       ${$
       <auto_layout_func_call_list> (!inStackViewInstances ?autoLayoutViewFunctionCallList)
       <outlet_binding> (?tableValueBinding
-                       ?runActionDescriptor
-                       ?enabledBindingDescriptor
-                       ?hiddenBindingDescriptor
-                       ?graphicController
-                       ?regularBindingList)
+                        ?runActionDescriptor
+                        ?enabledBindingDescriptor
+                        ?hiddenBindingDescriptor
+                        ?graphicController
+                        ?regularBindingList)
       $}$
     end
     outInstruction = @astComputedViewInstruction (
@@ -370,6 +379,7 @@ syntax extension easyBindings_syntax {
       !regularBindingList
       !configuratorName
       !outletName
+      !outletIsArray
     )
   }
   
@@ -573,6 +583,7 @@ map @autoLayoutConfiguratorMap {
 
 map @autoLayoutOutletMap {
   public let @string mAutoLayoutOutletTypeName
+  public let @bool mOutletIsArray
   insert insertKey error message "the '%K' outlet is already declared in %L"
   search searchKey error message "there is no '%K' outlet"
 }
@@ -1150,7 +1161,7 @@ override proc @astComputedViewInstruction.generateViewCode(
   ]
 #--- Check outlet
   if self.mOutletName.string != "" then
-    [!?ioOutletMap insertKey !self.mOutletName !self.mAutoLayoutViewClassName]
+    [!?ioOutletMap insertKey !self.mOutletName !self.mAutoLayoutViewClassName !self.mOutletIsArray]
   end
 #--- Check configurator
   if self.mConfiguratorName.string != "" then
@@ -1168,6 +1179,7 @@ override proc @astComputedViewInstruction.generateViewCode(
     !ebViewGraphicControllerBindingGeneration
     !self.mConfiguratorName.string
     !self.mOutletName.string
+    !self.mOutletIsArray
   )
 }
 
@@ -1995,6 +2007,7 @@ class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGen
   public let @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
   public let @string mConfiguratorName # Empty string if no configurator
   public let @string mOutletName # Empty string if no configurator
+  public let @bool mOutletIsArray
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -2175,7 +2188,11 @@ override func @autoLayoutComputedViewInstructionGeneration.generateViewInstructi
     result += inIndentation + prefix + self.mTableViewBindingGeneration + ".bind_tableView (" + inName + ")\n"
   end
   if self.mOutletName != "" then
-    result += inIndentation + "self." + self.mOutletName + " = " + inName + " // Outlet\n"
+    if self.mOutletIsArray then
+       result += inIndentation + "self." + self.mOutletName + ".append (" + inName + ") // Outlet Array\n"
+   else
+      result += inIndentation + "self." + self.mOutletName + " = " + inName + " // Outlet\n"
+    end
   end
   if self.mConfiguratorName != "" then
     result += inIndentation + "self.configure_" + self.mConfiguratorName + " (" + inName + ") // Configurator\n"

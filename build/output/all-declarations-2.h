@@ -10,6 +10,62 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @astVStackViewInstructionDeclaration_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astVStackViewInstructionDeclaration_2D_weak : public GALGAS_astAbstractViewInstructionDeclaration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astVStackViewInstructionDeclaration_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak (const class GALGAS_astVStackViewInstructionDeclaration & inSource) ;
+
+  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak & operator = (const class GALGAS_astVStackViewInstructionDeclaration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_astVStackViewInstructionDeclaration bang_astVStackViewInstructionDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astVStackViewInstructionDeclaration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                   C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astVStackViewInstructionDeclaration_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astVStackViewInstructionDeclaration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astVStackViewInstructionDeclaration_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @astSpaceViewInstruction reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -1051,6 +1107,7 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
   public: GALGAS_regularBindingList mProperty_mRegularBindingList ;
   public: GALGAS_lstring mProperty_mConfiguratorName ;
   public: GALGAS_lstring mProperty_mOutletName ;
+  public: GALGAS_bool mProperty_mOutletIsArray ;
 
 //--- Constructor
   public: cPtr_astComputedViewInstruction (const GALGAS_lstring & in_mAutoLayoutViewClassName,
@@ -1063,7 +1120,8 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
                                            const GALGAS_graphicController & in_mGraphicController,
                                            const GALGAS_regularBindingList & in_mRegularBindingList,
                                            const GALGAS_lstring & in_mConfiguratorName,
-                                           const GALGAS_lstring & in_mOutletName
+                                           const GALGAS_lstring & in_mOutletName,
+                                           const GALGAS_bool & in_mOutletIsArray
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -5692,6 +5750,8 @@ class GALGAS_autoLayoutComputedViewInstructionGeneration : public GALGAS_abstrac
 
   public: class GALGAS_string readProperty_mOutletName (void) const ;
 
+  public: class GALGAS_bool readProperty_mOutletIsArray (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -5712,7 +5772,8 @@ class GALGAS_autoLayoutComputedViewInstructionGeneration : public GALGAS_abstrac
                                                                                            const class GALGAS_string & inOperand6,
                                                                                            const class GALGAS_autoLayoutViewGraphicControllerBindingGeneration & inOperand7,
                                                                                            const class GALGAS_string & inOperand8,
-                                                                                           const class GALGAS_string & inOperand9
+                                                                                           const class GALGAS_string & inOperand9,
+                                                                                           const class GALGAS_bool & inOperand10
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5733,6 +5794,9 @@ class GALGAS_autoLayoutComputedViewInstructionGeneration : public GALGAS_abstrac
 
   public: VIRTUAL_IN_DEBUG void setter_setMMultipleBindingGenerationList (class GALGAS_autoLayoutMultipleBindingGenerationList inArgument0
                                                                           COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMOutletIsArray (class GALGAS_bool inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMOutletName (class GALGAS_string inArgument0
                                                        COMMA_LOCATION_ARGS) ;
@@ -5792,6 +5856,7 @@ class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractVie
   public: GALGAS_autoLayoutViewGraphicControllerBindingGeneration mProperty_mEBViewGraphicControllerBindingGeneration ;
   public: GALGAS_string mProperty_mConfiguratorName ;
   public: GALGAS_string mProperty_mOutletName ;
+  public: GALGAS_bool mProperty_mOutletIsArray ;
 
 //--- Constructor
   public: cPtr_autoLayoutComputedViewInstructionGeneration (const GALGAS_lstring & in_mAutoLayoutViewClassName,
@@ -5803,7 +5868,8 @@ class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractVie
                                                             const GALGAS_string & in_mTableViewBindingGeneration,
                                                             const GALGAS_autoLayoutViewGraphicControllerBindingGeneration & in_mEBViewGraphicControllerBindingGeneration,
                                                             const GALGAS_string & in_mConfiguratorName,
-                                                            const GALGAS_string & in_mOutletName
+                                                            const GALGAS_string & in_mOutletName,
+                                                            const GALGAS_bool & in_mOutletIsArray
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication

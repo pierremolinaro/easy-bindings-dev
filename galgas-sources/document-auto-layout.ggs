@@ -308,7 +308,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     linkerNameSet += !linkerName.string
     var @2stringlist outletNameAndTypeNameList = {}
     for (outletName) in ouletNameList do
-      [autoLayoutOutletMap searchKey !outletName ?let outletTypeName]
+      [autoLayoutOutletMap searchKey !outletName ?let outletTypeName ?let outletIsArray]
       outletNameAndTypeNameList += !outletName.string !outletTypeName
     end
     outletLinkerGenerationList += !linkerName.string !outletNameAndTypeNameList

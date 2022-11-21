@@ -1068,23 +1068,25 @@ GALGAS_decoratedOutletMap GALGAS_decoratedOutletMap::extractObject (const GALGAS
 //----------------------------------------------------------------------------------------------------------------------
 
 cMapElement_autoLayoutOutletMap::cMapElement_autoLayoutOutletMap (const GALGAS_lstring & inKey,
-                                                                  const GALGAS_string & in_mAutoLayoutOutletTypeName
+                                                                  const GALGAS_string & in_mAutoLayoutOutletTypeName,
+                                                                  const GALGAS_bool & in_mOutletIsArray
                                                                   COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE),
-mProperty_mAutoLayoutOutletTypeName (in_mAutoLayoutOutletTypeName) {
+mProperty_mAutoLayoutOutletTypeName (in_mAutoLayoutOutletTypeName),
+mProperty_mOutletIsArray (in_mOutletIsArray) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_autoLayoutOutletMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mAutoLayoutOutletTypeName.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mAutoLayoutOutletTypeName.isValid () && mProperty_mOutletIsArray.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cMapElement * cMapElement_autoLayoutOutletMap::copy (void) {
   cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_autoLayoutOutletMap (mProperty_lkey, mProperty_mAutoLayoutOutletTypeName COMMA_HERE)) ;
+  macroMyNew (result, cMapElement_autoLayoutOutletMap (mProperty_lkey, mProperty_mAutoLayoutOutletTypeName, mProperty_mOutletIsArray COMMA_HERE)) ;
   return result ;
 }
 
@@ -1095,6 +1097,10 @@ void cMapElement_autoLayoutOutletMap::description (C_String & ioString, const in
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mAutoLayoutOutletTypeName" ":" ;
   mProperty_mAutoLayoutOutletTypeName.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mOutletIsArray" ":" ;
+  mProperty_mOutletIsArray.description (ioString, inIndentation) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1104,6 +1110,9 @@ typeComparisonResult cMapElement_autoLayoutOutletMap::compare (const cCollection
   typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
   if (kOperandEqual == result) {
     result = mProperty_mAutoLayoutOutletTypeName.objectCompare (operand->mProperty_mAutoLayoutOutletTypeName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mOutletIsArray.objectCompare (operand->mProperty_mOutletIsArray) ;
   }
   return result ;
 }
@@ -1157,10 +1166,11 @@ GALGAS_autoLayoutOutletMap GALGAS_autoLayoutOutletMap::getter_overriddenMap (C_C
 
 void GALGAS_autoLayoutOutletMap::addAssign_operation (const GALGAS_lstring & inKey,
                                                       const GALGAS_string & inArgument0,
+                                                      const GALGAS_bool & inArgument1,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) {
   cMapElement_autoLayoutOutletMap * p = NULL ;
-  macroMyNew (p, cMapElement_autoLayoutOutletMap (inKey, inArgument0 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_autoLayoutOutletMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -1173,10 +1183,11 @@ void GALGAS_autoLayoutOutletMap::addAssign_operation (const GALGAS_lstring & inK
 
 void GALGAS_autoLayoutOutletMap::setter_insertKey (GALGAS_lstring inKey,
                                                    GALGAS_string inArgument0,
+                                                   GALGAS_bool inArgument1,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) {
   cMapElement_autoLayoutOutletMap * p = NULL ;
-  macroMyNew (p, cMapElement_autoLayoutOutletMap (inKey, inArgument0 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_autoLayoutOutletMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -1193,6 +1204,7 @@ const char * kSearchErrorMessage_autoLayoutOutletMap_searchKey = "there is no '%
 
 void GALGAS_autoLayoutOutletMap::method_searchKey (GALGAS_lstring inKey,
                                                    GALGAS_string & outArgument0,
+                                                   GALGAS_bool & outArgument1,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const {
   const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) performSearch (inKey,
@@ -1201,9 +1213,11 @@ void GALGAS_autoLayoutOutletMap::method_searchKey (GALGAS_lstring inKey,
                                                                                                        COMMA_THERE) ;
   if (NULL == p) {
     outArgument0.drop () ;
+    outArgument1.drop () ;
   }else{
     macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
     outArgument0 = p->mProperty_mAutoLayoutOutletTypeName ;
+    outArgument1 = p->mProperty_mOutletIsArray ;
   }
 }
 
@@ -1224,6 +1238,21 @@ GALGAS_string GALGAS_autoLayoutOutletMap::getter_mAutoLayoutOutletTypeNameForKey
 
 //----------------------------------------------------------------------------------------------------------------------
 
+GALGAS_bool GALGAS_autoLayoutOutletMap::getter_mOutletIsArrayForKey (const GALGAS_string & inKey,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) attributes ;
+  GALGAS_bool result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
+    result = p->mProperty_mOutletIsArray ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 void GALGAS_autoLayoutOutletMap::setter_setMAutoLayoutOutletTypeNameForKey (GALGAS_string inAttributeValue,
                                                                             GALGAS_string inKey,
                                                                             C_Compiler * inCompiler
@@ -1233,6 +1262,20 @@ void GALGAS_autoLayoutOutletMap::setter_setMAutoLayoutOutletTypeNameForKey (GALG
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
     p->mProperty_mAutoLayoutOutletTypeName = inAttributeValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutOutletMap::setter_setMOutletIsArrayForKey (GALGAS_bool inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_autoLayoutOutletMap * p = (cMapElement_autoLayoutOutletMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
+    p->mProperty_mOutletIsArray = inAttributeValue ;
   }
 }
 
@@ -1259,7 +1302,7 @@ cGenericAbstractEnumerator (inOrder) {
 GALGAS_autoLayoutOutletMap_2D_element cEnumerator_autoLayoutOutletMap::current (LOCATION_ARGS) const {
   const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
-  return GALGAS_autoLayoutOutletMap_2D_element (p->mProperty_lkey, p->mProperty_mAutoLayoutOutletTypeName) ;
+  return GALGAS_autoLayoutOutletMap_2D_element (p->mProperty_lkey, p->mProperty_mAutoLayoutOutletTypeName, p->mProperty_mOutletIsArray) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1280,15 +1323,26 @@ GALGAS_string cEnumerator_autoLayoutOutletMap::current_mAutoLayoutOutletTypeName
 
 //----------------------------------------------------------------------------------------------------------------------
 
+GALGAS_bool cEnumerator_autoLayoutOutletMap::current_mOutletIsArray (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
+  return p->mProperty_mOutletIsArray ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 bool GALGAS_autoLayoutOutletMap::optional_searchKey (const GALGAS_string & inKey,
-                                                     GALGAS_string & outArgument0) const {
+                                                     GALGAS_string & outArgument0,
+                                                     GALGAS_bool & outArgument1) const {
   const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) searchForKey (inKey) ;
   const bool result = NULL != p ;
   if (result) {
     macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
     outArgument0 = p->mProperty_mAutoLayoutOutletTypeName ;
+    outArgument1 = p->mProperty_mOutletIsArray ;
   }else{
     outArgument0.drop () ;
+    outArgument1.drop () ;
   }
   return result ;
 }
@@ -14622,117 +14676,6 @@ GALGAS_astVStackViewInstructionDeclaration GALGAS_astVStackViewInstructionDeclar
       result = *p ;
     }else{
       inCompiler->castError ("astVStackViewInstructionDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult GALGAS_astVStackViewInstructionDeclaration_2D_weak::objectCompare (const GALGAS_astVStackViewInstructionDeclaration_2D_weak & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astVStackViewInstructionDeclaration_2D_weak::GALGAS_astVStackViewInstructionDeclaration_2D_weak (void) :
-GALGAS_astAbstractViewInstructionDeclaration_2D_weak () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astVStackViewInstructionDeclaration_2D_weak & GALGAS_astVStackViewInstructionDeclaration_2D_weak::operator = (const GALGAS_astVStackViewInstructionDeclaration & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astVStackViewInstructionDeclaration_2D_weak::GALGAS_astVStackViewInstructionDeclaration_2D_weak (const GALGAS_astVStackViewInstructionDeclaration & inSource) :
-GALGAS_astAbstractViewInstructionDeclaration_2D_weak (inSource) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astVStackViewInstructionDeclaration_2D_weak GALGAS_astVStackViewInstructionDeclaration_2D_weak::constructor_nil (LOCATION_ARGS) {
-  GALGAS_astVStackViewInstructionDeclaration_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astVStackViewInstructionDeclaration GALGAS_astVStackViewInstructionDeclaration_2D_weak::bang_astVStackViewInstructionDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_astVStackViewInstructionDeclaration result ;
-  if (mProxyPtr != NULL) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_astVStackViewInstructionDeclaration) ;
-      result = GALGAS_astVStackViewInstructionDeclaration ((cPtr_astVStackViewInstructionDeclaration *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//@astVStackViewInstructionDeclaration-weak type
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration_2D_weak ("astVStackViewInstructionDeclaration-weak",
-                                                                    & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration_2D_weak) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_astVStackViewInstructionDeclaration_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration_2D_weak ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_astVStackViewInstructionDeclaration_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astVStackViewInstructionDeclaration_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astVStackViewInstructionDeclaration_2D_weak GALGAS_astVStackViewInstructionDeclaration_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                                      C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_astVStackViewInstructionDeclaration_2D_weak result ;
-  const GALGAS_astVStackViewInstructionDeclaration_2D_weak * p = (const GALGAS_astVStackViewInstructionDeclaration_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astVStackViewInstructionDeclaration_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astVStackViewInstructionDeclaration-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

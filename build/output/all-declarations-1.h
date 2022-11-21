@@ -733,12 +733,14 @@ class GALGAS_autoLayoutOutletMap : public AC_GALGAS_map {
 //--------------------------------- += operator (with list of field expressions)
   public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                      const class GALGAS_string & inOperand1,
+                                                     const class GALGAS_bool & inOperand2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
                                                   class GALGAS_string constinArgument1,
+                                                  class GALGAS_bool constinArgument2,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -747,10 +749,16 @@ class GALGAS_autoLayoutOutletMap : public AC_GALGAS_map {
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
+  public: VIRTUAL_IN_DEBUG void setter_setMOutletIsArrayForKey (class GALGAS_bool constinArgument0,
+                                                                class GALGAS_string constinArgument1,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
   public: VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
                                                   class GALGAS_string & outArgument1,
+                                                  class GALGAS_bool & outArgument2,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const ;
 
@@ -761,13 +769,18 @@ class GALGAS_autoLayoutOutletMap : public AC_GALGAS_map {
                                                                                        C_Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) const ;
 
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mOutletIsArrayForKey (const class GALGAS_string & constinOperand0,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutOutletMap getter_overriddenMap (C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
   public: VIRTUAL_IN_DEBUG bool optional_searchKey (const class GALGAS_string & constinOperand0,
-                                                    class GALGAS_string & outOperand1) const ;
+                                                    class GALGAS_string & outOperand1,
+                                                    class GALGAS_bool & outOperand2) const ;
 
 
 //--------------------------------- Introspection
@@ -793,6 +806,7 @@ class cEnumerator_autoLayoutOutletMap : public cGenericAbstractEnumerator {
 //--- Current element access
   public: class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
   public: class GALGAS_string current_mAutoLayoutOutletTypeName (LOCATION_ARGS) const ;
+  public: class GALGAS_bool current_mOutletIsArray (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GALGAS_autoLayoutOutletMap_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -810,10 +824,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutOutletMap
 class cMapElement_autoLayoutOutletMap : public cMapElement {
 //--- Map attributes
   public: GALGAS_string mProperty_mAutoLayoutOutletTypeName ;
+  public: GALGAS_bool mProperty_mOutletIsArray ;
 
 //--- Constructor
   public: cMapElement_autoLayoutOutletMap (const GALGAS_lstring & inKey,
-                                           const GALGAS_string & in_mAutoLayoutOutletTypeName
+                                           const GALGAS_string & in_mAutoLayoutOutletTypeName,
+                                           const GALGAS_bool & in_mOutletIsArray
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -847,6 +863,11 @@ class GALGAS_autoLayoutOutletMap_2D_element : public AC_GALGAS_root {
     return mProperty_mAutoLayoutOutletTypeName ;
   }
 
+  public: GALGAS_bool mProperty_mOutletIsArray ;
+  public: inline GALGAS_bool readProperty_mOutletIsArray (void) const {
+    return mProperty_mOutletIsArray ;
+  }
+
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public: VIRTUAL_IN_DEBUG void drop (void) ;
@@ -866,12 +887,17 @@ class GALGAS_autoLayoutOutletMap_2D_element : public AC_GALGAS_root {
     mProperty_mAutoLayoutOutletTypeName = inValue ;
   }
 
+  public: inline void setter_setMOutletIsArray (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mOutletIsArray = inValue ;
+  }
+
 //--------------------------------- Virtual destructor (in debug mode)
   public: virtual ~ GALGAS_autoLayoutOutletMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public: GALGAS_autoLayoutOutletMap_2D_element (const GALGAS_lstring & in_lkey,
-                                                 const GALGAS_string & in_mAutoLayoutOutletTypeName) ;
+                                                 const GALGAS_string & in_mAutoLayoutOutletTypeName,
+                                                 const GALGAS_bool & in_mOutletIsArray) ;
 
 //-- Start of generic part --*
 
@@ -885,7 +911,8 @@ class GALGAS_autoLayoutOutletMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_autoLayoutOutletMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                              const class GALGAS_string & inOperand1
+                                                                              const class GALGAS_string & inOperand1,
+                                                                              const class GALGAS_bool & inOperand2
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -8502,60 +8529,4 @@ class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @astVStackViewInstructionDeclaration_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_astVStackViewInstructionDeclaration_2D_weak : public GALGAS_astAbstractViewInstructionDeclaration_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_astVStackViewInstructionDeclaration_2D_weak constructor_default (LOCATION_ARGS) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak (const class GALGAS_astVStackViewInstructionDeclaration & inSource) ;
-
-  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak & operator = (const class GALGAS_astVStackViewInstructionDeclaration & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_astVStackViewInstructionDeclaration bang_astVStackViewInstructionDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_astVStackViewInstructionDeclaration_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_astVStackViewInstructionDeclaration_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_astVStackViewInstructionDeclaration_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_astVStackViewInstructionDeclaration_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration_2D_weak ;
 

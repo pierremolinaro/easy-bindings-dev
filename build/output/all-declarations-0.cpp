@@ -209,6 +209,9 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_one = "the 'one'
 //--- Syntax error message for terminal '$outlet$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_outlet = "the 'outlet' keyword" ;
 
+//--- Syntax error message for terminal '$outletArray$' :
+static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_outletArray = "the 'outletArray' keyword" ;
+
 //--- Syntax error message for terminal '$override$' :
 static const char * gSyntaxErrorMessage_easyBindings_5F_lexique_override = "the 'override' keyword" ;
 
@@ -377,8 +380,8 @@ static const char * gSyntaxErrorMessage_easyBindings_5F_lexique__3D_ = "the '=' 
 
 C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
   C_String result = "<unknown>" ;
-  if ((inTerminalIndex >= 0) && (inTerminalIndex < 102)) {
-    static const char * syntaxErrorMessageArray [102] = {kEndOfSourceLexicalErrorMessage,
+  if ((inTerminalIndex >= 0) && (inTerminalIndex < 103)) {
+    static const char * syntaxErrorMessageArray [103] = {kEndOfSourceLexicalErrorMessage,
         gSyntaxErrorMessage_easyBindings_5F_lexique_identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique_Identifier,
         gSyntaxErrorMessage_easyBindings_5F_lexique__40_attribute,
@@ -426,6 +429,7 @@ C_String C_Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int16_t
         gSyntaxErrorMessage_easyBindings_5F_lexique_none,
         gSyntaxErrorMessage_easyBindings_5F_lexique_one,
         gSyntaxErrorMessage_easyBindings_5F_lexique_outlet,
+        gSyntaxErrorMessage_easyBindings_5F_lexique_outletArray,
         gSyntaxErrorMessage_easyBindings_5F_lexique_override,
         gSyntaxErrorMessage_easyBindings_5F_lexique_prefs,
         gSyntaxErrorMessage_easyBindings_5F_lexique_property,
@@ -1154,6 +1158,22 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_outlet [] = {
   TO_UNICODE (0)
 } ;
 
+//--- Unicode string for '$outletArray$'
+static const utf32 kUnicodeString_easyBindings_5F_lexique_outletArray [] = {
+  TO_UNICODE ('o'),
+  TO_UNICODE ('u'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('l'),
+  TO_UNICODE ('e'),
+  TO_UNICODE ('t'),
+  TO_UNICODE ('A'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('r'),
+  TO_UNICODE ('a'),
+  TO_UNICODE ('y'),
+  TO_UNICODE (0)
+} ;
+
 //--- Unicode string for '$override$'
 static const utf32 kUnicodeString_easyBindings_5F_lexique_override [] = {
   TO_UNICODE ('o'),
@@ -1583,7 +1603,7 @@ int16_t C_Lexique_easyBindings_5F_lexique::search_into_delimitorsList (const C_S
 //             Key words table 'lowerCaseKeyWordList'      
 //----------------------------------------------------------------------------------------------------------------------
 
-static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 64 ;
+static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 65 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList] = {
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_no, 2, C_Lexique_easyBindings_5F_lexique::kToken_no),
@@ -1638,6 +1658,7 @@ static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lo
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_autolayout, 10, C_Lexique_easyBindings_5F_lexique::kToken_autolayout),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externFunc, 10, C_Lexique_easyBindings_5F_lexique::kToken_externFunc),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_dependsFrom, 11, C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_outletArray, 11, C_Lexique_easyBindings_5F_lexique::kToken_outletArray),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_toolbarItem, 11, C_Lexique_easyBindings_5F_lexique::kToken_toolbarItem),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_configurator, 12, C_Lexique_easyBindings_5F_lexique::kToken_configurator),
   C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_xcodeproject, 12, C_Lexique_easyBindings_5F_lexique::kToken_xcodeproject),
@@ -1942,6 +1963,11 @@ C_String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken 
     case kToken_outlet:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       s.appendCString ("outlet") ;
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      break ;
+    case kToken_outletArray:
+      s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendCString ("outletArray") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_override:
@@ -2613,6 +2639,7 @@ GALGAS_stringlist C_Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("none") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("one") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("outlet") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("outletArray") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("override") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("prefs") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("property") COMMA_THERE) ;
@@ -2763,6 +2790,7 @@ static void getKeywordsForIdentifier_easyBindings_5F_lexique (const C_String & i
     ioList.appendObject ("autolayout") ;
     ioList.appendObject ("externFunc") ;
     ioList.appendObject ("dependsFrom") ;
+    ioList.appendObject ("outletArray") ;
     ioList.appendObject ("toolbarItem") ;
     ioList.appendObject ("configurator") ;
     ioList.appendObject ("xcodeproject") ;
@@ -2799,7 +2827,7 @@ __attribute__ ((unused)) (getKeywordLists_easyBindings_5F_lexique, getKeywordsFo
 //----------------------------------------------------------------------------------------------------------------------
 
 uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
-  static const uint32_t kTerminalSymbolStyles [102] = {0,
+  static const uint32_t kTerminalSymbolStyles [103] = {0,
     2 /* easyBindings_lexique_1_identifier */,
     3 /* easyBindings_lexique_1_Identifier */,
     4 /* easyBindings_lexique_1__40_attribute */,
@@ -2847,6 +2875,7 @@ uint32_t C_Lexique_easyBindings_5F_lexique::styleIndexForTerminal (const int32_t
     1 /* easyBindings_lexique_1_none */,
     1 /* easyBindings_lexique_1_one */,
     1 /* easyBindings_lexique_1_outlet */,
+    1 /* easyBindings_lexique_1_outletArray */,
     1 /* easyBindings_lexique_1_override */,
     1 /* easyBindings_lexique_1_prefs */,
     1 /* easyBindings_lexique_1_property */,

@@ -17,8 +17,12 @@ end
   //····················································································································
 
 %
-for (lkey mAutoLayoutOutletTypeName) in AUTO_LAYOUT_OUTLET_MAP do
-%  weak final var %!lkey.string% : AutoLayout%!mAutoLayoutOutletTypeName%? = nil\n%
+for (lkey autoLayoutOutletTypeName outletIsArray) in AUTO_LAYOUT_OUTLET_MAP do
+  if outletIsArray then
+    %  final var %!lkey.string% = EBWeakReferenceArray <AutoLayout%!autoLayoutOutletTypeName%> ()\n%
+  else
+    %  weak final var %!lkey.string% : AutoLayout%!autoLayoutOutletTypeName%? = nil\n%
+  end
 end
 %
   //····················································································································
