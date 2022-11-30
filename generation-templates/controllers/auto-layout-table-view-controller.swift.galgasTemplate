@@ -305,7 +305,7 @@ case entityArray :
   // IMPLEMENTATION OF AutoLayoutTableViewDelegate
   //····················································································································
 
-  final func tableViewSelectionDidChange (selectedRows inSelectedRows : IndexSet) {
+  final func tableViewDelegate_selectionDidChange (selectedRows inSelectedRows : IndexSet) {
     switch self.sortedArray_property.selection {
     case .empty, .multiple :
       ()
@@ -320,7 +320,7 @@ case entityArray :
 
   //····················································································································
 
-  final func indexesOfSelectedObjects () -> IndexSet {
+  final func tableViewDelegate_indexesOfSelectedObjects () -> IndexSet {
     var indexSet = IndexSet ()
     var idx = 0
     let selectedObjectSet = EBReferenceSet (self.selectedArray_property.propval.values)
@@ -337,11 +337,11 @@ case entityArray :
 
 %switch MODEL_KIND
 case transientArray :
-%  final func addEntry () { // Transient array cannot add entry
+%  final func tableViewDelegate_addEntry () { // Transient array cannot add entry
   }
 %
 case entityArray :
-%  final func addEntry () {
+%  final func tableViewDelegate_addEntry () {
     if let model = self.mModel {
       switch model.selection {
       case .empty, .multiple :
@@ -361,11 +361,11 @@ case entityArray :
 
 %switch MODEL_KIND
 case transientArray :
-%  final func removeSelectedEntries () { // Transient array cannot remove entries
+%  final func tableViewDelegate_removeSelectedEntries () { // Transient array cannot remove entries
   }
 %
 case entityArray :
-%  final func removeSelectedEntries () {
+%  final func tableViewDelegate_removeSelectedEntries () {
     if let model = self.mModel {
       switch model.selection {
       case .empty, .multiple :
@@ -439,13 +439,13 @@ case entityArray :
 %end%
   //····················································································································
 
-  final func beginSorting () {
+  final func tableViewDelegate_beginSorting () {
     self.mSortDescriptorArray.removeAll ()
   }
 
   //····················································································································
 
-  final func endSorting () {
+  final func tableViewDelegate_endSorting () {
     self.sortedArray_property.notifyModelDidChange ()
   }
 
