@@ -7,4 +7,4 @@ import AppKit
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 extension %!EXTENDED_CLASS_NAME% {
-  @objc func %!ACTION_NAME% (_ sender : NSObject?) {
+  @objc func %!ACTION_NAME% (_ inSender : NSObject?) {
