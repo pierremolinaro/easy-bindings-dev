@@ -100,7 +100,7 @@ typealias EBReadOnlyProperty_%!ENUM_TYPE_NAME% = EBReadOnlyEnumProperty <%!ENUM_
 typealias EBTransientProperty_%!ENUM_TYPE_NAME% = EBTransientEnumProperty <%!ENUM_TYPE_NAME%>
 typealias EBReadWriteProperty_%!ENUM_TYPE_NAME% = EBReadWriteEnumProperty <%!ENUM_TYPE_NAME%>
 typealias EBStoredProperty_%!ENUM_TYPE_NAME% = EBStoredEnumProperty <%!ENUM_TYPE_NAME%>
-typealias EBPropertyProxy_%!ENUM_TYPE_NAME% = EBPropertyEnumProxy <%!ENUM_TYPE_NAME%>
+typealias EBComputedProperty_%!ENUM_TYPE_NAME% = EBGenericComputedEnumProperty <%!ENUM_TYPE_NAME%>
 typealias EBPreferencesProperty_%!ENUM_TYPE_NAME% = EBStoredEnumProperty <%!ENUM_TYPE_NAME%>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

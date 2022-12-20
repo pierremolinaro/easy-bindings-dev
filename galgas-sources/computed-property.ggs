@@ -269,7 +269,7 @@ override func @computedPropertyGeneration.declarationInSelectionControllerCode()
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-  result += "  final let " + self.mPropertyName + "_property = EBPropertyProxy_" + [self.mType swiftTypeName] + " ()\n\n"
+  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
 }
 
 #·······················································································································
@@ -280,7 +280,7 @@ override func @computedPropertyGeneration.initCode() -> @string {
 
 #·······················································································································
 
-override func @computedPropertyGeneration.bindPropertyInSelectionController() -> @string {
+override func @computedPropertyGeneration.bindPropertyInSelectionController () -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.addEBObserverOf_" + self.mPropertyName + " (self." + self.mPropertyName + "_property)\n"
@@ -394,7 +394,7 @@ override func @computedPropertyGeneration.configurationCode (?let @bool inPrefer
       result += [self.mDependencyList transientComputeFunctionCall !inPreferences !self.mClassName !self.mPropertyName !"computed"]
     end
     result += "    }\n"
-    result += "    " + prefix + self.mPropertyName + "_property.mStoreFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0) }\n"
+    result += "    " + prefix + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0) }\n"
     for (mDependency 3*) in self.mDependencyList do
       let s = [mDependency generateAddObserverCall !inPreferences]
       if s != "" then

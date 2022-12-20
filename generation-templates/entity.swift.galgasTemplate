@@ -169,8 +169,10 @@ end
   %    ioString += "%!mProperty.mPropertyName%\\n"\n%
 end
 %  //--- To many relationships
-%for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
-  %    ioString += "%!mProperty.mPropertyName%\\n"\n%
+%for (property) in TO_MANY_RELATIONSHIP_LIST do
+  if not [property.mOption isHasDependance] then
+  %    ioString += "%!property.mPropertyName%\\n"\n%
+  end
 end
 %  }
 
@@ -195,7 +197,10 @@ end
 end
 %  //--- To many relationships
 %for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
-  if not [mProperty.mOption isHasDependance] then
+  if mProperty.mCustomStore then
+    %    ioData.append (customStore_%![mProperty.mRelationshipType swiftTypeName]%_%!mProperty.mPropertyName% (self.%!mProperty.mPropertyName%_property.propval.values, intoDictionary: nil).data (using: .utf8)!)\n%
+  %    ioData.append (ascii: .lineFeed)\n%
+  elsif not [mProperty.mOption isHasDependance] then
     %    enterToManyRelationshipObjectIndexes (from: self.%!mProperty.mPropertyName%.values, into: &ioData)\n%
   end
 end
@@ -248,16 +253,23 @@ if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
                                                             _ inRawObjectArray : [RawObject],
                                                             _ inData : Data) {
     super.setUpToManyRelationshipsWithTextDictionary (inDictionary, inRawObjectArray, inData)
-%for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
-  if not [mProperty.mOption isHasDependance] then
-    %      if let range = inDictionary ["%!mProperty.mPropertyName%"], range.length > 0 {\n%
-    %        var relationshipArray = EBReferenceArray <%![mProperty.mRelationshipType swiftTypeName]%> ()\n%
-    %        let indexArray = inData.base62EncodedIntArray (fromRange: range)\n%
-    %        for idx in indexArray {\n%
-    %          relationshipArray.append (inRawObjectArray [idx].object as! %![mProperty.mRelationshipType swiftTypeName]%)\n%
-    %        }\n%
-    %        self.%!mProperty.mPropertyName% = relationshipArray\n%
+%for (property) in TO_MANY_RELATIONSHIP_LIST do
+  if property.mCustomStore then
+    %  //--- To many %!property.mPropertyName% (custom store)\n%
+    %    if let range = inDictionary ["%!property.mPropertyName%"], range.length > 0, let s = String (data: inData [range.location ..< range.location + range.length], encoding: .utf8) {\n%
+    %      let array = customRead_%![property.mRelationshipType swiftTypeName]%_%!property.mPropertyName% (fromString: s, with: self.undoManager)\n%
+    %      self.%!property.mPropertyName% = EBReferenceArray (array)\n%
+    %    }\n%
+  elsif not [property.mOption isHasDependance] then
+    %  //--- To many %!property.mPropertyName%\n%
+    %    if let range = inDictionary ["%!property.mPropertyName%"], range.length > 0 {\n%
+    %      var relationshipArray = EBReferenceArray <%![property.mRelationshipType swiftTypeName]%> ()\n%
+    %      let indexArray = inData.base62EncodedIntArray (fromRange: range)\n%
+    %      for idx in indexArray {\n%
+    %        relationshipArray.append (inRawObjectArray [idx].object as! %![property.mRelationshipType swiftTypeName]%)\n%
     %      }\n%
+    %      self.%!property.mPropertyName% = relationshipArray\n%
+    %    }\n%
   end
 end
 %  }
@@ -286,7 +298,7 @@ if [SIGNATURE_SET count] > 0 then
     var crc = super.computeSignature ()
 %
 for (key) in SIGNATURE_SET do
-  %    crc.accumulateUInt32 (self.%!key%_property.signature ())\n%
+  %    crc.accumulate (u32: self.%!key%_property.signature ())\n%
 end
 %    return crc
   }

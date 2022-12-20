@@ -18,7 +18,7 @@ final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBS
     if [mKind isTransient] then
       %  var %!lkey.string%_property = EBTransientProperty_%![mKind swiftTypeName]% ()\n\n%
     else
-      %  var %!lkey.string%_property = EBPropertyProxy_%![mKind swiftTypeName]% ()\n\n%
+      %  var %!lkey.string%_property = EBComputedProperty_%![mKind swiftTypeName]% ()\n\n%
     end
   end
 end

@@ -6,7 +6,6 @@ typealias EBReadOnlyProperty_%!TYPE%    = EBObservableProperty <%!TYPE%>
 typealias EBTransientProperty_%!TYPE%   = EBGenericTransientProperty <%!TYPE%>
 %if not TRANSIENT then
 %typealias EBReadWriteProperty_%!TYPE%   = EBObservableMutableProperty <%!TYPE%>
-typealias EBPropertyProxy_%!TYPE%       = EBGenericPropertyProxy <%!TYPE%>
 typealias EBComputedProperty_%!TYPE%    = EBGenericComputedProperty <%!TYPE%>
 typealias EBStoredProperty_%!TYPE%      = EBGenericStoredProperty <%!TYPE%>
 typealias EBPreferencesProperty_%!TYPE% = EBGenericPreferenceProperty <%!TYPE%>
