@@ -956,10 +956,10 @@ else
 
   //····················································································································
 
-  init (prefKey : String) {
-    self.mPrefKey = prefKey
+  init (prefKey inPrefKey : String) {
+    self.mPrefKey = inPrefKey
     super.init (usedForSignature: false)
-    if let array = UserDefaults.standard.array (forKey: prefKey) as? [NSDictionary] {
+    if let array = UserDefaults.standard.array (forKey: inPrefKey) as? [[String : Any]] {
       var objectArray = EBReferenceArray <%!ENTITY_NAME%> ()
       for dictionary in array {
         let object = newInstanceOfEntityNamed (self.undoManager, "%!ENTITY_NAME%") as! %!ENTITY_NAME%
@@ -977,10 +977,10 @@ end
   //····················································································································
 
   private func writeInPreferences () {
-    var dictionaryArray = [NSDictionary] ()
+    var dictionaryArray = [[String  : Any]] ()
     for object in self.mInternalArrayValue.values {
-      let d = NSMutableDictionary ()
-      object.saveIntoDictionary (d)
+      var d = [String  : Any] ()
+      object.saveIntoDictionary (&d)
       d [ENTITY_KEY] = nil // Remove entity key, not used in preferences
       dictionaryArray.append (d)
     }

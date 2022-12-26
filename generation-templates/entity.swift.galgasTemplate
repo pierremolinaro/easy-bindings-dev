@@ -119,8 +119,8 @@ end
   //    saveIntoDictionary
   //····················································································································
 
-  override func saveIntoDictionary (_ ioDictionary : NSMutableDictionary) {
-    super.saveIntoDictionary (ioDictionary)
+  override func saveIntoDictionary (_ ioDictionary : inout [String  : Any]) {
+    super.saveIntoDictionary (&ioDictionary)
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty saveIntoDictionaryCode]
@@ -131,7 +131,7 @@ end
   //    setUpWithDictionary
   //····················································································································
 
-  override func setUpWithDictionary (_ inDictionary : NSDictionary,
+  override func setUpWithDictionary (_ inDictionary : [String : Any],
                                      managedObjectArray inManagedObjectArray : [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray: inManagedObjectArray)
 %
@@ -144,7 +144,7 @@ end
   //    setUpAtomicPropertiesWithDictionary
   //····················································································································
 
-  override func setUpAtomicPropertiesWithDictionary (_ inDictionary : NSDictionary) {
+  override func setUpAtomicPropertiesWithDictionary (_ inDictionary : [String : Any]) {
     super.setUpAtomicPropertiesWithDictionary (inDictionary)
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
@@ -198,7 +198,7 @@ end
 %  //--- To many relationships
 %for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   if mProperty.mCustomStore then
-    %    ioData.append (customStore_%![mProperty.mRelationshipType swiftTypeName]%_%!mProperty.mPropertyName% (self.%!mProperty.mPropertyName%_property.propval.values, intoDictionary: nil).data (using: .utf8)!)\n%
+    %    ioData.append (customStore_%![mProperty.mRelationshipType swiftTypeName]%_%!mProperty.mPropertyName% (self.%!mProperty.mPropertyName%_property.propval.values).data (using: .utf8)!)\n%
   %    ioData.append (ascii: .lineFeed)\n%
   elsif not [mProperty.mOption isHasDependance] then
     %    enterToManyRelationshipObjectIndexes (from: self.%!mProperty.mPropertyName%.values, into: &ioData)\n%
@@ -441,15 +441,15 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //  Save into additional dictionary
   //····················································································································
 
-  override func saveIntoAdditionalDictionary (_ ioDictionary : NSMutableDictionary) {
-    self.saveIntoAdditionalDictionary_%!ENTITY_NAME% (ioDictionary)
+  override func saveIntoAdditionalDictionary (_ ioDictionary : inout [String : Any]) {
+    self.saveIntoAdditionalDictionary_%!ENTITY_NAME% (&ioDictionary)
   }
 
   //····················································································································
   //  operationAfterPasting
   //····················································································································
 
-  override func operationAfterPasting (additionalDictionary inDictionary : NSDictionary,
+  override func operationAfterPasting (additionalDictionary inDictionary : [String : Any],
                                        optionalDocument inOptionalDocument : EBAutoLayoutManagedDocument?,
                                        objectArray inObjectArray : [EBGraphicManagedObject]) -> String {
     return self.operationAfterPasting_%!ENTITY_NAME% (additionalDictionary: inDictionary,

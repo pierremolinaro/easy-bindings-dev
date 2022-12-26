@@ -254,12 +254,6 @@ override func @atomicPropertyGeneration.propertyDeclarationCode(
     result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
     result += "  }\n\n"
   end
-#  if self.mNeedsValidation then
-#    result += "  //" + @string.stringWithSequenceOfCharacters  {!'·' !116} + "\n\n"
-#    result += "  final func " + self.mPropertyName + "_validateAndSetProp (_ inCandidateValue : " + [self.mType swiftTypeName] + ", windowForSheet inWindow : NSWindow?) -> Bool {\n"
-#    result += "    return self." + self.mPropertyName + "_property.validateAndSetProp (inCandidateValue, windowForSheet: inWindow)\n"
-#    result += "  }\n\n"
-#  end
 }
 
 #·······················································································································
@@ -273,12 +267,6 @@ override func @atomicPropertyGeneration.initCode() -> @string {
 
 override func @atomicPropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
   result = ""
-#  if self.mNeedsValidation then
-#    result += "  //--- Atomic property: " + self.mPropertyName + "\n"
-#    result += "    self." + self.mPropertyName + "_property.validationFunction = { [weak self] in\n"
-#    result += "      return self?.validate_" + self.mPropertyName + " (currentValue: $0, proposedValue: $1) ?? .rejectWithBeep\n"
-#    result += "    }\n"
-#  end
 }
 
 #·······················································································································
@@ -292,15 +280,7 @@ override func @atomicPropertyGeneration.setupAtomicPropertyFromDictionaryCode() 
 
 override func @atomicPropertyGeneration.saveIntoDictionaryCode() -> @string {
   result  = "    //--- Atomic property: " + self.mPropertyName + "\n"
-  result += "      self." + self.mPropertyName + "_property.storeIn (dictionary: ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
+  result += "      self." + self.mPropertyName + "_property.storeIn (dictionary: &ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
 }
-
-#·······················································································································
-
-#override func @atomicPropertyGeneration.clearObjectExplorerCode() -> @string {
-#  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
-#  result += "    self." + self.mPropertyName + "_property.mObserverExplorer = nil\n"
-#  result += "    self." + self.mPropertyName + "_property.mValueExplorer = nil\n"
-#}
 
 #-----------------------------------------------------------------------------------------------------------------------

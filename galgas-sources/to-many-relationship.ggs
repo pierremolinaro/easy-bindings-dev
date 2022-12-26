@@ -303,13 +303,13 @@ override func @toManyPropertyGeneration.saveIntoDictionaryCode() -> @string {
     result = ""
   elsif self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (Custom store)\n"
-    result += "    _ = customStore_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (self." + self.mPropertyName + "_property.propval.values, intoDictionary: ioDictionary)\n"
+    result += "    customStore_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName + " (self." + self.mPropertyName + "_property.propval.values, intoDictionary: &ioDictionary)\n"
   else
     result  = "  //--- To many property: " + self.mPropertyName + "\n"
     result += "    self.store (\n"
     result += "      managedObjectArray: self." + self.mPropertyName + "_property.propval.values,\n"
     result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
-    result += "      intoDictionary: ioDictionary\n"
+    result += "      intoDictionary: &ioDictionary\n"
     result += "    )\n"
   end
 }

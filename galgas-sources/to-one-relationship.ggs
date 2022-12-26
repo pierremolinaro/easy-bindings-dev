@@ -248,8 +248,8 @@ override func @toOnePropertyGeneration.setupRelationshipFromDictionaryCode() -> 
   result  = "  //--- To one property: " + self.mPropertyName + "\n"
   result += "    do{\n"
   result += "      let possibleEntity = readEntityFromDictionary (\n"
-  result += "        inRelationshipName: \"" + self.mPropertyName + "\",\n"
-  result += "        inDictionary: inDictionary,\n"
+  result += "        relationshipName: \"" + self.mPropertyName + "\",\n"
+  result += "        dictionary: inDictionary,\n"
   result += "        managedObjectArray: inManagedObjectArray\n"
   result += "      )\n"
   result += "      if let entity = possibleEntity as? " + [self.mRelationshipType swiftTypeName] + " {\n"
@@ -266,14 +266,16 @@ override func @toOnePropertyGeneration.saveIntoDictionaryCode () -> @string {
   case oppositeIsToMany (*) :
   case none :
     result +="  //--- To one property: " + self.mPropertyName + "\n"
-    result += "    self.store (managedObject:self." + self.mPropertyName + "_property.propval,\n"
+    result += "    self.store (managedObject: self." + self.mPropertyName + "_property.propval,\n"
     result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
-    result += "      intoDictionary: ioDictionary)\n"
+    result += "      intoDictionary: &ioDictionary\n"
+    result += "    )\n"
   case oppositeIsToOne (oppositeName) :
     result +="  //--- To one property: " + self.mPropertyName + " // Opposite is toOne " + oppositeName + "\n"
-    result += "    self.store (managedObject:self." + self.mPropertyName + "_property.propval,\n"
+    result += "    self.store (managedObject: self." + self.mPropertyName + "_property.propval,\n"
     result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
-    result += "      intoDictionary: ioDictionary)\n"
+    result += "      intoDictionary: &ioDictionary\n"
+    result += "    )\n"
   end
 }
 
