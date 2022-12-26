@@ -260,7 +260,8 @@ override func @atomicPropertyGeneration.propertyDeclarationCode(
 
 override func @atomicPropertyGeneration.initCode() -> @string {
   result  = "    self." + self.mPropertyName + "_property = EBStoredProperty_" + [self.mType swiftTypeName]
-  result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: inUndoManager)\n"
+  result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: inUndoManager, key: \"" 
+  result += self.mPropertyName + "\")\n"
 }
 
 #·······················································································································

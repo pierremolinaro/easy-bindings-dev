@@ -119,13 +119,13 @@ end
   //    saveIntoDictionary
   //····················································································································
 
-  override func saveIntoDictionary (_ ioDictionary : inout [String  : Any]) {
+/*  override func saveIntoDictionary (_ ioDictionary : inout [String  : Any]) {
     super.saveIntoDictionary (&ioDictionary)
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty saveIntoDictionaryCode]
 end
-%  }
+%  } */
 
   //····················································································································
   //    setUpWithDictionary

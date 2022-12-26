@@ -191,7 +191,7 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = StoredObject_" + [self.mRelationshipType swiftTypeName]
   result += " (usedForSignature: " + [self.mUsedForSignature cString]
-  result += ", strongRef: " + [self.mStrongRef cString] + ")\n\n"
+  result += ", strongRef: " + [self.mStrongRef cString] + ", key: \"" + self.mPropertyName + "\")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
   result += "  final var " + self.mPropertyName + " : " + [self.mRelationshipType swiftTypeName] + "? {\n"
   result += "    get {\n"

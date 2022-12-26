@@ -9,6 +9,68 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Routine 'generateTestFile'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdentifier,
+                               const GALGAS_string constinArgument_inProjectName,
+                               const GALGAS_mainXibDescriptorList constinArgument_inMainXibDescriptorList,
+                               const GALGAS_string constinArgument_inOutputDirectory,
+                               C_Compiler * inCompiler
+                               COMMA_UNUSED_LOCATION_ARGS) {
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    GALGAS_bool test_1 = GALGAS_bool (kIsStrictSup, constinArgument_inMainXibDescriptorList.getter_length (SOURCE_FILE ("main-xib.ggs", 135)).objectCompare (GALGAS_uint (uint32_t (0U)))) ;
+    if (kBoolTrue == test_1.boolEnum ()) {
+      test_1 = GALGAS_bool (kIsNotEqual, constinArgument_inBundleIdentifier.objectCompare (GALGAS_string::makeEmptyString ())) ;
+    }
+    test_0 = test_1.boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_stringlist var_outlet_5F_identifier_5F_list_5342 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("main-xib.ggs", 136)) ;
+      cEnumerator_mainXibDescriptorList enumerator_5362 (constinArgument_inMainXibDescriptorList, kENUMERATION_UP) ;
+      while (enumerator_5362.hasCurrentObject ()) {
+        cEnumerator_mainXibLineDescriptorList enumerator_5413 (enumerator_5362.current_mLine (HERE), kENUMERATION_UP) ;
+        while (enumerator_5413.hasCurrentObject ()) {
+          switch (enumerator_5413.current_mElement (HERE).enumValue ()) {
+          case GALGAS_mainXibElement::kNotBuilt:
+            break ;
+          case GALGAS_mainXibElement::kEnum_text:
+            {
+            }
+            break ;
+          case GALGAS_mainXibElement::kEnum_outlet:
+            {
+              const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_5566 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_5413.current_mElement (HERE).unsafePointer ()) ;
+              const GALGAS_lstring extractedValue_5508_outletName = extractPtr_5566->mAssociatedValue1 ;
+              var_outlet_5F_identifier_5F_list_5342.addAssign_operation (extractedValue_5508_outletName.readProperty_string ()  COMMA_SOURCE_FILE ("main-xib.ggs", 142)) ;
+            }
+            break ;
+          }
+          enumerator_5413.gotoNextObject () ;
+        }
+        enumerator_5362.gotoNextObject () ;
+      }
+      GALGAS_string var_s_5606 = GALGAS_string (filewrapperTemplate_testFiles_test_5F_py (inCompiler, constinArgument_inBundleIdentifier, constinArgument_inProjectName, var_outlet_5F_identifier_5F_list_5342 COMMA_SOURCE_FILE ("main-xib.ggs", 146))) ;
+      GALGAS_string var_header_5737 = GALGAS_string ("#!/usr/bin/python\n"
+        "# coding=utf-8\n"
+        "\n"
+        "# https://pypi.python.org/pypi/atomac\n"
+        "# https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py\n"
+        "\n") ;
+      {
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, GALGAS_string ("test.py"), GALGAS_string ("#"), var_header_5737, GALGAS_string::makeEmptyString (), var_s_5606, GALGAS_string ("#    ENTER USER CODE HERE\n"), GALGAS_string ("\n"
+        "quitApplication ()\n"
+        "\n"
+        "#----------------------------------------------------------------------------*\n"), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 155)) ;
+      }
+    }
+  }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Filewrapper 'testFiles'
 //
 //----------------------------------------------------------------------------------------------------------------------

@@ -230,7 +230,7 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
     result += "  //   To many property: " + self.mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  final let " + self.mPropertyName + "_property = StoredArrayOf_" + [self.mRelationshipType swiftTypeName]
-    result += " (usedForSignature: " + [self.mUsedForSignature cString] + ")\n\n"
+    result += " (usedForSignature: " + [self.mUsedForSignature cString] + ", key: \"" + self.mPropertyName + "\")\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
