@@ -280,13 +280,13 @@ end
   //   accessibleObjectsForSaveOperation
   //····················································································································
 
-  override func accessibleObjectsForSaveOperation (objects ioObjectArray : inout [EBManagedObject]) {
+/*  override func accessibleObjectsForSaveOperation (objects ioObjectArray : inout [EBManagedObject]) {
     super.accessibleObjectsForSaveOperation (objects: &ioObjectArray)
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty objectAccessibilityCodeForSaveOperation]
 end
-%  }
+%  } */
 
 %
 if [SIGNATURE_SET count] > 0 then

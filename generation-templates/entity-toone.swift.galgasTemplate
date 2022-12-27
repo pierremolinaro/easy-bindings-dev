@@ -346,6 +346,14 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
   }
 
   //····················································································································
+
+  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {
+    if self.mKey != nil, let object = self.mWeakInternalValue {
+      ioArray.append (object)
+    }
+  }
+
+  //····················································································································
   //   Signature ?
   //····················································································································
 

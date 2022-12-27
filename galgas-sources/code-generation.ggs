@@ -58,7 +58,6 @@ struct @generationStruct {
   public var @stringset mGenerateClass_TransientArrayOfSuperOf_
   public var @stringset mGenerateClass_TransientArrayOf_
   public var @stringset mGenerateClass_StoredArrayOf_
-#  public var @stringset mGenerateClass_ProxyObject_
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

@@ -229,8 +229,18 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
     result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-    result += "  final let " + self.mPropertyName + "_property = StoredArrayOf_" + [self.mRelationshipType swiftTypeName]
-    result += " (usedForSignature: " + [self.mUsedForSignature cString] + ", key: \"" + self.mPropertyName + "\")\n\n"
+    result += "  final let " + self.mPropertyName + "_property = "
+    if self.mCustomStore then
+      result += "Custom_" + [self.mRelationshipType swiftTypeName] + "_"
+    end
+    result +=  "StoredArrayOf_" + [self.mRelationshipType swiftTypeName]
+    result += " (usedForSignature: " + [self.mUsedForSignature cString] + ", key: "
+    if self.mCustomStore then
+      result += "KEY_FOR_" + [self.mRelationshipType swiftTypeName] + "_" + self.mPropertyName
+    else
+      result += "\"" + self.mPropertyName + "\""
+    end
+    result += ")\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
