@@ -131,27 +131,26 @@ end
   //    setUpWithDictionary
   //····················································································································
 
-  override func setUpWithDictionary (_ inDictionary : [String : Any],
+/*  override func setUpWithDictionary (_ inDictionary : [String : Any],
                                      managedObjectArray inManagedObjectArray : [EBManagedObject]) {
     super.setUpWithDictionary (inDictionary, managedObjectArray: inManagedObjectArray)
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty setupRelationshipFromDictionaryCode]
 end
-%  }
+%  } */
 
   //····················································································································
   //    setUpAtomicPropertiesWithDictionary
   //····················································································································
 
-  override func setUpAtomicPropertiesWithDictionary (_ inDictionary : [String : Any]) {
+/*  override func setUpAtomicPropertiesWithDictionary (_ inDictionary : [String : Any]) {
     super.setUpAtomicPropertiesWithDictionary (inDictionary)
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty setupAtomicPropertyFromDictionaryCode]
 end
-%  }
-
+%  } */
 
   //····················································································································
   //   appendPropertyNamesTo
