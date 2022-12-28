@@ -157,24 +157,10 @@ end
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    ReadWriteObject_%!ENTITY_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-class ReadWriteObject_%!ENTITY_NAME% : ReadOnlyObject_%!ENTITY_NAME% {
-
-  //····················································································································
-
-  func setProp (_ inValue : %!ENTITY_NAME%?) { } // Abstract method
-
-  //····················································································································
-
-}
-
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    StoredObject_%!ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSignatureObserverProtocol, EBObservableObjectProtocol, DocumentStorablePropertyProtocol {
+final class StoredObject_%!ENTITY_NAME% : ReadOnlyObject_%!ENTITY_NAME%, EBSignatureObserverProtocol, EBObservableObjectProtocol, DocumentStorablePropertyProtocol {
 
  //····················································································································
 
@@ -322,11 +308,11 @@ final class StoredObject_%!ENTITY_NAME% : ReadWriteObject_%!ENTITY_NAME%, EBSign
   //····················································································································
 
   private let mIsStrongReference : Bool
-  private var mStrongInternalValue : %!ENTITY_NAME%? = nil
+  private var mStrongInternalValue : EBManagedObject? = nil // Only used for retaining
 
   //····················································································································
 
-  override func setProp (_ inValue : %!ENTITY_NAME%?) {
+  func setProp (_ inValue : %!ENTITY_NAME%?) {
     self.mWeakInternalValue = inValue
     if self.mIsStrongReference {
       self.mStrongInternalValue = inValue
