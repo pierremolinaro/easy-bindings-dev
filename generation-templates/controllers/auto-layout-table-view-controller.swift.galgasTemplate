@@ -105,7 +105,7 @@ if [SORTED_COLUMNS length] > 0 then
   //   Selected Array
   //····················································································································
 
-  private let mInternalSelectedArrayProperty = StandAloneArrayOf_%!ELEMENT_TYPE_NAME% ()
+  private let mInternalSelectedArrayProperty = StoredArrayOf_%!ELEMENT_TYPE_NAME% (usedForSignature: false, key: nil)
 
   //····················································································································
 
