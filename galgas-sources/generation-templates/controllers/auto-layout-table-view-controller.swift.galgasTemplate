@@ -66,12 +66,12 @@ else
 end
 %      addSortObserversCallback: { (observer) in
 %for (key) in OBSERVED_PROPERTIES_FOR_SORTING do
-  %        inModel.addEBObserverOf_%!key% (observer)\n%
+  %        inModel.toMany_%!key%_StartsToBeObserved (by: observer)\n%
 end
 %      },
       removeSortObserversCallback: {(observer) in
 %for (key) in OBSERVED_PROPERTIES_FOR_SORTING do
-  %        inModel.removeEBObserverOf_%!key% (observer)\n%
+  %        inModel.toMany_%!key%_StopsBeingObserved (by: observer)\n%
 end
 %      }
     )
@@ -152,14 +152,14 @@ if [SORTED_COLUMNS length] > 0 then
 
   override init () {
     super.init ()
-    self.sortedArray_property.addEBObserver (self.mSortedArrayValuesObserver)
+    self.sortedArray_property.startsToBeObserved (by: self.mSortedArrayValuesObserver)
 %
 for (mEditable mSortPropertyName mDisplayedPropertyName mColumnObjectTypeName mRunAction mActualParameterList) in BOUND_COLUMNS do
 %  //--- Observe '%!mDisplayedPropertyName%' column
-    self.sortedArray_property.addEBObserverOf_%!mDisplayedPropertyName% (self.mSortedArrayValuesObserver)
+    self.sortedArray_property.toMany_%!mDisplayedPropertyName%_StartsToBeObserved (by: self.mSortedArrayValuesObserver)
 %
 if (mSortPropertyName != "") & (mSortPropertyName != mDisplayedPropertyName) then
-  %     self.sortedArray_property.addEBObserverOf_%!mSortPropertyName% (self.mSortedArrayValuesObserver)\n%
+  %     self.sortedArray_property.toMany_%!mSortPropertyName%_StartsToBeObserved (by: self.mSortedArrayValuesObserver)\n%
 end
 end
 %  //---

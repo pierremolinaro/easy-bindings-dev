@@ -52,7 +52,7 @@ end
       if not [mKind isTransient] then
         %    self.%!lkey.string%_property.mWriteModelFunction = nil \n%
        end
-      %    self.mModel?.removeEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
+      %    self.mModel?.toMany_%!lkey.string%_StopsBeingObserved (by: self.%!lkey.string%_property)\n%
     end
   end
 %  //---
@@ -63,7 +63,7 @@ end
 if not [mKind isEntityType] then
   %  //···················································································································*\n\n%
   %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
-  %    model.addEBObserverOf_%!lkey.string% (self.%!lkey.string%_property)\n%
+  %    model.toMany_%!lkey.string%_StartsToBeObserved (by: self.%!lkey.string%_property)\n%
   %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%
   %      if let model = self?.mModel {\n%
   %        switch model.selection {\n%

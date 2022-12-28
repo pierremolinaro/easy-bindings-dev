@@ -501,7 +501,7 @@ proc generateEBManagedObjectContext(
 
 #·······················································································································
 
-private filewrapper entityGenerationTemplate in "../generation-templates" {
+private filewrapper entityGenerationTemplate in "generation-templates" {
 }{
 }{
   template entityImplementationInSwift "entity.swift.galgasTemplate"

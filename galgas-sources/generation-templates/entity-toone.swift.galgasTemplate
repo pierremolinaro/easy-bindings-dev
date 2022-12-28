@@ -18,13 +18,13 @@ class ReadOnlyObject_%!ENTITY_NAME% : ReadOnlyAbstractObjectProperty <%!ENTITY_N
 %if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] +[COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %    if let oldValue = inOldValue {\n%
 for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      oldValue.%!mProperty.mPropertyName%_property.removeEBObserver (self.%!mProperty.mPropertyName%_property) // Stored property\n%
+  %      oldValue.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.%!mProperty.mPropertyName%_property) // Stored property\n%
 end
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %      oldValue.%!mProperty.mPropertyName%_property.removeEBObserver (self.%!mProperty.mPropertyName%_property) // Transient property\n%
+  %      oldValue.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.%!mProperty.mPropertyName%_property) // Transient property\n%
 end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %      oldValue.%!mProperty.mPropertyName%_property.removeEBObserver (self.%!mProperty.mPropertyName%_property) // Computed property\n%
+  %      oldValue.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.%!mProperty.mPropertyName%_property) // Computed property\n%
 end
 %    }\n%
 end
@@ -32,13 +32,13 @@ end
 %if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] + [TRANSIENT_LIST_FOR_IMPLEMENTATION length] +[COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION length]) > 0 then
 %    if let newValue = self.mWeakInternalValue {\n%
 for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      newValue.%!mProperty.mPropertyName%_property.addEBObserver (self.%!mProperty.mPropertyName%_property) // Stored property\n%
+  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_property) // Stored property\n%
 end
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %      newValue.%!mProperty.mPropertyName%_property.addEBObserver (self.%!mProperty.mPropertyName%_property) // Transient property\n%
+  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_property) // Transient property\n%
 end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %      newValue.%!mProperty.mPropertyName%_property.addEBObserver (self.%!mProperty.mPropertyName%_property) // Computed property\n%
+  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_property) // Computed property\n%
 end
 %    }\n%
 end
@@ -79,17 +79,17 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %  //····················································································································\n\n%
   %  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakEventSet ()\n\n%
   %  //····················································································································\n\n%
-  %  final func addEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {\n%
+  %  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n%
   %    self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)\n%
   %    if let object = self.propval {\n%
-  %      object.%!mProperty.mPropertyName%_property.addEBObserver (inObserver)\n%
+  %      object.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)\n%
   %    }\n%
   %  }\n\n%
   %  //····················································································································\n\n%
-  %  final func removeEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {\n%
+  %  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n%
   %    self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)\n%
   %    if let object = self.propval {\n%
-  %      object.%!mProperty.mPropertyName%_property.removeEBObserver (inObserver)\n%
+  %      object.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)\n%
   %    }\n%
   %  }\n\n%
 end

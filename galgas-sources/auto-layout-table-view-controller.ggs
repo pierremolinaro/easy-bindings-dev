@@ -493,7 +493,7 @@ list @autoLayoutTableViewControllerSortedColumnListForGeneration {
 
 #·······················································································································
 
-private filewrapper autoLayoutTableViewControllerGenerationTemplate in "../generation-templates/controllers" {
+private filewrapper autoLayoutTableViewControllerGenerationTemplate in "generation-templates/controllers" {
 }{
 }{
   template autoLayoutTableViewControllerImplementation "auto-layout-table-view-controller.swift.galgasTemplate"

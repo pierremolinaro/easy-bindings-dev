@@ -100,7 +100,7 @@ case ."eb"
 #   FILEWRAPPER: predefined outlet classes
 #-----------------------------------------------------------------------------------------------------------------------
 
-filewrapper predefinedOutletClasses in "../generation-templates" {
+filewrapper predefinedOutletClasses in "generation-templates" {
 }{
 }{
   template sourceFile "predefinedOutletClasses.eb"

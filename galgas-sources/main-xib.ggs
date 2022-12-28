@@ -168,7 +168,7 @@ proc generateTestFile(
 
 #·······················································································································
 
-private filewrapper testFiles in "../generation-templates/xcode-project" {
+private filewrapper testFiles in "generation-templates/xcode-project" {
 }{
 }{
   template test_py "test.py.galgasTemplate"

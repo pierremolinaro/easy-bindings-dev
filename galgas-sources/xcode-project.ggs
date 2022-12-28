@@ -176,7 +176,7 @@ private proc generateXcodeProjectInternal(
 
 #----------------------------------------------------------------------------------------------------------------------*
 
-private filewrapper additionalXcodeFiles in "../generation-templates/xcode-project" {
+private filewrapper additionalXcodeFiles in "generation-templates/xcode-project" {
 }{
 }{
 

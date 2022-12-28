@@ -56,7 +56,7 @@ end
       if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @computedPropertyGeneration)  then
         %    self.%!mProperty.mPropertyName%_property.mWriteModelFunction = nil \n%
        end
-      %    self.selectedArray_property.removeEBObserverOf_%!mProperty.mPropertyName% (self.%!mProperty.mPropertyName%_property)\n%
+      %    self.selectedArray_property.toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by: self.%!mProperty.mPropertyName%_property)\n%
     end
   end
 %  } */

@@ -116,7 +116,7 @@ proc generateCode(
 
 #·······················································································································
 
-filewrapper standard_properties in "../generation-templates/standard-properties" {
+filewrapper standard_properties in "generation-templates/standard-properties" {
 }{
 }{
   template stub "standard-properties-stub.swift.galgasTemplate"

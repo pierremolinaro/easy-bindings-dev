@@ -208,7 +208,7 @@ list @selectionControllerForGeneration {
 
 #·······················································································································
 
-private filewrapper selectionControllerGenerationTemplate in "../generation-templates/controllers" {
+private filewrapper selectionControllerGenerationTemplate in "generation-templates/controllers" {
 }{
 }{
   template baseSelectionControllerImplementation "base-selection-controller.swift.galgasTemplate"

@@ -160,7 +160,7 @@ class @enumForGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-private filewrapper enumGenerationTemplate in "../generation-templates" {
+private filewrapper enumGenerationTemplate in "generation-templates" {
 }{
 }{
   template enumGenerationInSwift "enum.swift.galgasTemplate"

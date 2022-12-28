@@ -226,7 +226,7 @@ class @preferencesForGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-private filewrapper prefsGenerationTemplate in "../generation-templates" {
+private filewrapper prefsGenerationTemplate in "generation-templates" {
 }{
 }{
   template preferences "preferences.swift.galgasTemplate"

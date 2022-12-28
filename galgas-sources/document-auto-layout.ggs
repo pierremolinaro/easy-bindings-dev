@@ -457,7 +457,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
 
 #·······················································································································
 
-filewrapper autoLayoutDocumentGenerationTemplate in "../generation-templates" {
+filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
 }{
 }{
   template documentImplementation "document-auto-layout.swift.galgasTemplate"

@@ -10,7 +10,7 @@ list @validationStubRoutineListForGeneration {
 
 #·······················································································································
 
-filewrapper validationStubExtension in "../generation-templates" {
+filewrapper validationStubExtension in "generation-templates" {
 }{
 }{
   template actionGeneration "validation-stub-extension.swift.galgasTemplate"

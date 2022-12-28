@@ -57,30 +57,30 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.addEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
+    self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.addEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.removeEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+    self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
     }
   }
@@ -92,7 +92,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
       for managedObject in inSet.values {
         for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
           if let observer = entry.possibleObserver {
-            managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
+            managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
           }else{
             self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
           }
@@ -108,7 +108,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
       if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
-          managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: observer)
         }
       }else{
         self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -127,30 +127,30 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.addEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
+    self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.addEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.removeEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+    self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
     }
   }
@@ -161,7 +161,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
         if let observer = entry.possibleObserver {
-          managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
         }
@@ -176,7 +176,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
       if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
-          managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: observer)
         }
       }else{
         self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -195,30 +195,30 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.addEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
+    self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.addEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.removeEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+    self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
     }
   }
@@ -229,7 +229,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
         if let observer = entry.possibleObserver {
-          managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
         }
@@ -244,7 +244,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
       if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
-          managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: observer)
         }
       }else{
         self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
@@ -263,30 +263,30 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.addEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
+    self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.addEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.removeEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+    self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
     }
   }
@@ -297,7 +297,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
         if let observer = entry.possibleObserver {
-          managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
         }
@@ -311,7 +311,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
         if let observer = entry.possibleObserver {
-          managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
         }
@@ -330,30 +330,30 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 
   //····················································································································
 
-  final func addEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.addEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
+    self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.addEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
     }
   }
 
   //····················································································································
 
-  final func removeEBObserverOf_%!mProperty.mPropertyName% (_ inObserver : EBObserverProtocol) {
-    self.removeEBObserver (inObserver)
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+    self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
     switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
-        managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (inObserver)
+        managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
     }
   }
@@ -364,7 +364,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
         if let observer = entry.possibleObserver {
-          managedObject.%!mProperty.mPropertyName%_property.addEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
         }
@@ -378,7 +378,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
     for managedObject in inSet.values {
       for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
         if let observer = entry.possibleObserver {
-          managedObject.%!mProperty.mPropertyName%_property.removeEBObserver (observer)
+          managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: observer)
         }else{
           self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
         }
@@ -981,7 +981,7 @@ else
       self.setProp (objectArray)
     }
 %for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    self.addEBObserverOf_%!mProperty.mPropertyName% (self.mObserverForWritingPreferences)\n%
+  %    toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by: self.mObserverForWritingPreferences)\n%
 end
 %    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self?.writeInPreferences () }
  }

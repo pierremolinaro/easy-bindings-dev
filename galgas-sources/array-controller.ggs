@@ -302,7 +302,7 @@ class @arrayControllerGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-private filewrapper arrayControllerGenerationTemplate in "../generation-templates/controllers" {
+private filewrapper arrayControllerGenerationTemplate in "generation-templates/controllers" {
 }{
 }{
   template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
