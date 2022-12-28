@@ -953,54 +953,6 @@ else
 }
 %end%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-//    %!"Stand alone Array: " + ENTITY_NAME%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-%if not GENERATE_CLASS_StandAloneArrayOf_ then
-%// StandAloneArrayOf_%!ENTITY_NAME% is useless.\n%
-else
-%/* final class StandAloneArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME% {
-
-  //····················································································································
-
-  override var selection : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue.values) }
-
-  //····················································································································
-
-  override func setProp (_ inValue : EBReferenceArray <%!ENTITY_NAME%>) { self.mInternalArrayValue = inValue }
-
-  //····················································································································
-
-  override var propval : EBReferenceArray <%!ENTITY_NAME%> { return self.mInternalArrayValue }
-
-  //····················································································································
-
-  override func notifyModelDidChange () {
-    self.observedObjectDidChange ()
-    super.notifyModelDidChange ()
-  }
-
-  //····················································································································
-
-  func remove (_ object : %!ENTITY_NAME%) {
-    if let idx = self.mInternalArrayValue.firstIndex (of: object) {
-      self.mInternalArrayValue.remove (at: idx)
-    }
-  }
-
-  //····················································································································
-
-  func add (_ object : %!ENTITY_NAME%) {
-    if !self.internalSetValue.contains (object) {
-      self.mInternalArrayValue.append (object)
-    }
-  }
-
-  //····················································································································
-
-} */
-%end%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"Preferences array: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

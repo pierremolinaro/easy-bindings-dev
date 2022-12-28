@@ -393,7 +393,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     !graphic
     !attributeListForGeneration
   )
-  ioGeneration.mGenerateClass_StandAloneArrayOf_ += !elementTypeName
+  ioGeneration.mGenerateClass_StoredArrayOf_ += !elementTypeName
   ioGeneration.mGenerateClass_TransientArrayOf_ += !elementTypeName
 }
 

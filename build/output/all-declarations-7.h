@@ -218,7 +218,6 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
                                                                                               const class GALGAS_stringset & in_OVERRIDEN_5F_TRANSIENTS,
                                                                                               const class GALGAS_externSwiftDelegateList & in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                               const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_,
-                                                                                              const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_StandAloneArrayOf_5F_,
                                                                                               const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_,
                                                                                               const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_TransientArrayOfSuperOf_5F_,
                                                                                               const class GALGAS_bool & in_GENERATE_5F_CLASS_5F_TransientArrayOf_5F_,

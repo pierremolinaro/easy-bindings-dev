@@ -53,7 +53,6 @@ struct @generationStruct {
   public var @transientExternTypeList mTransientPropertyTypeList
 
   public var @stringset mGenerateClass_PreferencesArrayOf_
-  public var @stringset mGenerateClass_StandAloneArrayOf_
   public var @stringset mGenerateClass_ProxyArrayOf_
   public var @stringset mGenerateClass_TransientArrayOfSuperOf_
   public var @stringset mGenerateClass_TransientArrayOf_

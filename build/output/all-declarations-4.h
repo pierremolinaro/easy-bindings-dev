@@ -5929,11 +5929,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
     return mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_ ;
   }
 
-  public: GALGAS_stringset mProperty_mGenerateClass_5F_StandAloneArrayOf_5F_ ;
-  public: inline GALGAS_stringset readProperty_mGenerateClass_5F_StandAloneArrayOf_5F_ (void) const {
-    return mProperty_mGenerateClass_5F_StandAloneArrayOf_5F_ ;
-  }
-
   public: GALGAS_stringset mProperty_mGenerateClass_5F_ProxyArrayOf_5F_ ;
   public: inline GALGAS_stringset readProperty_mGenerateClass_5F_ProxyArrayOf_5F_ (void) const {
     return mProperty_mGenerateClass_5F_ProxyArrayOf_5F_ ;
@@ -6017,10 +6012,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
     mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_ = inValue ;
   }
 
-  public: inline void setter_setMGenerateClass_5F_StandAloneArrayOf_5F_ (const GALGAS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mGenerateClass_5F_StandAloneArrayOf_5F_ = inValue ;
-  }
-
   public: inline void setter_setMGenerateClass_5F_ProxyArrayOf_5F_ (const GALGAS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
     mProperty_mGenerateClass_5F_ProxyArrayOf_5F_ = inValue ;
   }
@@ -6054,7 +6045,6 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                    const GALGAS_stringlist & in_mPropertyClassList,
                                    const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList,
                                    const GALGAS_stringset & in_mGenerateClass_5F_PreferencesArrayOf_5F_,
-                                   const GALGAS_stringset & in_mGenerateClass_5F_StandAloneArrayOf_5F_,
                                    const GALGAS_stringset & in_mGenerateClass_5F_ProxyArrayOf_5F_,
                                    const GALGAS_stringset & in_mGenerateClass_5F_TransientArrayOfSuperOf_5F_,
                                    const GALGAS_stringset & in_mGenerateClass_5F_TransientArrayOf_5F_,
@@ -6087,8 +6077,7 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                                                 const class GALGAS_stringset & inOperand13,
                                                                 const class GALGAS_stringset & inOperand14,
                                                                 const class GALGAS_stringset & inOperand15,
-                                                                const class GALGAS_stringset & inOperand16,
-                                                                const class GALGAS_stringset & inOperand17
+                                                                const class GALGAS_stringset & inOperand16
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'

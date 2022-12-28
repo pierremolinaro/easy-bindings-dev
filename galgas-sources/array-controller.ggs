@@ -230,7 +230,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
     !elementTypeName
     !graphic
   )
-  ioGeneration.mGenerateClass_StandAloneArrayOf_ += !elementTypeName
+  ioGeneration.mGenerateClass_StoredArrayOf_ += !elementTypeName
 }
 
 
