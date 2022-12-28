@@ -10,49 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'prefsGenerationTemplate'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_prefsGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_1_prefsGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_2_prefsGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_4_prefsGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'prefsGenerationTemplate preferences'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class C_Compiler * inCompiler,
-                                                                       const class GALGAS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
-                                                                       const class GALGAS_mainXibDescriptorList & in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST,
-                                                                       const class GALGAS_decoratedOutletMap & in_OUTLET_5F_MAP,
-                                                                       const class GALGAS_regularBindingsGenerationList & in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST,
-                                                                       const class GALGAS_actionBindingListForGeneration & in_TARGET_5F_ACTION_5F_LIST,
-                                                                       const class GALGAS_multipleBindingGenerationList & in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST,
-                                                                       const class GALGAS_externSwiftFunctionList & in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST,
-                                                                       const class GALGAS_tableViewBindingGenerationList & in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST,
-                                                                       const class GALGAS_ebViewGraphicControllerBindingGenerationList & in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST,
-                                                                       const class GALGAS_viewGenerationList & in_VIEW_5F_GENERATION_5F_LIST,
-                                                                       const class GALGAS_implicitViewFunctionGenerationList & in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST,
-                                                                       const class GALGAS_autoLayoutOutletMap & in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Routine 'graphvizAnalysis'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -242,4 +199,83 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
                                                                                      const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE,
                                                                                      const class GALGAS_string & in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX
                                                                                      COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'validationStubExtension'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'validationStubExtension actionGeneration'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (class C_Compiler * inCompiler,
+                                                                            const class GALGAS_string & in_OBJECT_5F_TYPE_5F_NAME,
+                                                                            const class GALGAS_string & in_MODEL_5F_NAME,
+                                                                            const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateValidationRoutineStubs'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_generateValidationRoutineStubs (const class GALGAS_string constinArgument0,
+                                             const class GALGAS_validationStubRoutineListForGeneration constinArgument1,
+                                             class GALGAS_stringset & ioArgument2,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'actionGenerationTemplate'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'actionGenerationTemplate actionGeneration'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class C_Compiler * inCompiler,
+                                                                             const class GALGAS_string & in_EXTENDED_5F_CLASS_5F_NAME,
+                                                                             const class GALGAS_string & in_ACTION_5F_NAME
+                                                                             COMMA_LOCATION_ARGS) ;
 

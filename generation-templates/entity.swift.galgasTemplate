@@ -156,7 +156,7 @@ end
   //   appendPropertyNamesTo
   //····················································································································
 
-  override func appendPropertyNamesTo (_ ioString : inout String) {
+/*  override func appendPropertyNamesTo (_ ioString : inout String) {
     super.appendPropertyNamesTo (&ioString)
   //--- Atomic properties
 %
@@ -173,13 +173,13 @@ end
   %    ioString += "%!property.mPropertyName%\\n"\n%
   end
 end
-%  }
+%  } */
 
   //····················································································································
   //   appendPropertyValuesTo
   //····················································································································
 
-  override func appendPropertyValuesTo (_ ioData : inout Data) {
+/*  override func appendPropertyValuesTo (_ ioData : inout Data) {
     super.appendPropertyValuesTo (&ioData)
   //--- Atomic properties
 %
@@ -203,7 +203,7 @@ end
     %    enterToManyRelationshipObjectIndexes (from: self.%!mProperty.mPropertyName%.values, into: &ioData)\n%
   end
 end
-%  }
+%  } */
 
 %
 if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
@@ -211,7 +211,7 @@ if [SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION length] > 0 then
   //    setUpPropertiesWithTextDictionary
   //····················································································································
 
-  override func setUpPropertiesWithTextDictionary (_ inDictionary : [String : NSRange],
+/*  override func setUpPropertiesWithTextDictionary (_ inDictionary : [String : NSRange],
                                                    _ inData : Data) {
     super.setUpPropertiesWithTextDictionary (inDictionary, inData)
 %
@@ -220,7 +220,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   %      self.%!mProperty.mPropertyName% = value\n%
   %    }\n%
 end
-%  }
+%  } */
 
 %
 end
@@ -229,7 +229,7 @@ if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
   //    setUpToOneRelationshipsWithTextDictionary
   //····················································································································
 
-  override func setUpToOneRelationshipsWithTextDictionary (_ inDictionary : [String : NSRange],
+/*  override func setUpToOneRelationshipsWithTextDictionary (_ inDictionary : [String : NSRange],
                                                            _ inRawObjectArray : [RawObject],
                                                            _ inData : Data) {
     super.setUpToOneRelationshipsWithTextDictionary (inDictionary, inRawObjectArray, inData)
@@ -239,7 +239,7 @@ if [TO_ONE_RELATIONSHIP_LIST length] > 0 then
   %      self.%!mProperty.mPropertyName% = object\n%
   %    }\n%
 end
-%  }
+%  } */
 
 %
 end
@@ -248,7 +248,7 @@ if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
   //    setUpToManyRelationshipsWithTextDictionary
   //····················································································································
 
-  override func setUpToManyRelationshipsWithTextDictionary (_ inDictionary : [String : NSRange],
+/*  override func setUpToManyRelationshipsWithTextDictionary (_ inDictionary : [String : NSRange],
                                                             _ inRawObjectArray : [RawObject],
                                                             _ inData : Data) {
     super.setUpToManyRelationshipsWithTextDictionary (inDictionary, inRawObjectArray, inData)
@@ -271,7 +271,7 @@ if [TO_MANY_RELATIONSHIP_LIST length] > 0 then
     %    }\n%
   end
 end
-%  }
+%  } */
 
 %
 end
