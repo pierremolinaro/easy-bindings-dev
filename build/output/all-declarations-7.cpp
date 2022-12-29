@@ -4105,20 +4105,20 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result << "\") as! " ;
     result << in_ENTITY_5F_NAME.stringValue () ;
     result << "\n"
-      "        object.setUpWithDictionary (dictionary, managedObjectArray: []) // setUpAtomicPropertiesWithDictionary (dictionary)\n"
+      "        object.setUpProperties (withDictionary: dictionary, managedObjectArray: [])\n"
       "        objectArray.append (object)\n"
       "      }\n"
       "      self.setProp (objectArray)\n"
       "    }\n" ;
-    GALGAS_uint index_41726_ (0) ;
+    GALGAS_uint index_41686_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-      cEnumerator_atomicPropertyGenerationList enumerator_41726 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-      while (enumerator_41726.hasCurrentObject ()) {
+      cEnumerator_atomicPropertyGenerationList enumerator_41686 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+      while (enumerator_41686.hasCurrentObject ()) {
         result << "    toMany_" ;
-        result << enumerator_41726.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+        result << enumerator_41686.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
         result << "_StartsToBeObserved (by: self.mObserverForWritingPreferences)\n" ;
-        index_41726_.increment () ;
-        enumerator_41726.gotoNextObject () ;
+        index_41686_.increment () ;
+        enumerator_41686.gotoNextObject () ;
       }
     }
     result << "    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self\?.writeInPreferences () }\n"
@@ -4826,7 +4826,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectFactory 
     "                                                 _ inDictionary : [String : Any]) -> EBManagedObject {\n"
     "  let entityName = inDictionary [ENTITY_KEY] as! String\n"
     "  let object = newInstanceOfEntityNamed (inUndoManager, entityName)\n"
-    "  object.setUpWithDictionary (inDictionary, managedObjectArray: [])\n"
+    "  object.setUpProperties (withDictionary: inDictionary, managedObjectArray: [])\n"
     "  //  object.setUpAtomicPropertiesWithDictionary (inDictionary)\n"
     "  return object\n"
     "}\n"

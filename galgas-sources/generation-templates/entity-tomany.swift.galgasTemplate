@@ -975,7 +975,7 @@ else
       var objectArray = EBReferenceArray <%!ENTITY_NAME%> ()
       for dictionary in array {
         let object = newInstanceOfEntityNamed (self.undoManager, "%!ENTITY_NAME%") as! %!ENTITY_NAME%
-        object.setUpWithDictionary (dictionary, managedObjectArray: []) // setUpAtomicPropertiesWithDictionary (dictionary)
+        object.setUpProperties (withDictionary: dictionary, managedObjectArray: [])
         objectArray.append (object)
       }
       self.setProp (objectArray)
