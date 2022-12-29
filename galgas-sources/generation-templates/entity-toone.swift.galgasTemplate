@@ -26,6 +26,9 @@ end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   %      oldValue.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.%!mProperty.mPropertyName%_property) // Computed property\n%
 end
+for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  %      oldValue.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // to Many\n%
+end
 %    }\n%
 end
 %  //--- Add observers to added objects
@@ -39,6 +42,9 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_property) // Computed property\n%
+end
+for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
+  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved(by: self.mObserversOf_%!mProperty.mPropertyName%) // to Many\n%
 end
 %    }\n%
 end
@@ -77,20 +83,20 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %  //····················································································································\n%
   %  //   Observable toMany property: %!mProperty.mPropertyName%\n%
   %  //····················································································································\n\n%
-  %  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakEventSet ()\n\n%
+  %  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakObserverSetRelay ()\n\n%
   %  //····················································································································\n\n%
   %  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n%
   %    self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)\n%
-  %    if let object = self.propval {\n%
+  %    /* if let object = self.propval {\n%
   %      object.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)\n%
-  %    }\n%
+  %    } */\n%
   %  }\n\n%
   %  //····················································································································\n\n%
   %  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n%
   %    self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)\n%
-  %    if let object = self.propval {\n%
+  %    /* if let object = self.propval {\n%
   %      object.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)\n%
-  %    }\n%
+  %    } */\n%
   %  }\n\n%
 end
 %  //····················································································································
