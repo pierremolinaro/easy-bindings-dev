@@ -16,35 +16,35 @@ class ReadOnlyArrayOf_%!ENTITY_NAME% : ReadOnlyAbstractArrayProperty <%!ENTITY_N
                                  addedSet inAddedSet : EBReferenceSet <%!ENTITY_NAME%>) {
     super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
   //--- Remove observers from removed objects
-    if !inRemovedSet.isEmpty {
+    for managedObject in inRemovedSet.values {
 %for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      self.removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (inRemovedSet) // Stored property\n%
+  %      managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // Stored property\n%
 end
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %      self.removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (inRemovedSet) // Transient property\n%
+  %      managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // Transient property\n%
 end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %      self.removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (inRemovedSet) // Computed property\n%
+  %      managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // Computed property\n%
 end
 for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
-  %      self.removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (inAddedSet) // ToMany proxy\n%
+  %      managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // ToMany proxy\n%
 end
 %    }
   //--- Add observers to added objects
-    if !inAddedSet.isEmpty {
+    for managedObject in inAddedSet.values {
 %for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      self.addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (inAddedSet) // Stored property\n%
+  %      managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // Stored property\n%
 end
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %      self.addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (inAddedSet) // Transient property\n%
+  %      managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // Transient property\n%
 end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %      self.addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (inAddedSet) // Computed property\n%
+  %      managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // Computed property\n%
 end
 for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
-  %      self.addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (inAddedSet) // ToMany proxy\n%
+  %      managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // ToMany proxy\n%
 end
-%   }
+%    }
   }
 
 %
@@ -53,21 +53,21 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' stored property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakEventSet ()
+  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakObserverSetRelay ()
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
     self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
@@ -75,22 +75,25 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
     self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
 
-  final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
-    if !self.mObserversOf_%!mProperty.mPropertyName%.isEmpty {
+ // final private func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+    /* for managedObject in inSet.values {
+      managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.mObserversOf_%!mProperty.mPropertyName%)
+    }*/
+    /* if !self.mObserversOf_%!mProperty.mPropertyName%.isEmpty {
       for managedObject in inSet.values {
-        for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+        for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
           if let observer = entry.possibleObserver {
             managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
           }else{
@@ -98,13 +101,16 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
           }
         }
       }
-    }
-  }
+    } */
+ // }
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
-    for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+/*  final private func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+    for managedObject in inSet.values {
+      managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: self.mObserversOf_%!mProperty.mPropertyName%)
+    }
+    for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
       if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
@@ -114,7 +120,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
         self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
       }
     }
-  }
+  } */
 
 %
 end
@@ -123,21 +129,21 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' toMany proxy
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakEventSet ()
+  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakObserverSetRelay ()
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
     self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
@@ -145,21 +151,21 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
     self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
 
-  final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+  /* final private func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+      for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
         if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
         }else{
@@ -167,12 +173,12 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
         }
       }
     }
-  }
+  } */
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
-    for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+  /* final private func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+    for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
       if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
@@ -182,7 +188,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
         self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
       }
     }
-  }
+  } */
 
 %
 end
@@ -191,21 +197,21 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' proxy property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakEventSet ()
+  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakObserverSetRelay ()
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
     self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
@@ -213,21 +219,21 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
     self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
 
-  final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+  /* final private func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+      for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
         if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
         }else{
@@ -235,12 +241,12 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
         }
       }
     }
-  }
+  } */
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
-    for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+  /* final private func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+    for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
       if let observer = entry.possibleObserver {
         observer.observedObjectDidChange ()
         for managedObject in inSet.values {
@@ -250,7 +256,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
         self.mObserversOf_%!mProperty.mPropertyName%.triggerPacking ()
       }
     }
-  }
+  } */
 
 %
 end
@@ -259,21 +265,21 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%!mProperty.mPropertyName%' transient property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakEventSet ()
+  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakObserverSetRelay ()
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
     self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
@@ -281,21 +287,21 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
     self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
 
-  final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+  /* final private func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+      for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
         if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
         }else{
@@ -303,13 +309,13 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
         }
       }
     }
-  }
+  } */
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+  /* final private func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+      for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
         if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: observer)
         }else{
@@ -317,7 +323,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
         }
       }
     }
-  }
+  } */
 
 %
 end
@@ -326,21 +332,21 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%!mProperty.mPropertyName%' computed property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakEventSet ()
+  private final var mObserversOf_%!mProperty.mPropertyName% = EBWeakObserverSetRelay ()
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
     self.startsToBeObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.insert (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
@@ -348,21 +354,21 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
     self.stopsBeingObserved (by: inObserver)
     self.mObserversOf_%!mProperty.mPropertyName%.remove (inObserver)
-    switch self.selection {
+    /* switch self.selection {
     case .empty, .multiple :
       break
     case .single (let v) :
       for managedObject in v {
         managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: inObserver)
       }
-    }
+    } */
   }
 
   //····················································································································
 
-  final func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+  /* final private func addEBObserversOf_%!mProperty.mPropertyName%_toElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+      for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
         if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: observer)
         }else{
@@ -370,13 +376,13 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
         }
       }
     }
-  }
+  } */
 
   //····················································································································
 
-  final func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
+  /* final private func removeEBObserversOf_%!mProperty.mPropertyName%_fromElementsOfSet (_ inSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inSet.values {
-      for (_, entry) in self.mObserversOf_%!mProperty.mPropertyName%.dictionary {
+      for entry in self.mObserversOf_%!mProperty.mPropertyName%.values () {
         if let observer = entry.possibleObserver {
           managedObject.%!mProperty.mPropertyName%_property.stopsBeingObserved (by: observer)
         }else{
@@ -384,7 +390,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
         }
       }
     }
-  }
+  } */
 
 %
 end
