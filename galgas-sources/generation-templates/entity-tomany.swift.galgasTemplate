@@ -69,29 +69,29 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' stored property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBWeakObserverSetRelay? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBWeakObserverSetRelay
+    let relay : EBObservedObject
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBWeakObserverSetRelay ()
+      relay = EBObservedObject ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
       }
       self.mObserversOf_%!mProperty.mPropertyName% = relay
     }
-    relay.insert (observer: inObserver)
+    relay.startsToBeObserved (by: inObserver)
   }
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
-    self.mObserversOf_%!mProperty.mPropertyName%?.remove (observer: inObserver)
+    self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
 %
@@ -101,29 +101,29 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' toMany proxy
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBWeakObserverSetRelay? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBWeakObserverSetRelay
+    let relay : EBObservedObject
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBWeakObserverSetRelay ()
+      relay = EBObservedObject ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
       }
       self.mObserversOf_%!mProperty.mPropertyName% = relay
     }
-    relay.insert (observer: inObserver)
+    relay.startsToBeObserved (by: inObserver)
   }
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
-    self.mObserversOf_%!mProperty.mPropertyName%?.remove (observer: inObserver)
+    self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
 %
@@ -133,29 +133,29 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' proxy property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBWeakObserverSetRelay? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBWeakObserverSetRelay
+    let relay : EBObservedObject
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBWeakObserverSetRelay ()
+      relay = EBObservedObject ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
       }
       self.mObserversOf_%!mProperty.mPropertyName% = relay
     }
-    relay.insert (observer: inObserver)
+    relay.startsToBeObserved (by: inObserver)
   }
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
-    self.mObserversOf_%!mProperty.mPropertyName%?.remove (observer: inObserver)
+    self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
 %
@@ -165,29 +165,29 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%!mProperty.mPropertyName%' transient property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBWeakObserverSetRelay? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBWeakObserverSetRelay
+    let relay : EBObservedObject
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBWeakObserverSetRelay ()
+      relay = EBObservedObject ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
       }
       self.mObserversOf_%!mProperty.mPropertyName% = relay
     }
-    relay.insert (observer:  inObserver)
+    relay.startsToBeObserved (by:  inObserver)
   }
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
-    self.mObserversOf_%!mProperty.mPropertyName%?.remove (observer: inObserver)
+    self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
 %
@@ -197,29 +197,29 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%!mProperty.mPropertyName%' computed property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBWeakObserverSetRelay? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBWeakObserverSetRelay
+    let relay : EBObservedObject
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBWeakObserverSetRelay ()
+      relay = EBObservedObject ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
       }
       self.mObserversOf_%!mProperty.mPropertyName% = relay
     }
-    relay.insert (observer: inObserver)
+    relay.startsToBeObserved (by: inObserver)
   }
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
-    self.mObserversOf_%!mProperty.mPropertyName%?.remove (observer: inObserver)
+    self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
 %

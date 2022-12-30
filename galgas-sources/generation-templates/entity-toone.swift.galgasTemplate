@@ -87,22 +87,22 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %  //····················································································································\n%
   %  //   Observable toMany property: %!mProperty.mPropertyName%\n%
   %  //····················································································································\n\n%
-  %  private final var mObserversOf_%!mProperty.mPropertyName% : EBWeakObserverSetRelay? = nil\n\n%
+  %  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil\n\n%
   %  //····················································································································\n\n%
   %  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n%
-  %    let relay : EBWeakObserverSetRelay\n%
+  %    let relay : EBObservedObject\n%
   %    if let r = self.mObserversOf_%!mProperty.mPropertyName% {\n%
   %      relay = r\n%
   %    }else{\n%
-  %      relay = EBWeakObserverSetRelay ()\n%
+  %      relay = EBObservedObject ()\n%
   %      self.mWeakInternalValue?.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)\n%
   %      self.mObserversOf_%!mProperty.mPropertyName% = relay\n%
   %    }\n%
-  %    relay.insert (observer: inObserver)\n%
+  %    relay.startsToBeObserved (by: inObserver)\n%
   %  }\n\n%
   %  //····················································································································\n\n%
   %  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n%
-  %    self.mObserversOf_%!mProperty.mPropertyName%?.remove (observer: inObserver)\n%
+  %    self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)\n%
   %  }\n\n%
 end
 %  //····················································································································
