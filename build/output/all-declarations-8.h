@@ -10,42 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Routine 'graphvizAnalysis'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_graphvizAnalysis (const class GALGAS_string constinArgument0,
-                               const class GALGAS_semanticContext constinArgument1,
-                               const class GALGAS_lstringlist constinArgument2,
-                               class C_Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'graphvizRootEntityAnalysis'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_graphvizRootEntityAnalysis (const class GALGAS_string constinArgument0,
-                                         const class GALGAS_semanticContext constinArgument1,
-                                         const class GALGAS_string constinArgument2,
-                                         class C_Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'graphvizRootEntityStrongAnalysis'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_graphvizRootEntityStrongAnalysis (const class GALGAS_string constinArgument0,
-                                               const class GALGAS_semanticContext constinArgument1,
-                                               const class GALGAS_string constinArgument2,
-                                               class C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Routine 'buildAutoLayoutBindingSpecificationMap'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -278,4 +242,36 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (cla
                                                                              const class GALGAS_string & in_EXTENDED_5F_CLASS_5F_NAME,
                                                                              const class GALGAS_string & in_ACTION_5F_NAME
                                                                              COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'arrayControllerGenerationTemplate'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_arrayControllerGenerationTemplate ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'arrayControllerGenerationTemplate arrayControllerImplementationInSwift'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
+                                                                                                          const class GALGAS_string & in_OWNER_5F_NAME,
+                                                                                                          const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
+                                                                                                          const class GALGAS_arrayControllerModelKind & in_MODEL_5F_KIND,
+                                                                                                          const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
+                                                                                                          const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
+                                                                                                          const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC
+                                                                                                          COMMA_LOCATION_ARGS) ;
 

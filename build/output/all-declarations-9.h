@@ -10,38 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'arrayControllerGenerationTemplate'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_arrayControllerGenerationTemplate ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'arrayControllerGenerationTemplate arrayControllerImplementationInSwift'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControllerImplementationInSwift (class C_Compiler * inCompiler,
-                                                                                                          const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                                          const class GALGAS_string & in_ARRAY_5F_CONTROLLER_5F_NAME,
-                                                                                                          const class GALGAS_arrayControllerModelKind & in_MODEL_5F_KIND,
-                                                                                                          const class GALGAS_string & in_MODEL_5F_TYPE_5F_NAME,
-                                                                                                          const class GALGAS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                          const class GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC
-                                                                                                          COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'autoLayoutTableViewControllerGenerationTemplate'
 //
 //----------------------------------------------------------------------------------------------------------------------

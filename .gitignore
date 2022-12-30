@@ -242,3 +242,4 @@ autres-projets-auxiliaires/MyEntityManager/build/**
 autres-projets-auxiliaires/binary-flat-file-analyzer/build/**
 autres-projets-auxiliaires/binding-introspection/build/**
 autres-projets-auxiliaires/override-in-extension/build/**
+galgas-sources/build/indexes/*
