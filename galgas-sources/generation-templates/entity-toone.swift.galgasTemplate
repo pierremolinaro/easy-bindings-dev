@@ -44,7 +44,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_property) // Computed property\n%
 end
 for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
-  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved(by: self.mObserversOf_%!mProperty.mPropertyName%) // to Many\n%
+  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.mObserversOf_%!mProperty.mPropertyName%) // to Many\n%
 end
 %    }\n%
 end
