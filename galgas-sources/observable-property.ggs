@@ -490,9 +490,9 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case property (2*) :
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
     case toMany (4*) :
-      outSwiftTypeStringForTransientFunctionArgument = "[ObjectIndexProtocol]"
+      outSwiftTypeStringForTransientFunctionArgument = "[AnyObject]"
     case toOne (5*) :
-      outSwiftTypeStringForTransientFunctionArgument = "ObjectIndexProtocol?"
+      outSwiftTypeStringForTransientFunctionArgument = "AnyObject?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case selectionController (*) :
@@ -753,9 +753,9 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case property (2*) :
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
     case toMany (4*) :
-      outSwiftTypeStringForTransientFunctionArgument = "[ObjectIndexProtocol]"
+      outSwiftTypeStringForTransientFunctionArgument = "[AnyObject]"
     case toOne (5*) :
-      outSwiftTypeStringForTransientFunctionArgument = "ObjectIndexProtocol?"
+      outSwiftTypeStringForTransientFunctionArgument = "AnyObject?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case selectionController (*) :
@@ -777,9 +777,9 @@ proc @observablePropertyAST.analyzeObservableProperty(
         ?outDefaultValue
       ]
     case toMany (4*) :
-      outSwiftTypeStringForTransientFunctionArgument = "[ObjectIndexProtocol]"
+      outSwiftTypeStringForTransientFunctionArgument = "[AnyObject]"
     case toOne (5*) :
-      outSwiftTypeStringForTransientFunctionArgument = "ObjectIndexProtocol?"
+      outSwiftTypeStringForTransientFunctionArgument = "AnyObject?"
     case arrayController (2*) :
       error propertyName : "an array controller cannot be observed" : outSwiftTypeStringForTransientFunctionArgument
     case selectionController (*) :
