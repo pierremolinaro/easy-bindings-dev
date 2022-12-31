@@ -4104,71 +4104,26 @@ void cPtr_computeRoutineGeneration::method_generateCode (const GALGAS_string con
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'indexes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_4 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'indexes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_4 [1] = {
-  NULL
-} ;
-
-//--- Directory 'indexes'
-
-const cDirectoryWrapper gWrapperDirectory_4_computedPropertyManager (
-  "indexes",
-  0,
-  gWrapperAllFiles_computedPropertyManager_4,
-  0,
-  gWrapperAllDirectories_computedPropertyManager_4
-) ;
-
-//--- All files of 'build' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_3 [1] = {
   NULL
 } ;
 
-//--- All sub-directories of 'build' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_3 [2] = {
-  & gWrapperDirectory_4_computedPropertyManager,
-  NULL
-} ;
-
-//--- Directory 'build'
-
-const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager (
-  "build",
-  0,
-  gWrapperAllFiles_computedPropertyManager_3,
-  1,
-  gWrapperAllDirectories_computedPropertyManager_3
-) ;
-
-//--- All files of 'controllers' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_5 [1] = {
-  NULL
-} ;
-
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_5 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_3 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_5_computedPropertyManager (
+const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager (
   "controllers",
   0,
-  gWrapperAllFiles_computedPropertyManager_5,
+  gWrapperAllFiles_computedPropertyManager_3,
   0,
-  gWrapperAllDirectories_computedPropertyManager_5
+  gWrapperAllDirectories_computedPropertyManager_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -4223,9 +4178,8 @@ static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_0 [5] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_0 [4] = {
   & gWrapperDirectory_3_computedPropertyManager,
-  & gWrapperDirectory_5_computedPropertyManager,
   & gWrapperDirectory_1_computedPropertyManager,
   & gWrapperDirectory_2_computedPropertyManager,
   NULL
@@ -4237,7 +4191,7 @@ const cDirectoryWrapper gWrapperDirectory_0_computedPropertyManager (
   "",
   0,
   gWrapperAllFiles_computedPropertyManager_0,
-  4,
+  3,
   gWrapperAllDirectories_computedPropertyManager_0
 ) ;
 
@@ -5052,71 +5006,26 @@ void cPtr_transientRoutineGeneration::method_generateCode (const GALGAS_string c
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'indexes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_transientManager_4 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'indexes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_4 [1] = {
-  NULL
-} ;
-
-//--- Directory 'indexes'
-
-const cDirectoryWrapper gWrapperDirectory_4_transientManager (
-  "indexes",
-  0,
-  gWrapperAllFiles_transientManager_4,
-  0,
-  gWrapperAllDirectories_transientManager_4
-) ;
-
-//--- All files of 'build' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_3 [1] = {
   NULL
 } ;
 
-//--- All sub-directories of 'build' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_3 [2] = {
-  & gWrapperDirectory_4_transientManager,
-  NULL
-} ;
-
-//--- Directory 'build'
-
-const cDirectoryWrapper gWrapperDirectory_3_transientManager (
-  "build",
-  0,
-  gWrapperAllFiles_transientManager_3,
-  1,
-  gWrapperAllDirectories_transientManager_3
-) ;
-
-//--- All files of 'controllers' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_transientManager_5 [1] = {
-  NULL
-} ;
-
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_5 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_3 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_5_transientManager (
+const cDirectoryWrapper gWrapperDirectory_3_transientManager (
   "controllers",
   0,
-  gWrapperAllFiles_transientManager_5,
+  gWrapperAllFiles_transientManager_3,
   0,
-  gWrapperAllDirectories_transientManager_5
+  gWrapperAllDirectories_transientManager_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -5171,9 +5080,8 @@ static const cRegularFileWrapper * gWrapperAllFiles_transientManager_0 [1] = {
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_0 [5] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_0 [4] = {
   & gWrapperDirectory_3_transientManager,
-  & gWrapperDirectory_5_transientManager,
   & gWrapperDirectory_1_transientManager,
   & gWrapperDirectory_2_transientManager,
   NULL
@@ -5185,7 +5093,7 @@ const cDirectoryWrapper gWrapperDirectory_0_transientManager (
   "",
   0,
   gWrapperAllFiles_transientManager_0,
-  4,
+  3,
   gWrapperAllDirectories_transientManager_0
 ) ;
 
@@ -7293,71 +7201,26 @@ GALGAS_string cPtr_toManyPropertyGeneration::getter_resetToManyRelationships (C_
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'indexes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_4 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'indexes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_4 [1] = {
-  NULL
-} ;
-
-//--- Directory 'indexes'
-
-const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension (
-  "indexes",
-  0,
-  gWrapperAllFiles_validationStubExtension_4,
-  0,
-  gWrapperAllDirectories_validationStubExtension_4
-) ;
-
-//--- All files of 'build' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_3 [1] = {
   NULL
 } ;
 
-//--- All sub-directories of 'build' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_3 [2] = {
-  & gWrapperDirectory_4_validationStubExtension,
-  NULL
-} ;
-
-//--- Directory 'build'
-
-const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension (
-  "build",
-  0,
-  gWrapperAllFiles_validationStubExtension_3,
-  1,
-  gWrapperAllDirectories_validationStubExtension_3
-) ;
-
-//--- All files of 'controllers' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_5 [1] = {
-  NULL
-} ;
-
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_5 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_3 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension (
+const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension (
   "controllers",
   0,
-  gWrapperAllFiles_validationStubExtension_5,
+  gWrapperAllFiles_validationStubExtension_3,
   0,
-  gWrapperAllDirectories_validationStubExtension_5
+  gWrapperAllDirectories_validationStubExtension_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -7412,9 +7275,8 @@ static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_0 [5] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_0 [4] = {
   & gWrapperDirectory_3_validationStubExtension,
-  & gWrapperDirectory_5_validationStubExtension,
   & gWrapperDirectory_1_validationStubExtension,
   & gWrapperDirectory_2_validationStubExtension,
   NULL
@@ -7426,7 +7288,7 @@ const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension (
   "",
   0,
   gWrapperAllFiles_validationStubExtension_0,
-  4,
+  3,
   gWrapperAllDirectories_validationStubExtension_0
 ) ;
 
@@ -7555,71 +7417,26 @@ void cPtr_actionFileGeneration::method_generateCode (const GALGAS_string constin
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'indexes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_4 [1] = {
-  NULL
-} ;
-
-//--- All sub-directories of 'indexes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_4 [1] = {
-  NULL
-} ;
-
-//--- Directory 'indexes'
-
-const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate (
-  "indexes",
-  0,
-  gWrapperAllFiles_actionGenerationTemplate_4,
-  0,
-  gWrapperAllDirectories_actionGenerationTemplate_4
-) ;
-
-//--- All files of 'build' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_3 [1] = {
   NULL
 } ;
 
-//--- All sub-directories of 'build' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_3 [2] = {
-  & gWrapperDirectory_4_actionGenerationTemplate,
-  NULL
-} ;
-
-//--- Directory 'build'
-
-const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate (
-  "build",
-  0,
-  gWrapperAllFiles_actionGenerationTemplate_3,
-  1,
-  gWrapperAllDirectories_actionGenerationTemplate_3
-) ;
-
-//--- All files of 'controllers' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_5 [1] = {
-  NULL
-} ;
-
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_5 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_3 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_actionGenerationTemplate_5,
+  gWrapperAllFiles_actionGenerationTemplate_3,
   0,
-  gWrapperAllDirectories_actionGenerationTemplate_5
+  gWrapperAllDirectories_actionGenerationTemplate_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -7674,9 +7491,8 @@ static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_0 [
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_0 [5] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_0 [4] = {
   & gWrapperDirectory_3_actionGenerationTemplate,
-  & gWrapperDirectory_5_actionGenerationTemplate,
   & gWrapperDirectory_1_actionGenerationTemplate,
   & gWrapperDirectory_2_actionGenerationTemplate,
   NULL
@@ -7688,7 +7504,7 @@ const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_actionGenerationTemplate_0,
-  4,
+  3,
   gWrapperAllDirectories_actionGenerationTemplate_0
 ) ;
 

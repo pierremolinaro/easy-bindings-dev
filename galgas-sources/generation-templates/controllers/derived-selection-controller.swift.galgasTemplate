@@ -8,7 +8,19 @@ import AppKit
 //    Derived selection controller %!OWNER_NAME% %!SELECTION_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBSwiftBaseObject {
+@MainActor final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% {
+
+  //····················································································································
+
+  init () {
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  deinit {
+    noteObjectDeallocation (self)
+  }
 
 %for (mProperty) in PROPERTY_GENERATION_LIST do
   ![mProperty declarationInSelectionControllerCode]

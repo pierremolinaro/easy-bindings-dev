@@ -243,7 +243,7 @@ else
 
   private var mIsOrderedBefore : Optional < (_ left : %!ENTITY_NAME%, _ right : %!ENTITY_NAME%) -> Bool > = nil
   private var mSortObserver : EBModelNotifierEvent? = nil
-  private var mModelEvent = EBModelEvent ()
+  private let mModelEvent = EBModelEvent ()
 
   //····················································································································
 
@@ -375,7 +375,7 @@ else
   private weak var mDataProvider : ReadOnlyAbstractArrayProperty <SUPER>? = nil // SHOULD BE WEAK
   private var mTransientKind : PropertyKind = .empty
   private var mModelArrayShouldBeComputed = true
-  private var mModelEvent = EBModelEvent ()
+  private let mModelEvent = EBModelEvent ()
 
   //····················································································································
 
@@ -463,7 +463,10 @@ else
 //    %!"To many relationship read write: " + ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
+%if (not GENERATE_CLASS_ProxyArrayOf_) & (not GENERATE_CLASS_StoredArrayOf_) & (not GENERATE_CLASS_PreferencesArrayOf_) then
+%// ReadWriteArrayOf_%!ENTITY_NAME% is useless.\n%
+else
+%class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
 
   //····················································································································
 
@@ -472,7 +475,7 @@ class ReadWriteArrayOf_%!ENTITY_NAME% : ReadOnlyArrayOf_%!ENTITY_NAME% {
   //····················································································································
 
 }
-
+%end%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    Proxy: ProxyArrayOf_%!ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -589,14 +592,12 @@ else
   //····················································································································
 
   func initialize (fromRange inRange : NSRange, ofData inData : Data, _ inRawObjectArray : [RawObject]) {
-    if inRange.length > 0 {
-      var objectArray = EBReferenceArray <%!ENTITY_NAME%> ()
-      let indexArray = inData.base62EncodedIntArray (fromRange: inRange)
-      for idx in indexArray {
-        objectArray.append (inRawObjectArray [idx].object as! %!ENTITY_NAME%)
-      }
-      self.setProp (objectArray)
+    var objectArray = EBReferenceArray <%!ENTITY_NAME%> ()
+    let indexArray = inData.base62EncodedIntArray (fromRange: inRange)
+    for idx in indexArray {
+      objectArray.append (inRawObjectArray [idx].object as! %!ENTITY_NAME%)
     }
+    self.setProp (objectArray)
   }
 
   //····················································································································

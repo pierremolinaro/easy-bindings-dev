@@ -114,7 +114,8 @@ end
 %for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %  //--- Configure %!mProperty.mPropertyName% simple stored property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
-%      if let model = self?.mWeakInternalValue {\n%
+%      return self?.mWeakInternalValue?.%!mProperty.mPropertyName%_property.optionalSelection ?? .single (nil)\n%
+%      /* if let model = self?.mWeakInternalValue {\n%
 %        switch model.%!mProperty.mPropertyName%_property.selection {\n%
 %        case .empty :\n%
 %          return .empty\n%
@@ -125,13 +126,14 @@ end
 %        }\n%
 %      }else{\n%
 %        return .single (nil)\n%
-%      }\n%
+%      } */\n%
 %    }\n%
 end
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //--- Configure %!mProperty.mPropertyName% transient property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
-%      if let model = self?.mWeakInternalValue {\n%
+%      return self?.mWeakInternalValue?.%!mProperty.mPropertyName%_property.optionalSelection ?? .single (nil)\n%
+%      /* if let model = self?.mWeakInternalValue {\n%
 %        switch model.%!mProperty.mPropertyName%_property.selection {\n%
 %        case .empty :\n%
 %          return .empty\n%
@@ -142,13 +144,14 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %        }\n%
 %      }else{\n%
 %        return .single (nil)\n%
-%      }\n%
+%      } */\n%
 %    }\n%
 end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 %  //--- Configure %!mProperty.mPropertyName% computed property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
-%      if let model = self?.mWeakInternalValue {\n%
+%      return self?.mWeakInternalValue?.%!mProperty.mPropertyName%_property.optionalSelection ?? .single (nil)\n%
+%      /* if let model = self?.mWeakInternalValue {\n%
 %        switch model.%!mProperty.mPropertyName%_property.selection {\n%
 %        case .empty :\n%
 %          return .empty\n%
@@ -159,7 +162,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 %        }\n%
 %      }else{\n%
 %        return .single (nil)\n%
-%      }\n%
+%      } */\n%
 %    }\n%
 end
 %  }

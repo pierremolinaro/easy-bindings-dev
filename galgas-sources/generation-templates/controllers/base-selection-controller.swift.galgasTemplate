@@ -8,7 +8,19 @@ import AppKit
 //    Base Selection Controller %!OWNER_NAME% %!SELECTION_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% : EBSwiftBaseObject {
+@MainActor final class SelectionController_%!OWNER_NAME%_%!SELECTION_CONTROLLER_NAME% {
+
+  //····················································································································
+
+  init () {
+    noteObjectAllocation (self)
+  }
+
+  //····················································································································
+
+  deinit {
+    noteObjectDeallocation (self)
+  }
 
 %for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
 %  //····················································································································\n%
