@@ -353,12 +353,6 @@ override func @transientPropertyGeneration.propertyDeclarationCode(
       result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
       result += "@MainActor var preferences_" + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
       result += "  return preferences_" + self.mPropertyName + "_property.optionalValue\n"
-      result += "  /* switch preferences_" + self.mPropertyName + "_property.selection {\n"
-      result += "  case .empty, .multiple :\n"
-      result += "    return nil\n"
-      result += "  case .single (let v) :\n"
-      result += "    return v\n"
-      result += "  } */\n"
       result += "}\n\n"
     else
       result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
@@ -368,12 +362,6 @@ override func @transientPropertyGeneration.propertyDeclarationCode(
       result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
       result += "    return self." + self.mPropertyName + "_property.optionalValue\n"
-      result += "    /* switch self." + self.mPropertyName + "_property.selection {\n"
-      result += "    case .empty, .multiple :\n"
-      result += "      return nil\n"
-      result += "    case .single (let v) :\n"
-      result += "      return v\n"
-      result += "    } */\n"
       result += "  }\n\n"
     end
   end
