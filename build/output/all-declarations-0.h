@@ -89,6 +89,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_configurator,
    kToken_default,
    kToken_dependsFrom,
+   kToken_divider,
    kToken_enum,
    kToken_editableColumn,
    kToken_entity,
@@ -99,7 +100,6 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_graphic,
    kToken_graphviz,
    kToken_handlingOpposite,
-   kToken_hSplit,
    kToken_hStack,
    kToken_include,
    kToken_inverse,
@@ -132,7 +132,6 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
    kToken_toOne,
    kToken_transient,
    kToken_version,
-   kToken_vSplit,
    kToken_vStack,
    kToken_versionShouldChange,
    kToken_view,
@@ -202,7 +201,7 @@ class C_Lexique_easyBindings_5F_lexique : public C_Lexique {
   protected: virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int16_t terminalVocabularyCount (void) const override { return 102 ; }
+  public: virtual int16_t terminalVocabularyCount (void) const override { return 101 ; }
 
 //--- Get Token String
   public: virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const override ;

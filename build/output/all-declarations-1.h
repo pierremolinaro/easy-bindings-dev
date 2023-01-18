@@ -7797,6 +7797,165 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSeparatorInstruc
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @astDividerInstructionDeclaration reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astDividerInstructionDeclaration : public GALGAS_astAbstractViewInstructionDeclaration {
+//--------------------------------- Default constructor
+  public: GALGAS_astDividerInstructionDeclaration (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astDividerInstructionDeclaration constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_astDividerInstructionDeclaration (const class cPtr_astDividerInstructionDeclaration * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_bool readProperty_horizontal (void) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astDividerInstructionDeclaration extractObject (const GALGAS_object & inObject,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astDividerInstructionDeclaration constructor_new (const class GALGAS_bool & inOperand0
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astDividerInstructionDeclaration & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setHorizontal (class GALGAS_bool inArgument0
+                                                      COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astDividerInstructionDeclaration class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDividerInstructionDeclaration ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @astDividerInstructionDeclaration class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_astDividerInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
+
+//--- Extension method generateViewCode
+  public: virtual void method_generateViewCode (const class GALGAS_autoLayoutViewDeclarationMap inViewDeclarationMap,
+           const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesPropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inObservablePropertyMap,
+           const class GALGAS_actionMap inActionMap,
+           const class GALGAS_string inReceiverSwiftTypeName,
+           const class GALGAS_classMap inClassMap,
+           class GALGAS_implicitViewFunctionGenerationList & ioImplicitViewFunctionGenerationList,
+           class GALGAS_autoLayoutConfiguratorMap & ioConfiguratorMap,
+           class GALGAS_autoLayoutOutletMap & ioOutletMap,
+           class GALGAS_abstractViewInstructionGeneration & outInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GALGAS_bool mProperty_horizontal ;
+
+//--- Constructor
+  public: cPtr_astDividerInstructionDeclaration (const GALGAS_bool & in_horizontal
+                                                 COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astDividerInstructionDeclaration_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astDividerInstructionDeclaration_2D_weak : public GALGAS_astAbstractViewInstructionDeclaration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_astDividerInstructionDeclaration_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astDividerInstructionDeclaration_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_astDividerInstructionDeclaration_2D_weak (const class GALGAS_astDividerInstructionDeclaration & inSource) ;
+
+  public: GALGAS_astDividerInstructionDeclaration_2D_weak & operator = (const class GALGAS_astDividerInstructionDeclaration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_astDividerInstructionDeclaration bang_astDividerInstructionDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astDividerInstructionDeclaration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astDividerInstructionDeclaration_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astDividerInstructionDeclaration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astDividerInstructionDeclaration_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDividerInstructionDeclaration_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //                                         Phase 1: @optionalHiddenBinding enum                                        *
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -8072,350 +8231,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHStackViewInstru
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-// Phase 1: @astHSplitViewInstructionDeclaration reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_astHSplitViewInstructionDeclaration : public GALGAS_astAbstractViewInstructionDeclaration {
-//--------------------------------- Default constructor
-  public: GALGAS_astHSplitViewInstructionDeclaration (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_astHSplitViewInstructionDeclaration (const class cPtr_astHSplitViewInstructionDeclaration * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_astAutoLayoutViewFunctionCallList readProperty_mFunctionCallList (void) const ;
-
-  public: class GALGAS_astViewInstructionList readProperty_mInstructionList (void) const ;
-
-  public: class GALGAS_optionalHiddenBinding readProperty_mOptionalHiddenBinding (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_astHSplitViewInstructionDeclaration extractObject (const GALGAS_object & inObject,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_astHSplitViewInstructionDeclaration constructor_new (const class GALGAS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                                   const class GALGAS_astViewInstructionList & inOperand1,
-                                                                                   const class GALGAS_optionalHiddenBinding & inOperand2
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_astHSplitViewInstructionDeclaration & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMFunctionCallList (class GALGAS_astAutoLayoutViewFunctionCallList inArgument0
-                                                             COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMInstructionList (class GALGAS_astViewInstructionList inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMOptionalHiddenBinding (class GALGAS_optionalHiddenBinding inArgument0
-                                                                  COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_astHSplitViewInstructionDeclaration class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHSplitViewInstructionDeclaration ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @astHSplitViewInstructionDeclaration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_astHSplitViewInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
-
-//--- Extension method generateViewCode
-  public: virtual void method_generateViewCode (const class GALGAS_autoLayoutViewDeclarationMap inViewDeclarationMap,
-           const class GALGAS_bool inPreferences,
-           const class GALGAS_propertyMap inRootObservablePropertyMap,
-           const class GALGAS_propertyMap inPreferencesPropertyMap,
-           const class GALGAS_semanticContext inSemanticContext,
-           const class GALGAS_propertyMap inObservablePropertyMap,
-           const class GALGAS_actionMap inActionMap,
-           const class GALGAS_string inReceiverSwiftTypeName,
-           const class GALGAS_classMap inClassMap,
-           class GALGAS_implicitViewFunctionGenerationList & ioImplicitViewFunctionGenerationList,
-           class GALGAS_autoLayoutConfiguratorMap & ioConfiguratorMap,
-           class GALGAS_autoLayoutOutletMap & ioOutletMap,
-           class GALGAS_abstractViewInstructionGeneration & outInstruction,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
-  public: GALGAS_astViewInstructionList mProperty_mInstructionList ;
-  public: GALGAS_optionalHiddenBinding mProperty_mOptionalHiddenBinding ;
-
-//--- Constructor
-  public: cPtr_astHSplitViewInstructionDeclaration (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                    const GALGAS_astViewInstructionList & in_mInstructionList,
-                                                    const GALGAS_optionalHiddenBinding & in_mOptionalHiddenBinding
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @astHSplitViewInstructionDeclaration_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_astHSplitViewInstructionDeclaration_2D_weak : public GALGAS_astAbstractViewInstructionDeclaration_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_astHSplitViewInstructionDeclaration_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_astHSplitViewInstructionDeclaration_2D_weak constructor_default (LOCATION_ARGS) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_astHSplitViewInstructionDeclaration_2D_weak (const class GALGAS_astHSplitViewInstructionDeclaration & inSource) ;
-
-  public: GALGAS_astHSplitViewInstructionDeclaration_2D_weak & operator = (const class GALGAS_astHSplitViewInstructionDeclaration & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_astHSplitViewInstructionDeclaration bang_astHSplitViewInstructionDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_astHSplitViewInstructionDeclaration_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_astHSplitViewInstructionDeclaration_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_astHSplitViewInstructionDeclaration_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_astHSplitViewInstructionDeclaration_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHSplitViewInstructionDeclaration_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @astVSplitViewInstructionDeclaration reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_astVSplitViewInstructionDeclaration : public GALGAS_astAbstractViewInstructionDeclaration {
-//--------------------------------- Default constructor
-  public: GALGAS_astVSplitViewInstructionDeclaration (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_astVSplitViewInstructionDeclaration (const class cPtr_astVSplitViewInstructionDeclaration * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_astAutoLayoutViewFunctionCallList readProperty_mFunctionCallList (void) const ;
-
-  public: class GALGAS_astViewInstructionList readProperty_mInstructionList (void) const ;
-
-  public: class GALGAS_optionalHiddenBinding readProperty_mOptionalHiddenBinding (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_astVSplitViewInstructionDeclaration extractObject (const GALGAS_object & inObject,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_astVSplitViewInstructionDeclaration constructor_new (const class GALGAS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                                   const class GALGAS_astViewInstructionList & inOperand1,
-                                                                                   const class GALGAS_optionalHiddenBinding & inOperand2
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_astVSplitViewInstructionDeclaration & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMFunctionCallList (class GALGAS_astAutoLayoutViewFunctionCallList inArgument0
-                                                             COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMInstructionList (class GALGAS_astViewInstructionList inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMOptionalHiddenBinding (class GALGAS_optionalHiddenBinding inArgument0
-                                                                  COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_astVSplitViewInstructionDeclaration class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVSplitViewInstructionDeclaration ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @astVSplitViewInstructionDeclaration class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_astVSplitViewInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
-
-//--- Extension method generateViewCode
-  public: virtual void method_generateViewCode (const class GALGAS_autoLayoutViewDeclarationMap inViewDeclarationMap,
-           const class GALGAS_bool inPreferences,
-           const class GALGAS_propertyMap inRootObservablePropertyMap,
-           const class GALGAS_propertyMap inPreferencesPropertyMap,
-           const class GALGAS_semanticContext inSemanticContext,
-           const class GALGAS_propertyMap inObservablePropertyMap,
-           const class GALGAS_actionMap inActionMap,
-           const class GALGAS_string inReceiverSwiftTypeName,
-           const class GALGAS_classMap inClassMap,
-           class GALGAS_implicitViewFunctionGenerationList & ioImplicitViewFunctionGenerationList,
-           class GALGAS_autoLayoutConfiguratorMap & ioConfiguratorMap,
-           class GALGAS_autoLayoutOutletMap & ioOutletMap,
-           class GALGAS_abstractViewInstructionGeneration & outInstruction,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
-  public: GALGAS_astViewInstructionList mProperty_mInstructionList ;
-  public: GALGAS_optionalHiddenBinding mProperty_mOptionalHiddenBinding ;
-
-//--- Constructor
-  public: cPtr_astVSplitViewInstructionDeclaration (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                    const GALGAS_astViewInstructionList & in_mInstructionList,
-                                                    const GALGAS_optionalHiddenBinding & in_mOptionalHiddenBinding
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @astVSplitViewInstructionDeclaration_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_astVSplitViewInstructionDeclaration_2D_weak : public GALGAS_astAbstractViewInstructionDeclaration_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_astVSplitViewInstructionDeclaration_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_astVSplitViewInstructionDeclaration_2D_weak constructor_default (LOCATION_ARGS) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_astVSplitViewInstructionDeclaration_2D_weak (const class GALGAS_astVSplitViewInstructionDeclaration & inSource) ;
-
-  public: GALGAS_astVSplitViewInstructionDeclaration_2D_weak & operator = (const class GALGAS_astVSplitViewInstructionDeclaration & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_astVSplitViewInstructionDeclaration bang_astVSplitViewInstructionDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_astVSplitViewInstructionDeclaration_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                   C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_astVSplitViewInstructionDeclaration_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_astVSplitViewInstructionDeclaration_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_astVSplitViewInstructionDeclaration_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVSplitViewInstructionDeclaration_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astVStackViewInstructionDeclaration reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -8529,4 +8344,370 @@ class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astVStackViewInstructionDeclaration_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astVStackViewInstructionDeclaration_2D_weak : public GALGAS_astAbstractViewInstructionDeclaration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astVStackViewInstructionDeclaration_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak (const class GALGAS_astVStackViewInstructionDeclaration & inSource) ;
+
+  public: GALGAS_astVStackViewInstructionDeclaration_2D_weak & operator = (const class GALGAS_astVStackViewInstructionDeclaration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_astVStackViewInstructionDeclaration bang_astVStackViewInstructionDeclaration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astVStackViewInstructionDeclaration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                   C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astVStackViewInstructionDeclaration_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astVStackViewInstructionDeclaration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astVStackViewInstructionDeclaration_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astSpaceViewInstruction reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astSpaceViewInstruction : public GALGAS_astAbstractViewInstructionDeclaration {
+//--------------------------------- Default constructor
+  public: GALGAS_astSpaceViewInstruction (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astSpaceViewInstruction constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_astSpaceViewInstruction (const class cPtr_astSpaceViewInstruction * inSourcePtr) ;
+
+//--------------------------------- Property read access
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astSpaceViewInstruction extractObject (const GALGAS_object & inObject,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astSpaceViewInstruction constructor_new (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astSpaceViewInstruction & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astSpaceViewInstruction class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSpaceViewInstruction ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @astSpaceViewInstruction class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_astSpaceViewInstruction : public cPtr_astAbstractViewInstructionDeclaration {
+
+//--- Extension method generateViewCode
+  public: virtual void method_generateViewCode (const class GALGAS_autoLayoutViewDeclarationMap inViewDeclarationMap,
+           const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesPropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inObservablePropertyMap,
+           const class GALGAS_actionMap inActionMap,
+           const class GALGAS_string inReceiverSwiftTypeName,
+           const class GALGAS_classMap inClassMap,
+           class GALGAS_implicitViewFunctionGenerationList & ioImplicitViewFunctionGenerationList,
+           class GALGAS_autoLayoutConfiguratorMap & ioConfiguratorMap,
+           class GALGAS_autoLayoutOutletMap & ioOutletMap,
+           class GALGAS_abstractViewInstructionGeneration & outInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+
+//--- Constructor
+  public: cPtr_astSpaceViewInstruction (LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astSpaceViewInstruction_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astSpaceViewInstruction_2D_weak : public GALGAS_astAbstractViewInstructionDeclaration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_astSpaceViewInstruction_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astSpaceViewInstruction_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_astSpaceViewInstruction_2D_weak (const class GALGAS_astSpaceViewInstruction & inSource) ;
+
+  public: GALGAS_astSpaceViewInstruction_2D_weak & operator = (const class GALGAS_astSpaceViewInstruction & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_astSpaceViewInstruction bang_astSpaceViewInstruction_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astSpaceViewInstruction_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astSpaceViewInstruction_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astSpaceViewInstruction_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astSpaceViewInstruction_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSpaceViewInstruction_2D_weak ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astLocalViewInstruction reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astLocalViewInstruction : public GALGAS_astAbstractViewInstructionDeclaration {
+//--------------------------------- Default constructor
+  public: GALGAS_astLocalViewInstruction (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astLocalViewInstruction constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_astLocalViewInstruction (const class cPtr_astLocalViewInstruction * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_lstring readProperty_mLocalView (void) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astLocalViewInstruction extractObject (const GALGAS_object & inObject,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astLocalViewInstruction constructor_new (const class GALGAS_lstring & inOperand0
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astLocalViewInstruction & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setMLocalView (class GALGAS_lstring inArgument0
+                                                      COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astLocalViewInstruction class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astLocalViewInstruction ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @astLocalViewInstruction class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_astLocalViewInstruction : public cPtr_astAbstractViewInstructionDeclaration {
+
+//--- Extension method generateViewCode
+  public: virtual void method_generateViewCode (const class GALGAS_autoLayoutViewDeclarationMap inViewDeclarationMap,
+           const class GALGAS_bool inPreferences,
+           const class GALGAS_propertyMap inRootObservablePropertyMap,
+           const class GALGAS_propertyMap inPreferencesPropertyMap,
+           const class GALGAS_semanticContext inSemanticContext,
+           const class GALGAS_propertyMap inObservablePropertyMap,
+           const class GALGAS_actionMap inActionMap,
+           const class GALGAS_string inReceiverSwiftTypeName,
+           const class GALGAS_classMap inClassMap,
+           class GALGAS_implicitViewFunctionGenerationList & ioImplicitViewFunctionGenerationList,
+           class GALGAS_autoLayoutConfiguratorMap & ioConfiguratorMap,
+           class GALGAS_autoLayoutOutletMap & ioOutletMap,
+           class GALGAS_abstractViewInstructionGeneration & outInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GALGAS_lstring mProperty_mLocalView ;
+
+//--- Constructor
+  public: cPtr_astLocalViewInstruction (const GALGAS_lstring & in_mLocalView
+                                        COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astLocalViewInstruction_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_astLocalViewInstruction_2D_weak : public GALGAS_astAbstractViewInstructionDeclaration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_astLocalViewInstruction_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_astLocalViewInstruction_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_astLocalViewInstruction_2D_weak (const class GALGAS_astLocalViewInstruction & inSource) ;
+
+  public: GALGAS_astLocalViewInstruction_2D_weak & operator = (const class GALGAS_astLocalViewInstruction & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_astLocalViewInstruction bang_astLocalViewInstruction_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_astLocalViewInstruction_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_astLocalViewInstruction_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_astLocalViewInstruction_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_astLocalViewInstruction_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astLocalViewInstruction_2D_weak ;
 

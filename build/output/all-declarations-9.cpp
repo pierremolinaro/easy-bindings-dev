@@ -752,8 +752,8 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "  //    Undo manager\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
-    "  private weak var mUndoManager : UndoManager\? = nil // SHOULD BE WEAK\n"
-    "  var undoManager : UndoManager\? { return self.mUndoManager }\n"
+    "  private weak var mUndoManager : UndoManager? = nil // SHOULD BE WEAK\n"
+    "  var undoManager : UndoManager? { return self.mUndoManager }\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "  //   Sorted Array\n"
@@ -777,14 +777,14 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "\n"
     "  private weak var mModel : " ;
   result << in_MODEL_5F_TYPE_5F_NAME.stringValue () ;
-  result << "\? = nil // SHOULD BE WEAK\n"
+  result << "? = nil // SHOULD BE WEAK\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
     "  var objects : EBReferenceArray <" ;
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << "> {\n"
-    "    if let objects = self.mModel\?.propval {\n"
+    "    if let objects = self.mModel?.propval {\n"
     "      return objects\n"
     "    }else{\n"
     "      return EBReferenceArray ()\n"
@@ -795,14 +795,14 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "\n"
     "  final func bind_model (_ inModel : " ;
   result << in_MODEL_5F_TYPE_5F_NAME.stringValue () ;
-  result << ", _ inUndoManager : UndoManager\?) {\n"
+  result << ", _ inUndoManager : UndoManager?) {\n"
     "    self.mModel = inModel\n"
     "    self.mUndoManager = inUndoManager\n"
     "    self.sortedArray_property.setDataProvider (\n"
     "      inModel,\n" ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, in_SORTED_5F_COLUMNS.getter_length (SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 62)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    result << "      sortCallback: { [weak self] (left, right) in self\?.isOrderedBefore (left, right) \?\? true },\n" ;
+    result << "      sortCallback: { [weak self] (left, right) in self?.isOrderedBefore (left, right) ?? true },\n" ;
   }else if (kBoolFalse == test_0) {
     result << "      sortCallback: nil,\n" ;
   }
@@ -949,7 +949,7 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
   }
   result << "  //---\n"
     "    self.mSortedArrayValuesObserver.mEventCallBack = { [weak self] in\n"
-    "       for tableView in self\?.mTableViewArray \?\? [] {\n"
+    "       for tableView in self?.mTableViewArray ?? [] {\n"
     "        tableView.sortAndReloadData ()\n"
     "      }\n"
     "    }\n"
@@ -974,7 +974,7 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     "    inTableView.configure (\n"
     "      allowsEmptySelection: allowsEmptySelection,\n"
     "      allowsMultipleSelection: allowsMultipleSelection,\n"
-    "      rowCountCallBack: { [weak self] in self\?.sortedArray_property.propval.count \?\? 0 },\n"
+    "      rowCountCallBack: { [weak self] in self?.sortedArray_property.propval.count ?? 0 },\n"
     "      delegate: self\n"
     "    )\n" ;
   GALGAS_uint index_8661_ (0) ;
@@ -987,13 +987,13 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
         "    inTableView.addColumn_" ;
       result << enumerator_8661.current_mColumnObjectTypeName (HERE).stringValue () ;
       result << " (\n"
-        "      valueGetterDelegate: { [weak self] in return self\?.sortedArray_property.propval [$0]." ;
+        "      valueGetterDelegate: { [weak self] in return self?.sortedArray_property.propval [$0]." ;
       result << enumerator_8661.current_mDisplayedPropertyName (HERE).stringValue () ;
       result << " },\n"
         "      valueSetterDelegate: " ;
       const enumGalgasBool test_3 = enumerator_8661.current_mEditable (HERE).boolEnum () ;
       if (kBoolTrue == test_3) {
-        result << "{ [weak self] (inRowIndex, inNewValue) in self\?.sortedArray_property.propval [inRowIndex]." ;
+        result << "{ [weak self] (inRowIndex, inNewValue) in self?.sortedArray_property.propval [inRowIndex]." ;
         result << enumerator_8661.current_mDisplayedPropertyName (HERE).stringValue () ;
         result << " = inNewValue }" ;
       }else if (kBoolFalse == test_3) {
@@ -1004,7 +1004,7 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
       const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_8661.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         result << "{ [weak self] (ascending) in\n"
-          "        self\?.mSortDescriptorArray.append ({ (_ left : " ;
+          "        self?.mSortDescriptorArray.append ({ (_ left : " ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
         result << ", _ right : " ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
@@ -1262,7 +1262,7 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
         "          }\n"
         "          var newSelectedObject : " ;
       result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-      result << "\? = nil\n"
+      result << "? = nil\n"
         "          if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {\n"
         "            newSelectedObject = sortedArray_prop [newSelectionIndex]\n"
         "          }\n"
@@ -1807,7 +1807,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
     "\n"
     "  private weak var mModel : ReadOnlyArrayOf_" ;
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-  result << "\? = nil // SHOULD BE WEAK\n"
+  result << "? = nil // SHOULD BE WEAK\n"
     "\n"
     "  //\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\xC2""\xB7""\n"
     "\n"
@@ -1856,7 +1856,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           result << "_property.mWriteModelFunction = nil \n" ;
         }else if (kBoolFalse == test_4) {
         }
-        result << "    self.mModel\?.toMany_" ;
+        result << "    self.mModel?.toMany_" ;
         result << enumerator_2903.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_StopsBeingObserved (by: self." ;
         result << enumerator_2903.current_lkey (HERE).readProperty_string ().stringValue () ;
@@ -1892,7 +1892,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           "    self." ;
         result << enumerator_3402.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_property.mReadModelFunction = { [weak self] in\n"
-          "      if let model = self\?.mModel {\n"
+          "      if let model = self?.mModel {\n"
           "        switch model.selection {\n"
           "        case .empty :\n"
           "          return .empty\n"
@@ -1936,7 +1936,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
           result << "_property.mWriteModelFunction = { [weak self] (inValue : " ;
           result << extensionGetter_swiftTypeName (enumerator_3402.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 114)).stringValue () ;
           result << ") in\n"
-            "      if let model = self\?.mModel {\n"
+            "      if let model = self?.mModel {\n"
             "        switch model.selection {\n"
             "        case .empty, .multiple :\n"
             "          break\n"
@@ -3167,8 +3167,8 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     result << ", _ inAscending : Bool, _ inRight : " ;
     result << in_TYPE.stringValue () ;
     result << ") -> Bool {\n"
-      "  let left  = inAscending \? inLeft  : inRight\n"
-      "  let right = inAscending \? inRight : inLeft\n" ;
+      "  let left  = inAscending ? inLeft  : inRight\n"
+      "  let right = inAscending ? inRight : inLeft\n" ;
     const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
     if (kBoolTrue == test_1) {
       result << "  return left." ;
@@ -3189,8 +3189,8 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
       "                                            _ inRight : EBReadOnlyProperty_" ;
     result << in_TYPE.stringValue () ;
     result << ") -> ComparisonResult {\n"
-      "  let left  = inAscending \? inLeft  : inRight\n"
-      "  let right = inAscending \? inRight : inLeft\n"
+      "  let left  = inAscending ? inLeft  : inRight\n"
+      "  let right = inAscending ? inRight : inLeft\n"
       "  switch left.selection {\n"
       "  case .empty :\n"
       "    switch right.selection {\n"
@@ -3588,7 +3588,7 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (C_Compiler *
                                                                     const GALGAS_string & in_PROJECT_5F_NAME
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "<\?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"\?>\n"
+  result << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
     "<document type=\"com.apple.InterfaceBuilder3.Cocoa.XIB\" version=\"3.0\" toolsVersion=\"7528.3\" systemVersion=\"14C1514\" targetRuntime=\"MacOSX.Cocoa\" proper"
     "tyAccessControl=\"none\">\n"
     "    <dependencies>\n"
@@ -4236,7 +4236,7 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (C_Compiler *
     "                        <items>\n"
     "                            <menuItem title=\"" ;
   result << in_PROJECT_5F_NAME.stringValue () ;
-  result << " Help\" keyEquivalent=\"\?\" id=\"492\">\n"
+  result << " Help\" keyEquivalent=\"?\" id=\"492\">\n"
     "                                <connections>\n"
     "                                    <action selector=\"showHelp:\" target=\"-1\" id=\"493\"/>\n"
     "                                </connections>\n"
@@ -4282,7 +4282,7 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (C_Compiler
                                                                       const GALGAS_stringset & in_HANDLED_5F_EXTENSION_5F_SET
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n"
+  result << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
     "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n"
     "<plist version=\"1.0\">\n"
     "<dict>\n"
@@ -4305,7 +4305,7 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (C_Compiler
     " <key>CFBundlePackageType</key>\n"
     " <string>APPL</string>\n"
     " <key>CFBundleSignature</key>\n"
-    " <string>\?\?\?\?</string>\n"
+    " <string>????</string>\n"
     " <key>LSMinimumSystemVersion</key>\n"
     " <string>10.9</string>\n"
     " <key>CFBundleShortVersionString</key>\n"
