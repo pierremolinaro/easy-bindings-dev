@@ -9005,7 +9005,7 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
       "      for idx in indexArray {\n"
       "        let object = objects [idx]\n"
       "        var dict = [String : Any] ()\n"
-      "        object.saveIntoDictionary (&dict)\n"
+      "        object.savePropertiesIntoDictionary (&dict)\n"
       "        objectDictionaryArray.append (dict)\n"
       "        var additionalDict = [String : Any] ()\n"
       "        object.saveIntoAdditionalDictionary (&additionalDict)\n"

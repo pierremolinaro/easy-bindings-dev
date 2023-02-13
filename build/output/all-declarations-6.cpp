@@ -7975,14 +7975,14 @@ mProperty_mIsOverriding (inOperand3) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_propertyMap_2D_element GALGAS_propertyMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                              const GALGAS_propertyKind & inOperand1,
-                                                                              const GALGAS_actionMap & inOperand2,
-                                                                              const GALGAS_bool & inOperand3 
+GALGAS_propertyMap_2D_element GALGAS_propertyMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                              const GALGAS_propertyKind & in_mKind,
+                                                                              const GALGAS_actionMap & in_mActionMap,
+                                                                              const GALGAS_bool & in_mIsOverriding 
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_propertyMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_propertyMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (in_lkey.isValid () && in_mKind.isValid () && in_mActionMap.isValid () && in_mIsOverriding.isValid ()) {
+    result = GALGAS_propertyMap_2D_element (in_lkey, in_mKind, in_mActionMap, in_mIsOverriding) ;
   }
   return result ;
 }
@@ -8188,31 +8188,31 @@ GALGAS_XcodeProjectDescriptor GALGAS_XcodeProjectDescriptor::constructor_default
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_XcodeProjectDescriptor GALGAS_XcodeProjectDescriptor::constructor_new (const GALGAS_uint & inOperand0,
-                                                                              const GALGAS_string & inOperand1,
-                                                                              const GALGAS_stringlist & inOperand2,
-                                                                              const GALGAS_string & inOperand3,
-                                                                              const GALGAS_XCodeGroupList & inOperand4,
-                                                                              const GALGAS_XCodeToolTargetList & inOperand5,
-                                                                              const GALGAS_XCodeAppTargetList & inOperand6,
-                                                                              const GALGAS__32_stringlist & inOperand7,
-                                                                              const GALGAS__32_stringlist & inOperand8,
-                                                                              const GALGAS__32_stringlist & inOperand9,
-                                                                              const GALGAS__32_stringlist & inOperand10,
-                                                                              const GALGAS__32_stringlist & inOperand11,
-                                                                              const GALGAS__32_stringlist & inOperand12,
-                                                                              const GALGAS_BuildFileList & inOperand13,
-                                                                              const GALGAS_string & inOperand14,
-                                                                              const GALGAS_stringlist & inOperand15,
-                                                                              const GALGAS_string & inOperand16,
-                                                                              const GALGAS__32_stringlist & inOperand17,
-                                                                              const GALGAS__32_stringlist & inOperand18,
-                                                                              const GALGAS__32_stringlist & inOperand19,
-                                                                              const GALGAS__32_stringlist & inOperand20 
+GALGAS_XcodeProjectDescriptor GALGAS_XcodeProjectDescriptor::constructor_new (const GALGAS_uint & in_mSequenceNumber,
+                                                                              const GALGAS_string & in_mMainGroupReference,
+                                                                              const GALGAS_stringlist & in_mMainGroupChildrenRefs,
+                                                                              const GALGAS_string & in_mProjectObjectReference,
+                                                                              const GALGAS_XCodeGroupList & in_mGroupList,
+                                                                              const GALGAS_XCodeToolTargetList & in_mToolTargetList,
+                                                                              const GALGAS_XCodeAppTargetList & in_mAppTargetList,
+                                                                              const GALGAS__32_stringlist & in_mCppFileList,
+                                                                              const GALGAS__32_stringlist & in_m_M_FileList,
+                                                                              const GALGAS__32_stringlist & in_m_MM_FileList,
+                                                                              const GALGAS__32_stringlist & in_m_SwiftFileList,
+                                                                              const GALGAS__32_stringlist & in_mFrameworkFileList,
+                                                                              const GALGAS__32_stringlist & in_mHeaderFileList,
+                                                                              const GALGAS_BuildFileList & in_mBuildFileList,
+                                                                              const GALGAS_string & in_mDefaultConfigurationRef,
+                                                                              const GALGAS_stringlist & in_mDefaultConfigurationSettingList,
+                                                                              const GALGAS_string & in_mProjectBuildConfigurationRef,
+                                                                              const GALGAS__32_stringlist & in_mInfoPlistFileList,
+                                                                              const GALGAS__32_stringlist & in_mXIB_fileList,
+                                                                              const GALGAS__32_stringlist & in_mTIFF_fileList,
+                                                                              const GALGAS__32_stringlist & in_mICNS_fileList 
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_XcodeProjectDescriptor result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid () && inOperand12.isValid () && inOperand13.isValid () && inOperand14.isValid () && inOperand15.isValid () && inOperand16.isValid () && inOperand17.isValid () && inOperand18.isValid () && inOperand19.isValid () && inOperand20.isValid ()) {
-    result = GALGAS_XcodeProjectDescriptor (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11, inOperand12, inOperand13, inOperand14, inOperand15, inOperand16, inOperand17, inOperand18, inOperand19, inOperand20) ;
+  if (in_mSequenceNumber.isValid () && in_mMainGroupReference.isValid () && in_mMainGroupChildrenRefs.isValid () && in_mProjectObjectReference.isValid () && in_mGroupList.isValid () && in_mToolTargetList.isValid () && in_mAppTargetList.isValid () && in_mCppFileList.isValid () && in_m_M_FileList.isValid () && in_m_MM_FileList.isValid () && in_m_SwiftFileList.isValid () && in_mFrameworkFileList.isValid () && in_mHeaderFileList.isValid () && in_mBuildFileList.isValid () && in_mDefaultConfigurationRef.isValid () && in_mDefaultConfigurationSettingList.isValid () && in_mProjectBuildConfigurationRef.isValid () && in_mInfoPlistFileList.isValid () && in_mXIB_fileList.isValid () && in_mTIFF_fileList.isValid () && in_mICNS_fileList.isValid ()) {
+    result = GALGAS_XcodeProjectDescriptor (in_mSequenceNumber, in_mMainGroupReference, in_mMainGroupChildrenRefs, in_mProjectObjectReference, in_mGroupList, in_mToolTargetList, in_mAppTargetList, in_mCppFileList, in_m_M_FileList, in_m_MM_FileList, in_m_SwiftFileList, in_mFrameworkFileList, in_mHeaderFileList, in_mBuildFileList, in_mDefaultConfigurationRef, in_mDefaultConfigurationSettingList, in_mProjectBuildConfigurationRef, in_mInfoPlistFileList, in_mXIB_fileList, in_mTIFF_fileList, in_mICNS_fileList) ;
   }
   return result ;
 }
@@ -9133,11 +9133,11 @@ mProperty_mPropertyDeclaration (inOperand0) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_declarationListAST_2D_element GALGAS_declarationListAST_2D_element::constructor_new (const GALGAS_abstractDeclarationAST & inOperand0 
+GALGAS_declarationListAST_2D_element GALGAS_declarationListAST_2D_element::constructor_new (const GALGAS_abstractDeclarationAST & in_mPropertyDeclaration 
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_declarationListAST_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_declarationListAST_2D_element (inOperand0) ;
+  if (in_mPropertyDeclaration.isValid ()) {
+    result = GALGAS_declarationListAST_2D_element (in_mPropertyDeclaration) ;
   }
   return result ;
 }
@@ -9245,11 +9245,11 @@ GALGAS_externSwiftDelegateList_2D_element GALGAS_externSwiftDelegateList_2D_elem
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_externSwiftDelegateList_2D_element GALGAS_externSwiftDelegateList_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
+GALGAS_externSwiftDelegateList_2D_element GALGAS_externSwiftDelegateList_2D_element::constructor_new (const GALGAS_lstring & in_mExternSwiftDelegateName 
                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_externSwiftDelegateList_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_externSwiftDelegateList_2D_element (inOperand0) ;
+  if (in_mExternSwiftDelegateName.isValid ()) {
+    result = GALGAS_externSwiftDelegateList_2D_element (in_mExternSwiftDelegateName) ;
   }
   return result ;
 }
@@ -9361,12 +9361,12 @@ GALGAS_externSwiftFunctionList_2D_element GALGAS_externSwiftFunctionList_2D_elem
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_externSwiftFunctionList_2D_element GALGAS_externSwiftFunctionList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                      const GALGAS_lstring & inOperand1 
+GALGAS_externSwiftFunctionList_2D_element GALGAS_externSwiftFunctionList_2D_element::constructor_new (const GALGAS_lstring & in_mExternSwiftFunctionName,
+                                                                                                      const GALGAS_lstring & in_mCallerName 
                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_externSwiftFunctionList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_externSwiftFunctionList_2D_element (inOperand0, inOperand1) ;
+  if (in_mExternSwiftFunctionName.isValid () && in_mCallerName.isValid ()) {
+    result = GALGAS_externSwiftFunctionList_2D_element (in_mExternSwiftFunctionName, in_mCallerName) ;
   }
   return result ;
 }
@@ -9480,11 +9480,11 @@ GALGAS_externFunctionMap_2D_element GALGAS_externFunctionMap_2D_element::constru
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_externFunctionMap_2D_element GALGAS_externFunctionMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
+GALGAS_externFunctionMap_2D_element GALGAS_externFunctionMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey 
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_externFunctionMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_externFunctionMap_2D_element (inOperand0) ;
+  if (in_lkey.isValid ()) {
+    result = GALGAS_externFunctionMap_2D_element (in_lkey) ;
   }
   return result ;
 }
@@ -9600,13 +9600,13 @@ GALGAS_enumerationFunctionListAST_2D_element GALGAS_enumerationFunctionListAST_2
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_enumerationFunctionListAST_2D_element GALGAS_enumerationFunctionListAST_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                            const GALGAS_lstring & inOperand1,
-                                                                                                            const GALGAS__32_lstringlist & inOperand2 
+GALGAS_enumerationFunctionListAST_2D_element GALGAS_enumerationFunctionListAST_2D_element::constructor_new (const GALGAS_lstring & in_mEnumName,
+                                                                                                            const GALGAS_lstring & in_mFunctionName,
+                                                                                                            const GALGAS__32_lstringlist & in_mAssociationList 
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_enumerationFunctionListAST_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_enumerationFunctionListAST_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_mEnumName.isValid () && in_mFunctionName.isValid () && in_mAssociationList.isValid ()) {
+    result = GALGAS_enumerationFunctionListAST_2D_element (in_mEnumName, in_mFunctionName, in_mAssociationList) ;
   }
   return result ;
 }
@@ -9730,12 +9730,12 @@ GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::constructor
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                      const GALGAS_uint & inOperand1 
+GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                      const GALGAS_uint & in_mIndex 
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_enumConstantMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_enumConstantMap_2D_element (inOperand0, inOperand1) ;
+  if (in_lkey.isValid () && in_mIndex.isValid ()) {
+    result = GALGAS_enumConstantMap_2D_element (in_lkey, in_mIndex) ;
   }
   return result ;
 }
@@ -9853,12 +9853,12 @@ GALGAS_enumFuncMap_2D_element GALGAS_enumFuncMap_2D_element::constructor_default
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_enumFuncMap_2D_element GALGAS_enumFuncMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                              const GALGAS_enumFunAssociationSortedList & inOperand1 
+GALGAS_enumFuncMap_2D_element GALGAS_enumFuncMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                              const GALGAS_enumFunAssociationSortedList & in_mAssociationSortedList 
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_enumFuncMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_enumFuncMap_2D_element (inOperand0, inOperand1) ;
+  if (in_lkey.isValid () && in_mAssociationSortedList.isValid ()) {
+    result = GALGAS_enumFuncMap_2D_element (in_lkey, in_mAssociationSortedList) ;
   }
   return result ;
 }
@@ -9976,12 +9976,12 @@ GALGAS_astAutoLayoutOutletLinkerList_2D_element GALGAS_astAutoLayoutOutletLinker
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutOutletLinkerList_2D_element GALGAS_astAutoLayoutOutletLinkerList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                  const GALGAS_lstringlist & inOperand1 
+GALGAS_astAutoLayoutOutletLinkerList_2D_element GALGAS_astAutoLayoutOutletLinkerList_2D_element::constructor_new (const GALGAS_lstring & in_mLinkerName,
+                                                                                                                  const GALGAS_lstringlist & in_mOutletNameList 
                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astAutoLayoutOutletLinkerList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_astAutoLayoutOutletLinkerList_2D_element (inOperand0, inOperand1) ;
+  if (in_mLinkerName.isValid () && in_mOutletNameList.isValid ()) {
+    result = GALGAS_astAutoLayoutOutletLinkerList_2D_element (in_mLinkerName, in_mOutletNameList) ;
   }
   return result ;
 }
@@ -10092,12 +10092,12 @@ mProperty_mParameterType (inOperand1) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutClassParameterList_2D_element GALGAS_autoLayoutClassParameterList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                const GALGAS_autoLayoutClassParameterType & inOperand1 
+GALGAS_autoLayoutClassParameterList_2D_element GALGAS_autoLayoutClassParameterList_2D_element::constructor_new (const GALGAS_lstring & in_mParameterName,
+                                                                                                                const GALGAS_autoLayoutClassParameterType & in_mParameterType 
                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_autoLayoutClassParameterList_2D_element (inOperand0, inOperand1) ;
+  if (in_mParameterName.isValid () && in_mParameterType.isValid ()) {
+    result = GALGAS_autoLayoutClassParameterList_2D_element (in_mParameterName, in_mParameterType) ;
   }
   return result ;
 }
@@ -10215,12 +10215,12 @@ GALGAS_astAutoLayoutViewFunctionMap_2D_element GALGAS_astAutoLayoutViewFunctionM
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutViewFunctionMap_2D_element GALGAS_astAutoLayoutViewFunctionMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                const GALGAS_autoLayoutClassParameterList & inOperand1 
+GALGAS_astAutoLayoutViewFunctionMap_2D_element GALGAS_astAutoLayoutViewFunctionMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                                                const GALGAS_autoLayoutClassParameterList & in_mFomalParameterList 
                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astAutoLayoutViewFunctionMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_astAutoLayoutViewFunctionMap_2D_element (inOperand0, inOperand1) ;
+  if (in_lkey.isValid () && in_mFomalParameterList.isValid ()) {
+    result = GALGAS_astAutoLayoutViewFunctionMap_2D_element (in_lkey, in_mFomalParameterList) ;
   }
   return result ;
 }
@@ -10370,20 +10370,20 @@ GALGAS_autolayoutViewClassMap_2D_element GALGAS_autolayoutViewClassMap_2D_elemen
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autolayoutViewClassMap_2D_element GALGAS_autolayoutViewClassMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                    const GALGAS_lstring & inOperand1,
-                                                                                                    const GALGAS_bool & inOperand2,
-                                                                                                    const GALGAS_bool & inOperand3,
-                                                                                                    const GALGAS_bool & inOperand4,
-                                                                                                    const GALGAS_bool & inOperand5,
-                                                                                                    const GALGAS_bool & inOperand6,
-                                                                                                    const GALGAS_bool & inOperand7,
-                                                                                                    const GALGAS_autoLayoutClassParameterList & inOperand8,
-                                                                                                    const GALGAS_astAutoLayoutViewFunctionMap & inOperand9 
+GALGAS_autolayoutViewClassMap_2D_element GALGAS_autolayoutViewClassMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                                    const GALGAS_lstring & in_mSuperClassName,
+                                                                                                    const GALGAS_bool & in_mHandlesRunAction,
+                                                                                                    const GALGAS_bool & in_mHandlesTableValueBinding,
+                                                                                                    const GALGAS_bool & in_mHandleEnabledBinding,
+                                                                                                    const GALGAS_bool & in_mHandleHiddenBinding,
+                                                                                                    const GALGAS_bool & in_mHandleGraphicControllerBinding,
+                                                                                                    const GALGAS_bool & in_mUserDefined,
+                                                                                                    const GALGAS_autoLayoutClassParameterList & in_mParameterList,
+                                                                                                    const GALGAS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap 
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autolayoutViewClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid ()) {
-    result = GALGAS_autolayoutViewClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9) ;
+  if (in_lkey.isValid () && in_mSuperClassName.isValid () && in_mHandlesRunAction.isValid () && in_mHandlesTableValueBinding.isValid () && in_mHandleEnabledBinding.isValid () && in_mHandleHiddenBinding.isValid () && in_mHandleGraphicControllerBinding.isValid () && in_mUserDefined.isValid () && in_mParameterList.isValid () && in_mAutoLayoutViewFunctionMap.isValid ()) {
+    result = GALGAS_autolayoutViewClassMap_2D_element (in_lkey, in_mSuperClassName, in_mHandlesRunAction, in_mHandlesTableValueBinding, in_mHandleEnabledBinding, in_mHandleHiddenBinding, in_mHandleGraphicControllerBinding, in_mUserDefined, in_mParameterList, in_mAutoLayoutViewFunctionMap) ;
   }
   return result ;
 }
@@ -10557,14 +10557,14 @@ GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element GALGAS_autoLayoutV
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                                              const GALGAS_lstring & inOperand1,
-                                                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand2,
-                                                                                                                                              const GALGAS_controllerBindingOptionList & inOperand3 
+GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element::constructor_new (const GALGAS_lstring & in_mOutletClassName,
+                                                                                                                                              const GALGAS_lstring & in_mBindingName,
+                                                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & in_mOutletClassBindingSpecificationModelList,
+                                                                                                                                              const GALGAS_controllerBindingOptionList & in_mBindingOptionList 
                                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (in_mOutletClassName.isValid () && in_mBindingName.isValid () && in_mOutletClassBindingSpecificationModelList.isValid () && in_mBindingOptionList.isValid ()) {
+    result = GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element (in_mOutletClassName, in_mBindingName, in_mOutletClassBindingSpecificationModelList, in_mBindingOptionList) ;
   }
   return result ;
 }
@@ -10698,13 +10698,13 @@ GALGAS_autoLayoutBindingSpecificationMap_2D_element GALGAS_autoLayoutBindingSpec
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutBindingSpecificationMap_2D_element GALGAS_autoLayoutBindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                          const GALGAS_lstring & inOperand1,
-                                                                                                                          const GALGAS_autoLayoutViewBindingSpecificationMap & inOperand2 
+GALGAS_autoLayoutBindingSpecificationMap_2D_element GALGAS_autoLayoutBindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                                                          const GALGAS_lstring & in_mOutletSuperClassName,
+                                                                                                                          const GALGAS_autoLayoutViewBindingSpecificationMap & in_mBindingMap 
                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutBindingSpecificationMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_autoLayoutBindingSpecificationMap_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_lkey.isValid () && in_mOutletSuperClassName.isValid () && in_mBindingMap.isValid ()) {
+    result = GALGAS_autoLayoutBindingSpecificationMap_2D_element (in_lkey, in_mOutletSuperClassName, in_mBindingMap) ;
   }
   return result ;
 }
@@ -10832,13 +10832,13 @@ GALGAS_autoLayoutViewBindingSpecificationMap_2D_element GALGAS_autoLayoutViewBin
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutViewBindingSpecificationMap_2D_element GALGAS_autoLayoutViewBindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                                  const GALGAS_outletBindingSpecificationModelList & inOperand1,
-                                                                                                                                  const GALGAS_controllerBindingOptionDecoratedList & inOperand2 
+GALGAS_autoLayoutViewBindingSpecificationMap_2D_element GALGAS_autoLayoutViewBindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                                                                  const GALGAS_outletBindingSpecificationModelList & in_mOutletBindingSpecificationModelList,
+                                                                                                                                  const GALGAS_controllerBindingOptionDecoratedList & in_mControllerBindingOptionList 
                                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutViewBindingSpecificationMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_autoLayoutViewBindingSpecificationMap_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_lkey.isValid () && in_mOutletBindingSpecificationModelList.isValid () && in_mControllerBindingOptionList.isValid ()) {
+    result = GALGAS_autoLayoutViewBindingSpecificationMap_2D_element (in_lkey, in_mOutletBindingSpecificationModelList, in_mControllerBindingOptionList) ;
   }
   return result ;
 }
@@ -10955,12 +10955,12 @@ mProperty_mView (inOperand1) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_astViewDeclarationList_2D_element GALGAS_astViewDeclarationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                    const GALGAS_astAbstractViewDeclaration & inOperand1 
+GALGAS_astViewDeclarationList_2D_element GALGAS_astViewDeclarationList_2D_element::constructor_new (const GALGAS_lstring & in_mViewName,
+                                                                                                    const GALGAS_astAbstractViewDeclaration & in_mView 
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astViewDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_astViewDeclarationList_2D_element (inOperand0, inOperand1) ;
+  if (in_mViewName.isValid () && in_mView.isValid ()) {
+    result = GALGAS_astViewDeclarationList_2D_element (in_mViewName, in_mView) ;
   }
   return result ;
 }
@@ -11078,12 +11078,12 @@ GALGAS_astNewStackViewDeclarationList_2D_element GALGAS_astNewStackViewDeclarati
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_astNewStackViewDeclarationList_2D_element GALGAS_astNewStackViewDeclarationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                    const GALGAS_lstring & inOperand1 
+GALGAS_astNewStackViewDeclarationList_2D_element GALGAS_astNewStackViewDeclarationList_2D_element::constructor_new (const GALGAS_lstring & in_mInstanciedStackViewName,
+                                                                                                                    const GALGAS_lstring & in_mTypeStackViewName 
                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astNewStackViewDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_astNewStackViewDeclarationList_2D_element (inOperand0, inOperand1) ;
+  if (in_mInstanciedStackViewName.isValid () && in_mTypeStackViewName.isValid ()) {
+    result = GALGAS_astNewStackViewDeclarationList_2D_element (in_mInstanciedStackViewName, in_mTypeStackViewName) ;
   }
   return result ;
 }
@@ -11201,12 +11201,12 @@ GALGAS_astAutoLayoutViewFunctionCallList_2D_element GALGAS_astAutoLayoutViewFunc
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutViewFunctionCallList_2D_element GALGAS_astAutoLayoutViewFunctionCallList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                          const GALGAS_astAutoLayoutViewInstructionParameterList & inOperand1 
+GALGAS_astAutoLayoutViewFunctionCallList_2D_element GALGAS_astAutoLayoutViewFunctionCallList_2D_element::constructor_new (const GALGAS_lstring & in_mFunctionName,
+                                                                                                                          const GALGAS_astAutoLayoutViewInstructionParameterList & in_mParameterList 
                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astAutoLayoutViewFunctionCallList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_astAutoLayoutViewFunctionCallList_2D_element (inOperand0, inOperand1) ;
+  if (in_mFunctionName.isValid () && in_mParameterList.isValid ()) {
+    result = GALGAS_astAutoLayoutViewFunctionCallList_2D_element (in_mFunctionName, in_mParameterList) ;
   }
   return result ;
 }
@@ -11320,13 +11320,13 @@ mProperty_mParameter (inOperand2) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutViewInstructionParameterList_2D_element GALGAS_astAutoLayoutViewInstructionParameterList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                                          const GALGAS_autoLayoutClassParameterType & inOperand1,
-                                                                                                                                          const GALGAS_astAutoLayoutViewInstructionParameterValue & inOperand2 
+GALGAS_astAutoLayoutViewInstructionParameterList_2D_element GALGAS_astAutoLayoutViewInstructionParameterList_2D_element::constructor_new (const GALGAS_lstring & in_mParameterName,
+                                                                                                                                          const GALGAS_autoLayoutClassParameterType & in_mParameterType,
+                                                                                                                                          const GALGAS_astAutoLayoutViewInstructionParameterValue & in_mParameter 
                                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astAutoLayoutViewInstructionParameterList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_astAutoLayoutViewInstructionParameterList_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_mParameterName.isValid () && in_mParameterType.isValid () && in_mParameter.isValid ()) {
+    result = GALGAS_astAutoLayoutViewInstructionParameterList_2D_element (in_mParameterName, in_mParameterType, in_mParameter) ;
   }
   return result ;
 }
@@ -11446,11 +11446,11 @@ GALGAS_autoLayoutViewDeclarationMap_2D_element GALGAS_autoLayoutViewDeclarationM
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutViewDeclarationMap_2D_element GALGAS_autoLayoutViewDeclarationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
+GALGAS_autoLayoutViewDeclarationMap_2D_element GALGAS_autoLayoutViewDeclarationMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey 
                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutViewDeclarationMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_autoLayoutViewDeclarationMap_2D_element (inOperand0) ;
+  if (in_lkey.isValid ()) {
+    result = GALGAS_autoLayoutViewDeclarationMap_2D_element (in_lkey) ;
   }
   return result ;
 }
@@ -11562,12 +11562,12 @@ GALGAS_autoLayoutConfiguratorMap_2D_element GALGAS_autoLayoutConfiguratorMap_2D_
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutConfiguratorMap_2D_element GALGAS_autoLayoutConfiguratorMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                          const GALGAS_string & inOperand1 
+GALGAS_autoLayoutConfiguratorMap_2D_element GALGAS_autoLayoutConfiguratorMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                                          const GALGAS_string & in_mAutoLayoutOutletTypeName 
                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutConfiguratorMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_autoLayoutConfiguratorMap_2D_element (inOperand0, inOperand1) ;
+  if (in_lkey.isValid () && in_mAutoLayoutOutletTypeName.isValid ()) {
+    result = GALGAS_autoLayoutConfiguratorMap_2D_element (in_lkey, in_mAutoLayoutOutletTypeName) ;
   }
   return result ;
 }
@@ -11689,13 +11689,13 @@ GALGAS_autoLayoutOutletMap_2D_element GALGAS_autoLayoutOutletMap_2D_element::con
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutOutletMap_2D_element GALGAS_autoLayoutOutletMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                              const GALGAS_string & inOperand1,
-                                                                                              const GALGAS_bool & inOperand2 
+GALGAS_autoLayoutOutletMap_2D_element GALGAS_autoLayoutOutletMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                              const GALGAS_string & in_mAutoLayoutOutletTypeName,
+                                                                                              const GALGAS_bool & in_mOutletIsArray 
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutOutletMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_autoLayoutOutletMap_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_lkey.isValid () && in_mAutoLayoutOutletTypeName.isValid () && in_mOutletIsArray.isValid ()) {
+    result = GALGAS_autoLayoutOutletMap_2D_element (in_lkey, in_mAutoLayoutOutletTypeName, in_mOutletIsArray) ;
   }
   return result ;
 }
@@ -11843,18 +11843,18 @@ GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_d
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                    const GALGAS_lstring & inOperand1,
-                                                                                    const GALGAS_bool & inOperand2,
-                                                                                    const GALGAS_bool & inOperand3,
-                                                                                    const GALGAS_bool & inOperand4,
-                                                                                    const GALGAS_bool & inOperand5,
-                                                                                    const GALGAS_bool & inOperand6,
-                                                                                    const GALGAS_bool & inOperand7 
+GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                    const GALGAS_lstring & in_mSuperClassName,
+                                                                                    const GALGAS_bool & in_mHandlesRunAction,
+                                                                                    const GALGAS_bool & in_mHandlesTableValueBinding,
+                                                                                    const GALGAS_bool & in_mHandleEnabledBinding,
+                                                                                    const GALGAS_bool & in_mHandleHiddenBinding,
+                                                                                    const GALGAS_bool & in_mHandleGraphicControllerBinding,
+                                                                                    const GALGAS_bool & in_mUserDefined 
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
-    result = GALGAS_outletClassMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7) ;
+  if (in_lkey.isValid () && in_mSuperClassName.isValid () && in_mHandlesRunAction.isValid () && in_mHandlesTableValueBinding.isValid () && in_mHandleEnabledBinding.isValid () && in_mHandleHiddenBinding.isValid () && in_mHandleGraphicControllerBinding.isValid () && in_mUserDefined.isValid ()) {
+    result = GALGAS_outletClassMap_2D_element (in_lkey, in_mSuperClassName, in_mHandlesRunAction, in_mHandlesTableValueBinding, in_mHandleEnabledBinding, in_mHandleHiddenBinding, in_mHandleGraphicControllerBinding, in_mUserDefined) ;
   }
   return result ;
 }
@@ -12008,12 +12008,12 @@ GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                              const GALGAS_lstring & inOperand1 
+GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList_2D_element::constructor_new (const GALGAS_lstring & in_mOptionName,
+                                                                                                              const GALGAS_lstring & in_mOptionTypeName 
                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_controllerBindingOptionList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_controllerBindingOptionList_2D_element (inOperand0, inOperand1) ;
+  if (in_mOptionName.isValid () && in_mOptionTypeName.isValid ()) {
+    result = GALGAS_controllerBindingOptionList_2D_element (in_mOptionName, in_mOptionTypeName) ;
   }
   return result ;
 }
@@ -12131,12 +12131,12 @@ GALGAS_outletClassBindingSpecificationModelList_2D_element GALGAS_outletClassBin
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_outletClassBindingSpecificationModelList_2D_element GALGAS_outletClassBindingSpecificationModelList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                                        const GALGAS_bool & inOperand1 
+GALGAS_outletClassBindingSpecificationModelList_2D_element GALGAS_outletClassBindingSpecificationModelList_2D_element::constructor_new (const GALGAS_lstring & in_mModelTypeName,
+                                                                                                                                        const GALGAS_bool & in_mModelShouldBeWritableProperty 
                                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassBindingSpecificationModelList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_outletClassBindingSpecificationModelList_2D_element (inOperand0, inOperand1) ;
+  if (in_mModelTypeName.isValid () && in_mModelShouldBeWritableProperty.isValid ()) {
+    result = GALGAS_outletClassBindingSpecificationModelList_2D_element (in_mModelTypeName, in_mModelShouldBeWritableProperty) ;
   }
   return result ;
 }
@@ -12262,14 +12262,14 @@ GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingS
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingSpecificationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                              const GALGAS_lstring & inOperand1,
-                                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & inOperand2,
-                                                                                                                              const GALGAS_controllerBindingOptionList & inOperand3 
+GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingSpecificationList_2D_element::constructor_new (const GALGAS_lstring & in_mOutletClassName,
+                                                                                                                              const GALGAS_lstring & in_mBindingName,
+                                                                                                                              const GALGAS_outletClassBindingSpecificationModelList & in_mOutletClassBindingSpecificationModelList,
+                                                                                                                              const GALGAS_controllerBindingOptionList & in_mBindingOptionList 
                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletClassBindingSpecificationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_outletClassBindingSpecificationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (in_mOutletClassName.isValid () && in_mBindingName.isValid () && in_mOutletClassBindingSpecificationModelList.isValid () && in_mBindingOptionList.isValid ()) {
+    result = GALGAS_outletClassBindingSpecificationList_2D_element (in_mOutletClassName, in_mBindingName, in_mOutletClassBindingSpecificationModelList, in_mBindingOptionList) ;
   }
   return result ;
 }
@@ -12403,13 +12403,13 @@ GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_elem
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                      const GALGAS_lstring & inOperand1,
-                                                                                                      const GALGAS_outletBindingSpecificationMap & inOperand2 
+GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                                      const GALGAS_lstring & in_mOutletSuperClassName,
+                                                                                                      const GALGAS_outletBindingSpecificationMap & in_mBindingMap 
                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bindingSpecificationMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_bindingSpecificationMap_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_lkey.isValid () && in_mOutletSuperClassName.isValid () && in_mBindingMap.isValid ()) {
+    result = GALGAS_bindingSpecificationMap_2D_element (in_lkey, in_mOutletSuperClassName, in_mBindingMap) ;
   }
   return result ;
 }
@@ -12526,12 +12526,12 @@ mProperty_mOptionName (inOperand1) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_controllerBindingOptionDecoratedList_2D_element GALGAS_controllerBindingOptionDecoratedList_2D_element::constructor_new (const GALGAS_typeKind & inOperand0,
-                                                                                                                                const GALGAS_lstring & inOperand1 
+GALGAS_controllerBindingOptionDecoratedList_2D_element GALGAS_controllerBindingOptionDecoratedList_2D_element::constructor_new (const GALGAS_typeKind & in_mOptionType,
+                                                                                                                                const GALGAS_lstring & in_mOptionName 
                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_controllerBindingOptionDecoratedList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_controllerBindingOptionDecoratedList_2D_element (inOperand0, inOperand1) ;
+  if (in_mOptionType.isValid () && in_mOptionName.isValid ()) {
+    result = GALGAS_controllerBindingOptionDecoratedList_2D_element (in_mOptionType, in_mOptionName) ;
   }
   return result ;
 }
@@ -12653,13 +12653,13 @@ GALGAS_outletBindingSpecificationMap_2D_element GALGAS_outletBindingSpecificatio
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_outletBindingSpecificationMap_2D_element GALGAS_outletBindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                  const GALGAS_outletBindingSpecificationModelList & inOperand1,
-                                                                                                                  const GALGAS_controllerBindingOptionDecoratedList & inOperand2 
+GALGAS_outletBindingSpecificationMap_2D_element GALGAS_outletBindingSpecificationMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                                                  const GALGAS_outletBindingSpecificationModelList & in_mOutletBindingSpecificationModelList,
+                                                                                                                  const GALGAS_controllerBindingOptionDecoratedList & in_mControllerBindingOptionList 
                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletBindingSpecificationMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_outletBindingSpecificationMap_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_lkey.isValid () && in_mOutletBindingSpecificationModelList.isValid () && in_mControllerBindingOptionList.isValid ()) {
+    result = GALGAS_outletBindingSpecificationMap_2D_element (in_lkey, in_mOutletBindingSpecificationModelList, in_mControllerBindingOptionList) ;
   }
   return result ;
 }
@@ -12776,12 +12776,12 @@ mProperty_mOptionValue (inOperand1) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_bindingOptionList_2D_element GALGAS_bindingOptionList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                          const GALGAS_abstractDefaultValue & inOperand1 
+GALGAS_bindingOptionList_2D_element GALGAS_bindingOptionList_2D_element::constructor_new (const GALGAS_lstring & in_mOptionName,
+                                                                                          const GALGAS_abstractDefaultValue & in_mOptionValue 
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bindingOptionList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_bindingOptionList_2D_element (inOperand0, inOperand1) ;
+  if (in_mOptionName.isValid () && in_mOptionValue.isValid ()) {
+    result = GALGAS_bindingOptionList_2D_element (in_mOptionName, in_mOptionValue) ;
   }
   return result ;
 }
@@ -12910,18 +12910,18 @@ mProperty_mGraphicController (inOperand7) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                  const GALGAS_lstring & inOperand1,
-                                                                                                  const GALGAS_tableValueBinding & inOperand2,
-                                                                                                  const GALGAS_runActionDescriptor & inOperand3,
-                                                                                                  const GALGAS_multipleBindingDescriptor & inOperand4,
-                                                                                                  const GALGAS_multipleBindingDescriptor & inOperand5,
-                                                                                                  const GALGAS_regularBindingList & inOperand6,
-                                                                                                  const GALGAS_graphicController & inOperand7 
+GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element::constructor_new (const GALGAS_lstring & in_mOutletTypeName,
+                                                                                                  const GALGAS_lstring & in_mOutletName,
+                                                                                                  const GALGAS_tableValueBinding & in_mTableValueBindingDescriptor,
+                                                                                                  const GALGAS_runActionDescriptor & in_mRunDescriptor,
+                                                                                                  const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                                                                  const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
+                                                                                                  const GALGAS_regularBindingList & in_mRegularBindingList,
+                                                                                                  const GALGAS_graphicController & in_mGraphicController 
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletDeclarationList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
-    result = GALGAS_outletDeclarationList_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7) ;
+  if (in_mOutletTypeName.isValid () && in_mOutletName.isValid () && in_mTableValueBindingDescriptor.isValid () && in_mRunDescriptor.isValid () && in_mEnabledBindingDescriptor.isValid () && in_mHiddenBindingDescriptor.isValid () && in_mRegularBindingList.isValid () && in_mGraphicController.isValid ()) {
+    result = GALGAS_outletDeclarationList_2D_element (in_mOutletTypeName, in_mOutletName, in_mTableValueBindingDescriptor, in_mRunDescriptor, in_mEnabledBindingDescriptor, in_mHiddenBindingDescriptor, in_mRegularBindingList, in_mGraphicController) ;
   }
   return result ;
 }
@@ -13075,12 +13075,12 @@ GALGAS_decoratedOutletMap_2D_element GALGAS_decoratedOutletMap_2D_element::const
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_decoratedOutletMap_2D_element GALGAS_decoratedOutletMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                            const GALGAS_string & inOperand1 
+GALGAS_decoratedOutletMap_2D_element GALGAS_decoratedOutletMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                                            const GALGAS_string & in_mOutletTypeName 
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_decoratedOutletMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_decoratedOutletMap_2D_element (inOperand0, inOperand1) ;
+  if (in_lkey.isValid () && in_mOutletTypeName.isValid ()) {
+    result = GALGAS_decoratedOutletMap_2D_element (in_lkey, in_mOutletTypeName) ;
   }
   return result ;
 }
@@ -13188,11 +13188,11 @@ mProperty_mProperty (inOperand0) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_computedPropertyGenerationList_2D_element GALGAS_computedPropertyGenerationList_2D_element::constructor_new (const GALGAS_computedPropertyGeneration & inOperand0 
+GALGAS_computedPropertyGenerationList_2D_element GALGAS_computedPropertyGenerationList_2D_element::constructor_new (const GALGAS_computedPropertyGeneration & in_mProperty 
                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_computedPropertyGenerationList_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_computedPropertyGenerationList_2D_element (inOperand0) ;
+  if (in_mProperty.isValid ()) {
+    result = GALGAS_computedPropertyGenerationList_2D_element (in_mProperty) ;
   }
   return result ;
 }
@@ -13300,13 +13300,13 @@ mProperty_mDefaultValue (inOperand2) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_simpleStoredPropertyList_2D_element GALGAS_simpleStoredPropertyList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                        const GALGAS_lstring & inOperand1,
-                                                                                                        const GALGAS_abstractDefaultValue & inOperand2 
+GALGAS_simpleStoredPropertyList_2D_element GALGAS_simpleStoredPropertyList_2D_element::constructor_new (const GALGAS_lstring & in_mPropertyTypeName,
+                                                                                                        const GALGAS_lstring & in_mPropertyName,
+                                                                                                        const GALGAS_abstractDefaultValue & in_mDefaultValue 
                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_simpleStoredPropertyList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_simpleStoredPropertyList_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_mPropertyTypeName.isValid () && in_mPropertyName.isValid () && in_mDefaultValue.isValid ()) {
+    result = GALGAS_simpleStoredPropertyList_2D_element (in_mPropertyTypeName, in_mPropertyName, in_mDefaultValue) ;
   }
   return result ;
 }
@@ -13420,11 +13420,11 @@ mProperty_mProperty (inOperand0) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_toOnePropertyGenerationList_2D_element GALGAS_toOnePropertyGenerationList_2D_element::constructor_new (const GALGAS_toOnePropertyGeneration & inOperand0 
+GALGAS_toOnePropertyGenerationList_2D_element GALGAS_toOnePropertyGenerationList_2D_element::constructor_new (const GALGAS_toOnePropertyGeneration & in_mProperty 
                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_toOnePropertyGenerationList_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_toOnePropertyGenerationList_2D_element (inOperand0) ;
+  if (in_mProperty.isValid ()) {
+    result = GALGAS_toOnePropertyGenerationList_2D_element (in_mProperty) ;
   }
   return result ;
 }
@@ -13532,11 +13532,11 @@ GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::constructor_default (UN
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0 
+GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey 
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_actionMap_2D_element result ;
-  if (inOperand0.isValid ()) {
-    result = GALGAS_actionMap_2D_element (inOperand0) ;
+  if (in_lkey.isValid ()) {
+    result = GALGAS_actionMap_2D_element (in_lkey) ;
   }
   return result ;
 }
@@ -13652,13 +13652,13 @@ GALGAS_regularBindingList_2D_element GALGAS_regularBindingList_2D_element::const
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_regularBindingList_2D_element GALGAS_regularBindingList_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                            const GALGAS_observablePropertyList & inOperand1,
-                                                                                            const GALGAS_bindingOptionList & inOperand2 
+GALGAS_regularBindingList_2D_element GALGAS_regularBindingList_2D_element::constructor_new (const GALGAS_lstring & in_mBindingName,
+                                                                                            const GALGAS_observablePropertyList & in_mObservablePropertyList,
+                                                                                            const GALGAS_bindingOptionList & in_mBindingOptionList 
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_regularBindingList_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_regularBindingList_2D_element (inOperand0, inOperand1, inOperand2) ;
+  if (in_mBindingName.isValid () && in_mObservablePropertyList.isValid () && in_mBindingOptionList.isValid ()) {
+    result = GALGAS_regularBindingList_2D_element (in_mBindingName, in_mObservablePropertyList, in_mBindingOptionList) ;
   }
   return result ;
 }
@@ -13775,12 +13775,12 @@ mProperty_mHiddenSelectionViewBindingDescriptor (inOperand1) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_arrayControllerBindingListAST_2D_element GALGAS_arrayControllerBindingListAST_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                  const GALGAS_multipleBindingDescriptor & inOperand1 
+GALGAS_arrayControllerBindingListAST_2D_element GALGAS_arrayControllerBindingListAST_2D_element::constructor_new (const GALGAS_lstring & in_mControllerName,
+                                                                                                                  const GALGAS_multipleBindingDescriptor & in_mHiddenSelectionViewBindingDescriptor 
                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_arrayControllerBindingListAST_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_arrayControllerBindingListAST_2D_element (inOperand0, inOperand1) ;
+  if (in_mControllerName.isValid () && in_mHiddenSelectionViewBindingDescriptor.isValid ()) {
+    result = GALGAS_arrayControllerBindingListAST_2D_element (in_mControllerName, in_mHiddenSelectionViewBindingDescriptor) ;
   }
   return result ;
 }
@@ -13906,14 +13906,14 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element GALGAS_autoLay
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element::constructor_new (const GALGAS_bool & inOperand0,
-                                                                                                                                                      const GALGAS_lstring & inOperand1,
-                                                                                                                                                      const GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
-                                                                                                                                                      const GALGAS_lstring & inOperand3 
+GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element::constructor_new (const GALGAS_bool & in_mEditable,
+                                                                                                                                                      const GALGAS_lstring & in_mPropertyName,
+                                                                                                                                                      const GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
+                                                                                                                                                      const GALGAS_lstring & in_mSortPropertyName 
                                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
-    result = GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (inOperand0, inOperand1, inOperand2, inOperand3) ;
+  if (in_mEditable.isValid () && in_mPropertyName.isValid () && in_mColumnParameterListAST.isValid () && in_mSortPropertyName.isValid ()) {
+    result = GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (in_mEditable, in_mPropertyName, in_mColumnParameterListAST, in_mSortPropertyName) ;
   }
   return result ;
 }
@@ -14036,12 +14036,12 @@ mProperty_mAttributeValue (inOperand1) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                                                                                                const GALGAS_abstractDefaultValue & inOperand1 
+GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element::constructor_new (const GALGAS_lstring & in_mAttributeName,
+                                                                                                                                                const GALGAS_abstractDefaultValue & in_mAttributeValue 
                                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element (inOperand0, inOperand1) ;
+  if (in_mAttributeName.isValid () && in_mAttributeValue.isValid ()) {
+    result = GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element (in_mAttributeName, in_mAttributeValue) ;
   }
   return result ;
 }
@@ -14161,15 +14161,15 @@ mProperty_mPropertyGenerationList (inOperand4) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_classMap_2D_element GALGAS_classMap_2D_element::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                        const GALGAS_classKind & inOperand1,
-                                                                        const GALGAS_propertyMap & inOperand2,
-                                                                        const GALGAS_actionMap & inOperand3,
-                                                                        const GALGAS_propertyGenerationList & inOperand4 
+GALGAS_classMap_2D_element GALGAS_classMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
+                                                                        const GALGAS_classKind & in_mClassKind,
+                                                                        const GALGAS_propertyMap & in_mPropertyMap,
+                                                                        const GALGAS_actionMap & in_mActionMap,
+                                                                        const GALGAS_propertyGenerationList & in_mPropertyGenerationList 
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_classMap_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_classMap_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  if (in_lkey.isValid () && in_mClassKind.isValid () && in_mPropertyMap.isValid () && in_mActionMap.isValid () && in_mPropertyGenerationList.isValid ()) {
+    result = GALGAS_classMap_2D_element (in_lkey, in_mClassKind, in_mPropertyMap, in_mActionMap, in_mPropertyGenerationList) ;
   }
   return result ;
 }

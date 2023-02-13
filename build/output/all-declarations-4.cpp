@@ -10438,27 +10438,27 @@ GALGAS_generationStruct GALGAS_generationStruct::constructor_default (UNUSED_LOC
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_generationStruct GALGAS_generationStruct::constructor_new (const GALGAS_validationStubRoutineListForGeneration & inOperand0,
-                                                                  const GALGAS_fileGenerationList & inOperand1,
-                                                                  const GALGAS_entityListForGeneratingEBManagedObjectContext & inOperand2,
-                                                                  const GALGAS_bool & inOperand3,
-                                                                  const GALGAS_bool & inOperand4,
-                                                                  const GALGAS_stringset & inOperand5,
-                                                                  const GALGAS_mainXibDescriptorList & inOperand6,
-                                                                  const GALGAS_stringset & inOperand7,
-                                                                  const GALGAS_stringset & inOperand8,
-                                                                  const GALGAS_selectionControllerForGeneration & inOperand9,
-                                                                  const GALGAS_stringlist & inOperand10,
-                                                                  const GALGAS_transientExternTypeList & inOperand11,
-                                                                  const GALGAS_stringset & inOperand12,
-                                                                  const GALGAS_stringset & inOperand13,
-                                                                  const GALGAS_stringset & inOperand14,
-                                                                  const GALGAS_stringset & inOperand15,
-                                                                  const GALGAS_stringset & inOperand16 
+GALGAS_generationStruct GALGAS_generationStruct::constructor_new (const GALGAS_validationStubRoutineListForGeneration & in_mValidationStubRoutineListForGeneration,
+                                                                  const GALGAS_fileGenerationList & in_mFileGenerationList,
+                                                                  const GALGAS_entityListForGeneratingEBManagedObjectContext & in_mEntityListForGeneration,
+                                                                  const GALGAS_bool & in_mGenerateEBManagedXibDocumentSwift,
+                                                                  const GALGAS_bool & in_mGenerateEBManagedAutoLayoutDocumentSwift,
+                                                                  const GALGAS_stringset & in_mNeededOutletClasses,
+                                                                  const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
+                                                                  const GALGAS_stringset & in_mToOneClassImplementations,
+                                                                  const GALGAS_stringset & in_mToManyClassImplementations,
+                                                                  const GALGAS_selectionControllerForGeneration & in_mSelectionControllerListForGeneration,
+                                                                  const GALGAS_stringlist & in_mPropertyClassList,
+                                                                  const GALGAS_transientExternTypeList & in_mTransientPropertyTypeList,
+                                                                  const GALGAS_stringset & in_mGenerateClass_PreferencesArrayOf_,
+                                                                  const GALGAS_stringset & in_mGenerateClass_ProxyArrayOf_,
+                                                                  const GALGAS_stringset & in_mGenerateClass_TransientArrayOfSuperOf_,
+                                                                  const GALGAS_stringset & in_mGenerateClass_TransientArrayOf_,
+                                                                  const GALGAS_stringset & in_mGenerateClass_StoredArrayOf_ 
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_generationStruct result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid () && inOperand12.isValid () && inOperand13.isValid () && inOperand14.isValid () && inOperand15.isValid () && inOperand16.isValid ()) {
-    result = GALGAS_generationStruct (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11, inOperand12, inOperand13, inOperand14, inOperand15, inOperand16) ;
+  if (in_mValidationStubRoutineListForGeneration.isValid () && in_mFileGenerationList.isValid () && in_mEntityListForGeneration.isValid () && in_mGenerateEBManagedXibDocumentSwift.isValid () && in_mGenerateEBManagedAutoLayoutDocumentSwift.isValid () && in_mNeededOutletClasses.isValid () && in_mMainXibDescriptorList.isValid () && in_mToOneClassImplementations.isValid () && in_mToManyClassImplementations.isValid () && in_mSelectionControllerListForGeneration.isValid () && in_mPropertyClassList.isValid () && in_mTransientPropertyTypeList.isValid () && in_mGenerateClass_PreferencesArrayOf_.isValid () && in_mGenerateClass_ProxyArrayOf_.isValid () && in_mGenerateClass_TransientArrayOfSuperOf_.isValid () && in_mGenerateClass_TransientArrayOf_.isValid () && in_mGenerateClass_StoredArrayOf_.isValid ()) {
+    result = GALGAS_generationStruct (in_mValidationStubRoutineListForGeneration, in_mFileGenerationList, in_mEntityListForGeneration, in_mGenerateEBManagedXibDocumentSwift, in_mGenerateEBManagedAutoLayoutDocumentSwift, in_mNeededOutletClasses, in_mMainXibDescriptorList, in_mToOneClassImplementations, in_mToManyClassImplementations, in_mSelectionControllerListForGeneration, in_mPropertyClassList, in_mTransientPropertyTypeList, in_mGenerateClass_PreferencesArrayOf_, in_mGenerateClass_ProxyArrayOf_, in_mGenerateClass_TransientArrayOfSuperOf_, in_mGenerateClass_TransientArrayOf_, in_mGenerateClass_StoredArrayOf_) ;
   }
   return result ;
 }
