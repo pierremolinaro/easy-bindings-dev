@@ -627,15 +627,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleB
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeExpressionForMultipleBinding (class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const GALGAS_bool constin_inPreferences,
-                                                              const GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const GALGAS_semanticContext constin_inSemanticContext,
-                                                              const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              const GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
-                                                              GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              GALGAS_typeKind & out_outType,
-                                                              GALGAS_location & out_outErrorLocation,
-                                                              C_Compiler * inCompiler
+                                                              const class GALGAS_bool constin_inPreferences,
+                                                              const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
+                                                              const class GALGAS_semanticContext constin_inSemanticContext,
+                                                              const class GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
+                                                              const class GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
+                                                              class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
+                                                              class GALGAS_typeKind & out_outType,
+                                                              class GALGAS_location & out_outErrorLocation,
+                                                              class C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4905,8 +4905,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsAsDefaultValue
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_enterDefaultValuePrecedence (class cPtr_abstractDefaultValue * inObject,
-                                                      const GALGAS_lstring constin_inNode,
-                                                      GALGAS_declarationPrecedenceGraph & io_ioGraph,
+                                                      const class GALGAS_lstring constin_inNode,
+                                                      class GALGAS_declarationPrecedenceGraph & io_ioGraph,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -5097,9 +5097,9 @@ class GALGAS_string callExtensionGetter_bindPropertyInSelectionController (const
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_propertyDeclarationCode (const class cPtr_propertyGeneration * inObject,
-                                                                 const GALGAS_bool constin_inPreferences,
-                                                                 const GALGAS_stringset constin_inOverriddenTransients,
-                                                                 C_Compiler * inCompiler
+                                                                 const class GALGAS_bool constin_inPreferences,
+                                                                 const class GALGAS_stringset constin_inOverriddenTransients,
+                                                                 class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5109,8 +5109,8 @@ class GALGAS_string callExtensionGetter_propertyDeclarationCode (const class cPt
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_configurationCode (const class cPtr_propertyGeneration * inObject,
-                                                           const GALGAS_bool constin_inPreferences,
-                                                           C_Compiler * inCompiler
+                                                           const class GALGAS_bool constin_inPreferences,
+                                                           class C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5120,7 +5120,7 @@ class GALGAS_string callExtensionGetter_configurationCode (const class cPtr_prop
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_initCode (const class cPtr_propertyGeneration * inObject,
-                                                  C_Compiler * inCompiler
+                                                  class C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5427,10 +5427,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientExternType
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_generateCode (class cPtr_abstractFileGeneration * inObject,
-                                       const GALGAS_string constin_inOutputDirectory,
-                                       const GALGAS_generationStruct constin_inGenerationStruct,
-                                       GALGAS_stringset & io_ioGeneratedFileSet,
-                                       C_Compiler * inCompiler
+                                       const class GALGAS_string constin_inOutputDirectory,
+                                       const class GALGAS_generationStruct constin_inGenerationStruct,
+                                       class GALGAS_stringset & io_ioGeneratedFileSet,
+                                       class C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

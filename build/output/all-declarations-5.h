@@ -1497,8 +1497,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclarationStruc
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_enterInPrecedenceGraph (class cPtr_abstractDeclarationAST * inObject,
-                                                 GALGAS_declarationPrecedenceGraph & io_ioGraph,
-                                                 C_Compiler * inCompiler
+                                                 class GALGAS_declarationPrecedenceGraph & io_ioGraph,
+                                                 class C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1508,7 +1508,7 @@ void callExtensionMethod_enterInPrecedenceGraph (class cPtr_abstractDeclarationA
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_lstring callExtensionGetter_nodeKey (const class cPtr_abstractDeclarationAST * inObject,
-                                                  C_Compiler * inCompiler
+                                                  class C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1518,9 +1518,9 @@ class GALGAS_lstring callExtensionGetter_nodeKey (const class cPtr_abstractDecla
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_firstAnalysisPhase (class cPtr_abstractDeclarationAST * inObject,
-                                             GALGAS_semanticContext & io_ioSemanticContext,
-                                             GALGAS_generationStruct & io_ioGeneration,
-                                             C_Compiler * inCompiler
+                                             class GALGAS_semanticContext & io_ioSemanticContext,
+                                             class GALGAS_generationStruct & io_ioGeneration,
+                                             class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1530,8 +1530,8 @@ void callExtensionMethod_firstAnalysisPhase (class cPtr_abstractDeclarationAST *
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_secondAnalysisPhase (class cPtr_abstractDeclarationAST * inObject,
-                                              GALGAS_semanticContext & io_ioSemanticContext,
-                                              GALGAS_generationStruct & io_ioGeneration,
+                                              class GALGAS_semanticContext & io_ioSemanticContext,
+                                              class GALGAS_generationStruct & io_ioGeneration,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
@@ -1542,8 +1542,8 @@ void callExtensionMethod_secondAnalysisPhase (class cPtr_abstractDeclarationAST 
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_thirdAnalysisPhase (class cPtr_abstractDeclarationAST * inObject,
-                                             GALGAS_semanticContext & io_ioSemanticContext,
-                                             GALGAS_generationStruct & io_ioGeneration,
+                                             class GALGAS_semanticContext & io_ioSemanticContext,
+                                             class GALGAS_generationStruct & io_ioGeneration,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
@@ -1554,8 +1554,8 @@ void callExtensionMethod_thirdAnalysisPhase (class cPtr_abstractDeclarationAST *
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_fourthAnalysisPhase (class cPtr_abstractDeclarationAST * inObject,
-                                              GALGAS_semanticContext & io_ioSemanticContext,
-                                              GALGAS_generationStruct & io_ioGeneration,
+                                              class GALGAS_semanticContext & io_ioSemanticContext,
+                                              class GALGAS_generationStruct & io_ioGeneration,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 

@@ -564,7 +564,7 @@ void extensionMethod_analyzeObservableProperty (const GALGAS_observablePropertyA
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
         {
-          outArgument_outSwiftTypeStringForTransientFunctionArgument = GALGAS_string ("AnyObject?") ;
+          outArgument_outSwiftTypeStringForTransientFunctionArgument = GALGAS_string ("AnyObject\?") ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
@@ -781,7 +781,7 @@ void extensionMethod_analyzeObservableProperty (const GALGAS_observablePropertyA
         }
         break ;
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = extensionGetter_swiftTypeName (outArgument_outKind, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 581)).add_operation (GALGAS_string ("?"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 581)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = extensionGetter_swiftTypeName (outArgument_outKind, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 581)).add_operation (GALGAS_string ("\?"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 581)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_selfPropertyNone:
@@ -1093,7 +1093,7 @@ void extensionMethod_analyzeObservableProperty (const GALGAS_observablePropertyA
       GALGAS_actionMap joker_30574_2 ; // Joker input parameter
       GALGAS_bool joker_30574_1 ; // Joker input parameter
       var_observablePropertyMap_30497.method_searchKey (extractedValue_29681_propertyName, outArgument_outKind, joker_30574_2, joker_30574_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 703)) ;
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = var_controllerTypeName_29811.add_operation (GALGAS_string ("?<<8>>"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 704)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = var_controllerTypeName_29811.add_operation (GALGAS_string ("\?<<8>>"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 704)) ;
     }
     break ;
   case GALGAS_observablePropertyAST::kEnum_selfControllerAllProperties:
@@ -1202,7 +1202,7 @@ void extensionMethod_analyzeObservableProperty (const GALGAS_observablePropertyA
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
         {
-          outArgument_outSwiftTypeStringForTransientFunctionArgument = GALGAS_string ("AnyObject?") ;
+          outArgument_outSwiftTypeStringForTransientFunctionArgument = GALGAS_string ("AnyObject\?") ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
@@ -1255,7 +1255,7 @@ void extensionMethod_analyzeObservableProperty (const GALGAS_observablePropertyA
         break ;
       case GALGAS_propertyKind::kEnum_toOne:
         {
-          outArgument_outSwiftTypeStringForTransientFunctionArgument = GALGAS_string ("AnyObject?") ;
+          outArgument_outSwiftTypeStringForTransientFunctionArgument = GALGAS_string ("AnyObject\?") ;
         }
         break ;
       case GALGAS_propertyKind::kEnum_arrayController:
@@ -3959,8 +3959,7 @@ GALGAS_string extensionGetter_transientComputeFunctionCall (const GALGAS_transie
   while (enumerator_19878.hasCurrentObject ()) {
     result_outResult.plusAssign_operation(GALGAS_string (".single (let v").add_operation (index_19874.getter_string (SOURCE_FILE ("transient-property.ggs", 444)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 444)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 444)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 444)) ;
     if (enumerator_19878.hasNextObject ()) {
-      result_outResult.plusAssign_operation(GALGAS_string (",\n"
-        "              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 446)) ;
+      result_outResult.plusAssign_operation(GALGAS_string (",\n              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 446)) ;
     }
     enumerator_19878.gotoNextObject () ;
     index_19874.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 442)) ;
@@ -3987,8 +3986,7 @@ GALGAS_string extensionGetter_transientComputeFunctionCall (const GALGAS_transie
   while (enumerator_20323.hasCurrentObject ()) {
     result_outResult.plusAssign_operation(GALGAS_string (".multiple"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 462)) ;
     if (enumerator_20323.hasNextObject ()) {
-      result_outResult.plusAssign_operation(GALGAS_string (",\n"
-        "              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 464)) ;
+      result_outResult.plusAssign_operation(GALGAS_string (",\n              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 464)) ;
     }
     enumerator_20323.gotoNextObject () ;
   }

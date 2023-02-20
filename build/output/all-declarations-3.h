@@ -271,10 +271,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKindList ;
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeDefaultValueType (class cPtr_abstractDefaultValue * inObject,
-                                                  const GALGAS_typeKindList constin_inAttributeActualTypeList,
-                                                  const GALGAS_propertyMap constin_inPreferencesPropertyMap,
-                                                  GALGAS_string & out_outSwiftDefaultValueAsString,
-                                                  C_Compiler * inCompiler
+                                                  const class GALGAS_typeKindList constin_inAttributeActualTypeList,
+                                                  const class GALGAS_propertyMap constin_inPreferencesPropertyMap,
+                                                  class GALGAS_string & out_outSwiftDefaultValueAsString,
+                                                  class C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -20,7 +20,7 @@ for (lkey mAssociationSortedList) in FUNCTION_MAP do
 %  static func %!lkey.string% () -> [String] {\n%
 %    return [%
 for (mIndex mAssociatedString) in mAssociationSortedList
-  do ![mAssociatedString cStringRepresentation]
+  do ![mAssociatedString utf8Representation]
   between %, %
 end
 %]\n%

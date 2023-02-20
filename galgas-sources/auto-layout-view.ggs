@@ -434,7 +434,7 @@ syntax extension easyBindings_syntax {
           outParameterList += !parameterName !.typeInt !.string (!value: "-" + [uint32.uint string])
         or
           $literal_string$ (?let literalString)
-          outParameterList += !parameterName !.typeString !.string (!value: [literalString.string cStringRepresentation])
+          outParameterList += !parameterName !.typeString !.string (!value: [literalString.string utf8Representation])
         or
           $.$
           $identifier$ (?let enumConstantName)
@@ -643,7 +643,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             !prefsMap: inPreferencesPropertyMap
             ?let enabledBindingGeneration
           )
-          var s = "AutoLayoutMenuItemDescriptor (title: " + [title cStringRepresentation]
+          var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
           switch runBindingGeneration 
           case none :
             s += ", target: nil, selector: nil"
