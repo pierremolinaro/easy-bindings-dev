@@ -183,13 +183,13 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
   let @typeKind typeKind
   switch classKind
   case prefs :
-    error self.mTransientTypeName: "an atomic class is required here" : typeKind
+    error self.mTransientTypeName: "an atomic class is required here" spoil typeKind
   case atomic (@typeKind kind) :
     typeKind = kind
   case document (*) :
-    error self.mTransientTypeName: "an atomic class is required here" : typeKind
+    error self.mTransientTypeName: "an atomic class is required here" spoil typeKind
   case entity (4*) :
-    error self.mTransientTypeName: "an atomic class is required here" : typeKind
+    error self.mTransientTypeName: "an atomic class is required here" spoil typeKind
   end
 #--- Root properties
   let @propertyMap rootProperties

@@ -1,5 +1,5 @@
 project (0:0:1) -> "eb" {
-  %makefile-macosx
+  %makefile-unix
   %MacOS
   %applicationBundleBase : "fr.irccyn"
 

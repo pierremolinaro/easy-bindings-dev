@@ -1379,7 +1379,8 @@ proc analyzeAutoLayoutRunBinding(
     outRunBindingGeneration = .none
   case action (@lstring target @lstring action) :
     if not inHandlesRunAction then
-      error inTypeName : "the '" + inTypeName + "' type does not handle run action" : outRunBindingGeneration
+      error inTypeName : "the '" + inTypeName + "' type does not handle run action"
+      spoil outRunBindingGeneration
     elsif target.string == "self" then
       [inActionMap searchKey !action]
       outRunBindingGeneration = .run (

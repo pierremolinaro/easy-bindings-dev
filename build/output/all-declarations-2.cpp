@@ -56,7 +56,7 @@ mObject (inElement.mProperty_mParameterName, inElement.mProperty_mParameterType,
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_astAutoLayoutViewInstructionParameterList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1355,7 +1355,7 @@ mObject (inElement.mProperty_mBindingName, inElement.mProperty_mObservableProper
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_regularBindingList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2486,6 +2486,7 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_autoLayoutViewDeclarationMap::isValid (void) const {
+  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -3344,7 +3345,7 @@ mObject (inElement.mProperty_mFunctionName, inElement.mProperty_mParameters) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutViewInstructionGenerationFuncCallList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4207,7 +4208,7 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutViewInstructionGenerationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5184,7 +5185,7 @@ mObject (inElement.mProperty_mBindingName, inElement.mProperty_mBoundObjectExpre
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutMultipleBindingGenerationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7166,7 +7167,7 @@ mObject (inElement.mProperty_mBindingName, inElement.mProperty_mBoundObjectList,
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutRegularBindingsGenerationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7711,7 +7712,7 @@ mObject (inElement.mProperty_mBoundObjectString, inElement.mProperty_mKind) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_boundObjectList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8849,7 +8850,7 @@ mObject (inElement.mProperty_mParameterName, inElement.mProperty_mParameterValue
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutViewInstructionGenerationParameterList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9407,19 +9408,19 @@ void extensionMethod_generate (const GALGAS_autoLayoutViewInstructionGenerationF
                                C_Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_autoLayoutViewInstructionGenerationFuncCallList temp_0 = inObject ;
-  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_78606 (temp_0, kENUMERATION_UP) ;
-  while (enumerator_78606.hasCurrentObject ()) {
-    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1828)).add_operation (enumerator_78606.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1828)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1828)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1828)) ;
-    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_78715 (enumerator_78606.current_mParameters (HERE), kENUMERATION_UP) ;
-    while (enumerator_78715.hasCurrentObject ()) {
-      ioArgument_ioStr.plusAssign_operation(enumerator_78715.current_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1830)).add_operation (enumerator_78715.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1830)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1830)) ;
-      if (enumerator_78715.hasNextObject ()) {
-        ioArgument_ioStr.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1831)) ;
+  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_78616 (temp_0, kENUMERATION_UP) ;
+  while (enumerator_78616.hasCurrentObject ()) {
+    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1829)).add_operation (enumerator_78616.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1829)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1829)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1829)) ;
+    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_78725 (enumerator_78616.current_mParameters (HERE), kENUMERATION_UP) ;
+    while (enumerator_78725.hasCurrentObject ()) {
+      ioArgument_ioStr.plusAssign_operation(enumerator_78725.current_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1831)).add_operation (enumerator_78725.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1831)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1831)) ;
+      if (enumerator_78725.hasNextObject ()) {
+        ioArgument_ioStr.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1832)) ;
       }
-      enumerator_78715.gotoNextObject () ;
+      enumerator_78725.gotoNextObject () ;
     }
-    ioArgument_ioStr.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1833)) ;
-    enumerator_78606.gotoNextObject () ;
+    ioArgument_ioStr.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1834)) ;
+    enumerator_78616.gotoNextObject () ;
   }
 }
 
@@ -9586,7 +9587,8 @@ mProperty_mControllerBindingOptionList (in_mControllerBindingOptionList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_outletBindingSpecificationMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mOutletBindingSpecificationModelList.isValid () && mProperty_mControllerBindingOptionList.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mOutletBindingSpecificationModelList.isValid () && mProperty_mControllerBindingOptionList.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9944,7 +9946,7 @@ mObject (inElement.mProperty_mOptionName, inElement.mProperty_mOptionValue) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_bindingOptionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10512,7 +10514,7 @@ mObject (inElement.mProperty_mKind, inElement.mProperty_mErrorLocation) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_outletBindingModelList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13496,7 +13498,7 @@ mObject (inElement.mProperty_mObservableProperty) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_observablePropertyList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

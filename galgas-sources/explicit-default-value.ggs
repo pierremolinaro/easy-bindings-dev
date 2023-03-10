@@ -321,7 +321,7 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
       else
         error self.mValue
         : "the '" + enumTypeName + "' enumeration does not define '" + self.mValue + "' constant"
-        : outSwiftDefaultValueAsString  
+        spoil outSwiftDefaultValueAsString  
       end
     case entityType (2*) :
       error self.mValue : "invalid entity type"  

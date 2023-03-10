@@ -2984,7 +2984,7 @@ mObject (inElement.mProperty_mPropertyDeclaration) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_declarationListAST::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3407,7 +3407,7 @@ mObject (inElement.mProperty_mOutletClassName, inElement.mProperty_mBindingName,
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_outletClassBindingSpecificationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4019,7 +4019,7 @@ mObject (inElement.mProperty_mOutletClassName, inElement.mProperty_mBindingName,
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutViewClassBindingSpecificationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4592,7 +4592,8 @@ mProperty_mFomalParameterList (in_mFomalParameterList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_astAutoLayoutViewFunctionMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mFomalParameterList.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mFomalParameterList.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4900,7 +4901,7 @@ mObject (inElement.mProperty_mEnumName, inElement.mProperty_mFunctionName, inEle
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_enumerationFunctionListAST::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5416,7 +5417,8 @@ mProperty_mPropertyGenerationList (in_mPropertyGenerationList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_classMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mClassKind.isValid () && mProperty_mPropertyMap.isValid () && mProperty_mActionMap.isValid () && mProperty_mPropertyGenerationList.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mClassKind.isValid () && mProperty_mPropertyMap.isValid () && mProperty_mActionMap.isValid () && mProperty_mPropertyGenerationList.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5855,7 +5857,8 @@ mProperty_mUserDefined (in_mUserDefined) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_outletClassMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6440,7 +6443,8 @@ mProperty_mBindingMap (in_mBindingMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_bindingSpecificationMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mOutletSuperClassName.isValid () && mProperty_mBindingMap.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mOutletSuperClassName.isValid () && mProperty_mBindingMap.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6800,7 +6804,8 @@ mProperty_mAutoLayoutViewFunctionMap (in_mAutoLayoutViewFunctionMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_autolayoutViewClassMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () && mProperty_mParameterList.isValid () && mProperty_mAutoLayoutViewFunctionMap.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () && mProperty_mParameterList.isValid () && mProperty_mAutoLayoutViewFunctionMap.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7489,7 +7494,8 @@ mProperty_mBindingMap (in_mBindingMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_autoLayoutBindingSpecificationMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mOutletSuperClassName.isValid () && mProperty_mBindingMap.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mOutletSuperClassName.isValid () && mProperty_mBindingMap.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8160,7 +8166,7 @@ mObject (inElement.mProperty_mExternSwiftDelegateName) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_externSwiftDelegateList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8579,7 +8585,7 @@ mObject (inElement.mProperty_mExternSwiftFunctionName, inElement.mProperty_mCall
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_externSwiftFunctionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9024,6 +9030,7 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_externFunctionMap::isValid (void) const {
+  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -9446,7 +9453,8 @@ mProperty_mIndex (in_mIndex) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_enumConstantMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mIndex.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mIndex.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10010,7 +10018,8 @@ mProperty_mAssociationSortedList (in_mAssociationSortedList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_enumFuncMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mAssociationSortedList.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mAssociationSortedList.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11301,7 +11310,7 @@ mObject (inElement.mProperty_mPropertyTypeName, inElement.mProperty_mPropertyNam
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_simpleStoredPropertyList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11955,7 +11964,7 @@ mObject (inElement.mProperty_mProperty) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_propertyGenerationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12485,7 +12494,7 @@ mObject (inElement.mProperty_mEntityName, inElement.mProperty_mObsoleteEntityNam
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_entityListForGeneratingEBManagedObjectContext::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12979,7 +12988,7 @@ mObject (inElement.mProperty_mOutletTypeName, inElement.mProperty_mOutletName, i
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_outletDeclarationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13839,7 +13848,7 @@ mObject (inElement.mProperty_mControllerName, inElement.mProperty_mHiddenSelecti
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_arrayControllerBindingListAST::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14321,7 +14330,7 @@ mObject (inElement.mProperty_mViewName, inElement.mProperty_mView) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_astViewDeclarationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14801,7 +14810,7 @@ mObject (inElement.mProperty_mItem) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_astAutoLayoutToolbarItemList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15220,7 +15229,7 @@ mObject (inElement.mProperty_mLinkerName, inElement.mProperty_mOutletNameList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_astAutoLayoutOutletLinkerList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

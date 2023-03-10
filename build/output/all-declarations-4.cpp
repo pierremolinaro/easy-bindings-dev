@@ -2155,7 +2155,7 @@ mObject (inElement.mProperty_mEditable, inElement.mProperty_mPropertyName, inEle
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2763,7 +2763,7 @@ mObject (inElement.mProperty_mAttributeName, inElement.mProperty_mAttributeValue
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutTableViewControllerAttributListAST::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3799,7 +3799,7 @@ mObject (inElement.mProperty_mEditable, inElement.mProperty_mSortPropertyName, i
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4535,7 +4535,7 @@ mObject (inElement.mProperty_mColumnName, inElement.mProperty_mSortPropertyKind,
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_autoLayoutTableViewControllerSortedColumnListForGeneration::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5658,7 +5658,7 @@ mObject (inElement.mProperty_mOwnerName, inElement.mProperty_mSelectionControlle
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_selectionControllerForGeneration::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7759,7 +7759,7 @@ mObject (inElement.mProperty_mType) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_typeKindList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9478,7 +9478,7 @@ mObject (inElement.mProperty_mTypeName, inElement.mProperty_mIsClass) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_transientExternTypeList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9977,7 +9977,7 @@ mObject (inElement.mProperty_mFileGeneration) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_fileGenerationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10688,7 +10688,7 @@ mObject (inElement.mProperty_mGroupReference, inElement.mProperty_mGroupName, in
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_XCodeGroupList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11314,7 +11314,7 @@ mObject (inElement.mProperty_mTargetRef, inElement.mProperty_mTargetName, inElem
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_XCodeToolTargetList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12389,7 +12389,7 @@ mObject (inElement.mProperty_mTargetRef, inElement.mProperty_mTargetName, inElem
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_XCodeAppTargetList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13692,7 +13692,7 @@ mObject (inElement.mProperty_mFileReference, inElement.mProperty_mFileName, inEl
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_BuildFileList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14235,7 +14235,7 @@ mObject (inElement.mProperty_mElement) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_mainXibLineDescriptorList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
