@@ -87,14 +87,14 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %  //····················································································································\n%
   %  //   Observable toMany property: %!mProperty.mPropertyName%\n%
   %  //····················································································································\n\n%
-  %  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil\n\n%
+  %  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObserver? = nil\n\n%
   %  //····················································································································\n\n%
   %  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n%
-  %    let relay : EBObservedObject\n%
+  %    let relay : EBObservedObserver\n%
   %    if let r = self.mObserversOf_%!mProperty.mPropertyName% {\n%
   %      relay = r\n%
   %    }else{\n%
-  %      relay = EBObservedObject ()\n%
+  %      relay = EBObservedObserver ()\n%
   %      self.mWeakInternalValue?.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)\n%
   %      self.mObserversOf_%!mProperty.mPropertyName% = relay\n%
   %    }\n%

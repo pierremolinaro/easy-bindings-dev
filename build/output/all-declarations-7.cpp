@@ -2347,11 +2347,11 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
       result << enumerator_3498.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "' stored property\n  //····················································································································\n\n  private final var mObserversOf_" ;
       result << enumerator_3498.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " : EBObservedObject\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
+      result << " : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
       result << enumerator_3498.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObject\n    if let r = self.mObserversOf_" ;
+      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_" ;
       result << enumerator_3498.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObject ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
+      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
       result << enumerator_3498.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.startsToBeObserved (by: relay)\n      }\n      self.mObserversOf_" ;
       result << enumerator_3498.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
@@ -2364,104 +2364,104 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
       enumerator_3498.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_4961_ (0) ;
+  GALGAS_uint index_4967_ (0) ;
   if (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_toManyProxyGenerationList enumerator_4961 (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_4961.hasCurrentObject ()) {
+    cEnumerator_toManyProxyGenerationList enumerator_4967 (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_4967.hasCurrentObject ()) {
       result << "  //····················································································································\n  //   Observers of '" ;
-      result << enumerator_4961.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_4967.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "' toMany proxy\n  //····················································································································\n\n  private final var mObserversOf_" ;
-      result << enumerator_4961.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " : EBObservedObject\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
-      result << enumerator_4961.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObject\n    if let r = self.mObserversOf_" ;
-      result << enumerator_4961.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObject ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
-      result << enumerator_4961.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_4967.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << " : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
+      result << enumerator_4967.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_" ;
+      result << enumerator_4967.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
+      result << enumerator_4967.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.startsToBeObserved (by: relay)\n      }\n      self.mObserversOf_" ;
-      result << enumerator_4961.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_4967.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << " = relay\n    }\n    relay.startsToBeObserved (by: inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_" ;
-      result << enumerator_4961.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_4967.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_" ;
-      result << enumerator_4961.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_4967.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "\?.stopsBeingObserved (by: inObserver)\n  }\n\n" ;
-      index_4961_.increment () ;
-      enumerator_4961.gotoNextObject () ;
+      index_4967_.increment () ;
+      enumerator_4967.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_6413_ (0) ;
+  GALGAS_uint index_6425_ (0) ;
   if (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicProxyGenerationList enumerator_6413 (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_6413.hasCurrentObject ()) {
+    cEnumerator_atomicProxyGenerationList enumerator_6425 (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_6425.hasCurrentObject ()) {
       result << "  //····················································································································\n  //   Observers of '" ;
-      result << enumerator_6413.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6425.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "' proxy property\n  //····················································································································\n\n  private final var mObserversOf_" ;
-      result << enumerator_6413.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " : EBObservedObject\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
-      result << enumerator_6413.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObject\n    if let r = self.mObserversOf_" ;
-      result << enumerator_6413.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObject ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
-      result << enumerator_6413.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6425.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << " : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
+      result << enumerator_6425.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_" ;
+      result << enumerator_6425.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
+      result << enumerator_6425.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.startsToBeObserved (by: relay)\n      }\n      self.mObserversOf_" ;
-      result << enumerator_6413.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6425.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << " = relay\n    }\n    relay.startsToBeObserved (by: inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_" ;
-      result << enumerator_6413.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6425.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_" ;
-      result << enumerator_6413.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6425.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "\?.stopsBeingObserved (by: inObserver)\n  }\n\n" ;
-      index_6413_.increment () ;
-      enumerator_6413.gotoNextObject () ;
+      index_6425_.increment () ;
+      enumerator_6425.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_7875_ (0) ;
+  GALGAS_uint index_7893_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientPropertyGenerationList enumerator_7875 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_7875.hasCurrentObject ()) {
+    cEnumerator_transientPropertyGenerationList enumerator_7893 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_7893.hasCurrentObject ()) {
       result << "  //····················································································································\n  //   Observers of '" ;
-      result << enumerator_7875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7893.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "' transient property\n  //····················································································································\n\n  private final var mObserversOf_" ;
-      result << enumerator_7875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " : EBObservedObject\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
-      result << enumerator_7875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObject\n    if let r = self.mObserversOf_" ;
-      result << enumerator_7875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObject ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
-      result << enumerator_7875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7893.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << " : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
+      result << enumerator_7893.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_" ;
+      result << enumerator_7893.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
+      result << enumerator_7893.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.startsToBeObserved (by: relay)\n      }\n      self.mObserversOf_" ;
-      result << enumerator_7875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7893.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << " = relay\n    }\n    relay.startsToBeObserved (by:  inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_" ;
-      result << enumerator_7875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7893.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_" ;
-      result << enumerator_7875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7893.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "\?.stopsBeingObserved (by: inObserver)\n  }\n\n" ;
-      index_7875_.increment () ;
-      enumerator_7875.gotoNextObject () ;
+      index_7893_.increment () ;
+      enumerator_7893.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_9350_ (0) ;
+  GALGAS_uint index_9374_ (0) ;
   if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_computedPropertyGenerationList enumerator_9350 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_9350.hasCurrentObject ()) {
+    cEnumerator_computedPropertyGenerationList enumerator_9374 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_9374.hasCurrentObject ()) {
       result << "  //····················································································································\n  //   Observers of '" ;
-      result << enumerator_9350.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_9374.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "' computed property\n  //····················································································································\n\n  private final var mObserversOf_" ;
-      result << enumerator_9350.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " : EBObservedObject\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
-      result << enumerator_9350.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObject\n    if let r = self.mObserversOf_" ;
-      result << enumerator_9350.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObject ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
-      result << enumerator_9350.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_9374.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << " : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
+      result << enumerator_9374.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_" ;
+      result << enumerator_9374.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsToBeObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject." ;
+      result << enumerator_9374.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.startsToBeObserved (by: relay)\n      }\n      self.mObserversOf_" ;
-      result << enumerator_9350.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_9374.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << " = relay\n    }\n    relay.startsToBeObserved (by: inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_" ;
-      result << enumerator_9350.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_9374.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_" ;
-      result << enumerator_9350.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_9374.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "\?.stopsBeingObserved (by: inObserver)\n  }\n\n" ;
-      index_9350_.increment () ;
-      enumerator_9350.gotoNextObject () ;
+      index_9374_.increment () ;
+      enumerator_9374.gotoNextObject () ;
     }
   }
   result << "  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    TransientArrayOf " ;
@@ -2651,15 +2651,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result << "\") as! " ;
     result << in_ENTITY_5F_NAME.stringValue () ;
     result << "\n        object.setUpProperties (withDictionary: dictionary, managedObjectArray: [])\n        objectArray.append (object)\n      }\n      self.setProp (objectArray)\n    }\n" ;
-    GALGAS_uint index_35345_ (0) ;
+    GALGAS_uint index_35375_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-      cEnumerator_atomicPropertyGenerationList enumerator_35345 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-      while (enumerator_35345.hasCurrentObject ()) {
+      cEnumerator_atomicPropertyGenerationList enumerator_35375 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+      while (enumerator_35375.hasCurrentObject ()) {
         result << "    toMany_" ;
-        result << enumerator_35345.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+        result << enumerator_35375.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
         result << "_StartsToBeObserved (by: self.mObserverForWritingPreferences)\n" ;
-        index_35345_.increment () ;
-        enumerator_35345.gotoNextObject () ;
+        index_35375_.increment () ;
+        enumerator_35375.gotoNextObject () ;
       }
     }
     result << "    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self\?.writeInPreferences () }\n }\n\n  //····················································································································\n\n  private func writeInPreferences () {\n    var dictionaryArray = [[String  : Any]] ()\n    for object in self.mInternalArrayValue.values {\n      var d = [String  : Any] ()\n      object.savePropertiesAndRelationshipsIntoDictionary (&d)\n      d [ENTITY_KEY] = nil // Remove entity key, not used in preferences\n      dictionaryArray.append (d)\n    }\n    UserDefaults.standard.set (dictionaryArray, forKey: self.mPrefKey)\n  }\n\n  //····················································································································\n\n}\n" ;
@@ -2873,11 +2873,11 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
       result << enumerator_4769.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "\n  //····················································································································\n\n  private final var mObserversOf_" ;
       result << enumerator_4769.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " : EBObservedObject\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
+      result << " : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_" ;
       result << enumerator_4769.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObject\n    if let r = self.mObserversOf_" ;
+      result << "_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_" ;
       result << enumerator_4769.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
-      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObject ()\n      self.mWeakInternalValue\?." ;
+      result << " {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.mWeakInternalValue\?." ;
       result << enumerator_4769.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.startsToBeObserved (by: relay)\n      self.mObserversOf_" ;
       result << enumerator_4769.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
@@ -2891,55 +2891,55 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
     }
   }
   result << "  //····················································································································\n  //   INIT\n  //····················································································································\n\n  override init () {\n    super.init ()\n" ;
-  GALGAS_uint index_6567_ (0) ;
+  GALGAS_uint index_6573_ (0) ;
   if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicPropertyGenerationList enumerator_6567 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_6567.hasCurrentObject ()) {
+    cEnumerator_atomicPropertyGenerationList enumerator_6573 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_6573.hasCurrentObject ()) {
       result << "  //--- Configure " ;
-      result << enumerator_6567.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6573.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << " simple stored property\n    self." ;
-      result << enumerator_6567.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6573.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.mReadModelFunction = { [weak self] in\n      return self\?.mWeakInternalValue\?." ;
-      result << enumerator_6567.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6573.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.optionalSelection \?\? .single (nil)\n      /* if let model = self\?.mWeakInternalValue {\n        switch model." ;
-      result << enumerator_6567.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_6573.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.selection {\n        case .empty :\n          return .empty\n        case .multiple :\n          return .multiple\n        case .single (let v) :\n          return .single (v)\n        }\n      }else{\n        return .single (nil)\n      } */\n    }\n" ;
-      index_6567_.increment () ;
-      enumerator_6567.gotoNextObject () ;
+      index_6573_.increment () ;
+      enumerator_6573.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_7299_ (0) ;
+  GALGAS_uint index_7305_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientPropertyGenerationList enumerator_7299 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_7299.hasCurrentObject ()) {
+    cEnumerator_transientPropertyGenerationList enumerator_7305 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_7305.hasCurrentObject ()) {
       result << "  //--- Configure " ;
-      result << enumerator_7299.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7305.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << " transient property\n    self." ;
-      result << enumerator_7299.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7305.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.mReadModelFunction = { [weak self] in\n      return self\?.mWeakInternalValue\?." ;
-      result << enumerator_7299.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7305.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.optionalSelection \?\? .single (nil)\n      /* if let model = self\?.mWeakInternalValue {\n        switch model." ;
-      result << enumerator_7299.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_7305.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.selection {\n        case .empty :\n          return .empty\n        case .multiple :\n          return .multiple\n        case .single (let v) :\n          return .single (v)\n        }\n      }else{\n        return .single (nil)\n      } */\n    }\n" ;
-      index_7299_.increment () ;
-      enumerator_7299.gotoNextObject () ;
+      index_7305_.increment () ;
+      enumerator_7305.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_8035_ (0) ;
+  GALGAS_uint index_8041_ (0) ;
   if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_computedPropertyGenerationList enumerator_8035 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_8035.hasCurrentObject ()) {
+    cEnumerator_computedPropertyGenerationList enumerator_8041 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_8041.hasCurrentObject ()) {
       result << "  //--- Configure " ;
-      result << enumerator_8035.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_8041.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << " computed property\n    self." ;
-      result << enumerator_8035.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_8041.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.mReadModelFunction = { [weak self] in\n      return self\?.mWeakInternalValue\?." ;
-      result << enumerator_8035.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_8041.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.optionalSelection \?\? .single (nil)\n      /* if let model = self\?.mWeakInternalValue {\n        switch model." ;
-      result << enumerator_8035.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
+      result << enumerator_8041.current_mProperty (HERE).readProperty_mPropertyName ().stringValue () ;
       result << "_property.selection {\n        case .empty :\n          return .empty\n        case .multiple :\n          return .multiple\n        case .single (let v) :\n          return .single (v)\n        }\n      }else{\n        return .single (nil)\n      } */\n    }\n" ;
-      index_8035_.increment () ;
-      enumerator_8035.gotoNextObject () ;
+      index_8041_.increment () ;
+      enumerator_8041.gotoNextObject () ;
     }
   }
   result << "  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    StoredObject_" ;

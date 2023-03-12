@@ -69,16 +69,16 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' stored property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObserver? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBObservedObject
+    let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBObservedObject ()
+      relay = EBObservedObserver ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
@@ -101,16 +101,16 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' toMany proxy
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObserver? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBObservedObject
+    let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBObservedObject ()
+      relay = EBObservedObserver ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
@@ -133,16 +133,16 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' proxy property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObserver? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBObservedObject
+    let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBObservedObject ()
+      relay = EBObservedObserver ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
@@ -165,16 +165,16 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%!mProperty.mPropertyName%' transient property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObserver? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBObservedObject
+    let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBObservedObject ()
+      relay = EBObservedObserver ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
@@ -197,16 +197,16 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%!mProperty.mPropertyName%' computed property
   //····················································································································
 
-  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObject? = nil
+  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObserver? = nil
 
   //····················································································································
 
   final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {
-    let relay : EBObservedObject
+    let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
     }else{
-      relay = EBObservedObject ()
+      relay = EBObservedObserver ()
       self.startsToBeObserved (by: relay)
       for managedObject in self.propval.values {
         managedObject.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)
