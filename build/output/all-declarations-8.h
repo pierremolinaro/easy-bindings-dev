@@ -27,6 +27,8 @@ extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
 extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_4_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_5_transientManager ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -61,6 +63,8 @@ extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
 extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -105,6 +109,8 @@ extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
 extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -330,15 +336,6 @@ extern const cDirectoryWrapper gWrapperDirectory_0_standard_5F_properties ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Filewrapper template 'standard_properties stub'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_standard_5F_properties_stub (class C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Filewrapper template 'standard_properties scalarProperty'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -360,6 +357,34 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (class C_
                                                                         const class GALGAS_bool & in_COMPARABLE,
                                                                         const class GALGAS_bool & in_TRANSIENT
                                                                         COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateClassProperty'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_generateClassProperty (const class GALGAS_string constinArgument0,
+                                    const class GALGAS_string constinArgument1,
+                                    const class GALGAS_bool constinArgument2,
+                                    const class GALGAS_bool constinArgument3,
+                                    class GALGAS_stringset & ioArgument4,
+                                    class C_Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateScalarProperty'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_generateScalarProperty (const class GALGAS_string constinArgument0,
+                                     const class GALGAS_string constinArgument1,
+                                     const class GALGAS_bool constinArgument2,
+                                     const class GALGAS_string constinArgument3,
+                                     class GALGAS_stringset & ioArgument4,
+                                     class C_Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 //

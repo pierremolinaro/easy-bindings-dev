@@ -465,26 +465,71 @@ C_BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDepende
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_predefinedOutletClasses (
+  "indexes",
+  0,
+  gWrapperAllFiles_predefinedOutletClasses_4,
+  0,
+  gWrapperAllDirectories_predefinedOutletClasses_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_3 [2] = {
+  & gWrapperDirectory_4_predefinedOutletClasses,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_predefinedOutletClasses (
+  "build",
+  0,
+  gWrapperAllFiles_predefinedOutletClasses_3,
+  1,
+  gWrapperAllDirectories_predefinedOutletClasses_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_predefinedOutletClasses (
+const cDirectoryWrapper gWrapperDirectory_5_predefinedOutletClasses (
   "controllers",
   0,
-  gWrapperAllFiles_predefinedOutletClasses_3,
+  gWrapperAllFiles_predefinedOutletClasses_5,
   0,
-  gWrapperAllDirectories_predefinedOutletClasses_3
+  gWrapperAllDirectories_predefinedOutletClasses_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -539,8 +584,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_0 [5] = {
   & gWrapperDirectory_3_predefinedOutletClasses,
+  & gWrapperDirectory_5_predefinedOutletClasses,
   & gWrapperDirectory_1_predefinedOutletClasses,
   & gWrapperDirectory_2_predefinedOutletClasses,
   NULL
@@ -552,7 +598,7 @@ const cDirectoryWrapper gWrapperDirectory_0_predefinedOutletClasses (
   "",
   0,
   gWrapperAllFiles_predefinedOutletClasses_0,
-  3,
+  4,
   gWrapperAllDirectories_predefinedOutletClasses_0
 ) ;
 
@@ -801,26 +847,71 @@ void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GALGAS_semanticC
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_enumGenerationTemplate (
+  "indexes",
+  0,
+  gWrapperAllFiles_enumGenerationTemplate_4,
+  0,
+  gWrapperAllDirectories_enumGenerationTemplate_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_3 [2] = {
+  & gWrapperDirectory_4_enumGenerationTemplate,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate (
+  "build",
+  0,
+  gWrapperAllFiles_enumGenerationTemplate_3,
+  1,
+  gWrapperAllDirectories_enumGenerationTemplate_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_5_enumGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_enumGenerationTemplate_3,
+  gWrapperAllFiles_enumGenerationTemplate_5,
   0,
-  gWrapperAllDirectories_enumGenerationTemplate_3
+  gWrapperAllDirectories_enumGenerationTemplate_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -875,8 +966,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_0 [1]
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_0 [5] = {
   & gWrapperDirectory_3_enumGenerationTemplate,
+  & gWrapperDirectory_5_enumGenerationTemplate,
   & gWrapperDirectory_1_enumGenerationTemplate,
   & gWrapperDirectory_2_enumGenerationTemplate,
   NULL
@@ -888,7 +980,7 @@ const cDirectoryWrapper gWrapperDirectory_0_enumGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_enumGenerationTemplate_0,
-  3,
+  4,
   gWrapperAllDirectories_enumGenerationTemplate_0
 ) ;
 
@@ -1651,26 +1743,71 @@ void routine_generateEBManagedObjectContext (const GALGAS_entityListForGeneratin
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_entityGenerationTemplate (
+  "indexes",
+  0,
+  gWrapperAllFiles_entityGenerationTemplate_4,
+  0,
+  gWrapperAllDirectories_entityGenerationTemplate_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_3 [2] = {
+  & gWrapperDirectory_4_entityGenerationTemplate,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate (
+  "build",
+  0,
+  gWrapperAllFiles_entityGenerationTemplate_3,
+  1,
+  gWrapperAllDirectories_entityGenerationTemplate_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_5_entityGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_entityGenerationTemplate_3,
+  gWrapperAllFiles_entityGenerationTemplate_5,
   0,
-  gWrapperAllDirectories_entityGenerationTemplate_3
+  gWrapperAllDirectories_entityGenerationTemplate_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -1725,8 +1862,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_0 [
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_0 [5] = {
   & gWrapperDirectory_3_entityGenerationTemplate,
+  & gWrapperDirectory_5_entityGenerationTemplate,
   & gWrapperDirectory_1_entityGenerationTemplate,
   & gWrapperDirectory_2_entityGenerationTemplate,
   NULL
@@ -1738,7 +1876,7 @@ const cDirectoryWrapper gWrapperDirectory_0_entityGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_entityGenerationTemplate_0,
-  3,
+  4,
   gWrapperAllDirectories_entityGenerationTemplate_0
 ) ;
 
@@ -3185,26 +3323,71 @@ void cPtr_autoLayoutDocumentFileGeneration::method_generateCode (const GALGAS_st
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_autoLayoutDocumentGenerationTemplate (
+  "indexes",
+  0,
+  gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_4,
+  0,
+  gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_3 [2] = {
+  & gWrapperDirectory_4_autoLayoutDocumentGenerationTemplate,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_autoLayoutDocumentGenerationTemplate (
+  "build",
+  0,
+  gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_3,
+  1,
+  gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_autoLayoutDocumentGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_5_autoLayoutDocumentGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_3,
+  gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_5,
   0,
-  gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_3
+  gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -3259,8 +3442,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGeneration
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_0 [5] = {
   & gWrapperDirectory_3_autoLayoutDocumentGenerationTemplate,
+  & gWrapperDirectory_5_autoLayoutDocumentGenerationTemplate,
   & gWrapperDirectory_1_autoLayoutDocumentGenerationTemplate,
   & gWrapperDirectory_2_autoLayoutDocumentGenerationTemplate,
   NULL
@@ -3272,7 +3456,7 @@ const cDirectoryWrapper gWrapperDirectory_0_autoLayoutDocumentGenerationTemplate
   "",
   0,
   gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_0,
-  3,
+  4,
   gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_0
 ) ;
 
@@ -3729,26 +3913,71 @@ void cPtr_prefsDeclarationAST::method_fourthAnalysisPhase (GALGAS_semanticContex
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_prefsGenerationTemplate (
+  "indexes",
+  0,
+  gWrapperAllFiles_prefsGenerationTemplate_4,
+  0,
+  gWrapperAllDirectories_prefsGenerationTemplate_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_3 [2] = {
+  & gWrapperDirectory_4_prefsGenerationTemplate,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate (
+  "build",
+  0,
+  gWrapperAllFiles_prefsGenerationTemplate_3,
+  1,
+  gWrapperAllDirectories_prefsGenerationTemplate_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_prefsGenerationTemplate_3,
+  gWrapperAllFiles_prefsGenerationTemplate_5,
   0,
-  gWrapperAllDirectories_prefsGenerationTemplate_3
+  gWrapperAllDirectories_prefsGenerationTemplate_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -3803,8 +4032,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_0 [5] = {
   & gWrapperDirectory_3_prefsGenerationTemplate,
+  & gWrapperDirectory_5_prefsGenerationTemplate,
   & gWrapperDirectory_1_prefsGenerationTemplate,
   & gWrapperDirectory_2_prefsGenerationTemplate,
   NULL
@@ -3816,7 +4046,7 @@ const cDirectoryWrapper gWrapperDirectory_0_prefsGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_prefsGenerationTemplate_0,
-  3,
+  4,
   gWrapperAllDirectories_prefsGenerationTemplate_0
 ) ;
 
@@ -8353,26 +8583,71 @@ void cPtr_computeRoutineGeneration::method_generateCode (const GALGAS_string con
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-//--- All files of 'controllers' directory
+//--- All files of 'indexes' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_4 [1] = {
+  NULL
+} ;
+
+//--- All sub-directories of 'indexes' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_4 [1] = {
+  NULL
+} ;
+
+//--- Directory 'indexes'
+
+const cDirectoryWrapper gWrapperDirectory_4_computedPropertyManager (
+  "indexes",
+  0,
+  gWrapperAllFiles_computedPropertyManager_4,
+  0,
+  gWrapperAllDirectories_computedPropertyManager_4
+) ;
+
+//--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_3 [1] = {
   NULL
 } ;
 
+//--- All sub-directories of 'build' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_3 [2] = {
+  & gWrapperDirectory_4_computedPropertyManager,
+  NULL
+} ;
+
+//--- Directory 'build'
+
+const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager (
+  "build",
+  0,
+  gWrapperAllFiles_computedPropertyManager_3,
+  1,
+  gWrapperAllDirectories_computedPropertyManager_3
+) ;
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_5 [1] = {
+  NULL
+} ;
+
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_3 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_5 [1] = {
   NULL
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager (
+const cDirectoryWrapper gWrapperDirectory_5_computedPropertyManager (
   "controllers",
   0,
-  gWrapperAllFiles_computedPropertyManager_3,
+  gWrapperAllFiles_computedPropertyManager_5,
   0,
-  gWrapperAllDirectories_computedPropertyManager_3
+  gWrapperAllDirectories_computedPropertyManager_5
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -8427,8 +8702,9 @@ static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_0 [4] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_0 [5] = {
   & gWrapperDirectory_3_computedPropertyManager,
+  & gWrapperDirectory_5_computedPropertyManager,
   & gWrapperDirectory_1_computedPropertyManager,
   & gWrapperDirectory_2_computedPropertyManager,
   NULL
@@ -8440,7 +8716,7 @@ const cDirectoryWrapper gWrapperDirectory_0_computedPropertyManager (
   "",
   0,
   gWrapperAllFiles_computedPropertyManager_0,
-  3,
+  4,
   gWrapperAllDirectories_computedPropertyManager_0
 ) ;
 
@@ -9107,80 +9383,6 @@ GALGAS_string cPtr_transientPropertyGeneration::getter_propertyDeclarationCode (
         const GALGAS_transientPropertyGeneration temp_15 = this ;
         result_result.plusAssign_operation(GALGAS_string ("    return self.").add_operation (temp_15.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 364)).add_operation (GALGAS_string ("_property.optionalValue\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 364)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 364)) ;
         result_result.plusAssign_operation(GALGAS_string ("  }\n\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 365)) ;
-      }
-    }
-  }
-//---
-  return result_result ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@transientPropertyGeneration configurationCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_transientPropertyGeneration::getter_configurationCode (const GALGAS_bool constinArgument_inPreferences,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  GALGAS_string temp_0 ;
-  const enumGalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
-  if (kBoolTrue == test_1) {
-    temp_0 = GALGAS_string ("preferences_") ;
-  }else if (kBoolFalse == test_1) {
-    temp_0 = GALGAS_string ("self.") ;
-  }
-  GALGAS_string var_prefix_16737 = temp_0 ;
-  result_result = GALGAS_string::makeEmptyString () ;
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
-    const GALGAS_transientPropertyGeneration temp_3 = this ;
-    test_2 = GALGAS_bool (kIsStrictSup, temp_3.readProperty_mDependencyList ().getter_length (SOURCE_FILE ("transient-property.ggs", 375)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_2) {
-      const GALGAS_transientPropertyGeneration temp_4 = this ;
-      GALGAS_bool var_needs_5F_unwSelf_16874 = extensionGetter_needs_5F_unwSelf (temp_4.readProperty_mDependencyList (), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 376)) ;
-      const GALGAS_transientPropertyGeneration temp_5 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("  //--- Atomic property: ").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 377)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 377)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 377)) ;
-      enumGalgasBool test_6 = kBoolTrue ;
-      if (kBoolTrue == test_6) {
-        test_6 = var_needs_5F_unwSelf_16874.boolEnum () ;
-        if (kBoolTrue == test_6) {
-          const GALGAS_transientPropertyGeneration temp_7 = this ;
-          result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_16737, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 379)).add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 379)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 379)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 379)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      if let unwSelf = self {\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 380)) ;
-          const GALGAS_transientPropertyGeneration temp_8 = this ;
-          const GALGAS_transientPropertyGeneration temp_9 = this ;
-          const GALGAS_transientPropertyGeneration temp_10 = this ;
-          result_result.plusAssign_operation(extensionGetter_transientComputeFunctionCall (temp_8.readProperty_mDependencyList (), constinArgument_inPreferences, temp_9.readProperty_mClassName (), temp_10.readProperty_mPropertyName (), GALGAS_string ("transient"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 381)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 381)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 382)) ;
-          result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 383)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 384)) ;
-        }
-      }
-      if (kBoolFalse == test_6) {
-        const GALGAS_transientPropertyGeneration temp_11 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_16737, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 386)).add_operation (temp_11.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 386)).add_operation (GALGAS_string ("_property.mReadModelFunction = {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 386)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 386)) ;
-        const GALGAS_transientPropertyGeneration temp_12 = this ;
-        const GALGAS_transientPropertyGeneration temp_13 = this ;
-        const GALGAS_transientPropertyGeneration temp_14 = this ;
-        result_result.plusAssign_operation(extensionGetter_transientComputeFunctionCall (temp_12.readProperty_mDependencyList (), constinArgument_inPreferences, temp_13.readProperty_mClassName (), temp_14.readProperty_mPropertyName (), GALGAS_string ("transient"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 387)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 387)) ;
-      }
-      result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 389)) ;
-      const GALGAS_transientPropertyGeneration temp_15 = this ;
-      cEnumerator_transientDependencyListForGeneration enumerator_17707 (temp_15.readProperty_mDependencyList (), kENUMERATION_UP) ;
-      while (enumerator_17707.hasCurrentObject ()) {
-        GALGAS_string var_s_17747 = extensionGetter_generateAddObserverCall (enumerator_17707.current_mDependency (HERE), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 391)) ;
-        enumGalgasBool test_16 = kBoolTrue ;
-        if (kBoolTrue == test_16) {
-          test_16 = GALGAS_bool (kIsNotEqual, var_s_17747.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-          if (kBoolTrue == test_16) {
-            const GALGAS_transientPropertyGeneration temp_17 = this ;
-            result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_s_17747, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 393)).add_operation (GALGAS_string (" (by: "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 393)).add_operation (var_prefix_16737, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 393)).add_operation (temp_17.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 393)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 393)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 393)) ;
-          }
-        }
-        enumerator_17707.gotoNextObject () ;
       }
     }
   }
