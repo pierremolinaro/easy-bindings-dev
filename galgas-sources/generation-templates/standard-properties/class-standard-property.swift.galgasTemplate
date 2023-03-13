@@ -16,16 +16,16 @@ end
 %
 if TRANSIENT then
   %typealias EBReadOnlyProperty_%!CLASS_NAME%       = EBObservableProperty <%!CLASS_NAME%>\n%
-  %typealias EBTransientProperty_%!CLASS_NAME%      = EBGenericTransientProperty <%!CLASS_NAME%>\n%
+  %typealias EBTransientProperty_%!CLASS_NAME%      = EBTransientProperty <%!CLASS_NAME%>\n%
   %typealias EBReadOnlyPropertyArray_%!CLASS_NAME%  = EBObservableProperty <[%!CLASS_NAME%]>\n%
-  %typealias EBTransientPropertyArray_%!CLASS_NAME% = EBGenericTransientProperty <[%!CLASS_NAME%]>\n%
+  %typealias EBTransientPropertyArray_%!CLASS_NAME% = EBTransientProperty <[%!CLASS_NAME%]>\n%
 else
   %typealias EBReadOnlyProperty_%!CLASS_NAME%    = EBObservableProperty <%!CLASS_NAME%>\n%
-  %typealias EBTransientProperty_%!CLASS_NAME%   = EBGenericTransientProperty <%!CLASS_NAME%>\n%
+  %typealias EBTransientProperty_%!CLASS_NAME%   = EBTransientProperty <%!CLASS_NAME%>\n%
   %typealias EBReadWriteProperty_%!CLASS_NAME%   = EBObservableMutableProperty <%!CLASS_NAME%>\n%
-  %typealias EBComputedProperty_%!CLASS_NAME%    = EBGenericComputedProperty <%!CLASS_NAME%>\n%
-  %typealias EBStoredProperty_%!CLASS_NAME%      = EBGenericStoredProperty <%!CLASS_NAME%>\n%
-  %typealias EBPreferencesProperty_%!CLASS_NAME% = EBGenericPreferenceProperty <%!CLASS_NAME%>\n%
+  %typealias EBComputedProperty_%!CLASS_NAME%    = EBComputedProperty <%!CLASS_NAME%>\n%
+  %typealias EBStoredProperty_%!CLASS_NAME%      = EBStoredProperty <%!CLASS_NAME%>\n%
+  %typealias EBPreferencesProperty_%!CLASS_NAME% = EBPreferenceProperty <%!CLASS_NAME%>\n%
 end
 %
 %

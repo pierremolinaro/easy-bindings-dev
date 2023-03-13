@@ -1538,7 +1538,7 @@ GALGAS_string cPtr_toOnePropertyGeneration::getter_propertyDeclarationCode (cons
   result_result.plusAssign_operation(GALGAS_string ("  }\n\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 210)) ;
   result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 211)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 211)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 211)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 211)) ;
   const GALGAS_toOnePropertyGeneration temp_13 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  final let ").add_operation (temp_13.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 212)).add_operation (GALGAS_string ("_none = EBGenericTransientProperty <Bool> ()\n\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 212)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 212)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  final let ").add_operation (temp_13.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 212)).add_operation (GALGAS_string ("_none = EBTransientProperty <Bool> ()\n\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 212)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 212)) ;
 //---
   return result_result ;
 }
@@ -1575,16 +1575,16 @@ GALGAS_string cPtr_toOnePropertyGeneration::getter_configurationCode (const GALG
     break ;
   case GALGAS_toOneOppositeRelationship::kEnum_oppositeIsToMany:
     {
-      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany * extractPtr_10240 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany *) (temp_0.readProperty_mOpposite ().unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_9632_oppositeName = extractPtr_10240->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany * extractPtr_10233 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany *) (temp_0.readProperty_mOpposite ().unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_9625_oppositeName = extractPtr_10233->mAssociatedValue0 ;
       const GALGAS_toOnePropertyGeneration temp_1 = this ;
-      result_result = GALGAS_string ("  //--- To one property: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 226)).add_operation (GALGAS_string (" (has opposite to many relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 226)).add_operation (extractedValue_9632_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 226)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 226)) ;
+      result_result = GALGAS_string ("  //--- To one property: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 226)).add_operation (GALGAS_string (" (has opposite to many relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 226)).add_operation (extractedValue_9625_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 226)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 226)) ;
       const GALGAS_toOnePropertyGeneration temp_2 = this ;
       result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 227)).add_operation (GALGAS_string ("_property.undoManager = inUndoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 227)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 227)) ;
       const GALGAS_toOnePropertyGeneration temp_3 = this ;
       result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 228)).add_operation (GALGAS_string ("_property.setOppositeRelationShipFunctions (\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 228)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 228)) ;
-      result_result.plusAssign_operation(GALGAS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_9632_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)).add_operation (GALGAS_string ("_property.add (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)) ;
-      result_result.plusAssign_operation(GALGAS_string ("      resetter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_9632_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)).add_operation (GALGAS_string ("_property.remove (me) } }\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)) ;
+      result_result.plusAssign_operation(GALGAS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_9625_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)).add_operation (GALGAS_string ("_property.add (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)) ;
+      result_result.plusAssign_operation(GALGAS_string ("      resetter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_9625_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)).add_operation (GALGAS_string ("_property.remove (me) } }\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)) ;
       result_result.plusAssign_operation(GALGAS_string ("    )\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 231)) ;
     }
     break ;
@@ -1598,16 +1598,16 @@ GALGAS_string cPtr_toOnePropertyGeneration::getter_configurationCode (const GALG
     break ;
   case GALGAS_toOneOppositeRelationship::kEnum_oppositeIsToOne:
     {
-      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * extractPtr_11032 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) (temp_0.readProperty_mOpposite ().unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_10452_oppositeName = extractPtr_11032->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * extractPtr_11025 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) (temp_0.readProperty_mOpposite ().unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_10445_oppositeName = extractPtr_11025->mAssociatedValue0 ;
       const GALGAS_toOnePropertyGeneration temp_6 = this ;
-      result_result = GALGAS_string ("  //--- To one property: ").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 236)).add_operation (GALGAS_string (" (has opposite to one relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 236)).add_operation (extractedValue_10452_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 236)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 236)) ;
+      result_result = GALGAS_string ("  //--- To one property: ").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 236)).add_operation (GALGAS_string (" (has opposite to one relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 236)).add_operation (extractedValue_10445_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 236)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 236)) ;
       const GALGAS_toOnePropertyGeneration temp_7 = this ;
       result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 237)).add_operation (GALGAS_string ("_property.undoManager = inUndoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 237)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 237)) ;
       const GALGAS_toOnePropertyGeneration temp_8 = this ;
       result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 238)).add_operation (GALGAS_string ("_property.setOppositeRelationShipFunctions (\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 238)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 238)) ;
-      result_result.plusAssign_operation(GALGAS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_10452_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)).add_operation (GALGAS_string ("_property.setProp (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)) ;
-      result_result.plusAssign_operation(GALGAS_string ("      resetter: { inObject in inObject.").add_operation (extractedValue_10452_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)).add_operation (GALGAS_string ("_property.setProp (nil) }\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)) ;
+      result_result.plusAssign_operation(GALGAS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_10445_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)).add_operation (GALGAS_string ("_property.setProp (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)) ;
+      result_result.plusAssign_operation(GALGAS_string ("      resetter: { inObject in inObject.").add_operation (extractedValue_10445_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)).add_operation (GALGAS_string ("_property.setProp (nil) }\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)) ;
       result_result.plusAssign_operation(GALGAS_string ("    )\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 241)) ;
     }
     break ;
@@ -1678,10 +1678,10 @@ GALGAS_string cPtr_toOnePropertyGeneration::getter_saveIntoDictionaryCode (C_Com
     break ;
   case GALGAS_toOneOppositeRelationship::kEnum_oppositeIsToOne:
     {
-      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * extractPtr_12870 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) (temp_0.readProperty_mOpposite ().unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_12505_oppositeName = extractPtr_12870->mAssociatedValue0 ;
+      const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * extractPtr_12863 = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) (temp_0.readProperty_mOpposite ().unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_12498_oppositeName = extractPtr_12863->mAssociatedValue0 ;
       const GALGAS_toOnePropertyGeneration temp_4 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("  //--- To one property: ").add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)).add_operation (GALGAS_string (" // Opposite is toOne "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)).add_operation (extractedValue_12505_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)) ;
+      result_result.plusAssign_operation(GALGAS_string ("  //--- To one property: ").add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)).add_operation (GALGAS_string (" // Opposite is toOne "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)).add_operation (extractedValue_12498_oppositeName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 274)) ;
       const GALGAS_toOnePropertyGeneration temp_5 = this ;
       result_result.plusAssign_operation(GALGAS_string ("    self.store (managedObject: self.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 275)).add_operation (GALGAS_string ("_property.propval,\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 275)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 275)) ;
       const GALGAS_toOnePropertyGeneration temp_6 = this ;
@@ -6315,7 +6315,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
   result << in_TYPE.stringValue () ;
   result << ">\ntypealias EBTransientProperty_" ;
   result << in_TYPE.stringValue () ;
-  result << "   = EBGenericTransientProperty <" ;
+  result << "   = EBTransientProperty <" ;
   result << in_TYPE.stringValue () ;
   result << ">\n" ;
   const enumGalgasBool test_0 = in_TRANSIENT.operator_not (SOURCE_FILE ("scalar-standard-property.swift.galgasTemplate", 13)).boolEnum () ;
@@ -6326,15 +6326,15 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     result << in_TYPE.stringValue () ;
     result << ">\ntypealias EBComputedProperty_" ;
     result << in_TYPE.stringValue () ;
-    result << "    = EBGenericComputedProperty <" ;
+    result << "    = EBComputedProperty <" ;
     result << in_TYPE.stringValue () ;
     result << ">\ntypealias EBStoredProperty_" ;
     result << in_TYPE.stringValue () ;
-    result << "      = EBGenericStoredProperty <" ;
+    result << "      = EBStoredProperty <" ;
     result << in_TYPE.stringValue () ;
     result << ">\ntypealias EBPreferencesProperty_" ;
     result << in_TYPE.stringValue () ;
-    result << " = EBGenericPreferenceProperty <" ;
+    result << " = EBPreferenceProperty <" ;
     result << in_TYPE.stringValue () ;
     result << ">\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nfunc values_" ;
     result << in_TYPE.stringValue () ;
@@ -6417,7 +6417,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\ntypealias EBTransientProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "      = EBGenericTransientProperty <" ;
+    result << "      = EBTransientProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\ntypealias EBReadOnlyPropertyArray_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
@@ -6425,7 +6425,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "]>\ntypealias EBTransientPropertyArray_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << " = EBGenericTransientProperty <[" ;
+    result << " = EBTransientProperty <[" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "]>\n" ;
   }else if (kBoolFalse == test_1) {
@@ -6435,7 +6435,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\ntypealias EBTransientProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "   = EBGenericTransientProperty <" ;
+    result << "   = EBTransientProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\ntypealias EBReadWriteProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
@@ -6443,15 +6443,15 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\ntypealias EBComputedProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "    = EBGenericComputedProperty <" ;
+    result << "    = EBComputedProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\ntypealias EBStoredProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "      = EBGenericStoredProperty <" ;
+    result << "      = EBStoredProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\ntypealias EBPreferencesProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << " = EBGenericPreferenceProperty <" ;
+    result << " = EBPreferenceProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n" ;
   }

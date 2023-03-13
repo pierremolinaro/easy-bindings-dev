@@ -61,7 +61,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
   //   Observers of '%!mProperty.mPropertyName%' stored property
   //····················································································································
 
-  final let %!mProperty.mPropertyName%_property = EBGenericTransientProperty <%![mProperty.mType swiftTypeName]%?> ()
+  final let %!mProperty.mPropertyName%_property = EBTransientProperty <%![mProperty.mType swiftTypeName]%?> ()
 
 %
 end
@@ -70,7 +70,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%!mProperty.mPropertyName%' transient property
   //····················································································································
 
-  final let %!mProperty.mPropertyName%_property = EBGenericTransientProperty <%![mProperty.mType swiftTypeName]%?> ()
+  final let %!mProperty.mPropertyName%_property = EBTransientProperty <%![mProperty.mType swiftTypeName]%?> ()
 
 %
 end
@@ -79,7 +79,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
   //   Observers of '%!mProperty.mPropertyName%' computed property
   //····················································································································
 
-  final let %!mProperty.mPropertyName%_property = EBGenericTransientProperty <%![mProperty.mType swiftTypeName]%?> ()
+  final let %!mProperty.mPropertyName%_property = EBTransientProperty <%![mProperty.mType swiftTypeName]%?> ()
 
 %
 end
