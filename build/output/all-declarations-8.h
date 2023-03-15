@@ -10,42 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'transientManager'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_4_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_5_transientManager ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'transientManager transientComputationFunctionFile'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class C_Compiler * inCompiler,
-                                                                                     const class GALGAS_string & in_OWNER_5F_NAME,
-                                                                                     const class GALGAS_string & in_TRANSIENT_5F_NAME,
-                                                                                     const class GALGAS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
-                                                                                     const class GALGAS_typeKind & in_TRANSIENT_5F_TYPE,
-                                                                                     const class GALGAS_string & in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'validationStubExtension'
 //
 //----------------------------------------------------------------------------------------------------------------------

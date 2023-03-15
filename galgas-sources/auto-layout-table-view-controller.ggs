@@ -100,7 +100,7 @@ syntax extension easyBindings_syntax {
           editableColumn = true
         end
         $identifier$ (?let propertyName)
-        <view_actual_parameter_list> (!{} ?let columnParameterListAST)
+        <view_actual_parameter_list> (!?* ?let columnParameterListAST) #§
         let @lstring sortPropertyName
         select
           sortPropertyName = ["" nowhere]

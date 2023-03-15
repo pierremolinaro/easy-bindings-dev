@@ -165,9 +165,9 @@ let easyBindings_lexique_1_struct : UInt16 = 61
 let easyBindings_lexique_1_super : UInt16 = 62
 let easyBindings_lexique_1_tableViewController : UInt16 = 63
 let easyBindings_lexique_1_toMany : UInt16 = 64
-let easyBindings_lexique_1_toolbarItem : UInt16 = 65
-let easyBindings_lexique_1_toOne : UInt16 = 66
-let easyBindings_lexique_1_transient : UInt16 = 67
+let easyBindings_lexique_1_toOne : UInt16 = 65
+let easyBindings_lexique_1_transient : UInt16 = 66
+let easyBindings_lexique_1_typeView : UInt16 = 67
 let easyBindings_lexique_1_version : UInt16 = 68
 let easyBindings_lexique_1_vStack : UInt16 = 69
 let easyBindings_lexique_1_versionShouldChange : UInt16 = 70
@@ -384,9 +384,9 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
       1, // 62 : easyBindings_lexique_1_super
       1, // 63 : easyBindings_lexique_1_tableViewController
       1, // 64 : easyBindings_lexique_1_toMany
-      1, // 65 : easyBindings_lexique_1_toolbarItem
-      1, // 66 : easyBindings_lexique_1_toOne
-      1, // 67 : easyBindings_lexique_1_transient
+      1, // 65 : easyBindings_lexique_1_toOne
+      1, // 66 : easyBindings_lexique_1_transient
+      1, // 67 : easyBindings_lexique_1_typeView
       1, // 68 : easyBindings_lexique_1_version
       1, // 69 : easyBindings_lexique_1_vStack
       1, // 70 : easyBindings_lexique_1_versionShouldChange
@@ -496,9 +496,9 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
       true, // 62 : easyBindings_lexique_1_super
       true, // 63 : easyBindings_lexique_1_tableViewController
       true, // 64 : easyBindings_lexique_1_toMany
-      true, // 65 : easyBindings_lexique_1_toolbarItem
-      true, // 66 : easyBindings_lexique_1_toOne
-      true, // 67 : easyBindings_lexique_1_transient
+      true, // 65 : easyBindings_lexique_1_toOne
+      true, // 66 : easyBindings_lexique_1_transient
+      true, // 67 : easyBindings_lexique_1_typeView
       true, // 68 : easyBindings_lexique_1_version
       true, // 69 : easyBindings_lexique_1_vStack
       true, // 70 : easyBindings_lexique_1_versionShouldChange
@@ -852,6 +852,7 @@ fileprivate func search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (_ inS
     "menuItem" : easyBindings_lexique_1_menuItem,
     "override" : easyBindings_lexique_1_override,
     "property" : easyBindings_lexique_1_property,
+    "typeView" : easyBindings_lexique_1_typeView,
     "separator" : easyBindings_lexique_1_separator,
     "signature" : easyBindings_lexique_1_signature,
     "stackView" : easyBindings_lexique_1_stackView,
@@ -860,7 +861,6 @@ fileprivate func search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (_ inS
     "externFunc" : easyBindings_lexique_1_externFunc,
     "dependsFrom" : easyBindings_lexique_1_dependsFrom,
     "outletArray" : easyBindings_lexique_1_outletArray,
-    "toolbarItem" : easyBindings_lexique_1_toolbarItem,
     "configurator" : easyBindings_lexique_1_configurator,
     "xcodeproject" : easyBindings_lexique_1_xcodeproject,
     "classForSwift" : easyBindings_lexique_1_classForSwift,

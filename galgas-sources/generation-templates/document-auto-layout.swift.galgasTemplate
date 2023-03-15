@@ -91,15 +91,7 @@ end
   //····················································································································
 
   override func ebBuildUserInterface () {
-  %if [TOOLBAR_ITEM_LIST length] > 0 then
-  %//--- Build tool bar
-    let toolbar = NSToolbar (identifier: NSToolbar.Identifier ("%!DOCUMENT_CLASS_NAME%"))
-    toolbar.allowsUserCustomization = false
-    toolbar.displayMode = .default
-    toolbar.delegate = self
-    self.windowForSheet?.toolbar = toolbar
-  %end
-  %  //--------------------------- Read documentFileName model
+  //--------------------------- Read documentFileName model
     self.documentFileName_property.mReadModelFunction = { [weak self] in
       if let r = self?.displayName {
         return .single (r)

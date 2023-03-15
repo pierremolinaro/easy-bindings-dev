@@ -9,23 +9,23 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   public let @lstringlist mActionDeclarationList
   public let @arrayControllerBindingListAST mArrayControllerBindingListAST
   public let @astViewDeclarationList mViewDeclarationList
-  public let @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
+#  public let @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
   public let @string mCustomSuperClassName # Empty String if no custom superclass
   public let @astAutoLayoutOutletLinkerList mOutletLinkerList
 }
 
 #·······················································································································
 
-enum @astAutoLayoutToolbarItem {
-  case view (@lstring title @astComputedViewInstruction instruction)
-  case space
-}
+#enum @astAutoLayoutToolbarItem {
+#  case view (@lstring title @astComputedViewInstruction instruction)
+#  case space
+#}
 
 #·······················································································································
 
-list @astAutoLayoutToolbarItemList {
-  public var @astAutoLayoutToolbarItem mItem
-}
+#list @astAutoLayoutToolbarItemList {
+#  public var @astAutoLayoutToolbarItem mItem
+#}
 
 #·······················································································································
 
@@ -82,7 +82,7 @@ syntax extension easyBindings_syntax {
     var @lstringlist actionDeclarationList = {}
     var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
     var @astViewDeclarationList viewDeclarationList = {}
-    var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
+#    var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
     var @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = {}
     repeat
     while
@@ -95,18 +95,18 @@ syntax extension easyBindings_syntax {
       <outlet_declaration> (!?outletDeclarationList)
     while
       <controller_declaration> (!documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST)
-    while
-      $toolbarItem$
-      select
-        $space$
-        $;$
-        autoLayoutToolbarItemList += !.space
-      or
-        $literal_string$ (?let title)
-        $:$
-        <computed_view_instruction> (!{} ?let instruction)
-        autoLayoutToolbarItemList += !.view (!title: title !instruction: instruction)
-      end
+#    while
+#      $toolbarItem$
+#      select
+#        $space$
+#        $;$
+#        autoLayoutToolbarItemList += !.space
+#      or
+#        $literal_string$ (?let title)
+#        $:$
+#        <computed_view_instruction> (!?* ?let instruction) #§
+#        autoLayoutToolbarItemList += !.view (!title: title !instruction: instruction)
+#      end
     while
       $linker$
       $identifier$ (?let linkerName)
@@ -130,7 +130,7 @@ syntax extension easyBindings_syntax {
       !actionDeclarationList
       !arrayControllerBindingListAST
       !viewDeclarationList
-      !autoLayoutToolbarItemList
+#      !autoLayoutToolbarItemList
       !customSuperClassName
       !autoLayoutOutletLinkerList
     )
@@ -272,30 +272,30 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   end
   [viewDeclarationMap searchKey !self.mMainViewName]
 #--- Analyze toolbar item declarations
-  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = {}
-  for (item) in self.mAutoLayoutToolbarItemList do
-    switch item
-    case space :
-      autoLayoutToolbarItemGenerationList += !.space
-    case view (title instruction) :
-      [instruction generateViewCode
-        !viewDeclarationMap
-        !prefs: false
-        !rootPropertyMap
-        !preferencesPropertyMap
-        !ioSemanticContext
-        !documentPropertyMap
-        !documentActionMap
-        !self.mClassName
-        !ioSemanticContext.mClassMap
-        !?implicitViewFunctionGenerationList
-        !?configuratorMap
-        !?autoLayoutOutletMap
-        ?let @abstractViewInstructionGeneration generatedInstruction
-      ]
-      autoLayoutToolbarItemGenerationList += !.view (!title: title.string !instruction: generatedInstruction)
-    end
-  end
+#  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = {}
+#  for (item) in self.mAutoLayoutToolbarItemList do
+#    switch item
+#    case space :
+#      autoLayoutToolbarItemGenerationList += !.space
+#    case view (title instruction) :
+#      [instruction generateViewCode
+#        !viewDeclarationMap
+#        !prefs: false
+#        !rootPropertyMap
+#        !preferencesPropertyMap
+#        !ioSemanticContext
+#        !documentPropertyMap
+#        !documentActionMap
+#        !self.mClassName
+#        !ioSemanticContext.mClassMap
+#        !?implicitViewFunctionGenerationList
+#        !?configuratorMap
+#        !?autoLayoutOutletMap
+#        ?let @abstractViewInstructionGeneration generatedInstruction
+#      ]
+#      autoLayoutToolbarItemGenerationList += !.view (!title: title.string !instruction: generatedInstruction)
+#    end
+#  end
 #--- Code generation
   ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
 #--- Check outlet linker
@@ -327,7 +327,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     !tableViewBindingGenerationList
     !ebViewGraphicControllerBindingGenerationList
     !viewGenerationList
-    !autoLayoutToolbarItemGenerationList
+#    !autoLayoutToolbarItemGenerationList
     !implicitViewFunctionGenerationList
     !configuratorMap
     !self.mCustomSuperClassName # Empty String if no custom superclass
@@ -352,7 +352,7 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @tableViewBindingGenerationList mTableViewBindingGenerationList
   public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
   public let @viewGenerationList mViewDeclarationList
-  public let @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
+#  public let @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
   public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
   public let @autoLayoutConfiguratorMap mConfiguratorMap
   public let @string mCustomSuperClassName # Empty String if no custom superclass
@@ -361,16 +361,16 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
 
 #·······················································································································
 
-enum @autoLayoutToolbarItemGeneration {
-  case view (@string title @abstractViewInstructionGeneration instruction)
-  case space
-}
+#enum @autoLayoutToolbarItemGeneration {
+#  case view (@string title @abstractViewInstructionGeneration instruction)
+#  case space
+#}
 
 #·······················································································································
 
-list @autoLayoutToolbarItemGenerationList {
-  public var @autoLayoutToolbarItemGeneration mItem
-}
+#list @autoLayoutToolbarItemGenerationList {
+#  public var @autoLayoutToolbarItemGeneration mItem
+#}
 
 #·······················································································································
 
@@ -391,7 +391,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     !self.mTableViewBindingGenerationList
     !self.mEBViewBindingGenerationList
     !self.mViewDeclarationList
-    !self.mAutoLayoutToolbarItemGenerationList
+#    !self.mAutoLayoutToolbarItemGenerationList
     !self.mImplicitViewFunctionGenerationList
     !if self.mCustomSuperClassName == "" then "EBAutoLayoutManagedDocument" else self.mCustomSuperClassName end
     !self.mOutletLinkerGenerationList
@@ -473,7 +473,7 @@ filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
     ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
     ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
     ?@viewGenerationList VIEW_GENERATION_LIST
-    ?@autoLayoutToolbarItemGenerationList TOOLBAR_ITEM_LIST
+#    ?@autoLayoutToolbarItemGenerationList TOOLBAR_ITEM_LIST
     ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
     ?@string DOCUMENT_SUPER_CLASS_NAME
     ?@autoLayoutOutletLinkerGenerationList AUTO_LAYOUT_LINKER_LIST
