@@ -73,12 +73,10 @@ for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
 %    }\n%
 %    self.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_none)\n%
 end
-%//    gInitSemaphore.wait ()
-%for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
+for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !false]
 end
-%//    gInitSemaphore.signal ()
-  //--- Install undoers and opposite setter for relationships
+%  //--- Install undoers and opposite setter for relationships
 %
 for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   switch mProperty.mOption

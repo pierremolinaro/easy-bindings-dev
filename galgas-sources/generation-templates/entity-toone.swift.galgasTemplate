@@ -115,54 +115,18 @@ end
 %  //--- Configure %!mProperty.mPropertyName% simple stored property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
 %      return self?.mWeakInternalValue?.%!mProperty.mPropertyName%_property.optionalSelection ?? .single (nil)\n%
-%      /* if let model = self?.mWeakInternalValue {\n%
-%        switch model.%!mProperty.mPropertyName%_property.selection {\n%
-%        case .empty :\n%
-%          return .empty\n%
-%        case .multiple :\n%
-%          return .multiple\n%
-%        case .single (let v) :\n%
-%          return .single (v)\n%
-%        }\n%
-%      }else{\n%
-%        return .single (nil)\n%
-%      } */\n%
 %    }\n%
 end
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %  //--- Configure %!mProperty.mPropertyName% transient property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
 %      return self?.mWeakInternalValue?.%!mProperty.mPropertyName%_property.optionalSelection ?? .single (nil)\n%
-%      /* if let model = self?.mWeakInternalValue {\n%
-%        switch model.%!mProperty.mPropertyName%_property.selection {\n%
-%        case .empty :\n%
-%          return .empty\n%
-%        case .multiple :\n%
-%          return .multiple\n%
-%        case .single (let v) :\n%
-%          return .single (v)\n%
-%        }\n%
-%      }else{\n%
-%        return .single (nil)\n%
-%      } */\n%
 %    }\n%
 end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 %  //--- Configure %!mProperty.mPropertyName% computed property\n%
 %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = { [weak self] in\n%
 %      return self?.mWeakInternalValue?.%!mProperty.mPropertyName%_property.optionalSelection ?? .single (nil)\n%
-%      /* if let model = self?.mWeakInternalValue {\n%
-%        switch model.%!mProperty.mPropertyName%_property.selection {\n%
-%        case .empty :\n%
-%          return .empty\n%
-%        case .multiple :\n%
-%          return .multiple\n%
-%        case .single (let v) :\n%
-%          return .single (v)\n%
-%        }\n%
-%      }else{\n%
-%        return .single (nil)\n%
-%      } */\n%
 %    }\n%
 end
 %  }
