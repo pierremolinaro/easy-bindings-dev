@@ -69,7 +69,7 @@ proc sortProperties(
     [declaration enterInPrecedenceGraph !?declarationPrecedenceGraph]
   end
 #------------------------ dot files
-  if [option easyBindings_options.outputDeclarationDependencyGraph value] then
+  if option easyBindings_options [outputDeclarationDependencyGraph.value] then
     let s = [declarationPrecedenceGraph graphviz]
     let path = inSourceFile + ".declarationDependancy.dot"
     [s writeToFileWhenDifferentContents !path ?*]

@@ -231,10 +231,15 @@ rule '"' {
   repeat
    while "\\n" :
      enterCharacterIntoString (!?tokenString !'\n')
-   while "\\u" :
+#   while "\\u" :
+#     enterCharacterIntoString (!?tokenString !'\\')
+#     enterCharacterIntoString (!?tokenString !'u')
+   while "\\\"" :
      enterCharacterIntoString (!?tokenString !'\\')
-     enterCharacterIntoString (!?tokenString !'u')
+     enterCharacterIntoString (!?tokenString !'"')
    while ' ' | '!' | '#'-> '\uFFFD' :
+     enterCharacterIntoString (!?tokenString !*)
+   while '\U00010000' -> '\U0010FFFF' :
      enterCharacterIntoString (!?tokenString !*)
   end
   select

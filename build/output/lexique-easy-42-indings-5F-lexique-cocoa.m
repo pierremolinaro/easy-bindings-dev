@@ -288,10 +288,12 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
     do {
       if (scanningOk && ([self testForInputString:@"\\n" advance:YES])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 10) ;
-      }else if (scanningOk && ([self testForInputString:@"\\u" advance:YES])) {
+      }else if (scanningOk && ([self testForInputString:@"\\\"" advance:YES])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 92) ;
-        scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 117) ;
+        scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 34) ;
       }else if (scanningOk && ([self testForInputChar:32] || [self testForInputChar:33] || [self testForInputFromChar:35 toChar:65533])) {
+        scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
+      }else if (scanningOk && ([self testForInputFromChar:65536 toChar:1114111])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       }else{
         loop = NO ;

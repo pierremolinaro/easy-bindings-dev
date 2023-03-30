@@ -244,3 +244,5 @@ autres-projets-auxiliaires/binding-introspection/build/**
 autres-projets-auxiliaires/override-in-extension/build/**
 galgas-sources/build/indexes/*
 build/Intermediates.noindex/*
+makefile-unix/eb
+makefile-unix/eb-debug

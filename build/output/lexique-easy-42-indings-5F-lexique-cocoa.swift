@@ -690,10 +690,12 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
       while (loop && scanningOk) {
         if scanningOk && (self.testForInputString ("\\n", advance: true)) {
           scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, 10)
-        }else if scanningOk && (self.testForInputString ("\\u", advance: true)) {
+        }else if scanningOk && (self.testForInputString ("\\\"", advance: true)) {
           scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, 92)
-          scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, 117)
+          scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, 34)
         }else if scanningOk && (self.testForInputChar (32) || self.testForInputChar (33) || self.testForInputFromChar (35, toChar:65533)) {
+          scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, self.previousChar)
+        }else if scanningOk && (self.testForInputFromChar (65536, toChar:1114111)) {
           scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, self.previousChar)
         }else{
           loop = false
