@@ -15,6 +15,7 @@ typealias EBTransientProperty_%!TYPE%   = EBTransientProperty <%!TYPE%>
 typealias EBComputedProperty_%!TYPE%    = EBComputedProperty <%!TYPE%>
 typealias EBStoredProperty_%!TYPE%      = EBStoredProperty <%!TYPE%>
 typealias EBPreferencesProperty_%!TYPE% = EBPreferenceProperty <%!TYPE%>
+typealias EBReadWritePropertyController_%!TYPE% = EBGenericReadWritePropertyController <%!TYPE%>
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -76,5 +77,45 @@ end
   }
 }
 %end
-%
+if not TRANSIENT then%
+//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+/*final class EBReadWritePropertyController_%!TYPE% : EBObservablePropertyController {
+
+  //····················································································································
+
+  private weak var mObject : EBReadWriteProperty_%!TYPE%?
+
+  //····················································································································
+
+  init (observedObject inObject : EBReadWriteProperty_%!TYPE%, callBack inCallBack : @escaping () -> Void) {
+    self.mObject = inObject
+    super.init (observedObjects : [inObject], callBack : inCallBack)
+  }
+
+  //····················································································································
+
+  func updateModel (withValue inValue : %!TYPE%) {
+    self.mObject?.setProp (inValue)
+  }
+
+  //····················································································································
+
+  var value : %!TYPE%? {
+    if let s = self.mObject?.selection {
+      switch s {
+      case .empty, .multiple :
+        return nil
+      case .single (let v) :
+        return v
+      }
+    }else{
+      return nil
+    }
+  }
+
+  //····················································································································
+
+}*/
+%end%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

@@ -6228,6 +6228,10 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     result << in_TYPE.stringValue () ;
     result << " = EBPreferenceProperty <" ;
     result << in_TYPE.stringValue () ;
+    result << ">\ntypealias EBReadWritePropertyController_" ;
+    result << in_TYPE.stringValue () ;
+    result << " = EBGenericReadWritePropertyController <" ;
+    result << in_TYPE.stringValue () ;
     result << ">\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nfunc values_" ;
     result << in_TYPE.stringValue () ;
     result << "_are_ordered (" ;
@@ -6272,6 +6276,21 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     }
     result << "    }\n  }\n}\n" ;
   }else if (kBoolFalse == test_0) {
+  }
+  const enumGalgasBool test_3 = in_TRANSIENT.operator_not (SOURCE_FILE ("scalar-standard-property.swift.galgasTemplate", 80)).boolEnum () ;
+  if (kBoolTrue == test_3) {
+    result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n/*final class EBReadWritePropertyController_" ;
+    result << in_TYPE.stringValue () ;
+    result << " : EBObservablePropertyController {\n\n  //····················································································································\n\n  private weak var mObject : EBReadWriteProperty_" ;
+    result << in_TYPE.stringValue () ;
+    result << "\?\n\n  //····················································································································\n\n  init (observedObject inObject : EBReadWriteProperty_" ;
+    result << in_TYPE.stringValue () ;
+    result << ", callBack inCallBack : @escaping () -> Void) {\n    self.mObject = inObject\n    super.init (observedObjects : [inObject], callBack : inCallBack)\n  }\n\n  //····················································································································\n\n  func updateModel (withValue inValue : " ;
+    result << in_TYPE.stringValue () ;
+    result << ") {\n    self.mObject\?.setProp (inValue)\n  }\n\n  //····················································································································\n\n  var value : " ;
+    result << in_TYPE.stringValue () ;
+    result << "\? {\n    if let s = self.mObject\?.selection {\n      switch s {\n      case .empty, .multiple :\n        return nil\n      case .single (let v) :\n        return v\n      }\n    }else{\n      return nil\n    }\n  }\n\n  //····················································································································\n\n}*/\n" ;
+  }else if (kBoolFalse == test_3) {
   }
   result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n" ;
   return GALGAS_string (result) ;
@@ -6345,6 +6364,10 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << in_CLASS_5F_NAME.stringValue () ;
     result << " = EBPreferenceProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
+    result << ">\ntypealias EBReadWritePropertyController_" ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << " = EBGenericReadWritePropertyController <" ;
+    result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n" ;
   }
   result << "\n" ;
@@ -6358,6 +6381,21 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ") -> ComparisonResult {\n  switch left.prop {\n  case .empty :\n    switch right.prop {\n    case .empty :\n      return .orderedSame\n    default:\n      return .orderedAscending\n    }\n  case .multiple :\n    switch right.prop {\n    case .empty :\n      return .OrderedDescending\n    case .multiple :\n      return .OrderedSame\n   case .single (_) :\n      return .OrderedAscending\n   }\n case .single (let currentValue) :\n    switch right.prop {\n    case .empty, .multiple :\n      return .orderedDescending\n    case .single (let otherValue) :\n      if currentValue < otherValue {\n        return .orderedAscending\n      }else if currentValue > otherValue {\n        return .orderedDescending\n      }else{\n        return .orderedSame\n      }\n    }\n  }\n}\n" ;
   }else if (kBoolFalse == test_2) {
+  }
+  const enumGalgasBool test_3 = in_TRANSIENT.operator_not (SOURCE_FILE ("class-standard-property.swift.galgasTemplate", 72)).boolEnum () ;
+  if (kBoolTrue == test_3) {
+    result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n/*final class EBReadWritePropertyController_" ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << " : EBObservablePropertyController {\n\n  //····················································································································\n\n  private weak var mObject : EBReadWriteProperty_" ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << "\?\n\n  //····················································································································\n\n  init (observedObject inObject : EBReadWriteProperty_" ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << ", callBack inCallBack : @escaping () -> Void) {\n    self.mObject = inObject\n    super.init (observedObjects : [inObject], callBack : inCallBack)\n  }\n\n  //····················································································································\n\n  func updateModel (withValue inValue : " ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << ") {\n    self.mObject\?.setProp (inValue)\n  }\n\n  //····················································································································\n\n  var value : " ;
+    result << in_CLASS_5F_NAME.stringValue () ;
+    result << "\? {\n    if let s = self.mObject\?.selection {\n      switch s {\n      case .empty, .multiple :\n        return nil\n      case .single (let v) :\n        return v\n      }\n    }else{\n      return nil\n    }\n  }\n\n  //····················································································································\n\n}*/\n" ;
+  }else if (kBoolFalse == test_3) {
   }
   result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n" ;
   return GALGAS_string (result) ;
@@ -6449,11 +6487,11 @@ void routine_generateClassProperty (const GALGAS_string constinArgument_inOutput
                                     GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                     C_Compiler * inCompiler
                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents_7727 = GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, constinArgument_inClassPropertyTypeName, constinArgument_inComparable, constinArgument_inTransient COMMA_SOURCE_FILE ("code-generation.ggs", 181))) ;
-  GALGAS_string var_fileName_7863 = GALGAS_string ("property-").add_operation (constinArgument_inClassPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 183)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 183)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_7863  COMMA_SOURCE_FILE ("code-generation.ggs", 184)) ;
+  GALGAS_string var_contents_7543 = GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, constinArgument_inClassPropertyTypeName, constinArgument_inComparable, constinArgument_inTransient COMMA_SOURCE_FILE ("code-generation.ggs", 173))) ;
+  GALGAS_string var_fileName_7679 = GALGAS_string ("property-").add_operation (constinArgument_inClassPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 175)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 175)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_7679  COMMA_SOURCE_FILE ("code-generation.ggs", 176)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7863, var_contents_7727, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 185)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7679, var_contents_7543, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 177)) ;
   }
 }
 
@@ -6471,11 +6509,11 @@ void routine_generateScalarProperty (const GALGAS_string constinArgument_inOutpu
                                      GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                      C_Compiler * inCompiler
                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents_8507 = GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, constinArgument_inScalarPropertyTypeName, constinArgument_inTransient, constinArgument_inComparisonMethod COMMA_SOURCE_FILE ("code-generation.ggs", 199))) ;
-  GALGAS_string var_fileName_8651 = GALGAS_string ("property-").add_operation (constinArgument_inScalarPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 201)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 201)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_8651  COMMA_SOURCE_FILE ("code-generation.ggs", 202)) ;
+  GALGAS_string var_contents_8323 = GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, constinArgument_inScalarPropertyTypeName, constinArgument_inTransient, constinArgument_inComparisonMethod COMMA_SOURCE_FILE ("code-generation.ggs", 191))) ;
+  GALGAS_string var_fileName_8467 = GALGAS_string ("property-").add_operation (constinArgument_inScalarPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 193)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 193)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_8467  COMMA_SOURCE_FILE ("code-generation.ggs", 194)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_8651, var_contents_8507, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 203)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_8467, var_contents_8323, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 195)) ;
   }
 }
 

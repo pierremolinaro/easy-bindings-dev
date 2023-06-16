@@ -161,14 +161,6 @@ private proc generateStandardProperties (?let @string inOutputDirectory
   generateClassProperty (!inOutputDirectory !"NSBezierPath" !false !false !?ioGeneratedFileSet)
   generateClassProperty (!inOutputDirectory !"NSFont"  !false !false !?ioGeneratedFileSet)
   generateClassProperty (!inOutputDirectory !"NSColor" !false !false !?ioGeneratedFileSet)
-#--- Generate file
-#  let fileName = "standard-properties.swift"
-#  ioGeneratedFileSet += !fileName
-#  [@string generateFile
-#    !inOutputDirectory
-#    !fileName
-#    !contents
-#  ]
 }
 
 #·······················································································································
