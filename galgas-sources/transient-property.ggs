@@ -350,10 +350,6 @@ override func @transientPropertyGeneration.propertyDeclarationCode(
       result += "//   Transient property: " + self.mPropertyName + "\n"
       result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
       result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBTransientProperty_" + [self.mType swiftTypeName] + " ()\n\n"
-      result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-      result += "@MainActor var preferences_" + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
-      result += "  return preferences_" + self.mPropertyName + "_property.optionalValue\n"
-      result += "}\n\n"
     else
       result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
       result += "  //   Transient property: " + self.mPropertyName + "\n"

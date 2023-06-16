@@ -234,11 +234,6 @@ override func @atomicPropertyGeneration.propertyDeclarationCode(
     result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBPreferencesProperty_" + [self.mType swiftTypeName]
     result += " (defaultValue: " + self.mDefaultValueInSwift + ", prefKey: Preferences_" + self.mPropertyName  + ")\n\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-    result += "@MainActor var preferences_" + self.mPropertyName + " : " + [self.mType swiftTypeName] + " {\n"
-    result += "  get { return preferences_" + self.mPropertyName + "_property.propval }\n"
-    result += "  set { preferences_" + self.mPropertyName + "_property.setProp (newValue) }\n"
-    result += "}\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
     result += "  //   Atomic property: " + self.mPropertyName + "\n"

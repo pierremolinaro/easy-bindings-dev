@@ -218,13 +218,6 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
     result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + "_property = PreferencesArrayOf_" + [self.mRelationshipType swiftTypeName]
     result += " (prefKey: Preferences_" + self.mPropertyName + ")\n\n"
-   result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-    result += "@MainActor var preferences_" + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
-    result += "  get { return preferences_" + self.mPropertyName + "_property.propval }\n"
-    if not [self.mOption isHasDependance] then
-      result += "  set { preferences_" + self.mPropertyName + "_property.setProp (newValue) }\n"
-    end
-    result += "}\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
