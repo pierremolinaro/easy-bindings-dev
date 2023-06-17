@@ -17,6 +17,7 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
   public let @bool mCustomStore
   public let @bool mUsedForSignature
   public let @bool mGenerateDirectAccess
+  public let @bool mGenerateDirectRead
 }
 
 #·······················································································································
@@ -57,6 +58,7 @@ syntax extension easyBindings_syntax {
     var usedForSignature = false
     var customStore = false
     var generateDirectAccess = false
+    var generateDirectRead = false
     repeat
     while
       $@attribute$ (?let attributeName)
@@ -70,6 +72,11 @@ syntax extension easyBindings_syntax {
           error attributeName : "duplicated attribute" fixit { remove }
         end
         customStore = true
+      elsif attributeName.string == "generateDirectRead" then
+        if generateDirectRead then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
           error attributeName : "duplicated attribute" fixit { remove }
@@ -77,9 +84,13 @@ syntax extension easyBindings_syntax {
         generateDirectAccess = true
       else
         error attributeName : "unknow attribute" fixit {
-          replace "@signature" replace "@customStore" replace "@generateDirectAccess"
+          replace "@signature" replace "@customStore"
+          replace "@generateDirectAccess" replace "@generateDirectRead"
         }
       end
+    end
+    if generateDirectAccess && generateDirectRead then
+      error .here : "@generateDirectAccess implies @generateDirectRead"
     end
     $Identifier$ (?let destinationEntityName)
     $identifier$ (?let relationshipName)
@@ -110,6 +121,7 @@ syntax extension easyBindings_syntax {
       !customStore
       !usedForSignature
       !generateDirectAccess
+      !generateDirectRead
     )
   }
   
@@ -166,6 +178,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       mPropertyGenerationList += !@toManyPropertyGeneration (
         !self.mToManyRelationshipName.string
         !self.mGenerateDirectAccess
+        !self.mGenerateDirectRead
         !kind
         !optionForGeneration
         !inPrefs
@@ -192,6 +205,7 @@ enum @toManyRelationshipOptionGeneration {
 
 class @toManyPropertyGeneration : @propertyGeneration {
   public let @bool mGenerateDirectAccess
+  public let @bool mGenerateDirectRead
   public let @propertyKind mRelationshipType
   public let @toManyRelationshipOptionGeneration mOption
   public let @bool mInPreferences
@@ -246,11 +260,11 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
       result += "\"" + self.mPropertyName + "\""
     end
     result += ")\n\n"
-    if self.mGenerateDirectAccess then
+    if self.mGenerateDirectAccess || self.mGenerateDirectRead then
       result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
       result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
       result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
-      if not [self.mOption isHasDependance] then
+      if not [self.mOption isHasDependance], self.mGenerateDirectAccess then
         result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
       end
       result += "  }\n\n"

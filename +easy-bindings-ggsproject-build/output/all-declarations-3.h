@@ -4261,6 +4261,8 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
 
   public: class GALGAS_bool readProperty_mGenerateDirectAccess (void) const ;
 
+  public: class GALGAS_bool readProperty_mGenerateDirectRead (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -4278,7 +4280,8 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
                                                                      const class GALGAS_toManyRelationshipOptionAST & inOperand3,
                                                                      const class GALGAS_bool & inOperand4,
                                                                      const class GALGAS_bool & inOperand5,
-                                                                     const class GALGAS_bool & inOperand6
+                                                                     const class GALGAS_bool & inOperand6,
+                                                                     const class GALGAS_bool & inOperand7
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4333,6 +4336,7 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
   public: GALGAS_bool mProperty_mCustomStore ;
   public: GALGAS_bool mProperty_mUsedForSignature ;
   public: GALGAS_bool mProperty_mGenerateDirectAccess ;
+  public: GALGAS_bool mProperty_mGenerateDirectRead ;
 
 //--- Constructor
   public: cPtr_toManyRelationshipAST (const GALGAS_lstring & in_mClassName,
@@ -4341,7 +4345,8 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
                                       const GALGAS_toManyRelationshipOptionAST & in_mOption,
                                       const GALGAS_bool & in_mCustomStore,
                                       const GALGAS_bool & in_mUsedForSignature,
-                                      const GALGAS_bool & in_mGenerateDirectAccess
+                                      const GALGAS_bool & in_mGenerateDirectAccess,
+                                      const GALGAS_bool & in_mGenerateDirectRead
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -4566,6 +4571,8 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Property read access
   public: class GALGAS_bool readProperty_mGenerateDirectAccess (void) const ;
 
+  public: class GALGAS_bool readProperty_mGenerateDirectRead (void) const ;
+
   public: class GALGAS_propertyKind readProperty_mRelationshipType (void) const ;
 
   public: class GALGAS_toManyRelationshipOptionGeneration readProperty_mOption (void) const ;
@@ -4589,11 +4596,12 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_toManyPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                         const class GALGAS_bool & inOperand1,
-                                                                        const class GALGAS_propertyKind & inOperand2,
-                                                                        const class GALGAS_toManyRelationshipOptionGeneration & inOperand3,
-                                                                        const class GALGAS_bool & inOperand4,
+                                                                        const class GALGAS_bool & inOperand2,
+                                                                        const class GALGAS_propertyKind & inOperand3,
+                                                                        const class GALGAS_toManyRelationshipOptionGeneration & inOperand4,
                                                                         const class GALGAS_bool & inOperand5,
-                                                                        const class GALGAS_bool & inOperand6
+                                                                        const class GALGAS_bool & inOperand6,
+                                                                        const class GALGAS_bool & inOperand7
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4656,6 +4664,7 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Properties
   public: GALGAS_bool mProperty_mGenerateDirectAccess ;
+  public: GALGAS_bool mProperty_mGenerateDirectRead ;
   public: GALGAS_propertyKind mProperty_mRelationshipType ;
   public: GALGAS_toManyRelationshipOptionGeneration mProperty_mOption ;
   public: GALGAS_bool mProperty_mInPreferences ;
@@ -4665,6 +4674,7 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 //--- Constructor
   public: cPtr_toManyPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                          const GALGAS_bool & in_mGenerateDirectAccess,
+                                         const GALGAS_bool & in_mGenerateDirectRead,
                                          const GALGAS_propertyKind & in_mRelationshipType,
                                          const GALGAS_toManyRelationshipOptionGeneration & in_mOption,
                                          const GALGAS_bool & in_mInPreferences,
@@ -7885,22 +7895,4 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak : public G
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeExpressionForMultipleBinding (class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const class GALGAS_bool constin_inPreferences,
-                                                              const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const class GALGAS_semanticContext constin_inSemanticContext,
-                                                              const class GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              const class GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
-                                                              class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              class GALGAS_typeKind & out_outType,
-                                                              class GALGAS_location & out_outErrorLocation,
-                                                              class C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
 

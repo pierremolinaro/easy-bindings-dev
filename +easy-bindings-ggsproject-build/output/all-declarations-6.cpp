@@ -4855,6 +4855,7 @@ GALGAS_toOnePropertyGeneration GALGAS_toOnePropertyGeneration::extractObject (co
     mProperty_mCustomStore.printNonNullClassInstanceProperties ("mCustomStore") ;
     mProperty_mUsedForSignature.printNonNullClassInstanceProperties ("mUsedForSignature") ;
     mProperty_mGenerateDirectAccess.printNonNullClassInstanceProperties ("mGenerateDirectAccess") ;
+    mProperty_mGenerateDirectRead.printNonNullClassInstanceProperties ("mGenerateDirectRead") ;
   }
 #endif
 
@@ -4884,6 +4885,9 @@ typeComparisonResult cPtr_toManyRelationshipAST::dynamicObjectCompare (const acP
   }
   if (kOperandEqual == result) {
     result = mProperty_mGenerateDirectAccess.objectCompare (p->mProperty_mGenerateDirectAccess) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mGenerateDirectRead.objectCompare (p->mProperty_mGenerateDirectRead) ;
   }
   return result ;
 }
@@ -4927,11 +4931,12 @@ GALGAS_toManyRelationshipAST GALGAS_toManyRelationshipAST::constructor_new (cons
                                                                             const GALGAS_toManyRelationshipOptionAST & inAttribute_mOption,
                                                                             const GALGAS_bool & inAttribute_mCustomStore,
                                                                             const GALGAS_bool & inAttribute_mUsedForSignature,
-                                                                            const GALGAS_bool & inAttribute_mGenerateDirectAccess
+                                                                            const GALGAS_bool & inAttribute_mGenerateDirectAccess,
+                                                                            const GALGAS_bool & inAttribute_mGenerateDirectRead
                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_toManyRelationshipAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mDestinationEntityName.isValid () && inAttribute_mToManyRelationshipName.isValid () && inAttribute_mOption.isValid () && inAttribute_mCustomStore.isValid () && inAttribute_mUsedForSignature.isValid () && inAttribute_mGenerateDirectAccess.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_toManyRelationshipAST (inAttribute_mClassName, inAttribute_mDestinationEntityName, inAttribute_mToManyRelationshipName, inAttribute_mOption, inAttribute_mCustomStore, inAttribute_mUsedForSignature, inAttribute_mGenerateDirectAccess COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mDestinationEntityName.isValid () && inAttribute_mToManyRelationshipName.isValid () && inAttribute_mOption.isValid () && inAttribute_mCustomStore.isValid () && inAttribute_mUsedForSignature.isValid () && inAttribute_mGenerateDirectAccess.isValid () && inAttribute_mGenerateDirectRead.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_toManyRelationshipAST (inAttribute_mClassName, inAttribute_mDestinationEntityName, inAttribute_mToManyRelationshipName, inAttribute_mOption, inAttribute_mCustomStore, inAttribute_mUsedForSignature, inAttribute_mGenerateDirectAccess, inAttribute_mGenerateDirectRead COMMA_THERE)) ;
   }
   return result ;
 }
@@ -5009,6 +5014,18 @@ GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mGenerateDirectAccess (vo
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mGenerateDirectRead (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_bool () ;
+  }else{
+    cPtr_toManyRelationshipAST * p = (cPtr_toManyRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toManyRelationshipAST) ;
+    return p->mProperty_mGenerateDirectRead ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 //Pointer class for @toManyRelationshipAST class
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -5018,7 +5035,8 @@ cPtr_toManyRelationshipAST::cPtr_toManyRelationshipAST (const GALGAS_lstring & i
                                                         const GALGAS_toManyRelationshipOptionAST & in_mOption,
                                                         const GALGAS_bool & in_mCustomStore,
                                                         const GALGAS_bool & in_mUsedForSignature,
-                                                        const GALGAS_bool & in_mGenerateDirectAccess
+                                                        const GALGAS_bool & in_mGenerateDirectAccess,
+                                                        const GALGAS_bool & in_mGenerateDirectRead
                                                         COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
 mProperty_mDestinationEntityName (in_mDestinationEntityName),
@@ -5026,7 +5044,8 @@ mProperty_mToManyRelationshipName (in_mToManyRelationshipName),
 mProperty_mOption (in_mOption),
 mProperty_mCustomStore (in_mCustomStore),
 mProperty_mUsedForSignature (in_mUsedForSignature),
-mProperty_mGenerateDirectAccess (in_mGenerateDirectAccess) {
+mProperty_mGenerateDirectAccess (in_mGenerateDirectAccess),
+mProperty_mGenerateDirectRead (in_mGenerateDirectRead) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5051,6 +5070,8 @@ void cPtr_toManyRelationshipAST::description (C_String & ioString,
   mProperty_mUsedForSignature.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mGenerateDirectAccess.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mGenerateDirectRead.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -5058,7 +5079,7 @@ void cPtr_toManyRelationshipAST::description (C_String & ioString,
 
 acPtr_class * cPtr_toManyRelationshipAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_toManyRelationshipAST (mProperty_mClassName, mProperty_mDestinationEntityName, mProperty_mToManyRelationshipName, mProperty_mOption, mProperty_mCustomStore, mProperty_mUsedForSignature, mProperty_mGenerateDirectAccess COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_toManyRelationshipAST (mProperty_mClassName, mProperty_mDestinationEntityName, mProperty_mToManyRelationshipName, mProperty_mOption, mProperty_mCustomStore, mProperty_mUsedForSignature, mProperty_mGenerateDirectAccess, mProperty_mGenerateDirectRead COMMA_THERE)) ;
   return ptr ;
 }
 
