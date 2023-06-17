@@ -163,6 +163,7 @@ class @selectionControllerPropertyGeneration : @propertyGeneration {
 
 override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
    ?let @bool unused inPreferences
+   ?let @bool unused inGenerationDirectAccess
    ?let @stringset unused inOverriddenTransients) -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
   result += "  //   Selection controller: " + self.mPropertyName + "\n"

@@ -10,7 +10,7 @@ import AppKit
   
 %
 for (mProperty) in DOCUMENT_PROPERTY_LIST do
-  ![mProperty propertyDeclarationCode !false ![@stringset emptySet]]
+  ![mProperty propertyDeclarationCode !false !true ![@stringset emptySet]]
 end
 %  //····················································································································
   //    Outlets

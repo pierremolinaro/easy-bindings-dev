@@ -196,6 +196,7 @@ list @toManyPropertyGenerationList {
 #·······················································································································
 
 override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unused inPreferences
+                                                            ?let @bool unused inGenerationDirectAccess
                                                             ?let @stringset unused inOverriddenTransients) -> @string {
   if [self.mOption isHasDependance] then
     result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"

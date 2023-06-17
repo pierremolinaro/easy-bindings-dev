@@ -7341,6 +7341,7 @@ class cPtr_propertyGeneration : public acStrongPtr_class {
 
 //--- Extension getter propertyDeclarationCode
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_bool inGenerationDirectAccess,
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 

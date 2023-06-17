@@ -338,6 +338,7 @@ override func @computedPropertyGeneration.bindPropertyInSelectionController () -
 
 override func @computedPropertyGeneration.propertyDeclarationCode(
    ?let @bool inPreferences
+   ?let @bool unused inGenerationDirectAccess
    ?let @stringset inOverriddenTransients) -> @string
 {
   result  = ""

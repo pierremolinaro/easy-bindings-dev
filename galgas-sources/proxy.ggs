@@ -225,6 +225,7 @@ override func @toManyProxyGeneration.bindPropertyInSelectionController() -> @str
 
 override func @toManyProxyGeneration.propertyDeclarationCode(
    ?let @bool unused inPreferences
+   ?let @bool unused inGenerationDirectAccess
    ?let @stringset unused inOverriddenTransients) -> @string
 {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
@@ -359,6 +360,7 @@ override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @st
 
 override func @atomicProxyGeneration.propertyDeclarationCode(
    ?let @bool unused inPreferences
+   ?let @bool unused inGenerationDirectAccess
    ?let @stringset unused inOverriddenTransients) -> @string
 {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
@@ -401,7 +403,7 @@ override func @atomicProxyGeneration.configurationCode (?let @bool unused inPref
   result += "      }\n"
   result += "    }\n"
   result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (_ inValue : " + [self.mType swiftTypeName] + ") in\n"
-  result += "      self?." + self.mObservedRelationshipName + "?." + self.mObservedPropertyName + " = inValue\n"
+  result += "      self?." + self.mObservedRelationshipName + "?." + self.mObservedPropertyName + "_property.setProp (inValue)\n"
   result += "    }\n"
   result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName
   result += "_property.startsToBeObserved (by: self." + self.mPropertyName + "_property)\n"

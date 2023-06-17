@@ -341,6 +341,7 @@ override func @transientPropertyGeneration.bindPropertyInSelectionController() -
 
 override func @transientPropertyGeneration.propertyDeclarationCode(
    ?let @bool inPreferences
+   ?let @bool unused inGenerationDirectAccess
    ?let @stringset inOverriddenTransients) -> @string
 {
   result  = ""

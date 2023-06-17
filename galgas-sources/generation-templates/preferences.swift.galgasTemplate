@@ -210,7 +210,7 @@ end
 %
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty propertyDeclarationCode !true ![@stringset emptySet]]
+  ![mProperty propertyDeclarationCode !true !true ![@stringset emptySet]]
 end
 %
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

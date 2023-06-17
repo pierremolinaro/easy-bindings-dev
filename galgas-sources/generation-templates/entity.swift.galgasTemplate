@@ -58,7 +58,7 @@ end
 
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
-  ![mProperty propertyDeclarationCode !false !OVERRIDEN_TRANSIENTS]
+  ![mProperty propertyDeclarationCode !false !GENERATE_PROPERTY_ACCESS_PROTOCOLS !OVERRIDEN_TRANSIENTS]
 end
 %  //····················································································································
   //    init

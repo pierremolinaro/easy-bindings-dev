@@ -10,24 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeExpressionForMultipleBinding (class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const class GALGAS_bool constin_inPreferences,
-                                                              const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const class GALGAS_semanticContext constin_inSemanticContext,
-                                                              const class GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              const class GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
-                                                              class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              class GALGAS_typeKind & out_outType,
-                                                              class GALGAS_location & out_outErrorLocation,
-                                                              class C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //                                     Phase 1: @arrayControllerBoundModelAST enum                                     *
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -395,6 +377,7 @@ class cPtr_arrayControllerPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Extension getter propertyDeclarationCode
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_bool inGenerationDirectAccess,
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -1540,6 +1523,7 @@ class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propert
 
 //--- Extension getter propertyDeclarationCode
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_bool inGenerationDirectAccess,
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -2770,6 +2754,7 @@ class cPtr_selectionControllerPropertyGeneration : public cPtr_propertyGeneratio
 
 //--- Extension getter propertyDeclarationCode
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
+           const class GALGAS_bool inGenerationDirectAccess,
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -4453,6 +4438,7 @@ class GALGAS_string callExtensionGetter_bindPropertyInSelectionController (const
 
 class GALGAS_string callExtensionGetter_propertyDeclarationCode (const class cPtr_propertyGeneration * inObject,
                                                                  const class GALGAS_bool constin_inPreferences,
+                                                                 const class GALGAS_bool constin_inGenerationDirectAccess,
                                                                  const class GALGAS_stringset constin_inOverriddenTransients,
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;

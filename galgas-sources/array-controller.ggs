@@ -246,6 +246,7 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 #·······················································································································
 
 override func @arrayControllerPropertyGeneration.propertyDeclarationCode (?let @bool inPreferences
+                                                            ?let @bool unused inGenerationDirectAccess
                                                             ?let @stringset unused inOverriddenTransients) -> @string {
   if inPreferences then
     result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"

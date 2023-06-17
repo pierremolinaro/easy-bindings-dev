@@ -185,6 +185,7 @@ list @toOnePropertyGenerationList {
 
 override func @toOnePropertyGeneration.propertyDeclarationCode
                                                    (?let @bool unused inPreferences
+                                                    ?let @bool unused inGenerationDirectAccess
                                                     ?let @stringset unused inOverriddenTransients) -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
   result += "  //   To one property: " + self.mPropertyName + "\n"
