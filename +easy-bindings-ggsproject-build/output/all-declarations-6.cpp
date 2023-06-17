@@ -3982,6 +3982,7 @@ GALGAS_proxyDeclarationAST GALGAS_proxyDeclarationAST::extractObject (const GALG
     mProperty_mPropertyTypeName.printNonNullClassInstanceProperties ("mPropertyTypeName") ;
     mProperty_mPropertyName.printNonNullClassInstanceProperties ("mPropertyName") ;
     mProperty_mDefaultValue.printNonNullClassInstanceProperties ("mDefaultValue") ;
+    mProperty_mGenerateResetMethod.printNonNullClassInstanceProperties ("mGenerateResetMethod") ;
   }
 #endif
 
@@ -4002,6 +4003,9 @@ typeComparisonResult cPtr_atomicPropertyDeclarationAST::dynamicObjectCompare (co
   }
   if (kOperandEqual == result) {
     result = mProperty_mDefaultValue.objectCompare (p->mProperty_mDefaultValue) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mGenerateResetMethod.objectCompare (p->mProperty_mGenerateResetMethod) ;
   }
   return result ;
 }
@@ -4042,11 +4046,12 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 GALGAS_atomicPropertyDeclarationAST GALGAS_atomicPropertyDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
                                                                                           const GALGAS_lstring & inAttribute_mPropertyTypeName,
                                                                                           const GALGAS_lstring & inAttribute_mPropertyName,
-                                                                                          const GALGAS_abstractDefaultValue & inAttribute_mDefaultValue
+                                                                                          const GALGAS_abstractDefaultValue & inAttribute_mDefaultValue,
+                                                                                          const GALGAS_bool & inAttribute_mGenerateResetMethod
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_atomicPropertyDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mPropertyTypeName.isValid () && inAttribute_mPropertyName.isValid () && inAttribute_mDefaultValue.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyDeclarationAST (inAttribute_mClassName, inAttribute_mPropertyTypeName, inAttribute_mPropertyName, inAttribute_mDefaultValue COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mPropertyTypeName.isValid () && inAttribute_mPropertyName.isValid () && inAttribute_mDefaultValue.isValid () && inAttribute_mGenerateResetMethod.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyDeclarationAST (inAttribute_mClassName, inAttribute_mPropertyTypeName, inAttribute_mPropertyName, inAttribute_mDefaultValue, inAttribute_mGenerateResetMethod COMMA_THERE)) ;
   }
   return result ;
 }
@@ -4081,6 +4086,17 @@ void GALGAS_atomicPropertyDeclarationAST::setter_setMDefaultValue (GALGAS_abstra
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
     p->mProperty_mDefaultValue = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_atomicPropertyDeclarationAST::setter_setMGenerateResetMethod (GALGAS_bool inValue
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
+    p->mProperty_mGenerateResetMethod = inValue ;
   }
 }
 
@@ -4121,18 +4137,32 @@ GALGAS_abstractDefaultValue GALGAS_atomicPropertyDeclarationAST::readProperty_mD
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateResetMethod (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_bool () ;
+  }else{
+    cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
+    return p->mProperty_mGenerateResetMethod ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 //Pointer class for @atomicPropertyDeclarationAST class
 //----------------------------------------------------------------------------------------------------------------------
 
 cPtr_atomicPropertyDeclarationAST::cPtr_atomicPropertyDeclarationAST (const GALGAS_lstring & in_mClassName,
                                                                       const GALGAS_lstring & in_mPropertyTypeName,
                                                                       const GALGAS_lstring & in_mPropertyName,
-                                                                      const GALGAS_abstractDefaultValue & in_mDefaultValue
+                                                                      const GALGAS_abstractDefaultValue & in_mDefaultValue,
+                                                                      const GALGAS_bool & in_mGenerateResetMethod
                                                                       COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
 mProperty_mPropertyTypeName (in_mPropertyTypeName),
 mProperty_mPropertyName (in_mPropertyName),
-mProperty_mDefaultValue (in_mDefaultValue) {
+mProperty_mDefaultValue (in_mDefaultValue),
+mProperty_mGenerateResetMethod (in_mGenerateResetMethod) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4151,6 +4181,8 @@ void cPtr_atomicPropertyDeclarationAST::description (C_String & ioString,
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mDefaultValue.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mGenerateResetMethod.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -4158,7 +4190,7 @@ void cPtr_atomicPropertyDeclarationAST::description (C_String & ioString,
 
 acPtr_class * cPtr_atomicPropertyDeclarationAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue, mProperty_mGenerateResetMethod COMMA_THERE)) ;
   return ptr ;
 }
 

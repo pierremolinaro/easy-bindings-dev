@@ -2939,6 +2939,8 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
 
   public: class GALGAS_abstractDefaultValue readProperty_mDefaultValue (void) const ;
 
+  public: class GALGAS_bool readProperty_mGenerateResetMethod (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -2953,7 +2955,8 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
   public: static class GALGAS_atomicPropertyDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
                                                                             const class GALGAS_lstring & inOperand1,
                                                                             const class GALGAS_lstring & inOperand2,
-                                                                            const class GALGAS_abstractDefaultValue & inOperand3
+                                                                            const class GALGAS_abstractDefaultValue & inOperand3,
+                                                                            const class GALGAS_bool & inOperand4
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2962,6 +2965,9 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMDefaultValue (class GALGAS_abstractDefaultValue inArgument0
                                                          COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMGenerateResetMethod (class GALGAS_bool inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMPropertyName (class GALGAS_lstring inArgument0
                                                          COMMA_LOCATION_ARGS) ;
@@ -3014,12 +3020,14 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
   public: GALGAS_lstring mProperty_mPropertyTypeName ;
   public: GALGAS_lstring mProperty_mPropertyName ;
   public: GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
+  public: GALGAS_bool mProperty_mGenerateResetMethod ;
 
 //--- Constructor
   public: cPtr_atomicPropertyDeclarationAST (const GALGAS_lstring & in_mClassName,
                                              const GALGAS_lstring & in_mPropertyTypeName,
                                              const GALGAS_lstring & in_mPropertyName,
-                                             const GALGAS_abstractDefaultValue & in_mDefaultValue
+                                             const GALGAS_abstractDefaultValue & in_mDefaultValue,
+                                             const GALGAS_bool & in_mGenerateResetMethod
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -3106,6 +3114,8 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
   public: GALGAS_atomicPropertyGeneration (const class cPtr_atomicPropertyGeneration * inSourcePtr) ;
 
 //--------------------------------- Property read access
+  public: class GALGAS_bool readProperty_mGenerateResetMethod (void) const ;
+
   public: class GALGAS_typeKind readProperty_mType (void) const ;
 
   public: class GALGAS_bool readProperty_mIsProxy (void) const ;
@@ -3126,10 +3136,11 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_atomicPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                        const class GALGAS_typeKind & inOperand1,
-                                                                        const class GALGAS_bool & inOperand2,
-                                                                        const class GALGAS_string & inOperand3,
-                                                                        const class GALGAS_bool & inOperand4
+                                                                        const class GALGAS_bool & inOperand1,
+                                                                        const class GALGAS_typeKind & inOperand2,
+                                                                        const class GALGAS_bool & inOperand3,
+                                                                        const class GALGAS_string & inOperand4,
+                                                                        const class GALGAS_bool & inOperand5
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3137,6 +3148,9 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMDefaultValueInSwift (class GALGAS_string inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMGenerateResetMethod (class GALGAS_bool inArgument0
                                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMInPreferences (class GALGAS_bool inArgument0
@@ -3205,6 +3219,7 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
   public: virtual class GALGAS_string getter_setupAtomicPropertyFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
+  public: GALGAS_bool mProperty_mGenerateResetMethod ;
   public: GALGAS_typeKind mProperty_mType ;
   public: GALGAS_bool mProperty_mIsProxy ;
   public: GALGAS_string mProperty_mDefaultValueInSwift ;
@@ -3212,6 +3227,7 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Constructor
   public: cPtr_atomicPropertyGeneration (const GALGAS_string & in_mPropertyName,
+                                         const GALGAS_bool & in_mGenerateResetMethod,
                                          const GALGAS_typeKind & in_mType,
                                          const GALGAS_bool & in_mIsProxy,
                                          const GALGAS_string & in_mDefaultValueInSwift,
@@ -7889,22 +7905,4 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak : public G
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeExpressionForMultipleBinding (class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const class GALGAS_bool constin_inPreferences,
-                                                              const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const class GALGAS_semanticContext constin_inSemanticContext,
-                                                              const class GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              const class GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
-                                                              class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              class GALGAS_typeKind & out_outType,
-                                                              class GALGAS_location & out_outErrorLocation,
-                                                              class C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
 

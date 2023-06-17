@@ -5487,6 +5487,7 @@ GALGAS_atomicPropertyDeclarationAST_2D_weak GALGAS_atomicPropertyDeclarationAST_
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_atomicPropertyGeneration::printNonNullClassInstanceProperties (void) const {
     cPtr_propertyGeneration::printNonNullClassInstanceProperties () ;
+    mProperty_mGenerateResetMethod.printNonNullClassInstanceProperties ("mGenerateResetMethod") ;
     mProperty_mType.printNonNullClassInstanceProperties ("mType") ;
     mProperty_mIsProxy.printNonNullClassInstanceProperties ("mIsProxy") ;
     mProperty_mDefaultValueInSwift.printNonNullClassInstanceProperties ("mDefaultValueInSwift") ;
@@ -5502,6 +5503,9 @@ typeComparisonResult cPtr_atomicPropertyGeneration::dynamicObjectCompare (const 
   macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
   if (kOperandEqual == result) {
     result = mProperty_mPropertyName.objectCompare (p->mProperty_mPropertyName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mGenerateResetMethod.objectCompare (p->mProperty_mGenerateResetMethod) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mType.objectCompare (p->mProperty_mType) ;
@@ -5552,16 +5556,28 @@ GALGAS_propertyGeneration (inSourcePtr) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_atomicPropertyGeneration GALGAS_atomicPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
+                                                                                  const GALGAS_bool & inAttribute_mGenerateResetMethod,
                                                                                   const GALGAS_typeKind & inAttribute_mType,
                                                                                   const GALGAS_bool & inAttribute_mIsProxy,
                                                                                   const GALGAS_string & inAttribute_mDefaultValueInSwift,
                                                                                   const GALGAS_bool & inAttribute_mInPreferences
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_atomicPropertyGeneration result ;
-  if (inAttribute_mPropertyName.isValid () && inAttribute_mType.isValid () && inAttribute_mIsProxy.isValid () && inAttribute_mDefaultValueInSwift.isValid () && inAttribute_mInPreferences.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyGeneration (inAttribute_mPropertyName, inAttribute_mType, inAttribute_mIsProxy, inAttribute_mDefaultValueInSwift, inAttribute_mInPreferences COMMA_THERE)) ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mGenerateResetMethod.isValid () && inAttribute_mType.isValid () && inAttribute_mIsProxy.isValid () && inAttribute_mDefaultValueInSwift.isValid () && inAttribute_mInPreferences.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyGeneration (inAttribute_mPropertyName, inAttribute_mGenerateResetMethod, inAttribute_mType, inAttribute_mIsProxy, inAttribute_mDefaultValueInSwift, inAttribute_mInPreferences COMMA_THERE)) ;
   }
   return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_atomicPropertyGeneration::setter_setMGenerateResetMethod (GALGAS_bool inValue
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
+    p->mProperty_mGenerateResetMethod = inValue ;
+  }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5605,6 +5621,18 @@ void GALGAS_atomicPropertyGeneration::setter_setMInPreferences (GALGAS_bool inVa
     cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
     p->mProperty_mInPreferences = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_atomicPropertyGeneration::readProperty_mGenerateResetMethod (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_bool () ;
+  }else{
+    cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
+    return p->mProperty_mGenerateResetMethod ;
   }
 }
 
@@ -5661,12 +5689,14 @@ GALGAS_bool GALGAS_atomicPropertyGeneration::readProperty_mInPreferences (void) 
 //----------------------------------------------------------------------------------------------------------------------
 
 cPtr_atomicPropertyGeneration::cPtr_atomicPropertyGeneration (const GALGAS_string & in_mPropertyName,
+                                                              const GALGAS_bool & in_mGenerateResetMethod,
                                                               const GALGAS_typeKind & in_mType,
                                                               const GALGAS_bool & in_mIsProxy,
                                                               const GALGAS_string & in_mDefaultValueInSwift,
                                                               const GALGAS_bool & in_mInPreferences
                                                               COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
+mProperty_mGenerateResetMethod (in_mGenerateResetMethod),
 mProperty_mType (in_mType),
 mProperty_mIsProxy (in_mIsProxy),
 mProperty_mDefaultValueInSwift (in_mDefaultValueInSwift),
@@ -5684,6 +5714,8 @@ void cPtr_atomicPropertyGeneration::description (C_String & ioString,
   ioString << "[@atomicPropertyGeneration:" ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
+  mProperty_mGenerateResetMethod.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
   mProperty_mType.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mIsProxy.description (ioString, inIndentation+1) ;
@@ -5698,7 +5730,7 @@ void cPtr_atomicPropertyGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_atomicPropertyGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_atomicPropertyGeneration (mProperty_mPropertyName, mProperty_mType, mProperty_mIsProxy, mProperty_mDefaultValueInSwift, mProperty_mInPreferences COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_atomicPropertyGeneration (mProperty_mPropertyName, mProperty_mGenerateResetMethod, mProperty_mType, mProperty_mIsProxy, mProperty_mDefaultValueInSwift, mProperty_mInPreferences COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -14638,30 +14670,3 @@ GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak GALGAS_compariso
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeExpressionForMultipleBinding (cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const GALGAS_bool constin_inPreferences,
-                                                              const GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const GALGAS_semanticContext constin_inSemanticContext,
-                                                              const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              const GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
-                                                              GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              GALGAS_typeKind & out_outType,
-                                                              GALGAS_location & out_outErrorLocation,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outEnableExpression.drop () ;
-  out_outType.drop () ;
-  out_outErrorLocation.drop () ;
-//--- Find method
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractBooleanMultipleBindingExpressionAST) ;
-    inObject->method_analyzeExpressionForMultipleBinding (constin_inPreferences, constin_inRootObservablePropertyMap, constin_inSemanticContext, constin_inCurrentObservablePropertyMap, constin_inPreferencesObservablePropertyMap, out_outEnableExpression, out_outType, out_outErrorLocation, inCompiler COMMA_THERE) ;
-  }
-}

@@ -15,7 +15,7 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mPropertyTypeName
   public var @lstring mPropertyName
   public var @abstractDefaultValue mDefaultValue
-#  public var @bool mNeedsValidation
+  public var @bool mGenerateResetMethod
 }
 
 #·······················································································································
@@ -50,22 +50,22 @@ syntax extension easyBindings_syntax {
   {
     $property$
     var @bool usedForSignature = false
-#    var @bool needsValidation = false
+    var @bool generateResetMethod = false
     repeat
     while
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
-#        if needsValidation then
-#          error attributeName : "duplicated attribute" fixit { remove }
-#        end
+        if usedForSignature then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
         usedForSignature = true
-#      elsif attributeName.string == "validation" then
-#        if needsValidation then
-#          error attributeName : "duplicated attribute" fixit { remove }
-#        end
-#        needsValidation = true
+      elsif attributeName.string == "generateResetMethod" then
+        if generateResetMethod then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        generateResetMethod = true
       else
-        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@validation" }
+        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@generateResetMethod" }
       end
     end
     $Identifier$ (?let @lstring attributeTypeName)
@@ -81,6 +81,7 @@ syntax extension easyBindings_syntax {
       !attributeTypeName
       !attributeName
       !defaultValue
+      !generateResetMethod
     )
     ioAttributeList +=
       !attributeTypeName
@@ -120,6 +121,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase(
     #--- Code Generation
       mPropertyGenerationList += !@atomicPropertyGeneration (
         !self.mPropertyName.string
+        !self.mGenerateResetMethod
         !kind
         !false
         !swiftDefaultValueAsString
@@ -138,7 +140,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase(
 #-----------------------------------------------------------------------------------------------------------------------
 
 class @atomicPropertyGeneration : @propertyGeneration {
-#  public var @bool mNeedsValidation
+  public var @bool mGenerateResetMethod
   public var @typeKind mType
   public var @bool mIsProxy
   public var @string mDefaultValueInSwift
@@ -240,9 +242,11 @@ override func @atomicPropertyGeneration.propertyDeclarationCode(
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  final let " + self.mPropertyName + "_property : EBStoredProperty_" + [self.mType swiftTypeName] + "\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-    result += "  final func reset_" + self.mPropertyName + "_toDefaultValue () {\n"
-    result += "    self." + self.mPropertyName + " = " + self.mDefaultValueInSwift + "\n"
-    result += "  }\n\n"
+    if self.mGenerateResetMethod then
+      result += "  final func reset_" + self.mPropertyName + "_toDefaultValue () {\n"
+      result += "    self." + self.mPropertyName + " = " + self.mDefaultValueInSwift + "\n"
+      result += "  }\n\n"
+    end
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + " {\n"
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
