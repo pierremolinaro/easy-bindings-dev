@@ -3983,6 +3983,7 @@ GALGAS_proxyDeclarationAST GALGAS_proxyDeclarationAST::extractObject (const GALG
     mProperty_mPropertyName.printNonNullClassInstanceProperties ("mPropertyName") ;
     mProperty_mDefaultValue.printNonNullClassInstanceProperties ("mDefaultValue") ;
     mProperty_mGenerateResetMethod.printNonNullClassInstanceProperties ("mGenerateResetMethod") ;
+    mProperty_mGenerateDirectRead.printNonNullClassInstanceProperties ("mGenerateDirectRead") ;
     mProperty_mGenerateDirectAccess.printNonNullClassInstanceProperties ("mGenerateDirectAccess") ;
   }
 #endif
@@ -4007,6 +4008,9 @@ typeComparisonResult cPtr_atomicPropertyDeclarationAST::dynamicObjectCompare (co
   }
   if (kOperandEqual == result) {
     result = mProperty_mGenerateResetMethod.objectCompare (p->mProperty_mGenerateResetMethod) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mGenerateDirectRead.objectCompare (p->mProperty_mGenerateDirectRead) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mGenerateDirectAccess.objectCompare (p->mProperty_mGenerateDirectAccess) ;
@@ -4052,11 +4056,12 @@ GALGAS_atomicPropertyDeclarationAST GALGAS_atomicPropertyDeclarationAST::constru
                                                                                           const GALGAS_lstring & inAttribute_mPropertyName,
                                                                                           const GALGAS_abstractDefaultValue & inAttribute_mDefaultValue,
                                                                                           const GALGAS_bool & inAttribute_mGenerateResetMethod,
+                                                                                          const GALGAS_bool & inAttribute_mGenerateDirectRead,
                                                                                           const GALGAS_bool & inAttribute_mGenerateDirectAccess
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_atomicPropertyDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mPropertyTypeName.isValid () && inAttribute_mPropertyName.isValid () && inAttribute_mDefaultValue.isValid () && inAttribute_mGenerateResetMethod.isValid () && inAttribute_mGenerateDirectAccess.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyDeclarationAST (inAttribute_mClassName, inAttribute_mPropertyTypeName, inAttribute_mPropertyName, inAttribute_mDefaultValue, inAttribute_mGenerateResetMethod, inAttribute_mGenerateDirectAccess COMMA_THERE)) ;
+  if (inAttribute_mClassName.isValid () && inAttribute_mPropertyTypeName.isValid () && inAttribute_mPropertyName.isValid () && inAttribute_mDefaultValue.isValid () && inAttribute_mGenerateResetMethod.isValid () && inAttribute_mGenerateDirectRead.isValid () && inAttribute_mGenerateDirectAccess.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyDeclarationAST (inAttribute_mClassName, inAttribute_mPropertyTypeName, inAttribute_mPropertyName, inAttribute_mDefaultValue, inAttribute_mGenerateResetMethod, inAttribute_mGenerateDirectRead, inAttribute_mGenerateDirectAccess COMMA_THERE)) ;
   }
   return result ;
 }
@@ -4155,6 +4160,18 @@ GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateResetMeth
 
 //----------------------------------------------------------------------------------------------------------------------
 
+GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateDirectRead (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_bool () ;
+  }else{
+    cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
+    return p->mProperty_mGenerateDirectRead ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateDirectAccess (void) const {
   if (NULL == mObjectPtr) {
     return GALGAS_bool () ;
@@ -4174,6 +4191,7 @@ cPtr_atomicPropertyDeclarationAST::cPtr_atomicPropertyDeclarationAST (const GALG
                                                                       const GALGAS_lstring & in_mPropertyName,
                                                                       const GALGAS_abstractDefaultValue & in_mDefaultValue,
                                                                       const GALGAS_bool & in_mGenerateResetMethod,
+                                                                      const GALGAS_bool & in_mGenerateDirectRead,
                                                                       const GALGAS_bool & in_mGenerateDirectAccess
                                                                       COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
@@ -4181,6 +4199,7 @@ mProperty_mPropertyTypeName (in_mPropertyTypeName),
 mProperty_mPropertyName (in_mPropertyName),
 mProperty_mDefaultValue (in_mDefaultValue),
 mProperty_mGenerateResetMethod (in_mGenerateResetMethod),
+mProperty_mGenerateDirectRead (in_mGenerateDirectRead),
 mProperty_mGenerateDirectAccess (in_mGenerateDirectAccess) {
 }
 
@@ -4203,6 +4222,8 @@ void cPtr_atomicPropertyDeclarationAST::description (C_String & ioString,
   ioString << ", " ;
   mProperty_mGenerateResetMethod.description (ioString, inIndentation+1) ;
   ioString << ", " ;
+  mProperty_mGenerateDirectRead.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
   mProperty_mGenerateDirectAccess.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
@@ -4211,7 +4232,7 @@ void cPtr_atomicPropertyDeclarationAST::description (C_String & ioString,
 
 acPtr_class * cPtr_atomicPropertyDeclarationAST::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue, mProperty_mGenerateResetMethod, mProperty_mGenerateDirectAccess COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue, mProperty_mGenerateResetMethod, mProperty_mGenerateDirectRead, mProperty_mGenerateDirectAccess COMMA_THERE)) ;
   return ptr ;
 }
 

@@ -2945,6 +2945,8 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
 
   public: class GALGAS_bool readProperty_mGenerateResetMethod (void) const ;
 
+  public: class GALGAS_bool readProperty_mGenerateDirectRead (void) const ;
+
   public: class GALGAS_bool readProperty_mGenerateDirectAccess (void) const ;
 
 //-- Start of generic part --*
@@ -2963,7 +2965,8 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
                                                                             const class GALGAS_lstring & inOperand2,
                                                                             const class GALGAS_abstractDefaultValue & inOperand3,
                                                                             const class GALGAS_bool & inOperand4,
-                                                                            const class GALGAS_bool & inOperand5
+                                                                            const class GALGAS_bool & inOperand5,
+                                                                            const class GALGAS_bool & inOperand6
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3028,6 +3031,7 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
   public: GALGAS_lstring mProperty_mPropertyName ;
   public: GALGAS_abstractDefaultValue mProperty_mDefaultValue ;
   public: GALGAS_bool mProperty_mGenerateResetMethod ;
+  public: GALGAS_bool mProperty_mGenerateDirectRead ;
   public: GALGAS_bool mProperty_mGenerateDirectAccess ;
 
 //--- Constructor
@@ -3036,6 +3040,7 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
                                              const GALGAS_lstring & in_mPropertyName,
                                              const GALGAS_abstractDefaultValue & in_mDefaultValue,
                                              const GALGAS_bool & in_mGenerateResetMethod,
+                                             const GALGAS_bool & in_mGenerateDirectRead,
                                              const GALGAS_bool & in_mGenerateDirectAccess
                                              COMMA_LOCATION_ARGS) ;
 
@@ -3125,6 +3130,8 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Property read access
   public: class GALGAS_bool readProperty_mGenerateResetMethod (void) const ;
 
+  public: class GALGAS_bool readProperty_mGenerateDirectRead (void) const ;
+
   public: class GALGAS_bool readProperty_mGenerateDirectAccess (void) const ;
 
   public: class GALGAS_typeKind readProperty_mType (void) const ;
@@ -3149,10 +3156,11 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
   public: static class GALGAS_atomicPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                         const class GALGAS_bool & inOperand1,
                                                                         const class GALGAS_bool & inOperand2,
-                                                                        const class GALGAS_typeKind & inOperand3,
-                                                                        const class GALGAS_bool & inOperand4,
-                                                                        const class GALGAS_string & inOperand5,
-                                                                        const class GALGAS_bool & inOperand6
+                                                                        const class GALGAS_bool & inOperand3,
+                                                                        const class GALGAS_typeKind & inOperand4,
+                                                                        const class GALGAS_bool & inOperand5,
+                                                                        const class GALGAS_string & inOperand6,
+                                                                        const class GALGAS_bool & inOperand7
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3212,6 +3220,7 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Properties
   public: GALGAS_bool mProperty_mGenerateResetMethod ;
+  public: GALGAS_bool mProperty_mGenerateDirectRead ;
   public: GALGAS_bool mProperty_mGenerateDirectAccess ;
   public: GALGAS_typeKind mProperty_mType ;
   public: GALGAS_bool mProperty_mIsProxy ;
@@ -3221,6 +3230,7 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 //--- Constructor
   public: cPtr_atomicPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                          const GALGAS_bool & in_mGenerateResetMethod,
+                                         const GALGAS_bool & in_mGenerateDirectRead,
                                          const GALGAS_bool & in_mGenerateDirectAccess,
                                          const GALGAS_typeKind & in_mType,
                                          const GALGAS_bool & in_mIsProxy,
@@ -7895,22 +7905,4 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak : public G
 //----------------------------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeExpressionForMultipleBinding (class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const class GALGAS_bool constin_inPreferences,
-                                                              const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const class GALGAS_semanticContext constin_inSemanticContext,
-                                                              const class GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              const class GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
-                                                              class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              class GALGAS_typeKind & out_outType,
-                                                              class GALGAS_location & out_outErrorLocation,
-                                                              class C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
 

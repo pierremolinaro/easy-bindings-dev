@@ -5488,6 +5488,7 @@ GALGAS_atomicPropertyDeclarationAST_2D_weak GALGAS_atomicPropertyDeclarationAST_
   void cPtr_atomicPropertyGeneration::printNonNullClassInstanceProperties (void) const {
     cPtr_propertyGeneration::printNonNullClassInstanceProperties () ;
     mProperty_mGenerateResetMethod.printNonNullClassInstanceProperties ("mGenerateResetMethod") ;
+    mProperty_mGenerateDirectRead.printNonNullClassInstanceProperties ("mGenerateDirectRead") ;
     mProperty_mGenerateDirectAccess.printNonNullClassInstanceProperties ("mGenerateDirectAccess") ;
     mProperty_mType.printNonNullClassInstanceProperties ("mType") ;
     mProperty_mIsProxy.printNonNullClassInstanceProperties ("mIsProxy") ;
@@ -5507,6 +5508,9 @@ typeComparisonResult cPtr_atomicPropertyGeneration::dynamicObjectCompare (const 
   }
   if (kOperandEqual == result) {
     result = mProperty_mGenerateResetMethod.objectCompare (p->mProperty_mGenerateResetMethod) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mGenerateDirectRead.objectCompare (p->mProperty_mGenerateDirectRead) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mGenerateDirectAccess.objectCompare (p->mProperty_mGenerateDirectAccess) ;
@@ -5561,6 +5565,7 @@ GALGAS_propertyGeneration (inSourcePtr) {
 
 GALGAS_atomicPropertyGeneration GALGAS_atomicPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
                                                                                   const GALGAS_bool & inAttribute_mGenerateResetMethod,
+                                                                                  const GALGAS_bool & inAttribute_mGenerateDirectRead,
                                                                                   const GALGAS_bool & inAttribute_mGenerateDirectAccess,
                                                                                   const GALGAS_typeKind & inAttribute_mType,
                                                                                   const GALGAS_bool & inAttribute_mIsProxy,
@@ -5568,8 +5573,8 @@ GALGAS_atomicPropertyGeneration GALGAS_atomicPropertyGeneration::constructor_new
                                                                                   const GALGAS_bool & inAttribute_mInPreferences
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_atomicPropertyGeneration result ;
-  if (inAttribute_mPropertyName.isValid () && inAttribute_mGenerateResetMethod.isValid () && inAttribute_mGenerateDirectAccess.isValid () && inAttribute_mType.isValid () && inAttribute_mIsProxy.isValid () && inAttribute_mDefaultValueInSwift.isValid () && inAttribute_mInPreferences.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyGeneration (inAttribute_mPropertyName, inAttribute_mGenerateResetMethod, inAttribute_mGenerateDirectAccess, inAttribute_mType, inAttribute_mIsProxy, inAttribute_mDefaultValueInSwift, inAttribute_mInPreferences COMMA_THERE)) ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mGenerateResetMethod.isValid () && inAttribute_mGenerateDirectRead.isValid () && inAttribute_mGenerateDirectAccess.isValid () && inAttribute_mType.isValid () && inAttribute_mIsProxy.isValid () && inAttribute_mDefaultValueInSwift.isValid () && inAttribute_mInPreferences.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_atomicPropertyGeneration (inAttribute_mPropertyName, inAttribute_mGenerateResetMethod, inAttribute_mGenerateDirectRead, inAttribute_mGenerateDirectAccess, inAttribute_mType, inAttribute_mIsProxy, inAttribute_mDefaultValueInSwift, inAttribute_mInPreferences COMMA_THERE)) ;
   }
   return result ;
 }
@@ -5583,6 +5588,18 @@ GALGAS_bool GALGAS_atomicPropertyGeneration::readProperty_mGenerateResetMethod (
     cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
     return p->mProperty_mGenerateResetMethod ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_atomicPropertyGeneration::readProperty_mGenerateDirectRead (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_bool () ;
+  }else{
+    cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
+    return p->mProperty_mGenerateDirectRead ;
   }
 }
 
@@ -5652,6 +5669,7 @@ GALGAS_bool GALGAS_atomicPropertyGeneration::readProperty_mInPreferences (void) 
 
 cPtr_atomicPropertyGeneration::cPtr_atomicPropertyGeneration (const GALGAS_string & in_mPropertyName,
                                                               const GALGAS_bool & in_mGenerateResetMethod,
+                                                              const GALGAS_bool & in_mGenerateDirectRead,
                                                               const GALGAS_bool & in_mGenerateDirectAccess,
                                                               const GALGAS_typeKind & in_mType,
                                                               const GALGAS_bool & in_mIsProxy,
@@ -5660,6 +5678,7 @@ cPtr_atomicPropertyGeneration::cPtr_atomicPropertyGeneration (const GALGAS_strin
                                                               COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
 mProperty_mGenerateResetMethod (in_mGenerateResetMethod),
+mProperty_mGenerateDirectRead (in_mGenerateDirectRead),
 mProperty_mGenerateDirectAccess (in_mGenerateDirectAccess),
 mProperty_mType (in_mType),
 mProperty_mIsProxy (in_mIsProxy),
@@ -5680,6 +5699,8 @@ void cPtr_atomicPropertyGeneration::description (C_String & ioString,
   ioString << ", " ;
   mProperty_mGenerateResetMethod.description (ioString, inIndentation+1) ;
   ioString << ", " ;
+  mProperty_mGenerateDirectRead.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
   mProperty_mGenerateDirectAccess.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mType.description (ioString, inIndentation+1) ;
@@ -5696,7 +5717,7 @@ void cPtr_atomicPropertyGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_atomicPropertyGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_atomicPropertyGeneration (mProperty_mPropertyName, mProperty_mGenerateResetMethod, mProperty_mGenerateDirectAccess, mProperty_mType, mProperty_mIsProxy, mProperty_mDefaultValueInSwift, mProperty_mInPreferences COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_atomicPropertyGeneration (mProperty_mPropertyName, mProperty_mGenerateResetMethod, mProperty_mGenerateDirectRead, mProperty_mGenerateDirectAccess, mProperty_mType, mProperty_mIsProxy, mProperty_mDefaultValueInSwift, mProperty_mInPreferences COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -14636,30 +14657,3 @@ GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak GALGAS_compariso
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeExpressionForMultipleBinding (cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const GALGAS_bool constin_inPreferences,
-                                                              const GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const GALGAS_semanticContext constin_inSemanticContext,
-                                                              const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              const GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
-                                                              GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              GALGAS_typeKind & out_outType,
-                                                              GALGAS_location & out_outErrorLocation,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outEnableExpression.drop () ;
-  out_outType.drop () ;
-  out_outErrorLocation.drop () ;
-//--- Find method
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractBooleanMultipleBindingExpressionAST) ;
-    inObject->method_analyzeExpressionForMultipleBinding (constin_inPreferences, constin_inRootObservablePropertyMap, constin_inSemanticContext, constin_inCurrentObservablePropertyMap, constin_inPreferencesObservablePropertyMap, out_outEnableExpression, out_outType, out_outErrorLocation, inCompiler COMMA_THERE) ;
-  }
-}

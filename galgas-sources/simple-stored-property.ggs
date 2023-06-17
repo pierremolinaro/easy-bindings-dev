@@ -6,7 +6,6 @@ list @simpleStoredPropertyList {
   public var @lstring mPropertyTypeName
   public var @lstring mPropertyName
   public var @abstractDefaultValue mDefaultValue
-#  public var @bool mNeedsValidation
 }
 
 #·······················································································································
@@ -16,6 +15,7 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mPropertyName
   public var @abstractDefaultValue mDefaultValue
   public var @bool mGenerateResetMethod
+  public let @bool mGenerateDirectRead
   public let @bool mGenerateDirectAccess
 }
 
@@ -52,6 +52,7 @@ syntax extension easyBindings_syntax {
     $property$
     var usedForSignature = false
     var generateResetMethod = false
+    var generateDirectRead = false
     var generateDirectAccess = false
     repeat
     while
@@ -66,6 +67,11 @@ syntax extension easyBindings_syntax {
           error attributeName : "duplicated attribute" fixit { remove }
         end
         generateResetMethod = true
+      elsif attributeName.string == "generateDirectRead" then
+        if generateDirectRead then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
           error attributeName : "duplicated attribute" fixit { remove }
@@ -73,9 +79,13 @@ syntax extension easyBindings_syntax {
         generateDirectAccess = true
       else
         error attributeName : "unknow attribute" fixit {
-          replace "@signature" replace "@generateResetMethod" replace "@generateDirectAccess"
+          replace "@signature" replace "@generateResetMethod"
+          replace "@generateDirectRead" replace "@generateDirectAccess"
         }
       end
+    end
+    if generateDirectAccess && generateDirectRead then
+      error .here : "@generateDirectAccess implies @generateDirectRead"
     end
     $Identifier$ (?let @lstring attributeTypeName)
     $identifier$ (?let @lstring attributeName)
@@ -91,6 +101,7 @@ syntax extension easyBindings_syntax {
       !attributeName
       !defaultValue
       !generateResetMethod
+      !generateDirectRead
       !generateDirectAccess
     )
     ioAttributeList +=
@@ -131,6 +142,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
       mPropertyGenerationList += !@atomicPropertyGeneration (
         !self.mPropertyName.string
         !self.mGenerateResetMethod
+        !self.mGenerateDirectRead
         !self.mGenerateDirectAccess
         !kind
         !false
@@ -151,6 +163,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
 
 class @atomicPropertyGeneration : @propertyGeneration {
   public let @bool mGenerateResetMethod
+  public let @bool mGenerateDirectRead
   public let @bool mGenerateDirectAccess
   public let @typeKind mType
   public let @bool mIsProxy
@@ -259,11 +272,14 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
       result += "    self." + self.mPropertyName + "_property.setProp (" + self.mDefaultValueInSwift + ")\n"
       result += "  }\n\n"
     end
-    if inGenerationDirectAccess || self.mGenerateDirectAccess then
+    let generateAccess = inGenerationDirectAccess || self.mGenerateDirectRead || self.mGenerateDirectAccess
+    if generateAccess then
       result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + " {\n"
       result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
-      result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
+      if self.mGenerateDirectAccess then
+        result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
+      end
       result += "  }\n\n"
     end
   end
@@ -282,19 +298,5 @@ override func @atomicPropertyGeneration.initCode() -> @string {
 override func @atomicPropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
   result = ""
 }
-
-#·······················································································································
-
-#override func @atomicPropertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string {
-#  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
-#  result += "    self." + self.mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey: \"" + self.mPropertyName + "\")\n"
-#}
-
-#·······················································································································
-
-#override func @atomicPropertyGeneration.saveIntoDictionaryCode() -> @string {
-#  result  = "    //--- Atomic property: " + self.mPropertyName + "\n"
-#  result += "      self." + self.mPropertyName + "_property.storeIn (dictionary: &ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
-#}
 
 #-----------------------------------------------------------------------------------------------------------------------

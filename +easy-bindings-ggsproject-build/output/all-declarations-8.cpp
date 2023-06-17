@@ -851,21 +851,21 @@ void cPtr_atomicPropertyDeclarationAST::method_enterInPrecedenceGraph (GALGAS_de
   const GALGAS_atomicPropertyDeclarationAST temp_0 = this ;
   const GALGAS_atomicPropertyDeclarationAST temp_1 = this ;
   const GALGAS_atomicPropertyDeclarationAST temp_2 = this ;
-  GALGAS_lstring var_node_1087 = GALGAS_lstring::constructor_new (temp_0.readProperty_mClassName ().readProperty_string ().add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 25)).add_operation (temp_1.readProperty_mPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 25)), temp_2.readProperty_mPropertyName ().readProperty_location ()  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 25)) ;
+  GALGAS_lstring var_node_1089 = GALGAS_lstring::constructor_new (temp_0.readProperty_mClassName ().readProperty_string ().add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 25)).add_operation (temp_1.readProperty_mPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 25)), temp_2.readProperty_mPropertyName ().readProperty_location ()  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 25)) ;
   {
   const GALGAS_atomicPropertyDeclarationAST temp_3 = this ;
-  ioArgument_ioGraph.setter_addNode (var_node_1087, temp_3, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 26)) ;
+  ioArgument_ioGraph.setter_addNode (var_node_1089, temp_3, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 26)) ;
   }
   {
   const GALGAS_atomicPropertyDeclarationAST temp_4 = this ;
-  ioArgument_ioGraph.setter_addEdge (var_node_1087, temp_4.readProperty_mClassName () COMMA_SOURCE_FILE ("simple-stored-property.ggs", 27)) ;
+  ioArgument_ioGraph.setter_addEdge (var_node_1089, temp_4.readProperty_mClassName () COMMA_SOURCE_FILE ("simple-stored-property.ggs", 27)) ;
   }
   {
   const GALGAS_atomicPropertyDeclarationAST temp_5 = this ;
-  ioArgument_ioGraph.setter_addEdge (var_node_1087, temp_5.readProperty_mPropertyTypeName () COMMA_SOURCE_FILE ("simple-stored-property.ggs", 28)) ;
+  ioArgument_ioGraph.setter_addEdge (var_node_1089, temp_5.readProperty_mPropertyTypeName () COMMA_SOURCE_FILE ("simple-stored-property.ggs", 28)) ;
   }
   const GALGAS_atomicPropertyDeclarationAST temp_6 = this ;
-  callExtensionMethod_enterDefaultValuePrecedence ((cPtr_abstractDefaultValue *) temp_6.readProperty_mDefaultValue ().ptr (), var_node_1087, ioArgument_ioGraph, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 29)) ;
+  callExtensionMethod_enterDefaultValuePrecedence ((cPtr_abstractDefaultValue *) temp_6.readProperty_mDefaultValue ().ptr (), var_node_1089, ioArgument_ioGraph, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 29)) ;
 }
 //----------------------------------------------------------------------------------------------------------------------
 //
@@ -896,62 +896,63 @@ void cPtr_atomicPropertyDeclarationAST::method_firstAnalysisPhase (GALGAS_semant
                                                                    C_Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_atomicPropertyDeclarationAST temp_0 = this ;
-  cMapElement_classMap * objectArray_4490 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 113)) ;
-  if (NULL != objectArray_4490) {
-    macroValidSharedObject (objectArray_4490, cMapElement_classMap) ;
-    GALGAS_classKind var_classKind_4655 ;
+  cMapElement_classMap * objectArray_4943 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 124)) ;
+  if (NULL != objectArray_4943) {
+    macroValidSharedObject (objectArray_4943, cMapElement_classMap) ;
+    GALGAS_classKind var_classKind_5108 ;
     const GALGAS_atomicPropertyDeclarationAST temp_1 = this ;
-    GALGAS_propertyMap joker_4657_3 ; // Joker input parameter
-    GALGAS_actionMap joker_4657_2 ; // Joker input parameter
-    GALGAS_propertyGenerationList joker_4657_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_1.readProperty_mPropertyTypeName (), var_classKind_4655, joker_4657_3, joker_4657_2, joker_4657_1, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 116)) ;
-    GALGAS_propertyMap var_preferencesPropertyMap_4790 ;
-    GALGAS_classKind joker_4755 ; // Joker input parameter
-    GALGAS_actionMap joker_4798_2 ; // Joker input parameter
-    GALGAS_propertyGenerationList joker_4798_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 118)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("simple-stored-property.ggs", 118))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 118)), joker_4755, var_preferencesPropertyMap_4790, joker_4798_2, joker_4798_1, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 117)) ;
-    switch (var_classKind_4655.enumValue ()) {
+    GALGAS_propertyMap joker_5110_3 ; // Joker input parameter
+    GALGAS_actionMap joker_5110_2 ; // Joker input parameter
+    GALGAS_propertyGenerationList joker_5110_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_1.readProperty_mPropertyTypeName (), var_classKind_5108, joker_5110_3, joker_5110_2, joker_5110_1, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 127)) ;
+    GALGAS_propertyMap var_preferencesPropertyMap_5243 ;
+    GALGAS_classKind joker_5208 ; // Joker input parameter
+    GALGAS_actionMap joker_5251_2 ; // Joker input parameter
+    GALGAS_propertyGenerationList joker_5251_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 129)), GALGAS_location::constructor_nowhere (SOURCE_FILE ("simple-stored-property.ggs", 129))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 129)), joker_5208, var_preferencesPropertyMap_5243, joker_5251_2, joker_5251_1, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 128)) ;
+    switch (var_classKind_5108.enumValue ()) {
     case GALGAS_classKind::kNotBuilt:
       break ;
     case GALGAS_classKind::kEnum_prefs:
       {
         const GALGAS_atomicPropertyDeclarationAST temp_2 = this ;
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (temp_2.readProperty_mPropertyTypeName ().readProperty_location (), GALGAS_string ("an atomic class is required here"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 125)) ;
+        inCompiler->emitSemanticError (temp_2.readProperty_mPropertyTypeName ().readProperty_location (), GALGAS_string ("an atomic class is required here"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 136)) ;
       }
       break ;
     case GALGAS_classKind::kEnum_atomic:
       {
-        const cEnumAssociatedValues_classKind_atomic * extractPtr_5527 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_4655.unsafePointer ()) ;
-        const GALGAS_typeKind extractedValue_4938_kind = extractPtr_5527->mAssociatedValue0 ;
+        const cEnumAssociatedValues_classKind_atomic * extractPtr_6014 = (const cEnumAssociatedValues_classKind_atomic *) (var_classKind_5108.unsafePointer ()) ;
+        const GALGAS_typeKind extractedValue_5391_kind = extractPtr_6014->mAssociatedValue0 ;
         {
         const GALGAS_atomicPropertyDeclarationAST temp_4 = this ;
-        objectArray_4490->mProperty_mPropertyMap.setter_insertKey (temp_4.readProperty_mPropertyName (), GALGAS_propertyKind::constructor_property (extractedValue_4938_kind, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("simple-stored-property.ggs", 127))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 127)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("simple-stored-property.ggs", 127)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 127)) ;
+        objectArray_4943->mProperty_mPropertyMap.setter_insertKey (temp_4.readProperty_mPropertyName (), GALGAS_propertyKind::constructor_property (extractedValue_5391_kind, GALGAS_propertyAccessibility::constructor_stored (SOURCE_FILE ("simple-stored-property.ggs", 138))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 138)), GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("simple-stored-property.ggs", 138)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 138)) ;
         }
-        GALGAS_string var_swiftDefaultValueAsString_5207 ;
+        GALGAS_string var_swiftDefaultValueAsString_5660 ;
         const GALGAS_atomicPropertyDeclarationAST temp_5 = this ;
-        GALGAS_typeKindList temp_6 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.ggs", 129)) ;
-        temp_6.addAssign_operation (extractedValue_4938_kind  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 129)) ;
-        callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) temp_5.readProperty_mDefaultValue ().ptr (), temp_6, var_preferencesPropertyMap_4790, var_swiftDefaultValueAsString_5207, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 129)) ;
+        GALGAS_typeKindList temp_6 = GALGAS_typeKindList::constructor_emptyList (SOURCE_FILE ("simple-stored-property.ggs", 140)) ;
+        temp_6.addAssign_operation (extractedValue_5391_kind  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 140)) ;
+        callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) temp_5.readProperty_mDefaultValue ().ptr (), temp_6, var_preferencesPropertyMap_5243, var_swiftDefaultValueAsString_5660, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 140)) ;
         const GALGAS_atomicPropertyDeclarationAST temp_7 = this ;
         const GALGAS_atomicPropertyDeclarationAST temp_8 = this ;
         const GALGAS_atomicPropertyDeclarationAST temp_9 = this ;
         const GALGAS_atomicPropertyDeclarationAST temp_10 = this ;
-        objectArray_4490->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_atomicPropertyGeneration::constructor_new (temp_7.readProperty_mPropertyName ().readProperty_string (), temp_8.readProperty_mGenerateResetMethod (), temp_9.readProperty_mGenerateDirectAccess (), extractedValue_4938_kind, GALGAS_bool (false), var_swiftDefaultValueAsString_5207, GALGAS_bool (kIsEqual, temp_10.readProperty_mClassName ().readProperty_string ().objectCompare (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 138))))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 131))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 131)) ;
+        const GALGAS_atomicPropertyDeclarationAST temp_11 = this ;
+        objectArray_4943->mProperty_mPropertyGenerationList.addAssign_operation (GALGAS_atomicPropertyGeneration::constructor_new (temp_7.readProperty_mPropertyName ().readProperty_string (), temp_8.readProperty_mGenerateResetMethod (), temp_9.readProperty_mGenerateDirectRead (), temp_10.readProperty_mGenerateDirectAccess (), extractedValue_5391_kind, GALGAS_bool (false), var_swiftDefaultValueAsString_5660, GALGAS_bool (kIsEqual, temp_11.readProperty_mClassName ().readProperty_string ().objectCompare (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 150))))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 142))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 142)) ;
       }
       break ;
     case GALGAS_classKind::kEnum_document:
       {
-        const GALGAS_atomicPropertyDeclarationAST temp_11 = this ;
-        TC_Array <C_FixItDescription> fixItArray12 ;
-        inCompiler->emitSemanticError (temp_11.readProperty_mPropertyTypeName ().readProperty_location (), GALGAS_string ("an atomic class is required here"), fixItArray12  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 141)) ;
+        const GALGAS_atomicPropertyDeclarationAST temp_12 = this ;
+        TC_Array <C_FixItDescription> fixItArray13 ;
+        inCompiler->emitSemanticError (temp_12.readProperty_mPropertyTypeName ().readProperty_location (), GALGAS_string ("an atomic class is required here"), fixItArray13  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 153)) ;
       }
       break ;
     case GALGAS_classKind::kEnum_entity:
       {
-        const GALGAS_atomicPropertyDeclarationAST temp_13 = this ;
-        TC_Array <C_FixItDescription> fixItArray14 ;
-        inCompiler->emitSemanticError (temp_13.readProperty_mPropertyTypeName ().readProperty_location (), GALGAS_string ("an atomic class is required here"), fixItArray14  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 143)) ;
+        const GALGAS_atomicPropertyDeclarationAST temp_14 = this ;
+        TC_Array <C_FixItDescription> fixItArray15 ;
+        inCompiler->emitSemanticError (temp_14.readProperty_mPropertyTypeName ().readProperty_location (), GALGAS_string ("an atomic class is required here"), fixItArray15  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 155)) ;
       }
       break ;
     }
@@ -968,7 +969,7 @@ GALGAS_string cPtr_atomicPropertyGeneration::getter_prefKeyDefinitionCode (C_Com
   GALGAS_string result_result ; // Returned variable
   const GALGAS_atomicPropertyGeneration temp_0 = this ;
   const GALGAS_atomicPropertyGeneration temp_1 = this ;
-  result_result = GALGAS_string ("@MainActor let Preferences_").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 170)).add_operation (GALGAS_string (" = \"Preferences:"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 170)).add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 170)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 170)) ;
+  result_result = GALGAS_string ("@MainActor let Preferences_").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 183)).add_operation (GALGAS_string (" = \"Preferences:"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 183)).add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 183)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 183)) ;
 //---
   return result_result ;
 }
@@ -983,13 +984,13 @@ GALGAS_string cPtr_atomicPropertyGeneration::getter_prefKeyDefinitionCode (C_Com
 GALGAS_string cPtr_atomicPropertyGeneration::getter_declarationInSelectionControllerCode (C_Compiler * inCompiler
                                                                                           COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 176)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 176)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 176)) ;
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 189)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 189)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 189)) ;
   const GALGAS_atomicPropertyGeneration temp_0 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  //   Selection observable property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 177)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 177)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 177)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 178)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 178)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 178)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 178)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //   Selection observable property: ").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 190)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 190)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 190)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 191)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 191)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 191)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 191)) ;
   const GALGAS_atomicPropertyGeneration temp_1 = this ;
   const GALGAS_atomicPropertyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  final let ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 179)).add_operation (GALGAS_string ("_property = EBComputedProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 179)).add_operation (extensionGetter_swiftTypeName (temp_2.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 179)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 179)).add_operation (GALGAS_string (" ()\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 179)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 179)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  final let ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 192)).add_operation (GALGAS_string ("_property = EBComputedProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 192)).add_operation (extensionGetter_swiftTypeName (temp_2.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 192)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 192)).add_operation (GALGAS_string (" ()\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 192)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 192)) ;
 //---
   return result_result ;
 }
@@ -1004,65 +1005,65 @@ GALGAS_string cPtr_atomicPropertyGeneration::getter_declarationInSelectionContro
 GALGAS_string cPtr_atomicPropertyGeneration::getter_bindPropertyInSelectionController (C_Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 185)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 185)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 185)) ;
+  result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 198)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 198)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 198)) ;
   const GALGAS_atomicPropertyGeneration temp_0 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("  private final func bind_property_").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 186)).add_operation (GALGAS_string (" () {\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 186)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 186)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  private final func bind_property_").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 199)).add_operation (GALGAS_string (" () {\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 199)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 199)) ;
   const GALGAS_atomicPropertyGeneration temp_1 = this ;
   const GALGAS_atomicPropertyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.selectedArray_property.toMany_").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 187)).add_operation (GALGAS_string ("_StartsToBeObserved (by: self."), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 187)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 187)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 187)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 187)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.selectedArray_property.toMany_").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 200)).add_operation (GALGAS_string ("_StartsToBeObserved (by: self."), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 200)).add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 200)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 200)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 200)) ;
   const GALGAS_atomicPropertyGeneration temp_3 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 188)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 188)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 188)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 189)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        switch model.selection {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 190)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 191)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 192)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 193)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 194)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 195)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 201)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 201)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 201)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 202)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        switch model.selection {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 203)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 204)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 205)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 206)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 207)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 208)) ;
   const GALGAS_atomicPropertyGeneration temp_4 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("          var s = Set <").add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 196)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 196)).add_operation (GALGAS_string ("> ()\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 196)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 196)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          var isMultipleSelection = false\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 197)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 198)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          var s = Set <").add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 209)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 209)).add_operation (GALGAS_string ("> ()\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 209)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 209)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          var isMultipleSelection = false\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 210)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 211)) ;
   const GALGAS_atomicPropertyGeneration temp_5 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("            switch object.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 199)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 199)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 199)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 200)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 201)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 202)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              isMultipleSelection = true\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 203)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            case .single (let vProp) :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 204)) ;
-  result_result.plusAssign_operation(GALGAS_string ("              s.insert (vProp)\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 205)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 206)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 207)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          if isMultipleSelection {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 208)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 209)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 0 {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 210)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 211)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 1 {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 212)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .single (s.first!)\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 213)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }else{\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 214)) ;
-  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 215)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 216)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 217)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 218)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 219)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 220)) ;
-  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 221)) ;
-  const GALGAS_atomicPropertyGeneration temp_6 = this ;
-  const GALGAS_atomicPropertyGeneration temp_7 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 223)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (inValue : "), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 223)).add_operation (extensionGetter_swiftTypeName (temp_7.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 223)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 223)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 223)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 223)) ;
-  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 224)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        switch model.selection {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 225)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 226)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          break\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 227)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 228)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 229)) ;
-  const GALGAS_atomicPropertyGeneration temp_8 = this ;
-  result_result.plusAssign_operation(GALGAS_string ("            object.").add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 230)).add_operation (GALGAS_string ("_property.setProp (inValue)\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 230)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 230)) ;
-  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 231)) ;
-  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 232)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            switch object.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 212)).add_operation (GALGAS_string ("_property.selection {\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 212)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 212)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .empty :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 213)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 214)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 215)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              isMultipleSelection = true\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 216)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            case .single (let vProp) :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 217)) ;
+  result_result.plusAssign_operation(GALGAS_string ("              s.insert (vProp)\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 218)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 219)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 220)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          if isMultipleSelection {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 221)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 222)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 0 {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 223)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 224)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else if s.count == 1 {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 225)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .single (s.first!)\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 226)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }else{\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 227)) ;
+  result_result.plusAssign_operation(GALGAS_string ("            return .multiple\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 228)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 229)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 230)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 231)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 232)) ;
   result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 233)) ;
   result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 234)) ;
-  result_result.plusAssign_operation(GALGAS_string ("  }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 235)) ;
+  const GALGAS_atomicPropertyGeneration temp_6 = this ;
+  const GALGAS_atomicPropertyGeneration temp_7 = this ;
+  result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 236)).add_operation (GALGAS_string ("_property.mWriteModelFunction = { [weak self] (inValue : "), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 236)).add_operation (extensionGetter_swiftTypeName (temp_7.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 236)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 236)).add_operation (GALGAS_string (") in\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 236)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 236)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      if let model = self\?.selectedArray_property {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 237)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        switch model.selection {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 238)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .empty, .multiple :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 239)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          break\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 240)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        case .single (let v) :\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 241)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          for object in v {\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 242)) ;
+  const GALGAS_atomicPropertyGeneration temp_8 = this ;
+  result_result.plusAssign_operation(GALGAS_string ("            object.").add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 243)).add_operation (GALGAS_string ("_property.setProp (inValue)\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 243)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 243)) ;
+  result_result.plusAssign_operation(GALGAS_string ("          }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 244)) ;
+  result_result.plusAssign_operation(GALGAS_string ("        }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 245)) ;
+  result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 246)) ;
+  result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 247)) ;
+  result_result.plusAssign_operation(GALGAS_string ("  }\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 248)) ;
 //---
   return result_result ;
 }
@@ -1085,58 +1086,71 @@ GALGAS_string cPtr_atomicPropertyGeneration::getter_propertyDeclarationCode (con
     const GALGAS_atomicPropertyGeneration temp_1 = this ;
     test_0 = temp_1.readProperty_mInPreferences ().boolEnum () ;
     if (kBoolTrue == test_0) {
-      result_result = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 246)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 246)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 246)) ;
+      result_result = GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 259)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 259)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 259)) ;
       const GALGAS_atomicPropertyGeneration temp_2 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("//   Atomic property: ").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 247)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 247)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 247)) ;
-      result_result.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 248)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 248)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 248)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 248)) ;
+      result_result.plusAssign_operation(GALGAS_string ("//   Atomic property: ").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 260)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 260)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 260)) ;
+      result_result.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 261)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 261)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 261)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 261)) ;
       const GALGAS_atomicPropertyGeneration temp_3 = this ;
       const GALGAS_atomicPropertyGeneration temp_4 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("@MainActor let preferences_").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 249)).add_operation (GALGAS_string ("_property = EBPreferencesProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 249)).add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 249)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 249)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 249)) ;
+      result_result.plusAssign_operation(GALGAS_string ("@MainActor let preferences_").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)).add_operation (GALGAS_string ("_property = EBPreferencesProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)).add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)) ;
       const GALGAS_atomicPropertyGeneration temp_5 = this ;
       const GALGAS_atomicPropertyGeneration temp_6 = this ;
-      result_result.plusAssign_operation(GALGAS_string (" (defaultValue: ").add_operation (temp_5.readProperty_mDefaultValueInSwift (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 250)).add_operation (GALGAS_string (", prefKey: Preferences_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 250)).add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 250)).add_operation (GALGAS_string (")\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 250)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 250)) ;
+      result_result.plusAssign_operation(GALGAS_string (" (defaultValue: ").add_operation (temp_5.readProperty_mDefaultValueInSwift (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (GALGAS_string (", prefKey: Preferences_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (GALGAS_string (")\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)) ;
     }
   }
   if (kBoolFalse == test_0) {
-    result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 252)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 252)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 252)) ;
+    result_result = GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 265)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 265)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 265)) ;
     const GALGAS_atomicPropertyGeneration temp_7 = this ;
-    result_result.plusAssign_operation(GALGAS_string ("  //   Atomic property: ").add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 253)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 253)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 253)) ;
-    result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 254)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 254)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 254)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 254)) ;
+    result_result.plusAssign_operation(GALGAS_string ("  //   Atomic property: ").add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 266)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 266)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 266)) ;
+    result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 267)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 267)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 267)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 267)) ;
     const GALGAS_atomicPropertyGeneration temp_8 = this ;
     const GALGAS_atomicPropertyGeneration temp_9 = this ;
-    result_result.plusAssign_operation(GALGAS_string ("  final let ").add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 255)).add_operation (GALGAS_string ("_property : EBStoredProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 255)).add_operation (extensionGetter_swiftTypeName (temp_9.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 255)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 255)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 255)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 255)) ;
+    result_result.plusAssign_operation(GALGAS_string ("  final let ").add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 268)).add_operation (GALGAS_string ("_property : EBStoredProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 268)).add_operation (extensionGetter_swiftTypeName (temp_9.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 268)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 268)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 268)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 268)) ;
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
       const GALGAS_atomicPropertyGeneration temp_11 = this ;
       test_10 = temp_11.readProperty_mGenerateResetMethod ().boolEnum () ;
       if (kBoolTrue == test_10) {
-        result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 257)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 257)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 257)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 257)) ;
+        result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 270)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 270)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 270)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 270)) ;
         const GALGAS_atomicPropertyGeneration temp_12 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("  final func reset_").add_operation (temp_12.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 258)).add_operation (GALGAS_string ("_toDefaultValue () {\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 258)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 258)) ;
+        result_result.plusAssign_operation(GALGAS_string ("  final func reset_").add_operation (temp_12.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 271)).add_operation (GALGAS_string ("_toDefaultValue () {\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 271)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 271)) ;
         const GALGAS_atomicPropertyGeneration temp_13 = this ;
         const GALGAS_atomicPropertyGeneration temp_14 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_13.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 259)).add_operation (GALGAS_string ("_property.setProp ("), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 259)).add_operation (temp_14.readProperty_mDefaultValueInSwift (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 259)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 259)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 259)) ;
-        result_result.plusAssign_operation(GALGAS_string ("  }\n\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 260)) ;
+        result_result.plusAssign_operation(GALGAS_string ("    self.").add_operation (temp_13.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 272)).add_operation (GALGAS_string ("_property.setProp ("), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 272)).add_operation (temp_14.readProperty_mDefaultValueInSwift (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 272)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 272)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 272)) ;
+        result_result.plusAssign_operation(GALGAS_string ("  }\n\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 273)) ;
       }
     }
-    enumGalgasBool test_15 = kBoolTrue ;
-    if (kBoolTrue == test_15) {
-      GALGAS_bool test_16 = constinArgument_inGenerationDirectAccess ;
-      if (kBoolTrue != test_16.boolEnum ()) {
-        const GALGAS_atomicPropertyGeneration temp_17 = this ;
-        test_16 = temp_17.readProperty_mGenerateDirectAccess () ;
-      }
-      test_15 = test_16.boolEnum () ;
-      if (kBoolTrue == test_15) {
-        result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)) ;
-        const GALGAS_atomicPropertyGeneration temp_18 = this ;
-        const GALGAS_atomicPropertyGeneration temp_19 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("  final var ").add_operation (temp_18.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 264)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 264)).add_operation (extensionGetter_swiftTypeName (temp_19.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 264)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 264)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 264)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 264)) ;
+    GALGAS_bool test_15 = constinArgument_inGenerationDirectAccess ;
+    if (kBoolTrue != test_15.boolEnum ()) {
+      const GALGAS_atomicPropertyGeneration temp_16 = this ;
+      test_15 = temp_16.readProperty_mGenerateDirectRead () ;
+    }
+    GALGAS_bool test_17 = test_15 ;
+    if (kBoolTrue != test_17.boolEnum ()) {
+      const GALGAS_atomicPropertyGeneration temp_18 = this ;
+      test_17 = temp_18.readProperty_mGenerateDirectAccess () ;
+    }
+    GALGAS_bool var_generateAccess_12263 = test_17 ;
+    enumGalgasBool test_19 = kBoolTrue ;
+    if (kBoolTrue == test_19) {
+      test_19 = var_generateAccess_12263.boolEnum () ;
+      if (kBoolTrue == test_19) {
+        result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)) ;
         const GALGAS_atomicPropertyGeneration temp_20 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("    get { return self.").add_operation (temp_20.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 265)).add_operation (GALGAS_string ("_property.propval }\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 265)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 265)) ;
         const GALGAS_atomicPropertyGeneration temp_21 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("    set { self.").add_operation (temp_21.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 266)).add_operation (GALGAS_string ("_property.setProp (newValue) }\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 266)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 266)) ;
-        result_result.plusAssign_operation(GALGAS_string ("  }\n\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 267)) ;
+        result_result.plusAssign_operation(GALGAS_string ("  final var ").add_operation (temp_20.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 278)).add_operation (GALGAS_string (" : "), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 278)).add_operation (extensionGetter_swiftTypeName (temp_21.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 278)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 278)).add_operation (GALGAS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 278)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 278)) ;
+        const GALGAS_atomicPropertyGeneration temp_22 = this ;
+        result_result.plusAssign_operation(GALGAS_string ("    get { return self.").add_operation (temp_22.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 279)).add_operation (GALGAS_string ("_property.propval }\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 279)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 279)) ;
+        enumGalgasBool test_23 = kBoolTrue ;
+        if (kBoolTrue == test_23) {
+          const GALGAS_atomicPropertyGeneration temp_24 = this ;
+          test_23 = temp_24.readProperty_mGenerateDirectAccess ().boolEnum () ;
+          if (kBoolTrue == test_23) {
+            const GALGAS_atomicPropertyGeneration temp_25 = this ;
+            result_result.plusAssign_operation(GALGAS_string ("    set { self.").add_operation (temp_25.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 281)).add_operation (GALGAS_string ("_property.setProp (newValue) }\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 281)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 281)) ;
+          }
+        }
+        result_result.plusAssign_operation(GALGAS_string ("  }\n\n"), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 283)) ;
       }
     }
   }
@@ -1156,11 +1170,11 @@ GALGAS_string cPtr_atomicPropertyGeneration::getter_initCode (C_Compiler * inCom
   GALGAS_string result_result ; // Returned variable
   const GALGAS_atomicPropertyGeneration temp_0 = this ;
   const GALGAS_atomicPropertyGeneration temp_1 = this ;
-  result_result = GALGAS_string ("    self.").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 275)).add_operation (GALGAS_string ("_property = EBStoredProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 275)).add_operation (extensionGetter_swiftTypeName (temp_1.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 275)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 275)) ;
+  result_result = GALGAS_string ("    self.").add_operation (temp_0.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 291)).add_operation (GALGAS_string ("_property = EBStoredProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 291)).add_operation (extensionGetter_swiftTypeName (temp_1.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 291)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 291)) ;
   const GALGAS_atomicPropertyGeneration temp_2 = this ;
-  result_result.plusAssign_operation(GALGAS_string (" (defaultValue: ").add_operation (temp_2.readProperty_mDefaultValueInSwift (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 276)).add_operation (GALGAS_string (", undoManager: inUndoManager, key: \""), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 276)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 276)) ;
+  result_result.plusAssign_operation(GALGAS_string (" (defaultValue: ").add_operation (temp_2.readProperty_mDefaultValueInSwift (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 292)).add_operation (GALGAS_string (", undoManager: inUndoManager, key: \""), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 292)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 292)) ;
   const GALGAS_atomicPropertyGeneration temp_3 = this ;
-  result_result.plusAssign_operation(temp_3.readProperty_mPropertyName ().add_operation (GALGAS_string ("\")\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)) ;
+  result_result.plusAssign_operation(temp_3.readProperty_mPropertyName ().add_operation (GALGAS_string ("\")\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 293)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 293)) ;
 //---
   return result_result ;
 }
