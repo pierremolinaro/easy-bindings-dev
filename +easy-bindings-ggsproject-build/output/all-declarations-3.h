@@ -3212,12 +3212,6 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter saveIntoDictionaryCode
-  public: virtual class GALGAS_string getter_saveIntoDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter setupAtomicPropertyFromDictionaryCode
-  public: virtual class GALGAS_string getter_setupAtomicPropertyFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Properties
   public: GALGAS_bool mProperty_mGenerateResetMethod ;
   public: GALGAS_typeKind mProperty_mType ;
@@ -3934,9 +3928,6 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
   public: virtual class GALGAS_string getter_propertyDeclarationCode (const class GALGAS_bool inPreferences,
            const class GALGAS_stringset inOverriddenTransients,
            C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter saveIntoDictionaryCode
-  public: virtual class GALGAS_string getter_saveIntoDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter setupRelationshipFromDictionaryCode
   public: virtual class GALGAS_string getter_setupRelationshipFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -4669,9 +4660,6 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Extension getter resetToManyRelationships
   public: virtual class GALGAS_string getter_resetToManyRelationships (C_Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter saveIntoDictionaryCode
-  public: virtual class GALGAS_string getter_saveIntoDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter setupRelationshipFromDictionaryCode
   public: virtual class GALGAS_string getter_setupRelationshipFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const override ;

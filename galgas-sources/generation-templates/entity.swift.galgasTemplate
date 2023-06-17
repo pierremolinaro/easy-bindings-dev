@@ -5,6 +5,7 @@
 import AppKit
 
 %
+if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -14,6 +15,8 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
 %
 end
+end
+if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in PROXY_LIST_FOR_GENERATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -23,6 +26,8 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
 
 %
 end
+end
+if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -31,6 +36,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 }
 
 %
+end
 end
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 //    %!"Entity: " + ENTITY_NAME%
@@ -41,9 +47,11 @@ if not HAS_SUB_ENTITY then
   %final %
 end
 %class %!ENTITY_NAME% : %!SUPER_CLASS_NAME
-for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
-  if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration)  | (mProperty is == @atomicProxyGeneration) then
-    %,\n         %!ENTITY_NAME%_%!mProperty.mPropertyName
+if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
+  for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
+    if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration)  | (mProperty is == @atomicProxyGeneration) then
+      %,\n         %!ENTITY_NAME%_%!mProperty.mPropertyName
+    end
   end
 end
 % {

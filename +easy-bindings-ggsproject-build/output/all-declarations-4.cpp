@@ -7832,34 +7832,6 @@ GALGAS_string callExtensionGetter_initCode (const cPtr_propertyGeneration * inOb
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyGeneration setupAtomicPropertyFromDictionaryCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_propertyGeneration::getter_setupAtomicPropertyFromDictionaryCode (C_Compiler */* inCompiler */
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string::makeEmptyString () ;
-//---
-  return result_result ;
-}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string callExtensionGetter_setupAtomicPropertyFromDictionaryCode (const cPtr_propertyGeneration * inObject,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
-  GALGAS_string result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_setupAtomicPropertyFromDictionaryCode (inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Extension getter '@propertyGeneration setupRelationshipFromDictionaryCode'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -7882,34 +7854,6 @@ GALGAS_string callExtensionGetter_setupRelationshipFromDictionaryCode (const cPt
   GALGAS_string result ;
   if (nullptr != inObject) {
     result = inObject->getter_setupRelationshipFromDictionaryCode (inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyGeneration saveIntoDictionaryCode'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_propertyGeneration::getter_saveIntoDictionaryCode (C_Compiler */* inCompiler */
-                                                                      COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  result_result = GALGAS_string::makeEmptyString () ;
-//---
-  return result_result ;
-}
-
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_string callExtensionGetter_saveIntoDictionaryCode (const cPtr_propertyGeneration * inObject,
-                                                          C_Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_string result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_saveIntoDictionaryCode (inCompiler COMMA_THERE) ;
   }
   return result ;
 }

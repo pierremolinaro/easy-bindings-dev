@@ -42,7 +42,7 @@ abstract func @propertyGeneration.initCode() -> @string
 
 #·······················································································································
 
-func @propertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string { result = "" }
+#func @propertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string { result = "" }
 
 #·······················································································································
 
@@ -50,7 +50,7 @@ func @propertyGeneration.setupRelationshipFromDictionaryCode() -> @string { resu
 
 #·······················································································································
 
-func @propertyGeneration.saveIntoDictionaryCode() -> @string { result = "" }
+#func @propertyGeneration.saveIntoDictionaryCode() -> @string { result = "" }
 
 #·······················································································································
 

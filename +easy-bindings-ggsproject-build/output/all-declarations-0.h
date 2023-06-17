@@ -7347,12 +7347,6 @@ class cPtr_propertyGeneration : public acStrongPtr_class {
 //--- Extension getter resetToManyRelationships
   public: virtual class GALGAS_string getter_resetToManyRelationships (C_Compiler * COMMA_LOCATION_ARGS) const ;
 
-//--- Extension getter saveIntoDictionaryCode
-  public: virtual class GALGAS_string getter_saveIntoDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const ;
-
-//--- Extension getter setupAtomicPropertyFromDictionaryCode
-  public: virtual class GALGAS_string getter_setupAtomicPropertyFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const ;
-
 //--- Extension getter setupRelationshipFromDictionaryCode
   public: virtual class GALGAS_string getter_setupRelationshipFromDictionaryCode (C_Compiler * COMMA_LOCATION_ARGS) const ;
 

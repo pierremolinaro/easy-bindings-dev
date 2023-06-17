@@ -405,6 +405,7 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
     !self.mHasSubEntity
     !self.mCanCopyAndPaste_option
     !self.mCannotBeDeleted_option
+    ![inGenerationStruct.mToManyClassImplementations hasKey !self.mEntityName]
   ]
   var fileName = "entity-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -523,6 +524,7 @@ private filewrapper entityGenerationTemplate in "generation-templates" {
     ?@bool HAS_SUB_ENTITY
     ?@bool OPTION_CanCopyAndPaste
     ?@bool OPTION_CannotBeDeleted
+    ?@bool GENERATE_PROPERTY_ACCESS_PROTOCOLS
 
   template entityToManyImplementationInSwift "entity-tomany.swift.galgasTemplate"
     ?@string ENTITY_NAME

@@ -19,7 +19,7 @@ typealias EBReadWritePropertyController_%!TYPE% = EBGenericReadWritePropertyCont
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func values_%!TYPE%_are_ordered (%?^%_ inLeft : %!TYPE%,
+/* func values_%!TYPE%_are_ordered (%?^%_ inLeft : %!TYPE%,
         %!^%_ inAscending : Bool,
         %!^%_ inRight : %!TYPE%) -> Bool {
   let left  = inAscending ? inLeft  : inRight
@@ -30,11 +30,11 @@ if COMPARISON_METHOD != "" then
 else
   %  return left < right\n%
 end
-%}
+%} */
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-@MainActor func compare_%!TYPE%_properties (%?^%_ inLeft : EBReadOnlyProperty_%!TYPE%,
+/* @MainActor func compare_%!TYPE%_properties (%?^%_ inLeft : EBReadOnlyProperty_%!TYPE%,
         %!^%_ inAscending : Bool,
         %!^%_ inRight : EBReadOnlyProperty_%!TYPE%) -> ComparisonResult {
   let left  = inAscending ? inLeft  : inRight
@@ -75,7 +75,7 @@ else
 end
 %    }
   }
-}
+} */
 %end
 if not TRANSIENT then%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

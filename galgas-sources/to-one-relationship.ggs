@@ -260,24 +260,24 @@ override func @toOnePropertyGeneration.setupRelationshipFromDictionaryCode() -> 
 
 #·······················································································································
 
-override func @toOnePropertyGeneration.saveIntoDictionaryCode () -> @string {
-  result  = ""
-  switch self.mOpposite
-  case oppositeIsToMany (*) :
-  case none :
-    result +="  //--- To one property: " + self.mPropertyName + "\n"
-    result += "    self.store (managedObject: self." + self.mPropertyName + "_property.propval,\n"
-    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
-    result += "      intoDictionary: &ioDictionary\n"
-    result += "    )\n"
-  case oppositeIsToOne (oppositeName) :
-    result +="  //--- To one property: " + self.mPropertyName + " // Opposite is toOne " + oppositeName + "\n"
-    result += "    self.store (managedObject: self." + self.mPropertyName + "_property.propval,\n"
-    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
-    result += "      intoDictionary: &ioDictionary\n"
-    result += "    )\n"
-  end
-}
+#override func @toOnePropertyGeneration.saveIntoDictionaryCode () -> @string {
+#  result  = ""
+#  switch self.mOpposite
+#  case oppositeIsToMany (*) :
+#  case none :
+#    result +="  //--- To one property: " + self.mPropertyName + "\n"
+#    result += "    self.store (managedObject: self." + self.mPropertyName + "_property.propval,\n"
+#    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
+#    result += "      intoDictionary: &ioDictionary\n"
+#    result += "    )\n"
+#  case oppositeIsToOne (oppositeName) :
+#    result +="  //--- To one property: " + self.mPropertyName + " // Opposite is toOne " + oppositeName + "\n"
+#    result += "    self.store (managedObject: self." + self.mPropertyName + "_property.propval,\n"
+#    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
+#    result += "      intoDictionary: &ioDictionary\n"
+#    result += "    )\n"
+#  end
+#}
 
 #·······················································································································
 

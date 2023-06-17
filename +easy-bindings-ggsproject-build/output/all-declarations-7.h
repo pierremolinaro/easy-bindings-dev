@@ -191,7 +191,8 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
                                                                                         const class GALGAS_externSwiftDelegateList & in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION,
                                                                                         const class GALGAS_bool & in_HAS_5F_SUB_5F_ENTITY,
                                                                                         const class GALGAS_bool & in_OPTION_5F_CanCopyAndPaste,
-                                                                                        const class GALGAS_bool & in_OPTION_5F_CannotBeDeleted
+                                                                                        const class GALGAS_bool & in_OPTION_5F_CannotBeDeleted,
+                                                                                        const class GALGAS_bool & in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

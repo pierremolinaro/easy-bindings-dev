@@ -97,10 +97,9 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @atomicPropertyDeclarationAST.firstAnalysisPhase(
+override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext
-       ?!@generationStruct unused ioGeneration)
-{
+       ?!@generationStruct unused ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
@@ -226,7 +225,7 @@ override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @
 
 #·······················································································································
 
-override func @atomicPropertyGeneration.propertyDeclarationCode(
+override func @atomicPropertyGeneration.propertyDeclarationCode (
    ?let @bool unused inPreferences
    ?let @stringset unused inOverriddenTransients) -> @string
 {
@@ -241,8 +240,8 @@ override func @atomicPropertyGeneration.propertyDeclarationCode(
     result += "  //   Atomic property: " + self.mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  final let " + self.mPropertyName + "_property : EBStoredProperty_" + [self.mType swiftTypeName] + "\n\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     if self.mGenerateResetMethod then
+      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
       result += "  final func reset_" + self.mPropertyName + "_toDefaultValue () {\n"
       result += "    self." + self.mPropertyName + " = " + self.mDefaultValueInSwift + "\n"
       result += "  }\n\n"
@@ -271,16 +270,16 @@ override func @atomicPropertyGeneration.configurationCode (?let @bool unused inP
 
 #·······················································································································
 
-override func @atomicPropertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string {
-  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
-  result += "    self." + self.mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey: \"" + self.mPropertyName + "\")\n"
-}
+#override func @atomicPropertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string {
+#  result  = "  //--- Atomic property: " + self.mPropertyName + "\n"
+#  result += "    self." + self.mPropertyName + "_property.readFrom (dictionary: inDictionary, forKey: \"" + self.mPropertyName + "\")\n"
+#}
 
 #·······················································································································
 
-override func @atomicPropertyGeneration.saveIntoDictionaryCode() -> @string {
-  result  = "    //--- Atomic property: " + self.mPropertyName + "\n"
-  result += "      self." + self.mPropertyName + "_property.storeIn (dictionary: &ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
-}
+#override func @atomicPropertyGeneration.saveIntoDictionaryCode() -> @string {
+#  result  = "    //--- Atomic property: " + self.mPropertyName + "\n"
+#  result += "      self." + self.mPropertyName + "_property.storeIn (dictionary: &ioDictionary, forKey: \"" + self.mPropertyName + "\")\n"
+#}
 
 #-----------------------------------------------------------------------------------------------------------------------
