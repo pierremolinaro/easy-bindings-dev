@@ -357,10 +357,6 @@ override func @computedPropertyGeneration.propertyDeclarationCode(
       result += "  //   Transient property: " + self.mPropertyName + "\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
       result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
-      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-      result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
-      result += "    return self." + self.mPropertyName + "_property.optionalValue\n"
-      result += "  }\n\n"
     end
   end
 }

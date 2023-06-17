@@ -235,7 +235,6 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
     end
     result += ")\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
     result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
     if not [self.mOption isHasDependance] then
