@@ -10,24 +10,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeExpressionForMultipleBinding (class cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
-                                                              const class GALGAS_bool constin_inPreferences,
-                                                              const class GALGAS_propertyMap constin_inRootObservablePropertyMap,
-                                                              const class GALGAS_semanticContext constin_inSemanticContext,
-                                                              const class GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
-                                                              const class GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
-                                                              class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
-                                                              class GALGAS_typeKind & out_outType,
-                                                              class GALGAS_location & out_outErrorLocation,
-                                                              class C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //                                     Phase 1: @arrayControllerBoundModelAST enum                                     *
 //
 //----------------------------------------------------------------------------------------------------------------------

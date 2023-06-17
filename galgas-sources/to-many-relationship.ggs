@@ -11,11 +11,12 @@ enum @toManyRelationshipOptionAST {
 #·······················································································································
 
 class @toManyRelationshipAST : @abstractDeclarationAST {
-  public var @lstring mDestinationEntityName
-  public var @lstring mToManyRelationshipName
-  public var @toManyRelationshipOptionAST mOption
-  public var @bool mCustomStore
-  public var @bool mUsedForSignature
+  public let @lstring mDestinationEntityName
+  public let @lstring mToManyRelationshipName
+  public let @toManyRelationshipOptionAST mOption
+  public let @bool mCustomStore
+  public let @bool mUsedForSignature
+  public let @bool mGenerateDirectAccess
 }
 
 #·······················································································································
@@ -53,8 +54,9 @@ syntax extension easyBindings_syntax {
             ?!@stringset ioSignatureList
             ?!@astDeclarationStruct ioDeclarationAST) {
     $toMany$
-    var @bool usedForSignature = false
-    var @bool customStore = false
+    var usedForSignature = false
+    var customStore = false
+    var generateDirectAccess = false
     repeat
     while
       $@attribute$ (?let attributeName)
@@ -68,8 +70,15 @@ syntax extension easyBindings_syntax {
           error attributeName : "duplicated attribute" fixit { remove }
         end
         customStore = true
+      elsif attributeName.string == "generateDirectAccess" then
+        if generateDirectAccess then
+          error attributeName : "duplicated attribute" fixit { remove }
+        end
+        generateDirectAccess = true
       else
-        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@customStore" }
+        error attributeName : "unknow attribute" fixit {
+          replace "@signature" replace "@customStore" replace "@generateDirectAccess"
+        }
       end
     end
     $Identifier$ (?let destinationEntityName)
@@ -100,6 +109,7 @@ syntax extension easyBindings_syntax {
       !toManyRelationshipOption
       !customStore
       !usedForSignature
+      !generateDirectAccess
     )
   }
   
@@ -155,6 +165,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
     #--- Code Generation
       mPropertyGenerationList += !@toManyPropertyGeneration (
         !self.mToManyRelationshipName.string
+        !self.mGenerateDirectAccess
         !kind
         !optionForGeneration
         !inPrefs
@@ -180,11 +191,12 @@ enum @toManyRelationshipOptionGeneration {
 #·······················································································································
 
 class @toManyPropertyGeneration : @propertyGeneration {
-  public var @propertyKind mRelationshipType
-  public var @toManyRelationshipOptionGeneration mOption
-  public var @bool mInPreferences
-  public var @bool mCustomStore
-  public var @bool mUsedForSignature
+  public let @bool mGenerateDirectAccess
+  public let @propertyKind mRelationshipType
+  public let @toManyRelationshipOptionGeneration mOption
+  public let @bool mInPreferences
+  public let @bool mCustomStore
+  public let @bool mUsedForSignature
 }
 
 #·······················································································································
@@ -234,13 +246,15 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
       result += "\"" + self.mPropertyName + "\""
     end
     result += ")\n\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
-    result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
-    result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
-    if not [self.mOption isHasDependance] then
-      result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
+    if self.mGenerateDirectAccess then
+      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+      result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
+      result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
+      if not [self.mOption isHasDependance] then
+        result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
+      end
+      result += "  }\n\n"
     end
-    result += "  }\n\n"
   end
 }
 

@@ -8225,6 +8225,7 @@ GALGAS_toManyRelationshipOptionGeneration GALGAS_toManyRelationshipOptionGenerat
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_toManyPropertyGeneration::printNonNullClassInstanceProperties (void) const {
     cPtr_propertyGeneration::printNonNullClassInstanceProperties () ;
+    mProperty_mGenerateDirectAccess.printNonNullClassInstanceProperties ("mGenerateDirectAccess") ;
     mProperty_mRelationshipType.printNonNullClassInstanceProperties ("mRelationshipType") ;
     mProperty_mOption.printNonNullClassInstanceProperties ("mOption") ;
     mProperty_mInPreferences.printNonNullClassInstanceProperties ("mInPreferences") ;
@@ -8241,6 +8242,9 @@ typeComparisonResult cPtr_toManyPropertyGeneration::dynamicObjectCompare (const 
   macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
   if (kOperandEqual == result) {
     result = mProperty_mPropertyName.objectCompare (p->mProperty_mPropertyName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mGenerateDirectAccess.objectCompare (p->mProperty_mGenerateDirectAccess) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mRelationshipType.objectCompare (p->mProperty_mRelationshipType) ;
@@ -8294,6 +8298,7 @@ GALGAS_propertyGeneration (inSourcePtr) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_toManyPropertyGeneration GALGAS_toManyPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
+                                                                                  const GALGAS_bool & inAttribute_mGenerateDirectAccess,
                                                                                   const GALGAS_propertyKind & inAttribute_mRelationshipType,
                                                                                   const GALGAS_toManyRelationshipOptionGeneration & inAttribute_mOption,
                                                                                   const GALGAS_bool & inAttribute_mInPreferences,
@@ -8301,64 +8306,21 @@ GALGAS_toManyPropertyGeneration GALGAS_toManyPropertyGeneration::constructor_new
                                                                                   const GALGAS_bool & inAttribute_mUsedForSignature
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_toManyPropertyGeneration result ;
-  if (inAttribute_mPropertyName.isValid () && inAttribute_mRelationshipType.isValid () && inAttribute_mOption.isValid () && inAttribute_mInPreferences.isValid () && inAttribute_mCustomStore.isValid () && inAttribute_mUsedForSignature.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_toManyPropertyGeneration (inAttribute_mPropertyName, inAttribute_mRelationshipType, inAttribute_mOption, inAttribute_mInPreferences, inAttribute_mCustomStore, inAttribute_mUsedForSignature COMMA_THERE)) ;
+  if (inAttribute_mPropertyName.isValid () && inAttribute_mGenerateDirectAccess.isValid () && inAttribute_mRelationshipType.isValid () && inAttribute_mOption.isValid () && inAttribute_mInPreferences.isValid () && inAttribute_mCustomStore.isValid () && inAttribute_mUsedForSignature.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_toManyPropertyGeneration (inAttribute_mPropertyName, inAttribute_mGenerateDirectAccess, inAttribute_mRelationshipType, inAttribute_mOption, inAttribute_mInPreferences, inAttribute_mCustomStore, inAttribute_mUsedForSignature COMMA_THERE)) ;
   }
   return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-void GALGAS_toManyPropertyGeneration::setter_setMRelationshipType (GALGAS_propertyKind inValue
-                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+GALGAS_bool GALGAS_toManyPropertyGeneration::readProperty_mGenerateDirectAccess (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_bool () ;
+  }else{
     cPtr_toManyPropertyGeneration * p = (cPtr_toManyPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
-    p->mProperty_mRelationshipType = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_toManyPropertyGeneration::setter_setMOption (GALGAS_toManyRelationshipOptionGeneration inValue
-                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_toManyPropertyGeneration * p = (cPtr_toManyPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
-    p->mProperty_mOption = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_toManyPropertyGeneration::setter_setMInPreferences (GALGAS_bool inValue
-                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_toManyPropertyGeneration * p = (cPtr_toManyPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
-    p->mProperty_mInPreferences = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_toManyPropertyGeneration::setter_setMCustomStore (GALGAS_bool inValue
-                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_toManyPropertyGeneration * p = (cPtr_toManyPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
-    p->mProperty_mCustomStore = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_toManyPropertyGeneration::setter_setMUsedForSignature (GALGAS_bool inValue
-                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_toManyPropertyGeneration * p = (cPtr_toManyPropertyGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_toManyPropertyGeneration) ;
-    p->mProperty_mUsedForSignature = inValue ;
+    return p->mProperty_mGenerateDirectAccess ;
   }
 }
 
@@ -8427,6 +8389,7 @@ GALGAS_bool GALGAS_toManyPropertyGeneration::readProperty_mUsedForSignature (voi
 //----------------------------------------------------------------------------------------------------------------------
 
 cPtr_toManyPropertyGeneration::cPtr_toManyPropertyGeneration (const GALGAS_string & in_mPropertyName,
+                                                              const GALGAS_bool & in_mGenerateDirectAccess,
                                                               const GALGAS_propertyKind & in_mRelationshipType,
                                                               const GALGAS_toManyRelationshipOptionGeneration & in_mOption,
                                                               const GALGAS_bool & in_mInPreferences,
@@ -8434,6 +8397,7 @@ cPtr_toManyPropertyGeneration::cPtr_toManyPropertyGeneration (const GALGAS_strin
                                                               const GALGAS_bool & in_mUsedForSignature
                                                               COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName COMMA_THERE),
+mProperty_mGenerateDirectAccess (in_mGenerateDirectAccess),
 mProperty_mRelationshipType (in_mRelationshipType),
 mProperty_mOption (in_mOption),
 mProperty_mInPreferences (in_mInPreferences),
@@ -8452,6 +8416,8 @@ void cPtr_toManyPropertyGeneration::description (C_String & ioString,
   ioString << "[@toManyPropertyGeneration:" ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
+  mProperty_mGenerateDirectAccess.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
   mProperty_mRelationshipType.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mOption.description (ioString, inIndentation+1) ;
@@ -8468,7 +8434,7 @@ void cPtr_toManyPropertyGeneration::description (C_String & ioString,
 
 acPtr_class * cPtr_toManyPropertyGeneration::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_toManyPropertyGeneration (mProperty_mPropertyName, mProperty_mRelationshipType, mProperty_mOption, mProperty_mInPreferences, mProperty_mCustomStore, mProperty_mUsedForSignature COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_toManyPropertyGeneration (mProperty_mPropertyName, mProperty_mGenerateDirectAccess, mProperty_mRelationshipType, mProperty_mOption, mProperty_mInPreferences, mProperty_mCustomStore, mProperty_mUsedForSignature COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -14657,3 +14623,30 @@ GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak GALGAS_compariso
   return result ;
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@abstractBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_analyzeExpressionForMultipleBinding (cPtr_abstractBooleanMultipleBindingExpressionAST * inObject,
+                                                              const GALGAS_bool constin_inPreferences,
+                                                              const GALGAS_propertyMap constin_inRootObservablePropertyMap,
+                                                              const GALGAS_semanticContext constin_inSemanticContext,
+                                                              const GALGAS_propertyMap constin_inCurrentObservablePropertyMap,
+                                                              const GALGAS_propertyMap constin_inPreferencesObservablePropertyMap,
+                                                              GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & out_outEnableExpression,
+                                                              GALGAS_typeKind & out_outType,
+                                                              GALGAS_location & out_outErrorLocation,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+//--- Drop output arguments
+  out_outEnableExpression.drop () ;
+  out_outType.drop () ;
+  out_outErrorLocation.drop () ;
+//--- Find method
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_abstractBooleanMultipleBindingExpressionAST) ;
+    inObject->method_analyzeExpressionForMultipleBinding (constin_inPreferences, constin_inRootObservablePropertyMap, constin_inSemanticContext, constin_inCurrentObservablePropertyMap, constin_inPreferencesObservablePropertyMap, out_outEnableExpression, out_outType, out_outErrorLocation, inCompiler COMMA_THERE) ;
+  }
+}
